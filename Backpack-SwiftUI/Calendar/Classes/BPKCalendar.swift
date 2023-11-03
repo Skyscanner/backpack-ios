@@ -59,6 +59,21 @@ public struct BPKCalendar: View {
                                 )
                             }
                         )
+                    case .single(selected: let selected):
+                        SingleCalendarContainer(
+                            selection: selected,
+                            calendar: calendar,
+                            validRange: validRange,
+                            monthHeader: { monthDate in
+                                CalendarMonthHeader(
+                                    monthDate: monthDate,
+                                    calendar: calendar,
+                                    accessoryAction: accessoryAction,
+                                    currentlyShownMonth: $currentlyShownMonth,
+                                    parentProxy: calendarProxy
+                                )
+                            }
+                        )
                     }
                     VStack {
                         CalendarBadge(
@@ -70,35 +85,6 @@ public struct BPKCalendar: View {
                     }
                 }
             }
-        }
-    }
-    
-    @ViewBuilder
-    private func emptyDayCell(
-        forCorrespondingDate correspondingDate: Date,
-        cellIndex: Int,
-        firstDayOfMonth: Date
-    ) -> some View {
-        switch selectionType {
-        case .range(let selectedRange):
-            EmptyRangeSelectionCalendarDayCell(
-                cellIndex: cellIndex,
-                correspondingDate: correspondingDate,
-                selection: selectedRange.wrappedValue,
-                firstDayOfMonth: firstDayOfMonth
-            )
-        }
-    }
-    
-    @ViewBuilder
-    private func dayCell(forDay day: Date, onSelection: @escaping () -> Void) -> some View {
-        switch selectionType {
-        case .range(let selectedRange):
-            RangeSelectionCalendarDayCell(
-                date: day,
-                selection: selectedRange,
-                calendar: calendar
-            )
         }
     }
     

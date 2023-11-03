@@ -21,6 +21,7 @@ import SwiftUI
 struct CalendarMonthGrid<DayCell: View, EmptyDayCell: View>: View {
     let monthDate: Date
     let calendar: Calendar
+    let validRange: ClosedRange<Date>
     @ViewBuilder let dayCell: (Date) -> DayCell
     @ViewBuilder let emptyDayCell: (Date, Int) -> EmptyDayCell
     
@@ -39,7 +40,11 @@ struct CalendarMonthGrid<DayCell: View, EmptyDayCell: View>: View {
                 // Only show days in the current month
                 let matchingComponents = calendar.dateComponents([.year, .month], from: dayDate)
                 if calendar.date(monthDate, matchesComponents: matchingComponents) {
-                    dayCell(dayDate)
+                    if !validRange.contains(dayDate) {
+                        DisabledSelectionCell(calendar: calendar, date: dayDate)
+                    } else {
+                        dayCell(dayDate)
+                    }
                 } else {
                     emptyDayCell(dayDate, cellIndex)
                 }
@@ -50,9 +55,14 @@ struct CalendarMonthGrid<DayCell: View, EmptyDayCell: View>: View {
 
 struct CalendarMonthGrid_Previews: PreviewProvider {
     static var previews: some View {
+        let calendar = Calendar.current
+        let start = calendar.date(from: .init(year: 2023, month: 10, day: 30))!
+        let end = calendar.date(from: .init(year: 2025, month: 12, day: 25))!
+        
         CalendarMonthGrid(
             monthDate: Date(),
             calendar: Calendar.current,
+            validRange: start...end,
             dayCell: { day in
                 BPKText("\(Calendar.current.component(.day, from: day))")
             },

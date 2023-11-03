@@ -36,3 +36,9 @@ struct EmptyRangeSelectionCalendarDayCell: View {
         }
     }
 }
+
+struct DefaultEmptyCalendarDayCell: View {
+    var body: some View {
+        Color.clear
+    }
+}

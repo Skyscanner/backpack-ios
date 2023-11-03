@@ -22,6 +22,8 @@ import Backpack_SwiftUI
 
 struct CalendarExampleView: View {
     @State var selectedRange: ClosedRange<Date>? = Self.initialSelection
+    @State var selectedDate: Date? = Self.initialSelection.lowerBound
+    
     let validRange = Self.validRange
     let calendar = Calendar.current
     
@@ -40,23 +42,53 @@ struct CalendarExampleView: View {
     }
     
     var body: some View {
-        VStack {
-            if let selectedRange {
-                Text("Selected range: \(selectedRange.lowerBound) - \(selectedRange.upperBound)")
-            } else {
-                Text("No selection")
+        TabView {
+            VStack {
+                if let selectedRange {
+                    Text("Selected range: \(selectedRange.lowerBound) - \(selectedRange.upperBound)")
+                } else {
+                    Text("No selection")
+                }
+                rangeCalendar
             }
-            BPKCalendar(
-                selectionType: .range(selectedRange: $selectedRange),
-                calendar: calendar,
-                validRange: validRange
-            )
-            .monthAccessoryAction(title: "Select whole month") { monthDate in
-                let start = calendar.date(from: calendar.dateComponents([.year, .month], from: monthDate))!
-                let nextMonth = calendar.date(byAdding: .init(month: 1), to: start)!
-                let end = calendar.date(byAdding: .init(day: -1), to: nextMonth)!
-                selectedRange = start...end
+            .tabItem {
+                BPKText("Range")
             }
+            
+            VStack {
+                singleCalendar
+            }
+            .tabItem {
+                BPKText("Single")
+            }
+        }
+    }
+    
+    var rangeCalendar: Backpack_SwiftUI.BPKCalendar {
+        BPKCalendar(
+            selectionType: .range(selectedRange: $selectedRange),
+            calendar: calendar,
+            validRange: validRange
+        )
+        .monthAccessoryAction(title: "Select whole month") { monthDate in
+            let start = calendar.date(from: calendar.dateComponents([.year, .month], from: monthDate))!
+            let nextMonth = calendar.date(byAdding: .init(month: 1), to: start)!
+            let end = calendar.date(byAdding: .init(day: -1), to: nextMonth)!
+            selectedRange = start...end
+        }
+    }
+    
+    var singleCalendar: Backpack_SwiftUI.BPKCalendar {
+        BPKCalendar(
+            selectionType: .single(selected: $selectedDate),
+            calendar: calendar,
+            validRange: validRange
+        )
+        .monthAccessoryAction(title: "Select whole month") { monthDate in
+            let start = calendar.date(from: calendar.dateComponents([.year, .month], from: monthDate))!
+            let nextMonth = calendar.date(byAdding: .init(month: 1), to: start)!
+            let end = calendar.date(byAdding: .init(day: -1), to: nextMonth)!
+            selectedRange = start...end
         }
     }
 }

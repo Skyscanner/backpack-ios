@@ -20,4 +20,5 @@ import SwiftUI
 
 public enum CalendarSelectionType {
     case range(selectedRange: Binding<ClosedRange<Date>?>)
+    case single(selected: Binding<Date?>)
 }

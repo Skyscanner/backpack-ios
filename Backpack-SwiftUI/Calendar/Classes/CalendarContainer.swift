@@ -18,13 +18,23 @@
 
 import SwiftUI
 
-struct CalendarContainer<MonthHeader: View, SelectableMonthGrid: View>: View {
+struct CalendarContainer<MonthContent: View>: View {
     let calendar: Calendar
     let validRange: ClosedRange<Date>
-    @ViewBuilder let monthHeader: (_ monthDate: Date) -> MonthHeader
-    @ViewBuilder let selectableGrid: (_ monthDate: Date) -> SelectableMonthGrid
+    @ViewBuilder let monthContent: (_ month: Date) -> MonthContent
     
-    var monthsToShow: Int {
+    var body: some View {
+        ScrollView {
+            VStack(spacing: BPKSpacing.none) {
+                ForEach(0...monthsToShow, id: \.self) { monthIndex in
+                    let firstDayOfMonth = firstDayOf(monthIndex: monthIndex)
+                    monthContent(firstDayOfMonth)
+                }
+            }
+        }
+    }
+    
+    private var monthsToShow: Int {
         let firstMonthComponents = calendar.dateComponents([.year, .month], from: validRange.lowerBound)
         let firstMonth = calendar.date(from: firstMonthComponents)!
         let components = calendar.dateComponents([.year, .month], from: firstMonth, to: validRange.upperBound)
@@ -42,115 +52,6 @@ struct CalendarContainer<MonthHeader: View, SelectableMonthGrid: View>: View {
                 from: month
             )
         )!
-    }
-    
-    // swiftlint:disable all
-    var body: some View {
-        ScrollView {
-            VStack(spacing: BPKSpacing.none) {
-                ForEach(0...monthsToShow, id: \.self) { monthIndex in
-                    let firstDayOfMonth = firstDayOf(monthIndex: monthIndex)
-                    monthHeader(firstDayOfMonth)
-                    selectableGrid(firstDayOfMonth)
-                }
-            }
-        }
-    }
-}
-
-struct RangeCalendarContainer<MonthHeader: View>: View {
-    @State private var initialDateSelection: Date?
-    
-    @Binding var selection: ClosedRange<Date>?
-    let calendar: Calendar
-    let validRange: ClosedRange<Date>
-    @ViewBuilder let monthHeader: (_ monthDate: Date) -> MonthHeader
-    
-    var monthsToShow: Int {
-        let firstMonthComponents = calendar.dateComponents([.year, .month], from: validRange.lowerBound)
-        let firstMonth = calendar.date(from: firstMonthComponents)!
-        let components = calendar.dateComponents([.year, .month], from: firstMonth, to: validRange.upperBound)
-        return components.month! + components.year! * 12
-    }
-    
-    private func firstDayOf(monthIndex: Int) -> Date {
-        let month = calendar.date(
-            byAdding: .init(month: monthIndex),
-            to: validRange.lowerBound
-        )!
-        return calendar.date(
-            from: calendar.dateComponents(
-                [.year, .month],
-                from: month
-            )
-        )!
-    }
-    
-    private func handleSelection(_ date: Date) {
-        if selection != nil {
-            initialDateSelection = date
-            selection = nil
-        } else {
-            if let initialDateSelection {
-                if date < initialDateSelection {
-                    self.initialDateSelection = date
-                } else {
-                    selection = initialDateSelection...date
-                    self.initialDateSelection = nil
-                }
-            } else {
-                initialDateSelection = date
-            }
-        }
-    }
-    
-    
-    @ViewBuilder
-    private func makeDayCell(_ dayDate: Date) -> some View {
-        let matchingDayComponents = calendar.dateComponents([.year, .month, .day], from: dayDate)
-        if !validRange.contains(dayDate) {
-            DisabledSelectionCell(calendar: calendar, date: dayDate)
-        } else if let initialDateSelection,
-            calendar.date(initialDateSelection, matchesComponents: matchingDayComponents) {
-            CalendarSelectableCell {
-                SingleSelectedCell(calendar: calendar, date: initialDateSelection)
-            } onSelection: {
-                handleSelection(dayDate)
-            }
-        } else {
-            CalendarSelectableCell {
-                RangeSelectionCalendarDayCell(
-                    date: dayDate,
-                    selection: $selection,
-                    calendar: calendar
-                )
-            } onSelection: {
-                handleSelection(dayDate)
-            }
-        }
-    }
-    
-    // swiftlint:disable all
-    var body: some View {
-        ScrollView {
-            VStack(spacing: BPKSpacing.none) {
-                ForEach(0...monthsToShow, id: \.self) { monthIndex in
-                    let firstDayOfMonth = firstDayOf(monthIndex: monthIndex)
-                    monthHeader(firstDayOfMonth)
-                    CalendarMonthGrid(
-                        monthDate: firstDayOfMonth,
-                        calendar: calendar,
-                        dayCell: makeDayCell) { correspondingDate, cellIndex in
-                            EmptyRangeSelectionCalendarDayCell(
-                                cellIndex: cellIndex,
-                                correspondingDate: correspondingDate,
-                                selection: selection,
-                                firstDayOfMonth: firstDayOfMonth
-                            )
-                        }
-                }
-            }
-        }
     }
 }
 
@@ -162,15 +63,13 @@ struct CalendarContainer_Previews: PreviewProvider {
         
         CalendarContainer(
             calendar: calendar,
-            validRange: start...end) { day in
-                Text("Header for month: \(day)")
-                    .padding()
-            } selectableGrid: { monthNumber in
+            validRange: start...end,
+            monthContent: { monthNumber in
                 VStack {
-                    Text("Calendar Grid")
-                        .border(.blue)
+                    BPKText("Calendar Grid \(monthNumber)")
                     Divider()
                 }
             }
+        )
     }
 }
