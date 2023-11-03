@@ -39,12 +39,12 @@ struct CalendarExampleView: View {
     }
     
     var body: some View {
-        BPKRangeCalendar(
-            selection: $selectedRange,
+        BPKCalendar(
+            selectionType: .range(selectedRange: $selectedRange),
+            calendar: Calendar(identifier: .gregorian),
             validRange: validRange
         )
-        .monthAccessoryAction(title: "Do something") { _ in
-            
+        .monthAccessoryAction(title: "Select whole month") { _ in
         }
     }
 }

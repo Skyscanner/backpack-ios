@@ -18,81 +18,29 @@
 
 import SwiftUI
 
-public struct BPKRangeCalendar: View {
-    @Binding private var selection: ClosedRange<Date>?
-    private let validRange: ClosedRange<Date>
+public enum SelectionType {
+    case range(selectedRange: Binding<ClosedRange<Date>?>)
+}
+
+public struct BPKCalendar: View {
+    let formatter: DateFormatter
+    let calendar: Calendar
+    let selectionType: SelectionType
+    
+    let validRange: ClosedRange<Date>
     private var accessoryAction: (String, (Date) -> Void)?
-    private let calendar: Calendar
     
     @State private var currentlyShownMonth: Date
     
     public init(
-        selection: Binding<ClosedRange<Date>?>,
+        selectionType: SelectionType,
+        calendar: Calendar,
         validRange: ClosedRange<Date>
     ) {
         _currentlyShownMonth = State(initialValue: validRange.lowerBound)
-        _selection = selection
-        self.validRange = validRange
-        calendar = Calendar(identifier: .gregorian)
-    }
-    
-    public var body: some View {
-        BPKCalendar(
-            calendar: calendar,
-            validRange: validRange,
-            accessoryAction: accessoryAction,
-            dayCell: { day in
-                RangeSelectionCalendarDayCell(
-                    date: day,
-                    selection: $selection,
-                    validRange: validRange,
-                    calendar: calendar
-                )
-            },
-            emptyDayCell: { correspondingDate, cellIndex, firstDayOfMonth in
-                EmptyRangeSelectionCalendarDayCell(
-                    cellIndex: cellIndex,
-                    correspondingDate: correspondingDate,
-                    selection: selection,
-                    firstDayOfMonth: firstDayOfMonth
-                )
-            }
-        )
-    }
-    
-    public func monthAccessoryAction(title: String, action: @escaping (Date) -> Void) -> BPKRangeCalendar {
-        var result = self
-        result.accessoryAction = (title, action)
-        return result
-    }
-}
-
-struct BPKCalendar<DayCell: View, EmptyDayCell: View>: View {
-    let formatter: DateFormatter
-    let calendar: Calendar
-    
-    let dayCell: (Date) -> DayCell
-    let emptyDayCell: (Date, Int, Date) -> EmptyDayCell
-    
-    let validRange: ClosedRange<Date>
-    let accessoryAction: (String, (Date) -> Void)?
-    
-    @State private var currentlyShownMonth: Date
-    
-    init(
-        calendar: Calendar,
-        validRange: ClosedRange<Date>,
-        accessoryAction: (String, (Date) -> Void)?,
-        dayCell: @escaping (Date) -> DayCell,
-        emptyDayCell: @escaping (Date, Int, Date) -> EmptyDayCell
-    ) {
-        _currentlyShownMonth = State(initialValue: validRange.lowerBound)
-        self.accessoryAction = accessoryAction
-        self.dayCell = dayCell
-        self.emptyDayCell = emptyDayCell
         self.validRange = validRange
         self.calendar = calendar
-        
+        self.selectionType = selectionType
         formatter = DateFormatter()
         formatter.dateFormat = "MMMM"
     }
@@ -120,7 +68,7 @@ struct BPKCalendar<DayCell: View, EmptyDayCell: View>: View {
                                 validRange: validRange,
                                 monthDate: monthDate(forMonthIndex: monthIndex),
                                 calendar: calendar,
-                                dayCell: dayCell,
+                                dayCell: dayCell(forDay:),
                                 emptyDayCell: emptyDayCell
                             )
                         }
@@ -138,11 +86,47 @@ struct BPKCalendar<DayCell: View, EmptyDayCell: View>: View {
         }
     }
     
+    @ViewBuilder
+    private func emptyDayCell(
+        forCorrespondingDate correspondingDate: Date,
+        cellIndex: Int,
+        firstDayOfMonth: Date
+    ) -> some View {
+        switch selectionType {
+        case .range(let selectedRange):
+            EmptyRangeSelectionCalendarDayCell(
+                cellIndex: cellIndex,
+                correspondingDate: correspondingDate,
+                selection: selectedRange.wrappedValue,
+                firstDayOfMonth: firstDayOfMonth
+            )
+        }
+    }
+    
+    @ViewBuilder
+    private func dayCell(forDay day: Date) -> some View {
+        switch selectionType {
+        case .range(let selectedRange):
+            RangeSelectionCalendarDayCell(
+                date: day,
+                selection: selectedRange,
+                validRange: validRange,
+                calendar: calendar
+            )
+        }
+    }
+    
     private func monthDate(forMonthIndex monthIndex: Int) -> Date {
         calendar.date(
             byAdding: .init(month: monthIndex),
             to: validRange.lowerBound
         ) ?? Date()
+    }
+    
+    public func monthAccessoryAction(title: String, action: @escaping (Date) -> Void) -> BPKCalendar {
+        var result = self
+        result.accessoryAction = (title, action)
+        return result
     }
 }
 
@@ -191,8 +175,6 @@ struct CalendarGrid<MonthHeader: View, SelectableMonthGrid: View>: View {
     // swiftlint:disable all
     var body: some View {
         ScrollView {
-            
-            
             VStack(spacing: BPKSpacing.none) {
                 
                 ForEach(0..<monthsToShow, id: \.self) { month in
@@ -201,12 +183,6 @@ struct CalendarGrid<MonthHeader: View, SelectableMonthGrid: View>: View {
                         to: validRange.lowerBound
                     )!
                     monthHeader(theDate)
-                    //                        GeometryReader { proxy in
-                    //                            let global = proxy.frame(of: .global)
-                    //                            VStack {
-                    //                                Text("\(global.debugDescription) \(global.size.height)")
-                    //                            }
-                    //                        }
                         .fixedSize(horizontal: false, vertical: false)
                     selectableGrid(month)
                     
@@ -394,9 +370,13 @@ struct BPKCalendar_Previews: PreviewProvider {
         let minSelectedDate = calendar.date(from: .init(year: 2023, month: 10, day: 19))!
         let maxSelectedDate = calendar.date(from: .init(year: 2023, month: 10, day: 30))!
         
-        BPKRangeCalendar(
-            selection: .constant(minSelectedDate...maxSelectedDate),
+        BPKCalendar(
+            selectionType: .range(
+                selectedRange: .constant(minSelectedDate...maxSelectedDate)
+            ),
+            calendar: calendar,
             validRange: minValidDate...maxValidDate
-        ).monthAccessoryAction(title: "hehhe", action: { _ in })
+        )
+        .monthAccessoryAction(title: "Select whole month") { _ in }
     }
 }
