@@ -18,27 +18,15 @@
 
 import SwiftUI
 
-struct EmptyRangeSelectionCalendarDayCell: View {
-    let cellIndex: Int
-    let correspondingDate: Date
-    let selection: ClosedRange<Date>?
-    let firstDayOfMonth: Date
+struct DisabledSelectionCell: View {
+    let calendar: Calendar
+    let date: Date
     
     var body: some View {
-        if let selection, selection.contains(correspondingDate), selection.contains(firstDayOfMonth) {
-            if cellIndex < 8 { // First week row
-                Color(.surfaceSubtleColor)
-            } else if cellIndex < 35 { // Last week row
-                Color(.surfaceSubtleColor)
-            }
-        } else if cellIndex < 8 { // First week row, needed to fill the grid
-            Color.clear
-        }
-    }
-}
-
-struct DefaultEmptyCalendarDayCell: View {
-    var body: some View {
-        Color.clear
+        BPKText("\(calendar.component(.day, from: date))", style: .label1)
+            .lineLimit(1)
+            .foregroundColor(.textDisabledColor)
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, .md)
     }
 }

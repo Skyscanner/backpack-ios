@@ -38,41 +38,21 @@ public struct BPKCalendar: View {
     }
     
     public var body: some View {
-        // swiftlint:disable closure_body_length
         GeometryReader { calendarProxy in
             VStack(spacing: BPKSpacing.none) {
                 CalendarHeader(calendar: calendar)
                 ZStack {
-                    switch selectionType {
-                    case .range(let selectedRange):
-                        RangeCalendarContainer(
-                            selection: selectedRange,
+                    CalendarTypeContainerFactory(
+                        selectionType: selectionType,
+                        calendar: calendar,
+                        validRange: validRange
+                    ) { monthDate in
+                        CalendarMonthHeader(
+                            monthDate: monthDate,
                             calendar: calendar,
-                            validRange: validRange,
-                            monthHeader: { monthDate in
-                                CalendarMonthHeader(
-                                    monthDate: monthDate,
-                                    calendar: calendar,
-                                    accessoryAction: accessoryAction,
-                                    currentlyShownMonth: $currentlyShownMonth,
-                                    parentProxy: calendarProxy
-                                )
-                            }
-                        )
-                    case .single(selected: let selected):
-                        SingleCalendarContainer(
-                            selection: selected,
-                            calendar: calendar,
-                            validRange: validRange,
-                            monthHeader: { monthDate in
-                                CalendarMonthHeader(
-                                    monthDate: monthDate,
-                                    calendar: calendar,
-                                    accessoryAction: accessoryAction,
-                                    currentlyShownMonth: $currentlyShownMonth,
-                                    parentProxy: calendarProxy
-                                )
-                            }
+                            accessoryAction: accessoryAction,
+                            currentlyShownMonth: $currentlyShownMonth,
+                            parentProxy: calendarProxy
                         )
                     }
                     VStack {
