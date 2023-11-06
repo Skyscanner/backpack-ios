@@ -147,9 +147,7 @@ public struct BPKInsetBanner<LogoContent: View>: View {
         HStack(spacing: .md) {
             if let logo = logo {
                 logo
-//                    .resizable()
-//                    .scaledToFit()
-                    .frame(maxWidth: 88, maxHeight: 22)
+                    .frame(maxWidth: Constants.maxLogoWidth, maxHeight: Constants.maxLogoHeight)
                     .fixedSize(horizontal: true, vertical: false)
             }
             titlesView
@@ -197,6 +195,11 @@ public struct BPKInsetBanner<LogoContent: View>: View {
             isExpanded.toggle()
         }
     }
+}
+
+private enum Constants {
+    static let maxLogoWidth: CGFloat = 88.0
+    static let maxLogoHeight: CGFloat = 22.0
 }
 
 struct BPKInsetBanner_Previews: PreviewProvider {
