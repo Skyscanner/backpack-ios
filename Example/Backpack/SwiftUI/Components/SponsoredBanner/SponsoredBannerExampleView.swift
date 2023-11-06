@@ -54,7 +54,7 @@ struct InsetBannerExampleView: View {
     
     private var imageAndCTAView: some View {
         BPKInsetBanner(
-            logoContent: Image("skyland"),
+            logoContent: Image("skyland").resizable().scaledToFit(),
             title: "Title",
             subheadline: "Subheading",
             callToAction: .init(
