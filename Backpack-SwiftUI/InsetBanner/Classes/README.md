@@ -8,12 +8,12 @@
 
 | Day | Night |
 | --- | --- |
-| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_inset-banner___landscape_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_inset-banner___landscape_dm.png" alt="" width="375" /> |
-
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_inset-banner___default_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_inset-banner___default_dm.png" alt="" width="375" /> |
+.
 
 ## Usage
 
-All text fields are optional, which means by default `BPKInsetBanner` has no content (it only shows the padding). The background colour is customizable, while the text and info icon's colour rely on the `variant`.
+All text fields in `BPKInsetBanner` are optional, though it requires having either a logo, title or subheading (or a combination). The background colour is customizable, while the text and info icon's colour rely on the `variant`.
 
 ```swift 
 BPKInsetBanner(
@@ -27,6 +27,32 @@ BPKInsetBanner(
     backgroundColor: Color(red: 1.000, green: 0.400, blue: 0.004, opacity: 1.000)
 )
 ```
+
+### Inserting logo content
+
+The `logoContent` to be inserted can be any `View` but **it is not recommended to insert anything but an image or a loading indicator**:
+
+
+
+```swift 
+BPKInsetBanner(
+    logoContent: Image("skyland").resizable().scaledToFit(),
+    title: "Title",
+    subheadline: "Subheading",
+    callToAction: .init(
+        text: "Sponsored",
+        accessibilityHint: "Double tap for more information",
+        showIcon: true),
+    bodyText: "You can change your destination, date of travel," +
+    " or both, with no change fee. Valid for all " +
+    "new bookings made up to 31 May for travel between now and 31 December 2023.",
+    variant: .onDark,
+    backgroundColor: Color(red: 1.000, green: 0.400, blue: 0.004, opacity: 1.000)
+)
+```
+
+
+
 
 The info icon can be disabled passing the `showIcon` value in `callToAction`: 
 
