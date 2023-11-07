@@ -455,7 +455,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     NSDate *minDate = [self.minDate dateForCalendar:self.gregorian];
 
     NSDateComponents *comps = [self.gregorian components:NSCalendarUnitMonth fromDate:minDate toDate:monthDate options:0];
-    return comps.month >= 0;
+    return comps.month >= 0 && comps.month < 11;
 }
 
 #pragma mark - <FSCalendarDataSource>
