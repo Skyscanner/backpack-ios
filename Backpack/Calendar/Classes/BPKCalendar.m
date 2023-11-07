@@ -453,9 +453,11 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 - (BOOL)isWholeMonthButtonEnabledForMonth:(BPKSimpleDate *)month {
     NSDate *monthDate = [month dateForCalendar:self.gregorian];
     NSDate *minDate = [self.minDate dateForCalendar:self.gregorian];
+    NSDate *maxDate = [self.maxDate dateForCalendar:self.gregorian];
 
-    NSDateComponents *comps = [self.gregorian components:NSCalendarUnitMonth fromDate:minDate toDate:monthDate options:0];
-    return comps.month >= 0 && comps.month < 11;
+    NSDateComponents *minComps = [self.gregorian components:NSCalendarUnitMonth fromDate:minDate toDate:monthDate options:0];
+    NSDateComponents *maxComps = [self.gregorian components:NSCalendarUnitMonth fromDate:maxDate toDate:monthDate options:0];
+    return minComps.month >= 0 && maxComps.month < 0;
 }
 
 #pragma mark - <FSCalendarDataSource>
