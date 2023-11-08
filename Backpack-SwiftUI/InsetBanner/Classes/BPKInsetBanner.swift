@@ -19,8 +19,8 @@
 
 import SwiftUI
 
-public struct BPKSponsoredBanner: View {
-    private let logo: Image?
+public struct BPKInsetBanner<LogoContent: View>: View {
+    private let logo: LogoContent?
     private let title: String?
     private let subheadline: String?
     private let callToAction: CallToAction?
@@ -32,7 +32,7 @@ public struct BPKSponsoredBanner: View {
     @State private var isExpanded: Bool
     
     public init(
-        logo: Image? = nil,
+        logoContent: LogoContent? = nil,
         title: String,
         subheadline: String? = nil,
         callToAction: CallToAction? = nil,
@@ -42,19 +42,19 @@ public struct BPKSponsoredBanner: View {
         isExpanded: Bool = false,
         customAccessibilityLabel: String? = nil
     ) {
-        self.logo = logo
+        self.logo = logoContent
         self.title = title
         self.subheadline = subheadline
         self.callToAction = callToAction
         self.bodyText = bodyText
         self.variant = variant
         self.backgroundColor = backgroundColor
-        self.isExpanded = isExpanded
+        self._isExpanded = State(initialValue: isExpanded)
         self.customAccessibilityLabel = customAccessibilityLabel
     }
     
     public init(
-        logo: Image? = nil,
+        logoContent: LogoContent? = nil,
         subheadline: String,
         callToAction: CallToAction? = nil,
         bodyText: String? = nil,
@@ -63,19 +63,19 @@ public struct BPKSponsoredBanner: View {
         isExpanded: Bool = false,
         customAccessibilityLabel: String? = nil
     ) {
-        self.logo = logo
+        self.logo = logoContent
         self.title = nil
         self.subheadline = subheadline
         self.callToAction = callToAction
         self.bodyText = bodyText
         self.variant = variant
         self.backgroundColor = backgroundColor
-        self.isExpanded = isExpanded
+        self._isExpanded = State(initialValue: isExpanded)
         self.customAccessibilityLabel = customAccessibilityLabel
     }
     
     public init(
-        logo: Image,
+        logoContent: LogoContent,
         callToAction: CallToAction? = nil,
         bodyText: String? = nil,
         variant: Variant,
@@ -83,14 +83,14 @@ public struct BPKSponsoredBanner: View {
         isExpanded: Bool = false,
         customAccessibilityLabel: String? = nil
     ) {
-        self.logo = logo
+        self.logo = logoContent
         self.title = nil
         self.subheadline = nil
         self.callToAction = callToAction
         self.bodyText = bodyText
         self.variant = variant
         self.backgroundColor = backgroundColor
-        self.isExpanded = isExpanded
+        self._isExpanded = State(initialValue: isExpanded)
         self.customAccessibilityLabel = customAccessibilityLabel
     }
     
@@ -137,7 +137,7 @@ public struct BPKSponsoredBanner: View {
         }
         .accessibilityRemoveTraits(hasBody ? [] : .isButton)
         .accessibilityElement(children: .combine)
-        .buttonStyle(SponsoredBannerButtonStyle(
+        .buttonStyle(InsetBannerButtonStyle(
             foregroundColor: (variant == .onDark) ? Color(BPKColor.textOnDarkColor) : Color(BPKColor.textOnLightColor),
             backgroundColor: backgroundColor
         ))
@@ -147,15 +147,15 @@ public struct BPKSponsoredBanner: View {
         HStack(spacing: .md) {
             if let logo = logo {
                 logo
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxHeight: 22)
+                    .frame(maxWidth: Constants.maxLogoWidth, maxHeight: Constants.maxLogoHeight)
+                    .fixedSize(horizontal: true, vertical: false)
             }
             titlesView
             Spacer()
             if let callToAction = callToAction {
                 BPKText(callToAction.text, style: .caption)
                     .foregroundColor(variant.color)
+                    .lineLimit(nil)
                 if callToAction.showIcon {
                     iconView
                 }
@@ -170,10 +170,12 @@ public struct BPKSponsoredBanner: View {
             if let title = title {
                 BPKText(title, style: .label2)
                     .foregroundColor(variant.color)
+                    .lineLimit(nil)
             }
             if let subheadline = subheadline {
                 BPKText(subheadline, style: .caption)
                     .foregroundColor(variant.color)
+                    .lineLimit(nil)
             }
         }
     }
@@ -195,9 +197,14 @@ public struct BPKSponsoredBanner: View {
     }
 }
 
-struct BPKSponsoredBanner_Previews: PreviewProvider {
+private enum Constants {
+    static let maxLogoWidth: CGFloat = 88.0
+    static let maxLogoHeight: CGFloat = 22.0
+}
+
+struct BPKInsetBanner_Previews: PreviewProvider {
     static var previews: some View {
-        BPKSponsoredBanner(
+        BPKInsetBanner<EmptyView>(
             title: "Title",
             subheadline: "Subheading",
             callToAction: .init(
@@ -209,6 +216,6 @@ struct BPKSponsoredBanner_Previews: PreviewProvider {
             "new bookings made up to 31 May for travel between now and 31 December 2023.",
             variant: .onDark,
             backgroundColor: Color(red: 1.000, green: 0.400, blue: 0.004, opacity: 1.000))
-        .padding()
+        .padding(.base)
     }
 }

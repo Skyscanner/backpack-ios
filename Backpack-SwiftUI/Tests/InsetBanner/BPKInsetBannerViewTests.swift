@@ -21,12 +21,12 @@ import SwiftUI
 import SnapshotTesting
 import Backpack_SwiftUI
 
-class BPKSponsoredBannerViewTests: XCTestCase {
+class BPKInsetBannerViewTests: XCTestCase {
     private let orangeColor = Color(red: 1.000, green: 0.400, blue: 0.004, opacity: 1.000)
     private let yellowColor = Color(red: 1.000, green: 0.890, blue: 0.000, opacity: 1.000)
-    func testSponsoredBannerWithTitle() {
+    func testInsetBannerWithTitle() {
         assertSnapshot(
-            BPKSponsoredBanner(
+            BPKInsetBanner<EmptyView>(
                 title: "Title",
                 variant: .onDark,
                 backgroundColor: orangeColor)
@@ -35,9 +35,9 @@ class BPKSponsoredBannerViewTests: XCTestCase {
         )
     }
     
-    func testSponsoredBannerWithSubheadlineAndBody() {
+    func testInsetBannerWithSubheadlineAndBody() {
         assertSnapshot(
-            BPKSponsoredBanner(
+            BPKInsetBanner<EmptyView>(
                 title: "Title",
                 subheadline: "Subheadline",
                 bodyText: "This is a body text",
@@ -48,9 +48,9 @@ class BPKSponsoredBannerViewTests: XCTestCase {
         )
     }
     
-    func testSponsoredBannerWithTitlesAndCallToAction() {
+    func testInsetBannerWithTitlesAndCallToAction() {
         assertSnapshot(
-            BPKSponsoredBanner(
+            BPKInsetBanner<EmptyView>(
                 title: "Title",
                 subheadline: "Subheadline",
                 callToAction: .init(
@@ -64,9 +64,9 @@ class BPKSponsoredBannerViewTests: XCTestCase {
         )
     }
     
-    func testSponsoredBannerOnLightVariant() {
+    func testInsetBannerOnLightVariant() {
         assertSnapshot(
-            BPKSponsoredBanner(
+            BPKInsetBanner<EmptyView>(
                 title: "On Light variant",
                 subheadline: "Subheadline",
                 bodyText: "This is a body text",
@@ -77,15 +77,15 @@ class BPKSponsoredBannerViewTests: XCTestCase {
         )
     }
     
-    func testSponsoredBannerWithImageTitlesAndCallToAction() {
+    func testInsetBannerWithImageTitlesAndCallToAction() {
         assertSnapshot(
-            BPKSponsoredBanner(
-                logo: Image("skyland", bundle: TestsBundle.bundle),
+            BPKInsetBanner(
+                logoContent: Image("skyland", bundle: TestsBundle.bundle).resizable().scaledToFit(),
                 title: "Title",
                 subheadline: "Subheading",
                 callToAction: .init(
                     text: "Sponsored",
-                    accessibilityHint: "Sponsored Banner"),
+                    accessibilityHint: "Inset Banner"),
                 bodyText: "You can change your destination, date of travel," +
                 " or both, with no change fee. Valid for all " +
                 "new bookings made up to 31 May for travel between now and 31 December 2020.",
@@ -96,15 +96,15 @@ class BPKSponsoredBannerViewTests: XCTestCase {
         )
     }
     
-    func testSponsoredBannerShowingTermsAndConditions() {
+    func testInsetBannerShowingTermsAndConditions() {
         assertSnapshot(
-            BPKSponsoredBanner(
-                logo: Image("skyland", bundle: TestsBundle.bundle),
+            BPKInsetBanner(
+                logoContent: Image("skyland", bundle: TestsBundle.bundle).resizable().scaledToFit(),
                 title: "Title",
                 subheadline: "Subheading",
                 callToAction: .init(
                     text: "Sponsored",
-                    accessibilityHint: "Sponsored Banner"),
+                    accessibilityHint: "Inset Banner"),
                 bodyText: "You can change your destination, date of travel," +
                 " or both, with no change fee. Valid for all " +
                 "new bookings made up to 31 May for travel between now and 31 December 2020.",
@@ -116,9 +116,9 @@ class BPKSponsoredBannerViewTests: XCTestCase {
         )
     }
     
-    func testSponsoredBannerOnLightWithoutInfoButton() {
+    func testInsetBannerOnLightWithoutInfoButton() {
         assertSnapshot(
-            BPKSponsoredBanner(
+            BPKInsetBanner<EmptyView>(
                 title: "On Light variant",
                 subheadline: "Subheadline",
                 callToAction: .init(
@@ -133,9 +133,9 @@ class BPKSponsoredBannerViewTests: XCTestCase {
         )
     }
     
-    func testSponsoredBannerOnDarkWithSubheadlineOnly() {
+    func testInsetBannerOnDarkWithSubheadlineOnly() {
         assertSnapshot(
-            BPKSponsoredBanner(
+            BPKInsetBanner<EmptyView>(
                 subheadline: "Subheadline only",
                 callToAction: .init(
                     text: "Sponsored",
@@ -149,14 +149,33 @@ class BPKSponsoredBannerViewTests: XCTestCase {
         )
     }
     
-    func testSponsoredBannerOnDarkWithImageWithoutTitleOrSubheadline() {
+    func testInsetBannerOnDarkWithImageWithoutTitleOrSubheadline() {
         assertSnapshot(
-            BPKSponsoredBanner(
-                logo: Image("skyland", bundle: TestsBundle.bundle),
+            BPKInsetBanner(
+                logoContent: Image("skyland", bundle: TestsBundle.bundle).resizable().scaledToFit(),
                 callToAction: .init(
                     text: "Sponsored",
                     accessibilityHint: "Double tap for more information",
                     showIcon: true),
+                variant: .onDark,
+                backgroundColor: orangeColor)
+            .frame(width: 375)
+            .padding()
+        )
+    }
+    
+    func testInsetBannerWithLongTitleAndSubHeadline() {
+        assertSnapshot(
+            BPKInsetBanner(
+                logoContent: Image("skyland", bundle: TestsBundle.bundle).resizable().scaledToFit(),
+                title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
+                "Sed sit amet sagittis tellus, quis pharetra massa." +
+                " Nunc nec nisl condimentum, efficitur sem vitae, facilisis erat. " +
+                "Nullam ut tellus sed tortor eleifend accumsan sed nec enim." +
+                " Nullam nec rhoncus nulla. Fusce placerat blandit semper.",
+                subheadline: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
+                "Sed sit amet sagittis tellus, quis pharetra massa." +
+                " Nunc nec nisl condimentum, efficitur sem vitae, facilisis erat. ",
                 variant: .onDark,
                 backgroundColor: orangeColor)
             .frame(width: 375)

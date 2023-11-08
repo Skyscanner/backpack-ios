@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-extension BPKSponsoredBanner {
+extension BPKInsetBanner {
     public enum Variant {
         case onLight
         case onDark

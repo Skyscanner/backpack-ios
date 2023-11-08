@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		006034DBB76C671434F6252A /* Pods_Backpack_Native.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDBC7CA36756032862B5D581 /* Pods_Backpack_Native.framework */; };
 		022519872A7011CD00D7A06D /* SnippetExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022519862A7011CD00D7A06D /* SnippetExampleView.swift */; };
-		0245783E2ABC3AA1006008D1 /* SponsoredBannerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0245783D2ABC3AA1006008D1 /* SponsoredBannerExampleView.swift */; };
+		0245783E2ABC3AA1006008D1 /* InsetBannerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0245783D2ABC3AA1006008D1 /* InsetBannerExampleView.swift */; };
 		02D34C4A2A712A2200F99085 /* SnippetGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D34C492A712A2200F99085 /* SnippetGroups.swift */; };
 		0E844AF7289141C2004C5865 /* SkeletonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E844AF6289141C2004C5865 /* SkeletonViewController.swift */; };
 		17068B8A299C0106000EA7F4 /* RatingGroupsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17068B89299C0106000EA7F4 /* RatingGroupsProvider.swift */; };
@@ -218,7 +218,7 @@
 
 /* Begin PBXFileReference section */
 		022519862A7011CD00D7A06D /* SnippetExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetExampleView.swift; sourceTree = "<group>"; };
-		0245783D2ABC3AA1006008D1 /* SponsoredBannerExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponsoredBannerExampleView.swift; sourceTree = "<group>"; };
+		0245783D2ABC3AA1006008D1 /* InsetBannerExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetBannerExampleView.swift; sourceTree = "<group>"; };
 		02D34C492A712A2200F99085 /* SnippetGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetGroups.swift; sourceTree = "<group>"; };
 		090E9C65F965012C0DF5C1E3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		0E844AF6289141C2004C5865 /* SkeletonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonViewController.swift; sourceTree = "<group>"; };
@@ -468,12 +468,12 @@
 			path = Snippet;
 			sourceTree = "<group>";
 		};
-		0245783C2ABC3A8F006008D1 /* SponsoredBanner */ = {
+		0245783C2ABC3A8F006008D1 /* InsetBanner */ = {
 			isa = PBXGroup;
 			children = (
-				0245783D2ABC3AA1006008D1 /* SponsoredBannerExampleView.swift */,
+				0245783D2ABC3AA1006008D1 /* InsetBannerExampleView.swift */,
 			);
-			path = SponsoredBanner;
+			path = InsetBanner;
 			sourceTree = "<group>";
 		};
 		0E844AF5289141AA004C5865 /* Skeleton */ = {
@@ -918,6 +918,7 @@
 				53C6620B29EA0DAB00BF1A62 /* Dialog */,
 				53C661E929EA0DAA00BF1A62 /* Flare */,
 				53C6620029EA0DAB00BF1A62 /* Icons */,
+				0245783C2ABC3A8F006008D1 /* InsetBanner */,
 				53C661EF29EA0DAA00BF1A62 /* Nudger */,
 				53C661F129EA0DAA00BF1A62 /* Overlay */,
 				53C661F729EA0DAA00BF1A62 /* PageIndicator */,
@@ -928,7 +929,6 @@
 				1A2A4BD62A6801AE00C18218 /* Select */,
 				53C661F929EA0DAA00BF1A62 /* Skeleton */,
 				022519852A7011C000D7A06D /* Snippet */,
-				0245783C2ABC3A8F006008D1 /* SponsoredBanner */,
 				79AFEDA72A9C704F001615A2 /* GraphicPromo */,
 				53C661E729EA0DAA00BF1A62 /* Spinner */,
 				53C661FB29EA0DAB00BF1A62 /* StarRating */,
@@ -1664,7 +1664,7 @@
 				79F5129329AEFEB600D0997A /* LabelViewController.swift in Sources */,
 				53B6DB6627FC47290042B7C0 /* DialogGroups.swift in Sources */,
 				53C6621229EA0DAB00BF1A62 /* SwitchExampleView.swift in Sources */,
-				0245783E2ABC3AA1006008D1 /* SponsoredBannerExampleView.swift in Sources */,
+				0245783E2ABC3AA1006008D1 /* InsetBannerExampleView.swift in Sources */,
 				D61ACE052306E238001C976E /* NavigationBarViewController.swift in Sources */,
 				D26B8B86219EAC72006FE706 /* BadgesViewController.swift in Sources */,
 				D282E867259E04F4000AD77E /* TextFieldsViewController.swift in Sources */,
