@@ -225,6 +225,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property(readonly, nonatomic, strong) NSString *_Nullable wholeMonthTitle;
 
 /**
+ * Enable select whole month button only for limited of month
+ */
+@property(nonatomic) NSInteger selectWholeMonthRange;
+
+/**
  * The calendar's delegate
  */
 @property(nonatomic, nullable, weak) id<BPKCalendarDelegate> delegate;

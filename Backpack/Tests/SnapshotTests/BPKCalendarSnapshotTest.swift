@@ -247,6 +247,21 @@ final class BPKCalendarSnapshotTest: XCTestCase, BPKCalendarDelegate {
         assertSnapshot(snapshotView)
     }
     
+    func testCalendarWithWholeMonthButtonxxxxx() {
+        // Given
+        sut.selectionConfiguration = BPKCalendarSelectionConfigurationSingle(selectionHint: "")
+        sut.selectedDates = [BPKSimpleDate(date: date1, for: sut.gregorian)]
+        sut.selectWholeMonthRange = 1
+        sut.reloadData()
+        
+        // When
+        sut.selectedDates = []
+        sut.reloadData()
+        
+        // Then
+        assertSnapshot(snapshotView)
+    }
+    
     // MARK: Helpers
     private func setupViews(calendar: BPKCalendar) -> UIView {
         let snapshotView = UIView()
