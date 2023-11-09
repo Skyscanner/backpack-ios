@@ -239,8 +239,7 @@ final class BPKCalendarSnapshotTest: XCTestCase, BPKCalendarDelegate {
         )
         
         sut.wholeMonthSelectionConfiguration = .init(
-            title: "Select whole month",
-            selectableMonthRange: BPKYearMonth(year: 2020, month: 1)...BPKYearMonth(year: 2020, month: 12)
+            title: "Select whole month"
         )
         
         // When
