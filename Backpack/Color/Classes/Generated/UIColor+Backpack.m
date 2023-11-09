@@ -301,22 +301,6 @@
     return BPKColor.skyGrayTint07;
 }
 
-+ (UIColor *)bpk_privateInfoBannerSuccessColor {
-    return BPKColor.monteverde;
-}
-
-+ (UIColor *)bpk_privateInfoBannerWarningColor {
-    return BPKColor.kolkata;
-}
-
-+ (UIColor *)bpk_privateInfoBannerErrorColor {
-    return BPKColor.panjin;
-}
-
-+ (UIColor *)bpk_privateInfoBannerInfoColor {
-    return BPKColor.skyGrayTint04;
-}
-
 + (UIColor *)bpk_shadowSmColor {
     return BPKColor.skyGray;
 }

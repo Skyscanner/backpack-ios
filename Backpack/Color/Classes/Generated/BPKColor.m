@@ -303,22 +303,6 @@
     return self.class.skyGrayTint07;
 }
 
-+ (UIColor *)privateInfoBannerSuccessColor {
-    return self.class.monteverde;
-}
-
-+ (UIColor *)privateInfoBannerWarningColor {
-    return self.class.kolkata;
-}
-
-+ (UIColor *)privateInfoBannerErrorColor {
-    return self.class.panjin;
-}
-
-+ (UIColor *)privateInfoBannerInfoColor {
-    return self.class.skyGrayTint04;
-}
-
 + (UIColor *)shadowSmColor {
     return self.class.skyGray;
 }
