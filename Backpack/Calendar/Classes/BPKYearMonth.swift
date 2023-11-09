@@ -28,11 +28,11 @@ public struct BPKYearMonth {
 
 extension BPKYearMonth: Comparable {
     public static func < (lhs: BPKYearMonth, rhs: BPKYearMonth) -> Bool {
-        if lhs.year < rhs.year {
+        if lhs.year <= rhs.year && lhs.month < rhs.month {
             return true
         }
         
-        if lhs.year == rhs.year && lhs.month < rhs.month {
+        if lhs.year < rhs.year {
             return true
         }
         
@@ -40,11 +40,11 @@ extension BPKYearMonth: Comparable {
     }
     
     public static func > (lhs: BPKYearMonth, rhs: BPKYearMonth) -> Bool {
-        if lhs.year > rhs.year {
+        if lhs.year >= rhs.year && lhs.month > rhs.month {
             return true
         }
         
-        if lhs.year == rhs.year && lhs.month > rhs.month {
+        if lhs.year > rhs.year {
             return true
         }
         
@@ -60,11 +60,11 @@ extension BPKYearMonth: Comparable {
     }
     
     public static func <= (lhs: BPKYearMonth, rhs: BPKYearMonth) -> Bool {
-        if lhs.year <= rhs.year {
+        if lhs.year == rhs.year && lhs.month <= rhs.month {
             return true
         }
         
-        if lhs.year == rhs.year && lhs.month <= rhs.month {
+        if lhs.year < rhs.year {
             return true
         }
         
@@ -72,11 +72,11 @@ extension BPKYearMonth: Comparable {
     }
     
     public static func >= (lhs: BPKYearMonth, rhs: BPKYearMonth) -> Bool {
-        if lhs.year >= rhs.year {
+        if lhs.year == rhs.year && lhs.month >= rhs.month {
             return true
         }
         
-        if lhs.year == rhs.year && lhs.month >= rhs.month {
+        if lhs.year > rhs.year {
             return true
         }
         
