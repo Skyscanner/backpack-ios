@@ -43,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @param selectionHint The hint provided to assistive technologies informing a user how to select a date.
  * @return A selection configuration.
- */ 
+ */
 - (instancetype)initWithSelectionHint:(NSString *)selectionHint;
 
 @end

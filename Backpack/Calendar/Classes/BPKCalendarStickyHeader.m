@@ -111,10 +111,10 @@ CGFloat const BPKBaselineOffset = 2.0;
     if (!calendar) {
         return;
     }
-    
+
     BPKCalendarWholeMonthConfiguration *configuration = calendar.wholeMonthSelectionConfiguration;
     self.selectMonthButton.hidden = configuration == nil;
-    
+
     BPKSimpleDate *simpleMonth = [BPKSimpleDate simpleDatesFromDates:@[month] forCalendar:calendar.gregorian].firstObject;
     self.selectMonthButton.enabled = [configuration isWholeMonthSelectionEnabledWithMonth:simpleMonth];
     [self.selectMonthButton setTitle:configuration.title];

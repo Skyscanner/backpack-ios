@@ -20,8 +20,7 @@
 
 @implementation BPKCalendarSelectionConfigurationMultiple
 
-- (instancetype)initWithSelectionHint:(NSString *)selectionHint
-                      deselectionHint:(NSString *)deselectionHint {
+- (instancetype)initWithSelectionHint:(NSString *)selectionHint deselectionHint:(NSString *)deselectionHint {
     self = [super initWithSelectionStyle:BPKCalendarSelectionStyleMultiple];
 
     if (self) {

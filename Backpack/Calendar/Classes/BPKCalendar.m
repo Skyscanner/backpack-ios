@@ -344,7 +344,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 
 - (void)setWholeMonthSelectionConfiguration:(BPKCalendarWholeMonthConfiguration *_Nullable)wholeMonthSelectionConfiguration {
     BPKAssertMainThread();
-    if(_wholeMonthSelectionConfiguration != wholeMonthSelectionConfiguration) {
+    if (_wholeMonthSelectionConfiguration != wholeMonthSelectionConfiguration) {
         _wholeMonthSelectionConfiguration = wholeMonthSelectionConfiguration;
     }
 }
