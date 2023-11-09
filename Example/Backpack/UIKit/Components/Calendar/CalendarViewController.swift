@@ -191,7 +191,6 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
     }
     
     func calendar(_ calendar: BPKCalendar, didSelectWholeMonth dateList: [BPKSimpleDate]) {
-        print("Did select whole month")
-        print(dateList)
+        print("calendar:", calendar, "didSelectWholeMonth:", dateList)
     }
 }
