@@ -19,14 +19,24 @@
 @objcMembers
 public class BPKCalendarWholeMonthConfiguration: NSObject {
     public let title: String
-    private let selectableMonthRange: ClosedRange<BPKYearMonth>
+    private let selectableMonthRange: ClosedRange<BPKYearMonth>?
     
-    public init(title: String, selectableMonthRange: ClosedRange<BPKYearMonth>) {
+    public init(title: String, selectableMonthRange: ClosedRange<BPKYearMonth>? = nil) {
         self.title = title
         self.selectableMonthRange = selectableMonthRange
     }
     
+    /**
+     * Check if the passed month is included in the selectable months
+     *
+     * @param month The mont to check
+     * @return True when the month is in the selectable range, or when the selectable ragne is nil
+     */
     public func isWholeMonthSelectionEnabled(month: BPKSimpleDate) -> Bool {
+        guard let selectableMonthRange else {
+            return true
+        }
+        
         let currentMonth = BPKYearMonth(year: month.year, month: month.month)
         return selectableMonthRange.contains(currentMonth)
     }
