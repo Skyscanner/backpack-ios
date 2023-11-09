@@ -279,6 +279,23 @@ extension MyClass: BPKCalendarDelegate {
 }
 ```
 
+### Whole month selection
+You can enable the selection of an entire month by setting the `wholeMonthSelectionConfiguration` on the BPKCalendar.
+The `selectableMonthRange` can be `nil`, which will not disable any selection options.
+
+> Keep in mind that when you set a min and max date on the calendar, 
+> you want to match this in your whole month configuration.
+>
+> There are no safeguards in place to disable whole month for months that are fully disabled.
+
+```swift
+let calendar = BPKCalendar()
+/* code omitted */
+calendar.wholeMonthSelectionConfiguration = BPKCalendarWholeMonthConfiguration(
+    title: "Select whole month",
+    selectableMonthRange: BPKYearMonth(year: 2020, month: 1)...BPKYearMonth(year: 2020, month: 12)
+)
+```
 ### Appearance attributes
 
 - `(UIColor)dateSelectedContentColor`
