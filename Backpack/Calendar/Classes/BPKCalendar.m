@@ -451,25 +451,6 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     self.calendarView.allowsMultipleSelection = previousMultiSelectionConfiguration;
 }
 
-- (BOOL)isWholeMonthButtonEnabledForMonth:(BPKSimpleDate *)month {
-    NSDate *monthDate = [month dateForCalendar:self.gregorian];
-    
-    // If month is before calendar minimum date
-    NSDate *minDate = [self.minDate dateForCalendar:self.gregorian];
-    NSDateComponents *minComps = [self.gregorian components:NSCalendarUnitMonth fromDate:minDate toDate:monthDate options:0];
-    if (minComps.month < 0) {
-        return false;
-    }
-    
-    // If month is not in the selectableWholeMonthRange
-    NSDate *minSelectableMonth = NSDate.now;
-    NSDate *maxSelectableMonth = [NSDate.now dateByAddingTimeInterval:50000];
-    
-    
-    
-    return true;
-}
-
 #pragma mark - <FSCalendarDataSource>
 
 - (FSCalendarCell *)calendar:(FSCalendar *)calendar cellForDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
