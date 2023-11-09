@@ -53,19 +53,6 @@ NS_ASSUME_NONNULL_BEGIN
  * @return A selection configuration.
  */
 - (instancetype)initWithSelectionHint:(NSString *)selectionHint deselectionHint:(NSString *)deselectionHint;
-
-/**
- * Create a multi-selection configuration with given accessibility strings.
- *
- * @param selectionHint The hint provided to assistive technologies informing a user how to select a date.
- * @param deselectionHint The hint provided to assistive technologies informing a user how to deselect a date.
- *  @param wholeMonthTitle The title of the whole month button, if it's `nil` or empty then the button won't be visible.
- * @return A selection configuration.
- */
-- (instancetype)initWithSelectionHint:(NSString *)selectionHint
-                      deselectionHint:(NSString *)deselectionHint
-                   andWholeMonthTitle:(NSString *_Nullable)wholeMonthTitle;
-
 @end
 
 NS_ASSUME_NONNULL_END

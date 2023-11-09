@@ -44,6 +44,8 @@
 #import "BPKCalendarTrafficLightConfiguration.h"
 #import "BPKCalendarYearPill.h"
 
+#import "Backpack/Backpack-Swift.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 // This is kept around only to support the React Native calendar implementation
@@ -340,6 +342,13 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     }
 }
 
+- (void)setWholeMonthSelectionConfiguration:(BPKCalendarWholeMonthConfiguration *_Nullable)wholeMonthSelectionConfiguration {
+    BPKAssertMainThread();
+    if (_wholeMonthSelectionConfiguration != wholeMonthSelectionConfiguration) {
+        _wholeMonthSelectionConfiguration = wholeMonthSelectionConfiguration;
+    }
+}
+
 - (void)setContentOffset:(CGPoint)contentOffset {
     self.calendarView.collectionView.contentOffset = contentOffset;
 }
@@ -392,14 +401,6 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     self.sameDayRange = selectedDates.count == 2 && [selectedDates.firstObject isEqual:selectedDates.lastObject];
 }
 
-- (BOOL)allowsWholeMonthSelection {
-    return self.wholeMonthTitle != nil && self.wholeMonthTitle.length > 0;
-}
-
-- (NSString *_Nullable)wholeMonthTitle {
-    return self.selectionConfiguration.wholeMonthTitle;
-}
-
 #pragma mark - public methods
 
 - (void)didMoveToSuperview {
@@ -448,14 +449,6 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
         [self.delegate calendar:self didSelectWholeMonth:selectedDates];
     }
     self.calendarView.allowsMultipleSelection = previousMultiSelectionConfiguration;
-}
-
-- (BOOL)isWholeMonthButtonEnabledForMonth:(BPKSimpleDate *)month {
-    NSDate *monthDate = [month dateForCalendar:self.gregorian];
-    NSDate *minDate = [self.minDate dateForCalendar:self.gregorian];
-
-    NSDateComponents *comps = [self.gregorian components:NSCalendarUnitMonth fromDate:minDate toDate:monthDate options:0];
-    return comps.month >= 0;
 }
 
 #pragma mark - <FSCalendarDataSource>
