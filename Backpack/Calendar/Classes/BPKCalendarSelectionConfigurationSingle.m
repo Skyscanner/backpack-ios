@@ -21,11 +21,7 @@
 @implementation BPKCalendarSelectionConfigurationSingle
 
 - (instancetype)initWithSelectionHint:(NSString *)selectionHint {
-    return [self initWithSelectionHint:selectionHint andWholeMonthTitle:nil];
-}
-
-- (instancetype)initWithSelectionHint:(NSString *)selectionHint andWholeMonthTitle:(NSString *_Nullable)wholeMonthTitle {
-    self = [super initWithSelectionStyle:BPKCalendarSelectionStyleSingle andWholeMonthTitle:wholeMonthTitle];
+    self = [super initWithSelectionStyle:BPKCalendarSelectionStyleSingle];
 
     if (self) {
         _selectionHint = [selectionHint copy];

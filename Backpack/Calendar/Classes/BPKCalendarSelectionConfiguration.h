@@ -44,15 +44,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BPKCalendarSelectionConfiguration : NSObject
 
 /**
- * Creates a `BPKCalendarSelectionConfiguration` with the specific classes.
- *
- * @param selectionStyle The selection style of the config.
- * @param wholeMonthTitle The title of the whole month button, if it's `nil` or empty then the button won't be visible.
- * @return `BPKCalendarSelectionConfiguration` instance.
- */
-- (instancetype)initWithSelectionStyle:(BPKCalendarSelectionStyle)selectionStyle andWholeMonthTitle:(NSString *_Nullable)wholeMonthTitle;
-
-/**
  * Creates a `BPKCalendarSelectionConfiguration` with the specific classes. Internally it calls to initWithSelectionStyle:andWholeMonthTitle: but
  * passing `nil` as `wholeMonthTitle`
  *

@@ -20,6 +20,7 @@
 @class BPKSimpleDate;
 @class BPKCalendarConfiguration;
 @class BPKCalendarSelectionConfiguration;
+@class BPKCalendarWholeMonthConfiguration;
 
 @protocol BPKMonthDateProvider;
 
@@ -169,6 +170,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic, strong) BPKCalendarSelectionConfiguration *selectionConfiguration;
 
+
+@property(nonatomic, strong) BPKCalendarWholeMonthConfiguration *_Nullable wholeMonthSelectionConfiguration;
+
 /**
  * List of selected dates
  */
@@ -215,21 +219,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(readonly) BOOL isDragging;
 
 /**
- * Whether selecting a whole month is allowed or not
- */
-@property(readonly) BOOL allowsWholeMonthSelection;
-
-/**
- * The title for the whole month button
- */
-@property(readonly, nonatomic, strong) NSString *_Nullable wholeMonthTitle;
-
-/**
- * Enable select whole month button only for limited of month
- */
-@property(nonatomic) NSInteger selectWholeMonthRange;
-
-/**
  * The calendar's delegate
  */
 @property(nonatomic, nullable, weak) id<BPKCalendarDelegate> delegate;
@@ -255,13 +244,5 @@ NS_ASSUME_NONNULL_BEGIN
  * @param month The month to be selected.
  */
 - (void)selectWholeMonth:(BPKSimpleDate *)month;
-
-/**
- * Wheteher the whole month button is enabled for a given month.
- * @param month A date representing the month.
- * * @return `FALSE` if the month is previous to the `minDate`, `TRUE` otherwise.
- */
-- (BOOL)isWholeMonthButtonEnabledForMonth:(BPKSimpleDate *)month;
-
 @end
 NS_ASSUME_NONNULL_END

@@ -44,6 +44,8 @@
 #import "BPKCalendarTrafficLightConfiguration.h"
 #import "BPKCalendarYearPill.h"
 
+#import "Backpack/Backpack-Swift.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 // This is kept around only to support the React Native calendar implementation
@@ -141,7 +143,6 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
         // `minDate` and `maxDate` is `nonnull` so we need to ensure **it is not** `nil`.
         self.minDate = [[BPKSimpleDate alloc] initWithYear:1970 month:1 day:1];
         self.maxDate = [[BPKSimpleDate alloc] initWithYear:2099 month:12 day:31];
-        self.selectWholeMonthRange = NSIntegerMax;
         _gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
         _dateProvider = [[BPKCalendarMonthDateProvider alloc] initWithCalendar:_gregorian];
         [self setup];
@@ -341,6 +342,13 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     }
 }
 
+- (void)setWholeMonthSelectionConfiguration:(BPKCalendarWholeMonthConfiguration *_Nullable)wholeMonthSelectionConfiguration {
+    BPKAssertMainThread();
+    if(_wholeMonthSelectionConfiguration != wholeMonthSelectionConfiguration) {
+        _wholeMonthSelectionConfiguration = wholeMonthSelectionConfiguration;
+    }
+}
+
 - (void)setContentOffset:(CGPoint)contentOffset {
     self.calendarView.collectionView.contentOffset = contentOffset;
 }
@@ -391,14 +399,6 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     }
 
     self.sameDayRange = selectedDates.count == 2 && [selectedDates.firstObject isEqual:selectedDates.lastObject];
-}
-
-- (BOOL)allowsWholeMonthSelection {
-    return self.wholeMonthTitle != nil && self.wholeMonthTitle.length > 0;
-}
-
-- (NSString *_Nullable)wholeMonthTitle {
-    return self.selectionConfiguration.wholeMonthTitle;
 }
 
 #pragma mark - public methods
@@ -453,10 +453,21 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 
 - (BOOL)isWholeMonthButtonEnabledForMonth:(BPKSimpleDate *)month {
     NSDate *monthDate = [month dateForCalendar:self.gregorian];
+    
+    // If month is before calendar minimum date
     NSDate *minDate = [self.minDate dateForCalendar:self.gregorian];
-
     NSDateComponents *minComps = [self.gregorian components:NSCalendarUnitMonth fromDate:minDate toDate:monthDate options:0];
-    return minComps.month >= 0 && minComps.month < self.selectWholeMonthRange;
+    if (minComps.month < 0) {
+        return false;
+    }
+    
+    // If month is not in the selectableWholeMonthRange
+    NSDate *minSelectableMonth = NSDate.now;
+    NSDate *maxSelectableMonth = [NSDate.now dateByAddingTimeInterval:50000];
+    
+    
+    
+    return true;
 }
 
 #pragma mark - <FSCalendarDataSource>
