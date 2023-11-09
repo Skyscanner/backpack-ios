@@ -34,6 +34,22 @@ public extension BPKColor {
     
     static let skyBlue = BPKColor(red: 0.000, green: 0.384, blue: 0.890, alpha: 1)
 
+    /// The `privateInfoBannerSuccessColor` color from the Backpack palette - rgb(12, 131, 138)
+    
+    static let privateInfoBannerSuccessColor = BPKColor(red: 0.047, green: 0.514, blue: 0.541, alpha: 1)
+
+    /// The `privateInfoBannerWarningColor` color from the Backpack palette - rgb(245, 93, 66)
+    
+    static let privateInfoBannerWarningColor = BPKColor(red: 0.961, green: 0.365, blue: 0.259, alpha: 1)
+
+    /// The `privateInfoBannerErrorColor` color from the Backpack palette - rgb(231, 8, 102)
+    
+    static let privateInfoBannerErrorColor = BPKColor(red: 0.906, green: 0.031, blue: 0.400, alpha: 1)
+
+    /// The `privateInfoBannerInfoColor` color from the Backpack palette - rgb(194, 201, 205)
+    
+    static let privateInfoBannerInfoColor = BPKColor(red: 0.761, green: 0.788, blue: 0.804, alpha: 1)
+
     /// The `shadowSmColor` color from the Backpack palette - rgb(22, 22, 22)
     
     static let shadowSmColor = BPKColor(red: 0.086, green: 0.086, blue: 0.086, alpha: 1)

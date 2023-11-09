@@ -514,6 +514,34 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor * bpk_backgroundSecondaryLightColor __deprecated;
 
 /**
+ * The `privateInfoBannerSuccessColor` color from the Backpack palette - rgb(12, 131, 138).
+ *
+ * <div style="width: 100px; height: 100px; background: #0c838aff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * bpk_privateInfoBannerSuccessColor;
+
+/**
+ * The `privateInfoBannerWarningColor` color from the Backpack palette - rgb(245, 93, 66).
+ *
+ * <div style="width: 100px; height: 100px; background: #f55d42ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * bpk_privateInfoBannerWarningColor;
+
+/**
+ * The `privateInfoBannerErrorColor` color from the Backpack palette - rgb(231, 8, 102).
+ *
+ * <div style="width: 100px; height: 100px; background: #e70866ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * bpk_privateInfoBannerErrorColor;
+
+/**
+ * The `privateInfoBannerInfoColor` color from the Backpack palette - rgb(194, 201, 205).
+ *
+ * <div style="width: 100px; height: 100px; background: #c2c9cdff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * bpk_privateInfoBannerInfoColor;
+
+/**
  * The `shadowSmColor` color from the Backpack palette - rgb(22, 22, 22).
  *
  * <div style="width: 100px; height: 100px; background: #161616ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
