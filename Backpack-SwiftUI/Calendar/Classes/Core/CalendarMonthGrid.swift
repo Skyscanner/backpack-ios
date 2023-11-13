@@ -18,36 +18,70 @@
 
 import SwiftUI
 
-struct CalendarMonthGrid<DayCell: View, EmptyDayCell: View>: View {
+struct CalendarMonthGrid<
+    DayCell: View,
+    EmptyLeadingDayCell: View,
+    EmptyTrailingDayCell: View
+>: View {
     let monthDate: Date
     let calendar: Calendar
     let validRange: ClosedRange<Date>
     @ViewBuilder let dayCell: (Date) -> DayCell
-    @ViewBuilder let emptyDayCell: (Date, Int) -> EmptyDayCell
+    @ViewBuilder let emptyLeadingDayCell: (Date, Int) -> EmptyLeadingDayCell
+    @ViewBuilder let emptyTrailingDayCell: (Date, Int) -> EmptyTrailingDayCell
     
     var body: some View {
-        let firstWeekdayOfMonth = calendar.component(.weekday, from: monthDate)
+        // Sunday is the first day of the week, so we need to offset the days to make Monday the first day
+        let weekdaysOffset = calendar.component(.weekday, from: monthDate) - 2
+        let daysFromPreviousMonth = weekdaysOffset == -1 ? 6 : weekdaysOffset
         LazyVGrid(
             columns: Array(repeating: GridItem(spacing: BPKSpacing.none.value), count: 7),
             spacing: BPKSpacing.lg.value
         ) {
-            // Always attempt to show 6 weeks and 7 days per week
-            ForEach(0..<42) { cellIndex in
+            cellsBeforeMonth(daysFromPreviousMonth: daysFromPreviousMonth)
+            let numberOfDaysInMonth = calendar.range(of: .day, in: .month, for: monthDate)!.count
+            currentMonthDayCell(numberOfDaysInMonth: numberOfDaysInMonth)
+            cellsAfterMonth(totalCellsUsed: numberOfDaysInMonth + daysFromPreviousMonth)
+        }
+    }
+    
+    @ViewBuilder
+    private func currentMonthDayCell(numberOfDaysInMonth: Int) -> some View {
+        ForEach(0..<numberOfDaysInMonth, id: \.self) { cellIndex in
+            let dayDate = calendar.date(
+                byAdding: .init(day: cellIndex),
+                to: monthDate
+            )!
+            
+            if !validRange.contains(dayDate) {
+                DisabledSelectionCell(calendar: calendar, date: dayDate)
+            } else {
+                dayCell(dayDate)
+            }
+        }
+    }
+    
+    private func cellsBeforeMonth(daysFromPreviousMonth: Int) -> some View {
+        ForEach(0..<daysFromPreviousMonth) { cellIndex in
+            let dayDate = calendar.date(
+                byAdding: .init(day: cellIndex - daysFromPreviousMonth),
+                to: monthDate
+            )!
+            emptyLeadingDayCell(dayDate, cellIndex)
+        }
+    }
+    
+    @ViewBuilder
+    private func cellsAfterMonth(totalCellsUsed: Int) -> some View {
+        let remainingCells = 7 - (totalCellsUsed % 7)
+        
+        if remainingCells < 7 {
+            ForEach(0..<remainingCells) { cellIndex in
                 let dayDate = calendar.date(
-                    byAdding: .init(day: cellIndex - firstWeekdayOfMonth + 2),
+                    byAdding: .init(month: 1, day: cellIndex),
                     to: monthDate
                 )!
-                // Only show days in the current month
-                let matchingComponents = calendar.dateComponents([.year, .month], from: dayDate)
-                if calendar.date(monthDate, matchesComponents: matchingComponents) {
-                    if !validRange.contains(dayDate) {
-                        DisabledSelectionCell(calendar: calendar, date: dayDate)
-                    } else {
-                        dayCell(dayDate)
-                    }
-                } else {
-                    emptyDayCell(dayDate, cellIndex)
-                }
+                emptyTrailingDayCell(dayDate, cellIndex)
             }
         }
     }
@@ -56,18 +90,21 @@ struct CalendarMonthGrid<DayCell: View, EmptyDayCell: View>: View {
 struct CalendarMonthGrid_Previews: PreviewProvider {
     static var previews: some View {
         let calendar = Calendar.current
-        let start = calendar.date(from: .init(year: 2023, month: 10, day: 30))!
-        let end = calendar.date(from: .init(year: 2025, month: 12, day: 25))!
+        let start = calendar.date(from: .init(year: 2023, month: 8, day: 30))!
+        let end = calendar.date(from: .init(year: 2028, month: 12, day: 25))!
         
         CalendarMonthGrid(
-            monthDate: Date(),
-            calendar: Calendar.current,
+            monthDate: calendar.date(from: .init(year: 2023, month: 11, day: 1))!,
+            calendar: calendar,
             validRange: start...end,
             dayCell: { day in
-                BPKText("\(Calendar.current.component(.day, from: day))")
+                BPKText("\(calendar.component(.day, from: day))")
             },
-            emptyDayCell: { _, _ in
-                Color.clear
+            emptyLeadingDayCell: { _, _ in
+                Color.red
+            },
+            emptyTrailingDayCell: { _, _ in
+                Color.green
             }
         )
     }
