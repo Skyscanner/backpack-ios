@@ -48,19 +48,17 @@ struct RangeCalendarContainer<MonthHeader: View>: View {
     private func makeDayCell(_ dayDate: Date) -> some View {
         if !validRange.contains(dayDate) {
             DisabledSelectionCell(calendar: calendar, date: dayDate)
-        } else if let initialDateSelection, initialSelection(matchesDate: dayDate) {
-            CalendarSelectableCell {
-                SingleSelectedCell(calendar: calendar, date: initialDateSelection)
-            } onSelection: {
-                handleSelection(dayDate)
-            }
         } else {
             CalendarSelectableCell {
-                RangeSelectionCalendarDayCell(
-                    date: dayDate,
-                    selection: $selection,
-                    calendar: calendar
-                )
+                if let initialDateSelection, initialSelection(matchesDate: dayDate) {
+                    SingleSelectedCell(calendar: calendar, date: initialDateSelection)
+                } else {
+                    RangeSelectionCalendarDayCell(
+                        date: dayDate,
+                        selection: $selection,
+                        calendar: calendar
+                    )
+                }
             } onSelection: {
                 handleSelection(dayDate)
             }
@@ -84,14 +82,43 @@ struct RangeCalendarContainer<MonthHeader: View>: View {
                 monthDate: month,
                 calendar: calendar,
                 validRange: validRange,
-                dayCell: makeDayCell) { correspondingDate, cellIndex in
-                    EmptyRangeSelectionCalendarDayCell(
-                        cellIndex: cellIndex,
+                dayCell: makeDayCell,
+                emptyLeadingDayCell: { correspondingDate, cellIndex in
+                    let firstDayPreviousMonth = calendar.date(byAdding: .init(month: -1), to: month)
+                    if
+                        let selection,
+                        selection.contains(month),
+                        let firstDayPreviousMonth,
+                        selection.contains(firstDayPreviousMonth)
+                    {
+                        Color(.surfaceSubtleColor)
+                    } else {
+                        Color.clear
+                    }
+                },
+                emptyTrailingDayCell: { correspondingDate, cellIndex in
+                    makeEmptyDayCell(
+                        for: month,
                         correspondingDate: correspondingDate,
-                        selection: selection,
-                        firstDayOfMonth: month
+                        cellIndex: cellIndex
                     )
                 }
+            )
+        }
+    }
+    
+    @ViewBuilder
+    private func makeEmptyDayCell(for firstDayOfMonth: Date, correspondingDate: Date, cellIndex: Int) -> some View {
+        let previousDay = calendar.date(byAdding: .init(day: -1), to: correspondingDate)
+        if
+            let selection,
+            let previousDay,
+            selection.contains(previousDay),
+//            let firstDayNextMonth,
+//            selection.contains(firstDayNextMonth),
+            cellIndex < 36
+        {
+            Color(.surfaceSubtleColor)
         }
     }
 }
@@ -99,22 +126,20 @@ struct RangeCalendarContainer<MonthHeader: View>: View {
 struct RangeCalendarContainer_Previews: PreviewProvider {
     static var previews: some View {
         let calendar = Calendar.current
-        let start = calendar.date(from: .init(year: 2023, month: 10, day: 30))!
+        let start = calendar.date(from: .init(year: 2023, month: 10, day: 1))!
         let end = calendar.date(from: .init(year: 2025, month: 12, day: 25))!
         
-        let startSelection = calendar.date(from: .init(year: 2023, month: 11, day: 10))!
-        let endSelection = calendar.date(from: .init(year: 2023, month: 11, day: 20))!
+        let startSelection = calendar.date(from: .init(year: 2023, month: 11, day: 1))!
+//        let startSelection = calendar.date(from: .init(year: 2023, month: 10, day: 31))!
+        let endSelection = calendar.date(from: .init(year: 2023, month: 11, day: 10))!
         
         RangeCalendarContainer(
             selection: .constant(startSelection...endSelection),
             calendar: calendar,
             validRange: start...end,
             monthHeader: { month in
-                VStack {
-                    BPKText("Calendar Grid \(month)")
-                        .border(.blue)
-                    Divider()
-                }
+                BPKText("Calendar Grid \(month)")
+                    .border(.blue)
             }
         )
     }

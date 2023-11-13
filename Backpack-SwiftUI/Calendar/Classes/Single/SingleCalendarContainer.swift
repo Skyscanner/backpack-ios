@@ -55,6 +55,8 @@ struct SingleCalendarContainer<MonthHeader: View>: View {
                 validRange: validRange,
                 dayCell: makeDayCell) { _, _ in
                     DefaultEmptyCalendarDayCell()
+                } emptyTrailingDayCell: { _, _ in
+                    DefaultEmptyCalendarDayCell()
                 }
         }
     }

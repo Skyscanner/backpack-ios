@@ -22,10 +22,9 @@ struct EmptyRangeSelectionCalendarDayCell: View {
     let cellIndex: Int
     let correspondingDate: Date
     let selection: ClosedRange<Date>?
-    let firstDayOfMonth: Date
     
     var body: some View {
-        if let selection, selection.contains(correspondingDate), selection.contains(firstDayOfMonth) {
+        if let selection, selection.contains(correspondingDate) {
             if cellIndex < 8 { // First week row
                 Color(.surfaceSubtleColor)
             } else if cellIndex < 35 { // Last week row
