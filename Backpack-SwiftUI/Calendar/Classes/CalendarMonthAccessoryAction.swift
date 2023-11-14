@@ -18,15 +18,18 @@
 
 import SwiftUI
 
-struct DisabledSelectionCell: View {
-    let calendar: Calendar
-    let date: Date
-    
-    var body: some View {
-        BPKText("\(calendar.component(.day, from: date))", style: .label1)
-            .lineLimit(1)
-            .foregroundColor(.textDisabledColor)
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, .md)
+/// `CalendarMonthAccessoryAction` is a type alias for a closure that represents an action to
+///     be performed when a user interacts with an accessory in the calendar.
+public struct CalendarMonthAccessoryAction {
+    let title: String
+    let action: (Date) -> Void
+
+    /// - Parameters:
+    ///  - title: The title of the accessory.
+    ///  - action: The action to be performed when the user interacts with the accessory.
+    ///           This closure takes a `Date` as a parameter, which is the date that the user interacted with.
+    public init(title: String, action: @escaping (Date) -> Void) {
+        self.title = title
+        self.action = action
     }
 }

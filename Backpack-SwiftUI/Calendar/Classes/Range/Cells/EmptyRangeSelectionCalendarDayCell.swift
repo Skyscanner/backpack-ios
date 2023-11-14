@@ -31,7 +31,27 @@ struct EmptyRangeSelectionCalendarDayCell: View {
                 Color(.surfaceSubtleColor)
             }
         } else if cellIndex < 8 { // First week row, needed to fill the grid
-            Color.clear
+            DefaultEmptyCalendarDayCell()
+        }
+    }
+}
+
+struct EmptyRangeSelectionCalendarDayCell_Previews: PreviewProvider {
+    static var previews: some View {
+        let calendar = Calendar.current
+        let date = calendar.date(from: .init(year: 2023, month: 11, day: 8))!
+        let startSelection = calendar.date(from: .init(year: 2023, month: 10, day: 30))!
+        let endSelection = calendar.date(from: .init(year: 2023, month: 11, day: 10))!
+        
+        LazyVGrid(columns: Array(repeating: GridItem(spacing: 0), count: 3), spacing: 0) {
+            LowerBoundSelectedCell(calendar: calendar, date: date)
+            EmptyRangeSelectionCalendarDayCell(
+                cellIndex: 0,
+                correspondingDate: date,
+                selection: startSelection...endSelection
+            )
+            UpperBoundSelectedCell(calendar: calendar, date: date)
+            
         }
     }
 }

@@ -26,22 +26,46 @@ struct CalendarMonthGrid<
     let monthDate: Date
     let calendar: Calendar
     let validRange: ClosedRange<Date>
+
     @ViewBuilder let dayCell: (Date) -> DayCell
-    @ViewBuilder let emptyLeadingDayCell: (Date, Int) -> EmptyLeadingDayCell
-    @ViewBuilder let emptyTrailingDayCell: (Date, Int) -> EmptyTrailingDayCell
+    @ViewBuilder let emptyLeadingDayCell: () -> EmptyLeadingDayCell
+    @ViewBuilder let emptyTrailingDayCell: () -> EmptyTrailingDayCell
+
+    private let daysInAWeek = 7
     
     var body: some View {
         // Sunday is the first day of the week, so we need to offset the days to make Monday the first day
+        // Sunday is the first day of the week in the Calendar, so we need to offset (rotate the array) the days to
+        // make Monday the first day
         let weekdaysOffset = calendar.component(.weekday, from: monthDate) - 2
+        // If the offset is -1 (Sunday), we want it to be 6 (the last day of the week),
+        // otherwise we keep the offset as it is.
+        // This is because we need to fill the first row with empty cells if the month doesn't start on a Monday.
         let daysFromPreviousMonth = weekdaysOffset == -1 ? 6 : weekdaysOffset
         LazyVGrid(
-            columns: Array(repeating: GridItem(spacing: BPKSpacing.none.value), count: 7),
+            columns: Array(repeating: GridItem(spacing: BPKSpacing.none.value), count: daysInAWeek),
             spacing: BPKSpacing.lg.value
         ) {
-            cellsBeforeMonth(daysFromPreviousMonth: daysFromPreviousMonth)
+            // Create cells for the days from the previous month that are shown in the first week of the current month.
+            ForEach(0..<daysFromPreviousMonth) { _ in
+                emptyLeadingDayCell()
+            }
+
             let numberOfDaysInMonth = calendar.range(of: .day, in: .month, for: monthDate)!.count
+            // Create cells for the days in the current month
             currentMonthDayCell(numberOfDaysInMonth: numberOfDaysInMonth)
-            cellsAfterMonth(totalCellsUsed: numberOfDaysInMonth + daysFromPreviousMonth)
+
+            // Create cells for the days from the next month that are shown in the last week of the current month
+            // The total number of cells used is the sum of the number of days in the current month and the number of
+            // days from the previous month that are shown
+            let totalCellsUsed = numberOfDaysInMonth + daysFromPreviousMonth
+            let remainingCells = daysInAWeek - (totalCellsUsed % daysInAWeek)
+        
+            if remainingCells < daysInAWeek {
+                ForEach(0..<remainingCells) { _ in
+                    emptyTrailingDayCell()
+                }
+            }
         }
     }
     
@@ -54,34 +78,9 @@ struct CalendarMonthGrid<
             )!
             
             if !validRange.contains(dayDate) {
-                DisabledSelectionCell(calendar: calendar, date: dayDate)
+                DisabledCalendarDayCell(calendar: calendar, date: dayDate)
             } else {
                 dayCell(dayDate)
-            }
-        }
-    }
-    
-    private func cellsBeforeMonth(daysFromPreviousMonth: Int) -> some View {
-        ForEach(0..<daysFromPreviousMonth) { cellIndex in
-            let dayDate = calendar.date(
-                byAdding: .init(day: cellIndex - daysFromPreviousMonth),
-                to: monthDate
-            )!
-            emptyLeadingDayCell(dayDate, cellIndex)
-        }
-    }
-    
-    @ViewBuilder
-    private func cellsAfterMonth(totalCellsUsed: Int) -> some View {
-        let remainingCells = 7 - (totalCellsUsed % 7)
-        
-        if remainingCells < 7 {
-            ForEach(0..<remainingCells) { cellIndex in
-                let dayDate = calendar.date(
-                    byAdding: .init(month: 1, day: cellIndex),
-                    to: monthDate
-                )!
-                emptyTrailingDayCell(dayDate, cellIndex)
             }
         }
     }
@@ -100,12 +99,8 @@ struct CalendarMonthGrid_Previews: PreviewProvider {
             dayCell: { day in
                 BPKText("\(calendar.component(.day, from: day))")
             },
-            emptyLeadingDayCell: { _, _ in
-                Color.red
-            },
-            emptyTrailingDayCell: { _, _ in
-                Color.green
-            }
+            emptyLeadingDayCell: { Color.red },
+            emptyTrailingDayCell: { Color.green }
         )
     }
 }

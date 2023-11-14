@@ -26,18 +26,25 @@ struct CalendarTypeContainerFactory<MonthHeader: View>: View {
     
     var body: some View {
         switch selectionType {
-        case .range(let selectedRange):
+        case .range(let selectedRange, let accessibilityConfigurations):
             RangeCalendarContainer(
                 selection: selectedRange,
                 calendar: calendar,
                 validRange: validRange,
+                accessibilityLabelProvider: RangeAccessibilityLabelProviderDecorator(
+                    decoratee: BaseRangeDayAccessibilityLabelProvider(locale: .current),
+                    accessibilityConfigurations: accessibilityConfigurations
+                ),
                 monthHeader: monthHeader
             )
-        case .single(selected: let selected):
+        case .single(selected: let selected, let accessibilityConfigurations):
             SingleCalendarContainer(
                 selection: selected,
                 calendar: calendar,
                 validRange: validRange,
+                accessibilityLabelProvider: SingleDayAccessibilityLabelProvider(
+                    accessibilityConfigurations: accessibilityConfigurations
+                ),
                 monthHeader: monthHeader
             )
         }

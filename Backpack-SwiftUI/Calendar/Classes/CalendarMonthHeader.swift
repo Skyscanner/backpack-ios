@@ -18,35 +18,19 @@
 
 import SwiftUI
 
+/// CalendarMonthHeader is a view that displays the month name and an optional accessory action.
+/// Also exposes a binding to the currently shown month.
 struct CalendarMonthHeader: View {
     let monthDate: Date
-    let formatter: DateFormatter
+    let dateFormatter: DateFormatter
     let calendar: Calendar
-    let accessoryAction: (String, (Date) -> Void)?
+    let accessoryAction: CalendarMonthAccessoryAction?
     @Binding var currentlyShownMonth: Date
-    
     let parentProxy: GeometryProxy
-    
-    init(
-        monthDate: Date,
-        calendar: Calendar,
-        accessoryAction: (String, (Date) -> Void)?,
-        currentlyShownMonth: Binding<Date>,
-        parentProxy: GeometryProxy
-    ) {
-        self.monthDate = monthDate
-        self.calendar = calendar
-        self.accessoryAction = accessoryAction
-        _currentlyShownMonth = currentlyShownMonth
-        self.parentProxy = parentProxy
-        
-        formatter = DateFormatter()
-        formatter.dateFormat = "MMMM"
-    }
     
     var body: some View {
         HStack {
-            let form = formatter.string(from: monthDate)
+            let form = dateFormatter.string(from: monthDate)
             BPKText(form, style: .heading4)
             Spacer()
             GeometryReader { monthProxy in
@@ -57,8 +41,8 @@ struct CalendarMonthHeader: View {
             }
             .frame(width: 1)
             if let accessoryAction {
-                BPKButton(accessoryAction.0) {
-                    accessoryAction.1(monthDate)
+                BPKButton(accessoryAction.title) {
+                    accessoryAction.action(monthDate)
                 }
                 .buttonStyle(.link)
             }
@@ -79,12 +63,19 @@ struct CalendarMonthHeader: View {
 }
 
 struct CalendarMonthHeader_Previews: PreviewProvider {
+    static let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM yyyy"
+        return dateFormatter
+    }()
+    
     static var previews: some View {
         GeometryReader { proxy in
             CalendarMonthHeader(
                 monthDate: Date(),
+                dateFormatter: Self.dateFormatter,
                 calendar: Calendar.current,
-                accessoryAction: ("Select whole month", { _ in }),
+                accessoryAction: .init(title: "Action", action: { _ in }),
                 currentlyShownMonth: .constant(Date()),
                 parentProxy: proxy
             )
@@ -92,6 +83,5 @@ struct CalendarMonthHeader_Previews: PreviewProvider {
             .padding(.base)
         }
         .fixedSize(horizontal: false, vertical: true)
-        
     }
 }

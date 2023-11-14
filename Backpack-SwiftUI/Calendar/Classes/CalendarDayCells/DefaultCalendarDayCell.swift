@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-struct InbetweenSelectionCell: View {
+struct DefaultCalendarDayCell: View {
     let calendar: Calendar
     let date: Date
     
@@ -26,16 +26,5 @@ struct InbetweenSelectionCell: View {
         BPKText("\(calendar.component(.day, from: date))", style: .label1)
             .lineLimit(1)
             .padding(.vertical, .md)
-            .frame(maxWidth: .infinity)
-            .background(.surfaceSubtleColor)
-    }
-}
-
-struct InbetweenSelectionCell_Previews: PreviewProvider {
-    static var previews: some View {
-        let calendar = Calendar.current
-        let date = calendar.date(from: .init(year: 2023, month: 11, day: 8))!
-        
-        InbetweenSelectionCell(calendar: calendar, date: date)
     }
 }

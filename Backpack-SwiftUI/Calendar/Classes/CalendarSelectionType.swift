@@ -18,7 +18,69 @@
 
 import SwiftUI
 
+/// The `CalendarSelectionType` enum represents the different types of selection that can be made in a calendar.
 public enum CalendarSelectionType {
-    case range(selectedRange: Binding<ClosedRange<Date>?>)
-    case single(selected: Binding<Date?>)
+    /// A range selection, where the user can select a range of dates.
+    case range(
+        selectedRange: Binding<ClosedRange<Date>?>,
+        accessibilityConfigurations: RangeAccessibilityConfigurations
+    )
+    
+    /// A single selection, where the user can select a single date.
+    case single(selected: Binding<Date?>, accessibilityConfigurations: SingleAccessibilityConfigurations)
+}
+
+/// Create a single-selection configuration with given accessibility strings.
+/// - Parameters:
+///   - selectionHint: The hint provided to assistive technologies informing a user how to select a date.
+public struct SingleAccessibilityConfigurations {
+    let selectionHint: String
+
+    public init(selectionHint: String) {
+        self.selectionHint = selectionHint
+    }
+}
+
+/// Create a multi-selection configuration with given accessibility strings.
+/// - Parameters:
+///   - startSelectionHint: The hint provided to assistive technologies informing a user how to select the first
+///     date in the range.
+///   - endSelectionHint: The hint provided to assistive technologies informing a user how to select the second
+///     date in the range.
+///   - startSelectionState: The label provided to assistive technologies informing a user that a date is selected
+///     as the first date in the range.
+///   - endSelectionState: The label provided to assistive technologies informing a user that a date is selected
+///     as the second date in the range.
+///   - betweenSelectionState: The label provided to assistive technologies informing a user that a date lies
+///     between the first and second selected dates.
+///   - startAndEndSelectionState: The label provided to assistive technologies informing a user that a date
+///     is selected as both the first and second date in the range.
+///   - returnDatePrompt: The prompt provided to assistive technologies informing a user that they should now
+///     select a second date.
+public struct RangeAccessibilityConfigurations {
+    let startSelectionHint: String
+    let endSelectionHint: String
+    let startSelectionState: String
+    let endSelectionState: String
+    let betweenSelectionState: String
+    let startAndEndSelectionState: String
+    let returnDatePrompt: String
+
+    public init(
+        startSelectionHint: String,
+        endSelectionHint: String,
+        startSelectionState: String,
+        endSelectionState: String,
+        betweenSelectionState: String,
+        startAndEndSelectionState: String,
+        returnDatePrompt: String
+    ) {
+        self.startSelectionHint = startSelectionHint
+        self.endSelectionHint = endSelectionHint
+        self.startSelectionState = startSelectionState
+        self.endSelectionState = endSelectionState
+        self.betweenSelectionState = betweenSelectionState
+        self.startAndEndSelectionState = startAndEndSelectionState
+        self.returnDatePrompt = returnDatePrompt
+    }
 }

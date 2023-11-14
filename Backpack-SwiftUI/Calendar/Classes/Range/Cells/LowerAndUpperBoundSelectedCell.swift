@@ -18,24 +18,37 @@
 
 import SwiftUI
 
-struct InbetweenSelectionCell: View {
+struct LowerAndUpperBoundSelectedCell: View {
     let calendar: Calendar
     let date: Date
     
     var body: some View {
-        BPKText("\(calendar.component(.day, from: date))", style: .label1)
-            .lineLimit(1)
-            .padding(.vertical, .md)
-            .frame(maxWidth: .infinity)
-            .background(.surfaceSubtleColor)
+        ZStack {
+            GeometryReader { proxy in
+                ZStack {
+                    Circle()
+                        .strokeBorder(Color(.coreAccentColor), lineWidth: 1)
+                    Circle()
+                        .frame(width: proxy.size.height - 6)
+                        .foregroundColor(.coreAccentColor)
+                        
+                }
+            }
+            BPKText("\(calendar.component(.day, from: date))", style: .label1)
+                .foregroundColor(.textPrimaryInverseColor)
+                .lineLimit(1)
+                .padding(.md)
+        }
     }
 }
 
-struct InbetweenSelectionCell_Previews: PreviewProvider {
+struct LowerAndUpperBoundSelectedCell_Previews: PreviewProvider {
     static var previews: some View {
         let calendar = Calendar.current
         let date = calendar.date(from: .init(year: 2023, month: 11, day: 8))!
-        
-        InbetweenSelectionCell(calendar: calendar, date: date)
+     
+        LazyVGrid(columns: Array(repeating: GridItem(spacing: 0), count: 1), spacing: 0) {
+            LowerAndUpperBoundSelectedCell(calendar: calendar, date: date)
+        }
     }
 }

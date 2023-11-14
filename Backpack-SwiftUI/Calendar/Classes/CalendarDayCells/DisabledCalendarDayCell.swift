@@ -18,13 +18,15 @@
 
 import SwiftUI
 
-struct DefaultSelectionCell: View {
+struct DisabledCalendarDayCell: View {
     let calendar: Calendar
     let date: Date
     
     var body: some View {
         BPKText("\(calendar.component(.day, from: date))", style: .label1)
             .lineLimit(1)
+            .foregroundColor(.textDisabledColor)
+            .frame(maxWidth: .infinity)
             .padding(.vertical, .md)
     }
 }

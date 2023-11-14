@@ -18,12 +18,65 @@
 
 import SwiftUI
 
+protocol RangeDayAccessibilityLabelProvider {
+    func dayAccessibilityLabel(_ dayDate: Date, selection: ClosedRange<Date>?) -> String
+}
+
+struct BaseRangeDayAccessibilityLabelProvider: RangeDayAccessibilityLabelProvider {
+    private let dateFormatter: DateFormatter
+
+    init(locale: Locale) {
+        let formatter = DateFormatter()
+        formatter.locale = locale
+        formatter.dateStyle = .full
+        self.dateFormatter = formatter
+    }
+    
+    func dayAccessibilityLabel(_ dayDate: Date, selection: ClosedRange<Date>?) -> String {
+        dateFormatter.string(from: dayDate)
+    }
+}
+
+struct SingleDayAccessibilityLabelProvider {
+    let accessibilityConfigurations: SingleAccessibilityConfigurations
+
+    func dayAccessibilityLabel(_ dayDate: Date, selection: ClosedRange<Date>?) -> String {
+        if let selection = selection, selection.contains(dayDate) {
+            return ""
+        }
+        return accessibilityConfigurations.selectionHint
+    }
+}
+
+struct RangeAccessibilityLabelProviderDecorator: RangeDayAccessibilityLabelProvider {
+    let decoratee: RangeDayAccessibilityLabelProvider
+    let accessibilityConfigurations: RangeAccessibilityConfigurations
+
+    func dayAccessibilityLabel(_ dayDate: Date, selection: ClosedRange<Date>?) -> String {
+        let baseLabel = decoratee.dayAccessibilityLabel(dayDate, selection: selection)
+        var state: String?
+        if let selection = selection, selection.contains(dayDate) {
+            if selection.lowerBound == selection.upperBound {
+                state = accessibilityConfigurations.startAndEndSelectionState
+            } else if dayDate == selection.lowerBound {
+                state = accessibilityConfigurations.startSelectionState
+            } else if dayDate == selection.upperBound {
+                state = accessibilityConfigurations.endSelectionState
+            } else {
+                state = accessibilityConfigurations.betweenSelectionState
+            }
+        }
+        guard let state else { return baseLabel }
+        return "\(baseLabel) \(state)"
+    }
+}
+
 struct RangeCalendarContainer<MonthHeader: View>: View {
     @State private var initialDateSelection: Date?
-    
     @Binding var selection: ClosedRange<Date>?
     let calendar: Calendar
     let validRange: ClosedRange<Date>
+    let accessibilityLabelProvider: RangeDayAccessibilityLabelProvider
     @ViewBuilder let monthHeader: (_ monthDate: Date) -> MonthHeader
     
     private func handleSelection(_ date: Date) {
@@ -47,21 +100,25 @@ struct RangeCalendarContainer<MonthHeader: View>: View {
     @ViewBuilder
     private func makeDayCell(_ dayDate: Date) -> some View {
         if !validRange.contains(dayDate) {
-            DisabledSelectionCell(calendar: calendar, date: dayDate)
+            DisabledCalendarDayCell(calendar: calendar, date: dayDate)
         } else {
             CalendarSelectableCell {
                 if let initialDateSelection, initialSelection(matchesDate: dayDate) {
                     SingleSelectedCell(calendar: calendar, date: initialDateSelection)
                 } else {
-                    RangeSelectionCalendarDayCell(
-                        date: dayDate,
-                        selection: $selection,
-                        calendar: calendar
-                    )
+                    RangeSelectionCalendarDayCell(date: dayDate, selection: $selection, calendar: calendar)
                 }
             } onSelection: {
                 handleSelection(dayDate)
             }
+            .accessibility(addTraits: selection?.contains(dayDate) == true ? .isSelected : [])
+            .accessibility(label: Text(
+                accessibilityLabelProvider.dayAccessibilityLabel(
+                    dayDate,
+                    selection: selection
+                )
+            ))
+            .accessibility(addTraits: .isButton)
         }
     }
     
@@ -71,7 +128,6 @@ struct RangeCalendarContainer<MonthHeader: View>: View {
         return calendar.date(initialDateSelection, matchesComponents: matchingDayComponents)
     }
     
-    // swiftlint:disable all
     var body: some View {
         CalendarContainer(
             calendar: calendar,
@@ -83,40 +139,44 @@ struct RangeCalendarContainer<MonthHeader: View>: View {
                 calendar: calendar,
                 validRange: validRange,
                 dayCell: makeDayCell,
-                emptyLeadingDayCell: { correspondingDate, cellIndex in
-                    let firstDayPreviousMonth = calendar.date(byAdding: .init(month: -1), to: month)
-                    if
-                        let selection,
-                        selection.contains(month),
-                        let firstDayPreviousMonth,
-                        selection.contains(firstDayPreviousMonth)
-                    {
-                        Color(.surfaceSubtleColor)
-                    } else {
-                        Color.clear
-                    }
-                },
-                emptyTrailingDayCell: { correspondingDate, cellIndex in
-                    makeEmptyDayCell(
-                        for: month,
-                        correspondingDate: correspondingDate,
-                        cellIndex: cellIndex
-                    )
-                }
+                emptyLeadingDayCell: { makeEmptyLeadingDayCell(for: month) },
+                emptyTrailingDayCell: { makeEmptyTrailingDayCell(for: month) }
             )
         }
     }
     
+    /// - Parameters:
+    ///   - firstDayOfMonth: The first day of the month we are showing
     @ViewBuilder
-    private func makeEmptyDayCell(for firstDayOfMonth: Date, correspondingDate: Date, cellIndex: Int) -> some View {
-        let previousDay = calendar.date(byAdding: .init(day: -1), to: correspondingDate)
+    private func makeEmptyLeadingDayCell(for firstDayOfMonth: Date) -> some View {
+        // if both the last day of the previous month and the first of the current are selected, we want to show the
+        // selected surface color
         if
             let selection,
-            let previousDay,
-            selection.contains(previousDay),
-//            let firstDayNextMonth,
-//            selection.contains(firstDayNextMonth),
-            cellIndex < 36
+            let lastDayOfPreviousMonth = calendar.date(byAdding: .init(day: -1), to: firstDayOfMonth),
+            let firstDayOfCurrentMonth = calendar.date(byAdding: .init(day: 1), to: lastDayOfPreviousMonth),
+            selection.contains(lastDayOfPreviousMonth),
+            selection.contains(firstDayOfCurrentMonth)
+        {
+            Color(.surfaceSubtleColor)
+        } else {
+            // otherwise we occupy the space with a clear view
+            DefaultEmptyCalendarDayCell()
+        }
+    }
+
+    /// - Parameters:
+    ///   - firstDayOfMonth: The first day of the month we are showing
+    @ViewBuilder
+    private func makeEmptyTrailingDayCell(for firstDayOfMonth: Date) -> some View {
+        // if both the last day of the current month and the first of the next are selected, we want to show the
+        // space between them as selected
+        if
+            let selection,
+            let firstDayOfNextMonth = calendar.date(byAdding: .init(month: 1), to: firstDayOfMonth),
+            let lastDayOfCurrentMonth = calendar.date(byAdding: .init(day: -1), to: firstDayOfNextMonth),
+            selection.contains(lastDayOfCurrentMonth),
+            selection.contains(firstDayOfNextMonth)
         {
             Color(.surfaceSubtleColor)
         }
@@ -124,22 +184,34 @@ struct RangeCalendarContainer<MonthHeader: View>: View {
 }
 
 struct RangeCalendarContainer_Previews: PreviewProvider {
+    static let formatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM yyyy"
+        return formatter
+    }()
+    
     static var previews: some View {
         let calendar = Calendar.current
+        
         let start = calendar.date(from: .init(year: 2023, month: 10, day: 1))!
         let end = calendar.date(from: .init(year: 2025, month: 12, day: 25))!
         
-        let startSelection = calendar.date(from: .init(year: 2023, month: 11, day: 1))!
-//        let startSelection = calendar.date(from: .init(year: 2023, month: 10, day: 31))!
+        let startSelection = calendar.date(from: .init(year: 2023, month: 10, day: 30))!
         let endSelection = calendar.date(from: .init(year: 2023, month: 11, day: 10))!
         
         RangeCalendarContainer(
             selection: .constant(startSelection...endSelection),
             calendar: calendar,
             validRange: start...end,
+            accessibilityLabelProvider: BaseRangeDayAccessibilityLabelProvider(locale: .current),
             monthHeader: { month in
-                BPKText("Calendar Grid \(month)")
-                    .border(.blue)
+                HStack {
+                    BPKText("\(Self.formatter.string(from: month))")
+                        .padding()
+                        
+                    Spacer()
+                }
+                .border(.blue)
             }
         )
     }

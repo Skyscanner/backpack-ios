@@ -74,7 +74,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             switchTab(title: "SwiftUI")
             app.tables.staticTexts["Primary"].tap()
             saveScreenshot(component: "button", scenario: "primary", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
+tapBackButton()
             app.tables.staticTexts["Secondary"].tap()
             saveScreenshot(component: "button", scenario: "secondary", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
@@ -359,6 +359,11 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
 
+        navigate(title: "Calendar") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "calendar", scenario: "range", userInterfaceStyle: userInterfaceStyle)
+        }
+        
         navigate(title: "Snippet") {
             app.tables.staticTexts["Landscape"].tap()
             saveScreenshot(component: "snippet", scenario: "landscape", userInterfaceStyle: userInterfaceStyle)

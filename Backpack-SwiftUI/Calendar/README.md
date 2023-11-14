@@ -1,37 +1,58 @@
-# Backpack-SwiftUI/Badge
+# Backpack-SwiftUI/Calendar
 
 [![Cocoapods](https://img.shields.io/cocoapods/v/Backpack-SwiftUI.svg?style=flat)](hhttps://cocoapods.org/pods/Backpack-SwiftUI)
-[![class reference](https://img.shields.io/badge/Class%20reference-iOS-blue)](https://backpack.github.io/ios/versions/latest/swiftui/Structs/BPKBadge.html)
-[![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack-SwiftUI/Badge)
-
-## Default
+[![class reference](https://img.shields.io/badge/Class%20reference-iOS-blue)](https://backpack.github.io/ios/versions/latest/swiftui/Structs/BPKCalendar.html)
+[![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack-SwiftUI/Calendar)
 
 | Day | Night |
 | --- | --- |
-| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_badge___default_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_badge___default_dm.png" alt="" width="375" /> |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_calendar___range_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_calendar___range_dm.png" alt="" width="375" /> |
  
 ## Usage
 
-### Basic text badge
-If you don't specify a `.badgeStyle(<style>)` it will use the `.default` type
+`BPKCalendar` can be configured with different selection types and an accessory action for each month.
+
+## Selection types
+
+### Single selection
+
+Allows the user to only select one date at a time.
 
 ```swift
-import Backpack_SwiftUI
+@State var selectedDate: Date?
 
-BPKBadge("Hello World")
-
-BPKBadge("Hello World")
-    .badgeStyle(.destructive)
+BPKCalendar(
+    selectionType: .single(selected: $selectedDate),
+    calendar: .current,
+    validRange: validStartDate...validEndDate
+)
 ```
 
-### Badge with icon
-If you don't specify a `.badgeStyle(<style>)` it will use the `.default` type
+### Range selection
+
+Allows the user to select a range of dates.
 
 ```swift
-import Backpack_SwiftUI
+@State var selectedDateRange: ClosedRange<Date>?
 
-BPKBadge("Hello World", icon: .tickCircle)
+BPKCalendar(
+    selectionType: .range(selectedRange: $selectedDateRange),
+    calendar: .current,
+    validRange: validStartDate...validEndDate
+)
+```
 
-BPKBadge("Hello World", icon: .tickCircle)
-    .badgeStyle(.destructive)
+## Valid range
+
+The valid range is used to determine which dates are selectable by the user. Dates outside of the valid range will be disabled.
+
+```swift
+let startDate = Calendar.current.date(byAdding: .day, value: -1, to: Date())
+let endDate = Calendar.current.date(byAdding: .day, value: 1, to: Date())
+
+BPKCalendar(
+    selectionType: .single(selected: $selectedDate),
+    calendar: .current,
+    validRange: startDate...endDate
+)
 ```

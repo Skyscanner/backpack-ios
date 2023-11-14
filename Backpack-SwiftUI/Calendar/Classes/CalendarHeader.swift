@@ -35,8 +35,10 @@ struct CalendarHeader: View {
             Divider()
         }
     }
-    var weekdays: [String] {
+    
+    private var weekdays: [String] {
         var weekdaySymbols = calendar.veryShortStandaloneWeekdaySymbols
+        // We treat Sunday as the last day of the week, so we rotate the symbols array to match.
         weekdaySymbols.append(weekdaySymbols.remove(at: weekdaySymbols.startIndex))
         return weekdaySymbols
     }

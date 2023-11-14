@@ -18,12 +18,27 @@
 
 import SwiftUI
 
+/// `BPKCalendar` is a SwiftUI view that represents a calendar.
+///
+/// This view is designed to be customizable and flexible. It allows you to specify the type of selection,
+///     the calendar system, and the valid range of dates.
+///
+/// - Parameters:
+///   - selectionType: The type of selection that the calendar should support. This can be single, range, or multiple.
+///   - calendar: The calendar system that the calendar should use. This can be any calendar system supported by
+///     the `Calendar` struct in Swift.
+///   - validRange: The range of dates that the calendar should allow the user to select.
+///     This is specified as a`ClosedRange<Date>`.
+///
+/// The `BPKCalendar` view also allows you to specify an accessory action. This is a closure that takes a string and
+///     a date, and is called when the user interacts with an accessory in the calendar.
 public struct BPKCalendar: View {
     let calendar: Calendar
     let selectionType: CalendarSelectionType
     let validRange: ClosedRange<Date>
-    private var accessoryAction: (String, (Date) -> Void)?
-    
+    private var accessoryAction: CalendarMonthAccessoryAction?
+    private let monthHeaderDateFormatter: DateFormatter
+
     @State private var currentlyShownMonth: Date
     
     public init(
@@ -35,6 +50,9 @@ public struct BPKCalendar: View {
         self.validRange = validRange
         self.calendar = calendar
         self.selectionType = selectionType
+
+        monthHeaderDateFormatter = DateFormatter()
+        monthHeaderDateFormatter.dateFormat = "MMMM yyyy"
     }
     
     public var body: some View {
@@ -49,28 +67,34 @@ public struct BPKCalendar: View {
                     ) { monthDate in
                         CalendarMonthHeader(
                             monthDate: monthDate,
+                            dateFormatter: monthHeaderDateFormatter,
                             calendar: calendar,
                             accessoryAction: accessoryAction,
                             currentlyShownMonth: $currentlyShownMonth,
                             parentProxy: calendarProxy
                         )
                     }
-                    VStack {
-                        CalendarBadge(
-                            currentlyShownMonth: currentlyShownMonth,
-                            calendar: calendar
-                        )
-                        .padding(.top, .base)
-                        Spacer()
-                    }
+                    yearBadge
                 }
             }
         }
     }
     
-    public func monthAccessoryAction(title: String, action: @escaping (Date) -> Void) -> BPKCalendar {
+    private var yearBadge: some View {
+        VStack {
+            CalendarBadge(
+                currentlyShownMonth: currentlyShownMonth,
+                calendar: calendar
+            )
+            .padding(.top, .base)
+            Spacer()
+        }
+    }
+    
+    /// Sets the accessory action for the calendar to be applied to each month.
+    public func monthAccessoryAction(_ action: CalendarMonthAccessoryAction) -> BPKCalendar {
         var result = self
-        result.accessoryAction = (title, action)
+        result.accessoryAction = action
         return result
     }
 }
@@ -86,11 +110,20 @@ struct BPKCalendar_Previews: PreviewProvider {
         
         return BPKCalendar(
             selectionType: .range(
-                selectedRange: .constant(minSelectedDate...maxSelectedDate)
+                selectedRange: .constant(minSelectedDate...maxSelectedDate),
+                accessibilityConfigurations: .init(
+                    startSelectionHint: "",
+                    endSelectionHint: "",
+                    startSelectionState: "",
+                    endSelectionState: "",
+                    betweenSelectionState: "",
+                    startAndEndSelectionState: "",
+                    returnDatePrompt: ""
+                )
             ),
             calendar: calendar,
             validRange: minValidDate...maxValidDate
         )
-        .monthAccessoryAction(title: "Select whole month") { _ in }
+        .monthAccessoryAction(CalendarMonthAccessoryAction(title: "Select whole month", action: { _ in }))
     }
 }

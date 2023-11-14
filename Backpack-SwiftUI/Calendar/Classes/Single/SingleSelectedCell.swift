@@ -32,3 +32,12 @@ struct SingleSelectedCell: View {
             .clipShape(Circle())
     }
 }
+
+struct SingleSelectedCell_Previews: PreviewProvider {
+    static var previews: some View {
+        let calendar = Calendar.current
+        let date = calendar.date(from: .init(year: 2023, month: 11, day: 8))!
+        
+        SingleSelectedCell(calendar: calendar, date: date)
+    }
+}

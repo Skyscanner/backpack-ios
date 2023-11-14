@@ -25,7 +25,9 @@ struct RangeSelectionCalendarDayCell: View {
     
     var body: some View {
         if let selection, selection.contains(date) {
-            if date == selection.lowerBound {
+            if selection.lowerBound == selection.upperBound {
+                LowerAndUpperBoundSelectedCell(calendar: calendar, date: date)
+            } else if date == selection.lowerBound {
                 LowerBoundSelectedCell(calendar: calendar, date: date)
             } else if date == selection.upperBound {
                 UpperBoundSelectedCell(calendar: calendar, date: date)
@@ -33,7 +35,7 @@ struct RangeSelectionCalendarDayCell: View {
                 InbetweenSelectionCell(calendar: calendar, date: date)
             }
         } else {
-            DefaultSelectionCell(calendar: calendar, date: date)
+            DefaultCalendarDayCell(calendar: calendar, date: date)
         }
     }
 }
@@ -41,15 +43,15 @@ struct RangeSelectionCalendarDayCell: View {
 struct SelectedCalendarDayCell_Previews: PreviewProvider {
     static var previews: some View {
         let calendar = Calendar.current
-        let date = calendar.date(from: .init(year: 2023, month: 11, day: 15))!
+        let date = calendar.date(from: .init(year: 2023, month: 11, day: 8))!
         
         LazyVGrid(columns: Array(repeating: GridItem(spacing: 0), count: 6), spacing: 0) {
-            DefaultSelectionCell(calendar: calendar, date: date)
-            DisabledSelectionCell(calendar: calendar, date: date)
+            DefaultCalendarDayCell(calendar: calendar, date: date)
+            DisabledCalendarDayCell(calendar: calendar, date: date)
             LowerBoundSelectedCell(calendar: calendar, date: date)
             InbetweenSelectionCell(calendar: calendar, date: date)
             UpperBoundSelectedCell(calendar: calendar, date: date)
-            SingleSelectedCell(calendar: calendar, date: date)
+            LowerAndUpperBoundSelectedCell(calendar: calendar, date: date)
         }
     }
 }

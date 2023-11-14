@@ -22,6 +22,7 @@ struct SingleCalendarContainer<MonthHeader: View>: View {
     @Binding var selection: Date?
     let calendar: Calendar
     let validRange: ClosedRange<Date>
+    let accessibilityLabelProvider: SingleDayAccessibilityLabelProvider
     @ViewBuilder let monthHeader: (_ monthDate: Date) -> MonthHeader
     
     private func handleSelection(_ date: Date) {
@@ -38,14 +39,13 @@ struct SingleCalendarContainer<MonthHeader: View>: View {
             }
         } else {
             CalendarSelectableCell {
-                DefaultSelectionCell(calendar: calendar, date: dayDate)
+                DefaultCalendarDayCell(calendar: calendar, date: dayDate)
             } onSelection: {
                 handleSelection(dayDate)
             }
         }
     }
     
-    // swiftlint:disable all
     var body: some View {
         CalendarContainer(calendar: calendar, validRange: validRange) { month in
             monthHeader(month)
@@ -53,11 +53,10 @@ struct SingleCalendarContainer<MonthHeader: View>: View {
                 monthDate: month,
                 calendar: calendar,
                 validRange: validRange,
-                dayCell: makeDayCell) { _, _ in
-                    DefaultEmptyCalendarDayCell()
-                } emptyTrailingDayCell: { _, _ in
-                    DefaultEmptyCalendarDayCell()
-                }
+                dayCell: makeDayCell,
+                emptyLeadingDayCell: { DefaultEmptyCalendarDayCell() },
+                emptyTrailingDayCell: { DefaultEmptyCalendarDayCell() }
+            )
         }
     }
 }
@@ -72,6 +71,9 @@ struct SingleCalendarContainer_Previews: PreviewProvider {
             selection: .constant(calendar.date(from: .init(year: 2023, month: 11, day: 10))!),
             calendar: calendar,
             validRange: start...end,
+            accessibilityLabelProvider: SingleDayAccessibilityLabelProvider(
+                accessibilityConfigurations: .init(selectionHint: "")
+            ),
             monthHeader: { month in
                 VStack {
                     BPKText("Calendar Grid \(month)")
