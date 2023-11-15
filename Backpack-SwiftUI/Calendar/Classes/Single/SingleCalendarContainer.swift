@@ -22,28 +22,24 @@ struct SingleCalendarContainer<MonthHeader: View>: View {
     @Binding var selection: Date?
     let calendar: Calendar
     let validRange: ClosedRange<Date>
-    let accessibilityLabelProvider: SingleDayAccessibilityLabelProvider
+    let accessibilityProvider: SingleDayAccessibilityProvider
     @ViewBuilder let monthHeader: (_ monthDate: Date) -> MonthHeader
-    
-    private func handleSelection(_ date: Date) {
-        selection = date
-    }
     
     @ViewBuilder
     private func makeDayCell(_ dayDate: Date) -> some View {
-        if selection == dayDate {
-            CalendarSelectableCell {
+        CalendarSelectableCell {
+            if selection == dayDate {
                 SingleSelectedCell(calendar: calendar, date: dayDate)
-            } onSelection: {
-                handleSelection(dayDate)
-            }
-        } else {
-            CalendarSelectableCell {
+            } else {
                 DefaultCalendarDayCell(calendar: calendar, date: dayDate)
-            } onSelection: {
-                handleSelection(dayDate)
             }
+        } onSelection: {
+            selection = dayDate
         }
+        .accessibilityAddTraits(.isButton)
+        .accessibilityAddTraits(selection == dayDate ? .isSelected : [])
+        .accessibilityLabel(accessibilityProvider.accessibilityLabel(for: dayDate))
+        .accessibilityHint(accessibilityProvider.accessibilityHint(for: dayDate, selection: selection))
     }
     
     var body: some View {
@@ -66,20 +62,22 @@ struct SingleCalendarContainer_Previews: PreviewProvider {
         let calendar = Calendar.current
         let start = calendar.date(from: .init(year: 2023, month: 10, day: 30))!
         let end = calendar.date(from: .init(year: 2025, month: 12, day: 25))!
+        var formatter: DateFormatter {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMMM yyyy"
+            return formatter
+        }
         
         SingleCalendarContainer(
             selection: .constant(calendar.date(from: .init(year: 2023, month: 11, day: 10))!),
             calendar: calendar,
             validRange: start...end,
-            accessibilityLabelProvider: SingleDayAccessibilityLabelProvider(
-                accessibilityConfigurations: .init(selectionHint: "")
+            accessibilityProvider: SingleDayAccessibilityProvider(
+                accessibilityConfigurations: .init(selectionHint: ""),
+                dateFormatter: formatter
             ),
             monthHeader: { month in
-                VStack {
-                    BPKText("Calendar Grid \(month)")
-                        .border(.blue)
-                    Divider()
-                }
+                BPKText("\(formatter.string(from: month))")
             }
         )
     }

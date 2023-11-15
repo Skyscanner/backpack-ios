@@ -16,18 +16,18 @@
  * limitations under the License.
  */
 
-import SwiftUI
-
-struct DisabledCalendarDayCell: View {
-    let calendar: Calendar
-    let date: Date
+struct SingleDayAccessibilityProvider {
+    let accessibilityConfigurations: SingleAccessibilityConfigurations
+    let dateFormatter: DateFormatter
     
-    var body: some View {
-        BPKText("\(calendar.component(.day, from: date))", style: .label1)
-            .lineLimit(1)
-            .foregroundColor(.textDisabledColor)
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, .md)
-            .accessibilityHidden(true)
+    func accessibilityLabel(for dayDate: Date) -> String {
+        dateFormatter.string(from: dayDate)
+    }
+    
+    func accessibilityHint(for dayDate: Date, selection: Date?) -> String {
+        if dayDate == selection {
+            return ""
+        }
+        return accessibilityConfigurations.selectionHint
     }
 }

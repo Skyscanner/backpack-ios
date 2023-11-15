@@ -27,6 +27,7 @@ struct CalendarBadge: View {
         if shownYear != calendar.component(.year, from: Date()) {
             BPKBadge("\(shownYear)")
                 .badgeStyle(.brand)
+                .accessibilityHidden(true)
         }
     }
 }

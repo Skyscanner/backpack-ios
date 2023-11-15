@@ -24,6 +24,13 @@ struct CalendarTypeContainerFactory<MonthHeader: View>: View {
     let validRange: ClosedRange<Date>
     @ViewBuilder let monthHeader: (_ monthDate: Date) -> MonthHeader
     
+    private var accessibilityDateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.locale = calendar.locale
+        formatter.dateStyle = .full
+        return formatter
+    }
+    
     var body: some View {
         switch selectionType {
         case .range(let selectedRange, let accessibilityConfigurations):
@@ -31,19 +38,20 @@ struct CalendarTypeContainerFactory<MonthHeader: View>: View {
                 selection: selectedRange,
                 calendar: calendar,
                 validRange: validRange,
-                accessibilityLabelProvider: RangeAccessibilityLabelProviderDecorator(
-                    decoratee: BaseRangeDayAccessibilityLabelProvider(locale: .current),
-                    accessibilityConfigurations: accessibilityConfigurations
+                accessibilityProvider: RangeDayAccessibilityProvider(
+                    accessibilityConfigurations: accessibilityConfigurations,
+                    dateFormatter: accessibilityDateFormatter
                 ),
                 monthHeader: monthHeader
             )
-        case .single(selected: let selected, let accessibilityConfigurations):
+        case .single(let selected, let accessibilityConfigurations):
             SingleCalendarContainer(
                 selection: selected,
                 calendar: calendar,
                 validRange: validRange,
-                accessibilityLabelProvider: SingleDayAccessibilityLabelProvider(
-                    accessibilityConfigurations: accessibilityConfigurations
+                accessibilityProvider: SingleDayAccessibilityProvider(
+                    accessibilityConfigurations: accessibilityConfigurations,
+                    dateFormatter: accessibilityDateFormatter
                 ),
                 monthHeader: monthHeader
             )

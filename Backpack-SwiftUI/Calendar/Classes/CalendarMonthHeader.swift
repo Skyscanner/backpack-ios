@@ -32,6 +32,7 @@ struct CalendarMonthHeader: View {
         HStack {
             let form = dateFormatter.string(from: monthDate)
             BPKText(form, style: .heading4)
+                .accessibilityAddTraits(.isHeader)
             Spacer()
             GeometryReader { monthProxy in
                 if isCurrentlyShowingMonth(proxy: monthProxy) {

@@ -16,18 +16,13 @@
  * limitations under the License.
  */
 
-import SwiftUI
+/// Create a single-selection configuration with given accessibility strings.
+/// - Parameters:
+///   - selectionHint: The hint provided to assistive technologies informing a user how to select a date.
+public struct SingleAccessibilityConfigurations {
+    let selectionHint: String
 
-struct DisabledCalendarDayCell: View {
-    let calendar: Calendar
-    let date: Date
-    
-    var body: some View {
-        BPKText("\(calendar.component(.day, from: date))", style: .label1)
-            .lineLimit(1)
-            .foregroundColor(.textDisabledColor)
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, .md)
-            .accessibilityHidden(true)
+    public init(selectionHint: String) {
+        self.selectionHint = selectionHint
     }
 }

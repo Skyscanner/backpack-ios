@@ -137,9 +137,7 @@ extension ComponentCellsProvider {
             title: "Calendar",
             tabs: [
                 .uikit(groups: CalendarGroupsProvider(showPresentable: show(presentable:)).groups()),
-                .swiftui(presentable: CustomPresentable(generateViewController: {
-                    ContentUIHostingController(CalendarExampleView())
-                }))
+                .swiftui(groups: CalendarGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "Calendar", tabs: $0) }
         )

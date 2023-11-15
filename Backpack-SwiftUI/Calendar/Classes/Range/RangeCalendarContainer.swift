@@ -18,65 +18,12 @@
 
 import SwiftUI
 
-protocol RangeDayAccessibilityLabelProvider {
-    func dayAccessibilityLabel(_ dayDate: Date, selection: ClosedRange<Date>?) -> String
-}
-
-struct BaseRangeDayAccessibilityLabelProvider: RangeDayAccessibilityLabelProvider {
-    private let dateFormatter: DateFormatter
-
-    init(locale: Locale) {
-        let formatter = DateFormatter()
-        formatter.locale = locale
-        formatter.dateStyle = .full
-        self.dateFormatter = formatter
-    }
-    
-    func dayAccessibilityLabel(_ dayDate: Date, selection: ClosedRange<Date>?) -> String {
-        dateFormatter.string(from: dayDate)
-    }
-}
-
-struct SingleDayAccessibilityLabelProvider {
-    let accessibilityConfigurations: SingleAccessibilityConfigurations
-
-    func dayAccessibilityLabel(_ dayDate: Date, selection: ClosedRange<Date>?) -> String {
-        if let selection = selection, selection.contains(dayDate) {
-            return ""
-        }
-        return accessibilityConfigurations.selectionHint
-    }
-}
-
-struct RangeAccessibilityLabelProviderDecorator: RangeDayAccessibilityLabelProvider {
-    let decoratee: RangeDayAccessibilityLabelProvider
-    let accessibilityConfigurations: RangeAccessibilityConfigurations
-
-    func dayAccessibilityLabel(_ dayDate: Date, selection: ClosedRange<Date>?) -> String {
-        let baseLabel = decoratee.dayAccessibilityLabel(dayDate, selection: selection)
-        var state: String?
-        if let selection = selection, selection.contains(dayDate) {
-            if selection.lowerBound == selection.upperBound {
-                state = accessibilityConfigurations.startAndEndSelectionState
-            } else if dayDate == selection.lowerBound {
-                state = accessibilityConfigurations.startSelectionState
-            } else if dayDate == selection.upperBound {
-                state = accessibilityConfigurations.endSelectionState
-            } else {
-                state = accessibilityConfigurations.betweenSelectionState
-            }
-        }
-        guard let state else { return baseLabel }
-        return "\(baseLabel) \(state)"
-    }
-}
-
 struct RangeCalendarContainer<MonthHeader: View>: View {
     @State private var initialDateSelection: Date?
     @Binding var selection: ClosedRange<Date>?
     let calendar: Calendar
     let validRange: ClosedRange<Date>
-    let accessibilityLabelProvider: RangeDayAccessibilityLabelProvider
+    let accessibilityProvider: RangeDayAccessibilityProvider
     @ViewBuilder let monthHeader: (_ monthDate: Date) -> MonthHeader
     
     private func handleSelection(_ date: Date) {
@@ -93,6 +40,10 @@ struct RangeCalendarContainer<MonthHeader: View>: View {
                 }
             } else {
                 initialDateSelection = date
+                UIAccessibility.post(
+                    notification: .announcement,
+                    argument: accessibilityProvider.accessibilityInstructionAfterSelectingDate()
+                )
             }
         }
     }
@@ -111,14 +62,21 @@ struct RangeCalendarContainer<MonthHeader: View>: View {
             } onSelection: {
                 handleSelection(dayDate)
             }
-            .accessibility(addTraits: selection?.contains(dayDate) == true ? .isSelected : [])
-            .accessibility(label: Text(
-                accessibilityLabelProvider.dayAccessibilityLabel(
-                    dayDate,
+            .accessibilityLabel(Text(
+                accessibilityProvider.accessibilityLabel(
+                    for: dayDate,
                     selection: selection
                 )
             ))
+            .accessibilityHint(Text(
+                accessibilityProvider.accessibilityHint(
+                    for: dayDate,
+                    selection: selection,
+                    initialDateSelection: initialDateSelection
+                )
+            ))
             .accessibility(addTraits: .isButton)
+            .accessibility(addTraits: selection?.contains(dayDate) == true ? .isSelected : [])
         }
     }
     
@@ -203,15 +161,20 @@ struct RangeCalendarContainer_Previews: PreviewProvider {
             selection: .constant(startSelection...endSelection),
             calendar: calendar,
             validRange: start...end,
-            accessibilityLabelProvider: BaseRangeDayAccessibilityLabelProvider(locale: .current),
+            accessibilityProvider: RangeDayAccessibilityProvider(
+                accessibilityConfigurations: .init(
+                    startSelectionHint: "",
+                    endSelectionHint: "",
+                    startSelectionState: "",
+                    endSelectionState: "",
+                    betweenSelectionState: "",
+                    startAndEndSelectionState: "",
+                    returnDatePrompt: ""
+                ),
+                dateFormatter: Self.formatter
+            ),
             monthHeader: { month in
-                HStack {
-                    BPKText("\(Self.formatter.string(from: month))")
-                        .padding()
-                        
-                    Spacer()
-                }
-                .border(.blue)
+                BPKText("\(Self.formatter.string(from: month))")
             }
         )
     }
