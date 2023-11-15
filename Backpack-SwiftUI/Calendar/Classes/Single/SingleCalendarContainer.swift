@@ -58,15 +58,16 @@ struct SingleCalendarContainer<MonthHeader: View>: View {
 }
 
 struct SingleCalendarContainer_Previews: PreviewProvider {
+    static let formatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM yyyy"
+        return formatter
+    }()
+    
     static var previews: some View {
         let calendar = Calendar.current
         let start = calendar.date(from: .init(year: 2023, month: 10, day: 30))!
         let end = calendar.date(from: .init(year: 2025, month: 12, day: 25))!
-        var formatter: DateFormatter {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "MMMM yyyy"
-            return formatter
-        }
         
         SingleCalendarContainer(
             selection: .constant(calendar.date(from: .init(year: 2023, month: 11, day: 10))!),
@@ -74,10 +75,10 @@ struct SingleCalendarContainer_Previews: PreviewProvider {
             validRange: start...end,
             accessibilityProvider: SingleDayAccessibilityProvider(
                 accessibilityConfigurations: .init(selectionHint: ""),
-                dateFormatter: formatter
+                dateFormatter: Self.formatter
             ),
             monthHeader: { month in
-                BPKText("\(formatter.string(from: month))")
+                BPKText("\(Self.formatter.string(from: month))")
             }
         )
     }
