@@ -24,12 +24,27 @@ class BPKCalendarTests: XCTestCase {
     let validStart = Calendar.current.date(from: DateComponents(year: 2020, month: 1, day: 13))!
     let validEnd = Calendar.current.date(from: DateComponents(year: 2020, month: 2, day: 20))!
     
+    let rangeAccessibilityConfig = RangeAccessibilityConfigurations(
+        startSelectionHint: "",
+        endSelectionHint: "",
+        startSelectionState: "",
+        endSelectionState: "",
+        betweenSelectionState: "",
+        startAndEndSelectionState: "",
+        returnDatePrompt: ""
+    )
+    
     func test_singleSelectionCalendar() {
         let testDate = Calendar.current.date(from: DateComponents(year: 2020, month: 2, day: 5))!
         
         assertSnapshot(
             BPKCalendar(
-                selectionType: .single(selected: .constant(testDate)),
+                selectionType: .single(
+                    selected: .constant(testDate),
+                    accessibilityConfigurations: SingleAccessibilityConfigurations(
+                        selectionHint: ""
+                    )
+                ),
                 calendar: Calendar.current,
                 validRange: validStart...validEnd
             )
@@ -43,7 +58,10 @@ class BPKCalendarTests: XCTestCase {
         
         assertSnapshot(
             BPKCalendar(
-                selectionType: .range(selectedRange: .constant(selectionStart...selectionEnd)),
+                selectionType: .range(
+                    selectedRange: .constant(selectionStart...selectionEnd),
+                    accessibilityConfigurations: rangeAccessibilityConfig
+                ),
                 calendar: Calendar.current,
                 validRange: validStart...validEnd
             )
@@ -57,7 +75,10 @@ class BPKCalendarTests: XCTestCase {
         
         assertSnapshot(
             BPKCalendar(
-                selectionType: .range(selectedRange: .constant(selectionStart...selectionEnd)),
+                selectionType: .range(
+                    selectedRange: .constant(selectionStart...selectionEnd),
+                    accessibilityConfigurations: rangeAccessibilityConfig
+                ),
                 calendar: Calendar.current,
                 validRange: validStart...validEnd
             )
@@ -71,7 +92,10 @@ class BPKCalendarTests: XCTestCase {
         
         assertSnapshot(
             BPKCalendar(
-                selectionType: .range(selectedRange: .constant(selectionStart...selectionEnd)),
+                selectionType: .range(
+                    selectedRange: .constant(selectionStart...selectionEnd),
+                    accessibilityConfigurations: rangeAccessibilityConfig
+                ),
                 calendar: Calendar.current,
                 validRange: validStart...validEnd
             )
