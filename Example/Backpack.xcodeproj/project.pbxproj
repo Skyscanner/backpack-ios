@@ -133,6 +133,8 @@
 		B31283822A77D2410034EE29 /* CardListExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31283812A77D2410034EE29 /* CardListExampleView.swift */; };
 		B31283842A780A1F0034EE29 /* CardListGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31283832A780A1F0034EE29 /* CardListGroups.swift */; };
 		B3E50A2B2A618A400083FBFE /* SectionHeaderExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E50A2A2A618A400083FBFE /* SectionHeaderExampleView.swift */; };
+		BA809EC52B05ED410030D1E7 /* AppSearchModalExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA809EC42B05ED410030D1E7 /* AppSearchModalExampleView.swift */; };
+		BA809EC82B05FC2E0030D1E7 /* AppSearchModalGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA809EC72B05FC2E0030D1E7 /* AppSearchModalGroups.swift */; };
 		BAD421BC299CBCEB00B45668 /* CardWrappersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD421BB299CBCEB00B45668 /* CardWrappersViewController.swift */; };
 		D205510922675DAE00BC5BCC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D205510722675DAE00BC5BCC /* LaunchScreen.xib */; };
 		D211A90C22D8B42B00447B64 /* HorizontalNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D211A90A22D8B42B00447B64 /* HorizontalNavViewController.swift */; };
@@ -355,6 +357,8 @@
 		B31283812A77D2410034EE29 /* CardListExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListExampleView.swift; sourceTree = "<group>"; };
 		B31283832A780A1F0034EE29 /* CardListGroups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListGroups.swift; sourceTree = "<group>"; };
 		B3E50A2A2A618A400083FBFE /* SectionHeaderExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderExampleView.swift; sourceTree = "<group>"; };
+		BA809EC42B05ED410030D1E7 /* AppSearchModalExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSearchModalExampleView.swift; sourceTree = "<group>"; };
+		BA809EC72B05FC2E0030D1E7 /* AppSearchModalGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSearchModalGroups.swift; sourceTree = "<group>"; };
 		BAD421BB299CBCEB00B45668 /* CardWrappersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardWrappersViewController.swift; sourceTree = "<group>"; };
 		C663CF67A51D3C1D5CCA2BD1 /* Pods-Backpack Native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack Native.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack Native/Pods-Backpack Native.release.xcconfig"; sourceTree = "<group>"; };
 		D205510822675DAE00BC5BCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -769,6 +773,7 @@
 				79CE553429BEF26400CC89D3 /* PriceGroupsProvider.swift */,
 				A12A09DD2A49471F0047DD16 /* ChipGroupProvider.swift */,
 				79B94C3D2AA5A33E006CB539 /* GraphicPromoGroupsProvider.swift */,
+				BA809EC72B05FC2E0030D1E7 /* AppSearchModalGroups.swift */,
 			);
 			path = Groups;
 			sourceTree = "<group>";
@@ -903,6 +908,7 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				BA809EC32B05ED100030D1E7 /* AppSearchModal */,
 				2A8000102AB3DC3B009FDB10 /* TextArea */,
 				530459F32A961F8F00244EA8 /* Carousel */,
 				53D6396D2A7D46DC007EF376 /* MapMarker */,
@@ -1305,6 +1311,14 @@
 			path = SectionHeader;
 			sourceTree = "<group>";
 		};
+		BA809EC32B05ED100030D1E7 /* AppSearchModal */ = {
+			isa = PBXGroup;
+			children = (
+				BA809EC42B05ED410030D1E7 /* AppSearchModalExampleView.swift */,
+			);
+			path = AppSearchModal;
+			sourceTree = "<group>";
+		};
 		C92ADAF91733A08AB077E3E3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1697,6 +1711,7 @@
 				D2B8A01B2147FF6A002290DE /* PreviewCollectionViewHeader.swift in Sources */,
 				53C6621729EA0DAB00BF1A62 /* NudgerExampleView.swift in Sources */,
 				1750EB6329915230005226DF /* CardButtonsViewController.swift in Sources */,
+				BA809EC52B05ED410030D1E7 /* AppSearchModalExampleView.swift in Sources */,
 				53E075BB27FC9FD30033147C /* CustomPresentable.swift in Sources */,
 				D217701825ACCC5E00C0FD8C /* Presentable.swift in Sources */,
 				53C6621B29EA0DAB00BF1A62 /* CardExampleView.swift in Sources */,
@@ -1757,6 +1772,7 @@
 				D2EB964C25C05DF600988978 /* MapViewController.swift in Sources */,
 				D211A90C22D8B42B00447B64 /* HorizontalNavViewController.swift in Sources */,
 				53D6396F2A7D46ED007EF376 /* MapMarkerExampleView.swift in Sources */,
+				BA809EC82B05FC2E0030D1E7 /* AppSearchModalGroups.swift in Sources */,
 				53C7F0BA2A4C615D003A8740 /* ChipGroupSingleSelectWrapExampleView.swift in Sources */,
 				5390DB5F29098D7300F0F790 /* SpacingTokensViewController.swift in Sources */,
 				53C6621F29EA0DAB00BF1A62 /* StarRatingPlayground.swift in Sources */,

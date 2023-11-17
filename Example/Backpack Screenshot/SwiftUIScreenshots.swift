@@ -377,5 +377,19 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "inset-banner", scenario: "default", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
+        
+        navigate(title: "App Search Modal") {
+            app.tables.staticTexts["Loading"].tap()
+            saveScreenshot(component: "app-search-modal", scenario: "loading", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+
+            app.tables.staticTexts["Content"].tap()
+            saveScreenshot(component: "app-search-modal", scenario: "content", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+
+            app.tables.staticTexts["Error"].tap()
+            saveScreenshot(component: "app-search-modal", scenario: "error", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
     }
 }
