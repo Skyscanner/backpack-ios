@@ -18,11 +18,6 @@
 
 import SwiftUI
 
-public enum CalendarRangeSelectionState {
-    case intermediate(Date)
-    case range(ClosedRange<Date>)
-}
-
 struct RangeCalendarContainer<MonthHeader: View>: View {
     @Binding var selectionState: CalendarRangeSelectionState?
     let calendar: Calendar
