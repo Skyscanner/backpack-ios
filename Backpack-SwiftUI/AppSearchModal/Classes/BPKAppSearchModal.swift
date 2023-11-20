@@ -82,9 +82,10 @@ public struct BPKAppSearchModal: View {
                 Spacer()
             }
             BPKText(title, style: .heading5)
+                .padding(.vertical, .sm)
                 .accessibilityAddTraits(.isHeader)
         }
-        .frame(height: 44)
+        .padding(.vertical, .md)
     }
 }
 
