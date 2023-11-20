@@ -62,7 +62,7 @@ public struct BPKAppSearchModal: View {
         }
         .padding(.horizontal, .base)
         .padding(.top, .base)
-        .padding(.bottom, 0)
+        .padding(.bottom, BPKSpacing.none)
         .background(.surfaceElevatedColor)
     }
     

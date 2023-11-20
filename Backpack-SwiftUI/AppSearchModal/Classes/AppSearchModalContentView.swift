@@ -44,7 +44,7 @@ struct AppSearchModalContentView: View {
     }
     
     private func makeSections(_ section: BPKAppSearchModalContent.Section) -> some View {
-        VStack(spacing: 0) {
+        VStack(spacing: BPKSpacing.none) {
             if let heading = section.heading {
                 HStack {
                     BPKText(heading.title, style: .label1)
