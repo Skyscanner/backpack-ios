@@ -110,7 +110,7 @@ struct BPKCalendar_Previews: PreviewProvider {
         
         return BPKCalendar(
             selectionType: .range(
-                selectedRange: .constant(minSelectedDate...maxSelectedDate),
+                selection: .constant(.range(minSelectedDate...maxSelectedDate)),
                 accessibilityConfigurations: .init(
                     startSelectionHint: "",
                     endSelectionHint: "",

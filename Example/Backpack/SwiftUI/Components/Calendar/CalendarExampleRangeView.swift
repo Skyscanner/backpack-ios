@@ -21,7 +21,7 @@ import SwiftUI
 import Backpack_SwiftUI
 
 struct CalendarExampleRangeView: View {
-    @State var selectedRange: ClosedRange<Date>?
+    @State var selection: CalendarRangeSelectionState?
     
     let validRange: ClosedRange<Date>
     let calendar: Calendar
@@ -42,7 +42,7 @@ struct CalendarExampleRangeView: View {
         
         let selectionStart = calendar.date(from: .init(year: 2023, month: 11, day: 23))!
         let selectionEnd = calendar.date(from: .init(year: 2023, month: 12, day: 2))!
-        _selectedRange = State(initialValue: selectionStart...selectionEnd)
+        _selection = State(initialValue: .range(selectionStart...selectionEnd))
     }
     
     var body: some View {
@@ -58,19 +58,21 @@ struct CalendarExampleRangeView: View {
         return VStack {
             HStack {
                 BPKText("Selected inbound:", style: .caption)
-                if let selectedRange {
+                if case .range(let selectedRange) = selection {
                     BPKText("\(formatter.string(from: selectedRange.lowerBound))", style: .caption)
+                } else if case .intermediate(let selectedDate) = selection {
+                    BPKText("\(formatter.string(from: selectedDate))", style: .caption)
                 }
             }
             HStack {
                 BPKText("Selected outbound:", style: .caption)
-                if let selectedRange {
+                if case .range(let selectedRange) = selection {
                     BPKText("\(formatter.string(from: selectedRange.upperBound))", style: .caption)
                 }
             }
             BPKCalendar(
                 selectionType: .range(
-                    selectedRange: $selectedRange,
+                    selection: $selection,
                     accessibilityConfigurations: accessibilityConfigurations
                 ),
                 calendar: calendar,

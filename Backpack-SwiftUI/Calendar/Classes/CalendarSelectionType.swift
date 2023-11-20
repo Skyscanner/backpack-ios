@@ -22,7 +22,7 @@ import SwiftUI
 public enum CalendarSelectionType {
     /// A range selection, where the user can select a range of dates.
     case range(
-        selectedRange: Binding<ClosedRange<Date>?>,
+        selection: Binding<CalendarRangeSelectionState?>,
         accessibilityConfigurations: RangeAccessibilityConfigurations
     )
     

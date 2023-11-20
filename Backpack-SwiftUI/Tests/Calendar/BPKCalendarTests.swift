@@ -59,7 +59,7 @@ class BPKCalendarTests: XCTestCase {
         assertSnapshot(
             BPKCalendar(
                 selectionType: .range(
-                    selectedRange: .constant(selectionStart...selectionEnd),
+                    selection: .constant(.range(selectionStart...selectionEnd)),
                     accessibilityConfigurations: rangeAccessibilityConfig
                 ),
                 calendar: Calendar.current,
@@ -76,7 +76,7 @@ class BPKCalendarTests: XCTestCase {
         assertSnapshot(
             BPKCalendar(
                 selectionType: .range(
-                    selectedRange: .constant(selectionStart...selectionEnd),
+                    selection: .constant(.range(selectionStart...selectionEnd)),
                     accessibilityConfigurations: rangeAccessibilityConfig
                 ),
                 calendar: Calendar.current,
@@ -93,7 +93,7 @@ class BPKCalendarTests: XCTestCase {
         assertSnapshot(
             BPKCalendar(
                 selectionType: .range(
-                    selectedRange: .constant(selectionStart...selectionEnd),
+                    selection: .constant(.range(selectionStart...selectionEnd)),
                     accessibilityConfigurations: rangeAccessibilityConfig
                 ),
                 calendar: Calendar.current,

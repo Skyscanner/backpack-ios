@@ -24,10 +24,14 @@ struct RangeDayAccessibilityProvider {
         accessibilityConfigurations.returnDatePrompt
     }
     
-    func accessibilityLabel(for dayDate: Date, selection: ClosedRange<Date>?) -> String {
-        let baseLabel = dateFormatter.string(from: dayDate)
+    func accessibilityLabel(for dayDate: Date) -> String {
+        dateFormatter.string(from: dayDate)
+    }
+    
+    func accessibilityLabel(for dayDate: Date, selection: ClosedRange<Date>) -> String {
+        let baseLabel = accessibilityLabel(for: dayDate)
         var state: String?
-        if let selection = selection, selection.contains(dayDate) {
+        if selection.contains(dayDate) {
             if selection.lowerBound == selection.upperBound {
                 state = accessibilityConfigurations.startAndEndSelectionState
             } else if dayDate == selection.lowerBound {
@@ -42,8 +46,14 @@ struct RangeDayAccessibilityProvider {
         return "\(baseLabel), \(state)"
     }
     
-    func accessibilityHint(for dayDate: Date, selection: ClosedRange<Date>?, initialDateSelection: Date?) -> String {
-        if shouldClearSelectedDates(for: dayDate, onSelection: selection, initialDateSelection: initialDateSelection) {
+    func accessibilityLabel(for dayDate: Date, intermediateSelectionDate: Date) -> String {
+        let baseLabel = accessibilityLabel(for: dayDate)
+        let state = accessibilityConfigurations.startSelectionState
+        return "\(baseLabel), \(state)"
+    }
+    
+    func accessibilityHint(for dayDate: Date, rangeSelectionState: CalendarRangeSelectionState?) -> String {
+        if shouldClearSelectedDates(for: dayDate, rangeSelectionState: rangeSelectionState) {
             return accessibilityConfigurations.startSelectionHint
         }
         return accessibilityConfigurations.endSelectionHint
@@ -51,12 +61,15 @@ struct RangeDayAccessibilityProvider {
 
     private func shouldClearSelectedDates(
         for date: Date,
-        onSelection selection: ClosedRange<Date>?,
-        initialDateSelection: Date?
+        rangeSelectionState: CalendarRangeSelectionState?
     ) -> Bool {
-        if let initialDateSelection {
+        switch rangeSelectionState {
+        case .intermediate(let initialDateSelection):
             return date < initialDateSelection
+        case .range:
+            return true
+        case nil:
+            return false
         }
-        return selection != nil
     }
 }

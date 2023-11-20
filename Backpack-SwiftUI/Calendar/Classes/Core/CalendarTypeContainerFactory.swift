@@ -33,9 +33,9 @@ struct CalendarTypeContainerFactory<MonthHeader: View>: View {
     
     var body: some View {
         switch selectionType {
-        case .range(let selectedRange, let accessibilityConfigurations):
+        case .range(let selection, let accessibilityConfigurations):
             RangeCalendarContainer(
-                selection: selectedRange,
+                selectionState: selection,
                 calendar: calendar,
                 validRange: validRange,
                 accessibilityProvider: RangeDayAccessibilityProvider(

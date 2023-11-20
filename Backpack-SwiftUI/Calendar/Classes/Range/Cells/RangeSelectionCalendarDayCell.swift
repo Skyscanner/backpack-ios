@@ -20,22 +20,18 @@ import SwiftUI
 
 struct RangeSelectionCalendarDayCell: View {
     let date: Date
-    @Binding var selection: ClosedRange<Date>?
+    let selection: ClosedRange<Date>
     let calendar: Calendar
     
     var body: some View {
-        if let selection, selection.contains(date) {
-            if selection.lowerBound == selection.upperBound {
-                LowerAndUpperBoundSelectedCell(calendar: calendar, date: date)
-            } else if date == selection.lowerBound {
-                LowerBoundSelectedCell(calendar: calendar, date: date)
-            } else if date == selection.upperBound {
-                UpperBoundSelectedCell(calendar: calendar, date: date)
-            } else {
-                InbetweenSelectionCell(calendar: calendar, date: date)
-            }
+        if selection.lowerBound == selection.upperBound {
+            LowerAndUpperBoundSelectedCell(calendar: calendar, date: date)
+        } else if date == selection.lowerBound {
+            LowerBoundSelectedCell(calendar: calendar, date: date)
+        } else if date == selection.upperBound {
+            UpperBoundSelectedCell(calendar: calendar, date: date)
         } else {
-            DefaultCalendarDayCell(calendar: calendar, date: date)
+            InbetweenSelectionCell(calendar: calendar, date: date)
         }
     }
 }
