@@ -38,6 +38,7 @@ struct ComponentCellsProvider {
     // swiftlint:disable:next function_body_length
     func cells() -> [Components.Cell] {
         let dataSources: [CellDataSource] = [
+            appSearchModal(),
             badge(),
             barChart(),
             bottomSheet(),
@@ -556,6 +557,16 @@ extension ComponentCellsProvider {
                 }))
             ],
             showChildren: { showComponent(title: "Inset Banner", tabs: $0) }
+        )
+    }
+    
+    private func appSearchModal() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "App Search Modal",
+            tabs: [
+                .swiftui(groups: AppSearchModalGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
+            ],
+            showChildren: { showComponent(title: "App Search Modal", tabs: $0) }
         )
     }
 }
