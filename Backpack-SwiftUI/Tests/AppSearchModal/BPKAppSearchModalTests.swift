@@ -20,7 +20,7 @@ import XCTest
 import SwiftUI
 @testable import Backpack_SwiftUI
 
-class AppSearchModalTests: XCTestCase {
+class BPKAppSearchModalTests: XCTestCase {
     func test_withLoading() {
         assertSnapshot(
             givenSut(with: .loading(givenLoadingState()))
