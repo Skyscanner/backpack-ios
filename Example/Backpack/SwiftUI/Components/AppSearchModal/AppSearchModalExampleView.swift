@@ -28,6 +28,7 @@ struct AppSearchModalExampleView: View {
     }
     
     let resultsType: ResultsType
+    @State private var inputText = ""
     
     var body: some View {
         ZStack {
@@ -47,7 +48,7 @@ struct AppSearchModalExampleView: View {
     private func makeAppSearchModal(with results: BPKAppSearchModalResults) -> some View {
         BPKAppSearchModal(
             title: "Search Modal",
-            inputText: .constant(""),
+            inputText: $inputText,
             inputHint: "Search",
             results: results,
             closeAccessibilityLabel: "Close",
