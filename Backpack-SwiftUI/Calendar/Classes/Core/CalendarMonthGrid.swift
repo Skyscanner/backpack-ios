@@ -34,7 +34,6 @@ struct CalendarMonthGrid<
     private let daysInAWeek = 7
     
     var body: some View {
-        // Sunday is the first day of the week, so we need to offset the days to make Monday the first day
         // Sunday is the first day of the week in the Calendar, so we need to offset (rotate the array) the days to
         // make Monday the first day
         let weekdaysOffset = calendar.component(.weekday, from: monthDate) - 2
