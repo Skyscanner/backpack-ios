@@ -38,6 +38,7 @@ struct ComponentCellsProvider {
     // swiftlint:disable:next function_body_length
     func cells() -> [Components.Cell] {
         let dataSources: [CellDataSource] = [
+            appSearchModal(),
             badge(),
             barChart(),
             bottomSheet(),
@@ -56,6 +57,7 @@ struct ComponentCellsProvider {
             dialog(),
             horizontalNavigation(),
             icon(),
+            insetBanner(),
             label(),
             navBar(),
             nudger(),
@@ -72,7 +74,6 @@ struct ComponentCellsProvider {
             skeleton(),
             sliders(),
             snippets(),
-            sponsoredBanner(),
             spinners(),
             starRatings(),
             switches(),
@@ -550,15 +551,25 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Card list", tabs: $0) }
         )
     }
-    private func sponsoredBanner() -> CellDataSource {
+    private func insetBanner() -> CellDataSource {
         ComponentCellDataSource(
-            title: "Sponsored Banner",
+            title: "Inset Banner",
             tabs: [
                 .swiftui(presentable: CustomPresentable(generateViewController: {
-                    ContentUIHostingController(SponsoredBannerExampleView())
+                    ContentUIHostingController(InsetBannerExampleView())
                 }))
             ],
-            showChildren: { showComponent(title: "Sponsored Banner", tabs: $0) }
+            showChildren: { showComponent(title: "Inset Banner", tabs: $0) }
+        )
+    }
+    
+    private func appSearchModal() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "App Search Modal",
+            tabs: [
+                .swiftui(groups: AppSearchModalGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
+            ],
+            showChildren: { showComponent(title: "App Search Modal", tabs: $0) }
         )
     }
 }

@@ -25,6 +25,7 @@
 #import <Backpack/Spacing.h>
 
 #import "BPKCalendarAppearance.h"
+#import "Backpack/Backpack-Swift.h"
 
 @interface FSCalendarStickyHeader (Private)
 
@@ -111,10 +112,12 @@ CGFloat const BPKBaselineOffset = 2.0;
         return;
     }
 
-    self.selectMonthButton.hidden = !calendar.allowsWholeMonthSelection;
+    BPKCalendarWholeMonthConfiguration *configuration = calendar.wholeMonthSelectionConfiguration;
+    self.selectMonthButton.hidden = configuration == nil;
+
     BPKSimpleDate *simpleMonth = [BPKSimpleDate simpleDatesFromDates:@[month] forCalendar:calendar.gregorian].firstObject;
-    self.selectMonthButton.enabled = [calendar isWholeMonthButtonEnabledForMonth:simpleMonth];
-    [self.selectMonthButton setTitle:calendar.wholeMonthTitle];
+    self.selectMonthButton.enabled = [configuration isWholeMonthSelectionEnabledWithMonth:simpleMonth];
+    [self.selectMonthButton setTitle:configuration.title];
 }
 
 #pragma mark - Actions

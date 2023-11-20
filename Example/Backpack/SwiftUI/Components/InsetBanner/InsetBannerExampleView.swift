@@ -20,7 +20,7 @@
 import SwiftUI
 import Backpack_SwiftUI
 
-struct SponsoredBannerExampleView: View {
+struct InsetBannerExampleView: View {
     private let orangeColor = Color(red: 1.000, green: 0.400, blue: 0.004, opacity: 1.000)
     private let yellowColor = Color(red: 1.000, green: 0.890, blue: 0.000, opacity: 1.000)
     var body: some View {
@@ -37,14 +37,14 @@ struct SponsoredBannerExampleView: View {
     }
     
     private var titleOnlyView: some View {
-        BPKSponsoredBanner(
+        BPKInsetBanner<EmptyView>(
             title: "Title",
             variant: .onDark,
             backgroundColor: orangeColor)
     }
     
     private var allTitlesView: some View {
-        BPKSponsoredBanner(
+        BPKInsetBanner<EmptyView>(
             title: "Title",
             subheadline: "Subheadline",
             bodyText: "This is a body text",
@@ -53,8 +53,8 @@ struct SponsoredBannerExampleView: View {
     }
     
     private var imageAndCTAView: some View {
-        BPKSponsoredBanner(
-            logo: Image("skyland"),
+        BPKInsetBanner(
+            logoContent: Image("skyland").resizable().scaledToFit(),
             title: "Title",
             subheadline: "Subheading",
             callToAction: .init(
@@ -70,7 +70,7 @@ struct SponsoredBannerExampleView: View {
     }
     
     private var onLightView: some View {
-        BPKSponsoredBanner(
+        BPKInsetBanner<EmptyView>(
             title: "On Light variant",
             subheadline: "Subheadline",
             bodyText: "This is a body text",
@@ -79,7 +79,7 @@ struct SponsoredBannerExampleView: View {
     }
     
     private var sponsoredWithoutCTAOnLightView: some View {
-        BPKSponsoredBanner(
+        BPKInsetBanner<EmptyView>(
             title: "On Light Variant",
             subheadline: "Without info icon",
             callToAction: .init(
@@ -92,8 +92,8 @@ struct SponsoredBannerExampleView: View {
     }
 }
 
-struct SponsoredBannerExampleView_Previews: PreviewProvider {
+struct InsetBannerExampleView_Previews: PreviewProvider {
     static var previews: some View {
-        SponsoredBannerExampleView()
+        InsetBannerExampleView()
     }
 }

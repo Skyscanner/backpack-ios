@@ -42,16 +42,14 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
 
     var singleSelectionConfiguration: BPKCalendarSelectionConfiguration {
         return BPKCalendarSelectionConfigurationSingle(
-            selectionHint: "Double tap to select date",
-            andWholeMonthTitle: wholeMonthTitle
+            selectionHint: "Double tap to select date"
         )
     }
     
     var multipleSelectionConfiguration: BPKCalendarSelectionConfiguration {
         return BPKCalendarSelectionConfigurationMultiple(
             selectionHint: "Double tap to select date",
-            deselectionHint: "Double tap to deselect date",
-            andWholeMonthTitle: wholeMonthTitle
+            deselectionHint: "Double tap to deselect date"
         )
     }
     
@@ -63,14 +61,20 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
             endSelectionState: "Selected as return date",
             betweenSelectionState: "Between departure and return date",
             startAndEndSelectionState: "Selected as both departure and return date",
-            returnDatePrompt: "Now please select a return date",
-            andWholeMonthTitle: wholeMonthTitle
+            returnDatePrompt: "Now please select a return date"
         )
     }
 
     override func viewDidLoad() {
         // I guess it shouldn't be possible to create a calendar without a selection config 🤔
         calendar.selectionConfiguration = singleSelectionConfiguration
+        
+        if let wholeMonthTitle {
+            calendar.wholeMonthSelectionConfiguration = BPKCalendarWholeMonthConfiguration(
+                title: wholeMonthTitle,
+                selectableMonthRange: BPKYearMonth(year: 2020, month: 1)...BPKYearMonth(year: 2020, month: 12)
+            )
+        }
 
         if showPrices {
             calendar = BPKCalendar(
@@ -184,5 +188,9 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
         }
 
         return showPrices ? noPrice : BPKCalendarTrafficLightCellData.noData
+    }
+    
+    func calendar(_ calendar: BPKCalendar, didSelectWholeMonth dateList: [BPKSimpleDate]) {
+        print("calendar:", calendar, "didSelectWholeMonth:", dateList)
     }
 }

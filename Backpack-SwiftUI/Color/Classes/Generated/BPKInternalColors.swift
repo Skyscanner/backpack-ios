@@ -29,6 +29,11 @@ internal extension BPKColor {
         self.init(value: UIColor(red: red, green: green, blue: blue, alpha: alpha))
     }
 
+    /// The `badgeBackgroundNormalColor` internal color.
+    
+    static let badgeBackgroundNormalColor = BPKColor(red: 0.937, green: 0.945, blue: 0.949, alpha: 1)
+        .darkVariant(BPKColor(red: 0.141, green: 0.200, blue: 0.275, alpha: 1))
+
     /// The `chipOnDarkPressedStrokeColor` internal color.
     
     static let chipOnDarkPressedStrokeColor = BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1)
