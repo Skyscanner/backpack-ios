@@ -17,10 +17,10 @@
  */
 
 const _ = require('lodash');
-const { isSemanticColor, isPrivateColor, parseColor } = require('./utils/formatUtils');
+const { hasNewSemanticSuffix, isPrivateColor, parseColor } = require('./utils/formatUtils');
 
 const internalColors = (properties) => _.chain(properties)
-  .filter((entity) => entity.type === 'color' && isSemanticColor(entity) && isPrivateColor(entity))
+  .filter((entity) => entity.type === 'color' && isPrivateColor(entity) && !hasNewSemanticSuffix(entity))
   .map(
     ({
       name,
@@ -38,10 +38,10 @@ const internalColors = (properties) => _.chain(properties)
       ...rest
     }) => ({
       value: parseColor(value),
-      darkValue: parseColor(darkValue),
+      darkValue: parseColor(darkValue !== undefined ? darkValue : value),
       name: name[0].toLowerCase() + name.slice(1),
       hex: value.toString(),
-      darkHex: darkValue.toString(),
+      darkHex: (darkValue !== undefined ? darkValue : value).toString(),
       ...rest,
       type: 'internalColor',
     }),

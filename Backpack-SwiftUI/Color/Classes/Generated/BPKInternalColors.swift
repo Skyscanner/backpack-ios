@@ -29,6 +29,26 @@ internal extension BPKColor {
         self.init(value: UIColor(red: red, green: green, blue: blue, alpha: alpha))
     }
 
+    /// The `infoBannerSuccessColor` internal color.
+    
+    static let infoBannerSuccessColor = BPKColor(red: 0.047, green: 0.514, blue: 0.541, alpha: 1)
+        .darkVariant(BPKColor(red: 0.047, green: 0.514, blue: 0.541, alpha: 1))
+
+    /// The `infoBannerWarningColor` internal color.
+    
+    static let infoBannerWarningColor = BPKColor(red: 0.961, green: 0.365, blue: 0.259, alpha: 1)
+        .darkVariant(BPKColor(red: 0.961, green: 0.365, blue: 0.259, alpha: 1))
+
+    /// The `infoBannerErrorColor` internal color.
+    
+    static let infoBannerErrorColor = BPKColor(red: 0.906, green: 0.031, blue: 0.400, alpha: 1)
+        .darkVariant(BPKColor(red: 0.906, green: 0.031, blue: 0.400, alpha: 1))
+
+    /// The `infoBannerInfoColor` internal color.
+    
+    static let infoBannerInfoColor = BPKColor(red: 0.761, green: 0.788, blue: 0.804, alpha: 1)
+        .darkVariant(BPKColor(red: 0.761, green: 0.788, blue: 0.804, alpha: 1))
+
     /// The `badgeBackgroundNormalColor` internal color.
     
     static let badgeBackgroundNormalColor = BPKColor(red: 0.937, green: 0.945, blue: 0.949, alpha: 1)

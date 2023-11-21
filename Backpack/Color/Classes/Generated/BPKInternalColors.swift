@@ -26,6 +26,30 @@ import UIKit
 // swiftlint:disable identifier_name
 internal extension BPKColor {
 
+    /// The `infoBannerSuccessColor` internal color.
+    
+    static let infoBannerSuccessColor = BPKColor.dynamicColor(
+        withLightVariant: UIColor(red: 0.047, green: 0.514, blue: 0.541, alpha: 1),
+        darkVariant: UIColor(red: 0.047, green: 0.514, blue: 0.541, alpha: 1))
+
+    /// The `infoBannerWarningColor` internal color.
+    
+    static let infoBannerWarningColor = BPKColor.dynamicColor(
+        withLightVariant: UIColor(red: 0.961, green: 0.365, blue: 0.259, alpha: 1),
+        darkVariant: UIColor(red: 0.961, green: 0.365, blue: 0.259, alpha: 1))
+
+    /// The `infoBannerErrorColor` internal color.
+    
+    static let infoBannerErrorColor = BPKColor.dynamicColor(
+        withLightVariant: UIColor(red: 0.906, green: 0.031, blue: 0.400, alpha: 1),
+        darkVariant: UIColor(red: 0.906, green: 0.031, blue: 0.400, alpha: 1))
+
+    /// The `infoBannerInfoColor` internal color.
+    
+    static let infoBannerInfoColor = BPKColor.dynamicColor(
+        withLightVariant: UIColor(red: 0.761, green: 0.788, blue: 0.804, alpha: 1),
+        darkVariant: UIColor(red: 0.761, green: 0.788, blue: 0.804, alpha: 1))
+
     /// The `badgeBackgroundNormalColor` internal color.
     
     static let badgeBackgroundNormalColor = BPKColor.dynamicColor(
