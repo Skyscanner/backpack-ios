@@ -74,7 +74,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             switchTab(title: "SwiftUI")
             app.tables.staticTexts["Primary"].tap()
             saveScreenshot(component: "button", scenario: "primary", userInterfaceStyle: userInterfaceStyle)
-tapBackButton()
+            tapBackButton()
             app.tables.staticTexts["Secondary"].tap()
             saveScreenshot(component: "button", scenario: "secondary", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
