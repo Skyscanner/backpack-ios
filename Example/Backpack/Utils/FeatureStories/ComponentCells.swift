@@ -134,10 +134,13 @@ extension ComponentCellsProvider {
         )
     }
     private func calendar() -> CellDataSource {
-        GroupCellDataSource(
+        ComponentCellDataSource(
             title: "Calendar",
-            groups: CalendarGroupsProvider(showPresentable: show(presentable:)).groups(),
-            showChildren: { showChildren(title: "Calendar", children: $0) }
+            tabs: [
+                .uikit(groups: CalendarGroupsProvider(showPresentable: show(presentable:)).groups()),
+                .swiftui(groups: CalendarGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
+            ],
+            showChildren: { showComponent(title: "Calendar", tabs: $0) }
         )
     }
     private func card() -> CellDataSource {

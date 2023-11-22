@@ -359,6 +359,16 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
 
+        navigate(title: "Calendar") {
+            switchTab(title: "SwiftUI")
+            app.tables.staticTexts["Range Selection"].tap()
+            saveScreenshot(component: "calendar", scenario: "range", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Single Selection"].tap()
+            saveScreenshot(component: "calendar", scenario: "single", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
+        
         navigate(title: "Snippet") {
             app.tables.staticTexts["Landscape"].tap()
             saveScreenshot(component: "snippet", scenario: "landscape", userInterfaceStyle: userInterfaceStyle)

@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
+import SwiftUI
+
 struct CalendarGroupsProvider {
     let showPresentable: (Presentable) -> Void
     
@@ -27,6 +29,17 @@ struct CalendarGroupsProvider {
             title: title,
             storyboard: .named("Calendar", on: "CalendarViewController"),
             enrich: enrich,
+            showPresentable: showPresentable
+        )
+    }
+    
+    private func presentableCalendar<Content: View>(
+        _ title: String,
+        view: Content
+    ) -> CellDataSource {
+        PresentableCellDataSource.custom(
+            title: title,
+            customController: { ContentUIHostingController(view) },
             showPresentable: showPresentable
         )
     }
@@ -56,6 +69,15 @@ struct CalendarGroupsProvider {
                     )
                     $0.minDate = startingDate
                 }
+            ]
+        ).groups()
+    }
+    
+    func swiftUIGroups() -> [Components.Group] {
+        SingleGroupProvider(
+            cellDataSources: [
+                presentableCalendar("Range Selection", view: CalendarExampleRangeView()),
+                presentableCalendar("Single Selection", view: CalendarExampleSingleView())
             ]
         ).groups()
     }
