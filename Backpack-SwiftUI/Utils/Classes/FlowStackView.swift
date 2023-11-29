@@ -18,20 +18,25 @@
 
 import SwiftUI
 
-struct FlowStackView<Content: View>: View {
+/// `FlowStackView` is a SwiftUI view that arranges its children in a grid with a flexible number of columns and rows.
+///
+/// This view adjusts the number of columns based on the available width and the widths of the children.
+/// If a child does not fit in the current row, it is placed in the next row.
+public struct FlowStackView<Content: View>: View {
     let content: () -> Content
     let spacing: CGSize
 
     /// Creates an instance with the given spacing and content.
     ///
-    /// - Parameter spacing: A `CGSize` value indicating the space between children.
-    /// - Parameter content: A view builder that creates the content of this stack.
-    init(spacing: CGSize, @ViewBuilder content: @escaping () -> Content) {
+    /// - Parameters:
+    ///   - spacing: A `CGSize` value indicating the space between children.
+    ///   - content: A view builder that creates the content of this stack.
+    public init(spacing: CGSize, @ViewBuilder content: @escaping () -> Content) {
         self.content = content
         self.spacing = spacing
     }
 
-    var body: some View {
+    public var body: some View {
         ZStack(alignment: .topLeading) {
             // Setup for layout pass
             var available: CGFloat = 0
