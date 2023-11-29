@@ -18,7 +18,8 @@
 
 import SwiftUI
 
-/// `BPKFlowStackView` is a SwiftUI view that arranges its children in a grid with a flexible number of columns and rows.
+/// `BPKFlowStackView` is a SwiftUI view that arranges its children in a grid with a flexible number
+///     of columns and rows.
 ///
 /// This view adjusts the number of columns based on the available width and the widths of the children.
 /// If a child does not fit in the current row, it is placed in the next row.
