@@ -30,20 +30,10 @@ public struct BPKFlowStackView<Content: View>: View {
     /// Creates an instance with the given spacing and content.
     ///
     /// - Parameters:
-    ///   - spacing: A `CGSize` value indicating the space between children.
-    ///   - content: A view builder that creates the content of this stack.
-    public init(spacing: CGSize, @ViewBuilder content: @escaping () -> Content) {
-        self.content = content
-        self.spacing = spacing
-    }
-
-    /// Creates an instance with the given spacing and content.
-    ///
-    /// - Parameters:
     ///   - spacing: A `BPKSpacing` value indicating the space between children, with the same value for horizontal and
     ///     vertical spacing.
     ///   - content: A view builder that creates the content of this stack.
-    public init(spacing: BPKSpacing, @ViewBuilder content: @escaping () -> Content) {
+    public init(spacing: BPKSpacing = .md, @ViewBuilder content: @escaping () -> Content) {
         self.content = content
         self.spacing = CGSize(width: spacing, height: spacing)
     }
@@ -80,7 +70,7 @@ public struct BPKFlowStackView<Content: View>: View {
 
 struct BPKFlowStackView_Previews: PreviewProvider {
     static var previews: some View {
-        BPKFlowStackView(spacing: .md) {
+        BPKFlowStackView {
             ForEach(0..<20) { index in
                 BPKBadge("badge \(index)")
                     .badgeStyle(.brand)

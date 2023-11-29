@@ -50,7 +50,7 @@ public struct BPKSingleSelectChipGroup: View {
                 }
             }
         case .wrap:
-            BPKFlowStackView(spacing: .init(width: .md, height: .md)) {
+            BPKFlowStackView {
                 chipsListView
             }
         }
