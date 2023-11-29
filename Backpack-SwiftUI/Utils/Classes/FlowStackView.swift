@@ -36,6 +36,17 @@ public struct FlowStackView<Content: View>: View {
         self.spacing = spacing
     }
 
+    /// Creates an instance with the given spacing and content.
+    ///
+    /// - Parameters:
+    ///   - spacing: A `BPKSpacing` value indicating the space between children, with the same value for horizontal and
+    ///     vertical spacing.
+    ///   - content: A view builder that creates the content of this stack.
+    public init(spacing: BPKSpacing, @ViewBuilder content: @escaping () -> Content) {
+        self.content = content
+        self.spacing = CGSize(width: spacing, height: spacing)
+    }
+
     public var body: some View {
         ZStack(alignment: .topLeading) {
             // Setup for layout pass
@@ -61,16 +72,14 @@ public struct FlowStackView<Content: View>: View {
                     x += item.width + spacing.width
                     return -result
                 }
-                .alignmentGuide(.top) { _ in
-                    -y
-                }
+                .alignmentGuide(.top) { _ in -y }
         }
     }
 }
 
 struct FlowStackView_Previews: PreviewProvider {
     static var previews: some View {
-        FlowStackView(spacing: CGSize(width: .md, height: .md)) {
+        FlowStackView(spacing: .md) {
             ForEach(0..<20) { index in
                 BPKBadge("badge \(index)")
                     .badgeStyle(.brand)
