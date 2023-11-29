@@ -56,7 +56,7 @@ public struct BPKMultiSelectChipGroup: View {
                 }
             }
         case .wrap:
-            FlowStackView(spacing: .init(width: .md, height: .md)) {
+            BPKFlowStackView(spacing: .init(width: .md, height: .md)) {
                 chipsListView
             }
         }

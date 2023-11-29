@@ -18,11 +18,11 @@
 
 import SwiftUI
 
-/// `FlowStackView` is a SwiftUI view that arranges its children in a grid with a flexible number of columns and rows.
+/// `BPKFlowStackView` is a SwiftUI view that arranges its children in a grid with a flexible number of columns and rows.
 ///
 /// This view adjusts the number of columns based on the available width and the widths of the children.
 /// If a child does not fit in the current row, it is placed in the next row.
-public struct FlowStackView<Content: View>: View {
+public struct BPKFlowStackView<Content: View>: View {
     let content: () -> Content
     let spacing: CGSize
 
@@ -77,9 +77,9 @@ public struct FlowStackView<Content: View>: View {
     }
 }
 
-struct FlowStackView_Previews: PreviewProvider {
+struct BPKFlowStackView_Previews: PreviewProvider {
     static var previews: some View {
-        FlowStackView(spacing: .md) {
+        BPKFlowStackView(spacing: .md) {
             ForEach(0..<20) { index in
                 BPKBadge("badge \(index)")
                     .badgeStyle(.brand)
