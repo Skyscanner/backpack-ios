@@ -18,20 +18,27 @@
 
 import SwiftUI
 
-struct FlowStackView<Content: View>: View {
+/// `BPKFlowStackView` is a SwiftUI view that arranges its children in a grid with a flexible number
+///     of columns and rows.
+///
+/// This view adjusts the number of columns based on the available width and the widths of the children.
+/// If a child does not fit in the current row, it is placed in the next row.
+public struct BPKFlowStackView<Content: View>: View {
     let content: () -> Content
     let spacing: CGSize
 
     /// Creates an instance with the given spacing and content.
     ///
-    /// - Parameter spacing: A `CGSize` value indicating the space between children.
-    /// - Parameter content: A view builder that creates the content of this stack.
-    init(spacing: CGSize, @ViewBuilder content: @escaping () -> Content) {
+    /// - Parameters:
+    ///   - spacing: A `BPKSpacing` value indicating the space between children, with the same value for horizontal and
+    ///     vertical spacing.
+    ///   - content: A view builder that creates the content of this stack.
+    public init(spacing: BPKSpacing = .md, @ViewBuilder content: @escaping () -> Content) {
         self.content = content
-        self.spacing = spacing
+        self.spacing = CGSize(width: spacing, height: spacing)
     }
 
-    var body: some View {
+    public var body: some View {
         ZStack(alignment: .topLeading) {
             // Setup for layout pass
             var available: CGFloat = 0
@@ -56,16 +63,14 @@ struct FlowStackView<Content: View>: View {
                     x += item.width + spacing.width
                     return -result
                 }
-                .alignmentGuide(.top) { _ in
-                    -y
-                }
+                .alignmentGuide(.top) { _ in -y }
         }
     }
 }
 
-struct FlowStackView_Previews: PreviewProvider {
+struct BPKFlowStackView_Previews: PreviewProvider {
     static var previews: some View {
-        FlowStackView(spacing: CGSize(width: .md, height: .md)) {
+        BPKFlowStackView {
             ForEach(0..<20) { index in
                 BPKBadge("badge \(index)")
                     .badgeStyle(.brand)
