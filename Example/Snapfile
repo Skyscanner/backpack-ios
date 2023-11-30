@@ -2,7 +2,7 @@
 devices(["iPhone SE (3rd generation)"])
 
 # The ios version to take the screenshots from
-ios_version("16.2")
+ios_version("17.0")
 
 # The languages to take the screenshots in
 languages(["en-US"])
