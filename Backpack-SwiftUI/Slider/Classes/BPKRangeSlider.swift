@@ -46,6 +46,9 @@ public struct BPKRangeSlider: View {
     private var leadingAccessibilityLabel = ""
     
     @State var height: CGFloat = .zero
+
+    @State private var isDraggingLeadingThumb = false
+    @State private var isDraggingTrailingThumb = false
     
     /// Creates a new instance of `BPKRangeSlider`.
     ///
@@ -100,7 +103,7 @@ public struct BPKRangeSlider: View {
     // swiftlint:disable closure_body_length
     // swiftlint:disable function_body_length
     @ViewBuilder private func sliderView(sliderSize: CGSize) -> some View {
-        ZStack(alignment: .bottom) {
+        ZStack(alignment: .top) {
             Capsule()
                 .fill(Color(.lineColor))
                 .frame(width: sliderSize.width, height: sliderHeight)
@@ -114,9 +117,13 @@ public struct BPKRangeSlider: View {
                 size: thumbSize,
                 offset: trailingThumbOffset(sliderSize: sliderSize),
                 onDrag: { value in
+                    isDraggingTrailingThumb = true
                     handleTrailingThumbDrag(value: value, sliderSize: sliderSize)
                 },
-                onDragEnded: { onDragEnded(selectedRange) }
+                onDragEnded: {
+                    isDraggingTrailingThumb = false
+                    onDragEnded(selectedRange)
+                }
             )
             
             .accessibilityLabel(trailingAccessibilityLabel)
@@ -128,7 +135,7 @@ public struct BPKRangeSlider: View {
                 @unknown default: break
                 }
             }
-            if let thumbnailLabels = thumbnailLabels {
+            if let thumbnailLabels = thumbnailLabels, isDraggingTrailingThumb {
                 thumbLabel(thumbnailLabels.upperThumbnail)
                     .offset(x: trailingThumbOffset(sliderSize: sliderSize))
                     .accessibilityHidden(true)
@@ -137,9 +144,13 @@ public struct BPKRangeSlider: View {
                 size: thumbSize,
                 offset: leadingThumbOffset(sliderSize: sliderSize),
                 onDrag: { value in
+                    isDraggingLeadingThumb = true
                     handleLeadingThumbDrag(value: value, sliderSize: sliderSize)
                 },
-                onDragEnded: { onDragEnded(selectedRange) }
+                onDragEnded: {
+                    isDraggingLeadingThumb = false
+                    onDragEnded(selectedRange)
+                }
             )
             .accessibilityLabel(leadingAccessibilityLabel)
             .accessibility(value: Text("\(selectedRange.lowerBound)"))
@@ -150,7 +161,7 @@ public struct BPKRangeSlider: View {
                 @unknown default: break
                 }
             }
-            if let thumbnailLabels = thumbnailLabels {
+            if let thumbnailLabels = thumbnailLabels, isDraggingLeadingThumb {
                 thumbLabel(thumbnailLabels.lowerThumbnail)
                     .offset(x: leadingThumbOffset(sliderSize: sliderSize))
                     .accessibilityHidden(true)
