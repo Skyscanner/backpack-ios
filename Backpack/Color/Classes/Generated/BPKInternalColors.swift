@@ -26,35 +26,47 @@ import UIKit
 // swiftlint:disable identifier_name
 internal extension BPKColor {
 
-    /// The `infoBannerSuccessColor` internal color.
-    
-    static let infoBannerSuccessColor = BPKColor.dynamicColor(
-        withLightVariant: UIColor(red: 0.047, green: 0.514, blue: 0.541, alpha: 1),
-        darkVariant: UIColor(red: 0.047, green: 0.514, blue: 0.541, alpha: 1))
-
-    /// The `infoBannerWarningColor` internal color.
-    
-    static let infoBannerWarningColor = BPKColor.dynamicColor(
-        withLightVariant: UIColor(red: 0.961, green: 0.365, blue: 0.259, alpha: 1),
-        darkVariant: UIColor(red: 0.961, green: 0.365, blue: 0.259, alpha: 1))
-
-    /// The `infoBannerErrorColor` internal color.
-    
-    static let infoBannerErrorColor = BPKColor.dynamicColor(
-        withLightVariant: UIColor(red: 0.906, green: 0.031, blue: 0.400, alpha: 1),
-        darkVariant: UIColor(red: 0.906, green: 0.031, blue: 0.400, alpha: 1))
-
-    /// The `infoBannerInfoColor` internal color.
-    
-    static let infoBannerInfoColor = BPKColor.dynamicColor(
-        withLightVariant: UIColor(red: 0.761, green: 0.788, blue: 0.804, alpha: 1),
-        darkVariant: UIColor(red: 0.761, green: 0.788, blue: 0.804, alpha: 1))
-
     /// The `badgeBackgroundNormalColor` internal color.
     
     static let badgeBackgroundNormalColor = BPKColor.dynamicColor(
         withLightVariant: UIColor(red: 0.937, green: 0.945, blue: 0.949, alpha: 1),
         darkVariant: UIColor(red: 0.141, green: 0.200, blue: 0.275, alpha: 1))
+
+    /// The `infoBannerDefaultColor` internal color.
+    
+    static let infoBannerDefaultColor = BPKColor.dynamicColor(
+        withLightVariant: UIColor(red: 0.937, green: 0.945, blue: 0.949, alpha: 1),
+        darkVariant: UIColor(red: 0.075, green: 0.114, blue: 0.169, alpha: 1))
+
+    /// The `infoBannerOnContrastColor` internal color.
+    
+    static let infoBannerOnContrastColor = BPKColor.dynamicColor(
+        withLightVariant: UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1),
+        darkVariant: UIColor(red: 0.075, green: 0.114, blue: 0.169, alpha: 1))
+
+    /// The `infoBannerSuccessColor` internal color.
+    
+    static let infoBannerSuccessColor = BPKColor.dynamicColor(
+        withLightVariant: UIColor(red: 0.047, green: 0.514, blue: 0.541, alpha: 1),
+        darkVariant: UIColor(red: 0.384, green: 0.945, blue: 0.776, alpha: 1))
+
+    /// The `infoBannerErrorColor` internal color.
+    
+    static let infoBannerErrorColor = BPKColor.dynamicColor(
+        withLightVariant: UIColor(red: 0.906, green: 0.031, blue: 0.400, alpha: 1),
+        darkVariant: UIColor(red: 1.000, green: 0.392, blue: 0.612, alpha: 1))
+
+    /// The `infoBannerInfoColor` internal color.
+    
+    static let infoBannerInfoColor = BPKColor.dynamicColor(
+        withLightVariant: UIColor(red: 0.329, green: 0.345, blue: 0.376, alpha: 1),
+        darkVariant: UIColor(red: 0.741, green: 0.769, blue: 0.796, alpha: 1))
+
+    /// The `infoBannerWarningColor` internal color.
+    
+    static let infoBannerWarningColor = BPKColor.dynamicColor(
+        withLightVariant: UIColor(red: 0.961, green: 0.365, blue: 0.259, alpha: 1),
+        darkVariant: UIColor(red: 0.996, green: 0.922, blue: 0.529, alpha: 1))
 
     /// The `chipOnDarkPressedStrokeColor` internal color.
     
