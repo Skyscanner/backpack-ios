@@ -90,6 +90,11 @@ public extension BPKColor {
     static let statusWarningFillColor = BPKColor(red: 1.000, green: 0.969, blue: 0.812, alpha: 1)
         .darkVariant(BPKColor(red: 0.984, green: 0.945, blue: 0.733, alpha: 1))
 
+    /// The `surfaceHeroColor` dynamic color from the Backpack palette.
+    
+    static let surfaceHeroColor = BPKColor(red: 0.000, green: 0.384, blue: 0.890, alpha: 1)
+        .darkVariant(BPKColor(red: 0.004, green: 0.035, blue: 0.075, alpha: 1))
+
     /// The `surfaceDefaultColor` dynamic color from the Backpack palette.
     
     static let surfaceDefaultColor = BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1)

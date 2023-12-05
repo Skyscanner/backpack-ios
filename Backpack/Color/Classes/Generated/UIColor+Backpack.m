@@ -358,6 +358,10 @@
     return BPKColor.statusWarningFillColor;
 }
 
++ (UIColor *)bpk_surfaceHeroColor {
+    return BPKColor.surfaceHeroColor;
+}
+
 + (UIColor *)bpk_surfaceDefaultColor {
     return BPKColor.surfaceDefaultColor;
 }
