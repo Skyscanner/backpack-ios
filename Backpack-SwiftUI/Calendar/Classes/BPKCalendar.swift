@@ -52,6 +52,7 @@ public struct BPKCalendar: View {
         self.selectionType = selectionType
 
         monthHeaderDateFormatter = DateFormatter()
+        monthHeaderDateFormatter.timeZone = calendar.timeZone
         monthHeaderDateFormatter.dateFormat = "MMMM yyyy"
     }
     

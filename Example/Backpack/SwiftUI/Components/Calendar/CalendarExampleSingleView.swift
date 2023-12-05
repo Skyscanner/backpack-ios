@@ -38,6 +38,7 @@ struct CalendarExampleSingleView: View {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
         formatter.locale = calendar.locale
+        formatter.timeZone = calendar.timeZone
         self.formatter = formatter
         
         _selectedDate = State(initialValue: calendar.date(from: .init(year: 2023, month: 11, day: 15))!)
