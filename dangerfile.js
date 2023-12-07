@@ -33,20 +33,6 @@ const createdFiles = danger.git.created_files;
 const modifiedFiles = danger.git.modified_files;
 const fileChanges = [...modifiedFiles, ...createdFiles];
 
-const pbxprojFilePath = 'Example/Backpack.xcodeproj/project.pbxproj';
-
-const projectFileMentionsRelative = async () => {
-  const stat = await fs.promises.stat(pbxprojFilePath);
-  if (!stat.isFile()) {
-    return false;
-  }
-
-  const content = await fs.promises.readFile(pbxprojFilePath, {
-    encoding: 'utf-8',
-  });
-  return content.includes('SkyscannerRelative');
-};
-
 const hasNonRTLAnchor = async (filePath) => {
   const stat = await fs.promises.stat(filePath);
   if (!stat.isFile()) {
@@ -87,12 +73,6 @@ schedule(async () => {
   if (usesNonRTLAnchor) {
     warn(
       'You have used `leftAnchor` or `rightAnchor`. These should generally be avoided to ensure that RTL is supported.',
-    );
-  }
-
-  if (await projectFileMentionsRelative()) {
-    fail(
-      `Project file "${pbxprojFilePath}" references "SkyscannerRelative". This change should not be checked in.`,
     );
   }
 });
