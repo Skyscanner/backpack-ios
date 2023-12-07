@@ -3,7 +3,7 @@ set -e
 
 EXAMPLE_WORKSPACE="Example/Backpack.xcworkspace"
 SWIFT=${SWIFT:-'5.0'}
-BUILD_SDK=${BUILD_SDK:-'iphonesimulator16.2'}
+BUILD_SDK=${BUILD_SDK:-'iphonesimulator'}
 DESTINATION=${DESTINATION:-"platform=iOS Simulator,name=iPhone SE (3rd generation)"}
 
 function analyze() {
@@ -30,21 +30,20 @@ function runTests() {
 function check_modules() {
     if [ $2 == "test" ]; then
         if [ $1 == "uikit" ]; then
-            runTests "Backpack-Snapshot-Tests"
-            runTests "Backpack-Unit-Tests"
+            runTests "Backpack-UIKit-Tests"
 
         elif [ $1 == "uitests" ]; then
             runTests "Backpack-UI-Tests"
 
         elif [ $1 == "swiftui" ]; then
-            runTests "Backpack SwiftUI"
+            runTests "Backpack-SwiftUI"
         fi
     elif [ $2 == "analysis" ]; then
         if [ $1 == "uikit" ]; then
-            analyze "Backpack Native"
+            analyze "Backpack"
 
         elif [ $1 == "swiftui" ]; then
-            analyze "Backpack SwiftUI"
+            analyze "Backpack-SwiftUI"
 
         elif [ $1 == "common" ]; then
             analyze "Backpack-Common"
