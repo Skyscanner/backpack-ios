@@ -165,8 +165,8 @@ jobs:
       - name: Bundle Install
         run: bundle install --jobs 4 --retry 3
 
-      - name: XcodeGen
-        run: bundle exec xcodegen generate
+      - name: XCodeGen
+        run: bundle exec xcodegen generate --spec Example/project.yml
 
       - name: Pod Install
         run: bundle exec pod install
