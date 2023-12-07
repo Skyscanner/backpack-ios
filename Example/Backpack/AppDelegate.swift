@@ -23,7 +23,6 @@ import Backpack_SwiftUI
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    // swiftlint:disable indentation_width
     private func setupAppearance() {
         UINavigationBar.appearance().tintColor = BPKColor.textPrimaryColor
         BPKAppearance.apply()

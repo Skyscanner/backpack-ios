@@ -80,6 +80,13 @@ schemes:
     build:
       targets: 
         SampleApp: all
+    environment:
+      - name: IMAGE_DIFF_DIR
+        value: "$(SOURCE_ROOT)/../BackpackTests/FailureDiffs"
+      - name: FB_REFERENCE_IMAGE_DIR
+        value: "$(SOURCE_ROOT)/../Backpack/Tests/SnapshotTests/ReferenceImages"
+      - name: SNAPSHOT_ARTIFACTS
+        value: "$(SOURCE_ROOT)/../BackpackTests/FailureDiffs"
     test:
       targets:
         - UIKitTests
@@ -92,6 +99,11 @@ schemes:
     build:
       targets: 
         UIKitTests: all
+    environment:
+      - name: IMAGE_DIFF_DIR
+        value: "$(SOURCE_ROOT)/../BackpackTests/FailureDiffs"
+      - name: FB_REFERENCE_IMAGE_DIR
+        value: "$(SOURCE_ROOT)/../Backpack/Tests/SnapshotTests/ReferenceImages"
     test:
       targets:
         - UIKitTests
@@ -108,6 +120,9 @@ schemes:
     build:
       targets: 
         SampleApp: all
+    environment:
+      - name: SNAPSHOT_ARTIFACTS
+        value: "$(SOURCE_ROOT)/../BackpackTests/FailureDiffs"
     test:
       targets:
         - SwiftUITests
