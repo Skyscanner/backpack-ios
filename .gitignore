@@ -16,6 +16,8 @@ Backpack-Fonts/Assets/SkyscannerRelative*
 !default.perspectivev3
 xcuserdata/
 *.xccheckout
+Example/*xcodeproj
+Example/*xcworkspace
 profile
 *.moved-aside
 DerivedData
