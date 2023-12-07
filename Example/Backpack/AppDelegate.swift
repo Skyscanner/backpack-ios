@@ -17,10 +17,6 @@
  */
 
 import UIKit
-import AppCenter
-import AppCenterDistribute
-import AppCenterAnalytics
-import AppCenterCrashes
 
 import Backpack
 import Backpack_SwiftUI
@@ -51,8 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         setupRelativeFont()
         setupAppearance()
-        AppCenter.start(withAppSecret: "$(APP_CENTER_SECRET)",
-                        services: [Analytics.self, Crashes.self, Distribute.self])
         return true
     }
 }

@@ -165,6 +165,9 @@ jobs:
       - name: Bundle Install
         run: bundle install --jobs 4 --retry 3
 
+      - name: XcodeGen
+        run: bundle exec xcodegen generate
+
       - name: Pod Install
         run: bundle exec pod install
         working-directory: Example

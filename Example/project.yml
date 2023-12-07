@@ -4,10 +4,11 @@ targets:
     type: application
     platform: iOS
     deployment_target: "14.0"
-    sources: 
+    sources:
       - path: Backpack
         includes:
           - "**/*.{swift,h,m}"
+          - "**/*.storyboard"
           - "Images.xcassets"
     settings:
       base:
@@ -16,6 +17,20 @@ targets:
         IPHONEOS_DEPLOYMENT_TARGET: "14.0"
         PRODUCT_BUNDLE_IDENTIFIER: org.skyscanner.Backpack-Example
         SWIFT_OBJC_BRIDGING_HEADER: Backpack/Backpack Native-Bridging-Header.h
+
+  Screenshots:
+    type: bundle.ui-testing
+    platform: iOS
+    deployment_target: "14.0"
+    sources: [Backpack Screenshot]
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: "YES"
+        PRODUCT_BUNDLE_IDENTIFIER: org.skyscanner.Backpack-Snapshots
+        IPHONEOS_DEPLOYMENT_TARGET: "14.0"
+    dependencies:
+      - target: SampleApp
+
   UIKitTests:
     type: bundle.unit-test
     platform: iOS
@@ -30,6 +45,7 @@ targets:
         GENERATE_INFOPLIST_FILE: "YES"
         PRODUCT_BUNDLE_IDENTIFIER: org.skyscanner.Backpack-UIKitTests
         IPHONEOS_DEPLOYMENT_TARGET: "14.0"
+
   SwiftUITests:
     type: bundle.unit-test
     platform: iOS
@@ -44,6 +60,7 @@ targets:
         GENERATE_INFOPLIST_FILE: "YES"
         PRODUCT_BUNDLE_IDENTIFIER: org.skyscanner.Backpack-SwiftUITests
         IPHONEOS_DEPLOYMENT_TARGET: "14.0"
+
   UITests:
     type: bundle.ui-testing
     platform: iOS
@@ -94,14 +111,11 @@ schemes:
     test:
       targets:
         - SwiftUITests
-    run:
-      targets:
-        - SampleApp
 
   Backpack-Screenshot:
     build:
       targets: 
         SampleApp: all
-    run:
+    test:
       targets:
-        - SampleApp
+        - Screenshots

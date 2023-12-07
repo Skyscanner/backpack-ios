@@ -12,8 +12,6 @@ target 'SampleApp' do
   pod 'Backpack-Fonts', :path => '../Backpack-Fonts'
   pod 'Backpack-Common', :path => '../'
   pod 'SwiftLint', '~> 0.43.1'
-  pod 'AppCenter', '~> 4.2.0'
-  pod 'AppCenter/Distribute', '~> 4.2.0'
 end
 
 target 'UIKitTests' do

@@ -1,14 +1,4 @@
 PODS:
-  - AppCenter (4.2.0):
-    - AppCenter/Analytics (= 4.2.0)
-    - AppCenter/Crashes (= 4.2.0)
-  - AppCenter/Analytics (4.2.0):
-    - AppCenter/Core
-  - AppCenter/Core (4.2.0)
-  - AppCenter/Crashes (4.2.0):
-    - AppCenter/Core
-  - AppCenter/Distribute (4.2.0):
-    - AppCenter/Core
   - Backpack (1.0):
     - Backpack-Common
     - FloatingPanel (= 2.5.3)
@@ -46,8 +36,6 @@ PODS:
   - TTTAttributedLabel (2.0.0)
 
 DEPENDENCIES:
-  - AppCenter (~> 4.2.0)
-  - AppCenter/Distribute (~> 4.2.0)
   - Backpack (from `../`)
   - Backpack-Common (from `../`)
   - Backpack-Common/Tests (from `../`)
@@ -62,7 +50,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - AppCenter
     - FloatingPanel
     - FSCalendar
     - MBProgressHUD
@@ -82,7 +69,6 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  AppCenter: 87ef6eefd8ade4df59e88951288587429f3dd2a5
   Backpack: c8da46d23432333d30a34c9129da5f332876a171
   Backpack-Common: cd375986447ca5f60fda52609fd6e1eccecfdc45
   Backpack-Fonts: 89f9d18aeeb0f6fb026e301261d3af3ee6a8ec6d
@@ -95,6 +81,6 @@ SPEC CHECKSUMS:
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: be4e6b1ff96a870abd593ad6d08f1834f8bf6039
+PODFILE CHECKSUM: 72561c12f872c0227895c3671351cf9fff843c3b
 
 COCOAPODS: 1.14.3
