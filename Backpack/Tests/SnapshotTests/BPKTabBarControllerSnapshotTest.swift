@@ -98,13 +98,7 @@ class BPKTabBarControllerSnapshotTest: XCTestCase {
     
     // MARK: Helpers
     private func image(named: String) -> UIImage? {
-        
-        guard let bundlePath = Bundle(for: Self.self).path(forResource: "SnapshotTestImages", ofType: "bundle") else {
-            print("Could not locate resource")
-            return nil
-        }
-        
-        let bundle = Bundle(path: bundlePath)
-        return UIImage(named: named, in: bundle, compatibleWith: nil)
+        let bundle = Bundle(for: BPKTabBarControllerSnapshotTest.self)
+        return UIImage(named: named, in: bundle, with: nil)
     }
 }

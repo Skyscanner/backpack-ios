@@ -20,9 +20,8 @@ import Foundation
 import XCTest
 import Backpack
 
-typealias DefaultNav = BPKHorizontalNavigation<BPKHorizontalNavigationSizeDefault>
-
 class BPKHorizontalNavigationTest: XCTestCase {
+    typealias DefaultNav = BPKHorizontalNavigation<BPKHorizontalNavigationSizeDefault>
     var horizontalNav: DefaultNav!
 
     override func setUp() {

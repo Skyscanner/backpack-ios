@@ -44,13 +44,7 @@ extension MockImage {
 
 public class TestBundle: NSObject {
     public static var iconsBundle: Bundle {
-        guard
-            let url = Bundle(for: TestBundle.self).resourceURL?.appendingPathComponent("UnitTestImages.bundle"),
-            let bundle = Bundle(url: url)
-        else {
-            return .main
-        }
-        return bundle
+        Bundle(for: TestBundle.self)
     }
 }
 
@@ -78,8 +72,8 @@ class BPKTabBarItemTest: XCTestCase {
 
     func testCreateWithIconDefintion() {
         let regularImage = BPKIcon.makeLargeTemplateIcon(name: .settings)
-        let lightImage = UIImage(named: "tab_profile_with_dot_lm", in: TestBundle.iconsBundle, compatibleWith: nil)!
-        let darkImage = UIImage(named: "tab_profile_with_dot_dm", in: TestBundle.iconsBundle, compatibleWith: nil)!
+        let lightImage = UIImage(named: "tab_profile_with_dot_lm", in: TestBundle.iconsBundle, with: nil)!
+        let darkImage = UIImage(named: "tab_profile_with_dot_dm", in: TestBundle.iconsBundle, with: nil)!
 
         let dotImageDefinition = BPKTabBarDotImageDefinition(lightImage: lightImage, darkImage: darkImage)
         let tabBarItem = BPKTabBarItem(

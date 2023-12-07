@@ -17,7 +17,7 @@
  */
 
 #import "BPKButtonsViewController.h"
-#import "Backpack_Native-Swift.h"
+#import "SampleApp-Swift.h"
 
 #import <Backpack/Color.h>
 #import <Backpack/DarkMode.h>
