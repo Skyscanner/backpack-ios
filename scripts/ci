@@ -57,7 +57,7 @@ if [ $# -lt 2 ]; then
     check_modules "uikit" "test"
     check_modules "swiftui" "test"
     check_modules "common" "test"
-    # check_modules "uitests" "test"
+    check_modules "uitests" "test"
 else
     check_modules $1 $2
 fi

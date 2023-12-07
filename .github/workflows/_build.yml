@@ -140,7 +140,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        schemes: [uitests, uikit, swiftui]
+        schemes: [uikit, swiftui]
 
     steps:
       - name: Checkout code
@@ -166,7 +166,8 @@ jobs:
         run: bundle install --jobs 4 --retry 3
 
       - name: XCodeGen
-        run: bundle exec xcodegen generate --spec Example/project.yml
+        run: brew install xcodegen && bundle exec xcodegen generate
+        working-directory: Example
 
       - name: Pod Install
         run: bundle exec pod install
