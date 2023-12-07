@@ -1,0 +1,107 @@
+name: Backpack
+targets:
+  SampleApp:
+    type: application
+    platform: iOS
+    deployment_target: "14.0"
+    sources: 
+      - path: Backpack
+        includes:
+          - "**/*.{swift,h,m}"
+          - "Images.xcassets"
+    settings:
+      base:
+        INFOPLIST_FILE: Backpack/Backpack-Info.plist
+        CURRENT_PROJECT_VERSION: 1
+        IPHONEOS_DEPLOYMENT_TARGET: "14.0"
+        PRODUCT_BUNDLE_IDENTIFIER: org.skyscanner.Backpack-Example
+        SWIFT_OBJC_BRIDGING_HEADER: Backpack/Backpack Native-Bridging-Header.h
+  UIKitTests:
+    type: bundle.unit-test
+    platform: iOS
+    deployment_target: "14.0"
+    sources: 
+      - path: ../Backpack/Tests
+        includes:
+          - "**/*.{swift,h,m}"
+          - "**/*.xcassets"
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: "YES"
+        PRODUCT_BUNDLE_IDENTIFIER: org.skyscanner.Backpack-UIKitTests
+        IPHONEOS_DEPLOYMENT_TARGET: "14.0"
+  SwiftUITests:
+    type: bundle.unit-test
+    platform: iOS
+    deployment_target: "14.0"
+    sources: 
+      - path: ../Backpack-SwiftUI/Tests
+        includes:
+          - "**/*.swift"
+          - "Images.xcassets"
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: "YES"
+        PRODUCT_BUNDLE_IDENTIFIER: org.skyscanner.Backpack-SwiftUITests
+        IPHONEOS_DEPLOYMENT_TARGET: "14.0"
+  UITests:
+    type: bundle.ui-testing
+    platform: iOS
+    deployment_target: "14.0"
+    sources: [Backpack NativeUITests]
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: "YES"
+        PRODUCT_BUNDLE_IDENTIFIER: org.skyscanner.Backpack-UITests
+        IPHONEOS_DEPLOYMENT_TARGET: "14.0"
+        SWIFT_OBJC_BRIDGING_HEADER: Backpack NativeUITests/Backpack NativeUITests-Bridging-Header.h
+    dependencies:
+      - target: SampleApp
+
+schemes:
+  BackpackApp:
+    build:
+      targets: 
+        SampleApp: all
+    test:
+      targets:
+        - UIKitTests
+        - SwiftUITests
+    run:
+      targets:
+        - SampleApp
+
+  Backpack-UIKit-Tests:
+    build:
+      targets: 
+        UIKitTests: all
+    test:
+      targets:
+        - UIKitTests
+
+  Backpack-UI-Tests:
+    build:
+      targets: 
+        SwiftUITests: all
+    test:
+      targets:
+        - UITests
+
+  Backpack-SwiftUI:
+    build:
+      targets: 
+        SampleApp: all
+    test:
+      targets:
+        - SwiftUITests
+    run:
+      targets:
+        - SampleApp
+
+  Backpack-Screenshot:
+    build:
+      targets: 
+        SampleApp: all
+    run:
+      targets:
+        - SampleApp

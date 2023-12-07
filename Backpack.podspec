@@ -46,18 +46,19 @@ Pod::Spec.new do |s|
   s.swift_versions = ['5.0', '4.2', '4.0']
 
   s.test_spec 'SnapshotTests' do |test_spec|
-    test_spec.dependency 'SnapshotTesting', '~> 1.9.0'
+    test_spec.dependency 'SnapshotTesting'
     test_spec.source_files = 'Backpack/Tests/SnapshotTests/**/*.{swift,h,m}'
-    test_spec.ios.resource_bundle = {
-    'SnapshotTestImages' => 'Backpack/Tests/SnapshotTests/Images*'
-  }
+  #   test_spec.ios.resource_bundle = {
+  #   'SnapshotTestImages' => 'Backpack/Tests/SnapshotTests/Images*'
+  # }
+    test_spec.resources = 'Backpack/Tests/SnapshotTests/Images.xcassets'
   end  
 
   s.test_spec 'UnitTests' do |test_spec|
-    test_spec.dependency 'OCMock', '~> 3.8.1'
+    test_spec.dependency 'OCMock'
     test_spec.source_files = 'Backpack/Tests/UnitTests/**/*.{swift,h,m}'
-    test_spec.ios.resource_bundle = {
-    'UnitTestImages' => 'Backpack/Tests/UnitTests/Images*'
-  }
+    test_spec.resources = 'Backpack/Tests/UnitTests/Images.xcassets'
+    # 'UnitTestImages' => 'Backpack/Tests/UnitTests/Images*'
+  # }
   end  
 end

@@ -6,14 +6,27 @@ ensure_bundler! '> 2.0'
 
 install! 'cocoapods', disable_input_output_paths: true
 
-target 'Backpack-Native' do
-  pod 'Backpack', :path => '../', :testspecs => ['UnitTests', 'SnapshotTests']
-  pod 'Backpack-SwiftUI', :path => '../', :testspecs => ['Tests']
+target 'SampleApp' do
+  pod 'Backpack', :path => '../'
+  pod 'Backpack-SwiftUI', :path => '../'
   pod 'Backpack-Fonts', :path => '../Backpack-Fonts'
-  pod 'Backpack-Common', :path => '../', :testspecs => ['Tests']
+  pod 'Backpack-Common', :path => '../'
   pod 'SwiftLint', '~> 0.43.1'
   pod 'AppCenter', '~> 4.2.0'
   pod 'AppCenter/Distribute', '~> 4.2.0'
+end
+
+target 'UIKitTests' do
+  pod 'Backpack', :path => '../', :testspecs => ['UnitTests', 'SnapshotTests']
+  pod 'SnapshotTesting', '~> 1.9.0'
+  pod 'OCMock', '~> 3.8.1'
+end
+
+target 'SwiftUITests' do
+  pod 'Backpack-SwiftUI', :path => '../', :testspecs => ['Tests']
+  pod 'Backpack-Common', :path => '../', :testspecs => ['Tests']
+  pod 'Backpack-Fonts', :path => '../Backpack-Fonts'
+  pod 'SnapshotTesting', '~> 1.9.0'
 end
 
 post_install do |installer|
