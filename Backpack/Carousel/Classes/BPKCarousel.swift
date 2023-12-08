@@ -26,11 +26,7 @@ public protocol BPKCarouselDelegate: AnyObject {
 public final class BPKCarousel: UIView {
     private let internalCarousel: BPKInternalCarousel
     
-    public weak var delegate: BPKCarouselDelegate? {
-        didSet {
-            internalCarousel.delegate = self
-        }
-    }
+    public weak var delegate: BPKCarouselDelegate?
     
     public var currentImage: Int { internalCarousel.currentImage }
     
@@ -44,6 +40,7 @@ public final class BPKCarousel: UIView {
         internalCarousel = BPKInternalCarousel(pageIndicator: pageIndicator)
         super.init(frame: .zero)
         
+        internalCarousel.delegate = self
         internalCarousel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(internalCarousel)
         NSLayoutConstraint.activate([
