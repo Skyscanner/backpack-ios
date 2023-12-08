@@ -84,17 +84,6 @@ schemes:
       targets:
         - UIKitTests
         - SwiftUITests
-      environmentVariables:
-        - variable: "IMAGE_DIFF_DIR"
-          value: "$(SOURCE_ROOT)/../BackpackTests/FailureDiffs"
-          isEnabled: true
-        - variable: "FB_REFERENCE_IMAGE_DIR"
-          value: "$(SOURCE_ROOT)/../Backpack/Tests/SnapshotTests/ReferenceImages"
-          isEnabled: true
-        - variable: "SNAPSHOT_ARTIFACTS"
-          value: "$(SOURCE_ROOT)/../BackpackTests/FailureDiffs"
-          isEnabled: true
-        
     run:
       targets:
         - SampleApp
@@ -107,12 +96,6 @@ schemes:
       targets:
         - UIKitTests
       environmentVariables:
-        - variable: "IMAGE_DIFF_DIR"
-          value: "$(SOURCE_ROOT)/../BackpackTests/FailureDiffs"
-          isEnabled: true
-        - variable: "FB_REFERENCE_IMAGE_DIR"
-          value: "$(SOURCE_ROOT)/../Backpack/Tests/SnapshotTests/ReferenceImages"
-          isEnabled: true
         - variable: "SNAPSHOT_ARTIFACTS"
           value: "$(SOURCE_ROOT)/../BackpackTests/FailureDiffs"
           isEnabled: true
