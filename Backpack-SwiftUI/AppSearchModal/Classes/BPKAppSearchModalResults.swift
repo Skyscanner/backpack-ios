@@ -18,15 +18,15 @@
 
 import SwiftUI
 
-public enum BPKAppSearchModalResults {
+public enum BPKAppSearchModalResults: Equatable {
     case loading(BPKAppSearchModalLoading)
     case content(BPKAppSearchModalContent)
     case error(BPKAppSearchModalError)
 }
 
-public struct BPKAppSearchModalContent {
-    public let sections: [Section]
-    public let shortcuts: [Shortcut]?
+public struct BPKAppSearchModalContent: Equatable {
+    let sections: [Section]
+    let shortcuts: [Shortcut]?
     
     public init(sections: [Section], shortcuts: [Shortcut]?) {
         self.sections = sections
@@ -34,9 +34,9 @@ public struct BPKAppSearchModalContent {
     }
     
     public struct Shortcut {
-        public let text: String
-        public let icon: BPKIcon
-        public let onShortcutSelected: () -> Void
+        let text: String
+        let icon: BPKIcon
+        let onShortcutSelected: () -> Void
         
         public init(text: String, icon: BPKIcon, onShortcutSelected: @escaping () -> Void) {
             self.text = text
@@ -46,7 +46,8 @@ public struct BPKAppSearchModalContent {
     }
     
     public struct Section: Hashable {
-        public let items: [Item]
+        let heading: SectionHeading?
+        let items: [Item]
         
         public init(heading: SectionHeading?, items: [Item]) {
             self.heading = heading
@@ -55,8 +56,8 @@ public struct BPKAppSearchModalContent {
     }
     
     public struct SectionHeading {
-        public let title: String
-        public let action: BPKAppSearchModalAction?
+        let title: String
+        let action: BPKAppSearchModalAction?
         
         public init(title: String, action: BPKAppSearchModalAction?) {
             self.title = title
@@ -65,10 +66,10 @@ public struct BPKAppSearchModalContent {
     }
     
     public struct Item {
-        public let title: String
-        public let subtitle: String
-        public let icon: BPKIcon
-        public let onItemSelected: () -> Void
+        let title: String
+        let subtitle: String
+        let icon: BPKIcon
+        let onItemSelected: () -> Void
         
         public init(title: String, subtitle: String, icon: BPKIcon, onItemSelected: @escaping () -> Void) {
             self.title = title
@@ -79,8 +80,8 @@ public struct BPKAppSearchModalContent {
     }
 }
 
-public struct BPKAppSearchModalLoading {
-    public let accessibilityLabel: String
+public struct BPKAppSearchModalLoading: Equatable {
+    let accessibilityLabel: String
     
     public init(accessibilityLabel: String) {
         self.accessibilityLabel = accessibilityLabel
@@ -88,10 +89,10 @@ public struct BPKAppSearchModalLoading {
 }
 
 public struct BPKAppSearchModalError {
-    public let title: String
-    public let description: String
-    public let action: BPKAppSearchModalAction
-    public let image: Image
+    let title: String
+    let description: String
+    let action: BPKAppSearchModalAction
+    let image: Image
     
     public init(title: String, description: String, action: BPKAppSearchModalAction, image: Image) {
         self.title = title
@@ -102,12 +103,24 @@ public struct BPKAppSearchModalError {
 }
 
 public struct BPKAppSearchModalAction {
-    public let text: String
-    public let onActionSelected: () -> Void
+    let text: String
+    let onActionSelected: () -> Void
     
     public init(text: String, onActionSelected: @escaping () -> Void) {
         self.text = text
         self.onActionSelected = onActionSelected
+    }
+}
+
+extension BPKAppSearchModalContent.Shortcut: Equatable {
+    public static func == (lhs: BPKAppSearchModalContent.Shortcut, rhs: BPKAppSearchModalContent.Shortcut) -> Bool {
+        return lhs.text == rhs.text && lhs.icon.name == rhs.icon.name
+    }
+}
+
+extension BPKAppSearchModalError: Equatable {
+    public static func == (lhs: BPKAppSearchModalError, rhs: BPKAppSearchModalError) -> Bool {
+        return lhs.title == rhs.title && lhs.description == rhs.description && lhs.image == rhs.image
     }
 }
 
