@@ -26,7 +26,11 @@ public protocol BPKCarouselDelegate: AnyObject {
 public final class BPKCarousel: UIView {
     private let internalCarousel: BPKInternalCarousel
     
-    public weak var delegate: BPKCarouselDelegate?
+    public weak var delegate: BPKCarouselDelegate? {
+        didSet {
+            internalCarousel.delegate = self
+        }
+    }
     
     public var currentImage: Int { internalCarousel.currentImage }
     
