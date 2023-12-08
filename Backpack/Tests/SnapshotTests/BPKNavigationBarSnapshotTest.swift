@@ -191,7 +191,7 @@ class BPKNavigationBarSnapshotTest: XCTestCase {
         
         imageView.contentMode = .scaleAspectFill
         imageView.isHidden = true
-        if let bundlePath = Bundle(for: Self.self).path(forResource: "SnapshotTestImages", ofType: "bundle") {
+        if  [[[]]
             let bundle = Bundle(path: bundlePath)
             let image = UIImage(named: "navigation_bar_image", in: bundle, compatibleWith: nil)
             imageView.image = image
