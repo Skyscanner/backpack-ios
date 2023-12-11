@@ -10,7 +10,7 @@ defaults:
 jobs:
   Setup:
     name: Install Dependencies
-    runs-on: macos-latest
+    runs-on: macos-13
     permissions:
       statuses: write
       pull-requests: write
@@ -25,7 +25,7 @@ jobs:
 
   Lint:
     name: Lint Project
-    runs-on: macos-latest
+    runs-on: macos-13
     needs: [Setup]
     steps:
       - name: Checkout code
@@ -93,7 +93,7 @@ jobs:
 
   AnalyzePods:
     name: Analyzing pods
-    runs-on: macos-latest
+    runs-on: macos-13
     needs: [Setup]
     strategy:
       fail-fast: false
@@ -139,7 +139,7 @@ jobs:
 
   TestPods:
     name: Testing Pods
-    runs-on: macos-latest
+    runs-on: macos-13
     needs: [Setup]
     strategy:
       fail-fast: false
@@ -185,7 +185,7 @@ jobs:
 
   UploadArtifacts:
     name: Upload Artifacts
-    runs-on: macos-latest
+    runs-on: macos-13
     needs: [TestPods]
     steps:
       - name: Save assets
