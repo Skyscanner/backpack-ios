@@ -20,9 +20,6 @@ import Foundation
 
 class TestsBundle {
     static var bundle: Bundle? {
-        guard
-            let path = Bundle(for: Self.self).path(forResource: "UnitTestsImages", ofType: "bundle")
-        else { return nil }
-        return Bundle(path: path)
+        Bundle(for: Self.self)
     }
 }

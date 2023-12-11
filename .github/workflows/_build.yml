@@ -40,12 +40,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node_modules-
 
-      - name: nvm install
-        run: brew install nvm && nvm install
-
       - name: NPM ci
         if: steps.cache_node_modules.outputs.cache-hit != 'true'
-        run: nvm use && npm ci
+        run: npm ci
 
       - name: Run NPM build
         run: npm run build

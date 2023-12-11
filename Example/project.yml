@@ -111,7 +111,7 @@ schemes:
   Backpack-SwiftUI:
     build:
       targets: 
-        SampleApp: all
+        SwiftUITests: all
     test:
       targets:
         - SwiftUITests
