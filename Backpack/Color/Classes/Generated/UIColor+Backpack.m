@@ -124,6 +124,18 @@
     return BPKColor.textQuaternaryLightColor;
 }
 
++ (UIColor *)bpk_textSecondaryLightColor {
+    return BPKColor.textSecondaryLightColor;
+}
+
++ (UIColor *)bpk_lineLightColor {
+    return BPKColor.lineLightColor;
+}
+
++ (UIColor *)bpk_backgroundAlternativeLightColor {
+    return BPKColor.backgroundAlternativeLightColor;
+}
+
 
 + (UIColor *)bpk_skyGrayTint02 {
     return BPKColor.skyGrayTint01;
@@ -205,10 +217,6 @@
     return BPKColor.blackTint06;
 }
 
-+ (UIColor *)bpk_textSecondaryLightColor {
-    return BPKColor.skyGrayTint01;
-}
-
 + (UIColor *)bpk_textTertiaryLightColor {
     return BPKColor.textQuaternaryLightColor;
 }
@@ -253,10 +261,6 @@
     return BPKColor.white;
 }
 
-+ (UIColor *)bpk_lineLightColor {
-    return BPKColor.skyGrayTint04;
-}
-
 + (UIColor *)bpk_backgroundElevation02LightColor {
     return BPKColor.white;
 }
@@ -271,10 +275,6 @@
 
 + (UIColor *)bpk_backgroundSecondaryDarkColor {
     return BPKColor.blackTint01;
-}
-
-+ (UIColor *)bpk_backgroundAlternativeLightColor {
-    return BPKColor.skyGrayTint07;
 }
 
 + (UIColor *)bpk_primaryDarkColor {
@@ -298,7 +298,7 @@
 }
 
 + (UIColor *)bpk_backgroundSecondaryLightColor {
-    return BPKColor.skyGrayTint07;
+    return BPKColor.backgroundAlternativeLightColor;
 }
 
 + (UIColor *)bpk_shadowSmColor {
@@ -396,6 +396,10 @@
 
 + (UIColor *)bpk_textLinkColor {
     return BPKColor.textLinkColor;
+}
+
++ (UIColor *)bpk_textHeroColor {
+    return BPKColor.textHeroColor;
 }
 
 + (UIColor *)bpk_textDisabledColor {
