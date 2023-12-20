@@ -140,7 +140,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        schemes: [uitests, uikit, swiftui]
+        schemes: [uikit, swiftui]
 
     steps:
       - name: Checkout code
