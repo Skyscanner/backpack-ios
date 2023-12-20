@@ -27,15 +27,15 @@ struct AppSearchModalGroupsProvider {
             cellDataSources: [
                 presentable(
                     "Loading",
-                    view: AppSearchModalExampleView(resultsType: .loading)
+                    view: AppSearchModalExampleView(viewModel: .init(resultsType: .loading))
                 ),
                 presentable(
                     "Content",
-                    view: AppSearchModalExampleView(resultsType: .content)
+                    view: AppSearchModalExampleView(viewModel: .init(resultsType: .content))
                 ),
                 presentable(
                     "Error",
-                    view: AppSearchModalExampleView(resultsType: .error)
+                    view: AppSearchModalExampleView(viewModel: .init(resultsType: .error))
                 )
             ]
         ).groups()

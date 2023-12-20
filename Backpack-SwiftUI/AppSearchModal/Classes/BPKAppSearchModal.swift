@@ -47,12 +47,14 @@ public struct BPKAppSearchModal: View {
             
             makeNavigationBar(title: title, closeAccessibilityLabel: closeAccessibilityLabel, onClose: onClose)
             
+            if results.showTextField {
+                BPKTextField(placeholder: inputHint, $inputText)
+            }
+        
             switch results {
             case .loading(let loading):
-                BPKTextField(placeholder: inputHint, $inputText)
                 AppSearchModalLoadingView(state: loading)
             case .content(let content):
-                BPKTextField(placeholder: inputHint, $inputText)
                 AppSearchModalContentView(state: content)
                     .padding(.top, .md)
             case .error(let error):
@@ -86,6 +88,15 @@ public struct BPKAppSearchModal: View {
                 .accessibilityAddTraits(.isHeader)
         }
         .padding(.vertical, .md)
+    }
+}
+
+extension BPKAppSearchModalResults {
+    var showTextField: Bool {
+        switch self {
+        case .loading, .content: return true
+        case .error: return false
+        }
     }
 }
 
