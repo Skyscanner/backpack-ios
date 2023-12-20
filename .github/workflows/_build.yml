@@ -181,7 +181,7 @@ jobs:
     needs: [TestPods]
     steps:
       - name: Save assets
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: ${{ failure() }}
         with:
           name: FailureDiffs
