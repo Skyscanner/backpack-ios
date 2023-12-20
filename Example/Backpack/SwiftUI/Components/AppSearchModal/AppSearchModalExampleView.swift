@@ -21,42 +21,39 @@ import Backpack_SwiftUI
 
 struct AppSearchModalExampleView: View {
     
-    enum ResultsType {
-        case error
-        case loading
-        case content
-    }
-    
-    let resultsType: ResultsType
+    @ObservedObject var viewModel: AppSearchModalExampleViewModel
     @State private var inputText = ""
     
     var body: some View {
         ZStack {
             Color(BPKColor.canvasContrastColor)
             
-            switch resultsType {
-            case .error:
-                makeAppSearchModal(with: .error(errorState))
-            case .loading:
-                makeAppSearchModal(with: .loading(loadingState))
-            case .content:
-                makeAppSearchModal(with: .content(contentState))
-            }
+            BPKAppSearchModal(
+                title: "Search Modal",
+                inputText: $inputText,
+                inputHint: "Search",
+                results: results(),
+                closeAccessibilityLabel: "Close",
+                onClose: {
+                    print("Tapped close button")
+                }
+            )
+            .onChange(of: inputText, perform: { _ in
+                self.viewModel.loadContentFrom(inputText)
+            })
+            .padding()
         }
     }
     
-    private func makeAppSearchModal(with results: BPKAppSearchModalResults) -> some View {
-        BPKAppSearchModal(
-            title: "Search Modal",
-            inputText: $inputText,
-            inputHint: "Search",
-            results: results,
-            closeAccessibilityLabel: "Close",
-            onClose: {
-                print("Tapped close button")
-            }
-        )
-        .padding()
+    private func results() -> BPKAppSearchModalResults {
+        switch viewModel.resultsType {
+        case .error:
+            return .error(errorState)
+        case .loading:
+            return .loading(loadingState)
+        case .content:
+            return .content(contentState)
+        }
     }
     
     private var loadingState: BPKAppSearchModalLoading {
