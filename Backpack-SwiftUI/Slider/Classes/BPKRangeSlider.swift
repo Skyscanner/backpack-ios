@@ -311,7 +311,6 @@ struct BPKRangeSlider_Previews: PreviewProvider {
             minSpacing: 10,
             thumbnailLabels: .init(lowerThumbnail: "£10", upperThumbnail: "£50")
         )
-        .border(.red)
         .previewDisplayName("With Thumbnails")
     }
 }
