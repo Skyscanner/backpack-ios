@@ -25,7 +25,7 @@ import SwiftUI
 /// Use `limeLimit(_ number: Int?)` to set the number of lines can be displayed. Pass in `nil` for unlimited lines
 ///
 public struct BPKText: View {
-    private var text: String
+    private var text: LocalizedStringKey
     private var style: BPKFontStyle
     
     private var textColor = Color(BPKColor.textPrimaryColor)
@@ -33,7 +33,7 @@ public struct BPKText: View {
     private var strikethrough: Bool = false
     
     public init(_ text: String, style: BPKFontStyle = .bodyDefault) {
-        self.text = text
+        self.text = .init(text)
         self.style = style
     }
     
