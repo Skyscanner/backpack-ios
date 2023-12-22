@@ -40,10 +40,14 @@ class BPKTextTests: XCTestCase {
         assertSnapshot(BPKText("Hello Backpack, I hope you're having a great day!", style: .heading1))
     }
     
+    func test_withStyledText() {
+        assertSnapshot(BPKText("Hello **Backpack**, I hope you're having a _great_ day!", style: .heading1))
+    }
+    
     func test_customColor() {
         assertSnapshot(
             BPKText("Hello Backpack, I hope you're having a great day!")
-                .foregroundColor(.primaryColor)
+                .foregroundColor(.coreAccentColor)
         )
     }
 }
