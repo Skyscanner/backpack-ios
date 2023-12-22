@@ -44,6 +44,8 @@ public struct BPKRangeSlider: View {
     private let flareHeight: CGFloat = 6
     private var trailingAccessibilityLabel = ""
     private var leadingAccessibilityLabel = ""
+    @State private var isDraggingLeadingThumb = false
+    @State private var isDraggingTrailingThumb = false
     
     @State var height: CGFloat = .zero
     
@@ -100,57 +102,68 @@ public struct BPKRangeSlider: View {
     // swiftlint:disable closure_body_length
     // swiftlint:disable function_body_length
     @ViewBuilder private func sliderView(sliderSize: CGSize) -> some View {
-        ZStack(alignment: .bottom) {
-            Capsule()
-                .fill(Color(.lineColor))
-                .frame(width: sliderSize.width, height: sliderHeight)
-                .padding(.bottom, (thumbSize / 2) - (sliderHeight / 2))
-            Rectangle()
-                .fill(Color(.coreAccentColor))
-                .frame(width: fillLineWidth(sliderSize: sliderSize), height: sliderHeight)
-                .offset(x: fillLineOffset(sliderSize: sliderSize))
-                .padding(.bottom, (thumbSize / 2) - (sliderHeight / 2))
-            SliderThumbView(
-                size: thumbSize,
-                offset: trailingThumbOffset(sliderSize: sliderSize),
-                onDrag: { value in
-                    handleTrailingThumbDrag(value: value, sliderSize: sliderSize)
-                },
-                onDragEnded: { onDragEnded(selectedRange) }
-            )
-            
-            .accessibilityLabel(trailingAccessibilityLabel)
-            .accessibility(value: Text("\(selectedRange.upperBound)"))
-            .accessibilityAdjustableAction { direction in
-                switch direction {
-                case .increment: incrementTrailing()
-                case .decrement: decrementTrailing()
-                @unknown default: break
+        ZStack(alignment: .center) {
+            ZStack(alignment: .bottom) {
+                Capsule()
+                    .fill(Color(.lineColor))
+                    .frame(width: sliderSize.width, height: sliderHeight)
+                    .padding(.bottom, (thumbSize / 2) - (sliderHeight / 2))
+                Rectangle()
+                    .fill(Color(.coreAccentColor))
+                    .frame(width: fillLineWidth(sliderSize: sliderSize), height: sliderHeight)
+                    .offset(x: fillLineOffset(sliderSize: sliderSize))
+                    .padding(.bottom, (thumbSize / 2) - (sliderHeight / 2))
+                SliderThumbView(
+                    size: thumbSize,
+                    offset: trailingThumbOffset(sliderSize: sliderSize),
+                    onDrag: { value in
+                        isDraggingTrailingThumb = true
+                        handleTrailingThumbDrag(value: value, sliderSize: sliderSize)
+                    },
+                    onDragEnded: {
+                        onDragEnded(selectedRange)
+                        isDraggingTrailingThumb = false
+                    }
+                )
+                
+                .accessibilityLabel(trailingAccessibilityLabel)
+                .accessibility(value: Text("\(selectedRange.upperBound)"))
+                .accessibilityAdjustableAction { direction in
+                    switch direction {
+                    case .increment: incrementTrailing()
+                    case .decrement: decrementTrailing()
+                    @unknown default: break
+                    }
+                }
+                
+                SliderThumbView(
+                    size: thumbSize,
+                    offset: leadingThumbOffset(sliderSize: sliderSize),
+                    onDrag: { value in
+                        isDraggingLeadingThumb = true
+                        handleLeadingThumbDrag(value: value, sliderSize: sliderSize)
+                    },
+                    onDragEnded: {
+                        isDraggingLeadingThumb = false
+                        onDragEnded(selectedRange)
+                    }
+                )
+                .accessibilityLabel(leadingAccessibilityLabel)
+                .accessibility(value: Text("\(selectedRange.lowerBound)"))
+                .accessibilityAdjustableAction { direction in
+                    switch direction {
+                    case .increment: incrementLeading()
+                    case .decrement: decrementLeading()
+                    @unknown default: break
+                    }
                 }
             }
-            if let thumbnailLabels = thumbnailLabels {
+            if let thumbnailLabels = thumbnailLabels, isDraggingTrailingThumb {
                 thumbLabel(thumbnailLabels.upperThumbnail)
                     .offset(x: trailingThumbOffset(sliderSize: sliderSize))
                     .accessibilityHidden(true)
             }
-            SliderThumbView(
-                size: thumbSize,
-                offset: leadingThumbOffset(sliderSize: sliderSize),
-                onDrag: { value in
-                    handleLeadingThumbDrag(value: value, sliderSize: sliderSize)
-                },
-                onDragEnded: { onDragEnded(selectedRange) }
-            )
-            .accessibilityLabel(leadingAccessibilityLabel)
-            .accessibility(value: Text("\(selectedRange.lowerBound)"))
-            .accessibilityAdjustableAction { direction in
-                switch direction {
-                case .increment: incrementLeading()
-                case .decrement: decrementLeading()
-                @unknown default: break
-                }
-            }
-            if let thumbnailLabels = thumbnailLabels {
+            if let thumbnailLabels = thumbnailLabels, isDraggingLeadingThumb {
                 thumbLabel(thumbnailLabels.lowerThumbnail)
                     .offset(x: leadingThumbOffset(sliderSize: sliderSize))
                     .accessibilityHidden(true)
@@ -167,7 +180,8 @@ public struct BPKRangeSlider: View {
             .padding(.bottom, flareHeight)
             .background(.coreAccentColor)
             .clipShape(LabelFlareShape(flareHeight: flareHeight))
-            .padding(.bottom, thumbSize + BPKSpacing.sm.value)
+            .frame(height: thumbSize)
+            .offset(y: -(thumbSize + flareHeight + BPKSpacing.sm.value))
     }
     
     /// Sets the accessibility label for the trailing thumb.
@@ -296,6 +310,8 @@ struct BPKRangeSlider_Previews: PreviewProvider {
             step: 1,
             minSpacing: 10,
             thumbnailLabels: .init(lowerThumbnail: "£10", upperThumbnail: "£50")
-        ).previewDisplayName("With Thumbnails")
+        )
+        .border(.red)
+        .previewDisplayName("With Thumbnails")
     }
 }
