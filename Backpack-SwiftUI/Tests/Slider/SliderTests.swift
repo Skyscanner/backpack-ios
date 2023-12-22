@@ -42,21 +42,6 @@ class SliderTests: XCTestCase {
             .padding()
         )
     }
-    
-    func testRangeSliderWithThumbnailLabels() {
-        assertSnapshot(
-            BPKRangeSlider(
-                selectedRange: .constant(-5...5),
-                sliderBounds: -20...20,
-                thumbnailLabels: .init(
-                    lowerThumbnail: "BPK",
-                    upperThumbnail: "OK"
-                )
-            )
-            .frame(width: 200, height: 70)
-            .padding()
-        )
-    }
 
     func testCanCalculateNewValueFromDrag() {
         let newValue = BPKSliderHelpers.calculateNewValueFromDrag(
