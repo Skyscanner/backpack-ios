@@ -551,25 +551,27 @@
 
 + (UIColor *)dynamicColorWithLightVariant:(UIColor *)lightVariant darkVariant:(UIColor *)darkVariant {
 #if __BPK_DARK_MODE_SUPPORTED
-    NSString *cacheKey = [NSString stringWithFormat:@"%@_%@", [self cacheKeyForColor:lightVariant], [self cacheKeyForColor:darkVariant]];
-    UIColor *potentialCacheHit = [[self dynamicColorsCache] objectForKey:cacheKey];
-    
-    if (potentialCacheHit) {
-        return potentialCacheHit;
-    }
-    
-    UIColor *newDynamicColor = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
-        if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
-            return darkVariant;
-        } else {
-            return lightVariant;
+    if (@available(iOS 13.0, *)) {
+        NSString *cacheKey = [NSString stringWithFormat:@"%@_%@", [self cacheKeyForColor:lightVariant], [self cacheKeyForColor:darkVariant]];
+        UIColor *potentialCacheHit = [[self dynamicColorsCache] objectForKey:cacheKey];
+
+        if (potentialCacheHit) {
+            return potentialCacheHit;
         }
-    }];
-    
-    [[self dynamicColorsCache] setObject:newDynamicColor forKey:cacheKey];
-    return newDynamicColor;
+
+        UIColor *newDynamicColor = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
+                if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+                    return darkVariant;
+                } else {
+                    return lightVariant;
+                }
+        }];
+
+        [[self dynamicColorsCache] setObject:newDynamicColor forKey:cacheKey];
+        return newDynamicColor;
+    }
 #endif
-    return lightVariant;
+  return lightVariant;
 }
 
 @end
