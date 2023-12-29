@@ -18,13 +18,13 @@
 
 import SwiftUI
 
-public enum BPKAppSearchModalResults {
+public enum BPKAppSearchModalResults: Equatable {
     case loading(BPKAppSearchModalLoading)
     case content(BPKAppSearchModalContent)
     case error(BPKAppSearchModalError)
 }
 
-public struct BPKAppSearchModalContent {
+public struct BPKAppSearchModalContent: Equatable {
     let sections: [Section]
     let shortcuts: [Shortcut]?
     
@@ -80,7 +80,7 @@ public struct BPKAppSearchModalContent {
     }
 }
 
-public struct BPKAppSearchModalLoading {
+public struct BPKAppSearchModalLoading: Equatable {
     let accessibilityLabel: String
     
     public init(accessibilityLabel: String) {
@@ -109,6 +109,18 @@ public struct BPKAppSearchModalAction {
     public init(text: String, onActionSelected: @escaping () -> Void) {
         self.text = text
         self.onActionSelected = onActionSelected
+    }
+}
+
+extension BPKAppSearchModalContent.Shortcut: Equatable {
+    public static func == (lhs: BPKAppSearchModalContent.Shortcut, rhs: BPKAppSearchModalContent.Shortcut) -> Bool {
+        return lhs.text == rhs.text && lhs.icon.name == rhs.icon.name
+    }
+}
+
+extension BPKAppSearchModalError: Equatable {
+    public static func == (lhs: BPKAppSearchModalError, rhs: BPKAppSearchModalError) -> Bool {
+        return lhs.title == rhs.title && lhs.description == rhs.description && lhs.image == rhs.image
     }
 }
 

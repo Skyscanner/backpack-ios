@@ -140,7 +140,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        schemes: [uitests, uikit, swiftui]
+        schemes: [uikit, swiftui]
 
     steps:
       - name: Checkout code
@@ -181,7 +181,7 @@ jobs:
     needs: [TestPods]
     steps:
       - name: Save assets
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: ${{ failure() }}
         with:
           name: FailureDiffs

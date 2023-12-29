@@ -44,6 +44,7 @@ public final class BPKCarousel: UIView {
         internalCarousel = BPKInternalCarousel(pageIndicator: pageIndicator)
         super.init(frame: .zero)
         
+        internalCarousel.delegate = self
         internalCarousel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(internalCarousel)
         NSLayoutConstraint.activate([
