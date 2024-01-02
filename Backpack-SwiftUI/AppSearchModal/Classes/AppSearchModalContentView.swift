@@ -66,6 +66,7 @@ struct AppSearchModalContentView: View {
                     .padding(.vertical, .base)
                     Spacer()
                 }
+                .contentShape(Rectangle())
                 .onTapGesture(perform: item.onItemSelected)
                 .accessibilityElement(children: .combine)
             }
