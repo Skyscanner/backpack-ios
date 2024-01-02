@@ -126,12 +126,6 @@ class TappableLinkLabelsViewController: UIViewController, BPKTappableLinkLabelDe
     }
 
     func isAlternateStyleWithLightMode() -> Bool {
-        #if swift(>=4.2)
-        if #available(iOS 13.0, *) {
-            return style == .alternate && traitCollection.userInterfaceStyle == .light
-        }
-
-        #endif
-        return true
+        style == .alternate && traitCollection.userInterfaceStyle == .light
     }
 }

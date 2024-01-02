@@ -81,10 +81,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AppCenter: 87ef6eefd8ade4df59e88951288587429f3dd2a5
-  Backpack: e5f5dca8cef64bd1626b21fee94e06a3dbef60ee
-  Backpack-Common: cd375986447ca5f60fda52609fd6e1eccecfdc45
-  Backpack-Fonts: 89f9d18aeeb0f6fb026e301261d3af3ee6a8ec6d
-  Backpack-SwiftUI: f3a7d7bce777f1bfaf70dbfd9d6b7d101d0263ec
+  Backpack: 6ea2b8690a1ac4e10a1bc19c84e9106acdfe2c02
+  Backpack-Common: 9a47d236de2f7fea7366f7a893423b8375ee7a39
+  Backpack-Fonts: 8d10ac600d738cb7ae6e49fee969800c2db51f6b
+  Backpack-SwiftUI: f1d0e98dc0beb0f0a44178796aae6c407fb9d7d3
   FloatingPanel: 3cee815e9ded75b632543fa73ab655a1ef941452
   FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
@@ -93,6 +93,6 @@ SPEC CHECKSUMS:
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: 2bf9f0ac06a0705cb6f41d0ac9f14da7a4f5abce
+PODFILE CHECKSUM: db90d722d21004d77a9d6cf29da110b644239024
 
-COCOAPODS: 1.13.0
+COCOAPODS: 1.14.3

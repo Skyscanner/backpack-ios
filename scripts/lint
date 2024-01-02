@@ -3,6 +3,7 @@
 function checkPristine() {
     if [ -n "$(git status --porcelain)" ]; then
         echo "$1"
+        echo "$(git status --porcelain)"
         exit 1
     fi
 }
