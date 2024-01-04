@@ -153,6 +153,7 @@ struct BPKAppSearchModal_Previews: PreviewProvider {
         return .init(
             title: "Item No.\(index + 1)",
             subtitle: "This is item No.\(index + 1)",
+            tertiaryLabel: "City",
             icon: .recentSearches,
             onItemSelected: {}
         )

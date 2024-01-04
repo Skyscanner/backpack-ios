@@ -57,19 +57,33 @@ struct AppSearchModalContentView: View {
                 }
             }
             ForEach(section.items, id: \.self) { item in
-                HStack(spacing: .base) {
-                    BPKIconView(item.icon, size: .large)
-                    VStack(alignment: .leading) {
-                        BPKText(item.title, style: .bodyDefault)
-                        BPKText(item.subtitle, style: .footnote)
-                    }
-                    .padding(.vertical, .base)
-                    Spacer()
-                }
-                .contentShape(Rectangle())
-                .onTapGesture(perform: item.onItemSelected)
-                .accessibilityElement(children: .combine)
+                ItemCell(item: item)
             }
+        }
+    }
+    
+    struct ItemCell: View {
+        let item: BPKAppSearchModalContent.Item
+        
+        var body: some View {
+            HStack(spacing: .base) {
+                BPKIconView(item.icon, size: .large)
+                VStack(alignment: .leading) {
+                    BPKText(item.title, style: .bodyDefault)
+                    if let subtitle = item.subtitle {
+                        BPKText(subtitle, style: .footnote)
+                    }
+                }
+                .padding(.vertical, .base)
+                Spacer()
+                if let tertiary = item.tertiaryLabel {
+                    BPKText(tertiary, style: .footnote)
+                        .foregroundColor(.textSecondaryColor)
+                }
+            }
+            .contentShape(Rectangle())
+            .onTapGesture(perform: item.onItemSelected)
+            .accessibilityElement(children: .combine)
         }
     }
 }
@@ -92,7 +106,8 @@ struct AppSearchModalContentView_Previews: PreviewProvider {
     static func buildItem(with index: Int) -> BPKAppSearchModalContent.Item {
         return .init(
             title: "Item No.\(index + 1)",
-            subtitle: "This is item No.\(index + 1)",
+            subtitle: nil,
+            tertiaryLabel: "City",
             icon: .recentSearches,
             onItemSelected: {}
         )

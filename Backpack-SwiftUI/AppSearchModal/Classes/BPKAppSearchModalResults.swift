@@ -67,13 +67,21 @@ public struct BPKAppSearchModalContent: Equatable {
     
     public struct Item {
         let title: String
-        let subtitle: String
+        let subtitle: String?
+        let tertiaryLabel: String?
         let icon: BPKIcon
         let onItemSelected: () -> Void
         
-        public init(title: String, subtitle: String, icon: BPKIcon, onItemSelected: @escaping () -> Void) {
+        public init(
+            title: String,
+            subtitle: String?,
+            tertiaryLabel: String?,
+            icon: BPKIcon,
+            onItemSelected: @escaping () -> Void
+        ) {
             self.title = title
             self.subtitle = subtitle
+            self.tertiaryLabel = tertiaryLabel
             self.icon = icon
             self.onItemSelected = onItemSelected
         }
