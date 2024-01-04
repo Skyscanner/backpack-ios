@@ -75,7 +75,7 @@ public struct BPKAppSearchModalContent: Equatable {
         public init(
             title: String,
             subtitle: String?,
-            tertiaryLabel: String?,
+            tertiaryLabel: String? = nil,
             icon: BPKIcon,
             onItemSelected: @escaping () -> Void
         ) {
