@@ -23,7 +23,7 @@ struct AppSearchModalContentView: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: .base) {
-                if let shortcuts = state.shortcuts {
+                if let shortcuts = state.shortcuts, !shortcuts.isEmpty {
                     makeShortcuts(shortcuts)
                 }
                 ForEach(state.sections, id: \.self) {
