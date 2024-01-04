@@ -49,6 +49,7 @@ public struct BPKMultiSelectChipGroup: View {
                     HStack(spacing: .md) {
                         chipsListView
                     }
+                    .padding(1) // to account for chip outlines
                     .if(stickyChip != nil, transform: {
                         $0.padding(.leading, .md)
                     })
