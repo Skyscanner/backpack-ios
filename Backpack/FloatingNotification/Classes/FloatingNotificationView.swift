@@ -19,7 +19,7 @@
 import Foundation
 import UIKit
 
-final class FloatingNotificationView: UIView {
+public final class FloatingNotificationView: UIView {
     
     private let shouldAnimateDown: ((FloatingNotificationView) -> Void)
     private let hiddenBottomConstraintConstant: CGFloat
