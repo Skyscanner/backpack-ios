@@ -28,7 +28,8 @@ public final class BPKFloatingNotification: NSObject {
         static let hiddenBottomConstraintConstant: CGFloat = 30.0
     }
     
-    public static func show(_ viewModel: FloatingNotificationViewModel) {
+    @discardableResult
+    public static func show(_ viewModel: FloatingNotificationViewModel) -> UIView? {
         if let notification = currentNotification {
             clearPendingDownAnimation(for: notification)
             animator.animateDown(
@@ -41,6 +42,7 @@ public final class BPKFloatingNotification: NSObject {
         } else {
             animateUp(with: viewModel)
         }
+        return currentNotification
     }
     
     private static func animateUp(with viewModel: FloatingNotificationViewModel) {
