@@ -366,7 +366,8 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIColor *)borderViewBackgroundColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.surfaceHighlightColor darkVariant:BPKColor.textSecondaryColor];
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.surfaceHighlightColor 
+                                      darkVariant:BPKColor.lineDarkColor];
 }
 
 - (UIColor *)contentColor {
