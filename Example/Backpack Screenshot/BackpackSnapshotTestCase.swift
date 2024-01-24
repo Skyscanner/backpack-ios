@@ -33,14 +33,15 @@ class BackpackSnapshotTestCase: XCTestCase {
         super.setUp()
         continueAfterFailure = true
     }
-    
-    func navigate(title: String, _ closure: () -> Void) {
+
+    @MainActor
+    func navigate(title: String, _ closure: () async -> Void) async {
         if !(runOnly?.contains(title) ?? true) {
             return
         }
 
         app.tables.staticTexts[title].tap()
-        closure()
+        await closure()
         tapBackButton()
     }
     
@@ -52,6 +53,7 @@ class BackpackSnapshotTestCase: XCTestCase {
         app.navigationBars.buttons.element(boundBy: 0).tap()
     }
     
+    @MainActor 
     func saveScreenshot(component componentName: String, scenario scenarioName: String,
                         userInterfaceStyle: UIUserInterfaceStyle) {
         let interfaceStyle = userInterfaceStyle == .dark ? "dm" : "lm"

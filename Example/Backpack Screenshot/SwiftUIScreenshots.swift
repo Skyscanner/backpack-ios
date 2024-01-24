@@ -38,24 +38,27 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
                         userInterfaceStyle: UIUserInterfaceStyle) {
         super.saveScreenshot(component: "swiftui_\(componentName)", scenario: scenarioName, userInterfaceStyle: userInterfaceStyle)
     }
-    
-    func testLightModeScreenshots() {
+
+    @MainActor
+    func testLightModeScreenshots() async {
         app = createApp()
         setupSnapshot(app)
         app.launch()
-        captureAllScreenshots()
+        await captureAllScreenshots()
     }
 
-    func testDarkModeScreenshots() {
+    @MainActor
+    func testDarkModeScreenshots() async {
         app = createApp()
         app.launchArguments.append("FORCE_DARK_MODE")
         setupSnapshot(app)
         app.launch()
-        captureAllScreenshots(userInterfaceStyle: .dark)
+        await captureAllScreenshots(userInterfaceStyle: .dark)
     }
     
-    func captureAllScreenshots(userInterfaceStyle: UIUserInterfaceStyle = .light) {
-        navigate(title: "Labels") {
+    @MainActor
+    func captureAllScreenshots(userInterfaceStyle: UIUserInterfaceStyle = .light) async {
+        await navigate(title: "Labels") {
             switchTab(title: "SwiftUI")
             app.tables.staticTexts["Body"].tap()
             saveScreenshot(component: "text", scenario: "body", userInterfaceStyle: userInterfaceStyle)
@@ -70,7 +73,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
         
-        navigate(title: "Buttons") {
+        await navigate(title: "Buttons") {
             switchTab(title: "SwiftUI")
             app.tables.staticTexts["Primary"].tap()
             saveScreenshot(component: "button", scenario: "primary", userInterfaceStyle: userInterfaceStyle)
@@ -95,7 +98,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
 
-        navigate(title: "Rating") {
+        await navigate(title: "Rating") {
             switchTab(title: "SwiftUI")
             app.tables.staticTexts["BPKRating: title text"].tap()
             saveScreenshot(component: "rating", scenario: "with-title-text", userInterfaceStyle: userInterfaceStyle)
@@ -105,12 +108,12 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
         
-        navigate(title: "Switches") {
+        await navigate(title: "Switches") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "switch", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
 
-        navigate(title: "Cards") {
+        await navigate(title: "Cards") {
             switchTab(title: "SwiftUI")
             app.tables.staticTexts["Card"].tap()
             saveScreenshot(component: "card", scenario: "default", userInterfaceStyle: userInterfaceStyle)
@@ -123,7 +126,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
         
-        navigate(title: "Overlay") {
+        await navigate(title: "Overlay") {
             switchTab(title: "SwiftUI")
             app.tables.staticTexts["Solid"].tap()
             saveScreenshot(component: "overlay", scenario: "solid", userInterfaceStyle: userInterfaceStyle)
@@ -150,32 +153,32 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
         
-        navigate(title: "Badges") {
+        await navigate(title: "Badges") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "badge", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
-        navigate(title: "Spinners") {
+        await navigate(title: "Spinners") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "spinner", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
-        navigate(title: "Skeleton") {
+        await navigate(title: "Skeleton") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "skeleton", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
 
-        navigate(title: "Text area") {
+        await navigate(title: "Text area") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "text-area", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
-        navigate(title: "Text fields") {
+        await navigate(title: "Text fields") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "text-field", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
 
-        navigate(title: "Bottom sheet") {
+        await navigate(title: "Bottom sheet") {
             switchTab(title: "SwiftUI")
             app.buttons["Show closable bottom sheet"].tap()
             saveScreenshot(component: "bottom-sheet", scenario: "closable", userInterfaceStyle: userInterfaceStyle)
@@ -194,7 +197,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             app.buttons["Action"].tap()
         }
         
-        navigate(title: "Price") {
+        await navigate(title: "Price") {
             switchTab(title: "SwiftUI")
             
             app.tables.staticTexts["ExtraSmall"].tap()
@@ -210,7 +213,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
         
-        navigate(title: "Chips") {
+        await navigate(title: "Chips") {
             switchTab(title: "SwiftUI")
             app.tables.staticTexts["Default"].tap()
             saveScreenshot(component: "chip", scenario: "default", userInterfaceStyle: userInterfaceStyle)
@@ -224,7 +227,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
         
-        navigate(title: "Chip Group") {
+        await navigate(title: "Chip Group") {
             switchTab(title: "SwiftUI")
             app.tables.staticTexts["Rail - Single Select"].tap()
             saveScreenshot(component: "chip-group", scenario: "rail", userInterfaceStyle: userInterfaceStyle)
@@ -234,7 +237,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
         
-        navigate(title: "Dialogs") {
+        await navigate(title: "Dialogs") {
             switchTab(title: "SwiftUI")
             app.buttons["Modal Success"].tap()
             saveScreenshot(component: "dialog", scenario: "success", userInterfaceStyle: userInterfaceStyle)
@@ -262,53 +265,53 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             _ = app.buttons["Modal Image"].waitForExistence(timeout: 1)
         }
         
-        navigate(title: "Flare views") {
+        await navigate(title: "Flare views") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "flare-view", scenario: "all", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
         
-        navigate(title: "Panels") {
+        await navigate(title: "Panels") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "panel", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
-        navigate(title: "Nudger") {
+        await navigate(title: "Nudger") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "nudger", scenario: "default",
                            userInterfaceStyle: userInterfaceStyle)
         }
         
-        navigate(title: "Slider") {
+        await navigate(title: "Slider") {
             switchTab(title: "SwiftUI")
             app.tables.staticTexts["Sliders"].tap()
             saveScreenshot(component: "slider", scenario: "all", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
         
-        navigate(title: "Star ratings") {
+        await navigate(title: "Star ratings") {
             switchTab(title: "SwiftUI")
             app.tables.staticTexts["Star rating"].tap()
             saveScreenshot(component: "star-rating", scenario: "all", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
 
-        navigate(title: "Map") {
+        await navigate(title: "Map") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "map-markers", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
-        navigate(title: "Progress bar") {
+        await navigate(title: "Progress bar") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "progress-bar", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
 
-        navigate(title: "Carousel") {
+        await navigate(title: "Carousel") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "carousel", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
-        navigate(title: "Section header") {
+        await navigate(title: "Section header") {
             switchTab(title: "SwiftUI")
             app.tables.staticTexts["Default"].tap()
             saveScreenshot(component: "section-header", scenario: "default", userInterfaceStyle: userInterfaceStyle)
@@ -318,7 +321,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
 
-        navigate(title: "Card list") {
+        await navigate(title: "Card list") {
             switchTab(title: "SwiftUI")
             app.tables.staticTexts["Rail - 3 total elements"].tap()
             saveScreenshot(component: "card-list", scenario: "rail-3-elements", userInterfaceStyle: userInterfaceStyle)
@@ -340,7 +343,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
         
-        navigate(title: "Graphic promo") {
+        await navigate(title: "Graphic promo") {
             switchTab(title: "SwiftUI")
             app.tables.staticTexts["Top aligned"].tap()
             saveScreenshot(component: "graphic-promo", scenario: "top-aligned", userInterfaceStyle: userInterfaceStyle)
@@ -359,7 +362,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
 
-        navigate(title: "Calendar") {
+        await navigate(title: "Calendar") {
             switchTab(title: "SwiftUI")
             app.tables.staticTexts["Range Selection"].tap()
             saveScreenshot(component: "calendar", scenario: "range", userInterfaceStyle: userInterfaceStyle)
@@ -369,7 +372,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
         
-        navigate(title: "Snippet") {
+        await navigate(title: "Snippet") {
             app.tables.staticTexts["Landscape"].tap()
             saveScreenshot(component: "snippet", scenario: "landscape", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
@@ -383,12 +386,12 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
         
-        navigate(title: "Inset Banner") {
+        await navigate(title: "Inset Banner") {
             saveScreenshot(component: "inset-banner", scenario: "default", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
         
-        navigate(title: "App Search Modal") {
+        await navigate(title: "App Search Modal") {
             app.tables.staticTexts["Loading"].tap()
             saveScreenshot(component: "app-search-modal", scenario: "loading", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
