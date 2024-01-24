@@ -42,6 +42,8 @@ jobs:
 
       - name: nvm install
         uses: dcodeIO/setup-node-nvm@master
+        with:
+          node-version: lts/hydrogen
 
       - name: NPM ci
         if: steps.cache_node_modules.outputs.cache-hit != 'true'
