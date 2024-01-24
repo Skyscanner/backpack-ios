@@ -403,6 +403,6 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             app.tables.staticTexts["Error"].tap()
             saveScreenshot(component: "app-search-modal", scenario: "error", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
-//        }
+        }
     }
 }
