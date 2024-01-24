@@ -30,6 +30,7 @@ public class BPKTextSkeleton: UIView {
         stack.backgroundColor = .clear
         stack.spacing = BPKSpacingMd
         stack.distribution = .fillEqually
+        stack.alignment = .leading
         stack.isUserInteractionEnabled = false
         return stack
     }()
