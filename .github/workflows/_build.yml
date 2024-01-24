@@ -136,6 +136,9 @@ jobs:
   TestPods:
     name: Testing Pods
     runs-on: macos-latest
+    permissions:
+      statuses: write
+      pull-requests: write
     needs: [Setup]
     strategy:
       fail-fast: false
