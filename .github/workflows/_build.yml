@@ -10,7 +10,7 @@ defaults:
 jobs:
   Setup:
     name: Install Dependencies
-    runs-on: macos-latest
+    runs-on: macos-13
     permissions:
       statuses: write
       pull-requests: write
@@ -25,7 +25,7 @@ jobs:
 
   Lint:
     name: Lint Project
-    runs-on: macos-latest
+    runs-on: macos-13
     needs: [Setup]
     steps:
       - name: Checkout code
@@ -93,7 +93,7 @@ jobs:
 
   AnalyzePods:
     name: Analyzing pods
-    runs-on: macos-latest
+    runs-on: macos-13
     needs: [Setup]
     strategy:
       fail-fast: false
@@ -127,7 +127,7 @@ jobs:
         run: bundle exec pod install
         working-directory: Example
 
-      - name: Select Xcode 14
+      - name: Select Xcode 15
         run: sudo xcode-select --switch /Applications/Xcode_14.2.app
 
       - name: Analyze
@@ -135,7 +135,7 @@ jobs:
 
   TestPods:
     name: Testing Pods
-    runs-on: macos-latest
+    runs-on: macos-13
     needs: [Setup]
     strategy:
       fail-fast: false
@@ -169,15 +169,15 @@ jobs:
         run: bundle exec pod install
         working-directory: Example
 
-      - name: Select Xcode 14
-        run: sudo xcode-select --switch /Applications/Xcode_14.2.app
+      - name: Select Xcode 15
+        run: sudo xcode-select --switch /Applications/Xcode_15.2.app
 
       - name: Run Tests
         run: ./scripts/ci ${{ matrix.schemes }} test
 
   UploadArtifacts:
     name: Upload Artifacts
-    runs-on: macos-latest
+    runs-on: macos-13
     needs: [TestPods]
     steps:
       - name: Save assets
