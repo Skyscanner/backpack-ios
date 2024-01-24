@@ -41,7 +41,7 @@ jobs:
             ${{ runner.os }}-node_modules-
 
       - name: nvm install
-        run: nvm install
+        uses: dcodeIO/setup-node-nvm@master
 
       - name: NPM ci
         if: steps.cache_node_modules.outputs.cache-hit != 'true'
