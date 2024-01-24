@@ -45,11 +45,9 @@ final class BPKFloatingPanelController: FloatingPanelController {
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        if #available(iOS 13.0, *) {
-            if self.traitCollection.userInterfaceStyle != previousTraitCollection?.userInterfaceStyle {
-                guard let bottomSection = bottomSectionViewController else { return }
-                addTopShadow(to: bottomSection)
-            }
+        if self.traitCollection.userInterfaceStyle != previousTraitCollection?.userInterfaceStyle {
+            guard let bottomSection = bottomSectionViewController else { return }
+            addTopShadow(to: bottomSection)
         }
     }
 }

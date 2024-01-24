@@ -244,6 +244,16 @@ internal extension BPKColor {
     static let buttonPrimaryOnDarkPressedBackgroundColor = BPKColor(red: 0.757, green: 0.780, blue: 0.812, alpha: 1)
         .darkVariant(BPKColor(red: 0.757, green: 0.780, blue: 0.812, alpha: 1))
 
+    /// The `barTrackDefaultColor` internal color.
+    
+    static let barTrackDefaultColor = BPKColor(red: 0.878, green: 0.894, blue: 0.914, alpha: 1)
+        .darkVariant(BPKColor(red: 0.141, green: 0.200, blue: 0.275, alpha: 1))
+
+    /// The `barTrackOnContrastColor` internal color.
+    
+    static let barTrackOnContrastColor = BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1)
+        .darkVariant(BPKColor(red: 0.141, green: 0.200, blue: 0.275, alpha: 1))
+
     /// The `skeletonShimmerStartEndColor` internal color.
     
     static let skeletonShimmerStartEndColor = BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0)

@@ -48,6 +48,7 @@ public struct BPKSingleSelectChipGroup: View {
                 HStack(spacing: .md) {
                     chipsListView
                 }
+                .padding(1) // to account for chip outlines
             }
         case .wrap:
             BPKFlowStackView {

@@ -95,6 +95,7 @@ struct AppSearchModalExampleView: View {
         return .init(
             title: "Item No.\(index + 1)",
             subtitle: "This is item No.\(index + 1)",
+            tertiaryLabel: "City",
             icon: .recentSearches,
             onItemSelected: {
                 print("Selected item \(index + 1) in section \(section + 1)")
