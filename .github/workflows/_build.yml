@@ -142,8 +142,6 @@ jobs:
       contents: write
     timeout-minutes: 20
     continue-on-error: true
-    strategy:
-      fail-fast: false
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -180,6 +178,7 @@ jobs:
       - name: Run Tests
         id: screenshotTests
         run: ./scripts/ci ${{ matrix.schemes }} test
+        continue-on-error: true
 
       - name: Commit changes
         if: ${{ github.event_name == 'pull_request' && steps.screenshotTests.outputs.CHANGED_FILES != '' }}
