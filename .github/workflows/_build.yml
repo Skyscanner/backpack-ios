@@ -181,7 +181,6 @@ jobs:
         continue-on-error: true
 
       - name: Commit changes
-        if: ${{ github.event_name == 'pull_request' && steps.screenshotTests.outputs.CHANGED_FILES != '' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
