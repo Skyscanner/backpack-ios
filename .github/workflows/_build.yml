@@ -141,6 +141,7 @@ jobs:
       pull-requests: write
       contents: write
     timeout-minutes: 20
+    continue-on-error: true
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -195,7 +196,7 @@ jobs:
   TestPods:
     name: Testing Pods
     runs-on: macos-latest
-    needs: [Setup]
+    needs: [Screenshots]
     strategy:
       fail-fast: false
       matrix:
