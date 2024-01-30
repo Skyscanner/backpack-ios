@@ -40,7 +40,7 @@ public class BPKBadge: UIView {
     }
     
     private let label: BPKLabel = {
-        let label = BPKLabel(fontStyle: .textCaption)
+        let label = BPKLabel(fontStyle: .textFootnote)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -134,7 +134,7 @@ fileprivate extension BPKBadgeType {
     var textColor: UIColor {
         switch self {
         case .success, .warning, .destructive:
-            return BPKColor.textOnLightColor
+            return BPKColor.textPrimaryColor
         case .outline, .strong:
             return BPKColor.textOnDarkColor
         case .normal, .inverse:
@@ -147,17 +147,17 @@ fileprivate extension BPKBadgeType {
     var backgroundColor: UIColor {
         switch self {
         case .success:
-            return BPKColor.statusSuccessFillColor
+            return BPKColor.badgeBackgroundNormalColor
         case .warning:
-            return BPKColor.statusWarningFillColor
+            return BPKColor.badgeBackgroundNormalColor
         case .destructive:
-            return BPKColor.statusDangerFillColor
+            return BPKColor.badgeBackgroundNormalColor
         case .inverse:
             return BPKColor.surfaceDefaultColor
         case .outline:
             return BPKColor.white.withAlphaComponent(0)
         case .normal:
-            return BPKColor.surfaceHighlightColor
+            return BPKColor.badgeBackgroundNormalColor
         case .strong:
             return BPKColor.corePrimaryColor
         case .brand:
@@ -171,4 +171,9 @@ fileprivate extension Optional where Wrapped == BPKBadge.Icon {
         guard let icon = self else { return nil }
         return BPKIcon.makeSmallIcon(name: icon.iconName, color: type.textColor)
     }
+}
+
+@available(iOS 17.0, *)
+#Preview {
+  BPKBadge(message: "message")
 }
