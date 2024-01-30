@@ -64,10 +64,9 @@ public struct BPKBadge: View {
         HStack(spacing: .sm) {
             if let icon = icon {
                 BPKIconView(icon, size: .small)
-                    .foregroundColor(style.foregroundColor)
+                    .foregroundColor(style.iconColor)
             }
-        
-            BPKText(title, style: .caption)
+            BPKText(title, style: .footnote)
                 .foregroundColor(style.foregroundColor)
         }
     }
@@ -79,7 +78,7 @@ struct BPKBadge_Previews: PreviewProvider {
             (.normal, "Normal", .tickCircle, false),
             (.strong, "Strong", .tickCircle, false),
             (.success, "Success", .tickCircle, false),
-            (.warning, "Warning", .helpCircle, false),
+            (.warning, "Warning", .informationCircle, false),
             (.destructive, "Critical", .exclamation, false),
             (.inverse, "Inverse", .tickCircle, true),
             (.outline, "Outline", .tickCircle, true),

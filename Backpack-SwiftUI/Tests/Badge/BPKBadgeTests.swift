@@ -23,11 +23,11 @@ import SwiftUI
 class BPKBadgeTests: XCTestCase {
     
     let styles: [(BPKBadge.Style, BPKColor)] = [
-        (.normal, .surfaceDefaultColor),
+        (.normal, .badgeBackgroundNormalColor),
         (.strong, .surfaceDefaultColor),
-        (.success, .surfaceDefaultColor),
-        (.warning, .surfaceDefaultColor),
-        (.destructive, .surfaceDefaultColor),
+        (.success, .badgeBackgroundNormalColor),
+        (.warning, .badgeBackgroundNormalColor),
+        (.destructive, .badgeBackgroundNormalColor),
         (.inverse, .surfaceHighlightColor),
         (.outline, .surfaceHighlightColor),
         (.brand, .surfaceDefaultColor)

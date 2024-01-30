@@ -20,17 +20,17 @@ internal extension BPKBadge.Style {
     var backgroundColor: BPKColor {
         switch self {
         case .success:
-            return BPKColor.statusSuccessFillColor
+            return BPKColor.badgeBackgroundNormalColor
         case .warning:
-            return BPKColor.statusWarningFillColor
+            return BPKColor.badgeBackgroundNormalColor
         case .destructive:
-            return BPKColor.statusDangerFillColor
+            return BPKColor.badgeBackgroundNormalColor
         case .inverse:
             return BPKColor.surfaceDefaultColor
         case .outline:
             return BPKColor.white.withAlphaComponent(0)
         case .normal:
-            return BPKColor.surfaceHighlightColor
+            return BPKColor.badgeBackgroundNormalColor
         case .strong:
             return BPKColor.corePrimaryColor
         case .brand:
@@ -41,7 +41,7 @@ internal extension BPKBadge.Style {
     var foregroundColor: BPKColor {
         switch self {
         case .success, .warning, .destructive:
-            return BPKColor.textOnLightColor
+            return BPKColor.textPrimaryColor
         case .outline, .strong:
             return BPKColor.textOnDarkColor
         case .normal, .inverse:
@@ -57,6 +57,19 @@ internal extension BPKBadge.Style {
             return BPKColor.textOnDarkColor
         default:
             return nil
+        }
+    }
+    
+    var iconColor: BPKColor {
+        switch self {
+        case .success:
+            return BPKColor.statusSuccessSpotColor
+        case .warning:
+            return BPKColor.statusWarningSpotColor
+        case .destructive:
+            return BPKColor.statusDangerSpotColor
+        case .normal, .strong, .inverse, .outline, .brand:
+            return foregroundColor
         }
     }
 }
