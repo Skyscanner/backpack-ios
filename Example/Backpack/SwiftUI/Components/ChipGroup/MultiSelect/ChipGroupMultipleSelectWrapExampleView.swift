@@ -48,6 +48,7 @@ struct ChipGroupMultipleSelectWrapExampleView: View {
             defaultChip
             onDarkChip
             onImageChip
+            centerAlignedChip
         }
         .padding()
     }
@@ -55,27 +56,37 @@ struct ChipGroupMultipleSelectWrapExampleView: View {
     var defaultChip: some View {
         BPKMultiSelectChipGroup(
             chips: chips,
-            type: .wrap
+            type: .wrap(alignment: .leading)
         )
-            .padding()
+        .padding()
     }
     
     var onDarkChip: some View {
         BPKMultiSelectChipGroup(
             chips: chips,
             style: .onDark,
-            type: .wrap)
-            .padding()
-            .background(.surfaceContrastColor)
+            type: .wrap(alignment: .leading)
+        )
+        .padding()
+        .background(.surfaceContrastColor)
     }
     
     var onImageChip: some View {
         BPKMultiSelectChipGroup(
             chips: chips,
             style: .onImage,
-            type: .wrap)
-            .padding()
-            .background(.statusSuccessSpotColor)
+            type: .wrap(alignment: .leading)
+        )
+        .padding()
+        .background(.statusSuccessSpotColor)
+    }
+    
+    var centerAlignedChip: some View {
+        BPKMultiSelectChipGroup(
+            chips: chips,
+            type: .wrap(alignment: .center)
+        )
+        .padding()
     }
 }
 

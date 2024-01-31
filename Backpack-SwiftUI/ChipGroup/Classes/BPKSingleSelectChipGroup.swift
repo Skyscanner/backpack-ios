@@ -46,33 +46,37 @@ public struct BPKSingleSelectChipGroup: View {
         case .rail:
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: .md) {
-                    chipsListView
+                    ForEach(Array(chips.enumerated()), id: \.element) { index, item in
+                        chip(for: item, index: index)
+                    }
                 }
                 .padding(1) // to account for chip outlines
             }
-        case .wrap:
-            BPKFlowStackView {
-                chipsListView
-            }
+        case .wrap(let alignment):
+            BPKFlowStackView(
+                data: chips,
+                alignment: alignment,
+                content: chip(for: index:)
+            )
         }
     }
     
-    private var chipsListView: some View {
-        ForEach(0..<chips.count, id: \.self) { index in
-            BPKChip(
-                chips[index].text,
-                icon: chips[index].icon,
-                selected: selectedIndex == index,
-                style: style) {
-                    selectedIndex = index
-                    onItemClick(index)
-            }
+    @ViewBuilder
+    private func chip(for chip: ChipItem, index: Int) -> some View {
+        BPKChip(
+            chip.text,
+            icon: chip.icon,
+            selected: selectedIndex == index,
+            style: style
+        ) {
+            selectedIndex = index
+            onItemClick(index)
         }
     }
 }
 
 public extension BPKSingleSelectChipGroup {
-    struct ChipItem {
+    struct ChipItem: Hashable {
         let text: String
         let icon: BPKIcon?
         
@@ -80,69 +84,89 @@ public extension BPKSingleSelectChipGroup {
             self.text = text
             self.icon = icon
         }
+        
+        public static func == (lhs: ChipItem, rhs: ChipItem) -> Bool {
+            lhs.text == rhs.text && lhs.icon?.name == rhs.icon?.name
+        }
+        
+        public func hash(into hasher: inout Hasher) {
+            hasher.combine(text)
+            hasher.combine(icon?.name)
+        }
     }
 }
 
 // swiftlint:disable closure_body_length
 struct BPKChipGroup_Previews: PreviewProvider {
     
+    static let chips: [BPKSingleSelectChipGroup.ChipItem] = [
+        .init(text: "Shenzhen", icon: .city),
+        .init(text: "London", icon: .city),
+        .init(text: "Edinburgh"),
+        .init(text: "Manchester"),
+        .init(text: "Belfast"),
+        .init(text: "Glasgow"),
+        .init(text: "Gurham")
+    ]
+    
     static var previews: some View {
-        let chips: [BPKSingleSelectChipGroup.ChipItem] = [
-            .init(text: "Shenzhen", icon: .city),
-            .init(text: "London", icon: .city),
-            .init(text: "Edinburgh"),
-            .init(text: "Manchester"),
-            .init(text: "Belfast"),
-            .init(text: "Glasgow"),
-            .init(text: "Gurham")
-        ]
-            VStack {
-                BPKText("Rail", style: .heading3)
-                BPKSingleSelectChipGroup(
-                    chips: chips,
-                    selectedIndex: .constant(2)
-                ) { _ in }
-                    .padding()
-                BPKSingleSelectChipGroup(
-                    chips: chips,
-                    style: .onDark,
-                    selectedIndex: .constant(2)
-                ) { _ in }
-                    .padding()
-                    .background(.surfaceContrastColor)
-                BPKSingleSelectChipGroup(
-                    chips: chips,
-                    style: .onImage,
-                    selectedIndex: .constant(2)
-                ) { _ in }
-                    .padding()
-                    .background(.statusSuccessSpotColor)
-            }
-            VStack {
-                BPKText("Wrap", style: .heading3)
-                BPKSingleSelectChipGroup(
-                    chips: chips,
-                    selectedIndex: .constant(2),
-                    type: .wrap
-                ) { _ in }
-                    .padding()
-                BPKSingleSelectChipGroup(
-                    chips: chips,
-                    style: .onDark,
-                    selectedIndex: .constant(2),
-                    type: .wrap
-                ) { _ in }
-                    .padding()
-                    .background(.surfaceContrastColor)
-                
-                BPKSingleSelectChipGroup(
-                    chips: chips,
-                    style: .onImage,
-                    selectedIndex: .constant(2),
-                    type: .wrap
-                ) { _ in }
-                    .padding()
-                    .background(.statusSuccessSpotColor)
-            }
+        VStack {
+            BPKText("Rail", style: .heading3)
+            BPKSingleSelectChipGroup(
+                chips: chips,
+                selectedIndex: .constant(2)
+            ) { _ in }
+                .padding()
+            BPKSingleSelectChipGroup(
+                chips: chips,
+                style: .onDark,
+                selectedIndex: .constant(2)
+            ) { _ in }
+                .padding()
+                .background(.surfaceContrastColor)
+            BPKSingleSelectChipGroup(
+                chips: chips,
+                style: .onImage,
+                selectedIndex: .constant(2)
+            ) { _ in }
+                .padding()
+                .background(.statusSuccessSpotColor)
         }
+        .previewDisplayName("Rail")
+        
+        wrapExampleGroup(alignment: .leading)
+            .previewDisplayName("Wrap")
+        
+        wrapExampleGroup(alignment: .center)
+            .previewDisplayName("Wrap-Center")
+    }
+    
+    static func wrapExampleGroup(alignment: HorizontalAlignment) -> some View {
+        VStack {
+            BPKText("Wrap", style: .heading3)
+            BPKSingleSelectChipGroup(
+                chips: chips,
+                selectedIndex: .constant(2),
+                type: .wrap(alignment: alignment)
+            ) { _ in }
+                .padding()
+            BPKSingleSelectChipGroup(
+                chips: chips,
+                style: .onDark,
+                selectedIndex: .constant(2),
+                type: .wrap(alignment: alignment)
+            ) { _ in }
+                .padding()
+                .background(.surfaceContrastColor)
+            
+            BPKSingleSelectChipGroup(
+                chips: chips,
+                style: .onImage,
+                selectedIndex: .constant(2),
+                type: .wrap(alignment: alignment)
+            ) { _ in }
+                .padding()
+                .background(.statusSuccessSpotColor)
+        }
+    }
 }

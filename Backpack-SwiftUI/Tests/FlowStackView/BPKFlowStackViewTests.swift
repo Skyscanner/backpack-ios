@@ -21,16 +21,22 @@ import SwiftUI
 @testable import Backpack_SwiftUI
 
 class BPKFlowStackViewTests: XCTestCase {
+    
+    let data = ["London", "Edinburgh", "Mendoza", "Buenos Aires", "Barcelona", "Madrid", "Paris"]
+    
     func test_flowStackView() {
         assertSnapshot(
-            BPKFlowStackView {
-                BPKBadge("London")
-                BPKBadge("Edinburgh")
-                BPKBadge("Mendoza")
-                BPKBadge("Buenos Aires")
-                BPKBadge("Barcelona")
-                BPKBadge("Madrid")
-                BPKBadge("Paris")
+            BPKFlowStackView(data: data) { text, _ in
+                BPKBadge(text)
+            }
+                .frame(width: 200)
+        )
+    }
+    
+    func test_flowStackView_center() {
+        assertSnapshot(
+            BPKFlowStackView(data: data, alignment: .center) { text, _ in
+                BPKBadge(text)
             }
                 .frame(width: 200)
         )
