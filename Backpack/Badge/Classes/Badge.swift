@@ -172,8 +172,3 @@ fileprivate extension Optional where Wrapped == BPKBadge.Icon {
         return BPKIcon.makeSmallIcon(name: icon.iconName, color: type.textColor)
     }
 }
-
-@available(iOS 17.0, *)
-#Preview {
-  BPKBadge(message: "message")
-}

@@ -62,9 +62,21 @@ public struct BPKBadge: View {
     
     private var content: some View {
         HStack(spacing: .sm) {
-            if let icon = icon {
-                BPKIconView(icon, size: .small)
-                    .foregroundColor(style.iconColor)
+            if let badgeIcon = icon {
+                switch style {
+                case .normal, .strong, .inverse, .outline, .brand:
+                    BPKIconView(badgeIcon, size: .small)
+                        .foregroundColor(style.iconColor)
+                case .success:
+                    BPKIconView(BPKIcon.tickCircle, size: .small)
+                        .foregroundColor(style.iconColor)
+                case .warning:
+                    BPKIconView(BPKIcon.informationCircle, size: .small)
+                        .foregroundColor(style.iconColor)
+                case .destructive:
+                    BPKIconView(BPKIcon.exclamation, size: .small)
+                        .foregroundColor(style.iconColor)
+                }
             }
             BPKText(title, style: .footnote)
                 .foregroundColor(style.foregroundColor)
