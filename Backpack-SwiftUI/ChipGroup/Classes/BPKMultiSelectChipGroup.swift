@@ -47,7 +47,7 @@ public struct BPKMultiSelectChipGroup: View {
                 }
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: .md) {
-                        chipsListView
+                        ForEach(chips, id: \.self, content: chip(for:))
                     }
                     .padding(1) // to account for chip outlines
                     .if(stickyChip != nil, transform: {
@@ -56,16 +56,13 @@ public struct BPKMultiSelectChipGroup: View {
                         .padding(.vertical, .sm)
                 }
             }
-        case .wrap:
-            BPKFlowStackView {
-                chipsListView
+        case .wrap(let alignment):
+            BPKFlowStackView(
+                data: chips,
+                alignment: alignment
+            ) { element, _ in
+                chip(for: element)
             }
-        }
-    }
-    
-    private var chipsListView: some View {
-        ForEach(0..<chips.count, id: \.self) { index in
-            chip(for: chips[index])
         }
     }
     
@@ -100,7 +97,7 @@ public extension BPKMultiSelectChipGroup.ChipItem {
 public extension BPKMultiSelectChipGroup {
     enum ChipGroupType {
         case rail(stickyChip: StickyChipItem?)
-        case wrap
+        case wrap(alignment: HorizontalAlignment)
     }
     
     struct StickyChipItem {
@@ -122,7 +119,7 @@ public extension BPKMultiSelectChipGroup {
         }
     }
     
-    struct ChipItem {
+    struct ChipItem: Hashable {
         let text: String
         let icon: BPKIcon?
         var type: ChipType
@@ -142,21 +139,36 @@ public extension BPKMultiSelectChipGroup {
             self.selected = selected
             self.onClick = onClick
         }
+        
+        public static func == (lhs: ChipItem, rhs: ChipItem) -> Bool {
+            lhs.text == rhs.text &&
+            lhs.icon?.name == rhs.icon?.name &&
+            lhs.type == rhs.type &&
+            lhs.selected == rhs.selected
+        }
+        
+        public func hash(into hasher: inout Hasher) {
+            hasher.combine(text)
+            hasher.combine(icon?.name)
+            hasher.combine(type)
+            hasher.combine(selected)
+        }
     }
 }
 
 struct BPKMultiSelectChipGroup_Previews: PreviewProvider {
     
+    static let chips: [BPKMultiSelectChipGroup.ChipItem] = [
+        .init(text: "Shenzhen", selected: false, onClick: {}),
+        .init(text: "London", selected: false, onClick: {}),
+        .init(text: "Edinburgh", selected: true, onClick: {}),
+        .init(text: "Manchester", selected: false, onClick: {}),
+        .init(text: "Belfast", selected: true, onClick: {}),
+        .init(text: "Glasgow", selected: false, onClick: {}),
+        .init(text: "Gurham", selected: false, onClick: {})
+    ]
+    
     static var previews: some View {
-        let chips: [BPKMultiSelectChipGroup.ChipItem] = [
-            .init(text: "Shenzhen", selected: false, onClick: {}),
-            .init(text: "London", selected: false, onClick: {}),
-            .init(text: "Edinburgh", selected: true, onClick: {}),
-            .init(text: "Manchester", selected: false, onClick: {}),
-            .init(text: "Belfast", selected: true, onClick: {}),
-            .init(text: "Glasgow", selected: false, onClick: {}),
-            .init(text: "Gurham", selected: false, onClick: {})
-        ]
         VStack {
             BPKText("Rail", style: .heading3)
             BPKMultiSelectChipGroup(
@@ -182,26 +194,26 @@ struct BPKMultiSelectChipGroup_Previews: PreviewProvider {
             .padding()
             .background(.statusSuccessSpotColor)
         }
+        .previewDisplayName("Rail")
+        
+        wrapExampleGroup(alignment: .leading)
+            .previewDisplayName("Wrap")
+        
+        wrapExampleGroup(alignment: .center)
+            .previewDisplayName("Wrap-Center")
+    }
+    
+    static func wrapExampleGroup(alignment: HorizontalAlignment) -> some View {
         VStack {
             BPKText("Wrap", style: .heading3)
-            BPKMultiSelectChipGroup(
-                chips: chips,
-                type: .wrap
-            )
+            BPKMultiSelectChipGroup(chips: chips, type: .wrap(alignment: alignment))
             .padding()
-            BPKMultiSelectChipGroup(
-                chips: chips,
-                style: .onDark,
-                type: .wrap
-            )
+            
+            BPKMultiSelectChipGroup(chips: chips, style: .onDark, type: .wrap(alignment: alignment))
             .padding()
             .background(.surfaceContrastColor)
             
-            BPKMultiSelectChipGroup(
-                chips: chips,
-                style: .onImage,
-                type: .wrap
-            )
+            BPKMultiSelectChipGroup(chips: chips, style: .onImage, type: .wrap(alignment: alignment))
             .padding()
             .background(.statusSuccessSpotColor)
         }
