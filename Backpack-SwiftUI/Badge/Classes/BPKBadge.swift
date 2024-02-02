@@ -60,23 +60,27 @@ public struct BPKBadge: View {
         return result
     }
     
+    public func createBadgeIconView(icon: BPKIcon?) -> BPKIconView? {
+        guard let badgeIcon = icon else {
+            switch style {
+            case .normal, .strong, .inverse, .outline, .brand:
+                return nil
+            case .success:
+                return BPKIconView(BPKIcon.tickCircle, size: .small)
+            case .warning:
+                return BPKIconView(BPKIcon.informationCircle, size: .small)
+            case .destructive:
+                return BPKIconView(BPKIcon.exclamation, size: .small)
+            }
+        }
+        return BPKIconView(badgeIcon, size: .small)
+    }
+    
     private var content: some View {
         HStack(spacing: .sm) {
-            if let badgeIcon = icon {
-                switch style {
-                case .normal, .strong, .inverse, .outline, .brand:
-                    BPKIconView(badgeIcon, size: .small)
-                        .foregroundColor(style.iconColor)
-                case .success:
-                    BPKIconView(BPKIcon.tickCircle, size: .small)
-                        .foregroundColor(style.iconColor)
-                case .warning:
-                    BPKIconView(BPKIcon.informationCircle, size: .small)
-                        .foregroundColor(style.iconColor)
-                case .destructive:
-                    BPKIconView(BPKIcon.exclamation, size: .small)
-                        .foregroundColor(style.iconColor)
-                }
+            let badgeIconView = createBadgeIconView(icon: icon)
+            if badgeIconView != nil {
+                badgeIconView?.foregroundColor(style.iconColor)
             }
             BPKText(title, style: .footnote)
                 .foregroundColor(style.foregroundColor)
