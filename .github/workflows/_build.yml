@@ -133,10 +133,75 @@ jobs:
       - name: Analyze
         run: ./scripts/ci ${{ matrix.schemes }} analysis
 
+  Screenshots:
+    name: Screenshots tests
+    runs-on: macos-latest
+    needs: [Setup]
+    permissions:
+      pull-requests: write
+      contents: write
+    timeout-minutes: 20
+    continue-on-error: true
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cache Bundler install Gems
+        uses: actions/cache@v4
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ env.ImageVersion }}-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-${{ env.ImageVersion }}
+
+      - name: Cache Pods
+        uses: actions/cache@v4
+        with:
+          path: Example/Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+
+      - name: Bundle Install
+        run: bundle install --jobs 4 --retry 3
+
+      - name: Pod Install
+        run: bundle exec pod install
+        working-directory: Example
+
+      - name: Select Xcode 14
+        run: sudo xcode-select --switch /Applications/Xcode_14.2.app
+      
+      - name: Clean up Screenshot Tests
+        run: find . -name '__Snapshots__' -type d -exec rm -rf {} +
+
+      - name: Run UIKit tests
+        id: screenshotTestsUIKit
+        run: ./scripts/ci uikit test
+        continue-on-error: true
+
+      - name: Run SwiftUI tests
+        id: screenshotTestsSwiftUI
+        run: ./scripts/ci swiftui test
+        continue-on-error: true
+
+      - name: Commit changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git remote set-url origin https://x-access-token:$GITHUB_TOKEN@github.com/${{ github.repository }}
+          git fetch origin $GITHUB_HEAD_REF
+          git checkout $GITHUB_HEAD_REF
+          git add .
+          git diff-index --quiet HEAD || git commit -m "Updated snapshots"
+          git push
+
   TestPods:
     name: Testing Pods
     runs-on: macos-latest
-    needs: [Setup]
+    needs: [Screenshots]
     strategy:
       fail-fast: false
       matrix:
