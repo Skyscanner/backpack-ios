@@ -21,53 +21,45 @@ import Backpack
 
 class TabBarControllerStoryViewController: BPKTabBarController {
     override func viewDidLoad() {
-        let tabOne = UIViewController()
-        tabOne.view.backgroundColor = BPKColor.backgroundColor
-        let tabOneBarItem = UITabBarItem(
+        // Home
+        let homeTab = UIViewController()
+        homeTab.view.backgroundColor = BPKColor.canvasColor
+        
+        let homeTabBarItem = BPKTabBarItem(
+            title: "Home",
+            image: UIImage(named: "tab_home"),
+            selectedImage: UIImage(named: "tab_home_selected")
+        )
+        homeTab.tabBarItem = homeTabBarItem
+        
+        // Search
+        let searchTab = UIViewController()
+        searchTab.view.backgroundColor = BPKColor.canvasColor
+        
+        let searchTabBarItem = BPKTabBarItem(
             title: "Search",
-            image: BPKIcon.makeLargeTemplateIcon(name: .search),
-            tag: 1
+            image: UIImage(named: "tab_search"),
+            selectedImage: UIImage(named: "tab_search_selected")
         )
-        tabOne.tabBarItem = tabOneBarItem
-
-        let tabTwo = UIViewController()
-        tabTwo.view.backgroundColor = BPKColor.backgroundColor
-        let tabTwoBarItem = BPKTabBarItem(
-            title: "Explore",
-            image: BPKIcon.makeLargeTemplateIcon(name: .explore),
-            tag: 2,
-            dotImageDefinition: BPKTabBarDotImageDefinition(
-                lightImage: UIImage(named: "tab_explore_with_dot_lm")!,
-                darkImage: UIImage(named: "tab_explore_with_dot_dm")!
-            )
-        )
-        tabTwo.tabBarItem = tabTwoBarItem
-
-        let tabThree = UIViewController()
-        tabThree.view.backgroundColor = BPKColor.backgroundColor
-        let tabThreeBarItem = UITabBarItem(
-            title: "Trips",
-            image: BPKIcon.makeLargeTemplateIcon(name: .trips),
-            tag: 3
-        )
-        tabThreeBarItem.badgeColor = BPKColor.panjin
-        tabThreeBarItem.badgeValue = "42"
-        tabThree.tabBarItem = tabThreeBarItem
-
-        let tabFour = UIViewController()
-        tabFour.view.backgroundColor = BPKColor.backgroundColor
-        let tabFourBarItem = BPKTabBarItem(
+        searchTab.tabBarItem = searchTabBarItem
+        
+        // Profile
+        let profileTab = UIViewController()
+        profileTab.view.backgroundColor = BPKColor.canvasColor
+        
+        let profileTabBarItem = BPKTabBarItem(
             title: "Profile",
-            image: BPKIcon.makeLargeTemplateIcon(name: .accountCircle),
-            tag: 4,
-            dotImageDefinition: BPKTabBarDotImageDefinition(
-                lightImage: UIImage(named: "tab_profile_with_dot_lm")!,
-                darkImage: UIImage(named: "tab_profile_with_dot_dm")!
-            )
+            image: UIImage(named: "tab_profile"),
+            selectedImage: UIImage(named: "tab_profile_selected"),
+            dotImage: .init(
+                lightImage: UIImage(named: "tab_profile_dot_lm"),
+                darkImage: UIImage(named: "tab_profile_dot_dm")
+            ),
+            selectedDotImage: UIImage(named: "tab_profile_dot_selected")
         )
-        tabFour.tabBarItem = tabFourBarItem
-        tabFourBarItem.addDot()
-
-        self.viewControllers = [tabOne, tabTwo, tabThree, tabFour]
+        profileTab.tabBarItem = profileTabBarItem
+        profileTabBarItem.addDot()
+        
+        self.viewControllers = [homeTab, searchTab, profileTab]
     }
 }

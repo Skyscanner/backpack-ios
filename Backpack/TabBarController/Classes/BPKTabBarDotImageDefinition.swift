@@ -16,23 +16,18 @@
  * limitations under the License.
  */
 
-#import "BPKTabBarDotImageDefinition.h"
+import UIKit
 
-NS_ASSUME_NONNULL_BEGIN
-
-@implementation BPKTabBarDotImageDefinition
-
-- (instancetype)initWithLightImage:(UIImage *)lightImage darkImage:(UIImage *)darkImage {
-    self = [super init];
-
-    if (self) {
-        self.lightImage = lightImage;
-        self.darkImage = darkImage;
+public struct BPKTabBarDotImageDefinition {
+    let lightImage: UIImage?
+    let darkImage: UIImage?
+    
+    public init(lightImage: UIImage?, darkImage: UIImage?) {
+        self.lightImage = lightImage
+        self.darkImage = darkImage
     }
-
-    return self;
+    
+    func image(for interfaceStyle: UIUserInterfaceStyle) -> UIImage? {
+        return interfaceStyle == .light ? lightImage : darkImage
+    }
 }
-
-@end
-
-NS_ASSUME_NONNULL_END
