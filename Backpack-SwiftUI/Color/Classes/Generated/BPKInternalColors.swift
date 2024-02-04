@@ -31,12 +31,12 @@ internal extension BPKColor {
 
     /// The `badgeBackgroundNormalColor` internal color.
     
-    static let badgeBackgroundNormalColor = BPKColor(red: 0.937, green: 0.945, blue: 0.949, alpha: 1)
+    static let badgeBackgroundNormalColor = BPKColor(red: 0.937, green: 0.953, blue: 0.973, alpha: 1)
         .darkVariant(BPKColor(red: 0.141, green: 0.200, blue: 0.275, alpha: 1))
 
     /// The `infoBannerDefaultColor` internal color.
     
-    static let infoBannerDefaultColor = BPKColor(red: 0.937, green: 0.945, blue: 0.949, alpha: 1)
+    static let infoBannerDefaultColor = BPKColor(red: 0.937, green: 0.953, blue: 0.973, alpha: 1)
         .darkVariant(BPKColor(red: 0.075, green: 0.114, blue: 0.169, alpha: 1))
 
     /// The `infoBannerOnContrastColor` internal color.
@@ -56,7 +56,7 @@ internal extension BPKColor {
 
     /// The `infoBannerInfoColor` internal color.
     
-    static let infoBannerInfoColor = BPKColor(red: 0.329, green: 0.345, blue: 0.376, alpha: 1)
+    static let infoBannerInfoColor = BPKColor(red: 0.384, green: 0.412, blue: 0.443, alpha: 1)
         .darkVariant(BPKColor(red: 0.741, green: 0.769, blue: 0.796, alpha: 1))
 
     /// The `infoBannerWarningColor` internal color.
@@ -76,12 +76,12 @@ internal extension BPKColor {
 
     /// The `chipDisabledBackgroundColor` internal color.
     
-    static let chipDisabledBackgroundColor = BPKColor(red: 0.878, green: 0.890, blue: 0.898, alpha: 1)
+    static let chipDisabledBackgroundColor = BPKColor(red: 0.878, green: 0.894, blue: 0.914, alpha: 1)
         .darkVariant(BPKColor(red: 0.043, green: 0.071, blue: 0.114, alpha: 1))
 
     /// The `chipOnDarkOnDismissIconColor` internal color.
     
-    static let chipOnDarkOnDismissIconColor = BPKColor(red: 0.329, green: 0.345, blue: 0.376, alpha: 1)
+    static let chipOnDarkOnDismissIconColor = BPKColor(red: 0.384, green: 0.412, blue: 0.443, alpha: 1)
         .darkVariant(BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.5019607843137255))
 
     /// The `mapPreviousSelectionColor` internal color.
@@ -111,7 +111,7 @@ internal extension BPKColor {
 
     /// The `buttonSecondaryPressedBackgroundColor` internal color.
     
-    static let buttonSecondaryPressedBackgroundColor = BPKColor(red: 0.761, green: 0.788, blue: 0.804, alpha: 1)
+    static let buttonSecondaryPressedBackgroundColor = BPKColor(red: 0.757, green: 0.780, blue: 0.812, alpha: 1)
         .darkVariant(BPKColor(red: 0.004, green: 0.035, blue: 0.075, alpha: 1))
 
     /// The `buttonLinkNormalForegroundColor` internal color.
@@ -126,7 +126,7 @@ internal extension BPKColor {
 
     /// The `buttonSecondaryNormalBackgroundColor` internal color.
     
-    static let buttonSecondaryNormalBackgroundColor = BPKColor(red: 0.878, green: 0.890, blue: 0.898, alpha: 1)
+    static let buttonSecondaryNormalBackgroundColor = BPKColor(red: 0.878, green: 0.894, blue: 0.914, alpha: 1)
         .darkVariant(BPKColor(red: 0.141, green: 0.200, blue: 0.275, alpha: 1))
 
     /// The `buttonPrimaryOnLightPressedBackgroundColor` internal color.
@@ -186,12 +186,12 @@ internal extension BPKColor {
 
     /// The `buttonPrimaryOnLightDisabledBackgroundColor` internal color.
     
-    static let buttonPrimaryOnLightDisabledBackgroundColor = BPKColor(red: 0.878, green: 0.890, blue: 0.898, alpha: 1)
-        .darkVariant(BPKColor(red: 0.878, green: 0.890, blue: 0.898, alpha: 1))
+    static let buttonPrimaryOnLightDisabledBackgroundColor = BPKColor(red: 0.878, green: 0.894, blue: 0.914, alpha: 1)
+        .darkVariant(BPKColor(red: 0.878, green: 0.894, blue: 0.914, alpha: 1))
 
     /// The `buttonDestructiveNormalBackgroundColor` internal color.
     
-    static let buttonDestructiveNormalBackgroundColor = BPKColor(red: 0.878, green: 0.890, blue: 0.898, alpha: 1)
+    static let buttonDestructiveNormalBackgroundColor = BPKColor(red: 0.878, green: 0.894, blue: 0.914, alpha: 1)
         .darkVariant(BPKColor(red: 0.141, green: 0.200, blue: 0.275, alpha: 1))
 
     /// The `buttonPrimaryNormalBackgroundColor` internal color.
@@ -211,8 +211,8 @@ internal extension BPKColor {
 
     /// The `buttonPrimaryOnDarkDisabledBackgroundColor` internal color.
     
-    static let buttonPrimaryOnDarkDisabledBackgroundColor = BPKColor(red: 0.878, green: 0.890, blue: 0.898, alpha: 1)
-        .darkVariant(BPKColor(red: 0.878, green: 0.890, blue: 0.898, alpha: 1))
+    static let buttonPrimaryOnDarkDisabledBackgroundColor = BPKColor(red: 0.878, green: 0.894, blue: 0.914, alpha: 1)
+        .darkVariant(BPKColor(red: 0.878, green: 0.894, blue: 0.914, alpha: 1))
 
     /// The `buttonLinkOnDarkPressedForegroundColor` internal color.
     
@@ -226,7 +226,7 @@ internal extension BPKColor {
 
     /// The `buttonDisabledBackgroundColor` internal color.
     
-    static let buttonDisabledBackgroundColor = BPKColor(red: 0.878, green: 0.890, blue: 0.898, alpha: 1)
+    static let buttonDisabledBackgroundColor = BPKColor(red: 0.878, green: 0.894, blue: 0.914, alpha: 1)
         .darkVariant(BPKColor(red: 0.043, green: 0.071, blue: 0.114, alpha: 1))
 
     /// The `buttonSecondaryOnDarkNormalBackgroundColor` internal color.
@@ -241,8 +241,18 @@ internal extension BPKColor {
 
     /// The `buttonPrimaryOnDarkPressedBackgroundColor` internal color.
     
-    static let buttonPrimaryOnDarkPressedBackgroundColor = BPKColor(red: 0.761, green: 0.788, blue: 0.804, alpha: 1)
-        .darkVariant(BPKColor(red: 0.761, green: 0.788, blue: 0.804, alpha: 1))
+    static let buttonPrimaryOnDarkPressedBackgroundColor = BPKColor(red: 0.757, green: 0.780, blue: 0.812, alpha: 1)
+        .darkVariant(BPKColor(red: 0.757, green: 0.780, blue: 0.812, alpha: 1))
+
+    /// The `barTrackDefaultColor` internal color.
+    
+    static let barTrackDefaultColor = BPKColor(red: 0.878, green: 0.894, blue: 0.914, alpha: 1)
+        .darkVariant(BPKColor(red: 0.141, green: 0.200, blue: 0.275, alpha: 1))
+
+    /// The `barTrackOnContrastColor` internal color.
+    
+    static let barTrackOnContrastColor = BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1)
+        .darkVariant(BPKColor(red: 0.141, green: 0.200, blue: 0.275, alpha: 1))
 
     /// The `skeletonShimmerStartEndColor` internal color.
     
@@ -256,6 +266,6 @@ internal extension BPKColor {
 
     /// The `sponsoredBannerBackgroundColor` internal color.
     
-    static let sponsoredBannerBackgroundColor = BPKColor(red: 0.937, green: 0.945, blue: 0.949, alpha: 1)
+    static let sponsoredBannerBackgroundColor = BPKColor(red: 0.937, green: 0.953, blue: 0.973, alpha: 1)
         .darkVariant(BPKColor(red: 0.141, green: 0.200, blue: 0.275, alpha: 1))
 }
