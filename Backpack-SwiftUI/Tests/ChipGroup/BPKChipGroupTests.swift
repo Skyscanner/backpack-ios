@@ -72,7 +72,7 @@ class BPKChipGroupTests: XCTestCase {
                     chips: singleChips,
                     style: .default,
                     selectedIndex: .constant(1),
-                    type: .wrap,
+                    type: .wrap(alignment: .leading),
                     onItemClick: { _ in }
                 )
                 .padding()
@@ -81,7 +81,7 @@ class BPKChipGroupTests: XCTestCase {
                     chips: singleChips,
                     style: .onDark,
                     selectedIndex: .constant(1),
-                    type: .wrap,
+                    type: .wrap(alignment: .leading),
                     onItemClick: { _ in }
                 )
                 .padding()
@@ -91,12 +91,20 @@ class BPKChipGroupTests: XCTestCase {
                     chips: singleChips,
                     style: .onImage,
                     selectedIndex: .constant(1),
-                    type: .wrap,
+                    type: .wrap(alignment: .leading),
                     onItemClick: { _ in }
                 )
                 .padding()
                 .background(.statusSuccessSpotColor)
                 
+                BPKSingleSelectChipGroup(
+                    chips: singleChips,
+                    style: .default,
+                    selectedIndex: .constant(1),
+                    type: .wrap(alignment: .center),
+                    onItemClick: { _ in }
+                )
+                .padding()
             }
             .frame(width: 350)
         )
@@ -181,14 +189,14 @@ class BPKChipGroupTests: XCTestCase {
                 BPKMultiSelectChipGroup(
                     chips: multiselectChips,
                     style: .default,
-                    type: .wrap
+                    type: .wrap(alignment: .leading)
                 )
                 .padding()
                 
                 BPKMultiSelectChipGroup(
                     chips: multiselectChips,
                     style: .onDark,
-                    type: .wrap
+                    type: .wrap(alignment: .leading)
                 )
                 .padding()
                 .background(.surfaceContrastColor)
@@ -196,11 +204,17 @@ class BPKChipGroupTests: XCTestCase {
                 BPKMultiSelectChipGroup(
                     chips: multiselectChips,
                     style: .onImage,
-                    type: .wrap
+                    type: .wrap(alignment: .leading)
                 )
                 .padding()
                 .background(.statusSuccessSpotColor)
                 
+                BPKMultiSelectChipGroup(
+                    chips: multiselectChips,
+                    style: .default,
+                    type: .wrap(alignment: .center)
+                )
+                .padding()
             }
             .frame(width: 350)
         )

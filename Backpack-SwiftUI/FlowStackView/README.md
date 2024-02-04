@@ -10,22 +10,32 @@
 This view adjusts the number of columns based on the available width and the widths of the children.
 If a child does not fit in the current row, it is placed in the next row.
 
-### With default spacing
+### With default spacing and alignment
 
 ```swift
-BPKFlowStackView {
-    ForEach(0..<20) { index in
-        BPKBadge("\(index)")
-    }
+BPKFlowStackView(data: Array(0...20)) { item, index in
+    BPKBadge("\(index)")
 }
 ```
 
 ### Specifying spacing with a `BPKSpacing` value
 
 ```swift
-BPKFlowStackView(spacing: .sm) {
-    ForEach(0..<20) { index in
-        BPKBadge("\(index)")
-    }
+BPKFlowStackView(
+    data: Array(0...20),
+    spacing: .sm
+) { item, index in
+    BPKBadge("\(index)")
+}
+```
+
+### Specifying spacing with `.center` alignment
+
+```swift
+BPKFlowStackView(
+    data: Array(0...20),
+    alignment: .center,
+) { item, index in
+    BPKBadge("\(index)")
 }
 ```

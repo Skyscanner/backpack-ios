@@ -18,10 +18,23 @@
 
 import SwiftUI
 
-public enum BPKChipGroupType {
-    /// Wraps the chip in a horizontal scroll view keeping the chips in a single line.
-    case rail
+struct ReadSizeModifier: ViewModifier {
+    
+    let onChange: (CGSize) -> Void
+    
+    func body(content: Content) -> some View {
+        content
+            .background(
+                GeometryReader { geometryProxy in
+                    Color.clear
+                        .preference(key: SizePreferenceKey.self, value: geometryProxy.size)
+                }
+            )
+            .onPreferenceChange(SizePreferenceKey.self, perform: onChange)
+    }
+}
 
-    /// Wraps the chip in a flow layout view allowing the chips to wrap to multiple lines.
-    case wrap(alignment: HorizontalAlignment)
+private struct SizePreferenceKey: PreferenceKey {
+    static var defaultValue: CGSize = .zero
+    static func reduce(value: inout CGSize, nextValue: () -> CGSize) {}
 }

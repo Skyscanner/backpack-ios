@@ -38,6 +38,7 @@ struct ChipGroupSingleSelectWrapExampleView: View {
             defaultChip
             onDarkChip
             onImageChip
+            centerAlignedChip
         }
         .padding()
     }
@@ -47,7 +48,7 @@ struct ChipGroupSingleSelectWrapExampleView: View {
             chips: chips,
             style: .default,
             selectedIndex: $selectedChip,
-            type: .wrap) { _ in }
+            type: .wrap(alignment: .leading)) { _ in }
             .padding()
     }
     
@@ -56,7 +57,7 @@ struct ChipGroupSingleSelectWrapExampleView: View {
             chips: chips,
             style: .onDark,
             selectedIndex: $selectedChip,
-            type: .wrap) { _ in }
+            type: .wrap(alignment: .leading)) { _ in }
             .padding()
             .background(.surfaceContrastColor)
     }
@@ -73,9 +74,18 @@ struct ChipGroupSingleSelectWrapExampleView: View {
                 chips: chips,
                 style: .onImage,
                 selectedIndex: $selectedChip,
-                type: .wrap) { _ in }
+                type: .wrap(alignment: .leading)) { _ in }
                 .padding()
         }
+    }
+    
+    var centerAlignedChip: some View {
+        BPKSingleSelectChipGroup(
+            chips: chips,
+            style: .default,
+            selectedIndex: $selectedChip,
+            type: .wrap(alignment: .center)) { _ in }
+            .padding()
     }
 }
 
