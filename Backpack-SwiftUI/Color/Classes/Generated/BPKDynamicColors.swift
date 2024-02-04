@@ -42,7 +42,7 @@ public extension BPKColor {
 
     /// The `canvasContrastColor` dynamic color from the Backpack palette.
     
-    static let canvasContrastColor = BPKColor(red: 0.937, green: 0.945, blue: 0.949, alpha: 1)
+    static let canvasContrastColor = BPKColor(red: 0.937, green: 0.953, blue: 0.973, alpha: 1)
         .darkVariant(BPKColor(red: 0.004, green: 0.035, blue: 0.075, alpha: 1))
 
     /// The `coreEcoColor` dynamic color from the Backpack palette.
@@ -117,7 +117,7 @@ public extension BPKColor {
 
     /// The `surfaceHighlightColor` dynamic color from the Backpack palette.
     
-    static let surfaceHighlightColor = BPKColor(red: 0.878, green: 0.890, blue: 0.898, alpha: 1)
+    static let surfaceHighlightColor = BPKColor(red: 0.878, green: 0.894, blue: 0.914, alpha: 1)
         .darkVariant(BPKColor(red: 0.141, green: 0.200, blue: 0.275, alpha: 1))
 
     /// The `textOnDarkColor` dynamic color from the Backpack palette.
@@ -139,6 +139,11 @@ public extension BPKColor {
     
     static let textLinkColor = BPKColor(red: 0.000, green: 0.384, blue: 0.890, alpha: 1)
         .darkVariant(BPKColor(red: 0.518, green: 0.914, blue: 1.000, alpha: 1))
+
+    /// The `textHeroColor` dynamic color from the Backpack palette.
+    
+    static let textHeroColor = BPKColor(red: 0.000, green: 0.384, blue: 0.890, alpha: 1)
+        .darkVariant(BPKColor(red: 0.004, green: 0.035, blue: 0.075, alpha: 1))
 
     /// The `textDisabledColor` dynamic color from the Backpack palette.
     
@@ -167,7 +172,7 @@ public extension BPKColor {
 
     /// The `textSecondaryColor` dynamic color from the Backpack palette.
     
-    static let textSecondaryColor = BPKColor(red: 0.329, green: 0.345, blue: 0.376, alpha: 1)
+    static let textSecondaryColor = BPKColor(red: 0.384, green: 0.412, blue: 0.443, alpha: 1)
         .darkVariant(BPKColor(red: 0.741, green: 0.769, blue: 0.796, alpha: 1))
 
     /// The `textPrimaryInverseColor` dynamic color from the Backpack palette.
@@ -197,7 +202,7 @@ public extension BPKColor {
 
     /// The `lineColor` dynamic color from the Backpack palette.
     
-    static let lineColor = BPKColor(red: 0.761, green: 0.788, blue: 0.804, alpha: 1)
+    static let lineColor = BPKColor(red: 0.757, green: 0.780, blue: 0.812, alpha: 1)
         .darkVariant(BPKColor(red: 0.267, green: 0.314, blue: 0.373, alpha: 1))
 
     /// The `backgroundElevation01Color` dynamic color from the Backpack palette.
@@ -222,12 +227,12 @@ public extension BPKColor {
 
     /// The `backgroundSecondaryColor` dynamic color from the Backpack palette.
     @available(*, deprecated, message: "This colour will be removed in the next major version")
-    static let backgroundSecondaryColor = BPKColor(red: 0.937, green: 0.945, blue: 0.949, alpha: 1)
+    static let backgroundSecondaryColor = BPKColor(red: 0.937, green: 0.953, blue: 0.973, alpha: 1)
         .darkVariant(BPKColor(red: 0.075, green: 0.114, blue: 0.169, alpha: 1))
 
     /// The `backgroundAlternativeColor` dynamic color from the Backpack palette.
     @available(*, deprecated, message: "This colour will be removed in the next major version")
-    static let backgroundAlternativeColor = BPKColor(red: 0.937, green: 0.945, blue: 0.949, alpha: 1)
+    static let backgroundAlternativeColor = BPKColor(red: 0.937, green: 0.953, blue: 0.973, alpha: 1)
         .darkVariant(BPKColor(red: 0.075, green: 0.114, blue: 0.169, alpha: 1))
 
     /// The `primaryColor` dynamic color from the Backpack palette.
