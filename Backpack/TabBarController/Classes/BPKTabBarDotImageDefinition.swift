@@ -19,8 +19,8 @@
 import UIKit
 
 public struct BPKTabBarDotImageDefinition {
-    let lightImage: UIImage?
-    let darkImage: UIImage?
+    private let lightImage: UIImage?
+    private let darkImage: UIImage?
     
     public init(lightImage: UIImage?, darkImage: UIImage?) {
         self.lightImage = lightImage
