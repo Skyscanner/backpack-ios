@@ -23,59 +23,101 @@ import SwiftUI
 ///
 /// This view adjusts the number of columns based on the available width and the widths of the children.
 /// If a child does not fit in the current row, it is placed in the next row.
-public struct BPKFlowStackView<Content: View>: View {
-    let content: () -> Content
+public struct BPKFlowStackView<Data: Collection, Content: View>: View where Data.Element: Hashable {
+    let data: Data
     let spacing: CGSize
-
+    let alignment: HorizontalAlignment
+    let content: (Data.Element, Int) -> Content
+    
+    @State private var availableWidth: CGFloat = 1
+    @State private var elementsSize: [Data.Element: CGSize] = [:]
+    
     /// Creates an instance with the given spacing and content.
     ///
     /// - Parameters:
+    ///   - data: The collection of data to be displayed
     ///   - spacing: A `BPKSpacing` value indicating the space between children, with the same value for horizontal and
     ///     vertical spacing.
-    ///   - content: A view builder that creates the content of this stack.
-    public init(spacing: BPKSpacing = .md, @ViewBuilder content: @escaping () -> Content) {
-        self.content = content
+    ///   - alignment: The horizontal alignment of elements
+    ///   - content: The view builder closure used to render each data element
+    public init(
+        data: Data,
+        spacing: BPKSpacing = .md,
+        alignment: HorizontalAlignment = .leading,
+        content: @escaping (Data.Element, Int) -> Content
+    ) {
+        self.data = data
         self.spacing = CGSize(width: spacing, height: spacing)
+        self.alignment = alignment
+        self.content = content
     }
-
+    
     public var body: some View {
-        ZStack(alignment: .topLeading) {
-            // Setup for layout pass
-            var available: CGFloat = 0
-            var x: CGFloat = 0
-            var y: CGFloat = 0
+        ZStack(alignment: Alignment(horizontal: alignment, vertical: .center)) {
             Color.clear
-                .frame(height: 0)
-                .alignmentGuide(.top) { item in
-                    available = item.width
-                    x = 0
-                    y = 0
-                    return 0
-                }
-
-            content()
-                .alignmentGuide(.leading) { item in
-                    if x + item.width > available {
-                        x = 0
-                        y += item.height + spacing.height
+                .frame(height: 1)
+                .modifier(ReadSizeModifier { size in
+                    availableWidth = size.width
+                })
+            
+            VStack(alignment: alignment, spacing: spacing.height) {
+                ForEach(computeRows(), id: \.self) { rowItems in
+                    HStack(spacing: spacing.width) {
+                        ForEach(Array(rowItems.enumerated()), id: \.element) { index, item in
+                            content(item, index)
+                                .modifier(ReadSizeModifier { size in
+                                    elementsSize[item] = size
+                                })
+                        }
                     }
-                    let result = x
-                    x += item.width + spacing.width
-                    return -result
                 }
-                .alignmentGuide(.top) { _ in -y }
+            }
         }
+    }
+    
+    func computeRows() -> [[Data.Element]] {
+        var rows: [[Data.Element]] = [[]]
+        var currentRow = 0
+        var remainingWidth = availableWidth
+        
+        data.forEach { element in
+            let elementSize = elementsSize[element, default: CGSize(width: availableWidth, height: 1)]
+            
+            if elementSize.width + spacing.width > remainingWidth {
+                remainingWidth = availableWidth
+                currentRow += 1
+                rows.append([element])
+            } else {
+                rows[currentRow].append(element)
+            }
+            
+            remainingWidth -= (elementSize.width + spacing.width)
+        }
+        return rows
     }
 }
 
 struct BPKFlowStackView_Previews: PreviewProvider {
     static var previews: some View {
-        BPKFlowStackView {
-            ForEach(0..<20) { index in
-                BPKBadge("badge \(index)")
-                    .badgeStyle(.brand)
-            }
-        }
+        BPKFlowStackView(
+            data: Array(0...30),
+            content: { element, index in makeKBadge(index: element) }
+        )
         .padding()
+        .previewDisplayName("Leading")
+        
+        BPKFlowStackView(
+            data: Array(0...30),
+            alignment: .center,
+            content: { element, index in makeKBadge(index: element) }
+        )
+        .padding()
+        .previewDisplayName("Center")
+    }
+    
+    @ViewBuilder
+    static func makeKBadge(index: Int) -> some View {
+        BPKBadge("Hello" + Array(repeating: "👋", count: index % 5).joined())
+            .badgeStyle(.brand)
     }
 }

@@ -90,7 +90,19 @@ BPKSingleSelectChipGroup(
 BPKSingleSelectChipGroup(
     chips: chips,
     selectedIndex: selectedIndex,
-    type: .wrap
+    type: .wrap(alignment: .leading)
+) {
+    print("Chip item tapped")
+}
+```
+
+#### Multiple lines of chips group with center alignment
+
+```swift
+BPKSingleSelectChipGroup(
+    chips: chips,
+    selectedIndex: selectedIndex,
+    type: .wrap(alignment: .center)
 ) {
     print("Chip item tapped")
 }
@@ -151,6 +163,15 @@ BPKMultiSelectChipGroup(
 ```swift
 BPKMultiSelectChipGroup(
     chips: chips,
-    type: .wrap
+    type: .wrap(alignment: .leading)
+)
+```
+
+#### Multiple lines of chips group with center alignment
+
+```swift
+BPKMultiSelectChipGroup(
+    chips: chips,
+    type: .wrap(alignment: .center)
 )
 ```

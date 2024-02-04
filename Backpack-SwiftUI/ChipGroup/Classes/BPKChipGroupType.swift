@@ -16,10 +16,12 @@
  * limitations under the License.
  */
 
+import SwiftUI
+
 public enum BPKChipGroupType {
     /// Wraps the chip in a horizontal scroll view keeping the chips in a single line.
     case rail
 
     /// Wraps the chip in a flow layout view allowing the chips to wrap to multiple lines.
-    case wrap
+    case wrap(alignment: HorizontalAlignment)
 }

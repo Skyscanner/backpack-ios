@@ -346,9 +346,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor * bpk_textSecondaryDarkColor __deprecated;
 
 /**
- * The `textSecondaryLightColor` color from the Backpack palette - rgb(84, 88, 96).
+ * The `textSecondaryLightColor` color from the Backpack palette - rgb(98, 105, 113).
  *
- * <div style="width: 100px; height: 100px; background: #545860ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background: #626971ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_textSecondaryLightColor __deprecated;
 
@@ -430,9 +430,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor * bpk_backgroundElevation01LightColor __deprecated;
 
 /**
- * The `lineLightColor` color from the Backpack palette - rgb(194, 201, 205).
+ * The `lineLightColor` color from the Backpack palette - rgb(193, 199, 207).
  *
- * <div style="width: 100px; height: 100px; background: #c2c9cdff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background: #c1c7cfff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_lineLightColor __deprecated;
 
@@ -465,9 +465,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor * bpk_backgroundSecondaryDarkColor __deprecated;
 
 /**
- * The `backgroundAlternativeLightColor` color from the Backpack palette - rgb(239, 241, 242).
+ * The `backgroundAlternativeLightColor` color from the Backpack palette - rgb(239, 243, 248).
  *
- * <div style="width: 100px; height: 100px; background: #eff1f2ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background: #eff3f8ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_backgroundAlternativeLightColor __deprecated;
 
@@ -507,9 +507,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor * bpk_backgroundTertiaryLightColor __deprecated;
 
 /**
- * The `backgroundSecondaryLightColor` color from the Backpack palette - rgb(239, 241, 242).
+ * The `backgroundSecondaryLightColor` color from the Backpack palette - rgb(239, 243, 248).
  *
- * <div style="width: 100px; height: 100px; background: #eff1f2ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background: #eff3f8ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_backgroundSecondaryLightColor __deprecated;
 
@@ -553,7 +553,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The `canvasContrastColor` dynamic color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background-color: #eff1f2ff; background: linear-gradient(0.375turn, #eff1f2ff 49%, #010913ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background-color: #eff3f8ff; background: linear-gradient(0.375turn, #eff3f8ff 49%, #010913ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_canvasContrastColor;
 
@@ -658,7 +658,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The `surfaceHighlightColor` dynamic color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background-color: #e0e3e5ff; background: linear-gradient(0.375turn, #e0e3e5ff 49%, #243346ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background-color: #e0e4e9ff; background: linear-gradient(0.375turn, #e0e4e9ff 49%, #243346ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_surfaceHighlightColor;
 
@@ -689,6 +689,13 @@ NS_ASSUME_NONNULL_BEGIN
  * <div style="width: 100px; height: 100px; background-color: #0062e3ff; background: linear-gradient(0.375turn, #0062e3ff 49%, #84e9ffff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_textLinkColor;
+
+/**
+ * The `textHeroColor` dynamic color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background-color: #0062e3ff; background: linear-gradient(0.375turn, #0062e3ff 49%, #010913ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * bpk_textHeroColor;
 
 /**
  * The `textDisabledColor` dynamic color from the Backpack palette.
@@ -728,7 +735,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The `textSecondaryColor` dynamic color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background-color: #545860ff; background: linear-gradient(0.375turn, #545860ff 49%, #bdc4cbff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background-color: #626971ff; background: linear-gradient(0.375turn, #626971ff 49%, #bdc4cbff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_textSecondaryColor;
 
@@ -770,7 +777,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The `lineColor` dynamic color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background-color: #c2c9cdff; background: linear-gradient(0.375turn, #c2c9cdff 49%, #44505fff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background-color: #c1c7cfff; background: linear-gradient(0.375turn, #c1c7cfff 49%, #44505fff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_lineColor;
 
@@ -805,14 +812,14 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The `backgroundSecondaryColor` dynamic color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background-color: #eff1f2ff; background: linear-gradient(0.375turn, #eff1f2ff 49%, #131d2bff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background-color: #eff3f8ff; background: linear-gradient(0.375turn, #eff3f8ff 49%, #131d2bff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_backgroundSecondaryColor __deprecated;
 
 /**
  * The `backgroundAlternativeColor` dynamic color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background-color: #eff1f2ff; background: linear-gradient(0.375turn, #eff1f2ff 49%, #131d2bff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background-color: #eff3f8ff; background: linear-gradient(0.375turn, #eff3f8ff 49%, #131d2bff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_backgroundAlternativeColor __deprecated;
 

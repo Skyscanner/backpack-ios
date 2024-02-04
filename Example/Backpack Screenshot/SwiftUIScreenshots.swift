@@ -230,10 +230,16 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         await navigate(title: "Chip Group") {
             switchTab(title: "SwiftUI")
             app.tables.staticTexts["Rail - Single Select"].tap()
-            saveScreenshot(component: "chip-group", scenario: "rail", userInterfaceStyle: userInterfaceStyle)
+            saveScreenshot(component: "chip-group-single", scenario: "rail", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
             app.tables.staticTexts["Wrap - Single Select"].tap()
-            saveScreenshot(component: "chip-group", scenario: "wrap", userInterfaceStyle: userInterfaceStyle)
+            saveScreenshot(component: "chip-group-single", scenario: "wrap", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Rail - Multi Select"].tap()
+            saveScreenshot(component: "chip-group-multi", scenario: "rail", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Wrap - Multi Select"].tap()
+            saveScreenshot(component: "chip-group-multi", scenario: "wrap", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
         
