@@ -517,7 +517,10 @@ extension ComponentCellsProvider {
             tabs: [
                 .uikit(presentable: CustomPresentable(
                     generateViewController: { BPKFlightLegViewController() }
-                ))
+                )),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(FlightLegExampleView())
+                }))
             ],
             showChildren: { showComponent(title: "Flight Leg", tabs: $0) }
         )

@@ -121,6 +121,7 @@
 		797FA4F628312A00006E2A87 /* TextGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797FA4F528312A00006E2A87 /* TextGroups.swift */; };
 		79AFEDA92A9C7063001615A2 /* GraphicPromoExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFEDA82A9C7063001615A2 /* GraphicPromoExampleView.swift */; };
 		79B94C3E2AA5A33E006CB539 /* GraphicPromoGroupsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B94C3D2AA5A33E006CB539 /* GraphicPromoGroupsProvider.swift */; };
+		79BD5C142B708B91001E403B /* FlightLegExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BD5C132B708B91001E403B /* FlightLegExampleView.swift */; };
 		79CE553329BB05DD00CC89D3 /* OverlayForegroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CE553229BB05DD00CC89D3 /* OverlayForegroundViewController.swift */; };
 		79CE553529BEF26400CC89D3 /* PriceGroupsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CE553429BEF26400CC89D3 /* PriceGroupsProvider.swift */; };
 		79F5129329AEFEB600D0997A /* LabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F5129229AEFEB600D0997A /* LabelViewController.swift */; };
@@ -348,6 +349,7 @@
 		797FA4F528312A00006E2A87 /* TextGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextGroups.swift; sourceTree = "<group>"; };
 		79AFEDA82A9C7063001615A2 /* GraphicPromoExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicPromoExampleView.swift; sourceTree = "<group>"; };
 		79B94C3D2AA5A33E006CB539 /* GraphicPromoGroupsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicPromoGroupsProvider.swift; sourceTree = "<group>"; };
+		79BD5C132B708B91001E403B /* FlightLegExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightLegExampleView.swift; sourceTree = "<group>"; };
 		79CE553229BB05DD00CC89D3 /* OverlayForegroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayForegroundViewController.swift; sourceTree = "<group>"; };
 		79CE553429BEF26400CC89D3 /* PriceGroupsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceGroupsProvider.swift; sourceTree = "<group>"; };
 		79F5129229AEFEB600D0997A /* LabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelViewController.swift; sourceTree = "<group>"; };
@@ -923,6 +925,7 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				79BD5C122B708B4E001E403B /* FlightLeg */,
 				5318E3352AF5070300C66D18 /* Calendar */,
 				BA809EC32B05ED100030D1E7 /* AppSearchModal */,
 				2A8000102AB3DC3B009FDB10 /* TextArea */,
@@ -1268,6 +1271,14 @@
 				79AFEDA82A9C7063001615A2 /* GraphicPromoExampleView.swift */,
 			);
 			path = GraphicPromo;
+			sourceTree = "<group>";
+		};
+		79BD5C122B708B4E001E403B /* FlightLeg */ = {
+			isa = PBXGroup;
+			children = (
+				79BD5C132B708B91001E403B /* FlightLegExampleView.swift */,
+			);
+			path = FlightLeg;
 			sourceTree = "<group>";
 		};
 		A17006532A5BBEE900134458 /* BottomSheet */ = {
@@ -1724,6 +1735,7 @@
 				E397BEA422F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift in Sources */,
 				53B6DB6827FC4D520042B7C0 /* HorizontalNavigationGroups.swift in Sources */,
 				5390DB5D29098CE400F0F790 /* RadiusTokensViewController.swift in Sources */,
+				79BD5C142B708B91001E403B /* FlightLegExampleView.swift in Sources */,
 				79CE553529BEF26400CC89D3 /* PriceGroupsProvider.swift in Sources */,
 				E38947D422F5F0E900A357DB /* BottomSheetViewController.swift in Sources */,
 				D2B8A01B2147FF6A002290DE /* PreviewCollectionViewHeader.swift in Sources */,
