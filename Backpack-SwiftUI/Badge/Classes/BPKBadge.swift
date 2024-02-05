@@ -107,7 +107,7 @@ struct BPKBadge_Previews: PreviewProvider {
                         BPKBadge(style.1, icon: style.2)
                             .badgeStyle(style.0)
                             .padding(10)
-                            .background(style.3 ? BPKColor.surfaceHighlightColor : BPKColor.surfaceDefaultColor)
+                            .background(style.3 ? BPKColor.surfaceHighlightColor : BPKColor.badgeBackgroundNormalColor)
                         
                     }
                     
