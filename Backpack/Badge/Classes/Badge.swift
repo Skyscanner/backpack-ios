@@ -135,12 +135,10 @@ public class BPKBadge: UIView {
 fileprivate extension BPKBadgeType {
     var textColor: UIColor {
         switch self {
-        case .success, .warning, .destructive:
+        case .success, .warning, .destructive, .normal, .inverse:
             return BPKColor.textPrimaryColor
         case .outline, .strong:
             return BPKColor.textOnDarkColor
-        case .normal, .inverse:
-            return BPKColor.textPrimaryColor
         case .brand:
             return BPKColor.textPrimaryInverseColor
         }
@@ -148,18 +146,12 @@ fileprivate extension BPKBadgeType {
     
     var backgroundColor: UIColor {
         switch self {
-        case .success:
-            return BPKColor.badgeBackgroundNormalColor
-        case .warning:
-            return BPKColor.badgeBackgroundNormalColor
-        case .destructive:
+        case .success, .warning, .destructive, .normal:
             return BPKColor.badgeBackgroundNormalColor
         case .inverse:
             return BPKColor.surfaceDefaultColor
         case .outline:
             return BPKColor.white.withAlphaComponent(0)
-        case .normal:
-            return BPKColor.badgeBackgroundNormalColor
         case .strong:
             return BPKColor.corePrimaryColor
         case .brand:
