@@ -74,8 +74,8 @@ class BPKTabBarControllerSnapshotTest: XCTestCase {
         let tabTwoItem = BPKTabBarItem(
             title: "Tab 2",
             image: BPKIcon.makeLargeTemplateIcon(name: .explore),
-            tag: 2,
-            dotImageDefinition: dotImageDefinition
+            dotImage: dotImageDefinition,
+            selectedDotImage: image(named: "tab_explore_with_dot_lm")
         )
         
         tabTwoItem.addDot()
