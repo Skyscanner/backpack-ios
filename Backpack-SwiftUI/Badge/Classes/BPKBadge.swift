@@ -63,14 +63,14 @@ public struct BPKBadge: View {
     public func createBadgeIconView(icon: BPKIcon?) -> BPKIconView? {
         guard let badgeIcon = icon else {
             switch style {
-            case .normal, .strong, .inverse, .outline, .brand:
-                return nil
             case .success:
                 return BPKIconView(BPKIcon.tickCircle, size: .small)
             case .warning:
                 return BPKIconView(BPKIcon.informationCircle, size: .small)
             case .destructive:
                 return BPKIconView(BPKIcon.exclamation, size: .small)
+            default:
+                return nil
             }
         }
         return BPKIconView(badgeIcon, size: .small)
