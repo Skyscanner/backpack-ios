@@ -25,6 +25,7 @@ public struct BPKAppSearchModal: View {
     let results: BPKAppSearchModalResults
     let closeAccessibilityLabel: String
     let onClose: () -> Void
+    private var textFieldState: BPKTextField.State = .default
     
     public init(
         title: String,
@@ -49,6 +50,7 @@ public struct BPKAppSearchModal: View {
             
             if results.showTextField {
                 BPKTextField(placeholder: inputHint, $inputText)
+                    .inputState(textFieldState)
             }
         
             switch results {
@@ -88,6 +90,12 @@ public struct BPKAppSearchModal: View {
                 .accessibilityAddTraits(.isHeader)
         }
         .padding(.vertical, .md)
+    }
+    
+    public func inputState(_ state: BPKTextField.State) -> BPKAppSearchModal {
+        var result = self
+        result.textFieldState = state
+        return result
     }
 }
 

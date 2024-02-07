@@ -38,6 +38,9 @@ struct AppSearchModalExampleView: View {
                     print("Tapped close button")
                 }
             )
+            .inputState(.clear(accessibilityLabel: "clear text", action: {
+                inputText = ""
+            }))
             .onChange(of: inputText, perform: { _ in
                 self.viewModel.loadContentFrom(inputText)
             })
