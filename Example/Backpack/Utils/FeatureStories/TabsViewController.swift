@@ -34,9 +34,7 @@ class TabsViewController: BPKTabBarController {
         super.viewDidLoad()
                 
         viewControllers = tabs.map { tab -> UIViewController in
-            let tabBarItem = BPKTabBarItem()
-            tabBarItem.title = tab.title
-            tabBarItem.originalImage = tab.image
+            let tabBarItem = BPKTabBarItem(title: tab.title, image: tab.image)
             
             let viewController = tab.viewController()
             viewController.tabBarItem = tabBarItem
