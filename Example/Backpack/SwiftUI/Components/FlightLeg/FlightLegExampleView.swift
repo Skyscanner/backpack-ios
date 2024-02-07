@@ -25,19 +25,14 @@ struct FlightLegExampleView: View {
     // swiftlint:disable line_length
     var body: some View {
         ScrollView {
-            BPKCard {
-                cardContent()
-            }
-            .padding()
-            
-            cardContent(addHeading: true)
+            cardContent(headingText: "1, £211, Swiss & Lufthansa")
                 .padding(.md)
                 .background(.surfaceDefaultColor)
                 .cornerRadius(8)
                 .shadow(.sm)
                 .padding()
             
-            cardContent(addHeading: true)
+            cardContent(headingText: "2, £211, Swiss & Lufthansa")
                 .padding(.md)
                 .background(.surfaceDefaultColor)
                 .cornerRadius(8)
@@ -47,10 +42,16 @@ struct FlightLegExampleView: View {
     }
     
     @ViewBuilder
-    func cardContent(addHeading: Bool = false) -> some View {
+    func cardContent(headingText: String) -> some View {
         VStack(alignment: .leading) {
-            BPKText("Swiss & Lufthansa", style: .heading5)
-                .accessibilityAddTraits(addHeading ? .isHeader : .isStaticText)
+            HStack {
+                BPKText("Swiss & Lufthansa", style: .heading5)
+                    .accessibilityAddTraits(.isHeader)
+                    .accessibilityLabel(headingText)
+                Spacer()
+                BPKIconView(.heartOutline, size: .large)
+                    .accessibilityHidden(true)
+            }
             BPKFlightLeg(
                 departureArrivalTime: "13:45 - 19:15",
                 flightDescription: "LHR - BCN",
@@ -59,7 +60,7 @@ struct FlightLegExampleView: View {
                 duration: "4h 30m"
             )
             .accessibilityElement(children: .ignore)
-            .accessibilityLabel("Outbound: From LHR to BCN. Leaving at 13:45 and arriving at 19:45. Takes 4hours 30 minutes with 1 stop.")
+            .accessibilityLabel("Outbound: From LHR to BCN. Leaving at 13:45 and arriving at 19:45. Takes 4 hours 30 minutes with 1 stop.")
             
             BPKFlightLeg(
                 departureArrivalTime: "14:00 - 17:45",
@@ -72,14 +73,24 @@ struct FlightLegExampleView: View {
             .accessibilityLabel("Return: From BCN to LHR. Leaving at 14:00 and arriving at 17:45. Takes 4 hours 45 minutes with 1 stop.")
             
             HStack(spacing: .sm) {
-                BPKBadge("1", icon: .baggageCabin)
-                    .accessibilityLabel("1 cabin bag")
-                BPKBadge("0", icon: .baggageChecked)
-                    .accessibilityLabel("No checked bags")
+                HStack {
+                    BPKBadge("1", icon: .baggageCabin)
+                        .accessibilityLabel("1 cabin bag")
+                    BPKBadge("0", icon: .baggageChecked)
+                        .accessibilityLabel("No checked bags")
+                }
+                .accessibilityElement(children: .combine)
                 Spacer()
                 BPKPrice(price: "£211", size: .small)
-                    .accessibilityAddTraits(addHeading ? .isButton : .isStaticText)
+                    .accessibilityAddTraits(.isButton)
+                    .accessibilityAction(named: Text("Save flight")) {
+                        UIAccessibility.post(notification: .announcement, argument: "Flight saved")
+                    }
+                    .accessibilityAction(named: Text("Share flight")) {
+                        UIAccessibility.post(notification: .announcement, argument: "Flight shared")
+                    }
             }
+            
         }
     }
 }
