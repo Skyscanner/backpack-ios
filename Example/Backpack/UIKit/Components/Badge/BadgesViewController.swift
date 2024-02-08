@@ -70,21 +70,39 @@ class BadgesViewController: UIViewController {
         stack.directionalLayoutMargins = .init(top: 8, leading: 8, bottom: 8, trailing: 8)
         stack.axis = .horizontal
         
+        let iconName: BPKSmallIconName
+        
+        switch badgeExample.type {
+        case .success:
+            iconName = .tickCircle
+        case .warning:
+            iconName = .informationCircle
+        case .destructive:
+            iconName = .exclamation
+        default:
+            iconName = .tickCircle
+        }
+
         let badge = BPKBadge(
             type: badgeExample.type,
             message: badgeExample.message
         )
+
         let badgeWithIcon = BPKBadge(
             type: badgeExample.type,
-            icon: .init(iconName: .tickCircle),
+            icon: .init(iconName: iconName),
             message: badgeExample.message
         )
         
         if badgeExample.showOverDarkBackground {
             stack.backgroundColor = BPKColor.corePrimaryColor
         }
+
         stack.addArrangedSubview(badge)
         stack.addArrangedSubview(badgeWithIcon)
+        if [BPKBadgeType.success, BPKBadgeType.warning, BPKBadgeType.destructive].contains(badgeExample.type) {
+            badge.isHidden = true
+        }
         return stack
     }
 }
