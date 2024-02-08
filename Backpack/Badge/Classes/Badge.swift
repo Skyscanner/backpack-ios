@@ -86,6 +86,19 @@ public class BPKBadge: UIView {
             layer.borderWidth = BPKBorderWidthSm
         }
         
+        if icon == nil {
+            switch type {
+            case .success:
+                icon = Icon(iconName: .tickCircle)
+            case .warning:
+                icon = Icon(iconName: .informationCircle)
+            case .destructive:
+                icon = Icon(iconName: .exclamation)
+            default:
+                break
+            }
+        }
+        
         iconView.image = icon.orNil(forType: type)
         placeElements()
     }
@@ -99,9 +112,7 @@ public class BPKBadge: UIView {
     private func placeElements() {
         removeStackViewSubviews()
         containerStackView.addArrangedSubview(label)
-        if icon == nil && ![BPKBadgeType.success, BPKBadgeType.warning, BPKBadgeType.destructive].contains(type) {
-            return
-        }
+        if icon == nil { return }
         containerStackView.insertArrangedSubview(iconView, at: 0)
     }
     
@@ -175,18 +186,7 @@ fileprivate extension BPKBadgeType {
 
 fileprivate extension Optional where Wrapped == BPKBadge.Icon {
     func orNil(forType type: BPKBadgeType) -> UIImage? {
-        guard let icon = self else {
-            switch type {
-            case .success:
-                return BPKIcon.makeSmallIcon(name: .tickCircle, color: type.iconColor)
-            case .warning:
-                return BPKIcon.makeSmallIcon(name: .informationCircle, color: type.iconColor)
-            case .destructive:
-                return BPKIcon.makeSmallIcon(name: .exclamation, color: type.iconColor)
-            default:
-                return nil
-            }
-        }
+        guard let icon = self else { return nil }
         return BPKIcon.makeSmallIcon(name: icon.iconName, color: type.iconColor)
     }
 }
