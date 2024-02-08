@@ -78,9 +78,8 @@ public struct BPKBadge: View {
     
     private var content: some View {
         HStack(spacing: .sm) {
-            let badgeIconView = createBadgeIconView(icon: icon)
-            if badgeIconView != nil {
-                badgeIconView?.foregroundColor(style.iconColor)
+            if let badgeIconView = createBadgeIconView(icon: icon) {
+                badgeIconView.foregroundColor(style.iconColor)
             }
             BPKText(title, style: .footnote)
                 .foregroundColor(style.foregroundColor)

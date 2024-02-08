@@ -177,14 +177,14 @@ fileprivate extension Optional where Wrapped == BPKBadge.Icon {
     func orNil(forType type: BPKBadgeType) -> UIImage? {
         guard let icon = self else {
             switch type {
-            case .normal, .strong, .inverse, .outline, .brand:
-                return nil
             case .success:
                 return BPKIcon.makeSmallIcon(name: .tickCircle, color: type.iconColor)
             case .warning:
                 return BPKIcon.makeSmallIcon(name: .informationCircle, color: type.iconColor)
             case .destructive:
                 return BPKIcon.makeSmallIcon(name: .exclamation, color: type.iconColor)
+            default:
+                return nil
             }
         }
         return BPKIcon.makeSmallIcon(name: icon.iconName, color: type.iconColor)
