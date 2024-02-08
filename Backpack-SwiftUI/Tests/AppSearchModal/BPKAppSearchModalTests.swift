@@ -38,9 +38,24 @@ class BPKAppSearchModalTests: XCTestCase {
             givenSut(with: .content(givenContentState()))
         )
     }
+    
+    func test_withContentInputStateClear() {
+        assertSnapshot(
+            givenSut(
+                with: .content(givenContentState()),
+                inputState: .clear(
+                    accessibilityLabel: "clear",
+                    action: { }
+                )
+            )
+        )
+    }
   
     // MARK: - Helpers
-    private func givenSut(with results: BPKAppSearchModalResults) -> some View {
+    private func givenSut(
+        with results: BPKAppSearchModalResults,
+        inputState: BPKAppSearchModal.TextFieldState = .default
+    ) -> some View {
         BPKAppSearchModal(
             title: "Search Modal",
             inputText: .constant(""),
@@ -49,6 +64,7 @@ class BPKAppSearchModalTests: XCTestCase {
             closeAccessibilityLabel: "Close",
             onClose: { }
         )
+        .inputState(inputState)
         .frame(width: 375, height: 667)
     }
     
