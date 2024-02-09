@@ -70,8 +70,12 @@ struct AppSearchModalContentView: View {
                 BPKIconView(item.icon, size: .large)
                 VStack(alignment: .leading) {
                     BPKText(item.title, style: .bodyDefault)
+                        .lineLimit(nil)
+                        .multilineTextAlignment(.leading)
                     if let subtitle = item.subtitle {
                         BPKText(subtitle, style: .footnote)
+                            .lineLimit(nil)
+                            .multilineTextAlignment(.leading)
                     }
                 }
                 .padding(.vertical, .base)
