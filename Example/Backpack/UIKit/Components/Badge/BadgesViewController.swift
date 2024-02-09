@@ -104,6 +104,7 @@ class BadgesViewController: UIViewController {
             badge.alpha = 0
             badge.isAccessibilityElement = false
             badge.isUserInteractionEnabled = false
+            stack.spacing = BPKSpacingMd
         }
         return stack
     }
