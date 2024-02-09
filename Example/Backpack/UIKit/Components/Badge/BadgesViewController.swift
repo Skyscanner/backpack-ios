@@ -101,7 +101,9 @@ class BadgesViewController: UIViewController {
         stack.addArrangedSubview(badge)
         stack.addArrangedSubview(badgeWithIcon)
         if [BPKBadgeType.success, BPKBadgeType.warning, BPKBadgeType.destructive].contains(badgeExample.type) {
-            badge.isHidden = true
+            badge.alpha = 0
+            badge.isAccessibilityElement = false
+            badge.isUserInteractionEnabled = false
         }
         return stack
     }
