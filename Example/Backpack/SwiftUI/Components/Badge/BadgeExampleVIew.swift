@@ -29,8 +29,8 @@ struct BadgeExampleVIew: View {
                 makeBadgeRow(text: "Normal", icon: .tickCircle, style: .normal)
                 makeBadgeRow(text: "Strong", icon: .tickCircle, style: .strong)
                 makeBadgeRow(text: "Success", icon: .tickCircle, style: .success)
-                makeBadgeRow(text: "Warning", icon: .helpCircle, style: .warning)
-                makeBadgeRow(text: "Critical", icon: .closeCircle, style: .destructive)
+                makeBadgeRow(text: "Warning", icon: .informationCircle, style: .warning)
+                makeBadgeRow(text: "Critical", icon: .exclamation, style: .destructive)
                 makeBadgeRow(text: "Inverse", icon: .tickCircle, style: .inverse, background: .corePrimaryColor)
                 makeBadgeRow(text: "Outline", icon: .tickCircle, style: .outline, background: .corePrimaryColor)
                 makeBadgeRow(text: "Brand", icon: .priceTag, style: .brand)
@@ -47,8 +47,12 @@ struct BadgeExampleVIew: View {
     ) -> some View {
         HStack {
             Spacer()
-            BPKBadge(text)
-                .badgeStyle(style)
+            if ![BPKBadge.Style.success, BPKBadge.Style.warning, BPKBadge.Style.destructive].contains(style) {
+                BPKBadge(text)
+                    .badgeStyle(style)
+            } else {
+                Spacer()
+            }
             Spacer()
             BPKBadge(text, icon: icon)
                 .badgeStyle(style)

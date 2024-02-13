@@ -25,4 +25,10 @@ class BPKBadgeTest: XCTestCase {
         XCTAssertEqual(badge.type, .success)
         XCTAssertEqual(badge.message, "Backpack rocks!")
     }
+    
+    func testInitWithIcon() {
+        let icon = BPKBadge.Icon(iconName: BPKSmallIconName.tickCircle)
+        let badge = BPKBadge(type: .success, icon: icon, message: "Backpack rocks!")
+        XCTAssertEqual(badge.icon, icon)
+    }
 }

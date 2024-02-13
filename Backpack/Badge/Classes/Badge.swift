@@ -40,7 +40,7 @@ public class BPKBadge: UIView {
     }
     
     private let label: BPKLabel = {
-        let label = BPKLabel(fontStyle: .textCaption)
+        let label = BPKLabel(fontStyle: .textFootnote)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -84,6 +84,19 @@ public class BPKBadge: UIView {
         if type == .outline {
             layer.borderColor = BPKColor.textOnDarkColor.cgColor
             layer.borderWidth = BPKBorderWidthSm
+        }
+        
+        if icon == nil {
+            switch type {
+            case .success:
+                icon = Icon(iconName: .tickCircle)
+            case .warning:
+                icon = Icon(iconName: .informationCircle)
+            case .destructive:
+                icon = Icon(iconName: .exclamation)
+            default:
+                break
+            }
         }
         
         iconView.image = icon.orNil(forType: type)
@@ -133,12 +146,10 @@ public class BPKBadge: UIView {
 fileprivate extension BPKBadgeType {
     var textColor: UIColor {
         switch self {
-        case .success, .warning, .destructive:
-            return BPKColor.textOnLightColor
+        case .success, .warning, .destructive, .normal, .inverse:
+            return BPKColor.textPrimaryColor
         case .outline, .strong:
             return BPKColor.textOnDarkColor
-        case .normal, .inverse:
-            return BPKColor.textPrimaryColor
         case .brand:
             return BPKColor.textPrimaryInverseColor
         }
@@ -146,22 +157,29 @@ fileprivate extension BPKBadgeType {
     
     var backgroundColor: UIColor {
         switch self {
-        case .success:
-            return BPKColor.statusSuccessFillColor
-        case .warning:
-            return BPKColor.statusWarningFillColor
-        case .destructive:
-            return BPKColor.statusDangerFillColor
+        case .success, .warning, .destructive, .normal:
+            return BPKColor.badgeBackgroundNormalColor
         case .inverse:
             return BPKColor.surfaceDefaultColor
         case .outline:
             return BPKColor.white.withAlphaComponent(0)
-        case .normal:
-            return BPKColor.surfaceHighlightColor
         case .strong:
             return BPKColor.corePrimaryColor
         case .brand:
             return BPKColor.coreAccentColor
+        }
+    }
+    
+    var iconColor: UIColor {
+        switch self {
+        case .success:
+            return BPKColor.statusSuccessSpotColor
+        case .warning:
+            return BPKColor.statusWarningSpotColor
+        case .destructive:
+            return BPKColor.statusDangerSpotColor
+        case .normal, .strong, .inverse, .outline, .brand:
+            return textColor
         }
     }
 }
@@ -169,6 +187,6 @@ fileprivate extension BPKBadgeType {
 fileprivate extension Optional where Wrapped == BPKBadge.Icon {
     func orNil(forType type: BPKBadgeType) -> UIImage? {
         guard let icon = self else { return nil }
-        return BPKIcon.makeSmallIcon(name: icon.iconName, color: type.textColor)
+        return BPKIcon.makeSmallIcon(name: icon.iconName, color: type.iconColor)
     }
 }
