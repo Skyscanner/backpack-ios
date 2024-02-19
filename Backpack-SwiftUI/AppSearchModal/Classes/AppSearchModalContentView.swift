@@ -63,7 +63,13 @@ struct AppSearchModalContentView: View {
     }
     
     struct ItemCell: View {
+
         let item: BPKAppSearchModalContent.Item
+        
+        private func subtitleLineLimit() -> Int? {
+            let isDefaultSizeOrSmaller = sizeCategory <= .large
+            return isDefaultSizeOrSmaller ? 2 : nil
+        }
         
         var body: some View {
             HStack(spacing: .base) {
@@ -74,7 +80,7 @@ struct AppSearchModalContentView: View {
                         .multilineTextAlignment(.leading)
                     if let subtitle = item.subtitle {
                         BPKText(subtitle, style: .footnote)
-                            .lineLimit(nil)
+                            .lineLimit(subtitleLineLimit())
                             .multilineTextAlignment(.leading)
                     }
                 }
