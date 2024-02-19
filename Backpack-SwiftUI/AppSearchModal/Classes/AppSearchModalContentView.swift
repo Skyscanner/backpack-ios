@@ -63,6 +63,7 @@ struct AppSearchModalContentView: View {
     }
     
     struct ItemCell: View {
+        @Environment(\.sizeCategory) var sizeCategory
 
         let item: BPKAppSearchModalContent.Item
         
