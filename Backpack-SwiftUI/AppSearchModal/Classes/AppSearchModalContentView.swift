@@ -67,11 +67,6 @@ struct AppSearchModalContentView: View {
 
         let item: BPKAppSearchModalContent.Item
         
-        private func subtitleLineLimit() -> Int? {
-            let isDefaultSizeOrSmaller = sizeCategory <= .large
-            return isDefaultSizeOrSmaller ? 2 : nil
-        }
-        
         var body: some View {
             HStack(spacing: .base) {
                 BPKIconView(item.icon, size: .large)
@@ -95,6 +90,11 @@ struct AppSearchModalContentView: View {
             .contentShape(Rectangle())
             .onTapGesture(perform: item.onItemSelected)
             .accessibilityElement(children: .combine)
+        }
+        
+        private func subtitleLineLimit() -> Int? {
+            let isDefaultSizeOrSmaller = sizeCategory <= .large
+            return isDefaultSizeOrSmaller ? 2 : nil
         }
     }
 }
