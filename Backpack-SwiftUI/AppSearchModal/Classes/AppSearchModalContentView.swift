@@ -63,6 +63,8 @@ struct AppSearchModalContentView: View {
     }
     
     struct ItemCell: View {
+        @Environment(\.sizeCategory) var sizeCategory
+
         let item: BPKAppSearchModalContent.Item
         
         var body: some View {
@@ -70,8 +72,12 @@ struct AppSearchModalContentView: View {
                 BPKIconView(item.icon, size: .large)
                 VStack(alignment: .leading) {
                     BPKText(item.title, style: .bodyDefault)
+                        .lineLimit(nil)
+                        .multilineTextAlignment(.leading)
                     if let subtitle = item.subtitle {
                         BPKText(subtitle, style: .footnote)
+                            .lineLimit(subtitleLineLimit())
+                            .multilineTextAlignment(.leading)
                     }
                 }
                 .padding(.vertical, .base)
@@ -84,6 +90,11 @@ struct AppSearchModalContentView: View {
             .contentShape(Rectangle())
             .onTapGesture(perform: item.onItemSelected)
             .accessibilityElement(children: .combine)
+        }
+        
+        private func subtitleLineLimit() -> Int? {
+            let isDefaultSizeOrSmaller = sizeCategory <= .large
+            return isDefaultSizeOrSmaller ? 2 : nil
         }
     }
 }

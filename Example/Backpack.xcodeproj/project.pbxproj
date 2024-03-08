@@ -121,6 +121,7 @@
 		797FA4F628312A00006E2A87 /* TextGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797FA4F528312A00006E2A87 /* TextGroups.swift */; };
 		79AFEDA92A9C7063001615A2 /* GraphicPromoExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFEDA82A9C7063001615A2 /* GraphicPromoExampleView.swift */; };
 		79B94C3E2AA5A33E006CB539 /* GraphicPromoGroupsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B94C3D2AA5A33E006CB539 /* GraphicPromoGroupsProvider.swift */; };
+		79BD5C022B6F58AE001E403B /* TabBarControllers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79BD5C012B6F58AE001E403B /* TabBarControllers.storyboard */; };
 		79CE553329BB05DD00CC89D3 /* OverlayForegroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CE553229BB05DD00CC89D3 /* OverlayForegroundViewController.swift */; };
 		79CE553529BEF26400CC89D3 /* PriceGroupsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CE553429BEF26400CC89D3 /* PriceGroupsProvider.swift */; };
 		79F5129329AEFEB600D0997A /* LabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F5129229AEFEB600D0997A /* LabelViewController.swift */; };
@@ -168,7 +169,6 @@
 		D28B3611219C209000E82A79 /* ChipUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B3610219C209000E82A79 /* ChipUITest.swift */; };
 		D297B8FD23B9038D008D094A /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28D0E8323B21BE4008B4C09 /* SnapshotHelper.swift */; };
 		D297B8FE23B9038D008D094A /* Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28D0E8123B2183D008B4C09 /* Screenshots.swift */; };
-		D2B70FA42434EB350026282A /* TabBarControllers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2B70FA32434EB350026282A /* TabBarControllers.storyboard */; };
 		D2B8A01B2147FF6A002290DE /* PreviewCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */; };
 		D2BBC1C922560FDD002DA71A /* BPKTableViewSelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BBC1C822560FDD002DA71A /* BPKTableViewSelectableCell.swift */; };
 		D2C4467023158479009E58A5 /* Panel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2C4466F23158479009E58A5 /* Panel.storyboard */; };
@@ -348,6 +348,7 @@
 		797FA4F528312A00006E2A87 /* TextGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextGroups.swift; sourceTree = "<group>"; };
 		79AFEDA82A9C7063001615A2 /* GraphicPromoExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicPromoExampleView.swift; sourceTree = "<group>"; };
 		79B94C3D2AA5A33E006CB539 /* GraphicPromoGroupsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicPromoGroupsProvider.swift; sourceTree = "<group>"; };
+		79BD5C012B6F58AE001E403B /* TabBarControllers.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabBarControllers.storyboard; sourceTree = "<group>"; };
 		79CE553229BB05DD00CC89D3 /* OverlayForegroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayForegroundViewController.swift; sourceTree = "<group>"; };
 		79CE553429BEF26400CC89D3 /* PriceGroupsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceGroupsProvider.swift; sourceTree = "<group>"; };
 		79F5129229AEFEB600D0997A /* LabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelViewController.swift; sourceTree = "<group>"; };
@@ -398,7 +399,6 @@
 		D28D0E8323B21BE4008B4C09 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = "Backpack Screenshot/SnapshotHelper.swift"; sourceTree = SOURCE_ROOT; };
 		D297B8F323B90379008D094A /* Backpack Screenshot.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Backpack Screenshot.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D297B8F723B90379008D094A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D2B70FA32434EB350026282A /* TabBarControllers.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabBarControllers.storyboard; sourceTree = "<group>"; };
 		D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCollectionViewHeader.swift; sourceTree = "<group>"; };
 		D2BBC1C822560FDD002DA71A /* BPKTableViewSelectableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPKTableViewSelectableCell.swift; sourceTree = "<group>"; };
 		D2C4466F23158479009E58A5 /* Panel.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Panel.storyboard; sourceTree = "<group>"; };
@@ -1178,7 +1178,7 @@
 		793EC5662836154B00D627F6 /* Tab bar */ = {
 			isa = PBXGroup;
 			children = (
-				D2B70FA32434EB350026282A /* TabBarControllers.storyboard */,
+				79BD5C012B6F58AE001E403B /* TabBarControllers.storyboard */,
 				D270C065243B61C60036A040 /* TabBarControllerStoryViewController.swift */,
 			);
 			path = "Tab bar";
@@ -1590,11 +1590,11 @@
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 				D2C49DB723856A55008D41FB /* Calendar.storyboard in Resources */,
 				D205510922675DAE00BC5BCC /* LaunchScreen.xib in Resources */,
+				79BD5C022B6F58AE001E403B /* TabBarControllers.storyboard in Resources */,
 				D649E8EE212F0B6500B25A9E /* Localizable.strings in Resources */,
 				58CFF14722D3837900C45B0B /* StarRatings.storyboard in Resources */,
 				D6D164A02153934500FFB667 /* Buttons.storyboard in Resources */,
 				D2EB965325C05E0800988978 /* Map.storyboard in Resources */,
-				D2B70FA42434EB350026282A /* TabBarControllers.storyboard in Resources */,
 				764D0038237DDD7600FE60AC /* Snackbar.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
