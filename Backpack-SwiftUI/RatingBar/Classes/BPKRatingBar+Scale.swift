@@ -29,15 +29,15 @@ extension BPKRatingBar {
         
         var scaleLabel: String {
             switch self {
-            case .zeroToFive: "5"
-            case .zeroToTen: "10"
+            case .zeroToFive: return "5"
+            case .zeroToTen: return "10"
             }
         }
         
         var rawScale: Float {
             switch self {
-            case .zeroToFive: 5
-            case .zeroToTen: 10
+            case .zeroToFive: return 5
+            case .zeroToTen: return 10
             }
         }
     }

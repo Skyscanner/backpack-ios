@@ -30,10 +30,10 @@ extension BPKRatingBar {
         var ratingBarBackgroundColor: BPKColor {
             switch self {
             case .default:
-                BPKColor(value: UIColor(red: 0.88, green: 0.89, blue: 0.9, alpha: 1))
+                return BPKColor(value: UIColor(red: 0.88, green: 0.89, blue: 0.9, alpha: 1))
                     .darkVariant(.surfaceElevatedColor)
             case .onContrast:
-                BPKColor(value: .white)
+                return BPKColor(value: .white)
                     .darkVariant(BPKColor(value: UIColor(red: 0.14, green: 0.2, blue: 0.27, alpha: 1)))
             }
         }
