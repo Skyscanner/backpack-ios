@@ -40,7 +40,9 @@ struct NavBarExampleView: View {
         .sheet(isPresented: $defaultNavBar, content: {
             BPKNavigationView(
                 title: "Default",
-                leadingItems: [.init(type: .backButton("Back"), action: {})],
+                leadingItems: [.init(type: .backButton("Back"), action: {
+                    defaultNavBar.toggle()
+                })],
                 trailingItems: [
                     .init(type: .icon(.accessibility, "accessibility"), action: {}),
                     .init(type: .icon(.alertAdd, "Add"), action: {})
@@ -53,7 +55,9 @@ struct NavBarExampleView: View {
         .sheet(isPresented: $transparent, content: {
             BPKNavigationView(
                 title: "Transparent",
-                leadingItems: [.init(type: .backButton("Back"), action: {})],
+                leadingItems: [.init(type: .backButton("Back"), action: {
+                    transparent.toggle()
+                })],
                 trailingItems: [
                     .init(type: .icon(.accessibility, "accessibility"), action: {}),
                     .init(type: .icon(.alertAdd, "Add"), action: {})
@@ -66,7 +70,9 @@ struct NavBarExampleView: View {
         .sheet(isPresented: $surfaceContrast, content: {
             BPKNavigationView(
                 title: "Surface Contrast",
-                leadingItems: [.init(type: .closeButton("Close"), action: {})],
+                leadingItems: [.init(type: .closeButton("Close"), action: {
+                    surfaceContrast.toggle()
+                })],
                 trailingItems: [
                     .init(type: .icon(.accessibility, "accessibility"), action: {}),
                     .init(type: .icon(.alertAdd, "Add"), action: {})

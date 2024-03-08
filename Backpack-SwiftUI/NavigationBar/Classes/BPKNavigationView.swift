@@ -185,9 +185,8 @@ public struct BPKNavigationView<Content: View>: View {
     }
 }
 
-// swiftlint:disable closure_body_length closure_body_length
-#Preview {
-    VStack {
+struct BPKNavigationView_Previews: PreviewProvider {
+    static var previews: some View {
         BPKNavigationView(
             title: "Title Here",
             leadingItems: [
@@ -198,7 +197,7 @@ public struct BPKNavigationView<Content: View>: View {
                 .init(type: .icon(.ai, "AI"), action: {}),
                 .init(type: .title("Add"), action: {})
             ],
-            style: .default(.inline)
+            style: .transparent(.automatic)
         ) {
             ScrollView {
                 Rectangle()
@@ -207,26 +206,6 @@ public struct BPKNavigationView<Content: View>: View {
                     .bpkOverlay(.linear(.low, .top))
             }
             .ignoresSafeArea(edges: .top)
-        }
-        BPKNavigationView(
-            title: "Title Here",
-            leadingItems: [
-                .init(type: .backButton("Back"), action: {}),
-                .init(type: .icon(.accountFemale, "try"), action: {})
-            ],
-            trailingItems: [
-                .init(type: .icon(.ai, "AI"), action: {}),
-                .init(type: .title("Add"), action: {})
-            ],
-            style: .default(.large)
-        ) {
-            ScrollView {
-                Rectangle()
-                    .foregroundColor(.blue)
-                    .frame(width: .infinity, height: 250)
-                    .bpkOverlay(.linear(.low, .top))
-            }
-//            .ignoresSafeArea(edges: .top)
         }
     }
 }
