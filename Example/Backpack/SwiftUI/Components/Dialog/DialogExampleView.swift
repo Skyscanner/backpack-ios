@@ -152,6 +152,7 @@ struct DialogExampleView: View {
                 secondaryButton: secondaryButton,
                 linkButton: linkButton
             ),
+            rootViewController: self.rootViewController,
             onTouchOutside: dismissDialogs
         )
         .bpkWarningDialog(
@@ -164,6 +165,7 @@ struct DialogExampleView: View {
                 secondaryButton: secondaryButton,
                 linkButton: linkButton
             ),
+            rootViewController: self.rootViewController,
             onTouchOutside: dismissDialogs
         )
         .bpkDestructiveDialog(
@@ -173,6 +175,7 @@ struct DialogExampleView: View {
             text: "Description that goes two lines ideally, but sometimes it can go longer",
             confirmButton: BPKDialogButton("Delete", action: dismissDialogs),
             linkButton: BPKDialogButton("Cancel", action: dismissDialogs),
+            rootViewController: self.rootViewController,
             onTouchOutside: dismissDialogs
         )
         .bpkImageDialog(
@@ -185,6 +188,7 @@ struct DialogExampleView: View {
                 secondaryButton: secondaryButton,
                 linkButton: linkButton
             ),
+            rootViewController: self.rootViewController,
             onTouchOutside: dismissDialogs
         )
         .bpkFlareDialog(
@@ -197,6 +201,7 @@ struct DialogExampleView: View {
                 secondaryButton: secondaryButton,
                 linkButton: linkButton
             ),
+            rootViewController: self.rootViewController,
             onTouchOutside: dismissDialogs
         )
     }
@@ -220,6 +225,14 @@ struct DialogExampleView: View {
                 presentingFlareDialogView.toggle()
             }
         }
+    }
+    
+    private var rootViewController: UIViewController? {
+        UIApplication.shared
+            .windows
+            .filter { $0.isKeyWindow }
+            .first?
+            .rootViewController
     }
 }
 
