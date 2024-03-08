@@ -36,7 +36,7 @@ class BPKBadgeTests: XCTestCase {
     private func testView(icon: BPKIcon? = nil) -> some View {
         VStack(spacing: 0) {
             ForEach(styles, id: \.0) {
-                BPKBadge("Test badge", icon: icon)
+                BPKBadge("Backpack", icon: icon)
                     .badgeStyle($0.0)
                     .padding(4)
                     .background($0.1)
