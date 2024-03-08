@@ -243,7 +243,7 @@ jobs:
   UploadArtifacts:
     name: Upload Artifacts
     runs-on: macos-latest
-    needs: [TestPods]
+    needs: [TestPods, Screenshots]
     steps:
       - name: Save assets
         uses: actions/upload-artifact@v4
