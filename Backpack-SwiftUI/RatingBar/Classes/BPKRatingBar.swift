@@ -81,12 +81,13 @@ public struct BPKRatingBar: View {
     /// The labels will show the raw rating value and the rating scale,
     /// even if the rating is out of the scale.
     private func calculateValue() -> Float {
-        let valueToUse: Float = if rating > ratingScale.rawScale {
-            ratingScale.rawScale
+        let valueToUse: Float
+        if rating > ratingScale.rawScale {
+            valueToUse = ratingScale.rawScale
         } else if rating < 0 {
-            0
+            valueToUse = 0
         } else {
-            rating
+            valueToUse = rating
         }
         return valueToUse / ratingScale.rawScale
     }
