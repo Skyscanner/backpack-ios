@@ -99,6 +99,8 @@ struct NavBarExampleView: View {
     }
 }
 
-#Preview {
-    NavBarExampleView()
+struct NavBarExampleView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavBarExampleView()
+    }
 }
