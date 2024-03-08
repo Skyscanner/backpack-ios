@@ -58,7 +58,7 @@ struct BottomSheetExampleView: View {
                 title: "Action",
                 action: { closableBottomSheetShown.toggle() }
             ),
-            rootViewController: rootViewController,
+            presentingController: rootViewController,
             bottomSheetContent: { content }
         )
         .bpkBottomSheet(
@@ -69,7 +69,7 @@ struct BottomSheetExampleView: View {
                 title: "Action",
                 action: { largeBottomSheetShown.toggle() }
             ),
-            rootViewController: rootViewController,
+            presentingController: rootViewController,
             bottomSheetContent: { content }
         )
         .bpkBottomSheet(
@@ -80,7 +80,7 @@ struct BottomSheetExampleView: View {
                 title: "Action",
                 action: { mediumBottomSheetShown.toggle() }
             ),
-            rootViewController: rootViewController,
+            presentingController: rootViewController,
             bottomSheetContent: { content }
         )
         .bpkBottomSheet(
@@ -91,7 +91,7 @@ struct BottomSheetExampleView: View {
                 title: "Action",
                 action: { fitContentBottomSheetShown.toggle() }
             ),
-            rootViewController: rootViewController,
+            presentingController: rootViewController,
             bottomSheetContent: {
                 VStack {
                     BPKText("Bottom sheet content")

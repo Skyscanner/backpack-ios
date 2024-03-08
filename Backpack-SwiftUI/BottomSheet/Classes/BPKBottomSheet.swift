@@ -41,7 +41,7 @@ public extension View {
         closeButtonAccessibilityLabel: String? = nil,
         title: String? = nil,
         action: BPKBottomSheetAction? = nil,
-        rootViewController: UIViewController?,
+        presentingController: UIViewController?,
         @ViewBuilder bottomSheetContent: @escaping () -> BottomSheetContent
     ) -> some View {
         if #available(iOS 16.0, *) {
@@ -66,7 +66,7 @@ public extension View {
                     title: title,
                     action: action,
                     bottomSheetContent: bottomSheetContent,
-                    rootViewController: rootViewController
+                    presentingController: presentingController
                 )
             )
         }
@@ -83,7 +83,7 @@ struct BPKBottomSheet_Previews: PreviewProvider {
                     action: BPKBottomSheetAction(
                         title: "Action",
                         action: {}),
-                    rootViewController: nil) {
+                    presentingController: nil) {
                     BPKText("Bottom sheet content")
                 }
         }

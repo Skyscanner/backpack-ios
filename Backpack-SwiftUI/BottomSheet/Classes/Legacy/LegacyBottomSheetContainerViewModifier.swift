@@ -29,7 +29,7 @@ struct LegacyBottomSheetContainerViewModifier<BottomSheetContent: View>: ViewMod
     let title: String?
     let action: BPKBottomSheetAction?
     let bottomSheetContent: () -> BottomSheetContent
-    let rootViewController: UIViewController?
+    let presentingController: UIViewController?
     
     init(
         isPresented: Binding<Bool>,
@@ -39,7 +39,7 @@ struct LegacyBottomSheetContainerViewModifier<BottomSheetContent: View>: ViewMod
         title: String? = nil,
         action: BPKBottomSheetAction? = nil,
         @ViewBuilder bottomSheetContent: @escaping () -> BottomSheetContent,
-        rootViewController: UIViewController?
+        presentingController: UIViewController?
     ) {
         self._isPresented = isPresented
         self.contentMode = contentMode
@@ -48,7 +48,7 @@ struct LegacyBottomSheetContainerViewModifier<BottomSheetContent: View>: ViewMod
         self.title = title
         self.action = action
         self.bottomSheetContent = bottomSheetContent
-        self.rootViewController = rootViewController
+        self.presentingController = presentingController
     }
     
     func body(content: Content) -> some View {
@@ -136,7 +136,7 @@ struct LegacyBottomSheetContainerViewModifier<BottomSheetContent: View>: ViewMod
         controller.modalTransitionStyle = .crossDissolve
         controller.modalPresentationStyle = .overFullScreen
 
-        rootViewController?.present(controller, animated: true)
+        presentingController?.present(controller, animated: true)
         self.controller = controller
     }
 }
@@ -163,7 +163,7 @@ struct LegacyBottomSheetContainerViewModifier_Previews: PreviewProvider {
                                 .padding()
                         }
                     },
-                    rootViewController: nil)
+                    presentingController: nil)
             )
         
     }
