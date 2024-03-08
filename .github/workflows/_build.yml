@@ -177,7 +177,7 @@ jobs:
 
       - name: Run UIKit tests
         id: screenshotTestsUIKit
-        run: ./scripts/ci uikit test
+        run: ./scripts/ci uikitsnapshot test
         continue-on-error: true
 
       - name: Run SwiftUI tests
@@ -205,7 +205,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        schemes: [uikit, swiftui]
+        schemes: [uikit]
 
     steps:
       - name: Checkout code

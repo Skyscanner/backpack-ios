@@ -30,9 +30,11 @@ function runTests() {
 function check_modules() {
     if [ $2 == "test" ]; then
         if [ $1 == "uikit" ]; then
-            runTests "Backpack-Snapshot-Tests"
             runTests "Backpack-Unit-Tests"
 
+        elif [ $1 == "uikitsnapshot" ]; then
+            runTests "Backpack-Snapshot-Tests"
+            
         elif [ $1 == "uitests" ]; then
             runTests "Backpack-UI-Tests"
 
