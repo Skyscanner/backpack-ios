@@ -172,18 +172,18 @@ jobs:
       - name: Select Xcode 14
         run: sudo xcode-select --switch /Applications/Xcode_14.2.app
       
-      - name: Clean up Screenshot Tests
-        run: find . -name '__Snapshots__' -type d -exec rm -rf {} +
+      - name: Screenshot Tests
+        id: screenshotTests
+        run: |
+          ./scripts/record_screenshot_tests.sh
 
-      - name: Run UIKit tests
-        id: screenshotTestsUIKit
-        run: ./scripts/ci uikitsnapshot test
+          changedFiles=`git status --porcelain` && echo "CHANGED_FILES=${changedFiles//$'\n'/'%0A'}" >> $GITHUB_OUTPUT
         continue-on-error: true
 
-      - name: Run SwiftUI tests
-        id: screenshotTestsSwiftUI
-        run: ./scripts/ci swiftui test
-        continue-on-error: true
+      - name: Check snapshot changes
+        id: checkSnapshotChanges
+        if: ${{ github.event_name != 'pull_request' }}
+        run: ./scripts/lint
 
       - name: Commit changes
         env:
