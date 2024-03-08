@@ -16,7 +16,7 @@
 # limitations under the License.
 set -e
 
-find . -name '__Snapshots__' -type d -exec rm -rf {} \;
+find . -type d -name "__Snapshots__" -exec rm -r {} +;
 
 # Get the directory of the currently running script
 SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
