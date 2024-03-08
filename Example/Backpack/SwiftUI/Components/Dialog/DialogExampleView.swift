@@ -152,7 +152,7 @@ struct DialogExampleView: View {
                 secondaryButton: secondaryButton,
                 linkButton: linkButton
             ),
-            presentingController: self.rootViewController,
+            presentingController: rootViewController,
             onTouchOutside: dismissDialogs
         )
         .bpkWarningDialog(
@@ -165,7 +165,7 @@ struct DialogExampleView: View {
                 secondaryButton: secondaryButton,
                 linkButton: linkButton
             ),
-            presentingController: self.rootViewController,
+            presentingController: rootViewController,
             onTouchOutside: dismissDialogs
         )
         .bpkDestructiveDialog(
@@ -175,7 +175,7 @@ struct DialogExampleView: View {
             text: "Description that goes two lines ideally, but sometimes it can go longer",
             confirmButton: BPKDialogButton("Delete", action: dismissDialogs),
             linkButton: BPKDialogButton("Cancel", action: dismissDialogs),
-            presentingController: self.rootViewController,
+            presentingController: rootViewController,
             onTouchOutside: dismissDialogs
         )
         .bpkImageDialog(
@@ -188,7 +188,7 @@ struct DialogExampleView: View {
                 secondaryButton: secondaryButton,
                 linkButton: linkButton
             ),
-            presentingController: self.rootViewController,
+            presentingController: rootViewController,
             onTouchOutside: dismissDialogs
         )
         .bpkFlareDialog(
@@ -201,7 +201,7 @@ struct DialogExampleView: View {
                 secondaryButton: secondaryButton,
                 linkButton: linkButton
             ),
-            presentingController: self.rootViewController,
+            presentingController: rootViewController,
             onTouchOutside: dismissDialogs
         )
     }
@@ -227,12 +227,12 @@ struct DialogExampleView: View {
         }
     }
     
-    private var rootViewController: UIViewController? {
+    private var rootViewController: UIViewController {
         UIApplication.shared
             .windows
             .filter { $0.isKeyWindow }
             .first?
-            .rootViewController
+            .rootViewController ?? UIViewController()
     }
 }
 

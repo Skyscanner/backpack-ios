@@ -28,7 +28,7 @@ public extension View {
         text: String,
         confirmButton: BPKDialogButton,
         secondaryActions: BPKDialogSecondaryActions? = nil,
-        presentingController: UIViewController?,
+        presentingController: UIViewController,
         onTouchOutside: (() -> Void)? = nil
     ) -> some View {
         var buttons = [BPKDialogButton(button: confirmButton, style: .featured)]
@@ -60,7 +60,7 @@ public extension View {
         text: String,
         confirmButton: BPKDialogButton,
         secondaryActions: BPKDialogSecondaryActions? = nil,
-        presentingController: UIViewController?,
+        presentingController: UIViewController,
         onTouchOutside: (() -> Void)? = nil
     ) -> some View {
         var buttons = [BPKDialogButton(button: confirmButton, style: .featured)]
@@ -88,7 +88,7 @@ public extension View {
         text: String,
         confirmButton: BPKDialogButton,
         linkButton: BPKDialogButton? = nil,
-        presentingController: UIViewController?,
+        presentingController: UIViewController,
         onTouchOutside: (() -> Void)? = nil
     ) -> some View {
         var buttons = [BPKDialogButton(button: confirmButton, style: .destructive)]
@@ -113,7 +113,7 @@ public extension View {
         text: String,
         confirmButton: BPKDialogButton,
         secondaryActions: BPKDialogSecondaryActions? = nil,
-        presentingController: UIViewController?,
+        presentingController: UIViewController,
         onTouchOutside: (() -> Void)? = nil
     ) -> some View {
         var buttons = [BPKDialogButton(button: confirmButton, style: .featured)]
@@ -140,7 +140,7 @@ public extension View {
         text: String,
         confirmButton: BPKDialogButton,
         secondaryActions: BPKDialogSecondaryActions? = nil,
-        presentingController: UIViewController?,
+        presentingController: UIViewController,
         onTouchOutside: (() -> Void)? = nil
     ) -> some View {
         var buttons = [BPKDialogButton(button: confirmButton, style: .featured)]
@@ -172,7 +172,7 @@ struct BPKDialog_Previews: PreviewProvider {
                 title: "Title in here",
                 text: "Description that goes two lines ideally, but sometimes it can go longer",
                 confirmButton: .init("Delete", action: {}),
-                presentingController: nil
+                presentingController: UIViewController()
             )
     }
 }

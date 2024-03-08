@@ -104,12 +104,12 @@ struct BottomSheetExampleView: View {
         )
     }
     
-    private var rootViewController: UIViewController? {
+    private var rootViewController: UIViewController {
         UIApplication.shared
             .windows
             .filter { $0.isKeyWindow }
             .first?
-            .rootViewController
+            .rootViewController ?? UIViewController()
     }
 }
 

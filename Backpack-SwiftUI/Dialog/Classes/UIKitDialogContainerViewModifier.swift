@@ -30,7 +30,7 @@ struct UIKitDialogContainerViewModifier<DialogContent: View>: ViewModifier {
     @Binding var isPresented: Bool
     @ViewBuilder let dialogContent: DialogContent
     let onTouchOutside: (() -> Void)?
-    let presentingController: UIViewController?
+    let presentingController: UIViewController
     @State private var controller: UIViewController?
     
     func body(content: Content) -> some View {
@@ -62,7 +62,7 @@ struct UIKitDialogContainerViewModifier<DialogContent: View>: ViewModifier {
         controller.modalTransitionStyle = .crossDissolve
         controller.modalPresentationStyle = .overFullScreen
 
-        presentingController?.present(controller, animated: true)
+        presentingController.present(controller, animated: true)
         self.controller = controller
     }
 }
@@ -77,7 +77,7 @@ struct UIKitDialogContainerViewModifier_Previews: PreviewProvider {
                         .background(.surfaceDefaultColor)
                 },
                 onTouchOutside: {},
-                presentingController: nil
+                presentingController: UIViewController()
             ))
     }
 }
