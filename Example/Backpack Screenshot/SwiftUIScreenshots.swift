@@ -392,6 +392,10 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
         
+        await navigate(title: "Rating Bar") {
+            saveScreenshot(component: "rating-bar", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
+        
         await navigate(title: "Inset Banner") {
             saveScreenshot(component: "inset-banner", scenario: "default", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
