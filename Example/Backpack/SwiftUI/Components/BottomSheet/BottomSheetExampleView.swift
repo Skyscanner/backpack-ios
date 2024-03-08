@@ -58,6 +58,7 @@ struct BottomSheetExampleView: View {
                 title: "Action",
                 action: { closableBottomSheetShown.toggle() }
             ),
+            rootViewController: rootViewController,
             bottomSheetContent: { content }
         )
         .bpkBottomSheet(
@@ -68,6 +69,7 @@ struct BottomSheetExampleView: View {
                 title: "Action",
                 action: { largeBottomSheetShown.toggle() }
             ),
+            rootViewController: rootViewController,
             bottomSheetContent: { content }
         )
         .bpkBottomSheet(
@@ -78,6 +80,7 @@ struct BottomSheetExampleView: View {
                 title: "Action",
                 action: { mediumBottomSheetShown.toggle() }
             ),
+            rootViewController: rootViewController,
             bottomSheetContent: { content }
         )
         .bpkBottomSheet(
@@ -88,6 +91,7 @@ struct BottomSheetExampleView: View {
                 title: "Action",
                 action: { fitContentBottomSheetShown.toggle() }
             ),
+            rootViewController: rootViewController,
             bottomSheetContent: {
                 VStack {
                     BPKText("Bottom sheet content")
@@ -98,6 +102,14 @@ struct BottomSheetExampleView: View {
                 .padding()
             }
         )
+    }
+    
+    private var rootViewController: UIViewController? {
+        UIApplication.shared
+            .windows
+            .filter { $0.isKeyWindow }
+            .first?
+            .rootViewController
     }
 }
 

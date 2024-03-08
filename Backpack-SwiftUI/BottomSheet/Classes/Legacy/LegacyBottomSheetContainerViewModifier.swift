@@ -29,6 +29,7 @@ struct LegacyBottomSheetContainerViewModifier<BottomSheetContent: View>: ViewMod
     let title: String?
     let action: BPKBottomSheetAction?
     let bottomSheetContent: () -> BottomSheetContent
+    let rootViewController: UIViewController?
     
     init(
         isPresented: Binding<Bool>,
@@ -37,7 +38,8 @@ struct LegacyBottomSheetContainerViewModifier<BottomSheetContent: View>: ViewMod
         closeButtonAccessibilityLabel: String? = nil,
         title: String? = nil,
         action: BPKBottomSheetAction? = nil,
-        @ViewBuilder bottomSheetContent: @escaping () -> BottomSheetContent
+        @ViewBuilder bottomSheetContent: @escaping () -> BottomSheetContent,
+        rootViewController: UIViewController?
     ) {
         self._isPresented = isPresented
         self.contentMode = contentMode
@@ -46,6 +48,7 @@ struct LegacyBottomSheetContainerViewModifier<BottomSheetContent: View>: ViewMod
         self.title = title
         self.action = action
         self.bottomSheetContent = bottomSheetContent
+        self.rootViewController = rootViewController
     }
     
     func body(content: Content) -> some View {
@@ -136,19 +139,10 @@ struct LegacyBottomSheetContainerViewModifier<BottomSheetContent: View>: ViewMod
         rootViewController?.present(controller, animated: true)
         self.controller = controller
     }
-    
-    private var rootViewController: UIViewController? {
-        UIApplication.shared
-            .windows
-            .filter { $0.isKeyWindow }
-            .first?
-            .rootViewController
-    }
 }
 
 struct LegacyBottomSheetContainerViewModifier_Previews: PreviewProvider {
     static var previews: some View {
-        
         BPKButton("Show bottom sheet", action: {})
             .modifier(
                 LegacyBottomSheetContainerViewModifier(
@@ -168,7 +162,8 @@ struct LegacyBottomSheetContainerViewModifier_Previews: PreviewProvider {
                             BPKButton("Make Payment") {}
                                 .padding()
                         }
-                    })
+                    },
+                    rootViewController: nil)
             )
         
     }
