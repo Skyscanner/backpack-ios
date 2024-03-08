@@ -20,6 +20,7 @@ import SwiftUI
 
 public extension View {
     /// Displays a success dialog with a title, text and a list of buttons.
+    // swiftlint:disable function_parameter_count
     func bpkSuccessDialog(
         presented: Binding<Bool>,
         icon: BPKIcon,
@@ -27,7 +28,7 @@ public extension View {
         text: String,
         confirmButton: BPKDialogButton,
         secondaryActions: BPKDialogSecondaryActions? = nil,
-        presentingController: UIViewController? = nil,
+        presentingController: UIViewController?,
         onTouchOutside: (() -> Void)? = nil
     ) -> some View {
         var buttons = [BPKDialogButton(button: confirmButton, style: .featured)]
@@ -59,7 +60,7 @@ public extension View {
         text: String,
         confirmButton: BPKDialogButton,
         secondaryActions: BPKDialogSecondaryActions? = nil,
-        presentingController: UIViewController? = nil,
+        presentingController: UIViewController?,
         onTouchOutside: (() -> Void)? = nil
     ) -> some View {
         var buttons = [BPKDialogButton(button: confirmButton, style: .featured)]
@@ -87,7 +88,7 @@ public extension View {
         text: String,
         confirmButton: BPKDialogButton,
         linkButton: BPKDialogButton? = nil,
-        presentingController: UIViewController? = nil,
+        presentingController: UIViewController?,
         onTouchOutside: (() -> Void)? = nil
     ) -> some View {
         var buttons = [BPKDialogButton(button: confirmButton, style: .destructive)]
@@ -112,7 +113,7 @@ public extension View {
         text: String,
         confirmButton: BPKDialogButton,
         secondaryActions: BPKDialogSecondaryActions? = nil,
-        presentingController: UIViewController? = nil,
+        presentingController: UIViewController?,
         onTouchOutside: (() -> Void)? = nil
     ) -> some View {
         var buttons = [BPKDialogButton(button: confirmButton, style: .featured)]
@@ -139,7 +140,7 @@ public extension View {
         text: String,
         confirmButton: BPKDialogButton,
         secondaryActions: BPKDialogSecondaryActions? = nil,
-        presentingController: UIViewController? = nil,
+        presentingController: UIViewController?,
         onTouchOutside: (() -> Void)? = nil
     ) -> some View {
         var buttons = [BPKDialogButton(button: confirmButton, style: .featured)]
