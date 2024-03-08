@@ -49,7 +49,7 @@ extension BPKNavigationView {
         var displayMode: NavigationBarItem.TitleDisplayMode {
             switch self {
             case .default(let displayMode): displayMode
-            case .transparent: .large
+            case .transparent(let displayMode): displayMode
             case .surfaceContrast: .inline
             }
         }
