@@ -19,12 +19,6 @@
 import SwiftUI
 
 extension BPKNavigationView {
-    struct Appearance {
-        let backgroundColor: BPKColor
-        let foregroundColor: BPKColor
-        let lineColor: BPKColor
-    }
-    
     public enum Style {
         case `default`(_ displayMode: NavigationBarItem.TitleDisplayMode = .automatic)
         case transparent(_ displayMode: NavigationBarItem.TitleDisplayMode = .automatic)
