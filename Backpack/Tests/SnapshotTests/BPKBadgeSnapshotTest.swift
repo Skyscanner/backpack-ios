@@ -46,7 +46,7 @@ class BPKBadgeSnapshotTest: XCTestCase {
         parentView.addSubview(stackView)
 
         let badges = [BPKBadgeType.inverse, .outline, .success, .warning, .destructive, .strong, .normal, .brand]
-            .map { BPKBadge(type: $0, icon: icon, message: "Backpack") }
+            .map { BPKBadge(type: $0, icon: icon, message: "Backpack rocks!") }
         badges.forEach(stackView.addArrangedSubview(_:))
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: parentView.topAnchor),
