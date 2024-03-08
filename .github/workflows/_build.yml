@@ -135,7 +135,6 @@ jobs:
   TestPods:
     name: Testing Pods
     runs-on: macos-latest
-    needs: [Screenshots]
     strategy:
       fail-fast: false
       matrix:
@@ -173,7 +172,7 @@ jobs:
 
       - name: Run Tests
         run: ./scripts/ci ${{ matrix.schemes }} test
-        
+
   Screenshots:
     name: Screenshots tests
     runs-on: macos-latest
