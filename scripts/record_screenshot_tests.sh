@@ -21,5 +21,5 @@ find . -type d -name "__Snapshots__" -exec rm -r {} +;
 # Get the directory of the currently running script
 SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 
-"$SCRIPT_DIR/ci" uikitsnapshot test;
-"$SCRIPT_DIR/ci" swiftui test;
+"$SCRIPT_DIR/ci" uikitsnapshot test || true;
+"$SCRIPT_DIR/ci" swiftui test || true;
