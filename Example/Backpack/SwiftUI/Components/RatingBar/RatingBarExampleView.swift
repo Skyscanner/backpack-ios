@@ -23,7 +23,38 @@ import Backpack_SwiftUI
 struct RatingBarExampleView: View {
     
     var body: some View {
-        BPKRatingBar()
+        VStack(spacing: .base) {
+            ratings(title: "Default", .default)
+            ratings(title: "On Contrast", .onContrast)
+                .background(.canvasContrastColor)
+        }
+    }
+    
+    private func ratings(title: String, _ style: BPKRatingBar.Style) -> some View {
+        VStack(spacing: .base) {
+            BPKText(title, style: .heading3)
+            BPKRatingBar(
+                label: "Rating",
+                rating: 2.5,
+                accessibilityLabel: "Rating",
+                style: style
+            )
+            BPKRatingBar(
+                label: "Rating",
+                rating: 2.5,
+                accessibilityLabel: "Rating",
+                ratingScale: .zeroToTen,
+                style: style
+            )
+            BPKRatingBar(
+                label: "Rating",
+                rating: 2.5,
+                accessibilityLabel: "Rating",
+                showScale: false,
+                style: style
+            )
+        }
+        .padding()
     }
 }
 

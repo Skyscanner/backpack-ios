@@ -68,6 +68,7 @@ struct ComponentCellsProvider {
             price(),
             progressBar(),
             ratings(),
+            ratingBar(),
             sectionHeader(),
             select(),
             snackbar(),
@@ -328,6 +329,18 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Rating", tabs: $0) }
         )
     }
+    private func ratingBar() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Rating Bar",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(RatingBarExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Rating Bar", tabs: $0) }
+        )
+    }
+    
     private func select() -> CellDataSource {
         ComponentCellDataSource(
             title: "Select",
