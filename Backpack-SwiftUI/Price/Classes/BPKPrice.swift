@@ -19,61 +19,13 @@
 import SwiftUI
 import Backpack_Common
 
-private struct VerticalPriceStack: View {
-    private let price: String
-    private let trailingText: String?
-    private let fontStyle: BPKFontStyle
-    private let accessoryFontStyle: BPKFontStyle
-    
-    init(price: String, trailingText: String?, fontStyle: BPKFontStyle, accessoryFontStyle: BPKFontStyle) {
-        self.price = price
-        self.trailingText = trailingText
-        self.fontStyle = fontStyle
-        self.accessoryFontStyle = accessoryFontStyle
-    }
-    
-    var body: some View {
-        VStack(alignment: .trailing) {
-            BPKText(price, style: fontStyle)
-            if let trailingText = trailingText {
-                BPKText(trailingText, style: accessoryFontStyle)
-                    .foregroundColor(.textSecondaryColor)
-            }
-        }
-    }
-}
-
-private struct HorizontalPriceStack: View {
-    private let price: String
-    private let trailingText: String?
-    private let fontStyle: BPKFontStyle
-    private let accessoryFontStyle: BPKFontStyle
-    
-    init(price: String, trailingText: String?, fontStyle: BPKFontStyle, accessoryFontStyle: BPKFontStyle) {
-        self.price = price
-        self.trailingText = trailingText
-        self.fontStyle = fontStyle
-        self.accessoryFontStyle = accessoryFontStyle
-    }
-    
-    var body: some View {
-        HStack(alignment: .firstTextBaseline, spacing: .sm) {
-            BPKText(price, style: fontStyle)
-            if let trailingText = trailingText {
-                BPKText(trailingText, style: accessoryFontStyle)
-                    .foregroundColor(.textSecondaryColor)
-            }
-        }
-    }
-}
-
 public struct BPKPrice: View {
     public enum Size {
         case large, small, extraSmall
     }
     
     public enum Alignment {
-        case leading, trailing
+        case leading, trailing, row
     }
     
     private let price: String
@@ -100,26 +52,35 @@ public struct BPKPrice: View {
     }
     
     public var body: some View {
-        VStack(alignment: mapAlignment(), spacing: BPKSpacing.none) {
-            HStack(spacing: .sm) {
-                ForEach(topLabels(), id: \.self) { item in
-                    accessoryText(item)
-                        .strikethrough(item == previousPrice)
-                }
+        switch alignment {
+        case .leading:
+            VStack(alignment: .leading, spacing: BPKSpacing.none) {
+                buildContent()
             }
+        case .trailing:
+            VStack(alignment: .trailing, spacing: BPKSpacing.none) {
+                buildContent()
+            }
+        case .row:
+            HStack {
+                buildContent()
+            }
+        }
+    }
+    
+    private func buildContent() -> some View {
+        Group {
+            buildAdditionalInfo()
             
-            if alignment == .trailing {
-                VerticalPriceStack(
-                    price: price,
-                    trailingText: trailingText,
-                    fontStyle: priceFontStyle(),
-                    accessoryFontStyle: accessoryFontStyle())
-            } else if alignment == .leading {
-                HorizontalPriceStack(
-                    price: price,
-                    trailingText: trailingText,
-                    fontStyle: priceFontStyle(),
-                    accessoryFontStyle: accessoryFontStyle())
+            switch alignment {
+            case .leading, .row:
+                HStack(alignment: .firstTextBaseline, spacing: .sm) {
+                    buildPrice()
+                }
+            case .trailing:
+                VStack(alignment: .trailing) {
+                    buildPrice()
+                }
             }
         }
         .if(!BPKFont.enableDynamicType, transform: {
@@ -127,9 +88,23 @@ public struct BPKPrice: View {
         })
     }
     
-    private func accessoryText(_ text: String) -> BPKText {
-        return BPKText(text, style: accessoryFontStyle())
-            .foregroundColor(.textSecondaryColor)
+    private func buildAdditionalInfo() -> some View {
+        HStack(spacing: .sm) {
+            ForEach(additionalInfo(), id: \.self) { item in
+                BPKText(item, style: accessoryFontStyle())
+                    .foregroundColor(.textSecondaryColor)
+                    .strikethrough(item == previousPrice)
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private func buildPrice() -> some View {
+        BPKText(price, style: priceFontStyle())
+        if let trailingText = trailingText {
+            BPKText(trailingText, style: accessoryFontStyle())
+                .foregroundColor(.textSecondaryColor)
+        }
     }
     
     private func accessoryFontStyle() -> BPKFontStyle {
@@ -152,7 +127,7 @@ public struct BPKPrice: View {
         }
     }
     
-    private func topLabels() -> [String] {
+    private func additionalInfo() -> [String] {
         var items = [String]()
         
         if let previousPrice = previousPrice {
@@ -168,15 +143,6 @@ public struct BPKPrice: View {
         }
         
         return alignment == .trailing ? items.reversed() : items
-    }
-    
-    private func mapAlignment() -> HorizontalAlignment {
-        switch alignment {
-        case .leading:
-            return .leading
-        case .trailing:
-            return .trailing
-        }
     }
 }
 
