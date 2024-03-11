@@ -20,16 +20,16 @@ import SwiftUI
 
 public struct BPKNavigationView<Content: View>: View {
     let title: String?
-    let style: Style
-    let leadingItems: [Self.ToolbarItem]
-    let trailingItems: [Self.ToolbarItem]
+    let style: BPKNavigationBarStyle
+    let leadingItems: [BPKNavigationBarItem]
+    let trailingItems: [BPKNavigationBarItem]
     let content: () -> Content
     
     public init(
         title: String? = nil,
-        leadingItems: [Self.ToolbarItem] = [],
-        trailingItems: [Self.ToolbarItem] = [],
-        style: Style = .default(.automatic),
+        leadingItems: [BPKNavigationBarItem] = [],
+        trailingItems: [BPKNavigationBarItem] = [],
+        style: BPKNavigationBarStyle = .default(.automatic),
         content: @escaping () -> Content
     ) {
         self.title = title
@@ -37,42 +37,120 @@ public struct BPKNavigationView<Content: View>: View {
         self.leadingItems = leadingItems
         self.trailingItems = trailingItems
         self.content = content
-        
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.titleTextAttributes = [.foregroundColor: BPKColor.statusSuccessFillColor.value]
-        appearance.largeTitleTextAttributes = [.foregroundColor: BPKColor.statusSuccessFillColor.value]
-        UINavigationBar.appearance().standardAppearance = appearance
-        UINavigationBar.appearance().scrollEdgeAppearance = appearance
     }
     
     public var body: some View {
-        NavigationView {
-            content()
-                .if(title != nil, transform: { view in
-                    view
-                        .navigationTitle(title!)
-                })
-                .toolbar {
-                    ToolbarItemGroup(placement: .topBarLeading) {
-                        toolbarItemView(forItems: leadingItems)
-                    }
-                    ToolbarItemGroup(placement: .topBarTrailing) {
-                        toolbarItemView(forItems: trailingItems)
-                    }
+        if case .transparent = style {
+            ZStack(alignment: .top) {
+                content()
+                BPKNavigationBar(
+                    title: title,
+                    style: style,
+                    leadingItems: leadingItems,
+                    trailingItems: trailingItems
+                )
+            }
+        } else {
+            ZStack(alignment: .top) {
+                GeometryReader { reader in
+                    Color(style.backgroundColor)
+                        .frame(height: reader.safeAreaInsets.top, alignment: .top)
+                        .ignoresSafeArea()
                 }
-                .navigationBarTitleDisplayMode(style.displayMode)
-            
-        }.onAppear {
-            let appearance = style.navBarAppearance
-            
-            UINavigationBar.appearance().standardAppearance = appearance
-            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+                BPKNavigationBar(
+                    title: title,
+                    style: style,
+                    leadingItems: leadingItems,
+                    trailingItems: trailingItems
+                )
+            }
+            .safeAreaInset(edge: .bottom, spacing: 0) {
+                content()
+            }
         }
     }
+}
+
+struct BPKNavigationBar: View {
+    let title: String?
+    let style: BPKNavigationBarStyle
+    let leadingItems: [BPKNavigationBarItem]
+    let trailingItems: [BPKNavigationBarItem]
     
+    @State private var leadingItemsSize: CGSize = .zero
+    @State private var trailingItemsSize: CGSize = .zero
+    
+    init(
+        title: String?,
+        style: BPKNavigationBarStyle,
+        leadingItems: [BPKNavigationBarItem] = [],
+        trailingItems: [BPKNavigationBarItem] = []
+    ) {
+        self.title = title
+        self.style = style
+        self.leadingItems = leadingItems
+        self.trailingItems = trailingItems
+    }
+    
+    private var maxItemGroupWidth: CGFloat {
+        if leadingItemsSize.width > trailingItemsSize.width {
+            return leadingItemsSize.width
+        }
+        return trailingItemsSize.width
+    }
+    
+    // swiftlint:disable closure_body_length
+    var body: some View {
+        ZStack(alignment: .bottom) {
+            VStack(spacing: BPKSpacing.none) {
+                HStack(spacing: .md) {
+                    HStack(spacing: .base) {
+                        toolbarItemView(forItems: leadingItems)
+                    }
+                    .modifier(ReadSizeModifier { leadingItemsSize = $0 })
+                    .frame(width: maxItemGroupWidth, alignment: .leading)
+                    Spacer()
+                    
+                    BPKText(title ?? "", style: .heading5)
+                        .foregroundColor(style.foregroundColor)
+                        .lineLimit(1)
+                    
+                    Spacer()
+                    HStack(spacing: .base) {
+                        toolbarItemView(forItems: trailingItems)
+                    }
+                    .modifier(ReadSizeModifier { trailingItemsSize = $0 })
+                    .frame(width: maxItemGroupWidth, alignment: .trailing)
+                }
+                .padding(.horizontal, .md)
+                .frame(maxWidth: .infinity)
+                .frame(height: 44)
+                
+                if let lineColor = style.lineColor {
+                    Rectangle()
+                        .frame(height: 1)
+                        .foregroundColor(lineColor)
+                }
+            }
+        }
+        .background(style.backgroundColor)
+    }
+    
+    private func iconItemView(
+        withIcon icon: BPKIcon,
+        accessibilityLabel: String,
+        action: @escaping () -> Void
+    ) -> some View {
+        Button(action: action) {
+            BPKIconView(icon, size: .large)
+        }
+        .accessibilityLabel(accessibilityLabel)
+        .foregroundColor(style.foregroundColor)
+    }
+    
+    // swiftlint:disable closure_body_length
     @ViewBuilder
-    private func toolbarItemView(forItems items: [Self.ToolbarItem]) -> some View {
+    private func toolbarItemView(forItems items: [BPKNavigationBarItem]) -> some View {
         ForEach(0..<items.count, id: \.self) { index in
             let item = items[index]
             switch item.type {
@@ -85,6 +163,7 @@ public struct BPKNavigationView<Content: View>: View {
             case .title(let title):
                 BPKButton(title, action: item.action)
                     .buttonStyle(.link)
+                    .fixedSize()
             case .backButton(let accessibilityLabel):
                 iconItemView(
                     withIcon: .chevronLeft,
@@ -100,27 +179,15 @@ public struct BPKNavigationView<Content: View>: View {
             }
         }
     }
-    
-    private func iconItemView(
-        withIcon icon: BPKIcon,
-        accessibilityLabel: String,
-        action: @escaping () -> Void
-    ) -> some View {
-        Button(action: action) {
-            BPKIconView(icon, size: .large)
-        }
-        .accessibilityLabel(accessibilityLabel)
-        .foregroundColor(style.foregroundColor)
-    }
 }
 
+// swiftlint:disable all
 struct BPKNavigationView_Previews: PreviewProvider {
     static var previews: some View {
         BPKNavigationView(
-            title: "Title Here",
+            title: "Title Example",
             leadingItems: [
-                .init(type: .backButton("Back"), action: {}),
-                .init(type: .icon(.accountFemale, "try"), action: {})
+                .init(type: .backButton("Back"), action: {})
             ],
             trailingItems: [
                 .init(type: .icon(.ai, "AI"), action: {}),
@@ -133,6 +200,7 @@ struct BPKNavigationView_Previews: PreviewProvider {
                     .foregroundColor(.blue)
                     .frame(width: .infinity, height: 250)
                     .bpkOverlay(.linear(.low, .top))
+                BPKText("Start")
             }
             .ignoresSafeArea(edges: .top)
         }

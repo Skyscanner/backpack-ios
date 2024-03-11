@@ -16,19 +16,15 @@
  * limitations under the License.
  */
 
-extension BPKNavigationView {
-    public struct ToolbarItem {
-        let type: ButtonType
-        let action: () -> Void
-        
-        public init(type: ButtonType, action: @escaping () -> Void) {
-            self.type = type
-            self.action = action
-        }
+public struct BPKNavigationBarItem {
+    let type: ButtonType
+    let action: () -> Void
+    
+    public init(type: ButtonType, action: @escaping () -> Void) {
+        self.type = type
+        self.action = action
     }
-}
-
-extension BPKNavigationView.ToolbarItem {
+    
     public enum ButtonType {
         case backButton(_ accessibiltyLabel: String)
         case closeButton(_ accessibiltyLabel: String)

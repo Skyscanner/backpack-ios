@@ -18,67 +18,40 @@
 
 import SwiftUI
 
-extension BPKNavigationView {
-    public enum Style {
-        case `default`(_ displayMode: NavigationBarItem.TitleDisplayMode = .automatic)
-        case transparent(_ displayMode: NavigationBarItem.TitleDisplayMode = .automatic)
-        case surfaceContrast
-        
-        var navBarAppearance: UINavigationBarAppearance {
-            switch self {
-            case .`default`: defaultNavBarAppearance
-            case .transparent: transparentNavBarAppearance
-            case .surfaceContrast: surfaceContrastNavBarAppearance
-            }
+public enum BPKNavigationBarStyle {
+    case `default`(_ displayMode: NavigationBarItem.TitleDisplayMode = .automatic)
+    case transparent(_ displayMode: NavigationBarItem.TitleDisplayMode = .automatic)
+    case surfaceContrast
+    
+    var foregroundColor: BPKColor {
+        switch self {
+        case .default: return .textPrimaryColor
+        case .transparent: return .textOnDarkColor
+        case .surfaceContrast: return .textOnDarkColor
         }
-        
-        var foregroundColor: BPKColor {
-            switch self {
-            case .default: .textPrimaryColor
-            case .transparent: .textOnDarkColor
-            case .surfaceContrast: .textOnDarkColor
-            }
+    }
+    
+    var backgroundColor: BPKColor {
+        switch self {
+        case .default: return .canvasColor
+        case .transparent: return .clear
+        case .surfaceContrast: return .surfaceContrastColor
         }
-        
-        var displayMode: NavigationBarItem.TitleDisplayMode {
-            switch self {
-            case .default(let displayMode): displayMode
-            case .transparent(let displayMode): displayMode
-            case .surfaceContrast: .inline
-            }
+    }
+    
+    var lineColor: BPKColor? {
+        switch self {
+        case .default: return .lineColor
+        case .transparent: return nil
+        case .surfaceContrast: return .lineOnDarkColor
         }
-        
-        private var defaultNavBarAppearance: UINavigationBarAppearance {
-            let appearance = UINavigationBarAppearance()
-            appearance.configureWithOpaqueBackground()
-            appearance.backgroundColor = BPKColor.canvasColor.value
-            appearance.shadowColor = BPKColor.lineColor.value
-            
-            appearance.titleTextAttributes = [.foregroundColor: foregroundColor.value]
-            appearance.largeTitleTextAttributes = [.foregroundColor: foregroundColor.value]
-            return appearance
-        }
-        
-        private var surfaceContrastNavBarAppearance: UINavigationBarAppearance {
-            let appearance = UINavigationBarAppearance()
-            appearance.configureWithOpaqueBackground()
-            appearance.backgroundColor = BPKColor.surfaceContrastColor.value
-            appearance.shadowColor = BPKColor.lineOnDarkColor.value
-            
-            appearance.largeTitleTextAttributes = [.foregroundColor: foregroundColor.value]
-            appearance.titleTextAttributes = [.foregroundColor: foregroundColor.value]
-            return appearance
-        }
-        
-        private var transparentNavBarAppearance: UINavigationBarAppearance {
-            let appearance = UINavigationBarAppearance()
-            appearance.configureWithTransparentBackground()
-            appearance.backgroundColor = nil
-            appearance.shadowColor = nil
-            
-            appearance.largeTitleTextAttributes = [.foregroundColor: foregroundColor.value]
-            appearance.titleTextAttributes = [.foregroundColor: foregroundColor.value]
-            return appearance
+    }
+    
+    var displayMode: NavigationBarItem.TitleDisplayMode {
+        switch self {
+        case .default(let displayMode): return displayMode
+        case .transparent(let displayMode): return displayMode
+        case .surfaceContrast: return .inline
         }
     }
 }
