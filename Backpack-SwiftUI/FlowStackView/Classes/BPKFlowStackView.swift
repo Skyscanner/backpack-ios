@@ -63,10 +63,10 @@ public struct BPKFlowStackView<Data: Collection, Content: View>: View where Data
             VStack(alignment: alignment, spacing: spacing.height) {
                 ForEach(computeRows(), id: \.self) { rowItems in
                     HStack(spacing: spacing.width) {
-                        ForEach(Array(rowItems.enumerated()), id: \.element) { index, item in
-                            content(item, index)
+                        ForEach(rowItems) { item in
+                            content(item.data, item.id)
                                 .modifier(ReadSizeModifier { size in
-                                    elementsSize[item] = size
+                                    elementsSize[item.data] = size
                                 })
                         }
                     }
@@ -75,22 +75,33 @@ public struct BPKFlowStackView<Data: Collection, Content: View>: View where Data
         }
     }
     
-    func computeRows() -> [[Data.Element]] {
-        var rows: [[Data.Element]] = [[]]
+    private struct Item: Hashable, Identifiable {
+        let id: Int
+        var data: Data.Element
+    }
+    
+    private func computeRows() -> [[Item]] {
+        var rows: [[Item]] = []
         var currentRow = 0
         var remainingWidth = availableWidth
+        var currentIndex = 0
         
         data.forEach { element in
-            let elementSize = elementsSize[element, default: CGSize(width: availableWidth, height: 1)]
+            let defaultSize = CGSize(width: availableWidth, height: 1)
+            let elementSize = elementsSize[element, default: defaultSize]
+            let fitsInCurrentRow = elementSize.width + spacing.width > remainingWidth
             
-            if elementSize.width + spacing.width > remainingWidth {
+            if fitsInCurrentRow { // new row
                 remainingWidth = availableWidth
                 currentRow += 1
-                rows.append([element])
-            } else {
-                rows[currentRow].append(element)
+                rows.append([Item(id: currentIndex, data: element)])
+            } else { // existing row
+                if !rows.indices.contains(currentRow) {
+                    rows.append([])
+                }
+                rows[currentRow].append(Item(id: currentIndex, data: element))
             }
-            
+            currentIndex += 1
             remainingWidth -= (elementSize.width + spacing.width)
         }
         return rows
@@ -99,20 +110,17 @@ public struct BPKFlowStackView<Data: Collection, Content: View>: View where Data
 
 struct BPKFlowStackView_Previews: PreviewProvider {
     static var previews: some View {
-        BPKFlowStackView(
-            data: Array(0...30),
-            content: { element, index in makeKBadge(index: element) }
-        )
+        VStack(spacing: 32) {
+            let alignments = [HorizontalAlignment.leading, .center, .trailing]
+            ForEach(0..<3, id: \.self) { index in
+                BPKFlowStackView(
+                    data: Array(0...10),
+                    alignment: alignments[index],
+                    content: { element, index in makeKBadge(index: element) }
+                )
+            }
+        }
         .padding()
-        .previewDisplayName("Leading")
-        
-        BPKFlowStackView(
-            data: Array(0...30),
-            alignment: .center,
-            content: { element, index in makeKBadge(index: element) }
-        )
-        .padding()
-        .previewDisplayName("Center")
     }
     
     @ViewBuilder
