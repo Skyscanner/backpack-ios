@@ -62,7 +62,7 @@ public struct BPKPrice: View {
                 buildContent()
             }
         case .row:
-            HStack {
+            HStack(alignment: .firstTextBaseline, spacing: .sm) {
                 buildContent()
             }
         }
