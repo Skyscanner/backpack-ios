@@ -42,19 +42,19 @@ class Screenshots: BackpackSnapshotTestCase {
 
     @MainActor
     func testLightModeScreenshots() async {
-//       app = createApp()
-//       setupSnapshot(app)
-//       app.launch()
-//       await captureAllScreenshots()
+       app = createApp()
+       setupSnapshot(app)
+       app.launch()
+       await captureAllScreenshots()
     }
 
     @MainActor
     func testDarkModeScreenshots() async {
-//       app = createApp()
-//       app.launchArguments.append("FORCE_DARK_MODE")
-//       setupSnapshot(app)
-//       app.launch()
-//       await captureAllScreenshots(userInterfaceStyle: .dark)
+       app = createApp()
+       app.launchArguments.append("FORCE_DARK_MODE")
+       setupSnapshot(app)
+       app.launch()
+       await captureAllScreenshots(userInterfaceStyle: .dark)
     }
 
     @MainActor
