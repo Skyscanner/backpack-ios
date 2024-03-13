@@ -7,6 +7,7 @@ on:
 jobs:
   check_commenter:
     runs-on: ubuntu-latest
+    if: ${{ github.event.issue.pull_request }}
     steps:
       - name: Check if comment contains "take snapshot" and commenter is in organization
         uses: actions/github-script@v5
