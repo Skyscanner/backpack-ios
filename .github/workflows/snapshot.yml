@@ -1,0 +1,57 @@
+name: PR Comment Organization Check
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  check_commenter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if comment contains "take snapshot" and commenter is in organization
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const comment = context.payload.comment.body.toLowerCase();
+            const commenter = context.payload.comment.user.login;
+            const organizationName = 'skyscanner';
+            const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
+
+            // Check if comment contains "take snapshot"
+            if (!comment.includes("take snapshot")) {
+              console.log(`${commenter} did not request to take a snapshot`);
+              return;
+            }
+            
+            console.log(`${commenter} wants to take a snapshot`);
+
+            // Check if commenter is a member of the organization
+            const membership = await octokit.orgs.getMembership({
+              org: organizationName,
+              username: commenter
+            });
+
+            if (membership.data.state !== 'active') {
+              console.log(`${commenter} is not a member of ${organizationName}`);
+              const commentBody = `@${commenter} You are not a member of ${organizationName}. Only members can request to take a snapshot.`;
+              await octokit.issues.createComment({
+                owner: context.payload.repository.owner.login,
+                repo: context.payload.repository.name,
+                issue_number: context.payload.issue.number,
+                body: commentBody
+              });
+              return;
+            }
+
+            console.log(`${commenter} is a member of ${organizationName}`);
+            
+            // Add emoji reaction
+            await octokit.reactions.createForIssueComment({
+              owner: context.payload.repository.owner.login,
+              repo: context.payload.repository.name,
+              comment_id: context.payload.comment.id,
+              content: 'camera_flash' // Emoji for 📸
+            });
+
+            // Add your workflow steps here for taking a snapshot
