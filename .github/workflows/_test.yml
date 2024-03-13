@@ -16,11 +16,6 @@ jobs:
   test_pods:
     name: Testing Pods
     runs-on: macos-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        schemes: [ uikit, swiftui ]
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -58,8 +53,12 @@ jobs:
         if: ${{inputs.retake_snapshots}}
         run: find . -type d -name "__Snapshots__" -exec rm -rf {}  +;
 
-      - name: Run Tests
-        run: ./scripts/ci ${{ matrix.schemes }} test
+      - name: Run UIKit tests
+        run: ./scripts/ci uikit test
+        continue-on-error: ${{inputs.retake_snapshots}}
+      
+      - name: Run SwiftUI tests
+        run: ./scripts/ci swiftui test
         continue-on-error: ${{inputs.retake_snapshots}}
 
       - name: Save snapshots
@@ -73,5 +72,5 @@ jobs:
           git fetch origin $GITHUB_HEAD_REF
           git checkout $GITHUB_HEAD_REF
           git add --ignore-removal */**/__Snapshots__/*.png
-          git diff-index --quiet HEAD || git commit -m "Updated ${{ matrix.schemes }} snapshots"
+          git diff-index --quiet HEAD || git commit -m "Updated snapshots"
           git push
