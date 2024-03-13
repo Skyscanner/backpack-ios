@@ -1,0 +1,17 @@
+name: Retake Snapshots
+
+on:
+  pull_request:
+    types: [ labeled ]
+
+jobs:
+  take_snapshot:
+    name: Take snapshot
+    permissions:
+      statuses: write
+      pull-requests: write
+      contents: write
+    if: ${{ github.event.label.name == 'take-snapshot' }}
+    uses: ./.github/workflows/_test.yml
+    with:
+      retake_snapshots: true

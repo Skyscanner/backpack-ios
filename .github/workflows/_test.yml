@@ -1,0 +1,77 @@
+name: Test
+
+on:
+  workflow_call:
+    inputs:
+      retake_snapshots:
+        required: false
+        default: false
+        type: boolean
+
+defaults:
+  run:
+    shell: bash -l {0}
+
+jobs:
+  test_pods:
+    name: Testing Pods
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        schemes: [ uikit, swiftui ]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set Ruby version
+        uses: ruby/setup-ruby@v1 # Sets ruby version via `.ruby-version`
+
+      - name: Cache Bundler install Gems
+        uses: actions/cache@v4
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ env.ImageVersion }}-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-${{ env.ImageVersion }}
+
+      - name: Cache Pods
+        uses: actions/cache@v4
+        with:
+          path: Example/Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+
+      - name: Bundle Install
+        run: bundle install --jobs 4 --retry 3
+
+      - name: Pod Install
+        run: bundle exec pod install
+        working-directory: Example
+
+      - name: Select Xcode 14
+        run: sudo xcode-select --switch /Applications/Xcode_14.2.app
+
+      - name: Remove snapshots
+        if: ${{inputs.retake_snapshots}}
+        run: find . -type d -name "__Snapshots__" -exec rm -rf {}  +;
+
+      - name: Run Tests
+        run: ./scripts/ci ${{ matrix.schemes }} test
+        continue-on-error: ${{inputs.retake_snapshots}}
+
+      - name: Save snapshots
+        if: ${{inputs.retake_snapshots}}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git remote set-url origin https://x-access-token:$GITHUB_TOKEN@github.com/${{ github.repository }}
+          git fetch origin $GITHUB_HEAD_REF
+          git checkout $GITHUB_HEAD_REF
+          git add --ignore-removal */**/__Snapshots__/*.png
+          git diff-index --quiet HEAD || git commit -m "Updated ${{ matrix.schemes }} snapshots"
+          git push
