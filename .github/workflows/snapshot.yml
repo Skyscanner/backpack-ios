@@ -5,13 +5,20 @@ on:
     types: [ labeled ]
 
 jobs:
+  check_need_snapshot:
+    name: Verify need snapshots
+    if: ${{ github.event.label.name == 'take-snapshot' }}
+    steps:
+      - name: Verify retake
+        run: echo "Retaking snapshots"
   take_snapshot:
     name: Take snapshot
+    needs: [check_need_snapshot]
+    environment: Snapshot
     permissions:
       statuses: write
       pull-requests: write
       contents: write
-    if: ${{ github.event.label.name == 'take-snapshot' }}
     uses: ./.github/workflows/_test.yml
     with:
       retake_snapshots: true
