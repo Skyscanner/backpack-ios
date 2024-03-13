@@ -23,52 +23,120 @@ public struct BPKNavigationView<Content: View>: View {
     let style: BPKNavigationBarStyle
     let leadingItems: [BPKNavigationBarItem]
     let trailingItems: [BPKNavigationBarItem]
+    let scrollable: Bool
     let content: () -> Content
+    
+    @State private var expanded: Bool
+    @State private var offset: CGFloat = -1
     
     public init(
         title: String? = nil,
         leadingItems: [BPKNavigationBarItem] = [],
         trailingItems: [BPKNavigationBarItem] = [],
         style: BPKNavigationBarStyle = .default(.automatic),
+        scrollable: Bool = true,
         content: @escaping () -> Content
     ) {
         self.title = title
         self.style = style
         self.leadingItems = leadingItems
         self.trailingItems = trailingItems
+        _expanded = State(initialValue: style.expandedByDefault)
+        self.scrollable = scrollable
         self.content = content
     }
     
+    // swiftlint:disable closure_body_length
     public var body: some View {
-        if case .transparent = style {
-            ZStack(alignment: .top) {
-                content()
-                BPKNavigationBar(
-                    title: title,
-                    style: style,
-                    leadingItems: leadingItems,
-                    trailingItems: trailingItems
-                )
-            }
-        } else {
-            ZStack(alignment: .top) {
-                GeometryReader { reader in
-                    Color(style.backgroundColor)
-                        .frame(height: reader.safeAreaInsets.top, alignment: .top)
-                        .ignoresSafeArea()
+        GeometryReader { reader in
+            VStack {
+                if scrollable {
+                    ScrollViewWithOffset(
+                        onScroll: { value in
+                            offset = value.y
+                            withAnimation(.default) {
+                                expanded = value.y > -52
+                            }
+                        },
+                        content: {
+                            content()
+                                .offset(y: style.safeAreasToIgnore.contains(.top) ? 0 : 44 + 52)
+                        }
+                    )
+                } else {
+                    content()
+                        .offset(y: style.safeAreasToIgnore.contains(.top) ? 0 : 44 + 52)
                 }
-                BPKNavigationBar(
-                    title: title,
-                    style: style,
-                    leadingItems: leadingItems,
-                    trailingItems: trailingItems
-                )
             }
-            .safeAreaInset(edge: .bottom, spacing: 0) {
-                content()
+            .ignoresSafeArea(edges: style.safeAreasToIgnore)
+            .overlay {
+                ZStack(alignment: .top) {
+                    
+                    VStack(spacing: BPKSpacing.none) {
+                        HStack(alignment: .top) {
+                            BPKText(title ?? "", style: .heading2)
+                                .foregroundColor(style.foregroundColor)
+                                .padding(.top, -8)
+                            Spacer()
+                        }
+                        .frame(height: 52)
+                        .padding(.horizontal, .base)
+                        .background(style.backgroundColor)
+                        if let lineColor = style.lineColor {
+                            Rectangle()
+                                .frame(height: 1)
+                                .foregroundColor(lineColor)
+                        }
+                    }
+                    .offset(y: (offset < 0 ? offset : 0) + 44)
+                    
+                    Color(style.backgroundColor)
+                        .frame(height: reader.safeAreaInsets.top)
+                        .offset(y: -reader.safeAreaInsets.top)
+                    
+                    BPKNavigationBar(
+                        title: title,
+                        style: style,
+                        leadingItems: leadingItems,
+                        trailingItems: trailingItems,
+                        expanded: expanded
+                    )
+                }
+                .frame(maxHeight: .infinity, alignment: .top)
             }
         }
     }
+}
+
+struct ScrollViewWithOffset<Content: View>: View {
+    let onScroll: (_ offset: CGPoint) -> Void
+    @ViewBuilder let content: () -> Content
+    
+    var body: some View {
+        ScrollView {
+            ZStack(alignment: .top) {
+                GeometryReader { geo in
+                    Color.clear
+                        .preference(
+                            key: ScrollOffsetPreferenceKey.self,
+                            value: geo.frame(in: .named("scrollView")).origin
+                        )
+                }
+                .frame(height: 0)
+                content()
+            }
+        }
+        .coordinateSpace(name: "scrollView")
+        .onPreferenceChange(
+            ScrollOffsetPreferenceKey.self,
+            perform: onScroll
+        )
+    }
+}
+
+struct ScrollOffsetPreferenceKey: PreferenceKey {
+    static var defaultValue: CGPoint = .zero
+    static func reduce(value: inout CGPoint, nextValue: () -> CGPoint) {}
 }
 
 struct BPKNavigationBar: View {
@@ -76,21 +144,10 @@ struct BPKNavigationBar: View {
     let style: BPKNavigationBarStyle
     let leadingItems: [BPKNavigationBarItem]
     let trailingItems: [BPKNavigationBarItem]
+    let expanded: Bool
     
     @State private var leadingItemsSize: CGSize = .zero
     @State private var trailingItemsSize: CGSize = .zero
-    
-    init(
-        title: String?,
-        style: BPKNavigationBarStyle,
-        leadingItems: [BPKNavigationBarItem] = [],
-        trailingItems: [BPKNavigationBarItem] = []
-    ) {
-        self.title = title
-        self.style = style
-        self.leadingItems = leadingItems
-        self.trailingItems = trailingItems
-    }
     
     private var maxItemGroupWidth: CGFloat {
         if leadingItemsSize.width > trailingItemsSize.width {
@@ -101,39 +158,39 @@ struct BPKNavigationBar: View {
     
     // swiftlint:disable closure_body_length
     var body: some View {
-        ZStack(alignment: .bottom) {
-            VStack(spacing: BPKSpacing.none) {
-                HStack(spacing: .md) {
-                    HStack(spacing: .base) {
-                        toolbarItemView(forItems: leadingItems)
-                    }
-                    .modifier(ReadSizeModifier { leadingItemsSize = $0 })
-                    .frame(width: maxItemGroupWidth, alignment: .leading)
-                    Spacer()
-                    
+        VStack(spacing: BPKSpacing.none) {
+            HStack(spacing: .md) {
+                HStack(spacing: .base) {
+                    toolbarItemView(forItems: leadingItems)
+                }
+                .modifier(ReadSizeModifier { leadingItemsSize = $0 })
+                .frame(width: maxItemGroupWidth, alignment: .leading)
+                Spacer()
+                
+                if !expanded {
                     BPKText(title ?? "", style: .heading5)
                         .foregroundColor(style.foregroundColor)
                         .lineLimit(1)
-                    
-                    Spacer()
-                    HStack(spacing: .base) {
-                        toolbarItemView(forItems: trailingItems)
-                    }
-                    .modifier(ReadSizeModifier { trailingItemsSize = $0 })
-                    .frame(width: maxItemGroupWidth, alignment: .trailing)
                 }
-                .padding(.horizontal, .md)
-                .frame(maxWidth: .infinity)
-                .frame(height: 44)
                 
-                if let lineColor = style.lineColor {
-                    Rectangle()
-                        .frame(height: 1)
-                        .foregroundColor(lineColor)
+                Spacer()
+                HStack(spacing: .base) {
+                    toolbarItemView(forItems: trailingItems)
+                        .padding(.trailing, .md)
                 }
+                .modifier(ReadSizeModifier { trailingItemsSize = $0 })
+                .frame(width: maxItemGroupWidth, alignment: .trailing)
+            }
+            .padding(.horizontal, .md)
+            .frame(maxWidth: .infinity)
+            .frame(height: 44)
+            .background(style.backgroundColor)
+            if !expanded, let lineColor = style.lineColor {
+                Rectangle()
+                    .frame(height: 1)
+                    .foregroundColor(lineColor)
             }
         }
-        .background(style.backgroundColor)
     }
     
     private func iconItemView(
@@ -185,24 +242,23 @@ struct BPKNavigationBar: View {
 struct BPKNavigationView_Previews: PreviewProvider {
     static var previews: some View {
         BPKNavigationView(
-            title: "Title Example",
-            leadingItems: [
-                .init(type: .backButton("Back"), action: {})
-            ],
+            title: "Title",
+            leadingItems: [.init(type: .backButton("Back"), action: {})
+                          ],
             trailingItems: [
-                .init(type: .icon(.ai, "AI"), action: {}),
-                .init(type: .title("Add"), action: {})
+                .init(type: .icon(.settings, "AI"), action: {}),
+                .init(type: .icon(.faceId, "Add"), action: {})
             ],
-            style: .transparent(.automatic)
+            style: .transparent(.automatic),
+            scrollable: true
         ) {
-            ScrollView {
-                Rectangle()
-                    .foregroundColor(.blue)
-                    .frame(width: .infinity, height: 250)
-                    .bpkOverlay(.linear(.low, .top))
-                BPKText("Start")
+            VStack(spacing: 0) {
+                ForEach([
+                    Color.red, .blue, .yellow, .orange, .green
+                ], id: \.self) { color in
+                    color.frame(height: 300)
+                }
             }
-            .ignoresSafeArea(edges: .top)
         }
     }
 }

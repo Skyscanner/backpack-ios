@@ -23,11 +23,22 @@ public enum BPKNavigationBarStyle {
     case transparent(_ displayMode: NavigationBarItem.TitleDisplayMode = .automatic)
     case surfaceContrast
     
+    var expandedByDefault: Bool {
+        displayMode != .inline
+    }
+
     var foregroundColor: BPKColor {
         switch self {
         case .default: return .textPrimaryColor
         case .transparent: return .textOnDarkColor
         case .surfaceContrast: return .textOnDarkColor
+        }
+    }
+    
+    var safeAreasToIgnore: Edge.Set {
+        switch self {
+        case .transparent: return .top
+        default: return []
         }
     }
     
