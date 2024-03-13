@@ -2,23 +2,16 @@ name: Retake Snapshots
 
 on:
   pull_request:
-    types: [ labeled ]
+    branches: [main]
 
 jobs:
-  check_need_snapshot:
-    name: Verify need snapshots
-    if: ${{ github.event.label.name == 'take-snapshot' }}
-    steps:
-      - name: Verify retake
-        run: echo "Retaking snapshots"
   take_snapshot:
     name: Take snapshot
-    needs: [check_need_snapshot]
-    environment: Snapshot
     permissions:
       statuses: write
       pull-requests: write
       contents: write
+    if: contains(github.event.head_commit.message, 'snapshot_test')
     uses: ./.github/workflows/_test.yml
     with:
       retake_snapshots: true
