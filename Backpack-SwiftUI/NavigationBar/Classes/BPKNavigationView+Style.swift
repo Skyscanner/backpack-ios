@@ -19,19 +19,24 @@
 import SwiftUI
 
 public enum BPKNavigationBarStyle {
-    case `default`(_ displayMode: NavigationBarItem.TitleDisplayMode = .automatic)
-    case transparent(_ displayMode: NavigationBarItem.TitleDisplayMode = .automatic)
+    case `default`
+    case transparent
     case surfaceContrast
     
-    var expandedByDefault: Bool {
-        displayMode != .inline
-    }
-
-    var foregroundColor: BPKColor {
+    func foregroundColor(expanded: Bool) -> BPKColor {
         switch self {
         case .default: return .textPrimaryColor
-        case .transparent: return .textOnDarkColor
+        case .transparent: return expanded ? .textOnDarkColor : .textPrimaryColor
         case .surfaceContrast: return .textOnDarkColor
+        }
+    }
+    
+    var navigationBarHeight: CGFloat {
+        let collapsedHeight = CGFloat(44)
+        let expandedHeight = CGFloat(52)
+        switch self {
+        case .default, .transparent: return collapsedHeight + expandedHeight
+        case .surfaceContrast: return collapsedHeight
         }
     }
     
@@ -42,10 +47,10 @@ public enum BPKNavigationBarStyle {
         }
     }
     
-    var backgroundColor: BPKColor {
+    func backgroundColor(expanded: Bool) -> BPKColor {
         switch self {
         case .default: return .canvasColor
-        case .transparent: return .clear
+        case .transparent: return expanded ? .clear : .canvasColor
         case .surfaceContrast: return .surfaceContrastColor
         }
     }
@@ -58,11 +63,11 @@ public enum BPKNavigationBarStyle {
         }
     }
     
-    var displayMode: NavigationBarItem.TitleDisplayMode {
+    var supportsLargeTitle: Bool {
         switch self {
-        case .default(let displayMode): return displayMode
-        case .transparent(let displayMode): return displayMode
-        case .surfaceContrast: return .inline
+        case .default: return true
+        case .transparent: return true
+        case .surfaceContrast: return false
         }
     }
 }

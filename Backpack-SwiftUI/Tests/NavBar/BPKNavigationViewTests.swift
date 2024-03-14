@@ -37,7 +37,7 @@ class BPKNavigationViewTests: XCTestCase {
             style: style,
             content: { content() }
         )
-        .frame(width: 300)
+        .frame(width: 300, height: 200)
     }
     
     private func viewContent() -> some View {
@@ -55,11 +55,11 @@ class BPKNavigationViewTests: XCTestCase {
     }
     
     func test_default() {
-        assertSnapshot(navView(style: .default(.automatic), content: viewContent))
+        assertSnapshot(navView(style: .default, content: viewContent))
     }
     
     func test_transparent() {
-        assertSnapshot(navView(style: .transparent(.automatic), content: viewContent))
+        assertSnapshot(navView(style: .transparent, content: viewContent))
     }
     
     func test_surfaceContrast() {

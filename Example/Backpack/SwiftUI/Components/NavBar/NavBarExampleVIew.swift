@@ -47,7 +47,7 @@ struct NavBarExampleView: View {
                     .init(type: .icon(.accessibility, "accessibility"), action: {}),
                     .init(type: .icon(.alertAdd, "Add"), action: {})
                 ],
-                style: .default(.large)
+                style: .default
             ) {
                 sheetContent
             }
@@ -62,7 +62,7 @@ struct NavBarExampleView: View {
                     .init(type: .icon(.accessibility, "accessibility"), action: {}),
                     .init(type: .icon(.alertAdd, "Add"), action: {})
                 ],
-                style: .transparent(.large)
+                style: .transparent
             ) {
                 sheetContent
             }

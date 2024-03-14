@@ -33,7 +33,7 @@ public struct BPKNavigationView<Content: View>: View {
         title: String? = nil,
         leadingItems: [BPKNavigationBarItem] = [],
         trailingItems: [BPKNavigationBarItem] = [],
-        style: BPKNavigationBarStyle = .default(.automatic),
+        style: BPKNavigationBarStyle = .default,
         scrollable: Bool = true,
         content: @escaping () -> Content
     ) {
@@ -41,7 +41,7 @@ public struct BPKNavigationView<Content: View>: View {
         self.style = style
         self.leadingItems = leadingItems
         self.trailingItems = trailingItems
-        _expanded = State(initialValue: style.expandedByDefault)
+        _expanded = State(initialValue: style.supportsLargeTitle)
         self.scrollable = scrollable
         self.content = content
     }
@@ -53,44 +53,40 @@ public struct BPKNavigationView<Content: View>: View {
                 if scrollable {
                     ScrollViewWithOffset(
                         onScroll: { value in
-                            offset = value.y
-                            withAnimation(.default) {
-                                expanded = value.y > -52
+                            if style.supportsLargeTitle {
+                                offset = value.y
+                                withAnimation(.default) {
+                                    expanded = value.y > -52
+                                }
                             }
                         },
                         content: {
                             content()
-                                .offset(y: style.safeAreasToIgnore.contains(.top) ? 0 : 44 + 52)
+                                .offset(y: style.safeAreasToIgnore.contains(.top) ? 0 : style.navigationBarHeight)
                         }
                     )
                 } else {
                     content()
-                        .offset(y: style.safeAreasToIgnore.contains(.top) ? 0 : 44 + 52)
+                        .offset(y: style.safeAreasToIgnore.contains(.top) ? 0 : style.navigationBarHeight)
                 }
             }
             .ignoresSafeArea(edges: style.safeAreasToIgnore)
             .overlay {
                 ZStack(alignment: .top) {
-                    
-                    VStack(spacing: BPKSpacing.none) {
-                        HStack(alignment: .top) {
+                    if style.supportsLargeTitle {
+                        ZStack(alignment: .leading) {
+                            Color(style.backgroundColor(expanded: expanded))
+                                .frame(height: 52)
                             BPKText(title ?? "", style: .heading2)
-                                .foregroundColor(style.foregroundColor)
+                                .foregroundColor(style.foregroundColor(expanded: expanded))
                                 .padding(.top, -8)
-                            Spacer()
+                                .frame(height: 52)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.horizontal, .base)
                         }
-                        .frame(height: 52)
-                        .padding(.horizontal, .base)
-                        .background(style.backgroundColor)
-                        if let lineColor = style.lineColor {
-                            Rectangle()
-                                .frame(height: 1)
-                                .foregroundColor(lineColor)
-                        }
+                        .offset(y: (offset < 0 ? offset : 0) + 44)
                     }
-                    .offset(y: (offset < 0 ? offset : 0) + 44)
-                    
-                    Color(style.backgroundColor)
+                    Color(style.backgroundColor(expanded: expanded))
                         .frame(height: reader.safeAreaInsets.top)
                         .offset(y: -reader.safeAreaInsets.top)
                     
@@ -159,32 +155,35 @@ struct BPKNavigationBar: View {
     // swiftlint:disable closure_body_length
     var body: some View {
         VStack(spacing: BPKSpacing.none) {
-            HStack(spacing: .md) {
-                HStack(spacing: .base) {
-                    toolbarItemView(forItems: leadingItems)
+            ZStack {
+                Color(style.backgroundColor(expanded: expanded))
+                    .frame(height: 44)
+                HStack(spacing: .md) {
+                    HStack(spacing: .base) {
+                        toolbarItemView(forItems: leadingItems)
+                    }
+                    .modifier(ReadSizeModifier { leadingItemsSize = $0 })
+                    .frame(width: maxItemGroupWidth, alignment: .leading)
+                    Spacer()
+                    
+                    if !expanded {
+                        BPKText(title ?? "", style: .heading5)
+                            .foregroundColor(style.foregroundColor(expanded: expanded))
+                            .lineLimit(1)
+                    }
+                    
+                    Spacer()
+                    HStack(spacing: .base) {
+                        toolbarItemView(forItems: trailingItems)
+                            .padding(.trailing, .md)
+                    }
+                    .modifier(ReadSizeModifier { trailingItemsSize = $0 })
+                    .frame(width: maxItemGroupWidth, alignment: .trailing)
                 }
-                .modifier(ReadSizeModifier { leadingItemsSize = $0 })
-                .frame(width: maxItemGroupWidth, alignment: .leading)
-                Spacer()
-                
-                if !expanded {
-                    BPKText(title ?? "", style: .heading5)
-                        .foregroundColor(style.foregroundColor)
-                        .lineLimit(1)
-                }
-                
-                Spacer()
-                HStack(spacing: .base) {
-                    toolbarItemView(forItems: trailingItems)
-                        .padding(.trailing, .md)
-                }
-                .modifier(ReadSizeModifier { trailingItemsSize = $0 })
-                .frame(width: maxItemGroupWidth, alignment: .trailing)
+                .padding(.horizontal, .md)
+                .frame(maxWidth: .infinity)
+                .frame(height: 44)
             }
-            .padding(.horizontal, .md)
-            .frame(maxWidth: .infinity)
-            .frame(height: 44)
-            .background(style.backgroundColor)
             if !expanded, let lineColor = style.lineColor {
                 Rectangle()
                     .frame(height: 1)
@@ -202,7 +201,7 @@ struct BPKNavigationBar: View {
             BPKIconView(icon, size: .large)
         }
         .accessibilityLabel(accessibilityLabel)
-        .foregroundColor(style.foregroundColor)
+        .foregroundColor(style.foregroundColor(expanded: expanded))
     }
     
     // swiftlint:disable closure_body_length
@@ -238,25 +237,25 @@ struct BPKNavigationBar: View {
     }
 }
 
-// swiftlint:disable all
 struct BPKNavigationView_Previews: PreviewProvider {
     static var previews: some View {
-        BPKNavigationView(
-            title: "Title",
-            leadingItems: [.init(type: .backButton("Back"), action: {})
-                          ],
-            trailingItems: [
-                .init(type: .icon(.settings, "AI"), action: {}),
-                .init(type: .icon(.faceId, "Add"), action: {})
-            ],
-            style: .transparent(.automatic),
-            scrollable: true
-        ) {
-            VStack(spacing: 0) {
-                ForEach([
-                    Color.red, .blue, .yellow, .orange, .green
-                ], id: \.self) { color in
-                    color.frame(height: 300)
+        VStack {
+            BPKNavigationView(
+                title: "Hotels",
+                leadingItems: [.init(type: .backButton("Back"), action: {})],
+                trailingItems: [
+                    .init(type: .icon(.settings, "AI"), action: {}),
+                    .init(type: .icon(.faceId, "Add"), action: {})
+                ],
+                style: .default,
+                scrollable: true
+            ) {
+                VStack(spacing: 0) {
+                    ForEach([
+                        Color.red, .blue, .yellow, .orange, .green
+                    ], id: \.self) { color in
+                        color.frame(height: 300)
+                    }
                 }
             }
         }
