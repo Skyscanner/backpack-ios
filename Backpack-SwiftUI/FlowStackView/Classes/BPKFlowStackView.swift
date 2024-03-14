@@ -89,9 +89,9 @@ public struct BPKFlowStackView<Data: Collection, Content: View>: View where Data
         data.forEach { element in
             let defaultSize = CGSize(width: availableWidth, height: 1)
             let elementSize = elementsSize[element, default: defaultSize]
-            let fitsInCurrentRow = elementSize.width + spacing.width > remainingWidth
+            let doesNotFitInCurrentRow = elementSize.width + spacing.width > remainingWidth
             
-            if fitsInCurrentRow { // new row
+            if doesNotFitInCurrentRow { // new row
                 remainingWidth = availableWidth
                 currentRow += 1
                 rows.append([Item(id: currentIndex, data: element)])
@@ -116,7 +116,7 @@ struct BPKFlowStackView_Previews: PreviewProvider {
                 BPKFlowStackView(
                     data: Array(0...10),
                     alignment: alignments[index],
-                    content: { element, index in makeKBadge(index: element) }
+                    content: { element, index in makeBadge(index: element) }
                 )
             }
         }
@@ -124,7 +124,7 @@ struct BPKFlowStackView_Previews: PreviewProvider {
     }
     
     @ViewBuilder
-    static func makeKBadge(index: Int) -> some View {
+    static func makeBadge(index: Int) -> some View {
         BPKBadge("Hello" + Array(repeating: "👋", count: index % 5).joined())
             .badgeStyle(.brand)
     }
