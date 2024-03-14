@@ -15,7 +15,7 @@ defaults:
 jobs:
   TestPods:
     name: Testing Pods
-    runs-on: macos-latest
+    runs-on: macos-14
     outputs:
       changed-files: ${{ steps.checkSnapshotChanges.outputs.didChangeFiles }}
     steps:
@@ -48,8 +48,8 @@ jobs:
         run: bundle exec pod install
         working-directory: Example
 
-      - name: Select Xcode 14
-        run: sudo xcode-select --switch /Applications/Xcode_14.2.app
+      - name: Select Xcode
+        run: ./scripts/switch-xcode
 
       - name: Remove snapshots
         if: ${{inputs.retake_snapshots}}
