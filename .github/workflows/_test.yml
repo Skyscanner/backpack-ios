@@ -91,7 +91,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            var body = `### 'Snapshots were updated. Please verify the changes match the expected layout. \n\n>'${{ needs.TestPods.outputs.changed-files }}'`;
+            var body = `### Snapshots were updated. Please verify the changes match the expected layout. \n\n>'${{ needs.TestPods.outputs.changed-files }}'`;
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
