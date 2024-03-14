@@ -1,0 +1,100 @@
+name: Test
+
+on:
+  workflow_call:
+    inputs:
+      retake_snapshots:
+        required: false
+        default: false
+        type: boolean
+
+defaults:
+  run:
+    shell: bash -l {0}
+
+jobs:
+  TestPods:
+    name: Testing Pods
+    runs-on: macos-latest
+    outputs:
+      changed-files: ${{ steps.checkSnapshotChanges.outputs.didChangeFiles }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set Ruby version
+        uses: ruby/setup-ruby@v1 # Sets ruby version via `.ruby-version`
+
+      - name: Cache Bundler install Gems
+        uses: actions/cache@v4
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ env.ImageVersion }}-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-${{ env.ImageVersion }}
+
+      - name: Cache Pods
+        uses: actions/cache@v4
+        with:
+          path: Example/Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+
+      - name: Bundle Install
+        run: bundle install --jobs 4 --retry 3
+
+      - name: Pod Install
+        run: bundle exec pod install
+        working-directory: Example
+
+      - name: Select Xcode 14
+        run: sudo xcode-select --switch /Applications/Xcode_14.2.app
+
+      - name: Remove snapshots
+        if: ${{inputs.retake_snapshots}}
+        run: find . -type d -name "__Snapshots__" -exec rm -rf {}  +;
+
+      - name: Run UIKit tests
+        run: ./scripts/ci uikit test
+        continue-on-error: ${{inputs.retake_snapshots}}
+      
+      - name: Run SwiftUI tests
+        run: ./scripts/ci swiftui test
+        continue-on-error: ${{inputs.retake_snapshots}}
+      
+      - name: Check snapshot changes
+        id: checkSnapshotChanges
+        run: changedFiles=`git status --porcelain` && echo "didChangeFiles=${changedFiles//$'\n'/'%0A'}" >> $GITHUB_OUTPUT
+
+      - name: Save snapshots
+        if: ${{inputs.retake_snapshots}}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git remote set-url origin https://x-access-token:$GITHUB_TOKEN@github.com/${{ github.repository }}
+          git fetch origin $GITHUB_HEAD_REF
+          git checkout $GITHUB_HEAD_REF
+          git add --ignore-removal */**/__Snapshots__/*.png
+          git diff-index --quiet HEAD || git commit -m "Updated snapshots"
+          git push
+
+  NotifyChanges:
+    name: "Notify about changes made"
+    runs-on: ubuntu-latest
+    needs: [TestPods]
+    if: ${{ needs.TestPods.outputs.changed-files != '' &&  inputs.retake_snapshots}}
+    steps:
+      - name: Notify PR of screenshots changes
+        uses: actions/github-script@v6
+        with:
+          script: |
+            var body = `### Snapshots were updated. Please verify the changes match the expected layout. \n\n>'${{ needs.TestPods.outputs.changed-files }}'`;
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            })

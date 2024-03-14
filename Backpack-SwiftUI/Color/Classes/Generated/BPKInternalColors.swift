@@ -132,7 +132,7 @@ internal extension BPKColor {
     /// The `buttonPrimaryOnLightPressedBackgroundColor` internal color.
     
     static let buttonPrimaryOnLightPressedBackgroundColor = BPKColor(red: 0.082, green: 0.275, blue: 0.475, alpha: 1)
-        .darkVariant(BPKColor(red: 0.082, green: 0.275, blue: 0.475, alpha: 1))
+        .darkVariant(BPKColor(red: 0.020, green: 0.255, blue: 0.518, alpha: 1))
 
     /// The `buttonFeaturedNormalBackgroundColor` internal color.
     
@@ -147,12 +147,12 @@ internal extension BPKColor {
     /// The `buttonPrimaryOnLightNormalBackgroundColor` internal color.
     
     static let buttonPrimaryOnLightNormalBackgroundColor = BPKColor(red: 0.020, green: 0.125, blue: 0.235, alpha: 1)
-        .darkVariant(BPKColor(red: 0.020, green: 0.125, blue: 0.235, alpha: 1))
+        .darkVariant(BPKColor(red: 0.008, green: 0.302, blue: 0.686, alpha: 1))
 
     /// The `buttonPrimaryOnLightDisabledForegroundColor` internal color.
     
     static let buttonPrimaryOnLightDisabledForegroundColor = BPKColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 0.2)
-        .darkVariant(BPKColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 0.2))
+        .darkVariant(BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.2))
 
     /// The `buttonSecondaryOnDarkDisabledBackgroundColor` internal color.
     
@@ -161,7 +161,7 @@ internal extension BPKColor {
 
     /// The `buttonDestructiveNormalForegroundColor` internal color.
     
-    static let buttonDestructiveNormalForegroundColor = BPKColor(red: 0.784, green: 0.016, blue: 0.337, alpha: 1)
+    static let buttonDestructiveNormalForegroundColor = BPKColor(red: 0.906, green: 0.031, blue: 0.400, alpha: 1)
         .darkVariant(BPKColor(red: 1.000, green: 0.392, blue: 0.612, alpha: 1))
 
     /// The `buttonPrimaryOnDarkNormalBackgroundColor` internal color.
@@ -172,7 +172,7 @@ internal extension BPKColor {
     /// The `buttonPrimaryOnDarkDisabledForegroundColor` internal color.
     
     static let buttonPrimaryOnDarkDisabledForegroundColor = BPKColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 0.2)
-        .darkVariant(BPKColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 0.2))
+        .darkVariant(BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.2))
 
     /// The `buttonSecondaryOnDarkPressedBackgroundColor` internal color.
     
@@ -181,13 +181,13 @@ internal extension BPKColor {
 
     /// The `buttonLinkPressedForegroundColor` internal color.
     
-    static let buttonLinkPressedForegroundColor = BPKColor(red: 0.082, green: 0.275, blue: 0.475, alpha: 1)
+    static let buttonLinkPressedForegroundColor = BPKColor(red: 0.008, green: 0.302, blue: 0.686, alpha: 1)
         .darkVariant(BPKColor(red: 0.820, green: 0.969, blue: 1.000, alpha: 1))
 
     /// The `buttonPrimaryOnLightDisabledBackgroundColor` internal color.
     
     static let buttonPrimaryOnLightDisabledBackgroundColor = BPKColor(red: 0.878, green: 0.894, blue: 0.914, alpha: 1)
-        .darkVariant(BPKColor(red: 0.878, green: 0.894, blue: 0.914, alpha: 1))
+        .darkVariant(BPKColor(red: 0.043, green: 0.071, blue: 0.114, alpha: 1))
 
     /// The `buttonDestructiveNormalBackgroundColor` internal color.
     
@@ -197,22 +197,22 @@ internal extension BPKColor {
     /// The `buttonPrimaryNormalBackgroundColor` internal color.
     
     static let buttonPrimaryNormalBackgroundColor = BPKColor(red: 0.020, green: 0.125, blue: 0.235, alpha: 1)
-        .darkVariant(BPKColor(red: 0.020, green: 0.255, blue: 0.518, alpha: 1))
+        .darkVariant(BPKColor(red: 0.008, green: 0.302, blue: 0.686, alpha: 1))
 
     /// The `buttonDestructivePressedBackgroundColor` internal color.
     
-    static let buttonDestructivePressedBackgroundColor = BPKColor(red: 0.784, green: 0.016, blue: 0.337, alpha: 1)
+    static let buttonDestructivePressedBackgroundColor = BPKColor(red: 0.906, green: 0.031, blue: 0.400, alpha: 1)
         .darkVariant(BPKColor(red: 1.000, green: 0.392, blue: 0.612, alpha: 1))
 
     /// The `buttonPrimaryPressedBackgroundColor` internal color.
     
     static let buttonPrimaryPressedBackgroundColor = BPKColor(red: 0.082, green: 0.275, blue: 0.475, alpha: 1)
-        .darkVariant(BPKColor(red: 0.000, green: 0.169, blue: 0.357, alpha: 1))
+        .darkVariant(BPKColor(red: 0.020, green: 0.255, blue: 0.518, alpha: 1))
 
     /// The `buttonPrimaryOnDarkDisabledBackgroundColor` internal color.
     
     static let buttonPrimaryOnDarkDisabledBackgroundColor = BPKColor(red: 0.878, green: 0.894, blue: 0.914, alpha: 1)
-        .darkVariant(BPKColor(red: 0.878, green: 0.894, blue: 0.914, alpha: 1))
+        .darkVariant(BPKColor(red: 0.043, green: 0.071, blue: 0.114, alpha: 1))
 
     /// The `buttonLinkOnDarkPressedForegroundColor` internal color.
     
@@ -231,8 +231,8 @@ internal extension BPKColor {
 
     /// The `buttonSecondaryOnDarkNormalBackgroundColor` internal color.
     
-    static let buttonSecondaryOnDarkNormalBackgroundColor = BPKColor(red: 0.141, green: 0.200, blue: 0.275, alpha: 1)
-        .darkVariant(BPKColor(red: 0.141, green: 0.200, blue: 0.275, alpha: 1))
+    static let buttonSecondaryOnDarkNormalBackgroundColor = BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.10196078431372549)
+        .darkVariant(BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.10196078431372549))
 
     /// The `buttonSecondaryOnDarkDisabledForegroundColor` internal color.
     
@@ -268,4 +268,14 @@ internal extension BPKColor {
     
     static let sponsoredBannerBackgroundColor = BPKColor(red: 0.937, green: 0.953, blue: 0.973, alpha: 1)
         .darkVariant(BPKColor(red: 0.141, green: 0.200, blue: 0.275, alpha: 1))
+
+    /// The `navigationTabHoverColor` internal color.
+    
+    static let navigationTabHoverColor = BPKColor(red: 0.082, green: 0.275, blue: 0.475, alpha: 1)
+        .darkVariant(BPKColor(red: 0.820, green: 0.969, blue: 1.000, alpha: 1))
+
+    /// The `navigationTabOutlineColor` internal color.
+    
+    static let navigationTabOutlineColor = BPKColor(red: 0.757, green: 0.780, blue: 0.812, alpha: 1)
+        .darkVariant(BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1))
 }
