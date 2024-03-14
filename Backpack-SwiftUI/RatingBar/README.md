@@ -51,7 +51,7 @@ You can customise the style of the rating bar by setting the `style` property. T
 BPKRatingBar(
     label: "Rating",
     value: 4.5,
-    accessibilityLabel: "Rating of 4.5",
+    accessibilityLabel: "Rating of 4.5 out of 5",
     style: .onContrast
 )
 ```

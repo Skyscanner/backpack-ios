@@ -36,20 +36,20 @@ struct RatingBarExampleView: View {
             BPKRatingBar(
                 label: "Rating",
                 rating: 2.5,
-                accessibilityLabel: "Rating",
+                accessibilityLabel: "Hotel rated 2.5 out of 5",
                 style: style
             )
             BPKRatingBar(
                 label: "Rating",
                 rating: 2.5,
-                accessibilityLabel: "Rating",
+                accessibilityLabel: "Hotel rated 2.5 out of 10",
                 ratingScale: .zeroToTen,
                 style: style
             )
             BPKRatingBar(
                 label: "Rating",
                 rating: 2.5,
-                accessibilityLabel: "Rating",
+                accessibilityLabel: "Hotel rated 2.5 out of 5",
                 showScale: false,
                 style: style
             )

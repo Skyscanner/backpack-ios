@@ -43,7 +43,7 @@ public struct BPKRatingBar: View {
         style: Style = .default
     ) {
         self.label = label
-        self.rating = rating
+        self.rating = min(max(rating, 0), ratingScale.rawScale)
         self.accessibilityLabel = accessibilityLabel
         self.ratingScale = ratingScale
         self.showScale = showScale
@@ -55,8 +55,8 @@ public struct BPKRatingBar: View {
             HStack(alignment: .lastTextBaseline, spacing: .zero) {
                 BPKText(label, style: .footnote)
                 Spacer()
+                    BPKText(String(format: "%.1f", rating), style: .heading5)
                 if showScale {
-                    BPKText("\(rating)", style: .heading5)
                     BPKText("/", style: .caption)
                     BPKText(ratingScale.scaleLabel, style: .caption)
                 }
@@ -73,7 +73,7 @@ public struct BPKRatingBar: View {
             }
             .frame(height: .md)
         }
-        .accessibilityElement(children: .combine)
+        .accessibilityElement(children: .ignore)
         .accessibilityLabel(accessibilityLabel)
     }
     
