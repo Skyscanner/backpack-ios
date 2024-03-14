@@ -20,6 +20,7 @@ import SwiftUI
 
 public extension View {
     /// Displays a success dialog with a title, text and a list of buttons.
+    // swiftlint:disable function_parameter_count
     func bpkSuccessDialog(
         presented: Binding<Bool>,
         icon: BPKIcon,
@@ -27,6 +28,7 @@ public extension View {
         text: String,
         confirmButton: BPKDialogButton,
         secondaryActions: BPKDialogSecondaryActions? = nil,
+        presentingController: UIViewController,
         onTouchOutside: (() -> Void)? = nil
     ) -> some View {
         var buttons = [BPKDialogButton(button: confirmButton, style: .featured)]
@@ -36,14 +38,18 @@ public extension View {
                 buttons.append(BPKDialogButton(button: linkButton, style: .link))
             }
         }
-        return self.modifier(UIKitDialogContainerViewModifier(isPresented: presented, dialogContent: {
-            DialogWithIconContent(
-                icon: icon,
-                iconColor: .coreAccentColor,
-                textContent: DialogTextContent(title: title, text: text, contentAlignment: .center),
-                actions: DialogActionsView(buttons: buttons)
-            )
-        }, onTouchOutside: onTouchOutside))
+        return self.modifier(UIKitDialogContainerViewModifier(
+            isPresented: presented,
+            dialogContent: {
+                DialogWithIconContent(
+                    icon: icon,
+                    iconColor: .coreAccentColor,
+                    textContent: DialogTextContent(title: title, text: text, contentAlignment: .center),
+                    actions: DialogActionsView(buttons: buttons)
+                )
+            },
+            onTouchOutside: onTouchOutside,
+            presentingController: presentingController))
     }
     
     /// Displays a warning dialog with a title, text and a list of buttons.
@@ -54,6 +60,7 @@ public extension View {
         text: String,
         confirmButton: BPKDialogButton,
         secondaryActions: BPKDialogSecondaryActions? = nil,
+        presentingController: UIViewController,
         onTouchOutside: (() -> Void)? = nil
     ) -> some View {
         var buttons = [BPKDialogButton(button: confirmButton, style: .featured)]
@@ -70,7 +77,7 @@ public extension View {
                 textContent: DialogTextContent(title: title, text: text, contentAlignment: .center),
                 actions: DialogActionsView(buttons: buttons)
             )
-        }, onTouchOutside: onTouchOutside))
+        }, onTouchOutside: onTouchOutside, presentingController: presentingController))
     }
     
     /// Displays a destructive dialog with a title, text and a list of buttons.
@@ -81,6 +88,7 @@ public extension View {
         text: String,
         confirmButton: BPKDialogButton,
         linkButton: BPKDialogButton? = nil,
+        presentingController: UIViewController,
         onTouchOutside: (() -> Void)? = nil
     ) -> some View {
         var buttons = [BPKDialogButton(button: confirmButton, style: .destructive)]
@@ -94,7 +102,7 @@ public extension View {
                 textContent: DialogTextContent(title: title, text: text, contentAlignment: .center),
                 actions: DialogActionsView(buttons: buttons)
             )
-        }, onTouchOutside: onTouchOutside))
+        }, onTouchOutside: onTouchOutside, presentingController: presentingController))
     }
     
     /// Displays a dialog with an image, title, text and a list of buttons.
@@ -105,6 +113,7 @@ public extension View {
         text: String,
         confirmButton: BPKDialogButton,
         secondaryActions: BPKDialogSecondaryActions? = nil,
+        presentingController: UIViewController,
         onTouchOutside: (() -> Void)? = nil
     ) -> some View {
         var buttons = [BPKDialogButton(button: confirmButton, style: .featured)]
@@ -120,7 +129,7 @@ public extension View {
                     .spacing(.md),
                 actions: DialogActionsView(buttons: buttons)
             ) { DialogImageView(image: image) }
-        }, onTouchOutside: onTouchOutside))
+        }, onTouchOutside: onTouchOutside, presentingController: presentingController))
     }
     
     /// Displays a dialog with an image with a flare, title, text and a list of buttons.
@@ -131,6 +140,7 @@ public extension View {
         text: String,
         confirmButton: BPKDialogButton,
         secondaryActions: BPKDialogSecondaryActions? = nil,
+        presentingController: UIViewController,
         onTouchOutside: (() -> Void)? = nil
     ) -> some View {
         var buttons = [BPKDialogButton(button: confirmButton, style: .featured)]
@@ -149,7 +159,7 @@ public extension View {
                     DialogImageView(image: image)
                 }
             }
-        }, onTouchOutside: onTouchOutside))
+        }, onTouchOutside: onTouchOutside, presentingController: presentingController))
     }
 }
 
@@ -161,7 +171,8 @@ struct BPKDialog_Previews: PreviewProvider {
                 icon: .tick,
                 title: "Title in here",
                 text: "Description that goes two lines ideally, but sometimes it can go longer",
-                confirmButton: .init("Delete", action: {})
+                confirmButton: .init("Delete", action: {}),
+                presentingController: UIViewController()
             )
     }
 }

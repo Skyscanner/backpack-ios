@@ -85,6 +85,11 @@ Each component needs to be visually documented in our example app. Make sure to 
 ### Tests
 Our components need to be well tested. We require all business logic to be covered by unit tests. The component and all of its types and states need to be captured in Snapshot tests. Please review existing components to learn how we set up these tests.
 
+Our CI runs on Intel hardware, so you might find your snapshots failing when recording them with an M1 Mac. If you have access to an Intel Mac, you can run the tests locally on that machine to avoid this issue.
+Otherwise, please create a commit on your pull request with `Record snapshots` to trigger a Github Action that will re-record your snapshots. 
+
+Once your snapshots are generated, please manually verify that they are correct before merging your pull request.
+
 ### Documentation
 See our design system documentation at [skyscanner.design](https://www.skyscanner.design).
 
