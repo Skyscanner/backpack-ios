@@ -41,6 +41,7 @@
 		53B6DB6627FC47290042B7C0 /* DialogGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B6DB6527FC47290042B7C0 /* DialogGroups.swift */; };
 		53B6DB6827FC4D520042B7C0 /* HorizontalNavigationGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B6DB6727FC4D520042B7C0 /* HorizontalNavigationGroups.swift */; };
 		53B6DB6A27FC73A90042B7C0 /* LabelGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B6DB6927FC73A90042B7C0 /* LabelGroups.swift */; };
+		53BA7BCE2B9B5E6A00F93982 /* RatingBarExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BA7BCD2B9B5E6900F93982 /* RatingBarExampleView.swift */; };
 		53BA7BC32B99003600F93982 /* NavBarExampleVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BA7BC22B99003600F93982 /* NavBarExampleVIew.swift */; };
 		53BAC3F12A71415800236CC9 /* SectionHeaderGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BAC3F02A71415800236CC9 /* SectionHeaderGroups.swift */; };
 		53C6621029EA0DAB00BF1A62 /* RatingExampleViewWithTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C661E329EA0DAA00BF1A62 /* RatingExampleViewWithTitle.swift */; };
@@ -262,6 +263,7 @@
 		53B6DB6527FC47290042B7C0 /* DialogGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogGroups.swift; sourceTree = "<group>"; };
 		53B6DB6727FC4D520042B7C0 /* HorizontalNavigationGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalNavigationGroups.swift; sourceTree = "<group>"; };
 		53B6DB6927FC73A90042B7C0 /* LabelGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelGroups.swift; sourceTree = "<group>"; };
+		53BA7BCD2B9B5E6900F93982 /* RatingBarExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingBarExampleView.swift; sourceTree = "<group>"; };
 		53BA7BC22B99003600F93982 /* NavBarExampleVIew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBarExampleVIew.swift; sourceTree = "<group>"; };
 		53BAC3F02A71415800236CC9 /* SectionHeaderGroups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderGroups.swift; sourceTree = "<group>"; };
 		53C661E329EA0DAA00BF1A62 /* RatingExampleViewWithTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingExampleViewWithTitle.swift; sourceTree = "<group>"; };
@@ -577,6 +579,14 @@
 				794337AA283C829100797D1C /* Tab.swift */,
 			);
 			path = FeatureStories;
+			sourceTree = "<group>";
+		};
+		53BA7BCC2B9B5E6900F93982 /* RatingBar */ = {
+			isa = PBXGroup;
+			children = (
+				53BA7BCD2B9B5E6900F93982 /* RatingBarExampleView.swift */,
+			);
+			path = RatingBar;
 			sourceTree = "<group>";
 		};
 		53BA7BC12B99003600F93982 /* NavBar */ = {
@@ -933,6 +943,7 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				53BA7BCC2B9B5E6900F93982 /* RatingBar */,
 				53BA7BC12B99003600F93982 /* NavBar */,
 				5318E3352AF5070300C66D18 /* Calendar */,
 				BA809EC32B05ED100030D1E7 /* AppSearchModal */,
@@ -1757,6 +1768,7 @@
 				53C6622329EA0DAB00BF1A62 /* ButtonsExampleView.swift in Sources */,
 				7904384629F11DC7006CD8E0 /* SliderPlayground.swift in Sources */,
 				764D003C237DE51000FE60AC /* SnackbarViewController.swift in Sources */,
+				53BA7BCE2B9B5E6A00F93982 /* RatingBarExampleView.swift in Sources */,
 				53E075AC27FC9AB00033147C /* CellsDataSource.swift in Sources */,
 				794E1FF6280A8A0000B965FF /* ContentUIHostingController.swift in Sources */,
 				53C6621829EA0DAB00BF1A62 /* OverlayExampleView.swift in Sources */,
