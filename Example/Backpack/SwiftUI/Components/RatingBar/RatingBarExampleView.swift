@@ -31,25 +31,25 @@ struct RatingBarExampleView: View {
     }
     
     private func ratings(title: String, _ style: BPKRatingBar.Style) -> some View {
-        VStack(spacing: .base) {
-            BPKText(title, style: .heading3)
+        VStack(alignment: .leading, spacing: .base) {
+            BPKText(title, style: .heading4)
             BPKRatingBar(
-                label: "Rating",
-                rating: 2.5,
-                accessibilityLabel: "Hotel rated 2.5 out of 5",
+                label: "Leading text",
+                rating: 4.7,
+                accessibilityLabel: "Hotel rated 4.7 out of 5",
                 style: style
             )
             BPKRatingBar(
-                label: "Rating",
-                rating: 2.5,
-                accessibilityLabel: "Hotel rated 2.5 out of 10",
+                label: "Leading text",
+                rating: 4.7,
+                accessibilityLabel: "Hotel rated 4.7 out of 10",
                 ratingScale: .zeroToTen,
                 style: style
             )
             BPKRatingBar(
-                label: "Rating",
-                rating: 2.5,
-                accessibilityLabel: "Hotel rated 2.5 out of 5",
+                label: "Leading text",
+                rating: 4.7,
+                accessibilityLabel: "Hotel rated 4.7 out of 5",
                 showScale: false,
                 style: style
             )
