@@ -55,31 +55,31 @@ public struct BPKPrice: View {
         switch alignment {
         case .leading:
             VStack(alignment: .leading, spacing: BPKSpacing.none) {
-                buildContent()
+                content
             }
         case .trailing:
             VStack(alignment: .trailing, spacing: BPKSpacing.none) {
-                buildContent()
+                content
             }
         case .row:
             HStack(alignment: .firstTextBaseline, spacing: .sm) {
-                buildContent()
+                content
             }
         }
     }
     
-    private func buildContent() -> some View {
+    private var content: some View {
         Group {
-            buildAdditionalInfo()
+            additionalInfoLabel
             
             switch alignment {
             case .leading, .row:
                 HStack(alignment: .firstTextBaseline, spacing: .sm) {
-                    buildPrice()
+                    priceLabel
                 }
             case .trailing:
                 VStack(alignment: .trailing) {
-                    buildPrice()
+                    priceLabel
                 }
             }
         }
@@ -88,10 +88,10 @@ public struct BPKPrice: View {
         })
     }
     
-    private func buildAdditionalInfo() -> some View {
+    private var additionalInfoLabel: some View {
         HStack(spacing: .sm) {
-            ForEach(additionalInfo(), id: \.self) { item in
-                BPKText(item, style: accessoryFontStyle())
+            ForEach(additionalInfo, id: \.self) { item in
+                BPKText(item, style: accessoryFontStyle)
                     .foregroundColor(.textSecondaryColor)
                     .strikethrough(item == previousPrice)
             }
@@ -99,15 +99,15 @@ public struct BPKPrice: View {
     }
     
     @ViewBuilder
-    private func buildPrice() -> some View {
-        BPKText(price, style: priceFontStyle())
+    private var priceLabel: some View {
+        BPKText(price, style: priceFontStyle)
         if let trailingText = trailingText {
-            BPKText(trailingText, style: accessoryFontStyle())
+            BPKText(trailingText, style: accessoryFontStyle)
                 .foregroundColor(.textSecondaryColor)
         }
     }
     
-    private func accessoryFontStyle() -> BPKFontStyle {
+    private var accessoryFontStyle: BPKFontStyle {
         switch size {
         case .large:
             return .footnote
@@ -116,7 +116,7 @@ public struct BPKPrice: View {
         }
     }
     
-    private func priceFontStyle() -> BPKFontStyle {
+    private var priceFontStyle: BPKFontStyle {
         switch size {
         case .large:
             return .heading2
@@ -127,7 +127,7 @@ public struct BPKPrice: View {
         }
     }
     
-    private func additionalInfo() -> [String] {
+    private var additionalInfo: [String] {
         var items = [String]()
         
         if let previousPrice = previousPrice {
