@@ -11,9 +11,6 @@ jobs:
   Setup:
     name: Install Dependencies
     runs-on: macos-latest
-    permissions:
-      statuses: write
-      pull-requests: write
     steps:
       - uses: actions/checkout@v4
 
@@ -135,45 +132,8 @@ jobs:
 
   TestPods:
     name: Testing Pods
-    runs-on: macos-latest
     needs: [Setup]
-    strategy:
-      fail-fast: false
-      matrix:
-        schemes: [uikit, swiftui]
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Cache Bundler install Gems
-        uses: actions/cache@v4
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ env.ImageVersion }}-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-${{ env.ImageVersion }}
-
-      - name: Cache Pods
-        uses: actions/cache@v4
-        with:
-          path: Example/Pods
-          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-pods-
-
-      - name: Bundle Install
-        run: bundle install --jobs 4 --retry 3
-
-      - name: Pod Install
-        run: bundle exec pod install
-        working-directory: Example
-
-      - name: Select Xcode 14
-        run: sudo xcode-select --switch /Applications/Xcode_14.2.app
-
-      - name: Run Tests
-        run: ./scripts/ci ${{ matrix.schemes }} test
+    uses: ./.github/workflows/_test.yml
 
   UploadArtifacts:
     name: Upload Artifacts
