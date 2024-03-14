@@ -69,6 +69,26 @@ class PriceTests: XCTestCase {
         assertSnapshot(testView(size: .small, alignment: .trailing))
     }
     
+    func test_small_withRowAlignment() {
+        // Then
+        assertSnapshot(testView(size: .small, alignment: .row))
+    }
+    
+    func test_extraSmall_withLeadingAlignment() {
+        // Then
+        assertSnapshot(testView(size: .extraSmall, alignment: .leading))
+    }
+    
+    func test_extraSmall_withTrailingAlignment() {
+        // Then
+        assertSnapshot(testView(size: .extraSmall, alignment: .trailing))
+    }
+    
+    func test_extraSmall_withRowAlignment() {
+        // Then
+        assertSnapshot(testView(size: .extraSmall, alignment: .row))
+    }
+    
     func test_large_withLeadingAlignment() {
         // Then
         assertSnapshot(testView(size: .large, alignment: .leading))

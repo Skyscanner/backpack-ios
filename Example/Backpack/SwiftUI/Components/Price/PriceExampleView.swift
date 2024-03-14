@@ -31,86 +31,97 @@ struct PriceExampleView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: BPKSpacingBase) {
-                HStack {
-                    BPKPrice(price: price, alignment: .leading, size: size)
-                    Spacer()
-                    BPKPrice(price: price, alignment: .trailing, size: size)
-                }
                 
-                HStack {
-                    BPKPrice(
-                        price: price,
-                        trailingText: trailingText,
-                        alignment: .leading,
-                        size: size
-                    )
-                    Spacer()
-                    BPKPrice(
-                        price: price,
-                        trailingText: trailingText,
-                        alignment: .trailing,
-                        size: size
-                    )
-                }
+                buildLeadingAndTrailingPrice(
+                    price: price,
+                    size: size
+                )
                 
-                HStack {
+                buildLeadingAndTrailingPrice(
+                    price: price,
+                    trailingText: trailingText,
+                    size: size
+                )
+                
+                buildLeadingAndTrailingPrice(
+                    price: price,
+                    previousPrice: previousPrice,
+                    trailingText: trailingText,
+                    size: size
+                )
+                
+                buildLeadingAndTrailingPrice(
+                    price: price,
+                    leadingText: leadingText,
+                    trailingText: trailingText,
+                    size: size
+                )
+                
+                buildLeadingAndTrailingPrice(
+                    price: price,
+                    leadingText: leadingText,
+                    previousPrice: previousPrice,
+                    trailingText: trailingText,
+                    size: size
+                )
+                
+                if size != .large {
                     BPKPrice(
                         price: price,
                         previousPrice: previousPrice,
                         trailingText: trailingText,
-                        alignment: .leading,
+                        alignment: .row,
                         size: size
                     )
-                    Spacer()
-                    BPKPrice(
-                        price: price,
-                        previousPrice: previousPrice,
-                        trailingText: trailingText,
-                        alignment: .trailing,
-                        size: size
-                    )
-                }
-                
-                HStack {
+                    
                     BPKPrice(
                         price: price,
                         leadingText: leadingText,
                         trailingText: trailingText,
-                        alignment: .leading,
+                        alignment: .row,
                         size: size
                     )
-                    Spacer()
-                    BPKPrice(
-                        price: price,
-                        leadingText: leadingText,
-                        trailingText: trailingText,
-                        alignment: .trailing,
-                        size: size
-                    )
-                }
-                
-                HStack {
+                    
                     BPKPrice(
                         price: price,
                         leadingText: leadingText,
                         previousPrice: previousPrice,
                         trailingText: trailingText,
-                        alignment: .leading,
-                        size: size
-                    )
-                    Spacer()
-                    BPKPrice(
-                        price: price,
-                        leadingText: leadingText,
-                        previousPrice: previousPrice,
-                        trailingText: trailingText,
-                        alignment: .trailing,
+                        alignment: .row,
                         size: size
                     )
                 }
             }
             .padding([.leading, .trailing], .base)
             Spacer()
+        }
+    }
+    
+    private func buildLeadingAndTrailingPrice(
+        price: String,
+        leadingText: String? = nil,
+        previousPrice: String? = nil,
+        trailingText: String? = nil,
+        size: Backpack_SwiftUI.BPKPrice.Size
+    ) -> some View {
+        HStack {
+            BPKPrice(
+                price: price,
+                leadingText: leadingText,
+                previousPrice: previousPrice,
+                trailingText: trailingText,
+                alignment: .leading,
+                size: size
+            )
+            Spacer()
+            BPKPrice(
+                price: price,
+                leadingText: leadingText,
+                previousPrice: previousPrice,
+                trailingText: trailingText,
+                alignment: .trailing,
+                size: size
+            )
         }
     }
 }
