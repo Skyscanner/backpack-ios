@@ -246,10 +246,15 @@ extension ComponentCellsProvider {
         )
     }
     private func navBar() -> CellDataSource {
-        GroupCellDataSource(
+        ComponentCellDataSource(
             title: "Navigation bars",
-            groups: NavBarGroupsProvider(showPresentable: show(presentable:)).groups(),
-            showChildren: { showChildren(title: "Navigation bars", children: $0) }
+            tabs: [
+                .uikit(groups: NavBarGroupsProvider(showPresentable: show(presentable:)).groups()),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(NavBarExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Navigation bars", tabs: $0) }
         )
     }
     private func nudger() -> CellDataSource {

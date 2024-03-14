@@ -58,15 +58,17 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
     
     @MainActor
     func captureAllScreenshots(userInterfaceStyle: UIUserInterfaceStyle = .light) async {
-        await navigate(title: "Labels") {
+        await navigate(title: "Navigation bars") {
             switchTab(title: "SwiftUI")
-            app.tables.staticTexts["Body"].tap()
-            saveScreenshot(component: "text", scenario: "body", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
+            _ = app.buttons["Default"].waitForExistence(timeout: 1)
+            app.buttons["Default"].tap()
+            saveScreenshot(component: "navbar", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            app.buttons["Back"].tap()
             
-            app.tables.staticTexts["Heading"].tap()
-            saveScreenshot(component: "text", scenario: "heading", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
+            _ = app.buttons["Transparent"].waitForExistence(timeout: 1)
+            app.buttons["Transparent"].tap()
+            saveScreenshot(component: "navbar", scenario: "transparent", userInterfaceStyle: userInterfaceStyle)
+            app.buttons["Back"].tap()
             
             app.tables.staticTexts["Hero"].tap()
             saveScreenshot(component: "text", scenario: "hero", userInterfaceStyle: userInterfaceStyle)
