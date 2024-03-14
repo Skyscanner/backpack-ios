@@ -32,10 +32,6 @@ Pod::Spec.new do |s|
     git: 'https://github.com/Skyscanner/backpack-ios.git', tag: s.version.to_s
   }
   s.ios.deployment_target = '15.1'
-  s.tvos.deployment_target = '15.0'
-  s.macos.deployment_target = '10.13'
-  s.watchos.deployment_target = '8.0'
-  
   s.source_files = 'Backpack/Backpack.h', 'Backpack/Common.h', 'Backpack/*/Classes/**/*.{h,m,swift}'
   s.exclude_files = 'Backpack/Tests/**'
   s.public_header_files = 'Backpack/Backpack.h', 'Backpack/*/Classes/**/*.h'
