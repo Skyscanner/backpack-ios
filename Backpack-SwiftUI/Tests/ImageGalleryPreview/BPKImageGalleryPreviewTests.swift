@@ -21,5 +21,20 @@ import SwiftUI
 @testable import Backpack_SwiftUI
 
 class BPKImageGalleryPreviewTests: XCTestCase {
+    private func createImage() -> some View {
+        Image("dialog_image", bundle: TestsBundle.bundle)
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+    }
     
+    func test_imageGalleryPreview() {
+        assertSnapshot(BPKImageGalleryPreview(
+            images: [
+                createImage(),
+                createImage(),
+                createImage()
+            ],
+            currentIndex: .constant(1)
+        ))
+    }
 }
