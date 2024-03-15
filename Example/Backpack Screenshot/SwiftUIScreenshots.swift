@@ -756,6 +756,11 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
         
+        await navigate(title: "Image Gallery Preview") {
+            saveScreenshot(component: "image-gallery-preview", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
+        
         await navigate(title: "App Search Modal") {
             app.tables.staticTexts["Loading"].tap()
             saveScreenshot(component: "app-search-modal", scenario: "loading", userInterfaceStyle: userInterfaceStyle)
