@@ -111,7 +111,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (BPKLabel *)createTitleLabel {
-    BPKLabel *titleLabel = [[BPKLabel alloc] initWithFontStyle:[self fontStyleForSize:self.size]];
+    BPKLabel *titleLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextLabel1];
     titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [titleLabel setUserInteractionEnabled:NO];
     return titleLabel;
@@ -213,7 +213,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateSize {
     BPKButtonSize size = self.size;
-    self.titleLabel.fontStyle = [self fontStyleForSize:size];
+    self.titleLabel.fontStyle = BPKFontStyleTextLabel1;
     self.heightConstraint.constant = [self heightForSize:size];
 
     self.spinner.transform = [self spinnerTransformForSize:size];
@@ -406,15 +406,6 @@ NS_ASSUME_NONNULL_BEGIN
     return [[BPKGradient alloc] initWithColors:@[resolvedTopColor, resolvedBottomColor]
                                     startPoint:[BPKGradient startPointForDirection:direction]
                                       endPoint:[BPKGradient endPointForDirection:direction]];
-}
-
-- (BPKFontStyle)fontStyleForSize:(BPKButtonSize)size {
-    switch (size) {
-    case BPKButtonSizeDefault:
-        return BPKFontStyleTextLabel2;
-    case BPKButtonSizeLarge:
-        return BPKFontStyleTextLabel1;
-    }
 }
 
 - (CGFloat)cornerRadiusForStyle:(BPKButtonStyle)style {
