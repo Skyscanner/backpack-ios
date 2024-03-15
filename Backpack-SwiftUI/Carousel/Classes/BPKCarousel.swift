@@ -32,12 +32,17 @@ public struct BPKCarousel<Content: View>: View {
     }
     
     public var body: some View {
-        InternalCarouselWrapper(images: images, currentIndex: $currentIndex)
+        InternalCarouselWrapper(
+            images: images,
+            pageIndicatorBottomPadding: 0,
+            currentIndex: $currentIndex
+        )
     }
 }
 
-private struct InternalCarouselWrapper<Content: View>: UIViewRepresentable {
+struct InternalCarouselWrapper<Content: View>: UIViewRepresentable {
     let images: [Content]
+    let pageIndicatorBottomPadding: CGFloat
     @Binding var currentIndex: Int
     
     func updateUIView(_ uiView: BPKInternalCarousel, context: Context) {}
@@ -51,7 +56,10 @@ private struct InternalCarouselWrapper<Content: View>: UIViewRepresentable {
         let pageIndicatorView = UIHostingController(rootView: pageIndicator).view!
         pageIndicatorView.translatesAutoresizingMaskIntoConstraints = false
         pageIndicatorView.backgroundColor = .clear
-        let carousel = BPKInternalCarousel(pageIndicator: pageIndicatorView)
+        let carousel = BPKInternalCarousel(
+            pageIndicator: pageIndicatorView,
+            pageIndicatorBottomPadding: pageIndicatorBottomPadding
+        )
         carousel.delegate = context.coordinator
         
         let uiImages = images.map { UIHostingController(rootView: $0).view! }
