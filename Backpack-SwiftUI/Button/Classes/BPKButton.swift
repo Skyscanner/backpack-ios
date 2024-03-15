@@ -168,13 +168,9 @@ private struct ButtonContentView: View {
         }
     }
     
-    private var fontStyle: BPKFontStyle {
-        size == .default ? .label2 : .label1
-    }
-    
     private func content(withTitle title: String) -> some View {
         Text(title)
-            .font(style: fontStyle)
+            .font(style: .label1)
             .lineLimit(1)
             .sizeCategory(.large)
     }
@@ -203,11 +199,11 @@ private struct ButtonContentView: View {
 struct BPKButton_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            BPKButton("Click Me!") {}
-            BPKButton("Click Me!", icon: BPKButton.Icon(icon: .account, position: .leading)) {}
-            BPKButton("Click Me!", loading: .constant(true)) {}
-            BPKButton("Click Me!") {}
-            .buttonStyle(.link)
+            BPKButton("Label") {}
+            BPKButton("Label", icon: BPKButton.Icon(icon: .lightning, position: .leading)) {}
+            BPKButton("Label", icon: BPKButton.Icon(icon: .longArrowRight, position: .trailing)) {}
+            BPKButton(icon: .longArrowRight, accessibilityLabel: "Continue") {}
+            BPKButton("Label", loading: .constant(true)) {}
         }
         .previewLayout(.sizeThatFits)
     }
