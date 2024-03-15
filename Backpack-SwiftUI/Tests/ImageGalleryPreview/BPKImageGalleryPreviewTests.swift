@@ -28,13 +28,16 @@ class BPKImageGalleryPreviewTests: XCTestCase {
     }
     
     func test_imageGalleryPreview() {
-        assertSnapshot(BPKImageGalleryPreview(
-            images: [
-                createImage(),
-                createImage(),
-                createImage()
-            ],
-            currentIndex: .constant(1)
-        ))
+        assertSnapshot(
+            BPKImageGalleryPreview(
+                images: [
+                    createImage(),
+                    createImage(),
+                    createImage()
+                ],
+                currentIndex: .constant(1)
+            )
+            .frame(width: 400, height: 250)
+        )
     }
 }
