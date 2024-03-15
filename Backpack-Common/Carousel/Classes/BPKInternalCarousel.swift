@@ -36,7 +36,7 @@ public class BPKInternalCarousel: UIView {
     public weak var delegate: BPKInternalCarouselDelegate?
     public var currentImage: Int { pageViewController.currentIndex }
     
-    public init(pageIndicator: UIView) {
+    public init(pageIndicator: UIView, pageIndicatorBottomPadding: CGFloat) {
         self.pageIndicator = pageIndicator
         super.init(frame: .zero)
         pageViewController.carouselDelegate = self
@@ -48,7 +48,10 @@ public class BPKInternalCarousel: UIView {
             pageViewController.view.trailingAnchor.constraint(equalTo: trailingAnchor),
             pageViewController.view.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            pageIndicator.bottomAnchor.constraint(equalTo: bottomAnchor),
+            pageIndicator.bottomAnchor.constraint(
+                equalTo: bottomAnchor,
+                constant: -pageIndicatorBottomPadding
+            ),
             pageIndicator.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
     }
