@@ -524,9 +524,6 @@ extension ComponentCellsProvider {
         ComponentCellDataSource(
             title: "Image Gallery Preview",
             tabs: [
-                .uikit(presentable: CustomPresentable(
-                    generateViewController: { CarouselViewController() }
-                )),
                 .swiftui(presentable: CustomPresentable(generateViewController: {
                     ContentUIHostingController(ImageGalleryPreviewExampleView())
                 }))
