@@ -32,12 +32,33 @@ public enum BPKNavigationBarStyle {
     }
     
     var navigationBarHeight: CGFloat {
-        let collapsedHeight = CGFloat(44)
-        let expandedHeight = CGFloat(52)
+        collapsedHeight + expandedNavigationBarHeight
+    }
+    
+    var collapsedHeight: CGFloat {
+        44
+    }
+    
+    var expandedNavigationBarHeight: CGFloat {
         switch self {
-        case .default, .transparent: return collapsedHeight + expandedHeight
-        case .surfaceContrast: return collapsedHeight
+        case .default, .transparent: return 52
+        case .surfaceContrast: return 0
         }
+    }
+    
+    var bottomSafeAreaInsetHeight: CGFloat {
+        switch self {
+        case .default, .surfaceContrast: return expandedNavigationBarHeight
+        case .transparent: return 0
+        }
+    }
+    
+    var verticalOffset: CGFloat {
+        safeAreasToIgnore.contains(.top) ? 0 : navigationBarHeight
+    }
+    
+    var largeTitlePadding: CGFloat {
+        BPKSpacing.md.value
     }
     
     var safeAreasToIgnore: Edge.Set {
