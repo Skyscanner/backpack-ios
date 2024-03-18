@@ -57,6 +57,7 @@ struct ComponentCellsProvider {
             dialog(),
             horizontalNavigation(),
             icon(),
+            imageGalleryPreview(),
             insetBanner(),
             label(),
             navBar(),
@@ -517,6 +518,17 @@ extension ComponentCellsProvider {
                 }))
             ],
             showChildren: { showComponent(title: "Carousel", tabs: $0) }
+        )
+    }
+    private func imageGalleryPreview() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Image Gallery Preview",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(ImageGalleryPreviewExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Image Gallery Preview", tabs: $0) }
         )
     }
     private func price() -> CellDataSource {

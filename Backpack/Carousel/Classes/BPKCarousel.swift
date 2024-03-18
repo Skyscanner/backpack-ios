@@ -41,7 +41,10 @@ public final class BPKCarousel: UIView {
     }()
     
     public init() {
-        internalCarousel = BPKInternalCarousel(pageIndicator: pageIndicator)
+        internalCarousel = BPKInternalCarousel(
+            pageIndicator: pageIndicator,
+            pageIndicatorBottomPadding: 0
+        )
         super.init(frame: .zero)
         
         internalCarousel.delegate = self
