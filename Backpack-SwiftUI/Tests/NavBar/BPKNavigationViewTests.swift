@@ -51,7 +51,6 @@ class BPKNavigationViewTests: XCTestCase {
                 .clipped()
             Text("Screen content")
         }
-        .ignoresSafeArea(edges: .top)
     }
     
     func test_default() {
