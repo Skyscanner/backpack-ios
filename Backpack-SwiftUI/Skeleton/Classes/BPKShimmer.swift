@@ -21,6 +21,7 @@ import SwiftUI
 struct BPKShimmer: ViewModifier {
     @State private var offset = 0.0
     private let duration = 1.0
+    private let bounce = false
     private let bandSize = 0.3
     
     public func body(content: Content) -> some View {
@@ -33,7 +34,7 @@ struct BPKShimmer: ViewModifier {
     }
     
     private var linearAnimation: Animation {
-        .linear(duration: duration).repeatForever(autoreverses: false)
+        .linear(duration: duration).repeatForever(autoreverses: bounce)
     }
     
     private var linearGradient: LinearGradient {
