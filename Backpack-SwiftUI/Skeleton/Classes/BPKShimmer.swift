@@ -19,49 +19,33 @@
 import SwiftUI
 
 struct BPKShimmer: ViewModifier {
-    @State private var phase: CGFloat = 0
+    @State private var offset = 0.0
     private let duration = 1.0
-    private let bounce = false
-    private let delay = 0.2
-
+    private let bandSize = 0.3
+    
     public func body(content: Content) -> some View {
         content
-            .modifier(ShimmerMask(phase: phase).animation(
-                Animation.linear(duration: duration)
-                    .repeatForever(autoreverses: bounce)
-            ))
-            .onAppear { phase = 0.8 }
+            .mask(linearGradient)
+            .animation(linearAnimation, value: offset)
+            .onAppear {
+                offset = 1.0 + bandSize
+            }
     }
-
-    struct ShimmerMask: AnimatableModifier {
-        var phase: CGFloat = 0
-
-        var animatableData: CGFloat {
-            get { phase }
-            set { phase = newValue }
-        }
-
-        func body(content: Content) -> some View {
-            content
-                .mask(GradientMask(phase: phase).scaleEffect(3))
-        }
+    
+    private var linearAnimation: Animation {
+        .linear(duration: duration).repeatForever(autoreverses: false)
     }
-
-    struct GradientMask: View {
-        let phase: CGFloat
-
-        var body: some View {
-            LinearGradient(gradient:
-                Gradient(stops: [
-                    .init(color: alpha(1), location: phase),
-                    .init(color: alpha(0.8), location: phase + 0.1),
-                    .init(color: alpha(1), location: phase + 0.2)
-                ]), startPoint: .leading, endPoint: .trailing)
-        }
-        
-        private func alpha(_ alpha: CGFloat) -> Color {
-            return Color(BPKColor.skeletonShimmerCenterColor.withAlphaComponent(alpha))
-        }
+    
+    private var linearGradient: LinearGradient {
+        .init(
+            gradient: Gradient(colors: [alpha(1), alpha(0.8), alpha(1)]),
+            startPoint: UnitPoint(x: -bandSize + offset, y: 0.5),
+            endPoint: UnitPoint(x: offset, y: 0.5)
+        )
+    }
+    
+    private func alpha(_ alpha: CGFloat) -> Color {
+        return Color(BPKColor.skeletonShimmerCenterColor.withAlphaComponent(alpha))
     }
 }
 
