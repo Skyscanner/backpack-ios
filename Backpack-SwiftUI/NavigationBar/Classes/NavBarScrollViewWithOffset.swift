@@ -24,34 +24,15 @@ struct NavBarScrollViewWithOffset<Content: View>: View {
     @ViewBuilder let content: () -> Content
     
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            ZStack(alignment: .top) {
-                GeometryReader { geo in
-                    Color.clear
-                        .preference(
-                            key: ScrollOffsetPreferenceKey.self,
-                            value: geo.frame(in: .named("scrollView")).origin
-                        )
-                }
-                .frame(height: 0)
-                content()
-                    .offset(y: style.verticalOffset)
-            }
+        
+        ScrollViewWithOffset(onScroll: onScroll) {
+            content()
+                .offset(y: style.verticalOffset)
         }
-        .coordinateSpace(name: "scrollView")
-        .onPreferenceChange(
-            ScrollOffsetPreferenceKey.self,
-            perform: onScroll
-        )
         .if(style != .transparent, transform: { view in
             view.safeAreaInset(edge: .bottom) {
                 Color.clear.frame(height: style.verticalOffset - style.largeTitlePadding)
             }
         })
     }
-}
-
-private struct ScrollOffsetPreferenceKey: PreferenceKey {
-    static var defaultValue: CGPoint = .zero
-    static func reduce(value: inout CGPoint, nextValue: () -> CGPoint) {}
 }
