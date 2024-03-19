@@ -18,8 +18,7 @@
 
 import SwiftUI
 
-struct NavBarScrollViewWithOffset<Content: View>: View {
-    let style: BPKNavigationBarStyle
+struct ObservableScrollView<Content: View>: View {
     let onScroll: (_ offset: CGPoint) -> Void
     @ViewBuilder let content: () -> Content
     
@@ -35,7 +34,6 @@ struct NavBarScrollViewWithOffset<Content: View>: View {
                 }
                 .frame(height: 0)
                 content()
-                    .offset(y: style.verticalOffset)
             }
         }
         .coordinateSpace(name: "scrollView")
@@ -43,11 +41,6 @@ struct NavBarScrollViewWithOffset<Content: View>: View {
             ScrollOffsetPreferenceKey.self,
             perform: onScroll
         )
-        .if(style != .transparent, transform: { view in
-            view.safeAreaInset(edge: .bottom) {
-                Color.clear.frame(height: style.verticalOffset - style.largeTitlePadding)
-            }
-        })
     }
 }
 

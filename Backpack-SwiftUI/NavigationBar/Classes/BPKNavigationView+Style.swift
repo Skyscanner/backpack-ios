@@ -54,7 +54,10 @@ public enum BPKNavigationBarStyle {
     }
     
     var verticalOffset: CGFloat {
-        safeAreasToIgnore.contains(.top) ? 0 : navigationBarHeight
+        switch self {
+        case .transparent: return 0
+        default: return navigationBarHeight
+        }
     }
     
     var largeTitlePadding: CGFloat {
