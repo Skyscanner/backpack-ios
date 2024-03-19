@@ -52,26 +52,34 @@ public struct BPKNavigationView<Content: View>: View {
     public var body: some View {
         GeometryReader { proxy in
             resolvedContent
+                .ignoresSafeArea(edges: style.safeAreasToIgnore)
+                .safeAreaInset(edge: .bottom) {
+                    Color.clear.frame(height: style.verticalOffset)
+                }
                 .overlay {
                     navBarOverlay(readerProxy: proxy)
                 }
         }
-        .ignoresSafeArea(edges: style.safeAreasToIgnore)
         .ignoresSafeArea(edges: safeAreasToIgnore)
     }
     
     @ViewBuilder
     private var resolvedContent: some View {
         if scrollable {
-            NavBarScrollViewWithOffset(
-                style: style,
+            ObservableScrollView(
                 onScroll: onScroll(_:),
-                content: content
+                content: {
+                    offsetContent
+                }
             )
         } else {
-            content()
-                .offset(y: style.verticalOffset)
+            offsetContent
         }
+    }
+    
+    private var offsetContent: some View {
+        content()
+            .offset(y: style.verticalOffset)
     }
     
     private func navBarOverlay(readerProxy proxy: GeometryProxy) -> some View {
@@ -117,7 +125,7 @@ struct BPKNavigationView_Previews: PreviewProvider {
                 .init(type: .icon(.settings, "AI"), action: {}),
                 .init(type: .icon(.faceId, "Add"), action: {})
             ],
-            style: .default,
+            style: .transparent,
             scrollable: true,
             ignoresBottomSafeArea: true
         ) {
@@ -126,7 +134,7 @@ struct BPKNavigationView_Previews: PreviewProvider {
                 ForEach([
                     Color.red, .blue, .yellow, .orange, .green
                 ], id: \.self) { color in
-                    color.frame(height: 300)
+                    color.frame(height: 200)
                 }
                 Text("End")
             }
