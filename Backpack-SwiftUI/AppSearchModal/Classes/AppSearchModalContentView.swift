@@ -20,8 +20,14 @@ import SwiftUI
 
 struct AppSearchModalContentView: View {
     let state: BPKAppSearchModalContent
+    let onScroll: (_ offset: CGPoint) -> Void
     var body: some View {
-        ScrollView(showsIndicators: false) {
+        
+        ObservableScrollView { point in
+            if point != .zero {
+                onScroll(point)
+            }
+        } content: {
             VStack(spacing: .base) {
                 if let shortcuts = state.shortcuts, !shortcuts.isEmpty {
                     makeShortcuts(shortcuts)
@@ -104,7 +110,7 @@ struct AppSearchModalContentView_Previews: PreviewProvider {
         AppSearchModalContentView(state: .init(
             sections: (0..<3).map(buildSection),
             shortcuts: (0..<4).map(buildShortcut)
-        ))
+        ), onScroll: { _ in })
     }
     
     static func buildSection(with index: Int) -> BPKAppSearchModalContent.Section {

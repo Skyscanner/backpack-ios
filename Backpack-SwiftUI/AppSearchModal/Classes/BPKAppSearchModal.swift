@@ -26,6 +26,7 @@ public struct BPKAppSearchModal: View {
     let closeAccessibilityLabel: String
     let onClose: () -> Void
     private var textFieldState: TextFieldState = .default
+    @FocusState private var inputFieldIsFocussed: Bool
     
     public init(
         title: String,
@@ -51,13 +52,17 @@ public struct BPKAppSearchModal: View {
             if results.showTextField {
                 BPKTextField(placeholder: inputHint, $inputText)
                     .inputState(textFieldState.inputState)
+                    .focused($inputFieldIsFocussed)
+                    .autocorrectionDisabled(true)
             }
         
             switch results {
             case .loading(let loading):
                 AppSearchModalLoadingView(state: loading)
             case .content(let content):
-                AppSearchModalContentView(state: content)
+                AppSearchModalContentView(
+                    state: content,
+                    onScroll: onScroll(_:))
                     .padding(.top, .md)
             case .error(let error):
                 AppSearchModalErrorView(state: error)
@@ -96,6 +101,10 @@ public struct BPKAppSearchModal: View {
         var result = self
         result.textFieldState = state
         return result
+    }
+    
+    private func onScroll(_ offset: CGPoint) {
+        inputFieldIsFocussed = false
     }
 }
 
