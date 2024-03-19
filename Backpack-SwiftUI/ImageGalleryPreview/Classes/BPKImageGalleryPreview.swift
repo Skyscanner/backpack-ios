@@ -81,10 +81,8 @@ struct BPKImageGalleryPreview_Previews: PreviewProvider {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(.white)
                 .clipShape(RoundedRectangle(cornerRadius: .lg))
-//                .offset(y: -48)
                 Spacer()
             }
-//            .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 }
