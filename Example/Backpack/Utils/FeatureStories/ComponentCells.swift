@@ -58,6 +58,7 @@ struct ComponentCellsProvider {
             horizontalNavigation(),
             icon(),
             imageGalleryPreview(),
+            imageGallerySlideshow(),
             insetBanner(),
             label(),
             navBar(),

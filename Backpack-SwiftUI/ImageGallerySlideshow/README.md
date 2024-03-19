@@ -8,22 +8,35 @@
 
 | Day | Night |
 | --- | --- |
-| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_image-gallery-preview___default_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_image-gallery-preview___default_dm.png" alt="" width="375" /> |
+| <img src="../../screenshots/iPhone-swiftui_image-gallery-slideshow___default_lm.png" alt="" width="375" /> |<img src="../../screenshots/iPhone-swiftui_image-gallery-slideshow___default_dm.png" alt="" width="375" /> |
  
 ## Usage
 
 ```swift
 @State var currentIndex: Int = 0
-    
-BPKImageGallerySlideshow(
-    images: [image("Paris"), image("Barcelona"), image("London")],
+@State var isPresented: Bool = false
+
+BPKButton("Show Slideshow") {
+    currentIndex = 0
+}.bpkImageGallerySlideshow(
+    isPresented: $isPresented,
+    images: [
+        BPKImageGalleryImage(
+            title: "London",
+            description: "London is the capital and largest city of England and the UK.",
+            credit: "John Doe",
+        ) {
+            image("London-brigde")
+        },
+    ],
+    closeAccessibilityLabel: "Close",
     currentIndex: $currentIndex,
-    onImageClicked: { selectedIndex in
-        print("User tapped on image number \(selectedIndex)")
+    onCloseTapped: {
+        isPresented = false
     }
 )
 
-func image(_ name: String) -> Image {
+func image(_ name: String) -> some View {
     Image(name)
         .resizable()
         .aspectRatio(contentMode: .fill)
