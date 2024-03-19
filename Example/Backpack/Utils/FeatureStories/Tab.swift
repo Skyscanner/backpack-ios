@@ -19,18 +19,22 @@
 import Foundation
 
 extension Components.Tab {
+    
+    @MainActor
     static func uikit(groups: [Components.Group]) -> Components.Tab {
         Components.Tab.uikit(presentable: CustomPresentable(generateViewController: {
             GroupsViewController(groups: groups)
         }))
     }
     
+    @MainActor
     static func swiftui(groups: [Components.Group]) -> Components.Tab {
         Components.Tab.swiftui(presentable: CustomPresentable(generateViewController: {
             GroupsViewController(groups: groups)
         }))
     }
     
+    @MainActor
     static func uikit(presentable: Presentable) -> Components.Tab {
         Components.Tab(
             title: "UIKit",
@@ -38,7 +42,8 @@ extension Components.Tab {
             image: BPKIcon.makeLargeTemplateIcon(name: .window)
         )
     }
-    
+
+    @MainActor
     static func swiftui(presentable: Presentable) -> Components.Tab {
         Components.Tab(
             title: "SwiftUI",

@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public struct BPKColor {
+public struct BPKColor: Sendable {
     public let value: UIColor
 }
 

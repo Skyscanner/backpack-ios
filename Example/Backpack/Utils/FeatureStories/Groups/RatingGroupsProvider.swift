@@ -20,6 +20,7 @@ import Backpack
 import SwiftUI
 import Backpack_SwiftUI
 
+@MainActor
 struct RatingGroupsProvider {
     let showPresentable: (Presentable) -> Void
 

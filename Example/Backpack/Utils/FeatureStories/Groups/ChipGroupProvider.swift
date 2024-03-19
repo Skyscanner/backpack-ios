@@ -19,6 +19,7 @@
 
 import SwiftUI
 
+@MainActor
 struct ChipGroupProvider {
     let showPresentable: (Presentable) -> Void
     
