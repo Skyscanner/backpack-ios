@@ -531,6 +531,17 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Image Gallery Preview", tabs: $0) }
         )
     }
+    private func imageGallerySlideshow() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Image Gallery Slideshow",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(ImageGallerySlideshowExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Image Gallery Slideshow", tabs: $0) }
+        )
+    }
     private func price() -> CellDataSource {
         ComponentCellDataSource(
             title: "Price",

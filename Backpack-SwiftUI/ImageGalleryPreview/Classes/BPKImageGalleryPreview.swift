@@ -22,7 +22,6 @@ public struct BPKImageGalleryPreview<Content: View>: View {
     private let images: [Content]
     @Binding private var currentIndex: Int
     private let onImageClicked: ((Int) -> Void)?
-    private let pageIndicatorBottomPadding = CGFloat(64)
     
     public init(
         images: [Content],
@@ -38,7 +37,7 @@ public struct BPKImageGalleryPreview<Content: View>: View {
         ZStack(alignment: .bottomTrailing) {
             InternalCarouselWrapper(
                 images: images,
-                pageIndicatorBottomPadding: pageIndicatorBottomPadding,
+                pageIndicatorVisibility: .hidden,
                 currentIndex: $currentIndex
             )
             .if(onImageClicked != nil) { view in
@@ -46,9 +45,11 @@ public struct BPKImageGalleryPreview<Content: View>: View {
                     onImageClicked!(currentIndex)
                 }
             }
+            BPKPageIndicator(currentIndex: $currentIndex, totalIndicators: .constant(images.count))
+                .padding(.bottom, 49)
             BPKBadge("\(currentIndex + 1)/\(images.count)")
                 .padding(.trailing, 12)
-                .padding(.bottom, pageIndicatorBottomPadding - BPKSpacing.sm.value)
+                .padding(.bottom, 44)
         }
         
     }
@@ -70,7 +71,7 @@ struct BPKImageGalleryPreview_Previews: PreviewProvider {
                     currentIndex: .constant(0)
                 )
                 .frame(height: 350)
-                .ignoresSafeArea(edges: .top)
+                
                 VStack(alignment: .leading) {
                     BPKText("Holiday Inn Express London Heathrow T4", style: .heading3)
                         .lineLimit(nil)
@@ -80,10 +81,10 @@ struct BPKImageGalleryPreview_Previews: PreviewProvider {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(.white)
                 .clipShape(RoundedRectangle(cornerRadius: .lg))
-                .offset(y: -48)
+//                .offset(y: -48)
                 Spacer()
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
+//            .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 }
