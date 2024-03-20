@@ -94,15 +94,9 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
                         }
                     }
                 }
-                .accessibilityElement(children: .ignore)
-                .accessibilityLabel(descriptionAccessibilityText)
+                .accessibilityElement(children: .combine)
                 .padding(.horizontal, .lg)
             }
-        }
-        
-        private var descriptionAccessibilityText: String {
-            let currentImage = images[currentIndex]
-            return "\(currentImage.title). \(currentImage.description ?? ""). \(currentImage.credit ?? "")"
         }
         
         private var descriptionText: String {
