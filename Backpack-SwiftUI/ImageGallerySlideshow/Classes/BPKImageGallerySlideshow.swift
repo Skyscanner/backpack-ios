@@ -73,7 +73,7 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
                     .padding(.sm)
             })
             .accessibilityLabel(closeAccessibilityLabel)
-            .padding(.leading, .base)
+            .padding([.leading, .top], .base)
         }
         
         private var footer: some View {
