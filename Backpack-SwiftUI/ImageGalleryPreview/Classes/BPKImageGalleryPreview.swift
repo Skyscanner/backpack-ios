@@ -40,6 +40,7 @@ public struct BPKImageGalleryPreview<Content: View>: View {
                 pageIndicatorVisibility: .hidden,
                 currentIndex: $currentIndex
             )
+            .accessibilityHidden(true)
             .if(onImageClicked != nil) { view in
                 view.onTapGesture {
                     onImageClicked!(currentIndex)
@@ -47,11 +48,36 @@ public struct BPKImageGalleryPreview<Content: View>: View {
             }
             BPKPageIndicator(currentIndex: $currentIndex, totalIndicators: .constant(images.count))
                 .padding(.bottom, 49)
+                .accessibilityAdjustableAction({ direction in
+                    switch direction {
+                    case .increment: accessibilityPageIncrement()
+                    case .decrement: accessibilityPageDecrement()
+                    @unknown default:
+                        break
+                    }
+                })
             BPKBadge("\(currentIndex + 1)/\(images.count)")
                 .padding(.trailing, 12)
                 .padding(.bottom, 44)
+                .accessibilityHidden(true)
         }
         
+    }
+    
+    private func accessibilityPageIncrement() {
+        if currentIndex == images.count - 1 {
+            currentIndex = 0
+        } else {
+            currentIndex += 1
+        }
+    }
+    
+    private func accessibilityPageDecrement() {
+        if currentIndex == 0 {
+            currentIndex = images.count - 1
+        } else {
+            currentIndex -= 1
+        }
     }
 }
 
