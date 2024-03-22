@@ -57,6 +57,7 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
                         BPKBadge("\(currentIndex + 1)/\(images.count)")
                             .badgeStyle(.strong)
                             .padding(.bottom, 20)
+                            .accessibilityHidden(true)
                     }
                     .frame(width: proxy.size.width, height: proxy.size.width)
                     
@@ -82,7 +83,15 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
                     currentIndex: $currentIndex,
                     totalIndicators: .constant(images.count)
                 )
-                
+                .accessibilityAdjustableAction({ direction in
+                    switch direction {
+                    case .increment:
+                        currentIndex += 1
+                    case .decrement: accessibilityPageDecrement()
+                    @unknown default:
+                        break
+                    }
+                })
                 VStack(spacing: .md) {
                     BPKText(descriptionText, style: .caption)
                         .lineLimit(nil)
@@ -106,6 +115,22 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
                 return "\(titleText). \(description)"
             }
             return currentImage.title
+        }
+        
+        private func accessibilityPageIncrement() {
+            if currentIndex == images.count - 1 {
+                currentIndex = 0
+            } else {
+                currentIndex += 1
+            }
+        }
+        
+        private func accessibilityPageDecrement() {
+            if currentIndex == 0 {
+                currentIndex = images.count - 1
+            } else {
+                currentIndex -= 1
+            }
         }
     }
 }
