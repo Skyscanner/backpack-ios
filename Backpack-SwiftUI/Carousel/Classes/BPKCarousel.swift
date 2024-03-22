@@ -45,7 +45,9 @@ struct InternalCarouselWrapper<Content: View>: UIViewRepresentable {
     let pageIndicatorVisibility: BPKInternalCarousel.PageIndicatorVisibility
     @Binding var currentIndex: Int
     
-    func updateUIView(_ uiView: BPKInternalCarousel, context: Context) {}
+    func updateUIView(_ uiView: BPKInternalCarousel, context: Context) {
+        uiView.setCurrentImage(index: currentIndex)
+    }
     
     func makeUIView(context: Context) -> BPKInternalCarousel {
         let carousel = BPKInternalCarousel(

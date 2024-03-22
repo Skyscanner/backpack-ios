@@ -32,7 +32,7 @@ struct ImageGallerySlideshowExampleView: View {
             images: (1...4).map { index in
                 BPKImageGalleryImage(
                     title: "Pumphouse Point.",
-                    description: "Walk deep into the fjord-like surrounds of Lake St Clair.",
+                    description: "\(index) Walk deep into the fjord-like surrounds of Lake St Clair.",
                     credit: "@PhotographerName",
                     content: { image(index) }
                 )

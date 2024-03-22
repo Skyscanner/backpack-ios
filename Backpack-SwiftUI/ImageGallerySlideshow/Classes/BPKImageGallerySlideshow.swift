@@ -57,10 +57,10 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
                         BPKBadge("\(currentIndex + 1)/\(images.count)")
                             .badgeStyle(.strong)
                             .padding(.bottom, 20)
-                            .accessibilityHidden(true)
                     }
                     .frame(width: proxy.size.width, height: proxy.size.width)
-                    
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityHidden(true)
                     footer
                 }
             }
@@ -85,8 +85,7 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
                 )
                 .accessibilityAdjustableAction({ direction in
                     switch direction {
-                    case .increment:
-                        currentIndex += 1
+                    case .increment: accessibilityPageIncrement()
                     case .decrement: accessibilityPageDecrement()
                     @unknown default:
                         break
