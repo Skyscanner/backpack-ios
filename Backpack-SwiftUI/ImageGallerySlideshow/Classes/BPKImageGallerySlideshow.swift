@@ -172,8 +172,8 @@ struct BPKImageGallerySlideshow_Previews: PreviewProvider {
                     Color.red
                 },
                 BPKImageGalleryImage(
-                    title: "Pumphouse Point asdasdsad asdasdasd  asdasdasdsadasdads ads",
-                    description: "Walk deep into the surrounds of asdasda sdasd adasdsad asdasd  a asdasd asd adasd dd ad a asd adsasd adasd asd La sdassad asdasd asdadsas dasd asd asd asake St Clair, world you left behind.",
+                    title: "Pumphouse Point",
+                    description: "Walk deep into the surrounds of St Clair, world you left behind.",
                     credit: "@PhotographerName"
                 ) {
                     Color.yellow
