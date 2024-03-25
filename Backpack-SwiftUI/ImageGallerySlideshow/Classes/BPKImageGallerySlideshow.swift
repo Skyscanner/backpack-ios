@@ -45,22 +45,27 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
         
         var body: some View {
             GeometryReader { proxy in
-                VStack(alignment: .leading, spacing: .xl) {
+                VStack(spacing: .xl) {
                     header
                     
                     ZStack(alignment: .bottom) {
                         InternalCarouselWrapper(
-                            images: images.map { $0.content() },
+                            images: images.map {
+                                $0.content()
+                                    .frame(width: proxy.size.width, height: proxy.size.width)
+                            },
                             pageIndicatorVisibility: .hidden,
                             currentIndex: $currentIndex
                         )
+                        .frame(maxWidth: 400, maxHeight: 400)
                         BPKBadge("\(currentIndex + 1)/\(images.count)")
                             .badgeStyle(.strong)
                             .padding(.bottom, 20)
                     }
-                    .frame(width: proxy.size.width, height: proxy.size.width)
+                    
                     .accessibilityElement(children: .ignore)
                     .accessibilityHidden(true)
+                    
                     footer
                 }
             }
@@ -68,13 +73,16 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
         }
         
         private var header: some View {
-            Button(action: onCloseTapped, label: {
-                BPKIconView(.close, size: .large)
-                    .foregroundColor(.textPrimaryColor)
-                    .padding(.sm)
-            })
-            .accessibilityLabel(closeAccessibilityLabel)
-            .padding([.leading, .top], .base)
+            HStack {
+                Button(action: onCloseTapped, label: {
+                    BPKIconView(.close, size: .large)
+                        .foregroundColor(.textPrimaryColor)
+                        .padding(.sm)
+                })
+                .accessibilityLabel(closeAccessibilityLabel)
+                .padding([.leading, .top], .base)
+                Spacer()
+            }
         }
         
         private var footer: some View {
@@ -91,19 +99,21 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
                         break
                     }
                 })
-                VStack(spacing: .md) {
-                    BPKText(descriptionText, style: .caption)
-                        .lineLimit(nil)
-                    
-                    if let credit = images[currentIndex].credit {
-                        HStack(spacing: .sm) {
-                            BPKIconView(.camera)
-                            BPKText(credit, style: .caption)
+                ScrollView {
+                    VStack(spacing: .md) {
+                        BPKText(descriptionText, style: .caption)
+                            .lineLimit(nil)
+                        
+                        if let credit = images[currentIndex].credit {
+                            HStack(spacing: .sm) {
+                                BPKIconView(.camera)
+                                BPKText(credit, style: .caption)
+                            }
                         }
                     }
+                    .accessibilityElement(children: .combine)
+                    .padding(.horizontal, .lg)
                 }
-                .accessibilityElement(children: .combine)
-                .padding(.horizontal, .lg)
             }
         }
         
@@ -162,8 +172,8 @@ struct BPKImageGallerySlideshow_Previews: PreviewProvider {
                     Color.red
                 },
                 BPKImageGalleryImage(
-                    title: "Pumphouse Point",
-                    description: "Walk deep into the surrounds of Lake St Clair, world you left behind.",
+                    title: "Pumphouse Point asdasdsad asdasdasd  asdasdasdsadasdads ads",
+                    description: "Walk deep into the surrounds of asdasda sdasd adasdsad asdasd  a asdasd asd adasd dd ad a asd adsasd adasd asd La sdassad asdasd asdadsas dasd asd asd asake St Clair, world you left behind.",
                     credit: "@PhotographerName"
                 ) {
                     Color.yellow
