@@ -20,23 +20,89 @@ import Foundation
 import SwiftUI
 import XCTest
 import SnapshotTesting
+import Backpack_SwiftUI
 
-// swiftlint:disable line_length
 func assertSnapshot<V: View>(
     _ view: V,
-    modes: [UIUserInterfaceStyle] = [.light, .dark],
+    modes: [SnapshotModes] = [.light, .dark, .rtl],
     file: StaticString = #file,
     testName: String = #function,
     line: UInt = #line
 ) {
-    let identifier: (UIUserInterfaceStyle) -> String = { mode in mode == .dark ? "dark-mode" : "light-mode" }
+    BPKFont.setDynamicType(enabled: true)
     let view: UIView = UIHostingController(rootView: view).view
     isRecording = false
     modes.forEach { mode in
-        let styleTrait = UITraitCollection(userInterfaceStyle: mode)
-        assertSnapshot(matching: view, as: .image(size: view.intrinsicContentSize, traits: styleTrait), named: identifier(mode), file: file, testName: testName, line: line)
+        assertSnapshot(
+            matching: view,
+            as: .image(size: view.intrinsicContentSize, traits: mode.trait),
+            named: mode.name,
+            file: file,
+            testName: testName,
+            line: line
+        )
+    }
+}
+
+func assertA11ySnapshot<V: View>(
+    _ view: V,
+    sizes: [ContentSizeCategory] = [.large, .extraExtraExtraLarge, .accessibilityExtraLarge],
+    file: StaticString = #file,
+    testName: String = #function,
+    line: UInt = #line
+) {
+    let a11yView = VStack(alignment: .leading, spacing: 16) {
+        ForEach(sizes, id: \.self) { size in
+            VStack(alignment: .leading, spacing: 4) {
+                view
+                    .sizeCategory(size)
+                BPKText("\(size)", style: .caption)
+                    .foregroundColor(.textSecondaryColor)
+                    .sizeCategory(.medium)
+            }
+        }
+    }
+    .padding()
+    .frame(maxWidth: 375)
+    
+    assertSnapshot(
+        a11yView,
+        modes: [.custom(name: "a11y", trait: UITraitCollection(userInterfaceStyle: .light))],
+        file: file,
+        testName: testName,
+        line: line
+    )
+}
+
+// MARK: Helper enums
+enum SnapshotModes {
+    case light, dark, rtl, custom(name: String, trait: UITraitCollection)
+    
+    var trait: UITraitCollection {
+        switch self {
+        case .light:
+            UITraitCollection(userInterfaceStyle: .light)
+        case .dark:
+            UITraitCollection(userInterfaceStyle: .dark)
+        case .rtl:
+            UITraitCollection(layoutDirection: .rightToLeft)
+        case .custom(_, let collection):
+            collection
+        }
     }
     
-    let rtlTrait = UITraitCollection(layoutDirection: .rightToLeft)
-    assertSnapshot(matching: view, as: .image(size: view.intrinsicContentSize, traits: rtlTrait), named: "rtl", file: file, testName: testName, line: line)
+    ///  Used in the file name of the snapshot.
+    ///  Appended right before the file name
+    var name: String {
+        switch self {
+        case .light:
+            "light-mode"
+        case .dark:
+            "dark-mode"
+        case .rtl:
+            "rtl"
+        case .custom(let name, _):
+            name
+        }
+    }
 }
