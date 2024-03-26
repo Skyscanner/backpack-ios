@@ -67,7 +67,7 @@ func assertA11ySnapshot<V: View>(
     
     assertSnapshot(
         a11yView,
-        modes: [.custom(name: "a11y", trait: UITraitCollection(userInterfaceStyle: .light))],
+        modes: [.custom(named: "a11y", trait: UITraitCollection(userInterfaceStyle: .light))],
         file: file,
         testName: testName,
         line: line
@@ -76,7 +76,7 @@ func assertA11ySnapshot<V: View>(
 
 // MARK: Helper enums
 enum SnapshotModes {
-    case light, dark, rtl, custom(name: String, trait: UITraitCollection)
+    case light, dark, rtl, custom(named: String, trait: UITraitCollection)
     
     var trait: UITraitCollection {
         switch self {
