@@ -22,6 +22,11 @@ import SwiftUI
 ///
 /// Use `inputState(_ state: State)` to change the state of the text field.
 public struct BPKTextField: View {
+    public enum PrefixState {
+        case text(String)
+        case searchIcon
+    }
+    
     struct Icon {
         let icon: BPKIcon
         let color: BPKColor
@@ -29,6 +34,7 @@ public struct BPKTextField: View {
     
     @Binding private var text: String
     private let placeholder: String
+    private let prefixState: PrefixState?
     private var state: State = .default
 
     /// Creates a `BPKTextField`.
@@ -38,14 +44,18 @@ public struct BPKTextField: View {
     ///   - text: The text to display in the text field.
     public init(
         placeholder: String = "",
+        prefixState: PrefixState? = nil,
         _ text: Binding<String>
     ) {
         self.placeholder = placeholder
+        self.prefixState = prefixState
         self._text = text
     }
     
     public var body: some View {
         HStack {
+            prefixView
+                .accessibilityHidden(true)
             TextField(placeholder, text: $text)
                 .font(style: .bodyDefault)
                 .foregroundColor(state.textColor)
@@ -72,6 +82,22 @@ public struct BPKTextField: View {
                         .foregroundColor(icon.color)
                         .accessibilityHidden(true)
                 }
+            }
+        }
+    }
+    
+    private var prefixView: some View {
+        HStack {
+            switch prefixState {
+            case .text(let prefixText):
+                BPKText(prefixText, style: .bodyDefault)
+                    .foregroundColor(.textSecondaryColor)
+            case .searchIcon:
+                BPKIconView(BPKIcon(name: "search"))
+                    .foregroundColor(.textPrimaryColor)
+                    .accessibilityHidden(true)
+            case nil:
+                EmptyView()
             }
         }
     }

@@ -41,6 +41,9 @@ struct TextFieldExampleView: View {
                     .inputState(.error)
                 BPKTextField(placeholder: "At least 6 characters", $validationFieldText)
                     .inputState(validateState())
+                BPKTextField(prefixState: .text("To"), $text2)
+                BPKTextField(prefixState: .text("From"), $text2)
+                BPKTextField(prefixState: .searchIcon, $text2)
             }
             .padding()
         }
