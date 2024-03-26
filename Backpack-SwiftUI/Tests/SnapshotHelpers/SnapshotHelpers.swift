@@ -22,6 +22,14 @@ import XCTest
 import SnapshotTesting
 import Backpack_SwiftUI
 
+/// Create snapshots of a SwiftUI view using several pre-defined options.
+/// This will create as many png snapshots as modes are defined.
+/// - Parameters:
+///       - view: The SwiftUI view to take a snapshot of
+///       - modes: An array of snapshot modes, by default we cover light, dark and right to left
+///       - file: Reference to the calling file
+///       - testName: Reference the calling function
+///       - line: Reference the calling line
 func assertSnapshot<V: View>(
     _ view: V,
     modes: [SnapshotModes] = [.light, .dark, .rtl],
@@ -43,6 +51,11 @@ func assertSnapshot<V: View>(
     }
 }
 
+/// Test any view across a number of accessibility sizes.
+/// By default we test: default, 135% and 235%
+///
+/// The test view is restricted to 375px in width, to simulate an iPhone SE 3rd gen size
+/// The test view can expand vertically to accomodate as much space as needed (scrollView)
 func assertA11ySnapshot<V: View>(
     _ view: V,
     sizes: [ContentSizeCategory] = [.large, .extraExtraExtraLarge, .accessibilityExtraLarge],
@@ -74,7 +87,8 @@ func assertA11ySnapshot<V: View>(
     )
 }
 
-// MARK: Helper enums
+/// Standardise all snapshot types we allow
+/// For Accessibility, we use .custom(...) as we want to force the view in light mode
 enum SnapshotModes {
     case light, dark, rtl, custom(named: String, trait: UITraitCollection)
     
