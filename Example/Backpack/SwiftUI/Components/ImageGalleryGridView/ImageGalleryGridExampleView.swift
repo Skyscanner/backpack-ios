@@ -42,6 +42,9 @@ struct ImageGalleryGridExampleView: View {
                 )
             },
             closeAccessibilityLabel: "Close",
+            onCategoryChanged: { category in
+                print("onCategoryChanged: \(category.title)")
+            },
             onCloseTapped: { isPresented.toggle() }
         )
     }
@@ -56,7 +59,6 @@ struct ImageGalleryGridExampleView: View {
     }
     
     private func image(_ number: Int) -> some View {
-        print("NUMBER: \(number)")
         return ZStack {
             Image("carousel_placeholder_\(number)")
                 .resizable()

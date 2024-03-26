@@ -21,6 +21,7 @@ import SwiftUI
 struct ImageGalleryGrid<ImageView: View>: ViewModifier {
     let categories: [BPKImageGalleryCategory<ImageView>]
     let closeAccessibilityLabel: String
+    let onCategoryChanged: (BPKImageGalleryCategory<ImageView>) -> Void
     let onCloseTapped: () -> Void
     let initialCategory: Int
     
@@ -33,6 +34,7 @@ struct ImageGalleryGrid<ImageView: View>: ViewModifier {
                 ContentView(
                     categories: categories,
                     closeAccessibilityLabel: closeAccessibilityLabel,
+                    onCategoryChanged: onCategoryChanged,
                     onCloseTapped: onCloseTapped,
                     selectedCategory: initialCategory
                 )
@@ -42,6 +44,7 @@ struct ImageGalleryGrid<ImageView: View>: ViewModifier {
     struct ContentView: View {
         let categories: [BPKImageGalleryCategory<ImageView>]
         let closeAccessibilityLabel: String
+        let onCategoryChanged: (BPKImageGalleryCategory<ImageView>) -> Void
         let onCloseTapped: () -> Void
         @State var selectedCategory: Int
         
@@ -70,6 +73,9 @@ struct ImageGalleryGrid<ImageView: View>: ViewModifier {
                 }
             }
             .padding([.leading, .trailing], .base)
+            .onChange(of: selectedCategory) { newValue in
+                onCategoryChanged(categories[newValue])
+            }
         }
     }
 }
@@ -80,13 +86,14 @@ public extension View {
         initialCategory: Int = 0,
         categories: [BPKImageGalleryCategory<Content>],
         closeAccessibilityLabel: String,
-        // currentIndex: Binding<Int>, // Category Selected binding?
+        onCategoryChanged: @escaping (BPKImageGalleryCategory<Content>) -> Void,
         onCloseTapped: @escaping () -> Void
     ) -> some View {
         modifier(
             ImageGalleryGrid(
                 categories: categories,
                 closeAccessibilityLabel: closeAccessibilityLabel,
+                onCategoryChanged: onCategoryChanged,
                 onCloseTapped: onCloseTapped,
                 initialCategory: initialCategory,
                 isPresented: isPresented
@@ -100,6 +107,9 @@ struct BPKImageGalleryGrid_Previews: PreviewProvider {
         ImageGalleryGrid<Color>.ContentView(
             categories: testCategories,
             closeAccessibilityLabel: "close",
+            onCategoryChanged: { category in
+                print("onCategoryChanged: \(category.title)")
+            },
             onCloseTapped: { },
             selectedCategory: 0
         )
