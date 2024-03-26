@@ -96,6 +96,7 @@ struct AppSearchModalContentView: View {
             .contentShape(Rectangle())
             .onTapGesture(perform: item.onItemSelected)
             .accessibilityElement(children: .combine)
+            .accessibilityAddTraits(.isButton)
         }
         
         private func subtitleLineLimit() -> Int? {
