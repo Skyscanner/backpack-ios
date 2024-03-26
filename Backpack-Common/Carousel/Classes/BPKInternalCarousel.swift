@@ -24,6 +24,10 @@ public protocol BPKInternalCarouselDelegate: AnyObject {
 }
 
 public class BPKInternalCarousel: UIView {
+    public enum PageIndicatorVisibility {
+        case hidden
+        case visible(_ paddingBottom: CGFloat)
+    }
     
     private let pageViewController: CarouselPageViewController = {
         let viewController = CarouselPageViewController()
@@ -31,29 +35,34 @@ public class BPKInternalCarousel: UIView {
         return viewController
     }()
     
-    private let pageIndicator: UIView
+    private let pageIndicator: UIView?
     
     public weak var delegate: BPKInternalCarouselDelegate?
     public var currentImage: Int { pageViewController.currentIndex }
     
-    public init(pageIndicator: UIView, pageIndicatorBottomPadding: CGFloat) {
+    public init(pageIndicator: UIView?, pageIndicatorVisibility: PageIndicatorVisibility) {
         self.pageIndicator = pageIndicator
         super.init(frame: .zero)
         pageViewController.carouselDelegate = self
-        [pageViewController.view, pageIndicator].forEach { addSubview($0) }
-        
+        addSubview(pageViewController.view)
         NSLayoutConstraint.activate([
             pageViewController.view.topAnchor.constraint(equalTo: topAnchor),
             pageViewController.view.leadingAnchor.constraint(equalTo: leadingAnchor),
             pageViewController.view.trailingAnchor.constraint(equalTo: trailingAnchor),
-            pageViewController.view.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
-            pageIndicator.bottomAnchor.constraint(
-                equalTo: bottomAnchor,
-                constant: -pageIndicatorBottomPadding
-            ),
-            pageIndicator.centerXAnchor.constraint(equalTo: centerXAnchor)
+            pageViewController.view.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+        
+        if let pageIndicator, case .visible(let paddingBottom) = pageIndicatorVisibility {
+            addSubview(pageIndicator)
+            
+            NSLayoutConstraint.activate([
+                pageIndicator.bottomAnchor.constraint(
+                    equalTo: bottomAnchor,
+                    constant: -paddingBottom
+                ),
+                pageIndicator.centerXAnchor.constraint(equalTo: centerXAnchor)
+            ])
+        }
     }
     
     @available(*, unavailable)

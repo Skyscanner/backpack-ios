@@ -34,7 +34,7 @@ public struct BPKCarousel<Content: View>: View {
     public var body: some View {
         InternalCarouselWrapper(
             images: images,
-            pageIndicatorBottomPadding: 0,
+            pageIndicatorVisibility: .visible(0),
             currentIndex: $currentIndex
         )
     }
@@ -42,12 +42,30 @@ public struct BPKCarousel<Content: View>: View {
 
 struct InternalCarouselWrapper<Content: View>: UIViewRepresentable {
     let images: [Content]
-    let pageIndicatorBottomPadding: CGFloat
+    let pageIndicatorVisibility: BPKInternalCarousel.PageIndicatorVisibility
     @Binding var currentIndex: Int
     
-    func updateUIView(_ uiView: BPKInternalCarousel, context: Context) {}
+    func updateUIView(_ uiView: BPKInternalCarousel, context: Context) {
+        uiView.setCurrentImage(index: currentIndex)
+    }
     
     func makeUIView(context: Context) -> BPKInternalCarousel {
+        let carousel = BPKInternalCarousel(
+            pageIndicator: pageIndicatorView,
+            pageIndicatorVisibility: pageIndicatorVisibility
+        )
+        carousel.delegate = context.coordinator
+        
+        let uiImages = images.map { UIHostingController(rootView: $0).view! }
+        carousel.set(images: uiImages)
+        carousel.setCurrentImage(index: currentIndex)
+        return carousel
+    }
+    
+    private var pageIndicatorView: UIView? {
+        guard case .visible = pageIndicatorVisibility else {
+            return nil
+        }
         let pageIndicator = BPKPageIndicator(
             variant: .overImage,
             currentIndex: $currentIndex,
@@ -56,16 +74,7 @@ struct InternalCarouselWrapper<Content: View>: UIViewRepresentable {
         let pageIndicatorView = UIHostingController(rootView: pageIndicator).view!
         pageIndicatorView.translatesAutoresizingMaskIntoConstraints = false
         pageIndicatorView.backgroundColor = .clear
-        let carousel = BPKInternalCarousel(
-            pageIndicator: pageIndicatorView,
-            pageIndicatorBottomPadding: pageIndicatorBottomPadding
-        )
-        carousel.delegate = context.coordinator
-        
-        let uiImages = images.map { UIHostingController(rootView: $0).view! }
-        carousel.set(images: uiImages)
-        carousel.setCurrentImage(index: currentIndex)
-        return carousel
+        return pageIndicatorView
     }
 
     func makeCoordinator() -> Coordinator {
