@@ -81,13 +81,13 @@ enum SnapshotModes {
     var trait: UITraitCollection {
         switch self {
         case .light:
-            UITraitCollection(userInterfaceStyle: .light)
+            return UITraitCollection(userInterfaceStyle: .light)
         case .dark:
-            UITraitCollection(userInterfaceStyle: .dark)
+            return UITraitCollection(userInterfaceStyle: .dark)
         case .rtl:
-            UITraitCollection(layoutDirection: .rightToLeft)
+            return UITraitCollection(layoutDirection: .rightToLeft)
         case .custom(_, let collection):
-            collection
+            return collection
         }
     }
     
@@ -96,13 +96,13 @@ enum SnapshotModes {
     var name: String {
         switch self {
         case .light:
-            "light-mode"
+            return "light-mode"
         case .dark:
-            "dark-mode"
+            return "dark-mode"
         case .rtl:
-            "rtl"
+            return "rtl"
         case .custom(let name, _):
-            name
+            return name
         }
     }
 }
