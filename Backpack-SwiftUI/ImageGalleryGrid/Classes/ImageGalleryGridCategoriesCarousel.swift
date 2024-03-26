@@ -27,18 +27,24 @@ struct ImageGalleryGridCategoriesCarousel<ImageView: View>: View {
         ScrollView(.horizontal) {
             HStack(alignment: .top) {
                 ForEach(0..<categories.count, id: \.self) { ndx in
-                    categoryThumb(for: categories[ndx])
-                        .onTapGesture {
-                            selectedCategory = ndx
-                        }
-                        .accessibilityAddTraits(.isButton)
+                    categoryThumb(
+                        for: categories[ndx],
+                        isSelected: selectedCategory == ndx
+                    )
+                    .onTapGesture {
+                        selectedCategory = ndx
+                    }
+                    .accessibilityAddTraits(.isButton)
                 }
             }
         }
     }
     
     @ViewBuilder
-    private func categoryThumb(for category: BPKImageGalleryCategory<ImageView>) -> some View {
+    private func categoryThumb(
+        for category: BPKImageGalleryCategory<ImageView>,
+        isSelected: Bool
+    ) -> some View {
         VStack {
             category.categoryImage.content()
                 .frame(
@@ -47,9 +53,43 @@ struct ImageGalleryGridCategoriesCarousel<ImageView: View>: View {
                 )
                 .clipShape(RoundedRectangle(cornerRadius: .md))
             
-            BPKText(category.title)
-                .lineLimit(nil)
+            BPKText(
+                category.title,
+                style: isSelected ? .label3 : .caption
+            )
+            .lineLimit(nil)
+            
         }
         .frame(width: categoryImageSideLength)
+    }
+}
+
+struct ImageGalleryGridCategoriesCarousel_Previews: PreviewProvider {
+    static var previews: some View {
+        ImageGalleryGridCategoriesCarousel(
+            categories: testCategories,
+            selectedCategory: .constant(0)
+        )
+        .fixedSize(horizontal: false, vertical: true)
+    }
+    
+    private static var testCategories: [BPKImageGalleryCategory<Color>] {
+        [
+            BPKImageGalleryCategory(
+                title: "Green photos with long title (40)",
+                images: [],
+                categoryImage: BPKImageGalleryGridImage() { Color.green }
+            ),
+            BPKImageGalleryCategory(
+                title: "Blue photos (10)",
+                images: [],
+                categoryImage: BPKImageGalleryGridImage() { Color.blue }
+            ),
+            BPKImageGalleryCategory(
+                title: "red photos (10)",
+                images: [],
+                categoryImage: BPKImageGalleryGridImage() { Color.red }
+            )
+        ]
     }
 }

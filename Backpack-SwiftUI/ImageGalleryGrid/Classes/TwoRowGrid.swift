@@ -70,3 +70,20 @@ struct TwoRowGrid<Item, ItemView: View>: View {
             .clipShape(RoundedRectangle(cornerRadius: .lg))
     }
 }
+
+struct TwoRowGrid_Previews: PreviewProvider {
+    static var previews: some View {
+        TwoRowGrid(items: testImages(6, colour: .cyan)) { item in
+            item.content()
+                .frame(height: 192)
+        }
+    }
+    
+    private static func testImages(_ amount: Int, colour: Color) -> [BPKImageGalleryGridImage<Color>] {
+        return (0..<amount).map { _ in
+            BPKImageGalleryGridImage() {
+                colour
+            }
+        }
+    }
+}

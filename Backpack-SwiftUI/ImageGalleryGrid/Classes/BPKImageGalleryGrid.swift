@@ -22,37 +22,54 @@ struct ImageGalleryGrid<ImageView: View>: ViewModifier {
     let categories: [BPKImageGalleryCategory<ImageView>]
     let closeAccessibilityLabel: String
     let onCloseTapped: () -> Void
+    let initialCategory: Int
+    
     // @Binding var currentIndex: Int // Category Selected binding?
     @Binding var isPresented: Bool
     
     func body(content: Content) -> some View {
         content
-            .fullScreenCover(isPresented: $isPresented, content: {
-                ContentView(categories: categories)
-            })
+            .fullScreenCover(isPresented: $isPresented) {
+                ContentView(
+                    categories: categories,
+                    closeAccessibilityLabel: closeAccessibilityLabel,
+                    onCloseTapped: onCloseTapped,
+                    selectedCategory: initialCategory
+                )
+            }
     }
     
     struct ContentView: View {
         let categories: [BPKImageGalleryCategory<ImageView>]
-        @State var selectedCategory: Int = 0
+        let closeAccessibilityLabel: String
+        let onCloseTapped: () -> Void
+        @State var selectedCategory: Int
         
         private let itemHeightInGrid: CGFloat = 192
         
         var body: some View {
             VStack(spacing: .md) {
+                ImageGalleryHeader(
+                    closeAccessibilityLabel: closeAccessibilityLabel,
+                    onCloseTapped: onCloseTapped
+                )
+                
                 ImageGalleryGridCategoriesCarousel(
                     categories: categories,
                     selectedCategory: $selectedCategory
                 )
                 .fixedSize(horizontal: false, vertical: true)
                 
-                TwoRowGrid(items: categories[selectedCategory].images) { image in
+                TwoRowGrid(
+                    items: categories[(selectedCategory < categories.count ? selectedCategory : 0)].images
+                ) { image in
                     image.content()
                         .aspectRatio(contentMode: .fill)
                         .clipped()
                         .frame(height: itemHeightInGrid)
                 }
             }
+            .padding([.leading, .trailing], .base)
         }
     }
 }
@@ -60,6 +77,7 @@ struct ImageGalleryGrid<ImageView: View>: ViewModifier {
 public extension View {
     func bpkImageGalleryGrid<Content>(
         isPresented: Binding<Bool>,
+        initialCategory: Int = 0,
         categories: [BPKImageGalleryCategory<Content>],
         closeAccessibilityLabel: String,
         // currentIndex: Binding<Int>, // Category Selected binding?
@@ -70,6 +88,7 @@ public extension View {
                 categories: categories,
                 closeAccessibilityLabel: closeAccessibilityLabel,
                 onCloseTapped: onCloseTapped,
+                initialCategory: initialCategory,
                 isPresented: isPresented
             )
         )
@@ -79,31 +98,34 @@ public extension View {
 struct BPKImageGalleryGrid_Previews: PreviewProvider {
     static var previews: some View {
         ImageGalleryGrid<Color>.ContentView(
-            categories: testCategories
+            categories: testCategories,
+            closeAccessibilityLabel: "close",
+            onCloseTapped: { },
+            selectedCategory: 0
         )
     }
     
-    static var testCategories: [BPKImageGalleryCategory<Color>] {
+    private static var testCategories: [BPKImageGalleryCategory<Color>] {
         [
             BPKImageGalleryCategory(
-                title: "green but very long title (40)",
+                title: "Green but with very long title indeed (40)",
                 images: testImages(40, colour: .green),
                 categoryImage: testImages(1, colour: .green)[0]
             ),
             BPKImageGalleryCategory(
-                title: "blue",
+                title: "Blue photos (10)",
                 images: testImages(5, colour: .blue),
                 categoryImage: testImages(1, colour: .blue)[0]
             ),
             BPKImageGalleryCategory(
-                title: "red",
+                title: "Red photos (10)",
                 images: testImages(6, colour: .red),
                 categoryImage: testImages(1, colour: .red)[0]
             )
         ]
     }
     
-    static func testImages(_ amount: Int, colour: Color) -> [BPKImageGalleryGridImage<Color>] {
+    private static func testImages(_ amount: Int, colour: Color) -> [BPKImageGalleryGridImage<Color>] {
         return (0..<amount).map { _ in
             BPKImageGalleryGridImage() {
                 colour
