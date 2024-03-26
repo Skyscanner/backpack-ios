@@ -52,6 +52,7 @@ public struct BPKAppSearchModal: View {
             if results.showTextField {
                 BPKTextField(placeholder: inputHint, $inputText)
                     .inputState(textFieldState.inputState)
+                    .accessibilityAddTraits(.isSearchField)
                     .focused($inputFieldIsFocussed)
                     .autocorrectionDisabled(true)
             }
