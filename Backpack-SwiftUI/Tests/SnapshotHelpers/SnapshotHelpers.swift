@@ -29,7 +29,6 @@ func assertSnapshot<V: View>(
     testName: String = #function,
     line: UInt = #line
 ) {
-    BPKFont.setDynamicType(enabled: true)
     let view: UIView = UIHostingController(rootView: view).view
     isRecording = false
     modes.forEach { mode in
@@ -51,6 +50,7 @@ func assertA11ySnapshot<V: View>(
     testName: String = #function,
     line: UInt = #line
 ) {
+    BPKFont.setDynamicType(enabled: true)
     let a11yView = VStack(alignment: .leading, spacing: 16) {
         ForEach(sizes, id: \.self) { size in
             VStack(alignment: .leading, spacing: 4) {
