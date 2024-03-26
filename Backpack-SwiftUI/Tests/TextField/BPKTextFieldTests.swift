@@ -60,4 +60,84 @@ class BPKTextFieldTests: XCTestCase {
                 .inputState(.error)
                 .frame(width: 300))
     }
+    
+    func test_defaultSettings_withPrefixIcon() {
+        assertSnapshot(
+            BPKTextField(prefixState: .searchIcon, .constant("Value"))
+                .frame(width: 300))
+    }
+
+    func test_emptyField_withPrefixIcon() {
+        assertSnapshot(
+            BPKTextField(prefixState: .searchIcon, .constant(""))
+                .frame(width: 300))
+    }
+
+    func test_disabledField_withPrefixIcon() {
+        assertSnapshot(
+            BPKTextField(prefixState: .searchIcon, .constant("Value"))
+                .inputState(.disabled)
+                .frame(width: 300))
+    }
+
+    func test_clearableField_withPrefixIcon() {
+        assertSnapshot(
+            BPKTextField(prefixState: .searchIcon, .constant("Value"))
+                .inputState(.clear(accessibilityLabel: "Clear") { })
+                .frame(width: 300))
+    }
+
+    func test_validField_withPrefixIcon() {
+        assertSnapshot(
+            BPKTextField(prefixState: .searchIcon, .constant("Value"))
+                .inputState(.valid)
+                .frame(width: 300))
+    }
+
+    func test_errorField_withPrefixIcon() {
+        assertSnapshot(
+            BPKTextField(prefixState: .searchIcon, .constant("Value"))
+                .inputState(.error)
+                .frame(width: 300))
+    }
+    
+    func test_defaultSettings_withCustomPrefixText() {
+        assertSnapshot(
+            BPKTextField(prefixState: .text("Prefix"), .constant("Value"))
+                .frame(width: 300))
+    }
+
+    func test_emptyField_withCustomPrefixText() {
+        assertSnapshot(
+            BPKTextField(prefixState: .text("Prefix"), .constant(""))
+                .frame(width: 300))
+    }
+
+    func test_disabledField_withCustomPrefixText() {
+        assertSnapshot(
+            BPKTextField(prefixState: .text("Prefix"), .constant("Value"))
+                .inputState(.disabled)
+                .frame(width: 300))
+    }
+
+    func test_clearableField_withCustomPrefixText() {
+        assertSnapshot(
+            BPKTextField(prefixState: .text("Prefix"), .constant("Value"))
+                .inputState(.clear(accessibilityLabel: "Clear") { })
+                .frame(width: 300))
+    }
+
+    func test_validField_withCustomPrefixText() {
+        assertSnapshot(
+            BPKTextField(prefixState: .text("Prefix"), .constant("Value"))
+                .inputState(.valid)
+                .frame(width: 300))
+    }
+
+    func test_errorField_withCustomPrefixText() {
+        assertSnapshot(
+            BPKTextField(prefixState: .text("Prefix"), .constant("Value"))
+                .inputState(.error)
+                .frame(width: 300))
+    }
 }
