@@ -32,7 +32,6 @@ struct TwoRowGrid<Item, ItemView: View>: View {
             for col in 0..<count {
                 if items.indices.contains(index + col) {
                     row.append((items[index + col], index + col))
-                    print("inserting index: \(index + col)")
                 }
             }
             rows.append(row)

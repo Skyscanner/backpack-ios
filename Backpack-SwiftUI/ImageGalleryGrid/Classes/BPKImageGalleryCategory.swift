@@ -18,12 +18,6 @@
 
 import SwiftUI
 
-public protocol Category<ImageView> {
-    associatedtype ImageView: View
-    var title: String { get }
-    var images: [BPKImageGalleryImage<ImageView>] { get }
-}
-
 public enum BPKImageGalleryCategoryType<ImageView: View> {
     case chip(_ chipCategory: BPKImageGalleryCategoryChip<ImageView>)
     case image(_ imageCategory: BPKImageGalleryCategoryImage<ImageView>)
@@ -52,7 +46,7 @@ public enum BPKImageGalleryCategoriesTypeContainer<ImageView: View> {
     case image(_ imageCategories: [BPKImageGalleryCategoryImage<ImageView>])
 }
 
-public struct BPKImageGalleryCategoryChip<ImageView: View>: Category {
+public struct BPKImageGalleryCategoryChip<ImageView: View> {
     public let title: String
     public let images: [BPKImageGalleryImage<ImageView>]
     
@@ -64,7 +58,7 @@ public struct BPKImageGalleryCategoryChip<ImageView: View>: Category {
     }
 }
 
-public struct BPKImageGalleryCategoryImage<ImageView: View>: Category {
+public struct BPKImageGalleryCategoryImage<ImageView: View> {
     
     public let title: String
     public let images: [BPKImageGalleryImage<ImageView>]
