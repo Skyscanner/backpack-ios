@@ -19,19 +19,20 @@
 import SwiftUI
 
 struct TwoRowGrid<Item, ItemView: View>: View {
-    let items: [[Item]]
+    let items: [[(Item, Int)]]
     let spacing: BPKSpacing
-    let itemView: (Item) -> ItemView
+    let itemView: (Item, Int) -> ItemView
     
-    init(items: [Item], spacing: BPKSpacing = .md, itemView: @escaping (Item) -> ItemView) {
-        var rows: [[Item]] = []
+    init(items: [Item], spacing: BPKSpacing = .md, itemView: @escaping (Item, Int) -> ItemView) {
+        var rows: [[(Item, Int)]] = []
         var index = 0
         while index < items.count {
             let count = index % 3 == 0 ? 1 : 2
-            var row = [Item]()
+            var row = [(Item, Int)]()
             for col in 0..<count {
                 if items.indices.contains(index + col) {
-                    row.append(items[index + col])
+                    row.append((items[index + col], index + col))
+                    print("inserting index: \(index + col)")
                 }
             }
             rows.append(row)
@@ -63,7 +64,8 @@ struct TwoRowGrid<Item, ItemView: View>: View {
     }
     
     private func column(proxy: GeometryProxy, columnIndex index: Int, rowIndex: Int) -> some View {
-        itemView(items[rowIndex][index])
+        let itemTuple = items[rowIndex][index]
+        return itemView(itemTuple.0, itemTuple.1)
             .if(rowIndex % 2 != 0) {
                 $0.frame(width: (proxy.size.width / 2) - (spacing.value / 2))
             }
@@ -73,15 +75,15 @@ struct TwoRowGrid<Item, ItemView: View>: View {
 
 struct TwoRowGrid_Previews: PreviewProvider {
     static var previews: some View {
-        TwoRowGrid(items: testImages(6, colour: .cyan)) { item in
+        TwoRowGrid(items: testImages(6, colour: .cyan)) { item, _ in
             item.content()
                 .frame(height: 192)
         }
     }
     
-    private static func testImages(_ amount: Int, colour: Color) -> [BPKImageGalleryGridImage<Color>] {
+    private static func testImages(_ amount: Int, colour: Color) -> [BPKImageGalleryImage<Color>] {
         return (0..<amount).map { _ in
-            BPKImageGalleryGridImage() {
+            BPKImageGalleryImage(title: "image \(amount)") {
                 colour
             }
         }

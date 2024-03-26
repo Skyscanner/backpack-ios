@@ -18,17 +18,62 @@
 
 import SwiftUI
 
-public struct BPKImageGalleryCategory<ImageView: View> {
+public protocol Category<ImageView> {
+    associatedtype ImageView: View
+    var title: String { get }
+    var images: [BPKImageGalleryImage<ImageView>] { get }
+}
+
+public enum BPKImageGalleryCategoryType<ImageView: View> {
+    case chip(_ chipCategory: BPKImageGalleryCategoryChip<ImageView>)
+    case image(_ imageCategory: BPKImageGalleryCategoryImage<ImageView>)
+    
+    public var title: String {
+        switch self {
+        case .chip(let chipCategory):
+            chipCategory.title
+        case .image(let imageCategory):
+            imageCategory.title
+        }
+    }
+    
+    public var images: [BPKImageGalleryImage<ImageView>] {
+        switch self {
+        case .chip(let chipCategory):
+            chipCategory.images
+        case .image(let imageCategory):
+            imageCategory.images
+        }
+    }
+}
+
+public enum BPKImageGalleryCategoriesTypeContainer<ImageView: View> {
+    case chip(_ chipCategories: [BPKImageGalleryCategoryChip<ImageView>])
+    case image(_ imageCategories: [BPKImageGalleryCategoryImage<ImageView>])
+}
+
+public struct BPKImageGalleryCategoryChip<ImageView: View>: Category {
+    public let title: String
+    public let images: [BPKImageGalleryImage<ImageView>]
+    
+    public init(
+        title: String,
+        images: [BPKImageGalleryImage<ImageView>]) {
+        self.title = title
+        self.images = images
+    }
+}
+
+public struct BPKImageGalleryCategoryImage<ImageView: View>: Category {
     
     public let title: String
-    public let images: [BPKImageGalleryGridImage<ImageView>]
-    public let categoryImage: BPKImageGalleryGridImage<ImageView>
-    // categoryImage?
+    public let images: [BPKImageGalleryImage<ImageView>]
+    public let categoryImage: BPKImageGalleryCarouselImage<ImageView>
 
     public init(
         title: String,
-        images: [BPKImageGalleryGridImage<ImageView>],
-        categoryImage: BPKImageGalleryGridImage<ImageView>) {
+        images: [BPKImageGalleryImage<ImageView>],
+        categoryImage: BPKImageGalleryCarouselImage<ImageView>) {
         self.title = title
         self.images = images
         self.categoryImage = categoryImage

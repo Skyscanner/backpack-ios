@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public struct BPKImageGalleryGridImage<Content: View> {
+public struct BPKImageGalleryCarouselImage<Content: View> {
     public let content: () -> Content
 
     public init(

@@ -19,22 +19,35 @@
 import SwiftUI
 
 struct ImageGalleryGridCategoriesCarousel<ImageView: View>: View {
-    let categories: [BPKImageGalleryCategory<ImageView>]
-    @Binding var selectedCategory: Int
+    let categories: BPKImageGalleryCategoriesTypeContainer<ImageView>
+    @Binding var selectedCategory: Int?
     private let categoryImageSideLength: CGFloat = 90
     
     var body: some View {
-        ScrollView(.horizontal) {
-            HStack(alignment: .top) {
-                ForEach(0..<categories.count, id: \.self) { ndx in
-                    categoryThumb(
-                        for: categories[ndx],
-                        isSelected: selectedCategory == ndx
-                    )
-                    .onTapGesture {
-                        selectedCategory = ndx
+        
+        switch categories {
+            
+        case .chip(let chipCategories):
+            BPKSingleSelectChipGroup(
+                chips: chipCategories.map { .init(text: $0.title) },
+                selectedIndex: $selectedCategory
+            ) { index in
+                selectedCategory = index
+            }
+            
+        case .image(let imageCatgories):
+            ScrollView(.horizontal) {
+                HStack(alignment: .top) {
+                    ForEach(0..<imageCatgories.count, id: \.self) { ndx in
+                        categoryThumb(
+                            for: imageCatgories[ndx],
+                            isSelected: selectedCategory == ndx
+                        )
+                        .onTapGesture {
+                            selectedCategory = ndx
+                        }
+                        .accessibilityAddTraits(.isButton)
                     }
-                    .accessibilityAddTraits(.isButton)
                 }
             }
         }
@@ -42,7 +55,7 @@ struct ImageGalleryGridCategoriesCarousel<ImageView: View>: View {
     
     @ViewBuilder
     private func categoryThumb(
-        for category: BPKImageGalleryCategory<ImageView>,
+        for category: BPKImageGalleryCategoryImage<ImageView>,
         isSelected: Bool
     ) -> some View {
         VStack {
@@ -64,32 +77,34 @@ struct ImageGalleryGridCategoriesCarousel<ImageView: View>: View {
     }
 }
 
-struct ImageGalleryGridCategoriesCarousel_Previews: PreviewProvider {
-    static var previews: some View {
-        ImageGalleryGridCategoriesCarousel(
-            categories: testCategories,
-            selectedCategory: .constant(0)
-        )
-        .fixedSize(horizontal: false, vertical: true)
-    }
-    
-    private static var testCategories: [BPKImageGalleryCategory<Color>] {
-        [
-            BPKImageGalleryCategory(
-                title: "Green photos with long title (40)",
-                images: [],
-                categoryImage: BPKImageGalleryGridImage() { Color.green }
-            ),
-            BPKImageGalleryCategory(
-                title: "Blue photos (10)",
-                images: [],
-                categoryImage: BPKImageGalleryGridImage() { Color.blue }
-            ),
-            BPKImageGalleryCategory(
-                title: "red photos (10)",
-                images: [],
-                categoryImage: BPKImageGalleryGridImage() { Color.red }
-            )
-        ]
-    }
-}
+/*
+ struct ImageGalleryGridCategoriesCarousel_Previews: PreviewProvider {
+ static var previews: some View {
+ ImageGalleryGridCategoriesCarousel(
+ categories: testCategories,
+ selectedCategory: .constant(0)
+ )
+ .fixedSize(horizontal: false, vertical: true)
+ }
+ 
+ private static var testCategories: [BPKImageGalleryCategory<Color>] {
+ [
+ BPKImageGalleryCategory(
+ title: "Green photos with long title (40)",
+ images: [],
+ categoryImage: BPKImageGalleryCarouselImage() { Color.green }
+ ),
+ BPKImageGalleryCategory(
+ title: "Blue photos (10)",
+ images: [],
+ categoryImage: BPKImageGalleryCarouselImage() { Color.blue }
+ ),
+ BPKImageGalleryCategory(
+ title: "red photos (10)",
+ images: [],
+ categoryImage: BPKImageGalleryCarouselImage() { Color.red }
+ )
+ ]
+ }
+ }
+ */
