@@ -18,19 +18,12 @@
 
 import SwiftUI
 
-public struct BPKImageGalleryCategory<ImageView: View> {
-    
-    public let title: String
-    public let images: [BPKImageGalleryGridImage<ImageView>]
-    public let categoryImage: BPKImageGalleryGridImage<ImageView>
-    // categoryImage?
+public struct BPKImageGalleryGridImage<Content: View> {
+    public let content: () -> Content
 
     public init(
-        title: String,
-        images: [BPKImageGalleryGridImage<ImageView>],
-        categoryImage: BPKImageGalleryGridImage<ImageView>) {
-        self.title = title
-        self.images = images
-        self.categoryImage = categoryImage
+        @ViewBuilder content: @escaping () -> Content
+    ) {
+        self.content = content
     }
 }

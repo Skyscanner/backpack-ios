@@ -32,19 +32,13 @@ struct ImageGalleryGridExampleView: View {
                 BPKImageGalleryCategory(
                     title: categoryName(categoryIndex),
                     images: (0...categoryIndex).map { index in
-                        BPKImageGalleryImage(
-                            title: "Pumphouse Point.",
-                            description: "Walk deep into the fjord-like surrounds of Lake St Clair.",
-                            credit: "@PhotographerName",
-                            content: { image(((categoryIndex + index) % 4) + 1) }
-                        )
+                        BPKImageGalleryGridImage() {
+                            image(((categoryIndex + index) % 4) + 1)
+                        }
                     },
-                    categoryImage: BPKImageGalleryImage(
-                        title: "Pumphouse Point.",
-                        description: "Walk deep into the fjord-like surrounds of Lake St Clair.",
-                        credit: "@PhotographerName",
-                        content: { image(categoryIndex + 1) }
-                    )
+                    categoryImage: BPKImageGalleryGridImage() {
+                        image((categoryIndex % 4) + 1)
+                    }
                 )
             },
             closeAccessibilityLabel: "Close",
@@ -63,17 +57,19 @@ struct ImageGalleryGridExampleView: View {
     
     private func image(_ number: Int) -> some View {
         print("NUMBER: \(number)")
-        return ZStack(content: {
+        return ZStack {
             Image("carousel_placeholder_\(number)")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
             
             BPKText("\(number)", style: .heading1)
                 .foregroundColor(.textPrimaryInverseColor)
-        })
+        }
     }
 }
 
-#Preview {
-    ImageGalleryGridExampleView()
+struct ImageGalleryGridExampleView_Previews: PreviewProvider {
+    static var previews: some View {
+        ImageGalleryGridExampleView()
+    }
 }
