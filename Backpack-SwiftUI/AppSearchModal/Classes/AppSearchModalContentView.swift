@@ -96,12 +96,21 @@ struct AppSearchModalContentView: View {
                 }
             }
             .contentShape(Rectangle())
-            .buttonStyle(.plain)
+            .buttonStyle(ItemCellButtonStyle())
         }
         
         private func subtitleLineLimit() -> Int? {
             let isDefaultSizeOrSmaller = sizeCategory <= .large
             return isDefaultSizeOrSmaller ? 2 : nil
+        }
+    }
+    
+    // Basic button style to remove any styling for on press etc.
+    // In the future we might want to consider using .plain
+    // Or any other tap indication
+    struct ItemCellButtonStyle: ButtonStyle {
+        func makeBody(configuration: Configuration) -> some View {
+            configuration.label
         }
     }
 }
