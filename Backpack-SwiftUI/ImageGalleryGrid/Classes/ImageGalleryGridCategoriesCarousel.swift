@@ -77,34 +77,58 @@ struct ImageGalleryGridCategoriesCarousel<ImageView: View>: View {
     }
 }
 
-/*
- struct ImageGalleryGridCategoriesCarousel_Previews: PreviewProvider {
- static var previews: some View {
- ImageGalleryGridCategoriesCarousel(
- categories: testCategories,
- selectedCategory: .constant(0)
- )
- .fixedSize(horizontal: false, vertical: true)
- }
+struct ImageGalleryGridCategoriesCarousel_Previews: PreviewProvider {
+    static var previews: some View {
+        ImageGalleryGridCategoriesCarousel(
+            categories: .image(testCategories),
+            selectedCategory: .constant(0)
+        )
+        .fixedSize(horizontal: false, vertical: true)
+        .previewDisplayName("Images")
+        
+        ImageGalleryGridCategoriesCarousel(
+            categories: .chip(testChipCategories),
+            selectedCategory: .constant(0)
+        )
+        .fixedSize(horizontal: false, vertical: true)
+        .previewDisplayName("Chips")
+    }
+    
+    private static var testCategories: [BPKImageGalleryCategoryImage<Color>] {
+        [
+            BPKImageGalleryCategoryImage(
+                title: "Green photos with long title (40)",
+                images: [],
+                categoryImage: BPKImageGalleryCarouselImage() { Color.green }
+            ),
+            BPKImageGalleryCategoryImage(
+                title: "Blue photos (10)",
+                images: [],
+                categoryImage: BPKImageGalleryCarouselImage() { Color.blue }
+            ),
+            BPKImageGalleryCategoryImage(
+                title: "red photos (10)",
+                images: [],
+                categoryImage: BPKImageGalleryCarouselImage() { Color.red }
+            )
+        ]
+    }
+    
+    private static var testChipCategories: [BPKImageGalleryCategoryChip<Color>] {
+        [
+            BPKImageGalleryCategoryChip(
+                title: "Green photos with long title (40)",
+                images: []
+            ),
+            BPKImageGalleryCategoryChip(
+                title: "Blue photos (10)",
+                images: []
+            ),
+            BPKImageGalleryCategoryChip(
+                title: "red photos (10)",
+                images: []
+            )
+        ]
+    }
+}
  
- private static var testCategories: [BPKImageGalleryCategory<Color>] {
- [
- BPKImageGalleryCategory(
- title: "Green photos with long title (40)",
- images: [],
- categoryImage: BPKImageGalleryCarouselImage() { Color.green }
- ),
- BPKImageGalleryCategory(
- title: "Blue photos (10)",
- images: [],
- categoryImage: BPKImageGalleryCarouselImage() { Color.blue }
- ),
- BPKImageGalleryCategory(
- title: "red photos (10)",
- images: [],
- categoryImage: BPKImageGalleryCarouselImage() { Color.red }
- )
- ]
- }
- }
- */

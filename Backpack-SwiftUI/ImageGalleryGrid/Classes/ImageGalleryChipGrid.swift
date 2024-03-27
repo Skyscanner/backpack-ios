@@ -37,7 +37,7 @@ struct ImageGalleryChipGrid<ImageView: View>: ViewModifier {
                     onCategoryChanged: {
                         onCategoryChanged(selectedCategory)
                     },
-                    itemTapped: { item, _ in
+                    itemTapped: { item in
                         onItemTapped(selectedCategory, item)
                     },
                     onCloseTapped: onCloseTapped,
@@ -75,5 +75,49 @@ public extension View {
                 isPresented: isPresented
                 )
             )
+    }
+}
+
+struct BPKImageGalleryChipGrid_Previews: PreviewProvider {
+    
+    static var previews: some View {
+        
+        ImageGalleryGridContentView(
+            categories: testCategories,
+            closeAccessibilityLabel: "close",
+            onCategoryChanged: {
+                print("onCategoryChanged")
+            },
+            itemTapped: { item in
+                print("onItemTapped: \(item)")
+            },
+            onCloseTapped: { },
+            selectedCategoryIndex: .constant(0)
+        )
+    }
+    
+    private static var testCategories: BPKImageGalleryCategoriesTypeContainer<Color> {
+        return .chip([
+            BPKImageGalleryCategoryChip(
+                title: "Green but with very long title indeed (40)",
+                images: testImages(40, colour: .green)
+            ),
+            BPKImageGalleryCategoryChip(
+                title: "Blue photos (10)",
+                images: testImages(5, colour: .blue)
+            ),
+            BPKImageGalleryCategoryChip(
+                title: "Red photos (10)",
+                images: testImages(6, colour: .red)
+            )
+        ])
+    }
+    
+    private static func testImages(_ amount: Int, colour: Color) -> [BPKImageGalleryImage<Color>] {
+        return (0..<amount).map { _ in
+            BPKImageGalleryImage(title: "image \(amount)") { _ in
+                colour
+            }
+        }
     }
 }

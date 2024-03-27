@@ -23,7 +23,7 @@ struct ImageGalleryGridContentView<ImageView: View>: View {
     let categories: BPKImageGalleryCategoriesTypeContainer<ImageView>
     let closeAccessibilityLabel: String
     let onCategoryChanged: () -> Void
-    let itemTapped: (BPKImageGalleryImage<ImageView>, Int) -> Void
+    let itemTapped: (BPKImageGalleryImage<ImageView>) -> Void
     let onCloseTapped: () -> Void
     
     @Binding var selectedCategoryIndex: Int?
@@ -52,7 +52,7 @@ struct ImageGalleryGridContentView<ImageView: View>: View {
                     .clipped()
                     .frame(height: ImageGalleryGridConstants.itemHeightInGrid)
                     .onTapGesture {
-                        itemTapped(item, index)
+                        itemTapped(item)
                         imageIndexInCategory = index
                         presentSlideshow.toggle()
                     }

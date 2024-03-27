@@ -41,7 +41,7 @@ struct ImageGalleryImageGrid<ImageView: View>: ViewModifier {
                     onCategoryChanged: {
                         onCategoryChanged(selectedCategory)
                     },
-                    itemTapped: { item, _ in
+                    itemTapped: { item in
                         onItemTapped(selectedCategory, item)
                     },
                     onCloseTapped: onCloseTapped,
@@ -82,49 +82,49 @@ public extension View {
     }
 }
 
-/*
- struct BPKImageGalleryGrid_Previews: PreviewProvider {
- static var previews: some View {
- ImageGalleryChipGrid<Color>.ContentView(
- categories: testCategories,
- closeAccessibilityLabel: "close",
- onCategoryChanged: { category in
- print("onCategoryChanged: \(category.title)")
- },
- onItemTapped: {category, item in
- print("onItemTapped category: \(category.title), item: \(item)")
- },
- onCloseTapped: { },
- selectedCategoryIndex: 0
- )
- }
- 
- private static var testCategories: BPKImageGalleryCategoriesTypeContainer<Color> {
- return .image([
- BPKImageGalleryCategoryImage(
- title: "Green but with very long title indeed (40)",
- images: testImages(40, colour: .green),
- categoryImage: BPKImageGalleryCarouselImage() { Color.green }
- ),
- BPKImageGalleryCategoryImage(
- title: "Blue photos (10)",
- images: testImages(5, colour: .blue),
- categoryImage: BPKImageGalleryCarouselImage() { Color.blue }
- ),
- BPKImageGalleryCategoryImage(
- title: "Red photos (10)",
- images: testImages(6, colour: .red),
- categoryImage: BPKImageGalleryCarouselImage() { Color.red }
- )
- ])
- }
- 
- private static func testImages(_ amount: Int, colour: Color) -> [BPKImageGalleryImage<Color>] {
- return (0..<amount).map { _ in
- BPKImageGalleryImage(title: "image \(amount)") { _ in
- colour
- }
- }
- }
- }
- */
+struct BPKImageGalleryImageGrid_Previews: PreviewProvider {
+    
+    static var previews: some View {
+        
+        ImageGalleryGridContentView(
+            categories: testCategories,
+            closeAccessibilityLabel: "close",
+            onCategoryChanged: {
+                print("onCategoryChanged")
+            },
+            itemTapped: { item in
+                print("onItemTapped: \(item)")
+            },
+            onCloseTapped: { },
+            selectedCategoryIndex: .constant(0)
+        )
+    }
+    
+    private static var testCategories: BPKImageGalleryCategoriesTypeContainer<Color> {
+        return .image([
+            BPKImageGalleryCategoryImage(
+                title: "Green but with very long title indeed (40)",
+                images: testImages(40, colour: .green),
+                categoryImage: BPKImageGalleryCarouselImage() { Color.green }
+            ),
+            BPKImageGalleryCategoryImage(
+                title: "Blue photos (10)",
+                images: testImages(5, colour: .blue),
+                categoryImage: BPKImageGalleryCarouselImage() { Color.blue }
+            ),
+            BPKImageGalleryCategoryImage(
+                title: "Red photos (10)",
+                images: testImages(6, colour: .red),
+                categoryImage: BPKImageGalleryCarouselImage() { Color.red }
+            )
+        ])
+    }
+    
+    private static func testImages(_ amount: Int, colour: Color) -> [BPKImageGalleryImage<Color>] {
+        return (0..<amount).map { _ in
+            BPKImageGalleryImage(title: "image \(amount)") { _ in
+                colour
+            }
+        }
+    }
+}
