@@ -44,10 +44,11 @@ public struct BPKAppSearchModal: View {
         self.onClose = onClose
     }
     
+    // swiftlint:disable closure_body_length
     public var body: some View {
         VStack(spacing: .base) {
-            
             makeNavigationBar(title: title, closeAccessibilityLabel: closeAccessibilityLabel, onClose: onClose)
+                .padding(.horizontal, .base)
             
             if results.showTextField {
                 BPKTextField(placeholder: inputHint, $inputText)
@@ -55,11 +56,13 @@ public struct BPKAppSearchModal: View {
                     .accessibilityAddTraits(.isSearchField)
                     .focused($inputFieldIsFocussed)
                     .autocorrectionDisabled(true)
+                    .padding(.horizontal, .base)
             }
         
             switch results {
             case .loading(let loading):
                 AppSearchModalLoadingView(state: loading)
+                    .padding(.horizontal, .base)
             case .content(let content):
                 AppSearchModalContentView(
                     state: content,
@@ -67,10 +70,9 @@ public struct BPKAppSearchModal: View {
                     .padding(.top, .md)
             case .error(let error):
                 AppSearchModalErrorView(state: error)
-                    .padding(.horizontal, .md)
+                    .padding(.horizontal, .base)
             }
         }
-        .padding(.horizontal, .base)
         .padding(.top, .base)
         .padding(.bottom, BPKSpacing.none)
         .background(.surfaceDefaultColor)

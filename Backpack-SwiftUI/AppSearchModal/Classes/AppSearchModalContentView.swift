@@ -30,7 +30,13 @@ struct AppSearchModalContentView: View {
         } content: {
             VStack(spacing: .base) {
                 if let shortcuts = state.shortcuts, !shortcuts.isEmpty {
-                    makeShortcuts(shortcuts)
+                    if #available(iOS 17.0, *) {
+                        makeShortcuts(shortcuts)
+                            .contentMargins(.horizontal, 16, for: .scrollContent)
+                    } else {
+                        makeShortcuts(shortcuts)
+                            .padding(.horizontal, .base)
+                    }
                 }
                 ForEach(state.sections, id: \.self) {
                     makeSections($0)
@@ -61,6 +67,7 @@ struct AppSearchModalContentView: View {
                             .buttonStyle(.link)
                     }
                 }
+                .padding(.horizontal, .base)
             }
             ForEach(section.items, id: \.self) { item in
                 ItemCell(item: item)
@@ -95,6 +102,7 @@ struct AppSearchModalContentView: View {
                     }
                 }
                 .contentShape(Rectangle())
+                .padding(.horizontal, .base)
             }
             .buttonStyle(ItemCellButtonStyle())
         }
@@ -111,6 +119,7 @@ struct AppSearchModalContentView: View {
     struct ItemCellButtonStyle: ButtonStyle {
         func makeBody(configuration: Configuration) -> some View {
             configuration.label
+                .background(configuration.isPressed ? .canvasContrastColor : .canvasContrastColor.withAlphaComponent(0))
         }
     }
 }
