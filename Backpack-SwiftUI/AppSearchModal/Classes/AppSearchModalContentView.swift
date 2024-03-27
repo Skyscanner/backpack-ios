@@ -94,8 +94,8 @@ struct AppSearchModalContentView: View {
                             .foregroundColor(.textSecondaryColor)
                     }
                 }
+                .contentShape(Rectangle())
             }
-            .contentShape(Rectangle())
             .buttonStyle(ItemCellButtonStyle())
         }
         
