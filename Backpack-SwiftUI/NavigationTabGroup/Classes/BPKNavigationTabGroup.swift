@@ -57,7 +57,6 @@ public struct BPKNavigationTabGroup: View {
             selected: selectedIndex == index,
             style: style
         ) {
-            selectedIndex = index
             onItemClick(index)
         }
     }
