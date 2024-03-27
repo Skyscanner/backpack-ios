@@ -75,14 +75,14 @@ struct TwoRowGrid<Item, ItemView: View>: View {
 struct TwoRowGrid_Previews: PreviewProvider {
     static var previews: some View {
         TwoRowGrid(items: testImages(6, colour: .cyan)) { item, _ in
-            item.content()
+            item.content(.grid)
                 .frame(height: 192)
         }
     }
     
     private static func testImages(_ amount: Int, colour: Color) -> [BPKImageGalleryImage<Color>] {
         return (0..<amount).map { _ in
-            BPKImageGalleryImage(title: "image \(amount)") {
+            BPKImageGalleryImage(title: "image \(amount)") { _ in
                 colour
             }
         }

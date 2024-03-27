@@ -40,8 +40,8 @@ struct ImageGalleryGridExampleView: View {
                                     title: "image \(index)",
                                     description: "Image at Index: \(index)",
                                     credit: "@photographer"
-                                ) {
-                                    image(index)
+                                ) { context in
+                                    image(index, context: context)
                                 }
                             }
                         )
@@ -71,12 +71,12 @@ struct ImageGalleryGridExampleView: View {
                                     title: "image \(index)",
                                     description: "Image at Index: \(index)",
                                     credit: "@photographer"
-                                ) {
-                                    image(index)
+                                ) { context in
+                                    image(index, context: context)
                                 }
                             },
                             categoryImage: BPKImageGalleryCarouselImage() {
-                                image(categoryIndex)
+                                image(categoryIndex, context: .grid)
                             }
                         )
                     }
@@ -102,13 +102,13 @@ struct ImageGalleryGridExampleView: View {
         }
     }
     
-    private func image(_ number: Int) -> some View {
+    private func image(_ number: Int, context: BPKImageGalleryDisplayContext) -> some View {
         let imageFileNumber = (number % 4) + 1
         return ZStack {
             Image("carousel_placeholder_\(imageFileNumber)")
                 .resizable()
             
-            BPKText("\(number)", style: .heading1)
+            BPKText("\(context == .grid ? "G": "S") - \(number)", style: .heading1)
                 .foregroundColor(.textPrimaryInverseColor)
         }
     }

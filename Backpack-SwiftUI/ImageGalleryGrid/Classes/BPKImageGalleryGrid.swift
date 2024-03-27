@@ -70,7 +70,7 @@ struct ImageGalleryGrid<ImageView: View>: ViewModifier {
                 TwoRowGrid(
                     items: selectedCategoryImages
                 ) { item, index in
-                    item.content()
+                    item.content(.grid)
                         .aspectRatio(contentMode: .fill)
                         .clipped()
                         .frame(height: itemHeightInGrid)
@@ -179,7 +179,7 @@ struct BPKImageGalleryGrid_Previews: PreviewProvider {
     
     private static func testImages(_ amount: Int, colour: Color) -> [BPKImageGalleryImage<Color>] {
         return (0..<amount).map { _ in
-            BPKImageGalleryImage(title: "image \(amount)") {
+            BPKImageGalleryImage(title: "image \(amount)") { _ in
                 colour
             }
         }
