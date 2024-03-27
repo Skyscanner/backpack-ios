@@ -18,30 +18,7 @@
 
 import SwiftUI
 
-public enum BPKImageGalleryCategoryType<ImageView: View> {
-    case chip(_ chipCategory: BPKImageGalleryCategoryChip<ImageView>)
-    case image(_ imageCategory: BPKImageGalleryCategoryImage<ImageView>)
-    
-    public var title: String {
-        switch self {
-        case .chip(let chipCategory):
-            chipCategory.title
-        case .image(let imageCategory):
-            imageCategory.title
-        }
-    }
-    
-    public var images: [BPKImageGalleryImage<ImageView>] {
-        switch self {
-        case .chip(let chipCategory):
-            chipCategory.images
-        case .image(let imageCategory):
-            imageCategory.images
-        }
-    }
-}
-
-public enum BPKImageGalleryCategoriesTypeContainer<ImageView: View> {
+enum BPKImageGalleryCategoriesTypeContainer<ImageView: View> {
     case chip(_ chipCategories: [BPKImageGalleryCategoryChip<ImageView>])
     case image(_ imageCategories: [BPKImageGalleryCategoryImage<ImageView>])
 }
