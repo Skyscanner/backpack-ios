@@ -21,7 +21,7 @@ import SwiftUI
 public struct BPKAppSearchModal: View {
     let title: String
     @Binding var inputText: String
-    let prefixState: BPKSearchInputSummary.PrefixState
+    let inputPrefix: BPKSearchInputSummary.InputPrefix
     let inputHint: String
     let results: BPKAppSearchModalResults
     let closeAccessibilityLabel: String
@@ -35,7 +35,7 @@ public struct BPKAppSearchModal: View {
         inputHint: String,
         results: BPKAppSearchModalResults,
         closeAccessibilityLabel: String,
-        prefixState: BPKSearchInputSummary.PrefixState = .searchIcon,
+        inputPrefix: BPKSearchInputSummary.InputPrefix = .icon,
         onClose: @escaping () -> Void
     ) {
         self.title = title
@@ -43,35 +43,37 @@ public struct BPKAppSearchModal: View {
         self.inputHint = inputHint
         self.results = results
         self.closeAccessibilityLabel = closeAccessibilityLabel
-        self.prefixState = prefixState
+        self.inputPrefix = inputPrefix
         self.onClose = onClose
     }
     
     public var body: some View {
         VStack(spacing: .base) {
-            
             makeNavigationBar(title: title, closeAccessibilityLabel: closeAccessibilityLabel, onClose: onClose)
-            
             if results.showTextField {
-                BPKSearchInputSummary(placeholder: inputHint, prefixState: prefixState, $inputText)
-                    .inputState(textFieldState.inputState)
-                    .accessibilityAddTraits(.isSearchField)
-                    .focused($inputFieldIsFocussed)
-                    .autocorrectionDisabled(true)
+                BPKSearchInputSummary(
+                    placeholder: inputHint,
+                    inputPrefix: inputPrefix,
+                    isFocused: $inputFieldIsFocussed.wrappedValue, $inputText
+                )
+                .inputState(textFieldState.inputState)
+                .accessibilityAddTraits(.isSearchField)
+                .focused($inputFieldIsFocussed)
+                .autocorrectionDisabled(true)
             }
-        
             switch results {
             case .loading(let loading):
                 AppSearchModalLoadingView(state: loading)
             case .content(let content):
-                AppSearchModalContentView(
-                    state: content,
-                    onScroll: onScroll(_:))
+                AppSearchModalContentView(state: content, onScroll: onScroll(_:))
                     .padding(.top, .md)
             case .error(let error):
                 AppSearchModalErrorView(state: error)
                     .padding(.horizontal, .md)
             }
+        }
+        .onAppear {
+            inputFieldIsFocussed.toggle()
         }
         .padding(.horizontal, .base)
         .padding(.top, .base)
@@ -132,7 +134,7 @@ struct BPKAppSearchModal_Previews: PreviewProvider {
                 shortcuts: (0..<4).map(buildShortcut)
             )),
             closeAccessibilityLabel: "Close",
-            prefixState: .searchIcon,
+            inputPrefix: .icon,
             onClose: { }
         )
         .previewDisplayName("Content")
@@ -143,7 +145,7 @@ struct BPKAppSearchModal_Previews: PreviewProvider {
             inputHint: "Search",
             results: .loading(.init(accessibilityLabel: "Loading")),
             closeAccessibilityLabel: "Close",
-            prefixState: .text("From"),
+            inputPrefix: .text("From"),
             onClose: { }
         )
         .previewDisplayName("Loading")

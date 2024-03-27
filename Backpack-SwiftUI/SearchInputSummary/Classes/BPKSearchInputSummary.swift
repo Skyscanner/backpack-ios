@@ -22,9 +22,9 @@ import SwiftUI
 ///
 /// Use `inputState(_ state: State)` to change the state of the text field.
 public struct BPKSearchInputSummary: View {
-    public enum PrefixState {
+    public enum InputPrefix {
         case text(String)
-        case searchIcon
+        case icon
     }
     
     struct Icon {
@@ -33,8 +33,10 @@ public struct BPKSearchInputSummary: View {
     }
     
     @Binding private var text: String
+//    @Binding private var inputFieldIsFocussed: Bool
+    private let isFocused: Bool
     private let placeholder: String
-    private let prefixState: PrefixState
+    private let inputPrefix: InputPrefix
     private var state: State = .default
 
     /// Creates a `BPKTextField`.
@@ -45,11 +47,13 @@ public struct BPKSearchInputSummary: View {
     ///   - text: The text to display in the text field.
     public init(
         placeholder: String = "",
-        prefixState: PrefixState = .searchIcon,
+        inputPrefix: InputPrefix = .icon,
+        isFocused: Bool? = nil,
         _ text: Binding<String>
     ) {
         self.placeholder = placeholder
-        self.prefixState = prefixState
+        self.inputPrefix = inputPrefix
+        self.isFocused = isFocused ?? false
         self._text = text
     }
     
@@ -66,7 +70,7 @@ public struct BPKSearchInputSummary: View {
         .padding(.md)
         .background(.surfaceDefaultColor)
         .clipShape(RoundedRectangle(cornerRadius: .sm))
-        .outline(state.borderColor, cornerRadius: .sm)
+        .outline(isFocused ? .textLinkColor : state.borderColor, cornerRadius: .sm, lineWidth: isFocused ? 2.0 : 1.0)
     }
     
     private var accessory: some View {
@@ -89,11 +93,11 @@ public struct BPKSearchInputSummary: View {
     
     private var prefixView: some View {
         HStack {
-            switch prefixState {
+            switch inputPrefix {
             case .text(let prefixText):
                 BPKText(prefixText, style: .bodyDefault)
                     .foregroundColor(.textSecondaryColor)
-            case .searchIcon:
+            case .icon:
                 BPKIconView(BPKIcon(name: "search"))
                     .foregroundColor(.textPrimaryColor)
             }
@@ -119,7 +123,7 @@ struct BPKSearchInputSummary_Previews: PreviewProvider {
             BPKSearchInputSummary(.constant(""))
             BPKSearchInputSummary(placeholder: "Enter", .constant(""))
             BPKSearchInputSummary(.constant("Value"))
-            BPKSearchInputSummary(prefixState: .text("From"), .constant("Value"))
+            BPKSearchInputSummary(inputPrefix: .text("From"), .constant("Value"))
             BPKSearchInputSummary(.constant("Disabled"))
                 .inputState(.disabled)
             BPKSearchInputSummary(.constant("Value"))
