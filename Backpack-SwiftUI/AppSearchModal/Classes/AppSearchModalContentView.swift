@@ -32,7 +32,7 @@ struct AppSearchModalContentView: View {
                 if let shortcuts = state.shortcuts, !shortcuts.isEmpty {
                     if #available(iOS 17.0, *) {
                         makeShortcuts(shortcuts)
-                            .contentMargins(.horizontal, 16, for: .scrollContent)
+                            .contentMargins(.horizontal, BPKSpacing.base.value, for: .scrollContent)
                     } else {
                         makeShortcuts(shortcuts)
                             .padding(.horizontal, .base)
