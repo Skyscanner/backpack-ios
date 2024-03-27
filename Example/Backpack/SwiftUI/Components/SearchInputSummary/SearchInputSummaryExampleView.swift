@@ -2,7 +2,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright © 2023 Skyscanner Ltd. All rights reserved.
+ * Copyright © 2024 Skyscanner Ltd. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@
 import SwiftUI
 import Backpack_SwiftUI
 
-struct TextFieldExampleView: View {
+struct SearchInputSummaryExampleView: View {
     @State var text1 = ""
     @State var text2 = "Value"
     @State var validationFieldText = ""
@@ -28,25 +28,27 @@ struct TextFieldExampleView: View {
     var body: some View {
         ScrollView {
             VStack {
-                BPKTextField($text2)
-                BPKTextField(placeholder: "Placeholder", $text2)
-                BPKTextField($text1)
-                BPKTextField($text1)
+                BPKSearchInputSummary($text2)
+                BPKSearchInputSummary(placeholder: "Placeholder", $text2)
+                BPKSearchInputSummary($text1)
+                BPKSearchInputSummary(prefixState: .text("To"), $text1)
+                BPKSearchInputSummary(prefixState: .text("From"), $text2)
+                BPKSearchInputSummary($text1)
                     .inputState(.disabled)
-                BPKTextField($text1)
+                BPKSearchInputSummary($text1)
                     .inputState(text1.isEmpty ? .default : .clear(accessibilityLabel: "Clear Field") { text1 = "" })
-                BPKTextField($text1)
+                BPKSearchInputSummary($text1)
                     .inputState(.valid)
-                BPKTextField($text1)
+                BPKSearchInputSummary($text1)
                     .inputState(.error)
-                BPKTextField(placeholder: "At least 6 characters", $validationFieldText)
+                BPKSearchInputSummary(placeholder: "At least 6 characters", $validationFieldText)
                     .inputState(validateState())
             }
             .padding()
         }
     }
     
-    private func validateState() -> Backpack_SwiftUI.BPKTextField.State {
+    private func validateState() -> Backpack_SwiftUI.BPKSearchInputSummary.State {
         switch validationFieldText.count {
         case 0: return .default
         case 1...5: return .error
@@ -55,8 +57,8 @@ struct TextFieldExampleView: View {
     }
 }
 
-struct TextFieldExampleView_Previews: PreviewProvider {
+struct SearchInputSummaryExampleView_Previews: PreviewProvider {
     static var previews: some View {
-        TextFieldExampleView()
+        SearchInputSummaryExampleView()
     }
 }

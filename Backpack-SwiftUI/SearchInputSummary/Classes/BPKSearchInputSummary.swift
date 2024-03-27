@@ -21,7 +21,12 @@ import SwiftUI
 /// A control that displays an editable text interface.
 ///
 /// Use `inputState(_ state: State)` to change the state of the text field.
-public struct BPKTextField: View {
+public struct BPKSearchInputSummary: View {
+    public enum PrefixState {
+        case text(String)
+        case searchIcon
+    }
+    
     struct Icon {
         let icon: BPKIcon
         let color: BPKColor
@@ -29,23 +34,29 @@ public struct BPKTextField: View {
     
     @Binding private var text: String
     private let placeholder: String
+    private let prefixState: PrefixState
     private var state: State = .default
 
     /// Creates a `BPKTextField`.
     ///
     /// - Parameters:
     ///   - placeholder: The placeholder text to display when the text field is empty.
+    ///   - prefixState: The prefix which would be displayed on the left of text input
     ///   - text: The text to display in the text field.
     public init(
         placeholder: String = "",
+        prefixState: PrefixState = .searchIcon,
         _ text: Binding<String>
     ) {
         self.placeholder = placeholder
+        self.prefixState = prefixState
         self._text = text
     }
     
     public var body: some View {
         HStack {
+            prefixView
+                .accessibilityHidden(true)
             TextField(placeholder, text: $text)
                 .font(style: .bodyDefault)
                 .foregroundColor(state.textColor)
@@ -76,7 +87,20 @@ public struct BPKTextField: View {
         }
     }
     
-    public func inputState(_ state: State) -> BPKTextField {
+    private var prefixView: some View {
+        HStack {
+            switch prefixState {
+            case .text(let prefixText):
+                BPKText(prefixText, style: .bodyDefault)
+                    .foregroundColor(.textSecondaryColor)
+            case .searchIcon:
+                BPKIconView(BPKIcon(name: "search"))
+                    .foregroundColor(.textPrimaryColor)
+            }
+        }
+    }
+    
+    public func inputState(_ state: State) -> BPKSearchInputSummary {
         var result = self
         result.state = state
         return result
@@ -89,19 +113,20 @@ fileprivate extension TextField {
     }
 }
 
-struct BPKTextField_Previews: PreviewProvider {
+struct BPKSearchInputSummary_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            BPKTextField(.constant(""))
-            BPKTextField(placeholder: "Enter", .constant(""))
-            BPKTextField(.constant("Value"))
-            BPKTextField(.constant("Disabled"))
+            BPKSearchInputSummary(.constant(""))
+            BPKSearchInputSummary(placeholder: "Enter", .constant(""))
+            BPKSearchInputSummary(.constant("Value"))
+            BPKSearchInputSummary(prefixState: .text("From"), .constant("Value"))
+            BPKSearchInputSummary(.constant("Disabled"))
                 .inputState(.disabled)
-            BPKTextField(.constant("Value"))
+            BPKSearchInputSummary(.constant("Value"))
                 .inputState(.error)
-            BPKTextField(.constant("Value"))
+            BPKSearchInputSummary(.constant("Value"))
                 .inputState(.clear(accessibilityLabel: "clear", action: {}))
-            BPKTextField(.constant("Value"))
+            BPKSearchInputSummary(.constant("Value"))
                 .inputState(.valid)
         }
         .padding()

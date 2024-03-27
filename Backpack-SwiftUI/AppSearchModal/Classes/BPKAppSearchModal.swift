@@ -21,7 +21,7 @@ import SwiftUI
 public struct BPKAppSearchModal: View {
     let title: String
     @Binding var inputText: String
-    let prefixState: BPKTextField.PrefixState?
+    let prefixState: BPKSearchInputSummary.PrefixState
     let inputHint: String
     let results: BPKAppSearchModalResults
     let closeAccessibilityLabel: String
@@ -35,7 +35,7 @@ public struct BPKAppSearchModal: View {
         inputHint: String,
         results: BPKAppSearchModalResults,
         closeAccessibilityLabel: String,
-        prefixState: BPKTextField.PrefixState? = nil,
+        prefixState: BPKSearchInputSummary.PrefixState = .searchIcon,
         onClose: @escaping () -> Void
     ) {
         self.title = title
@@ -53,7 +53,7 @@ public struct BPKAppSearchModal: View {
             makeNavigationBar(title: title, closeAccessibilityLabel: closeAccessibilityLabel, onClose: onClose)
             
             if results.showTextField {
-                BPKTextField(placeholder: inputHint, prefixState: prefixState, $inputText)
+                BPKSearchInputSummary(placeholder: inputHint, prefixState: prefixState, $inputText)
                     .inputState(textFieldState.inputState)
                     .accessibilityAddTraits(.isSearchField)
                     .focused($inputFieldIsFocussed)
