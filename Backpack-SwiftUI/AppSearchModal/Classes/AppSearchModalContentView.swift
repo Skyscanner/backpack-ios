@@ -113,9 +113,9 @@ struct AppSearchModalContentView: View {
         }
     }
     
-    // Basic button style to remove any styling for on press etc.
-    // In the future we might want to consider using .plain
-    // Or any other tap indication
+    // We use a color with 0 alpha to avoid a 'flicker' issue
+    // when tapping ends. Using BPKColor.clear will show a darker
+    // gray color when tap ends
     struct ItemCellButtonStyle: ButtonStyle {
         func makeBody(configuration: Configuration) -> some View {
             configuration.label
