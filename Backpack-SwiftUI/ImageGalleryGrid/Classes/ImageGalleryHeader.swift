@@ -18,26 +18,25 @@
 
 import SwiftUI
 
-public enum BPKImageGalleryDisplayContext {
-    case grid
-    case slideshow
+struct ImageGalleryHeader: View {
+    let closeAccessibilityLabel: String
+    let onCloseTapped: () -> Void
+    
+    var body: some View {
+        HStack {
+            Button(action: onCloseTapped, label: {
+                BPKIconView(.close, size: .large)
+                    .foregroundColor(.textPrimaryColor)
+                    .padding(.sm)
+            })
+            .accessibilityLabel(closeAccessibilityLabel)
+            Spacer()
+        }
+    }
 }
 
-public struct BPKImageGalleryImage<Content: View> {
-    public let title: String
-    public let description: String?
-    public let credit: String?
-    public let content: (BPKImageGalleryDisplayContext) -> Content
-
-    public init(
-        title: String,
-        description: String? = nil,
-        credit: String? = nil,
-        @ViewBuilder content: @escaping (BPKImageGalleryDisplayContext) -> Content
-    ) {
-        self.title = title
-        self.description = description
-        self.credit = credit
-        self.content = content
+struct ImageGalleryHeader_Previews: PreviewProvider {
+    static var previews: some View {
+        ImageGalleryHeader(closeAccessibilityLabel: "close", onCloseTapped: { })
     }
 }

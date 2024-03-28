@@ -34,7 +34,7 @@ struct ImageGallerySlideshowExampleView: View {
                     title: "Pumphouse Point",
                     description: "\(index) Walk deep into the fjord-like surrounds of Lake St Clair.",
                     credit: "@PhotographerName",
-                    content: { image(index) }
+                    content: { _ in image(index) }
                 )
             },
             closeAccessibilityLabel: "Close",
