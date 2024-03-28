@@ -20,7 +20,7 @@ import SwiftUI
 
 struct ImageGalleryGridContentView<ImageView: View>: View {
     
-    let categories: BPKImageGalleryCategoriesTypeContainer<ImageView>
+    let categories: BPKImageGalleryImageGridStyle<ImageView>
     let closeAccessibilityLabel: String
     let onCategoryChanged: () -> Void
     let itemTapped: (BPKImageGalleryImage<ImageView>) -> Void

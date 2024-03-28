@@ -18,35 +18,36 @@
 
 import SwiftUI
 
-enum BPKImageGalleryCategoriesTypeContainer<ImageView: View> {
-    case chip(_ chipCategories: [BPKImageGalleryCategoryChip<ImageView>])
-    case image(_ imageCategories: [BPKImageGalleryCategoryImage<ImageView>])
-}
-
-public struct BPKImageGalleryCategoryChip<ImageView: View> {
-    public let title: String
-    public let images: [BPKImageGalleryImage<ImageView>]
+public enum BPKImageGalleryImageGridStyle<ImageView: View> {
+    case chip(_ chipCategories: [ChipCategory])
+    case image(_ imageCategories: [ImageCategory])
     
-    public init(
-        title: String,
-        images: [BPKImageGalleryImage<ImageView>]) {
-        self.title = title
-        self.images = images
+    public struct ChipCategory {
+        public let title: String
+        public let images: [BPKImageGalleryImage<ImageView>]
+        
+        public init(
+            title: String,
+            images: [BPKImageGalleryImage<ImageView>]) {
+            self.title = title
+            self.images = images
+        }
     }
-}
-
-public struct BPKImageGalleryCategoryImage<ImageView: View> {
     
-    public let title: String
-    public let images: [BPKImageGalleryImage<ImageView>]
-    public let categoryImage: BPKImageGalleryCarouselImage<ImageView>
+    public struct ImageCategory {
+        
+        public let title: String
+        public let images: [BPKImageGalleryImage<ImageView>]
+        public let categoryImage: () -> ImageView
 
-    public init(
-        title: String,
-        images: [BPKImageGalleryImage<ImageView>],
-        categoryImage: BPKImageGalleryCarouselImage<ImageView>) {
-        self.title = title
-        self.images = images
-        self.categoryImage = categoryImage
+        public init(
+            title: String,
+            images: [BPKImageGalleryImage<ImageView>],
+            categoryImage: @escaping () -> ImageView
+        ) {
+            self.title = title
+            self.images = images
+            self.categoryImage = categoryImage
+        }
     }
 }

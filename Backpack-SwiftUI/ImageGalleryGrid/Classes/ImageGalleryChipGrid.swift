@@ -19,10 +19,10 @@
 import SwiftUI
 
 struct ImageGalleryChipGrid<ImageView: View>: ViewModifier {
-    let categories: [BPKImageGalleryCategoryChip<ImageView>]
+    let categories: [BPKImageGalleryImageGridStyle<ImageView>.ChipCategory]
     let closeAccessibilityLabel: String
-    let onCategoryChanged: (BPKImageGalleryCategoryChip<ImageView>) -> Void
-    let onItemTapped: (BPKImageGalleryCategoryChip<ImageView>, BPKImageGalleryImage<ImageView>) -> Void
+    let onCategoryChanged: (BPKImageGalleryImageGridStyle<ImageView>.ChipCategory) -> Void
+    let onItemTapped: (BPKImageGalleryImageGridStyle<ImageView>.ChipCategory, BPKImageGalleryImage<ImageView>) -> Void
     let onCloseTapped: () -> Void
     let initialCategory: Int
     @Binding var isPresented: Bool
@@ -46,7 +46,7 @@ struct ImageGalleryChipGrid<ImageView: View>: ViewModifier {
             }
     }
     
-    private var selectedCategory: BPKImageGalleryCategoryChip<ImageView> {
+    private var selectedCategory: BPKImageGalleryImageGridStyle<ImageView>.ChipCategory {
         categories[selectedCategoryIndex ?? 0]
     }
 }
@@ -57,10 +57,13 @@ public extension View {
     func bpkImageGalleryChipGrid<Content>(
         isPresented: Binding<Bool>,
         initialCategory: Int = 0,
-        categories: [BPKImageGalleryCategoryChip<Content>],
+        categories: [BPKImageGalleryImageGridStyle<Content>.ChipCategory],
         closeAccessibilityLabel: String,
-        onCategoryChanged: @escaping (BPKImageGalleryCategoryChip<Content>) -> Void,
-        onItemTapped: @escaping (BPKImageGalleryCategoryChip<Content>, BPKImageGalleryImage<Content>) -> Void,
+        onCategoryChanged: @escaping (BPKImageGalleryImageGridStyle<Content>.ChipCategory) -> Void,
+        onItemTapped: @escaping (
+            BPKImageGalleryImageGridStyle<Content>.ChipCategory,
+            BPKImageGalleryImage<Content>
+        ) -> Void,
         onCloseTapped: @escaping () -> Void
     ) -> some View {
         
@@ -96,17 +99,17 @@ struct BPKImageGalleryChipGrid_Previews: PreviewProvider {
         )
     }
     
-    private static var testCategories: BPKImageGalleryCategoriesTypeContainer<Color> {
+    private static var testCategories: BPKImageGalleryImageGridStyle<Color> {
         return .chip([
-            BPKImageGalleryCategoryChip(
+            BPKImageGalleryImageGridStyle.ChipCategory(
                 title: "Green but with very long title indeed (40)",
                 images: testImages(40, colour: .green)
             ),
-            BPKImageGalleryCategoryChip(
+            BPKImageGalleryImageGridStyle.ChipCategory(
                 title: "Blue photos (10)",
                 images: testImages(5, colour: .blue)
             ),
-            BPKImageGalleryCategoryChip(
+            BPKImageGalleryImageGridStyle.ChipCategory(
                 title: "Red photos (10)",
                 images: testImages(6, colour: .red)
             )

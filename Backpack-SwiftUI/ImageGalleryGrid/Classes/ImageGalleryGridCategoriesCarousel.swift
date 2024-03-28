@@ -19,7 +19,7 @@
 import SwiftUI
 
 struct ImageGalleryGridCategoriesCarousel<ImageView: View>: View {
-    let categories: BPKImageGalleryCategoriesTypeContainer<ImageView>
+    let categories: BPKImageGalleryImageGridStyle<ImageView>
     @Binding var selectedCategory: Int?
     private let categoryImageSideLength: CGFloat = 90
     
@@ -55,11 +55,11 @@ struct ImageGalleryGridCategoriesCarousel<ImageView: View>: View {
     
     @ViewBuilder
     private func categoryThumb(
-        for category: BPKImageGalleryCategoryImage<ImageView>,
+        for category: BPKImageGalleryImageGridStyle<ImageView>.ImageCategory,
         isSelected: Bool
     ) -> some View {
         VStack {
-            category.categoryImage.content()
+            category.categoryImage()
                 .frame(
                     width: categoryImageSideLength,
                     height: categoryImageSideLength
@@ -94,37 +94,37 @@ struct ImageGalleryGridCategoriesCarousel_Previews: PreviewProvider {
         .previewDisplayName("Chips")
     }
     
-    private static var testCategories: [BPKImageGalleryCategoryImage<Color>] {
+    private static var testCategories: [BPKImageGalleryImageGridStyle<Color>.ImageCategory] {
         [
-            BPKImageGalleryCategoryImage(
+            BPKImageGalleryImageGridStyle.ImageCategory(
                 title: "Green photos with long title (40)",
                 images: [],
-                categoryImage: BPKImageGalleryCarouselImage() { Color.green }
+                categoryImage: { Color.green }
             ),
-            BPKImageGalleryCategoryImage(
+            BPKImageGalleryImageGridStyle.ImageCategory(
                 title: "Blue photos (10)",
                 images: [],
-                categoryImage: BPKImageGalleryCarouselImage() { Color.blue }
+                categoryImage: { Color.blue }
             ),
-            BPKImageGalleryCategoryImage(
+            BPKImageGalleryImageGridStyle.ImageCategory(
                 title: "red photos (10)",
                 images: [],
-                categoryImage: BPKImageGalleryCarouselImage() { Color.red }
+                categoryImage: { Color.red }
             )
         ]
     }
     
-    private static var testChipCategories: [BPKImageGalleryCategoryChip<Color>] {
+    private static var testChipCategories: [BPKImageGalleryImageGridStyle<Color>.ChipCategory] {
         [
-            BPKImageGalleryCategoryChip(
+            BPKImageGalleryImageGridStyle.ChipCategory(
                 title: "Green photos with long title (40)",
                 images: []
             ),
-            BPKImageGalleryCategoryChip(
+            BPKImageGalleryImageGridStyle.ChipCategory(
                 title: "Blue photos (10)",
                 images: []
             ),
-            BPKImageGalleryCategoryChip(
+            BPKImageGalleryImageGridStyle.ChipCategory(
                 title: "red photos (10)",
                 images: []
             )

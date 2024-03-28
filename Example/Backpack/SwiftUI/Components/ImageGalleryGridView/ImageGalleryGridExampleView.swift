@@ -41,7 +41,7 @@ struct ImageGalleryGridExampleView: View {
             .bpkImageGalleryImageGrid(
                 isPresented: $imageGalleriesIsPresented,
                 categories: (0...7).map { categoryIndex in
-                    BPKImageGalleryCategoryImage(
+                    BPKImageGalleryImageGridStyle.ImageCategory(
                         title: categoryName(categoryIndex),
                         images: (0...categoryIndex).map { index in
                             BPKImageGalleryImage(
@@ -52,7 +52,7 @@ struct ImageGalleryGridExampleView: View {
                                 image(index, context)
                             }
                         },
-                        categoryImage: BPKImageGalleryCarouselImage() {
+                        categoryImage: {
                             image(categoryIndex, .grid)
                         }
                     )
@@ -81,7 +81,7 @@ struct ImageGalleryGridExampleView: View {
             .bpkImageGalleryChipGrid(
                 isPresented: $chipGalleriesIsPresented,
                 categories: (0...7).map { categoryIndex in
-                    BPKImageGalleryCategoryChip(
+                    BPKImageGalleryImageGridStyle.ChipCategory(
                         title: categoryName(categoryIndex),
                         images: (0...categoryIndex).map { index in
                             BPKImageGalleryImage(

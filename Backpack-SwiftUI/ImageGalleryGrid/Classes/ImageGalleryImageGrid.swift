@@ -23,10 +23,10 @@ struct ImageGalleryGridConstants {
 }
 
 struct ImageGalleryImageGrid<ImageView: View>: ViewModifier {
-    let categories: [BPKImageGalleryCategoryImage<ImageView>]
+    let categories: [BPKImageGalleryImageGridStyle<ImageView>.ImageCategory]
     let closeAccessibilityLabel: String
-    let onCategoryChanged: (BPKImageGalleryCategoryImage<ImageView>) -> Void
-    let onItemTapped: (BPKImageGalleryCategoryImage<ImageView>, BPKImageGalleryImage<ImageView>) -> Void
+    let onCategoryChanged: (BPKImageGalleryImageGridStyle<ImageView>.ImageCategory) -> Void
+    let onItemTapped: (BPKImageGalleryImageGridStyle<ImageView>.ImageCategory, BPKImageGalleryImage<ImageView>) -> Void
     let onCloseTapped: () -> Void
     let initialCategory: Int
     @Binding var isPresented: Bool
@@ -50,7 +50,7 @@ struct ImageGalleryImageGrid<ImageView: View>: ViewModifier {
             }
     }
     
-    private var selectedCategory: BPKImageGalleryCategoryImage<ImageView> {
+    private var selectedCategory: BPKImageGalleryImageGridStyle<ImageView>.ImageCategory {
         categories[selectedCategoryIndex ?? 0]
     }
 }
@@ -61,10 +61,13 @@ public extension View {
     func bpkImageGalleryImageGrid<Content>(
         isPresented: Binding<Bool>,
         initialCategory: Int = 0,
-        categories: [BPKImageGalleryCategoryImage<Content>],
+        categories: [BPKImageGalleryImageGridStyle<Content>.ImageCategory],
         closeAccessibilityLabel: String,
-        onCategoryChanged: @escaping (BPKImageGalleryCategoryImage<Content>) -> Void,
-        onItemTapped: @escaping (BPKImageGalleryCategoryImage<Content>, BPKImageGalleryImage<Content>) -> Void,
+        onCategoryChanged: @escaping (BPKImageGalleryImageGridStyle<Content>.ImageCategory) -> Void,
+        onItemTapped: @escaping (
+            BPKImageGalleryImageGridStyle<Content>.ImageCategory,
+            BPKImageGalleryImage<Content>
+        ) -> Void,
         onCloseTapped: @escaping () -> Void
     ) -> some View {
         
@@ -100,22 +103,22 @@ struct BPKImageGalleryImageGrid_Previews: PreviewProvider {
         )
     }
     
-    private static var testCategories: BPKImageGalleryCategoriesTypeContainer<Color> {
+    private static var testCategories: BPKImageGalleryImageGridStyle<Color> {
         return .image([
-            BPKImageGalleryCategoryImage(
+            BPKImageGalleryImageGridStyle.ImageCategory(
                 title: "Green but with very long title indeed (40)",
                 images: testImages(40, colour: .green),
-                categoryImage: BPKImageGalleryCarouselImage() { Color.green }
+                categoryImage: { Color.green }
             ),
-            BPKImageGalleryCategoryImage(
+            BPKImageGalleryImageGridStyle.ImageCategory(
                 title: "Blue photos (10)",
                 images: testImages(5, colour: .blue),
-                categoryImage: BPKImageGalleryCarouselImage() { Color.blue }
+                categoryImage: { Color.blue }
             ),
-            BPKImageGalleryCategoryImage(
+            BPKImageGalleryImageGridStyle.ImageCategory(
                 title: "Red photos (10)",
                 images: testImages(6, colour: .red),
-                categoryImage: BPKImageGalleryCarouselImage() { Color.red }
+                categoryImage: { Color.red }
             )
         ])
     }
