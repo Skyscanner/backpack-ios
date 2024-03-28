@@ -55,7 +55,7 @@ public struct BPKSearchInputSummary: View {
     }
     
     public var body: some View {
-        HStack {
+        HStack(spacing: .md) {
             prefixView
                 .accessibilityHidden(true)
             TextField(placeholder, text: $text)
