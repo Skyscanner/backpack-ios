@@ -41,13 +41,13 @@ class BPKAppSearchModalTests: XCTestCase {
     
     func test_withContentWhenPrefixIsIcon() {
         assertSnapshot(
-            givenSut(with: .content(givenContentState()), prefixState: .searchIcon)
+            givenSut(with: .content(givenContentState()), inputPrefix: .icon)
         )
     }
 
     func test_withContentWhenPrefixIsCustomText() {
         assertSnapshot(
-            givenSut(with: .content(givenContentState()), prefixState: .text("Prefix"))
+            givenSut(with: .content(givenContentState()), inputPrefix: .text("Prefix"))
         )
     }
     
@@ -67,7 +67,7 @@ class BPKAppSearchModalTests: XCTestCase {
     private func givenSut(
         with results: BPKAppSearchModalResults,
         inputState: BPKAppSearchModal.TextFieldState = .default,
-        prefixState: BPKTextField.PrefixState? = nil
+        inputPrefix: BPKSearchInputSummary.InputPrefix = .icon
     ) -> some View {
         BPKAppSearchModal(
             title: "Search Modal",
@@ -75,7 +75,7 @@ class BPKAppSearchModalTests: XCTestCase {
             inputHint: "Search",
             results: results,
             closeAccessibilityLabel: "Close",
-            prefixState: prefixState,
+            inputPrefix: inputPrefix,
             onClose: { }
         )
         .inputState(inputState)
