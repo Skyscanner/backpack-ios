@@ -39,7 +39,7 @@ struct ImageGalleryGridExampleView: View {
             BPKButton("Show Image Categories NEW", action: {
                 imageGalleriesIsPresented.toggle()
             })
-            .bpkImageGalleryImageGrid(
+            .bpkImageGalleryGrid(
                 isPresented: $imageGalleriesIsPresented,
                 category: $imageGalleriesCategory,
                 categories: (0...7).map { categoryIndex in
@@ -80,7 +80,7 @@ struct ImageGalleryGridExampleView: View {
             BPKButton("Show Chip Categories", action: {
                 chipGalleriesIsPresented.toggle()
             })
-            .bpkImageGalleryChipGrid(
+            .bpkImageGalleryGrid(
                 isPresented: $chipGalleriesIsPresented,
                 category: $chipGalleriesCategory,
                 categories: (0...7).map { categoryIndex in
