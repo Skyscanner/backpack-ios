@@ -28,7 +28,8 @@ public enum BPKImageGalleryImageGridStyle<ImageView: View> {
         
         public init(
             title: String,
-            images: [BPKImageGalleryImage<ImageView>]) {
+            images: [BPKImageGalleryImage<ImageView>]
+        ) {
             self.title = title
             self.images = images
         }
