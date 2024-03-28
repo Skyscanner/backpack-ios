@@ -197,6 +197,7 @@
 		D6DC0AF8216BBB2D0003AC5D /* DialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DC0AF6216BBB2C0003AC5D /* DialogViewController.swift */; };
 		D6FA3DB4224E220D00CFA094 /* UIWindow+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FA3DB3224E220D00CFA094 /* UIWindow+Utility.swift */; };
 		D6FC4E582625DBF6000BA351 /* NudgerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC4E572625DBF6000BA351 /* NudgerViewController.swift */; };
+		E2B9D19F2BB357B60053C14C /* NavigationTabGroupExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B9D19E2BB357B60053C14C /* NavigationTabGroupExampleView.swift */; };
 		E359366C240FFE680046FD4C /* BottomSheetUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E359366B240FFE680046FD4C /* BottomSheetUITest.swift */; };
 		E35EA59624212F9900373CE4 /* BottomSheetResizableContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EA59524212F9900373CE4 /* BottomSheetResizableContentViewController.swift */; };
 		E38947D222F5CB3300A357DB /* BottomSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E38947D122F5CB3300A357DB /* BottomSheet.storyboard */; };
@@ -438,6 +439,7 @@
 		D6FA3DB3224E220D00CFA094 /* UIWindow+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Utility.swift"; sourceTree = "<group>"; };
 		D6FC4E572625DBF6000BA351 /* NudgerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NudgerViewController.swift; sourceTree = "<group>"; };
 		D71748A6B9AA3B05B9A0CDEB /* Pods_Backpack_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Backpack_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2B9D19E2BB357B60053C14C /* NavigationTabGroupExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTabGroupExampleView.swift; sourceTree = "<group>"; };
 		E359366B240FFE680046FD4C /* BottomSheetUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetUITest.swift; sourceTree = "<group>"; };
 		E35EA59524212F9900373CE4 /* BottomSheetResizableContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetResizableContentViewController.swift; sourceTree = "<group>"; };
 		E38947D122F5CB3300A357DB /* BottomSheet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BottomSheet.storyboard; sourceTree = "<group>"; };
@@ -973,6 +975,8 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				E2B9D19D2BB3579F0053C14C /* NavigationTabGroup */,
+				E2B9D19C2BB357950053C14C /* NavigationTab */,
 				539897C62BA8A8E600C8D939 /* ImageGallerySlideshow */,
 				539897BD2BA852E500C8D939 /* ImageGalleryPreview */,
 				53BA7BCC2B9B5E6900F93982 /* RatingBar */,
@@ -1488,6 +1492,21 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
+		E2B9D19C2BB357950053C14C /* NavigationTab */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NavigationTab;
+			sourceTree = "<group>";
+		};
+		E2B9D19D2BB3579F0053C14C /* NavigationTabGroup */ = {
+			isa = PBXGroup;
+			children = (
+				E2B9D19E2BB357B60053C14C /* NavigationTabGroupExampleView.swift */,
+			);
+			path = NavigationTabGroup;
+			sourceTree = "<group>";
+		};
 		E397BEA022F5F56100C8EC04 /* Bottom Sheet */ = {
 			isa = PBXGroup;
 			children = (
@@ -1749,6 +1768,7 @@
 				D2BBC1C922560FDD002DA71A /* BPKTableViewSelectableCell.swift in Sources */,
 				79F5129329AEFEB600D0997A /* LabelViewController.swift in Sources */,
 				53B6DB6627FC47290042B7C0 /* DialogGroups.swift in Sources */,
+				E2B9D19F2BB357B60053C14C /* NavigationTabGroupExampleView.swift in Sources */,
 				1A68212D2B3308C80048220E /* AppSearchModalExampleViewModel.swift in Sources */,
 				53C6621229EA0DAB00BF1A62 /* SwitchExampleView.swift in Sources */,
 				0245783E2ABC3AA1006008D1 /* InsetBannerExampleView.swift in Sources */,
