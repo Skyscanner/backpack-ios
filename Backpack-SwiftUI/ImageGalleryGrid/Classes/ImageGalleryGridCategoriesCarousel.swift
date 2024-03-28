@@ -21,13 +21,12 @@ import SwiftUI
 struct ImageGalleryGridCategoriesCarousel<ImageView: View>: View {
     let categories: BPKImageGalleryImageGridStyle<ImageView>
     @Binding var selectedCategory: Int
-    private let categoryImageSideLength: CGFloat = 90
     
     var body: some View {
         switch categories {
-        case .chip(let chipCategories):
+        case .chip(let categories):
             BPKSingleSelectChipGroup(
-                chips: chipCategories.map { .init(text: $0.title) },
+                chips: categories.map { .init(text: $0.title) },
                 selectedIndex: Binding(
                     get: { selectedCategory },
                     set: { newValue in selectedCategory = newValue ?? 0 }
@@ -36,12 +35,12 @@ struct ImageGalleryGridCategoriesCarousel<ImageView: View>: View {
                 selectedCategory = index
             }
             
-        case .image(let imageCatgories):
+        case .image(let categories):
             ScrollView(.horizontal) {
-                HStack(alignment: .top) {
-                    ForEach(0..<imageCatgories.count, id: \.self) { ndx in
+                HStack(alignment: .top, spacing: .md) {
+                    ForEach(0..<categories.count, id: \.self) { ndx in
                         categoryThumb(
-                            for: imageCatgories[ndx],
+                            for: categories[ndx],
                             isSelected: selectedCategory == ndx
                         )
                         .onTapGesture {
@@ -59,11 +58,11 @@ struct ImageGalleryGridCategoriesCarousel<ImageView: View>: View {
         for category: BPKImageGalleryImageGridStyle<ImageView>.ImageCategory,
         isSelected: Bool
     ) -> some View {
-        VStack {
+        VStack(spacing: .md) {
             category.categoryImage()
                 .frame(
-                    width: categoryImageSideLength,
-                    height: categoryImageSideLength
+                    width: ImageGalleryGridConstants.categoryImageSize,
+                    height: ImageGalleryGridConstants.categoryImageSize
                 )
                 .clipShape(RoundedRectangle(cornerRadius: .md))
             
@@ -74,7 +73,7 @@ struct ImageGalleryGridCategoriesCarousel<ImageView: View>: View {
             .lineLimit(nil)
             
         }
-        .frame(width: categoryImageSideLength)
+        .frame(width: ImageGalleryGridConstants.categoryImageSize)
     }
 }
 

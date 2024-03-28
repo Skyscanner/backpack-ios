@@ -19,8 +19,8 @@
 import SwiftUI
 
 public enum BPKImageGalleryImageGridStyle<ImageView: View> {
-    case chip(_ chipCategories: [ChipCategory])
-    case image(_ imageCategories: [ImageCategory])
+    case chip(_ categories: [ChipCategory])
+    case image(_ categories: [ImageCategory])
     
     public struct ChipCategory {
         public let title: String

@@ -26,7 +26,7 @@ struct ImageGalleryGridContentView<ImageView: View>: View {
     let onCloseTapped: () -> Void
     
     @Binding var selectedCategoryIndex: Int
-    @State var presentSlideshow: Bool = false
+    @State var isSlideshowPresented: Bool = false
     @State var imageIndexInCategory: Int = 0
     
     var body: some View {
@@ -53,7 +53,7 @@ struct ImageGalleryGridContentView<ImageView: View>: View {
                     .onTapGesture {
                         itemTapped(item)
                         imageIndexInCategory = index
-                        presentSlideshow.toggle()
+                        isSlideshowPresented.toggle()
                     }
                     .accessibilityAddTraits(.isButton)
                  
@@ -61,11 +61,11 @@ struct ImageGalleryGridContentView<ImageView: View>: View {
         }
         .padding([.leading, .trailing], .base)
         .bpkImageGallerySlideshow(
-            isPresented: $presentSlideshow,
+            isPresented: $isSlideshowPresented,
             images: selectedCategoryImages,
             closeAccessibilityLabel: closeAccessibilityLabel,
             currentIndex: $imageIndexInCategory,
-            onCloseTapped: { presentSlideshow = false }
+            onCloseTapped: { isSlideshowPresented = false }
         )
     }
     

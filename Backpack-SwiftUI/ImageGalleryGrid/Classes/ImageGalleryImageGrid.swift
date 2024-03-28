@@ -20,6 +20,7 @@ import SwiftUI
 
 struct ImageGalleryGridConstants {
     static let itemHeightInGrid: CGFloat = 192
+    static let categoryImageSize: CGFloat = 90
 }
 
 struct ImageGalleryImageGrid<ImageView: View>: ViewModifier {
