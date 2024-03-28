@@ -51,15 +51,11 @@ public struct BPKAppSearchModal: View {
         VStack(spacing: .base) {
             makeNavigationBar(title: title, closeAccessibilityLabel: closeAccessibilityLabel, onClose: onClose)
             if results.showTextField {
-                BPKSearchInputSummary(
-                    placeholder: inputHint,
-                    inputPrefix: inputPrefix,
-                    isFocused: $inputFieldIsFocussed.wrappedValue, $inputText
-                )
-                .inputState(textFieldState.inputState)
-                .accessibilityAddTraits(.isSearchField)
-                .focused($inputFieldIsFocussed)
-                .autocorrectionDisabled(true)
+                BPKSearchInputSummary(placeholder: inputHint, inputPrefix: inputPrefix, $inputText)
+                    .inputState(textFieldState.inputState)
+                    .accessibilityAddTraits(.isSearchField)
+                    .focused($inputFieldIsFocussed)
+                    .autocorrectionDisabled(true)
             }
             switch results {
             case .loading(let loading):
