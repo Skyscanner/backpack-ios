@@ -31,6 +31,7 @@ struct ImageGalleryGridExampleView: View {
     
     struct ButtonForImageGroup<ImageView: View>: View {
         @State var imageGalleriesIsPresented = false
+        @State var imageGalleriesCategory = 0
         let categoryName: (Int) -> String
         let image: (Int, BPKImageGalleryDisplayContext) -> ImageView
         
@@ -40,6 +41,7 @@ struct ImageGalleryGridExampleView: View {
             })
             .bpkImageGalleryImageGrid(
                 isPresented: $imageGalleriesIsPresented,
+                category: $imageGalleriesCategory,
                 categories: (0...7).map { categoryIndex in
                     BPKImageGalleryImageGridStyle.ImageCategory(
                         title: categoryName(categoryIndex),
@@ -58,19 +60,19 @@ struct ImageGalleryGridExampleView: View {
                     )
                 },
                 closeAccessibilityLabel: "Close",
-                onCategoryChanged: { category in
-                    print("onCategoryChanged: \(category.title)")
-                },
                 onItemTapped: { category, item in
                     print("onItemTapped category: \(category.title), item: \(item)")
                 },
                 onCloseTapped: { imageGalleriesIsPresented = false }
-            )
+            ).onChange(of: imageGalleriesCategory) { _ in
+                print("category index: \(imageGalleriesCategory)")
+            }
         }
     }
     
     struct ButtonForChipGroup<ImageView: View>: View {
         @State var chipGalleriesIsPresented = false
+        @State var chipGalleriesCategory = 0
         let categoryName: (Int) -> String
         let image: (Int, BPKImageGalleryDisplayContext) -> ImageView
         
@@ -80,6 +82,7 @@ struct ImageGalleryGridExampleView: View {
             })
             .bpkImageGalleryChipGrid(
                 isPresented: $chipGalleriesIsPresented,
+                category: $chipGalleriesCategory,
                 categories: (0...7).map { categoryIndex in
                     BPKImageGalleryImageGridStyle.ChipCategory(
                         title: categoryName(categoryIndex),
@@ -95,14 +98,14 @@ struct ImageGalleryGridExampleView: View {
                     )
                 },
                 closeAccessibilityLabel: "Close",
-                onCategoryChanged: { category in
-                    print("onCategoryChanged: \(category.title)")
-                },
                 onItemTapped: { category, item in
                     print("onItemTapped category: \(category.title), item: \(item)")
                 },
                 onCloseTapped: { chipGalleriesIsPresented = false }
             )
+            .onChange(of: chipGalleriesCategory) { _ in
+                print("category index: \(chipGalleriesCategory)")
+            }
         }
     }
     

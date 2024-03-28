@@ -21,12 +21,10 @@ import SwiftUI
 struct ImageGalleryChipGrid<ImageView: View>: ViewModifier {
     let categories: [BPKImageGalleryImageGridStyle<ImageView>.ChipCategory]
     let closeAccessibilityLabel: String
-    let onCategoryChanged: (BPKImageGalleryImageGridStyle<ImageView>.ChipCategory) -> Void
     let onItemTapped: (BPKImageGalleryImageGridStyle<ImageView>.ChipCategory, BPKImageGalleryImage<ImageView>) -> Void
     let onCloseTapped: () -> Void
-    let initialCategory: Int
     @Binding var isPresented: Bool
-    @State var selectedCategoryIndex: Int? = 0
+    @Binding var category: Int
     
     func body(content: Content) -> some View {
         content
@@ -34,20 +32,17 @@ struct ImageGalleryChipGrid<ImageView: View>: ViewModifier {
                 ImageGalleryGridContentView(
                     categories: .chip(categories),
                     closeAccessibilityLabel: closeAccessibilityLabel,
-                    onCategoryChanged: {
-                        onCategoryChanged(selectedCategory)
-                    },
                     itemTapped: { item in
                         onItemTapped(selectedCategory, item)
                     },
                     onCloseTapped: onCloseTapped,
-                    selectedCategoryIndex: $selectedCategoryIndex
+                    selectedCategoryIndex: $category
                 )
             }
     }
     
     private var selectedCategory: BPKImageGalleryImageGridStyle<ImageView>.ChipCategory {
-        categories[selectedCategoryIndex ?? 0]
+        categories[category]
     }
 }
 
@@ -56,10 +51,9 @@ public extension View {
     // swiftlint:disable function_parameter_count
     func bpkImageGalleryChipGrid<Content>(
         isPresented: Binding<Bool>,
-        initialCategory: Int = 0,
+        category: Binding<Int>,
         categories: [BPKImageGalleryImageGridStyle<Content>.ChipCategory],
         closeAccessibilityLabel: String,
-        onCategoryChanged: @escaping (BPKImageGalleryImageGridStyle<Content>.ChipCategory) -> Void,
         onItemTapped: @escaping (
             BPKImageGalleryImageGridStyle<Content>.ChipCategory,
             BPKImageGalleryImage<Content>
@@ -71,11 +65,10 @@ public extension View {
             ImageGalleryChipGrid(
                 categories: categories,
                 closeAccessibilityLabel: closeAccessibilityLabel,
-                onCategoryChanged: onCategoryChanged,
                 onItemTapped: onItemTapped,
                 onCloseTapped: onCloseTapped,
-                initialCategory: initialCategory,
-                isPresented: isPresented
+                isPresented: isPresented,
+                category: category
                 )
             )
     }
@@ -88,9 +81,6 @@ struct BPKImageGalleryChipGrid_Previews: PreviewProvider {
         ImageGalleryGridContentView(
             categories: testCategories,
             closeAccessibilityLabel: "close",
-            onCategoryChanged: {
-                print("onCategoryChanged")
-            },
             itemTapped: { item in
                 print("onItemTapped: \(item)")
             },

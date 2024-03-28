@@ -25,12 +25,10 @@ struct ImageGalleryGridConstants {
 struct ImageGalleryImageGrid<ImageView: View>: ViewModifier {
     let categories: [BPKImageGalleryImageGridStyle<ImageView>.ImageCategory]
     let closeAccessibilityLabel: String
-    let onCategoryChanged: (BPKImageGalleryImageGridStyle<ImageView>.ImageCategory) -> Void
     let onItemTapped: (BPKImageGalleryImageGridStyle<ImageView>.ImageCategory, BPKImageGalleryImage<ImageView>) -> Void
     let onCloseTapped: () -> Void
-    let initialCategory: Int
+    @Binding var category: Int
     @Binding var isPresented: Bool
-    @State var selectedCategoryIndex: Int? = 0
     
     func body(content: Content) -> some View {
         content
@@ -38,20 +36,17 @@ struct ImageGalleryImageGrid<ImageView: View>: ViewModifier {
                 ImageGalleryGridContentView(
                     categories: .image(categories),
                     closeAccessibilityLabel: closeAccessibilityLabel,
-                    onCategoryChanged: {
-                        onCategoryChanged(selectedCategory)
-                    },
                     itemTapped: { item in
                         onItemTapped(selectedCategory, item)
                     },
                     onCloseTapped: onCloseTapped,
-                    selectedCategoryIndex: $selectedCategoryIndex
+                    selectedCategoryIndex: $category
                 )
             }
     }
     
     private var selectedCategory: BPKImageGalleryImageGridStyle<ImageView>.ImageCategory {
-        categories[selectedCategoryIndex ?? 0]
+        categories[category]
     }
 }
 
@@ -60,10 +55,9 @@ public extension View {
     // swiftlint:disable function_parameter_count
     func bpkImageGalleryImageGrid<Content>(
         isPresented: Binding<Bool>,
-        initialCategory: Int = 0,
+        category: Binding<Int>,
         categories: [BPKImageGalleryImageGridStyle<Content>.ImageCategory],
         closeAccessibilityLabel: String,
-        onCategoryChanged: @escaping (BPKImageGalleryImageGridStyle<Content>.ImageCategory) -> Void,
         onItemTapped: @escaping (
             BPKImageGalleryImageGridStyle<Content>.ImageCategory,
             BPKImageGalleryImage<Content>
@@ -75,10 +69,9 @@ public extension View {
             ImageGalleryImageGrid(
                 categories: categories,
                 closeAccessibilityLabel: closeAccessibilityLabel,
-                onCategoryChanged: onCategoryChanged,
                 onItemTapped: onItemTapped,
                 onCloseTapped: onCloseTapped,
-                initialCategory: initialCategory,
+                category: category,
                 isPresented: isPresented
                 )
             )
@@ -92,9 +85,6 @@ struct BPKImageGalleryImageGrid_Previews: PreviewProvider {
         ImageGalleryGridContentView(
             categories: testCategories,
             closeAccessibilityLabel: "close",
-            onCategoryChanged: {
-                print("onCategoryChanged")
-            },
             itemTapped: { item in
                 print("onItemTapped: \(item)")
             },

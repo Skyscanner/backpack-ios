@@ -20,17 +20,18 @@ import SwiftUI
 
 struct ImageGalleryGridCategoriesCarousel<ImageView: View>: View {
     let categories: BPKImageGalleryImageGridStyle<ImageView>
-    @Binding var selectedCategory: Int?
+    @Binding var selectedCategory: Int
     private let categoryImageSideLength: CGFloat = 90
     
     var body: some View {
-        
         switch categories {
-            
         case .chip(let chipCategories):
             BPKSingleSelectChipGroup(
                 chips: chipCategories.map { .init(text: $0.title) },
-                selectedIndex: $selectedCategory
+                selectedIndex: Binding(
+                    get: { selectedCategory },
+                    set: { newValue in selectedCategory = newValue ?? 0 }
+                )
             ) { index in
                 selectedCategory = index
             }

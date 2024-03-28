@@ -22,11 +22,10 @@ struct ImageGalleryGridContentView<ImageView: View>: View {
     
     let categories: BPKImageGalleryImageGridStyle<ImageView>
     let closeAccessibilityLabel: String
-    let onCategoryChanged: () -> Void
     let itemTapped: (BPKImageGalleryImage<ImageView>) -> Void
     let onCloseTapped: () -> Void
     
-    @Binding var selectedCategoryIndex: Int?
+    @Binding var selectedCategoryIndex: Int
     @State var presentSlideshow: Bool = false
     @State var imageIndexInCategory: Int = 0
     
@@ -61,9 +60,6 @@ struct ImageGalleryGridContentView<ImageView: View>: View {
             }
         }
         .padding([.leading, .trailing], .base)
-        .onChange(of: selectedCategoryIndex) { _ in
-            onCategoryChanged()
-        }
         .bpkImageGallerySlideshow(
             isPresented: $presentSlideshow,
             images: selectedCategoryImages,
@@ -76,9 +72,9 @@ struct ImageGalleryGridContentView<ImageView: View>: View {
     private var selectedCategoryImages: [BPKImageGalleryImage<ImageView>] {
         switch categories {
         case .chip(let chips):
-            chips[selectedCategoryIndex ?? 0].images
+            chips[selectedCategoryIndex].images
         case .image(let images):
-            images[selectedCategoryIndex ?? 0].images
+            images[selectedCategoryIndex].images
         }
     }
 }
