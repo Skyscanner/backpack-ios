@@ -67,7 +67,7 @@ class BPKAppSearchModalTests: XCTestCase {
     private func givenSut(
         with results: BPKAppSearchModalResults,
         inputState: BPKAppSearchModal.TextFieldState = .default,
-        inputPrefix: BPKSearchInputSummary.InputPrefix = .icon
+        inputPrefix: BPKSearchInputSummary.InputPrefix = .icon(.search)
     ) -> some View {
         BPKAppSearchModal(
             title: "Search Modal",

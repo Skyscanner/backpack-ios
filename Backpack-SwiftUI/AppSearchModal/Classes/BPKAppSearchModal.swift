@@ -35,7 +35,7 @@ public struct BPKAppSearchModal: View {
         inputHint: String,
         results: BPKAppSearchModalResults,
         closeAccessibilityLabel: String,
-        inputPrefix: BPKSearchInputSummary.InputPrefix = .icon,
+        inputPrefix: BPKSearchInputSummary.InputPrefix = .icon(.search),
         onClose: @escaping () -> Void
     ) {
         self.title = title
@@ -127,7 +127,7 @@ struct BPKAppSearchModal_Previews: PreviewProvider {
                 shortcuts: (0..<4).map(buildShortcut)
             )),
             closeAccessibilityLabel: "Close",
-            inputPrefix: .icon,
+            inputPrefix: .icon(.search),
             onClose: { }
         )
         .previewDisplayName("Content")

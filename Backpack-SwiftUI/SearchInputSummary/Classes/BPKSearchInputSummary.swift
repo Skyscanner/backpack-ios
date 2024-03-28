@@ -24,21 +24,7 @@ import SwiftUI
 public struct BPKSearchInputSummary: View {
     public enum InputPrefix {
         case text(String)
-        case icon(PrefixIcon)
-    }
-    
-    public enum PrefixIcon {
-        case search
-        case custom(BPKIcon)
-        
-        var icon: BPKIcon {
-            switch self {
-            case .search:
-                return BPKIcon(name: "search")
-            case let .custom(icon):
-                return icon
-            }
-        }
+        case icon(BPKIcon)
     }
     
     struct Icon {
@@ -47,12 +33,11 @@ public struct BPKSearchInputSummary: View {
     }
     
     @Binding private var text: String
+    @FocusState private var focused: Bool
     private let placeholder: String
     private let inputPrefix: InputPrefix
     private var state: State = .default
     
-    @FocusState private var focused: Bool
-
     /// Creates a `BPKSearchInputSummary`.
     ///
     /// - Parameters:
@@ -109,8 +94,8 @@ public struct BPKSearchInputSummary: View {
         case .text(let prefixText):
             BPKText(prefixText, style: .bodyDefault)
                 .foregroundColor(.textSecondaryColor)
-        case .icon(let prefixIcon):
-            BPKIconView(prefixIcon.icon)
+        case .icon(let icon):
+            BPKIconView(icon)
                 .foregroundColor(.textPrimaryColor)
         }
     }
