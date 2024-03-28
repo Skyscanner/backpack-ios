@@ -34,6 +34,7 @@ struct AppSearchModalExampleView: View {
                 inputHint: "Search",
                 results: results(),
                 closeAccessibilityLabel: "Close",
+                inputPrefix: .text("From"),
                 onClose: {
                     print("Tapped close button")
                 }

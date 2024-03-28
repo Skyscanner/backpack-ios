@@ -16,6 +16,7 @@
 		1750EB6329915230005226DF /* CardButtonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1750EB6229915230005226DF /* CardButtonsViewController.swift */; };
 		1A2A4BD82A6801AE00C18218 /* SelectExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2A4BD72A6801AE00C18218 /* SelectExampleView.swift */; };
 		1A68212D2B3308C80048220E /* AppSearchModalExampleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A68212C2B3308C80048220E /* AppSearchModalExampleViewModel.swift */; };
+		256F76152BB479850047AD1C /* SearchInputSummaryExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256F76142BB479850047AD1C /* SearchInputSummaryExampleView.swift */; };
 		2A62FDDD2AB89F4500D545E5 /* TextAreaExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A62FDDC2AB89F4500D545E5 /* TextAreaExampleView.swift */; };
 		3A7D2D47214AB9F400ECBD5B /* BPKButtonsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D2D46214AB9F400ECBD5B /* BPKButtonsViewController.m */; };
 		3AA018EF215BE26600838FBB /* SpinnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018EE215BE26500838FBB /* SpinnersViewController.swift */; };
@@ -237,6 +238,7 @@
 		1750EB6229915230005226DF /* CardButtonsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardButtonsViewController.swift; sourceTree = "<group>"; };
 		1A2A4BD72A6801AE00C18218 /* SelectExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectExampleView.swift; sourceTree = "<group>"; usesTabs = 0; };
 		1A68212C2B3308C80048220E /* AppSearchModalExampleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSearchModalExampleViewModel.swift; sourceTree = "<group>"; };
+		256F76142BB479850047AD1C /* SearchInputSummaryExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInputSummaryExampleView.swift; sourceTree = "<group>"; };
 		2A62FDDC2AB89F4500D545E5 /* TextAreaExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAreaExampleView.swift; sourceTree = "<group>"; };
 		3A7D2D45214AB9F400ECBD5B /* BPKButtonsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKButtonsViewController.h; sourceTree = "<group>"; };
 		3A7D2D46214AB9F400ECBD5B /* BPKButtonsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKButtonsViewController.m; sourceTree = "<group>"; };
@@ -517,6 +519,14 @@
 				1A2A4BD72A6801AE00C18218 /* SelectExampleView.swift */,
 			);
 			path = Select;
+			sourceTree = "<group>";
+		};
+		256F76132BB479610047AD1C /* SearchInputSummary */ = {
+			isa = PBXGroup;
+			children = (
+				256F76142BB479850047AD1C /* SearchInputSummaryExampleView.swift */,
+			);
+			path = SearchInputSummary;
 			sourceTree = "<group>";
 		};
 		2A8000102AB3DC3B009FDB10 /* TextArea */ = {
@@ -991,6 +1001,7 @@
 				53C6620729EA0DAB00BF1A62 /* Panel */,
 				53C661ED29EA0DAA00BF1A62 /* Price */,
 				53C661E229EA0DAA00BF1A62 /* Rating */,
+				256F76132BB479610047AD1C /* SearchInputSummary */,
 				B3E50A292A6187D50083FBFE /* SectionHeader */,
 				1A2A4BD62A6801AE00C18218 /* Select */,
 				53C661F929EA0DAA00BF1A62 /* Skeleton */,
@@ -1813,6 +1824,7 @@
 				53C6622929EA0DAB00BF1A62 /* AttributedTextExampleView.swift in Sources */,
 				53E075B727FC9C010033147C /* PresentableNavigator.swift in Sources */,
 				7976E5C028BB0BCC00471AA2 /* ColorTokensView.swift in Sources */,
+				256F76152BB479850047AD1C /* SearchInputSummaryExampleView.swift in Sources */,
 				D26E5A0C25A787060064D9F1 /* GroupsViewController.swift in Sources */,
 				53C6621E29EA0DAB00BF1A62 /* StarRatingExampleView.swift in Sources */,
 				5390DB612909940700F0F790 /* ColorTokensViewController.swift in Sources */,
