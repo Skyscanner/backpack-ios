@@ -68,9 +68,6 @@ public struct BPKAppSearchModal: View {
                     .padding(.horizontal, .md)
             }
         }
-        .onAppear {
-            inputFieldIsFocussed.toggle()
-        }
         .padding(.horizontal, .base)
         .padding(.top, .base)
         .padding(.bottom, BPKSpacing.none)

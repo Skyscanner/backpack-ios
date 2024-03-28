@@ -24,7 +24,21 @@ import SwiftUI
 public struct BPKSearchInputSummary: View {
     public enum InputPrefix {
         case text(String)
-        case icon
+        case icon(PrefixIcon)
+    }
+    
+    public enum PrefixIcon {
+        case search
+        case custom(BPKIcon)
+        
+        var icon: BPKIcon {
+            switch self {
+            case .search:
+                return BPKIcon(name: "search")
+            case let .custom(icon):
+                return icon
+            }
+        }
     }
     
     struct Icon {
@@ -47,7 +61,7 @@ public struct BPKSearchInputSummary: View {
     ///   - text: The text to display in the text field.
     public init(
         placeholder: String = "",
-        inputPrefix: InputPrefix = .icon,
+        inputPrefix: InputPrefix = .icon(.search),
         _ text: Binding<String>
     ) {
         self.placeholder = placeholder
@@ -95,8 +109,8 @@ public struct BPKSearchInputSummary: View {
         case .text(let prefixText):
             BPKText(prefixText, style: .bodyDefault)
                 .foregroundColor(.textSecondaryColor)
-        case .icon:
-            BPKIconView(BPKIcon(name: "search"))
+        case .icon(let prefixIcon):
+            BPKIconView(prefixIcon.icon)
                 .foregroundColor(.textPrimaryColor)
         }
     }
