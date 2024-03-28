@@ -20,30 +20,34 @@ import XCTest
 import SwiftUI
 @testable import Backpack_SwiftUI
 
-class BPKImageGallerySlideshowTests: XCTestCase {
+class BPKImageGalleryImageChipTests: XCTestCase {
     private func createImage(_ context: BPKImageGalleryDisplayContext) -> some View {
         Image("dialog_image", bundle: TestsBundle.bundle)
             .resizable()
-            .aspectRatio(contentMode: .fill)
     }
     
-    func test_imageGalleryPreview() {
+    func test_imageGalleryChipGrid() {
         assertSnapshot(
-            ImageGallerySlideshow.ContentView(
-                images: (0...3)
-                    .map { _ in
-                        .init(
-                            title: "Title for the image",
-                            description: "The description of the image goes here.",
-                            credit: "Backpack Photographer",
-                            content: createImage
-                        )
-                    },
+            ImageGalleryGridContentView(
+                categories: .chip((0...3).map { _ in
+                    BPKImageGalleryImageGridStyle.ChipCategory(
+                        title: "title",
+                        images: (0...4).map { _ in
+                            .init(
+                                title: "Title for the image",
+                                description: "The description of the image goes here.",
+                                credit: "Backpack Photographer",
+                                content: createImage
+                            )
+                        }
+                    )
+                }),
                 closeAccessibilityLabel: "",
-                onCloseTapped: {},
-                currentIndex: .constant(1)
+                itemTapped: { _ in },
+                onCloseTapped: { },
+                selectedCategoryIndex: .constant(0)
             )
-            .frame(width: 300, height: 600)
+            .frame(width: 400, height: 600)
         )
     }
 }
