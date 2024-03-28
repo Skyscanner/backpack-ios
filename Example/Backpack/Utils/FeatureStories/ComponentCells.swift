@@ -38,7 +38,6 @@ struct ComponentCellsProvider {
     // swiftlint:disable:next function_body_length
     func cells() -> [Components.Cell] {
         let dataSources: [CellDataSource] = [
-            imageGalleryGridView(),
             appSearchModal(),
             badge(),
             barChart(),
@@ -59,6 +58,7 @@ struct ComponentCellsProvider {
             horizontalNavigation(),
             icon(),
             imageGalleryPreview(),
+            imageGalleryGridView(),
             imageGallerySlideshow(),
             insetBanner(),
             label(),

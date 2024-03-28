@@ -36,7 +36,7 @@ struct ImageGalleryGridExampleView: View {
         let image: (Int, BPKImageGalleryDisplayContext) -> ImageView
         
         var body: some View {
-            BPKButton("Show Image Categories NEW", action: {
+            BPKButton("Show Image Categories", action: {
                 imageGalleriesIsPresented.toggle()
             })
             .bpkImageGalleryGrid(
@@ -110,11 +110,13 @@ struct ImageGalleryGridExampleView: View {
     }
     
     private func categoryName(_ categoryIndex: Int) -> String {
-        switch categoryIndex % 2 {
+        switch categoryIndex % 3 {
         case 0:
-            return "Long Category Name For Photos (\(categoryIndex))"
+            return "Traveller photos (\(categoryIndex + 1))"
+        case 1:
+            return "All Photos (\(categoryIndex + 1))"
         default:
-            return "Short (\(categoryIndex))"
+            return "Official Photos (\(categoryIndex + 1))"
         }
     }
     
@@ -123,9 +125,6 @@ struct ImageGalleryGridExampleView: View {
         return ZStack {
             Image("carousel_placeholder_\(imageFileNumber)")
                 .resizable()
-            
-            BPKText("\(context == .grid ? "G": "S") - \(number)", style: .heading1)
-                .foregroundColor(.textPrimaryInverseColor)
         }
     }
 }

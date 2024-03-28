@@ -68,7 +68,7 @@ struct TwoRowGrid<Item, ItemView: View>: View {
             .if(rowIndex % 2 != 0) {
                 $0.frame(width: (proxy.size.width / 2) - (spacing.value / 2))
             }
-            .clipShape(RoundedRectangle(cornerRadius: .lg))
+            .clipShape(RoundedRectangle(cornerRadius: .md))
     }
 }
 

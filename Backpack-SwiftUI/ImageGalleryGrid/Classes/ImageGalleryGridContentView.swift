@@ -60,6 +60,7 @@ struct ImageGalleryGridContentView<ImageView: View>: View {
             }
         }
         .padding([.leading, .trailing], .base)
+        .background(Color(.canvasContrastColor))
         .bpkImageGallerySlideshow(
             isPresented: $isSlideshowPresented,
             images: selectedCategoryImages,
