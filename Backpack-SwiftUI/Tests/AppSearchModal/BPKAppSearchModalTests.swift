@@ -41,7 +41,7 @@ class BPKAppSearchModalTests: XCTestCase {
     
     func test_withContentWhenPrefixIsIcon() {
         assertSnapshot(
-            givenSut(with: .content(givenContentState()), inputPrefix: .icon)
+            givenSut(with: .content(givenContentState()), inputPrefix: .icon(.search))
         )
     }
 
