@@ -23,14 +23,14 @@ struct BPKNavigationTab: View {
     let text: String
     let icon: BPKIcon?
     let selected: Bool
-    let style: BPKNavigationTabStyle
+    let style: BPKNavigationTabGroup.Style
     let onClick: () -> Void
     
-    public init(
+    init(
         _ text: String,
         icon: BPKIcon? = nil,
         selected: Bool = false,
-        style: BPKNavigationTabStyle = .default,
+        style: BPKNavigationTabGroup.Style = .default,
         onClick: @escaping () -> Void
     ) {
         self.text = text
@@ -40,7 +40,8 @@ struct BPKNavigationTab: View {
         self.onClick = onClick
     }
     
-    public var body: some View {
+    var body: some View {
+        
         Button(action: onClick) {
             HStack(spacing: .md) {
                 if let icon {
@@ -64,17 +65,19 @@ struct BPKNavigationTab: View {
     }
 }
 
-#Preview {
-    VStack {
-        HStack {
-            BPKNavigationTab("Explore", icon: .explore, selected: true) {}
-            BPKNavigationTab("Flights", icon: .flight) {}
+struct BPKNavigationTab_Previews: PreviewProvider {
+    static var previews: some View {
+        VStack {
+            HStack {
+                BPKNavigationTab("Explore", icon: .explore, selected: true) {}
+                BPKNavigationTab("Flights", icon: .flight) {}
+            }
+            HStack {
+                BPKNavigationTab("Explore", icon: .explore, selected: true, style: .onDark) {}
+                BPKNavigationTab("Flights", icon: .flight, style: .onDark) {}
+            }
+            .padding()
+            .background(.surfaceContrastColor)
         }
-        HStack {
-            BPKNavigationTab("Explore", icon: .explore, selected: true, style: .onDark) {}
-            BPKNavigationTab("Flights", icon: .flight, style: .onDark) {}
-        }
-        .padding()
-        .background(.surfaceContrastColor)
     }
 }

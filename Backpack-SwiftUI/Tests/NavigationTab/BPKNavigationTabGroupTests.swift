@@ -22,7 +22,7 @@ import SwiftUI
 
 class BPKNavigationTabGroupTests: XCTestCase {
     
-    private let tabs: [BPKNavigationTabGroup.NavigationTabItem] = [
+    private let tabs: [BPKNavigationTabGroup.Item] = [
         .init(text: "Explore", icon: .explore),
         .init(text: "Flights", icon: .flight),
         .init(text: "Hotels", icon: .hotels),
