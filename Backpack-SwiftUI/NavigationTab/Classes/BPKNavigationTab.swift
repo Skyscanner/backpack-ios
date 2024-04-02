@@ -48,7 +48,8 @@ struct BPKNavigationTab: View {
                     BPKIconView(icon)
                 }
                 Text(text)
-                    .font(style: .footnote)
+                    .font(BPKFontStyle.label2.font)
+                    .lineLimit(1)
             }
             .padding(.horizontal, .base)
         }
