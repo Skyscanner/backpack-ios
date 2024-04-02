@@ -18,6 +18,8 @@
 
 import SwiftUI
 
-public enum BPKNavigationTabStyle {
-    case `default`, onDark
+public extension BPKNavigationTabGroup {
+    enum Style {
+        case `default`, onDark
+    }
 }

@@ -20,16 +20,16 @@ import SwiftUI
 
 /// A Group of tabs that allows a single tab to be selected at a time.
 public struct BPKNavigationTabGroup: View {
-    private let tabs: [NavigationTabItem]
-    private let style: BPKNavigationTabStyle
+    private let tabs: [Item]
+    private let style: BPKNavigationTabGroup.Style
     private let onItemClick: (_ index: Int) -> Void
     
-    @Binding private var selectedIndex: Int?
+    @Binding private var selectedIndex: Int
     
     public init(
-        tabs: [NavigationTabItem],
-        style: BPKNavigationTabStyle = .default,
-        selectedIndex: Binding<Int?>,
+        tabs: [Item],
+        style: BPKNavigationTabGroup.Style = .default,
+        selectedIndex: Binding<Int>,
         onItemClick: @escaping (_ index: Int) -> Void
     ) {
         self.tabs = tabs
@@ -50,7 +50,7 @@ public struct BPKNavigationTabGroup: View {
     }
     
     @ViewBuilder
-    private func tab(for tab: NavigationTabItem, index: Int) -> some View {
+    private func tab(for tab: Item, index: Int) -> some View {
         BPKNavigationTab(
             tab.text,
             icon: tab.icon,
@@ -63,7 +63,7 @@ public struct BPKNavigationTabGroup: View {
 }
 
 public extension BPKNavigationTabGroup {
-    struct NavigationTabItem: Hashable {
+    struct Item: Hashable {
         let text: String
         let icon: BPKIcon?
         
@@ -72,7 +72,7 @@ public extension BPKNavigationTabGroup {
             self.icon = icon
         }
         
-        public static func == (lhs: NavigationTabItem, rhs: NavigationTabItem) -> Bool {
+        public static func == (lhs: Item, rhs: Item) -> Bool {
             lhs.text == rhs.text && lhs.icon?.name == rhs.icon?.name
         }
         
@@ -85,7 +85,7 @@ public extension BPKNavigationTabGroup {
 
 struct BPKNavigationTabGroup_Previews: PreviewProvider {
     
-    static let tabs: [BPKNavigationTabGroup.NavigationTabItem] = [
+    static let tabs: [BPKNavigationTabGroup.Item] = [
         .init(text: "Explore", icon: .explore),
         .init(text: "Flights", icon: .flight),
         .init(text: "Hotels", icon: .hotels),

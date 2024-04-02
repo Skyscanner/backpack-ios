@@ -21,9 +21,9 @@ import SwiftUI
 import Backpack_SwiftUI
 
 struct NavigationTabGroupExampleView: View {
-    @State var selectedNavigationTab: Int? = 0
+    @State var selectedNavigationTab: Int = 0
     
-    let tabs: [BPKNavigationTabGroup.NavigationTabItem] = [
+    let tabs: [BPKNavigationTabGroup.Item] = [
         .init(text: "Explore", icon: .explore),
         .init(text: "Flights", icon: .flight),
         .init(text: "Hotels", icon: .hotels),
@@ -56,6 +56,8 @@ struct NavigationTabGroupExampleView: View {
     }
 }
 
-#Preview {
-    NavigationTabGroupExampleView()
+struct NavigationTabGroupExampleView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationTabGroupExampleView()
+    }
 }

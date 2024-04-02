@@ -19,7 +19,7 @@
 import SwiftUI
 
 struct NavigationTabStyle: ButtonStyle {
-    let style: BPKNavigationTabStyle
+    let style: BPKNavigationTabGroup.Style
     let selected: Bool
     
     func makeBody(configuration: Self.Configuration) -> some View {
