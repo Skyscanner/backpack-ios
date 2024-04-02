@@ -47,7 +47,8 @@ struct BPKNavigationTab: View {
                 if let icon {
                     BPKIconView(icon)
                 }
-                BPKText(text, ignoreTextColorAndInheritFromParent: true)
+                Text(text)
+                    .font(style: .footnote)
             }
             .padding(.horizontal, .base)
         }
