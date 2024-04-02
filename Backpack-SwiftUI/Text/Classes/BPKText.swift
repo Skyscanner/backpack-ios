@@ -31,18 +31,26 @@ public struct BPKText: View {
     private var textColor = Color(BPKColor.textPrimaryColor)
     private var lineLimit: Int? = 1
     private var strikethrough: Bool = false
+    private var ignoreTextColorAndInheritFromParent: Bool = false
     
-    public init(_ text: String, style: BPKFontStyle = .bodyDefault) {
+    public init(
+        _ text: String,
+        style: BPKFontStyle = .bodyDefault,
+        ignoreTextColorAndInheritFromParent: Bool = false
+    ) {
         self.text = .init(text)
         self.style = style
+        self.ignoreTextColorAndInheritFromParent = ignoreTextColorAndInheritFromParent
     }
     
     public var body: some View {
         Text(text)
             .strikethrough(strikethrough)
             .font(style: style)
-            .foregroundColor(textColor)
             .lineLimit(lineLimit)
+            .if(!ignoreTextColorAndInheritFromParent, transform: {
+                $0.foregroundColor(textColor)
+            })
     }
     
     /// Sets the color of the text.
