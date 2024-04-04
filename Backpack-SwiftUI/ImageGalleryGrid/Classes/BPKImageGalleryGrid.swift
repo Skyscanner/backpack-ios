@@ -44,36 +44,6 @@ struct ImageGalleryGrid<Categories: View, ImageView: View>: ViewModifier {
     }
 }
 
-struct ImageGalleryChipGrid<ImageView: View>: ViewModifier {
-    let categories: [BPKImageGalleryImageGridStyle<ImageView>.ChipCategory]
-    let closeAccessibilityLabel: String
-    let onImageTapped: (_ category: Int, _ image: Int) -> Void
-    let onCloseTapped: () -> Void
-    @Binding var isPresented: Bool
-    @Binding var selectedCategoryIndex: Int
-    
-    func body(content: Content) -> some View {
-        content
-            .fullScreenCover(isPresented: $isPresented) {
-                ImageGalleryGridContentView(
-                    categories: {
-                        ImageGalleryChipCategoryView(
-                            categories: categories.map(\.title),
-                            selectedCategoryIndex: $selectedCategoryIndex
-                        )
-                    },
-                    images: categories[selectedCategoryIndex].images,
-                    closeAccessibilityLabel: closeAccessibilityLabel,
-                    imageTapped: { selectedCategory, image in
-                        onImageTapped(selectedCategory, image)
-                    },
-                    onCloseTapped: onCloseTapped,
-                    selectedCategoryIndex: selectedCategoryIndex
-                )
-            }
-    }
-}
-
 public extension View {
     // swiftlint:disable function_parameter_count
     @ViewBuilder

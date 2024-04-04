@@ -21,7 +21,7 @@ import SwiftUI
 @testable import Backpack_SwiftUI
 
 class BPKImageGallerySlideshowTests: XCTestCase {
-    private func createImage(_ context: BPKImageGalleryDisplayContext) -> some View {
+    private func createImage() -> some View {
         Image("dialog_image", bundle: TestsBundle.bundle)
             .resizable()
             .aspectRatio(contentMode: .fill)
