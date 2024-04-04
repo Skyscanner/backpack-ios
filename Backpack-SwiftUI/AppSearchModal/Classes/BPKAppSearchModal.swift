@@ -21,6 +21,7 @@ import SwiftUI
 public struct BPKAppSearchModal: View {
     let title: String
     @Binding var inputText: String
+    let inputPrefix: BPKSearchInputSummary.InputPrefix
     let inputHint: String
     let results: BPKAppSearchModalResults
     let closeAccessibilityLabel: String
@@ -34,6 +35,7 @@ public struct BPKAppSearchModal: View {
         inputHint: String,
         results: BPKAppSearchModalResults,
         closeAccessibilityLabel: String,
+        inputPrefix: BPKSearchInputSummary.InputPrefix = .icon(.search),
         onClose: @escaping () -> Void
     ) {
         self.title = title
@@ -41,28 +43,25 @@ public struct BPKAppSearchModal: View {
         self.inputHint = inputHint
         self.results = results
         self.closeAccessibilityLabel = closeAccessibilityLabel
+        self.inputPrefix = inputPrefix
         self.onClose = onClose
     }
     
     public var body: some View {
         VStack(spacing: .base) {
-            
             makeNavigationBar(title: title, closeAccessibilityLabel: closeAccessibilityLabel, onClose: onClose)
-            
             if results.showTextField {
-                BPKTextField(placeholder: inputHint, $inputText)
+                BPKSearchInputSummary(placeholder: inputHint, inputPrefix: inputPrefix, $inputText)
                     .inputState(textFieldState.inputState)
+                    .accessibilityAddTraits(.isSearchField)
                     .focused($inputFieldIsFocussed)
                     .autocorrectionDisabled(true)
             }
-        
             switch results {
             case .loading(let loading):
                 AppSearchModalLoadingView(state: loading)
             case .content(let content):
-                AppSearchModalContentView(
-                    state: content,
-                    onScroll: onScroll(_:))
+                AppSearchModalContentView(state: content, onScroll: onScroll(_:))
                     .padding(.top, .md)
             case .error(let error):
                 AppSearchModalErrorView(state: error)
@@ -128,6 +127,7 @@ struct BPKAppSearchModal_Previews: PreviewProvider {
                 shortcuts: (0..<4).map(buildShortcut)
             )),
             closeAccessibilityLabel: "Close",
+            inputPrefix: .icon(.search),
             onClose: { }
         )
         .previewDisplayName("Content")
@@ -138,6 +138,7 @@ struct BPKAppSearchModal_Previews: PreviewProvider {
             inputHint: "Search",
             results: .loading(.init(accessibilityLabel: "Loading")),
             closeAccessibilityLabel: "Close",
+            inputPrefix: .text("From"),
             onClose: { }
         )
         .previewDisplayName("Loading")

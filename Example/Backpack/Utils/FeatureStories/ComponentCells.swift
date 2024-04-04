@@ -72,6 +72,7 @@ struct ComponentCellsProvider {
             progressBar(),
             ratings(),
             ratingBar(),
+            searchInputSummary(),
             sectionHeader(),
             select(),
             snackbar(),
@@ -348,7 +349,17 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Rating Bar", tabs: $0) }
         )
     }
-    
+    private func searchInputSummary() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Search Input Summary",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(SearchInputSummaryExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Search Input Summary", tabs: $0) }
+        )
+    }
     private func select() -> CellDataSource {
         ComponentCellDataSource(
             title: "Select",
