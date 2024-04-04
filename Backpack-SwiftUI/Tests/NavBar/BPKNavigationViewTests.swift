@@ -61,6 +61,14 @@ class BPKNavigationViewTests: XCTestCase {
         assertSnapshot(navView(style: .transparent, content: viewContent))
     }
     
+    func test_default_compacted() {
+        assertSnapshot(navView(style: .default(.inline), content: viewContent))
+    }
+    
+    func test_transparent_compacted() {
+        assertSnapshot(navView(style: .transparent(.inline), content: viewContent))
+    }
+    
     func test_surfaceContrast() {
         assertSnapshot(navView(style: .surfaceContrast, content: viewContent))
     }
