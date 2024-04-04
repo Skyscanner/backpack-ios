@@ -37,7 +37,7 @@ class BPKNavigationViewTests: XCTestCase {
             style: style,
             content: { content() }
         )
-        .frame(width: 300, height: 200)
+        .frame(width: 400, height: 200)
     }
     
     private func viewContent() -> some View {
