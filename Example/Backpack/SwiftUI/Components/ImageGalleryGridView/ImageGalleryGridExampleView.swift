@@ -115,6 +115,7 @@ struct ImageGalleryGridExampleView: View {
     private func image(forIndex number: Int) -> some View {
         Image("carousel_placeholder_\((number % 4) + 1)")
             .resizable()
+            .aspectRatio(contentMode: .fill)
     }
 }
 
