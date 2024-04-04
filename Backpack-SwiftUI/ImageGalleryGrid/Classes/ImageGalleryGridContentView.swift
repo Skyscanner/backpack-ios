@@ -18,64 +18,80 @@
 
 import SwiftUI
 
-struct ImageGalleryGridContentView<ImageView: View>: View {
-    
-    let categories: BPKImageGalleryImageGridStyle<ImageView>
+struct ImageGalleryGridContentView<Categories: View, ImageView: View>: View {
+    private let itemHeightInGrid: CGFloat = 192
+    let categories: () -> Categories
+    let images: [BPKImageGalleryImage<ImageView>]
     let closeAccessibilityLabel: String
-    let itemTapped: (BPKImageGalleryImage<ImageView>) -> Void
+    let imageTapped: (_ category: Int, _ image: Int) -> Void
     let onCloseTapped: () -> Void
     
-    @Binding var selectedCategoryIndex: Int
+    let selectedCategoryIndex: Int
     @State var isSlideshowPresented: Bool = false
     @State var imageIndexInCategory: Int = 0
     
     var body: some View {
-        VStack(spacing: .md) {
+        VStack(spacing: .base) {
             ImageGalleryHeader(
                 closeAccessibilityLabel: "closeAccessibilityLabel",
                 onCloseTapped: onCloseTapped
             )
-            
-            ImageGalleryGridCategoriesCarousel(
-                categories: categories,
-                selectedCategory: $selectedCategoryIndex
-            )
-            .fixedSize(horizontal: false, vertical: true)
-            
-            TwoRowGrid(
-                items: selectedCategoryImages
-            ) { item, index in
-                
-                item.content(.grid)
-                    .aspectRatio(contentMode: .fill)
-                    .clipped()
-                    .frame(height: ImageGalleryGridConstants.itemHeightInGrid)
-                    .onTapGesture {
-                        itemTapped(item)
-                        imageIndexInCategory = index
-                        isSlideshowPresented.toggle()
-                    }
-                    .accessibilityAddTraits(.isButton)
-                 
+            .padding(.horizontal, .base)
+            .padding(.top, .md)
+            VStack(spacing: 12) {
+                categories()
+                TwoRowGrid(
+                    items: images
+                ) { item, index in
+                    
+                    item.content()
+                        .aspectRatio(contentMode: .fill)
+                        .clipped()
+                        .frame(height: itemHeightInGrid)
+                        .onTapGesture {
+                            imageTapped(selectedCategoryIndex, index)
+                            imageIndexInCategory = index
+                            isSlideshowPresented.toggle()
+                        }
+                        .accessibilityAddTraits(.isButton)
+                    
+                }
+                .padding(.horizontal, .lg)
             }
+            .padding(.bottom, .base)
         }
-        .padding([.leading, .trailing], .base)
+        
         .background(Color(.canvasContrastColor))
         .bpkImageGallerySlideshow(
             isPresented: $isSlideshowPresented,
-            images: selectedCategoryImages,
+            images: images,
             closeAccessibilityLabel: closeAccessibilityLabel,
             currentIndex: $imageIndexInCategory,
             onCloseTapped: { isSlideshowPresented = false }
         )
     }
-    
-    private var selectedCategoryImages: [BPKImageGalleryImage<ImageView>] {
-        switch categories {
-        case .chip(let chips):
-            chips[selectedCategoryIndex].images
-        case .image(let images):
-            images[selectedCategoryIndex].images
-        }
+}
+
+struct ImageGalleryGridContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ImageGalleryGridContentView(
+            categories: {
+                Text("categories")
+            },
+            images: [
+                .init(title: "Image", content: {
+                    Color.red
+                }),
+                .init(title: "Image 2", content: {
+                    Color.green
+                })
+            ],
+            closeAccessibilityLabel: "Close",
+            imageTapped: { _, _ in },
+            onCloseTapped: {},
+            selectedCategoryIndex: 0,
+            isSlideshowPresented: false,
+            imageIndexInCategory: 0
+        )
     }
 }

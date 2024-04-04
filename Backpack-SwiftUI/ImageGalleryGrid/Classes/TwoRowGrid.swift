@@ -23,7 +23,11 @@ struct TwoRowGrid<Item, ItemView: View>: View {
     let spacing: BPKSpacing
     let itemView: (Item, Int) -> ItemView
     
-    init(items: [Item], spacing: BPKSpacing = .md, itemView: @escaping (Item, Int) -> ItemView) {
+    init(
+        items: [Item],
+        spacing: BPKSpacing = .md,
+        itemView: @escaping (Item, Int) -> ItemView
+    ) {
         var rows: [[(Item, Int)]] = []
         var index = 0
         while index < items.count {
@@ -44,7 +48,7 @@ struct TwoRowGrid<Item, ItemView: View>: View {
     
     var body: some View {
         GeometryReader { proxy in
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 LazyVStack(alignment: .leading, spacing: spacing) {
                     ForEach(0..<items.count, id: \.self) { rowIndex in
                         row(proxy: proxy, rowIndex: rowIndex)
@@ -74,17 +78,20 @@ struct TwoRowGrid<Item, ItemView: View>: View {
 
 struct TwoRowGrid_Previews: PreviewProvider {
     static var previews: some View {
-        TwoRowGrid(items: testImages(6, colour: .cyan)) { item, _ in
-            item.content(.grid)
-                .frame(height: 192)
-        }
-    }
-    
-    private static func testImages(_ amount: Int, colour: Color) -> [BPKImageGalleryImage<Color>] {
-        return (0..<amount).map { _ in
-            BPKImageGalleryImage(title: "image \(amount)") { _ in
-                colour
-            }
+        VStack {
+            TwoRowGrid(
+                items: Array(0...2)
+            ) { _, _ in Color.cyan.frame(height: 100) }
+            
+            TwoRowGrid(
+                items: Array(0...2),
+                spacing: .lg
+            ) { _, _ in Color.green.frame(height: 100) }
+            
+            TwoRowGrid(
+                items: Array(0...2),
+                spacing: .xxl
+            ) { _, _ in Color.red.frame(height: 100) }
         }
     }
 }

@@ -21,111 +21,100 @@ import SwiftUI
 import Backpack_SwiftUI
 
 struct ImageGalleryGridExampleView: View {
+    @State var chipsPresented = false
+    @State var imagesPresented = false
+    @State var selectedCategory = 0
     
     var body: some View {
         VStack {
-            ButtonForChipGroup(categoryName: categoryName(_:), image: image(_:context:))
-            ButtonForImageGroup(categoryName: categoryName(_:), image: image(_:context:))
-        }
-    }
-    
-    struct ButtonForImageGroup<ImageView: View>: View {
-        @State var imageGalleriesIsPresented = false
-        @State var imageGalleriesCategory = 0
-        let categoryName: (Int) -> String
-        let image: (Int, BPKImageGalleryDisplayContext) -> ImageView
-        
-        var body: some View {
-            BPKButton("Show Image Categories", action: {
-                imageGalleriesIsPresented.toggle()
-            })
-            .bpkImageGalleryGrid(
-                isPresented: $imageGalleriesIsPresented,
-                category: $imageGalleriesCategory,
-                categories: (0...7).map { categoryIndex in
-                    BPKImageGalleryImageGridStyle.ImageCategory(
-                        title: categoryName(categoryIndex),
-                        images: (0...categoryIndex).map { index in
-                            BPKImageGalleryImage(
-                                title: "image \(index)",
-                                description: "Image at Index: \(index)",
-                                credit: "@photographer"
-                            ) { context in
-                                image(index, context)
-                            }
-                        },
-                        categoryImage: {
-                            image(categoryIndex, .grid)
-                        }
-                    )
-                },
-                closeAccessibilityLabel: "Close",
-                onItemTapped: { category, item in
-                    print("onItemTapped category: \(category.title), item: \(item)")
-                },
-                onCloseTapped: { imageGalleriesIsPresented = false }
-            ).onChange(of: imageGalleriesCategory) { _ in
-                print("category index: \(imageGalleriesCategory)")
-            }
-        }
-    }
-    
-    struct ButtonForChipGroup<ImageView: View>: View {
-        @State var chipGalleriesIsPresented = false
-        @State var chipGalleriesCategory = 0
-        let categoryName: (Int) -> String
-        let image: (Int, BPKImageGalleryDisplayContext) -> ImageView
-        
-        var body: some View {
             BPKButton("Show Chip Categories", action: {
-                chipGalleriesIsPresented.toggle()
+                chipsPresented.toggle()
             })
-            .bpkImageGalleryGrid(
-                isPresented: $chipGalleriesIsPresented,
-                category: $chipGalleriesCategory,
-                categories: (0...7).map { categoryIndex in
-                    BPKImageGalleryImageGridStyle.ChipCategory(
-                        title: categoryName(categoryIndex),
-                        images: (0...categoryIndex).map { index in
-                            BPKImageGalleryImage(
-                                title: "image \(index)",
-                                description: "Image at Index: \(index)",
-                                credit: "@photographer"
-                            ) { context in
-                                image(index, context)
-                            }
-                        }
-                    )
-                },
-                closeAccessibilityLabel: "Close",
-                onItemTapped: { category, item in
-                    print("onItemTapped category: \(category.title), item: \(item)")
-                },
-                onCloseTapped: { chipGalleriesIsPresented = false }
-            )
-            .onChange(of: chipGalleriesCategory) { _ in
-                print("category index: \(chipGalleriesCategory)")
-            }
+            BPKButton("Show Image Categories", action: {
+                imagesPresented.toggle()
+            })
         }
+        .onChange(of: selectedCategory) { _ in
+            print("category index: \(selectedCategory)")
+        }
+        .bpkImageGalleryGrid(
+            isPresented: $chipsPresented,
+            selectedCategory: $selectedCategory,
+            style: .chip(chipCategories(imageForIndex: image(forIndex:))),
+            closeAccessibilityLabel: "Close Gallery",
+            onImageTapped: { category, image in
+                onImageTapped(category: category, image: image)
+            },
+            onCloseTapped: { chipsPresented.toggle() }
+        )
+        .bpkImageGalleryGrid(
+            isPresented: $imagesPresented,
+            selectedCategory: $selectedCategory,
+            style: .image(imageCategories(imageForIndex: image(forIndex:))),
+            closeAccessibilityLabel: "Close Gallery",
+            onImageTapped: { category, image in
+                onImageTapped(category: category, image: image)
+            },
+            onCloseTapped: { imagesPresented.toggle() }
+        )
+    }
+    
+    private func onImageTapped(category: Int, image: Int) {
+        print("onItemTapped category: \(categoryName(category)), item: \(image)")
     }
     
     private func categoryName(_ categoryIndex: Int) -> String {
-        switch categoryIndex % 3 {
-        case 0:
-            return "Traveller photos (\(categoryIndex + 1))"
-        case 1:
-            return "All Photos (\(categoryIndex + 1))"
-        default:
-            return "Official Photos (\(categoryIndex + 1))"
+        [
+            "Traveller photos (31)",
+            "All Photos (59)",
+            "Official Photos (43)",
+            "Bedroom (10)"
+        ][categoryIndex]
+    }
+    
+    private func imageCategories<Image: View>(
+        imageForIndex: @escaping (Int) -> Image
+    ) -> [BPKImageGalleryImageGridStyle<Image>.ImageCategory] {
+        (0...3)
+            .map { categoryIndex in
+                .init(
+                    title: categoryName(categoryIndex),
+                    images: (0...(10 + categoryIndex)).map { index in
+                        BPKImageGalleryImage(
+                            title: "image \(index)",
+                            description: "Image at Index: \(index)",
+                            credit: "@photographer",
+                            content: { imageForIndex(index) }
+                        )
+                    },
+                    categoryImage: {
+                        imageForIndex(categoryIndex)
+                    }
+                )
+            }
+    }
+    
+    private func chipCategories<Image: View>(
+        imageForIndex: @escaping (Int) -> Image
+    ) -> [BPKImageGalleryImageGridStyle<Image>.ChipCategory] {
+        (0...3).map { categoryIndex in
+            .init(
+                title: categoryName(categoryIndex),
+                images: (0...(10 + categoryIndex)).map { index in
+                    BPKImageGalleryImage(
+                        title: "image \(index)",
+                        description: "Image at Index: \(index)",
+                        credit: "@photographer",
+                        content: { imageForIndex(index) }
+                    )
+                }
+            )
         }
     }
     
-    private func image(_ number: Int, context: BPKImageGalleryDisplayContext) -> some View {
-        let imageFileNumber = (number % 4) + 1
-        return ZStack {
-            Image("carousel_placeholder_\(imageFileNumber)")
-                .resizable()
-        }
+    private func image(forIndex number: Int) -> some View {
+        Image("carousel_placeholder_\((number % 4) + 1)")
+            .resizable()
     }
 }
 

@@ -55,7 +55,7 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
                     ZStack(alignment: .bottom) {
                         InternalCarouselWrapper(
                             images: images.map {
-                                $0.content(.slideshow)
+                                $0.content()
                                     .frame(width: proxy.size.width, height: proxy.size.width)
                             },
                             pageIndicatorVisibility: .hidden,
@@ -159,17 +159,17 @@ struct BPKImageGallerySlideshow_Previews: PreviewProvider {
     static var previews: some View {
         ImageGallerySlideshow.ContentView(
             images: [
-                BPKImageGalleryImage(title: "Red") { _ in
+                BPKImageGalleryImage(title: "Red") {
                     Color.red
                 },
                 BPKImageGalleryImage(
                     title: "Pumphouse Point",
                     description: "Walk deep into the surrounds of St Clair, world you left behind.",
                     credit: "@PhotographerName"
-                ) { _ in
+                ) {
                     Color.yellow
                 },
-                BPKImageGalleryImage(title: "Green") { _ in
+                BPKImageGalleryImage(title: "Green") {
                     Color.green
                 }
             ],

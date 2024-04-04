@@ -18,22 +18,17 @@
 
 import SwiftUI
 
-public enum BPKImageGalleryDisplayContext {
-    case grid
-    case slideshow
-}
-
 public struct BPKImageGalleryImage<Content: View> {
     public let title: String
     public let description: String?
     public let credit: String?
-    public let content: (BPKImageGalleryDisplayContext) -> Content
+    public let content: () -> Content
 
     public init(
         title: String,
         description: String? = nil,
         credit: String? = nil,
-        @ViewBuilder content: @escaping (BPKImageGalleryDisplayContext) -> Content
+        @ViewBuilder content: @escaping () -> Content
     ) {
         self.title = title
         self.description = description

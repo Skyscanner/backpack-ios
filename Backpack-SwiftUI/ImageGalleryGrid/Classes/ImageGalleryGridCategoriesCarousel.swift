@@ -18,51 +18,64 @@
 
 import SwiftUI
 
-struct ImageGalleryGridCategoriesCarousel<ImageView: View>: View {
-    let categories: BPKImageGalleryImageGridStyle<ImageView>
+struct ImageGalleryChipCategoryView: View {
+    let categories: [String]
+    @Binding var selectedCategoryIndex: Int
+    
+    var body: some View {
+        BPKSingleSelectChipGroup(
+            chips: categories.map { .init(text: $0) },
+            selectedIndex: Binding(
+                get: { selectedCategoryIndex },
+                set: { newValue in selectedCategoryIndex = newValue ?? 0 }
+            )
+        ) { index in
+            selectedCategoryIndex = index
+        }
+        .insetPadding(.horizontal, .lg)
+        .padding(.bottom, .md)
+    }
+}
+
+struct ImageGalleryImageCategoryView<ImageView: View>: View {
+    struct Category {
+        let title: String
+        let categoryImage: () -> ImageView
+    }
+    
+    let categoryImageSize: CGFloat = 90
+    let categories: [Category]
     @Binding var selectedCategory: Int
     
     var body: some View {
-        switch categories {
-        case .chip(let categories):
-            BPKSingleSelectChipGroup(
-                chips: categories.map { .init(text: $0.title) },
-                selectedIndex: Binding(
-                    get: { selectedCategory },
-                    set: { newValue in selectedCategory = newValue ?? 0 }
-                )
-            ) { index in
-                selectedCategory = index
-            }
-            
-        case .image(let categories):
-            ScrollView(.horizontal) {
-                HStack(alignment: .top, spacing: .md) {
-                    ForEach(0..<categories.count, id: \.self) { ndx in
-                        categoryThumb(
-                            for: categories[ndx],
-                            isSelected: selectedCategory == ndx
-                        )
-                        .onTapGesture {
-                            selectedCategory = ndx
-                        }
-                        .accessibilityAddTraits(.isButton)
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(alignment: .top, spacing: .md) {
+                ForEach(0..<categories.count, id: \.self) { ndx in
+                    categoryThumb(
+                        for: categories[ndx],
+                        isSelected: selectedCategory == ndx
+                    )
+                    .onTapGesture {
+                        selectedCategory = ndx
                     }
+                    .accessibilityAddTraits(.isButton)
                 }
             }
+            .padding(.leading, .lg)
         }
+        .padding(.bottom, .base)
     }
     
     @ViewBuilder
     private func categoryThumb(
-        for category: BPKImageGalleryImageGridStyle<ImageView>.ImageCategory,
+        for category: Category,
         isSelected: Bool
     ) -> some View {
         VStack(spacing: .md) {
             category.categoryImage()
                 .frame(
-                    width: ImageGalleryGridConstants.categoryImageSize,
-                    height: ImageGalleryGridConstants.categoryImageSize
+                    width: categoryImageSize,
+                    height: categoryImageSize
                 )
                 .clipShape(RoundedRectangle(cornerRadius: .md))
             
@@ -73,60 +86,41 @@ struct ImageGalleryGridCategoriesCarousel<ImageView: View>: View {
             .lineLimit(nil)
             
         }
-        .frame(width: ImageGalleryGridConstants.categoryImageSize)
+        .frame(width: categoryImageSize)
     }
 }
 
 struct ImageGalleryGridCategoriesCarousel_Previews: PreviewProvider {
     static var previews: some View {
-        ImageGalleryGridCategoriesCarousel(
-            categories: .image(testCategories),
-            selectedCategory: .constant(0)
-        )
-        .fixedSize(horizontal: false, vertical: true)
-        .previewDisplayName("Images")
-        
-        ImageGalleryGridCategoriesCarousel(
-            categories: .chip(testChipCategories),
-            selectedCategory: .constant(0)
-        )
-        .fixedSize(horizontal: false, vertical: true)
-        .previewDisplayName("Chips")
+        VStack {
+            ImageGalleryImageCategoryView(
+                categories: testCategories,
+                selectedCategory: .constant(0)
+            )
+            ImageGalleryChipCategoryView(
+                categories: [
+                    "Green photos with long title (40)",
+                    "Blue photos (10)",
+                    "red photos (10)"
+                ],
+                selectedCategoryIndex: .constant(0)
+            )
+        }
     }
-    
-    private static var testCategories: [BPKImageGalleryImageGridStyle<Color>.ImageCategory] {
+
+    private static var testCategories: [ImageGalleryImageCategoryView<Color>.Category] {
         [
-            BPKImageGalleryImageGridStyle.ImageCategory(
+            .init(
                 title: "Green photos with long title (40)",
-                images: [],
                 categoryImage: { Color.green }
             ),
-            BPKImageGalleryImageGridStyle.ImageCategory(
+            .init(
                 title: "Blue photos (10)",
-                images: [],
                 categoryImage: { Color.blue }
             ),
-            BPKImageGalleryImageGridStyle.ImageCategory(
+            .init(
                 title: "red photos (10)",
-                images: [],
                 categoryImage: { Color.red }
-            )
-        ]
-    }
-    
-    private static var testChipCategories: [BPKImageGalleryImageGridStyle<Color>.ChipCategory] {
-        [
-            BPKImageGalleryImageGridStyle.ChipCategory(
-                title: "Green photos with long title (40)",
-                images: []
-            ),
-            BPKImageGalleryImageGridStyle.ChipCategory(
-                title: "Blue photos (10)",
-                images: []
-            ),
-            BPKImageGalleryImageGridStyle.ChipCategory(
-                title: "red photos (10)",
-                images: []
             )
         ]
     }

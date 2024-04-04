@@ -36,7 +36,6 @@ public enum BPKImageGalleryImageGridStyle<ImageView: View> {
     }
     
     public struct ImageCategory {
-        
         public let title: String
         public let images: [BPKImageGalleryImage<ImageView>]
         public let categoryImage: () -> ImageView
