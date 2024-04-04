@@ -32,35 +32,27 @@ struct ImageGalleryGridContentView<Categories: View, ImageView: View>: View {
     
     var body: some View {
         VStack(spacing: .base) {
-            ImageGalleryHeader(
-                closeAccessibilityLabel: "closeAccessibilityLabel",
-                onCloseTapped: onCloseTapped
-            )
-            .padding(.horizontal, .base)
-            .padding(.top, .md)
+            header
             VStack(spacing: 12) {
                 categories()
                 TwoRowGrid(
                     items: images
                 ) { item, index in
-                    
                     item.content()
                         .aspectRatio(contentMode: .fill)
                         .clipped()
                         .frame(height: itemHeightInGrid)
+                        .accessibilityAddTraits(.isButton)
                         .onTapGesture {
                             imageTapped(selectedCategoryIndex, index)
                             imageIndexInCategory = index
                             isSlideshowPresented.toggle()
                         }
-                        .accessibilityAddTraits(.isButton)
-                    
                 }
                 .padding(.horizontal, .lg)
             }
             .padding(.bottom, .base)
         }
-        
         .background(Color(.canvasContrastColor))
         .bpkImageGallerySlideshow(
             isPresented: $isSlideshowPresented,
@@ -69,6 +61,15 @@ struct ImageGalleryGridContentView<Categories: View, ImageView: View>: View {
             currentIndex: $imageIndexInCategory,
             onCloseTapped: { isSlideshowPresented = false }
         )
+    }
+    
+    var header: some View {
+        ImageGalleryHeader(
+            closeAccessibilityLabel: closeAccessibilityLabel,
+            onCloseTapped: onCloseTapped
+        )
+        .padding(.horizontal, .base)
+        .padding(.top, .md)
     }
 }
 
