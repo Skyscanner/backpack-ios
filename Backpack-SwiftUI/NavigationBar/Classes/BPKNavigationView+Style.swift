@@ -58,7 +58,9 @@ public enum BPKNavigationBarStyle {
     
     var verticalOffset: CGFloat {
         switch self {
-        case .default(let titleDisplayMode), .transparent(let titleDisplayMode):
+        case .default(let titleDisplayMode):
+            return titleDisplayMode == .large ? navigationBarHeight : collapsedHeight
+        case .transparent(let titleDisplayMode):
             return titleDisplayMode == .large ? 0 : collapsedHeight
         case .surfaceContrast:
             return navigationBarHeight
