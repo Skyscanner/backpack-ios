@@ -23,40 +23,40 @@ import SwiftUI
 class BPKSearchInputSummaryTests: XCTestCase {
     func test_defaultSettings_withPrefixIcon() {
         assertSnapshot(
-            BPKSearchInputSummary(inputPrefix: .icon(.search), .constant("Value"))
+            BPKSearchInputSummary(inputPrefix: .icon(.recentSearches), .constant("Value"))
                 .frame(width: 300))
     }
 
     func test_emptyField_withPrefixIcon() {
         assertSnapshot(
-            BPKSearchInputSummary(inputPrefix: .icon(.search), .constant(""))
+            BPKSearchInputSummary(inputPrefix: .icon(.recentSearches), .constant(""))
                 .frame(width: 300))
     }
 
     func test_disabledField_withPrefixIcon() {
         assertSnapshot(
-            BPKSearchInputSummary(inputPrefix: .icon(.search), .constant("Value"))
+            BPKSearchInputSummary(inputPrefix: .icon(.recentSearches), .constant("Value"))
                 .inputState(.disabled)
                 .frame(width: 300))
     }
 
     func test_clearableField_withPrefixIcon() {
         assertSnapshot(
-            BPKSearchInputSummary(inputPrefix: .icon(.search), .constant("Value"))
+            BPKSearchInputSummary(inputPrefix: .icon(.recentSearches), .constant("Value"))
                 .inputState(.clear(accessibilityLabel: "Clear") { })
                 .frame(width: 300))
     }
 
     func test_validField_withPrefixIcon() {
         assertSnapshot(
-            BPKSearchInputSummary(inputPrefix: .icon(.search), .constant("Value"))
+            BPKSearchInputSummary(inputPrefix: .icon(.recentSearches), .constant("Value"))
                 .inputState(.valid)
                 .frame(width: 300))
     }
 
     func test_errorField_withPrefixIcon() {
         assertSnapshot(
-            BPKSearchInputSummary(inputPrefix: .icon(.search), .constant("Value"))
+            BPKSearchInputSummary(inputPrefix: .icon(.recentSearches), .constant("Value"))
                 .inputState(.error)
                 .frame(width: 300))
     }
@@ -102,7 +102,7 @@ class BPKSearchInputSummaryTests: XCTestCase {
     }
     
     func test_accessibility() {
-        let searchInput = BPKSearchInputSummary(inputPrefix: .icon(.search), .constant("Value"))
+        let searchInput = BPKSearchInputSummary(inputPrefix: .icon(.recentSearches), .constant("Value"))
             .frame(width: 300)
         assertA11ySnapshot(searchInput)
     }
