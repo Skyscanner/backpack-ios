@@ -63,9 +63,12 @@ public struct BPKSearchInputSummary: View {
                 .foregroundColor(state.textColor)
                 .disabled(state.isDisabled)
                 .focused($focused)
+                .accessibilityElement(children: .combine)
+                .accessibilityAddTraits(.isSearchField)
             accessory
         }
-        .padding(.md)
+        .frame(maxWidth: .infinity, minHeight: 48.0)
+        .padding(.horizontal, BPKSpacing.base)
         .background(.surfaceDefaultColor)
         .clipShape(RoundedRectangle(cornerRadius: .sm))
         .outline(focused ? .textLinkColor : state.borderColor, cornerRadius: .sm, lineWidth: focused ? 2.0 : 1.0)
@@ -79,7 +82,9 @@ public struct BPKSearchInputSummary: View {
                     BPKIconView(icon.icon)
                         .foregroundColor(icon.color)
                 }
-                    .accessibilityLabel(accessibilityLabel)
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(accessibilityLabel)
+                .accessibilityAddTraits(.isButton)
             } else {
                 BPKIconView(icon.icon)
                     .foregroundColor(icon.color)

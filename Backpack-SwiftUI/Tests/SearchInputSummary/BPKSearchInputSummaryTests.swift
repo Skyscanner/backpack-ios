@@ -100,4 +100,10 @@ class BPKSearchInputSummaryTests: XCTestCase {
                 .inputState(.error)
                 .frame(width: 300))
     }
+    
+    func test_accessibility() {
+        let searchInput = BPKSearchInputSummary(inputPrefix: .icon(.search), .constant("Value"))
+            .frame(width: 300)
+        assertA11ySnapshot(searchInput)
+    }
 }
