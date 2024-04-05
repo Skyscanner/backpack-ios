@@ -48,13 +48,19 @@ public struct BPKAppSearchModalContent: Equatable {
     public struct Section: Hashable {
         let heading: SectionHeading?
         let items: [Item]
-        
-        public init(heading: SectionHeading?, items: [Item]) {
+        let accessibilityPrefix: String
+
+        public init(
+            heading: SectionHeading?,
+            items: [Item],
+            accessibilityPrefix: String
+        ) {
             self.heading = heading
             self.items = items
+            self.accessibilityPrefix = accessibilityPrefix
         }
     }
-    
+
     public struct SectionHeading {
         let title: String
         let action: BPKAppSearchModalAction?

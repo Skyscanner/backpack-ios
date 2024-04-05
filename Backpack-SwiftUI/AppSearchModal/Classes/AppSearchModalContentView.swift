@@ -62,8 +62,11 @@ struct AppSearchModalContentView: View {
                     }
                 }
             }
-            ForEach(section.items, id: \.self) { item in
-                ItemCell(item: item)
+            ForEach(Array(section.items.enumerated()), id: \.element) { index, item in
+                ItemCell(
+                    item: item,
+                    accessibilityID: itemAccessibilityID(prefix: section.accessibilityPrefix, index: index)
+                )
             }
         }
     }
@@ -72,7 +75,8 @@ struct AppSearchModalContentView: View {
         @Environment(\.sizeCategory) var sizeCategory
 
         let item: BPKAppSearchModalContent.Item
-        
+        let accessibilityID: String
+
         var body: some View {
             Button(action: item.onItemSelected) {
                 HStack(spacing: .base) {
@@ -97,6 +101,7 @@ struct AppSearchModalContentView: View {
                 .contentShape(Rectangle())
             }
             .buttonStyle(ItemCellButtonStyle())
+            .accessibilityIdentifier(accessibilityID)
         }
         
         private func subtitleLineLimit() -> Int? {
@@ -113,6 +118,10 @@ struct AppSearchModalContentView: View {
             configuration.label
         }
     }
+
+    private func itemAccessibilityID(prefix: String, index: Int) -> String {
+        return "\(prefix.trimmingCharacters(in: .whitespacesAndNewlines))-\(index)"
+    }
 }
 
 struct AppSearchModalContentView_Previews: PreviewProvider {
@@ -126,7 +135,8 @@ struct AppSearchModalContentView_Previews: PreviewProvider {
     static func buildSection(with index: Int) -> BPKAppSearchModalContent.Section {
         return .init(
             heading: .init(title: "Section \(index + 1)", action: .init(text: "Action", onActionSelected: { })),
-            items: (0..<3).map(buildItem)
+            items: (0..<3).map(buildItem),
+            accessibilityPrefix: "section-\(index + 1)"
         )
     }
     
