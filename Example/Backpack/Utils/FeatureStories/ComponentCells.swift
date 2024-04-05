@@ -58,6 +58,7 @@ struct ComponentCellsProvider {
             horizontalNavigation(),
             icon(),
             imageGalleryPreview(),
+            imageGalleryGridView(),
             imageGallerySlideshow(),
             insetBanner(),
             label(),
@@ -564,6 +565,17 @@ extension ComponentCellsProvider {
                 }))
             ],
             showChildren: { showComponent(title: "Image Gallery Slideshow", tabs: $0) }
+        )
+    }
+    private func imageGalleryGridView() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Image Gallery Grid",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(ImageGalleryGridExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Image Gallery Grid", tabs: $0) }
         )
     }
     private func price() -> CellDataSource {

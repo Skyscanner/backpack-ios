@@ -24,6 +24,7 @@ public struct BPKSingleSelectChipGroup: View {
     private let style: BPKChipStyle
     private let type: BPKChipGroupType
     private let onItemClick: (_ index: Int) -> Void
+    private var insetSpacing: (Edge.Set, BPKSpacing)
     
     @Binding private var selectedIndex: Int?
     
@@ -38,6 +39,7 @@ public struct BPKSingleSelectChipGroup: View {
         self.style = style
         self._selectedIndex = selectedIndex
         self.type = type
+        self.insetSpacing = (.all, .none)
         self.onItemClick = onItemClick
     }
     
@@ -51,6 +53,7 @@ public struct BPKSingleSelectChipGroup: View {
                     }
                 }
                 .padding(1) // to account for chip outlines
+                .padding(insetSpacing.0, insetSpacing.1)
             }
         case .wrap(let alignment):
             BPKFlowStackView(
@@ -59,6 +62,12 @@ public struct BPKSingleSelectChipGroup: View {
                 content: chip(for: index:)
             )
         }
+    }
+    
+    func insetPadding(_ edges: Edge.Set = .all, _ spacing: BPKSpacing) -> BPKSingleSelectChipGroup {
+        var result = self
+        result.insetSpacing = (edges, spacing)
+        return result
     }
     
     @ViewBuilder
@@ -116,20 +125,20 @@ struct BPKChipGroup_Previews: PreviewProvider {
                 chips: chips,
                 selectedIndex: .constant(2)
             ) { _ in }
-                .padding()
+                .padding(.vertical)
             BPKSingleSelectChipGroup(
                 chips: chips,
                 style: .onDark,
                 selectedIndex: .constant(2)
             ) { _ in }
-                .padding()
+                .padding(.vertical)
                 .background(.surfaceContrastColor)
             BPKSingleSelectChipGroup(
                 chips: chips,
                 style: .onImage,
                 selectedIndex: .constant(2)
             ) { _ in }
-                .padding()
+                .padding(.vertical)
                 .background(.statusSuccessSpotColor)
         }
         .previewDisplayName("Rail")
@@ -149,14 +158,14 @@ struct BPKChipGroup_Previews: PreviewProvider {
                 selectedIndex: .constant(2),
                 type: .wrap(alignment: alignment)
             ) { _ in }
-                .padding()
+                .padding(.vertical)
             BPKSingleSelectChipGroup(
                 chips: chips,
                 style: .onDark,
                 selectedIndex: .constant(2),
                 type: .wrap(alignment: alignment)
             ) { _ in }
-                .padding()
+                .padding(.vertical)
                 .background(.surfaceContrastColor)
             
             BPKSingleSelectChipGroup(
@@ -165,7 +174,7 @@ struct BPKChipGroup_Previews: PreviewProvider {
                 selectedIndex: .constant(2),
                 type: .wrap(alignment: alignment)
             ) { _ in }
-                .padding()
+                .padding(.vertical)
                 .background(.statusSuccessSpotColor)
         }
     }
