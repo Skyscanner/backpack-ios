@@ -53,7 +53,6 @@ public struct BPKAppSearchModal: View {
             if results.showTextField {
                 BPKSearchInputSummary(placeholder: inputHint, inputPrefix: inputPrefix, $inputText)
                     .inputState(textFieldState.inputState)
-                    .accessibilityAddTraits(.isSearchField)
                     .focused($inputFieldIsFocussed)
                     .autocorrectionDisabled(true)
             }
@@ -72,6 +71,7 @@ public struct BPKAppSearchModal: View {
         .padding(.top, .base)
         .padding(.bottom, BPKSpacing.none)
         .background(.surfaceDefaultColor)
+        .accessibilityAddTraits(.isModal)
     }
     
     func makeNavigationBar(
