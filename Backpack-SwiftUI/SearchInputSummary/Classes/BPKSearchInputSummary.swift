@@ -66,7 +66,6 @@ public struct BPKSearchInputSummary: View {
                 .accessibilityElement(children: .combine)
                 .accessibilityAddTraits(.isSearchField)
             accessory
-                .opacity(text.isEmpty ? 0.0 : 1.0)
         }
         .frame(maxWidth: .infinity, minHeight: 48.0)
         .padding(.horizontal, BPKSpacing.base)
@@ -83,6 +82,7 @@ public struct BPKSearchInputSummary: View {
                     BPKIconView(icon.icon)
                         .foregroundColor(icon.color)
                 }
+                .opacity(text.isEmpty ? 0.0 : 1.0)
                 .accessibilityElement(children: .ignore)
                 .accessibilityLabel(accessibilityLabel)
                 .accessibilityAddTraits(.isButton)
