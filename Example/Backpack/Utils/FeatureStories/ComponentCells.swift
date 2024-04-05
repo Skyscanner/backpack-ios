@@ -63,6 +63,7 @@ struct ComponentCellsProvider {
             insetBanner(),
             label(),
             navBar(),
+            navigationTabsGroup(),
             nudger(),
             overlayViews(),
             mapView(),
@@ -296,6 +297,17 @@ extension ComponentCellsProvider {
                 }))
             ],
             showChildren: { showComponent(title: "Map Markers", tabs: $0) }
+        )
+    }
+    private func navigationTabsGroup() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Navigation Tabs Group",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(NavigationTabGroupExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Navigation Tabs Group", tabs: $0) }
         )
     }
     private func panels() -> CellDataSource {
