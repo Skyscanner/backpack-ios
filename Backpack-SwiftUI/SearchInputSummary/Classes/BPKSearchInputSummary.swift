@@ -58,7 +58,7 @@ public struct BPKSearchInputSummary: View {
         HStack(spacing: .md) {
             prefixView
                 .accessibilityHidden(true)
-            TextField(placeholder, text: $text)
+            TextField(placeholder, text: $text, prompt: placeholderView)
                 .font(style: .bodyDefault)
                 .foregroundColor(state.textColor)
                 .disabled(state.isDisabled)
@@ -82,6 +82,7 @@ public struct BPKSearchInputSummary: View {
                     BPKIconView(icon.icon)
                         .foregroundColor(icon.color)
                 }
+                .opacity(text.isEmpty ? 0.0 : 1.0)
                 .accessibilityElement(children: .ignore)
                 .accessibilityLabel(accessibilityLabel)
                 .accessibilityAddTraits(.isButton)
@@ -91,6 +92,12 @@ public struct BPKSearchInputSummary: View {
                     .accessibilityHidden(true)
             }
         }
+    }
+    
+    @ViewBuilder
+    private var placeholderView: Text {
+        Text(placeholder)
+            .foregroundColor(Color(BPKColor.textSecondaryColor.value))
     }
     
     @ViewBuilder
