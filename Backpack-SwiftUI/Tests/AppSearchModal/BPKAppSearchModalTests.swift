@@ -117,7 +117,7 @@ class BPKAppSearchModalTests: XCTestCase {
             title: "Item No.\(index + 1)",
             subtitle: "This is item No.\(index + 1)",
             tertiaryLabel: "city",
-            icon: .recentSearches,
+            icon: .search,
             onItemSelected: {}
         )
     }
