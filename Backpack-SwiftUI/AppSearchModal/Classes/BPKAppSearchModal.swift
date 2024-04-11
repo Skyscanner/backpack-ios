@@ -50,26 +50,23 @@ public struct BPKAppSearchModal: View {
     public var body: some View {
         VStack(spacing: .base) {
             makeNavigationBar(title: title, closeAccessibilityLabel: closeAccessibilityLabel, onClose: onClose)
-                .padding(.horizontal, .base)
             if results.showTextField {
                 BPKSearchInputSummary(placeholder: inputHint, inputPrefix: inputPrefix, $inputText)
                     .inputState(textFieldState.inputState)
                     .focused($inputFieldIsFocussed)
                     .autocorrectionDisabled(true)
-                    .padding(.horizontal, .base)
             }
             switch results {
             case .loading(let loading):
                 AppSearchModalLoadingView(state: loading)
-                    .padding(.horizontal, .base)
             case .content(let content):
                 AppSearchModalContentView(state: content, onScroll: onScroll(_:))
                     .padding(.top, .md)
             case .error(let error):
                 AppSearchModalErrorView(state: error)
-                    .padding(.horizontal, .base)
             }
         }
+        .padding(.horizontal, .base)
         .padding(.top, .base)
         .padding(.bottom, BPKSpacing.none)
         .background(.surfaceDefaultColor)
