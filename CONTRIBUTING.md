@@ -18,26 +18,20 @@ All files are released with the Apache 2.0 licence.
 
 ### Environment
 
-We use both Ruby and Node in this project. To manage these language runtimes we recommend using [`rbenv`][0] and [`nvm`][1] respectively. You should ensure you have these installed or some other means of handling Ruby and Node versions. The required ruby version is specified in `.ruby-version` and the Node version is in `.nvmrc`.
-
-With `rbenv` use `rbenv install` to install the project's version of Ruby. For `nvm` use `nvm use`. Also ensure you install `bundler` for Ruby with `gem install bundler`.
-
+We use asdf to manage our language runtimes. This will be installed when you run `./fullsetup`. All dependency versions are managed in `.tool-versions`
 Use the version of Xcode specified in [our build pipeline](https://github.com/Skyscanner/backpack-ios/blob/main/.github/workflows/_build.yml#L131), however the project should work with old versions of the same major. 
 
 ### Code style
 
-**All new components should be written in Swift.**
+1. All new components are written in Swift
+1. We sparingly update Objective-c components and rather upgrade to Swift with UIKit or provide a SwiftUI version
 
-Please follow the [New York Times Objective-C style-guide](https://github.com/NYTimes/objective-c-style-guide) when writing Objective-C. Follow other conventions and patterns established in the source code already when the style-guide cannot help you. The goal is that the codebase should look like it was written by a single author.
-
-Wrap all Objective-C in `NS_ASSUME_NONNULL_BEGIN` and `NS_ASSUME_NONNULL_END` blocks. Make sure to annotate any types that are nullable correctly.
+Please follow the [Swift Style Guide](https://google.github.io/swift/) when writing Swift. Follow other conventions and patterns established in the source code already when the style-guide cannot help you. The goal is that the codebase should look like it was written by a single author.
 
 ## Getting started
-Given that you have a compatible environment as stated above you can now setup the project.
+Run the following commands from your terminal, these should be run from the root of the project. 
 
-- `bundle install` to install ruby dependencies
-- `npm install` to install npm dependencies
-- `(cd Example && bundle exec pod install)` To setup the example project.
+- `./fullsetup` to install all dependencies
 - `open Example/Backpack.xcworkspace` to open the example project
 
 ## Adding a new component
@@ -70,7 +64,9 @@ A component folder structure is setup as follows. Please take a look at the setu
 For SwiftUI the root folder will be `Backpack-SwiftUI`. The structure is otherwise the same.
 
 ### Accessibility
-Our design system tries to deliver accessible components. When designing your component make sure the accessibility of your component is considered.
+All of our components must be accessible. 
+
+The easiest way to achieve this is to consider different accessibility needs in the design stage. We follow WCAG 2.2 AA as a guiding standard and apply this to all of our components. 
 
 At a mimimum you should make sure your component meets the following criteria:
 
@@ -78,6 +74,15 @@ At a mimimum you should make sure your component meets the following criteria:
 * Required accessibility labels are passed to the component
 * Screen readers can interact with the component
 * The component can scale when the font-size increases
+
+In SwiftUI, you must create at least one Accessibility snapshot that tests Dynamic Type, you can do this by adding a new test for your component. Below we included an example accessibility test.
+
+```swift
+func test_accessibility() {
+    let badge = BPKBadge("Test badge", icon: .accessibility)
+    assertA11ySnapshot(badge)
+}
+```
 
 ### Stories
 Each component needs to be visually documented in our example app. Make sure to add a new entry and showcase your component in each of its different states and variants. 
@@ -254,5 +259,3 @@ The release workflow will also trigger our design docs publish. If successful, y
 
  > Note: Don't forget that new components need to be added manually!
 
-[0]: https://github.com/rbenv/rbenv
-[1]: https://github.com/creationix/nvm
