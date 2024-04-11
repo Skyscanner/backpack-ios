@@ -18,10 +18,7 @@ All files are released with the Apache 2.0 licence.
 
 ### Environment
 
-We use both Ruby and Node in this project. To manage these language runtimes we recommend using [`rbenv`][0] and [`nvm`][1] respectively. You should ensure you have these installed or some other means of handling Ruby and Node versions. The required ruby version is specified in `.ruby-version` and the Node version is in `.nvmrc`.
-
-With `rbenv` use `rbenv install` to install the project's version of Ruby. For `nvm` use `nvm use`. Also ensure you install `bundler` for Ruby with `gem install bundler`.
-
+We use asdf to manage our language runtimes. This will be installed when you run `./fullsetup`. All dependency versions are managed in `.tool-versions`
 Use the version of Xcode specified in [our build pipeline](https://github.com/Skyscanner/backpack-ios/blob/main/.github/workflows/_build.yml#L131), however the project should work with old versions of the same major. 
 
 ### Code style
@@ -35,9 +32,7 @@ Wrap all Objective-C in `NS_ASSUME_NONNULL_BEGIN` and `NS_ASSUME_NONNULL_END` bl
 ## Getting started
 Given that you have a compatible environment as stated above you can now setup the project.
 
-- `bundle install` to install ruby dependencies
-- `npm install` to install npm dependencies
-- `(cd Example && bundle exec pod install)` To setup the example project.
+- `./fullsetup` in the root folder to setup and install all dependencies (asdf, npm, ruby)
 - `open Example/Backpack.xcworkspace` to open the example project
 
 ## Adding a new component
