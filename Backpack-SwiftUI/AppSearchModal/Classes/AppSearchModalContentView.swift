@@ -95,7 +95,6 @@ struct AppSearchModalContentView: View {
                     }
                 }
                 .contentShape(Rectangle())
-                .padding(.horizontal, .base)
             }
             .buttonStyle(ItemCellButtonStyle())
         }
