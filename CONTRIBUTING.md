@@ -249,5 +249,3 @@ The release workflow will also trigger our design docs publish. If successful, y
 
  > Note: Don't forget that new components need to be added manually!
 
-[0]: https://github.com/rbenv/rbenv
-[1]: https://github.com/creationix/nvm
