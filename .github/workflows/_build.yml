@@ -17,8 +17,8 @@ jobs:
       - name: Verify Bundler Version
         run: if [[ $(cat Gemfile.lock | sed -n '/BUNDLED WITH/{n;p;}' | sed '/^$/d;s/[[:blank:]]//g') != "2.2.3" ]]; then echo "Error - Gemfile.lock should be bundled with bundler 2.2.3"; exit 64; fi
 
-      - name: Set Ruby version
-        uses: ruby/setup-ruby@v1 # Sets ruby version via `.ruby-version`
+      - name: Set up node and ruby
+        uses: asdf-vm/actions/setup@v3 # Sets ruby and node version via `.tool-versions`
 
   Lint:
     name: Lint Project
@@ -37,12 +37,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node_modules-
 
-      - name: nvm install
-        run: nvm install
-
       - name: NPM ci
         if: steps.cache_node_modules.outputs.cache-hit != 'true'
-        run: nvm use && npm ci
+        run: npm ci
 
       - name: Run NPM build
         run: npm run build

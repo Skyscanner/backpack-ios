@@ -33,8 +33,8 @@ jobs:
       - name: Print tag
         run: echo ${{ steps.extract_git_tag.outputs.GIT_TAG }}
 
-      - name: Set Ruby version
-        uses: ruby/setup-ruby@v1 # Sets ruby version via `.ruby-version`
+      - name: Set up node and ruby
+        uses: asdf-vm/actions/setup@v3 # Sets ruby and node version via `.tool-versions`
 
       - name: Cache Bundler install Gems
         uses: actions/cache@v4
