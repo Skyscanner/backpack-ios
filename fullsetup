@@ -1,0 +1,33 @@
+#!/bin/zsh
+
+if [ ! -x "$(command -v brew)" ]; then
+    echo "Brew is required for setting up the local development machine."
+    echo "Please install it from https://brew.sh"
+    
+    return 1
+fi
+
+if [ ! -x "$(command -v asdf)" ]; then
+    echo "asdf is not installed. Installing..."
+    brew install asdf
+    echo ". /opt/homebrew/opt/asdf/libexec/asdf.sh" >> ~/.zshrc
+
+    source ~/.zshrc
+fi
+
+# Install ruby from .tool-versions
+asdf plugin add ruby
+asdf plugin update ruby
+
+asdf plugin add nodejs
+asdf plugin update nodejs
+
+asdf install
+
+# Install basic dependencies
+bundle install
+npm install
+
+# navigate to Example app
+cd Example
+bundle exec pod install

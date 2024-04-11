@@ -22,7 +22,6 @@ public struct BPKImageGalleryPreview<Content: View>: View {
     private let images: [Content]
     @Binding private var currentIndex: Int
     private let onImageClicked: ((Int) -> Void)?
-    private let pageIndicatorBottomPadding = CGFloat(64)
     
     public init(
         images: [Content],
@@ -38,19 +37,47 @@ public struct BPKImageGalleryPreview<Content: View>: View {
         ZStack(alignment: .bottomTrailing) {
             InternalCarouselWrapper(
                 images: images,
-                pageIndicatorBottomPadding: pageIndicatorBottomPadding,
+                pageIndicatorVisibility: .hidden,
                 currentIndex: $currentIndex
             )
+            .accessibilityHidden(true)
             .if(onImageClicked != nil) { view in
                 view.onTapGesture {
                     onImageClicked!(currentIndex)
                 }
             }
+            BPKPageIndicator(currentIndex: $currentIndex, totalIndicators: .constant(images.count))
+                .padding(.bottom, 49)
+                .accessibilityAdjustableAction({ direction in
+                    switch direction {
+                    case .increment: accessibilityPageIncrement()
+                    case .decrement: accessibilityPageDecrement()
+                    @unknown default:
+                        break
+                    }
+                })
             BPKBadge("\(currentIndex + 1)/\(images.count)")
                 .padding(.trailing, 12)
-                .padding(.bottom, pageIndicatorBottomPadding - BPKSpacing.sm.value)
+                .padding(.bottom, 44)
+                .accessibilityHidden(true)
         }
         
+    }
+    
+    private func accessibilityPageIncrement() {
+        if currentIndex == images.count - 1 {
+            currentIndex = 0
+        } else {
+            currentIndex += 1
+        }
+    }
+    
+    private func accessibilityPageDecrement() {
+        if currentIndex == 0 {
+            currentIndex = images.count - 1
+        } else {
+            currentIndex -= 1
+        }
     }
 }
 
@@ -70,7 +97,7 @@ struct BPKImageGalleryPreview_Previews: PreviewProvider {
                     currentIndex: .constant(0)
                 )
                 .frame(height: 350)
-                .ignoresSafeArea(edges: .top)
+                
                 VStack(alignment: .leading) {
                     BPKText("Holiday Inn Express London Heathrow T4", style: .heading3)
                         .lineLimit(nil)
@@ -80,10 +107,8 @@ struct BPKImageGalleryPreview_Previews: PreviewProvider {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(.white)
                 .clipShape(RoundedRectangle(cornerRadius: .lg))
-                .offset(y: -48)
                 Spacer()
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 }

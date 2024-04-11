@@ -24,19 +24,25 @@ struct NavBarExampleView: View {
     @State var defaultNavBar = false
     @State var transparent = false
     @State var surfaceContrast = false
+    @State var forcesCompactNavbars = false
     
     var body: some View {
         VStack {
+            BPKSwitch(isOn: $forcesCompactNavbars, text: "Forces compact title")
             BPKButton("Default") {
                 defaultNavBar.toggle()
             }
+            .stretchable()
             BPKButton("Transparent") {
                 transparent.toggle()
             }
+            .stretchable()
             BPKButton("Surface Contrast") {
                 surfaceContrast.toggle()
             }
+            .stretchable()
         }
+        .padding(.horizontal, .lg)
         .sheet(isPresented: $defaultNavBar, content: {
             BPKNavigationView(
                 title: "Default",
@@ -47,11 +53,12 @@ struct NavBarExampleView: View {
                     .init(type: .icon(.accessibility, "accessibility"), action: {}),
                     .init(type: .icon(.alertAdd, "Add"), action: {})
                 ],
-                style: .default
+                style: .default(forcesCompactNavbars ? .inline : .large)
             ) {
                 sheetContent
             }
         })
+        
         .sheet(isPresented: $transparent, content: {
             BPKNavigationView(
                 title: "Transparent",
@@ -62,7 +69,7 @@ struct NavBarExampleView: View {
                     .init(type: .icon(.accessibility, "accessibility"), action: {}),
                     .init(type: .icon(.alertAdd, "Add"), action: {})
                 ],
-                style: .transparent
+                style: .transparent(forcesCompactNavbars ? .inline : .large)
             ) {
                 sheetContent
             }

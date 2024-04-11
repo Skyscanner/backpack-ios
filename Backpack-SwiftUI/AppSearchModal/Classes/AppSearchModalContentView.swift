@@ -20,8 +20,14 @@ import SwiftUI
 
 struct AppSearchModalContentView: View {
     let state: BPKAppSearchModalContent
+    let onScroll: (_ offset: CGPoint) -> Void
     var body: some View {
-        ScrollView(showsIndicators: false) {
+        
+        ObservableScrollView { point in
+            if point != .zero {
+                onScroll(point)
+            }
+        } content: {
             VStack(spacing: .base) {
                 if let shortcuts = state.shortcuts, !shortcuts.isEmpty {
                     makeShortcuts(shortcuts)
@@ -68,33 +74,43 @@ struct AppSearchModalContentView: View {
         let item: BPKAppSearchModalContent.Item
         
         var body: some View {
-            HStack(spacing: .base) {
-                BPKIconView(item.icon, size: .large)
-                VStack(alignment: .leading) {
-                    BPKText(item.title, style: .bodyDefault)
-                        .lineLimit(nil)
-                        .multilineTextAlignment(.leading)
-                    if let subtitle = item.subtitle {
-                        BPKText(subtitle, style: .footnote)
-                            .lineLimit(subtitleLineLimit())
+            Button(action: item.onItemSelected) {
+                HStack(spacing: .base) {
+                    BPKIconView(item.icon, size: .large)
+                    VStack(alignment: .leading) {
+                        BPKText(item.title, style: .bodyDefault)
+                            .lineLimit(nil)
                             .multilineTextAlignment(.leading)
+                        if let subtitle = item.subtitle {
+                            BPKText(subtitle, style: .footnote)
+                                .lineLimit(subtitleLineLimit())
+                                .multilineTextAlignment(.leading)
+                        }
+                    }
+                    .padding(.vertical, .base)
+                    Spacer()
+                    if let tertiary = item.tertiaryLabel {
+                        BPKText(tertiary, style: .footnote)
+                            .foregroundColor(.textSecondaryColor)
                     }
                 }
-                .padding(.vertical, .base)
-                Spacer()
-                if let tertiary = item.tertiaryLabel {
-                    BPKText(tertiary, style: .footnote)
-                        .foregroundColor(.textSecondaryColor)
-                }
+                .contentShape(Rectangle())
             }
-            .contentShape(Rectangle())
-            .onTapGesture(perform: item.onItemSelected)
-            .accessibilityElement(children: .combine)
+            .buttonStyle(ItemCellButtonStyle())
         }
         
         private func subtitleLineLimit() -> Int? {
             let isDefaultSizeOrSmaller = sizeCategory <= .large
             return isDefaultSizeOrSmaller ? 2 : nil
+        }
+    }
+    
+    // Basic button style to remove any styling for on press etc.
+    // In the future we might want to consider using .plain
+    // Or any other tap indication
+    struct ItemCellButtonStyle: ButtonStyle {
+        func makeBody(configuration: Configuration) -> some View {
+            configuration.label
         }
     }
 }
@@ -104,7 +120,7 @@ struct AppSearchModalContentView_Previews: PreviewProvider {
         AppSearchModalContentView(state: .init(
             sections: (0..<3).map(buildSection),
             shortcuts: (0..<4).map(buildShortcut)
-        ))
+        ), onScroll: { _ in })
     }
     
     static func buildSection(with index: Int) -> BPKAppSearchModalContent.Section {

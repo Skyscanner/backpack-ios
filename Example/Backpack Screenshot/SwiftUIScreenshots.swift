@@ -71,6 +71,10 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             app.tables.staticTexts["Hero"].tap()
             saveScreenshot(component: "text", scenario: "hero", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
+            
+            app.tables.staticTexts["Hero"].tap()
+            saveScreenshot(component: "text", scenario: "hero", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
         }
         
         await navigate(title: "Buttons") {
@@ -423,8 +427,10 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "navbar", scenario: "transparent", userInterfaceStyle: userInterfaceStyle)
             app.buttons["Back"].tap()
             
-            app.tables.staticTexts["Hero"].tap()
-            saveScreenshot(component: "text", scenario: "hero", userInterfaceStyle: userInterfaceStyle)
+            _ = app.buttons["Surface Contrast"].waitForExistence(timeout: 1)
+            app.buttons["Surface Contrast"].tap()
+            saveScreenshot(component: "navbar", scenario: "surfaceContrast", userInterfaceStyle: userInterfaceStyle)
+            app.buttons["Close"].tap()
             tapBackButton()
         }
         
@@ -531,6 +537,11 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         await navigate(title: "Text fields") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "text-field", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
+        
+        await navigate(title: "Search Input Summary") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "search-input-summary", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
 
         await navigate(title: "Bottom sheet") {
@@ -758,6 +769,20 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         
         await navigate(title: "Image Gallery Preview") {
             saveScreenshot(component: "image-gallery-preview", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
+        
+        await navigate(title: "Image Gallery Slideshow") {
+            saveScreenshot(component: "image-gallery-slideshow", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            app.buttons["Close"].tap()
+        }
+        
+        await navigate(title: "Image Gallery Grid") {
+            app.buttons["Show Chip Categories"].tap()
+            saveScreenshot(component: "image-gallery-grid", scenario: "chips", userInterfaceStyle: userInterfaceStyle)
+            app.buttons["Close Gallery"].tap()
+            app.buttons["Show Image Categories"].tap()
+            saveScreenshot(component: "image-gallery-grid", scenario: "images", userInterfaceStyle: userInterfaceStyle)
+            app.buttons["Close Gallery"].tap()
         }
         
         await navigate(title: "App Search Modal") {

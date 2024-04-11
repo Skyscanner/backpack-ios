@@ -22,23 +22,30 @@ import SwiftUI
 struct Outline: ViewModifier {
     let color: BPKColor
     let cornerRadius: BPKCornerRadius
+    let lineWidth: CGFloat
+    
+    init(color: BPKColor, cornerRadius: BPKCornerRadius, lineWidth: CGFloat = 1.0) {
+        self.color = color
+        self.cornerRadius = cornerRadius
+        self.lineWidth = lineWidth
+    }
     
     func body(content: Content) -> some View {
         return content
             .overlay(
                 RoundedRectangle(cornerRadius: cornerRadius)
-                    .stroke(Color(color))
+                    .stroke(Color(color), lineWidth: lineWidth)
             )
     }
 }
 
 extension View {
     @ViewBuilder
-    func outline(_ color: BPKColor?, cornerRadius: BPKCornerRadius) -> some View {
+    func outline(_ color: BPKColor?, cornerRadius: BPKCornerRadius, lineWidth: CGFloat = 1.0) -> some View {
         if let color = color {
             ModifiedContent(
                 content: self,
-                modifier: Outline(color: color, cornerRadius: cornerRadius)
+                modifier: Outline(color: color, cornerRadius: cornerRadius, lineWidth: lineWidth)
             )
         } else {
             self

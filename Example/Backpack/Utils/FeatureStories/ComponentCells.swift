@@ -59,9 +59,12 @@ struct ComponentCellsProvider {
             horizontalNavigation(),
             icon(),
             imageGalleryPreview(),
+            imageGalleryGridView(),
+            imageGallerySlideshow(),
             insetBanner(),
             label(),
             navBar(),
+            navigationTabsGroup(),
             nudger(),
             overlayViews(),
             mapView(),
@@ -71,6 +74,7 @@ struct ComponentCellsProvider {
             progressBar(),
             ratings(),
             ratingBar(),
+            searchInputSummary(),
             sectionHeader(),
             select(),
             snackbar(),
@@ -296,6 +300,17 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Map Markers", tabs: $0) }
         )
     }
+    private func navigationTabsGroup() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Navigation Tabs Group",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(NavigationTabGroupExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Navigation Tabs Group", tabs: $0) }
+        )
+    }
     private func panels() -> CellDataSource {
         ComponentCellDataSource(
             title: "Panels",
@@ -347,7 +362,17 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Rating Bar", tabs: $0) }
         )
     }
-    
+    private func searchInputSummary() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Search Input Summary",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(SearchInputSummaryExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Search Input Summary", tabs: $0) }
+        )
+    }
     private func select() -> CellDataSource {
         ComponentCellDataSource(
             title: "Select",
@@ -530,6 +555,28 @@ extension ComponentCellsProvider {
                 }))
             ],
             showChildren: { showComponent(title: "Image Gallery Preview", tabs: $0) }
+        )
+    }
+    private func imageGallerySlideshow() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Image Gallery Slideshow",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(ImageGallerySlideshowExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Image Gallery Slideshow", tabs: $0) }
+        )
+    }
+    private func imageGalleryGridView() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Image Gallery Grid",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(ImageGalleryGridExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Image Gallery Grid", tabs: $0) }
         )
     }
     private func price() -> CellDataSource {

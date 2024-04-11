@@ -19,9 +19,12 @@
 import SwiftUI
 
 public enum BPKNavigationBarStyle {
-    case `default`
-    case transparent
+    case `default`(TitleDisplayMode)
+    case transparent(TitleDisplayMode)
     case surfaceContrast
+    
+    public static let `default` = BPKNavigationBarStyle.default(.large)
+    public static let transparent = BPKNavigationBarStyle.transparent(.large)
     
     func foregroundColor(expanded: Bool) -> BPKColor {
         switch self {
@@ -55,8 +58,12 @@ public enum BPKNavigationBarStyle {
     
     var verticalOffset: CGFloat {
         switch self {
-        case .transparent: return 0
-        default: return navigationBarHeight
+        case .default(let titleDisplayMode):
+            return titleDisplayMode == .large ? navigationBarHeight : collapsedHeight
+        case .transparent(let titleDisplayMode):
+            return titleDisplayMode == .large ? 0 : collapsedHeight
+        case .surfaceContrast:
+            return navigationBarHeight
         }
     }
     
@@ -66,7 +73,8 @@ public enum BPKNavigationBarStyle {
     
     var safeAreasToIgnore: Edge.Set {
         switch self {
-        case .transparent: return .top
+        case .transparent(let titleDisplayMode):
+            return titleDisplayMode == .large ? .top : []
         default: return []
         }
     }
@@ -89,9 +97,10 @@ public enum BPKNavigationBarStyle {
     
     var supportsLargeTitle: Bool {
         switch self {
-        case .default: return true
-        case .transparent: return true
-        case .surfaceContrast: return false
+        case .default(let titleDisplayMode), .transparent(let titleDisplayMode):
+            return titleDisplayMode == .large
+        case .surfaceContrast:
+            return false
         }
     }
 }
