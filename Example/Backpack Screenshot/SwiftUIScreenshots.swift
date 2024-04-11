@@ -538,6 +538,11 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "text-field", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
+        
+        await navigate(title: "Search Input Summary") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "search-input-summary", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
 
         await navigate(title: "Bottom sheet") {
             switchTab(title: "SwiftUI")
@@ -769,6 +774,15 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         await navigate(title: "Image Gallery Slideshow") {
             saveScreenshot(component: "image-gallery-slideshow", scenario: "default", userInterfaceStyle: userInterfaceStyle)
             app.buttons["Close"].tap()
+        }
+        
+        await navigate(title: "Image Gallery Grid") {
+            app.buttons["Show Chip Categories"].tap()
+            saveScreenshot(component: "image-gallery-grid", scenario: "chips", userInterfaceStyle: userInterfaceStyle)
+            app.buttons["Close Gallery"].tap()
+            app.buttons["Show Image Categories"].tap()
+            saveScreenshot(component: "image-gallery-grid", scenario: "images", userInterfaceStyle: userInterfaceStyle)
+            app.buttons["Close Gallery"].tap()
         }
         
         await navigate(title: "App Search Modal") {

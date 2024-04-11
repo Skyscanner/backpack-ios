@@ -46,7 +46,11 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
         var body: some View {
             GeometryReader { proxy in
                 VStack(spacing: .xl) {
-                    header
+                    ImageGalleryHeader(
+                        closeAccessibilityLabel: closeAccessibilityLabel,
+                        onCloseTapped: onCloseTapped
+                    )
+                    .padding([.leading, .top], .base)
                     
                     ZStack(alignment: .bottom) {
                         InternalCarouselWrapper(
@@ -70,19 +74,6 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
                 }
             }
             .background(Color(.canvasContrastColor))
-        }
-        
-        private var header: some View {
-            HStack {
-                Button(action: onCloseTapped, label: {
-                    BPKIconView(.close, size: .large)
-                        .foregroundColor(.textPrimaryColor)
-                        .padding(.sm)
-                })
-                .accessibilityLabel(closeAccessibilityLabel)
-                .padding([.leading, .top], .base)
-                Spacer()
-            }
         }
         
         private var footer: some View {

@@ -26,12 +26,12 @@ extension BPKAppSearchModal {
         /// Adds a clear button to the text field. The action is called when the button is tapped.
         case clear(accessibilityLabel: String, action: () -> Void)
         
-        var inputState: BPKTextField.State {
+        var inputState: BPKSearchInputSummary.State {
             switch self {
             case .default:
-                return BPKTextField.State.default
+                return BPKSearchInputSummary.State.default
             case .clear(let accessibilityLabel, let action):
-                return BPKTextField.State.clear(accessibilityLabel: accessibilityLabel, action: action)
+                return BPKSearchInputSummary.State.clear(accessibilityLabel: accessibilityLabel, action: action)
             }
         }
     }

@@ -33,13 +33,15 @@ struct AppSearchModalExampleView: View {
         }
         .sheet(isPresented: $showingSheet) {
             ZStack {
-                Color(BPKColor.surfaceDefaultColor).edgesIgnoringSafeArea(.all)
+                Color(BPKColor.canvasContrastColor).edgesIgnoringSafeArea(.all)
+                
                 BPKAppSearchModal(
                     title: "Search Modal",
                     inputText: $inputText,
                     inputHint: "Search",
                     results: results(),
                     closeAccessibilityLabel: "Close",
+                    inputPrefix: .text("From"),
                     onClose: {
                         print("Tapped close button")
                         showingSheet.toggle()

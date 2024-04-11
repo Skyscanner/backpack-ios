@@ -91,7 +91,7 @@ public struct BPKNavigationView<Content: View>: View {
                 )
                     .offset(y: (offset < 0 ? offset : 0) + style.collapsedHeight)
             }
-            Color(style.backgroundColor(expanded: expanded))
+            Color(style.backgroundColor(expanded: isExpanded))
                 .frame(height: proxy.safeAreaInsets.top)
                 .offset(y: -proxy.safeAreaInsets.top)
             
@@ -100,7 +100,7 @@ public struct BPKNavigationView<Content: View>: View {
                 style: style,
                 leadingItems: leadingItems,
                 trailingItems: trailingItems,
-                expanded: expanded
+                expanded: isExpanded
             )
         }
         .frame(maxHeight: .infinity, alignment: .top)
@@ -113,6 +113,10 @@ public struct BPKNavigationView<Content: View>: View {
                 expanded = newOffset.y > -style.expandedNavigationBarHeight
             }
         }
+    }
+
+    private var isExpanded: Bool {
+        style.supportsLargeTitle && expanded
     }
 }
 
