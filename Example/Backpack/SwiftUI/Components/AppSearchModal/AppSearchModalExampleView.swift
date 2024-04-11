@@ -33,7 +33,7 @@ struct AppSearchModalExampleView: View {
         }
         .sheet(isPresented: $showingSheet) {
             ZStack {
-                Color(BPKColor.canvasContrastColor).edgesIgnoringSafeArea(.all)
+                Color(BPKColor.surfaceDefaultColor).edgesIgnoringSafeArea(.all)
                 
                 BPKAppSearchModal(
                     title: "Search Modal",
