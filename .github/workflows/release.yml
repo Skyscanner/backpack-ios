@@ -27,7 +27,7 @@ jobs:
         ref: main
 
     - name: Set up node and ruby
-      uses: asdf-vm/actions/setup@v3 # Sets ruby and node version via `.tool-versions`
+      uses: asdf-vm/actions/install@v3 # Sets ruby and node version via `.tool-versions`
 
     - name: Bundle Install
       run: bundle install --jobs 4 --retry 3
@@ -53,7 +53,7 @@ jobs:
         ref: main
     
     - name: Set up node and ruby
-      uses: asdf-vm/actions/setup@v3 # Sets ruby and node version via `.tool-versions`
+      uses: asdf-vm/actions/install@v3 # Sets ruby and node version via `.tool-versions`
 
     - name: Bundle Install
       run: bundle install --jobs 4 --retry 3
@@ -79,7 +79,7 @@ jobs:
         ref: main
 
     - name: Set up node and ruby
-      uses: asdf-vm/actions/setup@v3 # Sets ruby and node version via `.tool-versions`
+      uses: asdf-vm/actions/install@v3 # Sets ruby and node version via `.tool-versions`
 
     - name: Bundle Install
       run: bundle install --jobs 4 --retry 3
@@ -105,7 +105,7 @@ jobs:
         ref: main
 
     - name: Set up node and ruby
-      uses: asdf-vm/actions/setup@v3 # Sets ruby and node version via `.tool-versions``
+      uses: asdf-vm/actions/install@v3 # Sets ruby and node version via `.tool-versions``
 
     - name: Bundle Install
       run: bundle install --jobs 4 --retry 3

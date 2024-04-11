@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up node and ruby
-        uses: asdf-vm/actions/setup@v3 # Sets ruby and node version via `.tool-versions`
+        uses: asdf-vm/actions/install@v3 # Sets ruby and node version via `.tool-versions`
 
       - name: Cache Bundler install Gems
         uses: actions/cache@v4

@@ -18,7 +18,7 @@ jobs:
         run: if [[ $(cat Gemfile.lock | sed -n '/BUNDLED WITH/{n;p;}' | sed '/^$/d;s/[[:blank:]]//g') != "2.2.3" ]]; then echo "Error - Gemfile.lock should be bundled with bundler 2.2.3"; exit 64; fi
 
       - name: Set up node and ruby
-        uses: asdf-vm/actions/setup@v3 # Sets ruby and node version via `.tool-versions`
+        uses: asdf-vm/actions/install@v3 # Sets ruby and node version via `.tool-versions`
 
   Lint:
     name: Lint Project
