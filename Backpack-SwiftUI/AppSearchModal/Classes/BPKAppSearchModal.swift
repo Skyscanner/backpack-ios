@@ -64,6 +64,7 @@ public struct BPKAppSearchModal: View {
                     .padding(.top, .md)
             case .error(let error):
                 AppSearchModalErrorView(state: error)
+                    .padding(.horizontal, .md)
             }
         }
         .padding(.horizontal, .base)

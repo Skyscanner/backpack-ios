@@ -26,7 +26,7 @@ struct AppSearchModalExampleView: View {
     
     var body: some View {
         ZStack {
-            Color(BPKColor.canvasContrastColor).edgesIgnoringSafeArea(.all)
+            Color(BPKColor.canvasContrastColor)
             
             BPKAppSearchModal(
                 title: "Search Modal",
@@ -45,6 +45,7 @@ struct AppSearchModalExampleView: View {
             .onChange(of: inputText, perform: { _ in
                 self.viewModel.loadContentFrom(inputText)
             })
+            .padding()
         }
     }
     
