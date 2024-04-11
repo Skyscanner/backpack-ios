@@ -80,13 +80,18 @@ public struct BPKHorizontalNavigation: View {
             .padding(.vertical, size.verticalPadding)
             
             GeometryReader { proxy in
+                let width = tabsWidth(for: proxy)
                 Color(.coreAccentColor)
-                    .frame(width: proxy.size.width / CGFloat(tabs.count))
-                    .offset(x: proxy.size.width / CGFloat(tabs.count) * CGFloat(selectedTab))
+                    .frame(width: width)
+                    .offset(x: width * CGFloat(selectedTab))
             }
             .frame(height: 2)
         }
         .background(.surfaceDefaultColor)
+    }
+
+    private func tabsWidth(for proxy: GeometryProxy) -> CGFloat {
+        proxy.size.width / CGFloat(tabs.count)
     }
     
     struct TabCellView: View {
