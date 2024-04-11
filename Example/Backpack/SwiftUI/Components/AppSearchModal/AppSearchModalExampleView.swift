@@ -23,37 +23,28 @@ struct AppSearchModalExampleView: View {
     
     @ObservedObject var viewModel: AppSearchModalExampleViewModel
     @State private var inputText = ""
-    @State private var showingSheet = true
     
     var body: some View {
-        HStack {
-            Button("Show Sheet") {
-                showingSheet.toggle()
-            }
-        }
-        .sheet(isPresented: $showingSheet) {
-            ZStack {
-                Color(BPKColor.surfaceDefaultColor).edgesIgnoringSafeArea(.all)
-                
-                BPKAppSearchModal(
-                    title: "Search Modal",
-                    inputText: $inputText,
-                    inputHint: "Search",
-                    results: results(),
-                    closeAccessibilityLabel: "Close",
-                    inputPrefix: .text("From"),
-                    onClose: {
-                        print("Tapped close button")
-                        showingSheet.toggle()
-                    }
-                )
-                .inputState(.clear(accessibilityLabel: "clear text", action: {
-                    inputText = ""
-                }))
-                .onChange(of: inputText, perform: { _ in
-                    self.viewModel.loadContentFrom(inputText)
-                })
-            }
+        ZStack {
+            Color(BPKColor.canvasContrastColor).edgesIgnoringSafeArea(.all)
+            
+            BPKAppSearchModal(
+                title: "Search Modal",
+                inputText: $inputText,
+                inputHint: "Search",
+                results: results(),
+                closeAccessibilityLabel: "Close",
+                inputPrefix: .text("From"),
+                onClose: {
+                    print("Tapped close button")
+                }
+            )
+            .inputState(.clear(accessibilityLabel: "clear text", action: {
+                inputText = ""
+            }))
+            .onChange(of: inputText, perform: { _ in
+                self.viewModel.loadContentFrom(inputText)
+            })
         }
     }
     
