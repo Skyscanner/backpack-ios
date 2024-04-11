@@ -47,7 +47,6 @@ public struct BPKAppSearchModal: View {
         self.onClose = onClose
     }
     
-    // swiftlint:disable closure_body_length
     public var body: some View {
         VStack(spacing: .base) {
             makeNavigationBar(title: title, closeAccessibilityLabel: closeAccessibilityLabel, onClose: onClose)
