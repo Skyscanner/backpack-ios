@@ -34,6 +34,7 @@
 		5390DB612909940700F0F790 /* ColorTokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5390DB602909940700F0F790 /* ColorTokensViewController.swift */; };
 		539897BF2BA852E500C8D939 /* ImageGalleryPreviewExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539897BE2BA852E500C8D939 /* ImageGalleryPreviewExampleView.swift */; };
 		539897C82BA8A8FF00C8D939 /* ImageGallerySlideshowExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539897C72BA8A8FF00C8D939 /* ImageGallerySlideshowExampleView.swift */; };
+		539E51892BC84770001FB36F /* HorizontalNavigationExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539E51882BC844CA001FB36F /* HorizontalNavigationExampleView.swift */; };
 		53B5822127DA3CF4004101A3 /* CalendarUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B5822027DA3CF3004101A3 /* CalendarUITest.swift */; };
 		53B6DB5927FB6F930042B7C0 /* ComponentCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B6DB5727FB6F930042B7C0 /* ComponentCells.swift */; };
 		53B6DB5A27FB6F930042B7C0 /* TokenCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B6DB5827FB6F930042B7C0 /* TokenCells.swift */; };
@@ -261,6 +262,7 @@
 		5390DB602909940700F0F790 /* ColorTokensViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTokensViewController.swift; sourceTree = "<group>"; };
 		539897BE2BA852E500C8D939 /* ImageGalleryPreviewExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryPreviewExampleView.swift; sourceTree = "<group>"; };
 		539897C72BA8A8FF00C8D939 /* ImageGallerySlideshowExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGallerySlideshowExampleView.swift; sourceTree = "<group>"; };
+		539E51882BC844CA001FB36F /* HorizontalNavigationExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalNavigationExampleView.swift; sourceTree = "<group>"; };
 		53B5822027DA3CF3004101A3 /* CalendarUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarUITest.swift; sourceTree = "<group>"; };
 		53B6DB5727FB6F930042B7C0 /* ComponentCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentCells.swift; sourceTree = "<group>"; };
 		53B6DB5827FB6F930042B7C0 /* TokenCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenCells.swift; sourceTree = "<group>"; };
@@ -525,20 +527,20 @@
 			path = Select;
 			sourceTree = "<group>";
 		};
-		256F76132BB479610047AD1C /* SearchInputSummary */ = {
-			isa = PBXGroup;
-			children = (
-				256F76142BB479850047AD1C /* SearchInputSummaryExampleView.swift */,
-			);
-			path = SearchInputSummary;
-			sourceTree = "<group>";
-		};
 		1AF3D2C82BB18924001623A4 /* ImageGalleryGridView */ = {
 			isa = PBXGroup;
 			children = (
 				1AF3D2C92BB18924001623A4 /* ImageGalleryGridExampleView.swift */,
 			);
 			path = ImageGalleryGridView;
+			sourceTree = "<group>";
+		};
+		256F76132BB479610047AD1C /* SearchInputSummary */ = {
+			isa = PBXGroup;
+			children = (
+				256F76142BB479850047AD1C /* SearchInputSummaryExampleView.swift */,
+			);
+			path = SearchInputSummary;
 			sourceTree = "<group>";
 		};
 		2A8000102AB3DC3B009FDB10 /* TextArea */ = {
@@ -607,6 +609,14 @@
 				539897C72BA8A8FF00C8D939 /* ImageGallerySlideshowExampleView.swift */,
 			);
 			path = ImageGallerySlideshow;
+			sourceTree = "<group>";
+		};
+		539E51872BC844C1001FB36F /* HorizontalNavigation */ = {
+			isa = PBXGroup;
+			children = (
+				539E51882BC844CA001FB36F /* HorizontalNavigationExampleView.swift */,
+			);
+			path = HorizontalNavigation;
 			sourceTree = "<group>";
 		};
 		53B6DB5627FB6F930042B7C0 /* FeatureStories */ = {
@@ -985,6 +995,7 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				539E51872BC844C1001FB36F /* HorizontalNavigation */,
 				1AF3D2C82BB18924001623A4 /* ImageGalleryGridView */,
 				E2B9D19D2BB3579F0053C14C /* NavigationTabGroup */,
 				E2B9D19C2BB357950053C14C /* NavigationTab */,
@@ -1871,6 +1882,7 @@
 				5318E3342AF506FA00C66D18 /* CalendarExampleSingleView.swift in Sources */,
 				3A7D2D47214AB9F400ECBD5B /* BPKButtonsViewController.m in Sources */,
 				D2644E3022C0EB4E008B50C0 /* TappableLinkLabelsSelectorViewController.swift in Sources */,
+				539E51892BC84770001FB36F /* HorizontalNavigationExampleView.swift in Sources */,
 				53C6622529EA0DAB00BF1A62 /* PanelExampleView.swift in Sources */,
 				D24A31D5219B147A009B75E4 /* UICollectionViewMasonryFlowLayout.swift in Sources */,
 				53C6621C29EA0DAB00BF1A62 /* PageIndicatorExampleView.swift in Sources */,
