@@ -41,10 +41,16 @@ public extension BPKHorizontalNavigation {
     struct Tab {
         let title: String
         let icon: BPKIcon?
-        
-        public init(title: String, icon: BPKIcon? = nil) {
+        let onClick: () -> Void
+
+        public init(
+            title: String,
+            icon: BPKIcon? = nil,
+            onClick: @escaping () -> Void
+        ) {
             self.title = title
             self.icon = icon
+            self.onClick = onClick
         }
     }
 }
@@ -52,25 +58,26 @@ public extension BPKHorizontalNavigation {
 public struct BPKHorizontalNavigation: View {
     let tabs: [Tab]
     let size: Size
-    @Binding var selectedTab: Int
+    let selectedTab: Int
     
-    public init(tabs: [Tab], size: Size = .default, selectedTab: Binding<Int>) {
+    public init(
+        tabs: [Tab],
+        size: Size = .default,
+        selectedTab: Int
+    ) {
         self.tabs = tabs
         self.size = size
-        _selectedTab = selectedTab
+        self.selectedTab = selectedTab
     }
     
     public var body: some View {
         ZStack(alignment: .bottom) {
             HStack(spacing: BPKSpacing.none) {
                 ForEach(0..<tabs.count, id: \.self) { index in
-                    Button {
-                        withAnimation {
-                            selectedTab = index
-                        }
-                    } label: {
+                    let tab = tabs[index]
+                    Button(action: tab.onClick) {
                         TabCellView(
-                            tab: tabs[index],
+                            tab: tab,
                             isSelected: selectedTab == index,
                             size: size
                         )
@@ -83,6 +90,7 @@ public struct BPKHorizontalNavigation: View {
                 let width = tabsWidth(for: proxy)
                 Color(.coreAccentColor)
                     .frame(width: width)
+                    .animation(.default, value: selectedTab)
                     .offset(x: width * CGFloat(selectedTab))
             }
             .frame(height: 2)
@@ -119,32 +127,34 @@ public struct BPKHorizontalNavigation: View {
     
 struct BPKHorizontalNavigation_Previews: PreviewProvider {
     static var previews: some View {
+        let titleTabs: [BPKHorizontalNavigation.Tab] = [
+            .init(title: "One", onClick: {}),
+            .init(title: "Two", onClick: {}),
+            .init(title: "Three", onClick: {})
+        ]
+        let titleAndIconTabs: [BPKHorizontalNavigation.Tab] = [
+            .init(title: "One", icon: .flight, onClick: {}),
+            .init(title: "Two", icon: .flight, onClick: {}),
+            .init(title: "Three", icon: .flight, onClick: {})
+        ]
         VStack {
             BPKHorizontalNavigation(
-                tabs: [.init(title: "One"), .init(title: "Two"), .init(title: "Three")],
-                selectedTab: .constant(1)
+                tabs: titleTabs,
+                selectedTab: 1
             )
             BPKHorizontalNavigation(
-                tabs: [
-                    .init(title: "One", icon: .flight),
-                    .init(title: "Two", icon: .flight),
-                    .init(title: "Three", icon: .flight)
-                ],
-                selectedTab: .constant(1)
+                tabs: titleAndIconTabs,
+                selectedTab: 1
             )
             BPKHorizontalNavigation(
-                tabs: [.init(title: "One"), .init(title: "Two"), .init(title: "Three")],
+                tabs: titleTabs,
                 size: .small,
-                selectedTab: .constant(2)
+                selectedTab: 2
             )
             BPKHorizontalNavigation(
-                tabs: [
-                    .init(title: "One", icon: .flight),
-                    .init(title: "Two", icon: .flight),
-                    .init(title: "Three", icon: .flight)
-                ],
+                tabs: titleAndIconTabs,
                 size: .small,
-                selectedTab: .constant(0)
+                selectedTab: 0
             )
         }
     }
