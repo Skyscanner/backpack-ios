@@ -16,11 +16,11 @@
 @State var selectedTab: Int = 0
 BPKHorizontalNavigation(
     tabs: [
-        .init(title: "Flights", icon: .flight),
-        .init(title: "Hotels", icon: .hotel),
-        .init(title: "Cars", icon: .car)
+        .init(title: "Flights", icon: .flight, onClick: { selectedTab = 0 }),
+        .init(title: "Hotels", icon: .hotel, onClick: { selectedTab = 1 }),
+        .init(title: "Cars", icon: .car, onClick: { selectedTab = 2 }),
     ],
-    selectedTab: $selectedTab
+    selectedTab: selectedTab
 )
 ```
 
@@ -32,12 +32,12 @@ BPkHorizontalNavigation supports both a `default` and a `small` size.
 @State var selectedTab: Int = 0
 BPKHorizontalNavigation(
     tabs: [
-        .init(title: "Flights", icon: .flight),
-        .init(title: "Hotels", icon: .hotel),
-        .init(title: "Cars", icon: .car)
+        .init(title: "Flights", icon: .flight, onClick: { selectedTab = 0 }),
+        .init(title: "Hotels", icon: .hotel, onClick: { selectedTab = 1 }),
+        .init(title: "Cars", icon: .car, onClick: { selectedTab = 2 }),
     ],
     size: .small,
-    selectedTab: $selectedTab
+    selectedTab: selectedTab
 )
 ```
 
@@ -47,10 +47,10 @@ BPKHorizontalNavigation(
 @State var selectedTab: Int = 0
 BPKHorizontalNavigation(
     tabs: [
-        .init(title: "Flights"),
-        .init(title: "Hotels"),
-        .init(title: "Cars")
+        .init(title: "Flights", onClick: { selectedTab = 0 }),
+        .init(title: "Hotels", onClick: { selectedTab = 1 }),
+        .init(title: "Cars", onClick: { selectedTab = 2 }),
     ],
-    selectedTab: $selectedTab
+    selectedTab: selectedTab
 )
 ```

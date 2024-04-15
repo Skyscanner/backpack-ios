@@ -25,7 +25,7 @@ class BPKHorizontalNavigationTests: XCTestCase {
         assertSnapshot(
             BPKHorizontalNavigation(
                 tabs: [.init(title: "One"), .init(title: "Two"), .init(title: "Three")],
-                selectedTab: .constant(1)
+                selectedTab: 1
             )
             .frame(width: 400)
         )
@@ -36,7 +36,7 @@ class BPKHorizontalNavigationTests: XCTestCase {
             BPKHorizontalNavigation(
                 tabs: [.init(title: "One"), .init(title: "Two"), .init(title: "Three")],
                 size: .small,
-                selectedTab: .constant(1)
+                selectedTab: 1
             )
             .frame(width: 400)
         )
@@ -50,7 +50,7 @@ class BPKHorizontalNavigationTests: XCTestCase {
                     .init(title: "Two", icon: .flight),
                     .init(title: "Three", icon: .flight)
                 ],
-                selectedTab: .constant(1)
+                selectedTab: 1
             )
             .frame(width: 400)
         )
@@ -65,7 +65,7 @@ class BPKHorizontalNavigationTests: XCTestCase {
                     .init(title: "Three", icon: .flight)
                 ],
                 size: .small,
-                selectedTab: .constant(1)
+                selectedTab: 1
             )
             .frame(width: 400)
         )
@@ -79,8 +79,14 @@ class BPKHorizontalNavigationTests: XCTestCase {
                     .init(title: "Two", icon: .flight),
                     .init(title: "Three", icon: .flight)
                 ],
-                selectedTab: .constant(1)
+                selectedTab: 1
             )
         )
+    }
+}
+
+extension BPKHorizontalNavigation.Tab {
+    init(title: String, icon: BPKIcon? = nil) {
+        self.init(title: title, icon: icon, onClick: {})
     }
 }

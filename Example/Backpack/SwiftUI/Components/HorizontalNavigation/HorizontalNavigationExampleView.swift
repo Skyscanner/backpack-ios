@@ -25,31 +25,32 @@ struct HorizontalNavigationExampleView: View {
     
     var body: some View {
         VStack {
+            components(size: .default)
+            components(size: .small)
+        }
+    }
+    
+    private func components(
+        size: Backpack_SwiftUI.BPKHorizontalNavigation.Size
+    ) -> some View {
+        VStack {
             BPKHorizontalNavigation(
-                tabs: [.init(title: "One"), .init(title: "Two"), .init(title: "Three")],
-                selectedTab: $selectedTab
+                tabs: [
+                    .init(title: "One", onClick: { selectedTab = 0 }),
+                    .init(title: "Two", onClick: { selectedTab = 1 }),
+                    .init(title: "Three", onClick: { selectedTab = 2 })
+                ],
+                size: size,
+                selectedTab: selectedTab
             )
             BPKHorizontalNavigation(
                 tabs: [
-                    .init(title: "One", icon: .flight),
-                    .init(title: "Two", icon: .flight),
-                    .init(title: "Three", icon: .flight)
+                    .init(title: "One", icon: .flight, onClick: { selectedTab = 0 }),
+                    .init(title: "Two", icon: .flight, onClick: { selectedTab = 1 }),
+                    .init(title: "Three", icon: .flight, onClick: { selectedTab = 2 })
                 ],
-                selectedTab: $selectedTab
-            )
-            BPKHorizontalNavigation(
-                tabs: [.init(title: "One"), .init(title: "Two"), .init(title: "Three")],
-                size: .small,
-                selectedTab: $selectedTab
-            )
-            BPKHorizontalNavigation(
-                tabs: [
-                    .init(title: "One", icon: .flight),
-                    .init(title: "Two", icon: .flight),
-                    .init(title: "Three", icon: .flight)
-                ],
-                size: .small,
-                selectedTab: $selectedTab
+                size: size,
+                selectedTab: selectedTab
             )
         }
     }
