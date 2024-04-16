@@ -798,5 +798,10 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "app-search-modal", scenario: "error", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
+        
+        await navigate(title: "Horizontal navigation") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "horizontal-navigation", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
     }
 }

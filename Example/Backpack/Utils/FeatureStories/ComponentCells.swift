@@ -220,10 +220,15 @@ extension ComponentCellsProvider {
         )
     }
     private func horizontalNavigation() -> CellDataSource {
-        GroupCellDataSource(
+        ComponentCellDataSource(
             title: "Horizontal navigation",
-            groups: HorizontalNavigationGroupsProvider(showPresentable: show(presentable:)).groups(),
-            showChildren: { showChildren(title: "Horizontal navigation", children: $0) }
+            tabs: [
+                .uikit(groups: HorizontalNavigationGroupsProvider(showPresentable: show(presentable:)).groups()),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(HorizontalNavigationExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Horizontal navigation", tabs: $0) }
         )
     }
     private func icon() -> CellDataSource {
