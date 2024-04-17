@@ -103,6 +103,7 @@ BPKIconName const BPKIconNameDeviceWide = @"device-wide";
 BPKIconName const BPKIconNameDirect = @"direct";
 BPKIconName const BPKIconNameDocumentCsv = @"document-csv";
 BPKIconName const BPKIconNameDocumentPdf = @"document-pdf";
+BPKIconName const BPKIconNameDot = @"dot";
 BPKIconName const BPKIconNameDownload = @"download";
 BPKIconName const BPKIconNameDuration = @"duration";
 BPKIconName const BPKIconNameEcoLeaf = @"eco-leaf";

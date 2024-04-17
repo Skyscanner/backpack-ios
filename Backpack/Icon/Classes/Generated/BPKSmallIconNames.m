@@ -103,6 +103,7 @@ BPKSmallIconName const BPKSmallIconNameDeviceWide = @"device-wide";
 BPKSmallIconName const BPKSmallIconNameDirect = @"direct";
 BPKSmallIconName const BPKSmallIconNameDocumentCsv = @"document-csv";
 BPKSmallIconName const BPKSmallIconNameDocumentPdf = @"document-pdf";
+BPKSmallIconName const BPKSmallIconNameDot = @"dot";
 BPKSmallIconName const BPKSmallIconNameDownload = @"download";
 BPKSmallIconName const BPKSmallIconNameDuration = @"duration";
 BPKSmallIconName const BPKSmallIconNameEcoLeaf = @"eco-leaf";
