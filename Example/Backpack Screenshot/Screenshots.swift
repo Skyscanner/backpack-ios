@@ -43,6 +43,7 @@ class Screenshots: BackpackSnapshotTestCase {
     @MainActor
     func testLightModeScreenshots() async {
        app = createApp()
+        app.launchArguments.append("FORCE_LIGHT_MODE")
        setupSnapshot(app)
        app.launch()
        await captureAllScreenshots()
