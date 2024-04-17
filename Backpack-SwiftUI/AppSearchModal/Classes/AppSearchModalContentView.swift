@@ -47,6 +47,7 @@ struct AppSearchModalContentView: View {
             selectedIndex: .constant(nil),
             onItemClick: { shortcuts[$0].onShortcutSelected() }
         )
+        .insetPadding(.horizontal, .base)
     }
     
     private func makeSections(_ section: BPKAppSearchModalContent.Section) -> some View {
@@ -61,6 +62,7 @@ struct AppSearchModalContentView: View {
                             .buttonStyle(.link)
                     }
                 }
+                .padding(.horizontal, .base)
             }
             ForEach(section.items, id: \.self) { item in
                 ItemCell(item: item)
@@ -94,6 +96,7 @@ struct AppSearchModalContentView: View {
                             .foregroundColor(.textSecondaryColor)
                     }
                 }
+                .padding(.horizontal, .base)
                 .contentShape(Rectangle())
             }
             .buttonStyle(ItemCellButtonStyle())
