@@ -85,6 +85,7 @@ public struct BPKAppSearchModal: View {
         ZStack {
             HStack {
                 BPKCloseButton(accessibilityLabel: closeAccessibilityLabel, action: onClose)
+                    .accessibilityLabel(closeAccessibilityLabel.lowercased())
                 Spacer()
             }
             BPKText(title, style: .heading5)
