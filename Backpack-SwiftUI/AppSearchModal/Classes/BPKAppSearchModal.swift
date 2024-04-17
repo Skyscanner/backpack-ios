@@ -85,13 +85,11 @@ public struct BPKAppSearchModal: View {
         ZStack {
             HStack {
                 BPKCloseButton(accessibilityLabel: closeAccessibilityLabel, action: onClose)
-                    .accessibilityLabel(closeAccessibilityLabel.lowercased())
                 Spacer()
             }
             BPKText(title, style: .heading5)
                 .padding(.vertical, .sm)
                 .accessibilityAddTraits(.isHeader)
-                .accessibilityLabel(title)
         }
         .padding(.vertical, .md)
     }
