@@ -47,6 +47,7 @@ struct AppSearchModalContentView: View {
             selectedIndex: .constant(nil),
             onItemClick: { shortcuts[$0].onShortcutSelected() }
         )
+        .insetPadding(.horizontal, .base)
     }
     
     private func makeSections(_ section: BPKAppSearchModalContent.Section) -> some View {
@@ -61,6 +62,7 @@ struct AppSearchModalContentView: View {
                             .buttonStyle(.link)
                     }
                 }
+                .padding(.horizontal, .base)
             }
             ForEach(section.items, id: \.self) { item in
                 ItemCell(item: item)
@@ -94,6 +96,7 @@ struct AppSearchModalContentView: View {
                             .foregroundColor(.textSecondaryColor)
                     }
                 }
+                .padding(.horizontal, .base)
                 .contentShape(Rectangle())
             }
             .buttonStyle(ItemCellButtonStyle())
@@ -105,12 +108,13 @@ struct AppSearchModalContentView: View {
         }
     }
     
-    // Basic button style to remove any styling for on press etc.
-    // In the future we might want to consider using .plain
-    // Or any other tap indication
+    // We use a color with 0 alpha to avoid a 'flicker' issue
+    // when tapping ends. Using BPKColor.clear will show a darker
+    // gray color when tap ends
     struct ItemCellButtonStyle: ButtonStyle {
         func makeBody(configuration: Configuration) -> some View {
             configuration.label
+                .background(configuration.isPressed ? .canvasContrastColor : .canvasContrastColor.withAlphaComponent(0))
         }
     }
 }
