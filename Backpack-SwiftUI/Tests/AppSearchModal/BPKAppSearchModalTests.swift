@@ -98,14 +98,19 @@ class BPKAppSearchModalTests: XCTestCase {
     private func givenContentState() -> BPKAppSearchModalContent {
         return .init(
             sections: [
-                .init(heading: nil, items: [buildItem(with: 0)]),
-                .init(heading: .init(title: "Section 2", action: nil), items: (0..<3).map(buildItem)),
+                .init(heading: nil, items: [buildItem(with: 0)], accessibilityPrefix: "Section 1"),
+                .init(
+                    heading: .init(title: "Section 2", action: nil),
+                    items: (0..<3).map(buildItem),
+                    accessibilityPrefix: "Section 2"
+                ),
                 .init(
                     heading: .init(
                         title: "Section 3",
                         action: .init(text: "Action", onActionSelected: { })
                     ),
-                    items: (0..<3).map(buildItem)
+                    items: (0..<3).map(buildItem),
+                    accessibilityPrefix: "Section 3"
                 )
             ],
             shortcuts: (0..<4).map(buildShortcut)

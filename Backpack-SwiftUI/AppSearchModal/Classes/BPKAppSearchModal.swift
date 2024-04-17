@@ -161,7 +161,7 @@ struct BPKAppSearchModal_Previews: PreviewProvider {
     static func buildSection(with index: Int) -> BPKAppSearchModalContent.Section {
         return .init(
             heading: .init(title: "Section \(index + 1)", action: .init(text: "Action", onActionSelected: { })),
-            items: (0..<1).map(buildItem)
+            items: (0..<1).map(buildItem), accessibilityPrefix: "section-\(index)"
         )
     }
     
