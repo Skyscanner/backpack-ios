@@ -28,10 +28,7 @@ struct BottomSheetHeader: View {
         if let closeAction {
             Spacer()
                 .overlay(
-                    BPKIconView(.close, size: .large)
-                        .onTapGesture(perform: closeAction.action)
-                        .accessibilityLabel(closeAction.title)
-                        .accessibilityAddTraits(.isButton),
+                    BPKCloseButton(accessibilityLabel: closeAction.title, action: closeAction.action),
                     alignment: .leading
                 )
         } else {

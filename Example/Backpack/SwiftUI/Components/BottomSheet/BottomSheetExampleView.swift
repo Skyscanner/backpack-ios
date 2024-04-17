@@ -52,7 +52,7 @@ struct BottomSheetExampleView: View {
         .bpkBottomSheet(
             isPresented: $closableBottomSheetShown,
             contentMode: .medium,
-            closeButtonAccessibilityLabel: "Close button",
+            closeButtonAccessibilityLabel: "Close",
             title: "Title",
             action: BPKBottomSheetAction(
                 title: "Action",
