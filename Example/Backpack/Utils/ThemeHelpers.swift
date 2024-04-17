@@ -47,6 +47,10 @@ class ThemeHelpers: NSObject {
     class func forceDarkMode() -> Bool {
         return ProcessInfo.processInfo.arguments.contains("FORCE_DARK_MODE")
     }
+    
+    class func forceLightMode() -> Bool {
+        return ProcessInfo.processInfo.arguments.contains("FORCE_LIGHT_MODE")
+    }
 
     class func themeDefinition(forTheme: ThemeName) -> BPKThemeDefinition {
         switch forTheme {

@@ -34,9 +34,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.rootViewController = rootViewController(isUITestRun: isUITestRun)
         if ThemeHelpers.forceDarkMode() {
             window.overrideUserInterfaceStyle = .dark
-        } else {
+        }
+        
+        if ThemeHelpers.forceLightMode() {
             window.overrideUserInterfaceStyle = .light
         }
+        
         self.window = window
         window.makeKeyAndVisible()
     }
