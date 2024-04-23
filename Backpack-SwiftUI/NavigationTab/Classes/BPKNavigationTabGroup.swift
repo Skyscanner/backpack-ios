@@ -59,6 +59,7 @@ public struct BPKNavigationTabGroup: View {
         ) {
             onItemClick(index)
         }
+        .accessibilityIdentifier(tab.accessibilityIdentifier ?? "")
     }
 }
 
@@ -66,19 +67,22 @@ public extension BPKNavigationTabGroup {
     struct Item: Hashable {
         let text: String
         let icon: BPKIcon?
+        let accessibilityIdentifier: String?
         
-        public init(text: String, icon: BPKIcon? = nil) {
+        public init(text: String, icon: BPKIcon? = nil, accessibilityIdentifier: String? = nil) {
             self.text = text
             self.icon = icon
+            self.accessibilityIdentifier = accessibilityIdentifier
         }
         
         public static func == (lhs: Item, rhs: Item) -> Bool {
-            lhs.text == rhs.text && lhs.icon?.name == rhs.icon?.name
+            lhs.text == rhs.text && lhs.icon?.name == rhs.icon?.name && lhs.accessibilityIdentifier == rhs.accessibilityIdentifier
         }
         
         public func hash(into hasher: inout Hasher) {
             hasher.combine(text)
             hasher.combine(icon?.name)
+            hasher.combine(accessibilityIdentifier)
         }
     }
 }
