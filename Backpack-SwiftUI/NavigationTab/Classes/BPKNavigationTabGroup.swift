@@ -75,11 +75,11 @@ public extension BPKNavigationTabGroup {
             self.accessibilityIdentifier = accessibilityIdentifier
         }
         
-        // swiftlint:disable line_length
         public static func == (lhs: Item, rhs: Item) -> Bool {
-            lhs.text == rhs.text && lhs.icon?.name == rhs.icon?.name && lhs.accessibilityIdentifier == rhs.accessibilityIdentifier
+            lhs.text == rhs.text &&
+            lhs.icon?.name == rhs.icon?.name &&
+            lhs.accessibilityIdentifier == rhs.accessibilityIdentifier
         }
-        // swiftlint:enable line_length
         
         public func hash(into hasher: inout Hasher) {
             hasher.combine(text)
