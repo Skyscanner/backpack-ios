@@ -59,7 +59,7 @@ public struct BPKNavigationTabGroup: View {
         ) {
             onItemClick(index)
         }
-        .accessibilityIdentifier(tab.accessibilityIdentifier ?? "")
+        .accessibilityIdentifier(tab.accessibilityIdentifier)
     }
 }
 
@@ -67,12 +67,12 @@ public extension BPKNavigationTabGroup {
     struct Item: Hashable {
         let text: String
         let icon: BPKIcon?
-        let accessibilityIdentifier: String?
+        let accessibilityIdentifier: String
         
         public init(text: String, icon: BPKIcon? = nil, accessibilityIdentifier: String? = nil) {
             self.text = text
             self.icon = icon
-            self.accessibilityIdentifier = accessibilityIdentifier
+            self.accessibilityIdentifier = accessibilityIdentifier ?? "navigationTab" + text
         }
         
         // swiftlint:disable line_length
