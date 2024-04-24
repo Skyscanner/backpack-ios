@@ -103,6 +103,7 @@ BPKLargeIconName const BPKLargeIconNameDeviceWide = @"device-wide";
 BPKLargeIconName const BPKLargeIconNameDirect = @"direct";
 BPKLargeIconName const BPKLargeIconNameDocumentCsv = @"document-csv";
 BPKLargeIconName const BPKLargeIconNameDocumentPdf = @"document-pdf";
+BPKLargeIconName const BPKLargeIconNameDot = @"dot";
 BPKLargeIconName const BPKLargeIconNameDownload = @"download";
 BPKLargeIconName const BPKLargeIconNameDuration = @"duration";
 BPKLargeIconName const BPKLargeIconNameEcoLeaf = @"eco-leaf";

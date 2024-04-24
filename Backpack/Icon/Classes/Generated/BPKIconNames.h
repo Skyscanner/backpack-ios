@@ -193,6 +193,8 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameDocumentCsv;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameDocumentPdf;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameDot;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameDownload;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameDuration;
