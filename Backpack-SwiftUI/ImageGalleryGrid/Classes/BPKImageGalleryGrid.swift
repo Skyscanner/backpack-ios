@@ -47,55 +47,63 @@ struct ImageGalleryGrid<Categories: View, ImageView: View>: ViewModifier {
 public extension View {
     // swiftlint:disable function_parameter_count
     @ViewBuilder
-    func bpkImageGalleryGrid<Content>(
+    func bpkImageGalleryGrid<CategoryView, Content>(
         isPresented: Binding<Bool>,
         selectedCategory: Binding<Int>,
-        style: BPKImageGalleryImageGridStyle<Content>,
+        categories: [BPKImageGalleryImageCategory<CategoryView, Content>],
         closeAccessibilityLabel: String,
         onImageTapped: @escaping (_ category: Int, _ image: Int) -> Void,
         onCloseTapped: @escaping () -> Void
     ) -> some View {
-        switch style {
-        case .chip(let categories):
-            modifier(
-                ImageGalleryGrid(
-                    categories: {
-                        ImageGalleryChipCategoryView(
-                            categories: categories.map(\.title),
-                            selectedCategoryIndex: selectedCategory
-                        )
-                    },
-                    images: categories[selectedCategory.wrappedValue].images,
-                    closeAccessibilityLabel: closeAccessibilityLabel,
-                    onImageTapped: onImageTapped,
-                    onCloseTapped: onCloseTapped,
-                    selectedCategoryIndex: selectedCategory,
-                    isPresented: isPresented
-                )
+        modifier(
+            ImageGalleryGrid(
+                categories: {
+                    ImageGalleryImageCategoryView(
+                        categories: categories.map {
+                            .init(
+                                title: $0.title,
+                                categoryImage: $0.categoryImage
+                            )
+                        },
+                        selectedCategory: selectedCategory
+                    )
+                },
+                images: categories[selectedCategory.wrappedValue].images,
+                closeAccessibilityLabel: closeAccessibilityLabel,
+                onImageTapped: onImageTapped,
+                onCloseTapped: onCloseTapped,
+                selectedCategoryIndex: selectedCategory,
+                isPresented: isPresented
             )
-        case .image(let categories):
-            modifier(
-                ImageGalleryGrid(
-                    categories: {
-                        ImageGalleryImageCategoryView(
-                            categories: categories.map {
-                                .init(
-                                    title: $0.title,
-                                    categoryImage: $0.categoryImage
-                                )
-                            },
-                            selectedCategory: selectedCategory
-                        )
-                    },
-                    images: categories[selectedCategory.wrappedValue].images,
-                    closeAccessibilityLabel: closeAccessibilityLabel,
-                    onImageTapped: onImageTapped,
-                    onCloseTapped: onCloseTapped,
-                    selectedCategoryIndex: selectedCategory,
-                    isPresented: isPresented
-                )
+        )
+    }
+    
+    // swiftlint:disable function_parameter_count
+    @ViewBuilder
+    func bpkImageGalleryGrid<Content>(
+        isPresented: Binding<Bool>,
+        selectedCategory: Binding<Int>,
+        categories: [BPKImageGalleryChipCategory<Content>],
+        closeAccessibilityLabel: String,
+        onImageTapped: @escaping (_ category: Int, _ image: Int) -> Void,
+        onCloseTapped: @escaping () -> Void
+    ) -> some View {
+        modifier(
+            ImageGalleryGrid(
+                categories: {
+                    ImageGalleryChipCategoryView(
+                        categories: categories.map(\.title),
+                        selectedCategoryIndex: selectedCategory
+                    )
+                },
+                images: categories[selectedCategory.wrappedValue].images,
+                closeAccessibilityLabel: closeAccessibilityLabel,
+                onImageTapped: onImageTapped,
+                onCloseTapped: onCloseTapped,
+                selectedCategoryIndex: selectedCategory,
+                isPresented: isPresented
             )
-        }
+        )
     }
 }
 
@@ -106,7 +114,7 @@ struct BPKImageGalleryImageGrid_Previews: PreviewProvider {
             .bpkImageGalleryGrid(
                 isPresented: .constant(true),
                 selectedCategory: .constant(0),
-                style: .image(testImageCategories),
+                categories: testImageCategories,
                 closeAccessibilityLabel: "Close",
                 onImageTapped: { _, _ in },
                 onCloseTapped: {}
@@ -117,7 +125,7 @@ struct BPKImageGalleryImageGrid_Previews: PreviewProvider {
             .bpkImageGalleryGrid(
                 isPresented: .constant(true),
                 selectedCategory: .constant(0),
-                style: .chip(testChipCategories),
+                categories: testChipCategories,
                 closeAccessibilityLabel: "Close",
                 onImageTapped: { _, _ in },
                 onCloseTapped: {}
@@ -125,36 +133,36 @@ struct BPKImageGalleryImageGrid_Previews: PreviewProvider {
             .previewDisplayName("Chips")
     }
     
-    private static var testChipCategories: [BPKImageGalleryImageGridStyle<Color>.ChipCategory] {
+    private static var testChipCategories: [BPKImageGalleryChipCategory<Color>] {
         [
-            BPKImageGalleryImageGridStyle.ChipCategory(
+            .init(
                 title: "Green but with very long title indeed (40)",
                 images: testImages(40, color: .green)
             ),
-            BPKImageGalleryImageGridStyle.ChipCategory(
+            .init(
                 title: "Blue photos (10)",
                 images: testImages(5, color: .blue)
             ),
-            BPKImageGalleryImageGridStyle.ChipCategory(
+            .init(
                 title: "Red photos (10)",
                 images: testImages(6, color: .red)
             )
         ]
     }
     
-    private static var testImageCategories: [BPKImageGalleryImageGridStyle<Color>.ImageCategory] {
+    private static var testImageCategories: [BPKImageGalleryImageCategory<Color, Color>] {
         [
-            BPKImageGalleryImageGridStyle.ImageCategory(
+            .init(
                 title: "Green but with very long title indeed (40)",
                 images: testImages(40, color: .green),
                 categoryImage: { Color.green }
             ),
-            BPKImageGalleryImageGridStyle.ImageCategory(
+            .init(
                 title: "Blue photos (10)",
                 images: testImages(5, color: .blue),
                 categoryImage: { Color.blue }
             ),
-            BPKImageGalleryImageGridStyle.ImageCategory(
+            .init(
                 title: "Red photos (10)",
                 images: testImages(6, color: .red),
                 categoryImage: { Color.red }
