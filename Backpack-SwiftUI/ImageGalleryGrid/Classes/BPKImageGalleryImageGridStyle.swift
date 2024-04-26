@@ -18,36 +18,31 @@
 
 import SwiftUI
 
-public enum BPKImageGalleryImageGridStyle<ImageView: View> {
-    case chip(_ categories: [ChipCategory])
-    case image(_ categories: [ImageCategory])
+public struct BPKImageGalleryChipCategory<ImageView: View> {
+    public let title: String
+    public let images: [BPKImageGalleryImage<ImageView>]
     
-    public struct ChipCategory {
-        public let title: String
-        public let images: [BPKImageGalleryImage<ImageView>]
-        
-        public init(
-            title: String,
-            images: [BPKImageGalleryImage<ImageView>]
-        ) {
-            self.title = title
-            self.images = images
-        }
+    public init(
+        title: String,
+        images: [BPKImageGalleryImage<ImageView>]
+    ) {
+        self.title = title
+        self.images = images
     }
-    
-    public struct ImageCategory {
-        public let title: String
-        public let images: [BPKImageGalleryImage<ImageView>]
-        public let categoryImage: () -> ImageView
+}
 
-        public init(
-            title: String,
-            images: [BPKImageGalleryImage<ImageView>],
-            categoryImage: @escaping () -> ImageView
-        ) {
-            self.title = title
-            self.images = images
-            self.categoryImage = categoryImage
-        }
+public struct BPKImageGalleryImageCategory<CategoryImageView: View, ImageView: View> {
+    public let title: String
+    public let images: [BPKImageGalleryImage<ImageView>]
+    public let categoryImage: () -> CategoryImageView
+
+    public init(
+        title: String,
+        images: [BPKImageGalleryImage<ImageView>],
+        categoryImage: @escaping () -> CategoryImageView
+    ) {
+        self.title = title
+        self.images = images
+        self.categoryImage = categoryImage
     }
 }
