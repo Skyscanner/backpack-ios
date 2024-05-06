@@ -98,4 +98,21 @@ class BPKDividedCardTests: XCTestCase {
             }
         )
     }
+
+    func testDividedCardWithLeadingAlignment() {
+        assertSnapshot(
+            ZStack {
+                Color(BPKColor.canvasContrastColor)
+                    .ignoresSafeArea()
+                BPKDividedCard(alignment: .leading) {
+                    primaryContent(title: "Padded")
+                        .padding()
+                } secondaryContent: {
+                    secondaryContent()
+                        .padding()
+                }
+                .padding()
+            }
+        )
+    }
 }
