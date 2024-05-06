@@ -65,6 +65,7 @@ public struct BPKSearchInputSummary: View {
                 .focused($focused)
                 .accessibilityAddTraits(.isSearchField)
                 .accessibilityLabel(placeholder)
+                .accessibilityIdentifier("search_field")
             accessory
         }
         .frame(maxWidth: .infinity, minHeight: 48.0)

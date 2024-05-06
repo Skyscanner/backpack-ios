@@ -55,7 +55,6 @@ public struct BPKAppSearchModal: View {
                 BPKSearchInputSummary(placeholder: inputHint, inputPrefix: inputPrefix, $inputText)
                     .inputState(textFieldState.inputState)
                     .focused($inputFieldIsFocussed)
-                    .accessibilityIdentifier("search_field")
                     .autocorrectionDisabled(true)
                     .padding(.horizontal, .base)
             }
