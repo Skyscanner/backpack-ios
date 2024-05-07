@@ -20,6 +20,7 @@ import SwiftUI
 
 public struct BPKNudger: View {
 
+    @Environment(\.sizeCategory) var sizeCategory
     @State private var canIncrement = true
     @State private var canDecrement = true
     @Binding private var value: Int
@@ -88,6 +89,7 @@ public struct BPKNudger: View {
         self._value = value
     }
 
+    // swiftlint:disable closure_body_length
     public var body: some View {
         HStack(spacing: .md) {
             if let title {
@@ -98,10 +100,12 @@ public struct BPKNudger: View {
                     }
                     VStack(alignment: .leading) {
                         BPKText(title, style: .heading5)
+                            .lineLimit(titleLineLimit())
                         
                         if let subtitle {
                             BPKText(subtitle)
                                 .foregroundColor(.textSecondaryColor)
+                                .lineLimit(titleLineLimit())
                         }
                     }
                 }
@@ -138,6 +142,11 @@ public struct BPKNudger: View {
         .if(!BPKFont.enableDynamicType, transform: {
             $0.sizeCategory(.large)
         })
+    }
+    
+    private func titleLineLimit() -> Int? {
+        let isDefaultSizeOrSmaller = sizeCategory <= .large
+        return isDefaultSizeOrSmaller ? 1 : nil
     }
     
     private func updateButtonStates() {
