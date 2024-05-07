@@ -82,7 +82,8 @@ class BPKNudgerTests: XCTestCase {
                 min: 0,
                 max: 10,
                 step: 1
-            )
+            ),
+            customHeight: 600
         )
     }
 }

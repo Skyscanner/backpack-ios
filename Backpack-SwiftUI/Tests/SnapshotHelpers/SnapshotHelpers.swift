@@ -59,6 +59,7 @@ func assertSnapshot<V: View>(
 func assertA11ySnapshot<V: View>(
     _ view: V,
     sizes: [ContentSizeCategory] = [.large, .extraExtraExtraLarge, .accessibilityExtraLarge],
+    customHeight: CGFloat? = nil,
     file: StaticString = #file,
     testName: String = #function,
     line: UInt = #line
@@ -77,7 +78,8 @@ func assertA11ySnapshot<V: View>(
     }
     .padding()
     .frame(maxWidth: 375)
-    
+    .frame(height: customHeight)
+
     assertSnapshot(
         a11yView,
         modes: [.custom(named: "a11y", trait: UITraitCollection(userInterfaceStyle: .light))],
