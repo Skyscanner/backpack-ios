@@ -105,7 +105,7 @@ class BPKDividedCardTests: XCTestCase {
                 Color(BPKColor.canvasContrastColor)
                     .ignoresSafeArea()
                 BPKDividedCard(alignment: .leading) {
-                    primaryContent(title: "Padded")
+                    primaryContent(title: "Aligned Leading")
                         .padding()
                 } secondaryContent: {
                     secondaryContent()
