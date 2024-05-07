@@ -106,10 +106,8 @@ class BPKDividedCardTests: XCTestCase {
                     .ignoresSafeArea()
                 BPKDividedCard(alignment: .leading) {
                     primaryContent(title: "Aligned Leading")
-                        .padding()
                 } secondaryContent: {
                     secondaryContent()
-                        .padding()
                 }
                 .padding()
             }
