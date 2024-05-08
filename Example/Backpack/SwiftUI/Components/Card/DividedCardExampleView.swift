@@ -68,6 +68,14 @@ struct DividedCardExampleView: View {
                         secondaryContent()
                             .padding()
                     }
+
+                    BPKDividedCard(alignment: .leading) {
+                        primaryContent(title: "Aligned Left")
+                            .padding()
+                    } secondaryContent: {
+                        secondaryContent()
+                            .padding()
+                    }
                 }
                 .padding()
             }

@@ -23,12 +23,15 @@ public struct BPKDividedCard<PrimaryContent: View, SecondaryContent: View>: View
     private let primaryContent: PrimaryContent
     private let secondaryContent: SecondaryContent
     private var tapAction: () -> Void = {}
+    private let alignment: HorizontalAlignment
 
     public init(
+        alignment: HorizontalAlignment = .center,
         elevation: BPKCardElevation = .default,
         @ViewBuilder primaryContent: () -> PrimaryContent,
         @ViewBuilder secondaryContent: () -> SecondaryContent
     ) {
+        self.alignment = alignment
         self.elevation = elevation
         self.primaryContent = primaryContent()
         self.secondaryContent = secondaryContent()
@@ -36,7 +39,7 @@ public struct BPKDividedCard<PrimaryContent: View, SecondaryContent: View>: View
 
     public var body: some View {
         BPKCard(padding: .none, elevation: elevation) {
-            VStack(spacing: 0) {
+            VStack(alignment: alignment, spacing: 0) {
                 primaryContent
                 Color(BPKColor.lineColor)
                     .frame(height: 1)
@@ -47,7 +50,7 @@ public struct BPKDividedCard<PrimaryContent: View, SecondaryContent: View>: View
             }
         }
     }
-    
+
     public func onTapGesture(perform: @escaping () -> Void) -> BPKDividedCard {
         var result = self
         result.tapAction = perform
@@ -59,18 +62,18 @@ struct BPKDividedCard_Previews: PreviewProvider {
 
     private static func primaryContent(title: String) -> some View {
         let message =  "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. " +
-            "Aenean commodo ligula eget dolor. Aenean massa."
+        "Aenean commodo ligula eget dolor. Aenean massa."
         return VStack {
             BPKText(title, style: .heading3)
             BPKText(message)
                 .lineLimit(3)
         }
     }
-    
+
     private static func secondaryContent() -> some View {
         BPKText("Lorem ipsum dolor sit amet")
     }
-    
+
     // swiftlint:disable closure_body_length
     static var previews: some View {
         ZStack {
@@ -83,21 +86,29 @@ struct BPKDividedCard_Previews: PreviewProvider {
                     } secondaryContent: {
                         secondaryContent()
                     }
-                    
+
                     BPKDividedCard(elevation: .focus) {
                         primaryContent(title: "Focused")
                     } secondaryContent: {
                         secondaryContent()
                     }
-                    
+
                     BPKDividedCard(elevation: .none) {
                         primaryContent(title: "Not Elevated")
                     } secondaryContent: {
                         secondaryContent()
                     }
-                    
+
                     BPKDividedCard {
                         primaryContent(title: "Padded")
+                            .padding()
+                    } secondaryContent: {
+                        secondaryContent()
+                            .padding()
+                    }
+                    
+                    BPKDividedCard(alignment: .leading) {
+                        primaryContent(title: "Aligned left")
                             .padding()
                     } secondaryContent: {
                         secondaryContent()
