@@ -67,3 +67,6 @@ BPKSearchInputSummary(inputPrefix: .icon, text: $text)
 ```swift
 BPKSearchInputSummary(inputPrefix: .customText("From"), text: $text)
 ```
+
+### UI Testing
+To use the component in UI or smoke tests it's possible to access this element using the accessibility identifier: `search_field`
