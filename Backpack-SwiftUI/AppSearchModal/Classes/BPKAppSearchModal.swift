@@ -74,7 +74,6 @@ public struct BPKAppSearchModal: View {
         .padding(.top, .base)
         .padding(.bottom, BPKSpacing.none)
         .background(.surfaceDefaultColor)
-        .accessibilityAddTraits(.isModal)
     }
     
     func makeNavigationBar(
