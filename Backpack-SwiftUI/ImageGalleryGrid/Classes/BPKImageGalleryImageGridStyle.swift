@@ -18,31 +18,37 @@
 
 import SwiftUI
 
-public struct BPKImageGalleryChipCategory<ImageView: View> {
+public struct BPKImageGalleryChipCategory<GridImageView: View, SlideshowImageView: View> {
     public let title: String
-    public let images: [BPKImageGalleryImage<ImageView>]
+    public let gridImages: [BPKGridGalleryImage<GridImageView>]
+    public let slideshowImages: [BPKSlideshowGalleryImage<SlideshowImageView>]
     
     public init(
         title: String,
-        images: [BPKImageGalleryImage<ImageView>]
+        gridImages: [BPKGridGalleryImage<GridImageView>],
+        slideshowImages: [BPKSlideshowGalleryImage<SlideshowImageView>]
     ) {
         self.title = title
-        self.images = images
+        self.gridImages = gridImages
+        self.slideshowImages = slideshowImages
     }
 }
 
-public struct BPKImageGalleryImageCategory<CategoryImageView: View, ImageView: View> {
+public struct BPKImageGalleryImageCategory<CategoryImageView: View, GridImageView: View, SlideshowImageView: View> {
     public let title: String
-    public let images: [BPKImageGalleryImage<ImageView>]
+    public let gridImages: [BPKGridGalleryImage<GridImageView>]
+    public let slideshowImages: [BPKSlideshowGalleryImage<SlideshowImageView>]
     public let categoryImage: () -> CategoryImageView
 
     public init(
         title: String,
-        images: [BPKImageGalleryImage<ImageView>],
+        gridImages: [BPKGridGalleryImage<GridImageView>],
+        slideshowImages: [BPKSlideshowGalleryImage<SlideshowImageView>],
         categoryImage: @escaping () -> CategoryImageView
     ) {
         self.title = title
-        self.images = images
+        self.gridImages = gridImages
+        self.slideshowImages = slideshowImages
         self.categoryImage = categoryImage
     }
 }

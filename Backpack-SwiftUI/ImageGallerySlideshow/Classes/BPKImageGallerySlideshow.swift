@@ -19,7 +19,7 @@
 import SwiftUI
 
 struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
-    let images: [BPKImageGalleryImage<ImageView>]
+    let images: [BPKSlideshowGalleryImage<ImageView>]
     let closeAccessibilityLabel: String
     let onCloseTapped: () -> Void
     @Binding var currentIndex: Int
@@ -38,7 +38,7 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
     }
     
     struct ContentView: View {
-        let images: [BPKImageGalleryImage<ImageView>]
+        let images: [BPKSlideshowGalleryImage<ImageView>]
         let closeAccessibilityLabel: String
         let onCloseTapped: () -> Void
         @Binding var currentIndex: Int
@@ -138,7 +138,7 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
 public extension View {
     func bpkImageGallerySlideshow<Content>(
         isPresented: Binding<Bool>,
-        images: [BPKImageGalleryImage<Content>],
+        images: [BPKSlideshowGalleryImage<Content>],
         closeAccessibilityLabel: String,
         currentIndex: Binding<Int>,
         onCloseTapped: @escaping () -> Void
@@ -159,17 +159,17 @@ struct BPKImageGallerySlideshow_Previews: PreviewProvider {
     static var previews: some View {
         ImageGallerySlideshow.ContentView(
             images: [
-                BPKImageGalleryImage(title: "Red") {
+                BPKSlideshowGalleryImage(title: "Red") {
                     Color.red
                 },
-                BPKImageGalleryImage(
+                BPKSlideshowGalleryImage(
                     title: "Pumphouse Point",
                     description: "Walk deep into the surrounds of St Clair, world you left behind.",
                     credit: "@PhotographerName"
                 ) {
                     Color.yellow
                 },
-                BPKImageGalleryImage(title: "Green") {
+                BPKSlideshowGalleryImage(title: "Green") {
                     Color.green
                 }
             ],
