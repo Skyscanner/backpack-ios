@@ -18,9 +18,10 @@
 
 import SwiftUI
 
-struct ImageGalleryGrid<Categories: View, ImageView: View>: ViewModifier {
+struct ImageGalleryGrid<Categories: View, GridImageView: View, SlideshowImageView: View>: ViewModifier {
     let categories: () -> Categories
-    let images: [BPKImageGalleryImage<ImageView>]
+    let gridImages: [BPKGridGalleryImage<GridImageView>]
+    let slideshowImages: [BPKSlideshowGalleryImage<SlideshowImageView>]
     let closeAccessibilityLabel: String
     let onImageTapped: (_ category: Int, _ image: Int) -> Void
     let onCloseTapped: () -> Void
@@ -32,7 +33,8 @@ struct ImageGalleryGrid<Categories: View, ImageView: View>: ViewModifier {
             .fullScreenCover(isPresented: $isPresented) {
                 ImageGalleryGridContentView(
                     categories: categories,
-                    images: images,
+                    gridImages: gridImages,
+                    slideshowImages: slideshowImages,
                     closeAccessibilityLabel: closeAccessibilityLabel,
                     imageTapped: { selectedCategory, image in
                         onImageTapped(selectedCategory, image)
@@ -47,10 +49,10 @@ struct ImageGalleryGrid<Categories: View, ImageView: View>: ViewModifier {
 public extension View {
     // swiftlint:disable function_parameter_count
     @ViewBuilder
-    func bpkImageGalleryGrid<CategoryView, Content>(
+    func bpkImageGalleryGrid<CategoryView, GridImage, SlideshowImage>(
         isPresented: Binding<Bool>,
         selectedCategory: Binding<Int>,
-        categories: [BPKImageGalleryImageCategory<CategoryView, Content>],
+        categories: [BPKImageGalleryImageCategory<CategoryView, GridImage, SlideshowImage>],
         closeAccessibilityLabel: String,
         onImageTapped: @escaping (_ category: Int, _ image: Int) -> Void,
         onCloseTapped: @escaping () -> Void
@@ -68,7 +70,8 @@ public extension View {
                         selectedCategory: selectedCategory
                     )
                 },
-                images: categories[selectedCategory.wrappedValue].images,
+                gridImages: categories[selectedCategory.wrappedValue].gridImages,
+                slideshowImages: categories[selectedCategory.wrappedValue].slideshowImages,
                 closeAccessibilityLabel: closeAccessibilityLabel,
                 onImageTapped: onImageTapped,
                 onCloseTapped: onCloseTapped,
@@ -80,10 +83,10 @@ public extension View {
     
     // swiftlint:disable function_parameter_count
     @ViewBuilder
-    func bpkImageGalleryGrid<Content>(
+    func bpkImageGalleryGrid<GridImage, SlideshowImage>(
         isPresented: Binding<Bool>,
         selectedCategory: Binding<Int>,
-        categories: [BPKImageGalleryChipCategory<Content>],
+        categories: [BPKImageGalleryChipCategory<GridImage, SlideshowImage>],
         closeAccessibilityLabel: String,
         onImageTapped: @escaping (_ category: Int, _ image: Int) -> Void,
         onCloseTapped: @escaping () -> Void
@@ -96,7 +99,8 @@ public extension View {
                         selectedCategoryIndex: selectedCategory
                     )
                 },
-                images: categories[selectedCategory.wrappedValue].images,
+                gridImages: categories[selectedCategory.wrappedValue].gridImages,
+                slideshowImages: categories[selectedCategory.wrappedValue].slideshowImages,
                 closeAccessibilityLabel: closeAccessibilityLabel,
                 onImageTapped: onImageTapped,
                 onCloseTapped: onCloseTapped,
@@ -133,48 +137,60 @@ struct BPKImageGalleryImageGrid_Previews: PreviewProvider {
             .previewDisplayName("Chips")
     }
     
-    private static var testChipCategories: [BPKImageGalleryChipCategory<Color>] {
+    private static var testChipCategories: [BPKImageGalleryChipCategory<Color, Color>] {
         [
             .init(
                 title: "Green but with very long title indeed (40)",
-                images: testImages(40, color: .green)
+                gridImages: testGridImages(40, color: .green),
+                slideshowImages: testSlideshowImages(40, color: .green)
             ),
             .init(
                 title: "Blue photos (10)",
-                images: testImages(5, color: .blue)
+                gridImages: testGridImages(5, color: .blue),
+                slideshowImages: testSlideshowImages(5, color: .blue)
             ),
             .init(
                 title: "Red photos (10)",
-                images: testImages(6, color: .red)
+                gridImages: testGridImages(6, color: .red),
+                slideshowImages: testSlideshowImages(6, color: .red)
             )
         ]
     }
     
-    private static var testImageCategories: [BPKImageGalleryImageCategory<Color, Color>] {
+    private static var testImageCategories: [BPKImageGalleryImageCategory<Color, Color, Color>] {
         [
             .init(
                 title: "Green but with very long title indeed (40)",
-                images: testImages(40, color: .green),
+                gridImages: testGridImages(40, color: .green),
+                slideshowImages: testSlideshowImages(40, color: .green),
                 categoryImage: { Color.green }
             ),
             .init(
                 title: "Blue photos (10)",
-                images: testImages(5, color: .blue),
+                gridImages: testGridImages(5, color: .blue),
+                slideshowImages: testSlideshowImages(5, color: .blue),
                 categoryImage: { Color.blue }
             ),
             .init(
                 title: "Red photos (10)",
-                images: testImages(6, color: .red),
+                gridImages: testGridImages(6, color: .red),
+                slideshowImages: testSlideshowImages(6, color: .red),
                 categoryImage: { Color.red }
             )
         ]
     }
     
-    private static func testImages(_ amount: Int, color: Color) -> [BPKImageGalleryImage<Color>] {
+    private static func testSlideshowImages(_ amount: Int, color: Color) -> [BPKSlideshowGalleryImage<Color>] {
         return (0..<amount).map { _ in
-            BPKImageGalleryImage(title: "image \(amount)") {
+            BPKSlideshowGalleryImage(title: "image \(amount)") {
                 color
             }
+        }
+    }
+    
+    private static func testGridImages(_ amount: Int, color: Color) -> [BPKGridGalleryImage<Color>] {
+        return (0..<amount).map { _ in
+            BPKGridGalleryImage { color }
         }
     }
 }

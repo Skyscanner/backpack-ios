@@ -78,13 +78,16 @@ struct ImageGalleryGridExampleView: View {
     private func imageCategories<Category: View, Image: View>(
         imageForIndex: @escaping (Int) -> Image,
         categoryImageForIndex: @escaping (Int) -> Category
-    ) -> [BPKImageGalleryImageCategory<Category, Image>] {
+    ) -> [BPKImageGalleryImageCategory<Category, Image, Image>] {
         (0...3)
             .map { categoryIndex in
                 .init(
                     title: categoryName(categoryIndex),
-                    images: (0...(10 + categoryIndex)).map { index in
-                        BPKImageGalleryImage(
+                    gridImages: (0...(10 + categoryIndex)).map { index in
+                        BPKGridGalleryImage { imageForIndex(index) }
+                    },
+                    slideshowImages: (0...(10 + categoryIndex)).map { index in
+                        BPKSlideshowGalleryImage(
                             title: "image \(index)",
                             description: "Image at Index: \(index)",
                             credit: "@photographer",
@@ -100,12 +103,15 @@ struct ImageGalleryGridExampleView: View {
     
     private func chipCategories<Image: View>(
         imageForIndex: @escaping (Int) -> Image
-    ) -> [BPKImageGalleryChipCategory<Image>] {
+    ) -> [BPKImageGalleryChipCategory<Image, Image>] {
         (0...3).map { categoryIndex in
             .init(
                 title: categoryName(categoryIndex),
-                images: (0...(10 + categoryIndex)).map { index in
-                    BPKImageGalleryImage(
+                gridImages: (0...(10 + categoryIndex)).map { index in
+                    BPKGridGalleryImage { imageForIndex(index) }
+                },
+                slideshowImages: (0...(10 + categoryIndex)).map { index in
+                    BPKSlideshowGalleryImage(
                         title: "image \(index)",
                         description: "Image at Index: \(index)",
                         credit: "@photographer",

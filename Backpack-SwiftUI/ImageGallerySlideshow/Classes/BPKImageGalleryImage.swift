@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public struct BPKImageGalleryImage<Content: View> {
+public struct BPKSlideshowGalleryImage<Content: View> {
     public let title: String
     public let description: String?
     public let credit: String?
@@ -33,6 +33,14 @@ public struct BPKImageGalleryImage<Content: View> {
         self.title = title
         self.description = description
         self.credit = credit
+        self.content = content
+    }
+}
+
+public struct BPKGridGalleryImage<Content: View> {
+    public let content: () -> Content
+
+    public init(@ViewBuilder content: @escaping () -> Content) {
         self.content = content
     }
 }

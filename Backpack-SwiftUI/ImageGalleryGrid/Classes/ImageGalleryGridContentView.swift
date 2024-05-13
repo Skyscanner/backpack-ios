@@ -18,10 +18,11 @@
 
 import SwiftUI
 
-struct ImageGalleryGridContentView<Categories: View, ImageView: View>: View {
+struct ImageGalleryGridContentView<Categories: View, GridImageView: View, SlideshowImageView: View>: View {
     private let itemHeightInGrid: CGFloat = 192
     let categories: () -> Categories
-    let images: [BPKImageGalleryImage<ImageView>]
+    let gridImages: [BPKGridGalleryImage<GridImageView>]
+    let slideshowImages: [BPKSlideshowGalleryImage<SlideshowImageView>]
     let closeAccessibilityLabel: String
     let imageTapped: (_ category: Int, _ image: Int) -> Void
     let onCloseTapped: () -> Void
@@ -36,7 +37,7 @@ struct ImageGalleryGridContentView<Categories: View, ImageView: View>: View {
             VStack(spacing: 12) {
                 categories()
                 TwoRowGrid(
-                    items: images
+                    items: gridImages
                 ) { item, index in
                     item.content()
                         .aspectRatio(contentMode: .fill)
@@ -56,7 +57,7 @@ struct ImageGalleryGridContentView<Categories: View, ImageView: View>: View {
         .background(Color(.canvasContrastColor))
         .bpkImageGallerySlideshow(
             isPresented: $isSlideshowPresented,
-            images: images,
+            images: slideshowImages,
             closeAccessibilityLabel: closeAccessibilityLabel,
             currentIndex: $imageIndexInCategory,
             onCloseTapped: { isSlideshowPresented = false }
@@ -79,7 +80,11 @@ struct ImageGalleryGridContentView_Previews: PreviewProvider {
             categories: {
                 Text("categories")
             },
-            images: [
+            gridImages: [
+                .init(content: { Color.red }),
+                .init(content: { Color.green })
+            ],
+            slideshowImages: [
                 .init(title: "Image", content: {
                     Color.red
                 }),
