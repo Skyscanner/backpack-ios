@@ -37,7 +37,8 @@ struct DialogGroupsProvider {
             presentable("Warning", enrich: { $0.type = .warning }),
             presentable("Destructive", enrich: { $0.type = .destructive }),
             presentable("Flare", enrich: { $0.type = .flare }),
-            presentable("Image", enrich: { $0.type = .image })
+            presentable("Image", enrich: { $0.type = .image }),
+            presentable("Long Title", enrich: { $0.type = .longTitle })
         ]).groups()
     }
 }

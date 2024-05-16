@@ -20,7 +20,7 @@ import UIKit
 import Backpack
 
 enum DialogType {
-    case success, warning, destructive, flare, image
+    case success, warning, destructive, flare, image, longTitle
 }
 
 class DialogViewController: UIViewController {
@@ -109,7 +109,7 @@ extension DialogViewController {
     
     private var icon: BPKDialogIconDefinition? {
         switch type {
-        case .success:
+        case .success, .longTitle:
             let iconTemplate = BPKIcon.makeLargeTemplateIcon(name: .tick)
             return BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.coreAccentColor)
         case .warning:
@@ -127,6 +127,8 @@ extension DialogViewController {
         switch type {
         case .destructive:
             return "Delete"
+        case .longTitle:
+            return "Here is a very long title to see how it fits"
         default:
             return "Title in here"
         }

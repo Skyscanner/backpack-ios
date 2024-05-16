@@ -26,12 +26,14 @@ struct DialogExampleView: View {
     @State var presentingDestructiveDialog = false
     @State var presentingImageDialog = false
     @State var presentingFlareDialog = false
+    @State var presentingLongTitleDialog = false
     
     @State var presentingSuccessDialogView = false
     @State var presentingWarningDialogView = false
     @State var presentingDestructiveDialogView = false
     @State var presentingImageDialogView = false
     @State var presentingFlareDialogView = false
+    @State var presentingLongTitleDialogView = false
     
     var body: some View {
         HStack {
@@ -95,6 +97,18 @@ struct DialogExampleView: View {
             ),
             onTouchOutside: dismissDialogs
         )
+        .bpkSuccessDialogView(
+            presented: $presentingLongTitleDialogView,
+            icon: .tick,
+            title: "Here is a very long title to see how it fits",
+            text: "Desription that goes two lines ideally, but sometimes it can go longer",
+            confirmButton: confirmButton,
+            secondaryActions: BPKDialogSecondaryActions(
+                secondaryButton: secondaryButton,
+                linkButton: linkButton
+            ),
+            onTouchOutside: dismissDialogs
+        )
     }
     
     private var confirmButton: BPKDialogButton {
@@ -115,12 +129,14 @@ struct DialogExampleView: View {
         presentingDestructiveDialog = false
         presentingImageDialog = false
         presentingFlareDialog = false
+        presentingLongTitleDialog = false
         
         presentingSuccessDialogView = false
         presentingWarningDialogView = false
         presentingDestructiveDialogView = false
         presentingImageDialogView = false
         presentingFlareDialogView = false
+        presentingLongTitleDialogView = false
     }
     
     var modalDialogs: some View {
@@ -140,6 +156,9 @@ struct DialogExampleView: View {
             }
             BPKButton("Modal Flare") {
                 presentingFlareDialog.toggle()
+            }
+            BPKButton("Modal Long Title") {
+                presentingLongTitleDialog.toggle()
             }
         }
         .bpkSuccessDialog(
@@ -204,6 +223,19 @@ struct DialogExampleView: View {
             presentingController: rootViewController,
             onTouchOutside: dismissDialogs
         )
+        .bpkSuccessDialog(
+            presented: $presentingLongTitleDialog,
+            icon: .tick,
+            title: "Here is a very long title to see how it fits",
+            text: "Desription that goes two lines ideally, but sometimes it can go longer",
+            confirmButton: confirmButton,
+            secondaryActions: BPKDialogSecondaryActions(
+                secondaryButton: secondaryButton,
+                linkButton: linkButton
+            ),
+            presentingController: rootViewController,
+            onTouchOutside: dismissDialogs
+        )
     }
     
     var viewDialogs: some View {
@@ -223,6 +255,9 @@ struct DialogExampleView: View {
             }
             BPKButton("View Flare") {
                 presentingFlareDialogView.toggle()
+            }
+            BPKButton("View Long Title") {
+                presentingLongTitleDialogView.toggle()
             }
         }
     }
