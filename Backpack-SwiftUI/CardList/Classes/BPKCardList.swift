@@ -83,25 +83,31 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
     }
 
     private func sectionHeader(with sectionHeaderAction: BPKCardListLayout.SectionHeaderAction?) -> some View {
-        if let sectionHeaderAction {
-            return BPKSectionHeader(title: title, description: description) {
-                BPKButton(
-                    icon: sectionHeaderAction.icon,
-                    accessibilityLabel: sectionHeaderAction.accessibilityLabel,
-                    action: sectionHeaderAction.action)
-                .buttonStyle(.primary)
-            }
-            .padding(.base)
-        } else {
-            return BPKSectionHeader(title: title, description: description)
+        Group {
+            if let sectionHeaderAction {
+                return BPKSectionHeader(title: title, description: description) {
+                    BPKButton(
+                        icon: sectionHeaderAction.icon,
+                        accessibilityLabel: sectionHeaderAction.accessibilityLabel,
+                        action: sectionHeaderAction.action)
+                    .buttonStyle(.primary)
+                }
+                // .border(.red)
                 .padding(.base)
+                // .border(.green)
+            } else {
+                return BPKSectionHeader(title: title, description: description)
+                    // .border(.red)
+                    .padding(.base)
+                    // .border(.green)
+            }
         }
     }
 
     private func cardListSkeleton<LayoutContent: View>(
         with sectionHeaderAction: BPKCardListLayout.SectionHeaderAction?,
         @ViewBuilder andContent content: () -> LayoutContent) -> some View {
-            VStack(alignment: .leading, spacing: .base) {
+            VStack(alignment: .leading, spacing: 0) {
                 sectionHeader(with: sectionHeaderAction)
 
                 if elements.count > 0 {
