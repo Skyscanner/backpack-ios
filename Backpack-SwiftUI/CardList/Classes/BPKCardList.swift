@@ -92,14 +92,10 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
                         action: sectionHeaderAction.action)
                     .buttonStyle(.primary)
                 }
-                // .border(.red)
                 .padding(.base)
-                // .border(.green)
             } else {
                 return BPKSectionHeader(title: title, description: description)
-                    // .border(.red)
                     .padding(.base)
-                    // .border(.green)
             }
         }
     }
