@@ -44,6 +44,8 @@ struct DialogTextContent: View {
                     Spacer()
                 }
                 BPKText(title, style: .heading3)
+                    .lineLimit(nil)
+                    .multilineTextAlignment(.center)
                     .accessibilityAddTraits(.isHeader)
                 if contentAlignment == .leading {
                     Spacer()
