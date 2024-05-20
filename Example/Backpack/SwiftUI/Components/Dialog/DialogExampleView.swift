@@ -44,7 +44,7 @@ struct DialogExampleView: View {
             presented: $presentingSuccessDialogView,
             icon: .tick,
             title: "Title in here",
-            text: "Desription that goes two lines ideally, but sometimes it can go longer",
+            text: "Description that goes two lines ideally, but sometimes it can go longer",
             confirmButton: confirmButton,
             secondaryActions: BPKDialogSecondaryActions(
                 secondaryButton: secondaryButton,
@@ -101,7 +101,7 @@ struct DialogExampleView: View {
             presented: $presentingLongTitleDialogView,
             icon: .tick,
             title: "Here is a very long title to see how it fits",
-            text: "Desription that goes two lines ideally, but sometimes it can go longer",
+            text: "Description that goes two lines ideally, but sometimes it can go longer",
             confirmButton: confirmButton,
             secondaryActions: BPKDialogSecondaryActions(
                 secondaryButton: secondaryButton,
@@ -120,7 +120,7 @@ struct DialogExampleView: View {
     }
     
     private var linkButton: BPKDialogButton {
-        BPKDialogButton("Link opitonal", action: dismissDialogs)
+        BPKDialogButton("Link optional", action: dismissDialogs)
     }
     
     private func dismissDialogs() {
@@ -165,7 +165,7 @@ struct DialogExampleView: View {
             presented: $presentingSuccessDialog,
             icon: .tick,
             title: "Title in here",
-            text: "Desription that goes two lines ideally, but sometimes it can go longer",
+            text: "Description that goes two lines ideally, but sometimes it can go longer",
             confirmButton: confirmButton,
             secondaryActions: BPKDialogSecondaryActions(
                 secondaryButton: secondaryButton,
@@ -227,7 +227,7 @@ struct DialogExampleView: View {
             presented: $presentingLongTitleDialog,
             icon: .tick,
             title: "Here is a very long title to see how it fits",
-            text: "Desription that goes two lines ideally, but sometimes it can go longer",
+            text: "Description that goes two lines ideally, but sometimes it can go longer",
             confirmButton: confirmButton,
             secondaryActions: BPKDialogSecondaryActions(
                 secondaryButton: secondaryButton,
