@@ -52,6 +52,7 @@ public struct BPKSectionHeader: View {
             VStack(alignment: .leading, spacing: .sm) {
                 BPKText(title, style: .heading3)
                     .foregroundColor(style == .default ? .textPrimaryColor : .textOnDarkColor)
+                    .lineLimit(nil)
                     .accessibilityAddTraits(.isHeader)
                 if let description = description {
                     BPKText(description, style: .bodyDefault)
