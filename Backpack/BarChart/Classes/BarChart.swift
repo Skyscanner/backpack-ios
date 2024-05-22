@@ -107,6 +107,7 @@ public final class BPKBarChart: UIView {
         titleLabel.text = title
         titleLabel.textColor = BPKColor.textSecondaryColor
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.accessibilityTraits = .header
         return titleLabel
     }()
 

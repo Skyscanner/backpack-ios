@@ -67,6 +67,7 @@ internal final class BPKBarChartCollectionViewHeader: UICollectionReusableView {
         let view = BPKBarChartCollectionViewHeader.baseLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isUserInteractionEnabled = false
+        view.accessibilityTraits = .header
         return view
     }()
 
