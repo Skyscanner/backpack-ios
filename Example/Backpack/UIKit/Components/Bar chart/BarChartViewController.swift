@@ -72,7 +72,7 @@ extension BarChartsViewController: BPKBarChartCollectionViewDataSource {
 
     func barChart(_ barChart: BPKBarChart, titleForBarAtIndex atIndex: IndexPath) -> String {
         let date = date(forIndexPath: atIndex)
-        return date.formatted(Date.FormatStyle().weekday(.short))
+        return date.formatted(Date.FormatStyle().weekday(.abbreviated))
     }
 
     func barChart(_ barChart: BPKBarChart, subtitleForBarAtIndex atIndex: IndexPath) -> String {
