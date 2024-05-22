@@ -42,15 +42,18 @@ public final class BPKPageIndicator: UIView {
     
     //    Switches between default and overImage style
     public let variant: Variant
+    private let a11yChangePage: ((_ index: Int) -> Void)?
     
     public init(
         variant: Variant = .default,
         currentIndex: Int,
-        totalIndicators: Int
+        totalIndicators: Int,
+        a11yChangePage: ((_ index: Int) -> Void)? = nil
     ) {
         self.variant = variant
         self.currentIndex = currentIndex
         self.totalIndicators = totalIndicators
+        self.a11yChangePage = a11yChangePage
         
         super.init(frame: .zero)
         setupPageControl()
@@ -65,7 +68,7 @@ public final class BPKPageIndicator: UIView {
     private func setupPageControl() {
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         pageControl.hidesForSinglePage = true
-        pageControl.isUserInteractionEnabled = false
+        pageControl.addTarget(self, action: #selector(pageChanged), for: .valueChanged)
         addSubview(pageControl)
         
         pageControl.currentPage = currentIndex
@@ -79,6 +82,12 @@ public final class BPKPageIndicator: UIView {
             pageControl.currentPageIndicatorTintColor = BPKColor.textOnDarkColor
             pageControl.pageIndicatorTintColor = BPKColor.lineOnDarkColor
         }
+    }
+    
+    @objc
+    private func pageChanged(sender: UIPageControl) {
+        if currentIndex == sender.currentPage { return }
+        self.a11yChangePage?(sender.currentPage)
     }
     
     private func setupConstraints() {
