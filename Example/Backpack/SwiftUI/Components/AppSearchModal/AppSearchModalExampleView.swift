@@ -94,7 +94,7 @@ struct AppSearchModalExampleView: View {
                     }
                 )
             ),
-            items: (0..<3).map { buildItem(with: $0, section: index) }
+            items: (0..<3).map { buildItem(with: $0, section: index) }, accessibilityPrefix: "section-\(index)"
         )
     }
     

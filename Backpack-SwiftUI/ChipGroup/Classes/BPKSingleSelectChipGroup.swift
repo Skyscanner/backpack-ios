@@ -25,6 +25,7 @@ public struct BPKSingleSelectChipGroup: View {
     private let type: BPKChipGroupType
     private let onItemClick: (_ index: Int) -> Void
     private var insetSpacing: (Edge.Set, BPKSpacing)
+    private var accessibilityPrefix: String
     
     @Binding private var selectedIndex: Int?
     
@@ -33,6 +34,7 @@ public struct BPKSingleSelectChipGroup: View {
         style: BPKChipStyle = .default,
         selectedIndex: Binding<Int?>,
         type: BPKChipGroupType = .rail,
+        accessibilityPrefix: String? = nil,
         onItemClick: @escaping (_ index: Int) -> Void
     ) {
         self.chips = chips
@@ -40,6 +42,7 @@ public struct BPKSingleSelectChipGroup: View {
         self._selectedIndex = selectedIndex
         self.type = type
         self.insetSpacing = (.all, .none)
+        self.accessibilityPrefix = accessibilityPrefix ?? "chipgroup"
         self.onItemClick = onItemClick
     }
     
@@ -81,6 +84,12 @@ public struct BPKSingleSelectChipGroup: View {
             selectedIndex = index
             onItemClick(index)
         }
+        .accessibilityIdentifier(formAccessibilityIdentifier(for: index))
+    }
+    
+    private func formAccessibilityIdentifier(for index: Int) -> String {
+        let identifier = [accessibilityPrefix, "chip", String(index)].compactMap({ $0 }).joined(separator: "-")
+        return identifier
     }
 }
 
