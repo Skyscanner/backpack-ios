@@ -54,6 +54,14 @@ public protocol BPKBarChartCollectionViewDataSource {
     /// - parameter atIndex: The index of the bar in question
     /// - returns: The subtitle to display underneath the bar
     func barChart(_ barChart: BPKBarChart, subtitleForBarAtIndex atIndex: IndexPath) -> String
+    
+    /// The accessibility label  to announce for  a specific bar.
+    /// Base this on the title and subtltle, do not include the value of the bar
+    ///
+    /// - parameter barChart: The BPKBarChart in question
+    /// - parameter atIndex: The index of the bar in question
+    /// - returns: The accessibility label to announce  for the bar
+    func barChart(_ barChart: BPKBarChart, accessibilityLabelForBarAtIndex atIndex: IndexPath) -> String
 
     /// A value between 0.0 and 1.0 which represents the proportion of the bar to fill
     ///

@@ -60,14 +60,28 @@ public struct BPKBadge: View {
         return result
     }
     
+    public func createBadgeIconView(icon: BPKIcon?) -> BPKIconView? {
+        guard let badgeIcon = icon else {
+            switch style {
+            case .success:
+                return BPKIconView(BPKIcon.tickCircle, size: .small)
+            case .warning:
+                return BPKIconView(BPKIcon.informationCircle, size: .small)
+            case .destructive:
+                return BPKIconView(BPKIcon.exclamation, size: .small)
+            default:
+                return nil
+            }
+        }
+        return BPKIconView(badgeIcon, size: .small)
+    }
+    
     private var content: some View {
         HStack(spacing: .sm) {
-            if let icon = icon {
-                BPKIconView(icon, size: .small)
-                    .foregroundColor(style.foregroundColor)
+            if let badgeIconView = createBadgeIconView(icon: icon) {
+                badgeIconView.foregroundColor(style.iconColor)
             }
-        
-            BPKText(title, style: .caption)
+            BPKText(title, style: .footnote)
                 .foregroundColor(style.foregroundColor)
         }
     }
@@ -79,7 +93,7 @@ struct BPKBadge_Previews: PreviewProvider {
             (.normal, "Normal", .tickCircle, false),
             (.strong, "Strong", .tickCircle, false),
             (.success, "Success", .tickCircle, false),
-            (.warning, "Warning", .helpCircle, false),
+            (.warning, "Warning", .informationCircle, false),
             (.destructive, "Critical", .exclamation, false),
             (.inverse, "Inverse", .tickCircle, true),
             (.outline, "Outline", .tickCircle, true),

@@ -89,7 +89,7 @@ struct CardListGroupsProvider {
 
 fileprivate extension BPKCardListLayout.SectionHeaderAction {
     static let example = BPKCardListLayout.SectionHeaderAction(
-        icon: .addCircle,
+        icon: .longArrowRight,
         accessibilityLabel: "Add item") {
             print("Tap add button")
     }

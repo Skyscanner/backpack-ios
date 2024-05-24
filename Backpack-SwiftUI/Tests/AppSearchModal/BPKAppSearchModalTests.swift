@@ -38,17 +38,47 @@ class BPKAppSearchModalTests: XCTestCase {
             givenSut(with: .content(givenContentState()))
         )
     }
+    
+    func test_withContentWhenPrefixIsIcon() {
+        assertSnapshot(
+            givenSut(with: .content(givenContentState()), inputPrefix: .icon(.search))
+        )
+    }
+
+    func test_withContentWhenPrefixIsCustomText() {
+        assertSnapshot(
+            givenSut(with: .content(givenContentState()), inputPrefix: .text("Prefix"))
+        )
+    }
+    
+    func test_withContentInputStateClear() {
+        assertSnapshot(
+            givenSut(
+                with: .content(givenContentState()),
+                inputState: .clear(
+                    accessibilityLabel: "clear",
+                    action: { }
+                )
+            )
+        )
+    }
   
     // MARK: - Helpers
-    private func givenSut(with results: BPKAppSearchModalResults) -> some View {
+    private func givenSut(
+        with results: BPKAppSearchModalResults,
+        inputState: BPKAppSearchModal.TextFieldState = .default,
+        inputPrefix: BPKSearchInputSummary.InputPrefix = .icon(.search)
+    ) -> some View {
         BPKAppSearchModal(
             title: "Search Modal",
             inputText: .constant(""),
             inputHint: "Search",
             results: results,
             closeAccessibilityLabel: "Close",
+            inputPrefix: inputPrefix,
             onClose: { }
         )
+        .inputState(inputState)
         .frame(width: 375, height: 667)
     }
     

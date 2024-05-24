@@ -104,6 +104,7 @@ extension BPKIconViewTests {
         .direct,
         .documentCsv,
         .documentPdf,
+        .dot,
         .download,
         .duration,
         .ecoLeaf,

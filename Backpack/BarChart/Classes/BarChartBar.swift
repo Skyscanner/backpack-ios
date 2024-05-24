@@ -20,10 +20,10 @@ import UIKit
 
 @objcMembers
 @objc(BPKBarChartBar)
-public final class BPKBarChartBar: UIControl {
+public final class BPKBarChartBar: UIView {
 
     /// Whether the bar is selected or not
-    public override var isSelected: Bool {
+    public var isSelected: Bool = false {
         didSet {
             updateBarColor()
             updateminiFlareViewAppearance()

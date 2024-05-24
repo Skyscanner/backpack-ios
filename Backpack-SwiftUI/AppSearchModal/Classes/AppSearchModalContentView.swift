@@ -20,8 +20,14 @@ import SwiftUI
 
 struct AppSearchModalContentView: View {
     let state: BPKAppSearchModalContent
+    let onScroll: (_ offset: CGPoint) -> Void
     var body: some View {
-        ScrollView(showsIndicators: false) {
+        
+        ObservableScrollView { point in
+            if point != .zero {
+                onScroll(point)
+            }
+        } content: {
             VStack(spacing: .base) {
                 if let shortcuts = state.shortcuts, !shortcuts.isEmpty {
                     makeShortcuts(shortcuts)
@@ -41,6 +47,7 @@ struct AppSearchModalContentView: View {
             selectedIndex: .constant(nil),
             onItemClick: { shortcuts[$0].onShortcutSelected() }
         )
+        .insetPadding(.horizontal, .base)
     }
     
     private func makeSections(_ section: BPKAppSearchModalContent.Section) -> some View {
@@ -55,6 +62,7 @@ struct AppSearchModalContentView: View {
                             .buttonStyle(.link)
                     }
                 }
+                .padding(.horizontal, .base)
             }
             ForEach(section.items, id: \.self) { item in
                 ItemCell(item: item)
@@ -63,27 +71,50 @@ struct AppSearchModalContentView: View {
     }
     
     struct ItemCell: View {
+        @Environment(\.sizeCategory) var sizeCategory
+
         let item: BPKAppSearchModalContent.Item
         
         var body: some View {
-            HStack(spacing: .base) {
-                BPKIconView(item.icon, size: .large)
-                VStack(alignment: .leading) {
-                    BPKText(item.title, style: .bodyDefault)
-                    if let subtitle = item.subtitle {
-                        BPKText(subtitle, style: .footnote)
+            Button(action: item.onItemSelected) {
+                HStack(spacing: .base) {
+                    BPKIconView(item.icon, size: .large)
+                    VStack(alignment: .leading) {
+                        BPKText(item.title, style: .bodyDefault)
+                            .lineLimit(nil)
+                            .multilineTextAlignment(.leading)
+                        if let subtitle = item.subtitle {
+                            BPKText(subtitle, style: .footnote)
+                                .lineLimit(subtitleLineLimit())
+                                .multilineTextAlignment(.leading)
+                        }
+                    }
+                    .padding(.vertical, .base)
+                    Spacer()
+                    if let tertiary = item.tertiaryLabel {
+                        BPKText(tertiary, style: .footnote)
+                            .foregroundColor(.textSecondaryColor)
                     }
                 }
-                .padding(.vertical, .base)
-                Spacer()
-                if let tertiary = item.tertiaryLabel {
-                    BPKText(tertiary, style: .footnote)
-                        .foregroundColor(.textSecondaryColor)
-                }
+                .padding(.horizontal, .base)
+                .contentShape(Rectangle())
             }
-            .contentShape(Rectangle())
-            .onTapGesture(perform: item.onItemSelected)
-            .accessibilityElement(children: .combine)
+            .buttonStyle(ItemCellButtonStyle())
+        }
+        
+        private func subtitleLineLimit() -> Int? {
+            let isDefaultSizeOrSmaller = sizeCategory <= .large
+            return isDefaultSizeOrSmaller ? 2 : nil
+        }
+    }
+    
+    // We use a color with 0 alpha to avoid a 'flicker' issue
+    // when tapping ends. Using BPKColor.clear will show a darker
+    // gray color when tap ends
+    struct ItemCellButtonStyle: ButtonStyle {
+        func makeBody(configuration: Configuration) -> some View {
+            configuration.label
+                .background(configuration.isPressed ? .canvasContrastColor : .canvasContrastColor.withAlphaComponent(0))
         }
     }
 }
@@ -93,7 +124,7 @@ struct AppSearchModalContentView_Previews: PreviewProvider {
         AppSearchModalContentView(state: .init(
             sections: (0..<3).map(buildSection),
             shortcuts: (0..<4).map(buildShortcut)
-        ))
+        ), onScroll: { _ in })
     }
     
     static func buildSection(with index: Int) -> BPKAppSearchModalContent.Section {

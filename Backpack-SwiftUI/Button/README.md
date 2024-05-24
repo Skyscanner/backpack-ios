@@ -60,7 +60,7 @@ BPKButton("Button title") {
 
 ### Styled .secondary Button.
 
-```swift 
+```swift
 BPKButton("Button title") {
     print("Button tap closure")
 }

@@ -21,10 +21,13 @@ import SwiftUI
 public struct BPKAppSearchModal: View {
     let title: String
     @Binding var inputText: String
+    let inputPrefix: BPKSearchInputSummary.InputPrefix
     let inputHint: String
     let results: BPKAppSearchModalResults
     let closeAccessibilityLabel: String
     let onClose: () -> Void
+    private var textFieldState: TextFieldState = .default
+    @FocusState private var inputFieldIsFocussed: Bool
     
     public init(
         title: String,
@@ -32,6 +35,7 @@ public struct BPKAppSearchModal: View {
         inputHint: String,
         results: BPKAppSearchModalResults,
         closeAccessibilityLabel: String,
+        inputPrefix: BPKSearchInputSummary.InputPrefix = .icon(.search),
         onClose: @escaping () -> Void
     ) {
         self.title = title
@@ -39,30 +43,34 @@ public struct BPKAppSearchModal: View {
         self.inputHint = inputHint
         self.results = results
         self.closeAccessibilityLabel = closeAccessibilityLabel
+        self.inputPrefix = inputPrefix
         self.onClose = onClose
     }
     
     public var body: some View {
         VStack(spacing: .base) {
-            
             makeNavigationBar(title: title, closeAccessibilityLabel: closeAccessibilityLabel, onClose: onClose)
-            
+                .padding(.horizontal, .base)
             if results.showTextField {
-                BPKTextField(placeholder: inputHint, $inputText)
+                BPKSearchInputSummary(placeholder: inputHint, inputPrefix: inputPrefix, $inputText)
+                    .inputState(textFieldState.inputState)
+                    .focused($inputFieldIsFocussed)
+                    .autocorrectionDisabled(true)
+                    .padding(.horizontal, .base)
             }
-        
             switch results {
             case .loading(let loading):
                 AppSearchModalLoadingView(state: loading)
+                    .padding(.horizontal, .base)
             case .content(let content):
-                AppSearchModalContentView(state: content)
+                AppSearchModalContentView(state: content, onScroll: onScroll(_:))
                     .padding(.top, .md)
             case .error(let error):
                 AppSearchModalErrorView(state: error)
                     .padding(.horizontal, .md)
+                    .padding(.horizontal, .base)
             }
         }
-        .padding(.horizontal, .base)
         .padding(.top, .base)
         .padding(.bottom, BPKSpacing.none)
         .background(.surfaceDefaultColor)
@@ -75,12 +83,7 @@ public struct BPKAppSearchModal: View {
     ) -> some View {
         ZStack {
             HStack {
-                BPKIconView(.close, size: .large)
-                    .onTapGesture(perform: onClose)
-                    .accessibilityHidden(false)
-                    .accessibilityRemoveTraits(.isImage)
-                    .accessibilityAddTraits(.isButton)
-                    .accessibilityLabel(closeAccessibilityLabel)
+                BPKCloseButton(accessibilityLabel: closeAccessibilityLabel, action: onClose)
                 Spacer()
             }
             BPKText(title, style: .heading5)
@@ -88,6 +91,16 @@ public struct BPKAppSearchModal: View {
                 .accessibilityAddTraits(.isHeader)
         }
         .padding(.vertical, .md)
+    }
+    
+    public func inputState(_ state: TextFieldState) -> BPKAppSearchModal {
+        var result = self
+        result.textFieldState = state
+        return result
+    }
+    
+    private func onScroll(_ offset: CGPoint) {
+        inputFieldIsFocussed = false
     }
 }
 
@@ -111,6 +124,7 @@ struct BPKAppSearchModal_Previews: PreviewProvider {
                 shortcuts: (0..<4).map(buildShortcut)
             )),
             closeAccessibilityLabel: "Close",
+            inputPrefix: .icon(.search),
             onClose: { }
         )
         .previewDisplayName("Content")
@@ -121,6 +135,7 @@ struct BPKAppSearchModal_Previews: PreviewProvider {
             inputHint: "Search",
             results: .loading(.init(accessibilityLabel: "Loading")),
             closeAccessibilityLabel: "Close",
+            inputPrefix: .text("From"),
             onClose: { }
         )
         .previewDisplayName("Loading")

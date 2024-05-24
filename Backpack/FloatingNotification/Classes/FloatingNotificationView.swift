@@ -63,6 +63,8 @@ final class FloatingNotificationView: UIView {
     
     let button: BPKButton = {
         let button = BPKButton(size: .default, style: .primary)
+        button.primaryGradientStartColor = .clear
+        button.primaryGradientEndColor = .clear
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setContentHuggingPriority(.required, for: .horizontal)
         button.setContentCompressionResistancePriority(.required, for: .horizontal)

@@ -23,6 +23,7 @@ public struct BPKMultiSelectChipGroup: View {
     private let chips: [ChipItem]
     private let style: BPKChipStyle
     private let type: ChipGroupType
+    private var insetSpacing: (Edge.Set, BPKSpacing)
     
     public init(
         chips: [ChipItem],
@@ -32,6 +33,7 @@ public struct BPKMultiSelectChipGroup: View {
         self.chips = chips
         self.style = style
         self.type = type
+        self.insetSpacing = (.all, .none)
     }
     
     public var body: some View {
@@ -54,6 +56,7 @@ public struct BPKMultiSelectChipGroup: View {
                         $0.padding(.leading, .md)
                     })
                         .padding(.vertical, .sm)
+                        .padding(insetSpacing.0, insetSpacing.1)
                 }
             }
         case .wrap(let alignment):
@@ -64,6 +67,12 @@ public struct BPKMultiSelectChipGroup: View {
                 chip(for: element)
             }
         }
+    }
+    
+    func insetPadding(_ edges: Edge.Set = .all, _ spacing: BPKSpacing) -> BPKMultiSelectChipGroup {
+        var result = self
+        result.insetSpacing = (edges, spacing)
+        return result
     }
     
     @ViewBuilder

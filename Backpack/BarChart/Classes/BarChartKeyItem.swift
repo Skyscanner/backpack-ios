@@ -54,6 +54,7 @@ public final class BPKBarChartKeyItem: UIView {
 
     func setupViews() {
         clipsToBounds = true
+        accessibilityElementsHidden = true
         addSubview(titleLabel)
         layer.cornerRadius = BPKSpacingSm
         layoutMargins = UIEdgeInsets(top: BPKSpacingSm, left: BPKSpacingSm, bottom: BPKSpacingSm, right: BPKSpacingSm)

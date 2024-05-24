@@ -32,32 +32,73 @@ public struct BPKCarousel<Content: View>: View {
     }
     
     public var body: some View {
-        InternalCarouselWrapper(images: images, currentIndex: $currentIndex)
+        InternalCarouselWrapper(
+            images: images,
+            pageIndicatorVisibility: .visible(0),
+            currentIndex: $currentIndex
+        )
     }
 }
 
-private struct InternalCarouselWrapper<Content: View>: UIViewRepresentable {
+struct InternalCarouselWrapper<Content: View>: UIViewRepresentable {
     let images: [Content]
+    let pageIndicatorVisibility: BPKInternalCarousel.PageIndicatorVisibility
     @Binding var currentIndex: Int
     
-    func updateUIView(_ uiView: BPKInternalCarousel, context: Context) {}
+    func updateUIView(_ uiView: BPKInternalCarousel, context: Context) {
+        uiView.setCurrentImage(index: currentIndex)
+    }
     
     func makeUIView(context: Context) -> BPKInternalCarousel {
-        let pageIndicator = BPKPageIndicator(
-            variant: .overImage,
-            currentIndex: $currentIndex,
-            totalIndicators: .constant(images.count)
+        let carousel = BPKInternalCarousel(
+            pageIndicator: pageIndicatorView,
+            pageIndicatorVisibility: pageIndicatorVisibility
         )
-        let pageIndicatorView = UIHostingController(rootView: pageIndicator).view!
-        pageIndicatorView.translatesAutoresizingMaskIntoConstraints = false
-        pageIndicatorView.backgroundColor = .clear
-        let carousel = BPKInternalCarousel(pageIndicator: pageIndicatorView)
         carousel.delegate = context.coordinator
         
         let uiImages = images.map { UIHostingController(rootView: $0).view! }
         carousel.set(images: uiImages)
         carousel.setCurrentImage(index: currentIndex)
         return carousel
+    }
+    
+    private var pageIndicatorView: UIView? {
+        guard case .visible = pageIndicatorVisibility else {
+            return nil
+        }
+        let pageIndicator = BPKPageIndicator(
+            variant: .overImage,
+            currentIndex: $currentIndex,
+            totalIndicators: .constant(images.count)
+        ).accessibilityAdjustableAction({ direction in
+            switch direction {
+            case .increment: accessibilityPageIncrement()
+            case .decrement: accessibilityPageDecrement()
+            @unknown default:
+                break
+            }
+        })
+        
+        let pageIndicatorView = UIHostingController(rootView: pageIndicator).view!
+        pageIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+        pageIndicatorView.backgroundColor = .clear
+        return pageIndicatorView
+    }
+    
+    private func accessibilityPageIncrement() {
+        if currentIndex == images.count - 1 {
+            currentIndex = 0
+        } else {
+            currentIndex += 1
+        }
+    }
+    
+    private func accessibilityPageDecrement() {
+        if currentIndex == 0 {
+            currentIndex = images.count - 1
+        } else {
+            currentIndex -= 1
+        }
     }
 
     func makeCoordinator() -> Coordinator {

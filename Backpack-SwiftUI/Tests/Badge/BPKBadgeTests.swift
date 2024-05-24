@@ -56,11 +56,17 @@ class BPKBadgeTests: XCTestCase {
     
     func test_badgeWillKeepSingleLine() {
         // Given
-        let view =
-            BPKBadge("Quite a long line of text")
-                .frame(maxWidth: 100)
+        let badgeLongText = BPKBadge(
+            "Test badge with a longer line of text, to test how it handles multiple lines",
+            icon: .accessibility
+        )
         
         // Then
-        assertSnapshot(view)
+        assertA11ySnapshot(badgeLongText)
+    }
+    
+    func test_accessibility() {
+        let badge = BPKBadge("Test badge", icon: .accessibility)
+        assertA11ySnapshot(badge)
     }
 }

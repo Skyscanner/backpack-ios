@@ -86,6 +86,10 @@ final class MockBarChartDataSource: BPKBarChartCollectionViewDataSource {
         return weekDays[atIndex.item % 7]
     }
     
+    func barChart(_ barChart: BPKBarChart, accessibilityLabelForBarAtIndex atIndex: IndexPath) -> String {
+        return "\(atIndex.section), \(atIndex.item)"
+    }
+    
     func barChart(_ barChart: Backpack.BPKBarChart, subtitleForBarAtIndex atIndex: IndexPath) -> String {
         return "\(atIndex.item + 1)"
     }

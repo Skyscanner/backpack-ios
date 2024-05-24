@@ -17,7 +17,7 @@ jobs:
       uses: ./.github/workflows/_build.yml
   Deploy-Common:
     name: Release Common to Cocoapods
-    runs-on: macos-latest
+    runs-on: macos-13
     environment: Publishing
     needs: [Build]
     steps:
@@ -26,11 +26,14 @@ jobs:
       with:
         ref: main
 
-    - name: Set Ruby version
-      uses: ruby/setup-ruby@v1 # Sets ruby version via `.ruby-version`
+    - name: Set up node and ruby
+      uses: asdf-vm/actions/install@v3 # Sets ruby and node version via `.tool-versions`
 
     - name: Bundle Install
       run: bundle install --jobs 4 --retry 3
+
+    - name: Select Xcode 14
+      run: sudo xcode-select --switch /Applications/Xcode_14.2.app
 
     - name: Publish Pods - Backpack Common
       run: |
@@ -43,7 +46,7 @@ jobs:
 
   Deploy-UIKit:
     name: Release UIKit to Cocoapods
-    runs-on: macos-latest
+    runs-on: macos-13
     environment: Publishing
     needs: [Build]
     steps:
@@ -52,11 +55,14 @@ jobs:
       with:
         ref: main
     
-    - name: Set Ruby version
-      uses: ruby/setup-ruby@v1 # Sets ruby version via `.ruby-version`
+    - name: Set up node and ruby
+      uses: asdf-vm/actions/install@v3 # Sets ruby and node version via `.tool-versions`
 
     - name: Bundle Install
       run: bundle install --jobs 4 --retry 3
+
+    - name: Select Xcode 14
+      run: sudo xcode-select --switch /Applications/Xcode_14.2.app
 
     - name: Publish Pods - Backpack UIKit
       run: |
@@ -69,7 +75,7 @@ jobs:
 
   Deploy-SwiftUI:
     name: Release SwiftUI to Cocoapods
-    runs-on: macos-latest
+    runs-on: macos-13
     environment: Publishing
     needs: [Build]
     steps:
@@ -78,11 +84,14 @@ jobs:
       with:
         ref: main
 
-    - name: Set Ruby version
-      uses: ruby/setup-ruby@v1 # Sets ruby version via `.ruby-version`
+    - name: Set up node and ruby
+      uses: asdf-vm/actions/install@v3 # Sets ruby and node version via `.tool-versions`
 
     - name: Bundle Install
       run: bundle install --jobs 4 --retry 3
+
+    - name: Select Xcode 14
+      run: sudo xcode-select --switch /Applications/Xcode_14.2.app
 
     - name: Publish Pods - Backpack SwiftUI
       run: |
@@ -95,7 +104,7 @@ jobs:
 
   Deploy-Docs:
     name: Release Backpack Docs
-    runs-on: macos-latest
+    runs-on: macos-13
     environment: Publishing
     needs: [Deploy-SwiftUI, Deploy-UIKit, Deploy-Common]
     steps:
@@ -104,8 +113,8 @@ jobs:
       with:
         ref: main
 
-    - name: Set Ruby version
-      uses: ruby/setup-ruby@v1 # Sets ruby version via `.ruby-version`
+    - name: Set up node and ruby
+      uses: asdf-vm/actions/install@v3 # Sets ruby and node version via `.tool-versions``
 
     - name: Bundle Install
       run: bundle install --jobs 4 --retry 3
@@ -124,7 +133,7 @@ jobs:
         RELEASE_VERSION: ${{ github.event.release.tag_name }}
 
     - name: Deploy code documentation
-      uses: peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-gh-pages@v4
       with:
         personal_token: ${{ secrets.DEPLOY_TOKEN }}
         publish_dir: docs/

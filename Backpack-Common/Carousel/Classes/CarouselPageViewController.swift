@@ -57,9 +57,19 @@ final class CarouselPageViewController: UIPageViewController {
     
     func setCurrentImage(index: Int, animated: Bool = true) {
         guard pages.indices.contains(index) else { return }
+        
+        var direction: UIPageViewController.NavigationDirection = currentIndex < index ? .forward : .reverse
+        if currentIndex == pages.count - 1 && index == 0 {
+            direction = .forward
+        }
+        
+        if currentIndex == 0 && index == pages.count - 1 {
+            direction = .reverse
+        }
+        
         setViewControllers(
             [pages[index]],
-            direction: .forward,
+            direction: direction,
             animated: animated,
             completion: nil
         )

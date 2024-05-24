@@ -35,6 +35,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if ThemeHelpers.forceDarkMode() {
             window.overrideUserInterfaceStyle = .dark
         }
+        
+        if ThemeHelpers.forceLightMode() {
+            window.overrideUserInterfaceStyle = .light
+        }
+        
         self.window = window
         window.makeKeyAndVisible()
     }

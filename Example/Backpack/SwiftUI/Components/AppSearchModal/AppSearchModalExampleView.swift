@@ -23,25 +23,32 @@ struct AppSearchModalExampleView: View {
     
     @ObservedObject var viewModel: AppSearchModalExampleViewModel
     @State private var inputText = ""
+    @State private var isPresented = true
     
     var body: some View {
-        ZStack {
-            Color(BPKColor.canvasContrastColor)
-            
+        VStack {
+            BPKButton("Show search modal") {
+                isPresented.toggle()
+            }
+        }.sheet(isPresented: $isPresented) {
             BPKAppSearchModal(
                 title: "Search Modal",
                 inputText: $inputText,
                 inputHint: "Search",
                 results: results(),
                 closeAccessibilityLabel: "Close",
+                inputPrefix: .text("From"),
                 onClose: {
                     print("Tapped close button")
+                    isPresented.toggle()
                 }
             )
+            .inputState(.clear(accessibilityLabel: "clear text", action: {
+                inputText = ""
+            }))
             .onChange(of: inputText, perform: { _ in
                 self.viewModel.loadContentFrom(inputText)
             })
-            .padding()
         }
     }
     

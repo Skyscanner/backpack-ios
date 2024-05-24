@@ -30,7 +30,7 @@ struct UIKitDialogContainerViewModifier<DialogContent: View>: ViewModifier {
     @Binding var isPresented: Bool
     @ViewBuilder let dialogContent: DialogContent
     let onTouchOutside: (() -> Void)?
-    
+    let presentingController: UIViewController
     @State private var controller: UIViewController?
     
     func body(content: Content) -> some View {
@@ -62,16 +62,8 @@ struct UIKitDialogContainerViewModifier<DialogContent: View>: ViewModifier {
         controller.modalTransitionStyle = .crossDissolve
         controller.modalPresentationStyle = .overFullScreen
 
-        rootViewController?.present(controller, animated: true)
+        presentingController.present(controller, animated: true)
         self.controller = controller
-    }
-    
-    private var rootViewController: UIViewController? {
-        UIApplication.shared
-            .windows
-            .filter { $0.isKeyWindow }
-            .first?
-            .rootViewController
     }
 }
 
@@ -84,7 +76,8 @@ struct UIKitDialogContainerViewModifier_Previews: PreviewProvider {
                     BPKText("This is the content of a dialog!")
                         .background(.surfaceDefaultColor)
                 },
-                onTouchOutside: {}
+                onTouchOutside: {},
+                presentingController: UIViewController()
             ))
     }
 }

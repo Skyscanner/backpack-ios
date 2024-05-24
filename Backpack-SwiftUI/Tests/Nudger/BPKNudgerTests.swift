@@ -71,4 +71,19 @@ class BPKNudgerTests: XCTestCase {
             )
         )
     }
+    
+    func test_dynamic_type_on_title_and_subtitle() {
+        assertA11ySnapshot(
+            BPKNudger(
+                title: "Travellers Travellers",
+                subtitle: "Aged 16 and older Aged 16 and older",
+                icon: .adult,
+                value: .constant(5),
+                min: 0,
+                max: 10,
+                step: 1
+            ),
+            customHeight: 600
+        )
+    }
 }

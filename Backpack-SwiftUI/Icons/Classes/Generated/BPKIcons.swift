@@ -102,6 +102,7 @@ public extension BPKIcon {
     static let direct = BPKIcon(name: "direct")
     static let documentCsv = BPKIcon(name: "document-csv")
     static let documentPdf = BPKIcon(name: "document-pdf")
+    static let dot = BPKIcon(name: "dot")
     static let download = BPKIcon(name: "download")
     static let duration = BPKIcon(name: "duration")
     static let ecoLeaf = BPKIcon(name: "eco-leaf")
@@ -382,6 +383,7 @@ public extension BPKIcon {
         case "direct": return .direct
         case "document-csv": return .documentCsv
         case "document-pdf": return .documentPdf
+        case "dot": return .dot
         case "download": return .download
         case "duration": return .duration
         case "eco-leaf": return .ecoLeaf

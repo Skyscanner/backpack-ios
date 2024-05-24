@@ -199,6 +199,8 @@ struct BPKIconsTestsUtils {
         "document-csv",
         "document-pdf-sm",
         "document-pdf",
+        "dot-sm",
+        "dot",
         "download-sm",
         "download",
         "duration-sm",

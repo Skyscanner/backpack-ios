@@ -57,9 +57,13 @@ struct ComponentCellsProvider {
             dialog(),
             horizontalNavigation(),
             icon(),
+            imageGalleryPreview(),
+            imageGalleryGridView(),
+            imageGallerySlideshow(),
             insetBanner(),
             label(),
             navBar(),
+            navigationTabsGroup(),
             nudger(),
             overlayViews(),
             mapView(),
@@ -68,6 +72,8 @@ struct ComponentCellsProvider {
             price(),
             progressBar(),
             ratings(),
+            ratingBar(),
+            searchInputSummary(),
             sectionHeader(),
             select(),
             snackbar(),
@@ -213,10 +219,15 @@ extension ComponentCellsProvider {
         )
     }
     private func horizontalNavigation() -> CellDataSource {
-        GroupCellDataSource(
+        ComponentCellDataSource(
             title: "Horizontal navigation",
-            groups: HorizontalNavigationGroupsProvider(showPresentable: show(presentable:)).groups(),
-            showChildren: { showChildren(title: "Horizontal navigation", children: $0) }
+            tabs: [
+                .uikit(groups: HorizontalNavigationGroupsProvider(showPresentable: show(presentable:)).groups()),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(HorizontalNavigationExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Horizontal navigation", tabs: $0) }
         )
     }
     private func icon() -> CellDataSource {
@@ -245,10 +256,15 @@ extension ComponentCellsProvider {
         )
     }
     private func navBar() -> CellDataSource {
-        GroupCellDataSource(
+        ComponentCellDataSource(
             title: "Navigation bars",
-            groups: NavBarGroupsProvider(showPresentable: show(presentable:)).groups(),
-            showChildren: { showChildren(title: "Navigation bars", children: $0) }
+            tabs: [
+                .uikit(groups: NavBarGroupsProvider(showPresentable: show(presentable:)).groups()),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(NavBarExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Navigation bars", tabs: $0) }
         )
     }
     private func nudger() -> CellDataSource {
@@ -286,6 +302,17 @@ extension ComponentCellsProvider {
                 }))
             ],
             showChildren: { showComponent(title: "Map Markers", tabs: $0) }
+        )
+    }
+    private func navigationTabsGroup() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Navigation Tabs Group",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(NavigationTabGroupExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Navigation Tabs Group", tabs: $0) }
         )
     }
     private func panels() -> CellDataSource {
@@ -326,6 +353,28 @@ extension ComponentCellsProvider {
                 .swiftui(groups: RatingGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "Rating", tabs: $0) }
+        )
+    }
+    private func ratingBar() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Rating Bar",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(RatingBarExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Rating Bar", tabs: $0) }
+        )
+    }
+    private func searchInputSummary() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Search Input Summary",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(SearchInputSummaryExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Search Input Summary", tabs: $0) }
         )
     }
     private func select() -> CellDataSource {
@@ -499,6 +548,39 @@ extension ComponentCellsProvider {
                 }))
             ],
             showChildren: { showComponent(title: "Carousel", tabs: $0) }
+        )
+    }
+    private func imageGalleryPreview() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Image Gallery Preview",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(ImageGalleryPreviewExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Image Gallery Preview", tabs: $0) }
+        )
+    }
+    private func imageGallerySlideshow() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Image Gallery Slideshow",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(ImageGallerySlideshowExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Image Gallery Slideshow", tabs: $0) }
+        )
+    }
+    private func imageGalleryGridView() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Image Gallery Grid",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(ImageGalleryGridExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Image Gallery Grid", tabs: $0) }
         )
     }
     private func price() -> CellDataSource {
