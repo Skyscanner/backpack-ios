@@ -33,7 +33,7 @@ public struct BPKText: View {
     private var strikethrough: Bool = false
     
     public init(_ text: String, style: BPKFontStyle = .bodyDefault) {
-        self.text = Text(text)
+        self.text = Text(LocalizedStringKey(text))
         self.style = style
     }
     
