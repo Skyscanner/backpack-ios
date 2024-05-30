@@ -50,4 +50,10 @@ class BPKTextTests: XCTestCase {
                 .foregroundColor(.coreAccentColor)
         )
     }
+    
+    func test_textWithTextView() {
+        assertSnapshot(
+            BPKText(Text("Hello Backpack") + Text(", I hope you're having a great day!"), style: .heading2)
+        )
+    }
 }
