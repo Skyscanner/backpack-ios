@@ -33,6 +33,7 @@ public struct BPKNudger: View {
     private var maxValue: Int
     private var step: Int
     private let minWidth: CGFloat = BPKSpacing.lg.value
+    @State var accessibilityPrefix: String?
     
     /// Creates a `BPKNudger`.
     /// - Parameters:
@@ -45,7 +46,9 @@ public struct BPKNudger: View {
     ///     Must be greater than `min`.
     ///   - step: The step value of the `BPKNudger`.
     ///     Defaults to `1`.
-    public init(value: Binding<Int>, min: Int, max: Int, step: Int = 1) {
+    ///   - accessibilityPrefix: The string which would be added to accessibility identifiers of `BPKNudger` components.
+    ///     Defaults to `nil`.
+    public init(value: Binding<Int>, min: Int, max: Int, step: Int = 1, accessibilityPrefix: String? = nil) {
         self.title = nil
         self.subtitle = nil
         self.icon = nil
@@ -53,6 +56,7 @@ public struct BPKNudger: View {
         minValue = min
         maxValue = max
         self.step = step
+        self.accessibilityPrefix = accessibilityPrefix
         self._value = value
     }
     
@@ -71,6 +75,8 @@ public struct BPKNudger: View {
     ///     Must be greater than `min`.
     ///   - step: The step value of the `BPKNudger`.
     ///     Defaults to `1`.
+    ///   - accessibilityPrefix: The string which would be added to accessibility identifiers of `BPKNudger` components.
+    ///     Defaults to `nil`.
     public init(
         title: String,
         subtitle: String? = nil,
@@ -78,7 +84,8 @@ public struct BPKNudger: View {
         value: Binding<Int>,
         min: Int,
         max: Int,
-        step: Int = 1
+        step: Int = 1,
+        accessibilityPrefix: String? = nil
     ) {
         self.title = title
         self.subtitle = subtitle
@@ -86,6 +93,7 @@ public struct BPKNudger: View {
         self.minValue = min
         self.maxValue = max
         self.step = step
+        self.accessibilityPrefix = accessibilityPrefix
         self._value = value
     }
 
@@ -114,10 +122,13 @@ public struct BPKNudger: View {
             Group {
                 BPKButton(icon: .minus, accessibilityLabel: "", enabled: $canDecrement, action: decrement)
                     .buttonStyle(.secondary)
+                    .accessibilityIdentifier(accessibilityIdentifier(for: "minus"))
                 BPKText("\(value)", style: .heading5)
                     .frame(minWidth: minWidth)
+                    .accessibilityIdentifier(accessibilityIdentifier(for: "value_label"))
                 BPKButton(icon: .plus, accessibilityLabel: "", enabled: $canIncrement, action: increment)
                     .buttonStyle(.secondary)
+                    .accessibilityIdentifier(accessibilityIdentifier(for: "plus"))
             }
             .accessibilityElement(children: .ignore)
         }
@@ -163,12 +174,28 @@ public struct BPKNudger: View {
         value = max(value - step, minValue)
         updateButtonStates()
     }
+    
+    private func accessibilityIdentifier(for label: String) -> String {
+        if let prefix = accessibilityPrefix {
+            return "\(prefix)_\(label)"
+        }
+        return ""
+    }
+}
+
+extension BPKNudger {
+    func accessibilityPrefix(_ prefix: String?) -> BPKNudger {
+        let result = self
+        result.accessibilityPrefix = prefix
+        return result
+    }
 }
 
 struct BPKNudger_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             BPKNudger(value: .constant(0), min: 0, max: 10)
+                .accessibilityPrefix(" ")
             BPKNudger(value: .constant(5), min: 0, max: 10)
             BPKNudger(value: .constant(10), min: 0, max: 10)
             BPKNudger(title: "Adults", subtitle: "Aged 16 and older", value: .constant(1), min: 1, max: 10)
