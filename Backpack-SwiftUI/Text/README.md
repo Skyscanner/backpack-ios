@@ -36,7 +36,17 @@ BPKText("Hello world", style: .heading1)
 BPKText("Hello world")
     .foregroundColor(.corePrimaryColor)
     .lineLimit(2)
-    
+
+```
+
+### Create a BPKText with a Text view
+
+This allows for the flexibility that regular `Text` offers, such as concatenation or image insertion.
+
+```swift
+BPKText(Text("Hello ") + Text("world"), style: .heading2)
+
+BPKText(Text("Hello ") + Text(Image("beach")), style: .footnote)
 ```
 
 ### BpkAttributedText
