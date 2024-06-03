@@ -459,12 +459,10 @@ NS_ASSUME_NONNULL_BEGIN
 // color.
 - (void)traitCollectionDidChange:(nullable UITraitCollection *)previousTraitCollection {
     [super traitCollectionDidChange:previousTraitCollection];
-#if __BPK_DARK_MODE_SUPPORTED
     if (self.traitCollection.userInterfaceStyle != previousTraitCollection.userInterfaceStyle) {
         [self updateAppearance];
         [self updateTitle];
     }
-#endif
 }
 
 + (CGFloat)buttonTitleIconSpacing {

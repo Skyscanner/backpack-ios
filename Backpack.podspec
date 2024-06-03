@@ -31,7 +31,7 @@ Pod::Spec.new do |s|
   s.source = {
     git: 'https://github.com/Skyscanner/backpack-ios.git', tag: s.version.to_s
   }
-  s.ios.deployment_target = '15.1'
+  s.ios.deployment_target = '16.0'
   s.source_files = 'Backpack/Backpack.h', 'Backpack/Common.h', 'Backpack/*/Classes/**/*.{h,m,swift}'
   s.exclude_files = 'Backpack/Tests/**'
   s.public_header_files = 'Backpack/Backpack.h', 'Backpack/*/Classes/**/*.h'
