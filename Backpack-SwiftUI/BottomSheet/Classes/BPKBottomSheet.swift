@@ -49,10 +49,16 @@ public extension View {
                 BottomSheetContainerViewModifier(
                     isPresented: isPresented,
                     contentMode: contentMode,
-                    isClosable: closeButtonAccessibilityLabel != nil,
-                    closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
-                    title: title,
-                    action: action,
+                    header: {
+                        header(
+                            closeAction: closeAction(
+                                closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
+                                closeAction: { isPresented.wrappedValue.toggle() }
+                            ),
+                            title: title,
+                            action: action
+                        )
+                    },
                     bottomSheetContent: bottomSheetContent
                 )
             )
@@ -61,13 +67,99 @@ public extension View {
                 LegacyBottomSheetContainerViewModifier(
                     isPresented: isPresented,
                     contentMode: contentMode,
-                    isClosable: closeButtonAccessibilityLabel != nil,
-                    closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
-                    title: title,
-                    action: action,
+                    header: {
+                        header(
+                            closeAction: closeAction(
+                                closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
+                                closeAction: { isPresented.wrappedValue.toggle() }
+                            ),
+                            title: title,
+                            action: action
+                        )
+                    },
                     bottomSheetContent: bottomSheetContent,
                     presentingController: presentingController
                 )
+            )
+        }
+    }
+    
+    @ViewBuilder
+    func bpkBottomSheet<BottomSheetContent: View, Item: Identifiable>(
+        item: Binding<Item?>,
+        contentMode: BPKBottomSheetContentMode = .medium,
+        closeButtonAccessibilityLabel: String? = nil,
+        title: String? = nil,
+        action: BPKBottomSheetAction? = nil,
+        presentingController: UIViewController,
+        @ViewBuilder bottomSheetContent: @escaping (Item) -> BottomSheetContent
+    ) -> some View {
+        if #available(iOS 16.0, *) {
+            modifier(
+                ItemBottomSheetContainerViewModifier(
+                    item: item,
+                    contentMode: contentMode,
+                    header: {
+                        header(
+                            closeAction: closeAction(
+                                closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
+                                closeAction: { item.wrappedValue = nil }
+                            ),
+                            title: title,
+                            action: action
+                        )
+                    },
+                    bottomSheetContent: bottomSheetContent
+                )
+            )
+        } else {
+            modifier(
+                LegacyBottomSheetContainerViewModifier(
+                    isPresented: Binding(
+                        get: { item.wrappedValue != nil },
+                        set: { _ in item.wrappedValue = nil }
+                    ),
+                    contentMode: contentMode,
+                    header: {
+                        header(
+                            closeAction: closeAction(
+                                closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
+                                closeAction: { item.wrappedValue = nil }
+                            ),
+                            title: title,
+                            action: action
+                        )
+                    },
+                    bottomSheetContent: {
+                        if let itemValue = item.wrappedValue {
+                            bottomSheetContent(itemValue)
+                        }
+                    },
+                    presentingController: presentingController
+                )
+            )
+        }
+    }
+    
+    private func closeAction(
+        closeButtonAccessibilityLabel: String?,
+        closeAction: @escaping () -> Void
+    ) -> BPKBottomSheetAction? {
+        guard let closeButtonAccessibilityLabel else { return nil }
+        return BPKBottomSheetAction(title: closeButtonAccessibilityLabel, action: closeAction)
+    }
+    
+    @ViewBuilder
+    private func header(
+        closeAction: BPKBottomSheetAction?,
+        title: String?,
+        action: BPKBottomSheetAction?
+    ) -> some View {
+        if closeAction != nil || title != nil || action != nil {
+            BottomSheetHeader(
+                closeAction: closeAction,
+                title: title,
+                action: action
             )
         }
     }

@@ -19,21 +19,25 @@
 import SwiftUI
 
 @available(iOS 16.0, *)
-struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>: ViewModifier {
-    @Binding var isPresented: Bool
+struct ItemBottomSheetContainerViewModifier<
+    Header: View,
+    BottomSheetContent: View,
+    Item: Identifiable
+>: ViewModifier {
+    @Binding var item: Item?
     @ViewBuilder let header: () -> Header
     let contentMode: BPKBottomSheetContentMode
-    let bottomSheetContent: () -> BottomSheetContent
+    let bottomSheetContent: (Item) -> BottomSheetContent
     
     @State var selectedSheetDetent: PresentationDetent
     
     init(
-        isPresented: Binding<Bool>,
+        item: Binding<Item?>,
         contentMode: BPKBottomSheetContentMode,
         @ViewBuilder header: @escaping () -> Header,
-        @ViewBuilder bottomSheetContent: @escaping () -> BottomSheetContent
+        @ViewBuilder bottomSheetContent: @escaping (Item) -> BottomSheetContent
     ) {
-        self._isPresented = isPresented
+        self._item = item
         _selectedSheetDetent = .init(initialValue: .initialDetent(for: contentMode))
         self.contentMode = contentMode
         self.header = header
@@ -42,48 +46,28 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
     
     func body(content: Content) -> some View {
         content
-            .sheet(isPresented: $isPresented) {
+            .sheet(item: $item) { item in
                 switch contentMode {
                 case .large:
-                    bottomSheetContent(for: [.large])
+                    bottomSheetContent(for: [.large], item: item)
                 case .medium:
-                    bottomSheetContent(for: [.medium, .large])
+                    bottomSheetContent(for: [.medium, .large], item: item)
                 case .fitContent:
                     ContentFitBottomSheet(
                         header: header,
-                        bottomSheetContent: bottomSheetContent
+                        bottomSheetContent: { bottomSheetContent(item) }
                     )
                 }
             }
     }
     
-    private func bottomSheetContent(for detents: Set<PresentationDetent>) -> some View {
+    private func bottomSheetContent(for detents: Set<PresentationDetent>, item: Item) -> some View {
         VStack {
             header()
-            bottomSheetContent()
+            bottomSheetContent(item)
                 .presentationDetents(detents, selection: $selectedSheetDetent)
                 .presentationDragIndicator(.visible)
         }
         .frame(maxHeight: .infinity, alignment: .top)
-    }
-}
-
-@available(iOS 16.0, *)
-extension PresentationDetent {
-    static func initialDetent(for contentMode: BPKBottomSheetContentMode) -> PresentationDetent {
-        switch contentMode {
-        case .large:
-            return .large
-        case .medium:
-            return .medium
-        case .fitContent:
-            return .height(0)
-        }
-    }
-}
-
-struct BottomSheetContainerViewModifier_Previews: PreviewProvider {
-    static var previews: some View {
-        Text("Hello, world!")
     }
 }

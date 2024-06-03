@@ -78,3 +78,22 @@ BPKButton("Show bottom sheet") {
         content
     }
 ```
+
+### Bottom Sheet with Item
+
+You can also use the Binding Optional `item` paramter instead of the `isPresented` parameter to show the bottom sheet. If the `item` is not `nil`, the bottom sheet will be shown. The item must conform to the `Identifiable` protocol.
+
+```swift
+struct MyItem: Identifiable {
+    let id = UUID()
+    let title: String
+}
+
+@State var item: MyItem?
+BPKButton("Show bottom sheet") {
+    item = MyItem(title: "Hello world")
+}
+.bpkBottomSheet(item: $item) { item in
+    Text(item.title)
+}
+```

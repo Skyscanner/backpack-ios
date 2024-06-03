@@ -18,35 +18,26 @@
 
 import SwiftUI
 
-struct LegacyBottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier {
+struct LegacyBottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>: ViewModifier {
     @Binding var isPresented: Bool
     
     @State private var controller: UIViewController?
     
     let contentMode: BPKBottomSheetContentMode
-    let isClosable: Bool
-    let closeButtonAccessibilityLabel: String?
-    let title: String?
-    let action: BPKBottomSheetAction?
+    @ViewBuilder let header: () -> Header
     let bottomSheetContent: () -> BottomSheetContent
     let presentingController: UIViewController
     
     init(
         isPresented: Binding<Bool>,
         contentMode: BPKBottomSheetContentMode,
-        isClosable: Bool,
-        closeButtonAccessibilityLabel: String? = nil,
-        title: String? = nil,
-        action: BPKBottomSheetAction? = nil,
+        @ViewBuilder header: @escaping () -> Header,
         @ViewBuilder bottomSheetContent: @escaping () -> BottomSheetContent,
         presentingController: UIViewController
     ) {
         self._isPresented = isPresented
         self.contentMode = contentMode
-        self.isClosable = isClosable
-        self.closeButtonAccessibilityLabel = closeButtonAccessibilityLabel
-        self.title = title
-        self.action = action
+        self.header = header
         self.bottomSheetContent = bottomSheetContent
         self.presentingController = presentingController
     }
@@ -82,26 +73,6 @@ struct LegacyBottomSheetContainerViewModifier<BottomSheetContent: View>: ViewMod
             }
     }
     
-    private var headerCloseAction: BPKBottomSheetAction? {
-        guard isClosable, let closeButtonAccessibilityLabel else {
-            return nil
-        }
-        return BPKBottomSheetAction(title: closeButtonAccessibilityLabel) {
-            isPresented.toggle()
-        }
-    }
-    
-    @ViewBuilder
-    private var header: some View {
-        if isClosable || title != nil || action != nil {
-            BottomSheetHeader(
-                closeAction: headerCloseAction,
-                title: title,
-                action: action
-            )
-        }
-    }
-    
     @ViewBuilder
     private var scrim: some View {
         if isPresented {
@@ -119,7 +90,7 @@ struct LegacyBottomSheetContainerViewModifier<BottomSheetContent: View>: ViewMod
             LegacyBottomSheetContentView(
                 isPresented: $isPresented,
                 contentMode: mode,
-                header: { header },
+                header: header,
                 bottomSheetContent: bottomSheetContent
             )
         }
@@ -148,10 +119,9 @@ struct LegacyBottomSheetContainerViewModifier_Previews: PreviewProvider {
                 LegacyBottomSheetContainerViewModifier(
                     isPresented: .constant(true),
                     contentMode: .fitContent,
-                    isClosable: true,
-                    closeButtonAccessibilityLabel: "Close button",
-                    title: "Title",
-                    action: BPKBottomSheetAction(title: "Action", action: {}),
+                    header: {
+                        BPKText("Header")
+                    },
                     bottomSheetContent: {
                         VStack {
                             BPKText("Bottom sheet content", style: .heading2)
