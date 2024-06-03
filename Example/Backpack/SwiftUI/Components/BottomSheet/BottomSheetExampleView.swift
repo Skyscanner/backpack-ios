@@ -21,15 +21,21 @@ import SwiftUI
 import Backpack_SwiftUI
 
 struct BottomSheetExampleView: View {
+    struct ExampleItem: Identifiable {
+        let id: String
+        let name: String
+    }
+    
     @State private var closableBottomSheetShown = false
     @State private var largeBottomSheetShown = false
     @State private var mediumBottomSheetShown = false
     @State private var fitContentBottomSheetShown = false
+    @State private var itemToShow: ExampleItem?
 
-    var content: some View {
+    func content(_ text: String = "Bottom sheet content") -> some View {
         VStack {
             Spacer()
-            BPKText("Bottom sheet content")
+            BPKText(text)
             Spacer()
         }
     }
@@ -48,6 +54,12 @@ struct BottomSheetExampleView: View {
             BPKButton("Show fit content bottom sheet") {
                 fitContentBottomSheetShown.toggle()
             }
+            BPKButton("Show content with item") {
+                itemToShow = .init(id: "1", name: "Fight to London")
+            }
+            .bpkBottomSheet(item: $itemToShow, presentingController: rootViewController) { item in
+                content(item.name)
+            }
         }
         .bpkBottomSheet(
             isPresented: $closableBottomSheetShown,
@@ -59,7 +71,7 @@ struct BottomSheetExampleView: View {
                 action: { closableBottomSheetShown.toggle() }
             ),
             presentingController: rootViewController,
-            bottomSheetContent: { content }
+            bottomSheetContent: { content() }
         )
         .bpkBottomSheet(
             isPresented: $largeBottomSheetShown,
@@ -70,7 +82,7 @@ struct BottomSheetExampleView: View {
                 action: { largeBottomSheetShown.toggle() }
             ),
             presentingController: rootViewController,
-            bottomSheetContent: { content }
+            bottomSheetContent: { content() }
         )
         .bpkBottomSheet(
             isPresented: $mediumBottomSheetShown,
@@ -81,7 +93,7 @@ struct BottomSheetExampleView: View {
                 action: { mediumBottomSheetShown.toggle() }
             ),
             presentingController: rootViewController,
-            bottomSheetContent: { content }
+            bottomSheetContent: { content() }
         )
         .bpkBottomSheet(
             isPresented: $fitContentBottomSheetShown,
