@@ -27,14 +27,16 @@ struct ButtonsExampleView: View {
     var body: some View {
         ZStack {
             Color(backgroundColor)
-            VStack(alignment: .leading) {
-                BPKText("Default")
-                buttonRow(size: .default)
-                BPKText("Large")
-                buttonRow(size: .large)
-                BPKSwitch(isOn: $loading, text: "Switch loading")
+            ScrollView {
+                VStack(alignment: .leading) {
+                    BPKText("Default")
+                    buttonRow(size: .default)
+                    BPKText("Large")
+                    buttonRow(size: .large)
+                    BPKSwitch(isOn: $loading, text: "Switch loading")
+                }
+                .padding()
             }
-            .padding()
         }
     }
     
