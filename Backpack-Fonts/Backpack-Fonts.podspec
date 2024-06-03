@@ -28,7 +28,7 @@ Pod::Spec.new do |spec|
   spec.author           = {
     'Backpack Design System' => 'backpack@skyscanner.net'
   }
-  spec.ios.deployment_target  = '15.1'
+  spec.ios.deployment_target  = '16.0'
   spec.source = {
     git: 'https://github.com/Skyscanner/backpack-ios.git', tag: spec.version.to_s
   }

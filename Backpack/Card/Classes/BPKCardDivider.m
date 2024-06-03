@@ -19,7 +19,6 @@
 #import "BPKCardDivider.h"
 
 #import <Backpack/Color.h>
-#import <Backpack/DarkMode.h>
 #import <Backpack/Radii.h>
 #import <Backpack/Shadow.h>
 #import <Backpack/Spacing.h>
@@ -94,11 +93,9 @@ NS_ASSUME_NONNULL_BEGIN
 // Note this is needed to correctly update the `CGColor` used for the line .
 - (void)traitCollectionDidChange:(nullable UITraitCollection *)previousTraitCollection {
     [super traitCollectionDidChange:previousTraitCollection];
-#if __BPK_DARK_MODE_SUPPORTED
     if (self.traitCollection.userInterfaceStyle != previousTraitCollection.userInterfaceStyle) {
         [self updateLineColor];
     }
-#endif
 }
 
 @end

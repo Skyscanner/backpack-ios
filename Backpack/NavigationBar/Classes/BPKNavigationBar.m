@@ -19,7 +19,6 @@
 
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
-#import <Backpack/DarkMode.h>
 #import <Backpack/Label.h>
 #import <Backpack/Spacing.h>
 

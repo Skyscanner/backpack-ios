@@ -25,7 +25,6 @@
 
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
-#import <Backpack/DarkMode.h>
 #import <Backpack/Font.h>
 #import <Backpack/Gradient.h>
 #import <Backpack/Icon.h>
@@ -459,12 +458,10 @@ NS_ASSUME_NONNULL_BEGIN
 // color.
 - (void)traitCollectionDidChange:(nullable UITraitCollection *)previousTraitCollection {
     [super traitCollectionDidChange:previousTraitCollection];
-#if __BPK_DARK_MODE_SUPPORTED
     if (self.traitCollection.userInterfaceStyle != previousTraitCollection.userInterfaceStyle) {
         [self updateAppearance];
         [self updateTitle];
     }
-#endif
 }
 
 + (CGFloat)buttonTitleIconSpacing {

@@ -33,7 +33,6 @@
 #import <Backpack/Backpack-Swift.h>
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
-#import <Backpack/DarkMode.h>
 #import <Backpack/Font.h>
 #import <Backpack/Gradient.h>
 #import <Backpack/Icon.h>
