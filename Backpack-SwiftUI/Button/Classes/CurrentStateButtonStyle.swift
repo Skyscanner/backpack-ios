@@ -39,6 +39,12 @@ struct CurrentStateButtonStyle: ButtonStyle {
         return hasPadding ? .none : .base
     }
     
+    private var verticalPadding: CGFloat {
+        guard !iconOnly else { return 0 }
+        
+        return size == .default ? 6 : 12
+    }
+    
     private func colors(forConfiguration configuration: Configuration) -> BPKButtonColors {
         let currentState = getCurrentState(configuration.isPressed)
         return colorProvider.color(forStyle: style, currentState: currentState)
@@ -49,9 +55,11 @@ struct CurrentStateButtonStyle: ButtonStyle {
         let foreground = colors(forConfiguration: configuration).foreground
         
         configuration.label
-            .frame(width: width, height: height)
+            .frame(width: width)
             .frame(maxWidth: matchesParentWidth ? .infinity : nil)
             .padding([.leading, .trailing], sidesPadding)
+            .padding([.top, .bottom], verticalPadding)
+            .frame(minHeight: height)
             .background(background)
             .foregroundColor(foreground)
             .clipShape(RoundedRectangle(cornerRadius: .sm))
