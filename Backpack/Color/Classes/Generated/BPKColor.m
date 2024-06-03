@@ -18,8 +18,6 @@
  */
 #import "BPKColor.h"
 
-#import <Backpack/DarkMode.h>
-
 @interface BPKColor()
 @property(nonatomic, strong, readonly) NSCache<NSString *, UIColor *> *dynamicColorsCache;
 @end
