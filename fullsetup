@@ -26,7 +26,7 @@ asdf install
 
 # Install basic dependencies
 bundle install
-npm install
+npm install --registry=https://registry.npmjs.org/ 
 
 # navigate to Example app
 cd Example
