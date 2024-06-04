@@ -17,6 +17,7 @@
  */
 
 import Foundation
+import Backpack.DarkMode
 import Backpack.Theme
 
 class ThemeHelpers: NSObject {

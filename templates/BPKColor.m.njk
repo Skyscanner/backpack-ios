@@ -18,6 +18,8 @@
  */
 #import "BPKColor.h"
 
+#import <Backpack/DarkMode.h>
+
 @interface BPKColor()
 @property(nonatomic, strong, readonly) NSCache<NSString *, UIColor *> *dynamicColorsCache;
 @end
@@ -73,23 +75,28 @@
 }
 
 + (UIColor *)dynamicColorWithLightVariant:(UIColor *)lightVariant darkVariant:(UIColor *)darkVariant {
-    NSString *cacheKey = [NSString stringWithFormat:@"%@_%@", [self cacheKeyForColor:lightVariant], [self cacheKeyForColor:darkVariant]];
-    UIColor *potentialCacheHit = [[self dynamicColorsCache] objectForKey:cacheKey];
+#if __BPK_DARK_MODE_SUPPORTED
+    if (@available(iOS 13.0, *)) {
+        NSString *cacheKey = [NSString stringWithFormat:@"%@_%@", [self cacheKeyForColor:lightVariant], [self cacheKeyForColor:darkVariant]];
+        UIColor *potentialCacheHit = [[self dynamicColorsCache] objectForKey:cacheKey];
 
-    if (potentialCacheHit) {
-        return potentialCacheHit;
+        if (potentialCacheHit) {
+            return potentialCacheHit;
+        }
+
+        UIColor *newDynamicColor = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
+                if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+                    return darkVariant;
+                } else {
+                    return lightVariant;
+                }
+        }];
+
+        [[self dynamicColorsCache] setObject:newDynamicColor forKey:cacheKey];
+        return newDynamicColor;
     }
-
-    UIColor *newDynamicColor = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
-            if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
-                return darkVariant;
-            } else {
-                return lightVariant;
-            }
-    }];
-
-    [[self dynamicColorsCache] setObject:newDynamicColor forKey:cacheKey];
-    return newDynamicColor;
+#endif
+  return lightVariant;
 }
 
 @end

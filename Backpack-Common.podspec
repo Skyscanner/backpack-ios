@@ -34,7 +34,7 @@ Pod::Spec.new do |s|
   s.ios.resource_bundle = {
     'Icons' => 'Backpack-Common/Icons/Assets/*'
   }
-  s.ios.deployment_target = '16.0'
+  s.ios.deployment_target = '15.1'
   s.source_files = 'Backpack-Common/**/*.swift'
   s.exclude_files = 'Backpack-Common/Tests/**/*.swift'
   s.requires_arc = true
