@@ -18,6 +18,7 @@
 
 import SwiftUI
 
+@available(iOS 16.0, *)
 struct ContentFitBottomSheet<Content: View, Header: View>: View {
     let header: () -> Header
     let bottomSheetContent: () -> Content

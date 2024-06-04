@@ -72,9 +72,14 @@ public struct BPKTextArea: View {
     
     @ViewBuilder
     var textEditorContent: some View {
-        TextEditor(text: $value)
-            .font(style: .bodyDefault)
-            .scrollContentBackground(.hidden)
+        if #available(iOS 16.0, *) {
+            TextEditor(text: $value)
+                .font(style: .bodyDefault)
+                .scrollContentBackground(.hidden)
+        } else {
+            TextEditor(text: $value)
+                .font(style: .bodyDefault)
+        }
     }
     
     public var body: some View {
