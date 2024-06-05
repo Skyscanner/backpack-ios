@@ -160,10 +160,21 @@ extension ComponentCellsProvider {
         )
     }
     private func cardButton() -> CellDataSource {
-        PresentableCellDataSource.custom(
+        ComponentCellDataSource(
             title: "Card Button",
-            customController: { CardButtonsViewController() },
-            showPresentable: show(presentable:)
+            tabs: [
+                .uikit(presentable: CustomPresentable(
+                    generateViewController: {
+                        CardButtonsViewController()
+                    }
+                )),
+                .swiftui(presentable: CustomPresentable(
+                    generateViewController: {
+                        ContentUIHostingController(CardButtonExampleView())
+                    }
+                ))
+            ],
+            showChildren: { showComponent(title: "Card Button", tabs: $0) }
         )
     }
     private func chips() -> CellDataSource {

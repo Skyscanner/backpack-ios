@@ -803,6 +803,13 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         await navigate(title: "Horizontal navigation") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "horizontal-navigation", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
+        
+        await navigate(title: "Card Button") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "card-button", scenario: "all", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
         }
     }
 }
