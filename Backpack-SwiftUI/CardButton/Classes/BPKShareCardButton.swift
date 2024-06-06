@@ -72,26 +72,28 @@ private struct InternalShareCardButtonStyle: ButtonStyle {
     }
 }
 
-#Preview {
-    VStack {
-        HStack(spacing: .lg) {
-            BPKShareCardButton(size: .default, style: .default, accessibilityLabel: "") { }
-            BPKShareCardButton(size: .small, style: .default, accessibilityLabel: "") { }
+struct BPKShareCardButton_Previews: PreviewProvider {
+    static var previews: some View {
+        VStack {
+            HStack(spacing: .lg) {
+                BPKShareCardButton(size: .default, style: .default, accessibilityLabel: "") { }
+                BPKShareCardButton(size: .small, style: .default, accessibilityLabel: "") { }
+            }
+            .padding()
+            
+            HStack(spacing: .lg) {
+                BPKShareCardButton(size: .default, style: .contained, accessibilityLabel: "") { }
+                BPKShareCardButton(size: .small, style: .contained, accessibilityLabel: "") { }
+            }
+            .padding()
+            .background(.surfaceHighlightColor)
+            
+            HStack(spacing: .lg) {
+                BPKShareCardButton(size: .default, style: .onDark, accessibilityLabel: "") { }
+                BPKShareCardButton(size: .small, style: .onDark, accessibilityLabel: "") { }
+            }
+            .padding()
+            .background(.black)
         }
-        .padding()
-        
-        HStack(spacing: .lg) {
-            BPKShareCardButton(size: .default, style: .contained, accessibilityLabel: "") { }
-            BPKShareCardButton(size: .small, style: .contained, accessibilityLabel: "") { }
-        }
-        .padding()
-        .background(.surfaceHighlightColor)
-        
-        HStack(spacing: .lg) {
-            BPKShareCardButton(size: .default, style: .onDark, accessibilityLabel: "") { }
-            BPKShareCardButton(size: .small, style: .onDark, accessibilityLabel: "") { }
-        }
-        .padding()
-        .background(.black)
     }
 }

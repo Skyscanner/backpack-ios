@@ -118,7 +118,7 @@ private struct BPKSaveCardButtonInteractiveDemo: View {
             size: size,
             style: style,
             checked: checked,
-            accessibilityLabel: "save",
+            accessibilityLabel: checked ? "remove from saved" : "save",
             action: {
                 checked.toggle()
             }
@@ -126,6 +126,8 @@ private struct BPKSaveCardButtonInteractiveDemo: View {
     }
 }
 
-#Preview {
-    CardButtonExampleView()
+struct CardButtonExampleView_Previews: PreviewProvider {
+    static var previews: some View {
+        CardButtonExampleView()
+    }
 }

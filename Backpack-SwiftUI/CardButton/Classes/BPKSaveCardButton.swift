@@ -97,28 +97,30 @@ private struct InternalSaveCardButtonStyle: ButtonStyle {
 }
 
 // MARK: - previews
-#Preview {
-    VStack {
-        HStack(spacing: .lg) {
-            InteractiveDemo(size: .default, style: .default)
-            InteractiveDemo(size: .small, style: .default)
-        }
-        .padding()
-        
-        HStack(spacing: .lg) {
-            InteractiveDemo(size: .default, style: .contained)
-            InteractiveDemo(size: .small, style: .contained)
+struct BPKSaveCardButton_Previews: PreviewProvider {
+    static var previews: some View {
+        VStack {
+            HStack(spacing: .lg) {
+                InteractiveDemo(size: .default, style: .default)
+                InteractiveDemo(size: .small, style: .default)
+            }
+            .padding()
             
+            HStack(spacing: .lg) {
+                InteractiveDemo(size: .default, style: .contained)
+                InteractiveDemo(size: .small, style: .contained)
+                
+            }
+            .padding()
+            .background(.surfaceHighlightColor)
+            
+            HStack(spacing: .lg) {
+                InteractiveDemo(size: .default, style: .onDark)
+                InteractiveDemo(size: .small, style: .onDark)
+            }
+            .padding()
+            .background(.black)
         }
-        .padding()
-        .background(.surfaceHighlightColor)
-        
-        HStack(spacing: .lg) {
-            InteractiveDemo(size: .default, style: .onDark)
-            InteractiveDemo(size: .small, style: .onDark)
-        }
-        .padding()
-        .background(.black)
     }
 }
 
