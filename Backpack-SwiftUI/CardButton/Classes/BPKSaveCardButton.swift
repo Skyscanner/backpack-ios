@@ -76,11 +76,11 @@ public struct BPKSaveCardButton: View {
     }
     
     private func showAnimation() {
-        withAnimation(.smooth(duration: animationDuration)) {
+        withAnimation(.linear(duration: animationDuration)) {
             scale = maxScale
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration * 2) {
-            withAnimation(.smooth(duration: animationDuration)) {
+            withAnimation(.linear(duration: animationDuration)) {
                 scale = 1.0
             }
         }
