@@ -56,6 +56,7 @@ public struct BPKSaveCardButton: View {
         .background(style.containerColor)
         .clipShape(Circle())
         .accessibilityLabel(accessibilityLabel)
+        .accessibilityAddTraits(checked ? .isSelected : [])
         .onChange(of: checked) { newValue in
             guard newValue else { return }
             showAnimation()
