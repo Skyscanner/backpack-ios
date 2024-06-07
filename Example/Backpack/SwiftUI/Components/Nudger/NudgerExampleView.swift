@@ -26,6 +26,7 @@ struct NudgerExampleView: View {
     var body: some View {
         VStack {
             BPKNudger(value: $value, min: 1, max: 10, step: 1)
+                .accessibilityPrefix("Prefix")
                 .accessibilityLabel("Passengers")
             BPKNudger(title: "Adults", subtitle: "Aged 16+", value: $value, min: 1, max: 10)
             BPKNudger(title: "Rooms", value: $value, min: 1, max: 10)
