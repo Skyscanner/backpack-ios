@@ -19,6 +19,7 @@
 import Foundation
 
 // swiftlint:disable file_length
+@MainActor
 struct ComponentCellsProvider {
     let navigator: PresentableNavigator
     let toastDuration: TimeInterval

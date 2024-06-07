@@ -21,6 +21,7 @@ import UIKit
 struct UIWindowFactory {
     let isUITestsRun: Bool
     
+    @MainActor
     func window(forScene scene: UIScene) -> UIWindow? {
         guard let windowScene = (scene as? UIWindowScene) else { return nil }
         let window = UIWindow(windowScene: windowScene)

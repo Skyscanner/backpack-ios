@@ -159,7 +159,8 @@ struct CustomHorizontalNavigationOptionWithBackground<
     let title: String
 
     var tag: NSInteger
-
+    
+    @MainActor
     func makeItem() -> BPKHorizontalNavigationItem {
         return HorizontalNavigationItemWithBackground<Size>(title: title)
     }

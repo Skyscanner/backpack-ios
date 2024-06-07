@@ -19,6 +19,7 @@
 import Backpack
 import SwiftUI
 
+@MainActor
 struct OverlayGroupsProvider {
     let showPresentable: (Presentable) -> Void
     

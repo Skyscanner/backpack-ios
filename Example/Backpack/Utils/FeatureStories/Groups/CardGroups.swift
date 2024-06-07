@@ -18,6 +18,7 @@
 import SwiftUI
 import Backpack
 
+@MainActor
 struct CardGroupsProvider {
     let showPresentable: (Presentable) -> Void
     

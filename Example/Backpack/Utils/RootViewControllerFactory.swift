@@ -18,6 +18,7 @@
 
 import UIKit
 
+@MainActor
 protocol RootViewControllerFactory {
     func create() -> UIViewController
 }

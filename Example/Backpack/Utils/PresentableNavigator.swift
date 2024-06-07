@@ -18,6 +18,7 @@
 
 import UIKit
 
+@MainActor
 class PresentableNavigator {
     var navigationController: UINavigationController!
 

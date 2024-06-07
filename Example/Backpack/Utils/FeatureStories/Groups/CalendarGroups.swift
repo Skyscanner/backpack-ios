@@ -18,6 +18,7 @@
 
 import SwiftUI
 
+@MainActor
 struct CalendarGroupsProvider {
     let showPresentable: (Presentable) -> Void
     

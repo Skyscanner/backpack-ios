@@ -19,6 +19,7 @@
 import Backpack
 import SwiftUI
 
+@MainActor
 struct ChipsGroupsProvider {
     let showPresentable: (Presentable) -> Void
     

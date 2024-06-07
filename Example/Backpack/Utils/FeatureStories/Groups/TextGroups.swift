@@ -18,6 +18,7 @@
 import SwiftUI
 import Backpack_SwiftUI
 
+@MainActor
 struct TextGroupsProvider {
     let showPresentable: (Presentable) -> Void
     

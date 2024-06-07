@@ -18,6 +18,7 @@
 import SwiftUI
 import Backpack
 
+@MainActor
 struct StarRatingGroupsProvider {
     let showPresentable: (Presentable) -> Void
     

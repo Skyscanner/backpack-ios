@@ -19,6 +19,7 @@
 import SwiftUI
 import Backpack
 
+@MainActor
 struct ButtonGroupsProvider {
     let showPresentable: (Presentable) -> Void
     

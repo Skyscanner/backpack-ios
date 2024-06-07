@@ -18,6 +18,7 @@
 import SwiftUI
 import Backpack
 
+@MainActor
 struct PriceGroupsProvider {
     let showPresentable: (Presentable) -> Void
     

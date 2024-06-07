@@ -22,6 +22,7 @@ import SwiftUI
 import Backpack
 import Backpack_SwiftUI
 
+@MainActor
 struct GraphicPromoGroupsProvider {
     let showPresentable: (Presentable) -> Void
 

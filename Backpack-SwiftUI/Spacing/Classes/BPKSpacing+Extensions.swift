@@ -32,7 +32,7 @@ import SwiftUI
 ///         BPKText("Text with BPKSpacing.md spacing")
 ///     }
 ///
-public struct BPKSpacing {
+public struct BPKSpacing: Sendable {
     public let value: CGFloat
     
     init(value: CGFloat) {

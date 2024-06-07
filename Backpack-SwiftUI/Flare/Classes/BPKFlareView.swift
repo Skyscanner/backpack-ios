@@ -69,7 +69,7 @@ public enum BPKFlareSize {
 }
 
 /// The direction of the flare.
-public enum BPKFlareDirection {
+public enum BPKFlareDirection: Sendable {
     case top, bottom
     
     var scaleFactor: CGFloat {
