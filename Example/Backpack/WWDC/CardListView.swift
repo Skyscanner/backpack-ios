@@ -26,18 +26,36 @@ struct CardListView: View {
     
     var body: some View {
         List {
+            VStack(alignment: .leading) {
+                BPKText("Return flights to Singapore", style: .heading4)
+                BPKText("From June 10 to June 17", style: .caption)
+                    .foregroundColor(.textSecondaryColor)
+            }
+            .accessibilityElement(children: .combine)
+            .accessibilityAddTraits(.isHeader)
+            .accessibilityHeading(.h1)
+            
             Section("\(flightData.count) results") {
                 ForEach($flightData) { $flight in
-                    if horizontalSizeClass == .compact {
-                        CompactFlightCardView(flight: $flight)
-                    } else {
-                        FlightCardView()
-                    }
+                    CompactFlightCardView(flight: $flight)
+                    
+//                    if horizontalSizeClass == .compact {
+//                        CompactFlightCardView(flight: $flight)
+//                    } else {
+//                        FlightCardView()
+//                    }
                 }
+                .listRowSeparator(.hidden)
             }
+            .font(.bpkCaption)
+            .accessibilityHeading(.h2)
         }
         .listStyle(.plain)
     }
+}
+
+extension Font {
+    static var bpkCaption = BPKFontStyle.caption.font
 }
 
 #Preview {

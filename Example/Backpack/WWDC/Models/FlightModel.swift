@@ -127,6 +127,30 @@ extension FlightModel {
                 )
             ],
             price: "$650"
+        ),
+        FlightModel(
+            airline: "Sky Airlines",
+            legs: [
+                FlightLegModel(
+                    departureTime: "18:50",
+                    returnTime: "21:45",
+                    outboundAirport: "LHR",
+                    returnAirport: "SIN",
+                    flightTime: 475,
+                    stops: "Direct",
+                    legType: "Outbound"
+                ),
+                FlightLegModel(
+                    departureTime: "18:50",
+                    returnTime: "21:45",
+                    outboundAirport: "SIN",
+                    returnAirport: "LHR",
+                    flightTime: 475,
+                    stops: "Direct",
+                    legType: "Return"
+                )
+            ],
+            price: "$759"
         )
     ]
 }

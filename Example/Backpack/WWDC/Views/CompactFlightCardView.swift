@@ -30,11 +30,15 @@ struct CompactFlightCardView: View {
             HStack {
                 BPKText(flight.airline, style: .heading5)
                     .accessibilityAddTraits(.isHeader)
+                    .accessibilityHeading(.h3)
                 Spacer()
                 BPKIconView(
                     flight.isAddedToFavorites ? .heart : .heartOutline,
                     size: .large
                 )
+                .onTapGesture {
+                    flight.isAddedToFavorites.toggle()
+                }
             }
             ForEach(flight.legs) { leg in
                 LegView(leg: leg)
@@ -53,10 +57,9 @@ struct CompactFlightCardView: View {
             if voiceOverEnabled {
                 HStack {
                     Spacer()
-                    BPKButton("Select", icon: .trailing(icon: .longArrowRight)) {
+                    BPKButton("See offers") {
                         tapCard()
                     }
-                    .accessiblityLabel("Select")
                     .accessibilityAction(named: favoriteActionLabel) {
                         flight.isAddedToFavorites.toggle()
                     }
@@ -67,6 +70,7 @@ struct CompactFlightCardView: View {
         .background(.surfaceDefaultColor)
         .clipShape(RoundedRectangle(cornerRadius: .md))
         .shadow(.sm)
+        .contentShape(Rectangle())
         .onTapGesture {
             tapCard()
         }

@@ -29,7 +29,7 @@ public struct BPKText: View {
     private var style: BPKFontStyle
     
     private var textColor = Color(BPKColor.textPrimaryColor)
-    private var lineLimit: Int? = 1
+    private var lineLimit: Int?
     private var strikethrough: Bool = false
     
     public init(_ text: String, style: BPKFontStyle = .bodyDefault) {
