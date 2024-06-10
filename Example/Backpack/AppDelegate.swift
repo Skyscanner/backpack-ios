@@ -27,7 +27,6 @@ import Backpack_SwiftUI
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    // swiftlint:disable indentation_width
     private func setupAppearance() {
         UINavigationBar.appearance().tintColor = BPKColor.textPrimaryColor
         BPKAppearance.apply()
@@ -51,8 +50,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         setupRelativeFont()
         setupAppearance()
-        AppCenter.start(withAppSecret: "$(APP_CENTER_SECRET)",
-                        services: [Analytics.self, Crashes.self, Distribute.self])
+//        AppCenter.start(withAppSecret: "$(APP_CENTER_SECRET)",
+//                        services: [Analytics.self, Crashes.self, Distribute.self])
         return true
     }
 }

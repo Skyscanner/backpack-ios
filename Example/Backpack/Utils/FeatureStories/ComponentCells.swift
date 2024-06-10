@@ -38,6 +38,7 @@ struct ComponentCellsProvider {
     // swiftlint:disable:next function_body_length
     func cells() -> [Components.Cell] {
         let dataSources: [CellDataSource] = [
+            wwdc(),
             appSearchModal(),
             badge(),
             barChart(),
@@ -663,6 +664,18 @@ extension ComponentCellsProvider {
                 .swiftui(groups: AppSearchModalGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "App Search Modal", tabs: $0) }
+        )
+    }
+    
+    private func wwdc() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "WWDC",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(CardListView())
+                }))
+            ],
+            showChildren: { showComponent(title: "WWDC", tabs: $0) }
         )
     }
 }
