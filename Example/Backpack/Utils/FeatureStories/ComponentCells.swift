@@ -672,7 +672,11 @@ extension ComponentCellsProvider {
             title: "WWDC",
             tabs: [
                 .swiftui(presentable: CustomPresentable(generateViewController: {
-                    ContentUIHostingController(CardListView())
+                    if #available(iOS 17.0, *) {
+                        ContentUIHostingController(OnboardingView())
+                    } else {
+                        ContentUIHostingController(CardListView())
+                    }
                 }))
             ],
             showChildren: { showComponent(title: "WWDC", tabs: $0) }

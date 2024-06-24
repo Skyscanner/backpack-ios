@@ -21,10 +21,10 @@ import Backpack
 
 class TabsViewController: BPKTabBarController {
     
-    private let tabs: [Components.Tab]
+    private let internalTabs: [Components.Tab]
     
     init(title: String, tabs: [Components.Tab]) {
-        self.tabs = tabs
+        self.internalTabs = tabs
         
         super.init(nibName: nil, bundle: nil)
         self.navigationItem.title = title
@@ -33,7 +33,7 @@ class TabsViewController: BPKTabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
                 
-        viewControllers = tabs.map { tab -> UIViewController in
+        viewControllers = internalTabs.map { tab -> UIViewController in
             let tabBarItem = BPKTabBarItem(title: tab.title, image: tab.image)
             
             let viewController = tab.viewController()
