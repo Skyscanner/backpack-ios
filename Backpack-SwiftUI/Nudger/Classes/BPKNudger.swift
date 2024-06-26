@@ -106,7 +106,7 @@ public struct BPKNudger: View {
                         if let subtitle {
                             BPKText(subtitle)
                                 .foregroundColor(.textSecondaryColor)
-                                .lineLimit(titleLineLimit())
+                                .lineLimit(nil)
                         }
                     }
                 }
@@ -192,6 +192,13 @@ struct BPKNudger_Previews: PreviewProvider {
             BPKNudger(value: .constant(5), min: 0, max: 10)
             BPKNudger(value: .constant(10), min: 0, max: 10)
             BPKNudger(title: "Adults", subtitle: "Aged 16 and older", value: .constant(1), min: 1, max: 10)
+            BPKNudger(
+                title: "Rooms",
+                subtitle: "Each room should contain at least 1 adult",
+                value: .constant(1),
+                min: 1,
+                max: 10
+            )
             BPKNudger(
                 title: "Travellers",
                 subtitle: "Aged 16 and older",

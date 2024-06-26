@@ -30,6 +30,13 @@ struct NudgerExampleView: View {
                 .accessibilityLabel("Passengers")
             BPKNudger(title: "Adults", subtitle: "Aged 16+", value: $value, min: 1, max: 10)
             BPKNudger(title: "Rooms", value: $value, min: 1, max: 10)
+            BPKNudger(
+                title: "Rooms",
+                subtitle: "Each room should contain at least 1 adult",
+                value: $value,
+                min: 1,
+                max: 10
+            )
             BPKNudger(title: "Rooms", icon: .room, value: $value, min: 1, max: 10)
             BPKNudger(
                 title: "Travellers",
