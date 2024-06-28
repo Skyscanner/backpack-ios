@@ -17,7 +17,7 @@ jobs:
       uses: ./.github/workflows/_build.yml
   Deploy-Common:
     name: Release Common to Cocoapods
-    runs-on: macos-14-arm64
+    runs-on: macos-14
     environment: Publishing
     needs: [Build]
     steps:
@@ -46,7 +46,7 @@ jobs:
 
   Deploy-UIKit:
     name: Release UIKit to Cocoapods
-    runs-on: macos-14-arm64
+    runs-on: macos-14
     environment: Publishing
     needs: [Build]
     steps:
@@ -75,7 +75,7 @@ jobs:
 
   Deploy-SwiftUI:
     name: Release SwiftUI to Cocoapods
-    runs-on: macos-14-arm64
+    runs-on: macos-14
     environment: Publishing
     needs: [Build]
     steps:
@@ -104,7 +104,7 @@ jobs:
 
   Deploy-Docs:
     name: Release Backpack Docs
-    runs-on: macos-14-arm64
+    runs-on: macos-14
     environment: Publishing
     needs: [Deploy-SwiftUI, Deploy-UIKit, Deploy-Common]
     steps:

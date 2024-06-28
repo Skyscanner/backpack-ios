@@ -15,7 +15,7 @@ defaults:
 jobs:
   TestPods:
     name: Testing Pods
-    runs-on: macos-14-arm64
+    runs-on: macos-14
     outputs:
       changed-files: ${{ steps.checkSnapshotChanges.outputs.didChangeFiles }}
     steps:
