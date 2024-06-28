@@ -92,7 +92,7 @@ IB_DESIGNABLE @interface BPKToast : UIView
  * A convenience constructor that initializes the Toast with the view's bounds. Calls the designated constructor with
  * view.bounds as the parameter
  *
- * @param view The view instance that will provide the bounds for the Toast. Should be the same instance as
+ * @param view The view instance that will provide the bounxds for the Toast. Should be the same instance as
  * the Toast's superview (i.e., the view that the Toast will be added to).
  * @param accessibilityAnnouncement The announcement to make when the Toast is shown.
  */
