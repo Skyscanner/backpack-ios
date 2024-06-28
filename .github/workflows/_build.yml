@@ -10,7 +10,7 @@ defaults:
 jobs:
   Setup:
     name: Install Dependencies
-    runs-on: macos-13
+    runs-on: macos-14-arm64
     steps:
       - uses: actions/checkout@v4
 
@@ -22,7 +22,7 @@ jobs:
 
   Lint:
     name: Lint Project
-    runs-on: macos-13
+    runs-on: macos-14-arm64
     needs: [Setup]
     steps:
       - name: Checkout code
@@ -90,7 +90,7 @@ jobs:
 
   AnalyzePods:
     name: Analyzing pods
-    runs-on: macos-13
+    runs-on: macos-14-arm64
     needs: [Setup]
     strategy:
       fail-fast: false
@@ -137,7 +137,7 @@ jobs:
 
   UploadArtifacts:
     name: Upload Artifacts
-    runs-on: macos-13
+    runs-on: macos-14-arm64
     needs: [TestPods]
     steps:
       - name: Save assets
