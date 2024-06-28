@@ -32,8 +32,8 @@ jobs:
     - name: Bundle Install
       run: bundle install --jobs 4 --retry 3
 
-    - name: Select Xcode 14
-      run: sudo xcode-select --switch /Applications/Xcode_14.2.app
+    - name: Select Xcode 15
+      run: sudo xcode-select --switch /Applications/Xcode_15.3.app
 
     - name: Publish Pods - Backpack Common
       run: |
@@ -61,8 +61,8 @@ jobs:
     - name: Bundle Install
       run: bundle install --jobs 4 --retry 3
 
-    - name: Select Xcode 14
-      run: sudo xcode-select --switch /Applications/Xcode_14.2.app
+    - name: Select Xcode 15
+      run: sudo xcode-select --switch /Applications/Xcode_15.3.app
 
     - name: Publish Pods - Backpack UIKit
       run: |
@@ -90,8 +90,8 @@ jobs:
     - name: Bundle Install
       run: bundle install --jobs 4 --retry 3
 
-    - name: Select Xcode 14
-      run: sudo xcode-select --switch /Applications/Xcode_14.2.app
+    - name: Select Xcode 15
+      run: sudo xcode-select --switch /Applications/Xcode_15.3.app
 
     - name: Publish Pods - Backpack SwiftUI
       run: |
