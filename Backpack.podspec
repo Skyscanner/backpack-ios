@@ -37,7 +37,6 @@ Pod::Spec.new do |s|
   s.public_header_files = 'Backpack/Backpack.h', 'Backpack/*/Classes/**/*.h'
 
   s.dependency 'FSCalendar', '~> 2.8.2'
-  s.dependency 'TTTAttributedLabel', '~> 2.0.0'
   s.dependency 'FloatingPanel', '2.5.3'
   s.dependency 'Backpack-Common'
   s.dependency 'MBProgressHUD', '~> 1.2.0'
