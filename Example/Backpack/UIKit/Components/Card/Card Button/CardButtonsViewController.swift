@@ -154,8 +154,8 @@ final class CardButtonsViewController: UIViewController {
         NSLayoutConstraint.activate([
             subview.centerXAnchor.constraint(equalTo: container.centerXAnchor),
             subview.centerYAnchor.constraint(equalTo: container.centerYAnchor),
-            container.widthAnchor.constraint(equalToConstant: BPKSpacingXl * 2),
-            container.heightAnchor.constraint(equalToConstant: BPKSpacingXl * 2)
+            container.widthAnchor.constraint(equalToConstant: BPKSpacingLg * 2),
+            container.heightAnchor.constraint(equalToConstant: BPKSpacingLg * 2)
         ])
         return container
     }

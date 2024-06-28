@@ -20,6 +20,7 @@
 #import "Backpack_Native-Swift.h"
 
 #import <Backpack/Color.h>
+#import <Backpack/DarkMode.h>
 #import <Backpack/Icon.h>
 #import <Backpack/Label.h>
 
