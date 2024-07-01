@@ -58,11 +58,11 @@ jobs:
       - name: Run UIKit tests
         run: ./scripts/ci uikit test
         continue-on-error: ${{inputs.retake_snapshots}}
-      
+
       - name: Run SwiftUI tests
         run: ./scripts/ci swiftui test
         continue-on-error: ${{inputs.retake_snapshots}}
-      
+
       - name: Check snapshot changes
         id: checkSnapshotChanges
         run: changedFiles=`git status --porcelain` && echo "didChangeFiles=${changedFiles//$'\n'/'%0A'}" >> $GITHUB_OUTPUT
@@ -83,7 +83,7 @@ jobs:
 
   NotifyChanges:
     name: "Notify about changes made"
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: [TestPods]
     if: ${{ needs.TestPods.outputs.changed-files != '' &&  inputs.retake_snapshots}}
     steps:
