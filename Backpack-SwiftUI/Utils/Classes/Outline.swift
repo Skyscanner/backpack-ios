@@ -34,19 +34,25 @@ struct Outline: ViewModifier {
         return content
             .overlay(
                 RoundedRectangle(cornerRadius: cornerRadius)
-                    .stroke(Color(color), lineWidth: lineWidth)
+                    .strokeBorder(Color(color), lineWidth: lineWidth)
             )
     }
 }
 
 extension View {
     @ViewBuilder
-    func outline(_ color: BPKColor?, cornerRadius: BPKCornerRadius, lineWidth: CGFloat = 1.0) -> some View {
+    func outline(
+        _ color: BPKColor?,
+        cornerRadius: BPKCornerRadius,
+        lineWidth: CGFloat = 1.0
+    ) -> some View {
         if let color = color {
-            ModifiedContent(
-                content: self,
-                modifier: Outline(color: color, cornerRadius: cornerRadius, lineWidth: lineWidth)
+            let outline = Outline(
+                color: color,
+                cornerRadius: cornerRadius,
+                lineWidth: lineWidth
             )
+            self.modifier(outline)
         } else {
             self
         }
