@@ -23,27 +23,18 @@ struct Outline: ViewModifier {
     let color: BPKColor
     let cornerRadius: BPKCornerRadius
     let lineWidth: CGFloat
-    let fitsInsideBorder: Bool
     
-    init(color: BPKColor, cornerRadius: BPKCornerRadius, lineWidth: CGFloat = 1.0, fitsInsideBorder: Bool) {
+    init(color: BPKColor, cornerRadius: BPKCornerRadius, lineWidth: CGFloat = 1.0) {
         self.color = color
         self.cornerRadius = cornerRadius
         self.lineWidth = lineWidth
-        self.fitsInsideBorder = fitsInsideBorder
     }
     
     func body(content: Content) -> some View {
         return content
             .overlay(
-                Group {
-                    if fitsInsideBorder {
-                        RoundedRectangle(cornerRadius: cornerRadius)
-                            .strokeBorder(Color(color), lineWidth: lineWidth)
-                    } else {
-                        RoundedRectangle(cornerRadius: cornerRadius)
-                            .stroke(Color(color), lineWidth: lineWidth)
-                    }
-                }
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .strokeBorder(Color(color), lineWidth: lineWidth)
             )
     }
 }
@@ -53,15 +44,13 @@ extension View {
     func outline(
         _ color: BPKColor?,
         cornerRadius: BPKCornerRadius,
-        lineWidth: CGFloat = 1.0,
-        fitsInsideBorder: Bool = false
+        lineWidth: CGFloat = 1.0
     ) -> some View {
         if let color = color {
             let outline = Outline(
                 color: color,
                 cornerRadius: cornerRadius,
-                lineWidth: lineWidth,
-                fitsInsideBorder: fitsInsideBorder
+                lineWidth: lineWidth
             )
             self.modifier(outline)
         } else {

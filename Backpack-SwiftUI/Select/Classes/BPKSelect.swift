@@ -40,7 +40,7 @@ struct CustomPickerStyle: ViewModifier {
         .background(.surfaceDefaultColor)
         .clipShape(RoundedRectangle(cornerRadius: .xs))
         .disabled(pickerState.isDisabled)
-        .outline(pickerState.borderColor, cornerRadius: .xs, fitsInsideBorder: true)
+        .outline(pickerState.borderColor, cornerRadius: .xs)
     }
 }
 
