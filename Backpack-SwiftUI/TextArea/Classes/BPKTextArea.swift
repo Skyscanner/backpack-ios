@@ -70,6 +70,10 @@ public struct BPKTextArea: View {
         return font.lineHeight * 3
     }
     
+    private var frameHeight: CGFloat {
+        threeLineHeight + (PlaceholderConstants.verticalPadding.value * 2)
+    }
+    
     @ViewBuilder
     var textEditorContent: some View {
         if #available(iOS 16.0, *) {
@@ -108,7 +112,7 @@ public struct BPKTextArea: View {
         .clipShape(
             RoundedRectangle(cornerRadius: BorderConstants.cornerRadius)
         )
-        .frame(minHeight: threeLineHeight)
+        .frame(minHeight: frameHeight)
         .accessibilityLabel(accessibilityLabelText)
     }
     
