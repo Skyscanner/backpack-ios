@@ -143,7 +143,7 @@ public struct BPKPrice: View {
             items.append(leadingText)
         }
         
-        return alignment == .trailing ? items.reversed() : items
+        return items
     }
 }
 
