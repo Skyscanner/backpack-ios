@@ -91,8 +91,9 @@ public struct BPKPrice: View {
     private var additionalInfoLabel: some View {
         HStack(spacing: .sm) {
             ForEach(additionalInfo, id: \.self) { item in
+                let color = (item == previousPrice) ? BPKColor.textErrorColor: BPKColor.textSecondaryColor
                 BPKText(item, style: accessoryFontStyle)
-                    .foregroundColor(.textSecondaryColor)
+                    .foregroundColor(color)
                     .strikethrough(item == previousPrice)
             }
         }
