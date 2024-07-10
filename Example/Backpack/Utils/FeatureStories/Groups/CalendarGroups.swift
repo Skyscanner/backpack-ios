@@ -51,6 +51,7 @@ struct CalendarGroupsProvider {
                 presentable("With max enabled date") { $0.maxEnabledDate = true },
                 presentable("Custom styles for specific dates") { $0.customStylesForDates = true },
                 presentable("With prices") { $0.showPrices = true },
+                presentable("With icon") { $0.showIcon = true },
                 presentable("With alternate background color") { $0.alternativeBackgroundColor = true },
                 presentable("With preselected dates") { vController in
                     let startingDate = BPKSimpleDate(year: 2020, month: 1, day: 1)

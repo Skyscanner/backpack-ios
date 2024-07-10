@@ -25,6 +25,7 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
     var maxEnabledDate: Bool = false
     var customStylesForDates = false
     var showPrices = false
+    var showIcon = false
     var alternativeBackgroundColor = false
     var preselectedDates: (BPKSimpleDate, BPKSimpleDate)?
     var currentMaxEnabledDate: Date?
@@ -37,7 +38,9 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
     var mediumPrice = BPKCalendarPriceLabelCellData(price: "£28", labelStyle: BPKCalendarPriceLabelStyle.noData)
     var highPrice = BPKCalendarPriceLabelCellData(price: "£480", labelStyle: BPKCalendarPriceLabelStyle.negative)
     var noPrice = BPKCalendarPriceLabelCellData(price: "–", labelStyle: BPKCalendarPriceLabelStyle.noData)
-    
+    // swiftlint:disable line_length
+    var icon = BPKCalendarPriceLabelCellData(icon: BPKIconView(iconName: .search, size: .small), labelStyle: BPKCalendarPriceLabelStyle.noData)
+    // swiftlint:enable line_length
     var wholeMonthTitle: String?
 
     var singleSelectionConfiguration: BPKCalendarSelectionConfiguration {
@@ -76,7 +79,7 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
             )
         }
 
-        if showPrices {
+        if showPrices || showIcon {
             calendar = BPKCalendar(
                 configuration: BPKCalendarPriceLabelConfiguration(),
                 selectionConfiguration: singleSelectionConfiguration
@@ -165,6 +168,9 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
     }
 
     func calendar(_ calendar: BPKCalendar, cellDataFor date: BPKSimpleDate) -> Any? {
+        if showIcon {
+            return icon
+        }
         if !customStylesForDates && !showPrices {
             return nil
         }
