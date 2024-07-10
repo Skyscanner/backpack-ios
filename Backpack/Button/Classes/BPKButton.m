@@ -167,8 +167,8 @@ NS_ASSUME_NONNULL_BEGIN
                                                                                                constant:BPKSpacingBase];
     self.stackTrailingConstraint = [self.contentStack.trailingAnchor constraintLessThanOrEqualToAnchor:self.contentView.trailingAnchor
                                                                                               constant:-BPKSpacingBase];
-    self.stackTopConstraint = [self.contentStack.topAnchor constraintGreaterThanOrEqualToAnchor:self.contentView.topAnchor constant:0];
-    self.stackBottomConstraint = [self.contentStack.bottomAnchor constraintLessThanOrEqualToAnchor:self.contentView.bottomAnchor constant:0];
+    self.stackTopConstraint = [self.contentStack.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:0];
+    self.stackBottomConstraint = [self.contentStack.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor constant:0];
 
     self.imagePosition = BPKButtonImagePositionTrailing;
 
