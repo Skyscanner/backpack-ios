@@ -29,7 +29,7 @@
     static BPKCalendarPriceLabelStyle *style;
 
     dispatch_once(&onceToken, ^{
-      style = [[BPKCalendarPriceLabelStyle alloc] initWithTextColor:BPKColor.textSecondaryColor bold:NO];
+      style = [[BPKCalendarPriceLabelStyle alloc] initWithTextColor:BPKColor.textLinkColor bold:NO];
     });
 
     return style;

@@ -19,7 +19,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class BPKCalendarPriceLabelStyle;
-@class BPKIconView;
 
 /**
  * `BPKCalendarPriceLabelCellData` contains the properties required to show a price label under a calendar cell.
@@ -34,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (instancetype)initWithPrice:(NSString *)price labelStyle:(BPKCalendarPriceLabelStyle *)labelStyle;
 
-- (instancetype)initWithIcon:(BPKIconView *)icon labelStyle:(BPKCalendarPriceLabelStyle *)labelStyle;
+- (instancetype)initWithIcon:(UIImage *)icon;
 /**
  * The price value to be shown below the cell.
  */
@@ -48,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The icon to be shown below the cell.
  */
-@property(nonatomic, readonly, nullable) BPKIconView *icon;
+@property(nonatomic, readonly, nullable) UIImage *icon;
 
 @end
 

@@ -33,12 +33,12 @@
     return self;
 }
          
-- (instancetype)initWithIcon:(BPKIconView *)icon labelStyle:(BPKCalendarPriceLabelStyle *)labelStyle {
+- (instancetype)initWithIcon:(UIImage *)icon {
     self = [super init];
 
     if (self) {
         _icon = icon;
-        _labelStyle = labelStyle;
+        _labelStyle = BPKCalendarPriceLabelStyle.noData;
     }
 
     return self;

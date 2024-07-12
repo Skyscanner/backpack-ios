@@ -82,10 +82,10 @@
     NSAssert([data isKindOfClass:BPKCalendarPriceLabelCellData.class],
              @"BPKCalendarPriceLabelCell can only be configured with data of type BPKCalendarPriceLabelCellData");
     BPKCalendarPriceLabelCellData *priceLabelCellData = (BPKCalendarPriceLabelCellData *)data;
-    BPKIconView *icon = priceLabelCellData.icon;
+    UIImage *icon = priceLabelCellData.icon;
     if (icon != nil) {
         NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
-        attachment.image = icon.image;
+        attachment.image = icon;
         NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:attachment];
         self.priceLabel.attributedText = attachmentString;
     } else {
