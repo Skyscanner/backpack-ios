@@ -20,7 +20,7 @@
 
 #import <Backpack/Label.h>
 #import <Backpack/Spacing.h>
-#import <Backpack/Icon.h>
+
 #import "BPKCalendarPriceLabelCellData.h"
 #import "BPKCalendarPriceLabelStyle.h"
 
