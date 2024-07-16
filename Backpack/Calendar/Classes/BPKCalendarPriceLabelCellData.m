@@ -30,7 +30,7 @@
     }
     return self;
 }
-         
+
 - (instancetype)initWithIcon:(UIImage *)icon {
     self = [super init];
     if (self) {
