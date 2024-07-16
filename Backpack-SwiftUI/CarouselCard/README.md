@@ -12,7 +12,7 @@
 
 ## Usage
 
-Example of a Carousel: 
+Example of a CarouselCard: 
 ```swift
 BPKCarouselCard(
     content: {
