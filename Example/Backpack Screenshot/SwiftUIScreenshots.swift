@@ -324,7 +324,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         
         await navigate(title: "Carousel Card") {
             switchTab(title: "SwiftUI")
-            saveScreenshot(component: "carouselCard", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            saveScreenshot(component: "carousel-card", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
         await navigate(title: "Section header") {
@@ -691,7 +691,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         
         await navigate(title: "Carousel Card") {
             switchTab(title: "SwiftUI")
-            saveScreenshot(component: "carouselCard", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            saveScreenshot(component: "carousel-card", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
         await navigate(title: "Section header") {
