@@ -45,15 +45,17 @@ public struct BPKCarouselCard<Content: View>: View {
     }
 }
 
-#Preview {
-    BPKCarouselCard(
-        content: {
-            Rectangle()
-                .foregroundColor(BPKColor.skyBlue)
-        },
-        title: "Test Title",
-        description: "Test description",
-        imageAccessibilityLabel: "Blue rectangle"
-    )
-    .padding()
+struct BPKCarouselCard_Previews: PreviewProvider {
+    static var previews: some View {
+        BPKCarouselCard(
+            content: {
+                Rectangle()
+                    .foregroundColor(BPKColor.skyBlue)
+            },
+            title: "Test Title",
+            description: "Test description",
+            imageAccessibilityLabel: "Blue rectangle"
+        )
+        .padding()
+    }
 }
