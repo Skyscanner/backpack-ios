@@ -32,6 +32,7 @@ class BPKCarouselCardTests: XCTestCase {
                 description: "Test descriptions" ,
                 imageAccessibilityLabel: "Test label"
                 )
+            .frame(width: 300, height: 530)
         )
     }
     
@@ -45,6 +46,7 @@ class BPKCarouselCardTests: XCTestCase {
             description: "Test descriptions" ,
             imageAccessibilityLabel: "Test label"
         )
+            .frame(width: 300, height: 530)
         assertA11ySnapshot(card)
     }
 }
