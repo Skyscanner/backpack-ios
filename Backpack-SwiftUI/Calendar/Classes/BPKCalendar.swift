@@ -53,7 +53,11 @@ public struct BPKCalendar: View {
 
         monthHeaderDateFormatter = DateFormatter()
         monthHeaderDateFormatter.timeZone = calendar.timeZone
-        monthHeaderDateFormatter.dateFormat = "MMMM yyyy"
+        monthHeaderDateFormatter.dateFormat = DateFormatter.dateFormat(
+            fromTemplate: "MMMM yyyy",
+            options: 0,
+            locale: Locale.current
+        )
     }
     
     public var body: some View {
