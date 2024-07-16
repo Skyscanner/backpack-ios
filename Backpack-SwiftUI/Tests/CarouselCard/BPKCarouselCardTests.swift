@@ -27,12 +27,12 @@ class BPKCarouselCardTests: XCTestCase {
                 content: {
                     Image("dialog_image", bundle: TestsBundle.bundle)
                         .resizable()
+                        .scaledToFill()
                 },
                 title: "Test title",
                 description: "Test descriptions" ,
                 imageAccessibilityLabel: "Test label"
-                )
-            .frame(width: 300, height: 530)
+            ).frame(width: 300, height: 530)
         )
     }
     
@@ -41,12 +41,12 @@ class BPKCarouselCardTests: XCTestCase {
             content: {
                 Image("dialog_image", bundle: TestsBundle.bundle)
                     .resizable()
+                    .scaledToFill()
             },
             title: "Test title",
             description: "Test descriptions" ,
             imageAccessibilityLabel: "Test label"
-        )
-            .frame(width: 300, height: 530)
+        ).frame(width: 300, height: 530)
         assertA11ySnapshot(card)
     }
 }

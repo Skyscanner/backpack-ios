@@ -26,6 +26,7 @@ struct CarouselCardExampleView: View {
             content: {
                 Image("graphic_promo")
                     .resizable()
+                    .scaledToFill()
             },
             title: "Test Title",
             description: "Test description",
