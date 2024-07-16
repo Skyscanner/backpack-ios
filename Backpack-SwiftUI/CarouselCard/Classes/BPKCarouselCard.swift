@@ -3,18 +3,18 @@ import SwiftUI
 public struct BPKCarouselCard<Content: View>: View {
     @ViewBuilder let content: () -> Content
     let title: String
-    let desctiption: String
+    let description: String
     let imageAccessibilityLabel: String
     
     public init(
         content: @escaping () -> Content,
         title: String,
-        desctiption: String,
+        description: String,
         imageAccessibilityLabel: String
     ) {
         self.content = content
         self.title = title
-        self.desctiption = desctiption
+        self.description = description
         self.imageAccessibilityLabel = imageAccessibilityLabel
     }
     
@@ -34,7 +34,7 @@ public struct BPKCarouselCard<Content: View>: View {
                         BPKText("\(title)", style: .heading2)
                             .padding(.bottom, 5)
                         
-                        BPKText("\(desctiption)", style: .bodyLongform)
+                        BPKText("\(description)", style: .bodyLongform)
                     }.padding(.all, .lg)
                     
                     Spacer()
@@ -52,7 +52,7 @@ public struct BPKCarouselCard<Content: View>: View {
                 .foregroundColor(BPKColor.skyBlue)
         },
         title: "Test Title",
-        desctiption: "Test description",
+        description: "Test description",
         imageAccessibilityLabel: "Blue rectangle"
     )
     .padding()

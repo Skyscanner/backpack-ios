@@ -28,7 +28,7 @@ struct CarouselCardExampleView: View {
                     .resizable()
             },
             title: "Test Title",
-            desctiption: "Test description",
+            description: "Test description",
             imageAccessibilityLabel: "Blue rectangle"
         ).padding(.all, .base)
     }
