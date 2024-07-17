@@ -42,21 +42,24 @@ public struct BPKCarouselCard<Content: View>: View {
                     content()
                         .frame(
                             width: reader.size.width,
-                            height: reader.size.height * 0.65
+                            height: reader.size.height * 0.71
                         )
                         .accessibilityLabel(imageAccessibilityLabel)
                         .clipped()
                     
                     VStack(alignment: .leading) {
-                        BPKText("\(title)", style: .heading2)
-                            .padding(.bottom, 5)
+                        BPKText(title, style: .heading3)
+                            .padding(.bottom, .md)
+                            .lineLimit(nil)
                         
-                        BPKText("\(description)", style: .bodyLongform)
+                        BPKText(description, style: .bodyDefault)
+                            .lineLimit(nil)
                     }.padding(.all, .lg)
                     
                     Spacer()
                 }
             })
+            .frame(minHeight: 530)
             .disabled(true)
         }
     }
