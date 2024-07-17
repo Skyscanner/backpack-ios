@@ -35,7 +35,7 @@
     self = [super init];
     if (self) {
         _icon = icon;
-        _labelStyle = BPKCalendarPriceLabelStyle.noData;
+        _labelStyle = BPKCalendarPriceLabelStyle.iconData;
     }
     return self;
 }
