@@ -24,12 +24,19 @@
 
 - (instancetype)initWithPrice:(NSString *)price labelStyle:(BPKCalendarPriceLabelStyle *)labelStyle {
     self = [super init];
-
     if (self) {
         _price = [price copy];
         _labelStyle = labelStyle;
     }
+    return self;
+}
 
+- (instancetype)initWithIcon:(UIImage *)icon {
+    self = [super init];
+    if (self) {
+        _icon = icon;
+        _labelStyle = BPKCalendarPriceLabelStyle.iconData;
+    }
     return self;
 }
 

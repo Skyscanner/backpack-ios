@@ -58,6 +58,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(class, readonly) BPKCalendarPriceLabelStyle *positive;
 
+/**
+ * The label style for calendar cells with an icon.
+ */
+@property(class, readonly) BPKCalendarPriceLabelStyle *iconData;
+
 @end
 
 NS_ASSUME_NONNULL_END
