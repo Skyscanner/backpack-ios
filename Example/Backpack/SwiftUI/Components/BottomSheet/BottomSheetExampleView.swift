@@ -29,6 +29,7 @@ struct BottomSheetExampleView: View {
     @State private var closableBottomSheetShown = false
     @State private var largeBottomSheetShown = false
     @State private var mediumBottomSheetShown = false
+    @State private var mediumFixedBottomSheetShown = false
     @State private var fitContentBottomSheetShown = false
     @State private var itemToShow: ExampleItem?
 
@@ -50,6 +51,9 @@ struct BottomSheetExampleView: View {
             }
             BPKButton("Show medium bottom sheet") {
                 mediumBottomSheetShown.toggle()
+            }
+            BPKButton("Show medium bottom sheet (fixed)") {
+                mediumFixedBottomSheetShown.toggle()
             }
             BPKButton("Show fit content bottom sheet") {
                 fitContentBottomSheetShown.toggle()
@@ -87,6 +91,17 @@ struct BottomSheetExampleView: View {
         .bpkBottomSheet(
             isPresented: $mediumBottomSheetShown,
             contentMode: .medium,
+            title: "Title",
+            action: BPKBottomSheetAction(
+                title: "Action",
+                action: { mediumBottomSheetShown.toggle() }
+            ),
+            presentingController: rootViewController,
+            bottomSheetContent: { content() }
+        )
+        .bpkBottomSheet(
+            isPresented: $mediumFixedBottomSheetShown,
+            contentMode: .medium(false),
             title: "Title",
             action: BPKBottomSheetAction(
                 title: "Action",

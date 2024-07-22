@@ -23,9 +23,14 @@ public enum BPKBottomSheetContentMode {
     case large
     
     /// The sheet shows at half the screen
+    /// Sheet is only expansible if `expansible` is set to `true`.
+    /// Use `Spacer` in your content to define expansion behaviour
+    case medium(_ expansible: Bool)
+    
+    /// The sheet shows at half the screen
     /// Sheet is expansible
     /// Use `Spacer` in your content to define expansion behaviour
-    case medium
+    public static let medium = BPKBottomSheetContentMode.medium(true)
     
     /// The sheet resizes to fit its content
     /// Sheet is not expansible
