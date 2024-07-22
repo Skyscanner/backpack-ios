@@ -20,10 +20,22 @@ import SwiftUI
 
 @available(iOS 16.0, *)
 struct ContentFitBottomSheet<Content: View, Header: View>: View {
+    let peekHeight: CGFloat?
     let header: () -> Header
     let bottomSheetContent: () -> Content
     
-    @State private var detentHeight: CGFloat = 0
+    @State private var detentHeight: CGFloat
+    
+    init(
+        peekHeight: CGFloat?,
+        header: @escaping () -> Header,
+        bottomSheetContent: @escaping () -> Content
+    ) {
+        self.peekHeight = peekHeight
+        self.header = header
+        self.bottomSheetContent = bottomSheetContent
+        self.detentHeight = 0
+    }
     
     var body: some View {
         VStack {

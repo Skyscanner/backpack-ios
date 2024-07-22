@@ -26,6 +26,7 @@ struct BottomSheetExampleView: View {
         let name: String
     }
     
+    @State private var peekingBottomSheetShown = false
     @State private var closableBottomSheetShown = false
     @State private var largeBottomSheetShown = false
     @State private var mediumBottomSheetShown = false
@@ -41,10 +42,14 @@ struct BottomSheetExampleView: View {
         }
     }
     
+    // swiftlint:disable closure_body_length
     var body: some View {
         VStack {
             BPKButton("Show closable bottom sheet") {
                 closableBottomSheetShown.toggle()
+            }
+            BPKButton("Show peeking bottom sheet") {
+                peekingBottomSheetShown.toggle()
             }
             BPKButton("Show large bottom sheet") {
                 largeBottomSheetShown.toggle()
@@ -64,6 +69,12 @@ struct BottomSheetExampleView: View {
             .bpkBottomSheet(item: $itemToShow, presentingController: rootViewController) { item in
                 content(item.name)
             }
+            .bpkBottomSheet(
+                isPresented: $peekingBottomSheetShown,
+                peekHeight: 100,
+                presentingController: rootViewController,
+                bottomSheetContent: { content() }
+            )
         }
         .bpkBottomSheet(
             isPresented: $closableBottomSheetShown,

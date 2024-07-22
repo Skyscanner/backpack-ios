@@ -55,6 +55,7 @@ struct ItemBottomSheetContainerViewModifier<
                     bottomSheetContent(for: detents, item: item)
                 case .fitContent:
                     ContentFitBottomSheet(
+                        peekHeight: nil,
                         header: header,
                         bottomSheetContent: { bottomSheetContent(item) }
                     )

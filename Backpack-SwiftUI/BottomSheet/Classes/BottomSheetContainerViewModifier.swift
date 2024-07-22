@@ -20,6 +20,7 @@ import SwiftUI
 
 @available(iOS 16.0, *)
 struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>: ViewModifier {
+    let peekHeight: CGFloat?
     @Binding var isPresented: Bool
     @ViewBuilder let header: () -> Header
     let contentMode: BPKBottomSheetContentMode
@@ -29,11 +30,13 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
     
     init(
         isPresented: Binding<Bool>,
+        peekHeight: CGFloat?,
         contentMode: BPKBottomSheetContentMode,
         @ViewBuilder header: @escaping () -> Header,
         @ViewBuilder bottomSheetContent: @escaping () -> BottomSheetContent
     ) {
         self._isPresented = isPresented
+        self.peekHeight = peekHeight
         _selectedSheetDetent = .init(initialValue: .initialDetent(for: contentMode))
         self.contentMode = contentMode
         self.header = header
@@ -51,6 +54,7 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
                     bottomSheetContent(for: detents)
                 case .fitContent:
                     ContentFitBottomSheet(
+                        peekHeight: peekHeight,
                         header: header,
                         bottomSheetContent: bottomSheetContent
                     )
@@ -59,10 +63,14 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
     }
     
     private func bottomSheetContent(for detents: Set<PresentationDetent>) -> some View {
-        VStack {
+        var finalDetents = detents
+        if let peekHeight {
+            finalDetents.insert(.height(peekHeight))
+        }
+        return VStack {
             header()
             bottomSheetContent()
-                .presentationDetents(detents, selection: $selectedSheetDetent)
+                .presentationDetents(finalDetents, selection: $selectedSheetDetent)
                 .presentationDragIndicator(.visible)
         }
         .frame(maxHeight: .infinity, alignment: .top)

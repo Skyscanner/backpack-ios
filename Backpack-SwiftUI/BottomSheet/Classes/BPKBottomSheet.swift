@@ -34,9 +34,11 @@ public extension View {
     /// - Note: For iOS 16 users and above, the bottom sheet will be presented using
     ///         SwiftUI's native `BottomSheet` view.
     ///         For iOS 15 users and below, the bottom sheet will be presented using a custom implementation.
+    // swiftlint:disable function_body_length
     @ViewBuilder
     func bpkBottomSheet<BottomSheetContent: View>(
         isPresented: Binding<Bool>,
+        peekHeight: CGFloat? = nil,
         contentMode: BPKBottomSheetContentMode = .medium,
         closeButtonAccessibilityLabel: String? = nil,
         title: String? = nil,
@@ -44,10 +46,38 @@ public extension View {
         presentingController: UIViewController,
         @ViewBuilder bottomSheetContent: @escaping () -> BottomSheetContent
     ) -> some View {
-        if #available(iOS 16.0, *) {
+        if #available(iOS 16.4, *) {
             modifier(
                 BottomSheetContainerViewModifier(
                     isPresented: isPresented,
+                    peekHeight: peekHeight,
+                    contentMode: contentMode,
+                    header: {
+                        header(
+                            closeAction: closeAction(
+                                closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
+                                closeAction: { isPresented.wrappedValue.toggle() }
+                            ),
+                            title: title,
+                            action: action
+                        )
+                    },
+                    bottomSheetContent: {
+                        if peekHeight != nil {
+                            bottomSheetContent()
+                                .interactiveDismissDisabled()
+                                .presentationBackgroundInteraction(.enabled)
+                        } else {
+                            bottomSheetContent()
+                        }
+                    }
+                )
+            )
+        } else if #available(iOS 16.0, *) {
+            modifier(
+                BottomSheetContainerViewModifier(
+                    isPresented: isPresented,
+                    peekHeight: peekHeight,
                     contentMode: contentMode,
                     header: {
                         header(
