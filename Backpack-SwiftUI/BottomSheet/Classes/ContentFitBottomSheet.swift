@@ -24,24 +24,21 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
     let header: () -> Header
     let bottomSheetContent: () -> Content
     
-    @State private var detentHeight: CGFloat
+    @State private var detentHeight: CGFloat = 0
     
-    init(
-        peekHeight: CGFloat?,
-        header: @escaping () -> Header,
-        bottomSheetContent: @escaping () -> Content
-    ) {
-        self.peekHeight = peekHeight
-        self.header = header
-        self.bottomSheetContent = bottomSheetContent
-        self.detentHeight = 0
+    private var detents: Set<PresentationDetent> {
+        var finalDetents: Set<PresentationDetent> = [.height(detentHeight)]
+        if let peekHeight {
+            finalDetents.insert(.height(peekHeight))
+        }
+        return finalDetents
     }
     
     var body: some View {
         VStack {
             header()
             bottomSheetContent()
-                .presentationDetents([.height(detentHeight)])
+                .presentationDetents(detents)
         }
         .presentationDragIndicator(.visible)
         .readHeight()
