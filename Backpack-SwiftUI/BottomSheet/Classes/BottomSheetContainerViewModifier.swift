@@ -46,8 +46,9 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
                 switch contentMode {
                 case .large:
                     bottomSheetContent(for: [.large])
-                case .medium:
-                    bottomSheetContent(for: [.medium, .large])
+                case .medium(let expansible):
+                    let detents: Set<PresentationDetent> = expansible ? [.medium, .large] : [.medium]
+                    bottomSheetContent(for: detents)
                 case .fitContent:
                     ContentFitBottomSheet(
                         header: header,
