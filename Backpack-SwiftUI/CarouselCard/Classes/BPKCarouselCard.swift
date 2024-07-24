@@ -42,15 +42,14 @@ public struct BPKCarouselCard<Content: View>: View {
                     content()
                         .frame(
                             width: reader.size.width,
-                            height: reader.size.height * 0.71
+                            height: reader.size.height * 0.60
                         )
-                        .accessibilityLabel(imageAccessibilityLabel)
                         .clipped()
                     
                     VStack(alignment: .leading) {
                         BPKText(title, style: .heading3)
-                            .padding(.bottom, .md)
                             .lineLimit(nil)
+                            .padding(.bottom, .xl)
                         
                         BPKText(description, style: .bodyDefault)
                             .lineLimit(nil)
@@ -61,7 +60,13 @@ public struct BPKCarouselCard<Content: View>: View {
             })
             .frame(minHeight: 530)
             .disabled(true)
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(getAccessibilityLabel())
         }
+    }
+    
+    private func getAccessibilityLabel() -> String {
+        return "\(imageAccessibilityLabel) \(title) \(description)"
     }
 }
 
