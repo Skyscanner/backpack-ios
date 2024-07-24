@@ -49,7 +49,7 @@ public struct BPKCarouselCard<Content: View>: View {
                     VStack(alignment: .leading) {
                         BPKText(title, style: .heading3)
                             .lineLimit(nil)
-                            .padding(.bottom, .xl)
+                            .padding(.bottom, .md)
                         
                         BPKText(description, style: .bodyDefault)
                             .lineLimit(nil)
