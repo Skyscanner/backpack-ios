@@ -42,8 +42,89 @@ struct BottomSheetExampleView: View {
         }
     }
     
-    // swiftlint:disable closure_body_length
     var body: some View {
+        versionedButtons
+            .bpkBottomSheet(
+                isPresented: $closableBottomSheetShown,
+                contentMode: .medium,
+                closeButtonAccessibilityLabel: "Close",
+                title: "Title",
+                action: BPKBottomSheetAction(
+                    title: "Action",
+                    action: { closableBottomSheetShown.toggle() }
+                ),
+                presentingController: rootViewController,
+                bottomSheetContent: { content() }
+            )
+            .bpkBottomSheet(
+                isPresented: $largeBottomSheetShown,
+                contentMode: .large,
+                title: "Title",
+                action: BPKBottomSheetAction(
+                    title: "Action",
+                    action: { largeBottomSheetShown.toggle() }
+                ),
+                presentingController: rootViewController,
+                bottomSheetContent: { content() }
+            )
+            .bpkBottomSheet(
+                isPresented: $mediumBottomSheetShown,
+                contentMode: .medium,
+                title: "Title",
+                action: BPKBottomSheetAction(
+                    title: "Action",
+                    action: { mediumBottomSheetShown.toggle() }
+                ),
+                presentingController: rootViewController,
+                bottomSheetContent: { content() }
+            )
+            .bpkBottomSheet(
+                isPresented: $mediumFixedBottomSheetShown,
+                contentMode: .medium(false),
+                title: "Title",
+                action: BPKBottomSheetAction(
+                    title: "Action",
+                    action: { mediumBottomSheetShown.toggle() }
+                ),
+                presentingController: rootViewController,
+                bottomSheetContent: { content() }
+            )
+            .bpkBottomSheet(
+                isPresented: $fitContentBottomSheetShown,
+                contentMode: .fitContent,
+                title: "Title",
+                action: BPKBottomSheetAction(
+                    title: "Action",
+                    action: { fitContentBottomSheetShown.toggle() }
+                ),
+                presentingController: rootViewController,
+                bottomSheetContent: {
+                    VStack {
+                        BPKText("Bottom sheet content")
+                        BPKButton("Do Action") {
+                            fitContentBottomSheetShown.toggle()
+                        }
+                    }
+                    .padding()
+                }
+            )
+    }
+    
+    @ViewBuilder
+    var versionedButtons: some View {
+        if #available(iOS 16.4, *) {
+            buttons
+                .bpkBottomSheet(
+                    isPresented: $peekingBottomSheetShown,
+                    peekHeight: 120,
+                    bottomSheetContent: { content() }
+                )
+        } else {
+            buttons
+        }
+    }
+    
+    var buttons: some View {
         VStack {
             BPKButton("Show closable bottom sheet") {
                 closableBottomSheetShown.toggle()
@@ -69,77 +150,7 @@ struct BottomSheetExampleView: View {
             .bpkBottomSheet(item: $itemToShow, presentingController: rootViewController) { item in
                 content(item.name)
             }
-            .bpkBottomSheet(
-                isPresented: $peekingBottomSheetShown,
-                peekHeight: 100,
-                presentingController: rootViewController,
-                bottomSheetContent: { content() }
-            )
         }
-        .bpkBottomSheet(
-            isPresented: $closableBottomSheetShown,
-            contentMode: .medium,
-            closeButtonAccessibilityLabel: "Close",
-            title: "Title",
-            action: BPKBottomSheetAction(
-                title: "Action",
-                action: { closableBottomSheetShown.toggle() }
-            ),
-            presentingController: rootViewController,
-            bottomSheetContent: { content() }
-        )
-        .bpkBottomSheet(
-            isPresented: $largeBottomSheetShown,
-            contentMode: .large,
-            title: "Title",
-            action: BPKBottomSheetAction(
-                title: "Action",
-                action: { largeBottomSheetShown.toggle() }
-            ),
-            presentingController: rootViewController,
-            bottomSheetContent: { content() }
-        )
-        .bpkBottomSheet(
-            isPresented: $mediumBottomSheetShown,
-            contentMode: .medium,
-            title: "Title",
-            action: BPKBottomSheetAction(
-                title: "Action",
-                action: { mediumBottomSheetShown.toggle() }
-            ),
-            presentingController: rootViewController,
-            bottomSheetContent: { content() }
-        )
-        .bpkBottomSheet(
-            isPresented: $mediumFixedBottomSheetShown,
-            contentMode: .medium(false),
-            title: "Title",
-            action: BPKBottomSheetAction(
-                title: "Action",
-                action: { mediumBottomSheetShown.toggle() }
-            ),
-            presentingController: rootViewController,
-            bottomSheetContent: { content() }
-        )
-        .bpkBottomSheet(
-            isPresented: $fitContentBottomSheetShown,
-            contentMode: .fitContent,
-            title: "Title",
-            action: BPKBottomSheetAction(
-                title: "Action",
-                action: { fitContentBottomSheetShown.toggle() }
-            ),
-            presentingController: rootViewController,
-            bottomSheetContent: {
-                VStack {
-                    BPKText("Bottom sheet content")
-                    BPKButton("Do Action") {
-                        fitContentBottomSheetShown.toggle()
-                    }
-                }
-                .padding()
-            }
-        )
     }
     
     private var rootViewController: UIViewController {
