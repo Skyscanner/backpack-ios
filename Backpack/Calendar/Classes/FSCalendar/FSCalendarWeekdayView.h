@@ -6,8 +6,8 @@
 //  Copyright © 2016 dingwenchao. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  An array of UILabel objects displaying the weekday symbols.
  */
-@property (readonly, nonatomic) NSArray<UILabel *> *weekdayLabels;
+@property(readonly, nonatomic) NSArray<UILabel *> *weekdayLabels;
 
 - (void)configureAppearance;
 

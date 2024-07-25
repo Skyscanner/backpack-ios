@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 @class FSCalendarCollectionView;
 
-
 @protocol FSCalendarCollectionViewInternalDelegate <UICollectionViewDelegate>
 
 @optional
@@ -19,6 +18,6 @@
 
 @interface FSCalendarCollectionView : UICollectionView
 
-@property (weak, nonatomic) id<FSCalendarCollectionViewInternalDelegate> internalDelegate;
+@property(weak, nonatomic) id<FSCalendarCollectionViewInternalDelegate> internalDelegate;
 
 @end

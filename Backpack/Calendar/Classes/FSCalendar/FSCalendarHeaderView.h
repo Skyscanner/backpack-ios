@@ -12,12 +12,12 @@
 
 @interface FSCalendarHeaderView : UIView
 
-@property (weak, nonatomic) FSCalendarCollectionView *collectionView;
-@property (weak, nonatomic) FSCalendarHeaderLayout *collectionViewLayout;
-@property (weak, nonatomic) FSCalendar *calendar;
+@property(weak, nonatomic) FSCalendarCollectionView *collectionView;
+@property(weak, nonatomic) FSCalendarHeaderLayout *collectionViewLayout;
+@property(weak, nonatomic) FSCalendar *calendar;
 
-@property (assign, nonatomic) UICollectionViewScrollDirection scrollDirection;
-@property (assign, nonatomic) BOOL scrollEnabled;
+@property(assign, nonatomic) UICollectionViewScrollDirection scrollDirection;
+@property(assign, nonatomic) BOOL scrollEnabled;
 
 - (void)setScrollOffset:(CGFloat)scrollOffset;
 - (void)setScrollOffset:(CGFloat)scrollOffset animated:(BOOL)animated;
@@ -26,11 +26,10 @@
 
 @end
 
-
 @interface FSCalendarHeaderCell : UICollectionViewCell
 
-@property (weak, nonatomic) UILabel *titleLabel;
-@property (weak, nonatomic) FSCalendarHeaderView *header;
+@property(weak, nonatomic) UILabel *titleLabel;
+@property(weak, nonatomic) FSCalendarHeaderView *header;
 
 @end
 
@@ -40,7 +39,7 @@
 
 @interface FSCalendarHeaderTouchDeliver : UIView
 
-@property (weak, nonatomic) FSCalendar *calendar;
-@property (weak, nonatomic) FSCalendarHeaderView *header;
+@property(weak, nonatomic) FSCalendar *calendar;
+@property(weak, nonatomic) FSCalendarHeaderView *header;
 
 @end

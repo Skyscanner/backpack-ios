@@ -6,8 +6,8 @@
 //  Copyright © 2016 Wenchao Ding. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 struct FSCalendarCoordinate {
     NSInteger row;
@@ -17,9 +17,9 @@ typedef struct FSCalendarCoordinate FSCalendarCoordinate;
 
 @interface FSCalendarCalculator : NSObject
 
-@property (weak  , nonatomic) FSCalendar *calendar;
+@property(weak, nonatomic) FSCalendar *calendar;
 
-@property (readonly, nonatomic) NSInteger numberOfSections;
+@property(readonly, nonatomic) NSInteger numberOfSections;
 
 - (instancetype)initWithCalendar:(FSCalendar *)calendar;
 

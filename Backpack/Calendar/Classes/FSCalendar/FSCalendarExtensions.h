@@ -6,36 +6,34 @@
 //  Copyright © 2016 Wenchao Ding. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (FSCalendarExtensions)
 
-@property (nonatomic) CGFloat fs_width;
-@property (nonatomic) CGFloat fs_height;
+@property(nonatomic) CGFloat fs_width;
+@property(nonatomic) CGFloat fs_height;
 
-@property (nonatomic) CGFloat fs_top;
-@property (nonatomic) CGFloat fs_left;
-@property (nonatomic) CGFloat fs_bottom;
-@property (nonatomic) CGFloat fs_right;
+@property(nonatomic) CGFloat fs_top;
+@property(nonatomic) CGFloat fs_left;
+@property(nonatomic) CGFloat fs_bottom;
+@property(nonatomic) CGFloat fs_right;
 
 @end
-
 
 @interface CALayer (FSCalendarExtensions)
 
-@property (nonatomic) CGFloat fs_width;
-@property (nonatomic) CGFloat fs_height;
+@property(nonatomic) CGFloat fs_width;
+@property(nonatomic) CGFloat fs_height;
 
-@property (nonatomic) CGFloat fs_top;
-@property (nonatomic) CGFloat fs_left;
-@property (nonatomic) CGFloat fs_bottom;
-@property (nonatomic) CGFloat fs_right;
+@property(nonatomic) CGFloat fs_top;
+@property(nonatomic) CGFloat fs_left;
+@property(nonatomic) CGFloat fs_bottom;
+@property(nonatomic) CGFloat fs_right;
 
 @end
-
 
 @interface NSCalendar (FSCalendarExtensions)
 
@@ -62,12 +60,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-
 @interface NSObject (FSCalendarExtensions)
 
-#define IVAR_DEF(SET,GET,TYPE) \
-- (void)fs_set##SET##Variable:(TYPE)value forKey:(NSString *)key; \
-- (TYPE)fs_##GET##VariableForKey:(NSString *)key;
+#define IVAR_DEF(SET, GET, TYPE)                                                                                                                     \
+    -(void)fs_set##SET##Variable : (TYPE)value forKey : (NSString *)key;                                                                             \
+    -(TYPE)fs_##GET##VariableForKey : (NSString *)key;
 IVAR_DEF(Bool, bool, BOOL)
 IVAR_DEF(Float, float, CGFloat)
 IVAR_DEF(Integer, integer, NSInteger)

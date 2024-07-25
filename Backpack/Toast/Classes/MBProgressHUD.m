@@ -15,29 +15,26 @@ static const CGFloat MBDefaultPadding = 4.f;
 static const CGFloat MBDefaultLabelFontSize = 16.f;
 static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
 
-
 @interface MBProgressHUD ()
 
-@property (nonatomic, assign) BOOL useAnimation;
-@property (nonatomic, assign, getter=hasFinished) BOOL finished;
-@property (nonatomic, strong) UIView *indicator;
-@property (nonatomic, strong) NSDate *showStarted;
-@property (nonatomic, strong) NSArray *paddingConstraints;
-@property (nonatomic, strong) NSArray *bezelConstraints;
-@property (nonatomic, strong) UIView *topSpacer;
-@property (nonatomic, strong) UIView *bottomSpacer;
-@property (nonatomic, strong) UIMotionEffectGroup *bezelMotionEffects;
-@property (nonatomic, weak) NSTimer *graceTimer;
-@property (nonatomic, weak) NSTimer *minShowTimer;
-@property (nonatomic, weak) NSTimer *hideDelayTimer;
-@property (nonatomic, weak) CADisplayLink *progressObjectDisplayLink;
+@property(nonatomic, assign) BOOL useAnimation;
+@property(nonatomic, assign, getter=hasFinished) BOOL finished;
+@property(nonatomic, strong) UIView *indicator;
+@property(nonatomic, strong) NSDate *showStarted;
+@property(nonatomic, strong) NSArray *paddingConstraints;
+@property(nonatomic, strong) NSArray *bezelConstraints;
+@property(nonatomic, strong) UIView *topSpacer;
+@property(nonatomic, strong) UIView *bottomSpacer;
+@property(nonatomic, strong) UIMotionEffectGroup *bezelMotionEffects;
+@property(nonatomic, weak) NSTimer *graceTimer;
+@property(nonatomic, weak) NSTimer *minShowTimer;
+@property(nonatomic, weak) NSTimer *hideDelayTimer;
+@property(nonatomic, weak) CADisplayLink *progressObjectDisplayLink;
 
 @end
-
 
 @interface MBProgressHUDRoundedButton : UIButton
 @end
-
 
 @implementation MBProgressHUD
 
@@ -84,7 +81,7 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
     _defaultMotionEffectsEnabled = NO;
 
     if (@available(iOS 13.0, tvOS 13, *)) {
-       _contentColor = [[UIColor labelColor] colorWithAlphaComponent:0.7f];
+        _contentColor = [[UIColor labelColor] colorWithAlphaComponent:0.7f];
     } else {
         _contentColor = [UIColor colorWithWhite:0.f alpha:0.7f];
     }
@@ -154,7 +151,11 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
     if (self.minShowTime > 0.0 && self.showStarted) {
         NSTimeInterval interv = [[NSDate date] timeIntervalSinceDate:self.showStarted];
         if (interv < self.minShowTime) {
-            NSTimer *timer = [NSTimer timerWithTimeInterval:(self.minShowTime - interv) target:self selector:@selector(handleMinShowTimer:) userInfo:nil repeats:NO];
+            NSTimer *timer = [NSTimer timerWithTimeInterval:(self.minShowTime - interv)
+                                                     target:self
+                                                   selector:@selector(handleMinShowTimer:)
+                                                   userInfo:nil
+                                                    repeats:NO];
             [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
             self.minShowTimer = timer;
             return;
@@ -233,9 +234,11 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
 
     if (animated && self.showStarted) {
         self.showStarted = nil;
-        [self animateIn:NO withType:self.animationType completion:^(BOOL finished) {
-            [self done];
-        }];
+        [self animateIn:NO
+               withType:self.animationType
+             completion:^(BOOL finished) {
+               [self done];
+             }];
     } else {
         self.showStarted = nil;
         self.bezelView.alpha = 0.f;
@@ -244,7 +247,7 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
     }
 }
 
-- (void)animateIn:(BOOL)animatingIn withType:(MBProgressHUDAnimation)type completion:(void(^)(BOOL finished))completion {
+- (void)animateIn:(BOOL)animatingIn withType:(MBProgressHUDAnimation)type completion:(void (^)(BOOL finished))completion {
     // Automatically determine the correct zoom animation type
     if (type == MBProgressHUDAnimationZoom) {
         type = animatingIn ? MBProgressHUDAnimationZoomIn : MBProgressHUDAnimationZoomOut;
@@ -263,18 +266,24 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
 
     // Perform animations
     dispatch_block_t animations = ^{
-        if (animatingIn) {
-            bezelView.transform = CGAffineTransformIdentity;
-        } else if (!animatingIn && type == MBProgressHUDAnimationZoomIn) {
-            bezelView.transform = large;
-        } else if (!animatingIn && type == MBProgressHUDAnimationZoomOut) {
-            bezelView.transform = small;
-        }
-        CGFloat alpha = animatingIn ? 1.f : 0.f;
-        bezelView.alpha = alpha;
-        self.backgroundView.alpha = alpha;
+      if (animatingIn) {
+          bezelView.transform = CGAffineTransformIdentity;
+      } else if (!animatingIn && type == MBProgressHUDAnimationZoomIn) {
+          bezelView.transform = large;
+      } else if (!animatingIn && type == MBProgressHUDAnimationZoomOut) {
+          bezelView.transform = small;
+      }
+      CGFloat alpha = animatingIn ? 1.f : 0.f;
+      bezelView.alpha = alpha;
+      self.backgroundView.alpha = alpha;
     };
-    [UIView animateWithDuration:0.3 delay:0. usingSpringWithDamping:1.f initialSpringVelocity:0.f options:UIViewAnimationOptionBeginFromCurrentState animations:animations completion:completion];
+    [UIView animateWithDuration:0.3
+                          delay:0.
+         usingSpringWithDamping:1.f
+          initialSpringVelocity:0.f
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:animations
+                     completion:completion];
 }
 
 - (void)done {
@@ -379,21 +388,19 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
                 activityIndicator.color = [UIColor whiteColor];
 #if !TARGET_OS_MACCATALYST
             } else {
-               activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+                activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
             }
 #endif
             [activityIndicator startAnimating];
             indicator = activityIndicator;
             [self.bezelView addSubview:indicator];
         }
-    }
-    else if (mode == MBProgressHUDModeDeterminateHorizontalBar) {
+    } else if (mode == MBProgressHUDModeDeterminateHorizontalBar) {
         // Update to bar determinate indicator
         [indicator removeFromSuperview];
         indicator = [[MBBarProgressView alloc] init];
         [self.bezelView addSubview:indicator];
-    }
-    else if (mode == MBProgressHUDModeDeterminate || mode == MBProgressHUDModeAnnularDeterminate) {
+    } else if (mode == MBProgressHUDModeDeterminate || mode == MBProgressHUDModeAnnularDeterminate) {
         if (!isRoundIndicator) {
             // Update to determinante indicator
             [indicator removeFromSuperview];
@@ -403,14 +410,12 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
         if (mode == MBProgressHUDModeAnnularDeterminate) {
             [(MBRoundProgressView *)indicator setAnnular:YES];
         }
-    }
-    else if (mode == MBProgressHUDModeCustomView && self.customView != indicator) {
+    } else if (mode == MBProgressHUDModeCustomView && self.customView != indicator) {
         // Update custom view indicator
         [indicator removeFromSuperview];
         indicator = self.customView;
         [self.bezelView addSubview:indicator];
-    }
-    else if (mode == MBProgressHUDModeText) {
+    } else if (mode == MBProgressHUDModeText) {
         [indicator removeFromSuperview];
         indicator = nil;
     }
@@ -429,7 +434,8 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
 }
 
 - (void)updateViewsForColor:(UIColor *)color {
-    if (!color) return;
+    if (!color)
+        return;
 
     self.label.textColor = color;
     self.detailsLabel.textColor = color;
@@ -487,11 +493,13 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
 
     if (self.defaultMotionEffectsEnabled && !bezelMotionEffects) {
         CGFloat effectOffset = 10.f;
-        UIInterpolatingMotionEffect *effectX = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
+        UIInterpolatingMotionEffect *effectX =
+            [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
         effectX.maximumRelativeValue = @(effectOffset);
         effectX.minimumRelativeValue = @(-effectOffset);
 
-        UIInterpolatingMotionEffect *effectY = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+        UIInterpolatingMotionEffect *effectY =
+            [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
         effectY.maximumRelativeValue = @(effectOffset);
         effectY.minimumRelativeValue = @(-effectOffset);
 
@@ -517,7 +525,8 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
     NSDictionary *metrics = @{@"margin": @(margin)};
 
     NSMutableArray *subviews = [NSMutableArray arrayWithObjects:self.topSpacer, self.label, self.detailsLabel, self.button, self.bottomSpacer, nil];
-    if (self.indicator) [subviews insertObject:self.indicator atIndex:1];
+    if (self.indicator)
+        [subviews insertObject:self.indicator atIndex:1];
 
     // Remove existing constraints
     [self removeConstraints:self.constraints];
@@ -531,15 +540,33 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
     // Center bezel in container (self), applying the offset if set
     CGPoint offset = self.offset;
     NSMutableArray *centeringConstraints = [NSMutableArray array];
-    [centeringConstraints addObject:[NSLayoutConstraint constraintWithItem:bezel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1.f constant:offset.x]];
-    [centeringConstraints addObject:[NSLayoutConstraint constraintWithItem:bezel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.f constant:offset.y]];
+    [centeringConstraints addObject:[NSLayoutConstraint constraintWithItem:bezel
+                                                                 attribute:NSLayoutAttributeCenterX
+                                                                 relatedBy:NSLayoutRelationEqual
+                                                                    toItem:self
+                                                                 attribute:NSLayoutAttributeCenterX
+                                                                multiplier:1.f
+                                                                  constant:offset.x]];
+    [centeringConstraints addObject:[NSLayoutConstraint constraintWithItem:bezel
+                                                                 attribute:NSLayoutAttributeCenterY
+                                                                 relatedBy:NSLayoutRelationEqual
+                                                                    toItem:self
+                                                                 attribute:NSLayoutAttributeCenterY
+                                                                multiplier:1.f
+                                                                  constant:offset.y]];
     [self applyPriority:998.f toConstraints:centeringConstraints];
     [self addConstraints:centeringConstraints];
 
     // Ensure minimum side margin is kept
     NSMutableArray *sideConstraints = [NSMutableArray array];
-    [sideConstraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(>=margin)-[bezel]-(>=margin)-|" options:0 metrics:metrics views:NSDictionaryOfVariableBindings(bezel)]];
-    [sideConstraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(>=margin)-[bezel]-(>=margin)-|" options:0 metrics:metrics views:NSDictionaryOfVariableBindings(bezel)]];
+    [sideConstraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(>=margin)-[bezel]-(>=margin)-|"
+                                                                                 options:0
+                                                                                 metrics:metrics
+                                                                                   views:NSDictionaryOfVariableBindings(bezel)]];
+    [sideConstraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(>=margin)-[bezel]-(>=margin)-|"
+                                                                                 options:0
+                                                                                 metrics:metrics
+                                                                                   views:NSDictionaryOfVariableBindings(bezel)]];
     [self applyPriority:999.f toConstraints:sideConstraints];
     [self addConstraints:sideConstraints];
 
@@ -547,46 +574,109 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
     CGSize minimumSize = self.minSize;
     if (!CGSizeEqualToSize(minimumSize, CGSizeZero)) {
         NSMutableArray *minSizeConstraints = [NSMutableArray array];
-        [minSizeConstraints addObject:[NSLayoutConstraint constraintWithItem:bezel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.f constant:minimumSize.width]];
-        [minSizeConstraints addObject:[NSLayoutConstraint constraintWithItem:bezel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.f constant:minimumSize.height]];
+        [minSizeConstraints addObject:[NSLayoutConstraint constraintWithItem:bezel
+                                                                   attribute:NSLayoutAttributeWidth
+                                                                   relatedBy:NSLayoutRelationGreaterThanOrEqual
+                                                                      toItem:nil
+                                                                   attribute:NSLayoutAttributeNotAnAttribute
+                                                                  multiplier:1.f
+                                                                    constant:minimumSize.width]];
+        [minSizeConstraints addObject:[NSLayoutConstraint constraintWithItem:bezel
+                                                                   attribute:NSLayoutAttributeHeight
+                                                                   relatedBy:NSLayoutRelationGreaterThanOrEqual
+                                                                      toItem:nil
+                                                                   attribute:NSLayoutAttributeNotAnAttribute
+                                                                  multiplier:1.f
+                                                                    constant:minimumSize.height]];
         [self applyPriority:997.f toConstraints:minSizeConstraints];
         [bezelConstraints addObjectsFromArray:minSizeConstraints];
     }
 
     // Square aspect ratio, if set
     if (self.square) {
-        NSLayoutConstraint *square = [NSLayoutConstraint constraintWithItem:bezel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:bezel attribute:NSLayoutAttributeWidth multiplier:1.f constant:0];
+        NSLayoutConstraint *square = [NSLayoutConstraint constraintWithItem:bezel
+                                                                  attribute:NSLayoutAttributeHeight
+                                                                  relatedBy:NSLayoutRelationEqual
+                                                                     toItem:bezel
+                                                                  attribute:NSLayoutAttributeWidth
+                                                                 multiplier:1.f
+                                                                   constant:0];
         square.priority = 997.f;
         [bezelConstraints addObject:square];
     }
 
     // Top and bottom spacing
-    [topSpacer addConstraint:[NSLayoutConstraint constraintWithItem:topSpacer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.f constant:margin]];
-    [bottomSpacer addConstraint:[NSLayoutConstraint constraintWithItem:bottomSpacer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.f constant:margin]];
+    [topSpacer addConstraint:[NSLayoutConstraint constraintWithItem:topSpacer
+                                                          attribute:NSLayoutAttributeHeight
+                                                          relatedBy:NSLayoutRelationGreaterThanOrEqual
+                                                             toItem:nil
+                                                          attribute:NSLayoutAttributeNotAnAttribute
+                                                         multiplier:1.f
+                                                           constant:margin]];
+    [bottomSpacer addConstraint:[NSLayoutConstraint constraintWithItem:bottomSpacer
+                                                             attribute:NSLayoutAttributeHeight
+                                                             relatedBy:NSLayoutRelationGreaterThanOrEqual
+                                                                toItem:nil
+                                                             attribute:NSLayoutAttributeNotAnAttribute
+                                                            multiplier:1.f
+                                                              constant:margin]];
     // Top and bottom spaces should be equal
-    [bezelConstraints addObject:[NSLayoutConstraint constraintWithItem:topSpacer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:bottomSpacer attribute:NSLayoutAttributeHeight multiplier:1.f constant:0.f]];
+    [bezelConstraints addObject:[NSLayoutConstraint constraintWithItem:topSpacer
+                                                             attribute:NSLayoutAttributeHeight
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:bottomSpacer
+                                                             attribute:NSLayoutAttributeHeight
+                                                            multiplier:1.f
+                                                              constant:0.f]];
 
     // Layout subviews in bezel
     NSMutableArray *paddingConstraints = [NSMutableArray new];
     [subviews enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
-        // Center in bezel
-        [bezelConstraints addObject:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:bezel attribute:NSLayoutAttributeCenterX multiplier:1.f constant:0.f]];
-        // Ensure the minimum edge margin is kept
-        [bezelConstraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(>=margin)-[view]-(>=margin)-|" options:0 metrics:metrics views:NSDictionaryOfVariableBindings(view)]];
-        // Element spacing
-        if (idx == 0) {
-            // First, ensure spacing to bezel edge
-            [bezelConstraints addObject:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:bezel attribute:NSLayoutAttributeTop multiplier:1.f constant:0.f]];
-        } else if (idx == subviews.count - 1) {
-            // Last, ensure spacing to bezel edge
-            [bezelConstraints addObject:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:bezel attribute:NSLayoutAttributeBottom multiplier:1.f constant:0.f]];
-        }
-        if (idx > 0) {
-            // Has previous
-            NSLayoutConstraint *padding = [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:subviews[idx - 1] attribute:NSLayoutAttributeBottom multiplier:1.f constant:0.f];
-            [bezelConstraints addObject:padding];
-            [paddingConstraints addObject:padding];
-        }
+      // Center in bezel
+      [bezelConstraints addObject:[NSLayoutConstraint constraintWithItem:view
+                                                               attribute:NSLayoutAttributeCenterX
+                                                               relatedBy:NSLayoutRelationEqual
+                                                                  toItem:bezel
+                                                               attribute:NSLayoutAttributeCenterX
+                                                              multiplier:1.f
+                                                                constant:0.f]];
+      // Ensure the minimum edge margin is kept
+      [bezelConstraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(>=margin)-[view]-(>=margin)-|"
+                                                                                    options:0
+                                                                                    metrics:metrics
+                                                                                      views:NSDictionaryOfVariableBindings(view)]];
+      // Element spacing
+      if (idx == 0) {
+          // First, ensure spacing to bezel edge
+          [bezelConstraints addObject:[NSLayoutConstraint constraintWithItem:view
+                                                                   attribute:NSLayoutAttributeTop
+                                                                   relatedBy:NSLayoutRelationEqual
+                                                                      toItem:bezel
+                                                                   attribute:NSLayoutAttributeTop
+                                                                  multiplier:1.f
+                                                                    constant:0.f]];
+      } else if (idx == subviews.count - 1) {
+          // Last, ensure spacing to bezel edge
+          [bezelConstraints addObject:[NSLayoutConstraint constraintWithItem:view
+                                                                   attribute:NSLayoutAttributeBottom
+                                                                   relatedBy:NSLayoutRelationEqual
+                                                                      toItem:bezel
+                                                                   attribute:NSLayoutAttributeBottom
+                                                                  multiplier:1.f
+                                                                    constant:0.f]];
+      }
+      if (idx > 0) {
+          // Has previous
+          NSLayoutConstraint *padding = [NSLayoutConstraint constraintWithItem:view
+                                                                     attribute:NSLayoutAttributeTop
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:subviews[idx - 1]
+                                                                     attribute:NSLayoutAttributeBottom
+                                                                    multiplier:1.f
+                                                                      constant:0.f];
+          [bezelConstraints addObject:padding];
+          [paddingConstraints addObject:padding];
+      }
     }];
 
     [bezel addConstraints:bezelConstraints];
@@ -613,14 +703,14 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
     // Set padding dynamically, depending on whether the view is visible or not
     __block BOOL hasVisibleAncestors = NO;
     [self.paddingConstraints enumerateObjectsUsingBlock:^(NSLayoutConstraint *padding, NSUInteger idx, BOOL *stop) {
-        UIView *firstView = (UIView *)padding.firstItem;
-        UIView *secondView = (UIView *)padding.secondItem;
-        BOOL firstVisible = !firstView.hidden && !CGSizeEqualToSize(firstView.intrinsicContentSize, CGSizeZero);
-        BOOL secondVisible = !secondView.hidden && !CGSizeEqualToSize(secondView.intrinsicContentSize, CGSizeZero);
-        // Set if both views are visible or if there's a visible view on top that doesn't have padding
-        // added relative to the current view yet
-        padding.constant = (firstVisible && (secondVisible || hasVisibleAncestors)) ? MBDefaultPadding : 0.f;
-        hasVisibleAncestors |= secondVisible;
+      UIView *firstView = (UIView *)padding.firstItem;
+      UIView *secondView = (UIView *)padding.secondItem;
+      BOOL firstVisible = !firstView.hidden && !CGSizeEqualToSize(firstView.intrinsicContentSize, CGSizeZero);
+      BOOL secondVisible = !secondView.hidden && !CGSizeEqualToSize(secondView.intrinsicContentSize, CGSizeZero);
+      // Set if both views are visible or if there's a visible view on top that doesn't have padding
+      // added relative to the current view yet
+      padding.constant = (firstVisible && (secondVisible || hasVisibleAncestors)) ? MBDefaultPadding : 0.f;
+      hasVisibleAncestors |= secondVisible;
     }];
 }
 
@@ -742,8 +832,7 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
 #if !TARGET_OS_TV && !TARGET_OS_MACCATALYST
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 
-    [nc addObserver:self selector:@selector(statusBarOrientationDidChange:)
-               name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
+    [nc addObserver:self selector:@selector(statusBarOrientationDidChange:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
 #endif
 }
 
@@ -776,12 +865,14 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < 80000
     // Only needed pre iOS 8 when added to a window
     BOOL iOS8OrLater = kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_8_0;
-    if (iOS8OrLater || ![self.superview isKindOfClass:[UIWindow class]]) return;
+    if (iOS8OrLater || ![self.superview isKindOfClass:[UIWindow class]])
+        return;
 
     // Make extension friendly. Will not get called on extensions (iOS 8+) due to the above check.
     // This just ensures we don't get a warning about extension-unsafe API.
     Class UIApplicationClass = NSClassFromString(@"UIApplication");
-    if (!UIApplicationClass || ![UIApplicationClass respondsToSelector:@selector(sharedApplication)]) return;
+    if (!UIApplicationClass || ![UIApplicationClass respondsToSelector:@selector(sharedApplication)])
+        return;
 
     UIApplication *application = [UIApplication performSelector:@selector(sharedApplication)];
     UIInterfaceOrientation orientation = application.statusBarOrientation;
@@ -796,9 +887,10 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
     }
 
     if (animated) {
-        [UIView animateWithDuration:0.3 animations:^{
-            self.transform = CGAffineTransformMakeRotation(radians);
-        }];
+        [UIView animateWithDuration:0.3
+                         animations:^{
+                           self.transform = CGAffineTransformMakeRotation(radians);
+                         }];
     } else {
         self.transform = CGAffineTransformMakeRotation(radians);
     }
@@ -806,7 +898,6 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
 }
 
 @end
-
 
 @implementation MBRoundProgressView
 
@@ -872,8 +963,8 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
         processBackgroundPath.lineWidth = lineWidth;
         processBackgroundPath.lineCapStyle = kCGLineCapButt;
         CGPoint center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
-        CGFloat radius = (self.bounds.size.width - lineWidth)/2;
-        CGFloat startAngle = - ((float)M_PI / 2); // 90 degrees
+        CGFloat radius = (self.bounds.size.width - lineWidth) / 2;
+        CGFloat startAngle = -((float)M_PI / 2); // 90 degrees
         CGFloat endAngle = (2 * (float)M_PI) + startAngle;
         [processBackgroundPath addArcWithCenter:center radius:radius startAngle:startAngle endAngle:endAngle clockwise:YES];
         [_backgroundTintColor set];
@@ -890,14 +981,14 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
         // Draw background
         CGFloat lineWidth = 2.f;
         CGRect allRect = self.bounds;
-        CGRect circleRect = CGRectInset(allRect, lineWidth/2.f, lineWidth/2.f);
+        CGRect circleRect = CGRectInset(allRect, lineWidth / 2.f, lineWidth / 2.f);
         CGPoint center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
         [_progressTintColor setStroke];
         [_backgroundTintColor setFill];
         CGContextSetLineWidth(context, lineWidth);
         CGContextStrokeEllipseInRect(context, circleRect);
         // 90 degrees
-        CGFloat startAngle = - ((float)M_PI / 2.f);
+        CGFloat startAngle = -((float)M_PI / 2.f);
         // Draw progress
         UIBezierPath *processPath = [UIBezierPath bezierPath];
         processPath.lineCapStyle = kCGLineCapButt;
@@ -913,7 +1004,6 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
 }
 
 @end
-
 
 @implementation MBBarProgressView
 
@@ -973,16 +1063,16 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
     CGContextRef context = UIGraphicsGetCurrentContext();
 
     CGContextSetLineWidth(context, 2);
-    CGContextSetStrokeColorWithColor(context,[_lineColor CGColor]);
+    CGContextSetStrokeColorWithColor(context, [_lineColor CGColor]);
     CGContextSetFillColorWithColor(context, [_progressRemainingColor CGColor]);
 
     // Draw background and Border
     CGFloat radius = (rect.size.height / 2) - 2;
-    CGContextMoveToPoint(context, 2, rect.size.height/2);
+    CGContextMoveToPoint(context, 2, rect.size.height / 2);
     CGContextAddArcToPoint(context, 2, 2, radius + 2, 2, radius);
     CGContextAddArcToPoint(context, rect.size.width - 2, 2, rect.size.width - 2, rect.size.height / 2, radius);
     CGContextAddArcToPoint(context, rect.size.width - 2, rect.size.height - 2, rect.size.width - radius - 2, rect.size.height - 2, radius);
-    CGContextAddArcToPoint(context, 2, rect.size.height - 2, 2, rect.size.height/2, radius);
+    CGContextAddArcToPoint(context, 2, rect.size.height - 2, 2, rect.size.height / 2, radius);
     CGContextDrawPath(context, kCGPathFillStroke);
 
     CGContextSetFillColorWithColor(context, [_progressColor CGColor]);
@@ -991,12 +1081,12 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
 
     // Progress in the middle area
     if (amount >= radius + 4 && amount <= (rect.size.width - radius - 4)) {
-        CGContextMoveToPoint(context, 4, rect.size.height/2);
+        CGContextMoveToPoint(context, 4, rect.size.height / 2);
         CGContextAddArcToPoint(context, 4, 4, radius + 4, 4, radius);
         CGContextAddLineToPoint(context, amount, 4);
         CGContextAddLineToPoint(context, amount, radius + 4);
 
-        CGContextMoveToPoint(context, 4, rect.size.height/2);
+        CGContextMoveToPoint(context, 4, rect.size.height / 2);
         CGContextAddArcToPoint(context, 4, rect.size.height - 4, radius + 4, rect.size.height - 4, radius);
         CGContextAddLineToPoint(context, amount, rect.size.height - 4);
         CGContextAddLineToPoint(context, amount, radius + 4);
@@ -1008,34 +1098,36 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
     else if (amount > radius + 4) {
         CGFloat x = amount - (rect.size.width - radius - 4);
 
-        CGContextMoveToPoint(context, 4, rect.size.height/2);
+        CGContextMoveToPoint(context, 4, rect.size.height / 2);
         CGContextAddArcToPoint(context, 4, 4, radius + 4, 4, radius);
         CGContextAddLineToPoint(context, rect.size.width - radius - 4, 4);
-        CGFloat angle = -acos(x/radius);
-        if (isnan(angle)) angle = 0;
-        CGContextAddArc(context, rect.size.width - radius - 4, rect.size.height/2, radius, M_PI, angle, 0);
-        CGContextAddLineToPoint(context, amount, rect.size.height/2);
+        CGFloat angle = -acos(x / radius);
+        if (isnan(angle))
+            angle = 0;
+        CGContextAddArc(context, rect.size.width - radius - 4, rect.size.height / 2, radius, M_PI, angle, 0);
+        CGContextAddLineToPoint(context, amount, rect.size.height / 2);
 
-        CGContextMoveToPoint(context, 4, rect.size.height/2);
+        CGContextMoveToPoint(context, 4, rect.size.height / 2);
         CGContextAddArcToPoint(context, 4, rect.size.height - 4, radius + 4, rect.size.height - 4, radius);
         CGContextAddLineToPoint(context, rect.size.width - radius - 4, rect.size.height - 4);
-        angle = acos(x/radius);
-        if (isnan(angle)) angle = 0;
-        CGContextAddArc(context, rect.size.width - radius - 4, rect.size.height/2, radius, -M_PI, angle, 1);
-        CGContextAddLineToPoint(context, amount, rect.size.height/2);
+        angle = acos(x / radius);
+        if (isnan(angle))
+            angle = 0;
+        CGContextAddArc(context, rect.size.width - radius - 4, rect.size.height / 2, radius, -M_PI, angle, 1);
+        CGContextAddLineToPoint(context, amount, rect.size.height / 2);
 
         CGContextFillPath(context);
     }
 
     // Progress is in the left arc
     else if (amount < radius + 4 && amount > 0) {
-        CGContextMoveToPoint(context, 4, rect.size.height/2);
+        CGContextMoveToPoint(context, 4, rect.size.height / 2);
         CGContextAddArcToPoint(context, 4, 4, radius + 4, 4, radius);
-        CGContextAddLineToPoint(context, radius + 4, rect.size.height/2);
+        CGContextAddLineToPoint(context, radius + 4, rect.size.height / 2);
 
-        CGContextMoveToPoint(context, 4, rect.size.height/2);
+        CGContextMoveToPoint(context, 4, rect.size.height / 2);
         CGContextAddArcToPoint(context, 4, rect.size.height - 4, radius + 4, rect.size.height - 4, radius);
-        CGContextAddLineToPoint(context, radius + 4, rect.size.height/2);
+        CGContextAddLineToPoint(context, radius + 4, rect.size.height / 2);
 
         CGContextFillPath(context);
     }
@@ -1043,13 +1135,11 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
 
 @end
 
-
 @interface MBBackgroundView ()
 
 @property UIVisualEffectView *effectView;
 
 @end
-
 
 @implementation MBBackgroundView
 
@@ -1059,11 +1149,11 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
     if ((self = [super initWithFrame:frame])) {
         _style = MBProgressHUDBackgroundStyleBlur;
         if (@available(iOS 13.0, *)) {
-            #if TARGET_OS_TV
+#if TARGET_OS_TV
             _blurEffectStyle = UIBlurEffectStyleRegular;
-            #else
+#else
             _blurEffectStyle = UIBlurEffectStyleSystemThickMaterial;
-            #endif
+#endif
             // Leaving the color unassigned yields best results.
         } else {
             _blurEffectStyle = UIBlurEffectStyleLight;
@@ -1120,7 +1210,7 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
 
     MBProgressHUDBackgroundStyle style = self.style;
     if (style == MBProgressHUDBackgroundStyleBlur) {
-        UIBlurEffect *effect =  [UIBlurEffect effectWithStyle:self.blurEffectStyle];
+        UIBlurEffect *effect = [UIBlurEffect effectWithStyle:self.blurEffectStyle];
         UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
         [self insertSubview:effectView atIndex:0];
         effectView.frame = self.bounds;
@@ -1142,7 +1232,6 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
 }
 
 @end
-
 
 @implementation MBProgressHUDRoundedButton
 

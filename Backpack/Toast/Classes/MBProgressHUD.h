@@ -26,13 +26,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#import <CoreGraphics/CoreGraphics.h>
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <CoreGraphics/CoreGraphics.h>
 
 @class MBBackgroundView;
 @protocol MBProgressHUDDelegate;
-
 
 extern CGFloat const MBProgressMaxOffset;
 
@@ -71,9 +70,7 @@ typedef NS_ENUM(NSInteger, MBProgressHUDBackgroundStyle) {
 
 typedef void (^MBProgressHUDCompletionBlock)(void);
 
-
 NS_ASSUME_NONNULL_BEGIN
-
 
 /**
  * Displays a simple HUD window containing a progress indicator and two optional labels for short messages.
@@ -176,12 +173,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The HUD delegate object. Receives HUD state notifications.
  */
-@property (weak, nonatomic) id<MBProgressHUDDelegate> delegate;
+@property(weak, nonatomic) id<MBProgressHUDDelegate> delegate;
 
 /**
  * Called after the HUD is hidden.
  */
-@property (copy, nullable) MBProgressHUDCompletionBlock completionBlock;
+@property(copy, nullable) MBProgressHUDCompletionBlock completionBlock;
 
 /**
  * Grace period is the time (in seconds) that the invoked method may be run without
@@ -192,63 +189,63 @@ NS_ASSUME_NONNULL_BEGIN
  * @note The graceTime needs to be set before the hud is shown. You thus can't use `showHUDAddedTo:animated:`,
  * but instead need to alloc / init the HUD, configure the grace time and than show it manually.
  */
-@property (assign, nonatomic) NSTimeInterval graceTime;
+@property(assign, nonatomic) NSTimeInterval graceTime;
 
 /**
  * The minimum time (in seconds) that the HUD is shown.
  * This avoids the problem of the HUD being shown and than instantly hidden.
  * Defaults to 0 (no minimum show time).
  */
-@property (assign, nonatomic) NSTimeInterval minShowTime;
+@property(assign, nonatomic) NSTimeInterval minShowTime;
 
 /**
  * Removes the HUD from its parent view when hidden.
  * Defaults to NO.
  */
-@property (assign, nonatomic) BOOL removeFromSuperViewOnHide;
+@property(assign, nonatomic) BOOL removeFromSuperViewOnHide;
 
 /// @name Appearance
 
 /**
  * MBProgressHUD operation mode. The default is MBProgressHUDModeIndeterminate.
  */
-@property (assign, nonatomic) MBProgressHUDMode mode;
+@property(assign, nonatomic) MBProgressHUDMode mode;
 
 /**
  * A color that gets forwarded to all labels and supported indicators. Also sets the tintColor
  * for custom views on iOS 7+. Set to nil to manage color individually.
  * Defaults to semi-translucent black on iOS 7 and later and white on earlier iOS versions.
  */
-@property (strong, nonatomic, nullable) UIColor *contentColor UI_APPEARANCE_SELECTOR;
+@property(strong, nonatomic, nullable) UIColor *contentColor UI_APPEARANCE_SELECTOR;
 
 /**
  * The animation type that should be used when the HUD is shown and hidden.
  */
-@property (assign, nonatomic) MBProgressHUDAnimation animationType UI_APPEARANCE_SELECTOR;
+@property(assign, nonatomic) MBProgressHUDAnimation animationType UI_APPEARANCE_SELECTOR;
 
 /**
  * The bezel offset relative to the center of the view. You can use MBProgressMaxOffset
  * and -MBProgressMaxOffset to move the HUD all the way to the screen edge in each direction.
  * E.g., CGPointMake(0.f, MBProgressMaxOffset) would position the HUD centered on the bottom edge.
  */
-@property (assign, nonatomic) CGPoint offset UI_APPEARANCE_SELECTOR;
+@property(assign, nonatomic) CGPoint offset UI_APPEARANCE_SELECTOR;
 
 /**
  * The amount of space between the HUD edge and the HUD elements (labels, indicators or custom views).
  * This also represents the minimum bezel distance to the edge of the HUD view.
  * Defaults to 20.f
  */
-@property (assign, nonatomic) CGFloat margin UI_APPEARANCE_SELECTOR;
+@property(assign, nonatomic) CGFloat margin UI_APPEARANCE_SELECTOR;
 
 /**
  * The minimum size of the HUD bezel. Defaults to CGSizeZero (no minimum size).
  */
-@property (assign, nonatomic) CGSize minSize UI_APPEARANCE_SELECTOR;
+@property(assign, nonatomic) CGSize minSize UI_APPEARANCE_SELECTOR;
 
 /**
  * Force the HUD dimensions to be equal if possible.
  */
-@property (assign, nonatomic, getter = isSquare) BOOL square UI_APPEARANCE_SELECTOR;
+@property(assign, nonatomic, getter=isSquare) BOOL square UI_APPEARANCE_SELECTOR;
 
 /**
  * When enabled, the bezel center gets slightly affected by the device accelerometer data.
@@ -256,58 +253,57 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @note This can cause main thread checker assertions on certain devices. https://github.com/jdg/MBProgressHUD/issues/552
  */
-@property (assign, nonatomic, getter=areDefaultMotionEffectsEnabled) BOOL defaultMotionEffectsEnabled UI_APPEARANCE_SELECTOR;
+@property(assign, nonatomic, getter=areDefaultMotionEffectsEnabled) BOOL defaultMotionEffectsEnabled UI_APPEARANCE_SELECTOR;
 
 /// @name Progress
 
 /**
  * The progress of the progress indicator, from 0.0 to 1.0. Defaults to 0.0.
  */
-@property (assign, nonatomic) float progress;
+@property(assign, nonatomic) float progress;
 
 /// @name ProgressObject
 
 /**
  * The NSProgress object feeding the progress information to the progress indicator.
  */
-@property (strong, nonatomic, nullable) NSProgress *progressObject;
+@property(strong, nonatomic, nullable) NSProgress *progressObject;
 
 /// @name Views
 
 /**
  * The view containing the labels and indicator (or customView).
  */
-@property (strong, nonatomic, readonly) MBBackgroundView *bezelView;
+@property(strong, nonatomic, readonly) MBBackgroundView *bezelView;
 
 /**
  * View covering the entire HUD area, placed behind bezelView.
  */
-@property (strong, nonatomic, readonly) MBBackgroundView *backgroundView;
+@property(strong, nonatomic, readonly) MBBackgroundView *backgroundView;
 
 /**
  * The UIView (e.g., a UIImageView) to be shown when the HUD is in MBProgressHUDModeCustomView.
  * The view should implement intrinsicContentSize for proper sizing. For best results use approximately 37 by 37 pixels.
  */
-@property (strong, nonatomic, nullable) UIView *customView;
+@property(strong, nonatomic, nullable) UIView *customView;
 
 /**
  * A label that holds an optional short message to be displayed below the activity indicator. The HUD is automatically resized to fit
  * the entire text.
  */
-@property (strong, nonatomic, readonly) UILabel *label;
+@property(strong, nonatomic, readonly) UILabel *label;
 
 /**
  * A label that holds an optional details message displayed below the labelText message. The details text can span multiple lines.
  */
-@property (strong, nonatomic, readonly) UILabel *detailsLabel;
+@property(strong, nonatomic, readonly) UILabel *detailsLabel;
 
 /**
  * A button that is placed below the labels. Visible only if a target / action is added and a title is assigned..
  */
-@property (strong, nonatomic, readonly) UIButton *button;
+@property(strong, nonatomic, readonly) UIButton *button;
 
 @end
-
 
 @protocol MBProgressHUDDelegate <NSObject>
 
@@ -320,7 +316,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-
 /**
  * A progress view for showing definite progress by filling up a circle (pie chart).
  */
@@ -329,28 +324,27 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Progress (0.0 to 1.0)
  */
-@property (nonatomic, assign) float progress;
+@property(nonatomic, assign) float progress;
 
 /**
  * Indicator progress color.
  * Defaults to white [UIColor whiteColor].
  */
-@property (nonatomic, strong) UIColor *progressTintColor;
+@property(nonatomic, strong) UIColor *progressTintColor;
 
 /**
  * Indicator background (non-progress) color.
  * Only applicable on iOS versions older than iOS 7.
  * Defaults to translucent white (alpha 0.1).
  */
-@property (nonatomic, strong) UIColor *backgroundTintColor;
+@property(nonatomic, strong) UIColor *backgroundTintColor;
 
 /*
  * Display mode - NO = round or YES = annular. Defaults to round.
  */
-@property (nonatomic, assign, getter = isAnnular) BOOL annular;
+@property(nonatomic, assign, getter=isAnnular) BOOL annular;
 
 @end
-
 
 /**
  * A flat bar progress view.
@@ -360,28 +354,27 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Progress (0.0 to 1.0)
  */
-@property (nonatomic, assign) float progress;
+@property(nonatomic, assign) float progress;
 
 /**
  * Bar border line color.
  * Defaults to white [UIColor whiteColor].
  */
-@property (nonatomic, strong) UIColor *lineColor;
+@property(nonatomic, strong) UIColor *lineColor;
 
 /**
  * Bar background color.
  * Defaults to clear [UIColor clearColor];
  */
-@property (nonatomic, strong) UIColor *progressRemainingColor;
+@property(nonatomic, strong) UIColor *progressRemainingColor;
 
 /**
  * Bar progress color.
  * Defaults to white [UIColor whiteColor].
  */
-@property (nonatomic, strong) UIColor *progressColor;
+@property(nonatomic, strong) UIColor *progressColor;
 
 @end
-
 
 @interface MBBackgroundView : UIView
 
@@ -389,13 +382,13 @@ NS_ASSUME_NONNULL_BEGIN
  * The background style.
  * Defaults to MBProgressHUDBackgroundStyleBlur.
  */
-@property (nonatomic) MBProgressHUDBackgroundStyle style;
+@property(nonatomic) MBProgressHUDBackgroundStyle style;
 
 /**
  * The blur effect style, when using MBProgressHUDBackgroundStyleBlur.
  * Defaults to UIBlurEffectStyleLight.
  */
-@property (nonatomic) UIBlurEffectStyle blurEffectStyle;
+@property(nonatomic) UIBlurEffectStyle blurEffectStyle;
 
 /**
  * The background color or the blur tint color.
@@ -404,7 +397,7 @@ NS_ASSUME_NONNULL_BEGIN
  * `[UIColor colorWithWhite:0.8f alpha:0.6f]`
  * on older systems.
  */
-@property (nonatomic, strong, nullable) UIColor *color;
+@property(nonatomic, strong, nullable) UIColor *color;
 
 @end
 

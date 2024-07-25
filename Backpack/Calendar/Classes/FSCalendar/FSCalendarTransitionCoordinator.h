@@ -18,11 +18,11 @@ typedef NS_ENUM(NSUInteger, FSCalendarTransitionState) {
 
 @interface FSCalendarTransitionCoordinator : NSObject <UIGestureRecognizerDelegate>
 
-@property (assign, nonatomic) FSCalendarTransitionState state;
+@property(assign, nonatomic) FSCalendarTransitionState state;
 
-@property (assign, nonatomic) CGSize cachedMonthSize;
+@property(assign, nonatomic) CGSize cachedMonthSize;
 
-@property (readonly, nonatomic) FSCalendarScope representingScope;
+@property(readonly, nonatomic) FSCalendarScope representingScope;
 
 - (instancetype)initWithCalendar:(FSCalendar *)calendar;
 
@@ -34,18 +34,16 @@ typedef NS_ENUM(NSUInteger, FSCalendarTransitionState) {
 
 @end
 
-
 @interface FSCalendarTransitionAttributes : NSObject
 
-@property (assign, nonatomic) CGRect sourceBounds;
-@property (assign, nonatomic) CGRect targetBounds;
-@property (strong, nonatomic) NSDate *sourcePage;
-@property (strong, nonatomic) NSDate *targetPage;
-@property (assign, nonatomic) NSInteger focusedRow;
-@property (strong, nonatomic) NSDate *focusedDate;
-@property (assign, nonatomic) FSCalendarScope targetScope;
+@property(assign, nonatomic) CGRect sourceBounds;
+@property(assign, nonatomic) CGRect targetBounds;
+@property(strong, nonatomic) NSDate *sourcePage;
+@property(strong, nonatomic) NSDate *targetPage;
+@property(assign, nonatomic) NSInteger focusedRow;
+@property(strong, nonatomic) NSDate *focusedDate;
+@property(assign, nonatomic) FSCalendarScope targetScope;
 
 - (void)revert;
-    
-@end
 
+@end

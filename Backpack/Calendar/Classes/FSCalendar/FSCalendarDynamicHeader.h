@@ -8,37 +8,37 @@
 //  Private header, don't use it.
 //
 
-#import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 #import "FSCalendar.h"
+#import "FSCalendarCalculator.h"
 #import "FSCalendarCell.h"
-#import "FSCalendarHeaderView.h"
-#import "FSCalendarStickyHeader.h"
 #import "FSCalendarCollectionView.h"
 #import "FSCalendarCollectionViewLayout.h"
-#import "FSCalendarCalculator.h"
-#import "FSCalendarTransitionCoordinator.h"
 #import "FSCalendarDelegationProxy.h"
+#import "FSCalendarHeaderView.h"
+#import "FSCalendarStickyHeader.h"
+#import "FSCalendarTransitionCoordinator.h"
 
 @interface FSCalendar (Dynamic)
 
-@property (readonly, nonatomic) FSCalendarCollectionView *collectionView;
-@property (readonly, nonatomic) FSCalendarCollectionViewLayout *collectionViewLayout;
-@property (readonly, nonatomic) FSCalendarTransitionCoordinator *transitionCoordinator;
-@property (readonly, nonatomic) FSCalendarCalculator *calculator;
-@property (readonly, nonatomic) BOOL floatingMode;
-@property (readonly, nonatomic) NSArray *visibleStickyHeaders;
-@property (readonly, nonatomic) CGFloat preferredHeaderHeight;
-@property (readonly, nonatomic) CGFloat preferredWeekdayHeight;
+@property(readonly, nonatomic) FSCalendarCollectionView *collectionView;
+@property(readonly, nonatomic) FSCalendarCollectionViewLayout *collectionViewLayout;
+@property(readonly, nonatomic) FSCalendarTransitionCoordinator *transitionCoordinator;
+@property(readonly, nonatomic) FSCalendarCalculator *calculator;
+@property(readonly, nonatomic) BOOL floatingMode;
+@property(readonly, nonatomic) NSArray *visibleStickyHeaders;
+@property(readonly, nonatomic) CGFloat preferredHeaderHeight;
+@property(readonly, nonatomic) CGFloat preferredWeekdayHeight;
 
-@property (readonly, nonatomic) NSCalendar *gregorian;
-@property (readonly, nonatomic) NSDateFormatter *formatter;
+@property(readonly, nonatomic) NSCalendar *gregorian;
+@property(readonly, nonatomic) NSDateFormatter *formatter;
 
-@property (readonly, nonatomic) UIView *contentView;
-@property (readonly, nonatomic) UIView *daysContainer;
+@property(readonly, nonatomic) UIView *contentView;
+@property(readonly, nonatomic) UIView *daysContainer;
 
-@property (assign, nonatomic) BOOL needsAdjustingViewFrame;
+@property(assign, nonatomic) BOOL needsAdjustingViewFrame;
 
 - (void)adjustMonthPosition;
 - (void)configureAppearance;
@@ -49,28 +49,26 @@
 
 @interface FSCalendarAppearance (Dynamic)
 
-@property (readwrite, nonatomic) FSCalendar *calendar;
+@property(readwrite, nonatomic) FSCalendar *calendar;
 
-@property (readonly, nonatomic) NSDictionary *backgroundColors;
-@property (readonly, nonatomic) NSDictionary *titleColors;
-@property (readonly, nonatomic) NSDictionary *subtitleColors;
-@property (readonly, nonatomic) NSDictionary *borderColors;
+@property(readonly, nonatomic) NSDictionary *backgroundColors;
+@property(readonly, nonatomic) NSDictionary *titleColors;
+@property(readonly, nonatomic) NSDictionary *subtitleColors;
+@property(readonly, nonatomic) NSDictionary *borderColors;
 
 @end
 
 @interface FSCalendarWeekdayView (Dynamic)
 
-@property (readwrite, nonatomic) FSCalendar *calendar;
+@property(readwrite, nonatomic) FSCalendar *calendar;
 
 @end
 
 @interface FSCalendarCollectionViewLayout (Dynamic)
 
-@property (readonly, nonatomic) CGSize estimatedItemSize;
+@property(readonly, nonatomic) CGSize estimatedItemSize;
 
 @end
 
-@interface FSCalendarDelegationProxy()<FSCalendarDataSource,FSCalendarDelegate,FSCalendarDelegateAppearance>
+@interface FSCalendarDelegationProxy () <FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance>
 @end
-
-
