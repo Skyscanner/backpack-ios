@@ -19,11 +19,11 @@
 import SwiftUI
 
 extension BPKTextArea {
-    /// The state of the text field.
+    /// The state of the text area.
     public enum State {
         /// The default state.
         case `default`
-        /// Adds an error icon to the text field and changes the border color to error.
+        /// Adds an error icon to the text area and changes the border color to error.
         case error
         
         var borderColor: BPKColor {
