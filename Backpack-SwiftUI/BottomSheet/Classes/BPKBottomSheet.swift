@@ -61,7 +61,7 @@ public extension View {
                 bottomSheetContent: {
                     bottomSheetContent()
                         .interactiveDismissDisabled()
-                        .presentationBackgroundInteraction(.enabled)
+                        .presentationBackgroundInteraction(PresentationBackgroundInteraction.enabled)
                 }
             )
         )
@@ -176,7 +176,7 @@ public extension View {
                 bottomSheetContent: { item in
                     bottomSheetContent(item)
                         .interactiveDismissDisabled()
-                        .presentationBackgroundInteraction(.enabled)
+                        .presentationBackgroundInteraction(PresentationBackgroundInteraction.enabled)
                 }
             )
         )
