@@ -39,6 +39,7 @@ public struct BPKTextArea: View {
     @Environment(\.colorScheme) var colorScheme
     @Binding private var value: String
     private let placeholder: String?
+    private var state: State = .default
     private var accessibilityLabelText: String {
         if let placeholder = placeholder, value.isEmpty {
             return placeholder
@@ -87,35 +88,52 @@ public struct BPKTextArea: View {
     }
     
     public var body: some View {
-        ZStack(alignment: .topLeading) {
-            // Text editor
-            textEditorContent
-                .foregroundColor(.textPrimaryColor)
-                .padding(.vertical, TextEditorConstants.verticalPadding)
-                .padding(.horizontal, TextEditorConstants.horizontalPadding)
-            
-            // Placeholder
-            if let unwrappedPlaceholder = placeholder {
-                BPKText(unwrappedPlaceholder, style: .bodyDefault)
-                    .foregroundColor(.textSecondaryColor)
-                    .allowsHitTesting(false)
-                    .padding(.vertical, PlaceholderConstants.verticalPadding)
-                    .padding(.horizontal, PlaceholderConstants.horizontalPadding)
-                    .opacity(value.isEmpty ? 1 : 0)
+        HStack(alignment: .top, spacing: BPKSpacing.none) {
+            ZStack(alignment: .topLeading) {
+                // Text editor
+                textEditorContent
+                    .foregroundColor(.textPrimaryColor)
+                    .padding(.vertical, TextEditorConstants.verticalPadding)
+                    .padding(.horizontal, TextEditorConstants.horizontalPadding)
+                
+                // Placeholder
+                if let unwrappedPlaceholder = placeholder {
+                    BPKText(unwrappedPlaceholder, style: .bodyDefault)
+                        .foregroundColor(.textSecondaryColor)
+                        .allowsHitTesting(false)
+                        .padding(.vertical, PlaceholderConstants.verticalPadding)
+                        .padding(.horizontal, PlaceholderConstants.horizontalPadding)
+                        .opacity(value.isEmpty ? 1 : 0)
+                }
             }
-            
-            // Border
-            RoundedRectangle(cornerRadius: BorderConstants.cornerRadius)
-                .strokeBorder(.lineColor, lineWidth: BorderConstants.lineWidth)
+            accessory
+                .padding([.top, .trailing], .md)
         }
         .background(.surfaceDefaultColor)
         .clipShape(
             RoundedRectangle(cornerRadius: BorderConstants.cornerRadius)
         )
+        .outline(state.borderColor, cornerRadius: BorderConstants.cornerRadius)
         .frame(minHeight: frameHeight)
         .accessibilityLabel(accessibilityLabelText)
     }
     
+    @ViewBuilder
+    private var accessory: some View {
+        if let icon = state.icon {
+            BPKIconView(icon.icon)
+                .foregroundColor(icon.color)
+                .accessibilityHidden(true)
+        } else {
+            EmptyView()
+        }
+    }
+    
+    public func inputState(_ state: State) -> BPKTextArea {
+        var result = self
+        result.state = state
+        return result
+    }
 }
 
 fileprivate extension TextEditor {
@@ -127,8 +145,14 @@ fileprivate extension TextEditor {
 struct BPKTextArea_Previews: PreviewProvider {
     @State static var text: String = ""
     static var previews: some View {
-        BPKTextArea($text, placeholder: "Enter your text")
-            .frame(height: 100)
-            .padding()
+        VStack {
+            BPKTextArea($text, placeholder: "Enter your text")
+                .frame(height: 100)
+                .padding()
+            BPKTextArea($text, placeholder: "Enter your text")
+                .inputState(.error)
+                .frame(height: 100)
+                .padding()
+        }
     }
 }
