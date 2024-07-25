@@ -33,11 +33,19 @@ extension BPKTextArea {
             }
         }
         
-        var icon: BPKTextField.Icon? {
+        var icon: BPKTextArea.Icon? {
             switch self {
-            case .error: return BPKTextField.Icon(icon: .exclamationCircle, color: .statusDangerSpotColor)
+            case .error: return BPKTextArea.Icon(icon: .exclamationCircle, color: .statusDangerSpotColor)
             default: return nil
             }
         }
     }
 }
+
+extension BPKTextArea {
+    struct Icon {
+        let icon: BPKIcon
+        let color: BPKColor
+    }
+}
+
