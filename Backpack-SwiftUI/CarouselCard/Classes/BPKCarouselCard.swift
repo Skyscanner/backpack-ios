@@ -46,7 +46,7 @@ public struct BPKCarouselCard<Content: View>: View {
                         )
                         .clipped()
                     
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .leading, spacing: BPKSpacing.none) {
                         BPKText(title, style: .heading3)
                             .lineLimit(nil)
                             .padding(.bottom, .md)
