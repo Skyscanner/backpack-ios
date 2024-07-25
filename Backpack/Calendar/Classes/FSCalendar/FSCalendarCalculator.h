@@ -6,9 +6,9 @@
 //  Copyright © 2016 Wenchao Ding. All rights reserved.
 //
 
+#import "FSCalendar.h"
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "FSCalendar.h"
 
 struct FSCalendarCoordinate {
     NSInteger row;
