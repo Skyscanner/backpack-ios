@@ -124,8 +124,6 @@ public struct BPKTextArea: View {
             BPKIconView(icon.icon)
                 .foregroundColor(icon.color)
                 .accessibilityHidden(true)
-        } else {
-            EmptyView()
         }
     }
     
