@@ -19,54 +19,52 @@ import SwiftUI
 
 public struct BPKCarouselCard<Content: View>: View {
     @ViewBuilder let content: () -> Content
-    let title: String
-    let description: String
-    let imageAccessibilityLabel: String
+    private let title: String
+    private let description: String
+    private let contentAccessibilityLabel: String
+    private var getAccessibilityLabel: String {
+        return "\(contentAccessibilityLabel) \(title) \(description)"
+    }
     
     public init(
         content: @escaping () -> Content,
         title: String,
         description: String,
-        imageAccessibilityLabel: String
+        contentAccessibilityLabel: String
     ) {
         self.content = content
         self.title = title
         self.description = description
-        self.imageAccessibilityLabel = imageAccessibilityLabel
+        self.contentAccessibilityLabel = contentAccessibilityLabel
     }
     
     public var body: some View {
         GeometryReader { reader in
-            BPKCard(padding: .none, cornerStyle: .large, elevation: .focus, content: {
-                VStack(alignment: .leading) {
-                    content()
-                        .frame(
-                            width: reader.size.width,
-                            height: reader.size.height * 0.60
-                        )
-                        .clipped()
+            VStack(alignment: .leading) {
+                content()
+                    .frame(
+                        width: reader.size.width,
+                        height: reader.size.height * 0.60
+                    )
+                    .clipped()
+                
+                VStack(alignment: .leading, spacing: BPKSpacing.none) {
+                    BPKText(title, style: .heading3)
+                        .lineLimit(nil)
+                        .padding(.bottom, .md)
                     
-                    VStack(alignment: .leading, spacing: BPKSpacing.none) {
-                        BPKText(title, style: .heading3)
-                            .lineLimit(nil)
-                            .padding(.bottom, .md)
-                        
-                        BPKText(description, style: .bodyDefault)
-                            .lineLimit(nil)
-                    }.padding(.all, .lg)
-                    
-                    Spacer()
-                }
-            })
-            .frame(minHeight: 530)
-            .disabled(true)
+                    BPKText(description, style: .bodyDefault)
+                        .lineLimit(nil)
+                }.padding(.all, .lg)
+                
+                Spacer()
+            }
+            .background(.white.darkVariant(.badgeBackgroundNormalColor))
+            .clipShape(RoundedRectangle(cornerRadius: .lg))
+            .shadow(.lg)
             .accessibilityElement(children: .ignore)
-            .accessibilityLabel(getAccessibilityLabel())
+            .accessibilityLabel(getAccessibilityLabel)
         }
-    }
-    
-    private func getAccessibilityLabel() -> String {
-        return "\(imageAccessibilityLabel) \(title) \(description)"
     }
 }
 
@@ -79,7 +77,7 @@ struct BPKCarouselCard_Previews: PreviewProvider {
             },
             title: "Test Title",
             description: "Test description",
-            imageAccessibilityLabel: "Blue rectangle"
+            contentAccessibilityLabel: "Blue rectangle"
         )
         .padding()
     }
