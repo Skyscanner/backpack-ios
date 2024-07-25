@@ -19,7 +19,7 @@
 #import "BPKCalendarMonthDateProvider.h"
 
 #import <Backpack/SimpleDate.h>
-#import <FSCalendar/FSCalendarExtensions.h>
+#import "FSCalendarExtensions.h"
 #import <Foundation/Foundation.h>
 
 @interface BPKCalendarMonthDateProvider ()

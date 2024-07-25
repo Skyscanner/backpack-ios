@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-#import <FSCalendar/FSCalendar.h>
+#import "FSCalendar.h"
 
 #import <Backpack/Font.h>
 
