@@ -27,13 +27,23 @@ public struct BPKIconView: View {
         self.icon = icon
         self.size = size
     }
+    
+    @ScaledMetric private var smallSize: CGFloat = 16
+    @ScaledMetric private var largeSize: CGFloat = 24
+    
+    private var dimension: CGFloat {
+        switch size {
+        case .large: return largeSize
+        case .small: return smallSize
+        }
+    }
 
     public var body: some View {
         Image(icon: icon, size: size)
             .resizable()
             .renderingMode(.template)
             .flipsForRightToLeftLayoutDirection(shouldAutoMirror)
-            .frame(width: size.frame.width, height: size.frame.height)
+            .frame(width: dimension, height: dimension)
     }
     
     private var shouldAutoMirror: Bool {
@@ -42,15 +52,6 @@ public struct BPKIconView: View {
 }
 
 private extension BPKIcon.Size {
-    var frame: CGSize {
-        switch self {
-        case .large:
-            return .init(width: 24, height: 24)
-        case .small:
-            return .init(width: 16, height: 16)
-        }
-    }
-    
     var suffix: String {
         switch self {
         case .large:
