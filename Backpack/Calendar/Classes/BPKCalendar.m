@@ -21,11 +21,11 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 
-#import <FSCalendar/FSCalendar.h>
-#import <FSCalendar/FSCalendarCollectionView.h>
-#import <FSCalendar/FSCalendarDynamicHeader.h>
-#import <FSCalendar/FSCalendarExtensions.h>
-#import <FSCalendar/FSCalendarWeekdayView.h>
+#import "FSCalendar.h"
+#import "FSCalendarCollectionView.h"
+#import "FSCalendarDynamicHeader.h"
+#import "FSCalendarExtensions.h"
+#import "FSCalendarWeekdayView.h"
 
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>

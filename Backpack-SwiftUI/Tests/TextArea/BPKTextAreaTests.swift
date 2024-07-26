@@ -38,4 +38,11 @@ class BPKTextAreaTests: XCTestCase {
             BPKTextArea(.constant(""), placeholder: "Enter your text")
                 .frame(width: 327))
     }
+    
+    func test_errorTextArea() {
+        assertSnapshot(
+            BPKTextArea(.constant("Sample Text"))
+                .inputState(.error)
+                .frame(width: 327))
+    }
 }

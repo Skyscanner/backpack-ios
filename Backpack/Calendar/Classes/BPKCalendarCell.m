@@ -20,8 +20,8 @@
 
 #import "BPKCalendarCellSpacing.h"
 
-#import <FSCalendar/FSCalendarDynamicHeader.h>
-#import <FSCalendar/FSCalendarExtensions.h>
+#import "FSCalendarDynamicHeader.h"
+#import "FSCalendarExtensions.h"
 
 #import <Backpack/Color.h>
 #import <Backpack/Font.h>
