@@ -34,3 +34,10 @@ struct BPKTextAreaExampleView: View {
     }
 }
 ```
+
+### Changing the State
+    
+```swift
+  BPKTextArea(text: $text)
+    .inputState(.error)
+```
