@@ -17,7 +17,7 @@ jobs:
       uses: ./.github/workflows/_build.yml
   Deploy-Common:
     name: Release Common to Cocoapods
-    runs-on: macos-13
+    runs-on: macos-14
     environment: Publishing
     needs: [Build]
     steps:
@@ -33,7 +33,7 @@ jobs:
       run: bundle install --jobs 4 --retry 3
 
     - name: Select Xcode 14
-      run: sudo xcode-select --switch /Applications/Xcode_14.2.app
+      run: sudo xcode-select --switch /Applications/Xcode_14.3.1.app
 
     - name: Publish Pods - Backpack Common
       run: |
@@ -46,7 +46,7 @@ jobs:
 
   Deploy-UIKit:
     name: Release UIKit to Cocoapods
-    runs-on: macos-13
+    runs-on: macos-14
     environment: Publishing
     needs: [Build]
     steps:
@@ -62,7 +62,7 @@ jobs:
       run: bundle install --jobs 4 --retry 3
 
     - name: Select Xcode 14
-      run: sudo xcode-select --switch /Applications/Xcode_14.2.app
+      run: sudo xcode-select --switch /Applications/Xcode_14.3.1.app
 
     - name: Publish Pods - Backpack UIKit
       run: |
@@ -75,7 +75,7 @@ jobs:
 
   Deploy-SwiftUI:
     name: Release SwiftUI to Cocoapods
-    runs-on: macos-13
+    runs-on: macos-14
     environment: Publishing
     needs: [Build]
     steps:
@@ -91,7 +91,7 @@ jobs:
       run: bundle install --jobs 4 --retry 3
 
     - name: Select Xcode 14
-      run: sudo xcode-select --switch /Applications/Xcode_14.2.app
+      run: sudo xcode-select --switch /Applications/Xcode_14.3.1.app
 
     - name: Publish Pods - Backpack SwiftUI
       run: |
@@ -104,7 +104,7 @@ jobs:
 
   Deploy-Docs:
     name: Release Backpack Docs
-    runs-on: macos-13
+    runs-on: macos-14
     environment: Publishing
     needs: [Deploy-SwiftUI, Deploy-UIKit, Deploy-Common]
     steps:

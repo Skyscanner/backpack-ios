@@ -17,8 +17,8 @@
  */
 
 #import "BPKToast.h"
+#import "MBProgressHUD.h"
 #import <Backpack/Color.h>
-#import <MBProgressHUD/MBProgressHUD.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
