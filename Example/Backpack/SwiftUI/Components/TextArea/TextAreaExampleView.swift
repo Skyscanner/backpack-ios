@@ -28,6 +28,10 @@ struct TextAreaExampleView: View {
             BPKTextArea($text, placeholder: "Enter your text")
                 .frame(height: 100)
                 .padding()
+            BPKTextArea($text, placeholder: "Enter your text")
+                .inputState(.error)
+                .frame(height: 100)
+                .padding()
         }
         .padding()
     }
