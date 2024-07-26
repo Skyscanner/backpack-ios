@@ -2,10 +2,27 @@ import SwiftUI
 
 struct BPKCardCarousel<Content: View>: View {
     let cards: [Content]
+    let startingIndex: Int
+    let onCardChange: () -> Void
+    
+    init(
+        cards: [Content],
+        startingIndex: Int = 1,
+        onCardChange: @escaping () -> Void = { }
+    ) {
+        self.cards = cards
+        self.startingIndex = startingIndex
+        self.onCardChange = onCardChange
+    }
     
     var body: some View {
         GeometryReader { reader in
-            InternalCardCarousel(size: reader.size, content: cards)
+            InternalCardCarousel(
+                size: reader.size,
+                content: cards,
+                startingIndex: startingIndex,
+                onCardChange: onCardChange
+            )
                 .frame(
                     width: reader.size.width,
                     height: reader.size.height)
@@ -17,6 +34,7 @@ internal struct InternalCardCarousel<Content: View>: View {
     private let size: CGSize
     private let cardCount: Int
     private let cards: [Content]
+    private let onCardChange: () -> Void
     
     private let dragAnimation: Animation = .snappy(duration: 0.5)
     private let cardWidth: CGFloat
@@ -36,13 +54,19 @@ internal struct InternalCardCarousel<Content: View>: View {
         return cardWidthScale + totalCardWidth - size.width / CGFloat(cardCount) - currentCardOffset - 25.0
     }
     
-    init(size: CGSize, content: [Content]) {
+    init(
+        size: CGSize,
+        content: [Content],
+        startingIndex: Int,
+        onCardChange: @escaping () -> Void
+    ) {
         self.size = size
         self.cardCount = content.count
         self.cardWidth = size.width * 0.8
         self.cards = content + content
+        self.onCardChange = onCardChange
         
-        currentCardIndex = cardCount + 1
+        currentCardIndex = cardCount + startingIndex
     }
     
     var body: some View {
@@ -72,22 +96,23 @@ internal struct InternalCardCarousel<Content: View>: View {
         isDragging = false
         
         withAnimation(dragAnimation) {
-            
-            if value.translation.width < -(cardWidth / 2.0) && self.currentCardIndex < cards.count {
+            if value.translation.width < -(cardWidth / 2.0) {
                 if self.currentCardIndex == cards.count - 1 {
                     withAnimation(.none) {
                         self.currentCardIndex = currentCardIndex % cardCount
                     }
                 }
                 self.currentCardIndex += 1
+                onCardChange()
             }
-            if value.translation.width > (cardWidth / 2.0) && self.currentCardIndex > 1 {
+            if value.translation.width > (cardWidth / 2.0) {
                 if currentCardIndex == 2 {
                     withAnimation(.none) {
                         self.currentCardIndex += cardCount
                     }
                 }
                 self.currentCardIndex -= 1
+                onCardChange()
             }
         }
     }
@@ -123,11 +148,15 @@ internal struct InternalCardCarousel<Content: View>: View {
 
 struct BPKCardCarousel_Previews: PreviewProvider {
     static var previews: some View {
-        BPKCardCarousel(cards: [
-            createCarouselCard,
-            createCarouselCard,
-            createCarouselCard
-        ])
+        BPKCardCarousel(
+            cards: [
+                createCarouselCard,
+                createCarouselCard,
+                createCarouselCard
+            ],
+            startingIndex: 2,
+            onCardChange: { print("Card Changed") }
+        )
     }
     
     static private let createCarouselCard: BPKCarouselCard<AnyView> = BPKCarouselCard(
