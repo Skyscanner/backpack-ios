@@ -48,4 +48,3 @@ extension BPKTextArea {
         let color: BPKColor
     }
 }
-
