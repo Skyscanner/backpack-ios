@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-/// A control that displays an icon and a non-editable text interface.
+/// A view that displays an icon and a non-editable text interface.
 public struct BPKBannerAlert: View {
     private let type: AlertType
     private let style: Style
