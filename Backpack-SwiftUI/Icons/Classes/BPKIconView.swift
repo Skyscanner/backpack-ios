@@ -22,10 +22,18 @@ import Backpack_Common
 public struct BPKIconView: View {
     let icon: BPKIcon
     let size: BPKIcon.Size
+    let accessibilityLabel: String?
 
     public init(_ icon: BPKIcon, size: BPKIcon.Size = .small) {
         self.icon = icon
         self.size = size
+        self.accessibilityLabel = nil
+    }
+    
+    public init(_ icon: BPKIcon, size: BPKIcon.Size = .small, accessibilityLabel: String) {
+        self.icon = icon
+        self.size = size
+        self.accessibilityLabel = accessibilityLabel
     }
     
     @ScaledMetric private var smallSize: CGFloat = 16
@@ -39,11 +47,15 @@ public struct BPKIconView: View {
     }
 
     public var body: some View {
-        Image(icon: icon, size: size)
+        let enableAccessibility = accessibilityLabel?.isEmpty == false
+        Image(icon: icon, size: size, shouldEnableAccessibility: enableAccessibility)
             .resizable()
             .renderingMode(.template)
             .flipsForRightToLeftLayoutDirection(shouldAutoMirror)
             .frame(width: dimension, height: dimension)
+            .if(enableAccessibility, transform: { view in
+                view.accessibilityLabel(accessibilityLabel ?? "")
+            })
     }
     
     private var shouldAutoMirror: Bool {
@@ -63,9 +75,14 @@ private extension BPKIcon.Size {
 }
 
 private extension Image {
-    init(icon: BPKIcon, size: BPKIcon.Size = .small) {
+    init(icon: BPKIcon, size: BPKIcon.Size = .small, shouldEnableAccessibility: Bool) {
         let iconName = "\(icon.name)-\(size.suffix)"
-        self.init(decorative: iconName, bundle: BPKCommonBundle.iconsBundle)
+        let bundle = BPKCommonBundle.iconsBundle
+        if shouldEnableAccessibility {
+            self.init(iconName, bundle: bundle)
+        } else {
+            self.init(decorative: iconName, bundle: bundle)
+        }
     }
 }
 
