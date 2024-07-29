@@ -45,6 +45,16 @@ public struct BPKIconView: View {
         case .small: return smallSize
         }
     }
+    
+    @ScaledMetric private var smallSize: CGFloat = 16
+    @ScaledMetric private var largeSize: CGFloat = 24
+    
+    private var dimension: CGFloat {
+        switch size {
+        case .large: return largeSize
+        case .small: return smallSize
+        }
+    }
 
     public var body: some View {
         let enableAccessibility = accessibilityLabel?.isEmpty == false
@@ -56,6 +66,7 @@ public struct BPKIconView: View {
             .if(enableAccessibility, transform: { view in
                 view.accessibilityLabel(accessibilityLabel ?? "")
             })
+
     }
     
     private var shouldAutoMirror: Bool {

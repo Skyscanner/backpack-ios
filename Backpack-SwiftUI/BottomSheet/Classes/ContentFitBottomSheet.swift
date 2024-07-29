@@ -20,16 +20,25 @@ import SwiftUI
 
 @available(iOS 16.0, *)
 struct ContentFitBottomSheet<Content: View, Header: View>: View {
+    let peekHeight: CGFloat?
     let header: () -> Header
     let bottomSheetContent: () -> Content
     
     @State private var detentHeight: CGFloat = 0
     
+    private var detents: Set<PresentationDetent> {
+        var finalDetents: Set<PresentationDetent> = [.height(detentHeight)]
+        if let peekHeight {
+            finalDetents.insert(.height(peekHeight))
+        }
+        return finalDetents
+    }
+    
     var body: some View {
         VStack {
             header()
             bottomSheetContent()
-                .presentationDetents([.height(detentHeight)])
+                .presentationDetents(detents)
         }
         .presentationDragIndicator(.visible)
         .readHeight()
