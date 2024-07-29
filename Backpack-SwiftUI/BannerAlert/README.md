@@ -10,38 +10,38 @@
 
 # Usage
 
-Create a `BPKTextField` and bind the `text` property to a `Binding<String>`.
+Banner alert comes in a number of types to indicate information, success, warning or error. Additionally, It supports two styles. 
+
+## BPKBannerAlert
+
+### How to initialize 
+
+If you don't specify an `AlertType` or a `Style` it will use the `.info` type, and the `.default` style, respectively.
+
+Supported `AlertType`s:
+`info`, `success`, `warning`, `error`
+
+Supported `Style`s:
+`default`, `onContrast`
 
 ```swift
-@State var text: String = ""
-
-BPKTextField(text: $text)
+BPKBannerAlert(
+    type: .warning(accessibilityLabel: "Warning"),
+    style: .onContrast,
+    message: "Hello World!",
+    accessibilityIdentifier: "BannerAlertAccessibilityIdentifier"
+)
 ```
 
-### Setting a placeholder
+### Using a custom icon
+
+The custom icon will replace the type's default icon, but the type' color will be applied to it.
 
 ```swift
-BPKTextField("Placeholder", text: $text)
-```
-
-### Changing the State
-    
-```swift
-BPKTextField(text: $text)
-    .inputState(.error)
-    .inputState(.valid)
-```
-
-### Adding a clear button
-
-```swift
-@State var text: String = "some text"
-
-BPKTextField(text: $text)
-    .inputState(
-        .clear(
-            accessibilityLabel: "Clear",
-            action: { text = "" }
-        )
-    )
+BPKBannerAlert(
+    type: .error(),
+    style: style,
+    message: "Mutliline banner with custom icon \nThis is a new line",
+    icon: .init(.accountAdd, accessibilityLabel: "Custom icon accessibility label")
+)
 ```

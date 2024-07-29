@@ -77,7 +77,7 @@ struct BannerAlertExampleView: View {
     
     private func multilineBanner(for style: BPKBannerAlert.Style) -> some View {
         BPKBannerAlert(
-            type: .info(),
+            type: .error(),
             style: style,
             message: "Mutliline banner with custom icon \nThis is a new line",
             icon: .init(.accountAdd, accessibilityLabel: "Account Add Icon")

@@ -74,6 +74,7 @@ public struct BPKBannerAlert: View {
     private var accessory : some View {
         if let icon {
             icon
+                .foregroundColor(type.iconDetails.color)
         } else {
             BPKIconView(type.iconDetails.icon, accessibilityLabel: type.iconDetails.accessibilityLabel ?? "")
                 .foregroundColor(type.iconDetails.color)
