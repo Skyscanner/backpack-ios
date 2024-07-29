@@ -21,10 +21,10 @@ import SwiftUI
 extension BPKBannerAlert {
     /// The type of the banner, which controls the default icon to display and its color.
     public enum AlertType {
-        case info(accessibilityLabel: String? = nil)
-        case success(accessibilityLabel: String? = nil)
-        case warning(accessibilityLabel: String? = nil)
-        case error(accessibilityLabel: String? = nil)
+        case info(accessibilityLabel: String)
+        case success(accessibilityLabel: String)
+        case warning(accessibilityLabel: String)
+        case error(accessibilityLabel: String)
         
         var iconDetails: IconDetails {
             switch self {
@@ -61,6 +61,6 @@ extension BPKBannerAlert {
     struct IconDetails {
         let icon: BPKIcon
         let color: BPKColor
-        let accessibilityLabel: String?
+        let accessibilityLabel: String
     }
 }

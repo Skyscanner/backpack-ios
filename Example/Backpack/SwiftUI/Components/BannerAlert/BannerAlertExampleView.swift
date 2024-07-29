@@ -45,6 +45,7 @@ struct BannerAlertExampleView: View {
     
     private func infoBanner(for style: BPKBannerAlert.Style) -> some View {
         BPKBannerAlert(
+            type: .info(accessibilityLabel: "Information"),
             style: style,
             message: "Info Banner"
         )
@@ -54,14 +55,13 @@ struct BannerAlertExampleView: View {
         BPKBannerAlert(
             type: .warning(accessibilityLabel: "Warning"),
             style: style,
-            message: "Warning Banner",
-            accessibilityIdentifier: "WarningAlertIdentifier"
+            message: "Warning Banner"
         )
     }
     
     private func successBanner(for style: BPKBannerAlert.Style) -> some View {
         BPKBannerAlert(
-            type: .error(),
+            type: .error(accessibilityLabel: "Error"),
             style: style,
             message: "Error Banner"
         )
@@ -77,10 +77,10 @@ struct BannerAlertExampleView: View {
     
     private func multilineBanner(for style: BPKBannerAlert.Style) -> some View {
         BPKBannerAlert(
-            type: .error(),
+            type: .error(accessibilityLabel: "Error"),
             style: style,
             message: "Mutliline banner with custom icon \nThis is a new line",
-            icon: .init(.accountAdd, accessibilityLabel: "Account Add Icon")
+            customIcon: (BPKIcon.accountAdd, accessibilityLabel: "Account Add Icon")
         )
     }
     

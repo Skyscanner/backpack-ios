@@ -23,8 +23,7 @@ public struct BPKBannerAlert: View {
     private let type: AlertType
     private let style: Style
     private let message: String
-    private let icon: BPKIconView?
-    private let accessibilityIdentifier: String?
+    private let customIcon: (icon: BPKIcon, accessibilityLabel: String)?
    
     /// Creates a `BPKBannerAlert`.
     ///
@@ -33,19 +32,16 @@ public struct BPKBannerAlert: View {
     ///   - style: Style of the alert (default, onContrast). It controls the alert background color.
     ///   - message: The text to display in BPKText.
     ///   - icon: Custom icon to use in the banner instead of the one associated with the AlertType.
-    ///   - accessibilityIdentifier: Identifier assigned to the entire banner.
     public init(
-        type: AlertType = .info(),
+        type: AlertType,
         style: Style = .default,
         message: String,
-        icon: BPKIconView? = nil,
-        accessibilityIdentifier: String? = nil
+        customIcon: (icon: BPKIcon, accessibilityLabel: String)? = nil
     ) {
         self.type = type
         self.style = style
         self.message = message
-        self.icon = icon
-        self.accessibilityIdentifier = accessibilityIdentifier
+        self.customIcon = customIcon
     }
     
     @ScaledMetric private var iconTopPadding: CGFloat = 1
@@ -66,22 +62,26 @@ public struct BPKBannerAlert: View {
         .background(style.color)
         .clipShape(RoundedRectangle(cornerRadius: .sm))
         .accessibilityElement(children: .combine)
-        .accessibilityIdentifier(accessibilityIdentifier ?? "")
         
     }
     
-    @ViewBuilder
     private var accessory : some View {
-        if let icon {
-            icon
-                .foregroundColor(type.iconDetails.color)
+        let icon: BPKIcon
+        let accessibilityLabel: String
+        if let customIcon {
+            icon = customIcon.icon
+            accessibilityLabel = customIcon.accessibilityLabel
         } else {
-            BPKIconView(type.iconDetails.icon, accessibilityLabel: type.iconDetails.accessibilityLabel ?? "")
-                .foregroundColor(type.iconDetails.color)
+            icon = type.iconDetails.icon
+            accessibilityLabel = type.iconDetails.accessibilityLabel
         }
+        
+        return BPKIconView(icon, accessibilityLabel: accessibilityLabel)
+            .foregroundColor(type.iconDetails.color)
     }
 }
 
+// swiftlint:disable line_length
 struct BPKBannerAlert_Previews: PreviewProvider {
     static var previews: some View {
         ScrollView {
@@ -92,11 +92,11 @@ struct BPKBannerAlert_Previews: PreviewProvider {
                     VStack {
                         Text("\(title) Style")
                             .font(.title)
-                        BPKBannerAlert(style: style, message: "Info Banner")
-                        BPKBannerAlert(type: .warning(), style: style, message: "Warning Banner")
-                        BPKBannerAlert(type: .success(), style: style, message: "Success Banner")
-                        BPKBannerAlert(type: .error(), style: style, message: "Error Banner")
-                        BPKBannerAlert(type: .info(), style: style, message: "Mutli-line Banner \nThis is a new line")
+                        BPKBannerAlert(type: .info(accessibilityLabel: "Information"), style: style, message: "Info Banner")
+                        BPKBannerAlert(type: .warning(accessibilityLabel: "Warning"), style: style, message: "Warning Banner")
+                        BPKBannerAlert(type: .success(accessibilityLabel: "Success"), style: style, message: "Success Banner")
+                        BPKBannerAlert(type: .error(accessibilityLabel: "Error"), style: style, message: "Error Banner")
+                        BPKBannerAlert(type: .info(accessibilityLabel: "Info"), style: style, message: "Mutli-line Banner \nThis is a new line")
                     }
                     .padding()
                     .background(id == 0 ? .canvasColor : .canvasContrastColor)

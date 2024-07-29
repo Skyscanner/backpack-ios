@@ -16,7 +16,7 @@ Banner alert comes in a number of types to indicate information, success, warnin
 
 ### How to initialize 
 
-If you don't specify an `AlertType` or a `Style` it will use the `.info` type, and the `.default` style, respectively.
+If you don't specify a `Style` it will use the `.default` style.
 
 Supported `AlertType`s:
 `info`, `success`, `warning`, `error`
@@ -39,9 +39,9 @@ The custom icon will replace the type's default icon, but the type' color will b
 
 ```swift
 BPKBannerAlert(
-    type: .error(),
+    type: .error(accessibilityLabel: "Error"),
     style: style,
     message: "Mutliline banner with custom icon \nThis is a new line",
-    icon: .init(.accountAdd, accessibilityLabel: "Custom icon accessibility label")
+    customIcon: (BPKIcon.accountAdd, accessibilityLabel: "Account Add Icon")
 )
 ```
