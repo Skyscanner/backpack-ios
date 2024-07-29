@@ -36,7 +36,7 @@ internal struct InternalCardCarousel<Content: View>: View {
     private let cards: [Content]
     private let onCardChange: () -> Void
     
-    private let dragAnimation: Animation = .snappy(duration: 0.5)
+    private let dragAnimation: Animation = Animation.snappy(duration: 0.5)
     private let cardWidth: CGFloat
     
     @State private var currentCardIndex: Int
@@ -44,14 +44,15 @@ internal struct InternalCardCarousel<Content: View>: View {
     @State private var totalDrag: CGFloat = 0.0
     
     private var offset: CGFloat {
-        let normalizedIndex = CGFloat(currentCardIndex) / CGFloat(cardCount - 1)
+        let normalizedIndex = CGFloat(currentCardIndex) * 0.5
         let cardWidthScale = cardWidth * (1 - normalizedIndex)
         let totalCardWidth = CGFloat(cardCount) * cardWidth
         let avgCardWidth = totalCardWidth / CGFloat(cardCount)
         let currentCardOffset = normalizedIndex * avgCardWidth
+        let wierdOffset = (CGFloat(cards.count)) * (CGFloat(cardCount) * 1.8)
 
         // Calculate final offset
-        return cardWidthScale + totalCardWidth - size.width / CGFloat(cardCount) - currentCardOffset - 25.0
+        return cardWidthScale + totalCardWidth - size.width / CGFloat(cardCount) - currentCardOffset - wierdOffset
     }
     
     init(
@@ -70,56 +71,81 @@ internal struct InternalCardCarousel<Content: View>: View {
     }
     
     var body: some View {
-        VStack {
+        VStack(spacing: .md) {
             LazyHStack(alignment: .center, spacing: 0) {
                 ForEach(Array(cards.enumerated()), id: \.offset) { index, card in
                     card
                         .frame(width: cardWidth)
-                        .offset(x: isDragging ? totalDrag : getContentOffset(index, spacing: BPKSpacing.base.value))
+                        .offset(x: isDragging ? totalDrag : getContentOffset(
+                            for: index,
+                            spacing: BPKSpacing.base.value
+                        ))
                         .animation(dragAnimation, value: isDragging)
-                        .scaleEffect(currentCardIndex - 1 == index ? 1 : 0.85)
+                        .scaleEffect(scaleEffect(for: index))
                 }
             }
             .offset(x: offset)
             .gesture(
                 DragGesture()
-                    .onChanged { value in onDragChanged(value: value) }
-                    .onEnded { value in onDragEnded(value: value) }
+                    .onChanged(onDragChanged)
+                    .onEnded(onDragEnded)
             )
             
             cardIndicator()
         }
     }
+
+    private func scaleEffect(for index: Int) -> CGFloat {
+        return currentCardIndex - 1 == index ? 1 : 0.85
+    }
     
-    private func onDragEnded (value: DragGesture.Value) {
+    private func getContentOffset (for index: Int, spacing: CGFloat) -> CGFloat {
+        if currentCardIndex - 1 < index {
+            return -spacing
+        } else if currentCardIndex - 1 > index {
+            return spacing
+        }
+        return 0
+    }
+
+    private func onDragChanged (value: DragGesture.Value) {
+        totalDrag = value.translation.width
+        isDragging = true
+    }
+
+    private func onDragEnded(value: DragGesture.Value) {
         totalDrag = 0.0
         isDragging = false
         
         withAnimation(dragAnimation) {
             if value.translation.width < -(cardWidth / 2.0) {
-                if self.currentCardIndex == cards.count - 1 {
-                    withAnimation(.none) {
-                        self.currentCardIndex = currentCardIndex % cardCount
-                    }
-                }
-                self.currentCardIndex += 1
-                onCardChange()
-            }
-            if value.translation.width > (cardWidth / 2.0) {
-                if currentCardIndex == 2 {
-                    withAnimation(.none) {
-                        self.currentCardIndex += cardCount
-                    }
-                }
-                self.currentCardIndex -= 1
-                onCardChange()
+                handleLeftSwipe()
+            } else if value.translation.width > (cardWidth / 2.0) {
+                handleRightSwipe()
             }
         }
     }
-    
-    private func onDragChanged (value: DragGesture.Value) {
-        totalDrag = value.translation.width
-        isDragging = true
+
+    private func handleLeftSwipe() {
+        if self.currentCardIndex == cards.count - 1 {
+            withAnimation(.none) {
+                self.currentCardIndex = currentCardIndex % cardCount
+            }
+        }
+
+        self.currentCardIndex += 1
+        onCardChange()
+    }
+
+    private func handleRightSwipe() {
+        if currentCardIndex == 2 {
+            withAnimation(.none) {
+                self.currentCardIndex += cardCount
+            }
+        }
+        
+        self.currentCardIndex -= 1
+        onCardChange()
     }
     
     private func cardIndicator() -> some View {
@@ -135,15 +161,6 @@ internal struct InternalCardCarousel<Content: View>: View {
             }
         }.padding([.top, .bottom], .base)
     }
-    
-    private func getContentOffset (_ index: Int, spacing: CGFloat) -> CGFloat {
-        if currentCardIndex - 1 < index {
-            return -spacing
-        } else if currentCardIndex - 1 > index {
-            return spacing
-        }
-        return 0
-    }
 }
 
 struct BPKCardCarousel_Previews: PreviewProvider {
@@ -152,9 +169,10 @@ struct BPKCardCarousel_Previews: PreviewProvider {
             cards: [
                 createCarouselCard,
                 createCarouselCard,
+//                createCarouselCard,
                 createCarouselCard
             ],
-            startingIndex: 2,
+            startingIndex: 1,
             onCardChange: { print("Card Changed") }
         )
     }
