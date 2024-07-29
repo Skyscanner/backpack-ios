@@ -1,26 +1,44 @@
+/*
+ * Backpack - Skyscanner's Design System
+ *
+ * Copyright 2018 Skyscanner Ltd
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import SwiftUI
 
-struct BPKCardCarousel<Content: View>: View {
-    let cards: [Content]
-    let startingIndex: Int
-    let onCardChange: () -> Void
+public struct BPKCardCarousel<Content: View>: View {
+    @Binding private var curentIndex: Int
+    private let cards: [Content]
+    private let onCardChange: () -> Void
     
-    init(
+    public init(
         cards: [Content],
-        startingIndex: Int = 1,
+        curentIndex: Binding<Int>,
         onCardChange: @escaping () -> Void = { }
     ) {
         self.cards = cards
-        self.startingIndex = startingIndex
+        self._curentIndex = curentIndex
         self.onCardChange = onCardChange
     }
     
-    var body: some View {
+    public var body: some View {
         GeometryReader { reader in
             InternalCardCarousel(
                 size: reader.size,
                 content: cards,
-                startingIndex: startingIndex,
+                curentIndex: $curentIndex,
                 onCardChange: onCardChange
             )
                 .frame(
@@ -31,65 +49,62 @@ struct BPKCardCarousel<Content: View>: View {
 }
 
 internal struct InternalCardCarousel<Content: View>: View {
+    @Binding private var currentIndex: Int
+    @State private var currentInternalIndex: Int
+    private let onCardChange: () -> Void
+    private let content: [Content]
+    
     private let size: CGSize
     private let cardCount: Int
-    private let cards: [Content]
-    private let onCardChange: () -> Void
-    
-    private let dragAnimation: Animation = Animation.snappy(duration: 0.5)
     private let cardWidth: CGFloat
-    
-    @State private var currentCardIndex: Int
-    @State private var isDragging: Bool = false
+    private let dragAnimation: Animation = Animation.snappy(duration: 0.5)
+    @GestureState private var isDragging: Bool = false
     @GestureState private var totalDrag: CGFloat = 0.0
     
     private var offset: CGFloat {
-        let normalizedIndex = CGFloat(currentCardIndex) * 0.5
-        let cardWidthScale = cardWidth * (1 - normalizedIndex)
-        let totalCardWidth = CGFloat(cardCount) * cardWidth
-        let avgCardWidth = totalCardWidth / CGFloat(cardCount)
-        let currentCardOffset = normalizedIndex * avgCardWidth
-
-        // Calculate final offset
-        return ((cardWidthScale + totalCardWidth) - (currentCardOffset)) - (cardWidth / 2)
+        return (CGFloat(cardCount) + 1 - CGFloat(currentInternalIndex)) * cardWidth - (cardWidth / 2)
     }
     
     init(
         size: CGSize,
         content: [Content],
-        startingIndex: Int,
+        curentIndex: Binding<Int>,
         onCardChange: @escaping () -> Void
     ) {
         self.size = size
         self.cardCount = content.count
         self.cardWidth = size.width * 0.8
-        self.cards = content + content
+        self.content = content + content
         self.onCardChange = onCardChange
         
-        currentCardIndex = cardCount + startingIndex
+        currentInternalIndex = cardCount + 1 + curentIndex.wrappedValue
+        
+        _currentIndex = curentIndex
     }
     
     var body: some View {
         VStack(spacing: .md) {
             LazyHStack(alignment: .center, spacing: 0) {
-                ForEach(Array(cards.enumerated()), id: \.offset) { index, card in
+                ForEach(Array(content.enumerated()), id: \.offset) { index, card in
                     card
                         .frame(width: cardWidth)
                         .offset(x: isDragging ? totalDrag : getContentOffset(
                             for: index,
                             spacing: BPKSpacing.base.value
                         ))
-                        .animation(dragAnimation, value: totalDrag)
+                        .animation(dragAnimation, value: isDragging)
                         .scaleEffect(scaleEffect(for: index))
                 }
             }
             .offset(x: offset)
             .gesture(
-                
-                DragGesture() .updating($totalDrag, body: { value, state, _ in
+                DragGesture()
+                .updating($totalDrag, body: { value, state, _ in
                     state = value.translation.width
                 })
-                .onChanged(onDragChanged)
+                .updating($isDragging, body: { _, state, _ in
+                    state = true
+                })
                 .onEnded(onDragEnded)
             )
             
@@ -98,25 +113,19 @@ internal struct InternalCardCarousel<Content: View>: View {
     }
 
     private func scaleEffect(for index: Int) -> CGFloat {
-        return currentCardIndex - 1 == index ? 1 : 0.85
+        return currentInternalIndex - 1 == index ? 1 : 0.85
     }
     
     private func getContentOffset (for index: Int, spacing: CGFloat) -> CGFloat {
-        if currentCardIndex - 1 < index {
+        if currentInternalIndex - 1 < index {
             return -spacing
-        } else if currentCardIndex - 1 > index {
+        } else if currentInternalIndex - 1 > index {
             return spacing
         }
         return 0
     }
 
-    private func onDragChanged(value: DragGesture.Value) {
-        isDragging = true
-    }
-
     private func onDragEnded(value: DragGesture.Value) {
-        isDragging = false
-        
         withAnimation(dragAnimation) {
             if value.translation.width < -(cardWidth / 2.0) {
                 handleLeftSwipe()
@@ -124,42 +133,38 @@ internal struct InternalCardCarousel<Content: View>: View {
                 handleRightSwipe()
             }
         }
+        
+        self.currentIndex = (currentInternalIndex - 1) % (cardCount)
     }
 
     private func handleLeftSwipe() {
-        if self.currentCardIndex == cards.count - 1 {
+        if self.currentInternalIndex == content.count - 1 {
             withAnimation(.none) {
-                self.currentCardIndex = currentCardIndex % cardCount
+                self.currentInternalIndex = currentInternalIndex % cardCount
             }
         }
 
-        self.currentCardIndex += 1
+        self.currentInternalIndex += 1
         onCardChange()
     }
 
     private func handleRightSwipe() {
-        if currentCardIndex == 2 {
+        if currentInternalIndex == 2 {
             withAnimation(.none) {
-                self.currentCardIndex += cardCount
+                self.currentInternalIndex += cardCount
             }
         }
         
-        self.currentCardIndex -= 1
+        self.currentInternalIndex -= 1
         onCardChange()
     }
     
     private func cardIndicator() -> some View {
-        return HStack(spacing: .md) {
-            ForEach(0..<cardCount, id: \.self) { index in
-                Circle()
-                    .fill((index == (currentCardIndex - 1) % cardCount) ?
-                        Color(.darkGray) :
-                        Color(.lightGray)
-                    )
-                    .frame(width: 10, height: 10)
-                    .animation(.linear(duration: 0.3), value: currentCardIndex)
-            }
-        }.padding([.top, .bottom], .base)
+        return BPKPageIndicator(
+            variant: .default,
+            currentIndex: $currentIndex,
+            totalIndicators: .constant(cardCount)
+        )
     }
 }
 
@@ -171,7 +176,7 @@ struct BPKCardCarousel_Previews: PreviewProvider {
                 createCarouselCard,
                 createCarouselCard
             ],
-            startingIndex: 1,
+            curentIndex: .constant(0),
             onCardChange: { print("Card Changed") }
         )
     }
