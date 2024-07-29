@@ -20,34 +20,46 @@ import XCTest
 import SwiftUI
 @testable import Backpack_SwiftUI
 
-class BPKCarouselCardTests: XCTestCase {
-    func testCarouselCard() {
+class BPKCardCarouselTests: XCTestCase {
+    func testCardCarousel() {
         assertSnapshot(
-            BPKCarouselCard(
-                content: {
-                    Image("dialog_image", bundle: TestsBundle.bundle)
-                        .resizable()
-                        .scaledToFill()
-                },
-                title: "Test title",
-                description: "Test descriptions" ,
-                contentAccessibilityLabel: "Test label"
+            BPKCardCarousel(
+                cards: [
+                    createCard(),
+                    createCard(),
+                    createCard()
+                ],
+                curentIndex: .constant(0),
+                onCardChange: { }
             ).frame(width: 300, height: 530)
         )
     }
     
     func test_accessibility() {
-        let card = BPKCarouselCard(
+        let card = BPKCardCarousel(
+            cards: [
+                createCard(),
+                createCard(),
+                createCard()
+            ],
+            curentIndex: .constant(0),
+            onCardChange: { }
+        ).frame(width: 300, height: 530)
+        assertA11ySnapshot(card)
+    }
+    
+    private func createCard() -> BPKCarouselCard<AnyView> {
+        return BPKCarouselCard(
             content: {
-                Image("dialog_image", bundle: TestsBundle.bundle)
-                    .resizable()
-                    .scaledToFill()
+                AnyView(
+                    Image("dialog_image", bundle: TestsBundle.bundle)
+                        .resizable()
+                        .scaledToFill()
+                )
             },
             title: "Test title",
             description: "Test descriptions" ,
             contentAccessibilityLabel: "Test label"
-        ).frame(width: 300, height: 530)
-        assertA11ySnapshot(card)
+        )
     }
 }
-
