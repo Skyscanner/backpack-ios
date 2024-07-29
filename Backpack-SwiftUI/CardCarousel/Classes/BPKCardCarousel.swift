@@ -57,6 +57,7 @@ internal struct InternalCardCarousel<Content: View>: View {
     private let size: CGSize
     private let cardCount: Int
     private let cardWidth: CGFloat
+    private let dragAnimation: SwiftUI.Animation = .bouncy
     @GestureState private var isDragging: Bool = false
     @GestureState private var totalDrag: CGFloat = 0.0
     
@@ -91,7 +92,7 @@ internal struct InternalCardCarousel<Content: View>: View {
                             for: index,
                             spacing: BPKSpacing.base.value
                         ))
-                        .animation(.snappy, value: isDragging)
+                        .animation(dragAnimation, value: isDragging)
                         .scaleEffect(scaleEffect(for: index))
                 }
             }
@@ -125,7 +126,7 @@ internal struct InternalCardCarousel<Content: View>: View {
     }
 
     private func onDragEnded(value: DragGesture.Value) {
-        withAnimation(.snappy) {
+        withAnimation(dragAnimation) {
             if value.translation.width < -(cardWidth / 2.0) {
                 handleLeftSwipe()
             } else if value.translation.width > (cardWidth / 2.0) {
