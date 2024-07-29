@@ -41,7 +41,7 @@ internal struct InternalCardCarousel<Content: View>: View {
     
     @State private var currentCardIndex: Int
     @State private var isDragging: Bool = false
-    @State private var totalDrag: CGFloat = 0.0
+    @GestureState private var totalDrag: CGFloat = 0.0
     
     private var offset: CGFloat {
         let normalizedIndex = CGFloat(currentCardIndex) * 0.5
@@ -49,10 +49,9 @@ internal struct InternalCardCarousel<Content: View>: View {
         let totalCardWidth = CGFloat(cardCount) * cardWidth
         let avgCardWidth = totalCardWidth / CGFloat(cardCount)
         let currentCardOffset = normalizedIndex * avgCardWidth
-        let wierdOffset = (CGFloat(cards.count)) * (CGFloat(cardCount) * 1.8)
 
         // Calculate final offset
-        return cardWidthScale + totalCardWidth - size.width / CGFloat(cardCount) - currentCardOffset - wierdOffset
+        return ((cardWidthScale + totalCardWidth) - (currentCardOffset)) - (cardWidth / 2)
     }
     
     init(
@@ -80,15 +79,18 @@ internal struct InternalCardCarousel<Content: View>: View {
                             for: index,
                             spacing: BPKSpacing.base.value
                         ))
-                        .animation(dragAnimation, value: isDragging)
+                        .animation(dragAnimation, value: totalDrag)
                         .scaleEffect(scaleEffect(for: index))
                 }
             }
             .offset(x: offset)
             .gesture(
-                DragGesture()
-                    .onChanged(onDragChanged)
-                    .onEnded(onDragEnded)
+                
+                DragGesture() .updating($totalDrag, body: { value, state, _ in
+                    state = value.translation.width
+                })
+                .onChanged(onDragChanged)
+                .onEnded(onDragEnded)
             )
             
             cardIndicator()
@@ -108,13 +110,11 @@ internal struct InternalCardCarousel<Content: View>: View {
         return 0
     }
 
-    private func onDragChanged (value: DragGesture.Value) {
-        totalDrag = value.translation.width
+    private func onDragChanged(value: DragGesture.Value) {
         isDragging = true
     }
 
     private func onDragEnded(value: DragGesture.Value) {
-        totalDrag = 0.0
         isDragging = false
         
         withAnimation(dragAnimation) {
@@ -169,7 +169,6 @@ struct BPKCardCarousel_Previews: PreviewProvider {
             cards: [
                 createCarouselCard,
                 createCarouselCard,
-//                createCarouselCard,
                 createCarouselCard
             ],
             startingIndex: 1,
