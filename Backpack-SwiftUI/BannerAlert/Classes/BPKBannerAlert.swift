@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-/// A view that displays an icon and a non-editable text interface.
+/// A view that displays an icon and a non-editable text.
 public struct BPKBannerAlert: View {
     private let type: AlertType
     private let style: Style
@@ -32,7 +32,7 @@ public struct BPKBannerAlert: View {
     ///   - type: Controls which default icon to display in the banner.
     ///   - style: Style of the alert (default, onContrast). It controls the alert background color.
     ///   - message: The text to display in BPKText.
-    ///   - icon: Custom icon to use in the banner, instead of the default ones.
+    ///   - icon: Custom icon to use in the banner instead of the one associated with the AlertType.
     ///   - accessibilityIdentifier: Identifier assigned to the entire banner.
     public init(
         type: AlertType = .info(),
