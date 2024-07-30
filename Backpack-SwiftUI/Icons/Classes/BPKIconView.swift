@@ -28,13 +28,18 @@ public struct BPKIconView: View {
         self.size = size
     }
     
-    @ScaledMetric private var smallSize: CGFloat = 16
-    @ScaledMetric private var largeSize: CGFloat = 24
+    @ScaledMetric private var scaledSmallSize: CGFloat = 16
+    @ScaledMetric private var scaledLargeSize: CGFloat = 24
+    
+    private var smallSize: CGFloat = 16
+    private var largeSize: CGFloat = 24
     
     private var dimension: CGFloat {
         switch size {
-        case .large: return largeSize
-        case .small: return smallSize
+        case .small:
+            return BPKFont.enableDynamicType ? scaledSmallSize : smallSize
+        case .large:
+            return BPKFont.enableDynamicType ? scaledLargeSize : largeSize
         }
     }
 
