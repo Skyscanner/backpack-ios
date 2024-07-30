@@ -16,6 +16,14 @@
  * limitations under the License.
  */
 
+//
+//  FSCalendarAnimationLayout.h
+//  FSCalendar
+//
+//  Created by dingwenchao on 1/3/16.
+//  Copyright © 2016 Wenchao Ding. All rights reserved.
+//
+
 #import <UIKit/UIKit.h>
 
 @class FSCalendar;

@@ -16,6 +16,16 @@
  * limitations under the License.
  */
 
+//
+//  FSCalendarConstants.h
+//  FSCalendar
+//
+//  Created by dingwenchao on 8/28/15.
+//  Copyright © 2016 Wenchao Ding. All rights reserved.
+//
+//  https://github.com/WenchaoD
+//
+
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 

@@ -16,6 +16,14 @@
  * limitations under the License.
  */
 
+//
+//  FSCalendarCalculator.m
+//  FSCalendar
+//
+//  Created by dingwenchao on 30/10/2016.
+//  Copyright © 2016 Wenchao Ding. All rights reserved.
+//
+
 #import "FSCalendarCalculator.h"
 #import "FSCalendar.h"
 #import "FSCalendarDynamicHeader.h"

@@ -16,6 +16,16 @@
  * limitations under the License.
  */
 
+//
+//  FSCalendarConstants.m
+//  FSCalendar
+//
+//  Created by dingwenchao on 8/28/15.
+//  Copyright © 2016 Wenchao Ding. All rights reserved.
+//
+//  https://github.com/WenchaoD
+//
+
 #import "FSCalendarConstants.h"
 
 CGFloat const FSCalendarStandardHeaderHeight = 40;

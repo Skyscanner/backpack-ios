@@ -16,6 +16,14 @@
  * limitations under the License.
  */
 
+//
+//  FSCalendarWeekdayView.m
+//  FSCalendar
+//
+//  Created by dingwenchao on 03/11/2016.
+//  Copyright © 2016 Wenchao Ding. All rights reserved.
+//
+
 #import "FSCalendarWeekdayView.h"
 #import "FSCalendar.h"
 #import "FSCalendarDynamicHeader.h"

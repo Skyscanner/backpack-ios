@@ -16,6 +16,14 @@
  * limitations under the License.
  */
 
+//
+//  FSCalendarStaticHeader.m
+//  FSCalendar
+//
+//  Created by dingwenchao on 9/17/15.
+//  Copyright (c) 2015 Wenchao Ding. All rights reserved.
+//
+
 #import "FSCalendarStickyHeader.h"
 #import "FSCalendar.h"
 #import "FSCalendarConstants.h"

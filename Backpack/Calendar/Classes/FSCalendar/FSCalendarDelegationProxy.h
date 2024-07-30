@@ -16,6 +16,19 @@
  * limitations under the License.
  */
 
+//
+//  FSCalendarDelegationProxy.h
+//  FSCalendar
+//
+//  Created by dingwenchao on 11/12/2016.
+//  Copyright © 2016 Wenchao Ding. All rights reserved.
+//
+//  https://github.com/WenchaoD
+//
+//  1. Smart proxy delegation http://petersteinberger.com/blog/2013/smart-proxy-delegation/
+//  2. Manage deprecated delegation functions
+//
+
 #import "FSCalendar.h"
 #import <Foundation/Foundation.h>
 

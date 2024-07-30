@@ -16,6 +16,23 @@
  * limitations under the License.
  */
 
+//
+//  FSCalendar.h
+//  FSCalendar
+//
+//  Created by Wenchao Ding on 29/1/15.
+//  Copyright © 2016 Wenchao Ding. All rights reserved.
+// 
+//  https://github.com/WenchaoD
+//
+//  FSCalendar is a superior awesome calendar control with high performance, high customizablility and very simple usage.
+//
+//  @see FSCalendarDataSource
+//  @see FSCalendarDelegate
+//  @see FSCalendarDelegateAppearance
+//  @see FSCalendarAppearance
+//
+
 #import "FSCalendarAppearance.h"
 #import "FSCalendarCell.h"
 #import "FSCalendarConstants.h"

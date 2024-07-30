@@ -16,6 +16,14 @@
  * limitations under the License.
  */
 
+//
+//  FSCalendarTransitionCoordinator.m
+//  FSCalendar
+//
+//  Created by Wenchao Ding on 3/13/16.
+//  Copyright © 2016 Wenchao Ding. All rights reserved.
+//
+
 #import "FSCalendarTransitionCoordinator.h"
 #import "FSCalendarDynamicHeader.h"
 #import "FSCalendarExtensions.h"

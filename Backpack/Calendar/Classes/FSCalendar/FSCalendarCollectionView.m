@@ -16,6 +16,15 @@
  * limitations under the License.
  */
 
+//
+//  FSCalendarCollectionView.m
+//  FSCalendar
+//
+//  Created by Wenchao Ding on 10/25/15.
+//  Copyright (c) 2015 Wenchao Ding. All rights reserved.
+//
+//  Reject -[UIScrollView(UIScrollViewInternal) _adjustContentOffsetIfNecessary]
+
 #import "FSCalendarCollectionView.h"
 #import "FSCalendarConstants.h"
 #import "FSCalendarExtensions.h"

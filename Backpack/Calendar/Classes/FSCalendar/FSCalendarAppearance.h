@@ -16,6 +16,16 @@
  * limitations under the License.
  */
 
+//
+//  FSCalendarAppearance.h
+//  Pods
+//
+//  Created by DingWenchao on 6/29/15.
+//  Copyright © 2016 Wenchao Ding. All rights reserved.
+//
+//  https://github.com/WenchaoD
+//
+
 #import "FSCalendarConstants.h"
 
 @class FSCalendar;
