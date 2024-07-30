@@ -42,6 +42,6 @@ BPKBannerAlert(
     type: .error(accessibilityLabel: "Error"),
     style: style,
     message: "Mutliline banner with custom icon \nThis is a new line",
-    customIcon: (BPKIcon.accountAdd, accessibilityLabel: "Account Add Icon")
+    icon: (BPKIcon.accountAdd, accessibilityLabel: "Account Add Icon")
 )
 ```

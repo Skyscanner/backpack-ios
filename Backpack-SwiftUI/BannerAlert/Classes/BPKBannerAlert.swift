@@ -36,12 +36,12 @@ public struct BPKBannerAlert: View {
         type: AlertType,
         style: Style = .default,
         message: String,
-        customIcon: (icon: BPKIcon, accessibilityLabel: String)? = nil
+        icon: (icon: BPKIcon, accessibilityLabel: String)? = nil
     ) {
         self.type = type
         self.style = style
         self.message = message
-        self.customIcon = customIcon
+        self.customIcon = icon
     }
     
     @ScaledMetric private var iconTopPadding: CGFloat = 1
