@@ -49,6 +49,7 @@ struct ComponentCellsProvider {
             cardList(),
             carousel(),
             carouselCard(),
+            cardCarousel(),
             chips(),
             chipGroup(),
             flightLeg(),

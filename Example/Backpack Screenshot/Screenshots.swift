@@ -504,7 +504,7 @@ class Screenshots: BackpackSnapshotTestCase {
         }
         
         await navigate(title: "Card Carousel") {
-            saveScreenshot(component: "carousel-card", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            saveScreenshot(component: "card-carousel", scenario: "default", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
     }
