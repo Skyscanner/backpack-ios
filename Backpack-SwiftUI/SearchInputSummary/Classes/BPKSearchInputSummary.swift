@@ -73,6 +73,9 @@ public struct BPKSearchInputSummary: View {
         .background(.surfaceDefaultColor)
         .clipShape(RoundedRectangle(cornerRadius: .sm))
         .outline(focused ? .textLinkColor : state.borderColor, cornerRadius: .sm, lineWidth: focused ? 2.0 : 1.0)
+        .if(!BPKFont.enableDynamicType, transform: {
+            $0.sizeCategory(.large)
+        })
     }
     
     @ViewBuilder
