@@ -30,7 +30,7 @@ class BPKInfoBannerTests: XCTestCase {
         print(constructTestName(for: styles[1]))
         styles.forEach { style in
             assertSnapshot(
-                BPKBannerAlert(type: .info(), style: style, message: "Read before booking")
+                BPKBannerAlert(type: .info(accessibilityLabel: ""), style: style, message: "Read before booking")
                     .frame(width: 300),
                 testName: constructTestName(for: style)
             )
@@ -40,7 +40,7 @@ class BPKInfoBannerTests: XCTestCase {
     func test_successBannerAlert() {
         styles.forEach { style in
             assertSnapshot(
-                BPKBannerAlert(type: .success(), style: style, message: "Success Alert")
+                BPKBannerAlert(type: .success(accessibilityLabel: ""), style: style, message: "Success Alert")
                     .frame(width: 300),
                 testName: constructTestName(for: style)
             )
@@ -50,7 +50,7 @@ class BPKInfoBannerTests: XCTestCase {
     func test_warningBannerAlert() {
         styles.forEach { style in
             assertSnapshot(
-                BPKBannerAlert(type: .warning(), style: style, message: "Warning Alert")
+                BPKBannerAlert(type: .warning(accessibilityLabel: ""), style: style, message: "Warning Alert")
                     .frame(width: 300),
                 testName: constructTestName(for: style)
             )
@@ -60,7 +60,7 @@ class BPKInfoBannerTests: XCTestCase {
     func test_errorBannerAlert() {
         styles.forEach { style in
             assertSnapshot(
-                BPKBannerAlert(type: .error(), style: style, message: "Error Alert")
+                BPKBannerAlert(type: .error(accessibilityLabel: ""), style: style, message: "Error Alert")
                     .frame(width: 300),
                 testName: constructTestName(for: style)
             )
@@ -70,7 +70,7 @@ class BPKInfoBannerTests: XCTestCase {
     func test_multilineBannerAlert() {
         styles.forEach { style in
             assertSnapshot(
-                BPKBannerAlert(type: .error(), style: style, message: "Multiline Alert \nNewLine")
+                BPKBannerAlert(type: .error(accessibilityLabel: ""), style: style, message: "Multiline Alert \nNewLine")
                     .frame(width: 300)
             )
         }
@@ -78,7 +78,7 @@ class BPKInfoBannerTests: XCTestCase {
     
     func test_accessibilityDynamicType() {
         assertA11ySnapshot(
-            BPKBannerAlert(type: .error(), style: .default, message: "Multiline Alert \nNewLine")
+            BPKBannerAlert(type: .error(accessibilityLabel: ""), style: .default, message: "Multiline Alert \nNewLine")
         )
     }
     
