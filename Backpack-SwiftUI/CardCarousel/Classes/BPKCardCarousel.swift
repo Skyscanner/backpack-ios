@@ -57,7 +57,11 @@ internal struct InternalCardCarousel<Content: View>: View {
     private let size: CGSize
     private let cardCount: Int
     private let cardWidth: CGFloat
-    private let dragAnimation: Animation = .spring
+    private let dragAnimation: Animation = .spring(
+        response: 0.5,
+        dampingFraction: 0.825,
+        blendDuration: 0
+    )
     @GestureState private var isDragging: Bool = false
     @GestureState private var totalDrag: CGFloat = 0.0
     
