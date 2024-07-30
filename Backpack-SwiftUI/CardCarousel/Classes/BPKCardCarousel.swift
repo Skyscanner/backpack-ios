@@ -57,7 +57,7 @@ internal struct InternalCardCarousel<Content: View>: View {
     private let size: CGSize
     private let cardCount: Int
     private let cardWidth: CGFloat
-    private let dragAnimation: Animation = SwiftUI.Animation.snappy
+    private let dragAnimation: Animation = .easeInOut
     @GestureState private var isDragging: Bool = false
     @GestureState private var totalDrag: CGFloat = 0.0
     
