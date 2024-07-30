@@ -36,8 +36,10 @@ public struct BPKIconView: View {
     
     private var dimension: CGFloat {
         switch size {
-        case .small: BPKFont.enableDynamicType ? scaledSmallSize : smallSize
-        case .large: BPKFont.enableDynamicType ? scaledLargeSize : largeSize
+        case .small: 
+            return BPKFont.enableDynamicType ? scaledSmallSize : smallSize
+        case .large:
+            return BPKFont.enableDynamicType ? scaledLargeSize : largeSize
         }
     }
 
