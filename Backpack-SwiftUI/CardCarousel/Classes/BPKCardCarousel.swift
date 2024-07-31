@@ -78,9 +78,8 @@ internal struct InternalCardCarousel<Content: View>: View {
         self._currentIndex = currentIndex
         self.cardWidth = size.width * 0.8
         self.cardCount = content.count
-        self.currentInternalIndex = cardCount + 1 + currentIndex.wrappedValue
+        self._currentInternalIndex = State(initialValue: cardCount + 1 + currentIndex.wrappedValue)
         self.onCardChange = onCardChange
-        
         self.content = content + content
         focusOnCard = .init(currentInternalIndex)
     }
