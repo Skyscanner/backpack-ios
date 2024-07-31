@@ -29,8 +29,7 @@ class BPKCardCarouselTests: XCTestCase {
                     createCard(),
                     createCard()
                 ],
-                currentIndex: .constant(0),
-                onCardChange: { }
+                currentIndex: .constant(0)
             ).frame(width: 300, height: 530)
         )
     }
@@ -42,8 +41,7 @@ class BPKCardCarouselTests: XCTestCase {
                 createCard(),
                 createCard()
             ],
-            currentIndex: .constant(0),
-            onCardChange: { }
+            currentIndex: .constant(0)
         ).frame(width: 300, height: 530)
         assertA11ySnapshot(card)
     }

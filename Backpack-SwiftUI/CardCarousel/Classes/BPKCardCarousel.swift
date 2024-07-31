@@ -21,16 +21,13 @@ import SwiftUI
 public struct BPKCardCarousel<Content: View>: View {
     @Binding private var currentIndex: Int
     private let cards: [Content]
-    private let onCardChange: () -> Void
     
     public init(
         cards: [Content],
-        currentIndex: Binding<Int>,
-        onCardChange: @escaping () -> Void = { }
+        currentIndex: Binding<Int>
     ) {
         self.cards = cards
         self._currentIndex = currentIndex
-        self.onCardChange = onCardChange
     }
     
     public var body: some View {
@@ -38,8 +35,7 @@ public struct BPKCardCarousel<Content: View>: View {
             InternalCardCarousel(
                 size: reader.size,
                 content: cards,
-                currentIndex: $currentIndex,
-                onCardChange: onCardChange
+                currentIndex: $currentIndex
             )
                 .frame(
                     width: reader.size.width,
@@ -52,7 +48,6 @@ internal struct InternalCardCarousel<Content: View>: View {
     @Binding private var currentIndex: Int
     @State private var currentInternalIndex: Int
     @AccessibilityFocusState private var focusOnCard: Int?
-    private let onCardChange: () -> Void
     private let content: [Content]
     
     private let cardCount: Int
@@ -72,14 +67,12 @@ internal struct InternalCardCarousel<Content: View>: View {
     init(
         size: CGSize,
         content: [Content],
-        currentIndex: Binding<Int>,
-        onCardChange: @escaping () -> Void
+        currentIndex: Binding<Int>
     ) {
         self._currentIndex = currentIndex
         self.cardWidth = size.width * 0.8
         self.cardCount = content.count
         self._currentInternalIndex = State(initialValue: cardCount + 1 + currentIndex.wrappedValue)
-        self.onCardChange = onCardChange
         self.content = content + content
         focusOnCard = .init(currentInternalIndex)
     }
@@ -149,7 +142,6 @@ internal struct InternalCardCarousel<Content: View>: View {
         }
 
         self.currentInternalIndex += 1
-        onCardChange()
     }
 
     private func handleRightSwipe() {
@@ -160,7 +152,6 @@ internal struct InternalCardCarousel<Content: View>: View {
         }
         
         self.currentInternalIndex -= 1
-        onCardChange()
     }
     
     private func cardIndicator() -> some View {
@@ -190,8 +181,7 @@ struct BPKCardCarousel_Previews: PreviewProvider {
                 createCarouselCard,
                 createCarouselCard
             ],
-            currentIndex: .constant(0),
-            onCardChange: { print("Card Changed") }
+            currentIndex: .constant(0)
         )
     }
     

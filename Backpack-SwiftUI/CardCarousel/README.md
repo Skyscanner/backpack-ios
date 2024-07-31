@@ -50,7 +50,6 @@ BPKCardCarousel(
             contentAccessibilityLabel: "Blue rectangle"
         )
     ],
-    curentIndex: .constant(0),
-    onCardChange: { }
+    curentIndex: .constant(0)
 )
 ```
