@@ -19,17 +19,17 @@
 import SwiftUI
 
 public struct BPKCardCarousel<Content: View>: View {
-    @Binding private var curentIndex: Int
+    @Binding private var currentIndex: Int
     private let cards: [Content]
     private let onCardChange: () -> Void
     
     public init(
         cards: [Content],
-        curentIndex: Binding<Int>,
+        currentIndex: Binding<Int>,
         onCardChange: @escaping () -> Void = { }
     ) {
         self.cards = cards
-        self._curentIndex = curentIndex
+        self._currentIndex = currentIndex
         self.onCardChange = onCardChange
     }
     
@@ -38,7 +38,7 @@ public struct BPKCardCarousel<Content: View>: View {
             InternalCardCarousel(
                 size: reader.size,
                 content: cards,
-                curentIndex: $curentIndex,
+                currentIndex: $currentIndex,
                 onCardChange: onCardChange
             )
                 .frame(
@@ -51,6 +51,7 @@ public struct BPKCardCarousel<Content: View>: View {
 internal struct InternalCardCarousel<Content: View>: View {
     @Binding private var currentIndex: Int
     @State private var currentInternalIndex: Int
+    @AccessibilityFocusState private var focusOnCard: Int?
     private let onCardChange: () -> Void
     private let content: [Content]
     
@@ -72,7 +73,7 @@ internal struct InternalCardCarousel<Content: View>: View {
     init(
         size: CGSize,
         content: [Content],
-        curentIndex: Binding<Int>,
+        currentIndex: Binding<Int>,
         onCardChange: @escaping () -> Void
     ) {
         self.size = size
@@ -81,9 +82,10 @@ internal struct InternalCardCarousel<Content: View>: View {
         self.content = content + content
         self.onCardChange = onCardChange
         
-        currentInternalIndex = cardCount + 1 + curentIndex.wrappedValue
+        _currentIndex = currentIndex
         
-        _currentIndex = curentIndex
+        currentInternalIndex = cardCount + 1 + currentIndex.wrappedValue
+        focusOnCard = .init(cardCount + 1 + currentIndex.wrappedValue)
     }
     
     var body: some View {
@@ -98,6 +100,8 @@ internal struct InternalCardCarousel<Content: View>: View {
                         ))
                         .animation(dragAnimation, value: isDragging)
                         .scaleEffect(scaleEffect(for: index))
+                        .accessibilityHidden(currentInternalIndex - 1 != index)
+                        .accessibilityFocused($focusOnCard, equals: (index + 1))
                 }
             }
             .offset(x: offset)
@@ -168,7 +172,17 @@ internal struct InternalCardCarousel<Content: View>: View {
             variant: .default,
             currentIndex: $currentIndex,
             totalIndicators: .constant(cardCount)
-        )
+        ).accessibilityAdjustableAction({ direction in
+            switch direction {
+            case .increment: handleLeftSwipe()
+            case .decrement: handleRightSwipe()
+            @unknown default:
+                break
+            }
+            
+            self.currentIndex = (currentInternalIndex - 1) % (cardCount)
+            focusOnCard = currentInternalIndex
+        })
     }
 }
 
@@ -180,7 +194,7 @@ struct BPKCardCarousel_Previews: PreviewProvider {
                 createCarouselCard,
                 createCarouselCard
             ],
-            curentIndex: .constant(0),
+            currentIndex: .constant(0),
             onCardChange: { print("Card Changed") }
         )
     }

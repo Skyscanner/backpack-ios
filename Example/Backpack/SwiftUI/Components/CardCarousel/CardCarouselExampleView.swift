@@ -30,7 +30,7 @@ struct CardCarouselExampleView: View {
                 createCard(image: "Dublin-TempleBar"),
                 createCard(image: "canadian_rockies_canada")
             ],
-            curentIndex: $currentIndex,
+            currentIndex: $currentIndex,
             onCardChange: { }
         )
     }
