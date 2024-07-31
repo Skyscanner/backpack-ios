@@ -77,15 +77,14 @@ internal struct InternalCardCarousel<Content: View>: View {
         onCardChange: @escaping () -> Void
     ) {
         self.size = size
+        self.content = content
+        self._currentIndex = currentIndex
+        self.onCardChange = onCardChange
         self.cardCount = content.count
         self.cardWidth = size.width * 0.8
-        self.content = content + content
-        self.onCardChange = onCardChange
+        self.currentInternalIndex = cardCount + 1 + currentIndex.wrappedValue
         
-        currentInternalIndex = cardCount + 1 + currentIndex.wrappedValue
-        
-        _currentIndex = currentIndex
-        
+    
         focusOnCard = .init(cardCount + 1 + currentIndex.wrappedValue)
     }
     
