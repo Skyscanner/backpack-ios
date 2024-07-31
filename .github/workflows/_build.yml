@@ -71,7 +71,7 @@ jobs:
         working-directory: Example
 
       - name: Select Xcode 15
-        run: sudo xcode-select --switch /Applications/Xcode_15.4
+        run: sudo xcode-select --switch /Applications/Xcode_15.4.app
 
       - name: Install clang-format
         run: brew install clang-format
@@ -125,7 +125,7 @@ jobs:
         working-directory: Example
 
       - name: Select Xcode 15
-        run: sudo xcode-select --switch /Applications/Xcode_15.4
+        run: sudo xcode-select --switch /Applications/Xcode_15.4.app
 
       - name: Analyze
         run: ./scripts/ci ${{ matrix.schemes }} analysis

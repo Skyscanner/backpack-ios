@@ -49,7 +49,7 @@ jobs:
         working-directory: Example
 
       - name: Select Xcode 15
-        run: sudo xcode-select --switch /Applications/Xcode_15.4
+        run: sudo xcode-select --switch /Applications/Xcode_15.4.app
 
       - name: Remove snapshots
         if: ${{inputs.retake_snapshots}}
