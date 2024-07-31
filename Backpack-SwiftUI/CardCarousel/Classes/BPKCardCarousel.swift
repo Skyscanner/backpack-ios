@@ -55,7 +55,6 @@ internal struct InternalCardCarousel<Content: View>: View {
     private let onCardChange: () -> Void
     private let content: [Content]
     
-    private let size: CGSize
     private let cardCount: Int
     private let cardWidth: CGFloat
     private let dragAnimation: Animation = .spring(
@@ -76,16 +75,14 @@ internal struct InternalCardCarousel<Content: View>: View {
         currentIndex: Binding<Int>,
         onCardChange: @escaping () -> Void
     ) {
-        self.size = size
-        self.content = content
         self._currentIndex = currentIndex
-        self.onCardChange = onCardChange
-        self.cardCount = content.count
         self.cardWidth = size.width * 0.8
+        self.cardCount = content.count
         self.currentInternalIndex = cardCount + 1 + currentIndex.wrappedValue
+        self.onCardChange = onCardChange
         
-    
-        focusOnCard = .init(cardCount + 1 + currentIndex.wrappedValue)
+        self.content = content + content
+        focusOnCard = .init(currentInternalIndex)
     }
     
     var body: some View {
@@ -98,7 +95,7 @@ internal struct InternalCardCarousel<Content: View>: View {
                             for: index,
                             spacing: BPKSpacing.base.value
                         ))
-                        .animation(dragAnimation, value: isDragging)
+                        .animation(dragAnimation, value: totalDrag)
                         .scaleEffect(scaleEffect(for: index))
                         .accessibilityHidden(currentInternalIndex - 1 != index)
                         .accessibilityFocused($focusOnCard, equals: (index + 1))
