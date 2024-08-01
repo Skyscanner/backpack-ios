@@ -22,6 +22,7 @@ import Foundation
 import SwiftUI
 import Backpack
 
+@MainActor
 struct SectionHeaderGroupsProvider {
     let showPresentable: (Presentable) -> Void
 

@@ -18,6 +18,7 @@
 
 import SwiftUI
 
+@MainActor
 struct TokenCellsProvider {
     let navigator: PresentableNavigator
     

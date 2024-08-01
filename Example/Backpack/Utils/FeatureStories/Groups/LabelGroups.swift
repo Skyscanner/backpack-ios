@@ -16,6 +16,7 @@
  * limitations under the License.
  */
 
+@MainActor
 struct LabelGroupsProvider {
     let showPresentable: (Presentable) -> Void
     

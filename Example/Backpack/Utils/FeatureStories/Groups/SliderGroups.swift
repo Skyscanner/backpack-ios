@@ -18,6 +18,7 @@
 import SwiftUI
 import Backpack
 
+@MainActor
 struct SliderGroupsProvider {
     let showPresentable: (Presentable) -> Void
     

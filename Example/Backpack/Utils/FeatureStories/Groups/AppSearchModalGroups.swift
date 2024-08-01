@@ -19,6 +19,7 @@
 import SwiftUI
 import Backpack_SwiftUI
 
+@MainActor
 struct AppSearchModalGroupsProvider {
     let showPresentable: (Presentable) -> Void
     
