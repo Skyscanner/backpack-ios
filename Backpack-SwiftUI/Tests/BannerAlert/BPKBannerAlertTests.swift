@@ -68,6 +68,7 @@ class BPKInfoBannerTests: XCTestCase {
     }
     
     func test_multilineBannerAlert() {
+        BPKFont.setDynamicType(enabled: true)
         styles.forEach { style in
             assertSnapshot(
                 BPKBannerAlert(type: .error(accessibilityLabel: ""), style: style, message: "Multiline Alert \nNewLine")
