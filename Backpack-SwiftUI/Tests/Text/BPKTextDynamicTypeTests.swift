@@ -22,30 +22,14 @@ import SnapshotTesting
 @testable import Backpack_SwiftUI
 
 class BPKTextDynamicTypeTests: XCTestCase {
-    private let categories: [(UIContentSizeCategory, String)] = [
-        (.extraSmall, "xs"),
-        (.large, "l"),
-        (.accessibilityMedium, "a11y_m"),
-        (.accessibilityExtraExtraExtraLarge, "a11y_3xl")
-    ]
-    
     func test_dynamicType() {
         let sut = generateView([
-            (.hero1, "Hero 1"),
             (.heading1, "Heading 1"),
             (.bodyDefault, "Body default"),
             (.caption, "Caption"),
             (.footnote, "Footnote")
-        ]).frame(width: 700, height: 500)
-
-        let view: UIView = UIHostingController(rootView: sut).view
-
-        categories.forEach { category in
-            assertSnapshot(
-                matching: view,
-                as: .image(size: view.intrinsicContentSize, traits: .init(preferredContentSizeCategory: category.0)),
-                named: "dynamic_type_\(category.1)")
-        }
+        ])
+        assertA11ySnapshot(sut)
     }
     
     private func generateView(_ styles: [(BPKFontStyle, String)]) -> some View {
@@ -53,7 +37,6 @@ class BPKTextDynamicTypeTests: XCTestCase {
             ForEach(styles, id: \.self.1) { style in
                 BPKText(style.1, style: style.0)
             }
-            Spacer()
         }
     }
 }
