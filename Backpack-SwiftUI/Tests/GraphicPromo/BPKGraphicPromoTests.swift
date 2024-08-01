@@ -107,6 +107,7 @@ class BPKGraphicPromoTests: XCTestCase {
     
     func test_topAligned_sponsored_a11y() {
         // Given
+        BPKFont.setDynamicType(enabled: true)
         let sut = VStack {
             BPKGraphicPromo(
                 kicker: "Travel tips",
