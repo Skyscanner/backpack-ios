@@ -39,7 +39,8 @@ public struct BPKCardCarousel<Content: View>: View {
             )
                 .frame(
                     width: reader.size.width,
-                    height: reader.size.height)
+                    height: reader.size.height
+                )
         }
     }
 }
@@ -59,10 +60,6 @@ internal struct InternalCardCarousel<Content: View>: View {
     )
     @GestureState private var isDragging: Bool = false
     @GestureState private var totalDrag: CGFloat = 0.0
-    
-    private var offset: CGFloat {
-        return (CGFloat(cardCount) + 1 - CGFloat(currentInternalIndex)) * cardWidth - (cardWidth / 2)
-    }
     
     init(
         size: CGSize,
@@ -93,107 +90,123 @@ internal struct InternalCardCarousel<Content: View>: View {
                         .accessibilityFocused($focusOnCard, equals: (index + 1))
                 }
             }
+            .onChange(of: currentIndex, perform: handle(currentIndexChange:))
             .offset(x: offset)
-            .gesture(
-                DragGesture()
-                .updating($totalDrag, body: { value, state, _ in
-                    state = value.translation.width
-                })
-                .updating($isDragging, body: { _, state, _ in
-                    state = true
-                })
-                .onEnded(onDragEnded)
-            )
+            .gesture(dragGesture)
             
             cardIndicator()
         }
     }
 
-    private func scaleEffect(for index: Int) -> CGFloat {
-        return currentInternalIndex - 1 == index ? 1 : 0.85
+    private var offset: CGFloat {
+        (CGFloat(cardCount) + 1 - CGFloat(currentInternalIndex)) * cardWidth - (cardWidth / 2)
     }
     
-    private func getContentOffset (for index: Int, spacing: CGFloat) -> CGFloat {
-        if currentInternalIndex - 1 < index {
-            return -spacing
-        } else if currentInternalIndex - 1 > index {
-            return spacing
+    private func handle(currentIndexChange newValue: Int) {
+        withAnimation {
+            if newValue < currentAdjustedIndex {
+                handleRightSwipe()
+            } else if newValue > currentAdjustedIndex {
+                handleLeftSwipe()
+            }
         }
-        return 0
+    }
+    
+    private var currentAdjustedIndex: Int {
+        (currentInternalIndex - 1) % (cardCount)
+    }
+
+    private var dragGesture: some Gesture {
+        DragGesture()
+        .updating($totalDrag, body: { value, state, _ in
+            state = value.translation.width
+        })
+        .updating($isDragging, body: { _, state, _ in
+            state = true
+        })
+        .onEnded(onDragEnded)
+    }
+    
+    private func scaleEffect(for index: Int) -> CGFloat {
+        currentInternalIndex - 1 == index ? 1 : 0.85
+    }
+    
+    private func getContentOffset(for index: Int, spacing: CGFloat) -> CGFloat {
+        if currentInternalIndex - 1 < index {
+            -spacing
+        } else if currentInternalIndex - 1 > index {
+            spacing
+        } else {
+            0
+        }
     }
 
     private func onDragEnded(value: DragGesture.Value) {
         withAnimation(dragAnimation) {
-            if value.translation.width < -(cardWidth / 2.0) {
+            let draggingWindow = (cardWidth / 2.0)
+            if value.translation.width < -draggingWindow {
                 handleLeftSwipe()
-            } else if value.translation.width > (cardWidth / 2.0) {
+            } else if value.translation.width > draggingWindow {
                 handleRightSwipe()
             }
         }
-        
-        self.currentIndex = (currentInternalIndex - 1) % (cardCount)
     }
 
+    private func updateIndices(with newValue: Int) {
+        currentInternalIndex = newValue
+        currentIndex = currentAdjustedIndex
+        focusOnCard = currentInternalIndex
+    }
+    
     private func handleLeftSwipe() {
-        if self.currentInternalIndex == content.count - 1 {
+        if currentInternalIndex == content.count - 1 {
             withAnimation(.none) {
-                self.currentInternalIndex = currentInternalIndex % cardCount
+                currentInternalIndex = currentInternalIndex % cardCount
             }
         }
-
-        self.currentInternalIndex += 1
+        
+        updateIndices(with: currentInternalIndex + 1)
     }
 
     private func handleRightSwipe() {
         if currentInternalIndex == 2 {
             withAnimation(.none) {
-                self.currentInternalIndex += cardCount
+                currentInternalIndex += cardCount
             }
         }
-        
-        self.currentInternalIndex -= 1
+        updateIndices(with: currentInternalIndex - 1)
     }
     
     private func cardIndicator() -> some View {
-        return BPKPageIndicator(
+        BPKPageIndicator(
             variant: .default,
             currentIndex: $currentIndex,
             totalIndicators: .constant(cardCount)
-        ).accessibilityAdjustableAction({ direction in
+        )
+        .accessibilityAdjustableAction { direction in
             switch direction {
             case .increment: handleLeftSwipe()
             case .decrement: handleRightSwipe()
             @unknown default:
                 break
             }
-            
-            self.currentIndex = (currentInternalIndex - 1) % (cardCount)
-            focusOnCard = currentInternalIndex
-        })
+        }
     }
 }
 
-struct BPKCardCarousel_Previews: PreviewProvider {
-    static var previews: some View {
-        BPKCardCarousel(
-            cards: [
-                createCarouselCard,
-                createCarouselCard,
-                createCarouselCard
-            ],
-            currentIndex: .constant(0)
-        )
-    }
-    
-    static private let createCarouselCard: BPKCarouselCard<AnyView> = BPKCarouselCard(
-        content: {
-            AnyView(
-                Rectangle()
-                    .foregroundColor(BPKColor.skyBlue)
+#Preview {
+    BPKCardCarousel(
+        cards: Array(0...3).map { _ in
+            BPKCarouselCard(
+                content: {
+                    Rectangle()
+                        .foregroundColor(.skyBlue)
+                },
+                title: "Test Title",
+                description: "Test description",
+                contentAccessibilityLabel: "Blue rectangle"
             )
         },
-        title: "Test Title",
-        description: "Test description",
-        contentAccessibilityLabel: "Blue rectangle"
+        currentIndex: .constant(0)
     )
 }

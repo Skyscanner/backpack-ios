@@ -34,14 +34,12 @@ struct CardCarouselExampleView: View {
         )
     }
     
-    private func createCard(image: String = "") -> BPKCarouselCard<AnyView> {
-        return BPKCarouselCard(
+    private func createCard(image: String) -> some View {
+        BPKCarouselCard(
             content: {
-                AnyView(
-                    Image(image)
-                        .resizable()
-                        .scaledToFill()
-                )
+                Image(image)
+                    .resizable()
+                    .scaledToFill()
             },
             title: "Someone Walking",
             description: "Look at the views",
@@ -50,8 +48,6 @@ struct CardCarouselExampleView: View {
     }
 }
 
-struct CardCarouselExampleView_Previews: PreviewProvider {
-    static var previews: some View {
-        CardCarouselExampleView()
-    }
+#Preview {
+    CardCarouselExampleView()
 }
