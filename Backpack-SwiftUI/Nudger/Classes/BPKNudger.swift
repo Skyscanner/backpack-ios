@@ -20,6 +20,7 @@ import SwiftUI
 
 public struct BPKNudger: View {
 
+    @Environment(\.sizeCategory) var sizeCategory
     @State private var canIncrement = true
     @State private var canDecrement = true
     @Binding private var value: Int
@@ -32,6 +33,7 @@ public struct BPKNudger: View {
     private var maxValue: Int
     private var step: Int
     private let minWidth: CGFloat = BPKSpacing.lg.value
+    var accessibilityPrefix: String?
     
     /// Creates a `BPKNudger`.
     /// - Parameters:
@@ -88,6 +90,7 @@ public struct BPKNudger: View {
         self._value = value
     }
 
+    // swiftlint:disable closure_body_length
     public var body: some View {
         HStack(spacing: .md) {
             if let title {
@@ -98,10 +101,12 @@ public struct BPKNudger: View {
                     }
                     VStack(alignment: .leading) {
                         BPKText(title, style: .heading5)
+                            .lineLimit(titleLineLimit())
                         
                         if let subtitle {
                             BPKText(subtitle)
                                 .foregroundColor(.textSecondaryColor)
+                                .lineLimit(nil)
                         }
                     }
                 }
@@ -110,10 +115,13 @@ public struct BPKNudger: View {
             Group {
                 BPKButton(icon: .minus, accessibilityLabel: "", enabled: $canDecrement, action: decrement)
                     .buttonStyle(.secondary)
+                    .accessibilityIdentifier(accessibilityIdentifier(for: "minus"))
                 BPKText("\(value)", style: .heading5)
                     .frame(minWidth: minWidth)
+                    .accessibilityIdentifier(accessibilityIdentifier(for: "value_label"))
                 BPKButton(icon: .plus, accessibilityLabel: "", enabled: $canIncrement, action: increment)
                     .buttonStyle(.secondary)
+                    .accessibilityIdentifier(accessibilityIdentifier(for: "plus"))
             }
             .accessibilityElement(children: .ignore)
         }
@@ -140,6 +148,11 @@ public struct BPKNudger: View {
         })
     }
     
+    private func titleLineLimit() -> Int? {
+        let isDefaultSizeOrSmaller = sizeCategory <= .large
+        return isDefaultSizeOrSmaller ? 1 : nil
+    }
+    
     private func updateButtonStates() {
         canIncrement = value < maxValue
         canDecrement = value > minValue
@@ -154,15 +167,38 @@ public struct BPKNudger: View {
         value = max(value - step, minValue)
         updateButtonStates()
     }
+    
+    private func accessibilityIdentifier(for label: String) -> String {
+        if let prefix = accessibilityPrefix {
+            return "\(prefix)_\(label)"
+        }
+        return ""
+    }
+}
+
+public extension BPKNudger {
+    func accessibilityPrefix(_ prefix: String?) -> BPKNudger {
+        var result = self
+        result.accessibilityPrefix = prefix
+        return result
+    }
 }
 
 struct BPKNudger_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             BPKNudger(value: .constant(0), min: 0, max: 10)
+                .accessibilityPrefix(" ")
             BPKNudger(value: .constant(5), min: 0, max: 10)
             BPKNudger(value: .constant(10), min: 0, max: 10)
             BPKNudger(title: "Adults", subtitle: "Aged 16 and older", value: .constant(1), min: 1, max: 10)
+            BPKNudger(
+                title: "Rooms",
+                subtitle: "Each room should contain at least 1 adult",
+                value: .constant(1),
+                min: 1,
+                max: 10
+            )
             BPKNudger(
                 title: "Travellers",
                 subtitle: "Aged 16 and older",

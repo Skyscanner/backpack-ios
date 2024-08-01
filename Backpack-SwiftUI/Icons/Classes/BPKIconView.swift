@@ -22,18 +22,46 @@ import Backpack_Common
 public struct BPKIconView: View {
     let icon: BPKIcon
     let size: BPKIcon.Size
+    let accessibilityLabel: String?
 
     public init(_ icon: BPKIcon, size: BPKIcon.Size = .small) {
         self.icon = icon
         self.size = size
+        self.accessibilityLabel = nil
+    }
+    
+    public init(_ icon: BPKIcon, size: BPKIcon.Size = .small, accessibilityLabel: String) {
+        self.icon = icon
+        self.size = size
+        self.accessibilityLabel = accessibilityLabel
+    }
+    
+    @ScaledMetric private var scaledSmallSize: CGFloat = 16
+    @ScaledMetric private var scaledLargeSize: CGFloat = 24
+    
+    private var smallSize: CGFloat = 16
+    private var largeSize: CGFloat = 24
+    
+    private var dimension: CGFloat {
+        switch size {
+        case .small:
+            return BPKFont.enableDynamicType ? scaledSmallSize : smallSize
+        case .large:
+            return BPKFont.enableDynamicType ? scaledLargeSize : largeSize
+        }
     }
 
     public var body: some View {
-        Image(icon: icon, size: size)
+        let enableAccessibility = accessibilityLabel?.isEmpty == false
+        Image(icon: icon, size: size, shouldEnableAccessibility: enableAccessibility)
             .resizable()
             .renderingMode(.template)
             .flipsForRightToLeftLayoutDirection(shouldAutoMirror)
-            .frame(width: size.frame.width, height: size.frame.height)
+            .frame(width: dimension, height: dimension)
+            .if(enableAccessibility, transform: { view in
+                view.accessibilityLabel(accessibilityLabel ?? "")
+            })
+
     }
     
     private var shouldAutoMirror: Bool {
@@ -42,15 +70,6 @@ public struct BPKIconView: View {
 }
 
 private extension BPKIcon.Size {
-    var frame: CGSize {
-        switch self {
-        case .large:
-            return .init(width: 24, height: 24)
-        case .small:
-            return .init(width: 16, height: 16)
-        }
-    }
-    
     var suffix: String {
         switch self {
         case .large:
@@ -62,9 +81,14 @@ private extension BPKIcon.Size {
 }
 
 private extension Image {
-    init(icon: BPKIcon, size: BPKIcon.Size = .small) {
+    init(icon: BPKIcon, size: BPKIcon.Size = .small, shouldEnableAccessibility: Bool) {
         let iconName = "\(icon.name)-\(size.suffix)"
-        self.init(decorative: iconName, bundle: BPKCommonBundle.iconsBundle)
+        let bundle = BPKCommonBundle.iconsBundle
+        if shouldEnableAccessibility {
+            self.init(iconName, bundle: bundle)
+        } else {
+            self.init(decorative: iconName, bundle: bundle)
+        }
     }
 }
 

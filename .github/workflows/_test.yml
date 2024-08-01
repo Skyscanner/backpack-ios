@@ -15,7 +15,7 @@ defaults:
 jobs:
   TestPods:
     name: Testing Pods
-    runs-on: macos-latest
+    runs-on: macos-14
     outputs:
       changed-files: ${{ steps.checkSnapshotChanges.outputs.didChangeFiles }}
     steps:
@@ -48,8 +48,8 @@ jobs:
         run: bundle exec pod install
         working-directory: Example
 
-      - name: Select Xcode 14
-        run: sudo xcode-select --switch /Applications/Xcode_14.2.app
+      - name: Select Xcode 15
+        run: sudo xcode-select --switch /Applications/Xcode_15.4.app
 
       - name: Remove snapshots
         if: ${{inputs.retake_snapshots}}
@@ -58,11 +58,11 @@ jobs:
       - name: Run UIKit tests
         run: ./scripts/ci uikit test
         continue-on-error: ${{inputs.retake_snapshots}}
-      
+
       - name: Run SwiftUI tests
         run: ./scripts/ci swiftui test
         continue-on-error: ${{inputs.retake_snapshots}}
-      
+
       - name: Check snapshot changes
         id: checkSnapshotChanges
         run: changedFiles=`git status --porcelain` && echo "didChangeFiles=${changedFiles//$'\n'/'%0A'}" >> $GITHUB_OUTPUT
@@ -83,7 +83,7 @@ jobs:
 
   NotifyChanges:
     name: "Notify about changes made"
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: [TestPods]
     if: ${{ needs.TestPods.outputs.changed-files != '' &&  inputs.retake_snapshots}}
     steps:

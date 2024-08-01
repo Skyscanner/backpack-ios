@@ -19,56 +19,28 @@
 import SwiftUI
 
 @available(iOS 16.0, *)
-struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier {
+struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>: ViewModifier {
+    let peekHeight: CGFloat?
     @Binding var isPresented: Bool
+    @ViewBuilder let header: () -> Header
     let contentMode: BPKBottomSheetContentMode
-    let isClosable: Bool
-    let closeButtonAccessibilityLabel: String?
-    let title: String?
-    let action: BPKBottomSheetAction?
     let bottomSheetContent: () -> BottomSheetContent
     
     @State var selectedSheetDetent: PresentationDetent
     
     init(
         isPresented: Binding<Bool>,
+        peekHeight: CGFloat?,
         contentMode: BPKBottomSheetContentMode,
-        isClosable: Bool,
-        closeButtonAccessibilityLabel: String? = nil,
-        title: String? = nil,
-        action: BPKBottomSheetAction? = nil,
+        @ViewBuilder header: @escaping () -> Header,
         @ViewBuilder bottomSheetContent: @escaping () -> BottomSheetContent
     ) {
         self._isPresented = isPresented
+        self.peekHeight = peekHeight
         _selectedSheetDetent = .init(initialValue: .initialDetent(for: contentMode))
         self.contentMode = contentMode
-        
-        self.isClosable = isClosable
-        self.closeButtonAccessibilityLabel = closeButtonAccessibilityLabel
-        self.title = title
-        self.action = action
+        self.header = header
         self.bottomSheetContent = bottomSheetContent
-        
-    }
-    
-    private var headerCloseAction: BPKBottomSheetAction? {
-        guard isClosable, let closeButtonAccessibilityLabel else {
-            return nil
-        }
-        return BPKBottomSheetAction(title: closeButtonAccessibilityLabel) {
-            isPresented.toggle()
-        }
-    }
-    
-    @ViewBuilder
-    private func header() -> some View {
-        if isClosable || title != nil || action != nil {
-            BottomSheetHeader(
-                closeAction: headerCloseAction,
-                title: title,
-                action: action
-            )
-        }
     }
     
     func body(content: Content) -> some View {
@@ -77,10 +49,12 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
                 switch contentMode {
                 case .large:
                     bottomSheetContent(for: [.large])
-                case .medium:
-                    bottomSheetContent(for: [.medium, .large])
+                case .medium(let expansible):
+                    let detents: Set<PresentationDetent> = expansible ? [.medium, .large] : [.medium]
+                    bottomSheetContent(for: detents)
                 case .fitContent:
                     ContentFitBottomSheet(
+                        peekHeight: peekHeight,
                         header: header,
                         bottomSheetContent: bottomSheetContent
                     )
@@ -89,10 +63,14 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
     }
     
     private func bottomSheetContent(for detents: Set<PresentationDetent>) -> some View {
-        VStack {
+        var finalDetents = detents
+        if let peekHeight {
+            finalDetents.insert(.height(peekHeight))
+        }
+        return VStack {
             header()
             bottomSheetContent()
-                .presentationDetents(detents, selection: $selectedSheetDetent)
+                .presentationDetents(finalDetents, selection: $selectedSheetDetent)
                 .presentationDragIndicator(.visible)
         }
         .frame(maxHeight: .infinity, alignment: .top)
@@ -100,57 +78,7 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
 }
 
 @available(iOS 16.0, *)
-private struct ContentFitBottomSheet<Content: View, Header: View>: View {
-    let header: () -> Header
-    let bottomSheetContent: () -> Content
-    
-    @State private var detentHeight: CGFloat = 0
-    
-    var body: some View {
-        VStack {
-            header()
-            bottomSheetContent()
-                .presentationDetents([.height(detentHeight)])
-        }
-        .presentationDragIndicator(.visible)
-        .readHeight()
-        .onPreferenceChange(HeightPreferenceKey.self) { height in
-            if let height {
-                self.detentHeight = height
-            }
-        }
-    }
-}
-
-private struct HeightPreferenceKey: PreferenceKey {
-    static var defaultValue: CGFloat?
-    
-    static func reduce(value: inout CGFloat?, nextValue: () -> CGFloat?) {
-        guard let nextValue = nextValue() else { return }
-        value = nextValue
-    }
-}
-
-private struct ReadHeightModifier: ViewModifier {
-    private var sizeView: some View {
-        GeometryReader { geometry in
-            Color.clear.preference(key: HeightPreferenceKey.self, value: geometry.size.height)
-        }
-    }
-    
-    func body(content: Content) -> some View {
-        content.background(sizeView)
-    }
-}
-
-private extension View {
-    func readHeight() -> some View {
-        self.modifier(ReadHeightModifier())
-    }
-}
-
-@available(iOS 16.0, *)
-private extension PresentationDetent {
+extension PresentationDetent {
     static func initialDetent(for contentMode: BPKBottomSheetContentMode) -> PresentationDetent {
         switch contentMode {
         case .large:

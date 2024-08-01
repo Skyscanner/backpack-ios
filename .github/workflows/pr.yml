@@ -28,14 +28,14 @@ jobs:
     uses: ./.github/workflows/_build-docs.yml
 
   Dependabot:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     permissions:
       pull-requests: write
     if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
       - name: Fetch Dependabot metadata
         id: dependabot-metadata
-        uses: dependabot/fetch-metadata@v2.0.0
+        uses: dependabot/fetch-metadata@v2.2.0
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Add bpk label

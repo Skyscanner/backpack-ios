@@ -19,7 +19,54 @@
 import SwiftUI
 
 public extension View {
-
+    
+    /// Presents a bottom sheet that, unless manually toggling the `isPresented` property, this sheet
+    /// will not be dismissed when dragging down.
+    ///
+    /// - Parameters:
+    ///   - isPresented: A binding to whether the bottom sheet should be shown.
+    ///   - peekHeight: The height of the sheet when it is peeking the screen.
+    ///   - contentMode: The content mode of the bottom sheet. Defaults to `.medium`.
+    ///   - closeButtonAccessibilityLabel: The accessibility label for the close button.
+    ///         If `nil`, the close button will not be shown.
+    ///   - title: The title of the bottom sheet. If `nil`, the title will not be shown.
+    ///   - action: The action button of the bottom sheet. If `nil`, the action button will not be shown.
+    ///   - bottomSheetContent: The content of the bottom sheet.
+    @available(iOS 16.4, *)
+    @ViewBuilder
+    func bpkBottomSheet<BottomSheetContent: View>(
+        isPresented: Binding<Bool>,
+        peekHeight: CGFloat,
+        contentMode: BPKBottomSheetContentMode = .medium,
+        closeButtonAccessibilityLabel: String? = nil,
+        title: String? = nil,
+        action: BPKBottomSheetAction? = nil,
+        @ViewBuilder bottomSheetContent: @escaping () -> BottomSheetContent
+    ) -> some View {
+        modifier(
+            BottomSheetContainerViewModifier(
+                isPresented: isPresented,
+                peekHeight: peekHeight,
+                contentMode: contentMode,
+                header: {
+                    header(
+                        closeAction: closeAction(
+                            closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
+                            closeAction: { isPresented.wrappedValue.toggle() }
+                        ),
+                        title: title,
+                        action: action
+                    )
+                },
+                bottomSheetContent: {
+                    bottomSheetContent()
+                        .interactiveDismissDisabled()
+                        .presentationBackgroundInteraction(PresentationBackgroundInteraction.enabled)
+                }
+            )
+        )
+    }
+    
     /// Presents a bottom sheet.
     ///
     /// - Parameters:
@@ -48,11 +95,18 @@ public extension View {
             modifier(
                 BottomSheetContainerViewModifier(
                     isPresented: isPresented,
+                    peekHeight: nil,
                     contentMode: contentMode,
-                    isClosable: closeButtonAccessibilityLabel != nil,
-                    closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
-                    title: title,
-                    action: action,
+                    header: {
+                        header(
+                            closeAction: closeAction(
+                                closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
+                                closeAction: { isPresented.wrappedValue.toggle() }
+                            ),
+                            title: title,
+                            action: action
+                        )
+                    },
                     bottomSheetContent: bottomSheetContent
                 )
             )
@@ -61,13 +115,162 @@ public extension View {
                 LegacyBottomSheetContainerViewModifier(
                     isPresented: isPresented,
                     contentMode: contentMode,
-                    isClosable: closeButtonAccessibilityLabel != nil,
-                    closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
-                    title: title,
-                    action: action,
+                    header: {
+                        header(
+                            closeAction: closeAction(
+                                closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
+                                closeAction: { isPresented.wrappedValue.toggle() }
+                            ),
+                            title: title,
+                            action: action
+                        )
+                    },
                     bottomSheetContent: bottomSheetContent,
                     presentingController: presentingController
                 )
+            )
+        }
+    }
+    
+    /// Presents a bottom sheet that, unless manually setting the `item` property to nil, this sheet
+    /// will not be dismissed when dragging down.
+    ///
+    /// - Parameters:
+    ///   - item: A binding to an optional source of truth for the sheet.
+    ///     When `item` is non-`nil`, the system passes the item's content to
+    ///     the modifier's closure.
+    ///   - peekHeight: The height of the sheet when it is peeking the screen.
+    ///   - contentMode: The content mode of the bottom sheet. Defaults to `.medium`.
+    ///   - closeButtonAccessibilityLabel: The accessibility label for the close button.
+    ///         If `nil`, the close button will not be shown.
+    ///   - title: The title of the bottom sheet. If `nil`, the title will not be shown.
+    ///   - action: The action button of the bottom sheet. If `nil`, the action button will not be shown.
+    ///   - bottomSheetContent: The content of the bottom sheet.
+    @available(iOS 16.4, *)
+    @ViewBuilder
+    func bpkBottomSheet<BottomSheetContent: View, Item: Identifiable>(
+        item: Binding<Item?>,
+        peekHeight: CGFloat,
+        contentMode: BPKBottomSheetContentMode = .medium,
+        closeButtonAccessibilityLabel: String? = nil,
+        title: String? = nil,
+        action: BPKBottomSheetAction? = nil,
+        presentingController: UIViewController,
+        @ViewBuilder bottomSheetContent: @escaping (Item) -> BottomSheetContent
+    ) -> some View {
+        modifier(
+            ItemBottomSheetContainerViewModifier(
+                item: item,
+                peekHeight: peekHeight,
+                contentMode: contentMode,
+                header: {
+                    header(
+                        closeAction: closeAction(
+                            closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
+                            closeAction: { item.wrappedValue = nil }
+                        ),
+                        title: title,
+                        action: action
+                    )
+                },
+                bottomSheetContent: { item in
+                    bottomSheetContent(item)
+                        .interactiveDismissDisabled()
+                        .presentationBackgroundInteraction(PresentationBackgroundInteraction.enabled)
+                }
+            )
+        )
+    }
+    
+    /// Presents a bottom sheet.
+    ///
+    /// - Parameters:
+    ///   - item: A binding to an optional source of truth for the sheet.
+    ///     When `item` is non-`nil`, the system passes the item's content to
+    ///     the modifier's closure.
+    ///   - contentMode: The content mode of the bottom sheet. Defaults to `.medium`.
+    ///   - closeButtonAccessibilityLabel: The accessibility label for the close button.
+    ///         If `nil`, the close button will not be shown.
+    ///   - title: The title of the bottom sheet. If `nil`, the title will not be shown.
+    ///   - action: The action button of the bottom sheet. If `nil`, the action button will not be shown.
+    ///   - bottomSheetContent: The content of the bottom sheet.
+    @ViewBuilder
+    func bpkBottomSheet<BottomSheetContent: View, Item: Identifiable>(
+        item: Binding<Item?>,
+        contentMode: BPKBottomSheetContentMode = .medium,
+        closeButtonAccessibilityLabel: String? = nil,
+        title: String? = nil,
+        action: BPKBottomSheetAction? = nil,
+        presentingController: UIViewController,
+        @ViewBuilder bottomSheetContent: @escaping (Item) -> BottomSheetContent
+    ) -> some View {
+        if #available(iOS 16.0, *) {
+            modifier(
+                ItemBottomSheetContainerViewModifier(
+                    item: item,
+                    peekHeight: nil,
+                    contentMode: contentMode,
+                    header: {
+                        header(
+                            closeAction: closeAction(
+                                closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
+                                closeAction: { item.wrappedValue = nil }
+                            ),
+                            title: title,
+                            action: action
+                        )
+                    },
+                    bottomSheetContent: bottomSheetContent
+                )
+            )
+        } else {
+            modifier(
+                LegacyBottomSheetContainerViewModifier(
+                    isPresented: Binding(
+                        get: { item.wrappedValue != nil },
+                        set: { _ in item.wrappedValue = nil }
+                    ),
+                    contentMode: contentMode,
+                    header: {
+                        header(
+                            closeAction: closeAction(
+                                closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
+                                closeAction: { item.wrappedValue = nil }
+                            ),
+                            title: title,
+                            action: action
+                        )
+                    },
+                    bottomSheetContent: {
+                        if let itemValue = item.wrappedValue {
+                            bottomSheetContent(itemValue)
+                        }
+                    },
+                    presentingController: presentingController
+                )
+            )
+        }
+    }
+    
+    private func closeAction(
+        closeButtonAccessibilityLabel: String?,
+        closeAction: @escaping () -> Void
+    ) -> BPKBottomSheetAction? {
+        guard let closeButtonAccessibilityLabel else { return nil }
+        return BPKBottomSheetAction(title: closeButtonAccessibilityLabel, action: closeAction)
+    }
+    
+    @ViewBuilder
+    private func header(
+        closeAction: BPKBottomSheetAction?,
+        title: String?,
+        action: BPKBottomSheetAction?
+    ) -> some View {
+        if closeAction != nil || title != nil || action != nil {
+            BottomSheetHeader(
+                closeAction: closeAction,
+                title: title,
+                action: action
             )
         }
     }

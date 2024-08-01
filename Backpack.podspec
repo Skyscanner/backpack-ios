@@ -36,11 +36,8 @@ Pod::Spec.new do |s|
   s.exclude_files = 'Backpack/Tests/**'
   s.public_header_files = 'Backpack/Backpack.h', 'Backpack/*/Classes/**/*.h'
 
-  s.dependency 'FSCalendar', '~> 2.8.2'
-  s.dependency 'TTTAttributedLabel', '~> 2.0.0'
   s.dependency 'FloatingPanel', '2.5.3'
   s.dependency 'Backpack-Common'
-  s.dependency 'MBProgressHUD', '~> 1.2.0'
   s.frameworks = 'UIKit', 'Foundation', 'CoreText'
   s.requires_arc = true
   s.swift_versions = ['5.0', '4.2', '4.0']

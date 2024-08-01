@@ -17,7 +17,7 @@ jobs:
       uses: ./.github/workflows/_build.yml
   Deploy-Common:
     name: Release Common to Cocoapods
-    runs-on: macos-latest
+    runs-on: macos-14
     environment: Publishing
     needs: [Build]
     steps:
@@ -32,10 +32,13 @@ jobs:
     - name: Bundle Install
       run: bundle install --jobs 4 --retry 3
 
+    - name: Select Xcode 15
+      run: sudo xcode-select --switch /Applications/Xcode_15.4.app
+
     - name: Publish Pods - Backpack Common
       run: |
         set -eo pipefail
-        bundle exec pod trunk push Backpack-Common.podspec --allow-warnings --skip-tests --synchronous 
+        bundle exec pod trunk push Backpack-Common.podspec --allow-warnings --skip-tests --synchronous
         bundle exec pod repo update
       env:
         COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
@@ -43,7 +46,7 @@ jobs:
 
   Deploy-UIKit:
     name: Release UIKit to Cocoapods
-    runs-on: macos-latest
+    runs-on: macos-14
     environment: Publishing
     needs: [Build]
     steps:
@@ -51,12 +54,15 @@ jobs:
       uses: actions/checkout@v4
       with:
         ref: main
-    
+
     - name: Set up node and ruby
       uses: asdf-vm/actions/install@v3 # Sets ruby and node version via `.tool-versions`
 
     - name: Bundle Install
       run: bundle install --jobs 4 --retry 3
+
+    - name: Select Xcode 15
+      run: sudo xcode-select --switch /Applications/Xcode_15.4.app
 
     - name: Publish Pods - Backpack UIKit
       run: |
@@ -69,7 +75,7 @@ jobs:
 
   Deploy-SwiftUI:
     name: Release SwiftUI to Cocoapods
-    runs-on: macos-latest
+    runs-on: macos-14
     environment: Publishing
     needs: [Build]
     steps:
@@ -84,6 +90,9 @@ jobs:
     - name: Bundle Install
       run: bundle install --jobs 4 --retry 3
 
+    - name: Select Xcode 15
+      run: sudo xcode-select --switch /Applications/Xcode_15.4.app
+
     - name: Publish Pods - Backpack SwiftUI
       run: |
         set -eo pipefail
@@ -95,7 +104,7 @@ jobs:
 
   Deploy-Docs:
     name: Release Backpack Docs
-    runs-on: macos-latest
+    runs-on: macos-14
     environment: Publishing
     needs: [Deploy-SwiftUI, Deploy-UIKit, Deploy-Common]
     steps:
@@ -131,9 +140,9 @@ jobs:
         keep_files: true
         external_repository: backpack/ios
         publish_branch: main
-  
+
   SupernovaPublish:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     environment: Publishing
     steps:
       - name: Update Supernova docs

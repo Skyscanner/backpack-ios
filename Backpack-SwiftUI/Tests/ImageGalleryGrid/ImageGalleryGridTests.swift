@@ -35,7 +35,8 @@ class ImageGalleryGridTests: XCTestCase {
                         selectedCategoryIndex: .constant(1)
                     )
                 },
-                images: (0...4).map { _ in
+                gridImages: (0...4).map { _ in .init(content: createImage) },
+                slideshowImages: (0...4).map { _ in
                     .init(
                         title: "Title for the image",
                         description: "The description of the image goes here.",
@@ -66,7 +67,8 @@ class ImageGalleryGridTests: XCTestCase {
                         selectedCategory: .constant(1)
                     )
                 },
-                images: (0...4).map { _ in
+                gridImages: (0...4).map { _ in .init(content: createImage) },
+                slideshowImages: (0...4).map { _ in
                     .init(
                         title: "Title for the image",
                         description: "The description of the image goes here.",

@@ -78,6 +78,7 @@ struct CollapsedNavigationBar: View {
     private func iconItemView(
         withIcon icon: BPKIcon,
         accessibilityLabel: String,
+        accessibilityIdentifier: String?,
         action: @escaping () -> Void
     ) -> some View {
         Button(action: action) {
@@ -85,6 +86,7 @@ struct CollapsedNavigationBar: View {
         }
         .accessibilityLabel(accessibilityLabel)
         .foregroundColor(style.foregroundColor(expanded: expanded))
+        .accessibilityIdentifier(accessibilityIdentifier ?? "")
     }
     
     // swiftlint:disable closure_body_length
@@ -93,26 +95,29 @@ struct CollapsedNavigationBar: View {
         ForEach(0..<items.count, id: \.self) { index in
             let item = items[index]
             switch item.type {
-            case .icon(let icon, let accessibilityLabel):
+            case .icon(let icon, let accessibilityLabel, let accessibilityIdentifier):
                 iconItemView(
                     withIcon: icon,
                     accessibilityLabel: accessibilityLabel,
+                    accessibilityIdentifier: accessibilityIdentifier,
                     action: item.action
                 )
             case .title(let title):
                 BPKButton(title, action: item.action)
                     .buttonStyle(.link)
                     .fixedSize()
-            case .backButton(let accessibilityLabel):
+            case .backButton(let accessibilityLabel, let accessibilityIdentifier):
                 iconItemView(
                     withIcon: .chevronLeft,
                     accessibilityLabel: accessibilityLabel,
+                    accessibilityIdentifier: accessibilityIdentifier,
                     action: item.action
                 )
-            case .closeButton(let accessibilityLabel):
+            case .closeButton(let accessibilityLabel, let accessibilityIdentifier):
                 iconItemView(
                     withIcon: .close,
                     accessibilityLabel: accessibilityLabel,
+                    accessibilityIdentifier: accessibilityIdentifier,
                     action: item.action
                 )
             }

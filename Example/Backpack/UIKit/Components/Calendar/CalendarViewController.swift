@@ -36,8 +36,7 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
     var lowPrice = BPKCalendarPriceLabelCellData(price: "£14", labelStyle: BPKCalendarPriceLabelStyle.positive)
     var mediumPrice = BPKCalendarPriceLabelCellData(price: "£28", labelStyle: BPKCalendarPriceLabelStyle.noData)
     var highPrice = BPKCalendarPriceLabelCellData(price: "£480", labelStyle: BPKCalendarPriceLabelStyle.negative)
-    var noPrice = BPKCalendarPriceLabelCellData(price: "–", labelStyle: BPKCalendarPriceLabelStyle.noData)
-    
+    var icon = BPKCalendarPriceLabelCellData(icon: BPKIcon.makeSmallTemplateIcon(name: .search))
     var wholeMonthTitle: String?
 
     var singleSelectionConfiguration: BPKCalendarSelectionConfiguration {
@@ -187,7 +186,7 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
             return showPrices ? mediumPrice : BPKCalendarTrafficLightCellData.neutral
         }
 
-        return showPrices ? noPrice : BPKCalendarTrafficLightCellData.noData
+        return showPrices ? icon : BPKCalendarTrafficLightCellData.noData
     }
     
     func calendar(_ calendar: BPKCalendar, didSelectWholeMonth dateList: [BPKSimpleDate]) {

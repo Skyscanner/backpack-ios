@@ -152,6 +152,7 @@ private struct ButtonLoadingContentView: View {
 }
 
 private struct ButtonContentView: View {
+    @Environment(\.sizeCategory) var sizeCategory
     let title: String?
     let size: BPKButton.Size
     let icon: BPKButton.Icon?
@@ -171,8 +172,15 @@ private struct ButtonContentView: View {
     private func content(withTitle title: String) -> some View {
         Text(title)
             .font(style: .label1)
-            .lineLimit(1)
-            .sizeCategory(.large)
+            .lineLimit(lineLimit())
+            .if(!BPKFont.enableDynamicType, transform: {
+                $0.sizeCategory(.large)
+            })
+    }
+    
+    private func lineLimit() -> Int? {
+        let isDefaultSizeOrSmaller = sizeCategory <= .large
+        return isDefaultSizeOrSmaller ? 1 : nil
     }
     
     private var iconSize: BPKIcon.Size {

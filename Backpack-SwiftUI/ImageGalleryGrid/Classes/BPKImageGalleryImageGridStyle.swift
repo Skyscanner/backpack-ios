@@ -18,36 +18,37 @@
 
 import SwiftUI
 
-public enum BPKImageGalleryImageGridStyle<ImageView: View> {
-    case chip(_ categories: [ChipCategory])
-    case image(_ categories: [ImageCategory])
+public struct BPKImageGalleryChipCategory<GridImageView: View, SlideshowImageView: View> {
+    public let title: String
+    public let gridImages: [BPKGridGalleryImage<GridImageView>]
+    public let slideshowImages: [BPKSlideshowGalleryImage<SlideshowImageView>]
     
-    public struct ChipCategory {
-        public let title: String
-        public let images: [BPKImageGalleryImage<ImageView>]
-        
-        public init(
-            title: String,
-            images: [BPKImageGalleryImage<ImageView>]
-        ) {
-            self.title = title
-            self.images = images
-        }
+    public init(
+        title: String,
+        gridImages: [BPKGridGalleryImage<GridImageView>],
+        slideshowImages: [BPKSlideshowGalleryImage<SlideshowImageView>]
+    ) {
+        self.title = title
+        self.gridImages = gridImages
+        self.slideshowImages = slideshowImages
     }
-    
-    public struct ImageCategory {
-        public let title: String
-        public let images: [BPKImageGalleryImage<ImageView>]
-        public let categoryImage: () -> ImageView
+}
 
-        public init(
-            title: String,
-            images: [BPKImageGalleryImage<ImageView>],
-            categoryImage: @escaping () -> ImageView
-        ) {
-            self.title = title
-            self.images = images
-            self.categoryImage = categoryImage
-        }
+public struct BPKImageGalleryImageCategory<CategoryImageView: View, GridImageView: View, SlideshowImageView: View> {
+    public let title: String
+    public let gridImages: [BPKGridGalleryImage<GridImageView>]
+    public let slideshowImages: [BPKSlideshowGalleryImage<SlideshowImageView>]
+    public let categoryImage: () -> CategoryImageView
+
+    public init(
+        title: String,
+        gridImages: [BPKGridGalleryImage<GridImageView>],
+        slideshowImages: [BPKSlideshowGalleryImage<SlideshowImageView>],
+        categoryImage: @escaping () -> CategoryImageView
+    ) {
+        self.title = title
+        self.gridImages = gridImages
+        self.slideshowImages = slideshowImages
+        self.categoryImage = categoryImage
     }
 }

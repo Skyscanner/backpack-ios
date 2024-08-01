@@ -168,6 +168,11 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "spinner", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
+        await navigate(title: "Banner Alert") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "banner-alert", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
+        
         await navigate(title: "Skeleton") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "skeleton", scenario: "default", userInterfaceStyle: userInterfaceStyle)
@@ -320,6 +325,11 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         await navigate(title: "Carousel") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "carousel", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
+        
+        await navigate(title: "Carousel Card") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "carousel-card", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
         await navigate(title: "Section header") {
@@ -684,6 +694,11 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "carousel", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
+        await navigate(title: "Carousel Card") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "carousel-card", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
+        
         await navigate(title: "Section header") {
             switchTab(title: "SwiftUI")
             app.tables.staticTexts["Default"].tap()
@@ -803,6 +818,13 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         await navigate(title: "Horizontal navigation") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "horizontal-navigation", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
+        
+        await navigate(title: "Card Button") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "card-button", scenario: "all", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
         }
     }
 }

@@ -41,6 +41,7 @@ struct ComponentCellsProvider {
         let dataSources: [CellDataSource] = [
             appSearchModal(),
             badge(),
+            bannerAlert(),
             barChart(),
             bottomSheet(),
             button(),
@@ -49,6 +50,7 @@ struct ComponentCellsProvider {
             cardButton(),
             cardList(),
             carousel(),
+            carouselCard(),
             chips(),
             chipGroup(),
             flightLeg(),
@@ -111,6 +113,19 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Badges", tabs: $0) }
         )
     }
+    
+    private func bannerAlert() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Banner Alert",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(BannerAlertExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Banner Alert", tabs: $0) }
+        )
+    }
+    
     private func barChart() -> CellDataSource {
         PresentableCellDataSource(
             title: "Bar charts",
@@ -161,10 +176,21 @@ extension ComponentCellsProvider {
         )
     }
     private func cardButton() -> CellDataSource {
-        PresentableCellDataSource.custom(
+        ComponentCellDataSource(
             title: "Card Button",
-            customController: { CardButtonsViewController() },
-            showPresentable: show(presentable:)
+            tabs: [
+                .uikit(presentable: CustomPresentable(
+                    generateViewController: {
+                        CardButtonsViewController()
+                    }
+                )),
+                .swiftui(presentable: CustomPresentable(
+                    generateViewController: {
+                        ContentUIHostingController(CardButtonExampleView())
+                    }
+                ))
+            ],
+            showChildren: { showComponent(title: "Card Button", tabs: $0) }
         )
     }
     private func chips() -> CellDataSource {
@@ -549,6 +575,17 @@ extension ComponentCellsProvider {
                 }))
             ],
             showChildren: { showComponent(title: "Carousel", tabs: $0) }
+        )
+    }
+    private func carouselCard() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Carousel Card",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(CarouselCardExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Carousel Card", tabs: $0) }
         )
     }
     private func imageGalleryPreview() -> CellDataSource {

@@ -70,11 +70,35 @@ struct InternalCarouselWrapper<Content: View>: UIViewRepresentable {
             variant: .overImage,
             currentIndex: $currentIndex,
             totalIndicators: .constant(images.count)
-        )
+        ).accessibilityAdjustableAction({ direction in
+            switch direction {
+            case .increment: accessibilityPageIncrement()
+            case .decrement: accessibilityPageDecrement()
+            @unknown default:
+                break
+            }
+        })
+        
         let pageIndicatorView = UIHostingController(rootView: pageIndicator).view!
         pageIndicatorView.translatesAutoresizingMaskIntoConstraints = false
         pageIndicatorView.backgroundColor = .clear
         return pageIndicatorView
+    }
+    
+    private func accessibilityPageIncrement() {
+        if currentIndex == images.count - 1 {
+            currentIndex = 0
+        } else {
+            currentIndex += 1
+        }
+    }
+    
+    private func accessibilityPageDecrement() {
+        if currentIndex == 0 {
+            currentIndex = images.count - 1
+        } else {
+            currentIndex -= 1
+        }
     }
 
     func makeCoordinator() -> Coordinator {

@@ -26,9 +26,9 @@ public struct BPKNavigationBarItem {
     }
     
     public enum ButtonType {
-        case backButton(_ accessibiltyLabel: String)
-        case closeButton(_ accessibiltyLabel: String)
-        case icon(BPKIcon, _ accessibiltyLabel: String)
+        case backButton(_ accessibiltyLabel: String, accessibilityIdentifier: String? = nil)
+        case closeButton(_ accessibiltyLabel: String, accessibilityIdentifier: String? = nil)
+        case icon(BPKIcon, _ accessibiltyLabel: String, accessibilityIdentifier: String? = nil)
         case title(String)
     }
 }

@@ -30,7 +30,7 @@ struct ImageGallerySlideshowExampleView: View {
         .bpkImageGallerySlideshow(
             isPresented: $isPresented,
             images: (1...4).map { index in
-                BPKImageGalleryImage(
+                BPKSlideshowGalleryImage(
                     title: "Pumphouse Point",
                     description: "\(index) Walk deep into the fjord-like surrounds of Lake St Clair.",
                     credit: "@PhotographerName",

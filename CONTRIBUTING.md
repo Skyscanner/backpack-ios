@@ -130,15 +130,22 @@ It's possible to take only a subset of the screenshots which greatly speeds up t
 To do this follow the following steps:
 
 
-1. In `Example/Backpack Screenshot/BackpackSnapshotTestCase.swift` change the `runOnly` property per the guide in the comment.
-2. Run the screenshots as above
-3. Note that all other screenshots will be deleted in the process, so make sure you only commit the ones you generated not the deletions.
+1. Update `Example/Backpack Screenshot/SwiftUIScreenshots` to capture screenshots of the new componenet. Please note that the screenshots will appear as they do in the component entry in (Stories)[https://github.com/Skyscanner/backpack-ios/blob/AlaaAmrAmin-patch-1/CONTRIBUTING.md#stories]. 
+2. In `Example/Backpack Screenshot/BackpackSnapshotTestCase.swift` change the `runOnly` property per the guide in the comment.
+3. Run the screenshots as above (using the `./scripts/take-screenshots` script)
+4. Note that all other screenshots will be deleted in the process, so make sure you only commit the ones you generated not the deletions.
 </details>
 
 <details>
     <summary>Snapshot testing</summary>
 
-Snapshot tests are used to capture images of components under different configurations. When you add or change a snapshot test, test images will need to be recaptured. To do this, change `isRecording = false` to `isRecording = true` in the relevant test file and re-run the tests on the [device specified for CI](https://github.com/Skyscanner/backpack-ios/blob/main/scripts/ci#L7). This will update the images on disk. Remember to revert `isRecording` afterwards otherwise the tests will fail.
+Snapshot tests are used to capture images of components under different configurations. When you add or change a snapshot test, test images will need to be recaptured on CI to ensure consistency. Create an empty commit to regenerate snapshots:
+
+```
+git commit --allow-empty -m "record snapshots"
+```
+
+If you want to test your snapshot tests locally change `isRecording = false` to `isRecording = true` in the relevant test file and re-run the tests on the [device specified for CI](https://github.com/Skyscanner/backpack-ios/blob/main/scripts/ci#L7). This will update the images on disk. Remember to revert `isRecording` and the snapshot updates afterwards otherwise the tests will fail. 
 </details>
 
 ## And finally..

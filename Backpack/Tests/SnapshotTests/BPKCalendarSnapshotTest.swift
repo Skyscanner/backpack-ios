@@ -315,7 +315,7 @@ final class BPKCalendarSnapshotTest: XCTestCase, BPKCalendarDelegate {
         
         if day == 18 {
             return isShowingPrices
-            ? BPKCalendarPriceLabelCellData(price: "-", labelStyle: .noData)
+            ? BPKCalendarPriceLabelCellData(icon: BPKIcon.makeSmallTemplateIcon(name: .search))
             : BPKCalendarTrafficLightCellData.normal
         }
         

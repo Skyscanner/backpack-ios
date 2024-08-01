@@ -97,15 +97,16 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
                 .padding(.base)
         }
     }
-
+    
     private func cardListSkeleton<LayoutContent: View>(
         with sectionHeaderAction: BPKCardListLayout.SectionHeaderAction?,
         @ViewBuilder andContent content: () -> LayoutContent) -> some View {
-            VStack(alignment: .leading, spacing: .base) {
+            VStack(alignment: .leading, spacing: 0) {
                 sectionHeader(with: sectionHeaderAction)
-
-                if elements.count > 0 {
-                    content()
+                VStack(alignment: .leading, spacing: .base) {
+                    if elements.count > 0 {
+                        content()
+                    }
                 }
             }
         }

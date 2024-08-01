@@ -43,11 +43,11 @@ public struct BPKSnippet: View {
     }
     
     public var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 0) {
             imageView
 
             if let headline {
-                BPKText(headline, style: .heading4)
+                BPKText(headline, style: .heading5)
                     .lineLimit(nil)
                     .accessibilityAddTraits(.isHeader)
                     .padding(.bottom, .sm)
@@ -68,7 +68,6 @@ public struct BPKSnippet: View {
         .onTapGesture {
             onClick?()
         }
-       
     }
 
     private var imageView: some View {
@@ -81,7 +80,7 @@ public struct BPKSnippet: View {
         }
         .aspectRatio(aspectRatio(for: imageOrientation), contentMode: .fit)
         .clipShape(RoundedRectangle(cornerRadius: .md, style: .continuous))
-        .padding(.bottom, .base)
+        .padding(.bottom, .md)
     }
     
     private func aspectRatio(for imageOrientation: ImageOrientation) -> CGFloat {

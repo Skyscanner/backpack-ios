@@ -52,6 +52,19 @@ class BPKNudgerTests: XCTestCase {
         )
     }
     
+    func test_title_and_long_subtitle() {
+        assertSnapshot(
+            BPKNudger(
+                title: "Rooms",
+                subtitle: "Each room should contain at least 1 adult",
+                value: .constant(5),
+                min: 0,
+                max: 10,
+                step: 1
+            ).frame(width: 300)
+        )
+    }
+    
     func test_title_and_icon() {
         assertSnapshot(
             BPKNudger(title: "Room", icon: .room, value: .constant(5), min: 0, max: 10, step: 1)
@@ -69,6 +82,21 @@ class BPKNudgerTests: XCTestCase {
                 max: 10,
                 step: 1
             )
+        )
+    }
+    
+    func test_dynamic_type_on_title_and_subtitle() {
+        assertA11ySnapshot(
+            BPKNudger(
+                title: "Travellers Travellers",
+                subtitle: "Aged 16 and older Aged 16 and older",
+                icon: .adult,
+                value: .constant(5),
+                min: 0,
+                max: 10,
+                step: 1
+            ),
+            customHeight: 600
         )
     }
 }

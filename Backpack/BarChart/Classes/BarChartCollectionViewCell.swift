@@ -26,7 +26,6 @@ internal final class BPKBarChartCollectionViewCell: UICollectionViewCell {
     lazy public var barChartBar: BPKBarChartBar = {
         let view: BPKBarChartBar = BPKBarChartBar()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.isUserInteractionEnabled = false
         return view
     }()
 
@@ -48,6 +47,7 @@ internal final class BPKBarChartCollectionViewCell: UICollectionViewCell {
 
     fileprivate func setupViews() {
         contentView.addSubview(barChartBar)
+        isAccessibilityElement = true
 
         NSLayoutConstraint.activate([
             barChartBar.topAnchor.constraint(equalTo: contentView.topAnchor),

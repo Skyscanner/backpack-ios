@@ -60,17 +60,34 @@ extension BarChartsViewController: BPKBarChartCollectionViewDataSource {
     func barChart(_ barChart: BPKBarChart, numberOfBarsInSection section: Int) -> Int {
         return 10
     }
+    
+    private func date(forIndexPath indexPath: IndexPath) -> Date {
+        var dateComponents = DateComponents()
+        dateComponents.day = indexPath.item + 1
+        dateComponents.month = indexPath.section + 1
+        dateComponents.year = 2024
+        
+        return Calendar.current.date(from: dateComponents)!
+    }
 
     func barChart(_ barChart: BPKBarChart, titleForBarAtIndex atIndex: IndexPath) -> String {
-        let daysOfWeek = [
-            "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun",
-            "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"
-        ]
-        return daysOfWeek[atIndex.item]
+        let date = date(forIndexPath: atIndex)
+        return date.formatted(Date.FormatStyle().weekday(.abbreviated))
     }
 
     func barChart(_ barChart: BPKBarChart, subtitleForBarAtIndex atIndex: IndexPath) -> String {
         return "\(atIndex.item + 1)"
+    }
+    
+    func barChart(_ barChart: BPKBarChart, accessibilityLabelForBarAtIndex atIndex: IndexPath) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .full
+        dateFormatter.timeStyle = .none
+        
+        let date = date(forIndexPath: atIndex)
+        dateFormatter.locale = Locale(identifier: "en_UK")
+        
+        return dateFormatter.string(from: date)
     }
 
     func barChart(_ barChart: BPKBarChart, fillValueForBarAtIndex atIndex: IndexPath) -> NSNumber? {
@@ -80,7 +97,7 @@ extension BarChartsViewController: BPKBarChartCollectionViewDataSource {
 
         return NSNumber(value: Float(exactly: atIndex.item)! * 0.1)
     }
-
+    
     func barChart(_ barChart: BPKBarChart, valueDescriptionForBarAtIndex atIndex: IndexPath) -> String {
         if atIndex.item == 0 {
             return "No price"

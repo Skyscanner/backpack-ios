@@ -124,7 +124,7 @@ struct BPKNavigationView_Previews: PreviewProvider {
     static var previews: some View {
         BPKNavigationView(
             title: "Hotels",
-            leadingItems: [.init(type: .backButton("Back"), action: {})],
+            leadingItems: [.init(type: .backButton("Back", accessibilityIdentifier: "btn_back"), action: {})],
             trailingItems: [
                 .init(type: .icon(.settings, "AI"), action: {}),
                 .init(type: .icon(.faceId, "Add"), action: {})

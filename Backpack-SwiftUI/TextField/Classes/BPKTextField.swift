@@ -56,6 +56,9 @@ public struct BPKTextField: View {
         .background(.surfaceDefaultColor)
         .clipShape(RoundedRectangle(cornerRadius: .sm))
         .outline(state.borderColor, cornerRadius: .sm)
+        .if(!BPKFont.enableDynamicType, transform: {
+            $0.sizeCategory(.large)
+        })
     }
     
     private var accessory: some View {

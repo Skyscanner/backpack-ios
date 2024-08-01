@@ -24,8 +24,6 @@ public protocol BPKCarouselDelegate: AnyObject {
 }
 
 public final class BPKCarousel: UIView {
-    private let internalCarousel: BPKInternalCarousel
-    
     public weak var delegate: BPKCarouselDelegate? {
         didSet {
             internalCarousel.delegate = self
@@ -34,17 +32,24 @@ public final class BPKCarousel: UIView {
     
     public var currentImage: Int { internalCarousel.currentImage }
     
-    private let pageIndicator: BPKPageIndicator = {
-        let pageIndicator = BPKPageIndicator(variant: .overImage, currentIndex: 0, totalIndicators: 0)
+    private lazy var internalCarousel: BPKInternalCarousel = {
+        let internalCarousel = BPKInternalCarousel(
+            pageIndicator: pageIndicator,
+            pageIndicatorVisibility: .visible(0)
+        )
+        
+        return internalCarousel
+    }()
+    
+    private lazy var pageIndicator: BPKPageIndicator = {
+        let pageIndicator = BPKPageIndicator(variant: .overImage, currentIndex: 0, totalIndicators: 0) { index in
+            self.setCurrentImage(index: index)
+        }
         pageIndicator.translatesAutoresizingMaskIntoConstraints = false
         return pageIndicator
     }()
     
     public init() {
-        internalCarousel = BPKInternalCarousel(
-            pageIndicator: pageIndicator,
-            pageIndicatorVisibility: .visible(0)
-        )
         super.init(frame: .zero)
         
         internalCarousel.delegate = self
