@@ -173,6 +173,9 @@ private struct ButtonContentView: View {
         Text(title)
             .font(style: .label1)
             .lineLimit(lineLimit())
+            .if(!BPKFont.enableDynamicType, transform: {
+                $0.sizeCategory(.large)
+            })
     }
     
     private func lineLimit() -> Int? {

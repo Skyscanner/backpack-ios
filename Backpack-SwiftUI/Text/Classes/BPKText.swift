@@ -43,6 +43,9 @@ public struct BPKText: View {
             .font(style: style)
             .foregroundColor(textColor)
             .lineLimit(lineLimit)
+            .if(!BPKFont.enableDynamicType, transform: {
+                $0.sizeCategory(.large)
+            })
     }
     
     /// Sets the color of the text.

@@ -40,6 +40,7 @@ struct ComponentCellsProvider {
         let dataSources: [CellDataSource] = [
             appSearchModal(),
             badge(),
+            bannerAlert(),
             barChart(),
             bottomSheet(),
             button(),
@@ -112,6 +113,19 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Badges", tabs: $0) }
         )
     }
+    
+    private func bannerAlert() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Banner Alert",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(BannerAlertExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Banner Alert", tabs: $0) }
+        )
+    }
+    
     private func barChart() -> CellDataSource {
         PresentableCellDataSource(
             title: "Bar charts",
