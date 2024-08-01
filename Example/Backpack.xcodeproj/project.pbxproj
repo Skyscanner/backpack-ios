@@ -202,6 +202,7 @@
 		D6FA3DB4224E220D00CFA094 /* UIWindow+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FA3DB3224E220D00CFA094 /* UIWindow+Utility.swift */; };
 		D6FC4E582625DBF6000BA351 /* NudgerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC4E572625DBF6000BA351 /* NudgerViewController.swift */; };
 		DB08530C2C45567600314EE8 /* CarouselCardExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB08530B2C45567600314EE8 /* CarouselCardExampleView.swift */; };
+		DB0A8DA82C57F535003DC186 /* CardCarouselExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0A8DA72C57F535003DC186 /* CardCarouselExampleView.swift */; };
 		E2B9D19F2BB357B60053C14C /* NavigationTabGroupExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B9D19E2BB357B60053C14C /* NavigationTabGroupExampleView.swift */; };
 		E359366C240FFE680046FD4C /* BottomSheetUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E359366B240FFE680046FD4C /* BottomSheetUITest.swift */; };
 		E35EA59624212F9900373CE4 /* BottomSheetResizableContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EA59524212F9900373CE4 /* BottomSheetResizableContentViewController.swift */; };
@@ -449,6 +450,7 @@
 		D6FC4E572625DBF6000BA351 /* NudgerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NudgerViewController.swift; sourceTree = "<group>"; };
 		D71748A6B9AA3B05B9A0CDEB /* Pods_Backpack_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Backpack_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB08530B2C45567600314EE8 /* CarouselCardExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCardExampleView.swift; sourceTree = "<group>"; };
+		DB0A8DA72C57F535003DC186 /* CardCarouselExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCarouselExampleView.swift; sourceTree = "<group>"; };
 		E2B9D19E2BB357B60053C14C /* NavigationTabGroupExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTabGroupExampleView.swift; sourceTree = "<group>"; };
 		E359366B240FFE680046FD4C /* BottomSheetUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetUITest.swift; sourceTree = "<group>"; };
 		E35EA59524212F9900373CE4 /* BottomSheetResizableContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetResizableContentViewController.swift; sourceTree = "<group>"; };
@@ -1009,6 +1011,7 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				DB0A8DA62C57F507003DC186 /* CardCarousel */,
 				13E8849B2C53A0A400A3138D /* BannerAlert */,
 				DB08530A2C45565900314EE8 /* CarouselCard */,
 				BA8F350C2C104AD30093FA79 /* Card Button */,
@@ -1547,6 +1550,14 @@
 			path = CarouselCard;
 			sourceTree = "<group>";
 		};
+		DB0A8DA62C57F507003DC186 /* CardCarousel */ = {
+			isa = PBXGroup;
+			children = (
+				DB0A8DA72C57F535003DC186 /* CardCarouselExampleView.swift */,
+			);
+			path = CardCarousel;
+			sourceTree = "<group>";
+		};
 		E2B9D19C2BB357950053C14C /* NavigationTab */ = {
 			isa = PBXGroup;
 			children = (
@@ -1832,6 +1843,7 @@
 				D26B8B86219EAC72006FE706 /* BadgesViewController.swift in Sources */,
 				539897BF2BA852E500C8D939 /* ImageGalleryPreviewExampleView.swift in Sources */,
 				D282E867259E04F4000AD77E /* TextFieldsViewController.swift in Sources */,
+				DB0A8DA82C57F535003DC186 /* CardCarouselExampleView.swift in Sources */,
 				53C6621029EA0DAB00BF1A62 /* RatingExampleViewWithTitle.swift in Sources */,
 				3AA018EF215BE26600838FBB /* SpinnersViewController.swift in Sources */,
 				53E075A927FC97C60033147C /* ToastGroups.swift in Sources */,

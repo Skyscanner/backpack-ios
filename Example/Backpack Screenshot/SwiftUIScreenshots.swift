@@ -332,6 +332,11 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "carousel-card", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
+        await navigate(title: "Card Carousel") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "card-carousel", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
+        
         await navigate(title: "Section header") {
             switchTab(title: "SwiftUI")
             app.tables.staticTexts["Default"].tap()
@@ -697,6 +702,11 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         await navigate(title: "Carousel Card") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "carousel-card", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
+        
+        await navigate(title: "Card Carousel") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "card-carousel", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
         await navigate(title: "Section header") {
