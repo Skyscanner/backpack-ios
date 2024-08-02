@@ -26,6 +26,8 @@ public struct BPKCarouselCard<Content: View>: View {
         return "\(contentAccessibilityLabel) \(title) \(description)"
     }
     
+    @Environment(\.sizeCategory) var sizeCategory
+    
     public init(
         content: @escaping () -> Content,
         title: String,
@@ -40,31 +42,45 @@ public struct BPKCarouselCard<Content: View>: View {
     
     public var body: some View {
         GeometryReader { reader in
-            VStack(alignment: .leading) {
-                content()
-                    .frame(
-                        width: reader.size.width,
-                        height: reader.size.height * 0.60
-                    )
-                    .clipped()
-                
-                VStack(alignment: .leading, spacing: BPKSpacing.none) {
-                    BPKText(title, style: .heading3)
-                        .lineLimit(nil)
-                        .padding(.bottom, .md)
-                    
-                    BPKText(description, style: .bodyDefault)
-                        .lineLimit(nil)
-                }.padding(.all, .lg)
-                
-                Spacer()
+            Group {
+                if sizeCategory.isAccessibilityCategory {
+                    ScrollView {
+                        cardContent(reader: reader)
+                    }
+                } else {
+                    cardContent(reader: reader)
+                        .fixedSize(horizontal: false, vertical: false)
+                }
             }
             .background(.white.darkVariant(.badgeBackgroundNormalColor))
             .clipShape(RoundedRectangle(cornerRadius: .lg))
             .shadow(.lg)
-            .accessibilityElement(children: .ignore)
-            .accessibilityLabel(getAccessibilityLabel)
         }
+    }
+    
+    private func cardContent(reader: GeometryProxy) -> some View {
+        VStack(alignment: .leading) {
+            content()
+                .frame(
+                    width: reader.size.width,
+                    height: reader.size.height * 0.60
+                )
+                .clipped()
+            
+            VStack(alignment: .leading, spacing: BPKSpacing.none) {
+                BPKText(title, style: .heading3)
+                    .lineLimit(nil)
+                    .padding(.bottom, .md)
+                
+                BPKText(description, style: .bodyDefault)
+                    .lineLimit(nil)
+            }
+            .padding(.all, .lg)
+            
+            Spacer()
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(getAccessibilityLabel)
     }
 }
 
