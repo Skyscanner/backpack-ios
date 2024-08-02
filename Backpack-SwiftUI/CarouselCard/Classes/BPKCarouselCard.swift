@@ -26,8 +26,6 @@ public struct BPKCarouselCard<Content: View>: View {
         return "\(contentAccessibilityLabel) \(title) \(description)"
     }
     
-    @Environment(\.sizeCategory) var sizeCategory
-    
     public init(
         content: @escaping () -> Content,
         title: String,
@@ -38,19 +36,13 @@ public struct BPKCarouselCard<Content: View>: View {
         self.title = title
         self.description = description
         self.contentAccessibilityLabel = contentAccessibilityLabel
+        UIScrollView.appearance().bounces = false
     }
     
     public var body: some View {
         GeometryReader { reader in
-            Group {
-                if sizeCategory.isAccessibilityCategory {
-                    ScrollView {
-                        cardContent(reader: reader)
-                    }
-                } else {
-                    cardContent(reader: reader)
-                        .fixedSize(horizontal: false, vertical: false)
-                }
+            ScrollView {
+                cardContent(reader: reader)
             }
             .background(.white.darkVariant(.badgeBackgroundNormalColor))
             .clipShape(RoundedRectangle(cornerRadius: .lg))
