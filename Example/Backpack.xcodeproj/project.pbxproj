@@ -545,6 +545,13 @@
 			path = SearchInputSummary;
 			sourceTree = "<group>";
 		};
+		29334AE32C24B92A0016E8C2 /* FlightLeg */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FlightLeg;
+			sourceTree = "<group>";
+		};
 		2A8000102AB3DC3B009FDB10 /* TextArea */ = {
 			isa = PBXGroup;
 			children = (
@@ -997,6 +1004,7 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				29334AE32C24B92A0016E8C2 /* FlightLeg */,
 				BA8F350C2C104AD30093FA79 /* Card Button */,
 				539E51872BC844C1001FB36F /* HorizontalNavigation */,
 				1AF3D2C82BB18924001623A4 /* ImageGalleryGridView */,
