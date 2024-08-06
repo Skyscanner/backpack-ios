@@ -36,35 +36,43 @@ public struct BPKCarouselCard<Content: View>: View {
         self.title = title
         self.description = description
         self.contentAccessibilityLabel = contentAccessibilityLabel
+        UIScrollView.appearance().bounces = false
     }
     
     public var body: some View {
         GeometryReader { reader in
-            VStack(alignment: .leading) {
-                content()
-                    .frame(
-                        width: reader.size.width,
-                        height: reader.size.height * 0.60
-                    )
-                    .clipped()
-                
-                VStack(alignment: .leading, spacing: BPKSpacing.none) {
-                    BPKText(title, style: .heading3)
-                        .lineLimit(nil)
-                        .padding(.bottom, .md)
-                    
-                    BPKText(description, style: .bodyDefault)
-                        .lineLimit(nil)
-                }.padding(.all, .lg)
-                
-                Spacer()
+            ScrollView {
+                cardContent(reader: reader)
             }
             .background(.white.darkVariant(.badgeBackgroundNormalColor))
             .clipShape(RoundedRectangle(cornerRadius: .lg))
             .shadow(.lg)
-            .accessibilityElement(children: .ignore)
-            .accessibilityLabel(getAccessibilityLabel)
         }
+    }
+    
+    private func cardContent(reader: GeometryProxy) -> some View {
+        VStack(alignment: .leading) {
+            content()
+                .frame(
+                    width: reader.size.width,
+                    height: reader.size.height * 0.60
+                )
+                .clipped()
+            
+            VStack(alignment: .leading, spacing: BPKSpacing.none) {
+                BPKText(title, style: .heading3)
+                    .lineLimit(nil)
+                    .padding(.bottom, .md)
+                
+                BPKText(description, style: .bodyDefault)
+                    .lineLimit(nil)
+            }
+            .padding(.all, .lg)
+            
+            Spacer()
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(getAccessibilityLabel)
     }
 }
 
