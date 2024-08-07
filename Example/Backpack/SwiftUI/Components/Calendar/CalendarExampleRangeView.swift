@@ -26,8 +26,9 @@ struct CalendarExampleRangeView: View {
     let validRange: ClosedRange<Date>
     let calendar: Calendar
     let formatter: DateFormatter
+    let showAccessoryViews: Bool
     
-    init() {
+    init(showAccessoryViews: Bool) {
         let calendar = Calendar.current
         let start = calendar.date(from: .init(year: 2023, month: 11, day: 6))!
         let end = calendar.date(from: .init(year: 2024, month: 11, day: 28))!
@@ -40,23 +41,14 @@ struct CalendarExampleRangeView: View {
         formatter.locale = calendar.locale
         formatter.timeZone = calendar.timeZone
         self.formatter = formatter
-        
+        self.showAccessoryViews = showAccessoryViews
         let selectionStart = calendar.date(from: .init(year: 2023, month: 11, day: 23))!
         let selectionEnd = calendar.date(from: .init(year: 2023, month: 12, day: 2))!
         _selection = State(initialValue: .range(selectionStart...selectionEnd))
     }
     
     var body: some View {
-        let accessibilityConfigurations = RangeAccessibilityConfigurations(
-            startSelectionHint: "Double tap to select departure date",
-            endSelectionHint: "Double tap to select return date",
-            startSelectionState: "Selected as departure date",
-            endSelectionState: "Selected as return date",
-            betweenSelectionState: "Between departure and return date",
-            startAndEndSelectionState: "Selected as both departure and return date",
-            returnDatePrompt: "Now please select a return date"
-        )
-        return VStack {
+        VStack {
             HStack {
                 BPKText("Selected inbound:", style: .caption)
                 if case .range(let selectedRange) = selection {
@@ -71,6 +63,35 @@ struct CalendarExampleRangeView: View {
                     BPKText("\(formatter.string(from: selectedRange.upperBound))", style: .caption)
                 }
             }
+            calendarView
+        }
+    }
+    
+    @ViewBuilder
+    var calendarView: some View {
+        let accessibilityConfigurations = RangeAccessibilityConfigurations(
+            startSelectionHint: "Double tap to select departure date",
+            endSelectionHint: "Double tap to select return date",
+            startSelectionState: "Selected as departure date",
+            endSelectionState: "Selected as return date",
+            betweenSelectionState: "Between departure and return date",
+            startAndEndSelectionState: "Selected as both departure and return date",
+            returnDatePrompt: "Now please select a return date"
+        )
+        if showAccessoryViews {
+            BPKCalendar(
+                selectionType: .range(
+                    selection: $selection,
+                    accessibilityConfigurations: accessibilityConfigurations
+                ),
+                calendar: calendar,
+                validRange: validRange,
+                dayAccessoryView: { _ in
+                    BPKIconView(.search, size: .small)
+                        .foregroundColor(.accentColor)
+                }
+            )
+        } else {
             BPKCalendar(
                 selectionType: .range(
                     selection: $selection,
@@ -85,6 +106,6 @@ struct CalendarExampleRangeView: View {
 
 struct CalendarExampleRangeView_Previews: PreviewProvider {
     static var previews: some View {
-        CalendarExampleRangeView()
+        CalendarExampleRangeView(showAccessoryViews: true)
     }
 }

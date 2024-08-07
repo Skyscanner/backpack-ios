@@ -64,3 +64,19 @@ BPKCalendar(
     validRange: startDate...endDate
 )
 ```
+
+## Adding an accessory view to each day
+
+An accessory view can be added to each day in the calendar. This can be used to display additional information or actions for each day.
+
+```swift
+BPKCalendar(
+    selectionType: .single(selected: $selectedDate),
+    calendar: .current,
+    validRange: startDate...endDate
+    dayAccessoryView: { date in
+        BPKText("$200 \(date)", style: .caption)
+            .foregroundColor(.accentColor)
+    }
+)
+```

@@ -86,6 +86,27 @@ class BPKCalendarTests: XCTestCase {
         )
     }
     
+    func test_rangeSelectionCalendar_withAccessoryView() {
+        let selectionStart = Calendar.current.date(from: DateComponents(year: 2020, month: 1, day: 28))!
+        let selectionEnd = Calendar.current.date(from: DateComponents(year: 2020, month: 2, day: 5))!
+        
+        assertSnapshot(
+            BPKCalendar(
+                selectionType: .range(
+                    selection: .constant(.range(selectionStart...selectionEnd)),
+                    accessibilityConfigurations: rangeAccessibilityConfig
+                ),
+                calendar: Calendar.current,
+                validRange: validStart...validEnd,
+                dayAccessoryView: { _ in
+                    BPKIconView(.search, size: .small)
+                        .foregroundColor(.accentColor)
+                }
+            )
+            .frame(width: 320, height: 720)
+        )
+    }
+    
     func test_rangeSelectionCalendar_sameDay() {
         let selectionStart = Calendar.current.date(from: DateComponents(year: 2020, month: 2, day: 5))!
         let selectionEnd = Calendar.current.date(from: DateComponents(year: 2020, month: 2, day: 5))!

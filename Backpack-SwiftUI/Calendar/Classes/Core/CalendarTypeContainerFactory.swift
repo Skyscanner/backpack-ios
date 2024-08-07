@@ -18,11 +18,12 @@
 
 import SwiftUI
 
-struct CalendarTypeContainerFactory<MonthHeader: View>: View {
+struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: View {
     let selectionType: CalendarSelectionType
     let calendar: Calendar
     let validRange: ClosedRange<Date>
     @ViewBuilder let monthHeader: (_ monthDate: Date) -> MonthHeader
+    @ViewBuilder let dayAccessoryView: (Date) -> DayAccessoryView
     
     private var accessibilityDateFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -42,7 +43,8 @@ struct CalendarTypeContainerFactory<MonthHeader: View>: View {
                     accessibilityConfigurations: accessibilityConfigurations,
                     dateFormatter: accessibilityDateFormatter
                 ),
-                monthHeader: monthHeader
+                monthHeader: monthHeader,
+                dayAccessoryView: dayAccessoryView
             )
         case .single(let selected, let accessibilityConfigurations):
             SingleCalendarContainer(
@@ -53,7 +55,8 @@ struct CalendarTypeContainerFactory<MonthHeader: View>: View {
                     accessibilityConfigurations: accessibilityConfigurations,
                     dateFormatter: accessibilityDateFormatter
                 ),
-                monthHeader: monthHeader
+                monthHeader: monthHeader,
+                dayAccessoryView: dayAccessoryView
             )
         }
     }

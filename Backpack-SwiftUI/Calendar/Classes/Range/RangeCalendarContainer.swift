@@ -18,12 +18,13 @@
 
 import SwiftUI
 
-struct RangeCalendarContainer<MonthHeader: View>: View {
+struct RangeCalendarContainer<MonthHeader: View, DayAccessoryView: View>: View {
     @Binding var selectionState: CalendarRangeSelectionState?
     let calendar: Calendar
     let validRange: ClosedRange<Date>
     let accessibilityProvider: RangeDayAccessibilityProvider
     @ViewBuilder let monthHeader: (_ monthDate: Date) -> MonthHeader
+    @ViewBuilder let dayAccessoryView: (Date) -> DayAccessoryView
     
     private func handleSelection(_ date: Date) {
         switch selectionState {
@@ -82,22 +83,18 @@ struct RangeCalendarContainer<MonthHeader: View>: View {
     
     @ViewBuilder
     private func makeDayCell(_ dayDate: Date) -> some View {
-        if !validRange.contains(dayDate) {
-            DisabledCalendarDayCell(calendar: calendar, date: dayDate)
-        } else {
-            CalendarSelectableCell {
-                cell(dayDate)
-            } onSelection: {
-                handleSelection(dayDate)
-            }
-            .accessibilityHint(Text(
-                accessibilityProvider.accessibilityHint(
-                    for: dayDate,
-                    rangeSelectionState: selectionState
-                )
-            ))
-            .accessibility(addTraits: .isButton)
+        CalendarSelectableCell {
+            cell(dayDate)
+        } onSelection: {
+            handleSelection(dayDate)
         }
+        .accessibilityHint(Text(
+            accessibilityProvider.accessibilityHint(
+                for: dayDate,
+                rangeSelectionState: selectionState
+            )
+        ))
+        .accessibility(addTraits: .isButton)
     }
     
     private func initialSelection(_ initialDateSelection: Date, matchesDate date: Date) -> Bool {
@@ -117,7 +114,8 @@ struct RangeCalendarContainer<MonthHeader: View>: View {
                 validRange: validRange,
                 dayCell: makeDayCell,
                 emptyLeadingDayCell: { makeEmptyLeadingDayCell(for: month) },
-                emptyTrailingDayCell: { makeEmptyTrailingDayCell(for: month) }
+                emptyTrailingDayCell: { makeEmptyTrailingDayCell(for: month) },
+                dayAccessoryView: dayAccessoryView
             )
         }
     }
@@ -194,6 +192,9 @@ struct RangeCalendarContainer_Previews: PreviewProvider {
             ),
             monthHeader: { month in
                 BPKText("\(Self.formatter.string(from: month))")
+            },
+            dayAccessoryView: { _ in
+                BPKText("20", style: .caption)
             }
         )
     }

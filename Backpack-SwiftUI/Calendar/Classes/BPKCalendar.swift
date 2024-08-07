@@ -32,20 +32,23 @@ import SwiftUI
 ///
 /// The `BPKCalendar` view also allows you to specify an accessory action. This is a closure that takes a string and
 ///     a date, and is called when the user interacts with an accessory in the calendar.
-public struct BPKCalendar: View {
+public struct BPKCalendar<DayAccessoryView: View>: View {
     let calendar: Calendar
     let selectionType: CalendarSelectionType
     let validRange: ClosedRange<Date>
     private var accessoryAction: CalendarMonthAccessoryAction?
     private let monthHeaderDateFormatter: DateFormatter
 
+    private let dayAccessoryView: (Date) -> DayAccessoryView
     @State private var currentlyShownMonth: Date
     
     public init(
         selectionType: CalendarSelectionType,
         calendar: Calendar,
-        validRange: ClosedRange<Date>
+        validRange: ClosedRange<Date>,
+        dayAccessoryView: @escaping (Date) -> DayAccessoryView = { _ in EmptyView() }
     ) {
+        self.dayAccessoryView = dayAccessoryView
         _currentlyShownMonth = State(initialValue: validRange.lowerBound)
         self.validRange = validRange
         self.calendar = calendar
@@ -68,17 +71,19 @@ public struct BPKCalendar: View {
                     CalendarTypeContainerFactory(
                         selectionType: selectionType,
                         calendar: calendar,
-                        validRange: validRange
-                    ) { monthDate in
-                        CalendarMonthHeader(
-                            monthDate: monthDate,
-                            dateFormatter: monthHeaderDateFormatter,
-                            calendar: calendar,
-                            accessoryAction: accessoryAction,
-                            currentlyShownMonth: $currentlyShownMonth,
-                            parentProxy: calendarProxy
-                        )
-                    }
+                        validRange: validRange,
+                        monthHeader: { monthDate in
+                            CalendarMonthHeader(
+                                monthDate: monthDate,
+                                dateFormatter: monthHeaderDateFormatter,
+                                calendar: calendar,
+                                accessoryAction: accessoryAction,
+                                currentlyShownMonth: $currentlyShownMonth,
+                                parentProxy: calendarProxy
+                            )
+                        },
+                        dayAccessoryView: dayAccessoryView
+                    )
                     yearBadge
                 }
             }
@@ -127,7 +132,10 @@ struct BPKCalendar_Previews: PreviewProvider {
                 )
             ),
             calendar: calendar,
-            validRange: minValidDate...maxValidDate
+            validRange: minValidDate...maxValidDate,
+            dayAccessoryView: { _ in
+                BPKText("20", style: .caption)
+            }
         )
         .monthAccessoryAction(CalendarMonthAccessoryAction(title: "Select whole month", action: { _ in }))
     }
