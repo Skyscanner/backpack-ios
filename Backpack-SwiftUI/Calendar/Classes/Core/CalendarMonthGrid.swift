@@ -21,16 +21,19 @@ import SwiftUI
 struct CalendarMonthGrid<
     DayCell: View,
     EmptyLeadingDayCell: View,
-    EmptyTrailingDayCell: View
+    EmptyTrailingDayCell: View,
+    DayAccessoryView: View
 >: View {
     let monthDate: Date
     let calendar: Calendar
     let validRange: ClosedRange<Date>
 
+    @State private var dayCellHeight: CGFloat = 0
     @ViewBuilder let dayCell: (Date) -> DayCell
     @ViewBuilder let emptyLeadingDayCell: () -> EmptyLeadingDayCell
     @ViewBuilder let emptyTrailingDayCell: () -> EmptyTrailingDayCell
-
+    @ViewBuilder let dayAccessoryView: (Date) -> DayAccessoryView
+    
     private let daysInAWeek = 7
     
     var body: some View {
@@ -47,7 +50,11 @@ struct CalendarMonthGrid<
         ) {
             // Create cells for the days from the previous month that are shown in the first week of the current month.
             ForEach(0..<daysFromPreviousMonth) { _ in
-                emptyLeadingDayCell()
+                VStack(spacing: BPKSpacing.none) {
+                    emptyLeadingDayCell()
+                        .frame(height: dayCellHeight)
+                    Spacer(minLength: BPKSpacing.none)
+                }
             }
 
             let numberOfDaysInMonth = calendar.range(of: .day, in: .month, for: monthDate)!.count
@@ -62,7 +69,11 @@ struct CalendarMonthGrid<
         
             if remainingCells < daysInAWeek {
                 ForEach(0..<remainingCells) { _ in
-                    emptyTrailingDayCell()
+                    VStack(spacing: BPKSpacing.none) {
+                        emptyTrailingDayCell()
+                            .frame(height: dayCellHeight)
+                        Spacer(minLength: BPKSpacing.none)
+                    }
                 }
             }
         }
@@ -77,9 +88,17 @@ struct CalendarMonthGrid<
             )!
             
             if !validRange.contains(dayDate) {
-                DisabledCalendarDayCell(calendar: calendar, date: dayDate)
+                VStack(spacing: BPKSpacing.none) {
+                    DisabledCalendarDayCell(calendar: calendar, date: dayDate)
+                        .frame(height: dayCellHeight)
+                    Spacer(minLength: BPKSpacing.none)
+                }
             } else {
-                dayCell(dayDate)
+                VStack(spacing: BPKSpacing.sm) {
+                    dayCell(dayDate)
+                        .modifier(ReadSizeModifier { dayCellHeight = $0.height })
+                    dayAccessoryView(dayDate)
+                }
             }
         }
     }
@@ -88,18 +107,22 @@ struct CalendarMonthGrid<
 struct CalendarMonthGrid_Previews: PreviewProvider {
     static var previews: some View {
         let calendar = Calendar.current
-        let start = calendar.date(from: .init(year: 2023, month: 8, day: 30))!
-        let end = calendar.date(from: .init(year: 2028, month: 12, day: 25))!
+        let start = calendar.date(from: .init(year: 2023, month: 8, day: 25))!
+        let end = calendar.date(from: .init(year: 2023, month: 8, day: 28))!
         
         CalendarMonthGrid(
-            monthDate: calendar.date(from: .init(year: 2023, month: 11, day: 1))!,
+            monthDate: calendar.date(from: .init(year: 2023, month: 8, day: 1))!,
             calendar: calendar,
             validRange: start...end,
             dayCell: { day in
                 BPKText("\(calendar.component(.day, from: day))")
             },
             emptyLeadingDayCell: { Color.red },
-            emptyTrailingDayCell: { Color.green }
+            emptyTrailingDayCell: { Color.green },
+            dayAccessoryView: { _ in
+                BPKText("$200", style: .caption)
+                    .foregroundColor(.infoBannerSuccessColor)
+            }
         )
     }
 }

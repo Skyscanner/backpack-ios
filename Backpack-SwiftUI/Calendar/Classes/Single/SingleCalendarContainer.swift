@@ -18,12 +18,13 @@
 
 import SwiftUI
 
-struct SingleCalendarContainer<MonthHeader: View>: View {
+struct SingleCalendarContainer<MonthHeader: View, DayAccessoryView: View>: View {
     @Binding var selection: Date?
     let calendar: Calendar
     let validRange: ClosedRange<Date>
     let accessibilityProvider: SingleDayAccessibilityProvider
     @ViewBuilder let monthHeader: (_ monthDate: Date) -> MonthHeader
+    @ViewBuilder let dayAccessoryView: (Date) -> DayAccessoryView
     
     @ViewBuilder
     private func makeDayCell(_ dayDate: Date) -> some View {
@@ -51,7 +52,8 @@ struct SingleCalendarContainer<MonthHeader: View>: View {
                 validRange: validRange,
                 dayCell: makeDayCell,
                 emptyLeadingDayCell: { DefaultEmptyCalendarDayCell() },
-                emptyTrailingDayCell: { DefaultEmptyCalendarDayCell() }
+                emptyTrailingDayCell: { DefaultEmptyCalendarDayCell() },
+                dayAccessoryView: dayAccessoryView
             )
         }
     }
@@ -79,6 +81,9 @@ struct SingleCalendarContainer_Previews: PreviewProvider {
             ),
             monthHeader: { month in
                 BPKText("\(Self.formatter.string(from: month))")
+            },
+            dayAccessoryView: { _ in
+                BPKText("20", style: .caption)
             }
         )
     }
