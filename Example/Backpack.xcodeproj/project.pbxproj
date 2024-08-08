@@ -18,6 +18,7 @@
 		1A2A4BD82A6801AE00C18218 /* SelectExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2A4BD72A6801AE00C18218 /* SelectExampleView.swift */; };
 		1A68212D2B3308C80048220E /* AppSearchModalExampleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A68212C2B3308C80048220E /* AppSearchModalExampleViewModel.swift */; };
 		1AF3D2CA2BB18924001623A4 /* ImageGalleryGridExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF3D2C92BB18924001623A4 /* ImageGalleryGridExampleView.swift */; };
+		25006AB02C60B1740038D7CA /* SearchControlInputExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25006AAF2C60B1740038D7CA /* SearchControlInputExampleView.swift */; };
 		256F76152BB479850047AD1C /* SearchInputSummaryExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256F76142BB479850047AD1C /* SearchInputSummaryExampleView.swift */; };
 		2A62FDDD2AB89F4500D545E5 /* TextAreaExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A62FDDC2AB89F4500D545E5 /* TextAreaExampleView.swift */; };
 		3A7D2D47214AB9F400ECBD5B /* BPKButtonsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D2D46214AB9F400ECBD5B /* BPKButtonsViewController.m */; };
@@ -247,6 +248,7 @@
 		1A2A4BD72A6801AE00C18218 /* SelectExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectExampleView.swift; sourceTree = "<group>"; usesTabs = 0; };
 		1A68212C2B3308C80048220E /* AppSearchModalExampleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSearchModalExampleViewModel.swift; sourceTree = "<group>"; };
 		1AF3D2C92BB18924001623A4 /* ImageGalleryGridExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryGridExampleView.swift; sourceTree = "<group>"; };
+		25006AAF2C60B1740038D7CA /* SearchControlInputExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchControlInputExampleView.swift; sourceTree = "<group>"; };
 		256F76142BB479850047AD1C /* SearchInputSummaryExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInputSummaryExampleView.swift; sourceTree = "<group>"; };
 		2A62FDDC2AB89F4500D545E5 /* TextAreaExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAreaExampleView.swift; sourceTree = "<group>"; };
 		3A7D2D45214AB9F400ECBD5B /* BPKButtonsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKButtonsViewController.h; sourceTree = "<group>"; };
@@ -549,6 +551,14 @@
 				1AF3D2C92BB18924001623A4 /* ImageGalleryGridExampleView.swift */,
 			);
 			path = ImageGalleryGridView;
+			sourceTree = "<group>";
+		};
+		25006AAE2C60B15D0038D7CA /* SearchControlInput */ = {
+			isa = PBXGroup;
+			children = (
+				25006AAF2C60B1740038D7CA /* SearchControlInputExampleView.swift */,
+			);
+			path = SearchControlInput;
 			sourceTree = "<group>";
 		};
 		256F76132BB479610047AD1C /* SearchInputSummary */ = {
@@ -1011,6 +1021,7 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				25006AAE2C60B15D0038D7CA /* SearchControlInput */,
 				DB0A8DA62C57F507003DC186 /* CardCarousel */,
 				13E8849B2C53A0A400A3138D /* BannerAlert */,
 				DB08530A2C45565900314EE8 /* CarouselCard */,
@@ -1858,6 +1869,7 @@
 				D270C066243B61C60036A040 /* TabBarControllerStoryViewController.swift in Sources */,
 				022519872A7011CD00D7A06D /* SnippetExampleView.swift in Sources */,
 				7940D38D29EEB63500330480 /* StarRatingGroupsProvider.swift in Sources */,
+				25006AB02C60B1740038D7CA /* SearchControlInputExampleView.swift in Sources */,
 				D6391600202CAAC8006E8329 /* BPKShadowViewController.m in Sources */,
 				D6FC4E582625DBF6000BA351 /* NudgerViewController.swift in Sources */,
 				E397BEA222F5F59000C8EC04 /* BottomSheetScrollableContentViewController.swift in Sources */,
