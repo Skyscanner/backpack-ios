@@ -25,7 +25,7 @@ struct SearchControlInputExampleView: View {
     var body: some View {
         ScrollView {
             VStack {
-                BPKSearchControlInput(label: "Example label", icon: BPKIcon.calendar)
+                BPKSearchControlInput(label: "Example label", icon: BPKIcon.calendar, isOnContrast: true)
                 BPKSearchControlInput(label: "Another label with a bit longer text", icon: BPKIcon.addCircle)
             }
             .padding()

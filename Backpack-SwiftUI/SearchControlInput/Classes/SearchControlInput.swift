@@ -18,35 +18,39 @@
 
 import SwiftUI
 
-/// A control that displays an editable text interface for search inputs.
+/// A control that displays an text and an icon.
 public struct BPKSearchControlInput: View {
     
     private let label: String
     private let icon: BPKIcon
+    private var isOnContrast: Bool
     
     /// Creates a `BPKSearchControlInput`.
     ///
     /// - Parameters:
-    ///   - label: The t text to display when the text field is empty.
-    ///   - icon: The prefix which would be displayed on the left of text input
+    ///   - label: The displayed text.
+    ///   - icon: The displayed icon.
+    ///   - isOnContrast: Indicating whether the view is displayed on a contrasting background or not. Default is false.
     public init(
         label: String,
-        icon: BPKIcon
+        icon: BPKIcon,
+        isOnContrast: Bool = false
     ) {
         self.label = label
         self.icon = icon
+        self.isOnContrast = isOnContrast
     }
     
     public var body: some View {
         HStack(spacing: .md) {
             BPKIconView(icon)
                 .foregroundColor(.textSecondaryColor)
-            BPKText(label, style: .bodyDefault)
+            BPKText(label)
                 .foregroundColor(.textPrimaryColor)
         }
-        .frame(maxWidth: .infinity, minHeight: 48.0)
+        .frame(minHeight: 48.0)
         .padding(.horizontal, BPKSpacing.base)
-        .background(.segmentedControlCanvasDefaultColor)
+        .background(isOnContrast ? .surfaceDefaultColor : .canvasContrastColor)
         .accessibilityLabel(label)
         .accessibilityIdentifier("search_control_input")
     }
