@@ -22,6 +22,7 @@ struct CalendarTypeContainerFactory<MonthHeader: View>: View {
     let selectionType: CalendarSelectionType
     let calendar: Calendar
     let validRange: ClosedRange<Date>
+    let dayInfoProvider: CalendarDayInfoProvider?
     @ViewBuilder let monthHeader: (_ monthDate: Date) -> MonthHeader
     
     private var accessibilityDateFormatter: DateFormatter {
@@ -42,7 +43,8 @@ struct CalendarTypeContainerFactory<MonthHeader: View>: View {
                     accessibilityConfigurations: accessibilityConfigurations,
                     dateFormatter: accessibilityDateFormatter
                 ),
-                monthHeader: monthHeader
+                monthHeader: monthHeader, 
+                dayInfoProvider: dayInfoProvider
             )
         case .single(let selected, let accessibilityConfigurations):
             SingleCalendarContainer(
@@ -53,8 +55,12 @@ struct CalendarTypeContainerFactory<MonthHeader: View>: View {
                     accessibilityConfigurations: accessibilityConfigurations,
                     dateFormatter: accessibilityDateFormatter
                 ),
-                monthHeader: monthHeader
+                monthHeader: monthHeader, 
+                dayInfoProvider: dayInfoProvider
             )
+        
+        case .month(let selected, let accessibilityConfigurations):
+            EmptyView() // TODO: make the whole-month view
         }
     }
 }

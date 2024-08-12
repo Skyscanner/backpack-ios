@@ -18,13 +18,32 @@
 
 import SwiftUI
 
+public enum CalendarDayInfoState {
+    case noInfo
+    case text(String, CalendarDayInfoStyle)
+    case icon(BPKIcon, CalendarDayInfoStyle)
+}
+
+public struct CalendarDayInfoStyle {
+    let color: BPKColor
+
+    public init(color: BPKColor) {
+        self.color = color
+    }
+}
+
+public protocol CalendarDayInfoProvider {
+    func dayInfo(date: Date) -> CalendarDayInfoState
+}
+
 struct RangeCalendarContainer<MonthHeader: View>: View {
     @Binding var selectionState: CalendarRangeSelectionState?
     let calendar: Calendar
     let validRange: ClosedRange<Date>
     let accessibilityProvider: RangeDayAccessibilityProvider
     @ViewBuilder let monthHeader: (_ monthDate: Date) -> MonthHeader
-    
+    let dayInfoProvider: CalendarDayInfoProvider?
+
     private func handleSelection(_ date: Date) {
         switch selectionState {
         case .intermediate(let initialDateSelection):
@@ -79,7 +98,7 @@ struct RangeCalendarContainer<MonthHeader: View>: View {
                 ))
         }
     }
-    
+
     @ViewBuilder
     private func makeDayCell(_ dayDate: Date) -> some View {
         if !validRange.contains(dayDate) {
@@ -100,6 +119,22 @@ struct RangeCalendarContainer<MonthHeader: View>: View {
         }
     }
     
+    @ViewBuilder
+    private func makeDayInfoCell(_ dayDate: Date) -> some View {
+        switch dayInfoProvider?.dayInfo(date: dayDate) {
+        case .noInfo:
+            BPKText("-", style: .caption)
+        case .icon(let icon, let style):
+            BPKIconView(icon, size: .small)
+                .foregroundColor(style.color)
+        case .text(let label, let style):
+            BPKText(label, style: .caption)
+                .foregroundColor(style.color)
+        case .none:
+            BPKText("-", style: .caption)
+        }
+    }
+
     private func initialSelection(_ initialDateSelection: Date, matchesDate date: Date) -> Bool {
         let matchingDayComponents = calendar.dateComponents([.year, .month, .day], from: date)
         return calendar.date(initialDateSelection, matchesComponents: matchingDayComponents)
@@ -116,8 +151,10 @@ struct RangeCalendarContainer<MonthHeader: View>: View {
                 calendar: calendar,
                 validRange: validRange,
                 dayCell: makeDayCell,
+                dayInfoCell: makeDayInfoCell,
                 emptyLeadingDayCell: { makeEmptyLeadingDayCell(for: month) },
-                emptyTrailingDayCell: { makeEmptyTrailingDayCell(for: month) }
+                emptyTrailingDayCell: { makeEmptyTrailingDayCell(for: month) }, 
+                enableDayInfo: dayInfoProvider != nil
             )
         }
     }
@@ -194,7 +231,25 @@ struct RangeCalendarContainer_Previews: PreviewProvider {
             ),
             monthHeader: { month in
                 BPKText("\(Self.formatter.string(from: month))")
-            }
+            },
+            dayInfoProvider: DummyCalendarDayInfoProvider()
         )
+    }
+}
+
+struct DummyCalendarDayInfoProvider: CalendarDayInfoProvider {
+    let style = CalendarDayInfoStyle(color: .textSecondaryColor)
+
+    func dayInfo(date: Date) -> CalendarDayInfoState {
+        let calendar = Calendar.current
+        let day = calendar.component(.day, from: date)
+
+        if day < 5 {
+            return .icon(.search, style)
+        } else if day >= 5 && day <= 15 {
+            return .text("£\(100 + (day*3))", style)
+        } else {
+            return .noInfo
+        }
     }
 }

@@ -20,6 +20,7 @@ import SwiftUI
 
 struct CalendarMonthGrid<
     DayCell: View,
+    DayInfoCell: View,
     EmptyLeadingDayCell: View,
     EmptyTrailingDayCell: View
 >: View {
@@ -28,11 +29,14 @@ struct CalendarMonthGrid<
     let validRange: ClosedRange<Date>
 
     @ViewBuilder let dayCell: (Date) -> DayCell
+    @ViewBuilder let dayInfoCell: (Date) -> DayInfoCell
     @ViewBuilder let emptyLeadingDayCell: () -> EmptyLeadingDayCell
     @ViewBuilder let emptyTrailingDayCell: () -> EmptyTrailingDayCell
+    let enableDayInfo: Bool
 
     private let daysInAWeek = 7
-    
+    private let dayInfoSpacing = BPKSpacing.lg.value
+
     var body: some View {
         // Sunday is the first day of the week in the Calendar, so we need to offset (rotate the array) the days to
         // make Monday the first day
@@ -43,7 +47,7 @@ struct CalendarMonthGrid<
         let daysFromPreviousMonth = weekdaysOffset == -1 ? 6 : weekdaysOffset
         LazyVGrid(
             columns: Array(repeating: GridItem(spacing: BPKSpacing.none.value), count: daysInAWeek),
-            spacing: BPKSpacing.lg.value
+            spacing: gridSpacing()
         ) {
             // Create cells for the days from the previous month that are shown in the first week of the current month.
             ForEach(0..<daysFromPreviousMonth) { _ in
@@ -67,7 +71,15 @@ struct CalendarMonthGrid<
             }
         }
     }
-    
+
+    private func gridSpacing() -> CGFloat {
+        if enableDayInfo {
+            BPKSpacing.lg.value + dayInfoSpacing
+        } else {
+            BPKSpacing.lg.value
+        }
+    }
+
     @ViewBuilder
     private func currentMonthDayCell(numberOfDaysInMonth: Int) -> some View {
         ForEach(0..<numberOfDaysInMonth, id: \.self) { cellIndex in
@@ -75,11 +87,19 @@ struct CalendarMonthGrid<
                 byAdding: .init(day: cellIndex),
                 to: monthDate
             )!
-            
+
             if !validRange.contains(dayDate) {
                 DisabledCalendarDayCell(calendar: calendar, date: dayDate)
             } else {
-                dayCell(dayDate)
+                if enableDayInfo {
+                    ZStack {
+                        dayCell(dayDate)
+                        dayInfoCell(dayDate)
+                            .offset(y: +(dayInfoSpacing+5))
+                    }
+                } else {
+                    dayCell(dayDate)
+                }
             }
         }
     }
@@ -97,9 +117,13 @@ struct CalendarMonthGrid_Previews: PreviewProvider {
             validRange: start...end,
             dayCell: { day in
                 BPKText("\(calendar.component(.day, from: day))")
+            }, 
+            dayInfoCell: { day in
+                BPKText("\(calendar.component(.day, from: day))")
             },
             emptyLeadingDayCell: { Color.red },
-            emptyTrailingDayCell: { Color.green }
+            emptyTrailingDayCell: { Color.green }, 
+            enableDayInfo: false
         )
     }
 }

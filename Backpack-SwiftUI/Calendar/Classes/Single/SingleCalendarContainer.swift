@@ -24,7 +24,8 @@ struct SingleCalendarContainer<MonthHeader: View>: View {
     let validRange: ClosedRange<Date>
     let accessibilityProvider: SingleDayAccessibilityProvider
     @ViewBuilder let monthHeader: (_ monthDate: Date) -> MonthHeader
-    
+    let dayInfoProvider: CalendarDayInfoProvider?
+
     @ViewBuilder
     private func makeDayCell(_ dayDate: Date) -> some View {
         CalendarSelectableCell {
@@ -41,7 +42,24 @@ struct SingleCalendarContainer<MonthHeader: View>: View {
         .accessibilityLabel(accessibilityProvider.accessibilityLabel(for: dayDate))
         .accessibilityHint(accessibilityProvider.accessibilityHint(for: dayDate, selection: selection))
     }
-    
+
+    // TODO: Remove duplicates if there is no divergence from Range DayInfoCell
+    @ViewBuilder
+    private func makeDayInfoCell(_ dayDate: Date) -> some View {
+        switch dayInfoProvider?.dayInfo(date: dayDate) {
+        case .noInfo:
+            BPKText("-", style: .caption)
+        case .icon(let icon, let style):
+            BPKIconView(icon, size: .small)
+                .foregroundColor(style.color)
+        case .text(let label, let style):
+            BPKText(label, style: .caption)
+                .foregroundColor(style.color)
+        case .none:
+            BPKText("-", style: .caption)
+        }
+    }
+
     var body: some View {
         CalendarContainer(calendar: calendar, validRange: validRange) { month in
             monthHeader(month)
@@ -49,9 +67,11 @@ struct SingleCalendarContainer<MonthHeader: View>: View {
                 monthDate: month,
                 calendar: calendar,
                 validRange: validRange,
-                dayCell: makeDayCell,
+                dayCell: makeDayCell, 
+                dayInfoCell: makeDayInfoCell,
                 emptyLeadingDayCell: { DefaultEmptyCalendarDayCell() },
-                emptyTrailingDayCell: { DefaultEmptyCalendarDayCell() }
+                emptyTrailingDayCell: { DefaultEmptyCalendarDayCell() },
+                enableDayInfo: dayInfoProvider != nil
             )
         }
     }
@@ -79,7 +99,8 @@ struct SingleCalendarContainer_Previews: PreviewProvider {
             ),
             monthHeader: { month in
                 BPKText("\(Self.formatter.string(from: month))")
-            }
+            }, 
+            dayInfoProvider: nil
         )
     }
 }

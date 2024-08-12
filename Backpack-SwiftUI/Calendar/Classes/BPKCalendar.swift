@@ -37,6 +37,7 @@ public struct BPKCalendar: View {
     let selectionType: CalendarSelectionType
     let validRange: ClosedRange<Date>
     private var accessoryAction: CalendarMonthAccessoryAction?
+    private var dayInfoProvider: CalendarDayInfoProvider?
     private let monthHeaderDateFormatter: DateFormatter
 
     @State private var currentlyShownMonth: Date
@@ -64,7 +65,8 @@ public struct BPKCalendar: View {
                     CalendarTypeContainerFactory(
                         selectionType: selectionType,
                         calendar: calendar,
-                        validRange: validRange
+                        validRange: validRange,
+                        dayInfoProvider: dayInfoProvider
                     ) { monthDate in
                         CalendarMonthHeader(
                             monthDate: monthDate,
@@ -96,6 +98,13 @@ public struct BPKCalendar: View {
     public func monthAccessoryAction(_ action: CalendarMonthAccessoryAction) -> BPKCalendar {
         var result = self
         result.accessoryAction = action
+        return result
+    }
+
+    /// Sets the day info for the calendar
+    public func dayInfoProvider(_ dayInfoProvider: CalendarDayInfoProvider) -> BPKCalendar {
+        var result = self
+        result.dayInfoProvider = dayInfoProvider
         return result
     }
 }
