@@ -36,7 +36,7 @@ struct ImageGalleryGridContentView<Categories: View, GridImageView: View, Slides
             header
             VStack(spacing: 12) {
                 categories()
-                ScrollViewReader{ proxy in
+                ScrollViewReader { proxy in
                     TwoRowGrid(
                         items: gridImages
                     ) { item, index in
@@ -50,7 +50,7 @@ struct ImageGalleryGridContentView<Categories: View, GridImageView: View, Slides
                                 imageIndexInCategory = index
                                 isSlideshowPresented.toggle()
                             }
-                            .onChange(of: selectedCategoryIndex){ index in
+                            .onChange(of: selectedCategoryIndex) { index in
                                 proxy.scrollTo(0)
                             }
                     }
