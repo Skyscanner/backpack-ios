@@ -50,7 +50,7 @@ struct ImageGalleryGridContentView<Categories: View, GridImageView: View, Slides
                                 imageIndexInCategory = index
                                 isSlideshowPresented.toggle()
                             }
-                            .onChange(of: selectedCategoryIndex) { index in
+                            .onChange(of: selectedCategoryIndex) { _ in
                                 proxy.scrollTo(0)
                             }
                     }
