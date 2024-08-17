@@ -38,6 +38,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
     let validRange: ClosedRange<Date>
     private var accessoryAction: CalendarMonthAccessoryAction?
     private let monthHeaderDateFormatter: DateFormatter
+    private let dateToCalendarMonth: (Date) -> CalendarMonth
 
     private let dayAccessoryView: (Date) -> DayAccessoryView
     @State private var currentlyShownMonth: Date
@@ -61,6 +62,9 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
             options: 0,
             locale: Locale.current
         )
+
+        dateToCalendarMonth = DateToCalendarMonthMapper(calendar: calendar)
+            .calendarMonth(from:)
     }
     
     public var body: some View {
@@ -76,6 +80,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
                             CalendarMonthHeader(
                                 monthDate: monthDate,
                                 dateFormatter: monthHeaderDateFormatter,
+                                dateToCalendarMonth: dateToCalendarMonth,
                                 calendar: calendar,
                                 accessoryAction: accessoryAction,
                                 currentlyShownMonth: $currentlyShownMonth,

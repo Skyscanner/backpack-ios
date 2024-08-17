@@ -23,6 +23,7 @@ import SwiftUI
 struct CalendarMonthHeader: View {
     let monthDate: Date
     let dateFormatter: DateFormatter
+    let dateToCalendarMonth: (Date) -> CalendarMonth
     let calendar: Calendar
     let accessoryAction: CalendarMonthAccessoryAction?
     @Binding var currentlyShownMonth: Date
@@ -43,7 +44,7 @@ struct CalendarMonthHeader: View {
             .frame(width: 1)
             if let accessoryAction {
                 BPKButton(accessoryAction.title) {
-                    accessoryAction.action(monthDate)
+                    accessoryAction.action(dateToCalendarMonth(monthDate))
                 }
                 .buttonStyle(.link)
             }
@@ -69,12 +70,18 @@ struct CalendarMonthHeader_Previews: PreviewProvider {
         dateFormatter.dateFormat = "MMMM yyyy"
         return dateFormatter
     }()
-    
+
+    static let dateToCalendarMonth: (Date) -> CalendarMonth = { date in
+        // Dummy conversion
+        return .init(year: 2014, month: 10)
+    }
+
     static var previews: some View {
         GeometryReader { proxy in
             CalendarMonthHeader(
                 monthDate: Date(),
-                dateFormatter: Self.dateFormatter,
+                dateFormatter: Self.dateFormatter, 
+                dateToCalendarMonth: dateToCalendarMonth,
                 calendar: Calendar.current,
                 accessoryAction: .init(title: "Action", action: { _ in }),
                 currentlyShownMonth: .constant(Date()),

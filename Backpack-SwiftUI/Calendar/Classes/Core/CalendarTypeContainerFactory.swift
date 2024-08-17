@@ -46,9 +46,9 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
                 monthHeader: monthHeader,
                 dayAccessoryView: dayAccessoryView
             )
-        case .single(let selected, let accessibilityConfigurations):
+        case .single(let selection, let accessibilityConfigurations):
             SingleCalendarContainer(
-                selection: selected,
+                selection: selection,
                 calendar: calendar,
                 validRange: validRange,
                 accessibilityProvider: SingleDayAccessibilityProvider(
@@ -58,6 +58,19 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
                 monthHeader: monthHeader,
                 dayAccessoryView: dayAccessoryView
             )
+        case .month(selection: let selection, accessibilityConfigurations: let accessibilityConfigurations):
+            MonthCalendarContainer(
+                selection: selection,
+                calendar: calendar,
+                validRange: validRange,
+                accessibilityProvider: MonthDayAccessibilityProvider(
+                    accessibilityConfigurations: accessibilityConfigurations,
+                    dateFormatter: accessibilityDateFormatter
+                ),
+                monthHeader: monthHeader,
+                dayAccessoryView: dayAccessoryView
+            )
+
         }
     }
 }
