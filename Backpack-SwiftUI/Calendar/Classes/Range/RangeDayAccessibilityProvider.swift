@@ -66,7 +66,7 @@ struct RangeDayAccessibilityProvider {
         switch rangeSelectionState {
         case .intermediate(let initialDateSelection):
             return date < initialDateSelection
-        case .range:
+        case .range, .wholeMonth:
             return true
         case nil:
             return false

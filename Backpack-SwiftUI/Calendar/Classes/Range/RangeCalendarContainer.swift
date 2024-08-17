@@ -73,6 +73,20 @@ struct RangeCalendarContainer<MonthHeader: View, DayAccessoryView: View>: View {
                 )
             ))
             .accessibility(addTraits: closedRange.contains(dayDate) ? .isSelected : [])
+        } else if case .wholeMonth(let closedRange) = selectionState, closedRange.contains(dayDate) {
+            RangeSelectionCalendarDayCell(
+                date: dayDate,
+                selection: closedRange,
+                calendar: calendar,
+                highlightRangeEnds: false
+            )
+            .accessibilityLabel(Text(
+                accessibilityProvider.accessibilityLabel(
+                    for: dayDate,
+                    selection: closedRange
+                )
+            ))
+            .accessibility(addTraits: closedRange.contains(dayDate) ? .isSelected : [])
         } else {
             DefaultCalendarDayCell(calendar: calendar, date: dayDate)
                 .accessibilityLabel(Text(

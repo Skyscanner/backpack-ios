@@ -25,4 +25,7 @@ public enum CalendarRangeSelectionState {
 
     /// The final state, where the user has selected both dates of the range.
     case range(ClosedRange<Date>)
+
+    /// The state the user has selected the whole month range.
+    case wholeMonth(ClosedRange<Date>)
 }

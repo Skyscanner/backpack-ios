@@ -22,14 +22,22 @@ struct RangeSelectionCalendarDayCell: View {
     let date: Date
     let selection: ClosedRange<Date>
     let calendar: Calendar
-    
+    let highlightRangeEnds: Bool
+
+    init(date: Date, selection: ClosedRange<Date>, calendar: Calendar, highlightRangeEnds: Bool = true) {
+        self.date = date
+        self.selection = selection
+        self.calendar = calendar
+        self.highlightRangeEnds = highlightRangeEnds
+    }
+
     var body: some View {
         if selection.lowerBound == selection.upperBound {
             LowerAndUpperBoundSelectedCell(calendar: calendar, date: date)
         } else if date == selection.lowerBound {
-            LowerBoundSelectedCell(calendar: calendar, date: date)
+            LowerBoundSelectedCell(calendar: calendar, date: date, highlighted: highlightRangeEnds)
         } else if date == selection.upperBound {
-            UpperBoundSelectedCell(calendar: calendar, date: date)
+            UpperBoundSelectedCell(calendar: calendar, date: date, highlighted: highlightRangeEnds)
         } else {
             InbetweenSelectionCell(calendar: calendar, date: date)
         }
