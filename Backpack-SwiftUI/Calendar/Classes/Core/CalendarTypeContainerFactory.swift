@@ -58,18 +58,6 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
                 monthHeader: monthHeader,
                 dayAccessoryView: dayAccessoryView
             )
-        case .month(selection: let selection, accessibilityConfigurations: let accessibilityConfigurations):
-            MonthCalendarContainer(
-                selection: selection,
-                calendar: calendar,
-                validRange: validRange,
-                accessibilityProvider: MonthDayAccessibilityProvider(
-                    accessibilityConfigurations: accessibilityConfigurations,
-                    dateFormatter: accessibilityDateFormatter
-                ),
-                monthHeader: monthHeader,
-                dayAccessoryView: dayAccessoryView
-            )
 
         }
     }

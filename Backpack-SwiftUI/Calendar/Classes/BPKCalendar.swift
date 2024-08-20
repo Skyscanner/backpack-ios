@@ -82,6 +82,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
                                 dateFormatter: monthHeaderDateFormatter,
                                 dateToCalendarMonth: dateToCalendarMonth,
                                 calendar: calendar,
+                                validRange: validRange,
                                 accessoryAction: accessoryAction,
                                 currentlyShownMonth: $currentlyShownMonth,
                                 parentProxy: calendarProxy

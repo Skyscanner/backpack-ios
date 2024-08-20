@@ -22,13 +22,13 @@ import SwiftUI
 ///     be performed when a user interacts with an accessory in the calendar.
 public struct CalendarMonthAccessoryAction {
     let title: String
-    let action: (CalendarMonth) -> Void
+    let action: (ClosedRange<Date>) -> Void
 
     /// - Parameters:
     ///  - title: The title of the accessory.
     ///  - action: The action to be performed when the user interacts with the accessory.
-    ///           This closure takes a `CalendarMonth` as a parameter, which is the calendar month that the user interacted with.
-    public init(title: String, action: @escaping (CalendarMonth) -> Void) {
+    ///           This closure takes a  month range`ClosedRange<Date>` as a parameter, which is the calendar month range that the user interacted with.
+    public init(title: String, action: @escaping (ClosedRange<Date>) -> Void) {
         self.title = title
         self.action = action
     }

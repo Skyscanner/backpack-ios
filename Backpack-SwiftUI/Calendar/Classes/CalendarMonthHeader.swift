@@ -25,6 +25,7 @@ struct CalendarMonthHeader: View {
     let dateFormatter: DateFormatter
     let dateToCalendarMonth: (Date) -> CalendarMonth
     let calendar: Calendar
+    let validRange: ClosedRange<Date>
     let accessoryAction: CalendarMonthAccessoryAction?
     @Binding var currentlyShownMonth: Date
     let parentProxy: GeometryProxy
@@ -44,7 +45,9 @@ struct CalendarMonthHeader: View {
             .frame(width: 1)
             if let accessoryAction {
                 BPKButton(accessoryAction.title) {
-                    accessoryAction.action(dateToCalendarMonth(monthDate))
+                    if let range = rangeFor(month: dateToCalendarMonth(monthDate)) {
+                        accessoryAction.action(range)
+                    }
                 }
                 .buttonStyle(.link)
             }
@@ -52,7 +55,18 @@ struct CalendarMonthHeader: View {
         .padding(.horizontal, .base)
         .padding(.vertical, .lg)
     }
-    
+
+    private func rangeFor(month: CalendarMonth) -> ClosedRange<Date>? {
+        guard let monthRange = month.getDateRange(calendar: calendar) else {
+            return nil
+        }
+
+        let lowerBound = max(validRange.lowerBound, monthRange.lowerBound)
+        let upperBound = min(validRange.upperBound, monthRange.upperBound)
+
+        return lowerBound...upperBound
+    }
+
     private func isCurrentlyShowingMonth(proxy: GeometryProxy) -> Bool {
         let parentGlobalFrame = parentProxy.frame(in: .global)
         let yParentOrigin = parentGlobalFrame.origin.y
@@ -77,12 +91,18 @@ struct CalendarMonthHeader_Previews: PreviewProvider {
     }
 
     static var previews: some View {
+        let calendar = Calendar.current
+
+        let start = calendar.date(from: .init(year: 2023, month: 10, day: 1))!
+        let end = calendar.date(from: .init(year: 2025, month: 12, day: 25))!
+
         GeometryReader { proxy in
             CalendarMonthHeader(
                 monthDate: Date(),
                 dateFormatter: Self.dateFormatter, 
                 dateToCalendarMonth: dateToCalendarMonth,
                 calendar: Calendar.current,
+                validRange: start...end,
                 accessoryAction: .init(title: "Action", action: { _ in }),
                 currentlyShownMonth: .constant(Date()),
                 parentProxy: proxy

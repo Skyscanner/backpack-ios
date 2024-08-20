@@ -31,10 +31,4 @@ public enum CalendarSelectionType {
         selected: Binding<Date?>,
         accessibilityConfigurations: SingleAccessibilityConfigurations
     )
-
-    /// A month selection, where the user can select the whole month.
-    case month(
-        selection: Binding<CalendarMonthSelectionState?>,
-        accessibilityConfigurations: MonthAccessibilityConfigurations
-    )
 }
