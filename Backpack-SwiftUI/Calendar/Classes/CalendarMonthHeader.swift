@@ -23,7 +23,6 @@ import SwiftUI
 struct CalendarMonthHeader: View {
     let monthDate: Date
     let dateFormatter: DateFormatter
-    let dateToCalendarMonth: (Date) -> CalendarMonth
     let calendar: Calendar
     let validRange: ClosedRange<Date>
     let accessoryAction: CalendarMonthAccessoryAction?
@@ -45,7 +44,7 @@ struct CalendarMonthHeader: View {
             .frame(width: 1)
             if let accessoryAction {
                 BPKButton(accessoryAction.title) {
-                    if let range = rangeFor(month: dateToCalendarMonth(monthDate)) {
+                    if let range = monthRangeFor(date: monthDate) {
                         accessoryAction.action(range)
                     }
                 }
@@ -56,8 +55,8 @@ struct CalendarMonthHeader: View {
         .padding(.vertical, .lg)
     }
 
-    private func rangeFor(month: CalendarMonth) -> ClosedRange<Date>? {
-        guard let monthRange = month.getDateRange(calendar: calendar) else {
+    private func monthRangeFor(date: Date) -> ClosedRange<Date>? {
+        guard let monthRange = date.getMonthDateRange(calendar: calendar) else {
             return nil
         }
 
@@ -85,11 +84,6 @@ struct CalendarMonthHeader_Previews: PreviewProvider {
         return dateFormatter
     }()
 
-    static let dateToCalendarMonth: (Date) -> CalendarMonth = { date in
-        // Dummy conversion
-        return .init(year: 2014, month: 10)
-    }
-
     static var previews: some View {
         let calendar = Calendar.current
 
@@ -100,7 +94,6 @@ struct CalendarMonthHeader_Previews: PreviewProvider {
             CalendarMonthHeader(
                 monthDate: Date(),
                 dateFormatter: Self.dateFormatter, 
-                dateToCalendarMonth: dateToCalendarMonth,
                 calendar: Calendar.current,
                 validRange: start...end,
                 accessoryAction: .init(title: "Action", action: { _ in }),

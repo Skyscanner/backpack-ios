@@ -18,38 +18,13 @@
 
 import SwiftUI
 
-/// The `CalendarMonth` represents the the month date entity.
-public struct CalendarMonth {
-    public let year: Int
-    @Month public var month: Int
-
-    public init(year: Int, month: Int) {
-        self.year = year
-        self.month = month
-    }
-}
-
-@propertyWrapper
-public struct Month {
-    private var value: Int
-
-    public init(wrappedValue: Int) {
-        self.value = wrappedValue
-        self.value = Month.validate(month: wrappedValue)
-    }
-
-    public var wrappedValue: Int {
-        get { value }
-        set { value = Month.validate(month: newValue) }
-    }
-
-    private static func validate(month: Int) -> Int {
-        return max(1, min(12, month))  // Ensures the month is between 1 and 12
-    }
-}
-
-extension CalendarMonth {
-    public func getDateRange(calendar: Calendar) -> ClosedRange<Date>? {
+extension Date {
+    public func getMonthDateRange(calendar: Calendar) -> ClosedRange<Date>? {
+        let components = calendar.dateComponents([.year, .month], from: self)
+        
+        guard let year = components.year, let month = components.month else {
+            return nil
+        }
 
         // Create DateComponents for the start of the month
         var startComponents = DateComponents()
@@ -70,28 +45,12 @@ extension CalendarMonth {
         // Create the end date of the month
         let endDay = range.upperBound - 1
         let endComponents = DateComponents(year: year, month: month, day: endDay)
-        
+
         guard let endDate = calendar.date(from: endComponents) else {
             return nil
         }
 
         // Return the range of dates
         return startDate...endDate
-    }
-}
-
-public struct DateToCalendarMonthMapper {
-    let calendar: Calendar
-
-    public init(calendar: Calendar) {
-        self.calendar = calendar
-    }
-
-    public func calendarMonth(from date: Date) -> CalendarMonth {
-        let components = calendar.dateComponents([.year, .month], from: date)
-        guard let year = components.year, let month = components.month else {
-            fatalError("Could not extract year or month from date")
-        }
-        return CalendarMonth(year: year, month: month)
     }
 }
