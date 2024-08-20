@@ -22,14 +22,72 @@ import Backpack_SwiftUI
 
 struct SearchControlInputExampleView: View {
     
+    let places = ["London (any)", "Barcelona", "Everywhere", "Spain", "Paris"]
+    let dates = ["Aug 10", "14 - 18 Sep", "Sep", "Oct - Nov"]
+    let accessibilityDates = [
+        "Aug 10": "August 10",
+        "14 - 18 Sep": "14th September to 18th September",
+        "Sep": "September",
+        "Oct - Nov": "October to November"
+    ]
+    let travellers = [
+        "1 Adult, Economy",
+        "2 Travelers, Business",
+        "4 Travelers, Economy",
+        "1 Adult, First",
+        "3 Travelers, Premium Economy"
+    ]
+    
+    @State var origin: String?
+    @State var destination: String?
+    @State var date: String?
+    @State var traveller: String?
+        
     var body: some View {
-        ScrollView {
-            VStack {
-                BPKSearchControlInput(label: "Example label", icon: BPKIcon.calendar, isOnContrast: true)
-                BPKSearchControlInput(label: "Another label with a bit longer text", icon: BPKIcon.addCircle)
+        // swiftlint:disable closure_body_length
+        VStack(spacing: 2) {
+            BPKSearchControlInput(
+                label: "From",
+                placeholder: "Choose origin",
+                value: origin,
+                icon: .origin,
+                style: .regular,
+                action: { origin = "Paris" }
+            )
+            BPKSearchControlInput(
+                label: "To",
+                placeholder: "Choose destination",
+                value: destination,
+                icon: .cityCenter,
+                style: .regular,
+                action: { destination = places.randomElement() }
+            )
+            HStack(spacing: 2) {
+                BPKSearchControlInput(
+                    label: "Dates",
+                    placeholder: "Choose dates",
+                    value: date,
+                    icon: .calendar,
+                    style: .regular,
+                    accessibilityValueHandler: {
+                        guard let date else { return "" }
+                        return accessibilityDates[date] ?? ""
+                    },
+                    action: { date = dates.randomElement() }
+                )
+                BPKSearchControlInput(
+                    label: "Travellers",
+                    placeholder: "Choose travellers",
+                    value: traveller,
+                    icon: .account,
+                    style: .regular,
+                    action: { traveller = travellers.randomElement() }
+                )
             }
-            .padding()
         }
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+        .padding()
+        .background(.surfaceContrastColor)
     }
 }
 
