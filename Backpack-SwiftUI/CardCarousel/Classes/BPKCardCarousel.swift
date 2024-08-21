@@ -143,7 +143,7 @@ internal struct InternalCardCarousel<Content: View>: View {
 
     private func onDragEnded(value: DragGesture.Value) {
         withAnimation(dragAnimation) {
-            let draggingWindow = (cardWidth / 2.0)
+            let draggingWindow = (cardWidth / 4.0)
             if value.translation.width < -draggingWindow {
                 handleLeftSwipe()
             } else if value.translation.width > draggingWindow {
