@@ -47,42 +47,46 @@ struct SearchControlInputExampleView: View {
         // swiftlint:disable closure_body_length
         VStack(spacing: 2) {
             BPKSearchControlInput(
-                label: "From",
                 placeholder: "Choose origin",
                 value: origin,
                 icon: .origin,
                 style: .regular,
+                accessibilityLabel: "From",
                 action: { origin = "Paris" }
             )
+            .accessibilityIdentifier("search_control_input_origin")
             BPKSearchControlInput(
-                label: "To",
                 placeholder: "Choose destination",
                 value: destination,
                 icon: .cityCenter,
                 style: .regular,
+                accessibilityLabel: "To",
                 action: { destination = places.randomElement() }
             )
+            .accessibilityIdentifier("search_control_input_destination")
             HStack(spacing: 2) {
                 BPKSearchControlInput(
-                    label: "Dates",
                     placeholder: "Choose dates",
                     value: date,
                     icon: .calendar,
                     style: .regular,
+                    accessibilityLabel: "Dates",
                     accessibilityValueHandler: {
                         guard let date else { return "" }
                         return accessibilityDates[date] ?? ""
                     },
                     action: { date = dates.randomElement() }
                 )
+                .accessibilityIdentifier("search_control_input_dates")
                 BPKSearchControlInput(
-                    label: "Travellers",
                     placeholder: "Choose travellers",
                     value: traveller,
                     icon: .account,
                     style: .regular,
+                    accessibilityLabel: "Travellers",
                     action: { traveller = travellers.randomElement() }
                 )
+                .accessibilityIdentifier("search_control_input_travellers")
             }
         }
         .clipShape(RoundedRectangle(cornerRadius: 8))

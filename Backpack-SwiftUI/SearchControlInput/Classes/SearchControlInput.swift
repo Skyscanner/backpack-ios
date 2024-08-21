@@ -18,15 +18,25 @@
 
 import SwiftUI
 
+/// Style configuration for a background colour
 public enum SearchControlInputStyle {
     case regular
     case onContrast
+    
+    var backgroundColor: BPKColor {
+        switch self {
+        case .regular:
+            .surfaceDefaultColor
+        case .onContrast:
+            .canvasContrastColor
+        }
+    }
 }
 
-/// A control that displays an text and an icon.
+/// An actionable control field that displays an text and an icon.
 public struct BPKSearchControlInput: View {
     
-    private let label: String
+    private let accessibilityLabel: String
     private let placeholder: String
     private let value: String?
     private let icon: BPKIcon
@@ -37,23 +47,27 @@ public struct BPKSearchControlInput: View {
     /// Creates a `BPKSearchControlInput`.
     ///
     /// - Parameters:
-    ///   - label: The displayed text.
+    ///   - placeholder: Placeholder text when `value` is nil.
+    ///   - value: Optional property to display a value.
     ///   - icon: The displayed icon.
-    ///   - isOnContrast: Indicating whether the view is displayed on a contrasting background or not. Default is false.
+    ///   - style: Enum value to define the appearence of the element.
+    ///   - accessibilityLabel: Additional information about a purpose for accessibility users.
+    ///   - accessibilityValueHandler: Optional a handler function to provide a readable value description for accessibility users.
+    ///   - action: Click handler function.
     public init(
-        label: String,
         placeholder: String,
-        value: String? = nil,
+        value: String?,
         icon: BPKIcon,
         style: SearchControlInputStyle = .regular,
+        accessibilityLabel: String,
         accessibilityValueHandler: (() -> String)? = nil,
         action: @escaping () -> Void
     ) {
-        self.label = label
         self.placeholder = placeholder
         self.value = value
         self.icon = icon
         self.style = style
+        self.accessibilityLabel = accessibilityLabel
         self.accessibilityValueHandler = accessibilityValueHandler
         self.action = action
     }
@@ -70,11 +84,10 @@ public struct BPKSearchControlInput: View {
             }
             .frame(maxWidth: .infinity, minHeight: 48.0, alignment: .leading)
             .padding(.horizontal, BPKSpacing.base)
-            .background(style == .regular ? .surfaceDefaultColor : .canvasContrastColor)
+            .background(style.backgroundColor)
         }
-        .accessibilityLabel(label)
+        .accessibilityLabel(accessibilityLabel)
         .accessibilityValue(accessibilityValue)
-        .accessibilityIdentifier("search_control_input")
     }
     
     private var accessibilityValue: String {
@@ -88,7 +101,7 @@ public struct BPKSearchControlInput: View {
 struct BPKSearchControlInput_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            BPKSearchControlInput(label: "Input", placeholder: "Placehokder", icon: .calendar) {  }
+            BPKSearchControlInput(placeholder: "Placeholder", value: nil, icon: .calendar, accessibilityLabel: "Input") {  }
         }
         .padding()
         .background(.coreEcoColor)

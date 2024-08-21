@@ -30,7 +30,7 @@ class SearchControlInputUITest: BackpackUITestCase {
             navigateAndShow()
         }
         
-        let searchControlInput = app.buttons["search_control_input"].firstMatch
+        let searchControlInput = app.buttons["search_control_input_origin"]
         
         XCTAssertTrue(searchControlInput.exists, "The search control input should have been shown")
         

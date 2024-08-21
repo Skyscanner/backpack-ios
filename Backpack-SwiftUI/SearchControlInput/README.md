@@ -1,72 +1,62 @@
-#  Backpack-SwiftUI/SearchInputSummary
+#  Backpack-SwiftUI/SearchControlInput
 
 [![Cocoapods](https://img.shields.io/cocoapods/v/Backpack-SwiftUI.svg?style=flat)](hhttps://cocoapods.org/pods/Backpack-SwiftUI)
-[![class reference](https://img.shields.io/badge/Class%20reference-iOS-blue)](https://backpack.github.io/ios/versions/latest/swiftui/Structs/BPKSearchInputSummary.html)
-[![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack-SwiftUI/SearchInputSummary)
+[![class reference](https://img.shields.io/badge/Class%20reference-iOS-blue)](https://backpack.github.io/ios/versions/latest/swiftui/Structs/BPKSearchControlInput.html)
+[![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack-SwiftUI/SearchControlInput)
 
 | Day | Night |
 | --- | --- |
-| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_search-input-summary___default_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_search-input-summary___default_dm.png" alt="" width="375" /> |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_search-control-input___default_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_search-control-input___default_dm.png" alt="" width="375" /> |
 
 # Usage
 
-Create a `BPKSearchInputSummary` and bind the `text` property to a `Binding<String>`.
+Create a `BPKSearchControlInput` and set properties: `placeholder`, `label`, `value`, `icon`, `style` (default value: `.regular`), `accessibilityLabel`, `action`, and `accessibilityValueHandler` (optional property).
 
 ```swift
-@State var text: String = ""
+@State var value: String?
 
-BPKSearchInputSummary(text: $text)
+let clickAction = {
+    // Place action handler here
+}
+
+BPKSearchControlInput(placeholder: "Placeholder", value: value, icon: .calendar, accessibilityLabel: "Input Field", action: clickAction)
 ```
 
-### Setting a placeholder
+### Setting a style
+Default value is `regular`.
 
 ```swift
-BPKSearchInputSummary("Placeholder", text: $text)
-```
-
-### Setting an inputPrefix
-Default value is `icon`.
-
-```swift
-BPKSearchInputSummary(inputPrefix: .icon, text: $text)
+BPKSearchControlInput(placeholder: "Placeholder", value: value, icon: .regular, accessibilityLabel: "Input Field", action: clickAction)
 ```
 
 ```swift
-BPKSearchInputSummary(inputPrefix: .customText("From"), text: $text)
+BPKSearchControlInput(placeholder: "Placeholder", value: value, icon: .onContrast, accessibilityLabel: "Input Field", action: clickAction)
 ```
 
-### Changing the State
+### Using accessibilityValueHandler
+
+When a value is not suitable for Accessibility announcments, this optional handler lets you to return a formatted string.
+For example, when a displayed value is "13 - 20 Sep", it's better to adapt for accessibility users, so it would be like "From September 13 to September 20"
     
 ```swift
-BPKSearchInputSummary(text: $text)
-    .inputState(.error)
-    .inputState(.valid)
-```
-
-### Adding a clear button
-
-```swift
-@State var text: String = "some text"
-
-BPKSearchInputSummary(text: $text)
-    .inputState(
-        .clear(
-            accessibilityLabel: "Clear",
-            action: { text = "" }
-        )
-    )
-```
-
-### Passing input focused value
-Default value is `icon`.
-
-```swift
-BPKSearchInputSummary(inputPrefix: .icon, text: $text)
-```
-
-```swift
-BPKSearchInputSummary(inputPrefix: .customText("From"), text: $text)
+BPKSearchControlInput(
+    placeholder: "Placeholder", 
+    value: value, 
+    icon: .onContrast, 
+    accessibilityLabel: "Input Field",
+    accessibilityValueHandler: {
+        let formattedText = formatter.adapt(value)
+        return formattedText
+    },
+    action: clickAction
+)
 ```
 
 ### UI Testing
-To use the component in UI or smoke tests it's possible to access this element using the accessibility identifier: `search_field`
+
+In purpose of using the component in UI or smoke tests the accessibility identifier should be set in the place where the component is used.
+
+```swift
+BPKSearchControlInput(placeholder: "Placeholder", value: value, icon: .regular, accessibilityLabel: "Input Field", action: clickAction)
+    .accessibilityIdentifier("search_control_input_custom_field")
+```
