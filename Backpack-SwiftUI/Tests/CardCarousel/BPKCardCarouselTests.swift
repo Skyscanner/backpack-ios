@@ -34,6 +34,38 @@ class BPKCardCarouselTests: XCTestCase {
         )
     }
     
+    func testCardCarouselIPadPortrait() {
+        assertSnapshot(
+            BPKCardCarousel(
+                cards: [
+                    createCard(),
+                    createCard(),
+                    createCard()
+                ],
+                currentIndex: .constant(0)
+            ).frame(
+                width: 820.0,
+                height: 1180.0
+            )
+        )
+    }
+    
+    func testCardCarouselIPadLandscape() {
+        assertSnapshot(
+            BPKCardCarousel(
+                cards: [
+                    createCard(),
+                    createCard(),
+                    createCard()
+                ],
+                currentIndex: .constant(0)
+            ).frame(
+                width: 1180.0,
+                height: 820.0
+            )
+        )
+    }
+    
     func test_accessibility() {
         let card = BPKCardCarousel(
             cards: [

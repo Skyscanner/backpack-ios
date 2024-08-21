@@ -49,7 +49,9 @@ internal struct InternalCardCarousel<Content: View>: View {
     @Binding private var currentIndex: Int
     @State private var currentInternalIndex: Int
     @AccessibilityFocusState private var focusOnCard: Int?
+    private let isIPad: Bool
     private let content: [Content]
+    private let size: CGSize
     
     private let cardCount: Int
     private let cardWidth: CGFloat
@@ -66,15 +68,50 @@ internal struct InternalCardCarousel<Content: View>: View {
         content: [Content],
         currentIndex: Binding<Int>
     ) {
+        self.isIPad = UIDevice.current.name.hasPrefix("iPad")
+        self.size = size
         self._currentIndex = currentIndex
-        self.cardWidth = size.width * 0.8
+        self.cardWidth = isIPad ? (size.width * 0.8) * 0.4 : size.width * 0.8
         self.cardCount = content.count
         self._currentInternalIndex = State(initialValue: cardCount + 1 + currentIndex.wrappedValue)
-        self.content = content + content
+        
+        if isIPad && UIDevice.current.orientation.isLandscape {
+            self.content = content
+        } else {
+            self.content = content + content
+        }
+        
         focusOnCard = .init(currentInternalIndex)
     }
     
     var body: some View {
+        if isIPad && UIDevice.current.orientation.isLandscape {
+            carouselIPadLandscape
+        } else if isIPad {
+            carouselIPadPortrait
+        } else {
+            carousel
+        }
+    }
+    
+    private var carouselIPadLandscape: some View {
+        HStack(spacing: .xxl) {
+            ForEach(Array(content.enumerated()), id: \.offset) { _, card in
+                card
+            }
+        }
+    }
+    
+    private var carouselIPadPortrait: some View {
+        carousel
+            .frame(
+                width: cardWidth * 3,
+                height: self.size.height / 2
+            )
+            .clipped()
+    }
+    
+    private var carousel: some View {
         VStack(spacing: .md) {
             LazyHStack(alignment: .center, spacing: 0) {
                 ForEach(Array(content.enumerated()), id: \.offset) { index, card in
@@ -82,7 +119,7 @@ internal struct InternalCardCarousel<Content: View>: View {
                         .frame(width: cardWidth)
                         .offset(x: isDragging ? totalDrag : getContentOffset(
                             for: index,
-                            spacing: BPKSpacing.base.value
+                            spacing: isIPad ? 0 : BPKSpacing.base.value
                         ))
                         .animation(dragAnimation, value: totalDrag)
                         .scaleEffect(scaleEffect(for: index))
