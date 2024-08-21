@@ -52,7 +52,7 @@ public struct BPKSearchControlInput: View {
     ///   - icon: The displayed icon.
     ///   - style: Enum value to define the appearence of the element.
     ///   - accessibilityLabel: Additional information about a purpose for accessibility users.
-    ///   - accessibilityValueHandler: Optional a handler function to provide a readable value description for accessibility users.
+    ///   - accessibilityValueHandler: Handler function to provide a readable value description for accessibility..
     ///   - action: Click handler function.
     public init(
         placeholder: String,
@@ -101,7 +101,7 @@ public struct BPKSearchControlInput: View {
 struct BPKSearchControlInput_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            BPKSearchControlInput(placeholder: "Placeholder", value: nil, icon: .calendar, accessibilityLabel: "Input") {  }
+            BPKSearchControlInput(placeholder: "Field", value: nil, icon: .calendar, accessibilityLabel: "Input") {}
         }
         .padding()
         .background(.coreEcoColor)
