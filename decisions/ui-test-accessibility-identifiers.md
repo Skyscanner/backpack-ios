@@ -31,7 +31,7 @@ Based on how we expect the component to be used we can decide whether to add har
 For components that likely take a single instance in a UI, we can add hardcoded accessibility identifiers. This is because the component is likely to be used in a single place and the identifier is not likely to change. 
 
 **Example**
-- Check out `AppSearchModal
+- Check out `AppSearchModal`
 
 In other cases like `BpkNudger` where the component can be reused in multiple places, we can add dynamic accessibility identifiers. Dynamic identifiers are added to components using a specialised modifier for each identifier we want to add. This allows us to add multiple instances of the same component to a UI and have them be uniquely identifiable.
 
