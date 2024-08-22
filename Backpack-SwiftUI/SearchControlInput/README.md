@@ -60,3 +60,8 @@ In purpose of using the component in UI or smoke tests the accessibility identif
 BPKSearchControlInput(placeholder: "Placeholder", value: value, icon: .regular, accessibilityLabel: "Input Field", action: clickAction)
     .accessibilityIdentifier("search_control_input_custom_field")
 ```
+
+This element could be found in UI test as a button.
+```swift
+let searchControlInput = app.buttons["search_control_input_custom_field"]
+```

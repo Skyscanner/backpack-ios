@@ -18,20 +18,24 @@
 
 import SwiftUI
 
-/// Style configuration for a background colour
-public enum SearchControlInputStyle {
-    case regular
-    case onContrast
+public extension BPKSearchControlInput {
     
-    var backgroundColor: BPKColor {
-        switch self {
-        case .regular:
-            .surfaceDefaultColor
-        case .onContrast:
-            .canvasContrastColor
+    /// Style configuration for a background colour
+    enum Style {
+        case regular
+        case onContrast
+        
+        var backgroundColor: BPKColor {
+            switch self {
+            case .regular:
+                .surfaceDefaultColor
+            case .onContrast:
+                .canvasContrastColor
+            }
         }
     }
 }
+
 
 /// An actionable control field that displays an text and an icon.
 public struct BPKSearchControlInput: View {
@@ -40,7 +44,7 @@ public struct BPKSearchControlInput: View {
     private let placeholder: String
     private let value: String?
     private let icon: BPKIcon
-    private let style: SearchControlInputStyle
+    private let style: Style
     private let action: () -> Void
     private let accessibilityValueHandler: (() -> String)?
     
@@ -58,7 +62,7 @@ public struct BPKSearchControlInput: View {
         placeholder: String,
         value: String?,
         icon: BPKIcon,
-        style: SearchControlInputStyle = .regular,
+        style: Style = .regular,
         accessibilityLabel: String,
         accessibilityValueHandler: (() -> String)? = nil,
         action: @escaping () -> Void
@@ -78,16 +82,20 @@ public struct BPKSearchControlInput: View {
                 BPKIconView(icon)
                     .foregroundColor(.textSecondaryColor)
                 BPKText(value ?? placeholder)
-                    .lineLimit(nil)
+                    .lineLimit(BPKFont.enableDynamicType ? nil : 1)
                     .multilineTextAlignment(.leading)
                     .foregroundColor(value == nil ? .textSecondaryColor : .textPrimaryColor)
             }
             .frame(maxWidth: .infinity, minHeight: 48.0, alignment: .leading)
             .padding(.horizontal, BPKSpacing.base)
             .background(style.backgroundColor)
+            .contentShape(Rectangle())
         }
         .accessibilityLabel(accessibilityLabel)
         .accessibilityValue(accessibilityValue)
+        .if(!BPKFont.enableDynamicType, transform: {
+            $0.sizeCategory(.large)
+        })
     }
     
     private var accessibilityValue: String {
