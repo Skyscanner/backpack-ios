@@ -36,7 +36,6 @@ public extension BPKSearchControlInput {
     }
 }
 
-
 /// An actionable control field that displays an text and an icon.
 public struct BPKSearchControlInput: View {
     
@@ -47,6 +46,7 @@ public struct BPKSearchControlInput: View {
     private let style: Style
     private let action: () -> Void
     private let accessibilityValueHandler: (() -> String)?
+    @Environment(\.sizeCategory) var sizeCategory
     
     /// Creates a `BPKSearchControlInput`.
     ///
@@ -82,7 +82,7 @@ public struct BPKSearchControlInput: View {
                 BPKIconView(icon)
                     .foregroundColor(.textSecondaryColor)
                 BPKText(value ?? placeholder)
-                    .lineLimit(BPKFont.enableDynamicType ? nil : 1)
+                    .lineLimit(titleLineLimit())
                     .multilineTextAlignment(.leading)
                     .foregroundColor(value == nil ? .textSecondaryColor : .textPrimaryColor)
             }
@@ -103,6 +103,11 @@ public struct BPKSearchControlInput: View {
             return value ?? ""
         }
         return accessibilityValueHandler()
+    }
+    
+    private func titleLineLimit() -> Int? {
+        let isDefaultSizeOrSmaller = sizeCategory <= .large
+        return isDefaultSizeOrSmaller ? 1 : nil
     }
 }
 
