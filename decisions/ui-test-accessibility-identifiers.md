@@ -26,20 +26,19 @@ BPKButton("Search") {
 ```
 
 ### Interactive components that are part of a larger UI
-Components that are part of a larger UI are typically composed of other components. 
-Examples of these components are `BpkAppSearchModal`, `BpkImageGalleryImageGrid`, `BpkNudger`, etc.
-
 These components contain nested interactive elements and need to be exposed to UI tests. 
 We need to add accessibility identifiers to these elements inside the component to make them testable.
 Based on how we expect the component to be used we can decide whether to 
 add hardcoded or dynamic accessibility identifiers to the interactive elements.
 
-For components that likely take a single instance in a UI like `AppSearchModal`, 
-we can add hardcoded accessibility identifiers. This is because the component is likely to be 
-used in a single place and the identifier is not likely to change.
+Examples of these components are `BpkAppSearchModal`, `BpkImageGalleryImageGrid`, `BpkNudger`, etc.
+
+For components are likely to be used only once per screen like `AppSearchModal`, 
+we can add hardcoded accessibility identifiers. When a component is used only once, 
+we don't run the risk of duplicate identifiers on the screen.
 
 In other cases like `BpkNudger` where the component can be reused in multiple places, 
-we can add dynamic accessibility identifiers. Dynamic identifiers are added to components 
+we add dynamic accessibility identifiers. Dynamic identifiers are added to components 
 using a specialised modifier for each identifier we want to add. 
 This allows us to add multiple instances of the same component to a UI and have them be uniquely identifiable.
 
