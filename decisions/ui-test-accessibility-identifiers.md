@@ -2,7 +2,7 @@
 
 ## Decision
 * **Standalone Components**: No accessibility identifiers for UI tests. Consumers can add them as needed.
-* **Components in Larger UIs**:
+* **Interactive components in Larger UIs**:
   * **Hardcoded identifiers** if the component is used in a single place.
   * **Dynamic identifiers** if the component is reused in multiple places.
 
@@ -25,7 +25,7 @@ BPKButton("Search") {
 .accessibilityIdentifier("search_button")
 ```
 
-### Components that are part of a larger UI
+### Interactive components that are part of a larger UI
 Components that are part of a larger UI are typically composed of other components. 
 Examples of these components are `BpkAppSearchModal`, `BpkImageGalleryImageGrid`, `BpkNudger`, etc.
 
