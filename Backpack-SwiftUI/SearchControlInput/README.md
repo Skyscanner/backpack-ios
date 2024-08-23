@@ -22,6 +22,50 @@ let clickAction = {
 BPKSearchControlInput(placeholder: "Placeholder", value: value, icon: .calendar, accessibilityLabel: "Input Field", action: clickAction)
 ```
 
+### Usage in a composition
+
+See a screenshot to check how it could look like altogether.
+
+```swift
+VStack(spacing: 2) {
+    BPKSearchControlInput(
+        placeholder: "Choose origin",
+        value: origin,
+        icon: .origin,
+        style: .regular,
+        accessibilityLabel: "From",
+        action: { }
+    )
+    BPKSearchControlInput(
+        placeholder: "Choose destination",
+        value: destination,
+        icon: .cityCenter,
+        style: .regular,
+        accessibilityLabel: "To",
+        action: { }
+    )
+    HStack(spacing: 2) {
+        BPKSearchControlInput(
+            placeholder: "Choose dates",
+            value: date,
+            icon: .calendar,
+            style: .regular,
+            accessibilityLabel: "Dates",
+            action: { }
+        )
+        BPKSearchControlInput(
+            placeholder: "Choose travellers",
+            value: traveller,
+            icon: .account,
+            style: .regular,
+            accessibilityLabel: "Travellers",
+            action: { }
+        )
+    }
+}
+.clipShape(RoundedRectangle(cornerRadius: 8))
+```
+
 ### Setting a style
 Default value is `regular`.
 
