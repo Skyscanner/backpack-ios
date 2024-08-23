@@ -559,6 +559,11 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "search-input-summary", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
+        
+        await navigate(title: "Search Control Input") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "search-control-input", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
 
         await navigate(title: "Bottom sheet") {
             switchTab(title: "SwiftUI")
