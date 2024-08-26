@@ -12,6 +12,9 @@
 		0245783E2ABC3AA1006008D1 /* InsetBannerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0245783D2ABC3AA1006008D1 /* InsetBannerExampleView.swift */; };
 		02D34C4A2A712A2200F99085 /* SnippetGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D34C492A712A2200F99085 /* SnippetGroups.swift */; };
 		0E844AF7289141C2004C5865 /* SkeletonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E844AF6289141C2004C5865 /* SkeletonViewController.swift */; };
+		1318F74D2C7772F000D42847 /* TextFieldExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1318F74C2C7772F000D42847 /* TextFieldExampleView.swift */; };
+		1318F74E2C77734C00D42847 /* FieldSetExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1318F74A2C7772C400D42847 /* FieldSetExampleView.swift */; };
+		1318F7502C777D1800D42847 /* FieldSetGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1318F74F2C777D1800D42847 /* FieldSetGroups.swift */; };
 		13E884A72C53F8C800A3138D /* BannerAlertExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E884A62C53F8C800A3138D /* BannerAlertExampleView.swift */; };
 		17068B8A299C0106000EA7F4 /* RatingGroupsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17068B89299C0106000EA7F4 /* RatingGroupsProvider.swift */; };
 		1750EB6329915230005226DF /* CardButtonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1750EB6229915230005226DF /* CardButtonsViewController.swift */; };
@@ -241,6 +244,9 @@
 		0E844AF6289141C2004C5865 /* SkeletonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonViewController.swift; sourceTree = "<group>"; };
 		0F386FFD6327F785FBB09093 /* Pods-Backpack-Native.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack-Native.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack-Native/Pods-Backpack-Native.debug.xcconfig"; sourceTree = "<group>"; };
 		11F0F39D8252943CD3B0C19D /* Pods-Backpack_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_Example/Pods-Backpack_Example.release.xcconfig"; sourceTree = "<group>"; };
+		1318F74A2C7772C400D42847 /* FieldSetExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldSetExampleView.swift; sourceTree = "<group>"; };
+		1318F74C2C7772F000D42847 /* TextFieldExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExampleView.swift; sourceTree = "<group>"; };
+		1318F74F2C777D1800D42847 /* FieldSetGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldSetGroups.swift; sourceTree = "<group>"; };
 		13E884A62C53F8C800A3138D /* BannerAlertExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAlertExampleView.swift; sourceTree = "<group>"; };
 		17068B89299C0106000EA7F4 /* RatingGroupsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingGroupsProvider.swift; sourceTree = "<group>"; };
 		1750EB6229915230005226DF /* CardButtonsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardButtonsViewController.swift; sourceTree = "<group>"; };
@@ -518,6 +524,14 @@
 			path = Skeleton;
 			sourceTree = "<group>";
 		};
+		1318F7492C7772C400D42847 /* FieldSet */ = {
+			isa = PBXGroup;
+			children = (
+				1318F74A2C7772C400D42847 /* FieldSetExampleView.swift */,
+			);
+			path = FieldSet;
+			sourceTree = "<group>";
+		};
 		13E8849B2C53A0A400A3138D /* BannerAlert */ = {
 			isa = PBXGroup;
 			children = (
@@ -768,6 +782,7 @@
 		53C661FE29EA0DAB00BF1A62 /* TextField */ = {
 			isa = PBXGroup;
 			children = (
+				1318F74C2C7772F000D42847 /* TextFieldExampleView.swift */,
 				53C661FF29EA0DAB00BF1A62 /* TextFieldExampleView.swift */,
 			);
 			path = TextField;
@@ -857,6 +872,7 @@
 				7904384929F11EA7006CD8E0 /* SliderGroups.swift */,
 				02D34C492A712A2200F99085 /* SnippetGroups.swift */,
 				53B6DB5D27FC39B40042B7C0 /* CalendarGroups.swift */,
+				1318F74F2C777D1800D42847 /* FieldSetGroups.swift */,
 				53B6DB6327FC463F0042B7C0 /* FlareGroups.swift */,
 				53B6DB6527FC47290042B7C0 /* DialogGroups.swift */,
 				53B6DB6727FC4D520042B7C0 /* HorizontalNavigationGroups.swift */,
@@ -1057,6 +1073,7 @@
 				53C661FB29EA0DAB00BF1A62 /* StarRating */,
 				53C661E529EA0DAA00BF1A62 /* Switch */,
 				53C6620D29EA0DAB00BF1A62 /* Text */,
+				1318F7492C7772C400D42847 /* FieldSet */,
 				53C661FE29EA0DAB00BF1A62 /* TextField */,
 			);
 			path = Components;
@@ -1831,6 +1848,7 @@
 				E35EA59624212F9900373CE4 /* BottomSheetResizableContentViewController.swift in Sources */,
 				D27EE92C2193163900C877EA /* ChipsViewController.swift in Sources */,
 				1AF3D2CA2BB18924001623A4 /* ImageGalleryGridExampleView.swift in Sources */,
+				1318F7502C777D1800D42847 /* FieldSetGroups.swift in Sources */,
 				79AFEDA92A9C7063001615A2 /* GraphicPromoExampleView.swift in Sources */,
 				D2BBC1C922560FDD002DA71A /* BPKTableViewSelectableCell.swift in Sources */,
 				79F5129329AEFEB600D0997A /* LabelViewController.swift in Sources */,
@@ -1895,6 +1913,7 @@
 				53BA7BCE2B9B5E6A00F93982 /* RatingBarExampleView.swift in Sources */,
 				53E075AC27FC9AB00033147C /* CellsDataSource.swift in Sources */,
 				794E1FF6280A8A0000B965FF /* ContentUIHostingController.swift in Sources */,
+				1318F74D2C7772F000D42847 /* TextFieldExampleView.swift in Sources */,
 				53C6621829EA0DAB00BF1A62 /* OverlayExampleView.swift in Sources */,
 				537ED1AF282D65A300032105 /* ShadowTokensView.swift in Sources */,
 				79F63C0229B0695C00FB19A9 /* OverlayViewController.swift in Sources */,
@@ -1943,6 +1962,7 @@
 				53D6396F2A7D46ED007EF376 /* MapMarkerExampleView.swift in Sources */,
 				BA809EC82B05FC2E0030D1E7 /* AppSearchModalGroups.swift in Sources */,
 				53C7F0BA2A4C615D003A8740 /* ChipGroupSingleSelectWrapExampleView.swift in Sources */,
+				1318F74E2C77734C00D42847 /* FieldSetExampleView.swift in Sources */,
 				5390DB5F29098D7300F0F790 /* SpacingTokensViewController.swift in Sources */,
 				53C6621F29EA0DAB00BF1A62 /* StarRatingPlayground.swift in Sources */,
 				8071379C25AF7974009869D1 /* BottomSheetPersistentViewController.swift in Sources */,

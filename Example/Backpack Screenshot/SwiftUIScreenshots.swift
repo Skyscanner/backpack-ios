@@ -770,6 +770,15 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
         
+        await navigate(title: "Field Set") {
+            app.tables.staticTexts["Default State"].tap()
+            saveScreenshot(component: "field-set", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+
+            app.tables.staticTexts["Error State"].tap()
+            saveScreenshot(component: "field-set", scenario: "error", userInterfaceStyle: userInterfaceStyle)
+        }
+        
         await navigate(title: "Snippet") {
             app.tables.staticTexts["Landscape"].tap()
             saveScreenshot(component: "snippet", scenario: "landscape", userInterfaceStyle: userInterfaceStyle)
