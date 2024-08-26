@@ -41,7 +41,7 @@ public struct BPKFieldSet<Content: BPKFieldSetStatusHandling>: View {
     private var state: BPKFieldSet<Content.WrappedView>.State = .default
     private let label: String?
     private let content: Content
-    private var description: String?
+    private let description: String?
     private var accessibilityPrefix: String?
     
     public init(
