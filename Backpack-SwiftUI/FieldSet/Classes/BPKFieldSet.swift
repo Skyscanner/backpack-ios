@@ -25,6 +25,8 @@ public protocol BPKFieldSetStatusHandling: View {
     func inputState(_ state: BPKFieldSet<WrappedView>.State) -> WrappedView
 }
 
+// swiftlint:disable line_length
+
 /// A component which wraps its content (view) and optionally adds a title, description and error label (depending on the field's state) around it.
 /// Supported states are Default, and Error. The states are dispatched to the wrapped view. The wrapped view must conform to `BPKFieldSetStatusHandling` to ensure it can handle the dispatched state.
 ///
@@ -32,6 +34,8 @@ public protocol BPKFieldSetStatusHandling: View {
 ///
 /// Use `accessibilityPrefix(_ prefix: String)` to add a prefix to each accessibilityIdentifier
 /// that gets added to all fieldset's subcomponents
+
+// swiftlint:enable line_length
 
 public struct BPKFieldSet<Content: BPKFieldSetStatusHandling>: View {
     private var state: BPKFieldSet<Content.WrappedView>.State = .default
@@ -69,6 +73,7 @@ public struct BPKFieldSet<Content: BPKFieldSetStatusHandling>: View {
     private var labelView: some View {
         if let label {
             BPKText(label, style: .label2)
+                .lineLimit(nil)
                 .foregroundColor(state.labelColor)
                 .accessibilityIdentifier(accessibilityIdentifier(for: "label"))
         }
@@ -78,6 +83,7 @@ public struct BPKFieldSet<Content: BPKFieldSetStatusHandling>: View {
     private var descriptionView: some View {
         if let description {
             BPKText(description, style: .caption)
+                .lineLimit(nil)
                 .foregroundColor(state.descriptionColor)
                 .accessibilityIdentifier(accessibilityIdentifier(for: "descritpion"))
         }
@@ -89,6 +95,7 @@ public struct BPKFieldSet<Content: BPKFieldSetStatusHandling>: View {
                 .foregroundColor(.textErrorColor)
                 .accessibilityHidden(true)
             BPKText(message, style: .caption)
+                .lineLimit(nil)
                 .foregroundColor(.textErrorColor)
                 .accessibilityIdentifier(accessibilityIdentifier(for: "error_message"))
         }
