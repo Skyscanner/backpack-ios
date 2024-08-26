@@ -28,26 +28,26 @@ struct FieldSetExampleView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: .md) {
-                Text("With Label & Description").fontWeight(.bold)
+                BPKText("With Label & Description", style: .label1)
                 constructFieldSet(
                     withLabel: "Label",
                     andDescription: "Description",
                     wrappedView: BPKTextField(placeholder: "Enter text", .constant(""))
                     )
                 Divider()
-                Text("With Label & No Description").fontWeight(.bold)
+                BPKText("With Label & No Description", style: .label1)
                 constructFieldSet(
                     withLabel: "Label",
                     wrappedView: BPKTextField(placeholder: "Enter text", .constant(""))
                 )
                 Divider()
-                Text("With No Label & Description").fontWeight(.bold)
+                BPKText("With No Label & Description", style: .label1)
                 constructFieldSet(
                     andDescription: "Description",
                     wrappedView: BPKTextArea(.constant(""), placeholder: "Enter text")
                 )
                 Divider()
-                Text("With No Label & No Description").fontWeight(.bold)
+                BPKText("With No Label & No Description", style: .label1)
                 constructFieldSet(
                     wrappedView: BPKSelect(
                         placeholder: "Breakfast Choices",
@@ -64,7 +64,7 @@ struct FieldSetExampleView: View {
     private func constructFieldSet(
         withLabel label: String? = nil,
         andDescription description: String? = nil,
-        wrappedView: some BPKFieldSetStatusHandling
+        wrappedView: some BPKFieldSetContentView
     ) -> some View {
         BPKFieldSet(label: label, description: description) {
             wrappedView
@@ -81,11 +81,10 @@ struct FieldSetExampleView: View {
     }
 }
 
-struct FieldSetExampleView_Previews: PreviewProvider {
-    static var previews: some View {
-        FieldSetExampleView(state: .default)
-            .previewDisplayName("Default State")
-        FieldSetExampleView(state: .error)
-            .previewDisplayName("Error State")
-    }
+#Preview("Default State") {
+    FieldSetExampleView(state: .default)
+}
+
+#Preview("Error State") {
+    FieldSetExampleView(state: .error)
 }

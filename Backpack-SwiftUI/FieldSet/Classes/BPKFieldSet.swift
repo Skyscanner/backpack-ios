@@ -19,10 +19,10 @@
 import SwiftUI
 import UIKit
 
-public protocol BPKFieldSetStatusHandling: View {
-    associatedtype WrappedView: BPKFieldSetStatusHandling
+public protocol BPKFieldSetContentView: View {
+    associatedtype ContentView: BPKFieldSetContentView
     
-    func inputState(_ state: BPKFieldSet<WrappedView>.State) -> WrappedView
+    func inputState(_ state: BPKFieldSet<ContentView>.State) -> ContentView
 }
 
 // swiftlint:disable line_length
@@ -37,8 +37,8 @@ public protocol BPKFieldSetStatusHandling: View {
 
 // swiftlint:enable line_length
 
-public struct BPKFieldSet<Content: BPKFieldSetStatusHandling>: View {
-    private var state: BPKFieldSet<Content.WrappedView>.State = .default
+public struct BPKFieldSet<Content: BPKFieldSetContentView>: View {
+    private var state: BPKFieldSet<Content.ContentView>.State = .default
     private let label: String?
     private let content: Content
     private let description: String?
@@ -101,7 +101,7 @@ public struct BPKFieldSet<Content: BPKFieldSetStatusHandling>: View {
         }
     }
     
-    public func inputState(_ state: BPKFieldSet<Content.WrappedView>.State) -> BPKFieldSet {
+    public func inputState(_ state: BPKFieldSet<Content.ContentView>.State) -> BPKFieldSet {
         var result = self
         result.state = state
         return result
@@ -127,69 +127,58 @@ extension BPKFieldSet {
 
 // MARK: - Previews
 
-#Preview("Default State") {
-    ScrollView {
-        constructViews(inErrorState: false)
-        .padding()
-    }
-}
-
-#Preview("Error State") {
-    ScrollView {
-        constructViews(inErrorState: true)
-        .padding()
-    }
-}
-
 // swiftlint:disable closure_body_length
-@ViewBuilder
-private func constructViews(inErrorState: Bool) -> some View {
-    VStack(spacing: .base) {
-        Text("With Label & Description").fontWeight(.bold)
-        constructFieldSet(
-            withLabel: "Label",
-            andDescription: "Description",
-            wrappedView: BPKTextField(placeholder: "Enter text", .constant("")),
-            errorState: inErrorState
+#Preview {
+    return ScrollView {
+        constructViews()
+    }
+    
+    @ViewBuilder
+    func constructViews() -> some View {
+        VStack(spacing: .base) {
+            BPKText("With Label & Description", style: .label1)
+            constructFieldSet(
+                withLabel: "Label",
+                andDescription: "Description",
+                wrappedView: BPKTextField(placeholder: "Enter text", .constant(""))
             )
-        Divider()
-        Text("With Label & No Description").fontWeight(.bold)
-        constructFieldSet(
-            withLabel: "Label",
-            wrappedView: BPKTextField(placeholder: "Enter text", .constant("")),
-            errorState: inErrorState
-        )
-        Divider()
-        Text("With No Label & Description").fontWeight(.bold)
-        constructFieldSet(
-            andDescription: "Description",
-            wrappedView: BPKTextArea(.constant(""), placeholder: "Enter text"),
-            errorState: inErrorState
-        )
-        Divider()
-        Text("With No Label & No Description").fontWeight(.bold)
-        constructFieldSet(
-            wrappedView: BPKSelect(
-                placeholder: "Breakfast Choices",
-                options: ["Porridge", "Eggs", "Swift UI"],
-                selectedIndex: .constant(1)
-            ),
-            errorState: inErrorState
-        )
+            Divider()
+            BPKText("With Label & No Description", style: .label1)
+            constructFieldSet(
+                withLabel: "Label",
+                wrappedView: BPKTextField(placeholder: "Enter text", .constant(""))
+            )
+            Divider()
+            BPKText("With No Label & Description", style: .label1)
+            constructFieldSet(
+                andDescription: "Description",
+                wrappedView: BPKTextArea(.constant(""), placeholder: "Enter text")
+            )
+            Divider()
+            BPKText("With No Label & No Description", style: .label1)
+            constructFieldSet(
+                wrappedView: BPKSelect(
+                    placeholder: "Breakfast Choices",
+                    options: ["Porridge", "Eggs", "Swift UI"],
+                    selectedIndex: .constant(1)
+                )
+            )
+        }
     }
-}
-
-@ViewBuilder
-private func constructFieldSet(
-    withLabel label: String? = nil,
-    andDescription description: String? = nil,
-    wrappedView: some BPKFieldSetStatusHandling,
-    errorState: Bool = false
-) -> some View {
-    BPKFieldSet(label: label, description: description) {
-        wrappedView
-    }
-    .if(errorState) { view in
-        view.inputState(.error(message: "Error Message"))
+    
+    @ViewBuilder
+    func constructFieldSet(
+        withLabel label: String? = nil,
+        andDescription description: String? = nil,
+        wrappedView: some BPKFieldSetContentView
+    ) -> some View {
+        ForEach([0, 1], id: \.self) { index in
+            BPKFieldSet(label: label, description: description) {
+                wrappedView
+            }
+            .if(index == 1) { view in
+                view.inputState(.error(message: "Error Message"))
+            }
+        }
     }
 }
