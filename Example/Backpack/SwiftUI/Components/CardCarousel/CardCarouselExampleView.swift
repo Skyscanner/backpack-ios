@@ -22,16 +22,43 @@ import Backpack_SwiftUI
 
 struct CardCarouselExampleView: View {
     @State private var currentIndex: Int = 0
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
     var body: some View {
-        BPKCardCarousel(
-            cards: [
-                createCard(image: "graphic_promo"),
-                createCard(image: "Dublin-TempleBar"),
-                createCard(image: "canadian_rockies_canada")
-            ],
-            currentIndex: $currentIndex
-        )
+        GeometryReader { reader in
+            HStack(alignment: .center, spacing: .zero) {
+                BPKCardCarousel(
+                    cards: [
+                        createCard(image: "graphic_promo"),
+                        createCard(image: "Dublin-TempleBar"),
+                        createCard(image: "canadian_rockies_canada")
+                    ],
+                    currentIndex: $currentIndex
+                )
+                .if( // This is to demonstrate IPad that isnt landscape
+                    horizontalSizeClass == .regular && !UIDevice.current.orientation.isLandscape,
+                    transform: { view in
+                        view.frame(
+                            width: reader.size.width * 0.8,
+                            height: reader.size.height * 0.5
+                        )
+                    }
+                )
+                .if( // This is to demonstrate IPad that is landscape
+                    horizontalSizeClass == .regular && UIDevice.current.orientation.isLandscape,
+                    transform: { view in
+                        view.frame(
+                            width: reader.size.width * 0.8,
+                            height: reader.size.height * 0.8
+                        )
+                    }
+                )
+                .position(
+                    x: reader.size.width / 2,
+                    y: reader.size.height / 2
+                )
+            }
+        }
     }
     
     private func createCard(image: String) -> some View {

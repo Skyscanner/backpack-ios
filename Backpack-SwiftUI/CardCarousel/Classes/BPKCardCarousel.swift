@@ -49,12 +49,20 @@ internal struct InternalCardCarousel<Content: View>: View {
     @Binding private var currentIndex: Int
     @State private var currentInternalIndex: Int
     @AccessibilityFocusState private var focusOnCard: Int?
-    private let isIPad: Bool
+    
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    
     private let content: [Content]
     private let size: CGSize
     
     private let cardCount: Int
-    private let cardWidth: CGFloat
+    private var cardWidth: CGFloat {
+        if horizontalSizeClass == .regular {
+            (size.width * 0.8) * 0.4
+        } else {
+            size.width * 0.8
+        }
+    }
     private let dragAnimation: Animation = .spring(
         response: 0.5,
         dampingFraction: 0.825,
@@ -68,47 +76,34 @@ internal struct InternalCardCarousel<Content: View>: View {
         content: [Content],
         currentIndex: Binding<Int>
     ) {
-        self.isIPad = UIDevice.current.name.hasPrefix("iPad")
         self.size = size
         self._currentIndex = currentIndex
-        self.cardWidth = isIPad ? (size.width * 0.8) * 0.4 : size.width * 0.8
         self.cardCount = content.count
         self._currentInternalIndex = State(initialValue: cardCount + 1 + currentIndex.wrappedValue)
         
-        if isIPad && UIDevice.current.orientation.isLandscape {
-            self.content = content
-        } else {
-            self.content = content + content
-        }
+        // This is to ensure enough cards to create illusion of
+        // infinite scroll
+        self.content = content + content
         
         focusOnCard = .init(currentInternalIndex)
     }
     
     var body: some View {
-        if isIPad && UIDevice.current.orientation.isLandscape {
-            carouselIPadLandscape
-        } else if isIPad {
-            carouselIPadPortrait
+        if horizontalSizeClass == .regular &&
+            UIDevice.current.orientation.isLandscape &&
+            cardCount <= 3 {
+            carouselLandscape
         } else {
             carousel
         }
     }
     
-    private var carouselIPadLandscape: some View {
+    private var carouselLandscape: some View {
         HStack(spacing: .xxl) {
-            ForEach(Array(content.enumerated()), id: \.offset) { _, card in
-                card
+            ForEach((0..<cardCount), id: \.self) {
+                content[$0]
             }
         }
-    }
-    
-    private var carouselIPadPortrait: some View {
-        carousel
-            .frame(
-                width: cardWidth * 3,
-                height: self.size.height / 2
-            )
-            .clipped()
     }
     
     private var carousel: some View {
@@ -119,7 +114,7 @@ internal struct InternalCardCarousel<Content: View>: View {
                         .frame(width: cardWidth)
                         .offset(x: isDragging ? totalDrag : getContentOffset(
                             for: index,
-                            spacing: isIPad ? 0 : BPKSpacing.base.value
+                            spacing: horizontalSizeClass == .regular ? 0 : BPKSpacing.base.value
                         ))
                         .animation(dragAnimation, value: totalDrag)
                         .scaleEffect(scaleEffect(for: index))
@@ -133,6 +128,13 @@ internal struct InternalCardCarousel<Content: View>: View {
             
             cardIndicator()
         }
+        .if(horizontalSizeClass == .regular, transform: {view in
+            view
+                .frame(
+                    width: cardWidth * 3
+                )
+                .clipped()
+        })
     }
 
     private var offset: CGFloat {
