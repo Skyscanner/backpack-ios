@@ -54,6 +54,7 @@ struct ComponentCellsProvider {
             cardCarousel(),
             chips(),
             chipGroup(),
+            fieldSet(),
             flightLeg(),
             flare(),
             floatingNotification(),
@@ -653,6 +654,15 @@ extension ComponentCellsProvider {
                 .swiftui(groups: PriceGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "Price", tabs: $0) }
+        )
+    }
+    private func fieldSet() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Field Set",
+            tabs: [
+                .swiftui(groups: FieldSetGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
+            ],
+            showChildren: { showComponent(title: "Field Set", tabs: $0) }
         )
     }
     private func flightLeg() -> CellDataSource {
