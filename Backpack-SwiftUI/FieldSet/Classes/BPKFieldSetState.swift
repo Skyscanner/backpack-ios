@@ -19,9 +19,11 @@
 import SwiftUI
 
 extension BPKFieldSet {
-    /// The state of the text area.
+    /// The state of the field set.
     public enum State {
+        /// Default state.
         case `default`
+        /// Error state of the field. Adds an errors message beneath the description or the wrapped view if no description is provided.
         case error(message: String)
         
         var labelColor: BPKColor {

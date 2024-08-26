@@ -69,6 +69,7 @@ struct FieldSetExampleView: View {
         BPKFieldSet(label: label, description: description) {
             wrappedView
         }
+        .accessibilityPrefix("Example")
         .if(state == .error) { view in
             view.inputState(.error(message: "Error Message"))
         }
