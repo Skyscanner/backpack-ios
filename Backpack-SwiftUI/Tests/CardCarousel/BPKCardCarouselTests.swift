@@ -21,6 +21,10 @@ import SwiftUI
 @testable import Backpack_SwiftUI
 
 class BPKCardCarouselTests: XCTestCase {
+    override class func tearDown() {
+        XCUIDevice.shared.orientation = .portrait
+    }
+    
     func testCardCarousel() {
         assertSnapshot(
             BPKCardCarousel(
@@ -51,6 +55,8 @@ class BPKCardCarouselTests: XCTestCase {
     }
     
     func testCardCarouselIPadLandscape() {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        
         assertSnapshot(
             BPKCardCarousel(
                 cards: [

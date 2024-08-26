@@ -53,10 +53,7 @@ struct CardCarouselExampleView: View {
                         )
                     }
                 )
-                .position(
-                    x: reader.size.width / 2,
-                    y: reader.size.height / 2
-                )
+                .position(x: reader.size.width / 2, y: reader.size.height / 2)
             }
         }
     }
@@ -65,8 +62,8 @@ struct CardCarouselExampleView: View {
         BPKCarouselCard(
             content: {
                 Image(image)
-                    .resizable()
-                    .scaledToFill()
+
+                    .aspectRatio(contentMode: .fill)
             },
             title: "Someone Walking",
             description: "Look at the views",
