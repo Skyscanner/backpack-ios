@@ -7,6 +7,7 @@ For decisions that apply to **all** Backpack repos, see [Backpack decisions](htt
 ## Decisions
 
 <!-- Please keep this in alphabetical order. -->
++ [UI test accessibility identifiers](./ui-test-accessibility-identifiers.md)
 + [Assume non-null by default in Objective-C](./assume-non-null-by-default.md)
 + [Components preview](./components-preview.md)
 + [Import ordering](./import-ordering.md)
