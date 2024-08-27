@@ -19,12 +19,9 @@
 import XCTest
 import SwiftUI
 @testable import Backpack_SwiftUI
+import SnapshotTesting
 
 class BPKCardCarouselTests: XCTestCase {
-    override class func tearDown() {
-        XCUIDevice.shared.orientation = .portrait
-    }
-    
     func testCardCarousel() {
         assertSnapshot(
             BPKCardCarousel(
@@ -38,42 +35,32 @@ class BPKCardCarouselTests: XCTestCase {
         )
     }
     
-    func testCardCarouselIPadPortrait() {
-        assertSnapshot(
-            BPKCardCarousel(
+    func testCardCarouselIPad() {
+        let cardCarousel = BPKCardCarousel(
                 cards: [
                     createCard(),
                     createCard(),
                     createCard()
                 ],
                 currentIndex: .constant(0)
-            ).frame(
-                width: 820.0,
-                height: 1180.0
             )
+        
+        // Then
+        assertSnapshot(
+            matching: cardCarousel,
+            as: .image(layout: .device(config: .iPadPro10_5(.landscape))),
+            named: "ipad_landscape"
         )
-    }
-    
-    func testCardCarouselIPadLandscape() {
-        XCUIDevice.shared.orientation = .landscapeLeft
         
         assertSnapshot(
-            BPKCardCarousel(
-                cards: [
-                    createCard(),
-                    createCard(),
-                    createCard()
-                ],
-                currentIndex: .constant(0)
-            ).frame(
-                width: 1180.0,
-                height: 820.0
-            )
+            matching: cardCarousel,
+            as: .image(layout: .device(config: .iPadPro10_5(.portrait))),
+            named: "ipad_portrait"
         )
     }
     
     func test_accessibility() {
-        let card = BPKCardCarousel(
+        let cardCarousel = BPKCardCarousel(
             cards: [
                 createCard(),
                 createCard(),
@@ -81,7 +68,8 @@ class BPKCardCarouselTests: XCTestCase {
             ],
             currentIndex: .constant(0)
         ).frame(width: 300, height: 530)
-        assertA11ySnapshot(card)
+        
+        assertA11ySnapshot(cardCarousel)
     }
     
     private func createCard() -> BPKCarouselCard<AnyView> {
