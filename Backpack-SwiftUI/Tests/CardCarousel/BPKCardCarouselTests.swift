@@ -46,16 +46,49 @@ class BPKCardCarouselTests: XCTestCase {
         )
         
         // Then
+        
+        // IPad Landscape
         assertSnapshot(
             matching: cardCarousel,
-            as: .image(layout: .device(config: .iPadPro10_5(.landscape))),
-            named: "ipad_landscape"
+            as: .image(layout: .device(config: .iPadPro10_5(.landscape(splitView: .full)))),
+            named: "ipad_landscape_full"
         )
         
         assertSnapshot(
             matching: cardCarousel,
-            as: .image(layout: .device(config: .iPadPro10_5(.portrait))),
-            named: "ipad_portrait"
+            as: .image(layout: .device(config: .iPadPro10_5(.landscape(splitView: .oneHalf)))),
+            named: "ipad_landscape_half"
+        )
+        
+        assertSnapshot(
+            matching: cardCarousel,
+            as: .image(layout: .device(config: .iPadPro10_5(.landscape(splitView: .oneThird)))),
+            named: "ipad_landscape_third"
+        )
+        
+        assertSnapshot(
+            matching: cardCarousel,
+            as: .image(layout: .device(config: .iPadPro10_5(.landscape(splitView: .twoThirds)))),
+            named: "ipad_landscape_two_thirds"
+        )
+        
+        // IPad Portrait
+        assertSnapshot(
+            matching: cardCarousel,
+            as: .image(layout: .device(config: .iPadPro10_5(.portrait(splitView: .full)))),
+            named: "ipad_portrait_full"
+        )
+        
+        assertSnapshot(
+            matching: cardCarousel,
+            as: .image(layout: .device(config: .iPadPro10_5(.portrait(splitView: .oneThird)))),
+            named: "ipad_portrait_third"
+        )
+        
+        assertSnapshot(
+            matching: cardCarousel,
+            as: .image(layout: .device(config: .iPadPro10_5(.portrait(splitView: .twoThirds)))),
+            named: "ipad_portrait_two_third"
         )
     }
     
