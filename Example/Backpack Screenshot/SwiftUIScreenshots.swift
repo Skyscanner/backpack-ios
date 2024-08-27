@@ -559,6 +559,11 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "search-input-summary", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
+        
+        await navigate(title: "Search Control Input") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "search-control-input", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
 
         await navigate(title: "Bottom sheet") {
             switchTab(title: "SwiftUI")
@@ -768,6 +773,15 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             app.tables.staticTexts["Single Selection"].tap()
             saveScreenshot(component: "calendar", scenario: "single", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
+        }
+        
+        await navigate(title: "Field Set") {
+            app.tables.staticTexts["Default State"].tap()
+            saveScreenshot(component: "field-set", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+
+            app.tables.staticTexts["Error State"].tap()
+            saveScreenshot(component: "field-set", scenario: "error", userInterfaceStyle: userInterfaceStyle)
         }
         
         await navigate(title: "Snippet") {
