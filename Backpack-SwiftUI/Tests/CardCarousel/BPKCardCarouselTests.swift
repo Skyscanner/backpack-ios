@@ -37,13 +37,13 @@ class BPKCardCarouselTests: XCTestCase {
     
     func testCardCarouselIPad() {
         let cardCarousel = BPKCardCarousel(
-                cards: [
-                    createCard(),
-                    createCard(),
-                    createCard()
-                ],
-                currentIndex: .constant(0)
-            )
+            cards: [
+                createCard(),
+                createCard(),
+                createCard()
+            ],
+            currentIndex: .constant(0)
+        )
         
         // Then
         assertSnapshot(

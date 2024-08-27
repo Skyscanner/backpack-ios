@@ -90,7 +90,7 @@ internal struct InternalCardCarousel<Content: View>: View {
     
     var body: some View {
         if horizontalSizeClass == .regular &&
-            UIDevice.current.orientation.isLandscape &&
+            size.height < size.width &&
             cardCount <= 3 {
             carouselLandscape
         } else {
