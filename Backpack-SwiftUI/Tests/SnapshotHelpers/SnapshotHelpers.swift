@@ -35,14 +35,14 @@ func assertSnapshot<V: View>(
     modes: [SnapshotModes] = [.light, .dark, .rtl],
     file: StaticString = #file,
     testName: String = #function,
-    line: UInt = #line
+    line: UInt = #line,
+    device: SwiftUISnapshotLayout = .sizeThatFits
 ) {
-    let view: UIView = UIHostingController(rootView: view).view
     isRecording = false
     modes.forEach { mode in
         assertSnapshot(
             matching: view,
-            as: .image(size: view.intrinsicContentSize, traits: mode.trait),
+            as: .image(layout: device, traits: mode.trait),
             named: mode.name,
             file: file,
             testName: testName,

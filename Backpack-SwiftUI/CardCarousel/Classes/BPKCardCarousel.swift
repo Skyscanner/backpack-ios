@@ -51,6 +51,7 @@ internal struct InternalCardCarousel<Content: View>: View {
     @AccessibilityFocusState private var focusOnCard: Int?
     
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
     
     private let content: [Content]
     private let size: CGSize
@@ -90,7 +91,7 @@ internal struct InternalCardCarousel<Content: View>: View {
     
     var body: some View {
         if horizontalSizeClass == .regular &&
-            size.height < size.width &&
+            verticalSizeClass == .regular &&
             cardCount <= 3 {
             carouselLandscape
         } else {

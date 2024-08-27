@@ -35,8 +35,8 @@ struct CardCarouselExampleView: View {
                     ],
                     currentIndex: $currentIndex
                 )
-                .if( // This is to demonstrate IPad that isnt landscape
-                    horizontalSizeClass == .regular && reader.size.height > reader.size.width,
+                .if( // This is to demonstrate IPad that isnt portrait
+                    horizontalSizeClass == .regular && reader.size.width < reader.size.height,
                     transform: { view in
                         view.frame(
                             width: reader.size.width * 0.8,
@@ -45,7 +45,7 @@ struct CardCarouselExampleView: View {
                     }
                 )
                 .if( // This is to demonstrate IPad that is landscape
-                    horizontalSizeClass == .regular && reader.size.height < reader.size.width,
+                    horizontalSizeClass == .regular && reader.size.width > reader.size.height,
                     transform: { view in
                         view.frame(
                             width: reader.size.width * 0.8,
