@@ -64,7 +64,7 @@ struct FieldSetExampleView: View {
     private func constructFieldSet(
         withLabel label: String? = nil,
         andDescription description: String? = nil,
-        wrappedView: some BPKFieldSetContentView
+        wrappedView: some View
     ) -> some View {
         BPKFieldSet(label: label, description: description) {
             wrappedView

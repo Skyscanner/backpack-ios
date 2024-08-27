@@ -19,16 +19,10 @@
 import SwiftUI
 import UIKit
 
-public protocol BPKFieldSetContentView: View {
-    associatedtype ContentView: BPKFieldSetContentView
-    
-    func inputState(_ state: BPKFieldSet<ContentView>.State) -> ContentView
-}
-
 // swiftlint:disable line_length
 
 /// A component which wraps its content (view) and optionally adds a title, description and error label (depending on the field's state) around it.
-/// Supported states are Default, and Error. The states are dispatched to the wrapped view. The wrapped view must conform to `BPKFieldSetStatusHandling` to ensure it can handle the dispatched state.
+/// Supported states are Default, and Error. The states are dispatched to the wrapped view through the .environment modifier.
 ///
 /// Use `inputState(_ state: State)` to change the state of the field set.
 ///
@@ -37,8 +31,8 @@ public protocol BPKFieldSetContentView: View {
 
 // swiftlint:enable line_length
 
-public struct BPKFieldSet<Content: BPKFieldSetContentView>: View {
-    private var state: BPKFieldSet<Content.ContentView>.State = .default
+public struct BPKFieldSet<Content: View>: View {
+    private var state: BPKFieldSetState = .default
     private let label: String?
     private let content: Content
     private let description: String?
@@ -47,7 +41,7 @@ public struct BPKFieldSet<Content: BPKFieldSetContentView>: View {
     public init(
         label: String? = nil,
         description: String? = nil,
-        content: () -> Content
+        @ViewBuilder content: () -> Content
     ) {
         self.label = label
         self.description = description
@@ -58,8 +52,8 @@ public struct BPKFieldSet<Content: BPKFieldSetContentView>: View {
         VStack(alignment: .leading, spacing: .sm) {
             labelView
             content
-                .inputState(state)
                 .padding(.bottom, .sm)
+                .environment(\.bpkFieldSetState, state)
                 .accessibilityIdentifier(accessibilityIdentifier(for: "wrapped_view"))
             descriptionView
             if case let .error(message) = state {
@@ -101,7 +95,7 @@ public struct BPKFieldSet<Content: BPKFieldSetContentView>: View {
         }
     }
     
-    public func inputState(_ state: BPKFieldSet<Content.ContentView>.State) -> BPKFieldSet {
+    public func inputState(_ state: BPKFieldSetState) -> BPKFieldSet {
         var result = self
         result.state = state
         return result
@@ -122,6 +116,17 @@ extension BPKFieldSet {
             return "\(prefix)_\(label)"
         }
         return ""
+    }
+}
+
+struct BPKFieldSetStateKey: EnvironmentKey {
+    static var defaultValue: BPKFieldSetState = .default
+}
+
+extension EnvironmentValues {
+    var bpkFieldSetState: BPKFieldSetState {
+        get { self[BPKFieldSetStateKey.self] } // swiftlint:disable:this implicit_getter
+        set { self[BPKFieldSetStateKey.self] = newValue }
     }
 }
 
@@ -170,7 +175,7 @@ extension BPKFieldSet {
     func constructFieldSet(
         withLabel label: String? = nil,
         andDescription description: String? = nil,
-        wrappedView: some BPKFieldSetContentView
+        wrappedView: some View
     ) -> some View {
         ForEach([0, 1], id: \.self) { index in
             BPKFieldSet(label: label, description: description) {

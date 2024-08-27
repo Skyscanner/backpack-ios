@@ -26,10 +26,11 @@ public struct BPKTextField: View {
         let icon: BPKIcon
         let color: BPKColor
     }
+    @Environment(\.bpkFieldSetState) var wrapperState
     
     @Binding private var text: String
     private let placeholder: String
-    private var state: State = .default
+    @SwiftUI.State private var state: State = .default
 
     /// Creates a `BPKTextField`.
     ///
@@ -59,6 +60,7 @@ public struct BPKTextField: View {
         .if(!BPKFont.enableDynamicType, transform: {
             $0.sizeCategory(.large)
         })
+        .onChange(of: wrapperState, perform: wrapperState(_:))
     }
     
     private var accessory: some View {
@@ -80,9 +82,17 @@ public struct BPKTextField: View {
     }
     
     public func inputState(_ state: State) -> BPKTextField {
-        var result = self
-        result.state = state
-        return result
+        self.state = state
+        return self
+    }
+    
+    private func wrapperState(_ state: BPKFieldSetState) {
+        switch state {
+        case .default:
+            self.state = .default
+        case .error:
+            self.state = .error
+        }
     }
 }
 

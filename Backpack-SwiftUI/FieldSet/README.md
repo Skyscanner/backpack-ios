@@ -20,7 +20,7 @@
 
 FieldSet is a component which wraps its content (view) and optionally adds a title, description and error label (depending on the field's state) around it.
 
-Supported states are Default, and Error. The states are dispatched to the wrapped view. The wrapped view must conform to `BPKFieldSetContentView` to ensure it can handle the dispatched state.
+Supported states are Default, and Error. The states are dispatched to the wrapped view through the .environment modifier.
 
 
 ## BPKFieldSet

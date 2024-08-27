@@ -18,27 +18,25 @@
 
 import SwiftUI
 
-extension BPKFieldSet {
-    /// The state of the field set.
-    public enum State {
-        /// Default state.
-        case `default`
-        /// Error state
-        /// Adds an errors message beneath the description or the wrapped view if no description is provided.
-        case error(message: String)
-        
-        var labelColor: BPKColor {
-            switch self {
-            case .default: return .textPrimaryColor
-            case .error: return .textErrorColor
-            }
+/// The state of the field set.
+public enum BPKFieldSetState: Equatable {
+    /// Default state.
+    case `default`
+    /// Error state
+    /// Adds an errors message beneath the description or the wrapped view if no description is provided.
+    case error(message: String)
+    
+    var labelColor: BPKColor {
+        switch self {
+        case .default: return .textPrimaryColor
+        case .error: return .textErrorColor
         }
-        
-        var descriptionColor: BPKColor {
-            switch self {
-            case .default: return .textSecondaryColor
-            case .error: return .textSecondaryColor
-            }
+    }
+    
+    var descriptionColor: BPKColor {
+        switch self {
+        case .default: return .textSecondaryColor
+        case .error: return .textSecondaryColor
         }
     }
 }
