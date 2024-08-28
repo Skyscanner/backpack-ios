@@ -34,8 +34,79 @@ class BPKCardCarouselTests: XCTestCase {
         )
     }
     
+    // This test will assert that the carousel looks as expected in the different aspect ratios of iPad screen sizes
+    func testCardCarouselIPad() {
+        let cardCarousel = BPKCardCarousel(
+            cards: [
+                createCard(),
+                createCard(),
+                createCard()
+            ],
+            currentIndex: .constant(0)
+        )
+        
+        // Then
+        // IPad Landscape
+        // Full
+        assertSnapshot(
+            cardCarousel
+                .frame(width: 1112, height: 834)
+            ,
+            testName: "ipad_landscape_full"
+        )
+        
+        // Two thirds
+        assertSnapshot(
+            cardCarousel
+                .frame(width: 782, height: 834)
+            ,
+            testName: "ipad_landscape_two_thirds"
+        )
+        
+        // One half
+        assertSnapshot(
+            cardCarousel
+                .frame(width: 551, height: 834)
+            ,
+            testName: "ipad_landscape_half"
+        )
+        
+        // One third
+        assertSnapshot(
+            cardCarousel
+                .frame(width: 320, height: 834)
+            ,
+            testName: "ipad_landscape_third"
+        )
+        
+        // iPad Potrait
+        // Full
+        assertSnapshot(
+            cardCarousel
+                .frame(width: 834, height: 1112)
+            ,
+            testName: "ipad_potrait_full"
+        )
+        
+        // Two thirds
+        assertSnapshot(
+            cardCarousel
+                .frame(width: 504, height: 1112)
+            ,
+            testName: "ipad_potrait_two_thirds"
+        )
+        
+        // One third
+        assertSnapshot(
+            cardCarousel
+                .frame(width: 320, height: 1112)
+            ,
+            testName: "ipad_potrait_third"
+        )
+    }
+    
     func test_accessibility() {
-        let card = BPKCardCarousel(
+        let cardCarousel = BPKCardCarousel(
             cards: [
                 createCard(),
                 createCard(),
@@ -43,7 +114,8 @@ class BPKCardCarouselTests: XCTestCase {
             ],
             currentIndex: .constant(0)
         ).frame(width: 300, height: 530)
-        assertA11ySnapshot(card)
+        
+        assertA11ySnapshot(cardCarousel)
     }
     
     private func createCard() -> BPKCarouselCard<AnyView> {

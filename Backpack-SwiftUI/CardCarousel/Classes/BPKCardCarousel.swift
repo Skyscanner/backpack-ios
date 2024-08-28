@@ -46,13 +46,24 @@ public struct BPKCardCarousel<Content: View>: View {
 }
 
 internal struct InternalCardCarousel<Content: View>: View {
+    private let numberOfCardsForLandscape: CGFloat = 3.0
     @Binding private var currentIndex: Int
     @State private var currentInternalIndex: Int
     @AccessibilityFocusState private var focusOnCard: Int?
+    
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    
     private let content: [Content]
+    private let size: CGSize
     
     private let cardCount: Int
-    private let cardWidth: CGFloat
+    private var cardWidth: CGFloat {
+        if horizontalSizeClass == .regular {
+            size.width / numberOfCardsForLandscape
+        } else {
+            size.width * 0.8
+        }
+    }
     private let dragAnimation: Animation = .spring(
         response: 0.5,
         dampingFraction: 0.825,
@@ -66,11 +77,15 @@ internal struct InternalCardCarousel<Content: View>: View {
         content: [Content],
         currentIndex: Binding<Int>
     ) {
+        self.size = size
         self._currentIndex = currentIndex
-        self.cardWidth = size.width * 0.8
         self.cardCount = content.count
         self._currentInternalIndex = State(initialValue: cardCount + 1 + currentIndex.wrappedValue)
+        
+        // This is to ensure enough cards to create illusion of
+        // infinite scroll
         self.content = content + content
+        
         focusOnCard = .init(currentInternalIndex)
     }
     
@@ -82,7 +97,7 @@ internal struct InternalCardCarousel<Content: View>: View {
                         .frame(width: cardWidth)
                         .offset(x: isDragging ? totalDrag : getContentOffset(
                             for: index,
-                            spacing: BPKSpacing.base.value
+                            spacing: horizontalSizeClass == .regular ? 0 : BPKSpacing.base.value
                         ))
                         .animation(dragAnimation, value: totalDrag)
                         .scaleEffect(scaleEffect(for: index))
@@ -96,6 +111,13 @@ internal struct InternalCardCarousel<Content: View>: View {
             
             cardIndicator()
         }
+        .if(horizontalSizeClass == .regular, transform: {view in
+            view
+                .frame(
+                    width: cardWidth * numberOfCardsForLandscape
+                )
+                .clipped()
+        })
     }
 
     private var offset: CGFloat {
@@ -143,7 +165,7 @@ internal struct InternalCardCarousel<Content: View>: View {
 
     private func onDragEnded(value: DragGesture.Value) {
         withAnimation(dragAnimation) {
-            let draggingWindow = (cardWidth / 2.0)
+            let draggingWindow = (cardWidth / 4.0)
             if value.translation.width < -draggingWindow {
                 handleLeftSwipe()
             } else if value.translation.width > draggingWindow {
