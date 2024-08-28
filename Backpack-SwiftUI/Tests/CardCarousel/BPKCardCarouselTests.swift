@@ -19,7 +19,6 @@
 import XCTest
 import SwiftUI
 @testable import Backpack_SwiftUI
-import SnapshotTesting
 
 class BPKCardCarouselTests: XCTestCase {
     func testCardCarousel() {
