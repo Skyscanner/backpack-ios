@@ -47,47 +47,61 @@ class BPKCardCarouselTests: XCTestCase {
         
         // Then
         // IPad Landscape
+        // Full
         assertSnapshot(
-            cardCarousel,
-            testName: "ipad_landscape_full",
-            device: .device(config: .iPadPro10_5(.landscape(splitView: .full)))
+            cardCarousel
+                .frame(width: 1112, height: 834)
+            ,
+            testName: "ipad_landscape_full"
         )
         
+        // Two thirds
         assertSnapshot(
-            cardCarousel,
-            testName: "ipad_landscape_half",
-            device: .device(config: .iPadPro10_5(.landscape(splitView: .oneHalf)))
+            cardCarousel
+                .frame(width: 782, height: 834)
+            ,
+            testName: "ipad_landscape_two_thirds"
         )
         
+        // One half
         assertSnapshot(
-            cardCarousel,
-            testName: "ipad_landscape_two_thirds",
-            device: .device(config: .iPadPro10_5(.landscape(splitView: .twoThirds)))
+            cardCarousel
+                .frame(width: 551, height: 834)
+            ,
+            testName: "ipad_landscape_half"
         )
         
+        // One third
         assertSnapshot(
-            cardCarousel,
-            testName: "ipad_landscape_third",
-            device: .device(config: .iPadPro10_5(.landscape(splitView: .oneThird)))
+            cardCarousel
+                .frame(width: 320, height: 834)
+            ,
+            testName: "ipad_landscape_third"
         )
         
-        // IPad Portrait
+        // iPad Potrait
+        // Full
         assertSnapshot(
-            cardCarousel,
-            testName: "ipad_portrait_full",
-            device: .device(config: .iPadPro10_5(.portrait(splitView: .full)))
+            cardCarousel
+                .frame(width: 834, height: 1112)
+            ,
+            testName: "ipad_potrait_full"
         )
         
+        // Two thirds
         assertSnapshot(
-            cardCarousel,
-            testName: "ipad_portrait_two_third",
-            device: .device(config: .iPadPro10_5(.portrait(splitView: .twoThirds)))
+            cardCarousel
+                .frame(width: 504, height: 1112)
+            ,
+            testName: "ipad_potrait_two_thirds"
         )
         
+        // One third
         assertSnapshot(
-            cardCarousel,
-            testName: "ipad_portrait_third",
-            device: .device(config: .iPadPro10_5(.portrait(splitView: .oneThird)))
+            cardCarousel
+                .frame(width: 320, height: 1112)
+            ,
+            testName: "ipad_potrait_third"
         )
     }
     

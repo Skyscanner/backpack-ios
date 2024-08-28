@@ -46,12 +46,12 @@ public struct BPKCardCarousel<Content: View>: View {
 }
 
 internal struct InternalCardCarousel<Content: View>: View {
+    private let numberOfCardsForLandscape: CGFloat = 3.0
     @Binding private var currentIndex: Int
     @State private var currentInternalIndex: Int
     @AccessibilityFocusState private var focusOnCard: Int?
     
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
-    @Environment(\.verticalSizeClass) private var verticalSizeClass
     
     private let content: [Content]
     private let size: CGSize
@@ -59,7 +59,7 @@ internal struct InternalCardCarousel<Content: View>: View {
     private let cardCount: Int
     private var cardWidth: CGFloat {
         if horizontalSizeClass == .regular {
-            (size.width * 0.8) * 0.4
+            size.width / numberOfCardsForLandscape
         } else {
             size.width * 0.8
         }
@@ -90,24 +90,6 @@ internal struct InternalCardCarousel<Content: View>: View {
     }
     
     var body: some View {
-        if horizontalSizeClass == .regular &&
-            verticalSizeClass == .regular &&
-            cardCount <= 3 {
-            carouselLandscape
-        } else {
-            carousel
-        }
-    }
-    
-    private var carouselLandscape: some View {
-        HStack(spacing: .xxl) {
-            ForEach((0..<cardCount), id: \.self) {
-                content[$0]
-            }
-        }
-    }
-    
-    private var carousel: some View {
         VStack(spacing: .md) {
             LazyHStack(alignment: .center, spacing: 0) {
                 ForEach(Array(content.enumerated()), id: \.offset) { index, card in
