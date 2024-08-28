@@ -114,7 +114,7 @@ internal struct InternalCardCarousel<Content: View>: View {
         .if(horizontalSizeClass == .regular, transform: {view in
             view
                 .frame(
-                    width: cardWidth * 3
+                    width: cardWidth * numberOfCardsForLandscape
                 )
                 .clipped()
         })

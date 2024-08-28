@@ -34,6 +34,7 @@ class BPKCardCarouselTests: XCTestCase {
         )
     }
     
+    // This test will assert that the carousel looks as expected in the different aspect ratios of iPad screen sizes
     func testCardCarouselIPad() {
         let cardCarousel = BPKCardCarousel(
             cards: [
