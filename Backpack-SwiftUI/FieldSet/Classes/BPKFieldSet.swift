@@ -54,7 +54,7 @@ public struct BPKFieldSet<Content: View>: View {
             content
                 .padding(.bottom, .sm)
                 .environment(\.bpkFieldSetState, state)
-                .accessibilityIdentifier(accessibilityIdentifier(for: "wrapped_view"))
+                .accessibilityIdentifier(accessibilityIdentifier(for: AccessibilityID.content))
             descriptionView
             if case let .error(message) = state {
                 errorMessage(message)
@@ -69,7 +69,7 @@ public struct BPKFieldSet<Content: View>: View {
             BPKText(label, style: .label2)
                 .lineLimit(nil)
                 .foregroundColor(state.labelColor)
-                .accessibilityIdentifier(accessibilityIdentifier(for: "label"))
+                .accessibilityIdentifier(accessibilityIdentifier(for: AccessibilityID.label))
         }
     }
     
@@ -79,7 +79,7 @@ public struct BPKFieldSet<Content: View>: View {
             BPKText(description, style: .caption)
                 .lineLimit(nil)
                 .foregroundColor(state.descriptionColor)
-                .accessibilityIdentifier(accessibilityIdentifier(for: "descritpion"))
+                .accessibilityIdentifier(accessibilityIdentifier(for: AccessibilityID.description))
         }
     }
     
@@ -91,7 +91,7 @@ public struct BPKFieldSet<Content: View>: View {
             BPKText(message, style: .caption)
                 .lineLimit(nil)
                 .foregroundColor(.textErrorColor)
-                .accessibilityIdentifier(accessibilityIdentifier(for: "error_message"))
+                .accessibilityIdentifier(accessibilityIdentifier(for: AccessibilityID.errorMessage))
         }
     }
     
@@ -111,11 +111,18 @@ extension BPKFieldSet {
         return result
     }
     
-    private func accessibilityIdentifier(for label: String) -> String {
+    private func accessibilityIdentifier(for subview: AccessibilityID) -> String {
         if let prefix = accessibilityPrefix {
-            return "\(prefix)_\(label)"
+            return "\(prefix)_\(subview.rawValue)"
         }
         return ""
+    }
+    
+    private enum AccessibilityID: String {
+        case label
+        case content = "content_view"
+        case description
+        case errorMessage = "error_message"
     }
 }
 
