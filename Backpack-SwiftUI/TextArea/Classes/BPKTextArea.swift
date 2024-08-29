@@ -40,15 +40,15 @@ public struct BPKTextArea: View {
     @Environment(\.bpkFieldSetState) var fieldSetState
     @Binding private var value: String
     private let placeholder: String?
-    private var _state: State = .default
-    private var state: State {
+    private var state: State = .default
+    private var resolvedState: State {
         switch fieldSetState {
         case .default:
             return .default
         case .error:
             return .error
         default:
-            return _state
+            return state
         }
     }
     
@@ -125,14 +125,14 @@ public struct BPKTextArea: View {
         .clipShape(
             RoundedRectangle(cornerRadius: BorderConstants.cornerRadius)
         )
-        .outline(state.borderColor, cornerRadius: BorderConstants.cornerRadius)
+        .outline(resolvedState.borderColor, cornerRadius: BorderConstants.cornerRadius)
         .frame(minHeight: frameHeight)
         .accessibilityLabel(accessibilityLabelText)
     }
     
     @ViewBuilder
     private var accessory: some View {
-        if let icon = state.icon {
+        if let icon = resolvedState.icon {
             BPKIconView(icon.icon)
                 .foregroundColor(icon.color)
                 .accessibilityHidden(true)
@@ -141,7 +141,7 @@ public struct BPKTextArea: View {
     
     public func inputState(_ state: State) -> BPKTextArea {
         var result = self
-        result._state = state
+        result.state = state
         return result
     }
 }

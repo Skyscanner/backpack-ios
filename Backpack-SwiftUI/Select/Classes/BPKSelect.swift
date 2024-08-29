@@ -56,15 +56,15 @@ public struct BPKSelect: View {
 
     private let options: [String]
     private let placeholder: String
-    private var _state: State = .default
-    private var state: State {
+    private var state: State = .default
+    private var resolvedState: State {
         switch fieldSetState {
         case .default:
             return .default
         case .error:
             return .error
         default:
-            return _state
+            return state
         }
     }
     
@@ -96,14 +96,14 @@ public struct BPKSelect: View {
         .bpkPickerStyle(
             CustomPickerStyle(
                 labelText: labelText,
-                pickerState: state
+                pickerState: resolvedState
             )
         )
     }
     
     public func inputState(_ state: State) -> BPKSelect {
         var result = self
-        result._state = state
+        result.state = state
         return result
     }
 }

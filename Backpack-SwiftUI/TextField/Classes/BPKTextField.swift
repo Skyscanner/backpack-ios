@@ -30,15 +30,15 @@ public struct BPKTextField: View {
     
     @Binding private var text: String
     private let placeholder: String
-    private var _state: State = .default
-    private var state: State {
+    private var state: State = .default
+    private var resolvedState: State {
         switch fieldSetState {
         case .default:
             return .default
         case .error:
             return .error
         default:
-            return _state
+            return state
         }
     }
     /// Creates a `BPKTextField`.
@@ -58,14 +58,14 @@ public struct BPKTextField: View {
         HStack {
             TextField(placeholder, text: $text)
                 .font(style: .bodyDefault)
-                .foregroundColor(state.textColor)
-                .disabled(state.isDisabled)
+                .foregroundColor(resolvedState.textColor)
+                .disabled(resolvedState.isDisabled)
             accessory
         }
         .padding(.md)
         .background(.surfaceDefaultColor)
         .clipShape(RoundedRectangle(cornerRadius: .sm))
-        .outline(state.borderColor, cornerRadius: .sm)
+        .outline(resolvedState.borderColor, cornerRadius: .sm)
         .if(!BPKFont.enableDynamicType, transform: {
             $0.sizeCategory(.large)
         })
@@ -73,8 +73,8 @@ public struct BPKTextField: View {
     
     private var accessory: some View {
         HStack {
-            if let icon = state.icon {
-                if case let .clear(accessibilityLabel, action) = state {
+            if let icon = resolvedState.icon {
+                if case let .clear(accessibilityLabel, action) = resolvedState {
                     Button(action: action) {
                         BPKIconView(icon.icon)
                             .foregroundColor(icon.color)
@@ -91,7 +91,7 @@ public struct BPKTextField: View {
     
     public func inputState(_ state: State) -> BPKTextField {
         var result = self
-        result._state = state
+        result.state = state
         return result
     }
 }
