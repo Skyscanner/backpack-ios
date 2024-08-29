@@ -19,16 +19,10 @@
 import SwiftUI
 import UIKit
 
-public protocol BPKFieldSetContentView: View {
-    associatedtype ContentView: BPKFieldSetContentView
-    
-    func inputState(_ state: BPKFieldSet<ContentView>.State) -> ContentView
-}
-
 // swiftlint:disable line_length
 
 /// A component which wraps its content (view) and optionally adds a title, description and error label (depending on the field's state) around it.
-/// Supported states are Default, and Error. The states are dispatched to the wrapped view. The wrapped view must conform to `BPKFieldSetStatusHandling` to ensure it can handle the dispatched state.
+/// Supported states are Default, and Error. The states are dispatched to the wrapped view through the .environment modifier.
 ///
 /// Use `inputState(_ state: State)` to change the state of the field set.
 ///
@@ -37,8 +31,8 @@ public protocol BPKFieldSetContentView: View {
 
 // swiftlint:enable line_length
 
-public struct BPKFieldSet<Content: BPKFieldSetContentView>: View {
-    private var state: BPKFieldSet<Content.ContentView>.State = .default
+public struct BPKFieldSet<Content: View>: View {
+    private var state: BPKFieldSetState = .default
     private let label: String?
     private let content: Content
     private let description: String?
@@ -47,7 +41,7 @@ public struct BPKFieldSet<Content: BPKFieldSetContentView>: View {
     public init(
         label: String? = nil,
         description: String? = nil,
-        content: () -> Content
+        @ViewBuilder content: () -> Content
     ) {
         self.label = label
         self.description = description
@@ -58,9 +52,9 @@ public struct BPKFieldSet<Content: BPKFieldSetContentView>: View {
         VStack(alignment: .leading, spacing: .sm) {
             labelView
             content
-                .inputState(state)
                 .padding(.bottom, .sm)
-                .accessibilityIdentifier(accessibilityIdentifier(for: "wrapped_view"))
+                .environment(\.bpkFieldSetState, state)
+                .accessibilityIdentifier(accessibilityIdentifier(for: AccessibilityID.content))
             descriptionView
             if case let .error(message) = state {
                 errorMessage(message)
@@ -75,7 +69,7 @@ public struct BPKFieldSet<Content: BPKFieldSetContentView>: View {
             BPKText(label, style: .label2)
                 .lineLimit(nil)
                 .foregroundColor(state.labelColor)
-                .accessibilityIdentifier(accessibilityIdentifier(for: "label"))
+                .accessibilityIdentifier(accessibilityIdentifier(for: AccessibilityID.label))
         }
     }
     
@@ -85,7 +79,7 @@ public struct BPKFieldSet<Content: BPKFieldSetContentView>: View {
             BPKText(description, style: .caption)
                 .lineLimit(nil)
                 .foregroundColor(state.descriptionColor)
-                .accessibilityIdentifier(accessibilityIdentifier(for: "descritpion"))
+                .accessibilityIdentifier(accessibilityIdentifier(for: AccessibilityID.description))
         }
     }
     
@@ -97,11 +91,11 @@ public struct BPKFieldSet<Content: BPKFieldSetContentView>: View {
             BPKText(message, style: .caption)
                 .lineLimit(nil)
                 .foregroundColor(.textErrorColor)
-                .accessibilityIdentifier(accessibilityIdentifier(for: "error_message"))
+                .accessibilityIdentifier(accessibilityIdentifier(for: AccessibilityID.errorMessage))
         }
     }
     
-    public func inputState(_ state: BPKFieldSet<Content.ContentView>.State) -> BPKFieldSet {
+    public func inputState(_ state: BPKFieldSetState) -> BPKFieldSet {
         var result = self
         result.state = state
         return result
@@ -117,11 +111,29 @@ extension BPKFieldSet {
         return result
     }
     
-    private func accessibilityIdentifier(for label: String) -> String {
+    private func accessibilityIdentifier(for subview: AccessibilityID) -> String {
         if let prefix = accessibilityPrefix {
-            return "\(prefix)_\(label)"
+            return "\(prefix)_\(subview.rawValue)"
         }
         return ""
+    }
+    
+    private enum AccessibilityID: String {
+        case label
+        case content = "content_view"
+        case description
+        case errorMessage = "error_message"
+    }
+}
+
+struct BPKFieldSetStateKey: EnvironmentKey {
+    static var defaultValue: BPKFieldSetState?
+}
+
+extension EnvironmentValues {
+    var bpkFieldSetState: BPKFieldSetState? {
+        get { self[BPKFieldSetStateKey.self] } // swiftlint:disable:this implicit_getter
+        set { self[BPKFieldSetStateKey.self] = newValue }
     }
 }
 
@@ -170,7 +182,7 @@ extension BPKFieldSet {
     func constructFieldSet(
         withLabel label: String? = nil,
         andDescription description: String? = nil,
-        wrappedView: some BPKFieldSetContentView
+        wrappedView: some View
     ) -> some View {
         ForEach([0, 1], id: \.self) { index in
             BPKFieldSet(label: label, description: description) {
