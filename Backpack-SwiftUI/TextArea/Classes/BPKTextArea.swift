@@ -37,10 +37,21 @@ public struct BPKTextArea: View {
     }
     
     @Environment(\.colorScheme) var colorScheme
-    @Environment(\.bpkFieldSetState) var wrapperState
+    @Environment(\.bpkFieldSetState) var fieldSetState
     @Binding private var value: String
     private let placeholder: String?
-    @SwiftUI.State private var state: State = .default
+    private var _state: State = .default
+    private var state: State {
+        switch fieldSetState {
+        case .default:
+            return .default
+        case .error:
+            return .error
+        default:
+            return _state
+        }
+    }
+    
     private var accessibilityLabelText: String {
         if let placeholder = placeholder, value.isEmpty {
             return placeholder
@@ -116,7 +127,6 @@ public struct BPKTextArea: View {
         )
         .outline(state.borderColor, cornerRadius: BorderConstants.cornerRadius)
         .frame(minHeight: frameHeight)
-        .onChange(of: wrapperState, perform: wrapperState(_:))
         .accessibilityLabel(accessibilityLabelText)
     }
     
@@ -130,17 +140,9 @@ public struct BPKTextArea: View {
     }
     
     public func inputState(_ state: State) -> BPKTextArea {
-        self.state = state
-        return self
-    }
-    
-    private func wrapperState(_ state: BPKFieldSetState) {
-        switch state {
-        case .default:
-            self.state = .default
-        case .error:
-            self.state = .error
-        }
+        var result = self
+        result._state = state
+        return result
     }
 }
 

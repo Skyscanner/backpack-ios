@@ -120,11 +120,11 @@ extension BPKFieldSet {
 }
 
 struct BPKFieldSetStateKey: EnvironmentKey {
-    static var defaultValue: BPKFieldSetState = .default
+    static var defaultValue: BPKFieldSetState?
 }
 
 extension EnvironmentValues {
-    var bpkFieldSetState: BPKFieldSetState {
+    var bpkFieldSetState: BPKFieldSetState? {
         get { self[BPKFieldSetStateKey.self] } // swiftlint:disable:this implicit_getter
         set { self[BPKFieldSetStateKey.self] = newValue }
     }

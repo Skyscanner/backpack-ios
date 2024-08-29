@@ -51,12 +51,22 @@ extension View {
 }
 
 public struct BPKSelect: View {
-    @Environment(\.bpkFieldSetState) var wrapperState
+    @Environment(\.bpkFieldSetState) var fieldSetState
     @Binding private var selectedIndex: Int?
 
     private let options: [String]
     private let placeholder: String
-    @SwiftUI.State private var state: State = .default
+    private var _state: State = .default
+    private var state: State {
+        switch fieldSetState {
+        case .default:
+            return .default
+        case .error:
+            return .error
+        default:
+            return _state
+        }
+    }
     
     var labelText: String {
         // If nil or invalid value is passed in by consumer we display the placeholder
@@ -89,21 +99,12 @@ public struct BPKSelect: View {
                 pickerState: state
             )
         )
-        .onChange(of: wrapperState, perform: wrapperState(_:))
     }
     
     public func inputState(_ state: State) -> BPKSelect {
-        self.state = state
-        return self
-    }
-    
-    private func wrapperState(_ state: BPKFieldSetState) {
-        switch state {
-        case .default:
-            self.state = .default
-        case .error:
-            self.state = .error
-        }
+        var result = self
+        result._state = state
+        return result
     }
 }
 

@@ -32,19 +32,19 @@ struct FieldSetExampleView: View {
                 constructFieldSet(
                     withLabel: "Label",
                     andDescription: "Description",
-                    wrappedView: BPKTextField(placeholder: "Enter text", .constant(""))
+                    wrappedView: BPKTextField(placeholder: "Enter text", $text1)
                     )
                 Divider()
                 BPKText("With Label & No Description", style: .label1)
                 constructFieldSet(
                     withLabel: "Label",
-                    wrappedView: BPKTextField(placeholder: "Enter text", .constant(""))
+                    wrappedView: BPKTextField(placeholder: "Enter text", $text1)
                 )
                 Divider()
                 BPKText("With No Label & Description", style: .label1)
                 constructFieldSet(
                     andDescription: "Description",
-                    wrappedView: BPKTextArea(.constant(""), placeholder: "Enter text")
+                    wrappedView: BPKTextArea($text1, placeholder: "Enter text")
                 )
                 Divider()
                 BPKText("With No Label & No Description", style: .label1)
