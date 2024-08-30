@@ -23,22 +23,26 @@ import Backpack_SwiftUI
 struct ChipGroupMultipleSelectWrapExampleView: View {
     struct ChipData {
         let name: String
+        let type: BPKMultiSelectChipGroup.ChipItem.ChipType
         var selected: Bool
     }
     
     @State var chipsData = [
-        ChipData(name: "Shenzhen", selected: true),
-        ChipData(name: "London", selected: false),
-        ChipData(name: "Edinburgh", selected: true),
-        ChipData(name: "Manchester", selected: false),
-        ChipData(name: "Belfast", selected: false),
-        ChipData(name: "Glasgow", selected: false)
+        ChipData(name: "Shenzhen", type: .option, selected: true),
+        ChipData(name: "London", type: .dropdown, selected: false),
+        ChipData(name: "Edinburgh", type: .option, selected: true),
+        ChipData(name: "Manchester", type: .dismiss, selected: false),
+        ChipData(name: "Belfast", type: .option, selected: false),
+        ChipData(name: "Glasgow", type: .option, selected: false)
     ]
     
     var chips: [BPKMultiSelectChipGroup.ChipItem] {
         chipsData.enumerated().map({ (index, chip) in
             BPKMultiSelectChipGroup.ChipItem(
-                text: chip.name, selected: chip.selected, onClick: { chipsData[index].selected.toggle() }
+                text: chip.name,
+                type: chip.type,
+                selected: chip.selected,
+                onClick: { chipsData[index].selected.toggle() }
             )
         })
     }
