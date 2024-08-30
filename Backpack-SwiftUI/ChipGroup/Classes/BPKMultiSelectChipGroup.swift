@@ -78,8 +78,16 @@ public struct BPKMultiSelectChipGroup: View {
     @ViewBuilder
     private func chip(for chip: ChipItem) -> some View {
         switch chip.type {
-        case .option, .dropdown:
+        case .option:
             BPKChip(
+                chip.text,
+                icon: chip.icon,
+                selected: chip.selected,
+                style: style,
+                onClick: chip.onClick
+            )
+        case .dropdown:
+            BPKDropdownChip(
                 chip.text,
                 icon: chip.icon,
                 selected: chip.selected,
