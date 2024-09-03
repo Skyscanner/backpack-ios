@@ -127,6 +127,7 @@ public struct BPKTextArea: View {
         )
         .outline(resolvedState.borderColor, cornerRadius: BorderConstants.cornerRadius)
         .frame(minHeight: frameHeight)
+        .accessibilityElement(children: .combine)
         .accessibilityLabel(accessibilityLabelText)
     }
     
