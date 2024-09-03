@@ -52,7 +52,8 @@ internal struct InternalCardCarousel<Content: View>: View {
     @AccessibilityFocusState private var focusOnCard: Int?
     
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
-    
+    @Environment(\.layoutDirection) var layoutDirection
+
     private let content: [Content]
     private let size: CGSize
     
@@ -141,7 +142,11 @@ internal struct InternalCardCarousel<Content: View>: View {
     private var dragGesture: some Gesture {
         DragGesture()
         .updating($totalDrag, body: { value, state, _ in
-            state = value.translation.width
+            if layoutDirection == .leftToRight {
+                state = value.translation.width
+            } else {
+                state = -value.translation.width
+            }
         })
         .updating($isDragging, body: { _, state, _ in
             state = true
@@ -167,9 +172,9 @@ internal struct InternalCardCarousel<Content: View>: View {
         withAnimation(dragAnimation) {
             let draggingWindow = (cardWidth / 4.0)
             if value.translation.width < -draggingWindow {
-                handleLeftSwipe()
+                layoutDirection == .leftToRight ? handleLeftSwipe() : handleRightSwipe()
             } else if value.translation.width > draggingWindow {
-                handleRightSwipe()
+                layoutDirection == .leftToRight ? handleRightSwipe() : handleLeftSwipe()
             }
         }
     }
