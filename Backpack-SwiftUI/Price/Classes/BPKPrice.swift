@@ -31,7 +31,6 @@ public struct BPKPrice: View {
     private let price: String
     private let leadingText: String?
     private let previousPrice: String?
-    private let middleText: String?
     private let trailingText: String?
     private let alignment: Alignment
     private let size: Size
@@ -40,7 +39,6 @@ public struct BPKPrice: View {
         price: String,
         leadingText: String? = nil,
         previousPrice: String? = nil,
-        middleText: String? = nil,
         trailingText: String? = nil,
         alignment: Alignment = .leading,
         size: Size
@@ -48,7 +46,6 @@ public struct BPKPrice: View {
         self.price = price
         self.leadingText = leadingText
         self.previousPrice = previousPrice
-        self.middleText = middleText
         self.trailingText = trailingText
         self.alignment = alignment
         self.size = size
@@ -105,10 +102,6 @@ public struct BPKPrice: View {
     @ViewBuilder
     private var priceLabel: some View {
         BPKText(price, style: priceFontStyle)
-        if let middleText = middleText {
-            BPKText(middleText, style: accessoryFontStyle)
-                .foregroundColor(.textSecondaryColor)
-        }
         if let trailingText = trailingText {
             BPKText(trailingText, style: accessoryFontStyle)
                 .foregroundColor(.textSecondaryColor)
@@ -160,7 +153,6 @@ struct BPKPrice_Previews: PreviewProvider {
             price: "£1830",
             leadingText: "App only deal",
             previousPrice: "£2030",
-            middleText: "total",
             trailingText: "per day",
             alignment: .leading,
             size: .large
