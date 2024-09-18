@@ -18,6 +18,7 @@
 		1A68212D2B3308C80048220E /* AppSearchModalExampleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A68212C2B3308C80048220E /* AppSearchModalExampleViewModel.swift */; };
 		1AF3D2CA2BB18924001623A4 /* ImageGalleryGridExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF3D2C92BB18924001623A4 /* ImageGalleryGridExampleView.swift */; };
 		256F76152BB479850047AD1C /* SearchInputSummaryExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256F76142BB479850047AD1C /* SearchInputSummaryExampleView.swift */; };
+		295896E82C89B14D00D18CD5 /* DynamicStackExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295896E72C89B14D00D18CD5 /* DynamicStackExampleView.swift */; };
 		2A62FDDD2AB89F4500D545E5 /* TextAreaExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A62FDDC2AB89F4500D545E5 /* TextAreaExampleView.swift */; };
 		3A7D2D47214AB9F400ECBD5B /* BPKButtonsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D2D46214AB9F400ECBD5B /* BPKButtonsViewController.m */; };
 		3AA018EF215BE26600838FBB /* SpinnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018EE215BE26500838FBB /* SpinnersViewController.swift */; };
@@ -244,6 +245,7 @@
 		1A68212C2B3308C80048220E /* AppSearchModalExampleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSearchModalExampleViewModel.swift; sourceTree = "<group>"; };
 		1AF3D2C92BB18924001623A4 /* ImageGalleryGridExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryGridExampleView.swift; sourceTree = "<group>"; };
 		256F76142BB479850047AD1C /* SearchInputSummaryExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInputSummaryExampleView.swift; sourceTree = "<group>"; };
+		295896E72C89B14D00D18CD5 /* DynamicStackExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicStackExampleView.swift; sourceTree = "<group>"; };
 		2A62FDDC2AB89F4500D545E5 /* TextAreaExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAreaExampleView.swift; sourceTree = "<group>"; };
 		3A7D2D45214AB9F400ECBD5B /* BPKButtonsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKButtonsViewController.h; sourceTree = "<group>"; };
 		3A7D2D46214AB9F400ECBD5B /* BPKButtonsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKButtonsViewController.m; sourceTree = "<group>"; };
@@ -550,6 +552,14 @@
 			children = (
 			);
 			path = FlightLeg;
+			sourceTree = "<group>";
+		};
+		295896E62C89B11B00D18CD5 /* DynamicStack */ = {
+			isa = PBXGroup;
+			children = (
+				295896E72C89B14D00D18CD5 /* DynamicStackExampleView.swift */,
+			);
+			path = DynamicStack;
 			sourceTree = "<group>";
 		};
 		2A8000102AB3DC3B009FDB10 /* TextArea */ = {
@@ -1004,6 +1014,7 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				295896E62C89B11B00D18CD5 /* DynamicStack */,
 				29334AE32C24B92A0016E8C2 /* FlightLeg */,
 				BA8F350C2C104AD30093FA79 /* Card Button */,
 				539E51872BC844C1001FB36F /* HorizontalNavigation */,
@@ -1922,6 +1933,7 @@
 				5346243D2A7437A10059A0B5 /* ProgressBarExampleView.swift in Sources */,
 				53C6622629EA0DAB00BF1A62 /* ChipExampleView.swift in Sources */,
 				D261F26C22C0E6B600A4A476 /* TappableLinkLabelsViewController.swift in Sources */,
+				295896E82C89B14D00D18CD5 /* DynamicStackExampleView.swift in Sources */,
 				764D003A237DE4E300FE60AC /* SnackbarSelectorViewController.swift in Sources */,
 				53C6621A29EA0DAB00BF1A62 /* DividedCardExampleView.swift in Sources */,
 				7904384529F11DC7006CD8E0 /* SliderExampleView.swift in Sources */,

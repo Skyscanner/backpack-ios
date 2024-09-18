@@ -50,11 +50,12 @@ struct ComponentCellsProvider {
             carousel(),
             chips(),
             chipGroup(),
+            dynamicStack(),
+            dialog(),
             flightLeg(),
             flare(),
             floatingNotification(),
             graphicPromo(),
-            dialog(),
             horizontalNavigation(),
             icon(),
             imageGalleryPreview(),
@@ -196,6 +197,18 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Chip Group", tabs: $0) }
         )
     }
+    private func dynamicStack() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Dynamic stack",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(DynamicStackExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Dynamic stack", tabs: $0) }
+        )
+    }
+
     private func flare() -> CellDataSource {
         ComponentCellDataSource(
             title: "Flare views",

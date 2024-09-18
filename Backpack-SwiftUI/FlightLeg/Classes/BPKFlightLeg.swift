@@ -2,6 +2,10 @@ import SwiftUI
 import Backpack_Common
 
 struct BPKFlightLeg: View {
+    // Constants
+    public static let highlightBackgroundColor = BPKColor.statusDangerFillColor
+    public static let highlightForegroundColor = BPKColor.textOnLightColor
+
     private let airlineLogoSize: CGFloat = 24.0
 
     private let departureArrivalTime: String
@@ -12,36 +16,8 @@ struct BPKFlightLeg: View {
     private let duration: String
     private let operatedBy: String?
     private let warning: String?
-    @State private var carrierLogo: Image?
+    private let carrierLogo: () -> UIImage?
 
-    // String-based init
-    public init(
-        departureArrivalTime: String,
-        nextDayArrival: String? = "",
-        flightDescription: String,
-        stopsInfo: String,
-        highlightStopsInfo: Bool,
-        duration: String,
-        operatedBy: String? = "",
-        warning: String? = "",
-        carrierLogo: UIImage? = nil
-    ) {
-        self.departureArrivalTime = departureArrivalTime
-        self.nextDayArrival = nextDayArrival
-        self.flightDescription = AttributedString(flightDescription)
-        self.stopsInfo = stopsInfo
-        self.highlightStopsInfo = highlightStopsInfo
-        self.duration = duration
-        self.operatedBy = operatedBy
-        self.warning = warning
-        if let carrierLogo = carrierLogo {
-            self._carrierLogo = State(initialValue: Image(uiImage: carrierLogo))
-        } else {
-            self._carrierLogo = State(initialValue: nil)
-        }
-    }
-
-    // AttributedString-based init
     public init(
         departureArrivalTime: String,
         nextDayArrival: String? = "",
@@ -51,7 +27,7 @@ struct BPKFlightLeg: View {
         duration: String,
         operatedBy: String? = "",
         warning: String? = "",
-        carrierLogo: UIImage? = nil
+        carrierLogo: @escaping () -> UIImage?
     ) {
         self.departureArrivalTime = departureArrivalTime
         self.nextDayArrival = nextDayArrival
@@ -61,16 +37,18 @@ struct BPKFlightLeg: View {
         self.duration = duration
         self.operatedBy = operatedBy
         self.warning = warning
-        if let carrierLogo = carrierLogo {
-            self._carrierLogo = State(initialValue: Image(uiImage: carrierLogo))
-        } else {
-            self._carrierLogo = State(initialValue: nil)
-        }
+        self.carrierLogo = carrierLogo
     }
 
     var body: some View {
         BPKDynamicStack(horizontalAlignment: .leading, verticalAlignment: .top, spacing: .base) {
-            createCarrierLogo()
+            if let carrierLogo = carrierLogo() {
+                Image(uiImage: carrierLogo)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: airlineLogoSize, height: airlineLogoSize)
+                    .background(BPKColor.textOnDarkColor)
+                    .cornerRadius(BPKCornerRadius.xs.value)
+            }
             createFlightInfo()
                 .frame(
                     maxWidth: .infinity,
@@ -81,20 +59,6 @@ struct BPKFlightLeg: View {
     }
 
     @ViewBuilder
-    private func createCarrierLogo() -> some View {
-        VStack(alignment: .leading, spacing: .sm) {
-            if let carrierLogo = carrierLogo {
-                carrierLogo
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: airlineLogoSize, height: airlineLogoSize)
-                    .background(BPKColor.textOnDarkColor)
-                    .cornerRadius(BPKCornerRadius.xs.value)
-            }
-        }
-        .padding(.top, .sm)
-    }
-
-    @ViewBuilder
     private func createFlightInfo() -> some View {
         VStack(alignment: .leading, spacing: 0) {
             Text(departureArrivalTimeAttributedText() + nextDayAttributedText())
@@ -102,7 +66,8 @@ struct BPKFlightLeg: View {
                 .lineLimit(nil)
                 .accessibilityElement(children: .combine)
 
-            BPKText(flightDescription, style: .caption)
+            Text(flightDescription)
+                .font(style: BPKFontStyle.caption)
                 .foregroundColor(.textSecondaryColor)
                 .lineLimit(nil)
 
@@ -148,27 +113,36 @@ struct BPKFlightLeg: View {
 }
 
 struct BPKFlightLeg_Previews: PreviewProvider {
+    static func descriptionString() -> AttributedString {
+        var attributedString = AttributedString("LHR")
+        attributedString.backgroundColor = Color(BPKFlightLeg.highlightBackgroundColor)
+        attributedString.foregroundColor =
+            Color(BPKFlightLeg.highlightForegroundColor)
+
+        return attributedString + " - SIN, SwissAir"
+    }
+
     static var previews: some View {
         VStack {
             BPKFlightLeg(
                 departureArrivalTime: "19:51 - 22:45",
-                flightDescription: "LHR - SIN, SwissAir", // defaultDescription,
+                flightDescription: "LHR - SIN, SwissAir",
                 stopsInfo: "Direct",
                 highlightStopsInfo: false,
                 duration: "2h 00m",
-                carrierLogo: UIImage(systemName: "airplane")
+                carrierLogo: { UIImage(systemName: "airplane") }
             )
             
             BPKFlightLeg(
                 departureArrivalTime: "19:51 - 22:45",
                 nextDayArrival: "+1",
-                flightDescription: "LHR - SIN, SwissAir", // highlightedDescription,
+                flightDescription: descriptionString(),
                 stopsInfo: "Direct",
                 highlightStopsInfo: false,
                 duration: "2h 00m",
                 operatedBy: "Operated by British Airways",
                 warning: "Change airports in London",
-                carrierLogo: UIImage(systemName: "airplane")
+                carrierLogo: { UIImage(systemName: "airplane") }
             )
         }
         .padding()
