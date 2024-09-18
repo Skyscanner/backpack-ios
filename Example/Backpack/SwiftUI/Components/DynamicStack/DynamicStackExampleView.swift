@@ -21,48 +21,32 @@ import SwiftUI
 import Backpack_SwiftUI
 
 struct DynamicStackExampleView: View {
-    @State var choices = ["Small", "Medium", "Large", "Extra Large"]
-    @State var selectedTextSize: String = "Medium"
-
-    private func fontStyle(for size: String) -> [Backpack_SwiftUI.BPKFontStyle] {
-        switch size {
-        case "Small":
-            return [.heading3, .heading4, .heading5]
-        case "Medium":
-            return [.heading2, .heading4, .heading5]
-        case "Large":
-            return [.heading2, .heading3, .heading4]
-        case "Extra Large":
-            return [.heading1, .heading3, .heading4]
-        default:
-            return [.heading2, .heading4, .heading5]
-        }
-    }
-
-    var dynamicStackTextSelect: BPKSelect {
-        BPKSelect(
-            placeholder: "Select Text Size",
-            options: choices,
-            selectedIndex: Binding(
-                get: {
-                    choices.firstIndex(of: selectedTextSize) ?? 1
-                },
-                set: { index in
-                    if let index = index {
-                        selectedTextSize = choices[index]
-                    }
-                }
-            )
-        )
-    }
+    @State private var isHorizontal = true
 
     var body: some View {
-        dynamicStackTextSelect.padding()
-        BPKDynamicStack {
-            BPKText("First text", style: fontStyle(for: selectedTextSize)[0])
-            BPKText("Middle text", style: fontStyle(for: selectedTextSize)[1])
-            BPKText("Last text", style: fontStyle(for: selectedTextSize)[2])
-        }.padding()
+        VStack(spacing: .md) {
+            BPKSelect(
+                placeholder: "Select Layout",
+                options: ["Horizontal", "Vertical"],
+                selectedIndex: Binding(
+                    get: { isHorizontal ? 0 : 1 },
+                    set: { isHorizontal = $0 == 0 }
+                )
+            )
+            .padding()
+
+            BPKDynamicStack(
+                horizontalAlignment: .leading,
+                verticalAlignment: .center,
+                spacing: .md,
+                threshold: isHorizontal ? .accessibility1 : .medium
+            ) {
+                BPKText("First text", style: .heading1)
+                BPKText("Middle text", style: .heading4)
+                BPKText("Last text", style: .heading5)
+            }
+            .padding()
+        }
     }
 }
 
