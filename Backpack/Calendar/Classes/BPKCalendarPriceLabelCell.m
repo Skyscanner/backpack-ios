@@ -64,9 +64,7 @@
     [self.contentView addSubview:self.priceLabel];
     self.priceLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.priceLabel.textAlignment = NSTextAlignmentCenter;
-    
-    
-    
+
     [NSLayoutConstraint activateConstraints:@[
         [self.priceLabel.topAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor constant:BPKSpacingSm / 2.0],
         [self.priceLabel.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:BPKSpacingSm],
