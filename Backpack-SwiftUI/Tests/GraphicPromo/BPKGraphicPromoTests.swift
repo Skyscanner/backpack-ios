@@ -105,6 +105,30 @@ class BPKGraphicPromoTests: XCTestCase {
         assertSnapshot(sut)
     }
     
+    func test_bottomAligned_sponsored_longText() {
+        // Given
+        let sut = VStack {
+            BPKGraphicPromo(
+                kicker: "Travel tips",
+                headline: "Three peaks challenge.",
+                subheadline: "How to complete the trip in three days",
+                image: Image("dialog_image", bundle: TestsBundle.bundle),
+                verticalAlignment: .bottom
+            )
+            .fallbackColor(Color(.statusDangerFillColor))
+            .sponsor(
+                title: "This will be a longer string that should change the layout to vertical",
+                logo: Image(decorative: "skyland", bundle: TestsBundle.bundle),
+                accessibilityLabel: "Sponsored by: Skyland"
+            )
+        }
+        .frame(width: 375, height: 800)
+        .padding()
+        
+        // When
+        assertSnapshot(sut)
+    }
+    
     func test_topAligned_sponsored_a11y() {
         // Given
         BPKFont.setDynamicType(enabled: true)
