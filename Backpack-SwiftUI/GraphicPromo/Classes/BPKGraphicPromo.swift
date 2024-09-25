@@ -43,7 +43,7 @@ public struct BPKGraphicPromo: View {
     private var sponsor: Sponsor?
     
     // MARK: - Internal settings
-    private let sponsorLogoHeight = 60.0
+    private let sponsorLogoHeight = 32.0
     private let aspectRatio: CGFloat = 3/4
     private let padding = BPKSpacing.lg
     private let cornerRadius = BPKCornerRadius.md
@@ -93,52 +93,83 @@ public struct BPKGraphicPromo: View {
     // swiftlint:disable closure_body_length
     @ViewBuilder
     private func contentView() -> some View {
-        VStack(alignment: .leading, spacing: .md) {
-            if verticalAlignment == .bottom {
-                if let sponsor {
-                    sponsorOverlayView(sponsor)
-                    Spacer()
-                } else {
-                    Spacer()
-                }
-            }
-            
-            if let kicker {
-                BPKText(kicker, style: .label1)
-                    .foregroundColor(variant.foregroundColor)
-                    .lineLimit(nil)
-            }
-            
-            BPKText(headline, style: .heading2)
-                .foregroundColor(variant.foregroundColor)
-                .lineLimit(nil)
+        Group {
+            if let sponsor {
+                sponsorContentView(sponsor)
+            } else {
+                Spacer()
+                VStack(alignment: .leading, spacing: .md) {
+                    if verticalAlignment == .bottom {
+                        Spacer()
+                    }
+                    
+                    if let kicker {
+                        BPKText(kicker, style: .label1)
+                            .foregroundColor(variant.foregroundColor)
+                            .lineLimit(nil)
+                    }
+                    
+                    BPKText(headline, style: .heading2)
+                        .foregroundColor(variant.foregroundColor)
+                        .lineLimit(nil)
 
-            if let subheadline {
-                BPKText(subheadline, style: .heading5)
-                    .lineLimit(nil)
-                    .foregroundColor(variant.foregroundColor)
-            }
-            
-            if verticalAlignment == .top {
-                if let sponsor {
-                    Spacer()
-                    sponsorOverlayView(sponsor)
-                } else {
-                    Spacer()
+                    if let subheadline {
+                        BPKText(subheadline, style: .heading5)
+                            .lineLimit(nil)
+                            .foregroundColor(variant.foregroundColor)
+                    }
+                    
+                    if verticalAlignment == .top {
+                        Spacer()
+                    }
                 }
             }
         }
     }
     
     @ViewBuilder
-    private func sponsorOverlayView(_ sponsor: Sponsor) -> some View {
+    private func sponsorContentView(_ sponsor: Sponsor) -> some View {
         VStack(alignment: .leading, spacing: .md) {
-            BPKText(sponsor.title, style: .label1)
+            Spacer()
+            BPKText(Text(headline).bold(), style: .heading2)
                 .foregroundColor(variant.foregroundColor)
+                .lineLimit(nil)
+            
+            if #available(iOS 16.0, *) {
+                ViewThatFits {
+                    HStack(spacing: .md) {
+                        sponsorLogo
+                        sponsoredText
+                    }
+                    
+                    VStack(alignment: .leading, spacing: .md) {
+                        sponsorLogo
+                        sponsoredText
+                    }
+                }
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private var sponsorLogo: some View {
+        if let sponsor {
             sponsor.logo
                 .resizable()
-                .aspectRatio(contentMode: .fit)
+                .scaledToFit()
                 .frame(height: sponsorLogoHeight)
+                .foregroundStyle(Color(variant.foregroundColor.value))
+                .frame(maxWidth: 160)
+                .fixedSize()
+        }
+    }
+    
+    @ViewBuilder
+    private var sponsoredText: some View {
+        if let sponsor {
+            BPKText(sponsor.title, style: .caption)
+                .foregroundColor(variant.foregroundColor)
+                .foregroundStyle(Color(variant.foregroundColor.value))
         }
     }
     
@@ -150,11 +181,17 @@ public struct BPKGraphicPromo: View {
     }
     
     // MARK: - Public modifiers
-    public func sponsor(title: String, logo: Image, accessibilityLabel: String) -> BPKGraphicPromo {
-        var view = self
-        view.sponsor = Sponsor(title: title, logo: logo, accessibilityLabel: accessibilityLabel)
-        return view
-    }
+    public func sponsor(
+        title: String,
+        logo: Image,
+        accessibilityLabel: String) -> BPKGraphicPromo {
+            var view = self
+            view.sponsor = Sponsor(
+                title: title,
+                logo: logo,
+                accessibilityLabel: accessibilityLabel)
+            return view
+        }
     
     public func fallbackColor(_ color: Color) -> BPKGraphicPromo {
         var view = self
@@ -240,13 +277,13 @@ struct BPKGraphicPromo_Previews: PreviewProvider {
             ScrollView {
                 BPKGraphicPromo(
                     kicker: "Travel tips",
-                    headline: "Three peaks challenge",
+                    headline: "There's always more to explore in Britain",
                     subheadline: "How to complete the trip in three days",
                     image: Image(systemName: "heart")
                 )
                 .fallbackColor(Color(.coreAccentColor))
                 .sponsor(
-                    title: "Sponsored",
+                    title: "In partnership with Skyland",
                     logo: Image(systemName: "heart.fill"),
                     accessibilityLabel: "Sponsored by: Skyland"
                 )
@@ -261,7 +298,7 @@ struct BPKGraphicPromo_Previews: PreviewProvider {
                     image: Image(systemName: "heart")
                 )
                 .sponsor(
-                    title: "Sponsored",
+                    title: "In partnership with Skyland",
                     logo: Image(systemName: "heart.fill"),
                     accessibilityLabel: "Sponsored by: Skyland"
                 )

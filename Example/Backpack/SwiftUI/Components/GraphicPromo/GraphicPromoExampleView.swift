@@ -33,7 +33,7 @@ struct GraphicPromoExampleView: View {
         ScrollView {
             BPKGraphicPromo(
                 kicker: "Travel tips",
-                headline: "Three peaks challenge",
+                headline: "There’s always more to explore in Britain",
                 subheadline: "How to complete the climb in 3 days",
                 image: Image(decorative: "graphic_promo"),
                 overlay: .solid(.off),
@@ -45,7 +45,7 @@ struct GraphicPromoExampleView: View {
             .fallbackColor(Color(.surfaceHighlightColor))
             .if(sponsored) { view in
                 view.sponsor(
-                    title: "Sponsored",
+                    title: "Sponsored by ",
                     logo: Image(decorative: "skyland"),
                     accessibilityLabel: "Sponsored by Skyland"
                 )
@@ -57,7 +57,7 @@ struct GraphicPromoExampleView: View {
 
 struct GraphicPromoExampleView_Previews: PreviewProvider {
     static var previews: some View {
-        GraphicPromoExampleView(verticalAlignment: .top, sponsored: false)
+        GraphicPromoExampleView(verticalAlignment: .top, sponsored: true)
             .padding(.horizontal, .base)
     }
 }
