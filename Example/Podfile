@@ -27,12 +27,6 @@ post_install do |installer|
       target.build_configurations.each do |config|
         config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.1'
       end
-      
-      if target.name == "FSCalendar"
-          target.build_configurations.each do |config|
-              config.build_settings['OTHER_CFLAGS'] = "$(inherited) -Qunused-arguments -Xanalyzer -analyzer-disable-all-checks"
-          end
-      end
 
       # Fix SwiftUI previews
       # https://github.com/CocoaPods/CocoaPods/issues/9275#issuecomment-923709000
