@@ -32,12 +32,15 @@ Example of a AppSearchModal in Content state:
 import Backpack_SwiftUI
 BPKAppSearchModal(
     title: "Search Modal",
-    inputText:  $myText,
+    inputPrefix: BPKSearchInputSummary.InputPrefix.text("Prefix")
+    clearAction: BPKSearchInputSummary.ClearAction(accessibilityLabel: "Clear", action: {}),
     inputHint: "Search",
     results: .content(.init(
         sections: [ /* sections */ ],
         shortcuts: [ /*  shortcuts */ ]
     )),
+    inputPrefix: BPKSearchInputSummary.InputPrefix.text("Prefix"),
+    clearAction: BPKSearchInputSummary.ClearAction(accessibilityLabel: "Clear", action: {}),
     closeAccessibilityLabel: "Close",
     onClose: { }
 )
@@ -53,6 +56,8 @@ BPKAppSearchModal(
     inputText: $myText,
     inputHint: "Search",
     results: .loading(.init(accessibilityLabel: "Loading")),
+    inputPrefix: BPKSearchInputSummary.InputPrefix.text("Prefix"),
+    clearAction: BPKSearchInputSummary.ClearAction(accessibilityLabel: "Clear", action: {}),
     closeAccessibilityLabel: "Close",
     onClose: { /* close modal*/ }
 )
@@ -75,6 +80,8 @@ BPKAppSearchModal(
 
     )),
     closeAccessibilityLabel: "Close",
+    inputPrefix: BPKSearchInputSummary.InputPrefix.text("Prefix"),
+    clearAction: BPKSearchInputSummary.ClearAction(accessibilityLabel: "Clear", action: {}),
     onClose: { /* close modal*/ }
 )
 ```
