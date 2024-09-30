@@ -55,6 +55,7 @@ public struct BPKSelect: View {
     @Binding private var selectedIndex: Int?
 
     private let options: [String]
+    private let optionsIdentifiers: [String]
     private let placeholder: String
     private var state: State = .default
     private var resolvedState: State {
@@ -79,10 +80,12 @@ public struct BPKSelect: View {
     public init(
         placeholder: String,
         options: [String],
+        optionsIdentifiers: [String] = [],
         selectedIndex: Binding<Int?>
     ) {
         self.placeholder = placeholder
         self.options = options
+        self.optionsIdentifiers = optionsIdentifiers
         _selectedIndex = selectedIndex
     }
     
@@ -90,6 +93,7 @@ public struct BPKSelect: View {
         Picker(placeholder, selection: $selectedIndex) {
             ForEach(0..<options.count, id: \.self) { index in
                 Text(options[index])
+                    .accessibilityIdentifier(accessibilityIdentifier(for: index))
                     .tag(Optional(index))
             }
         }
@@ -105,6 +109,10 @@ public struct BPKSelect: View {
         var result = self
         result.state = state
         return result
+    }
+    
+    private func accessibilityIdentifier(for index: Int) -> String {
+        return optionsIdentifiers.isEmpty ? "select_option_\(index)" : optionsIdentifiers[index]
     }
 }
 
