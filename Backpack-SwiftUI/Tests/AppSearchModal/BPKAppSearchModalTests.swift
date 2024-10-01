@@ -55,10 +55,7 @@ class BPKAppSearchModalTests: XCTestCase {
         assertSnapshot(
             givenSut(
                 with: .content(givenContentState()),
-                inputState: .clear(
-                    accessibilityLabel: "clear",
-                    action: { }
-                )
+                clearAction: .init(accessibilityLabel: "clear", action: {})
             )
         )
     }
@@ -66,7 +63,7 @@ class BPKAppSearchModalTests: XCTestCase {
     // MARK: - Helpers
     private func givenSut(
         with results: BPKAppSearchModalResults,
-        inputState: BPKAppSearchModal.TextFieldState = .default,
+        clearAction: BPKSearchInputSummary.ClearAction = .init(accessibilityLabel: "Clear", action: {}),
         inputPrefix: BPKSearchInputSummary.InputPrefix = .icon(.search)
     ) -> some View {
         BPKAppSearchModal(
@@ -76,9 +73,9 @@ class BPKAppSearchModalTests: XCTestCase {
             results: results,
             closeAccessibilityLabel: "Close",
             inputPrefix: inputPrefix,
+            clearAction: clearAction,
             onClose: { }
         )
-        .inputState(inputState)
         .frame(width: 375, height: 667)
     }
     

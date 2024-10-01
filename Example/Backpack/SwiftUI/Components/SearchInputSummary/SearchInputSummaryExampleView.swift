@@ -21,38 +21,40 @@ import SwiftUI
 import Backpack_SwiftUI
 
 struct SearchInputSummaryExampleView: View {
-    @State var text1 = ""
-    @State var text2 = "Value"
-    @State var validationFieldText = ""
+    @State var text = "Text"
+    @State var enableHighlihting = false
+    @State var readOnly = false
     
+    // swiftlint:disable closure_body_length line_length
     var body: some View {
         ScrollView {
-            VStack {
-                BPKSearchInputSummary($text2)
-                BPKSearchInputSummary(placeholder: "Placeholder", $text2)
-                BPKSearchInputSummary($text1)
-                BPKSearchInputSummary(inputPrefix: .text("To"), $text1)
-                BPKSearchInputSummary(inputPrefix: .text("From"), $text2)
-                BPKSearchInputSummary($text1)
-                    .inputState(.disabled)
-                BPKSearchInputSummary($text1)
-                    .inputState(text1.isEmpty ? .default : .clear(accessibilityLabel: "Clear Field") { text1 = "" })
-                BPKSearchInputSummary($text1)
-                    .inputState(.valid)
-                BPKSearchInputSummary($text1)
-                    .inputState(.error)
-                BPKSearchInputSummary(placeholder: "At least 6 characters", $validationFieldText)
-                    .inputState(validateState())
+            VStack(alignment: .leading) {
+                Text("Text input with text prefix")
+                    .font(.caption)
+                BPKSearchInputSummary(inputPrefix: .text("To"), clearAction: .init(accessibilityLabel: "Clear", action: { text = "" }), $text)
+                    .padding(.bottom)
+                Text("Text input with icon prefix")
+                    .font(.caption)
+                BPKSearchInputSummary(inputPrefix: .icon(.search), clearAction: .init(accessibilityLabel: "Clear", action: { text = "" }), $text)
+                    .padding(.bottom)
+                Text("Clear action")
+                    .font(.caption)
+                BPKSearchInputSummary(clearAction: .init(accessibilityLabel: "Clear", action: { text = "" }), $text)
+                    .padding(.bottom)
+                Text("Placeholder with empty text")
+                    .font(.caption)
+                BPKSearchInputSummary(placeholder: "Read Only with Placeholder", clearAction: .init(accessibilityLabel: "Clear", action: {}), readOnly: true, .constant(""))
+                    .padding(.bottom)
+                Text("Highlighting and read only states")
+                    .font(.caption)
+                BPKSearchInputSummary(clearAction: .init(accessibilityLabel: "Clear", action: { text = "" }), readOnly: readOnly, $text)
+                    .customStyle($enableHighlihting.wrappedValue ? .focused : .default)
+                HStack {
+                    Toggle("Enable highlighting", isOn: $enableHighlihting)
+                    Toggle("Read only", isOn: $readOnly)
+                }
             }
             .padding()
-        }
-    }
-    
-    private func validateState() -> Backpack_SwiftUI.BPKSearchInputSummary.State {
-        switch validationFieldText.count {
-        case 0: return .default
-        case 1...5: return .error
-        default: return .valid
         }
     }
 }

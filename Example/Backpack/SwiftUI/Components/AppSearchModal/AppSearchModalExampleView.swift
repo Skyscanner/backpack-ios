@@ -38,14 +38,13 @@ struct AppSearchModalExampleView: View {
                 results: results(),
                 closeAccessibilityLabel: "Close",
                 inputPrefix: .text("From"),
+                clearAction: .init(accessibilityLabel: "clear text", action: { inputText = "" }),
                 onClose: {
                     print("Tapped close button")
                     isPresented.toggle()
                 }
             )
-            .inputState(.clear(accessibilityLabel: "clear text", action: {
-                inputText = ""
-            }))
+            
             .onChange(of: inputText, perform: { _ in
                 self.viewModel.loadContentFrom(inputText)
             })
