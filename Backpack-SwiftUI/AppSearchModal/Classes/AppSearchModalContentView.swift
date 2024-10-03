@@ -24,7 +24,7 @@ struct AppSearchModalContentView: View {
     var body: some View {
         
         ObservableScrollView { point in
-            if point != .zero {
+            if !CGPoint.compare(point, .zero, decimalPlaces: 5) {
                 onScroll(point)
             }
         } content: {
@@ -146,5 +146,29 @@ struct AppSearchModalContentView_Previews: PreviewProvider {
     
     static func buildShortcut(with index: Int) -> BPKAppSearchModalContent.Shortcut {
         return .init(text: "Shortcut \(index + 1)", icon: .landmark, onShortcutSelected: { })
+    }
+}
+
+private extension CGFloat {
+    // Function to round a CGFloat to a specified number of decimal places
+    func roundToDecimal(places: Int) -> CGFloat {
+        let divisor = pow(10.0, CGFloat(places))
+        return (self * divisor).rounded() / divisor
+    }
+}
+
+private extension CGPoint {
+    // Function to round a CGPoint to a certain number of decimal places
+    func roundToDecimal(_ point: CGPoint, decimalPlaces: Int) -> CGPoint {
+        let roundedX = point.x.roundToDecimal(places: decimalPlaces)
+        let roundedY = point.y.roundToDecimal(places: decimalPlaces)
+        return CGPoint(x: roundedX, y: roundedY)
+    }
+    
+    // Function to compare two CGPoint values with precision
+    static func compare(_ lhs: CGPoint, _ rhs: CGPoint, decimalPlaces: Int) -> Bool {
+        let roundedPoint1 = lhs.roundToDecimal(lhs, decimalPlaces: decimalPlaces)
+        let roundedPoint2 = rhs.roundToDecimal(rhs, decimalPlaces: decimalPlaces)
+        return roundedPoint1 == roundedPoint2
     }
 }

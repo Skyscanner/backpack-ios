@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2023 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,21 +18,12 @@
 
 import SwiftUI
 
-extension BPKAppSearchModal {
-    /// The state of the text field.
-    public enum TextFieldState {
+extension BPKSearchInputSummary {
+    /// The style of the text field.
+    public enum Style {
         /// The default state.
         case `default`
-        /// Adds a clear button to the text field. The action is called when the button is tapped.
-        case clear(accessibilityLabel: String, action: () -> Void)
-        
-        var inputState: BPKSearchInputSummary.State {
-            switch self {
-            case .default:
-                return BPKSearchInputSummary.State.default
-            case .clear(let accessibilityLabel, let action):
-                return BPKSearchInputSummary.State.clear(accessibilityLabel: accessibilityLabel, action: action)
-            }
-        }
+        /// Highlight borders as it's in a focus state
+        case focused
     }
 }

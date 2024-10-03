@@ -64,6 +64,7 @@
     [self.contentView addSubview:self.priceLabel];
     self.priceLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.priceLabel.textAlignment = NSTextAlignmentCenter;
+
     [NSLayoutConstraint activateConstraints:@[
         [self.priceLabel.topAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor constant:BPKSpacingSm / 2.0],
         [self.priceLabel.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:BPKSpacingSm],
@@ -90,10 +91,10 @@
         self.priceLabel.attributedText = attachmentString;
     } else {
         self.priceLabel.text = priceLabelCellData.price;
+        self.priceLabel.fontStyle = BPKFontStyleTextCaption;
     }
     self.priceLabelCellData = priceLabelCellData;
     self.priceLabel.textColor = priceLabelCellData.labelStyle.textColor;
-    self.priceLabel.fontStyle = BPKFontStyleTextCaption;
 }
 
 - (NSString *)defaultAccessibilityLabelForDate:(NSDate *)date formatter:(NSDateFormatter *)formatter {

@@ -23,87 +23,78 @@ import SwiftUI
 class BPKSearchInputSummaryTests: XCTestCase {
     func test_defaultSettings_withPrefixIcon() {
         assertSnapshot(
-            BPKSearchInputSummary(inputPrefix: .icon(.search), .constant("Value"))
-                .frame(width: 300))
+            BPKSearchInputSummary(
+                inputPrefix: .icon(.search),
+                clearAction: .init(accessibilityLabel: "Clear", action: {}),
+                .constant("Value")
+            )
+            .frame(width: 300)
+        )
+    }
+    
+    func test_defaultSettings_withHighlightedState() {
+        assertSnapshot(
+            BPKSearchInputSummary(
+                inputPrefix: .icon(.search),
+                clearAction: .init(accessibilityLabel: "Clear", action: {}),
+                .constant("Value")
+            )
+            .customStyle(.focused)
+            .frame(width: 300)
+        )
     }
 
     func test_emptyField_withPrefixIcon() {
         assertSnapshot(
-            BPKSearchInputSummary(inputPrefix: .icon(.search), .constant(""))
-                .frame(width: 300))
-    }
-
-    func test_disabledField_withPrefixIcon() {
-        assertSnapshot(
-            BPKSearchInputSummary(inputPrefix: .icon(.search), .constant("Value"))
-                .inputState(.disabled)
-                .frame(width: 300))
-    }
-
-    func test_clearableField_withPrefixIcon() {
-        assertSnapshot(
-            BPKSearchInputSummary(inputPrefix: .icon(.search), .constant("Value"))
-                .inputState(.clear(accessibilityLabel: "Clear") { })
-                .frame(width: 300))
-    }
-
-    func test_validField_withPrefixIcon() {
-        assertSnapshot(
-            BPKSearchInputSummary(inputPrefix: .icon(.search), .constant("Value"))
-                .inputState(.valid)
-                .frame(width: 300))
-    }
-
-    func test_errorField_withPrefixIcon() {
-        assertSnapshot(
-            BPKSearchInputSummary(inputPrefix: .icon(.search), .constant("Value"))
-                .inputState(.error)
-                .frame(width: 300))
+            BPKSearchInputSummary(
+                inputPrefix: .icon(.search),
+                clearAction: .init(accessibilityLabel: "Clear", action: {}),
+                .constant("")
+            )
+            .frame(width: 300)
+        )
     }
     
     func test_defaultSettings_withCustomPrefixText() {
         assertSnapshot(
-            BPKSearchInputSummary(inputPrefix: .text("Prefix"), .constant("Value"))
-                .frame(width: 300))
+            BPKSearchInputSummary(
+                inputPrefix: .text("Prefix"),
+                clearAction: .init(accessibilityLabel: "Clear", action: {}),
+                .constant("Value")
+            )
+            .frame(width: 300)
+        )
     }
 
     func test_emptyField_withCustomPrefixText() {
         assertSnapshot(
-            BPKSearchInputSummary(inputPrefix: .text("Prefix"), .constant(""))
-                .frame(width: 300))
-    }
-
-    func test_disabledField_withCustomPrefixText() {
-        assertSnapshot(
-            BPKSearchInputSummary(inputPrefix: .text("Prefix"), .constant("Value"))
-                .inputState(.disabled)
-                .frame(width: 300))
+            BPKSearchInputSummary(
+                inputPrefix: .text("Prefix"),
+                clearAction: .init(accessibilityLabel: "Clear", action: {}),
+                .constant("")
+            )
+            .frame(width: 300)
+        )
     }
 
     func test_clearableField_withCustomPrefixText() {
         assertSnapshot(
-            BPKSearchInputSummary(inputPrefix: .text("Prefix"), .constant("Value"))
-                .inputState(.clear(accessibilityLabel: "Clear") { })
-                .frame(width: 300))
-    }
-
-    func test_validField_withCustomPrefixText() {
-        assertSnapshot(
-            BPKSearchInputSummary(inputPrefix: .text("Prefix"), .constant("Value"))
-                .inputState(.valid)
-                .frame(width: 300))
-    }
-
-    func test_errorField_withCustomPrefixText() {
-        assertSnapshot(
-            BPKSearchInputSummary(inputPrefix: .text("Prefix"), .constant("Value"))
-                .inputState(.error)
-                .frame(width: 300))
+            BPKSearchInputSummary(
+                inputPrefix: .text("Prefix"),
+                clearAction: .init(accessibilityLabel: "Clear", action: {}),
+                .constant("Value")
+            )
+            .frame(width: 300)
+        )
     }
     
     func test_accessibility() {
-        let searchInput = BPKSearchInputSummary(inputPrefix: .icon(.search), .constant("Value"))
-            .frame(width: 300)
+        let searchInput = BPKSearchInputSummary(
+            inputPrefix: .icon(.search),
+            clearAction: .init(accessibilityLabel: "Clear", action: {}),
+            .constant("Value")
+        )
+        .frame(width: 300)
         assertA11ySnapshot(searchInput)
     }
 }
