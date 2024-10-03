@@ -70,6 +70,29 @@ public struct BPKGraphicPromo: View {
         self.verticalAlignment = verticalAlignment
     }
     
+    public init(
+        headline: String,
+        image: Image,
+        variant: Variant = .onDark,
+        sponsorTitle: String,
+        partnerLogo: Image,
+        sponsoredAccessibilityLabel: String
+    ) {
+        self.headline = headline
+        self.kicker = ""
+        self.subheadline = nil
+        self.image = image
+        self.type = .button
+        self.overlay = .linear(.high, .bottom)
+        self.variant = variant
+        self.verticalAlignment = .bottom
+        
+        self.sponsor = .init(
+            title: sponsorTitle,
+            logo: partnerLogo,
+            accessibilityLabel: sponsoredAccessibilityLabel)
+    }
+    
     public var body: some View {
         Button(action: tapAction) {
             contentView()
@@ -181,18 +204,6 @@ public struct BPKGraphicPromo: View {
     }
     
     // MARK: - Public modifiers
-    public func sponsor(
-        title: String,
-        logo: Image,
-        accessibilityLabel: String) -> BPKGraphicPromo {
-            var view = self
-            view.sponsor = Sponsor(
-                title: title,
-                logo: logo,
-                accessibilityLabel: accessibilityLabel)
-            return view
-        }
-    
     public func fallbackColor(_ color: Color) -> BPKGraphicPromo {
         var view = self
         view.backgroundColor = color
@@ -276,31 +287,23 @@ struct BPKGraphicPromo_Previews: PreviewProvider {
             
             ScrollView {
                 BPKGraphicPromo(
-                    kicker: "Travel tips",
                     headline: "There's always more to explore in Britain",
-                    subheadline: "How to complete the trip in three days",
-                    image: Image(systemName: "heart")
+                    image: Image(systemName: "heart"),
+                    sponsorTitle: "In partnership with Skyland",
+                    partnerLogo: Image(systemName: "heart.fill"),
+                    sponsoredAccessibilityLabel: "Sponsored by: Skyland"
                 )
                 .fallbackColor(Color(.coreAccentColor))
-                .sponsor(
-                    title: "In partnership with Skyland",
-                    logo: Image(systemName: "heart.fill"),
-                    accessibilityLabel: "Sponsored by: Skyland"
-                )
             }
             .previewDisplayName("Sponsored")
             
             ScrollView {
                 BPKGraphicPromo(
-                    kicker: "Travel tips",
-                    headline: "Three peaks challenge",
-                    subheadline: "How to complete the trip in three days",
-                    image: Image(systemName: "heart")
-                )
-                .sponsor(
-                    title: "In partnership with Skyland",
-                    logo: Image(systemName: "heart.fill"),
-                    accessibilityLabel: "Sponsored by: Skyland"
+                    headline: "There's always more to explore in Britain",
+                    image: Image(systemName: "heart"),
+                    sponsorTitle: "In partnership with Skyland",
+                    partnerLogo: Image(systemName: "heart.fill"),
+                    sponsoredAccessibilityLabel: "Sponsored by: Skyland"
                 )
                 .fallbackColor(Color(.coreAccentColor))
             }
