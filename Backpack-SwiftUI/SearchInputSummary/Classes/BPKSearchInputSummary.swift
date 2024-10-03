@@ -74,7 +74,9 @@ public struct BPKSearchInputSummary: View {
                 .font(style: .bodyDefault)
                 .foregroundColor(.textPrimaryColor)
                 .disabled(readOnly)
-                .accessibilityElement()
+                .if(readOnly, transform: { view in
+                    view.accessibilityElement()
+                })
                 .accessibilityValue(text.isEmpty ? placeholder : text)
                 .accessibilityAddTraits(readOnly ? [] : .isSearchField)
                 .accessibilityAddTraits(style == .focused ? .isSelected : [])
