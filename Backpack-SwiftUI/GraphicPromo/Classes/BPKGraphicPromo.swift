@@ -155,7 +155,7 @@ public struct BPKGraphicPromo: View {
     private func sponsorContentView(_ sponsor: Sponsor) -> some View {
         VStack(alignment: .leading, spacing: .md) {
             Spacer()
-            BPKText(Text(headline).bold(), style: .heading2)
+            BPKText(Text(headline), style: .heading2)
                 .foregroundColor(variant.foregroundColor)
                 .lineLimit(nil)
             sponsorFooter
