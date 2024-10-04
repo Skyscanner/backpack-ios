@@ -73,16 +73,17 @@ public struct BPKGraphicPromo: View {
     public init(
         headline: String,
         image: Image,
+        type: `Type` = .button,
         variant: Variant = .onDark,
         sponsorTitle: String,
         partnerLogo: Image,
         sponsoredAccessibilityLabel: String
     ) {
         self.headline = headline
-        self.kicker = ""
+        self.kicker = nil
         self.subheadline = nil
         self.image = image
-        self.type = .button
+        self.type = type
         self.overlay = .linear(.high, .bottom)
         self.variant = variant
         self.verticalAlignment = .bottom
@@ -135,7 +136,7 @@ public struct BPKGraphicPromo: View {
                     BPKText(headline, style: .heading2)
                         .foregroundColor(variant.foregroundColor)
                         .lineLimit(nil)
-
+                    
                     if let subheadline {
                         BPKText(subheadline, style: .heading5)
                             .lineLimit(nil)
@@ -157,19 +158,27 @@ public struct BPKGraphicPromo: View {
             BPKText(Text(headline).bold(), style: .heading2)
                 .foregroundColor(variant.foregroundColor)
                 .lineLimit(nil)
-            
-            if #available(iOS 16.0, *) {
-                ViewThatFits {
-                    HStack(spacing: .md) {
-                        sponsorLogo
-                        sponsoredText
-                    }
-                    
-                    VStack(alignment: .leading, spacing: .md) {
-                        sponsorLogo
-                        sponsoredText
-                    }
+            sponsorFooter
+        }
+    }
+    
+    @ViewBuilder
+    private var sponsorFooter: some View {
+        if #available(iOS 16.0, *) {
+            ViewThatFits {
+                HStack(spacing: .md) {
+                    sponsorLogo
+                    sponsoredText
                 }
+                VStack(alignment: .leading, spacing: .md) {
+                    sponsorLogo
+                    sponsoredText
+                }
+            }
+        } else {
+            VStack(alignment: .leading, spacing: .md) {
+                sponsorLogo
+                sponsoredText
             }
         }
     }
