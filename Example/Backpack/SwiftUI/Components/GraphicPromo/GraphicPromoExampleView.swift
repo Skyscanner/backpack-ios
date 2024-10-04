@@ -62,7 +62,7 @@ struct GraphicPromoExampleView: View {
         BPKGraphicPromo(
             headline: "There’s always more to explore in Britain",
             image: Image(decorative: "graphic_promo"),
-            sponsorTitle: "Sponsored by Skyland and other partners that shall remain nameless",
+            sponsorTitle: "Sponsored by Skyland",
             partnerLogo: Image(decorative: "skyland"),
             sponsoredAccessibilityLabel: "Sponsored by Skyland"
         )
