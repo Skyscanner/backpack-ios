@@ -133,9 +133,7 @@ public struct BPKGraphicPromo: View {
                             .lineLimit(nil)
                     }
                     
-                    BPKText(headline, style: .heading2)
-                        .foregroundColor(variant.foregroundColor)
-                        .lineLimit(nil)
+                    headlineView
                     
                     if let subheadline {
                         BPKText(subheadline, style: .heading5)
@@ -155,11 +153,15 @@ public struct BPKGraphicPromo: View {
     private func sponsorContentView(_ sponsor: Sponsor) -> some View {
         VStack(alignment: .leading, spacing: .md) {
             Spacer()
-            BPKText(Text(headline), style: .heading2)
-                .foregroundColor(variant.foregroundColor)
-                .lineLimit(nil)
+            headlineView
             sponsorFooter
         }
+    }
+    
+    private var headlineView: some View {
+        BPKText(headline, style: .heading2)
+            .foregroundColor(variant.foregroundColor)
+            .lineLimit(nil)
     }
     
     @ViewBuilder
