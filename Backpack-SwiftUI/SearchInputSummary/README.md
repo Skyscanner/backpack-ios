@@ -61,3 +61,11 @@ By default, BPKSearchInputSummary provides an accessibility value and traits. Ho
 BPKSearchInputSummary(clearAction: .init(accessibilityLabel: "Clear", action: { $text = "" }), text: $text)
     .accessibilityLabel("Custom input field")
 ```
+
+There is a built-in announcement of a current value. However, if it's necessary, the custom value could be passed as a parameter. It can be useful for announcing dates, for example. 
+
+```swift
+BPKSearchInputSummary(placeholder: "Date", clearAction: .init(accessibilityLabel: "Clear", action: {}), customAccessibilityValue: , .constant("Mon 01 Jan"))
+```
+
+Accessibility Label is always a value from `placeholder` parameter.
