@@ -38,6 +38,7 @@ public struct BPKSearchInputSummary: View {
     private let placeholder: String
     private let inputPrefix: InputPrefix?
     private var style: Style = .default
+    private let accessibilityIdentifier: String
     private var customAccessibilityValue: String?
     private let readOnly: Bool
     private let clearAction: ClearAction
@@ -57,6 +58,7 @@ public struct BPKSearchInputSummary: View {
         inputPrefix: InputPrefix? = nil,
         clearAction: ClearAction,
         readOnly: Bool = false,
+        accessibilityIdentifier: String = "search_field",
         customAccessibilityValue: String? = nil,
         _ text: Binding<String>
     ) {
@@ -64,6 +66,7 @@ public struct BPKSearchInputSummary: View {
         self.inputPrefix = inputPrefix
         self.clearAction = clearAction
         self.readOnly = readOnly
+        self.accessibilityIdentifier = accessibilityIdentifier
         self.customAccessibilityValue = customAccessibilityValue
         self._text = text
     }
@@ -82,6 +85,7 @@ public struct BPKSearchInputSummary: View {
                 .accessibilityValue(customAccessibilityValue ?? text)
                 .accessibilityLabel(placeholder)
                 .accessibilityAddTraits(readOnly ? [] : .isSearchField)
+                .accessibilityIdentifier(accessibilityIdentifier)
                 .focused($focused)
             accessory
         }
