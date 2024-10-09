@@ -58,45 +58,17 @@ class BPKGraphicPromoTests: XCTestCase {
         assertSnapshot(sut)
     }
     
-    func test_topAligned_sponsored() {
+    func test_sponsored() {
         // Given
         let sut = VStack {
             BPKGraphicPromo(
-                kicker: "Travel tips",
                 headline: "Three peaks challenge",
-                subheadline: "How to complete the trip in three days",
-                image: Image("dialog_image", bundle: TestsBundle.bundle)
-            )
-            .fallbackColor(Color(.statusDangerFillColor))
-            .sponsor(
-                title: "Sponsored",
-                logo: Image(decorative: "skyland", bundle: TestsBundle.bundle),
-                accessibilityLabel: "Sponsored by: Skyland"
-            )
-        }
-        .frame(width: 375, height: 800)
-        .padding()
-        
-        // When
-        assertSnapshot(sut)
-    }
-    
-    func test_bottomAligned_sponsored() {
-        // Given
-        let sut = VStack {
-            BPKGraphicPromo(
-                kicker: "Travel tips",
-                headline: "Three peaks challenge",
-                subheadline: "How to complete the trip in three days",
                 image: Image("dialog_image", bundle: TestsBundle.bundle),
-                verticalAlignment: .bottom
+                sponsorTitle: "Sponsored",
+                partnerLogo: Image(decorative: "skyland", bundle: TestsBundle.bundle),
+                sponsoredAccessibilityLabel: "Sponsored by: Skyland"
             )
             .fallbackColor(Color(.statusDangerFillColor))
-            .sponsor(
-                title: "Sponsored",
-                logo: Image(decorative: "skyland", bundle: TestsBundle.bundle),
-                accessibilityLabel: "Sponsored by: Skyland"
-            )
         }
         .frame(width: 375, height: 800)
         .padding()
@@ -105,22 +77,37 @@ class BPKGraphicPromoTests: XCTestCase {
         assertSnapshot(sut)
     }
     
-    func test_topAligned_sponsored_a11y() {
+    func test_sponsored_longText() {
+        // Given
+        let sut = VStack {
+            BPKGraphicPromo(
+                headline: "Three peaks challenge.",
+                image: Image("dialog_image", bundle: TestsBundle.bundle),
+                sponsorTitle: "This will be a longer string that should change the layout to vertical",
+                partnerLogo: Image(decorative: "skyland", bundle: TestsBundle.bundle),
+                sponsoredAccessibilityLabel: "Sponsored by: Skyland"
+            )
+            .fallbackColor(Color(.statusDangerFillColor))
+        }
+        .frame(width: 375, height: 800)
+        .padding()
+        
+        // When
+        assertSnapshot(sut)
+    }
+    
+    func test_sponsored_a11y() {
         // Given
         BPKFont.setDynamicType(enabled: true)
         let sut = VStack {
             BPKGraphicPromo(
-                kicker: "Travel tips",
                 headline: "Three peaks challenge",
-                subheadline: "How to complete the trip in three days",
-                image: Image("dialog_image", bundle: TestsBundle.bundle)
+                image: Image("dialog_image", bundle: TestsBundle.bundle),
+                sponsorTitle: "This will be a longer string that should change the layout to vertical",
+                partnerLogo: Image(decorative: "skyland", bundle: TestsBundle.bundle),
+                sponsoredAccessibilityLabel: "Sponsored by: Skyland"
             )
             .fallbackColor(Color(.statusDangerFillColor))
-            .sponsor(
-                title: "Sponsored",
-                logo: Image(decorative: "skyland", bundle: TestsBundle.bundle),
-                accessibilityLabel: "Sponsored by: Skyland"
-            )
         }
         .frame(width: 375, height: 1000)
         .padding()
