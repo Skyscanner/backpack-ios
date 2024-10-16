@@ -22,15 +22,54 @@ import Backpack_SwiftUI
 
 struct DynamicStackExampleView: View {
     @State private var isHorizontal = true
+    @State var choices = ["Extra Small", "Small", "Medium", "Large", "Extra Large", "Extra Extra Large", "Extra Extra Extra Large", "Accessibility 1", "Accessibility 2", "Accessibility 3", "Accessibility 4", "Accessibility 5"]
+    @State var selectedMagnificationSize: String = "Medium"
+
+    private func getScreenMagnification(for size: String) -> ContentSizeCategory {
+        switch size {
+        case "Extra Small":
+            return .extraSmall
+        case "Small":
+            return .small
+        case "Medium":
+            return .medium
+        case "Large":
+            return .large
+        case "Extra Large":
+            return .extraLarge
+        case "Extra Extra Large":
+            return .extraExtraLarge
+        case "Extra Extra Extra Large":
+            return .extraExtraExtraLarge
+        case "Accessibility 1":
+            return .accessibilityMedium
+        case "Accessibility 2":
+            return .accessibilityLarge
+        case "Accessibility 3":
+            return .accessibilityExtraLarge
+        case "Accessibility 4":
+            return .accessibilityExtraExtraLarge
+        case "Accessibility 5":
+            return .accessibilityExtraExtraExtraLarge
+        default:
+            return .medium
+        }
+    }
 
     var body: some View {
         VStack(spacing: .md) {
             BPKSelect(
-                placeholder: "Select Layout",
-                options: ["Horizontal", "Vertical"],
+                placeholder: "Select Magnification size",
+                options: choices,
                 selectedIndex: Binding(
-                    get: { isHorizontal ? 0 : 1 },
-                    set: { isHorizontal = $0 == 0 }
+                    get: {
+                        choices.firstIndex(of: selectedMagnificationSize) ?? 1
+                    },
+                    set: { index in
+                        if let index = index {
+                            selectedMagnificationSize = choices[index]
+                        }
+                    }
                 )
             )
             .padding()
@@ -38,8 +77,7 @@ struct DynamicStackExampleView: View {
             BPKDynamicStack(
                 horizontalAlignment: .leading,
                 verticalAlignment: .center,
-                spacing: .md,
-                threshold: isHorizontal ? .accessibility1 : .medium
+                spacing: .md
             ) {
                 BPKText("First text", style: .heading1)
                 BPKText("Middle text", style: .heading4)
