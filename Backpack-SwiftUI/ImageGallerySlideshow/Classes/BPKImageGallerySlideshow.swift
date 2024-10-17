@@ -44,15 +44,15 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
         @Binding var currentIndex: Int
         
         var body: some View {
-            GeometryReader { proxy in
-                VStack(spacing: .xl) {
-                    ImageGalleryHeader(
-                        closeAccessibilityLabel: closeAccessibilityLabel,
-                        onCloseTapped: onCloseTapped
-                    )
-                    .padding([.leading, .top], .base)
-                    
-                    ZStack(alignment: .bottom) {
+            VStack(spacing: .xl) {
+                ImageGalleryHeader(
+                    closeAccessibilityLabel: closeAccessibilityLabel,
+                    onCloseTapped: onCloseTapped
+                )
+                .padding([.leading, .top], .base)
+                
+                ZStack(alignment: .bottom) {
+                    GeometryReader { proxy in
                         InternalCarouselWrapper(
                             images: images.map {
                                 $0.content()
@@ -62,16 +62,15 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
                             currentIndex: $currentIndex
                         )
                         .frame(maxWidth: 400, maxHeight: 400)
-                        BPKBadge("\(currentIndex + 1)/\(images.count)")
-                            .badgeStyle(.strong)
-                            .padding(.bottom, 20)
                     }
-                    
-                    .accessibilityElement(children: .ignore)
-                    .accessibilityHidden(true)
-                    
-                    footer
+                    BPKBadge("\(currentIndex + 1)/\(images.count)")
+                        .badgeStyle(.strong)
+                        .padding(.bottom, 20)
                 }
+                .accessibilityElement(children: .ignore)
+                .accessibilityHidden(true)
+                
+                footer
             }
             .background(Color(.canvasContrastColor))
         }
