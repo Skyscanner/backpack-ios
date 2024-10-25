@@ -92,8 +92,10 @@ public struct BPKFlowStackView<Data: Collection, Content: View>: View where Data
             let doesNotFitInCurrentRow = elementSize.width + spacing.width > remainingWidth
             
             if doesNotFitInCurrentRow { // new row
-                remainingWidth = availableWidth
-                currentRow += 1
+                if rows.indices.contains(currentRow) {
+                    currentRow += 1
+                    remainingWidth = availableWidth
+                }
                 rows.append([Item(id: currentIndex, data: element)])
             } else { // existing row
                 if !rows.indices.contains(currentRow) {
@@ -125,7 +127,10 @@ struct BPKFlowStackView_Previews: PreviewProvider {
     
     @ViewBuilder
     static func makeBadge(index: Int) -> some View {
-        BPKBadge("Hello" + Array(repeating: "👋", count: index % 5).joined())
-            .badgeStyle(.brand)
+        if index == 0 {
+            BPKChip(Array(repeating: "Hello", count: 15).joined(separator: " ")) { }
+        } else {
+            BPKChip("Hello" + Array(repeating: "👋", count: index % 5).joined()) { }
+        }
     }
 }
