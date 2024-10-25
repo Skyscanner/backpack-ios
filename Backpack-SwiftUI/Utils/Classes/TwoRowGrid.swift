@@ -68,11 +68,13 @@ struct TwoRowGrid<Item, ItemView: View>: View {
     
     private func column(proxy: GeometryProxy, columnIndex index: Int, rowIndex: Int) -> some View {
         let itemTuple = items[rowIndex][index]
+        let shape = RoundedRectangle(cornerRadius: .md)
         return itemView(itemTuple.0, itemTuple.1)
             .if(rowIndex % 2 != 0) {
                 $0.frame(width: (proxy.size.width / 2) - (spacing.value / 2))
             }
-            .clipShape(RoundedRectangle(cornerRadius: .md))
+            .clipShape(shape)
+            .contentShape(shape)
     }
 }
 
