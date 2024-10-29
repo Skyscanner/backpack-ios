@@ -38,9 +38,9 @@ struct CustomPickerStyle: ViewModifier {
         .padding(.horizontal, .base)
         .padding(.vertical, verticalPadding)
         .background(.surfaceDefaultColor)
-        .clipShape(RoundedRectangle(cornerRadius: .xs))
+        .clipShape(RoundedRectangle(cornerRadius: .md))
         .disabled(pickerState.isDisabled)
-        .outline(pickerState.borderColor, cornerRadius: .xs)
+        .outline(pickerState.borderColor, cornerRadius: .md)
     }
 }
 
