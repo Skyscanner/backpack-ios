@@ -31,7 +31,12 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
         formatter.dateStyle = .full
         return formatter
     }
-    
+
+    private var monthScroll: MonthScroll? {
+        guard let date = selectionType.startDateIfAny else { return nil }
+        return MonthScroll(monthToScroll: date)
+    }
+
     var body: some View {
         switch selectionType {
         case .range(let selection, let accessibilityConfigurations):
@@ -43,6 +48,7 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
                     accessibilityConfigurations: accessibilityConfigurations,
                     dateFormatter: accessibilityDateFormatter
                 ),
+                monthScroll: monthScroll,
                 monthHeader: monthHeader,
                 dayAccessoryView: dayAccessoryView
             )
@@ -55,6 +61,7 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
                     accessibilityConfigurations: accessibilityConfigurations,
                     dateFormatter: accessibilityDateFormatter
                 ),
+                monthScroll: monthScroll,
                 monthHeader: monthHeader,
                 dayAccessoryView: dayAccessoryView
             )

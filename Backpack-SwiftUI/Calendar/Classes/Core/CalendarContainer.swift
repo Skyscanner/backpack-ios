@@ -21,19 +21,45 @@ import SwiftUI
 struct CalendarContainer<MonthContent: View>: View {
     let calendar: Calendar
     let validRange: ClosedRange<Date>
+    let monthScroll: MonthScroll?
     @ViewBuilder let monthContent: (_ month: Date) -> MonthContent
-    
+
+    @State private var hasScrolledToItem = false
+
     var body: some View {
-        ScrollView {
-            VStack(spacing: BPKSpacing.none) {
-                ForEach(0...monthsToShow, id: \.self) { monthIndex in
-                    let firstDayOfMonth = firstDayOf(monthIndex: monthIndex)
-                    monthContent(firstDayOfMonth)
+        ScrollViewReader { proxy in
+            ScrollView {
+                VStack(spacing: BPKSpacing.none) {
+                    ForEach(0...monthsToShow, id: \.self) { monthIndex in
+                        let firstDayOfMonth = firstDayOf(monthIndex: monthIndex)
+                        monthContent(firstDayOfMonth)
+                            .if(monthScroll != nil, transform: { view in
+                                view.id(scrollId(date: firstDayOfMonth))
+                            })
+                    }
+                    .onAppear {
+                        scrollIfNeeded(scrollProxy: proxy)
+                    }
                 }
             }
         }
     }
-    
+
+    private func scrollId(date: Date) -> String? {
+        return monthScroll?.generateIdFor(date: date)
+    }
+
+    private func scrollIfNeeded(scrollProxy: ScrollViewProxy) {
+        guard !hasScrolledToItem, let id = monthScroll?.scrollId else { return }
+        hasScrolledToItem = true
+        withAnimation {
+            scrollProxy.scrollTo(
+                id,
+                anchor: UnitPoint(x: 0, y: 0.1) // slightly lower than top
+            )
+        }
+    }
+
     private var monthsToShow: Int {
         let firstMonthComponents = calendar.dateComponents([.year, .month], from: validRange.lowerBound)
         let firstMonth = calendar.date(from: firstMonthComponents)!
@@ -60,10 +86,12 @@ struct CalendarContainer_Previews: PreviewProvider {
         let calendar = Calendar.current
         let start = calendar.date(from: .init(year: 2023, month: 10, day: 30))!
         let end = calendar.date(from: .init(year: 2025, month: 12, day: 25))!
-        
+        let monthScroll = MonthScroll(monthToScroll: start)
+
         CalendarContainer(
             calendar: calendar,
             validRange: start...end,
+            monthScroll: monthScroll,
             monthContent: { monthNumber in
                 VStack {
                     BPKText("Calendar Grid \(monthNumber)")
