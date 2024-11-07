@@ -18,51 +18,48 @@
 
 import SwiftUI
 
-struct MonthScroll {
-    var scrollId: String?
-    let formatter: DateFormatter
+/// Represents a scrollable month with a unique identifier and anchor point for positioning.
+public struct MonthScroll {
+    /// Unique identifier for the scroll item.
+    var scrollId: String
 
-    init(scrollId: String? = nil) {
-        self.scrollId = scrollId
+    /// Anchor point for the scroll position, defaulting to `.top`.
+    var anchor: UnitPoint
 
+    /// Whether to animate the change in scroll position or not
+    var animated: Bool
+
+    /// Static `DateFormatter` to format dates as "yyyy-MM" strings, used for generating `scrollId`s.
+    /// - Example: For a date of December 25, 2024, it produces `"2024-12"`.
+    private static let formatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM"
-        self.formatter = dateFormatter
+        return dateFormatter
+    }()
+
+    // MARK: - Initialisers
+
+    /// Initialises `MonthScroll` with a specified `scrollId` and `anchor`.
+    public init(scrollId: String, anchor: UnitPoint = .top, animated: Bool = false) {
+        self.scrollId = scrollId
+        self.anchor = anchor
+        self.animated = animated
     }
 
-    init(monthToScroll: Date) {
-        self.init()
-        self.scrollId = formatter.string(from: monthToScroll)
+    /// Initialises `MonthScroll` using a `Date` to generate the `scrollId`, with `anchor`.
+    public init(monthToScroll: Date, anchor: UnitPoint = .top, animated: Bool = false) {
+        self.scrollId = MonthScroll.formatter.string(from: monthToScroll)
+        self.anchor = anchor
+        self.animated = animated
     }
 
+    // MARK: - Public Methods
+
+    /// Generates a unique identifier for a given `Date` using the "yyyy-MM" format.
+    /// - Parameter date: The date to format.
+    /// - Returns: A string representing the date in "yyyy-MM" format.
+    /// - Example: For a date of December 25, 2024, this method returns `"2024-12"`.
     func generateIdFor(date: Date) -> String {
-        formatter.string(from: date)
-    }
-}
-
-// MARK: - Start Date for scrolling
-
-extension CalendarSelectionType {
-    var startDateIfAny: Date? {
-        switch self {
-        case .range(let selection, _):
-            if let rangeState = selection.wrappedValue {
-                return rangeState.startDateIfAny
-            }
-            return nil
-        case .single(let selection, _):
-            return selection.wrappedValue
-        }
-    }
-}
-
-extension CalendarRangeSelectionState {
-    var startDateIfAny: Date? {
-        switch self {
-        case .intermediate(let startDate):
-            return startDate
-        case .range(let selectedDateRange):
-            return selectedDateRange.lowerBound
-        }
+        MonthScroll.formatter.string(from: date)
     }
 }

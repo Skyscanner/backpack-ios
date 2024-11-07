@@ -50,14 +50,15 @@ struct CalendarContainer<MonthContent: View>: View {
     }
 
     private func scrollIfNeeded(scrollProxy: ScrollViewProxy) {
-        guard !hasScrolledToItem, let id = monthScroll?.scrollId else { return }
-        hasScrolledToItem = true
-        withAnimation {
+        guard !hasScrolledToItem, let monthScroll else { return }
+        let scrollAction = {
             scrollProxy.scrollTo(
-                id,
-                anchor: UnitPoint(x: 0, y: 0.1) // slightly lower than top
+                monthScroll.scrollId,
+                anchor: monthScroll.anchor
             )
         }
+
+        monthScroll.animated ? withAnimation { scrollAction() } : scrollAction()
     }
 
     private var monthsToShow: Int {

@@ -79,7 +79,15 @@ struct CalendarGroupsProvider {
             cellDataSources: [
                 presentableCalendar("Range Selection", view: CalendarExampleRangeView(showAccessoryViews: false)),
                 presentableCalendar("Single Selection", view: CalendarExampleSingleView()),
-                presentableCalendar("With Accessory Views", view: CalendarExampleRangeView(showAccessoryViews: true))
+                presentableCalendar("With Accessory Views", view: CalendarExampleRangeView(showAccessoryViews: true)),
+                presentableCalendar(
+                    "With Initial Month Scrolling",
+                    view: CalendarExampleRangeView(showAccessoryViews: false, makeInitialMonthScroll: true)
+                ),
+                presentableCalendar(
+                    "With Initial Month Scrolling and animation",
+                    view: CalendarExampleSingleView(makeInitialMonthScrollWithAnimation: true)
+                )
             ]
         ).groups()
     }

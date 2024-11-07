@@ -22,6 +22,7 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
     let selectionType: CalendarSelectionType
     let calendar: Calendar
     let validRange: ClosedRange<Date>
+    let monthScroll: MonthScroll?
     @ViewBuilder let monthHeader: (_ monthDate: Date) -> MonthHeader
     @ViewBuilder let dayAccessoryView: (Date) -> DayAccessoryView
     
@@ -30,11 +31,6 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
         formatter.locale = calendar.locale
         formatter.dateStyle = .full
         return formatter
-    }
-
-    private var monthScroll: MonthScroll? {
-        guard let date = selectionType.startDateIfAny else { return nil }
-        return MonthScroll(monthToScroll: date)
     }
 
     var body: some View {
