@@ -21,36 +21,29 @@ import SwiftUI
 /// Represents a scrollable month with a unique identifier and anchor point for positioning.
 public struct MonthScroll {
     /// Unique identifier for the scroll item.
-    var scrollId: String
+    let scrollId: String
 
     /// Anchor point for the scroll position, defaulting to `.top`.
-    var anchor: UnitPoint
+    let anchor: UnitPoint
 
     /// Whether to animate the change in scroll position or not
-    var animated: Bool
+    let animated: Bool
 
     /// Static `DateFormatter` to format dates as "yyyy-MM" strings, used for generating `scrollId`s.
     /// - Example: For a date of December 25, 2024, it produces `"2024-12"`.
-    private static let formatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM"
-        return dateFormatter
-    }()
+    private let formatter: DateFormatter
 
-    // MARK: - Initialisers
-
-    /// Initialises `MonthScroll` with a specified `scrollId` and `anchor`.
-    public init(scrollId: String, anchor: UnitPoint = .top, animated: Bool = false) {
-        self.scrollId = scrollId
-        self.anchor = anchor
-        self.animated = animated
-    }
+    // MARK: - Initialiser
 
     /// Initialises `MonthScroll` using a `Date` to generate the `scrollId`, with `anchor`.
     public init(monthToScroll: Date, anchor: UnitPoint = .top, animated: Bool = false) {
-        self.scrollId = MonthScroll.formatter.string(from: monthToScroll)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM"
+
+        self.scrollId = dateFormatter.string(from: monthToScroll)
         self.anchor = anchor
         self.animated = animated
+        self.formatter = dateFormatter
     }
 
     // MARK: - Public Methods
@@ -60,6 +53,6 @@ public struct MonthScroll {
     /// - Returns: A string representing the date in "yyyy-MM" format.
     /// - Example: For a date of December 25, 2024, this method returns `"2024-12"`.
     func generateIdFor(date: Date) -> String {
-        MonthScroll.formatter.string(from: date)
+        formatter.string(from: date)
     }
 }
