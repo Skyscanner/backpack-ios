@@ -175,7 +175,6 @@ struct RangeCalendarContainer_Previews: PreviewProvider {
         
         let startSelection = calendar.date(from: .init(year: 2023, month: 10, day: 30))!
         let endSelection = calendar.date(from: .init(year: 2023, month: 11, day: 10))!
-        let monthScroll = MonthScroll(monthToScroll: start)
 
         RangeCalendarContainer(
             selectionState: .constant(.range(startSelection...endSelection)),
@@ -193,7 +192,7 @@ struct RangeCalendarContainer_Previews: PreviewProvider {
                 ),
                 dateFormatter: Self.formatter
             ),
-            monthScroll: monthScroll,
+            monthScroll: nil,
             monthHeader: { month in
                 BPKText("\(Self.formatter.string(from: month))")
             },

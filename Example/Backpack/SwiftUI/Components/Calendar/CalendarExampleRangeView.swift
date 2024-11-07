@@ -117,6 +117,6 @@ struct CalendarExampleRangeView: View {
 
 struct CalendarExampleRangeView_Previews: PreviewProvider {
     static var previews: some View {
-        CalendarExampleRangeView(showAccessoryViews: true, makeInitialMonthScroll: false)
+        CalendarExampleRangeView(showAccessoryViews: true)
     }
 }
