@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-import SwiftUI
+import Foundation
 
 extension Date {
     public func getMonthDateRange(calendar: Calendar) -> ClosedRange<Date>? {

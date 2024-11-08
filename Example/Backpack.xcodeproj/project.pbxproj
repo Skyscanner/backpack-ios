@@ -24,6 +24,7 @@
 		25006AB02C60B1740038D7CA /* SearchControlInputExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25006AAF2C60B1740038D7CA /* SearchControlInputExampleView.swift */; };
 		256F76152BB479850047AD1C /* SearchInputSummaryExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256F76142BB479850047AD1C /* SearchInputSummaryExampleView.swift */; };
 		25D1337D2C73EFD7002C9562 /* SearchControlInputUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1337C2C73EFD7002C9562 /* SearchControlInputUITest.swift */; };
+		2832E45B2CDE1561000B6DF4 /* CalendarExampleWholeMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2832E45A2CDE1561000B6DF4 /* CalendarExampleWholeMonthView.swift */; };
 		2A62FDDD2AB89F4500D545E5 /* TextAreaExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A62FDDC2AB89F4500D545E5 /* TextAreaExampleView.swift */; };
 		3A7D2D47214AB9F400ECBD5B /* BPKButtonsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D2D46214AB9F400ECBD5B /* BPKButtonsViewController.m */; };
 		3AA018EF215BE26600838FBB /* SpinnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018EE215BE26500838FBB /* SpinnersViewController.swift */; };
@@ -258,6 +259,7 @@
 		25006AAF2C60B1740038D7CA /* SearchControlInputExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchControlInputExampleView.swift; sourceTree = "<group>"; };
 		256F76142BB479850047AD1C /* SearchInputSummaryExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInputSummaryExampleView.swift; sourceTree = "<group>"; };
 		25D1337C2C73EFD7002C9562 /* SearchControlInputUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchControlInputUITest.swift; sourceTree = "<group>"; };
+		2832E45A2CDE1561000B6DF4 /* CalendarExampleWholeMonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExampleWholeMonthView.swift; sourceTree = "<group>"; };
 		2A62FDDC2AB89F4500D545E5 /* TextAreaExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAreaExampleView.swift; sourceTree = "<group>"; };
 		3A7D2D45214AB9F400ECBD5B /* BPKButtonsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKButtonsViewController.h; sourceTree = "<group>"; };
 		3A7D2D46214AB9F400ECBD5B /* BPKButtonsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKButtonsViewController.m; sourceTree = "<group>"; };
@@ -606,6 +608,7 @@
 			children = (
 				537AA67E2B050D1000D97B42 /* CalendarExampleRangeView.swift */,
 				5318E3332AF506FA00C66D18 /* CalendarExampleSingleView.swift */,
+				2832E45A2CDE1561000B6DF4 /* CalendarExampleWholeMonthView.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -1880,6 +1883,7 @@
 				3AA018EF215BE26600838FBB /* SpinnersViewController.swift in Sources */,
 				53E075A927FC97C60033147C /* ToastGroups.swift in Sources */,
 				53B6DB5927FB6F930042B7C0 /* ComponentCells.swift in Sources */,
+				2832E45B2CDE1561000B6DF4 /* CalendarExampleWholeMonthView.swift in Sources */,
 				793B9748283B6F57009A5164 /* ComponentCellDataSource.swift in Sources */,
 				A12269752A68C09B00C7C0CD /* BottomSheetExampleView.swift in Sources */,
 				6055821721523A1300BF9F3E /* IconsViewController.swift in Sources */,

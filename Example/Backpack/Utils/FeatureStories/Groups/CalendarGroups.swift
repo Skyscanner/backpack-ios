@@ -77,6 +77,7 @@ struct CalendarGroupsProvider {
     func swiftUIGroups() -> [Components.Group] {
         SingleGroupProvider(
             cellDataSources: [
+                presentableCalendar("Whole Month Selection", view: CalendarExampleWholeMonthView()),
                 presentableCalendar("Range Selection", view: CalendarExampleRangeView(showAccessoryViews: false)),
                 presentableCalendar("Single Selection", view: CalendarExampleSingleView()),
                 presentableCalendar("With Accessory Views", view: CalendarExampleRangeView(showAccessoryViews: true))
