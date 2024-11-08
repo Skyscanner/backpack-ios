@@ -38,9 +38,9 @@ struct CustomPickerStyle: ViewModifier {
         .padding(.horizontal, .base)
         .padding(.vertical, verticalPadding)
         .background(.surfaceDefaultColor)
-        .clipShape(RoundedRectangle(cornerRadius: .xs))
+        .clipShape(RoundedRectangle(cornerRadius: .md))
         .disabled(pickerState.isDisabled)
-        .outline(pickerState.borderColor, cornerRadius: .xs)
+        .outline(pickerState.borderColor, cornerRadius: .md)
     }
 }
 
@@ -51,11 +51,22 @@ extension View {
 }
 
 public struct BPKSelect: View {
+    @Environment(\.bpkFieldSetState) var fieldSetState
     @Binding private var selectedIndex: Int?
 
     private let options: [String]
     private let placeholder: String
     private var state: State = .default
+    private var resolvedState: State {
+        switch fieldSetState {
+        case .default:
+            return .default
+        case .error:
+            return .error
+        default:
+            return state
+        }
+    }
     
     var labelText: String {
         // If nil or invalid value is passed in by consumer we display the placeholder
@@ -85,7 +96,7 @@ public struct BPKSelect: View {
         .bpkPickerStyle(
             CustomPickerStyle(
                 labelText: labelText,
-                pickerState: state
+                pickerState: resolvedState
             )
         )
     }

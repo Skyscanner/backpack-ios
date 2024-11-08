@@ -22,6 +22,7 @@ import SwiftUI
 ///
 /// Use `inputState(_ state: State)` to change the state of the text field.
 public struct BPKSearchInputSummary: View {
+    
     public enum InputPrefix {
         case text(String)
         case icon(BPKIcon)
@@ -35,22 +36,38 @@ public struct BPKSearchInputSummary: View {
     @Binding private var text: String
     @FocusState private var focused: Bool
     private let placeholder: String
-    private let inputPrefix: InputPrefix
-    private var state: State = .default
+    private let inputPrefix: InputPrefix?
+    private var style: Style = .default
+    private let accessibilityIdentifier: String
+    private var customAccessibilityValue: String?
+    private let readOnly: Bool
+    private let clearAction: ClearAction
     
-    /// Creates a `BPKSearchInputSummary`.
-    ///
-    /// - Parameters:
-    ///   - placeholder: The placeholder text to display when the text field is empty.
-    ///   - inputPrefix: The prefix which would be displayed on the left of text input
-    ///   - text: The text to display in the text field.
+    public struct ClearAction {
+        public let accessibilityLabel: String
+        public let action: () -> Void
+        
+        public init(accessibilityLabel: String, action: @escaping () -> Void) {
+            self.accessibilityLabel = accessibilityLabel
+            self.action = action
+        }
+    }
+    
     public init(
         placeholder: String = "",
-        inputPrefix: InputPrefix = .icon(.search),
+        inputPrefix: InputPrefix? = nil,
+        clearAction: ClearAction,
+        readOnly: Bool = false,
+        accessibilityIdentifier: String = "search_field",
+        customAccessibilityValue: String? = nil,
         _ text: Binding<String>
     ) {
         self.placeholder = placeholder
         self.inputPrefix = inputPrefix
+        self.clearAction = clearAction
+        self.readOnly = readOnly
+        self.accessibilityIdentifier = accessibilityIdentifier
+        self.customAccessibilityValue = customAccessibilityValue
         self._text = text
     }
     
@@ -60,19 +77,28 @@ public struct BPKSearchInputSummary: View {
                 .accessibilityHidden(true)
             TextField(placeholder, text: $text, prompt: placeholderView)
                 .font(style: .bodyDefault)
-                .foregroundColor(state.textColor)
-                .disabled(state.isDisabled)
-                .focused($focused)
-                .accessibilityAddTraits(.isSearchField)
+                .foregroundColor(.textPrimaryColor)
+                .disabled(readOnly)
+                .if(readOnly, transform: { view in
+                    view.accessibilityElement()
+                })
+                .accessibilityValue(customAccessibilityValue ?? text)
                 .accessibilityLabel(placeholder)
-                .accessibilityIdentifier("search_field")
+                .accessibilityAddTraits(readOnly ? [] : .isSearchField)
+                .accessibilityIdentifier(accessibilityIdentifier)
+                .focused($focused)
             accessory
         }
         .frame(maxWidth: .infinity, minHeight: 48.0)
         .padding(.horizontal, BPKSpacing.base)
         .background(.surfaceDefaultColor)
-        .clipShape(RoundedRectangle(cornerRadius: .sm))
-        .outline(focused ? .textLinkColor : state.borderColor, cornerRadius: .sm, lineWidth: focused ? 2.0 : 1.0)
+        .clipShape(RoundedRectangle(cornerRadius: .md))
+        .outline(
+            isBorderHighlighted ? .textLinkColor : .lineColor,
+            cornerRadius: .md,
+            lineWidth: isBorderHighlighted ? 2.0 : 1.0
+        )
+        
         .if(!BPKFont.enableDynamicType, transform: {
             $0.sizeCategory(.large)
         })
@@ -80,22 +106,14 @@ public struct BPKSearchInputSummary: View {
     
     @ViewBuilder
     private var accessory: some View {
-        if let icon = state.icon {
-            if case let .clear(accessibilityLabel, action) = state {
-                Button(action: action) {
-                    BPKIconView(icon.icon)
-                        .foregroundColor(icon.color)
-                }
-                .accessibilityElement(children: .ignore)
-                .accessibilityLabel(accessibilityLabel)
-                .accessibilityAddTraits(.isButton)
-                .opacity(text.isEmpty ? 0.0 : 1.0)
-            } else {
-                BPKIconView(icon.icon)
-                    .foregroundColor(icon.color)
-                    .accessibilityHidden(true)
-            }
+        Button(action: clearAction.action) {
+            BPKIconView(.closeCircle)
+                .foregroundColor(.textSecondaryColor)
         }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(clearAction.accessibilityLabel)
+        .accessibilityAddTraits(.isButton)
+        .opacity(text.isEmpty ? 0.0 : 1.0)
     }
     
     @ViewBuilder
@@ -106,20 +124,26 @@ public struct BPKSearchInputSummary: View {
     
     @ViewBuilder
     private var prefixView: some View {
-        switch inputPrefix {
-        case .text(let prefixText):
-            BPKText(prefixText, style: .bodyDefault)
-                .foregroundColor(.textSecondaryColor)
-        case .icon(let icon):
-            BPKIconView(icon)
-                .foregroundColor(.textPrimaryColor)
+        if let inputPrefix {
+            switch inputPrefix {
+            case .text(let prefixText):
+                BPKText(prefixText, style: .bodyDefault)
+                    .foregroundColor(.textSecondaryColor)
+            case .icon(let icon):
+                BPKIconView(icon)
+                    .foregroundColor(.textPrimaryColor)
+            }
         }
     }
     
-    public func inputState(_ state: State) -> BPKSearchInputSummary {
+    public func customStyle(_ style: Style) -> BPKSearchInputSummary {
         var result = self
-        result.state = state
+        result.style = style
         return result
+    }
+    
+    private var isBorderHighlighted: Bool {
+        focused || style == .focused
     }
 }
 
@@ -131,19 +155,17 @@ fileprivate extension TextField {
 
 struct BPKSearchInputSummary_Previews: PreviewProvider {
     static var previews: some View {
+        // swiftlint:disable line_length
         VStack {
-            BPKSearchInputSummary(.constant(""))
-            BPKSearchInputSummary(placeholder: "Enter", .constant(""))
-            BPKSearchInputSummary(.constant("Value"))
-            BPKSearchInputSummary(inputPrefix: .text("From"), .constant("Value"))
-            BPKSearchInputSummary(.constant("Disabled"))
-                .inputState(.disabled)
-            BPKSearchInputSummary(.constant("Value"))
-                .inputState(.error)
-            BPKSearchInputSummary(.constant("Value"))
-                .inputState(.clear(accessibilityLabel: "clear", action: {}))
-            BPKSearchInputSummary(.constant("Value"))
-                .inputState(.valid)
+            BPKSearchInputSummary(clearAction: .init(accessibilityLabel: "Clear", action: {}), .constant(""))
+            BPKSearchInputSummary(placeholder: "Enter", clearAction: .init(accessibilityLabel: "Clear", action: {}), .constant(""))
+            BPKSearchInputSummary(clearAction: .init(accessibilityLabel: "Clear", action: {}), .constant("Value"))
+            BPKSearchInputSummary(inputPrefix: .text("From"), clearAction: .init(accessibilityLabel: "Clear", action: {}), .constant("Value"))
+            BPKSearchInputSummary(clearAction: .init(accessibilityLabel: "Clear", action: {}), readOnly: true, .constant("Read Only"))
+            BPKSearchInputSummary(clearAction: .init(accessibilityLabel: "Clear", action: {}), .constant("Manually highlighted"))
+                .customStyle(.focused)
+            BPKSearchInputSummary(clearAction: .init(accessibilityLabel: "Clear", action: {}), .constant("Value"))
+            BPKSearchInputSummary(clearAction: .init(accessibilityLabel: "clear", action: {}), .constant("Value"))
         }
         .padding()
         .background(.coreEcoColor)

@@ -31,33 +31,48 @@ struct GraphicPromoExampleView: View {
     
     var body: some View {
         ScrollView {
-            BPKGraphicPromo(
-                kicker: "Travel tips",
-                headline: "Three peaks challenge",
-                subheadline: "How to complete the climb in 3 days",
-                image: Image(decorative: "graphic_promo"),
-                overlay: .solid(.off),
-                verticalAlignment: verticalAlignment
-            )
+            Group {
+                if sponsored {
+                    sponsoredGraphicPromo
+                } else {
+                    standardGraphicPromo
+                }
+            }
             .onTapGesture {
                 print("Graphic promo tap")
             }
-            .fallbackColor(Color(.surfaceHighlightColor))
-            .if(sponsored) { view in
-                view.sponsor(
-                    title: "Sponsored",
-                    logo: Image(decorative: "skyland"),
-                    accessibilityLabel: "Sponsored by Skyland"
-                )
-            }
             .padding(.horizontal, .md)
+            
         }
+    }
+    
+    private var standardGraphicPromo: some View {
+        BPKGraphicPromo(
+            kicker: "Travel tips",
+            headline: "There’s always more to explore in Britain",
+            subheadline: "How to complete the climb in 3 days",
+            image: Image(decorative: "graphic_promo"),
+            overlay: .solid(.off),
+            verticalAlignment: verticalAlignment
+        )
+        .fallbackColor(Color(.surfaceHighlightColor))
+    }
+    
+    private var sponsoredGraphicPromo: some View {
+        BPKGraphicPromo(
+            headline: "There’s always more to explore in Britain",
+            image: Image(decorative: "graphic_promo"),
+            sponsorTitle: "Sponsored by Skyland",
+            partnerLogo: Image(decorative: "skyland"),
+            sponsoredAccessibilityLabel: "Sponsored by Skyland"
+        )
+        .fallbackColor(Color(.surfaceHighlightColor))
     }
 }
 
 struct GraphicPromoExampleView_Previews: PreviewProvider {
     static var previews: some View {
-        GraphicPromoExampleView(verticalAlignment: .top, sponsored: false)
+        GraphicPromoExampleView(verticalAlignment: .top, sponsored: true)
             .padding(.horizontal, .base)
     }
 }

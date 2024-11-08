@@ -41,6 +41,11 @@ open class BPKTabBarController: UITabBarController {
             updateTabBarItems()
         }
     }
+    
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = nil
+    }
 
     private func updateTabBarItems() {
         let interfaceStyle = self.traitCollection.userInterfaceStyle

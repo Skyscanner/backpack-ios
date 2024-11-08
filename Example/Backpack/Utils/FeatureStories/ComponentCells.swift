@@ -54,6 +54,7 @@ struct ComponentCellsProvider {
             cardCarousel(),
             chips(),
             chipGroup(),
+            fieldSet(),
             flightLeg(),
             flare(),
             floatingNotification(),
@@ -77,6 +78,7 @@ struct ComponentCellsProvider {
             progressBar(),
             ratings(),
             ratingBar(),
+            searchControlInput(),
             searchInputSummary(),
             sectionHeader(),
             select(),
@@ -394,6 +396,17 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Rating Bar", tabs: $0) }
         )
     }
+    private func searchControlInput() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Search Control Input",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(SearchControlInputExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Search Control Input", tabs: $0) }
+        )
+    }
     private func searchInputSummary() -> CellDataSource {
         ComponentCellDataSource(
             title: "Search Input Summary",
@@ -641,6 +654,15 @@ extension ComponentCellsProvider {
                 .swiftui(groups: PriceGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "Price", tabs: $0) }
+        )
+    }
+    private func fieldSet() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Field Set",
+            tabs: [
+                .swiftui(groups: FieldSetGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
+            ],
+            showChildren: { showComponent(title: "Field Set", tabs: $0) }
         )
     }
     private func flightLeg() -> CellDataSource {

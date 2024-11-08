@@ -22,13 +22,13 @@ public struct BPKAppSearchModal: View {
     let title: String
     @Binding var inputText: String
     let inputPrefix: BPKSearchInputSummary.InputPrefix
+    let clearAction: BPKSearchInputSummary.ClearAction
     let inputHint: String
     let results: BPKAppSearchModalResults
     let closeAccessibilityLabel: String
     let onClose: () -> Void
-    private var textFieldState: TextFieldState = .default
     @FocusState private var inputFieldIsFocussed: Bool
-    
+        
     public init(
         title: String,
         inputText: Binding<String>,
@@ -36,6 +36,7 @@ public struct BPKAppSearchModal: View {
         results: BPKAppSearchModalResults,
         closeAccessibilityLabel: String,
         inputPrefix: BPKSearchInputSummary.InputPrefix = .icon(.search),
+        clearAction: BPKSearchInputSummary.ClearAction,
         onClose: @escaping () -> Void
     ) {
         self.title = title
@@ -44,6 +45,7 @@ public struct BPKAppSearchModal: View {
         self.results = results
         self.closeAccessibilityLabel = closeAccessibilityLabel
         self.inputPrefix = inputPrefix
+        self.clearAction = clearAction
         self.onClose = onClose
     }
     
@@ -52,11 +54,7 @@ public struct BPKAppSearchModal: View {
             makeNavigationBar(title: title, closeAccessibilityLabel: closeAccessibilityLabel, onClose: onClose)
                 .padding(.horizontal, .base)
             if results.showTextField {
-                BPKSearchInputSummary(placeholder: inputHint, inputPrefix: inputPrefix, $inputText)
-                    .inputState(textFieldState.inputState)
-                    .focused($inputFieldIsFocussed)
-                    .autocorrectionDisabled(true)
-                    .padding(.horizontal, .base)
+                searchInputSummary
             }
             switch results {
             case .loading(let loading):
@@ -76,6 +74,18 @@ public struct BPKAppSearchModal: View {
         .background(.surfaceDefaultColor)
     }
     
+    private var searchInputSummary: some View {
+        BPKSearchInputSummary(
+            placeholder: inputHint,
+            inputPrefix: inputPrefix,
+            clearAction: clearAction,
+            $inputText
+        )
+        .focused($inputFieldIsFocussed)
+        .autocorrectionDisabled(true)
+        .padding(.horizontal, .base)
+    }
+    
     func makeNavigationBar(
         title: String,
         closeAccessibilityLabel: String,
@@ -91,12 +101,6 @@ public struct BPKAppSearchModal: View {
                 .accessibilityAddTraits(.isHeader)
         }
         .padding(.vertical, .md)
-    }
-    
-    public func inputState(_ state: TextFieldState) -> BPKAppSearchModal {
-        var result = self
-        result.textFieldState = state
-        return result
     }
     
     private func onScroll(_ offset: CGPoint) {
@@ -125,6 +129,7 @@ struct BPKAppSearchModal_Previews: PreviewProvider {
             )),
             closeAccessibilityLabel: "Close",
             inputPrefix: .icon(.search),
+            clearAction: .init(accessibilityLabel: "clear", action: {}),
             onClose: { }
         )
         .previewDisplayName("Content")
@@ -136,6 +141,7 @@ struct BPKAppSearchModal_Previews: PreviewProvider {
             results: .loading(.init(accessibilityLabel: "Loading")),
             closeAccessibilityLabel: "Close",
             inputPrefix: .text("From"),
+            clearAction: .init(accessibilityLabel: "clear", action: {}),
             onClose: { }
         )
         .previewDisplayName("Loading")
@@ -152,6 +158,7 @@ struct BPKAppSearchModal_Previews: PreviewProvider {
 
             )),
             closeAccessibilityLabel: "Close",
+            clearAction: .init(accessibilityLabel: "clear", action: {}),
             onClose: { }
         )
         .previewDisplayName("Error")
