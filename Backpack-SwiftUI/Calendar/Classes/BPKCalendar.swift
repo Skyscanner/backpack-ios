@@ -29,6 +29,7 @@ import SwiftUI
 ///     the `Calendar` struct in Swift.
 ///   - validRange: The range of dates that the calendar should allow the user to select.
 ///     This is specified as a`ClosedRange<Date>`.
+///   - initialMonthScroll: The initial scrolling to the month using `MonthScroll`
 ///
 /// The `BPKCalendar` view also allows you to specify an accessory action. This is a closure that takes a string and
 ///     a date, and is called when the user interacts with an accessory in the calendar.
@@ -36,6 +37,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
     let calendar: Calendar
     let selectionType: CalendarSelectionType
     let validRange: ClosedRange<Date>
+    private var initialMonthScroll: MonthScroll?
     private var accessoryAction: CalendarMonthAccessoryAction?
     private let monthHeaderDateFormatter: DateFormatter
 
@@ -46,6 +48,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
         selectionType: CalendarSelectionType,
         calendar: Calendar,
         validRange: ClosedRange<Date>,
+        initialMonthScroll: MonthScroll? = nil,
         dayAccessoryView: @escaping (Date) -> DayAccessoryView = { _ in EmptyView() }
     ) {
         self.dayAccessoryView = dayAccessoryView
@@ -53,6 +56,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
         self.validRange = validRange
         self.calendar = calendar
         self.selectionType = selectionType
+        self.initialMonthScroll = initialMonthScroll
 
         monthHeaderDateFormatter = DateFormatter()
         monthHeaderDateFormatter.timeZone = calendar.timeZone
@@ -72,6 +76,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
                         selectionType: selectionType,
                         calendar: calendar,
                         validRange: validRange,
+                        monthScroll: initialMonthScroll,
                         monthHeader: { monthDate in
                             CalendarMonthHeader(
                                 monthDate: monthDate,

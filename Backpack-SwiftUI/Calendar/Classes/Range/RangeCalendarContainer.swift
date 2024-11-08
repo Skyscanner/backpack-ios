@@ -23,6 +23,7 @@ struct RangeCalendarContainer<MonthHeader: View, DayAccessoryView: View>: View {
     let calendar: Calendar
     let validRange: ClosedRange<Date>
     let accessibilityProvider: RangeDayAccessibilityProvider
+    let monthScroll: MonthScroll?
     @ViewBuilder let monthHeader: (_ monthDate: Date) -> MonthHeader
     @ViewBuilder let dayAccessoryView: (Date) -> DayAccessoryView
     
@@ -105,7 +106,8 @@ struct RangeCalendarContainer<MonthHeader: View, DayAccessoryView: View>: View {
     var body: some View {
         CalendarContainer(
             calendar: calendar,
-            validRange: validRange
+            validRange: validRange,
+            monthScroll: monthScroll
         ) { month in
             monthHeader(month)
             CalendarMonthGrid(
@@ -173,7 +175,7 @@ struct RangeCalendarContainer_Previews: PreviewProvider {
         
         let startSelection = calendar.date(from: .init(year: 2023, month: 10, day: 30))!
         let endSelection = calendar.date(from: .init(year: 2023, month: 11, day: 10))!
-        
+
         RangeCalendarContainer(
             selectionState: .constant(.range(startSelection...endSelection)),
             calendar: calendar,
@@ -190,6 +192,7 @@ struct RangeCalendarContainer_Previews: PreviewProvider {
                 ),
                 dateFormatter: Self.formatter
             ),
+            monthScroll: nil,
             monthHeader: { month in
                 BPKText("\(Self.formatter.string(from: month))")
             },

@@ -22,13 +22,14 @@ import Backpack_SwiftUI
 
 struct CalendarExampleRangeView: View {
     @State var selection: CalendarRangeSelectionState?
-    
+    private let monthScroll: MonthScroll?
+
     let validRange: ClosedRange<Date>
     let calendar: Calendar
     let formatter: DateFormatter
     let showAccessoryViews: Bool
-    
-    init(showAccessoryViews: Bool) {
+
+    init(showAccessoryViews: Bool, makeInitialMonthScroll: Bool = false) {
         let calendar = Calendar.current
         let start = calendar.date(from: .init(year: 2023, month: 11, day: 6))!
         let end = calendar.date(from: .init(year: 2024, month: 11, day: 28))!
@@ -42,8 +43,17 @@ struct CalendarExampleRangeView: View {
         formatter.timeZone = calendar.timeZone
         self.formatter = formatter
         self.showAccessoryViews = showAccessoryViews
-        let selectionStart = calendar.date(from: .init(year: 2023, month: 11, day: 23))!
-        let selectionEnd = calendar.date(from: .init(year: 2023, month: 12, day: 2))!
+        var selectionStart = calendar.date(from: .init(year: 2023, month: 11, day: 23))!
+        var selectionEnd = calendar.date(from: .init(year: 2023, month: 12, day: 2))!
+
+        if makeInitialMonthScroll {
+            selectionStart = calendar.date(from: .init(year: 2024, month: 2, day: 5))!
+            selectionEnd = calendar.date(from: .init(year: 2024, month: 2, day: 10))!
+            self.monthScroll = .init(monthToScroll: selectionStart)
+        } else {
+            self.monthScroll = nil
+        }
+
         _selection = State(initialValue: .range(selectionStart...selectionEnd))
     }
     
@@ -98,7 +108,8 @@ struct CalendarExampleRangeView: View {
                     accessibilityConfigurations: accessibilityConfigurations
                 ),
                 calendar: calendar,
-                validRange: validRange
+                validRange: validRange,
+                initialMonthScroll: monthScroll
             )
         }
     }

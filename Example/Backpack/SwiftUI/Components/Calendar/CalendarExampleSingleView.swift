@@ -22,12 +22,13 @@ import Backpack_SwiftUI
 
 struct CalendarExampleSingleView: View {
     @State var selectedDate: Date?
-    
+    private var monthScroll: MonthScroll?
+
     let validRange: ClosedRange<Date>
     let calendar: Calendar
     let formatter: DateFormatter
-    
-    init() {
+
+    init(makeInitialMonthScrollWithAnimation: Bool = false) {
         let calendar = Calendar.current
         let start = calendar.date(from: .init(year: 2023, month: 11, day: 6))!
         let end = calendar.date(from: .init(year: 2024, month: 11, day: 28))!
@@ -40,8 +41,15 @@ struct CalendarExampleSingleView: View {
         formatter.locale = calendar.locale
         formatter.timeZone = calendar.timeZone
         self.formatter = formatter
-        
-        _selectedDate = State(initialValue: calendar.date(from: .init(year: 2023, month: 11, day: 15))!)
+
+        var date = calendar.date(from: .init(year: 2023, month: 11, day: 15))!
+
+        if makeInitialMonthScrollWithAnimation {
+            date = calendar.date(from: .init(year: 2024, month: 04, day: 15))!
+            self.monthScroll = .init(monthToScroll: date, animated: true)
+        }
+
+        _selectedDate = State(initialValue: date)
     }
     
     var body: some View {
@@ -60,7 +68,8 @@ struct CalendarExampleSingleView: View {
                     )
                 ),
                 calendar: calendar,
-                validRange: validRange
+                validRange: validRange,
+                initialMonthScroll: monthScroll
             )
         }
     }
