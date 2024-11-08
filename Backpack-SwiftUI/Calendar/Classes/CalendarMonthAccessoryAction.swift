@@ -27,7 +27,8 @@ public struct CalendarMonthAccessoryAction {
     /// - Parameters:
     ///  - title: The title of the accessory.
     ///  - action: The action to be performed when the user interacts with the accessory.
-    ///           This closure takes a  month range`ClosedRange<Date>` as a parameter, which is the calendar month range that the user interacted with.
+    ///           This closure takes a  month range`ClosedRange<Date>` as a parameter,
+    ///           which is the calendar month range that the user interacted with.
     public init(title: String, action: @escaping (ClosedRange<Date>) -> Void) {
         self.title = title
         self.action = action

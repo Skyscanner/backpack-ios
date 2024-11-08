@@ -93,7 +93,7 @@ struct CalendarMonthHeader_Previews: PreviewProvider {
         GeometryReader { proxy in
             CalendarMonthHeader(
                 monthDate: Date(),
-                dateFormatter: Self.dateFormatter, 
+                dateFormatter: Self.dateFormatter,
                 calendar: Calendar.current,
                 validRange: start...end,
                 accessoryAction: .init(title: "Action", action: { _ in }),
