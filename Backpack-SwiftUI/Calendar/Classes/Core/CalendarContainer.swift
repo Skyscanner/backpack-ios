@@ -45,8 +45,10 @@ struct CalendarContainer<MonthContent: View>: View {
         }
     }
 
+    /// Generates a unique identifier for a given `Date` using the "yyyy-MM" format.
+    /// - Example: For a date of December 25, 2024, this method returns `"2024-12"`.
     private func scrollId(date: Date) -> String? {
-        return monthScroll?.generateIdFor(date: date)
+        return monthScroll?.formatter.string(from: date)
     }
 
     private func scrollIfNeeded(scrollProxy: ScrollViewProxy) {

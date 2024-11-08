@@ -29,9 +29,9 @@ public struct MonthScroll {
     /// Whether to animate the change in scroll position or not
     let animated: Bool
 
-    /// Static `DateFormatter` to format dates as "yyyy-MM" strings, used for generating `scrollId`s.
+    /// The `DateFormatter` to format dates as "yyyy-MM" strings, used for generating `scrollId`s.
     /// - Example: For a date of December 25, 2024, it produces `"2024-12"`.
-    private let formatter: DateFormatter
+    let formatter: DateFormatter
 
     // MARK: - Initialiser
 
@@ -44,15 +44,5 @@ public struct MonthScroll {
         self.anchor = anchor
         self.animated = animated
         self.formatter = dateFormatter
-    }
-
-    // MARK: - Public Methods
-
-    /// Generates a unique identifier for a given `Date` using the "yyyy-MM" format.
-    /// - Parameter date: The date to format.
-    /// - Returns: A string representing the date in "yyyy-MM" format.
-    /// - Example: For a date of December 25, 2024, this method returns `"2024-12"`.
-    func generateIdFor(date: Date) -> String {
-        formatter.string(from: date)
     }
 }
