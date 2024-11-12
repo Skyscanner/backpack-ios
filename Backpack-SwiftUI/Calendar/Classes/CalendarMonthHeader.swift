@@ -25,7 +25,7 @@ struct CalendarMonthHeader: View {
     let dateFormatter: DateFormatter
     let calendar: Calendar
     let validRange: ClosedRange<Date>
-    let accessoryAction: CalendarMonthAccessoryAction?
+    let accessoryAction: ((Date) -> CalendarMonthAccessoryAction?)?
     @Binding var currentlyShownMonth: Date
     let parentProxy: GeometryProxy
     
@@ -42,10 +42,10 @@ struct CalendarMonthHeader: View {
                 }
             }
             .frame(width: 1)
-            if let accessoryAction {
-                BPKButton(accessoryAction.title) {
+            if let accessory = accessoryAction?(monthDate) {
+                BPKButton(accessory.title) {
                     if let range = monthRangeFor(date: monthDate) {
-                        accessoryAction.action(range)
+                        accessory.action(range)
                     }
                 }
                 .buttonStyle(.link)
@@ -96,7 +96,7 @@ struct CalendarMonthHeader_Previews: PreviewProvider {
                 dateFormatter: Self.dateFormatter,
                 calendar: Calendar.current,
                 validRange: start...end,
-                accessoryAction: .init(title: "Action", action: { _ in }),
+                accessoryAction: { _ in return .init(title: "Action", action: { _ in }) },
                 currentlyShownMonth: .constant(Date()),
                 parentProxy: proxy
             )

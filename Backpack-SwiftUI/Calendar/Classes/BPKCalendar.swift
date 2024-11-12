@@ -36,7 +36,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
     let calendar: Calendar
     let selectionType: CalendarSelectionType
     let validRange: ClosedRange<Date>
-    private var accessoryAction: CalendarMonthAccessoryAction?
+    private var accessoryAction: ((Date) -> CalendarMonthAccessoryAction?)?
     private let monthHeaderDateFormatter: DateFormatter
 
     private let dayAccessoryView: (Date) -> DayAccessoryView
@@ -103,7 +103,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
     }
     
     /// Sets the accessory action for the calendar to be applied to each month.
-    public func monthAccessoryAction(_ action: CalendarMonthAccessoryAction) -> BPKCalendar {
+    public func monthAccessoryAction(_ action: ((Date) -> CalendarMonthAccessoryAction?)?) -> BPKCalendar {
         var result = self
         result.accessoryAction = action
         return result
@@ -138,6 +138,8 @@ struct BPKCalendar_Previews: PreviewProvider {
                 BPKText("20", style: .caption)
             }
         )
-        .monthAccessoryAction(CalendarMonthAccessoryAction(title: "Select whole month", action: { _ in }))
+        .monthAccessoryAction { _ in
+            return CalendarMonthAccessoryAction(title: "Select whole month", action: { _ in })
+        }
     }
 }
