@@ -107,6 +107,7 @@ public struct BPKPrice: View {
                 redirectingIcon
             }
         }
+        Spacer().frame(height: 0)
         if let trailingText = trailingText {
             BPKText(trailingText, style: accessoryFontStyle)
                 .foregroundColor(.textSecondaryColor)
