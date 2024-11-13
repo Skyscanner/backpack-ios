@@ -101,11 +101,20 @@ public struct BPKPrice: View {
     
     @ViewBuilder
     private var priceLabel: some View {
-        BPKText(price, style: priceFontStyle)
+        HStack(spacing: .sm) {
+            BPKText(price, style: priceFontStyle)
+            if alignment == BPKPrice.Alignment.trailing {
+                redirectingIcon
+            }
+        }
         if let trailingText = trailingText {
             BPKText(trailingText, style: accessoryFontStyle)
                 .foregroundColor(.textSecondaryColor)
         }
+    }
+    
+    private var redirectingIcon: some View {
+        BPKIconView(.newWindow, size: .small)
     }
     
     private var accessoryFontStyle: BPKFontStyle {
@@ -154,8 +163,8 @@ struct BPKPrice_Previews: PreviewProvider {
             leadingText: "App only deal",
             previousPrice: "£2030",
             trailingText: "per day",
-            alignment: .leading,
-            size: .large
+            alignment: .trailing,
+            size: .small
         )
     }
 }
