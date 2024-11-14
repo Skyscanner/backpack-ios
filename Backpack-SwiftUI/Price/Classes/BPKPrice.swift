@@ -34,6 +34,7 @@ public struct BPKPrice: View {
     private let trailingText: String?
     private let alignment: Alignment
     private let size: Size
+    private let accessibilityLabel: String?
     
     public init(
         price: String,
@@ -41,7 +42,8 @@ public struct BPKPrice: View {
         previousPrice: String? = nil,
         trailingText: String? = nil,
         alignment: Alignment = .leading,
-        size: Size
+        size: Size,
+        accessibilityLabel: String? = nil
     ) {
         self.price = price
         self.leadingText = leadingText
@@ -49,6 +51,7 @@ public struct BPKPrice: View {
         self.trailingText = trailingText
         self.alignment = alignment
         self.size = size
+        self.accessibilityLabel = accessibilityLabel
     }
     
     public var body: some View {
@@ -120,6 +123,8 @@ public struct BPKPrice: View {
     
     private var redirectingIcon: some View {
         BPKIconView(.newWindow, size: .small)
+            .accessibilityAddTraits(.isButton)
+            .accessibilityLabel(accessibilityLabel ?? "")
     }
     
     private var accessoryFontStyle: BPKFontStyle {
@@ -168,7 +173,7 @@ struct BPKPrice_Previews: PreviewProvider {
             leadingText: "App only deal",
             previousPrice: "£2030",
             trailingText: "per day",
-            alignment: .leading,
+            alignment: .trailing,
             size: .large
         )
     }
