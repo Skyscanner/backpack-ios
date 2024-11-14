@@ -84,14 +84,14 @@ struct CalendarExampleWholeMonthView: View {
             calendar: calendar,
             validRange: validRange
         )
-        .monthAccessoryAction(
-            CalendarMonthAccessoryAction(
+        .monthAccessoryAction { _ in
+            return CalendarMonthAccessoryAction(
                 title: "Select whole month",
                 action: { monthRange in
                     selection = .wholeMonth(monthRange)
                 }
             )
-        )
+        }
     }
 }
 
