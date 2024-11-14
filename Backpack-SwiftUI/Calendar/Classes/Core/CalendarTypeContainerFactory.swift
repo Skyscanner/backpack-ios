@@ -22,6 +22,7 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
     let selectionType: CalendarSelectionType
     let calendar: Calendar
     let validRange: ClosedRange<Date>
+    let monthScroll: MonthScroll?
     @ViewBuilder let monthHeader: (_ monthDate: Date) -> MonthHeader
     @ViewBuilder let dayAccessoryView: (Date) -> DayAccessoryView
     
@@ -31,7 +32,7 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
         formatter.dateStyle = .full
         return formatter
     }
-    
+
     var body: some View {
         switch selectionType {
         case .range(let selection, let accessibilityConfigurations):
@@ -43,6 +44,7 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
                     accessibilityConfigurations: accessibilityConfigurations,
                     dateFormatter: accessibilityDateFormatter
                 ),
+                monthScroll: monthScroll,
                 monthHeader: monthHeader,
                 dayAccessoryView: dayAccessoryView
             )
@@ -55,6 +57,7 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
                     accessibilityConfigurations: accessibilityConfigurations,
                     dateFormatter: accessibilityDateFormatter
                 ),
+                monthScroll: monthScroll,
                 monthHeader: monthHeader,
                 dayAccessoryView: dayAccessoryView
             )
