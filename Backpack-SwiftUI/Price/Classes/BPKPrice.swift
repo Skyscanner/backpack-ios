@@ -122,7 +122,7 @@ public struct BPKPrice: View {
     }
     
     private var redirectingIcon: some View {
-        BPKIconView(.newWindow, size: .small)
+        BPKIconView(.newWindow, size: iconSize)
             .accessibilityAddTraits(.isButton)
             .accessibilityLabel(accessibilityLabel ?? "")
     }
@@ -145,6 +145,10 @@ public struct BPKPrice: View {
         case .extraSmall:
             return .heading5
         }
+    }
+    
+    private var iconSize: BPKIcon.Size {
+        size == .large ? .large : .small
     }
     
     private var additionalInfo: [String] {
@@ -174,7 +178,7 @@ struct BPKPrice_Previews: PreviewProvider {
             previousPrice: "£2030",
             trailingText: "per day",
             alignment: .trailing,
-            size: .large
+            size: .small
         )
     }
 }
