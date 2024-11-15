@@ -24,7 +24,8 @@ struct CalendarMonthHeader: View {
     let monthDate: Date
     let dateFormatter: DateFormatter
     let calendar: Calendar
-    let accessoryAction: CalendarMonthAccessoryAction?
+    let validRange: ClosedRange<Date>
+    let accessoryAction: ((Date) -> CalendarMonthAccessoryAction?)?
     @Binding var currentlyShownMonth: Date
     let parentProxy: GeometryProxy
     
@@ -41,9 +42,15 @@ struct CalendarMonthHeader: View {
                 }
             }
             .frame(width: 1)
-            if let accessoryAction {
-                BPKButton(accessoryAction.title) {
-                    accessoryAction.action(monthDate)
+            if let accessory = accessoryAction?(monthDate) {
+                BPKButton(accessory.title) {
+                    switch accessory.action {
+                    case .custom(let action):
+                        action(monthDate)
+                    case .wholeMonthSelection(let action):
+                        guard let range = monthRangeFor(date: monthDate) else { return }
+                        action(range)
+                    }
                 }
                 .buttonStyle(.link)
             }
@@ -51,7 +58,18 @@ struct CalendarMonthHeader: View {
         .padding(.horizontal, .base)
         .padding(.vertical, .lg)
     }
-    
+
+    private func monthRangeFor(date: Date) -> ClosedRange<Date>? {
+        guard let monthRange = date.getMonthDateRange(calendar: calendar) else {
+            return nil
+        }
+
+        let lowerBound = max(validRange.lowerBound, monthRange.lowerBound)
+        let upperBound = min(validRange.upperBound, monthRange.upperBound)
+
+        return lowerBound...upperBound
+    }
+
     private func isCurrentlyShowingMonth(proxy: GeometryProxy) -> Bool {
         let parentGlobalFrame = parentProxy.frame(in: .global)
         let yParentOrigin = parentGlobalFrame.origin.y
@@ -69,14 +87,20 @@ struct CalendarMonthHeader_Previews: PreviewProvider {
         dateFormatter.dateFormat = "MMMM yyyy"
         return dateFormatter
     }()
-    
+
     static var previews: some View {
+        let calendar = Calendar.current
+
+        let start = calendar.date(from: .init(year: 2023, month: 10, day: 1))!
+        let end = calendar.date(from: .init(year: 2025, month: 12, day: 25))!
+
         GeometryReader { proxy in
             CalendarMonthHeader(
                 monthDate: Date(),
                 dateFormatter: Self.dateFormatter,
                 calendar: Calendar.current,
-                accessoryAction: .init(title: "Action", action: { _ in }),
+                validRange: start...end,
+                accessoryAction: { _ in return .init(title: "Action", action: .custom({ _ in })) },
                 currentlyShownMonth: .constant(Date()),
                 parentProxy: proxy
             )

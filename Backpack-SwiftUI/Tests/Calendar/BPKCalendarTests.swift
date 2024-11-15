@@ -132,9 +132,9 @@ class BPKCalendarTests: XCTestCase {
             LazyVGrid(columns: Array(repeating: GridItem(spacing: 0), count: 6), spacing: 0) {
                 DefaultCalendarDayCell(calendar: calendar, date: date)
                 DisabledCalendarDayCell(calendar: calendar, date: date)
-                LowerBoundSelectedCell(calendar: calendar, date: date)
+                LowerBoundSelectedCell(calendar: calendar, date: date, highlighted: true)
                 InbetweenSelectionCell(calendar: calendar, date: date)
-                UpperBoundSelectedCell(calendar: calendar, date: date)
+                UpperBoundSelectedCell(calendar: calendar, date: date, highlighted: true)
                 LowerAndUpperBoundSelectedCell(calendar: calendar, date: date)
             }
                 .frame(width: 400)

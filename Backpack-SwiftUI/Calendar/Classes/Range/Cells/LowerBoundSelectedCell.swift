@@ -21,7 +21,8 @@ import SwiftUI
 struct LowerBoundSelectedCell: View {
     let calendar: Calendar
     let date: Date
-    
+    let highlighted: Bool
+
     var body: some View {
         ZStack {
             GeometryReader { proxy in
@@ -30,13 +31,21 @@ struct LowerBoundSelectedCell: View {
                     .offset(x: proxy.size.width / 2)
             }
             BPKText("\(calendar.component(.day, from: date))", style: .label1)
-                .foregroundColor(.textPrimaryInverseColor)
+                .foregroundColor(textColor)
                 .lineLimit(1)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, .md)
-                .background(.coreAccentColor)
+                .background(circleColor)
                 .clipShape(Circle())
         }
+    }
+
+    private var circleColor: BPKColor {
+        highlighted ? .coreAccentColor : .surfaceSubtleColor
+    }
+
+    private var textColor: BPKColor {
+        highlighted ? .textPrimaryInverseColor : .black
     }
 }
 
@@ -45,6 +54,6 @@ struct LowerBoundSelectedCell_Previews: PreviewProvider {
         let calendar = Calendar.current
         let date = calendar.date(from: .init(year: 2023, month: 11, day: 8))!
         
-        LowerBoundSelectedCell(calendar: calendar, date: date)
+        LowerBoundSelectedCell(calendar: calendar, date: date, highlighted: true)
     }
 }

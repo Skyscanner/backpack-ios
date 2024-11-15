@@ -22,14 +22,24 @@ import SwiftUI
 ///     be performed when a user interacts with an accessory in the calendar.
 public struct CalendarMonthAccessoryAction {
     let title: String
-    let action: (Date) -> Void
+    let action: Action
 
     /// - Parameters:
     ///  - title: The title of the accessory.
     ///  - action: The action to be performed when the user interacts with the accessory.
-    ///           This closure takes a `Date` as a parameter, which is the date that the user interacted with.
-    public init(title: String, action: @escaping (Date) -> Void) {
+    public init(title: String, action: Action) {
         self.title = title
         self.action = action
+    }
+
+    /// Defines the types of actions that can be triggered.
+    public enum Action {
+        /// A custom action triggered for a specific date month.
+        /// - Parameter: The `Date` representing the month interacted with by the user.
+        case custom((Date) -> Void)
+
+        /// An action triggered for a whole month selection.
+        /// - Parameter: A `ClosedRange<Date>` for the start and end of the selected month (calendar range considered).
+        case wholeMonthSelection((ClosedRange<Date>) -> Void)
     }
 }
