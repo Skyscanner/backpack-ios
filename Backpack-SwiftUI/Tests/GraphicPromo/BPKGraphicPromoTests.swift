@@ -116,5 +116,23 @@ class BPKGraphicPromoTests: XCTestCase {
         // When
         assertSnapshot(sut)
     }
-
+    
+    func test_sponsored_noLogo() {
+        // Given
+        let sut = VStack {
+            BPKGraphicPromo(
+                headline: "Three peaks challenge",
+                image: Image("dialog_image", bundle: TestsBundle.bundle),
+                sponsorTitle: "Sponsored",
+                partnerLogo: nil,
+                sponsoredAccessibilityLabel: "Sponsored by: Skyland"
+            )
+            .fallbackColor(Color(.statusDangerFillColor))
+        }
+            .frame(width: 375, height: 800)
+            .padding()
+        
+        // When
+        assertSnapshot(sut)
+    }
 }
