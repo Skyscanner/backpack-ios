@@ -74,6 +74,7 @@ public struct BPKGraphicPromo: View {
         headline: String,
         image: Image,
         type: `Type` = .button,
+        overlay: BPKOverlayType = .linear(.high, .bottom),
         variant: Variant = .onDark,
         sponsorTitle: String,
         partnerLogo: Image?,
@@ -84,7 +85,7 @@ public struct BPKGraphicPromo: View {
         self.subheadline = nil
         self.image = image
         self.type = type
-        self.overlay = .linear(.high, .bottom)
+        self.overlay = overlay
         self.variant = variant
         self.verticalAlignment = .bottom
         
