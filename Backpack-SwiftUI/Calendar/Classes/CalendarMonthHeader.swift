@@ -44,8 +44,12 @@ struct CalendarMonthHeader: View {
             .frame(width: 1)
             if let accessory = accessoryAction?(monthDate) {
                 BPKButton(accessory.title) {
-                    if let range = monthRangeFor(date: monthDate) {
-                        accessory.action(range)
+                    switch accessory.action {
+                    case .custom(let action):
+                        action(monthDate)
+                    case .wholeMonthSelection(let action):
+                        guard let range = monthRangeFor(date: monthDate) else { return }
+                        action(range)
                     }
                 }
                 .buttonStyle(.link)
@@ -96,7 +100,7 @@ struct CalendarMonthHeader_Previews: PreviewProvider {
                 dateFormatter: Self.dateFormatter,
                 calendar: Calendar.current,
                 validRange: start...end,
-                accessoryAction: { _ in return .init(title: "Action", action: { _ in }) },
+                accessoryAction: { _ in return .init(title: "Action", action: .custom({ _ in })) },
                 currentlyShownMonth: .constant(Date()),
                 parentProxy: proxy
             )

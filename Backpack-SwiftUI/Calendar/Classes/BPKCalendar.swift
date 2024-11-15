@@ -144,7 +144,7 @@ struct BPKCalendar_Previews: PreviewProvider {
             }
         )
         .monthAccessoryAction { _ in
-            return CalendarMonthAccessoryAction(title: "Select whole month", action: { _ in })
+            return CalendarMonthAccessoryAction(title: "Select whole month", action: .custom({ _ in }))
         }
     }
 }
