@@ -107,7 +107,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
         }
     }
     
-    /// Sets the accessory action for the calendar to be applied to each month.
+    /// Sets the accessory action for the calendar to be applied to each month, based on the give month `Date`.
     public func monthAccessoryAction(_ action: ((Date) -> CalendarMonthAccessoryAction?)?) -> BPKCalendar {
         var result = self
         result.accessoryAction = action
