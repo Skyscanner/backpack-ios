@@ -65,7 +65,8 @@ struct RangeCalendarContainer<MonthHeader: View, DayAccessoryView: View>: View {
             RangeSelectionCalendarDayCell(
                 date: dayDate,
                 selection: closedRange,
-                calendar: calendar
+                calendar: calendar,
+                highlightRangeEnds: true
             )
             .accessibilityLabel(Text(
                 accessibilityProvider.accessibilityLabel(

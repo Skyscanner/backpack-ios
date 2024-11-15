@@ -23,12 +23,6 @@ struct UpperBoundSelectedCell: View {
     let date: Date
     let highlighted: Bool
 
-    init(calendar: Calendar, date: Date, highlighted: Bool = true) {
-        self.calendar = calendar
-        self.date = date
-        self.highlighted = highlighted
-    }
-
     var body: some View {
         ZStack {
             GeometryReader { proxy in
@@ -59,6 +53,6 @@ struct UpperBoundSelectedCell_Previews: PreviewProvider {
         let calendar = Calendar.current
         let date = calendar.date(from: .init(year: 2023, month: 11, day: 8))!
         
-        UpperBoundSelectedCell(calendar: calendar, date: date)
+        UpperBoundSelectedCell(calendar: calendar, date: date, highlighted: true)
     }
 }

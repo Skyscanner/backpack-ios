@@ -44,14 +44,14 @@ struct EmptyRangeSelectionCalendarDayCell_Previews: PreviewProvider {
         let endSelection = calendar.date(from: .init(year: 2023, month: 11, day: 10))!
         
         LazyVGrid(columns: Array(repeating: GridItem(spacing: 0), count: 3), spacing: 0) {
-            LowerBoundSelectedCell(calendar: calendar, date: date)
+            LowerBoundSelectedCell(calendar: calendar, date: date, highlighted: true)
             EmptyRangeSelectionCalendarDayCell(
                 cellIndex: 0,
                 correspondingDate: date,
                 selection: startSelection...endSelection
             )
-            UpperBoundSelectedCell(calendar: calendar, date: date)
-            
+            UpperBoundSelectedCell(calendar: calendar, date: date, highlighted: true)
+
         }
     }
 }
