@@ -37,13 +37,12 @@ struct CalendarMonthGrid<
     private let daysInAWeek = 7
     
     var body: some View {
-        // Sunday is the first day of the week in the Calendar, so we need to offset (rotate the array) the days to
-        // make Monday the first day
-        let weekdaysOffset = calendar.component(.weekday, from: monthDate) - 2
-        // If the offset is -1 (Sunday), we want it to be 6 (the last day of the week),
-        // otherwise we keep the offset as it is.
-        // This is because we need to fill the first row with empty cells if the month doesn't start on a Monday.
-        let daysFromPreviousMonth = weekdaysOffset == -1 ? 6 : weekdaysOffset
+        let firstWeekday = calendar.firstWeekday // Locale-aware first day of the week
+        let weekdayOfMonthStart = calendar.component(.weekday, from: monthDate)
+        // Calculate the offset based on the first weekday
+        let weekdaysOffset = (weekdayOfMonthStart - firstWeekday + daysInAWeek) % daysInAWeek
+        let daysFromPreviousMonth = weekdaysOffset
+
         LazyVGrid(
             columns: Array(repeating: GridItem(spacing: BPKSpacing.none.value), count: daysInAWeek),
             spacing: BPKSpacing.lg.value
