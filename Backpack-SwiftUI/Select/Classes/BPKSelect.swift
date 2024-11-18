@@ -21,8 +21,7 @@ import SwiftUI
 struct CustomPickerStyle: ViewModifier {
     let labelText: String
     let pickerState: BPKSelect.State
-    private let verticalPadding: CGFloat = 12
-    
+
     func body(content: Content) -> some View {
         Menu {
             content
@@ -36,7 +35,7 @@ struct CustomPickerStyle: ViewModifier {
             }
         }
         .padding(.horizontal, .base)
-        .padding(.vertical, verticalPadding)
+        .frame(minHeight: 48)
         .background(.surfaceDefaultColor)
         .clipShape(RoundedRectangle(cornerRadius: .md))
         .disabled(pickerState.isDisabled)
