@@ -80,6 +80,7 @@ public struct BPKGraphicPromo: View {
         partnerLogo: Image?,
         sponsoredAccessibilityLabel: String
     ) {
+        self.verticalAlignment = .bottom
         self.headline = headline
         self.kicker = nil
         self.subheadline = nil
@@ -87,7 +88,6 @@ public struct BPKGraphicPromo: View {
         self.type = type
         self.overlay = overlay
         self.variant = variant
-        self.verticalAlignment = .bottom
         
         self.sponsor = .init(
             title: sponsorTitle,
