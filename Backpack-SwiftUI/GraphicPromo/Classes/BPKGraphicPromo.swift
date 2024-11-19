@@ -23,7 +23,7 @@ public struct BPKGraphicPromo: View {
     
     private struct Sponsor {
         let title: String
-        let logo: Image
+        let logo: Image?
         let accessibilityLabel: String
     }
     
@@ -74,19 +74,20 @@ public struct BPKGraphicPromo: View {
         headline: String,
         image: Image,
         type: `Type` = .button,
+        overlay: BPKOverlayType = .linear(.high, .bottom),
         variant: Variant = .onDark,
         sponsorTitle: String,
-        partnerLogo: Image,
+        partnerLogo: Image?,
         sponsoredAccessibilityLabel: String
     ) {
+        self.verticalAlignment = .bottom
         self.headline = headline
         self.kicker = nil
         self.subheadline = nil
         self.image = image
         self.type = type
-        self.overlay = .linear(.high, .bottom)
+        self.overlay = overlay
         self.variant = variant
-        self.verticalAlignment = .bottom
         
         self.sponsor = .init(
             title: sponsorTitle,
@@ -187,13 +188,13 @@ public struct BPKGraphicPromo: View {
     
     @ViewBuilder
     private var sponsorLogo: some View {
-        if let sponsor {
-            sponsor.logo
+        if let logo = sponsor?.logo {
+            logo
                 .resizable()
                 .scaledToFit()
                 .frame(height: sponsorLogoHeight)
                 .foregroundStyle(Color(variant.foregroundColor.value))
-                .frame(maxWidth: 160)
+                .frame(minWidth: 0, maxWidth: 160)
                 .fixedSize()
         }
     }
