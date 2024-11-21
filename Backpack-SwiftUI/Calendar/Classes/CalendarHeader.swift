@@ -38,10 +38,11 @@ struct CalendarHeader: View {
     }
     
     private var weekdays: [String] {
-        var weekdaySymbols = calendar.veryShortStandaloneWeekdaySymbols
-        // We treat Sunday as the last day of the week, so we rotate the symbols array to match.
-        weekdaySymbols.append(weekdaySymbols.remove(at: weekdaySymbols.startIndex))
-        return weekdaySymbols
+        let weekdaySymbols = calendar.veryShortStandaloneWeekdaySymbols
+
+        // Rotate the array to start from the locale's first weekday
+        let startIndex = calendar.firstWeekday - 1 // `firstWeekday` is 1-based
+        return Array(weekdaySymbols[startIndex...] + weekdaySymbols[..<startIndex])
     }
 }
 
