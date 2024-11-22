@@ -16,18 +16,13 @@
  * limitations under the License.
  */
 
-struct SingleDayAccessibilityProvider {
-    let accessibilityConfigurations: SingleAccessibilityConfigurations
-    let dateFormatter: DateFormatter
-    
-    func accessibilityLabel(for dayDate: Date) -> String {
-        dateFormatter.string(from: dayDate)
-    }
+import Foundation
 
-    func accessibilityHint(for dayDate: Date, selection: CalendarSingleSelectionState?) -> String {
-        if selection?.isSelected(dayDate) == true {
-            return ""
-        }
-        return accessibilityConfigurations.selectionHint
-    }
+/// The `CalendarSingleSelectionState` enum represents the different states of a single selection.
+public enum CalendarSingleSelectionState {
+    /// The state, with single date selection
+    case single(Date?)
+
+    /// The state the user has selected the whole month.
+    case wholeMonth(ClosedRange<Date>)
 }

@@ -21,8 +21,35 @@
 ///   - selectionHint: The hint provided to assistive technologies informing a user how to select a date.
 public struct SingleAccessibilityConfigurations {
     let selectionHint: String
+    let wholeMonth: WholeMonthAccessibilityConfigurations?
 
-    public init(selectionHint: String) {
+    public init(selectionHint: String, wholeMonth: WholeMonthAccessibilityConfigurations?) {
         self.selectionHint = selectionHint
+        self.wholeMonth = wholeMonth
+    }
+}
+
+public struct WholeMonthAccessibilityConfigurations {
+    let startSelectionHint: String
+    let endSelectionHint: String
+    let startSelectionState: String
+    let endSelectionState: String
+    let startAndEndSelectionState: String
+    let returnDatePrompt: String
+
+    public init(
+        startSelectionHint: String,
+        endSelectionHint: String,
+        startSelectionState: String,
+        endSelectionState: String,
+        startAndEndSelectionState: String,
+        returnDatePrompt: String
+    ) {
+        self.startSelectionHint = startSelectionHint
+        self.endSelectionHint = endSelectionHint
+        self.startSelectionState = startSelectionState
+        self.endSelectionState = endSelectionState
+        self.startAndEndSelectionState = startAndEndSelectionState
+        self.returnDatePrompt = returnDatePrompt
     }
 }

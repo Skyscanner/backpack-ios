@@ -28,7 +28,7 @@ public enum CalendarSelectionType {
     
     /// A single selection, where the user can select a single date.
     case single(
-        selected: Binding<Date?>,
+        selected: Binding<CalendarSingleSelectionState?>,
         accessibilityConfigurations: SingleAccessibilityConfigurations
     )
 }
