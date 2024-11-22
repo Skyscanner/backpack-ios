@@ -32,6 +32,7 @@ public struct BPKPrice: View {
     private let leadingText: String?
     private let previousPrice: String?
     private let trailingText: String?
+    private let icon: (BPKIcon, String)?
     private let alignment: Alignment
     private let size: Size
     
@@ -40,6 +41,7 @@ public struct BPKPrice: View {
         leadingText: String? = nil,
         previousPrice: String? = nil,
         trailingText: String? = nil,
+        icon: (BPKIcon, String)? = nil,
         alignment: Alignment = .leading,
         size: Size
     ) {
@@ -47,6 +49,7 @@ public struct BPKPrice: View {
         self.leadingText = leadingText
         self.previousPrice = previousPrice
         self.trailingText = trailingText
+        self.icon = icon
         self.alignment = alignment
         self.size = size
     }
@@ -78,7 +81,7 @@ public struct BPKPrice: View {
                     priceLabel
                 }
             case .trailing:
-                VStack(alignment: .trailing) {
+                VStack(alignment: .trailing, spacing: 0) {
                     priceLabel
                 }
             }
@@ -101,11 +104,31 @@ public struct BPKPrice: View {
     
     @ViewBuilder
     private var priceLabel: some View {
-        BPKText(price, style: priceFontStyle)
+        switch alignment {
+        case .leading, .row:
+            BPKText(price, style: priceFontStyle)
+            if let icon {
+                redirectingIcon(icon: icon)
+                    .offset(y: 2)
+            }
+        case .trailing:
+            HStack(spacing: .sm) {
+                BPKText(price, style: priceFontStyle)
+                if let icon {
+                    redirectingIcon(icon: icon)
+                }
+            }
+        }
         if let trailingText = trailingText {
             BPKText(trailingText, style: accessoryFontStyle)
                 .foregroundColor(.textSecondaryColor)
         }
+    }
+    
+    private func redirectingIcon(icon: (BPKIcon, String)) -> some View {
+        let (newIcon, accessibilityLabel) = icon
+        return BPKIconView(newIcon, size: .small, accessibilityLabel: accessibilityLabel)
+            .accessibilityAddTraits(.isButton)
     }
     
     private var accessoryFontStyle: BPKFontStyle {
@@ -154,8 +177,9 @@ struct BPKPrice_Previews: PreviewProvider {
             leadingText: "App only deal",
             previousPrice: "£2030",
             trailingText: "per day",
+            icon: (.newWindow, ""),
             alignment: .leading,
-            size: .large
+            size: .extraSmall
         )
     }
 }
