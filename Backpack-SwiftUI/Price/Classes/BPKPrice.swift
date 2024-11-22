@@ -32,20 +32,18 @@ public struct BPKPrice: View {
     private let leadingText: String?
     private let previousPrice: String?
     private let trailingText: String?
-    private let icon: BPKIcon?
+    private let icon: (BPKIcon, String)?
     private let alignment: Alignment
     private let size: Size
-    private let accessibilityLabel: String?
     
     public init(
         price: String,
         leadingText: String? = nil,
         previousPrice: String? = nil,
         trailingText: String? = nil,
-        icon: BPKIcon? = nil,
+        icon: (BPKIcon, String)? = nil,
         alignment: Alignment = .leading,
-        size: Size,
-        accessibilityLabel: String? = nil
+        size: Size
     ) {
         self.price = price
         self.leadingText = leadingText
@@ -54,7 +52,6 @@ public struct BPKPrice: View {
         self.icon = icon
         self.alignment = alignment
         self.size = size
-        self.accessibilityLabel = accessibilityLabel
     }
     
     public var body: some View {
@@ -110,15 +107,15 @@ public struct BPKPrice: View {
         switch alignment {
         case .leading, .row:
             BPKText(price, style: priceFontStyle)
-            if icon != nil {
-                redirectingIcon
+            if let icon {
+                redirectingIcon(icon: icon)
                     .offset(y: 2)
             }
         case .trailing:
             HStack(spacing: .sm) {
                 BPKText(price, style: priceFontStyle)
-                if icon != nil {
-                    redirectingIcon
+                if let icon {
+                    redirectingIcon(icon: icon)
                 }
             }
         }
@@ -128,8 +125,9 @@ public struct BPKPrice: View {
         }
     }
     
-    private var redirectingIcon: some View {
-        BPKIconView(icon!, size: .small, accessibilityLabel: accessibilityLabel ?? "")
+    private func redirectingIcon(icon: (BPKIcon, String)) -> some View {
+        let (newIcon, accessibilityLabel) = icon
+        return BPKIconView(newIcon, size: .small, accessibilityLabel: accessibilityLabel)
             .accessibilityAddTraits(.isButton)
     }
     
@@ -179,7 +177,7 @@ struct BPKPrice_Previews: PreviewProvider {
             leadingText: "App only deal",
             previousPrice: "£2030",
             trailingText: "per day",
-            icon: .newWindow,
+            icon: (.newWindow, ""),
             alignment: .leading,
             size: .extraSmall
         )
