@@ -110,8 +110,6 @@ public struct BPKGraphicPromo: View {
             accessibilityLabel: sponsoredAccessibilityLabel)
     }
     
-    @State private var containerWidth: CGFloat = 0
-    
     public var body: some View {
         Button(action: tapAction) {
             contentView()
