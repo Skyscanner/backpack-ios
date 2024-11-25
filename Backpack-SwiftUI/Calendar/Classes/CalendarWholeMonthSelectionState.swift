@@ -20,9 +20,15 @@ import SwiftUI
 
 /// The `CalendarRangeSelectionState` represents the states of a whole month selection state.
 public struct CalendarWholeMonthSelectionState {
-    let range: ClosedRange<Date>
-    let returnMode: WholeMonthReturnMode
-    let selectionAction: ((Date) -> Void)
+    public let range: ClosedRange<Date>
+    public let returnMode: WholeMonthReturnMode
+    public let selectionAction: ((Date) -> Void)
+
+    public init(range: ClosedRange<Date>, returnMode: WholeMonthReturnMode, selectionAction: @escaping (Date) -> Void) {
+        self.range = range
+        self.returnMode = returnMode
+        self.selectionAction = selectionAction
+    }
 }
 
 public enum WholeMonthReturnMode {

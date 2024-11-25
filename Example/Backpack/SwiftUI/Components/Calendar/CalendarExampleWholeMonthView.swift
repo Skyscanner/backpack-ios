@@ -21,8 +21,8 @@ import SwiftUI
 import Backpack_SwiftUI
 
 struct CalendarExampleWholeMonthView: View {
-    @State var selection: CalendarRangeSelectionState?
-    
+    @State var selection: CalendarSelectionState
+
     let validRange: ClosedRange<Date>
     let calendar: Calendar
     let formatter: DateFormatter
@@ -42,54 +42,87 @@ struct CalendarExampleWholeMonthView: View {
         self.formatter = formatter
         let selectionStart = calendar.date(from: .init(year: 2023, month: 11, day: 10))!
         let selectionEnd = calendar.date(from: .init(year: 2023, month: 11, day: 30))!
-        _selection = State(initialValue: .range(selectionStart...selectionEnd))
+        _selection = State(
+            initialValue: .range(
+                .range(selectionStart...selectionEnd)
+            )
+        )
     }
     
     var body: some View {
         VStack {
-            HStack {
-                BPKText("Selected inbound:", style: .caption)
-                if case .wholeMonth(let selectedRange) = selection {
-                    BPKText("\(formatter.string(from: selectedRange.lowerBound))", style: .caption)
-                } else if case .intermediate(let selectedDate) = selection {
-                    BPKText("\(formatter.string(from: selectedDate))", style: .caption)
-                }
-            }
-            HStack {
-                BPKText("Selected outbound:", style: .caption)
-                if case .wholeMonth(let selectedRange) = selection {
-                    BPKText("\(formatter.string(from: selectedRange.upperBound))", style: .caption)
-                }
-            }
             calendarView
         }
     }
     
     @ViewBuilder
     var calendarView: some View {
-        let accessibilityConfigurations = RangeAccessibilityConfigurations(
-            startSelectionHint: "Double tap to select departure date",
-            endSelectionHint: "Double tap to select return date",
-            startSelectionState: "Selected as departure date",
-            endSelectionState: "Selected as return date",
-            betweenSelectionState: "Between departure and return date",
-            startAndEndSelectionState: "Selected as both departure and return date",
-            returnDatePrompt: "Now please select a return date"
-        )
         BPKCalendar(
-            selectionType: .range(
-                selection: $selection,
-                accessibilityConfigurations: accessibilityConfigurations
-            ),
+            selectionType: makeSelectionType(),
             calendar: calendar,
             validRange: validRange
         )
         .monthAccessoryAction { _ in
             return CalendarMonthAccessoryAction(
                 title: "Select whole month",
-                action: .wholeMonthSelection({ monthRange, _ in
-                    selection = .wholeMonth(monthRange)
+                action: .wholeMonthSelection({ monthRange, returnMode in
+                    selection = .wholeMonth(
+                        .init(
+                            range: monthRange,
+                            returnMode: returnMode,
+                            selectionAction: { date in
+                                if returnMode == .range {
+                                    selection = .range(.intermediate(date))
+                                }
+                            }
+                        )
+                    )
                 })
+            )
+        }
+    }
+
+    func makeSelectionType() -> CalendarSelectionType {
+        switch selection {
+        case .range(let state):
+            let accessibilityConfig = RangeAccessibilityConfigurations(
+                startSelectionHint: "Double tap to select departure date",
+                endSelectionHint: "Double tap to select return date",
+                startSelectionState: "Selected as departure date",
+                endSelectionState: "Selected as return date",
+                betweenSelectionState: "Between departure and return date",
+                startAndEndSelectionState: "Selected as both departure and return date",
+                returnDatePrompt: "Now please select a return date"
+            )
+            return .range(
+                selection: Binding(
+                    get: { Optional(state) },
+                    set: { newValue in
+                        if let newValue = newValue {
+                            selection = .range(newValue)
+                        }
+                    }
+                ),
+                accessibilityConfigurations: accessibilityConfig
+            )
+        case .wholeMonth(let state):
+            let accessibilityConfig = WholeMonthAccessibilityConfigurations(
+                startSelectionHint: "Double tap to select departure date",
+                endSelectionHint: "Double tap to select return date",
+                startSelectionState: "Selected as departure date",
+                endSelectionState: "Selected as return date",
+                betweenSelectionState: "Between departure and return date",
+                startAndEndSelectionState: "Selected as both departure and return date",
+                returnDatePrompt: "Now please select a return date"
+            )
+            return .wholeMonth(
+                selection: Binding(
+                    get: { state },
+                    set: { newValue in
+                        selection = .wholeMonth(newValue)
+                    }
+                ),
+                accessibilityConfigurations: accessibilityConfig
             )
         }
     }
@@ -99,4 +132,9 @@ struct CalendarExampleMonthSelectionView_Previews: PreviewProvider {
     static var previews: some View {
         CalendarExampleWholeMonthView()
     }
+}
+
+enum CalendarSelectionState {
+    case range(CalendarRangeSelectionState)
+    case wholeMonth(CalendarWholeMonthSelectionState)
 }
