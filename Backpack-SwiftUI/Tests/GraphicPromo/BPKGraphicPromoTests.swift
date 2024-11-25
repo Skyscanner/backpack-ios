@@ -89,7 +89,7 @@ class BPKGraphicPromoTests: XCTestCase {
             )
             .fallbackColor(Color(.statusDangerFillColor))
         }
-        .frame(width: 775)
+        .frame(width: 800)
         .padding()
         
         // When
