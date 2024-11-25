@@ -61,6 +61,19 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
                 monthHeader: monthHeader,
                 dayAccessoryView: dayAccessoryView
             )
+        case .wholeMonth(let selection, let accessibilityConfigurations):
+            WholeMonthCalendarContainer(
+                selectionState: selection,
+                calendar: calendar,
+                validRange: validRange,
+                accessibilityProvider: WholeMonthDayAccessibilityProvider(
+                    accessibilityConfigurations: accessibilityConfigurations,
+                    dateFormatter: accessibilityDateFormatter
+                ),
+                monthScroll: monthScroll,
+                monthHeader: monthHeader,
+                dayAccessoryView: dayAccessoryView
+            )
 
         }
     }

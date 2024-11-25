@@ -85,6 +85,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
                                 validRange: validRange,
                                 accessoryAction: accessoryAction,
                                 currentlyShownMonth: $currentlyShownMonth,
+                                wholeMonthReturnMode: selectionType.returnMode,
                                 parentProxy: calendarProxy
                             )
                         },

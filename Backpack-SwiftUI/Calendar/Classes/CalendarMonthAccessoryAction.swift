@@ -40,6 +40,6 @@ public struct CalendarMonthAccessoryAction {
 
         /// An action triggered for a whole month selection.
         /// - Parameter: A `ClosedRange<Date>` for the start and end of the selected month (calendar range considered).
-        case wholeMonthSelection((ClosedRange<Date>) -> Void)
+        case wholeMonthSelection((ClosedRange<Date>, WholeMonthReturnMode) -> Void)
     }
 }

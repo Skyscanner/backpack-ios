@@ -27,8 +27,9 @@ struct CalendarMonthHeader: View {
     let validRange: ClosedRange<Date>
     let accessoryAction: ((Date) -> CalendarMonthAccessoryAction?)?
     @Binding var currentlyShownMonth: Date
+    let wholeMonthReturnMode: WholeMonthReturnMode
     let parentProxy: GeometryProxy
-    
+
     var body: some View {
         HStack {
             let form = dateFormatter.string(from: monthDate)
@@ -49,7 +50,7 @@ struct CalendarMonthHeader: View {
                         action(monthDate)
                     case .wholeMonthSelection(let action):
                         guard let range = monthRangeFor(date: monthDate) else { return }
-                        action(range)
+                        action(range, wholeMonthReturnMode)
                     }
                 }
                 .buttonStyle(.link)
@@ -102,11 +103,25 @@ struct CalendarMonthHeader_Previews: PreviewProvider {
                 validRange: start...end,
                 accessoryAction: { _ in return .init(title: "Action", action: .custom({ _ in })) },
                 currentlyShownMonth: .constant(Date()),
+                wholeMonthReturnMode: .range,
                 parentProxy: proxy
             )
             .border(.black)
             .padding(.base)
         }
         .fixedSize(horizontal: false, vertical: true)
+    }
+}
+
+extension CalendarSelectionType {
+    var returnMode: WholeMonthReturnMode {
+        switch self {
+        case .range:
+            return .range
+        case .single:
+            return .single
+        case .wholeMonth(let selection, _):
+            return selection.wrappedValue.returnMode
+        }
     }
 }
