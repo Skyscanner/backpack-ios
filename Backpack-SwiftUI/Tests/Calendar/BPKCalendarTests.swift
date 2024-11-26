@@ -40,7 +40,7 @@ class BPKCalendarTests: XCTestCase {
         assertSnapshot(
             BPKCalendar(
                 selectionType: .single(
-                    selected: .constant(testDate),
+                    selected: .constant(.single(testDate)),
                     accessibilityConfigurations: SingleAccessibilityConfigurations(
                         selectionHint: ""
                     )

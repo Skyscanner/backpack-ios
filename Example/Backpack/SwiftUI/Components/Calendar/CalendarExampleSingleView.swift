@@ -21,7 +21,7 @@ import SwiftUI
 import Backpack_SwiftUI
 
 struct CalendarExampleSingleView: View {
-    @State var selectedDate: Date?
+    @State var selection: CalendarSingleSelectionState?
     private var monthScroll: MonthScroll?
 
     let validRange: ClosedRange<Date>
@@ -49,20 +49,22 @@ struct CalendarExampleSingleView: View {
             self.monthScroll = .init(monthToScroll: date, animated: true)
         }
 
-        _selectedDate = State(initialValue: date)
+        _selection = State(initialValue: .single(date))
     }
     
     var body: some View {
         VStack {
             HStack {
                 BPKText("Selected date:", style: .caption)
-                if let selectedDate {
-                    BPKText("\(formatter.string(from: selectedDate))", style: .caption)
+                if case .single(let date) = selection {
+                    BPKText("\(formatter.string(from: date))", style: .caption)
+                } else if case .wholeMonth(let month, _) = selection {
+                    BPKText("\(formatter.string(from: month.lowerBound))", style: .caption)
                 }
             }
             BPKCalendar(
                 selectionType: .single(
-                    selected: $selectedDate,
+                    selected: $selection,
                     accessibilityConfigurations: SingleAccessibilityConfigurations(
                         selectionHint: "Double tap to select date"
                     )
@@ -71,7 +73,23 @@ struct CalendarExampleSingleView: View {
                 validRange: validRange,
                 initialMonthScroll: monthScroll
             )
+            .monthAccessoryAction { _ in
+                return CalendarMonthAccessoryAction(
+                    title: "Select whole month",
+                    action: .wholeMonthSelection({ monthRange in
+                        selection = .wholeMonth(monthRange, accessibilityConfig: wholeMonthAccessibilityConfig())
+                    })
+                )
+            }
         }
+    }
+
+    private func wholeMonthAccessibilityConfig() -> WholeMonthAccessibilityConfigurations {
+        return .init(
+            startSelectionState: "Selected as departure date",
+            endSelectionState: "Selected as return date",
+            betweenSelectionState: "Between departure and return date"
+        )
     }
 }
 

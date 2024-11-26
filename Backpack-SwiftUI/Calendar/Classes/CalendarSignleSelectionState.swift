@@ -16,19 +16,13 @@
  * limitations under the License.
  */
 
-import SwiftUI
+import Foundation
 
-/// The `CalendarSelectionType` enum represents the different types of selection that can be made in a calendar.
-public enum CalendarSelectionType {
-    /// A range selection, where the user can select a range of dates.
-    case range(
-        selection: Binding<CalendarRangeSelectionState?>,
-        accessibilityConfigurations: RangeAccessibilityConfigurations
-    )
-    
-    /// A single selection, where the user can select a single date.
-    case single(
-        selected: Binding<CalendarSingleSelectionState?>,
-        accessibilityConfigurations: SingleAccessibilityConfigurations
-    )
+/// The `CalendarSingleSelectionState` enum represents the different states of a single selection.
+public enum CalendarSingleSelectionState {
+    /// The state, with single date selection
+    case single(Date)
+
+    /// The state the user has selected the whole month.
+    case wholeMonth(ClosedRange<Date>, accessibilityConfig: WholeMonthAccessibilityConfigurations)
 }
