@@ -59,7 +59,6 @@ struct SingleCalendarContainer<MonthHeader: View, DayAccessoryView: View>: View 
         .accessibilityLabel(accessibilityProvider.accessibilityLabel(for: dayDate))
         .accessibilityHint(accessibilityProvider.accessibilityHint(for: dayDate, selection: selection))
     }
-    
 
     var body: some View {
         CalendarContainer(
@@ -81,36 +80,36 @@ struct SingleCalendarContainer<MonthHeader: View, DayAccessoryView: View>: View 
     }
 }
 
-//struct SingleCalendarContainer_Previews: PreviewProvider {
-//    static let formatter: DateFormatter = {
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "MMMM yyyy"
-//        return formatter
-//    }()
-//    
-//    static var previews: some View {
-//        let calendar = Calendar.current
-//        let start = calendar.date(from: .init(year: 2023, month: 10, day: 30))!
-//        let end = calendar.date(from: .init(year: 2025, month: 12, day: 25))!
-//
-//        SingleCalendarContainer(
-//            selection: .constant(calendar.date(from: .init(year: 2023, month: 11, day: 10))!),
-//            calendar: calendar,
-//            validRange: start...end,
-//            accessibilityProvider: SingleDayAccessibilityProvider(
-//                accessibilityConfigurations: .init(selectionHint: ""),
-//                dateFormatter: Self.formatter
-//            ),
-//            monthScroll: nil,
-//            monthHeader: { month in
-//                BPKText("\(Self.formatter.string(from: month))")
-//            },
-//            dayAccessoryView: { _ in
-//                BPKText("20", style: .caption)
-//            }
-//        )
-//    }
-//}
+struct SingleCalendarContainer_Previews: PreviewProvider {
+    static let formatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM yyyy"
+        return formatter
+    }()
+    
+    static var previews: some View {
+        let calendar = Calendar.current
+        let start = calendar.date(from: .init(year: 2023, month: 10, day: 30))!
+        let end = calendar.date(from: .init(year: 2025, month: 12, day: 25))!
+
+        SingleCalendarContainer(
+            selection: .constant(.single(calendar.date(from: .init(year: 2023, month: 11, day: 10))!)),
+            calendar: calendar,
+            validRange: start...end,
+            accessibilityProvider: SingleDayAccessibilityProvider(
+                accessibilityConfigurations: .init(selectionHint: "", wholeMonth: nil),
+                dateFormatter: Self.formatter
+            ),
+            monthScroll: nil,
+            monthHeader: { month in
+                BPKText("\(Self.formatter.string(from: month))")
+            },
+            dayAccessoryView: { _ in
+                BPKText("20", style: .caption)
+            }
+        )
+    }
+}
 
 extension CalendarSingleSelectionState {
     func isSelected(_ date: Date) -> Bool {
