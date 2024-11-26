@@ -56,7 +56,7 @@ struct CalendarExampleSingleView: View {
         VStack {
             HStack {
                 BPKText("Selected date:", style: .caption)
-                if case .single(let date) = selection, let date {
+                if case .single(let date) = selection {
                     BPKText("\(formatter.string(from: date))", style: .caption)
                 } else if case .wholeMonth(let month, _) = selection {
                     BPKText("\(formatter.string(from: month.lowerBound))", style: .caption)
