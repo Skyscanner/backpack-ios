@@ -20,8 +20,25 @@ struct SingleDayAccessibilityProvider {
     let accessibilityConfigurations: SingleAccessibilityConfigurations
     let dateFormatter: DateFormatter
     
-    func accessibilityLabel(for dayDate: Date) -> String {
-        dateFormatter.string(from: dayDate)
+    func accessibilityLabel(for dayDate: Date, selection: CalendarSingleSelectionState?) -> String {
+        let baseLabel = dateFormatter.string(from: dayDate)
+
+        if case .wholeMonth(let range) = selection {
+            var state: String?
+            if range.contains(dayDate), let config = accessibilityConfigurations.wholeMonth {
+                if dayDate == range.lowerBound {
+                    state = config.startSelectionState
+                } else if dayDate == range.upperBound {
+                    state = config.endSelectionState
+                } else {
+                    state = config.betweenSelectionState
+                }
+            }
+            guard let state else { return baseLabel }
+            return "\(baseLabel), \(state)"
+        } else {
+            return baseLabel
+        }
     }
 
     func accessibilityHint(for dayDate: Date, selection: CalendarSingleSelectionState?) -> String {
@@ -29,5 +46,16 @@ struct SingleDayAccessibilityProvider {
             return ""
         }
         return accessibilityConfigurations.selectionHint
+    }
+}
+
+extension CalendarSingleSelectionState {
+    func isSelected(_ date: Date) -> Bool {
+        switch self {
+        case .single(let selectedDate):
+            return selectedDate == date
+        case .wholeMonth(let range):
+            return range.contains(date)
+        }
     }
 }

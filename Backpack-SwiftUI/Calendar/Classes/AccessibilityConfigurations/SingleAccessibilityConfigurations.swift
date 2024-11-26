@@ -19,6 +19,7 @@
 /// Create a single-selection configuration with given accessibility strings.
 /// - Parameters:
 ///   - selectionHint: The hint provided to assistive technologies informing a user how to select a date.
+///   - wholeMonth: The optional whole month selection configuration for assistive technologies.
 public struct SingleAccessibilityConfigurations {
     let selectionHint: String
     let wholeMonth: WholeMonthAccessibilityConfigurations?
@@ -29,27 +30,26 @@ public struct SingleAccessibilityConfigurations {
     }
 }
 
+/// Create a whole-month configuration with given accessibility strings for single selection.
+/// - Parameters:
+///   - startSelectionState: The label provided to assistive technologies informing a user that a date is selected
+///     as the first date in the range.
+///   - endSelectionState: The label provided to assistive technologies informing a user that a date is selected
+///     as the second date in the range.
+///   - betweenSelectionState: The label provided to assistive technologies informing a user that a date lies
+///     between the first and second selected dates.
 public struct WholeMonthAccessibilityConfigurations {
-    let startSelectionHint: String
-    let endSelectionHint: String
     let startSelectionState: String
     let endSelectionState: String
-    let startAndEndSelectionState: String
-    let returnDatePrompt: String
+    let betweenSelectionState: String
 
     public init(
-        startSelectionHint: String,
-        endSelectionHint: String,
         startSelectionState: String,
         endSelectionState: String,
-        startAndEndSelectionState: String,
-        returnDatePrompt: String
+        betweenSelectionState: String
     ) {
-        self.startSelectionHint = startSelectionHint
-        self.endSelectionHint = endSelectionHint
         self.startSelectionState = startSelectionState
         self.endSelectionState = endSelectionState
-        self.startAndEndSelectionState = startAndEndSelectionState
-        self.returnDatePrompt = returnDatePrompt
+        self.betweenSelectionState = betweenSelectionState
     }
 }

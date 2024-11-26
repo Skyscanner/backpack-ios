@@ -56,7 +56,7 @@ struct SingleCalendarContainer<MonthHeader: View, DayAccessoryView: View>: View 
         }
         .accessibilityAddTraits(.isButton)
         .accessibilityAddTraits(selection?.isSelected(dayDate) == true ? .isSelected : [])
-        .accessibilityLabel(accessibilityProvider.accessibilityLabel(for: dayDate))
+        .accessibilityLabel(accessibilityProvider.accessibilityLabel(for: dayDate, selection: selection))
         .accessibilityHint(accessibilityProvider.accessibilityHint(for: dayDate, selection: selection))
     }
 
@@ -108,16 +108,5 @@ struct SingleCalendarContainer_Previews: PreviewProvider {
                 BPKText("20", style: .caption)
             }
         )
-    }
-}
-
-extension CalendarSingleSelectionState {
-    func isSelected(_ date: Date) -> Bool {
-        switch self {
-        case .single(let selectedDate):
-            return selectedDate == date
-        case .wholeMonth(let range):
-            return range.contains(date)
-        }
     }
 }
