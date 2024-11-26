@@ -24,7 +24,10 @@ public struct SingleAccessibilityConfigurations {
     let selectionHint: String
     let wholeMonth: WholeMonthAccessibilityConfigurations?
 
-    public init(selectionHint: String, wholeMonth: WholeMonthAccessibilityConfigurations?) {
+    public init(
+        selectionHint: String,
+        wholeMonth: WholeMonthAccessibilityConfigurations? = nil
+    ) {
         self.selectionHint = selectionHint
         self.wholeMonth = wholeMonth
     }
