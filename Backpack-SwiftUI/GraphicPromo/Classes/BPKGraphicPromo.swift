@@ -31,6 +31,7 @@ public struct BPKGraphicPromo: View {
     private struct Constants {
         static let aspectRatioMobile: CGFloat = 3/4
         static let aspectRatioTablet: CGFloat = 1.96
+        static let aspectRatioDesktop: CGFloat = 2.66
     }
     
     private let kicker: String?
@@ -57,6 +58,7 @@ public struct BPKGraphicPromo: View {
     public enum LayoutType {
         case mobile
         case tablet
+        case desktop
     }
     
     public init(
@@ -253,6 +255,8 @@ public struct BPKGraphicPromo: View {
             return Constants.aspectRatioMobile
         case .tablet:
             return Constants.aspectRatioTablet
+        case .desktop:
+            return Constants.aspectRatioDesktop
         }
     }
 }
@@ -325,7 +329,7 @@ struct BPKGraphicPromo_Previews: PreviewProvider {
                 BPKGraphicPromo(
                     headline: "There's always more to explore in Britain",
                     image: Image(systemName: "heart"),
-                    layoutType: .tablet,
+                    layoutType: .desktop,
                     sponsorTitle: "In partnership with Skyland",
                     partnerLogo: Image(systemName: "heart.fill"),
                     sponsoredAccessibilityLabel: "Sponsored by: Skyland"

@@ -70,12 +70,13 @@ class BPKGraphicPromoTests: XCTestCase {
             )
             .fallbackColor(Color(.statusDangerFillColor))
         }
-        .frame(width: 375, height: 800)
-        .padding()
+            .frame(width: 375, height: 800)
+            .padding()
         
         // When
         assertSnapshot(sut)
     }
+    
     func test_sponsored_tabletLayout() {
         // Given
         let sut = VStack {
@@ -89,8 +90,28 @@ class BPKGraphicPromoTests: XCTestCase {
             )
             .fallbackColor(Color(.statusDangerFillColor))
         }
-        .frame(width: 800)
-        .padding()
+            .frame(width: 800)
+            .padding()
+        
+        // When
+        assertSnapshot(sut)
+    }
+    
+    func test_sponsored_desktopLayout() {
+        // Given
+        let sut = VStack {
+            BPKGraphicPromo(
+                headline: "Three peaks challenge",
+                image: Image("dialog_image", bundle: TestsBundle.bundle),
+                layoutType: .desktop,
+                sponsorTitle: "Sponsored",
+                partnerLogo: Image(decorative: "skyland", bundle: TestsBundle.bundle),
+                sponsoredAccessibilityLabel: "Sponsored by: Skyland"
+            )
+            .fallbackColor(Color(.statusDangerFillColor))
+        }
+            .frame(width: 1024)
+            .padding()
         
         // When
         assertSnapshot(sut)
