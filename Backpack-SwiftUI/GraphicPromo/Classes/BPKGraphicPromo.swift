@@ -26,6 +26,12 @@ public struct BPKGraphicPromo: View {
         let logo: Image?
         let accessibilityLabel: String
     }
+
+    private struct Constants {
+        static let aspectRatioMobile: CGFloat = 3/4
+        static let aspectRatioTablet: CGFloat = 1.96
+        static let aspectRatioDesktop: CGFloat = 2.66
+    }
     
     private let kicker: String?
     private let headline: String
@@ -33,6 +39,7 @@ public struct BPKGraphicPromo: View {
     private let image: Image
     
     private let type: `Type`
+    private let layoutType: LayoutType
     private let overlay: BPKOverlayType
     private let variant: Variant
     private let verticalAlignment: VerticalAlignment
@@ -44,9 +51,14 @@ public struct BPKGraphicPromo: View {
     
     // MARK: - Internal settings
     private let sponsorLogoHeight = 32.0
-    private let aspectRatio: CGFloat = 3/4
     private let padding = BPKSpacing.lg
     private let cornerRadius = BPKCornerRadius.md
+    
+    public enum LayoutType {
+        case mobile
+        case tablet
+        case desktop
+    }
     
     public init(
         kicker: String? = nil,
@@ -54,6 +66,7 @@ public struct BPKGraphicPromo: View {
         subheadline: String? = nil,
         image: Image,
         type: `Type` = .button,
+        layoutType: LayoutType = .mobile,
         overlay: BPKOverlayType = .solid(.off),
         variant: Variant = .onDark,
         verticalAlignment: BPKGraphicPromo.VerticalAlignment = .top
@@ -64,6 +77,7 @@ public struct BPKGraphicPromo: View {
         self.image = image
             
         self.type = type
+        self.layoutType = layoutType
         self.overlay = overlay
         self.variant = variant
             
@@ -74,6 +88,7 @@ public struct BPKGraphicPromo: View {
         headline: String,
         image: Image,
         type: `Type` = .button,
+        layoutType: LayoutType = .mobile,
         overlay: BPKOverlayType = .linear(.high, .bottom),
         variant: Variant = .onDark,
         sponsorTitle: String,
@@ -86,6 +101,7 @@ public struct BPKGraphicPromo: View {
         self.subheadline = nil
         self.image = image
         self.type = type
+        self.layoutType = layoutType
         self.overlay = overlay
         self.variant = variant
         
@@ -108,7 +124,7 @@ public struct BPKGraphicPromo: View {
             cornerRadius: cornerRadius
         ))
         .if(sizeCategory < .accessibilityExtraLarge, transform: {
-            $0.aspectRatio(aspectRatio, contentMode: .fit)
+            $0.aspectRatio(aspectRatio(), contentMode: .fit)
         })
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(contentAccessibilityLabel)
@@ -160,7 +176,7 @@ public struct BPKGraphicPromo: View {
     }
     
     private var headlineView: some View {
-        BPKText(headline, style: .heading2)
+        BPKText(headline, style: layoutType == .mobile ? .heading2 : .heading1)
             .foregroundColor(variant.foregroundColor)
             .lineLimit(nil)
     }
@@ -230,6 +246,17 @@ public struct BPKGraphicPromo: View {
             perform()
         }
         return result
+    }
+    
+    private func aspectRatio() -> CGFloat {
+        switch layoutType {
+        case .mobile:
+            return Constants.aspectRatioMobile
+        case .tablet:
+            return Constants.aspectRatioTablet
+        case .desktop:
+            return Constants.aspectRatioDesktop
+        }
     }
 }
 
@@ -301,6 +328,7 @@ struct BPKGraphicPromo_Previews: PreviewProvider {
                 BPKGraphicPromo(
                     headline: "There's always more to explore in Britain",
                     image: Image(systemName: "heart"),
+                    layoutType: .desktop,
                     sponsorTitle: "In partnership with Skyland",
                     partnerLogo: Image(systemName: "heart.fill"),
                     sponsoredAccessibilityLabel: "Sponsored by: Skyland"
