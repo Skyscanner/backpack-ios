@@ -20,7 +20,6 @@ import SwiftUI
 
 public struct BPKGraphicPromo: View {
     @Environment(\.sizeCategory) var sizeCategory
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     private struct Sponsor {
         let title: String
