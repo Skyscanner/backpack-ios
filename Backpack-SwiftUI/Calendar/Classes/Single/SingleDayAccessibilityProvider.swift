@@ -23,15 +23,15 @@ struct SingleDayAccessibilityProvider {
     func accessibilityLabel(for dayDate: Date, selection: CalendarSingleSelectionState?) -> String {
         let baseLabel = dateFormatter.string(from: dayDate)
 
-        if case .wholeMonth(let range) = selection {
+        if case .wholeMonth(let range, let accessibilityConfig) = selection {
             var state: String?
-            if range.contains(dayDate), let config = accessibilityConfigurations.wholeMonth {
+            if range.contains(dayDate) {
                 if dayDate == range.lowerBound {
-                    state = config.startSelectionState
+                    state = accessibilityConfig.startSelectionState
                 } else if dayDate == range.upperBound {
-                    state = config.endSelectionState
+                    state = accessibilityConfig.endSelectionState
                 } else {
-                    state = config.betweenSelectionState
+                    state = accessibilityConfig.betweenSelectionState
                 }
             }
             guard let state else { return baseLabel }
@@ -54,7 +54,7 @@ extension CalendarSingleSelectionState {
         switch self {
         case .single(let selectedDate):
             return selectedDate == date
-        case .wholeMonth(let range):
+        case .wholeMonth(let range, _):
             return range.contains(date)
         }
     }

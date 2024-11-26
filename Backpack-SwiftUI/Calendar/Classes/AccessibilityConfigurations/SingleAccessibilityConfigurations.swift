@@ -19,40 +19,10 @@
 /// Create a single-selection configuration with given accessibility strings.
 /// - Parameters:
 ///   - selectionHint: The hint provided to assistive technologies informing a user how to select a date.
-///   - wholeMonth: The optional whole month selection configuration for assistive technologies.
 public struct SingleAccessibilityConfigurations {
     let selectionHint: String
-    let wholeMonth: WholeMonthAccessibilityConfigurations?
 
-    public init(
-        selectionHint: String,
-        wholeMonth: WholeMonthAccessibilityConfigurations? = nil
-    ) {
+    public init(selectionHint: String) {
         self.selectionHint = selectionHint
-        self.wholeMonth = wholeMonth
-    }
-}
-
-/// Create a whole-month configuration with given accessibility strings for single selection.
-/// - Parameters:
-///   - startSelectionState: The label provided to assistive technologies informing a user that a date is selected
-///     as the first date in the range.
-///   - endSelectionState: The label provided to assistive technologies informing a user that a date is selected
-///     as the second date in the range.
-///   - betweenSelectionState: The label provided to assistive technologies informing a user that a date lies
-///     between the first and second selected dates.
-public struct WholeMonthAccessibilityConfigurations {
-    let startSelectionState: String
-    let endSelectionState: String
-    let betweenSelectionState: String
-
-    public init(
-        startSelectionState: String,
-        endSelectionState: String,
-        betweenSelectionState: String
-    ) {
-        self.startSelectionState = startSelectionState
-        self.endSelectionState = endSelectionState
-        self.betweenSelectionState = betweenSelectionState
     }
 }

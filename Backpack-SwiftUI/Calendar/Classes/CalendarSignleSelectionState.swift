@@ -24,5 +24,5 @@ public enum CalendarSingleSelectionState {
     case single(Date?)
 
     /// The state the user has selected the whole month.
-    case wholeMonth(ClosedRange<Date>)
+    case wholeMonth(ClosedRange<Date>, accessibilityConfig: WholeMonthAccessibilityConfigurations)
 }

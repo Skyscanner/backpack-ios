@@ -58,7 +58,7 @@ struct CalendarExampleSingleView: View {
                 BPKText("Selected date:", style: .caption)
                 if case .single(let date) = selection, let date {
                     BPKText("\(formatter.string(from: date))", style: .caption)
-                } else if case .wholeMonth(let month) = selection {
+                } else if case .wholeMonth(let month, _) = selection {
                     BPKText("\(formatter.string(from: month.lowerBound))", style: .caption)
                 }
             }
@@ -66,8 +66,7 @@ struct CalendarExampleSingleView: View {
                 selectionType: .single(
                     selected: $selection,
                     accessibilityConfigurations: SingleAccessibilityConfigurations(
-                        selectionHint: "Double tap to select date",
-                        wholeMonth: nil
+                        selectionHint: "Double tap to select date"
                     )
                 ),
                 calendar: calendar,
@@ -78,11 +77,19 @@ struct CalendarExampleSingleView: View {
                 return CalendarMonthAccessoryAction(
                     title: "Select whole month",
                     action: .wholeMonthSelection({ monthRange in
-                        selection = .wholeMonth(monthRange)
+                        selection = .wholeMonth(monthRange, accessibilityConfig: wholeMonthAccessibilityConfig())
                     })
                 )
             }
         }
+    }
+
+    private func wholeMonthAccessibilityConfig() -> WholeMonthAccessibilityConfigurations {
+        return .init(
+            startSelectionState: "Selected as departure date",
+            endSelectionState: "Selected as return date",
+            betweenSelectionState: "Between departure and return date"
+        )
     }
 }
 

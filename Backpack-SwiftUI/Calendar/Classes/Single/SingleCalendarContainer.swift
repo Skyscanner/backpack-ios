@@ -37,7 +37,7 @@ struct SingleCalendarContainer<MonthHeader: View, DayAccessoryView: View>: View 
                 } else {
                     DefaultCalendarDayCell(calendar: calendar, date: dayDate)
                 }
-            case .wholeMonth(let closedRange):
+            case .wholeMonth(let closedRange, _):
                 if closedRange.contains(dayDate) {
                     RangeSelectionCalendarDayCell(
                         date: dayDate,
@@ -97,7 +97,7 @@ struct SingleCalendarContainer_Previews: PreviewProvider {
             calendar: calendar,
             validRange: start...end,
             accessibilityProvider: SingleDayAccessibilityProvider(
-                accessibilityConfigurations: .init(selectionHint: "", wholeMonth: nil),
+                accessibilityConfigurations: .init(selectionHint: ""),
                 dateFormatter: Self.formatter
             ),
             monthScroll: nil,
