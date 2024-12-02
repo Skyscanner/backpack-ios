@@ -98,7 +98,7 @@ internal struct InternalCardCarousel<Content: View>: View {
                         .frame(width: cardWidth)
                         .offset(x: isDragging ? totalDrag : getContentOffset(
                             for: index,
-                            spacing: horizontalSizeClass == .regular ? 0 : BPKSpacing.base.value
+                            spacing: horizontalSizeClass == .regular ? 0 : BPKSpacing.sm.value
                         ))
                         .animation(dragAnimation, value: totalDrag)
                         .scaleEffect(scaleEffect(for: index))
