@@ -21,6 +21,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSInteger, BPKSwitchStyle) {
+    BPKSwitchStyleDefault,
+    BPKSwitchStyleOnContrast
+};
+
 /**
  * `BPKSwitch` is a subclass of `UISwitch` configured with Skyscanner style properties.
  */
@@ -49,6 +54,8 @@ IB_DESIGNABLE @interface BPKSwitch : UISwitch
  * @warning This is not intended to be used directly, it exists to support theming only.
  */
 @property(nullable, nonatomic, strong) UIColor *primaryColor UI_APPEARANCE_SELECTOR;
+
+- (instancetype)initWithStyle:(BPKSwitchStyle)style;
 
 @end
 
