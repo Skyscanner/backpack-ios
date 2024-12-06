@@ -22,6 +22,20 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
+ * Enum values for specifying switch style
+ */
+typedef NS_ENUM(NSInteger, BPKSwitchStyle) {
+    /**
+     * Default switch style.
+     */
+    BPKSwitchStyleDefault,
+    /**
+     * Brighter off tint switch style.
+     */
+    BPKSwitchStyleOnContrast
+};
+
+/**
  * `BPKSwitch` is a subclass of `UISwitch` configured with Skyscanner style properties.
  */
 IB_DESIGNABLE @interface BPKSwitch : UISwitch
@@ -49,6 +63,14 @@ IB_DESIGNABLE @interface BPKSwitch : UISwitch
  * @warning This is not intended to be used directly, it exists to support theming only.
  */
 @property(nullable, nonatomic, strong) UIColor *primaryColor UI_APPEARANCE_SELECTOR;
+
+/**
+ * Create a `BPKSwitch` with a given style.
+ *
+ * @param style The style of the switch.
+ * @return `BPKSwitch` instance.
+ */
+- (instancetype)initWithStyle:(BPKSwitchStyle)style;
 
 @end
 

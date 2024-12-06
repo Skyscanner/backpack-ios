@@ -499,7 +499,11 @@ extension ComponentCellsProvider {
         ComponentCellDataSource(
             title: "Switches",
             tabs: [
-                .uikit(presentable: loadStoryboard(name: "Switches", identifier: "SwitchesViewController")),
+                .uikit(presentable: CustomPresentable(
+                    generateViewController: {
+                        SwitchesViewController()
+                    }
+                )),
                 .swiftui(presentable: CustomPresentable(generateViewController: {
                     ContentUIHostingController(SwitchExampleView())
                 }))

@@ -25,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKSwitch ()
 
+@property(nonatomic, assign) BPKSwitchStyle switchStyle;
+
 @end
 
 @implementation BPKSwitch
@@ -59,12 +61,39 @@ NS_ASSUME_NONNULL_BEGIN
     self.onTintColor = _primaryColor != nil ? _primaryColor : BPKColor.coreAccentColor;
 }
 
+- (instancetype)initWithStyle:(BPKSwitchStyle)style {
+    BPKAssertMainThread();
+    self = [self initWithFrame:CGRectZero];
+    if (self) {
+        _switchStyle = style;
+        [self setup];
+    }
+    return self;
+}
+
 - (void)setup {
     self.tintColor = BPKColor.surfaceHighlightColor;
     self.thumbTintColor = BPKColor.textOnDarkColor;
 
     [self updateSwitchOnColor];
+    [self updateOffTintColor];
     [self setNeedsDisplay];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    [self updateOffTintColor];
+}
+
+- (void)updateOffTintColor {
+    if (self.switchStyle == BPKSwitchStyleOnContrast) {
+        self.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.2];
+        self.layer.cornerRadius = self.bounds.size.height / 2.0;
+        self.clipsToBounds = YES;
+    } else {
+        self.backgroundColor = nil;
+        self.tintColor = BPKColor.surfaceHighlightColor;
+    }
 }
 
 @end
