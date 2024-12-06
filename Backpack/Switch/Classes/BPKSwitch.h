@@ -25,7 +25,13 @@ NS_ASSUME_NONNULL_BEGIN
  * Enum values for specifying switch style
  */
 typedef NS_ENUM(NSInteger, BPKSwitchStyle) {
+    /**
+     * Default switch style.
+     */
     BPKSwitchStyleDefault,
+    /**
+     * Brighter off tint switch style.
+     */
     BPKSwitchStyleOnContrast
 };
 
