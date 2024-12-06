@@ -21,6 +21,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ * Enum values for specifying switch style
+ */
 typedef NS_ENUM(NSInteger, BPKSwitchStyle) {
     BPKSwitchStyleDefault,
     BPKSwitchStyleOnContrast
@@ -55,6 +58,12 @@ IB_DESIGNABLE @interface BPKSwitch : UISwitch
  */
 @property(nullable, nonatomic, strong) UIColor *primaryColor UI_APPEARANCE_SELECTOR;
 
+/**
+ * Create a `BPKSwitch` with a given style.
+ *
+ * @param style The style of the switch.
+ * @return `BPKSwitch` instance.
+ */
 - (instancetype)initWithStyle:(BPKSwitchStyle)style;
 
 @end
