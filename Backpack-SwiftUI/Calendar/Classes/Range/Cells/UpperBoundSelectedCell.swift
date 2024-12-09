@@ -44,7 +44,7 @@ struct UpperBoundSelectedCell: View {
     }
 
     private var textColor: BPKColor {
-        highlighted ? .textPrimaryInverseColor : .black
+        highlighted ? .textPrimaryInverseColor : .textPrimaryColor
     }
 }
 
