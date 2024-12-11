@@ -45,9 +45,9 @@ public struct BPKDividedCard<PrimaryContent: View, SecondaryContent: View>: View
                     .frame(height: 1)
                 secondaryContent
             }
-            .onTapGesture {
-                tapAction()
-            }
+        }
+        .onTapGesture {
+            tapAction()
         }
     }
 
