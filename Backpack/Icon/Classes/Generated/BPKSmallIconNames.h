@@ -97,9 +97,9 @@ FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameBaggageCross;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameBaggageGeneric;
 /// :nodoc:
-FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameBaggage;
-/// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameBaggageTick;
+/// :nodoc:
+FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameBaggage;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameBar;
 /// :nodoc:
@@ -247,9 +247,9 @@ FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameFlightFlexible;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameFlightLanding;
 /// :nodoc:
-FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameFlight;
-/// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameFlightTakeoff;
+/// :nodoc:
+FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameFlight;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameFood;
 /// :nodoc:
@@ -467,9 +467,11 @@ FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameSocialLike;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameSortDown;
 /// :nodoc:
+FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameSortUp;
+/// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameSort;
 /// :nodoc:
-FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameSortUp;
+FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameSpeakerMute;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameSpeaker;
 /// :nodoc:

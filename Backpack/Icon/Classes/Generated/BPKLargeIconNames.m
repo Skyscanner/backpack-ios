@@ -242,6 +242,7 @@ BPKLargeIconName const BPKLargeIconNameSocialLike = @"social-like";
 BPKLargeIconName const BPKLargeIconNameSortDown = @"sort-down";
 BPKLargeIconName const BPKLargeIconNameSortUp = @"sort-up";
 BPKLargeIconName const BPKLargeIconNameSort = @"sort";
+BPKLargeIconName const BPKLargeIconNameSpeakerMute = @"speaker-mute";
 BPKLargeIconName const BPKLargeIconNameSpeaker = @"speaker";
 BPKLargeIconName const BPKLargeIconNameStarHalf = @"star-half";
 BPKLargeIconName const BPKLargeIconNameStarOutline = @"star-outline";

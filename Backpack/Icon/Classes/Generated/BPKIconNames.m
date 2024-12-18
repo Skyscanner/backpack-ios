@@ -242,12 +242,10 @@ BPKIconName const BPKIconNameSocialLike = @"social-like";
 BPKIconName const BPKIconNameSortDown = @"sort-down";
 BPKIconName const BPKIconNameSortUp = @"sort-up";
 BPKIconName const BPKIconNameSort = @"sort";
+BPKIconName const BPKIconNameSpeakerMute = @"speaker-mute";
 BPKIconName const BPKIconNameSpeaker = @"speaker";
-BPKIconName const BPKIconNameStarHalfXl = @"star-half-xl";
 BPKIconName const BPKIconNameStarHalf = @"star-half";
-BPKIconName const BPKIconNameStarOutlineXl = @"star-outline-xl";
 BPKIconName const BPKIconNameStarOutline = @"star-outline";
-BPKIconName const BPKIconNameStarXl = @"star-xl";
 BPKIconName const BPKIconNameStar = @"star";
 BPKIconName const BPKIconNameStops = @"stops";
 BPKIconName const BPKIconNameSwapHorizontal = @"swap--horizontal";
@@ -296,5 +294,8 @@ BPKIconName const BPKIconNameWindow = @"window";
 BPKIconName const BPKIconNameWorldAmer = @"world--amer";
 BPKIconName const BPKIconNameWorldApac = @"world--apac";
 BPKIconName const BPKIconNameWorldEmea = @"world--emea";
+BPKIconName const BPKIconNameStarHalfXl = @"star-half-xl";
+BPKIconName const BPKIconNameStarOutlineXl = @"star-outline-xl";
+BPKIconName const BPKIconNameStarXl = @"star-xl";
 
 // clang-format on

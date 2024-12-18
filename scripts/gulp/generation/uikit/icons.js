@@ -23,7 +23,7 @@ const nunjucks = require('gulp-nunjucks');
 const rename = require('gulp-rename');
 const { iconsUIKit, iconsSwiftUI } = require('../../iconNames');
 
-const iconsForExamples = Object.keys(require('@skyscanner/bpk-svgs/dist/font/iconMapping.json'))
+const iconsForExamples = Object.keys(require('@skyscanner/bpk-svgs/dist/iconMapping.json'))
   .filter(iconName => !iconName.endsWith('-xl'))
 
 const generateFromTemplate = (template, templateData, renameTo, destination) => {

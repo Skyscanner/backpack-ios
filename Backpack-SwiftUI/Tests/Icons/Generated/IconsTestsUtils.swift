@@ -243,6 +243,7 @@ extension BPKIconViewTests {
         .sortDown,
         .sortUp,
         .sort,
+        .speakerMute,
         .speaker,
         .starHalf,
         .starOutline,

@@ -19,7 +19,7 @@
 const { capitaliseFirstLetter, lowercaseFirstLetter } = require('./utils/formatUtils');
 
 const iconsUIKit = () => {
-  const content = require('@skyscanner/bpk-svgs/dist/font/iconMapping.json')
+  const content = require('@skyscanner/bpk-svgs/dist/iconMapping.json')
   const combinedEntries = Object.entries(content).filter((x) => !x[0].endsWith('-sm'));
   const smallEntries = Object.entries(content).filter((x) => x[0].endsWith('-sm'));
   const largeEntries = Object.entries(content).filter((x) => !x[0].endsWith('-sm') && !x[0].endsWith('-xl'));
@@ -56,7 +56,7 @@ const iconsUIKit = () => {
 }
 
 const iconsSwiftUI = () => {
-  const content = require('@skyscanner/bpk-svgs/dist/font/iconMapping.json')
+  const content = require('@skyscanner/bpk-svgs/dist/iconMapping.json')
   const largeEntries = Object.entries(content).filter((x) => !x[0].endsWith('-sm') && !x[0].endsWith('-xl'));
 
   const codify = (name) =>
