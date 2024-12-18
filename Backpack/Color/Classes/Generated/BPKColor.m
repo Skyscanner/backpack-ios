@@ -391,6 +391,11 @@
                                           darkVariant:[UIColor colorWithRed:0.141 green:0.200 blue:0.275 alpha:1]];
 }
 
++ (UIColor *)surfaceLowContrastColor {
+    return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:0.937 green:0.953 blue:0.973 alpha:1] 
+                                          darkVariant:[UIColor colorWithRed:0.141 green:0.200 blue:0.275 alpha:1]];
+}
+
 + (UIColor *)surfaceSubtleColor {
     return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:0.890 green:0.941 blue:1.000 alpha:1] 
                                           darkVariant:[UIColor colorWithRed:0.141 green:0.200 blue:0.275 alpha:1]];
@@ -499,6 +504,11 @@
 + (UIColor *)backgroundColor {
     return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1] 
                                           darkVariant:[UIColor colorWithRed:0.004 green:0.035 blue:0.075 alpha:1]];
+}
+
++ (UIColor *)overlayColor {
+    return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:0.000 green:0.000 blue:0.000 alpha:0.2] 
+                                          darkVariant:[UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:0.8]];
 }
 
 + (UIColor *)backgroundTertiaryColor {

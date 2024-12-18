@@ -374,6 +374,10 @@
     return BPKColor.surfaceElevatedColor;
 }
 
++ (UIColor *)bpk_surfaceLowContrastColor {
+    return BPKColor.surfaceLowContrastColor;
+}
+
 + (UIColor *)bpk_surfaceSubtleColor {
     return BPKColor.surfaceSubtleColor;
 }
@@ -460,6 +464,10 @@
 
 + (UIColor *)bpk_backgroundColor {
     return BPKColor.backgroundColor;
+}
+
++ (UIColor *)bpk_overlayColor {
+    return BPKColor.overlayColor;
 }
 
 + (UIColor *)bpk_backgroundTertiaryColor {

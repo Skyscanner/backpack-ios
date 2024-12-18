@@ -649,6 +649,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor * bpk_surfaceElevatedColor;
 
 /**
+ * The `surfaceLowContrastColor` dynamic color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background-color: #eff3f8ff; background: linear-gradient(0.375turn, #eff3f8ff 49%, #243346ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * bpk_surfaceLowContrastColor;
+
+/**
  * The `surfaceSubtleColor` dynamic color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background-color: #e3f0ffff; background: linear-gradient(0.375turn, #e3f0ffff 49%, #243346ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
@@ -801,6 +808,13 @@ NS_ASSUME_NONNULL_BEGIN
  * <div style="width: 100px; height: 100px; background-color: #ffffffff; background: linear-gradient(0.375turn, #ffffffff 49%, #010913ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_backgroundColor __deprecated;
+
+/**
+ * The `overlayColor` dynamic color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background-color: #00000033; background: linear-gradient(0.375turn, #00000033 49%, #ffffffcc 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * bpk_overlayColor;
 
 /**
  * The `backgroundTertiaryColor` dynamic color from the Backpack palette.
