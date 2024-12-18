@@ -29,7 +29,7 @@ struct CalendarContainer<MonthContent: View>: View {
     var body: some View {
         ScrollViewReader { proxy in
             ScrollView {
-                VStack(spacing: BPKSpacing.none) {
+                LazyVStack(spacing: BPKSpacing.none) {
                     ForEach(0...monthsToShow, id: \.self) { monthIndex in
                         let firstDayOfMonth = firstDayOf(monthIndex: monthIndex)
                         monthContent(firstDayOfMonth)
