@@ -471,17 +471,13 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameSortUp;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameSort;
 /// :nodoc:
-FOUNDATION_EXPORT BPKIconName const BPKIconNameSpeaker;
+FOUNDATION_EXPORT BPKIconName const BPKIconNameSpeakerMute;
 /// :nodoc:
-FOUNDATION_EXPORT BPKIconName const BPKIconNameStarHalfXl;
+FOUNDATION_EXPORT BPKIconName const BPKIconNameSpeaker;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameStarHalf;
 /// :nodoc:
-FOUNDATION_EXPORT BPKIconName const BPKIconNameStarOutlineXl;
-/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameStarOutline;
-/// :nodoc:
-FOUNDATION_EXPORT BPKIconName const BPKIconNameStarXl;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameStar;
 /// :nodoc:
@@ -578,5 +574,11 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameWorldAmer;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameWorldApac;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameWorldEmea;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameStarHalfXl;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameStarOutlineXl;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameStarXl;
 
 // clang-format on

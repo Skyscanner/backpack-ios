@@ -241,6 +241,7 @@ public extension BPKIcon {
     static let sortDown = BPKIcon(name: "sort-down")
     static let sortUp = BPKIcon(name: "sort-up")
     static let sort = BPKIcon(name: "sort")
+    static let speakerMute = BPKIcon(name: "speaker-mute")
     static let speaker = BPKIcon(name: "speaker")
     static let starHalf = BPKIcon(name: "star-half")
     static let starOutline = BPKIcon(name: "star-outline")
@@ -522,6 +523,7 @@ public extension BPKIcon {
         case "sort-down": return .sortDown
         case "sort-up": return .sortUp
         case "sort": return .sort
+        case "speaker-mute": return .speakerMute
         case "speaker": return .speaker
         case "star-half": return .starHalf
         case "star-outline": return .starOutline
