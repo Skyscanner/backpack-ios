@@ -59,13 +59,13 @@ public struct BPKCarouselCard<Content: View>: View {
                 }
             }
             .background(.white.darkVariant(.badgeBackgroundNormalColor))
-            .clipShape(RoundedRectangle(cornerRadius: .lg))
+            .clipShape(RoundedRectangle(cornerRadius: .md))
             .shadow(.lg)
         }
     }
     
     private func cardContent(reader: GeometryProxy) -> some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: BPKSpacing.none) {
             content()
                 .frame(
                     width: reader.size.width,
