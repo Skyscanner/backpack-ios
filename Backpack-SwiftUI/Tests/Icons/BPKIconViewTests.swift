@@ -53,4 +53,14 @@ class BPKIconViewTests: XCTestCase {
     func testAutoMirrorSmallIcon() {
         assertSnapshot(BPKIconView(.arrowLeft, size: .small))
     }
+    
+    func testCustomSmallIcon() {
+        let bundle = Bundle(for: BPKIconViewTests.self)
+        assertSnapshot(BPKIconView(BPKIcon(name: "custom-icon", bundle: TestsBundle.bundle!), size: .small))
+    }
+    
+    func testCustomLargeIcon() {
+        let bundle = Bundle(for: BPKIconViewTests.self)
+        assertSnapshot(BPKIconView(BPKIcon(name: "custom-icon", bundle: TestsBundle.bundle!), size: .large))
+    }
 }
