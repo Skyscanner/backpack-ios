@@ -18,6 +18,15 @@
 
 import SwiftUI
 
+public struct CalendarAccessibilityConfiguration {
+    public let singleSelection: SingleDayAccessibilityProvider
+    public let rangeSelection: RangeDayAccessibilityProvider
+    public init(singleSelection: SingleDayAccessibilityProvider, rangeSelection: RangeDayAccessibilityProvider) {
+        self.singleSelection = singleSelection
+        self.rangeSelection = rangeSelection
+    }
+}
+
 struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: View {
     let selectionType: CalendarSelectionType
     let calendar: Calendar
@@ -25,6 +34,7 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
     let monthScroll: MonthScroll?
     @ViewBuilder let monthHeader: (_ monthDate: Date) -> MonthHeader
     @ViewBuilder let dayAccessoryView: (Date) -> DayAccessoryView
+    var calendarAccessibilityConfiguration: CalendarAccessibilityConfiguration
     
     private var accessibilityDateFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -34,34 +44,62 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
     }
 
     var body: some View {
+        CalendarContainer(
+            calendar: calendar,
+            validRange: validRange,
+            monthScroll: monthScroll
+        ) { month in
+            monthHeader(month)
+            CalendarMonthGrid(
+                monthDate: month,
+                calendar: calendar,
+                validRange: validRange,
+                dayCell: returnMakeCellFunction(),
+                emptyLeadingDayCell: { DefaultEmptyCalendarDayCell() },
+                emptyTrailingDayCell: { DefaultEmptyCalendarDayCell() },
+                dayAccessoryView: dayAccessoryView
+            )
+        }
+    }
+    
+    func returnMakeCellFunction() -> ((Date) -> CalendarSelectableCell) {
+        return { dayDate in
+            CalendarSelectableCell(
+                selectionType: selectionType,
+                calendar: calendar,
+                accessibilityProvider: calendarAccessibilityConfiguration,
+                dayDate: dayDate,
+                onSelection: handleSelection
+            )
+        }
+        
+    }
+    
+    func handleSelection(dayDate: Date) {
         switch selectionType {
-        case .range(let selection, let accessibilityConfigurations):
-            RangeCalendarContainer(
-                selectionState: selection,
-                calendar: calendar,
-                validRange: validRange,
-                accessibilityProvider: RangeDayAccessibilityProvider(
-                    accessibilityConfigurations: accessibilityConfigurations,
-                    dateFormatter: accessibilityDateFormatter
-                ),
-                monthScroll: monthScroll,
-                monthHeader: monthHeader,
-                dayAccessoryView: dayAccessoryView
-            )
-        case .single(let selection, let accessibilityConfigurations):
-            SingleCalendarContainer(
-                selection: selection,
-                calendar: calendar,
-                validRange: validRange,
-                accessibilityProvider: SingleDayAccessibilityProvider(
-                    accessibilityConfigurations: accessibilityConfigurations,
-                    dateFormatter: accessibilityDateFormatter
-                ),
-                monthScroll: monthScroll,
-                monthHeader: monthHeader,
-                dayAccessoryView: dayAccessoryView
-            )
-
+        case .range(let selection, _):
+            switch selection.wrappedValue {
+            case .intermediate(let initialDateSelection):
+                if dayDate < initialDateSelection {
+                    selection.wrappedValue = .intermediate(dayDate)
+                    UIAccessibility.post(
+                        notification: .announcement,
+                        argument: calendarAccessibilityConfiguration.rangeSelection
+                            .accessibilityInstructionAfterSelectingDate()
+                    )
+                } else {
+                    selection.wrappedValue = .range(initialDateSelection...dayDate)
+                }
+            default:
+                selection.wrappedValue = .intermediate(dayDate)
+                UIAccessibility.post(
+                    notification: .announcement,
+                    argument: calendarAccessibilityConfiguration.rangeSelection
+                        .accessibilityInstructionAfterSelectingDate()
+                )
+            }
+        case .single(let selection, _):
+            selection.wrappedValue = .single(dayDate)
         }
     }
 }

@@ -71,7 +71,8 @@ struct CalendarExampleSingleView: View {
                 ),
                 calendar: calendar,
                 validRange: validRange,
-                initialMonthScroll: monthScroll
+                initialMonthScroll: monthScroll,
+                calendarAccessibilityConfiguration: calendarAccessibilityConfiguration
             )
             .monthAccessoryAction { _ in
                 return CalendarMonthAccessoryAction(
@@ -82,6 +83,27 @@ struct CalendarExampleSingleView: View {
                 )
             }
         }
+    }
+    
+    private var calendarAccessibilityConfiguration: CalendarAccessibilityConfiguration {
+        CalendarAccessibilityConfiguration(
+            singleSelection: .init(
+                accessibilityConfigurations: .init(selectionHint: "hint"),
+                dateFormatter: DateFormatter()
+            ),
+            rangeSelection: .init(
+                accessibilityConfigurations: .init(
+                    startSelectionHint: "startSelectionHint",
+                    endSelectionHint: "endSelectionHint",
+                    startSelectionState: "startSelectionState",
+                    endSelectionState: "endSelectionState",
+                    betweenSelectionState: "betweenSelectionState",
+                    startAndEndSelectionState: "startAndEndSelectionState",
+                    returnDatePrompt: "returnDatePrompt"
+                ),
+                dateFormatter: DateFormatter()
+            )
+        )
     }
 
     private func wholeMonthAccessibilityConfig() -> WholeMonthAccessibilityConfigurations {
