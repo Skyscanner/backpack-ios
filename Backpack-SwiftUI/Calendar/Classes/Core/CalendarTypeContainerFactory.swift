@@ -55,8 +55,8 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
                 calendar: calendar,
                 validRange: validRange,
                 dayCell: returnMakeCellFunction(),
-                emptyLeadingDayCell: { DefaultEmptyCalendarDayCell() },
-                emptyTrailingDayCell: { DefaultEmptyCalendarDayCell() },
+                emptyLeadingDayCell: emptyLeadingDayCell,
+                emptyTrailingDayCell: emptyTrailingDayCell,
                 dayAccessoryView: dayAccessoryView
             )
         }
@@ -73,6 +73,46 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
             )
         }
         
+    }
+    
+    @ViewBuilder func emptyLeadingDayCell(for emptyDayInfo: EmptyCellInfo) -> some View {
+        switch selectionType {
+        case .range(let selection, _):
+            if
+                case .range(let selectionRange) = selection.wrappedValue,
+                let lastDayOfPreviousMonth = calendar.date(byAdding: .init(day: -1), to: emptyDayInfo.month),
+                let firstDayOfCurrentMonth = calendar.date(byAdding: .init(day: 1), to: lastDayOfPreviousMonth),
+                selectionRange.contains(lastDayOfPreviousMonth),
+                selectionRange.contains(firstDayOfCurrentMonth)
+            {
+                Color(.surfaceSubtleColor)
+            } else {
+                // otherwise we occupy the space with a clear view
+                DefaultEmptyCalendarDayCell()
+            }
+        case .single:
+            DefaultEmptyCalendarDayCell()
+        }
+    }
+    
+    @ViewBuilder func emptyTrailingDayCell(for emptyDayInfo: EmptyCellInfo) -> some View {
+        switch selectionType {
+        case .range(let selection, _):
+            if
+                case .range(let selectionRange) = selection.wrappedValue,
+                let firstDayOfNextMonth = calendar.date(byAdding: .init(month: 1), to: emptyDayInfo.month),
+                let lastDayOfCurrentMonth = calendar.date(byAdding: .init(day: -1), to: firstDayOfNextMonth),
+                selectionRange.contains(lastDayOfCurrentMonth),
+                selectionRange.contains(firstDayOfNextMonth)
+            {
+                Color(.surfaceSubtleColor)
+            } else {
+                // otherwise we occupy the space with a clear view
+                DefaultEmptyCalendarDayCell()
+            }
+        case .single:
+            DefaultEmptyCalendarDayCell()
+        }
     }
     
     func handleSelection(dayDate: Date) {
