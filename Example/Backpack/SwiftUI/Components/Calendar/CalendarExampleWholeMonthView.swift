@@ -82,7 +82,25 @@ struct CalendarExampleWholeMonthView: View {
                 accessibilityConfigurations: accessibilityConfigurations
             ),
             calendar: calendar,
-            validRange: validRange
+            validRange: validRange,
+            calendarAccessibilityConfiguration: CalendarAccessibilityConfiguration(
+                singleSelection: .init(
+                    accessibilityConfigurations: .init(selectionHint: "hint"),
+                    dateFormatter: DateFormatter()
+                ),
+                rangeSelection: .init(
+                    accessibilityConfigurations: .init(
+                        startSelectionHint: "startSelectionHint",
+                        endSelectionHint: "endSelectionHint",
+                        startSelectionState: "startSelectionState",
+                        endSelectionState: "endSelectionState",
+                        betweenSelectionState: "betweenSelectionState",
+                        startAndEndSelectionState: "startAndEndSelectionState",
+                        returnDatePrompt: "returnDatePrompt"
+                    ),
+                    dateFormatter: DateFormatter()
+                )
+            )
         )
         .monthAccessoryAction { _ in
             return CalendarMonthAccessoryAction(
