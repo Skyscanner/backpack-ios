@@ -16,14 +16,9 @@
  * limitations under the License.
  */
 
-public struct SingleDayAccessibilityProvider {
-    public let accessibilityConfigurations: SingleAccessibilityConfigurations
-    public let dateFormatter: DateFormatter
-    
-    public init(accessibilityConfigurations: SingleAccessibilityConfigurations, dateFormatter: DateFormatter) {
-        self.accessibilityConfigurations = accessibilityConfigurations
-        self.dateFormatter = dateFormatter
-    }
+struct SingleDayAccessibilityProvider {
+    let accessibilityConfigurations: SingleAccessibilityConfigurations
+    let dateFormatter: DateFormatter
     
     func accessibilityLabel(for dayDate: Date, selection: CalendarSingleSelectionState?) -> String {
         let baseLabel = dateFormatter.string(from: dayDate)

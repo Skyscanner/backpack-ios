@@ -96,26 +96,6 @@ struct CalendarExampleRangeView: View {
                 ),
                 calendar: calendar,
                 validRange: validRange,
-                calendarAccessibilityConfiguration: CalendarAccessibilityConfiguration(
-                    singleSelection: .init(
-                        accessibilityConfigurations: .init(
-                            selectionHint: "hint"
-                        ),
-                        dateFormatter: DateFormatter()
-                    ),
-                    rangeSelection: .init(
-                        accessibilityConfigurations: .init(
-                            startSelectionHint: "startSelectionHint",
-                            endSelectionHint: "endSelectionHint",
-                            startSelectionState: "startSelectionState",
-                            endSelectionState: "endSelectionState",
-                            betweenSelectionState: "betweenSelectionState",
-                            startAndEndSelectionState: "startAndEndSelectionState",
-                            returnDatePrompt: "returnDatePrompt"
-                        ),
-                        dateFormatter: DateFormatter()
-                    )
-                ),
                 dayAccessoryView: { _ in
                     BPKIconView(.search, size: .small)
                         .foregroundColor(.accentColor)
@@ -129,25 +109,7 @@ struct CalendarExampleRangeView: View {
                 ),
                 calendar: calendar,
                 validRange: validRange,
-                initialMonthScroll: monthScroll,
-                calendarAccessibilityConfiguration: CalendarAccessibilityConfiguration(
-                    singleSelection: .init(
-                        accessibilityConfigurations: .init(selectionHint: "hint"),
-                        dateFormatter: DateFormatter()
-                    ),
-                    rangeSelection: .init(
-                        accessibilityConfigurations: .init(
-                            startSelectionHint: "startSelectionHint",
-                            endSelectionHint: "endSelectionHint",
-                            startSelectionState: "startSelectionState",
-                            endSelectionState: "endSelectionState",
-                            betweenSelectionState: "betweenSelectionState",
-                            startAndEndSelectionState: "startAndEndSelectionState",
-                            returnDatePrompt: "returnDatePrompt"
-                        ),
-                        dateFormatter: DateFormatter()
-                    )
-                )
+                initialMonthScroll: monthScroll
             )
         }
     }
