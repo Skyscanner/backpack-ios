@@ -52,10 +52,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Backpack: e3425ead05d6899a35380765d24ffbc968da6067
+  Backpack: 7d40cc1868e17594ff411ea44f4bd9d6cc7edf79
   Backpack-Common: 9a47d236de2f7fea7366f7a893423b8375ee7a39
   Backpack-Fonts: 8d10ac600d738cb7ae6e49fee969800c2db51f6b
-  Backpack-SwiftUI: f1d0e98dc0beb0f0a44178796aae6c407fb9d7d3
+  Backpack-SwiftUI: 620fc8c1a2627d05dfca4d844a71527b5ce91f6f
   FloatingPanel: 11559d3700c39f1c2ee8dbb7a5415223b52fdce0
   OCMock: 29f6e52085b4e7d9b075cbf03ed7c3112f82f934
   SnapshotTesting: 6141c48b6aa76ead61431ca665c14ab9a066c53b
@@ -63,4 +63,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: ce1ed5d2d7a80a7517dac9d0bb8d6822dc6d16c7
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.16.2

@@ -30,6 +30,7 @@
 		3AA018EF215BE26600838FBB /* SpinnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018EE215BE26500838FBB /* SpinnersViewController.swift */; };
 		3AA018F4215D000700838FBB /* TextViewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018F3215D000700838FBB /* TextViewsViewController.swift */; };
 		530459F52A961F9E00244EA8 /* CarouselExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530459F42A961F9E00244EA8 /* CarouselExampleView.swift */; };
+		530E84BF2D28461400009A4F /* CalendarExampleDynamicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530E84BE2D28461400009A4F /* CalendarExampleDynamicView.swift */; };
 		5318E3342AF506FA00C66D18 /* CalendarExampleSingleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5318E3332AF506FA00C66D18 /* CalendarExampleSingleView.swift */; };
 		534624382A7429080059A0B5 /* ChipGroupMultipleSelectWrapExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534624372A7429080059A0B5 /* ChipGroupMultipleSelectWrapExampleView.swift */; };
 		5346243A2A74292D0059A0B5 /* ChipGroupMultipleSelectRailExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534624392A74292D0059A0B5 /* ChipGroupMultipleSelectRailExampleView.swift */; };
@@ -267,6 +268,7 @@
 		3DDD5D1DB6A77816BAA9481F /* Pods-Backpack-Native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack-Native.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack-Native/Pods-Backpack-Native.release.xcconfig"; sourceTree = "<group>"; };
 		455FB6E0E01310446E946427 /* Backpack.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Backpack.podspec; path = ../Backpack.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		530459F42A961F9E00244EA8 /* CarouselExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselExampleView.swift; sourceTree = "<group>"; };
+		530E84BE2D28461400009A4F /* CalendarExampleDynamicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExampleDynamicView.swift; sourceTree = "<group>"; };
 		5318E3332AF506FA00C66D18 /* CalendarExampleSingleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExampleSingleView.swift; sourceTree = "<group>"; };
 		534624372A7429080059A0B5 /* ChipGroupMultipleSelectWrapExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipGroupMultipleSelectWrapExampleView.swift; sourceTree = "<group>"; };
 		534624392A74292D0059A0B5 /* ChipGroupMultipleSelectRailExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipGroupMultipleSelectRailExampleView.swift; sourceTree = "<group>"; };
@@ -607,6 +609,7 @@
 				537AA67E2B050D1000D97B42 /* CalendarExampleRangeView.swift */,
 				5318E3332AF506FA00C66D18 /* CalendarExampleSingleView.swift */,
 				2832E45A2CDE1561000B6DF4 /* CalendarExampleWholeMonthView.swift */,
+				530E84BE2D28461400009A4F /* CalendarExampleDynamicView.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -1893,6 +1896,7 @@
 				1750EB6329915230005226DF /* CardButtonsViewController.swift in Sources */,
 				BA809EC52B05ED410030D1E7 /* AppSearchModalExampleView.swift in Sources */,
 				53E075BB27FC9FD30033147C /* CustomPresentable.swift in Sources */,
+				530E84BF2D28461400009A4F /* CalendarExampleDynamicView.swift in Sources */,
 				D217701825ACCC5E00C0FD8C /* Presentable.swift in Sources */,
 				13E884A72C53F8C800A3138D /* BannerAlertExampleView.swift in Sources */,
 				53C6621B29EA0DAB00BF1A62 /* CardExampleView.swift in Sources */,
