@@ -40,7 +40,6 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
     private var accessoryAction: ((Date) -> CalendarMonthAccessoryAction?)?
     private var initialMonthScroll: MonthScroll?
     private let monthHeaderDateFormatter: DateFormatter
-    private let calendarAccessibilityConfiguration: CalendarAccessibilityConfiguration
 
     private let dayAccessoryView: (Date) -> DayAccessoryView
     @State private var currentlyShownMonth: Date
@@ -50,7 +49,6 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
         calendar: Calendar,
         validRange: ClosedRange<Date>,
         initialMonthScroll: MonthScroll? = nil,
-        calendarAccessibilityConfiguration: CalendarAccessibilityConfiguration,
         dayAccessoryView: @escaping (Date) -> DayAccessoryView = { _ in EmptyView() }
     ) {
         self.dayAccessoryView = dayAccessoryView
@@ -58,7 +56,6 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
         self.validRange = validRange
         self.calendar = calendar
         self.selectionType = selectionType
-        self.calendarAccessibilityConfiguration = calendarAccessibilityConfiguration
         self.initialMonthScroll = initialMonthScroll
 
         monthHeaderDateFormatter = DateFormatter()
@@ -91,8 +88,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
                                 parentProxy: calendarProxy
                             )
                         },
-                        dayAccessoryView: dayAccessoryView,
-                        calendarAccessibilityConfiguration: calendarAccessibilityConfiguration
+                        dayAccessoryView: dayAccessoryView
                     )
                     yearBadge
                 }
@@ -143,24 +139,6 @@ struct BPKCalendar_Previews: PreviewProvider {
             ),
             calendar: calendar,
             validRange: minValidDate...maxValidDate,
-            calendarAccessibilityConfiguration: CalendarAccessibilityConfiguration(
-                singleSelection: .init(
-                    accessibilityConfigurations: .init(selectionHint: "hint"),
-                    dateFormatter: DateFormatter()
-                ),
-                rangeSelection: .init(
-                    accessibilityConfigurations: .init(
-                        startSelectionHint: "startSelectionHint",
-                        endSelectionHint: "endSelectionHint",
-                        startSelectionState: "startSelectionState",
-                        endSelectionState: "endSelectionState",
-                        betweenSelectionState: "betweenSelectionState",
-                        startAndEndSelectionState: "startAndEndSelectionState",
-                        returnDatePrompt: "returnDatePrompt"
-                    ),
-                    dateFormatter: DateFormatter()
-                )
-            ),
             dayAccessoryView: { _ in
                 BPKText("20", style: .caption)
             }

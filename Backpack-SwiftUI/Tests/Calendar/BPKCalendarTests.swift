@@ -46,8 +46,7 @@ class BPKCalendarTests: XCTestCase {
                     )
                 ),
                 calendar: Calendar.current,
-                validRange: validStart...validEnd,
-                calendarAccessibilityConfiguration: .mock
+                validRange: validStart...validEnd
             )
             .frame(width: 320, height: 720)
         )
@@ -64,8 +63,7 @@ class BPKCalendarTests: XCTestCase {
                     accessibilityConfigurations: rangeAccessibilityConfig
                 ),
                 calendar: Calendar.current,
-                validRange: validStart...validEnd,
-                calendarAccessibilityConfiguration: .mock
+                validRange: validStart...validEnd
             )
             .frame(width: 320, height: 720)
         )
@@ -82,8 +80,7 @@ class BPKCalendarTests: XCTestCase {
                     accessibilityConfigurations: rangeAccessibilityConfig
                 ),
                 calendar: Calendar.current,
-                validRange: validStart...validEnd,
-                calendarAccessibilityConfiguration: .mock
+                validRange: validStart...validEnd
             )
             .frame(width: 320, height: 720)
         )
@@ -101,7 +98,6 @@ class BPKCalendarTests: XCTestCase {
                 ),
                 calendar: Calendar.current,
                 validRange: validStart...validEnd,
-                calendarAccessibilityConfiguration: .mock,
                 dayAccessoryView: { _ in
                     BPKIconView(.search, size: .small)
                         .foregroundColor(.accentColor)
@@ -122,8 +118,7 @@ class BPKCalendarTests: XCTestCase {
                     accessibilityConfigurations: rangeAccessibilityConfig
                 ),
                 calendar: Calendar.current,
-                validRange: validStart...validEnd,
-                calendarAccessibilityConfiguration: .mock
+                validRange: validStart...validEnd
             )
             .frame(width: 320, height: 720)
         )
@@ -143,31 +138,6 @@ class BPKCalendarTests: XCTestCase {
                 LowerAndUpperBoundSelectedCell(calendar: calendar, date: date)
             }
                 .frame(width: 400)
-        )
-    }
-}
-
-extension CalendarAccessibilityConfiguration {
-    static var mock: CalendarAccessibilityConfiguration {
-        return CalendarAccessibilityConfiguration(
-            singleSelection: .init(
-                accessibilityConfigurations: .init(
-                    selectionHint: "hint"
-                ),
-                dateFormatter: DateFormatter()
-            ),
-            rangeSelection: .init(
-                accessibilityConfigurations: .init(
-                    startSelectionHint: "startSelectionHint",
-                    endSelectionHint: "endSelectionHint",
-                    startSelectionState: "startSelectionState",
-                    endSelectionState: "endSelectionState",
-                    betweenSelectionState: "betweenSelectionState",
-                    startAndEndSelectionState: "startAndEndSelectionState",
-                    returnDatePrompt: "returnDatePrompt"
-                ),
-                dateFormatter: DateFormatter()
-            )
         )
     }
 }

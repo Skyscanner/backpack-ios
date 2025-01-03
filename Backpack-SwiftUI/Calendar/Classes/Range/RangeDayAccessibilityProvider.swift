@@ -16,14 +16,9 @@
  * limitations under the License.
  */
 
-public struct RangeDayAccessibilityProvider {
-    public let accessibilityConfigurations: RangeAccessibilityConfigurations
-    public let dateFormatter: DateFormatter
-    
-    public init(accessibilityConfigurations: RangeAccessibilityConfigurations, dateFormatter: DateFormatter) {
-        self.accessibilityConfigurations = accessibilityConfigurations
-        self.dateFormatter = dateFormatter
-    }
+struct RangeDayAccessibilityProvider {
+    let accessibilityConfigurations: RangeAccessibilityConfigurations
+    let dateFormatter: DateFormatter
 
     func accessibilityInstructionAfterSelectingDate() -> String {
         accessibilityConfigurations.returnDatePrompt
