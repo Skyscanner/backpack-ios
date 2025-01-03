@@ -30,6 +30,7 @@ import SwiftUI
 ///   - validRange: The range of dates that the calendar should allow the user to select.
 ///     This is specified as a`ClosedRange<Date>`.
 ///   - initialMonthScroll: The initial scrolling to the month using `MonthScroll`
+///   - calendarAccessibilityConfiguration: The optional configuration to add accessibility strings to the calendar
 ///
 /// The `BPKCalendar` view also allows you to specify an accessory action. This is a closure that takes a string and
 ///     a date, and is called when the user interacts with an accessory in the calendar.
@@ -50,7 +51,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
         calendar: Calendar,
         validRange: ClosedRange<Date>,
         initialMonthScroll: MonthScroll? = nil,
-        calendarAccessibilityConfiguration: CalendarAccessibilityConfiguration,
+        calendarAccessibilityConfiguration: CalendarAccessibilityConfiguration = .init(),
         dayAccessoryView: @escaping (Date) -> DayAccessoryView = { _ in EmptyView() }
     ) {
         self.dayAccessoryView = dayAccessoryView
