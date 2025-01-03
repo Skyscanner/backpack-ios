@@ -18,13 +18,13 @@
 
 import SwiftUI
 
-struct SingleCalendarContainer<MonthHeader: View, DayAccessoryView: View>: View {
+struct SingleCalendarMonthContainer<MonthHeader: View, DayAccessoryView: View>: View {
     @Binding var selection: CalendarSingleSelectionState?
     let calendar: Calendar
     let validRange: ClosedRange<Date>
     let accessibilityProvider: SingleDayAccessibilityProvider
-    let monthScroll: MonthScroll?
-    @ViewBuilder let monthHeader: (_ monthDate: Date) -> MonthHeader
+    let month: Date
+    @ViewBuilder let monthHeader: MonthHeader
     @ViewBuilder let dayAccessoryView: (Date) -> DayAccessoryView
     
     @ViewBuilder
@@ -61,12 +61,8 @@ struct SingleCalendarContainer<MonthHeader: View, DayAccessoryView: View>: View 
     }
 
     var body: some View {
-        CalendarContainer(
-            calendar: calendar,
-            validRange: validRange,
-            monthScroll: monthScroll
-        ) { month in
-            monthHeader(month)
+        VStack(spacing: BPKSpacing.none) {
+            monthHeader
             CalendarMonthGrid(
                 monthDate: month,
                 calendar: calendar,
@@ -92,7 +88,7 @@ struct SingleCalendarContainer_Previews: PreviewProvider {
         let start = calendar.date(from: .init(year: 2023, month: 10, day: 30))!
         let end = calendar.date(from: .init(year: 2025, month: 12, day: 25))!
 
-        SingleCalendarContainer(
+        SingleCalendarMonthContainer(
             selection: .constant(.single(calendar.date(from: .init(year: 2023, month: 11, day: 10))!)),
             calendar: calendar,
             validRange: start...end,
@@ -100,9 +96,9 @@ struct SingleCalendarContainer_Previews: PreviewProvider {
                 accessibilityConfigurations: .init(selectionHint: ""),
                 dateFormatter: Self.formatter
             ),
-            monthScroll: nil,
-            monthHeader: { month in
-                BPKText("\(Self.formatter.string(from: month))")
+            month: start,
+            monthHeader: {
+                BPKText("\(Self.formatter.string(from: start))")
             },
             dayAccessoryView: { _ in
                 BPKText("20", style: .caption)

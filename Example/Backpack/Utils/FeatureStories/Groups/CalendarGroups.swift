@@ -88,6 +88,10 @@ struct CalendarGroupsProvider {
                 presentableCalendar(
                     "With Initial Month Scrolling and animation",
                     view: CalendarExampleSingleView(makeInitialMonthScrollWithAnimation: true)
+                ),
+                presentableCalendar(
+                    "Dynamic Selection",
+                    view: CalendarExampleDynamicView()
                 )
             ]
         ).groups()

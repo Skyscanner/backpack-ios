@@ -19,10 +19,6 @@
 struct RangeDayAccessibilityProvider {
     let accessibilityConfigurations: RangeAccessibilityConfigurations
     let dateFormatter: DateFormatter
-
-    func accessibilityInstructionAfterSelectingDate() -> String {
-        accessibilityConfigurations.returnDatePrompt
-    }
     
     func accessibilityLabel(for dayDate: Date) -> String {
         dateFormatter.string(from: dayDate)

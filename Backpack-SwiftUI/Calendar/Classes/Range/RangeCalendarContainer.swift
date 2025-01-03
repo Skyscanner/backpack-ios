@@ -18,34 +18,53 @@
 
 import SwiftUI
 
-struct RangeCalendarContainer<MonthHeader: View, DayAccessoryView: View>: View {
+protocol RangeCalendarSelectionHandler {
+    func newStateFor(
+        selection date: Date,
+        currentSelection: CalendarRangeSelectionState?
+    ) -> CalendarRangeSelectionState
+}
+
+struct DefaultRangeCalendarSelectionHandler: RangeCalendarSelectionHandler {
+    let instructionAfterSelectingDate: String
+    
+    func newStateFor(
+        selection date: Date,
+        currentSelection: CalendarRangeSelectionState?
+    ) -> CalendarRangeSelectionState {
+        switch currentSelection {
+        case .intermediate(let initialDateSelection):
+            if date < initialDateSelection {
+                UIAccessibility.post(
+                    notification: .announcement,
+                    argument: instructionAfterSelectingDate
+                )
+                return .intermediate(date)
+            } else {
+                return .range(initialDateSelection...date)
+            }
+        default:
+            UIAccessibility.post(
+                notification: .announcement,
+                argument: instructionAfterSelectingDate
+            )
+            return .intermediate(date)
+        }
+    }
+}
+
+struct RangeCalendarMonthContainer<MonthHeader: View, DayAccessoryView: View>: View {
     @Binding var selectionState: CalendarRangeSelectionState?
     let calendar: Calendar
     let validRange: ClosedRange<Date>
     let accessibilityProvider: RangeDayAccessibilityProvider
-    let monthScroll: MonthScroll?
-    @ViewBuilder let monthHeader: (_ monthDate: Date) -> MonthHeader
+    let month: Date
+    let selectionHandler: RangeCalendarSelectionHandler
+    @ViewBuilder let monthHeader: MonthHeader
     @ViewBuilder let dayAccessoryView: (Date) -> DayAccessoryView
     
     private func handleSelection(_ date: Date) {
-        switch selectionState {
-        case .intermediate(let initialDateSelection):
-            if date < initialDateSelection {
-                selectionState = .intermediate(date)
-                UIAccessibility.post(
-                    notification: .announcement,
-                    argument: accessibilityProvider.accessibilityInstructionAfterSelectingDate()
-                )
-            } else {
-                selectionState = .range(initialDateSelection...date)
-            }
-        default:
-            selectionState = .intermediate(date)
-            UIAccessibility.post(
-                notification: .announcement,
-                argument: accessibilityProvider.accessibilityInstructionAfterSelectingDate()
-            )
-        }
+        selectionState = selectionHandler.newStateFor(selection: date, currentSelection: selectionState)
     }
     
     @ViewBuilder
@@ -119,12 +138,8 @@ struct RangeCalendarContainer<MonthHeader: View, DayAccessoryView: View>: View {
     }
     
     var body: some View {
-        CalendarContainer(
-            calendar: calendar,
-            validRange: validRange,
-            monthScroll: monthScroll
-        ) { month in
-            monthHeader(month)
+        VStack(spacing: BPKSpacing.none) {
+            monthHeader
             CalendarMonthGrid(
                 monthDate: month,
                 calendar: calendar,
@@ -191,7 +206,7 @@ struct RangeCalendarContainer_Previews: PreviewProvider {
         let startSelection = calendar.date(from: .init(year: 2023, month: 10, day: 30))!
         let endSelection = calendar.date(from: .init(year: 2023, month: 11, day: 10))!
 
-        RangeCalendarContainer(
+        RangeCalendarMonthContainer(
             selectionState: .constant(.range(startSelection...endSelection)),
             calendar: calendar,
             validRange: start...end,
@@ -207,9 +222,12 @@ struct RangeCalendarContainer_Previews: PreviewProvider {
                 ),
                 dateFormatter: Self.formatter
             ),
-            monthScroll: nil,
-            monthHeader: { month in
-                BPKText("\(Self.formatter.string(from: month))")
+            month: start,
+            selectionHandler: DefaultRangeCalendarSelectionHandler(
+                instructionAfterSelectingDate: ""
+            ),
+            monthHeader: {
+                BPKText("\(Self.formatter.string(from: start))")
             },
             dayAccessoryView: { _ in
                 BPKText("20", style: .caption)
