@@ -19,9 +19,12 @@
 import SwiftUI
 
 public struct CalendarAccessibilityConfiguration {
-    public let singleSelection: SingleDayAccessibilityProvider
-    public let rangeSelection: RangeDayAccessibilityProvider
-    public init(singleSelection: SingleDayAccessibilityProvider, rangeSelection: RangeDayAccessibilityProvider) {
+    public let singleSelection: SingleDayAccessibilityProvider?
+    public let rangeSelection: RangeDayAccessibilityProvider?
+    public init(
+        singleSelection: SingleDayAccessibilityProvider? = nil,
+        rangeSelection: RangeDayAccessibilityProvider? = nil
+    ) {
         self.singleSelection = singleSelection
         self.rangeSelection = rangeSelection
     }
@@ -124,7 +127,7 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
                     selection.wrappedValue = .intermediate(dayDate)
                     UIAccessibility.post(
                         notification: .announcement,
-                        argument: calendarAccessibilityConfiguration.rangeSelection
+                        argument: calendarAccessibilityConfiguration.rangeSelection?
                             .accessibilityInstructionAfterSelectingDate()
                     )
                 } else {
@@ -134,7 +137,7 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
                 selection.wrappedValue = .intermediate(dayDate)
                 UIAccessibility.post(
                     notification: .announcement,
-                    argument: calendarAccessibilityConfiguration.rangeSelection
+                    argument: calendarAccessibilityConfiguration.rangeSelection?
                         .accessibilityInstructionAfterSelectingDate()
                 )
             }

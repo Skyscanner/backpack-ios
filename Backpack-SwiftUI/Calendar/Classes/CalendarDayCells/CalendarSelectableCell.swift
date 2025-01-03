@@ -72,21 +72,23 @@ struct CalendarSelectableCell: View {
     
     private var defaultCell: some View {
         DefaultCalendarDayCell(calendar: calendar, date: dayDate)
-            .accessibilityLabel(Text(
-                accessibilityProvider.rangeSelection.accessibilityLabel(for: dayDate)
-            ))
+            .if(accessibilityProvider.rangeSelection != nil) { cell in
+                cell.accessibilityLabel(Text(
+                    accessibilityProvider.rangeSelection?.accessibilityLabel(for: dayDate) ?? ""
+                ))
+            }
     }
     
     private func singleCell(date: Date) -> some View {
         SingleSelectedCell(calendar: calendar, date: dayDate)
-            .accessibilityLabel(
-                Text(
-                    accessibilityProvider.rangeSelection.accessibilityLabel(
+            .if(accessibilityProvider.rangeSelection != nil) { cell in
+                cell.accessibilityLabel(Text(
+                    accessibilityProvider.rangeSelection?.accessibilityLabel(
                         for: dayDate,
                         intermediateSelectionDate: date
-                    )
-                )
-            )
+                    ) ?? ""
+                ))
+            }
     }
     
     private func rangeCell(closedRange: ClosedRange<Date>, highlightRangeEnds: Bool) -> some View {
@@ -96,13 +98,15 @@ struct CalendarSelectableCell: View {
             calendar: calendar,
             highlightRangeEnds: highlightRangeEnds
         )
-        .accessibilityLabel(Text(
-            accessibilityProvider.rangeSelection.accessibilityLabel(
-                for: dayDate,
-                selection: closedRange
-            )
-        ))
         .accessibility(addTraits: .isSelected)
+        .if(accessibilityProvider.rangeSelection != nil) { cell in
+            cell.accessibilityLabel(Text(
+                accessibilityProvider.rangeSelection?.accessibilityLabel(
+                    for: dayDate,
+                    selection: closedRange
+                ) ?? ""
+            ))
+        }
     }
     
     private func wholeMonthRangeCell(range: ClosedRange<Date>) -> some View {
@@ -112,13 +116,15 @@ struct CalendarSelectableCell: View {
             calendar: calendar,
             highlightRangeEnds: false
         )
-        .accessibilityLabel(Text(
-            accessibilityProvider.rangeSelection.accessibilityLabel(
-                for: dayDate,
-                selection: range
-            )
-        ))
         .accessibility(addTraits: .isSelected)
+        .if(accessibilityProvider.rangeSelection != nil) { cell in
+            cell.accessibilityLabel(Text(
+                accessibilityProvider.rangeSelection?.accessibilityLabel(
+                    for: dayDate,
+                    selection: range
+                ) ?? ""
+            ))
+        }
     }
     
     private func initialSelection(_ initialDateSelection: Date, matchesDate date: Date) -> Bool {
