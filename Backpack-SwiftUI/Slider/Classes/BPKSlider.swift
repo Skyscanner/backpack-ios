@@ -30,6 +30,8 @@ public struct BPKSlider: View {
     private let thumbSize: CGFloat = 20
     private var thumbAccessibilityLabel = ""
     
+    @Environment(\.layoutDirection) private var layoutDirection
+    
     /// Creates a new instance of `BPKSlider`.
     ///
     /// If the value is outside the bounds of the slider, it will be clamped to the bounds.
@@ -132,7 +134,8 @@ public struct BPKSlider: View {
             sliderWidth: sliderSize.width,
             thumbSize: thumbSize,
             sliderBounds: sliderBounds,
-            step: step
+            step: step,
+            layoutDirection: layoutDirection
         )
         if roundedValue >= sliderBounds.lowerBound && roundedValue <= sliderBounds.upperBound {
             value = roundedValue
