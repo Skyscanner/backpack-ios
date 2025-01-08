@@ -34,34 +34,69 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
     }
 
     var body: some View {
-        switch selectionType {
-        case .range(let selection, let accessibilityConfigurations):
-            RangeCalendarContainer(
-                selectionState: selection,
-                calendar: calendar,
-                validRange: validRange,
-                accessibilityProvider: RangeDayAccessibilityProvider(
-                    accessibilityConfigurations: accessibilityConfigurations,
-                    dateFormatter: accessibilityDateFormatter
-                ),
-                monthScroll: monthScroll,
-                monthHeader: monthHeader,
-                dayAccessoryView: dayAccessoryView
-            )
-        case .single(let selection, let accessibilityConfigurations):
-            SingleCalendarContainer(
-                selection: selection,
-                calendar: calendar,
-                validRange: validRange,
-                accessibilityProvider: SingleDayAccessibilityProvider(
-                    accessibilityConfigurations: accessibilityConfigurations,
-                    dateFormatter: accessibilityDateFormatter
-                ),
-                monthScroll: monthScroll,
-                monthHeader: monthHeader,
-                dayAccessoryView: dayAccessoryView
-            )
-
+        CalendarContainer(
+            calendar: calendar,
+            validRange: validRange,
+            monthScroll: monthScroll
+        ) { month in
+            switch selectionType {
+            case .range(let selection, let accessibilityConfigurations):
+                rangeMonthContainer(
+                    forMonth: month,
+                    selection: selection,
+                    accessibilityConfigurations: accessibilityConfigurations
+                )
+            case .single(let selection, let accessibilityConfigurations):
+                singleCalendarMonthContainer(
+                    forMonth: month,
+                    selection: selection,
+                    accessibilityConfigurations: accessibilityConfigurations
+                )
+            }
         }
+    }
+    
+    @ViewBuilder
+    private func singleCalendarMonthContainer(
+        forMonth month: Date,
+        selection: Binding<CalendarSingleSelectionState?>,
+        accessibilityConfigurations: SingleAccessibilityConfigurations
+    ) -> some View {
+        SingleCalendarMonthContainer(
+            selection: selection,
+            calendar: calendar,
+            validRange: validRange,
+            accessibilityProvider: SingleDayAccessibilityProvider(
+                accessibilityConfigurations: accessibilityConfigurations,
+                dateFormatter: accessibilityDateFormatter
+            ),
+            month: month,
+            monthHeader: { monthHeader(month) },
+            dayAccessoryView: dayAccessoryView
+        )
+    }
+    
+    @ViewBuilder
+    private func rangeMonthContainer(
+        forMonth month: Date,
+        selection: Binding<CalendarRangeSelectionState?>,
+        accessibilityConfigurations: RangeAccessibilityConfigurations
+    ) -> some View {
+        RangeCalendarMonthContainer(
+            selectionState: selection,
+            calendar: calendar,
+            validRange: validRange,
+            accessibilityProvider: RangeDayAccessibilityProvider(
+                accessibilityConfigurations: accessibilityConfigurations,
+                dateFormatter: accessibilityDateFormatter
+            ),
+            month: month,
+            selectionHandler: DefaultRangeCalendarSelectionHandler(
+                instructionAfterSelectingDate: accessibilityConfigurations.returnDatePrompt
+            ),
+            monthHeader: { monthHeader(month) },
+            dayAccessoryView: dayAccessoryView
+        )
+
     }
 }

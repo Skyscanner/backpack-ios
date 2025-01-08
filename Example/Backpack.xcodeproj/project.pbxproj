@@ -30,6 +30,7 @@
 		3AA018EF215BE26600838FBB /* SpinnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018EE215BE26500838FBB /* SpinnersViewController.swift */; };
 		3AA018F4215D000700838FBB /* TextViewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018F3215D000700838FBB /* TextViewsViewController.swift */; };
 		530459F52A961F9E00244EA8 /* CarouselExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530459F42A961F9E00244EA8 /* CarouselExampleView.swift */; };
+		530E84BF2D28461400009A4F /* CalendarExampleDynamicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530E84BE2D28461400009A4F /* CalendarExampleDynamicView.swift */; };
 		5318E3342AF506FA00C66D18 /* CalendarExampleSingleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5318E3332AF506FA00C66D18 /* CalendarExampleSingleView.swift */; };
 		534624382A7429080059A0B5 /* ChipGroupMultipleSelectWrapExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534624372A7429080059A0B5 /* ChipGroupMultipleSelectWrapExampleView.swift */; };
 		5346243A2A74292D0059A0B5 /* ChipGroupMultipleSelectRailExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534624392A74292D0059A0B5 /* ChipGroupMultipleSelectRailExampleView.swift */; };
@@ -84,7 +85,7 @@
 		53C6622929EA0DAB00BF1A62 /* AttributedTextExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C6620F29EA0DAB00BF1A62 /* AttributedTextExampleView.swift */; };
 		53C7F0B92A4C615D003A8740 /* ChipGroupSingleSelectRailExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7F0B52A4C615D003A8740 /* ChipGroupSingleSelectRailExampleView.swift */; };
 		53C7F0BA2A4C615D003A8740 /* ChipGroupSingleSelectWrapExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7F0B62A4C615D003A8740 /* ChipGroupSingleSelectWrapExampleView.swift */; };
-		53D4614E29E574EB0061C222 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		53D4614E29E574EB0061C222 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		53D6396F2A7D46ED007EF376 /* MapMarkerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D6396E2A7D46ED007EF376 /* MapMarkerExampleView.swift */; };
 		53D7FBB527F715AF00DEE588 /* UIWindowFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D7FBB427F715AF00DEE588 /* UIWindowFactory.swift */; };
 		53E075A527FC780C0033147C /* NavBarGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E075A427FC780C0033147C /* NavBarGroups.swift */; };
@@ -267,6 +268,7 @@
 		3DDD5D1DB6A77816BAA9481F /* Pods-Backpack-Native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack-Native.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack-Native/Pods-Backpack-Native.release.xcconfig"; sourceTree = "<group>"; };
 		455FB6E0E01310446E946427 /* Backpack.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Backpack.podspec; path = ../Backpack.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		530459F42A961F9E00244EA8 /* CarouselExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselExampleView.swift; sourceTree = "<group>"; };
+		530E84BE2D28461400009A4F /* CalendarExampleDynamicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExampleDynamicView.swift; sourceTree = "<group>"; };
 		5318E3332AF506FA00C66D18 /* CalendarExampleSingleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExampleSingleView.swift; sourceTree = "<group>"; };
 		534624372A7429080059A0B5 /* ChipGroupMultipleSelectWrapExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipGroupMultipleSelectWrapExampleView.swift; sourceTree = "<group>"; };
 		534624392A74292D0059A0B5 /* ChipGroupMultipleSelectRailExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipGroupMultipleSelectRailExampleView.swift; sourceTree = "<group>"; };
@@ -607,6 +609,7 @@
 				537AA67E2B050D1000D97B42 /* CalendarExampleRangeView.swift */,
 				5318E3332AF506FA00C66D18 /* CalendarExampleSingleView.swift */,
 				2832E45A2CDE1561000B6DF4 /* CalendarExampleWholeMonthView.swift */,
+				530E84BE2D28461400009A4F /* CalendarExampleDynamicView.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -1647,6 +1650,7 @@
 				6003F588195388D20070C39A /* Resources */,
 				84EFE62BE1534CD46CAFBDBF /* [CP] Embed Pods Frameworks */,
 				D68AF8FA2174CB9C00BA743D /* Run Script */,
+				5059D4BC2567A5EB643578E0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1803,6 +1807,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		5059D4BC2567A5EB643578E0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Backpack-Native/Pods-Backpack-Native-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		84EFE62BE1534CD46CAFBDBF /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1893,6 +1912,7 @@
 				1750EB6329915230005226DF /* CardButtonsViewController.swift in Sources */,
 				BA809EC52B05ED410030D1E7 /* AppSearchModalExampleView.swift in Sources */,
 				53E075BB27FC9FD30033147C /* CustomPresentable.swift in Sources */,
+				530E84BF2D28461400009A4F /* CalendarExampleDynamicView.swift in Sources */,
 				D217701825ACCC5E00C0FD8C /* Presentable.swift in Sources */,
 				13E884A72C53F8C800A3138D /* BannerAlertExampleView.swift in Sources */,
 				53C6621B29EA0DAB00BF1A62 /* CardExampleView.swift in Sources */,
@@ -1937,7 +1957,7 @@
 				5390DB612909940700F0F790 /* ColorTokensViewController.swift in Sources */,
 				794E1FF8280CF63100B965FF /* RadiusTokensView.swift in Sources */,
 				53B6DB6A27FC73A90042B7C0 /* LabelGroups.swift in Sources */,
-				53D4614E29E574EB0061C222 /* (null) in Sources */,
+				53D4614E29E574EB0061C222 /* BuildFile in Sources */,
 				53C6621329EA0DAB00BF1A62 /* SpinnerExampleView.swift in Sources */,
 				53BAC3F12A71415800236CC9 /* SectionHeaderGroups.swift in Sources */,
 				53C6622429EA0DAB00BF1A62 /* ButtonsPlaygroundView.swift in Sources */,

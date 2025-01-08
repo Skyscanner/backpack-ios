@@ -49,6 +49,8 @@ public struct BPKRangeSlider: View {
     
     @State var height: CGFloat = .zero
     
+    @Environment(\.layoutDirection) private var layoutDirection
+    
     /// Creates a new instance of `BPKRangeSlider`.
     ///
     /// If the selected range is outside the bounds of the slider, it will be clamped to the bounds.
@@ -228,7 +230,8 @@ public struct BPKRangeSlider: View {
             sliderWidth: sliderSize.width,
             thumbSize: thumbSize,
             sliderBounds: sliderBounds,
-            step: step
+            step: step,
+            layoutDirection: layoutDirection
         )
         let isGreaterThanLeadingThumb = roundedValue >= selectedRange.lowerBound
         let isSmallerThanUpperBound = roundedValue <= sliderBounds.upperBound
@@ -244,7 +247,8 @@ public struct BPKRangeSlider: View {
             sliderWidth: sliderSize.width,
             thumbSize: thumbSize,
             sliderBounds: sliderBounds,
-            step: step
+            step: step,
+            layoutDirection: layoutDirection
         )
         let isSmallerThanTrailingThumb = roundedValue <= selectedRange.upperBound
         let isGreaterThanLowerBound = roundedValue >= sliderBounds.lowerBound
