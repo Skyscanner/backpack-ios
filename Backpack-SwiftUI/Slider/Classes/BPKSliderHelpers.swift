@@ -16,17 +16,22 @@
  * limitations under the License.
  */
 
+import SwiftUI
+
 struct BPKSliderHelpers {
     
     /// Calculates the new value for the slider based on the drag gesture.
+    // swiftlint:disable function_parameter_count
     static func calculateNewValueFromDrag(
         xLocation: CGFloat,
         sliderWidth: CGFloat,
         thumbSize: CGFloat,
         sliderBounds: ClosedRange<Float>,
-        step: Float
+        step: Float,
+        layoutDirection: LayoutDirection
     ) -> Float {
-        let adjustedThumbPosition = xLocation - thumbSize / 2 + sliderWidth / 2
+        let directionMultiplier: CGFloat = (layoutDirection == .rightToLeft) ? -1 : 1
+        let adjustedThumbPosition = (xLocation - thumbSize / 2) * directionMultiplier + sliderWidth / 2
         let percentageForPosition = adjustedThumbPosition / sliderWidth
         let newValue = Self.valueForPercentage(Float(percentageForPosition), sliderBounds: sliderBounds)
         return round(newValue / step) * step
