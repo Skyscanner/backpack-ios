@@ -49,9 +49,22 @@ class SliderTests: XCTestCase {
             sliderWidth: 200,
             thumbSize: 20,
             sliderBounds: -20...50,
-            step: 1
+            step: 1,
+            layoutDirection: .leftToRight
         )
         XCTAssertEqual(newValue, 47.0)
+    }
+    
+    func testCanCalculateNewValueFromDragOnRTL() {
+        let newValue = BPKSliderHelpers.calculateNewValueFromDrag(
+            xLocation: 100,
+            sliderWidth: 200,
+            thumbSize: 20,
+            sliderBounds: -20...50,
+            step: 1,
+            layoutDirection: .rightToLeft
+        )
+        XCTAssertEqual(newValue, -17.0)
     }
 
     func testCanCalculateNewValueFromDrawWithStep() {
@@ -60,7 +73,8 @@ class SliderTests: XCTestCase {
             sliderWidth: 200,
             thumbSize: 20,
             sliderBounds: -20...50,
-            step: 5
+            step: 5,
+            layoutDirection: .leftToRight
         )
         XCTAssertEqual(newValue, 45.0)
     }
