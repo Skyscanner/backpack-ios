@@ -20,11 +20,11 @@ import Backpack_Common
 
 public struct BPKIcon {
     public let name: String
-    let bundle: Bundle
+//    let bundle: Bundle
 
-    init (name: String, bundle: Bundle = BPKCommonBundle.iconsBundle) {
+    init (name: String/*, bundle: Bundle = BPKCommonBundle.iconsBundle*/) {
         self.name = name
-        self.bundle = bundle
+//        self.bundle = bundle
     }
     
     public enum Size {
