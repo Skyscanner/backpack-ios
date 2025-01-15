@@ -17,6 +17,8 @@
  */
 
 // swiftlint:disable file_length
+import Foundation
+
 public extension BPKIcon {
     static let accessibility = BPKIcon(name: "accessibility")
     static let accountAdd = BPKIcon(name: "account--add")
