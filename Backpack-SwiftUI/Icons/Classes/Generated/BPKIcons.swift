@@ -17,8 +17,6 @@
  */
 
 // swiftlint:disable file_length
-import Foundation
-
 public extension BPKIcon {
     static let accessibility = BPKIcon(name: "accessibility")
     static let accountAdd = BPKIcon(name: "account--add")
@@ -299,10 +297,6 @@ public extension BPKIcon {
 }
 
 public extension BPKIcon {
-//    static func named(_ iconName: String, bundle: Bundle) -> BPKIcon {
-//        BPKIcon(name: iconName, bundle: bundle)
-//    }
-
     // swiftlint:disable function_body_length cyclomatic_complexity
     static func named(_ iconName: String) -> BPKIcon? {
         switch iconName {

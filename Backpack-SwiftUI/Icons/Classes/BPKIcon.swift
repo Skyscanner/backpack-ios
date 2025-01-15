@@ -15,16 +15,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-//import Foundation
-//import Backpack_Common
 
 public struct BPKIcon {
     public let name: String
-//    let bundle: Bundle
 
-    init (name: String/*, bundle: Bundle = BPKCommonBundle.iconsBundle*/) {
+    init (name: String) {
         self.name = name
-//        self.bundle = bundle
     }
     
     public enum Size {

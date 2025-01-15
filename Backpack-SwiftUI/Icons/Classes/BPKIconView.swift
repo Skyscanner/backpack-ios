@@ -83,10 +83,11 @@ private extension BPKIcon.Size {
 private extension Image {
     init(icon: BPKIcon, size: BPKIcon.Size = .small, shouldEnableAccessibility: Bool) {
         let iconName = "\(icon.name)-\(size.suffix)"
+        let bundle = BPKCommonBundle.iconsBundle
         if shouldEnableAccessibility {
-            self.init(iconName, bundle: BPKCommonBundle.iconsBundle)
+            self.init(iconName, bundle: bundle)
         } else {
-            self.init(decorative: iconName, bundle: BPKCommonBundle.iconsBundle)
+            self.init(decorative: iconName, bundle: bundle)
         }
     }
 }
