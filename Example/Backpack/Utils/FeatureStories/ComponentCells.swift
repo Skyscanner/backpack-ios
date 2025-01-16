@@ -81,6 +81,7 @@ struct ComponentCellsProvider {
             searchControlInput(),
             searchInputSummary(),
             sectionHeader(),
+            segmentPicker(),
             select(),
             snackbar(),
             skeleton(),
@@ -416,6 +417,17 @@ extension ComponentCellsProvider {
                 }))
             ],
             showChildren: { showComponent(title: "Search Input Summary", tabs: $0) }
+        )
+    }
+    private func segmentPicker() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Segmented Control",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(SegmentedControlExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Segmented Control", tabs: $0) }
         )
     }
     private func select() -> CellDataSource {

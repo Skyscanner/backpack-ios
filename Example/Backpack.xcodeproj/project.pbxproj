@@ -218,6 +218,7 @@
 		E397BEA222F5F59000C8EC04 /* BottomSheetScrollableContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA122F5F59000C8EC04 /* BottomSheetScrollableContentViewController.swift */; };
 		E397BEA422F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA322F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift */; };
 		E397BEA622F5FFDD00C8EC04 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA522F5FFDD00C8EC04 /* Storyboards.swift */; };
+		EED519B62D39187900F898D7 /* SegmentedControlExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED519B52D39187900F898D7 /* SegmentedControlExampleView.swift */; };
 		F00CA3D9299D53450027ACE7 /* FloatingNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00CA3D8299D53450027ACE7 /* FloatingNotificationViewController.swift */; };
 		F00F15692993F24700213F0D /* CarouselViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F15682993F24700213F0D /* CarouselViewController.swift */; };
 /* End PBXBuildFile section */
@@ -473,6 +474,7 @@
 		E397BEA322F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetBottomSectionVIewController.swift; sourceTree = "<group>"; };
 		E397BEA522F5FFDD00C8EC04 /* Storyboards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		EDBC7CA36756032862B5D581 /* Pods_Backpack_Native.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Backpack_Native.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EED519B52D39187900F898D7 /* SegmentedControlExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlExampleView.swift; sourceTree = "<group>"; };
 		F00CA3D8299D53450027ACE7 /* FloatingNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingNotificationViewController.swift; sourceTree = "<group>"; };
 		F00F15682993F24700213F0D /* CarouselViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarouselViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1043,6 +1045,7 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				EED519B42D39184F00F898D7 /* SegmentedControl */,
 				25006AAE2C60B15D0038D7CA /* SearchControlInput */,
 				DB0A8DA62C57F507003DC186 /* CardCarousel */,
 				13E8849B2C53A0A400A3138D /* BannerAlert */,
@@ -1621,6 +1624,14 @@
 			path = "Bottom Sheet";
 			sourceTree = "<group>";
 		};
+		EED519B42D39184F00F898D7 /* SegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				EED519B52D39187900F898D7 /* SegmentedControlExampleView.swift */,
+			);
+			path = SegmentedControl;
+			sourceTree = "<group>";
+		};
 		F00CA3D7299D532E0027ACE7 /* FloatingNotification */ = {
 			isa = PBXGroup;
 			children = (
@@ -1879,6 +1890,7 @@
 				D282E867259E04F4000AD77E /* TextFieldsViewController.swift in Sources */,
 				DB0A8DA82C57F535003DC186 /* CardCarouselExampleView.swift in Sources */,
 				53C6621029EA0DAB00BF1A62 /* RatingExampleViewWithTitle.swift in Sources */,
+				EED519B62D39187900F898D7 /* SegmentedControlExampleView.swift in Sources */,
 				3AA018EF215BE26600838FBB /* SpinnersViewController.swift in Sources */,
 				53E075A927FC97C60033147C /* ToastGroups.swift in Sources */,
 				53B6DB5927FB6F930042B7C0 /* ComponentCells.swift in Sources */,
