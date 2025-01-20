@@ -25,8 +25,7 @@ import SwiftUI
 /// to an Int property that determines which segment is selected.
 public struct BPKSegmentedControl: View {
     private var items: [String]
-    private var accessibilityLabel: String?
-    private var itemsAccessibilityLabel: [String] = []
+    private var accessibilityLabel: String
     @Binding private var selectedIndex: Int
 
     /// Creates a Segment Control that generates its labels from a list of Strings
@@ -35,16 +34,10 @@ public struct BPKSegmentedControl: View {
     ///   - items: An Array of Strings that describes the purpose of each segment. Limited to 4 items.
     ///   - selectedIndex: A binding to an Int that indicates which segment is selected
     ///   - accessibilityLabel: A string used to identify the component and each segment
-    public init(items: [String], selectedIndex: Binding<Int>, accessibilityLabel: String? = nil) {
+    public init(items: [String], selectedIndex: Binding<Int>, accessibilityLabel: String) {
         // Limit the number of items to 4
         self.items = Array(items.prefix(4))
         self.accessibilityLabel = accessibilityLabel
-        if let accessibilityLabel = accessibilityLabel {
-            self.itemsAccessibilityLabel = Array(repeating: "", count: items.count)
-            for index in items.indices {
-                self.itemsAccessibilityLabel[index] = "\(accessibilityLabel)_\(index)"
-            }
-        }
         _selectedIndex = selectedIndex
         let appearance = UISegmentedControl.appearance()
         appearance.selectedSegmentTintColor = BPKColor.corePrimaryColor.value
@@ -57,15 +50,15 @@ public struct BPKSegmentedControl: View {
         Picker("", selection: $selectedIndex) {
             ForEach(0..<items.count, id: \.self) { index in
                 Text(self.items[index])
-                    .accessibilityIdentifier((accessibilityLabel != nil) ? itemsAccessibilityLabel[index] : "")
+                    .accessibilityIdentifier("\(accessibilityLabel)_\(index)")
             }
         }
         .pickerStyle(.segmented)
         .padding(.horizontal, BPKSpacing.base)
-        .accessibilityIdentifier(accessibilityLabel ?? "")
+        .accessibilityIdentifier(accessibilityLabel)
     }
 }
 
 #Preview {
-    BPKSegmentedControl(items: ["1", "2", "3"], selectedIndex: .constant(0))
+    BPKSegmentedControl(items: ["1", "2", "3"], selectedIndex: .constant(0), accessibilityLabel: "example_label")
 }

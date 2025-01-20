@@ -23,7 +23,11 @@ import SwiftUI
 class BPKSegmentedControlTests: XCTestCase {
     func test_firstSegmentSelected() {
         assertSnapshot(
-            BPKSegmentedControl(items: ["One", "Two"], selectedIndex: .constant(0))
+            BPKSegmentedControl(
+                items: ["One", "Two"],
+                selectedIndex: .constant(0),
+                accessibilityLabel: "testSegmentedControl"
+            )
         )
     }
 
