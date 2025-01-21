@@ -850,5 +850,11 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "card-button", scenario: "all", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
+
+        await navigate(title: "Segmented Control") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "segmented-control", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
     }
 }

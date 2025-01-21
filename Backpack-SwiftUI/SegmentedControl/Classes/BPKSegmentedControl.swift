@@ -22,6 +22,7 @@ import SwiftUI
 /// You create a segmented control by providing a list of `items` that will serve as the segments' titles
 /// and a `selectedIndex` binding. Bind `selectedIndex`
 /// to an Int property that determines which segment is selected.
+/// The colours can be customised using the`style` parameter.
 public struct BPKSegmentedControl: View {
     private var items: [String]
     private var accessibilityLabel: String
@@ -34,6 +35,7 @@ public struct BPKSegmentedControl: View {
     ///   - items: An Array of Strings that describes the purpose of each segment. Limited to 4 items.
     ///   - selectedIndex: A binding to an Int that indicates which segment is selected
     ///   - accessibilityLabel: A string used to identify the component and each segment
+    ///   - style: A style defining the customised colours of the component
     public init(
         items: [String],
         selectedIndex: Binding<Int>,
@@ -71,7 +73,7 @@ public struct BPKSegmentedControl: View {
                     Text(items[index])
                         .font(style: .footnote)
                         .padding(.vertical, 8)
-                        .frame(maxWidth: .infinity)
+                        .frame(maxWidth: .infinity, maxHeight: 28)
                         .background(selectedIndex == index ? style.selectedBgColor : style.bgColor)
                         .foregroundColor(selectedIndex == index ? style.selectedTextColor : style.textColor)
                         .cornerRadius(8)
@@ -80,7 +82,7 @@ public struct BPKSegmentedControl: View {
                 }
             )
 
-            if index < items.count - 1 {
+            if index < items.count - 1 && selectedIndex != index && selectedIndex != index + 1 {
                 separator
             }
         }
@@ -88,8 +90,9 @@ public struct BPKSegmentedControl: View {
 
     private var separator: some View {
         Rectangle()
-            .fill(Color(style.bgColor.value).opacity(0.8))
-            .frame(width: 1, height: 30)
+            .fill(Color(style.textColor.value).opacity(0.2))
+            .frame(width: 1, height: 16)
+            .cornerRadius(0.5)
     }
 
     public struct Style {
@@ -118,5 +121,5 @@ public extension BPKSegmentedControl.Style {
 }
 
 #Preview {
-    BPKSegmentedControl(items: ["1", "2", "3"], selectedIndex: .constant(0), accessibilityLabel: "example_label")
+    BPKSegmentedControl(items: ["1", "2", "3", "4"], selectedIndex: .constant(3), accessibilityLabel: "example_label")
 }

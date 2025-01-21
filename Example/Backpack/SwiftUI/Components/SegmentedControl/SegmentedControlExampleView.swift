@@ -22,9 +22,7 @@ import Backpack_SwiftUI
 struct SegmentedControlExampleView: View {
     @State var selectedIndex = 0
     private let accessibilityLabel = "bpk_segmented_control_example"
-    private let items: [String] = ["1", "2", "3"]
-
-    @State private var favoriteColor = 0
+    private let items: [String] = ["1", "2", "3", "4"]
 
     var body: some View {
         VStack {
@@ -43,17 +41,7 @@ struct SegmentedControlExampleView: View {
                     bgColor: .black, textColor: .white, selectedBgColor: .white, selectedTextColor: .black
                     )
             )
-
-            VStack {
-                Picker("What is your favorite color?", selection: $favoriteColor) {
-                    Text("Red").tag(0)
-                    Text("Green").tag(1)
-                    Text("Blue").tag(2)
-                }
-                .pickerStyle(.segmented)
-
-                Text("Value: \(favoriteColor)")
-            }
+            Text("Value: \(selectedIndex)")
         }
     }
 }
