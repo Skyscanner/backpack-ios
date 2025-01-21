@@ -12,7 +12,10 @@
 
 ## Usage
 
-Use an array of strings to set the texts shown by the segmented control as a `BPKText` label
+Use an array of strings to set the texts shown by the segmented control as a `BPKText` label.
+The colours can be customised using the`style` parameter.
+
+### Default style
 
 ```swift
     import Backpack_SwiftUI
@@ -23,6 +26,25 @@ Use an array of strings to set the texts shown by the segmented control as a `BP
             BPKSegmentedControl(
                 items: items,
                 selectedIndex: $selectedIndex,
-                accessibilityLabel: accessibilityLabel)
+                accessibilityLabel: accessibilityLabel,
+                style: .defaultStyle
+            )
 ```
 
+### Custom style
+
+```swift
+    import Backpack_SwiftUI
+    @State var selectedIndex = 0
+    private let accessibilityLabel = "bpk_segmented_control_example"
+    private let items: [String] = ["1", "2", "3"]
+
+            BPKSegmentedControl(
+                items: items,
+                selectedIndex: $selectedIndex,
+                accessibilityLabel: accessibilityLabel,
+                style: .init(
+                    bgColor: .black, textColor: .white, selectedBgColor: .white, selectedTextColor: .black
+                    )
+            )
+```
