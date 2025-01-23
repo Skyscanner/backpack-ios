@@ -22,7 +22,7 @@ public struct BPKIcon {
     public let name: String
     let bundle: Bundle?
 
-    init (name: String, bundle: Bundle? = nil) {
+    init(name: String, bundle: Bundle? = nil) {
         self.name = name
         self.bundle = bundle ?? BPKCommonBundle.iconsBundle
     }
