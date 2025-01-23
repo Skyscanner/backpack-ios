@@ -297,12 +297,12 @@ public extension BPKIcon {
 }
 
 public extension BPKIcon {
-    static func named(_ iconName: String, bundle: Bundle) -> BPKIcon {
-        BPKIcon(name: iconName, bundle: bundle)
-    }
-
     // swiftlint:disable function_body_length cyclomatic_complexity
-    static func named(_ iconName: String) -> BPKIcon? {
+    static func named(_ iconName: String, bundle: Bundle? = nil) -> BPKIcon? {
+        if let bundle {
+            return BPKIcon(name: iconName, bundle: bundle)
+        }
+
         switch iconName {
         case "accessibility": return .accessibility
         case "account--add": return .accountAdd
