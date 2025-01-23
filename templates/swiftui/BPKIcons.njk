@@ -25,7 +25,7 @@ public extension BPKIcon {
 
 public extension BPKIcon {
     // swiftlint:disable function_body_length cyclomatic_complexity
-    static func named(_ iconName: String, bundle: Bundle?) -> BPKIcon? {
+    static func named(_ iconName: String, bundle: Bundle? = nil) -> BPKIcon? {
         if let bundle {
             return BPKIcon(name: iconName, bundle: bundle)
         }
