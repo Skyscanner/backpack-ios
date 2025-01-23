@@ -56,11 +56,11 @@ public struct BPKSegmentedControl: View {
                     segmentButton(for: index)
                 }
             }
-            .padding(4)
             .background(style.bgColor)
-            .cornerRadius(12)
+            .cornerRadius(8)
             .padding()
             .accessibilityIdentifier(accessibilityLabel)
+            .frame(height: 32)
         }
     }
 
@@ -71,16 +71,15 @@ public struct BPKSegmentedControl: View {
                 action: { withAnimation { selectedIndex = index } },
                 label: {
                     Text(items[index])
-                        .font(style: .footnote)
-                        .padding(.vertical, 8)
-                        .frame(maxWidth: .infinity, maxHeight: 28)
-                        .background(selectedIndex == index ? style.selectedBgColor : style.bgColor)
+                        .font(style: .label2)
+                        .frame(maxWidth: .infinity, minHeight: 32)
                         .foregroundColor(selectedIndex == index ? style.selectedTextColor : style.textColor)
-                        .cornerRadius(8)
                         .accessibilityIdentifier("\(accessibilityLabel)_\(index)")
                         .accessibilityAddTraits(selectedIndex == index ? .isSelected : [])
                 }
             )
+            .frame(maxHeight: .infinity)
+            .background(selectedIndex == index ? style.selectedBgColor : style.bgColor)
 
             if index < items.count - 1 && selectedIndex != index && selectedIndex != index + 1 {
                 separator
@@ -90,9 +89,8 @@ public struct BPKSegmentedControl: View {
 
     private var separator: some View {
         Rectangle()
-            .fill(Color(style.textColor.value).opacity(0.2))
-            .frame(width: 1, height: 16)
-            .cornerRadius(0.5)
+            .fill(Color(.lineColor))
+            .frame(width: 1, height: 32)
     }
 
     public struct Style {
