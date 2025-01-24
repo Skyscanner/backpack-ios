@@ -62,9 +62,20 @@ struct RangeCalendarMonthContainer<MonthHeader: View, DayAccessoryView: View>: V
     let selectionHandler: RangeCalendarSelectionHandler
     @ViewBuilder let monthHeader: MonthHeader
     @ViewBuilder let dayAccessoryView: (Date) -> DayAccessoryView
-    
+    var onSelectHandler: CalendarSelectionHandler?
+
     private func handleSelection(_ date: Date) {
-        selectionState = selectionHandler.newStateFor(selection: date, currentSelection: selectionState)
+        if let onSelectHandler {
+            onSelectHandler(
+                .range(selectionState),
+                date
+            )
+        } else {
+            selectionState = selectionHandler.newStateFor(
+                selection: date,
+                currentSelection: selectionState
+            )
+        }
     }
     
     @ViewBuilder

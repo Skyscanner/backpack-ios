@@ -43,14 +43,17 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
 
     private let dayAccessoryView: (Date) -> DayAccessoryView
     @State private var currentlyShownMonth: Date
-    
+    private var onSelectHandler: CalendarSelectionHandler?
+
     public init(
         selectionType: CalendarSelectionType,
         calendar: Calendar,
         validRange: ClosedRange<Date>,
         initialMonthScroll: MonthScroll? = nil,
+        onSelectHandler: CalendarSelectionHandler? = nil,
         dayAccessoryView: @escaping (Date) -> DayAccessoryView = { _ in EmptyView() }
     ) {
+        self.onSelectHandler = onSelectHandler
         self.dayAccessoryView = dayAccessoryView
         _currentlyShownMonth = State(initialValue: validRange.lowerBound)
         self.validRange = validRange
@@ -88,7 +91,8 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
                                 parentProxy: calendarProxy
                             )
                         },
-                        dayAccessoryView: dayAccessoryView
+                        dayAccessoryView: dayAccessoryView,
+                        onSelectHandler: onSelectHandler
                     )
                     yearBadge
                 }

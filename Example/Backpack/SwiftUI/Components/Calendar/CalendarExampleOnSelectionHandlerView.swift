@@ -20,16 +20,14 @@
 import SwiftUI
 import Backpack_SwiftUI
 
-struct CalendarExampleRangeView: View {
+struct CalendarExampleOnSelectionHandlerView: View {
     @State var selection: CalendarRangeSelectionState?
-    private let monthScroll: MonthScroll?
 
     let validRange: ClosedRange<Date>
     let calendar: Calendar
     let formatter: DateFormatter
-    let showAccessoryViews: Bool
 
-    init(showAccessoryViews: Bool, makeInitialMonthScroll: Bool = false) {
+    init() {
         let calendar = Calendar.current
         let start = calendar.date(from: .init(year: 2023, month: 11, day: 6))!
         let end = calendar.date(from: .init(year: 2024, month: 11, day: 28))!
@@ -42,17 +40,8 @@ struct CalendarExampleRangeView: View {
         formatter.locale = calendar.locale
         formatter.timeZone = calendar.timeZone
         self.formatter = formatter
-        self.showAccessoryViews = showAccessoryViews
         var selectionStart = calendar.date(from: .init(year: 2023, month: 11, day: 23))!
         var selectionEnd = calendar.date(from: .init(year: 2023, month: 12, day: 2))!
-
-        if makeInitialMonthScroll {
-            selectionStart = calendar.date(from: .init(year: 2024, month: 2, day: 5))!
-            selectionEnd = calendar.date(from: .init(year: 2024, month: 2, day: 10))!
-            self.monthScroll = .init(monthToScroll: selectionStart)
-        } else {
-            self.monthScroll = nil
-        }
 
         _selection = State(initialValue: .range(selectionStart...selectionEnd))
     }
@@ -88,61 +77,48 @@ struct CalendarExampleRangeView: View {
             startAndEndSelectionState: "Selected as both departure and return date",
             returnDatePrompt: "Now please select a return date"
         )
-        if showAccessoryViews {
-            BPKCalendar(
-                selectionType: .range(
-                    selection: $selection,
-                    accessibilityConfigurations: accessibilityConfigurations
-                ),
-                calendar: calendar,
-                validRange: validRange,
-                onSelectHandler: { state, date in
-                    switch state {
-                        // swiftlint:disable switch_case_alignment
-                        case .range(let rangeState):
-                        switch rangeState {
-                        case .intermediate(let initialDateSelection):
-                            if date < initialDateSelection {
-                                selection = .intermediate(date)
-                            } else {
-                                selection = .range(initialDateSelection...date)
-                            }
-                        case .range(let range):
-                            // M1C requirement can be handled here for the consumer
-                            // via using a feature flag
-                            if date > range.lowerBound && date < range.upperBound {
-                                selection = .range(range.lowerBound...date)
-                            } else {
-                                selection = .intermediate(date)
-                            }
-                        default:
-                            selection = .intermediate(date)
-                        }
-                    default:
-                        break
+        BPKCalendar(
+            selectionType: .range(
+                selection: $selection,
+                accessibilityConfigurations: accessibilityConfigurations
+            ),
+            calendar: calendar,
+            validRange: validRange,
+
+            // HERE => Customising the selection behaviour via a handler
+            onSelectHandler: { state, date in
+                guard case .range(let rangeState) = state else { return }
+                switch rangeState {
+                case .intermediate(let initialDateSelection):
+                    if date < initialDateSelection {
+                        selection = .intermediate(date)
+                    } else {
+                        selection = .range(initialDateSelection...date)
                     }
-                },
-                dayAccessoryView: { _ in
-                    BPKIconView(.search, size: .small)
-                        .foregroundColor(.accentColor)
+                case .range(let range):
+                    // M1C requirement can be handled here for the consumer
+                    // via using a feature flag
+                    if date > range.lowerBound && date < range.upperBound {
+                        // M1C
+                        selection = .range(range.lowerBound...date)
+                    } else {
+                        // M1B
+                        selection = .intermediate(date)
+                    }
+                default:
+                    selection = .intermediate(date)
                 }
-            )
-        } else {
-            BPKCalendar(
-                selectionType: .range(
-                    selection: $selection,
-                    accessibilityConfigurations: accessibilityConfigurations
-                ),
-                calendar: calendar,
-                validRange: validRange,
-                initialMonthScroll: monthScroll
-            )
-        }
+            },
+            dayAccessoryView: { _ in
+                BPKIconView(.search, size: .small)
+                    .foregroundColor(.accentColor)
+            }
+        )
     }
 }
 
-struct CalendarExampleRangeView_Previews: PreviewProvider {
+struct CalendarExampleOnSelectionHandlerView_Previews: PreviewProvider {
     static var previews: some View {
-        CalendarExampleRangeView(showAccessoryViews: true)
+        CalendarExampleOnSelectionHandlerView()
     }
 }

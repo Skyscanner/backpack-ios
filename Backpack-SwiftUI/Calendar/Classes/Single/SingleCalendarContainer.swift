@@ -26,7 +26,8 @@ struct SingleCalendarMonthContainer<MonthHeader: View, DayAccessoryView: View>: 
     let month: Date
     @ViewBuilder let monthHeader: MonthHeader
     @ViewBuilder let dayAccessoryView: (Date) -> DayAccessoryView
-    
+    var onSelectHandler: CalendarSelectionHandler?
+
     @ViewBuilder
     private func makeDayCell(_ dayDate: Date) -> some View {
         CalendarSelectableCell {
@@ -52,7 +53,11 @@ struct SingleCalendarMonthContainer<MonthHeader: View, DayAccessoryView: View>: 
                 DefaultCalendarDayCell(calendar: calendar, date: dayDate)
             }
         } onSelection: {
-            selection = .single(dayDate)
+            if let onSelectHandler {
+                onSelectHandler(.single(selection), dayDate)
+            } else {
+                selection = .single(dayDate)
+            }
         }
         .accessibilityAddTraits(.isButton)
         .accessibilityAddTraits(selection?.isSelected(dayDate) == true ? .isSelected : [])

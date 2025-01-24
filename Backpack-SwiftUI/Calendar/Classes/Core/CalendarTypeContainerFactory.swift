@@ -25,7 +25,8 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
     let monthScroll: MonthScroll?
     @ViewBuilder let monthHeader: (_ monthDate: Date) -> MonthHeader
     @ViewBuilder let dayAccessoryView: (Date) -> DayAccessoryView
-    
+    var onSelectHandler: CalendarSelectionHandler?
+
     private var accessibilityDateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.locale = calendar.locale
@@ -72,7 +73,8 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
             ),
             month: month,
             monthHeader: { monthHeader(month) },
-            dayAccessoryView: dayAccessoryView
+            dayAccessoryView: dayAccessoryView,
+            onSelectHandler: onSelectHandler
         )
     }
     
@@ -95,7 +97,8 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
                 instructionAfterSelectingDate: accessibilityConfigurations.returnDatePrompt
             ),
             monthHeader: { monthHeader(month) },
-            dayAccessoryView: dayAccessoryView
+            dayAccessoryView: dayAccessoryView,
+            onSelectHandler: onSelectHandler
         )
 
     }
