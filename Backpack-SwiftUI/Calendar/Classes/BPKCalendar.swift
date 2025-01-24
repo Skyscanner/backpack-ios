@@ -40,7 +40,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
     private var accessoryAction: ((Date) -> CalendarMonthAccessoryAction?)?
     private var initialMonthScroll: MonthScroll?
     private let monthHeaderDateFormatter: DateFormatter
-
+    private let showFloatYearLabel: Bool
     private let dayAccessoryView: (Date) -> DayAccessoryView
     @State private var currentlyShownMonth: Date
     
@@ -49,6 +49,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
         calendar: Calendar,
         validRange: ClosedRange<Date>,
         initialMonthScroll: MonthScroll? = nil,
+        showFloatYearLabel: Bool = true,
         dayAccessoryView: @escaping (Date) -> DayAccessoryView = { _ in EmptyView() }
     ) {
         self.dayAccessoryView = dayAccessoryView
@@ -57,6 +58,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
         self.calendar = calendar
         self.selectionType = selectionType
         self.initialMonthScroll = initialMonthScroll
+        self.showFloatYearLabel = showFloatYearLabel
 
         monthHeaderDateFormatter = DateFormatter()
         monthHeaderDateFormatter.timeZone = calendar.timeZone
@@ -90,7 +92,9 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
                         },
                         dayAccessoryView: dayAccessoryView
                     )
-                    yearBadge
+                    if showFloatYearLabel {
+                        yearBadge
+                    }
                 }
             }
         }
