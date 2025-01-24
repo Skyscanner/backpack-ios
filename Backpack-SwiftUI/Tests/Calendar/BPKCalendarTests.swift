@@ -52,6 +52,25 @@ class BPKCalendarTests: XCTestCase {
         )
     }
     
+    func test_singleSelectionCalendarWithBaseSpacingBetweenRows() {
+        let testDate = Calendar.current.date(from: DateComponents(year: 2020, month: 2, day: 5))!
+        
+        assertSnapshot(
+            BPKCalendar(
+                selectionType: .single(
+                    selected: .constant(.single(testDate)),
+                    accessibilityConfigurations: SingleAccessibilityConfigurations(
+                        selectionHint: ""
+                    )
+                ),
+                calendar: Calendar.current,
+                validRange: validStart...validEnd,
+                spacingBetweenRows: .base
+            )
+            .frame(width: 320, height: 720)
+        )
+    }
+    
     func test_rangeSelectionCalendar_sameMonth() {
         let selectionStart = Calendar.current.date(from: DateComponents(year: 2020, month: 2, day: 5))!
         let selectionEnd = Calendar.current.date(from: DateComponents(year: 2020, month: 2, day: 18))!

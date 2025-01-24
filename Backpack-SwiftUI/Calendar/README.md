@@ -80,3 +80,16 @@ BPKCalendar(
     }
 )
 ```
+
+## Spacing between rows
+
+It's possible to configure the spacing margin between weeks in the calendar. The default value is BPKSpacing.lg (24px).
+
+```swift
+BPKCalendar(
+    selectionType: .range(selectedRange: $selectedDateRange),
+    calendar: .current,
+    validRange: validStartDate...validEndDate,
+    spacingBetweenRows: .base
+)
+```

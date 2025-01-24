@@ -92,6 +92,10 @@ struct CalendarGroupsProvider {
                 presentableCalendar(
                     "Dynamic Selection",
                     view: CalendarExampleDynamicView()
+                ),
+                presentableCalendar(
+                    "With Base Spacing between rows",
+                    view: CalendarExampleSingleView(spacingBetweenRows: .base)
                 )
             ]
         ).groups()

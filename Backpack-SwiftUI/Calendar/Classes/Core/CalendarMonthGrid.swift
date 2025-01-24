@@ -27,6 +27,7 @@ struct CalendarMonthGrid<
     let monthDate: Date
     let calendar: Calendar
     let validRange: ClosedRange<Date>
+    let spacingBetweenRows: BPKSpacing
 
     @State private var dayCellHeight: CGFloat = 0
     @ViewBuilder let dayCell: (Date) -> DayCell
@@ -44,7 +45,7 @@ struct CalendarMonthGrid<
 
         LazyVGrid(
             columns: Array(repeating: GridItem(spacing: BPKSpacing.none.value), count: daysInAWeek),
-            spacing: BPKSpacing.lg.value
+            spacing: spacingBetweenRows.value
         ) {
             // Create cells for the days from the previous month that are shown in the first week of the current month.
             previousEmptyCells(daysFromPreviousMonth: daysFromPreviousMonth)
@@ -138,6 +139,7 @@ struct CalendarMonthGrid_Previews: PreviewProvider {
             monthDate: calendar.date(from: .init(year: 2023, month: 8, day: 1))!,
             calendar: calendar,
             validRange: start...end,
+            spacingBetweenRows: .lg,
             dayCell: { day in
                 BPKText("\(calendar.component(.day, from: day))")
             },

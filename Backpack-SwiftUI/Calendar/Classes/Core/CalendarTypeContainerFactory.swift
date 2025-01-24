@@ -23,6 +23,7 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
     let calendar: Calendar
     let validRange: ClosedRange<Date>
     let monthScroll: MonthScroll?
+    let spacingBetweenRows: BPKSpacing
     @ViewBuilder let monthHeader: (_ monthDate: Date) -> MonthHeader
     @ViewBuilder let dayAccessoryView: (Date) -> DayAccessoryView
     
@@ -44,13 +45,15 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
                 rangeMonthContainer(
                     forMonth: month,
                     selection: selection,
-                    accessibilityConfigurations: accessibilityConfigurations
+                    accessibilityConfigurations: accessibilityConfigurations,
+                    spacingBetweenRows: spacingBetweenRows
                 )
             case .single(let selection, let accessibilityConfigurations):
                 singleCalendarMonthContainer(
                     forMonth: month,
                     selection: selection,
-                    accessibilityConfigurations: accessibilityConfigurations
+                    accessibilityConfigurations: accessibilityConfigurations,
+                    spacingBetweenRows: spacingBetweenRows
                 )
             }
         }
@@ -60,7 +63,8 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
     private func singleCalendarMonthContainer(
         forMonth month: Date,
         selection: Binding<CalendarSingleSelectionState?>,
-        accessibilityConfigurations: SingleAccessibilityConfigurations
+        accessibilityConfigurations: SingleAccessibilityConfigurations,
+        spacingBetweenRows: BPKSpacing
     ) -> some View {
         SingleCalendarMonthContainer(
             selection: selection,
@@ -71,6 +75,7 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
                 dateFormatter: accessibilityDateFormatter
             ),
             month: month,
+            spacingBetweenRows: spacingBetweenRows,
             monthHeader: { monthHeader(month) },
             dayAccessoryView: dayAccessoryView
         )
@@ -80,7 +85,8 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
     private func rangeMonthContainer(
         forMonth month: Date,
         selection: Binding<CalendarRangeSelectionState?>,
-        accessibilityConfigurations: RangeAccessibilityConfigurations
+        accessibilityConfigurations: RangeAccessibilityConfigurations,
+        spacingBetweenRows: BPKSpacing
     ) -> some View {
         RangeCalendarMonthContainer(
             selectionState: selection,
@@ -94,6 +100,7 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
             selectionHandler: DefaultRangeCalendarSelectionHandler(
                 instructionAfterSelectingDate: accessibilityConfigurations.returnDatePrompt
             ),
+            spacingBetweenRows: spacingBetweenRows,
             monthHeader: { monthHeader(month) },
             dayAccessoryView: dayAccessoryView
         )

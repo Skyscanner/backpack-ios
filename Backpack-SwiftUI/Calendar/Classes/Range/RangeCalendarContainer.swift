@@ -60,6 +60,7 @@ struct RangeCalendarMonthContainer<MonthHeader: View, DayAccessoryView: View>: V
     let accessibilityProvider: RangeDayAccessibilityProvider
     let month: Date
     let selectionHandler: RangeCalendarSelectionHandler
+    let spacingBetweenRows: BPKSpacing
     @ViewBuilder let monthHeader: MonthHeader
     @ViewBuilder let dayAccessoryView: (Date) -> DayAccessoryView
     
@@ -144,6 +145,7 @@ struct RangeCalendarMonthContainer<MonthHeader: View, DayAccessoryView: View>: V
                 monthDate: month,
                 calendar: calendar,
                 validRange: validRange,
+                spacingBetweenRows: spacingBetweenRows,
                 dayCell: makeDayCell,
                 emptyLeadingDayCell: { makeEmptyLeadingDayCell(for: month) },
                 emptyTrailingDayCell: { makeEmptyTrailingDayCell(for: month) },
@@ -226,6 +228,7 @@ struct RangeCalendarContainer_Previews: PreviewProvider {
             selectionHandler: DefaultRangeCalendarSelectionHandler(
                 instructionAfterSelectingDate: ""
             ),
+            spacingBetweenRows: .lg,
             monthHeader: {
                 BPKText("\(Self.formatter.string(from: start))")
             },

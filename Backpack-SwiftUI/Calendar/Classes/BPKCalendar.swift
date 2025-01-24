@@ -39,6 +39,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
     let validRange: ClosedRange<Date>
     private var accessoryAction: ((Date) -> CalendarMonthAccessoryAction?)?
     private var initialMonthScroll: MonthScroll?
+    private let spacingBetweenRows: BPKSpacing
     private let monthHeaderDateFormatter: DateFormatter
 
     private let dayAccessoryView: (Date) -> DayAccessoryView
@@ -48,6 +49,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
         selectionType: CalendarSelectionType,
         calendar: Calendar,
         validRange: ClosedRange<Date>,
+        spacingBetweenRows: BPKSpacing = .lg,
         initialMonthScroll: MonthScroll? = nil,
         dayAccessoryView: @escaping (Date) -> DayAccessoryView = { _ in EmptyView() }
     ) {
@@ -56,6 +58,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
         self.validRange = validRange
         self.calendar = calendar
         self.selectionType = selectionType
+        self.spacingBetweenRows = spacingBetweenRows
         self.initialMonthScroll = initialMonthScroll
 
         monthHeaderDateFormatter = DateFormatter()
@@ -67,29 +70,34 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
         )
     }
     
+    private func calendarTypeContainerFactory(proxy: GeometryProxy) -> some View {
+        CalendarTypeContainerFactory(
+            selectionType: selectionType,
+            calendar: calendar,
+            validRange: validRange,
+            monthScroll: initialMonthScroll,
+            spacingBetweenRows: spacingBetweenRows,
+            monthHeader: { monthDate in
+                CalendarMonthHeader(
+                    monthDate: monthDate,
+                    dateFormatter: monthHeaderDateFormatter,
+                    calendar: calendar,
+                    validRange: validRange,
+                    accessoryAction: accessoryAction,
+                    currentlyShownMonth: $currentlyShownMonth,
+                    parentProxy: proxy
+                )
+            },
+            dayAccessoryView: dayAccessoryView
+        )
+    }
+    
     public var body: some View {
         GeometryReader { calendarProxy in
             VStack(spacing: BPKSpacing.none) {
                 CalendarHeader(calendar: calendar)
                 ZStack {
-                    CalendarTypeContainerFactory(
-                        selectionType: selectionType,
-                        calendar: calendar,
-                        validRange: validRange,
-                        monthScroll: initialMonthScroll,
-                        monthHeader: { monthDate in
-                            CalendarMonthHeader(
-                                monthDate: monthDate,
-                                dateFormatter: monthHeaderDateFormatter,
-                                calendar: calendar,
-                                validRange: validRange,
-                                accessoryAction: accessoryAction,
-                                currentlyShownMonth: $currentlyShownMonth,
-                                parentProxy: calendarProxy
-                            )
-                        },
-                        dayAccessoryView: dayAccessoryView
-                    )
+                    calendarTypeContainerFactory(proxy: calendarProxy)
                     yearBadge
                 }
             }

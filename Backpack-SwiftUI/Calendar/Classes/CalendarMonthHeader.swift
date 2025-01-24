@@ -35,6 +35,7 @@ struct CalendarMonthHeader: View {
             BPKText(form, style: .heading4)
                 .accessibilityAddTraits(.isHeader)
             Spacer()
+            // Could be removed if the float year label is decommissioned
             GeometryReader { monthProxy in
                 if isCurrentlyShowingMonth(proxy: monthProxy) {
                     Color.clear

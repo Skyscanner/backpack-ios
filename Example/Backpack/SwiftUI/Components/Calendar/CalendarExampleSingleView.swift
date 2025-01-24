@@ -27,14 +27,16 @@ struct CalendarExampleSingleView: View {
     let validRange: ClosedRange<Date>
     let calendar: Calendar
     let formatter: DateFormatter
+    let spacingBetweenRows: BPKSpacing
 
-    init(makeInitialMonthScrollWithAnimation: Bool = false) {
+    init(makeInitialMonthScrollWithAnimation: Bool = false, spacingBetweenRows: BPKSpacing = .lg) {
         let calendar = Calendar.current
         let start = calendar.date(from: .init(year: 2023, month: 11, day: 6))!
         let end = calendar.date(from: .init(year: 2024, month: 11, day: 28))!
         
         self.validRange = start...end
         self.calendar = calendar
+        self.spacingBetweenRows = spacingBetweenRows
         
         let formatter = DateFormatter()
         formatter.dateStyle = .short
@@ -71,6 +73,7 @@ struct CalendarExampleSingleView: View {
                 ),
                 calendar: calendar,
                 validRange: validRange,
+                spacingBetweenRows: spacingBetweenRows,
                 initialMonthScroll: monthScroll
             )
             .monthAccessoryAction { _ in

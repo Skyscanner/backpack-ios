@@ -24,6 +24,7 @@ struct SingleCalendarMonthContainer<MonthHeader: View, DayAccessoryView: View>: 
     let validRange: ClosedRange<Date>
     let accessibilityProvider: SingleDayAccessibilityProvider
     let month: Date
+    let spacingBetweenRows: BPKSpacing
     @ViewBuilder let monthHeader: MonthHeader
     @ViewBuilder let dayAccessoryView: (Date) -> DayAccessoryView
     
@@ -67,6 +68,7 @@ struct SingleCalendarMonthContainer<MonthHeader: View, DayAccessoryView: View>: 
                 monthDate: month,
                 calendar: calendar,
                 validRange: validRange,
+                spacingBetweenRows: spacingBetweenRows,
                 dayCell: makeDayCell,
                 emptyLeadingDayCell: { DefaultEmptyCalendarDayCell() },
                 emptyTrailingDayCell: { DefaultEmptyCalendarDayCell() },
@@ -97,6 +99,7 @@ struct SingleCalendarContainer_Previews: PreviewProvider {
                 dateFormatter: Self.formatter
             ),
             month: start,
+            spacingBetweenRows: .lg,
             monthHeader: {
                 BPKText("\(Self.formatter.string(from: start))")
             },
