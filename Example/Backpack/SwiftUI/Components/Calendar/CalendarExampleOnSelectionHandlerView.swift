@@ -98,7 +98,7 @@ struct CalendarExampleOnSelectionHandlerView: View {
                 case .range(let range):
                     // M1C requirement can be handled here for the consumer
                     // via using a feature flag
-                    if date > range.lowerBound && date < range.upperBound {
+                    if date >= range.lowerBound {
                         // M1C
                         selection = .range(range.lowerBound...date)
                     } else {
