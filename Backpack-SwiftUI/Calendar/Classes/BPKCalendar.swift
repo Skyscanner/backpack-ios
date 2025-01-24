@@ -29,6 +29,8 @@ import SwiftUI
 ///     the `Calendar` struct in Swift.
 ///   - validRange: The range of dates that the calendar should allow the user to select.
 ///     This is specified as a`ClosedRange<Date>`.
+///   - onSelectHandler: A callback function that handles calendar selection.
+///      Without Providing this handler the selection would NOT perform
 ///   - initialMonthScroll: The initial scrolling to the month using `MonthScroll`
 ///
 /// The `BPKCalendar` view also allows you to specify an accessory action. This is a closure that takes a string and

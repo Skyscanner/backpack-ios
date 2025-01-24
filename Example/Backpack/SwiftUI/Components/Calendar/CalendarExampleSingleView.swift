@@ -20,6 +20,7 @@
 import SwiftUI
 import Backpack_SwiftUI
 
+// swiftlint:disable closure_body_length
 struct CalendarExampleSingleView: View {
     @State var selection: CalendarSingleSelectionState?
     private var monthScroll: MonthScroll?
@@ -71,7 +72,12 @@ struct CalendarExampleSingleView: View {
                 ),
                 calendar: calendar,
                 validRange: validRange,
-                initialMonthScroll: monthScroll
+                initialMonthScroll: monthScroll,
+                onSelectHandler: { _, date in // unused state
+                    // without providing the selection handler by consumer,
+                    // single selection does not work
+                    selection = .single(date)
+                }
             )
             .monthAccessoryAction { _ in
                 return CalendarMonthAccessoryAction(

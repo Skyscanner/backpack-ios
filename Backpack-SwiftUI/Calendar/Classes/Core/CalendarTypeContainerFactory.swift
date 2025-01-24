@@ -93,9 +93,6 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
                 dateFormatter: accessibilityDateFormatter
             ),
             month: month,
-            selectionHandler: DefaultRangeCalendarSelectionHandler(
-                instructionAfterSelectingDate: accessibilityConfigurations.returnDatePrompt
-            ),
             monthHeader: { monthHeader(month) },
             dayAccessoryView: dayAccessoryView,
             onSelectHandler: onSelectHandler

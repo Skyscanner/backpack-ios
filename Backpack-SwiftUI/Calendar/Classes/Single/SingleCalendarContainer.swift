@@ -55,8 +55,6 @@ struct SingleCalendarMonthContainer<MonthHeader: View, DayAccessoryView: View>: 
         } onSelection: {
             if let onSelectHandler {
                 onSelectHandler(.single(selection), dayDate)
-            } else {
-                selection = .single(dayDate)
             }
         }
         .accessibilityAddTraits(.isButton)

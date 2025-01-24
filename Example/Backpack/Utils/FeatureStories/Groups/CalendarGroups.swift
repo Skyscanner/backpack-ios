@@ -80,7 +80,6 @@ struct CalendarGroupsProvider {
                 presentableCalendar("Range Selection", view: CalendarExampleRangeView(showAccessoryViews: false)),
                 presentableCalendar("Single Selection", view: CalendarExampleSingleView()),
                 presentableCalendar("With Accessory Views", view: CalendarExampleRangeView(showAccessoryViews: true)),
-                presentableCalendar("With Custom Selection Handler", view: CalendarExampleOnSelectionHandlerView()),
                 presentableCalendar("With Whole Month Selection", view: CalendarExampleWholeMonthView()),
                 presentableCalendar(
                     "With Initial Month Scrolling",

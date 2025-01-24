@@ -1,5 +1,4 @@
-/// A custom callback function that handles calendar selection.
-/// It gives the flexibility to use different selection behaviour after a date is tapped by the user.
+/// A callback function that handles calendar selection.
 /// - Parameters:
 ///   - CalendarSelectionSimpleType: The type of calendar selection (range or single).
 ///   - Date: The date which is tapped

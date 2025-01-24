@@ -96,32 +96,7 @@ struct CalendarExampleRangeView: View {
                 ),
                 calendar: calendar,
                 validRange: validRange,
-                onSelectHandler: { state, date in
-                    switch state {
-                        // swiftlint:disable switch_case_alignment
-                        case .range(let rangeState):
-                        switch rangeState {
-                        case .intermediate(let initialDateSelection):
-                            if date < initialDateSelection {
-                                selection = .intermediate(date)
-                            } else {
-                                selection = .range(initialDateSelection...date)
-                            }
-                        case .range(let range):
-                            // M1C requirement can be handled here for the consumer
-                            // via using a feature flag
-                            if date > range.lowerBound && date < range.upperBound {
-                                selection = .range(range.lowerBound...date)
-                            } else {
-                                selection = .intermediate(date)
-                            }
-                        default:
-                            selection = .intermediate(date)
-                        }
-                    default:
-                        break
-                    }
-                },
+                onSelectHandler: handleSelection,
                 dayAccessoryView: { _ in
                     BPKIconView(.search, size: .small)
                         .foregroundColor(.accentColor)
@@ -135,8 +110,46 @@ struct CalendarExampleRangeView: View {
                 ),
                 calendar: calendar,
                 validRange: validRange,
-                initialMonthScroll: monthScroll
+                initialMonthScroll: monthScroll,
+                onSelectHandler: handleSelection
             )
+        }
+    }
+
+    // without providing the selection handler by consumer,
+    // range selection does not work
+    private func handleSelection(state: CalendarSelectionSimpleType, date: Date) {
+        switch state {
+            // swiftlint:disable switch_case_alignment
+            case .range(let rangeState):
+            switch rangeState {
+            case .intermediate(let initialDateSelection):
+                if date < initialDateSelection {
+                    selection = .intermediate(date)
+                } else {
+                    selection = .range(initialDateSelection...date)
+                }
+            case .range(let range):
+                // M1C requirement can be handled here for the consumer
+                // via using a feature flag
+                let m1cEnabled = false
+                if m1cEnabled {
+                    if date >= range.lowerBound {
+                        selection = .range(range.lowerBound...date)
+
+                    } else {
+                        selection = .intermediate(date)
+                    }
+                } else {
+                    selection = .intermediate(date)
+                }
+            default:
+                selection = .intermediate(date)
+            }
+        case .single(let singleState):
+            // Not applicable for the consumer
+            // who only uses the range selector
+            break
         }
     }
 }
