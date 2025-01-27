@@ -25,14 +25,17 @@ struct SegmentedControlExampleView: View {
     private let items: [String] = ["1", "2", "3", "4"]
 
     var body: some View {
-        VStack {
+        VStack(spacing: 10) {
+            Text("Default style")
+
             BPKSegmentedControl(
                 items: items,
                 selectedIndex: $selectedIndex,
                 accessibilityLabel: accessibilityLabel,
                 style: .defaultStyle
             )
-
+            
+            Text("Custom style")
             BPKSegmentedControl(
                 items: items,
                 selectedIndex: $selectedIndex,
@@ -41,7 +44,8 @@ struct SegmentedControlExampleView: View {
                     bgColor: .black, textColor: .white, selectedBgColor: .white, selectedTextColor: .black
                     )
             )
-            Text("Value: \(selectedIndex)")
+
+            Text("Selected index: \(selectedIndex)")
         }
     }
 }
