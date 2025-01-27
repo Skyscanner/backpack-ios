@@ -28,6 +28,7 @@ class BPKSegmentedControlTests: XCTestCase {
                 selectedIndex: .constant(0),
                 accessibilityLabel: "bpk_segmented_control_example",
                 style: .defaultStyle)
+            .frame(width: 200)
         )
     }
     
@@ -37,6 +38,7 @@ class BPKSegmentedControlTests: XCTestCase {
             selectedIndex: .constant(0),
             accessibilityLabel: "testSegmentedControl"
         )
+        .frame(width: 200)
         assertA11ySnapshot(segmentedControl)
     }
 }

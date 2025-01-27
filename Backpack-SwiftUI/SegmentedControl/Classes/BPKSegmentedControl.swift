@@ -28,6 +28,7 @@ public struct BPKSegmentedControl: View {
     private var accessibilityLabel: String
     @Binding private var selectedIndex: Int
     private let style: Style
+    @Namespace var namespace
 
     /// Creates a Segment Control that generates its labels from a list of Strings
     ///
@@ -54,9 +55,16 @@ public struct BPKSegmentedControl: View {
             HStack(spacing: 0) {
                 ForEach(items.indices, id: \.self) { index in
                     segmentButton(for: index)
+                        .matchedGeometryEffect(id: index, in: namespace, isSource: true)
                 }
             }
-            .background(style.bgColor)
+            .background {
+                Rectangle()
+                    .fill(Color(style.selectedBgColor))
+                    .matchedGeometryEffect(id: selectedIndex, in: namespace, isSource: false)
+            }
+            .background(Color(style.bgColor))
+            .animation(.spring(duration: 0.25), value: selectedIndex)
             .cornerRadius(8)
             .padding()
             .accessibilityIdentifier(accessibilityLabel)
@@ -79,7 +87,6 @@ public struct BPKSegmentedControl: View {
                 }
             )
             .frame(maxHeight: .infinity)
-            .background(selectedIndex == index ? style.selectedBgColor : style.bgColor)
 
             if index < items.count - 1 && selectedIndex != index && selectedIndex != index + 1 {
                 separator
