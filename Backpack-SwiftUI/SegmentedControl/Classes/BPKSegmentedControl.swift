@@ -28,6 +28,7 @@ public struct BPKSegmentedControl: View {
     private var accessibilityLabel: String
     @Binding private var selectedIndex: Int
     private let style: Style
+    private let segmentHeight: CGFloat = 32
     @Namespace var namespace
 
     /// Creates a Segment Control that generates its labels from a list of Strings
@@ -68,7 +69,7 @@ public struct BPKSegmentedControl: View {
             .cornerRadius(8)
             .padding()
             .accessibilityIdentifier(accessibilityLabel)
-            .frame(height: 32)
+            .frame(height: segmentHeight)
         }
     }
 
@@ -80,7 +81,7 @@ public struct BPKSegmentedControl: View {
                 label: {
                     Text(items[index])
                         .font(style: .label2)
-                        .frame(maxWidth: .infinity, minHeight: 32)
+                        .frame(maxWidth: .infinity, minHeight: segmentHeight)
                         .foregroundColor(selectedIndex == index ? style.selectedTextColor : style.textColor)
                         .accessibilityIdentifier("\(accessibilityLabel)_\(index)")
                         .accessibilityAddTraits(selectedIndex == index ? .isSelected : [])
@@ -97,7 +98,7 @@ public struct BPKSegmentedControl: View {
     private var separator: some View {
         Rectangle()
             .fill(Color(.lineColor))
-            .frame(width: 1, height: 32)
+            .frame(width: 1, height: segmentHeight)
     }
 
     public struct Style {
