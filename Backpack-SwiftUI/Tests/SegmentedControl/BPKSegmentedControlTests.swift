@@ -36,7 +36,7 @@ class BPKSegmentedControlTests: XCTestCase {
         let segmentedControl = BPKSegmentedControl(
             items: ["One", "Two", "Three"],
             selectedIndex: .constant(0),
-            accessibilityLabel: "testSegmentedControl"
+            accessibilityLabel: "bpk_segmented_control_example"
         )
         .frame(width: 200)
         assertA11ySnapshot(segmentedControl)
