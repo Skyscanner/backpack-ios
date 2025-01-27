@@ -91,7 +91,6 @@ public extension View {
         presentingController: UIViewController,
         @ViewBuilder bottomSheetContent: @escaping () -> BottomSheetContent
     ) -> some View {
-        if #available(iOS 16.0, *) {
             modifier(
                 BottomSheetContainerViewModifier(
                     isPresented: isPresented,
@@ -110,26 +109,6 @@ public extension View {
                     bottomSheetContent: bottomSheetContent
                 )
             )
-        } else {
-            modifier(
-                LegacyBottomSheetContainerViewModifier(
-                    isPresented: isPresented,
-                    contentMode: contentMode,
-                    header: {
-                        header(
-                            closeAction: closeAction(
-                                closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
-                                closeAction: { isPresented.wrappedValue.toggle() }
-                            ),
-                            title: title,
-                            action: action
-                        )
-                    },
-                    bottomSheetContent: bottomSheetContent,
-                    presentingController: presentingController
-                )
-            )
-        }
     }
     
     /// Presents a bottom sheet that, unless manually setting the `item` property to nil, this sheet
@@ -204,52 +183,24 @@ public extension View {
         presentingController: UIViewController,
         @ViewBuilder bottomSheetContent: @escaping (Item) -> BottomSheetContent
     ) -> some View {
-        if #available(iOS 16.0, *) {
-            modifier(
-                ItemBottomSheetContainerViewModifier(
-                    item: item,
-                    peekHeight: nil,
-                    contentMode: contentMode,
-                    header: {
-                        header(
-                            closeAction: closeAction(
-                                closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
-                                closeAction: { item.wrappedValue = nil }
-                            ),
-                            title: title,
-                            action: action
-                        )
-                    },
-                    bottomSheetContent: bottomSheetContent
-                )
+        modifier(
+            ItemBottomSheetContainerViewModifier(
+                item: item,
+                peekHeight: nil,
+                contentMode: contentMode,
+                header: {
+                    header(
+                        closeAction: closeAction(
+                            closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
+                            closeAction: { item.wrappedValue = nil }
+                        ),
+                        title: title,
+                        action: action
+                    )
+                },
+                bottomSheetContent: bottomSheetContent
             )
-        } else {
-            modifier(
-                LegacyBottomSheetContainerViewModifier(
-                    isPresented: Binding(
-                        get: { item.wrappedValue != nil },
-                        set: { _ in item.wrappedValue = nil }
-                    ),
-                    contentMode: contentMode,
-                    header: {
-                        header(
-                            closeAction: closeAction(
-                                closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
-                                closeAction: { item.wrappedValue = nil }
-                            ),
-                            title: title,
-                            action: action
-                        )
-                    },
-                    bottomSheetContent: {
-                        if let itemValue = item.wrappedValue {
-                            bottomSheetContent(itemValue)
-                        }
-                    },
-                    presentingController: presentingController
-                )
-            )
-        }
+        )
     }
     
     private func closeAction(

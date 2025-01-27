@@ -18,7 +18,6 @@
 
 import SwiftUI
 
-@available(iOS 16.0, *)
 struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>: ViewModifier {
     let peekHeight: CGFloat?
     @Binding var isPresented: Bool
@@ -77,7 +76,6 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
     }
 }
 
-@available(iOS 16.0, *)
 extension PresentationDetent {
     static func initialDetent(for contentMode: BPKBottomSheetContentMode) -> PresentationDetent {
         switch contentMode {
