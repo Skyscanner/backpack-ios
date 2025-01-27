@@ -96,32 +96,6 @@ struct CalendarExampleRangeView: View {
                 ),
                 calendar: calendar,
                 validRange: validRange,
-                onSelectHandler: { state, date in
-                    switch state {
-                        // swiftlint:disable switch_case_alignment
-                        case .range(let rangeState):
-                        switch rangeState {
-                        case .intermediate(let initialDateSelection):
-                            if date < initialDateSelection {
-                                selection = .intermediate(date)
-                            } else {
-                                selection = .range(initialDateSelection...date)
-                            }
-                        case .range(let range):
-                            // M1C requirement can be handled here for the consumer
-                            // via using a feature flag
-                            if date > range.lowerBound && date < range.upperBound {
-                                selection = .range(range.lowerBound...date)
-                            } else {
-                                selection = .intermediate(date)
-                            }
-                        default:
-                            selection = .intermediate(date)
-                        }
-                    default:
-                        break
-                    }
-                },
                 dayAccessoryView: { _ in
                     BPKIconView(.search, size: .small)
                         .foregroundColor(.accentColor)
