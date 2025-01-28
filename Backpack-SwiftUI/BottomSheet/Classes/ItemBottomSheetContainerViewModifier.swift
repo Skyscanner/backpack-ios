@@ -18,7 +18,6 @@
 
 import SwiftUI
 
-@available(iOS 16.0, *)
 struct ItemBottomSheetContainerViewModifier<
     Header: View,
     BottomSheetContent: View,

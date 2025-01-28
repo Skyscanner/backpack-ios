@@ -183,18 +183,11 @@ public struct BPKGraphicPromo: View {
     
     @ViewBuilder
     private var sponsorFooter: some View {
-        if #available(iOS 16.0, *) {
-            ViewThatFits {
-                HStack(spacing: .md) {
-                    sponsorLogo
-                    sponsoredText
-                }
-                VStack(alignment: .leading, spacing: .md) {
-                    sponsorLogo
-                    sponsoredText
-                }
+        ViewThatFits {
+            HStack(spacing: .md) {
+                sponsorLogo
+                sponsoredText
             }
-        } else {
             VStack(alignment: .leading, spacing: .md) {
                 sponsorLogo
                 sponsoredText
