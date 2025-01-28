@@ -651,7 +651,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The `surfaceLowContrastColor` dynamic color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background-color: #eff3f8ff; background: linear-gradient(0.375turn, #eff3f8ff 49%, #243346ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background-color: #f7f9fbff; background: linear-gradient(0.375turn, #f7f9fbff 49%, #243346ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_surfaceLowContrastColor;
 

@@ -392,7 +392,7 @@
 }
 
 + (UIColor *)surfaceLowContrastColor {
-    return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:0.937 green:0.953 blue:0.973 alpha:1] 
+    return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:0.969 green:0.976 blue:0.984 alpha:1] 
                                           darkVariant:[UIColor colorWithRed:0.141 green:0.200 blue:0.275 alpha:1]];
 }
 

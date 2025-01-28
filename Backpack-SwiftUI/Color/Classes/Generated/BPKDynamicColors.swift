@@ -112,7 +112,7 @@ public extension BPKColor {
 
     /// The `surfaceLowContrastColor` dynamic color from the Backpack palette.
     
-    static let surfaceLowContrastColor = BPKColor(red: 0.937, green: 0.953, blue: 0.973, alpha: 1)
+    static let surfaceLowContrastColor = BPKColor(red: 0.969, green: 0.976, blue: 0.984, alpha: 1)
         .darkVariant(BPKColor(red: 0.141, green: 0.200, blue: 0.275, alpha: 1))
 
     /// The `surfaceSubtleColor` dynamic color from the Backpack palette.
