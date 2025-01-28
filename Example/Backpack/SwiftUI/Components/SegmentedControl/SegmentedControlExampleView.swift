@@ -23,13 +23,14 @@ struct SegmentedControlExampleView: View {
     @State var selectedIndex = 0
     private let accessibilityLabel = "bpk_segmented_control_example"
     private let items: [String] = ["1", "2", "3", "4"]
+    private let longerItems: [String] = ["Item 1", "Item 2", "Very long item 3", "Item 4"]
 
     var body: some View {
         VStack(spacing: 10) {
             Text("Default style")
 
             BPKSegmentedControl(
-                items: items,
+                items: longerItems,
                 selectedIndex: $selectedIndex,
                 accessibilityLabel: accessibilityLabel,
                 style: .defaultStyle

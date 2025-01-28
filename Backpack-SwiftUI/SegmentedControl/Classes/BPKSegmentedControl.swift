@@ -69,7 +69,7 @@ public struct BPKSegmentedControl: View {
             .cornerRadius(8)
             .padding()
             .accessibilityIdentifier(accessibilityLabel)
-            .frame(minHeight: segmentHeight)
+            .frame(height: segmentHeight)
         }
     }
 
@@ -85,9 +85,11 @@ public struct BPKSegmentedControl: View {
                         .foregroundColor(selectedIndex == index ? style.selectedTextColor : style.textColor)
                         .accessibilityIdentifier("\(accessibilityLabel)_\(index)")
                         .accessibilityAddTraits(selectedIndex == index ? .isSelected : [])
-                        .lineLimit(nil)
+                        .sizeCategory(.large)
+
                 }
             )
+            .frame(maxHeight: .infinity)
 
             if index < items.count - 1 && selectedIndex != index && selectedIndex != index + 1 {
                 separator
