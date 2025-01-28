@@ -91,24 +91,24 @@ public extension View {
         presentingController: UIViewController,
         @ViewBuilder bottomSheetContent: @escaping () -> BottomSheetContent
     ) -> some View {
-            modifier(
-                BottomSheetContainerViewModifier(
-                    isPresented: isPresented,
-                    peekHeight: nil,
-                    contentMode: contentMode,
-                    header: {
-                        header(
-                            closeAction: closeAction(
-                                closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
-                                closeAction: { isPresented.wrappedValue.toggle() }
-                            ),
-                            title: title,
-                            action: action
-                        )
-                    },
-                    bottomSheetContent: bottomSheetContent
-                )
+        modifier(
+            BottomSheetContainerViewModifier(
+                isPresented: isPresented,
+                peekHeight: nil,
+                contentMode: contentMode,
+                header: {
+                    header(
+                        closeAction: closeAction(
+                            closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
+                            closeAction: { isPresented.wrappedValue.toggle() }
+                        ),
+                        title: title,
+                        action: action
+                    )
+                },
+                bottomSheetContent: bottomSheetContent
             )
+        )
     }
     
     /// Presents a bottom sheet that, unless manually setting the `item` property to nil, this sheet
