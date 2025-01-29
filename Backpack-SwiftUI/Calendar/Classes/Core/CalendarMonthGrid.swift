@@ -55,7 +55,7 @@ struct CalendarMonthGrid<
         let daysInMonthAfterFirstRow = numberOfDaysInMonth - usedDaysInFirstRow
         let numberOfRows = daysInMonthAfterFirstRow / 7
 
-        Grid(alignment: .center, horizontalSpacing: BPKSpacing.none.value, verticalSpacing: BPKSpacing.lg.value) {
+        Grid(alignment: .center, horizontalSpacing: BPKSpacing.none.value, verticalSpacing: BPKSpacing.base.value) {
             GridRow {
                 previousEmptyCells(daysFromPreviousMonth: daysFromPreviousMonth)
                 let firstRow = days[0..<daysInAWeek-daysFromPreviousMonth]
