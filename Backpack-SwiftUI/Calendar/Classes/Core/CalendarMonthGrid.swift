@@ -41,24 +41,47 @@ struct CalendarMonthGrid<
         let weekdayOfMonthStart = calendar.component(.weekday, from: monthDate)
         // Calculate the offset based on the first weekday
         let daysFromPreviousMonth = (weekdayOfMonthStart - firstWeekday + daysInAWeek) % daysInAWeek
-
-        LazyVGrid(
-            columns: Array(repeating: GridItem(spacing: BPKSpacing.none.value), count: daysInAWeek),
-            spacing: BPKSpacing.lg.value
-        ) {
-            // Create cells for the days from the previous month that are shown in the first week of the current month.
-            previousEmptyCells(daysFromPreviousMonth: daysFromPreviousMonth)
-            let numberOfDaysInMonth = calendar.range(of: .day, in: .month, for: monthDate)!.count
-            // Create cells for the days in the current month
-            currentMonthDayCell(numberOfDaysInMonth: numberOfDaysInMonth)
-
-            // Create cells for the days from the next month that are shown in the last week of the current month
-            // The total number of cells used is the sum of the number of days in the current month and the number of
-            // days from the previous month that are shown
-            let totalCellsUsed = numberOfDaysInMonth + daysFromPreviousMonth
-            let remainingCells = daysInAWeek - (totalCellsUsed % daysInAWeek)
         
-            remainingEmptyCells(remainingCells: remainingCells)
+        let numberOfDaysInMonth = calendar.range(of: .day, in: .month, for: monthDate)!.count
+        let days = Array(0..<numberOfDaysInMonth)
+            .map {
+                DayCellIdentifiable(id: "day-\($0)", index: $0)
+            }
+        
+        let totalCellsUsed = numberOfDaysInMonth + daysFromPreviousMonth
+        let remainingCells = daysInAWeek - (totalCellsUsed % daysInAWeek)
+        
+        let usedDaysInFirstRow = daysFromPreviousMonth > 0 ? daysInAWeek - daysFromPreviousMonth : daysInAWeek
+        let daysInMonthAfterFirstRow = numberOfDaysInMonth - usedDaysInFirstRow
+        let numberOfRows = daysInMonthAfterFirstRow / 7
+
+        Grid(alignment: .center, horizontalSpacing: BPKSpacing.none.value, verticalSpacing: BPKSpacing.lg.value) {
+            GridRow {
+                previousEmptyCells(daysFromPreviousMonth: daysFromPreviousMonth)
+                let firstRow = days[0..<daysInAWeek-daysFromPreviousMonth]
+                ForEach(firstRow) { dayIndex in
+                    self.dayCell(cellIndex: dayIndex)
+                }
+            }
+            ForEach(0..<numberOfRows, id: \.self) { row in
+                GridRow {
+                    let startIndex = days.count - daysInMonthAfterFirstRow + (daysInAWeek * row)
+                    let endIndex = min(startIndex + daysInAWeek, days.count)
+                    let rowDays = days[startIndex..<endIndex]
+                    ForEach(rowDays) { dayIndex in
+                        self.dayCell(cellIndex: dayIndex)
+                    }
+                }
+            }
+            GridRow {
+                let lastRowStartIndex = days.count - totalCellsUsed % daysInAWeek
+                let lastRowDays = days[lastRowStartIndex...]
+                ForEach(lastRowDays) { dayIndex in
+                    self.dayCell(cellIndex: dayIndex)
+                }
+                remainingEmptyCells(remainingCells: remainingCells)
+            }
+            
         }
     }
     
@@ -100,29 +123,23 @@ struct CalendarMonthGrid<
     }
     
     @ViewBuilder
-    private func currentMonthDayCell(numberOfDaysInMonth: Int) -> some View {
-        let days = Array(0..<numberOfDaysInMonth)
-            .map {
-                DayCellIdentifiable(id: "\(monthDate)\($0)", index: $0)
+    private func dayCell(cellIndex: DayCellIdentifiable) -> some View {
+        let dayDate = calendar.date(
+            byAdding: .init(day: cellIndex.index),
+            to: monthDate
+        )!
+        
+        if !validRange.contains(dayDate) {
+            VStack(spacing: BPKSpacing.none) {
+                DisabledCalendarDayCell(calendar: calendar, date: dayDate)
+                    .frame(height: dayCellHeight)
+                Spacer(minLength: BPKSpacing.none)
             }
-        ForEach(days) { cellIndex in
-            let dayDate = calendar.date(
-                byAdding: .init(day: cellIndex.index),
-                to: monthDate
-            )!
-            
-            if !validRange.contains(dayDate) {
-                VStack(spacing: BPKSpacing.none) {
-                    DisabledCalendarDayCell(calendar: calendar, date: dayDate)
-                        .frame(height: dayCellHeight)
-                    Spacer(minLength: BPKSpacing.none)
-                }
-            } else {
-                VStack(spacing: BPKSpacing.sm) {
-                    dayCell(dayDate)
-                        .modifier(ReadSizeModifier { dayCellHeight = $0.height })
-                    dayAccessoryView(dayDate)
-                }
+        } else {
+            VStack(spacing: BPKSpacing.sm) {
+                dayCell(dayDate)
+                    .modifier(ReadSizeModifier { dayCellHeight = $0.height })
+                dayAccessoryView(dayDate)
             }
         }
     }

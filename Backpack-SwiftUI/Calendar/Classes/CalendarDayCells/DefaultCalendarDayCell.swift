@@ -24,6 +24,7 @@ struct DefaultCalendarDayCell: View {
     
     var body: some View {
         BPKText("\(calendar.component(.day, from: date))", style: .label1)
+            .frame(maxWidth: .infinity)
             .lineLimit(1)
             .padding(.vertical, .md)
     }
