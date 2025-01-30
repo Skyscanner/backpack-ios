@@ -15,6 +15,8 @@ jobs:
       statuses: write
       pull-requests: write
     uses: ./.github/workflows/_build.yml
+    secrets:
+      GH_APP_PRIVATE_KEY: ${{ secrets.GH_APP_PRIVATE_KEY }}
 
   BuildDocs:
     name: Build Docs
@@ -29,7 +31,13 @@ jobs:
       contents: write
       pull-requests: read
     steps:
+      - uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: ${{ vars.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+
       - name: Draft release notes
         uses: release-drafter/release-drafter@v6
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}

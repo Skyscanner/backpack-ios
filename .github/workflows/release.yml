@@ -15,6 +15,8 @@ jobs:
         statuses: write
         pull-requests: write
       uses: ./.github/workflows/_build.yml
+      secrets:
+        GH_APP_PRIVATE_KEY: ${{ secrets.GH_APP_PRIVATE_KEY }}
   Deploy-Common:
     name: Release Common to Cocoapods
     runs-on: macos-15
