@@ -28,7 +28,8 @@ struct CalendarMonthGrid<
     let calendar: Calendar
     let validRange: ClosedRange<Date>
 
-    @State private var dayCellHeight: CGFloat = 0
+    // TODO: We should find a way to dynamically calculate the maximum height in cells
+    @State private var dayCellHeight: CGFloat = 40
     @ViewBuilder let dayCell: (Date) -> DayCell
     @ViewBuilder let emptyLeadingDayCell: () -> EmptyLeadingDayCell
     @ViewBuilder let emptyTrailingDayCell: () -> EmptyTrailingDayCell
@@ -71,9 +72,9 @@ struct CalendarMonthGrid<
         ForEach(preEmptyCells) { _ in
             VStack(spacing: BPKSpacing.none) {
                 emptyLeadingDayCell()
-                    .frame(height: dayCellHeight)
                 Spacer(minLength: BPKSpacing.none)
             }
+            .frame(height: dayCellHeight)
         }
     }
     
@@ -87,9 +88,9 @@ struct CalendarMonthGrid<
             ForEach(remainingEmptyCells) { _ in
                 VStack(spacing: BPKSpacing.none) {
                     emptyTrailingDayCell()
-                        .frame(height: dayCellHeight)
                     Spacer(minLength: BPKSpacing.none)
                 }
+                .frame(height: dayCellHeight)
             }
         }
     }
@@ -114,15 +115,21 @@ struct CalendarMonthGrid<
             if !validRange.contains(dayDate) {
                 VStack(spacing: BPKSpacing.none) {
                     DisabledCalendarDayCell(calendar: calendar, date: dayDate)
-                        .frame(height: dayCellHeight)
                     Spacer(minLength: BPKSpacing.none)
                 }
+                .frame(height: dayCellHeight)
             } else {
                 VStack(spacing: BPKSpacing.sm) {
+                    Spacer()
                     dayCell(dayDate)
-                        .modifier(ReadSizeModifier { dayCellHeight = $0.height })
-                    dayAccessoryView(dayDate)
+                    Spacer()
                 }
+                .overlay(alignment: .bottom) {
+                    dayAccessoryView(dayDate)
+                        .offset(y: 5)
+                        .frame(maxWidth: .infinity)
+                }
+                .frame(height: dayCellHeight)
             }
         }
     }

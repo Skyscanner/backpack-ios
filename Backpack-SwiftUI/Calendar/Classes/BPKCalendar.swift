@@ -87,6 +87,9 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
                                 currentlyShownMonth: $currentlyShownMonth,
                                 parentProxy: calendarProxy
                             )
+                            // less problematic issue, but without correct height
+                            // it makes small jump on date selection
+                            .frame(height: 50)
                         },
                         dayAccessoryView: dayAccessoryView
                     )
