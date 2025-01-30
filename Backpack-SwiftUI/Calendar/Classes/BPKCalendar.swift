@@ -43,6 +43,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
 
     private let dayAccessoryView: (Date) -> DayAccessoryView
     @State private var currentlyShownMonth: Date
+    @State private var headerHeight: CGFloat?
     
     public init(
         selectionType: CalendarSelectionType,
@@ -78,18 +79,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
                         validRange: validRange,
                         monthScroll: initialMonthScroll,
                         monthHeader: { monthDate in
-                            CalendarMonthHeader(
-                                monthDate: monthDate,
-                                dateFormatter: monthHeaderDateFormatter,
-                                calendar: calendar,
-                                validRange: validRange,
-                                accessoryAction: accessoryAction,
-                                currentlyShownMonth: $currentlyShownMonth,
-                                parentProxy: calendarProxy
-                            )
-                            // less problematic issue, but without correct height
-                            // it makes small jump on date selection
-                            .frame(height: 50)
+                            headerView(monthDate: monthDate, calendarProxy: calendarProxy)
                         },
                         dayAccessoryView: dayAccessoryView
                     )
@@ -97,6 +87,22 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
                 }
             }
         }
+    }
+    
+    private func headerView(monthDate: Date, calendarProxy: GeometryProxy) -> some View {
+        CalendarMonthHeader(
+            monthDate: monthDate,
+            dateFormatter: monthHeaderDateFormatter,
+            calendar: calendar,
+            validRange: validRange,
+            accessoryAction: accessoryAction,
+            currentlyShownMonth: $currentlyShownMonth,
+            parentProxy: calendarProxy
+        )
+        .frame(height: headerHeight)
+        .modifier(ReadSizeModifier {
+            headerHeight = max($0.height, headerHeight ?? 0)
+        })
     }
     
     private var yearBadge: some View {

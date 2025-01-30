@@ -28,8 +28,8 @@ struct CalendarMonthGrid<
     let calendar: Calendar
     let validRange: ClosedRange<Date>
 
-    // TODO: We should find a way to dynamically calculate the maximum height in cells
-    @State private var dayCellHeight: CGFloat = 40
+    @State private var dayCellHeight: CGFloat?
+    @State private var accessoryViewHeight: CGFloat?
     @ViewBuilder let dayCell: (Date) -> DayCell
     @ViewBuilder let emptyLeadingDayCell: () -> EmptyLeadingDayCell
     @ViewBuilder let emptyTrailingDayCell: () -> EmptyTrailingDayCell
@@ -70,9 +70,10 @@ struct CalendarMonthGrid<
                 DayCellIdentifiable(id: "pre-\($0)\(monthDate)", index: $0)
             }
         ForEach(preEmptyCells) { _ in
-            VStack(spacing: BPKSpacing.none) {
+            VStack(spacing: emptyCellSpacing) {
                 emptyLeadingDayCell()
                 Spacer(minLength: BPKSpacing.none)
+                    .frame(height: accessoryViewHeight ?? 0)
             }
             .frame(height: dayCellHeight)
         }
@@ -86,12 +87,21 @@ struct CalendarMonthGrid<
                     DayCellIdentifiable(id: "rem-\($0)\(monthDate)", index: $0)
                 }
             ForEach(remainingEmptyCells) { _ in
-                VStack(spacing: BPKSpacing.none) {
+                VStack(spacing: emptyCellSpacing) {
                     emptyTrailingDayCell()
                     Spacer(minLength: BPKSpacing.none)
+                        .frame(height: accessoryViewHeight ?? 0)
                 }
                 .frame(height: dayCellHeight)
             }
+        }
+    }
+    
+    var emptyCellSpacing: BPKSpacing {
+        if accessoryViewHeight == nil {
+            return .none
+        } else {
+            return .sm
         }
     }
     
@@ -120,15 +130,15 @@ struct CalendarMonthGrid<
                 .frame(height: dayCellHeight)
             } else {
                 VStack(spacing: BPKSpacing.sm) {
-                    Spacer()
                     dayCell(dayDate)
-                    Spacer()
-                }
-                .overlay(alignment: .bottom) {
                     dayAccessoryView(dayDate)
-                        .offset(y: 5)
-                        .frame(maxWidth: .infinity)
+                        .modifier(ReadSizeModifier {
+                            accessoryViewHeight = max($0.height, accessoryViewHeight ?? 0)
+                        })
                 }
+                .modifier(ReadSizeModifier {
+                    dayCellHeight = max($0.height, dayCellHeight ?? 0)
+                })
                 .frame(height: dayCellHeight)
             }
         }
