@@ -72,8 +72,6 @@ struct CalendarMonthGrid<
         ForEach(preEmptyCells) { _ in
             VStack(spacing: emptyCellSpacing) {
                 emptyLeadingDayCell()
-                Spacer(minLength: BPKSpacing.none)
-                    .frame(height: accessoryViewHeight ?? 0)
             }
             .frame(height: dayCellHeight)
         }
@@ -89,8 +87,6 @@ struct CalendarMonthGrid<
             ForEach(remainingEmptyCells) { _ in
                 VStack(spacing: emptyCellSpacing) {
                     emptyTrailingDayCell()
-                    Spacer(minLength: BPKSpacing.none)
-                        .frame(height: accessoryViewHeight ?? 0)
                 }
                 .frame(height: dayCellHeight)
             }
@@ -131,15 +127,18 @@ struct CalendarMonthGrid<
             } else {
                 VStack(spacing: BPKSpacing.sm) {
                     dayCell(dayDate)
-                    dayAccessoryView(dayDate)
-                        .modifier(ReadSizeModifier {
-                            accessoryViewHeight = max($0.height, accessoryViewHeight ?? 0)
-                        })
                 }
                 .modifier(ReadSizeModifier {
                     dayCellHeight = max($0.height, dayCellHeight ?? 0)
                 })
                 .frame(height: dayCellHeight)
+                .overlay {
+                    dayAccessoryView(dayDate)
+                        .modifier(ReadSizeModifier {
+                            accessoryViewHeight = max($0.height, accessoryViewHeight ?? 0)
+                        })
+                        .offset(y: (accessoryViewHeight ?? 0)*2 - BPKSpacing.md.value)
+                }
             }
         }
     }
