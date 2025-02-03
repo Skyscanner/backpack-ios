@@ -80,3 +80,16 @@ BPKCalendar(
     }
 )
 ```
+
+## Float year label
+
+There is a configurable option to hide/show a floating year label from the calendar view. Default option is to show the year.
+
+```swift
+BPKCalendar(
+    selectionType: .range(selectedRange: $selectedDateRange),
+    calendar: .current,
+    validRange: validStartDate...validEndDate,
+    showFloatYearLabel: false
+)
+```

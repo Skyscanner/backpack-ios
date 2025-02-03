@@ -140,4 +140,23 @@ class BPKCalendarTests: XCTestCase {
                 .frame(width: 400)
         )
     }
+    
+    func test_singleSelectionCalendarWithNoFloatYearLabel() {
+        let testDate = Calendar.current.date(from: DateComponents(year: 2020, month: 2, day: 5))!
+        
+        assertSnapshot(
+            BPKCalendar(
+                selectionType: .single(
+                    selected: .constant(.single(testDate)),
+                    accessibilityConfigurations: SingleAccessibilityConfigurations(
+                        selectionHint: ""
+                    )
+                ),
+                calendar: Calendar.current,
+                validRange: validStart...validEnd,
+                showFloatYearLabel: false
+            )
+            .frame(width: 320, height: 720)
+        )
+    }
 }

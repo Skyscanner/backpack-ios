@@ -28,14 +28,16 @@ struct CalendarExampleRangeView: View {
     let calendar: Calendar
     let formatter: DateFormatter
     let showAccessoryViews: Bool
+    let showFloatYearLabel: Bool
 
-    init(showAccessoryViews: Bool, makeInitialMonthScroll: Bool = false) {
+    init(showAccessoryViews: Bool, showFloatYearLabel: Bool = true, makeInitialMonthScroll: Bool = false) {
         let calendar = Calendar.current
         let start = calendar.date(from: .init(year: 2023, month: 11, day: 6))!
         let end = calendar.date(from: .init(year: 2024, month: 11, day: 28))!
         
         self.validRange = start...end
         self.calendar = calendar
+        self.showFloatYearLabel = showFloatYearLabel
         
         let formatter = DateFormatter()
         formatter.dateStyle = .short
@@ -96,6 +98,7 @@ struct CalendarExampleRangeView: View {
                 ),
                 calendar: calendar,
                 validRange: validRange,
+                showFloatYearLabel: showFloatYearLabel,
                 dayAccessoryView: { _ in
                     BPKIconView(.search, size: .small)
                         .foregroundColor(.accentColor)
@@ -109,7 +112,8 @@ struct CalendarExampleRangeView: View {
                 ),
                 calendar: calendar,
                 validRange: validRange,
-                initialMonthScroll: monthScroll
+                initialMonthScroll: monthScroll,
+                showFloatYearLabel: showFloatYearLabel
             )
         }
     }
