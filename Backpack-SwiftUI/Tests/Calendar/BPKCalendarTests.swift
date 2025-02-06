@@ -147,7 +147,7 @@ class BPKCalendarTests: XCTestCase {
     }
     
     func test_singleSelectionCalendarWithNoFloatYearLabel() {
-        let testDate = Calendar.current.date(from: DateComponents(year: 2020, month: 2, day: 5))!
+        let testDate = calendar.date(from: DateComponents(year: 2020, month: 2, day: 5))!
         
         assertSnapshot(
             BPKCalendar(
@@ -157,7 +157,7 @@ class BPKCalendarTests: XCTestCase {
                         selectionHint: ""
                     )
                 ),
-                calendar: Calendar.current,
+                calendar: calendar,
                 validRange: validStart...validEnd,
                 showFloatYearLabel: false
             )
