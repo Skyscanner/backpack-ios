@@ -55,6 +55,8 @@ struct DefaultRangeCalendarSelectionHandler: RangeCalendarSelectionHandler {
 
 struct RangeCalendarMonthContainer<MonthHeader: View, DayAccessoryView: View>: View {
     @Binding var selectionState: CalendarRangeSelectionState?
+    @Binding var accessoryViewHeight: CGFloat?
+    
     let calendar: Calendar
     let validRange: ClosedRange<Date>
     let accessibilityProvider: RangeDayAccessibilityProvider
@@ -144,6 +146,7 @@ struct RangeCalendarMonthContainer<MonthHeader: View, DayAccessoryView: View>: V
                 monthDate: month,
                 calendar: calendar,
                 validRange: validRange,
+                accessoryViewHeight: $accessoryViewHeight,
                 dayCell: makeDayCell,
                 emptyLeadingDayCell: { makeEmptyLeadingDayCell(for: month) },
                 emptyTrailingDayCell: { makeEmptyTrailingDayCell(for: month) },
@@ -208,6 +211,7 @@ struct RangeCalendarContainer_Previews: PreviewProvider {
 
         RangeCalendarMonthContainer(
             selectionState: .constant(.range(startSelection...endSelection)),
+            accessoryViewHeight: .constant(0),
             calendar: calendar,
             validRange: start...end,
             accessibilityProvider: RangeDayAccessibilityProvider(

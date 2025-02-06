@@ -34,8 +34,14 @@ class BPKCalendarTests: XCTestCase {
         returnDatePrompt: ""
     )
     
+    private var calendar: Calendar {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.locale = Locale(identifier: "en_US_POSIX")
+        return calendar
+    }
+    
     func test_singleSelectionCalendar() {
-        let testDate = Calendar.current.date(from: DateComponents(year: 2020, month: 2, day: 5))!
+        let testDate = calendar.date(from: DateComponents(year: 2020, month: 2, day: 5))!
         
         assertSnapshot(
             BPKCalendar(
@@ -45,7 +51,7 @@ class BPKCalendarTests: XCTestCase {
                         selectionHint: ""
                     )
                 ),
-                calendar: Calendar.current,
+                calendar: calendar,
                 validRange: validStart...validEnd
             )
             .frame(width: 320, height: 720)
@@ -53,8 +59,8 @@ class BPKCalendarTests: XCTestCase {
     }
     
     func test_rangeSelectionCalendar_sameMonth() {
-        let selectionStart = Calendar.current.date(from: DateComponents(year: 2020, month: 2, day: 5))!
-        let selectionEnd = Calendar.current.date(from: DateComponents(year: 2020, month: 2, day: 18))!
+        let selectionStart = calendar.date(from: DateComponents(year: 2020, month: 2, day: 5))!
+        let selectionEnd = calendar.date(from: DateComponents(year: 2020, month: 2, day: 18))!
         
         assertSnapshot(
             BPKCalendar(
@@ -62,7 +68,7 @@ class BPKCalendarTests: XCTestCase {
                     selection: .constant(.range(selectionStart...selectionEnd)),
                     accessibilityConfigurations: rangeAccessibilityConfig
                 ),
-                calendar: Calendar.current,
+                calendar: calendar,
                 validRange: validStart...validEnd
             )
             .frame(width: 320, height: 720)
@@ -70,8 +76,8 @@ class BPKCalendarTests: XCTestCase {
     }
     
     func test_rangeSelectionCalendar_differentMonth() {
-        let selectionStart = Calendar.current.date(from: DateComponents(year: 2020, month: 1, day: 28))!
-        let selectionEnd = Calendar.current.date(from: DateComponents(year: 2020, month: 2, day: 5))!
+        let selectionStart = calendar.date(from: DateComponents(year: 2020, month: 1, day: 28))!
+        let selectionEnd = calendar.date(from: DateComponents(year: 2020, month: 2, day: 5))!
         
         assertSnapshot(
             BPKCalendar(
@@ -79,7 +85,7 @@ class BPKCalendarTests: XCTestCase {
                     selection: .constant(.range(selectionStart...selectionEnd)),
                     accessibilityConfigurations: rangeAccessibilityConfig
                 ),
-                calendar: Calendar.current,
+                calendar: calendar,
                 validRange: validStart...validEnd
             )
             .frame(width: 320, height: 720)
@@ -87,8 +93,8 @@ class BPKCalendarTests: XCTestCase {
     }
     
     func test_rangeSelectionCalendar_withAccessoryView() {
-        let selectionStart = Calendar.current.date(from: DateComponents(year: 2020, month: 1, day: 28))!
-        let selectionEnd = Calendar.current.date(from: DateComponents(year: 2020, month: 2, day: 5))!
+        let selectionStart = calendar.date(from: DateComponents(year: 2020, month: 1, day: 28))!
+        let selectionEnd = calendar.date(from: DateComponents(year: 2020, month: 2, day: 5))!
         
         assertSnapshot(
             BPKCalendar(
@@ -96,7 +102,7 @@ class BPKCalendarTests: XCTestCase {
                     selection: .constant(.range(selectionStart...selectionEnd)),
                     accessibilityConfigurations: rangeAccessibilityConfig
                 ),
-                calendar: Calendar.current,
+                calendar: calendar,
                 validRange: validStart...validEnd,
                 dayAccessoryView: { _ in
                     BPKIconView(.search, size: .small)
@@ -108,8 +114,8 @@ class BPKCalendarTests: XCTestCase {
     }
     
     func test_rangeSelectionCalendar_sameDay() {
-        let selectionStart = Calendar.current.date(from: DateComponents(year: 2020, month: 2, day: 5))!
-        let selectionEnd = Calendar.current.date(from: DateComponents(year: 2020, month: 2, day: 5))!
+        let selectionStart = calendar.date(from: DateComponents(year: 2020, month: 2, day: 5))!
+        let selectionEnd = calendar.date(from: DateComponents(year: 2020, month: 2, day: 5))!
         
         assertSnapshot(
             BPKCalendar(
@@ -117,7 +123,7 @@ class BPKCalendarTests: XCTestCase {
                     selection: .constant(.range(selectionStart...selectionEnd)),
                     accessibilityConfigurations: rangeAccessibilityConfig
                 ),
-                calendar: Calendar.current,
+                calendar: calendar,
                 validRange: validStart...validEnd
             )
             .frame(width: 320, height: 720)
@@ -125,7 +131,6 @@ class BPKCalendarTests: XCTestCase {
     }
     
     func test_rangeCalendarDayCells() {
-        let calendar = Calendar.current
         let date = calendar.date(from: .init(year: 2023, month: 11, day: 8))!
         
         assertSnapshot(

@@ -32,7 +32,7 @@ struct CalendarExampleRangeView: View {
 
     init(showAccessoryViews: Bool, showFloatYearLabel: Bool = true, makeInitialMonthScroll: Bool = false) {
         let calendar = Calendar.current
-        let start = calendar.date(from: .init(year: 2023, month: 11, day: 6))!
+        let start = calendar.date(from: .init(year: 2023, month: 11, day: 8))!
         let end = calendar.date(from: .init(year: 2024, month: 11, day: 28))!
         
         self.validRange = start...end
