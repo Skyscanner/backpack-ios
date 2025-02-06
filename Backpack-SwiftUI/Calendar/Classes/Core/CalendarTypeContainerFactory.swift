@@ -38,19 +38,21 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
             calendar: calendar,
             validRange: validRange,
             monthScroll: monthScroll
-        ) { month in
+        ) { month, accessoryViewHeight in
             switch selectionType {
             case .range(let selection, let accessibilityConfigurations):
                 rangeMonthContainer(
                     forMonth: month,
                     selection: selection,
-                    accessibilityConfigurations: accessibilityConfigurations
+                    accessibilityConfigurations: accessibilityConfigurations,
+                    accessoryViewHeight: accessoryViewHeight
                 )
             case .single(let selection, let accessibilityConfigurations):
                 singleCalendarMonthContainer(
                     forMonth: month,
                     selection: selection,
-                    accessibilityConfigurations: accessibilityConfigurations
+                    accessibilityConfigurations: accessibilityConfigurations,
+                    accessoryViewHeight: accessoryViewHeight
                 )
             }
         }
@@ -60,10 +62,12 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
     private func singleCalendarMonthContainer(
         forMonth month: Date,
         selection: Binding<CalendarSingleSelectionState?>,
-        accessibilityConfigurations: SingleAccessibilityConfigurations
+        accessibilityConfigurations: SingleAccessibilityConfigurations,
+        accessoryViewHeight: Binding<CGFloat?>
     ) -> some View {
         SingleCalendarMonthContainer(
             selection: selection,
+            accessoryViewHeight: accessoryViewHeight,
             calendar: calendar,
             validRange: validRange,
             accessibilityProvider: SingleDayAccessibilityProvider(
@@ -80,10 +84,12 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
     private func rangeMonthContainer(
         forMonth month: Date,
         selection: Binding<CalendarRangeSelectionState?>,
-        accessibilityConfigurations: RangeAccessibilityConfigurations
+        accessibilityConfigurations: RangeAccessibilityConfigurations,
+        accessoryViewHeight: Binding<CGFloat?>
     ) -> some View {
         RangeCalendarMonthContainer(
             selectionState: selection,
+            accessoryViewHeight: accessoryViewHeight,
             calendar: calendar,
             validRange: validRange,
             accessibilityProvider: RangeDayAccessibilityProvider(
