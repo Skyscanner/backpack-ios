@@ -20,8 +20,6 @@ import SwiftUI
 
 struct SingleCalendarMonthContainer<MonthHeader: View, DayAccessoryView: View>: View {
     @Binding var selection: CalendarSingleSelectionState?
-    @Binding var accessoryViewHeight: CGFloat?
-    
     let calendar: Calendar
     let validRange: ClosedRange<Date>
     let accessibilityProvider: SingleDayAccessibilityProvider
@@ -69,7 +67,6 @@ struct SingleCalendarMonthContainer<MonthHeader: View, DayAccessoryView: View>: 
                 monthDate: month,
                 calendar: calendar,
                 validRange: validRange,
-                accessoryViewHeight: $accessoryViewHeight,
                 dayCell: makeDayCell,
                 emptyLeadingDayCell: { DefaultEmptyCalendarDayCell() },
                 emptyTrailingDayCell: { DefaultEmptyCalendarDayCell() },
@@ -93,7 +90,6 @@ struct SingleCalendarContainer_Previews: PreviewProvider {
 
         SingleCalendarMonthContainer(
             selection: .constant(.single(calendar.date(from: .init(year: 2023, month: 11, day: 10))!)),
-            accessoryViewHeight: .constant(0),
             calendar: calendar,
             validRange: start...end,
             accessibilityProvider: SingleDayAccessibilityProvider(

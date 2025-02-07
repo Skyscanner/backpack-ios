@@ -22,8 +22,7 @@ struct CalendarContainer<MonthContent: View>: View {
     let calendar: Calendar
     let validRange: ClosedRange<Date>
     let monthScroll: MonthScroll?
-    @ViewBuilder let monthContent: (_ month: Date, _ accessoryViewHeight: Binding<CGFloat?>) -> MonthContent
-    @State var accessoryViewHeight: CGFloat?
+    @ViewBuilder let monthContent: (_ month: Date) -> MonthContent
 
     @State private var hasScrolledToItem = false
 
@@ -33,7 +32,7 @@ struct CalendarContainer<MonthContent: View>: View {
                 LazyVStack(spacing: BPKSpacing.none) {
                     ForEach(0...monthsToShow, id: \.self) { monthIndex in
                         let firstDayOfMonth = firstDayOf(monthIndex: monthIndex)
-                        monthContent(firstDayOfMonth, $accessoryViewHeight)
+                        monthContent(firstDayOfMonth)
                             .if(monthScroll != nil, transform: { view in
                                 view.id(scrollId(date: firstDayOfMonth))
                             })
@@ -97,7 +96,7 @@ struct CalendarContainer_Previews: PreviewProvider {
             calendar: calendar,
             validRange: start...end,
             monthScroll: monthScroll,
-            monthContent: { monthNumber, _ in
+            monthContent: { monthNumber in
                 VStack {
                     BPKText("Calendar Grid \(monthNumber)")
                     Divider()

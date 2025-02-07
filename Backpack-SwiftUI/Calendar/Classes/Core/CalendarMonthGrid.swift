@@ -41,7 +41,7 @@ struct CalendarMonthGrid<
     let validRange: ClosedRange<Date>
 
     @State private var dayCellHeight: CGFloat?
-    @Binding var accessoryViewHeight: CGFloat?
+    @State var accessoryViewHeight: CGFloat?
     @ViewBuilder let dayCell: (Date) -> DayCell
     @ViewBuilder let emptyLeadingDayCell: () -> EmptyLeadingDayCell
     @ViewBuilder let emptyTrailingDayCell: () -> EmptyTrailingDayCell
@@ -178,7 +178,6 @@ struct CalendarMonthGrid_Previews: PreviewProvider {
             monthDate: calendar.date(from: .init(year: 2023, month: 8, day: 1))!,
             calendar: calendar,
             validRange: start...end,
-            accessoryViewHeight: .constant(0),
             dayCell: { day in
                 BPKText("\(calendar.component(.day, from: day))")
             },
