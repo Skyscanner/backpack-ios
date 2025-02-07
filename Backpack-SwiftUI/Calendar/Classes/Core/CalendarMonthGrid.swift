@@ -158,7 +158,6 @@ struct CalendarMonthGrid<
                     .modifier(ReadSizeModifier {
                         let height = CGFloat(ceil(Double($0.height)))
                         if accessoryViewHeight != height {
-                            print("accessoryViewHeight", height)
                             accessoryViewHeight = max(height, accessoryViewHeight ?? 0)
                         }
                     })
