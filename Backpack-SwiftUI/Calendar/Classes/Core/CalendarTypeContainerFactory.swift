@@ -23,6 +23,7 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
     let calendar: Calendar
     let validRange: ClosedRange<Date>
     let monthScroll: MonthScroll?
+    let calculator: CalendarGridCalculator
     @ViewBuilder let monthHeader: (_ monthDate: Date) -> MonthHeader
     @ViewBuilder let dayAccessoryView: (Date) -> DayAccessoryView
     
@@ -39,19 +40,22 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
             validRange: validRange,
             monthScroll: monthScroll
         ) { month in
-            switch selectionType {
-            case .range(let selection, let accessibilityConfigurations):
-                rangeMonthContainer(
-                    forMonth: month,
-                    selection: selection,
-                    accessibilityConfigurations: accessibilityConfigurations
-                )
-            case .single(let selection, let accessibilityConfigurations):
-                singleCalendarMonthContainer(
-                    forMonth: month,
-                    selection: selection,
-                    accessibilityConfigurations: accessibilityConfigurations
-                )
+            VStack(spacing: BPKSpacing.none) {
+                monthHeader(month)
+                switch selectionType {
+                case .range(let selection, let accessibilityConfigurations):
+                    rangeMonthContainer(
+                        forMonth: month,
+                        selection: selection,
+                        accessibilityConfigurations: accessibilityConfigurations
+                    )
+                case .single(let selection, let accessibilityConfigurations):
+                    singleCalendarMonthContainer(
+                        forMonth: month,
+                        selection: selection,
+                        accessibilityConfigurations: accessibilityConfigurations
+                    )
+                }
             }
         }
     }
@@ -71,7 +75,7 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
                 dateFormatter: accessibilityDateFormatter
             ),
             month: month,
-            monthHeader: { monthHeader(month) },
+            calculator: calculator,
             dayAccessoryView: dayAccessoryView
         )
     }
@@ -94,7 +98,7 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
             selectionHandler: DefaultRangeCalendarSelectionHandler(
                 instructionAfterSelectingDate: accessibilityConfigurations.returnDatePrompt
             ),
-            monthHeader: { monthHeader(month) },
+            calculator: calculator,
             dayAccessoryView: dayAccessoryView
         )
 
