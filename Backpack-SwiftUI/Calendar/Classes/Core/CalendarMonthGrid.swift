@@ -40,7 +40,7 @@ struct CalendarMonthGrid<
     var body: some View {
         let grid = calculator.calculateCalendarGrid(monthDate: monthDate)
         
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: .lg) {
             ForEach(0..<grid.count, id: \.self) { row in
                 weekRow(grid: grid, row: row)
             }
