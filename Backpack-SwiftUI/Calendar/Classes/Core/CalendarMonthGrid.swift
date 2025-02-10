@@ -18,6 +18,36 @@
 
 import SwiftUI
 
+struct CalendarGridCalculator {
+    let monthDate: Date
+    let calendar: Calendar
+    let daysInAWeek: Int
+    
+    // swiftlint:disable all
+    func calculateCalendarGrid() -> [[Int]] {
+        let daysInAWeek: Int = 7
+        let firstWeekday = calendar.firstWeekday // Locale-aware first day of the week
+        let weekdayOfMonthStart = calendar.component(.weekday, from: monthDate)
+        // Calculate the offset based on the first weekday
+        let daysFromPreviousMonth = (weekdayOfMonthStart - firstWeekday + daysInAWeek) % daysInAWeek
+        let numberOfDaysInMonth = calendar.range(of: .day, in: .month, for: monthDate)!.count
+        let totalCellsUsed = numberOfDaysInMonth + daysFromPreviousMonth
+
+        // cal will look like this: [[0,0,0,0,1,2,3], [4,5,6,7,8,9,10], ..., [27,28,29,30,31,0,0]]
+        // where initial 0s are daysFromPreviousMonth, then 1...numberOfDaysInMonth, then 0s to fill the last week
+        var cal: [[Int]] = Array(repeating: Array(repeating: 0, count: daysInAWeek), count: (totalCellsUsed + daysInAWeek - 1) / daysInAWeek)
+
+        for i in 0..<daysFromPreviousMonth {
+            let dayNumber = i - daysFromPreviousMonth + 1
+            cal[0][i] = dayNumber < 0 ? 0 : dayNumber
+        }
+        for i in 0..<numberOfDaysInMonth {
+            cal[(i + daysFromPreviousMonth) / daysInAWeek][(i + daysFromPreviousMonth) % daysInAWeek] = i + 1
+        }
+        return cal
+    }
+}
+
 struct CalendarMonthGrid<
     DayCell: View,
     EmptyLeadingDayCell: View,
