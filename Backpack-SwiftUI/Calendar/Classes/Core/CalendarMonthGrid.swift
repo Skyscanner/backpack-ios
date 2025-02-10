@@ -67,28 +67,44 @@ struct CalendarMonthGrid<
     private let daysInAWeek = 7
     
     var body: some View {
-        let firstWeekday = calendar.firstWeekday // Locale-aware first day of the week
-        let weekdayOfMonthStart = calendar.component(.weekday, from: monthDate)
-        // Calculate the offset based on the first weekday
-        let daysFromPreviousMonth = (weekdayOfMonthStart - firstWeekday + daysInAWeek) % daysInAWeek
-
-        LazyVGrid(
-            columns: Array(repeating: GridItem(spacing: BPKSpacing.none.value), count: daysInAWeek),
-            spacing: BPKSpacing.lg.value
-        ) {
-            // Create cells for the days from the previous month that are shown in the first week of the current month.
-            previousEmptyCells(daysFromPreviousMonth: daysFromPreviousMonth)
-            let numberOfDaysInMonth = calendar.range(of: .day, in: .month, for: monthDate)!.count
-            // Create cells for the days in the current month
-            currentMonthDayCell(numberOfDaysInMonth: numberOfDaysInMonth)
-
-            // Create cells for the days from the next month that are shown in the last week of the current month
-            // The total number of cells used is the sum of the number of days in the current month and the number of
-            // days from the previous month that are shown
-            let totalCellsUsed = numberOfDaysInMonth + daysFromPreviousMonth
-            let remainingCells = daysInAWeek - (totalCellsUsed % daysInAWeek)
-        
-            remainingEmptyCells(remainingCells: remainingCells)
+        let cal = CalendarGridCalculator(
+            monthDate: monthDate, calendar: calendar, daysInAWeek: daysInAWeek
+        ).calculateCalendarGrid()
+    
+        return ForEach(0..<cal.count, id: \.self) { row in
+            HStack(spacing: BPKSpacing.none) {
+                ForEach(0..<daysInAWeek, id: \.self) { col in
+                    let day = cal[row][col]
+                    if day == 0 {
+                        VStack(spacing: BPKSpacing.none) {
+                            emptyLeadingDayCell()
+                                .frame(height: dayCellHeight)
+                            Spacer(minLength: BPKSpacing.none)
+                        }
+                    } else {
+                        let dayDate = calendar.date(
+                            byAdding: .init(day: day - 1),
+                            to: monthDate
+                        )!
+                        if !validRange.contains(dayDate) {
+                            VStack(spacing: BPKSpacing.none) {
+                                DisabledCalendarDayCell(calendar: calendar, date: dayDate)
+                                    .frame(height: dayCellHeight)
+                                Spacer(minLength: BPKSpacing.none)
+                            }
+                            .frame(maxWidth: .infinity)
+                        } else {
+                            VStack(spacing: BPKSpacing.sm) {
+                                dayCell(dayDate)
+                                    .modifier(ReadSizeModifier { dayCellHeight = $0.height })
+                                dayAccessoryView(dayDate)
+                            }
+                            .frame(maxWidth: .infinity)
+                            .background(.green)
+                        }
+                    }
+                }
+            }
         }
     }
     
