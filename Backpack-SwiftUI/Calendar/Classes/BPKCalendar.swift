@@ -30,6 +30,9 @@ import SwiftUI
 ///   - validRange: The range of dates that the calendar should allow the user to select.
 ///     This is specified as a`ClosedRange<Date>`.
 ///   - initialMonthScroll: The initial scrolling to the month using `MonthScroll`
+///   - calendarSelectionHandler: Optional date selection handler which handles a tapped date and returns new selection
+///   - showFloatYearLabel: Set weather the floating year label should be displayed or not
+///   - dayAccessoryView: An additional optional view with extra information beneath the date
 ///
 /// The `BPKCalendar` view also allows you to specify an accessory action. This is a closure that takes a string and
 ///     a date, and is called when the user interacts with an accessory in the calendar.
@@ -40,6 +43,8 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
     private var accessoryAction: ((Date) -> CalendarMonthAccessoryAction?)?
     private var initialMonthScroll: MonthScroll?
     private let monthHeaderDateFormatter: DateFormatter
+    private let singleCalendarSelectionHandler: SingleCalendarSelectionHandler
+    private let rangeCalendarSelectionHandler: RangeCalendarSelectionHandler
     private let showFloatYearLabel: Bool
     private let dayAccessoryView: (Date) -> DayAccessoryView
     @State private var currentlyShownMonth: Date
@@ -49,6 +54,8 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
         calendar: Calendar,
         validRange: ClosedRange<Date>,
         initialMonthScroll: MonthScroll? = nil,
+        singleCalendarSelectionHandler: SingleCalendarSelectionHandler? = nil,
+        rangeCalendarSelectionHandler: RangeCalendarSelectionHandler? = nil,
         showFloatYearLabel: Bool = true,
         dayAccessoryView: @escaping (Date) -> DayAccessoryView = { _ in EmptyView() }
     ) {
@@ -59,7 +66,9 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
         self.selectionType = selectionType
         self.initialMonthScroll = initialMonthScroll
         self.showFloatYearLabel = showFloatYearLabel
-
+        self.singleCalendarSelectionHandler = singleCalendarSelectionHandler ?? DefaultSingleCalendarSelectionHandler()
+        self.rangeCalendarSelectionHandler = rangeCalendarSelectionHandler ?? DefaultRangeCalendarSelectionHandler()
+        
         monthHeaderDateFormatter = DateFormatter()
         monthHeaderDateFormatter.timeZone = calendar.timeZone
         monthHeaderDateFormatter.dateFormat = DateFormatter.dateFormat(
@@ -77,6 +86,8 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
                     CalendarTypeContainerFactory(
                         selectionType: selectionType,
                         calendar: calendar,
+                        singleCalendarSelectionHandler: singleCalendarSelectionHandler,
+                        rangeCalendarSelectionHandler: rangeCalendarSelectionHandler,
                         validRange: validRange,
                         monthScroll: initialMonthScroll,
                         calculator: InMemoryCacheCalendarGridCalculator(
