@@ -18,158 +18,80 @@
 
 import SwiftUI
 
-struct CalendarGridCalculator {
-    let monthDate: Date
-    let calendar: Calendar
-    let daysInAWeek: Int
-    
-    // swiftlint:disable all
-    func calculateCalendarGrid() -> [[Int]] {
-        let daysInAWeek: Int = 7
-        let firstWeekday = calendar.firstWeekday // Locale-aware first day of the week
-        let weekdayOfMonthStart = calendar.component(.weekday, from: monthDate)
-        // Calculate the offset based on the first weekday
-        let daysFromPreviousMonth = (weekdayOfMonthStart - firstWeekday + daysInAWeek) % daysInAWeek
-        let numberOfDaysInMonth = calendar.range(of: .day, in: .month, for: monthDate)!.count
-        let totalCellsUsed = numberOfDaysInMonth + daysFromPreviousMonth
-
-        // cal will look like this: [[0,0,0,0,1,2,3], [4,5,6,7,8,9,10], ..., [27,28,29,30,31,0,0]]
-        // where initial 0s are daysFromPreviousMonth, then 1...numberOfDaysInMonth, then 0s to fill the last week
-        var cal: [[Int]] = Array(repeating: Array(repeating: 0, count: daysInAWeek), count: (totalCellsUsed + daysInAWeek - 1) / daysInAWeek)
-
-        for i in 0..<daysFromPreviousMonth {
-            let dayNumber = i - daysFromPreviousMonth + 1
-            cal[0][i] = dayNumber < 0 ? 0 : dayNumber
-        }
-        for i in 0..<numberOfDaysInMonth {
-            cal[(i + daysFromPreviousMonth) / daysInAWeek][(i + daysFromPreviousMonth) % daysInAWeek] = i + 1
-        }
-        return cal
-    }
-}
-
 struct CalendarMonthGrid<
     DayCell: View,
+    DisabledDayCell: View,
     EmptyLeadingDayCell: View,
     EmptyTrailingDayCell: View,
     DayAccessoryView: View
 >: View {
     let monthDate: Date
-    let calendar: Calendar
     let validRange: ClosedRange<Date>
 
     @State private var dayCellHeight: CGFloat = 0
     @ViewBuilder let dayCell: (Date) -> DayCell
+    @ViewBuilder let disabledDayCell: (Date) -> DisabledDayCell
     @ViewBuilder let emptyLeadingDayCell: () -> EmptyLeadingDayCell
     @ViewBuilder let emptyTrailingDayCell: () -> EmptyTrailingDayCell
     @ViewBuilder let dayAccessoryView: (Date) -> DayAccessoryView
     
-    private let daysInAWeek = 7
+    let calculator: CalendarGridCalculator
     
     var body: some View {
-        let cal = CalendarGridCalculator(
-            monthDate: monthDate, calendar: calendar, daysInAWeek: daysInAWeek
-        ).calculateCalendarGrid()
-    
-        return ForEach(0..<cal.count, id: \.self) { row in
-            HStack(spacing: BPKSpacing.none) {
-                ForEach(0..<daysInAWeek, id: \.self) { col in
-                    let day = cal[row][col]
-                    if day == 0 {
-                        VStack(spacing: BPKSpacing.none) {
-                            emptyLeadingDayCell()
-                                .frame(height: dayCellHeight)
-                            Spacer(minLength: BPKSpacing.none)
-                        }
-                    } else {
-                        let dayDate = calendar.date(
-                            byAdding: .init(day: day - 1),
-                            to: monthDate
-                        )!
-                        if !validRange.contains(dayDate) {
-                            VStack(spacing: BPKSpacing.none) {
-                                DisabledCalendarDayCell(calendar: calendar, date: dayDate)
-                                    .frame(height: dayCellHeight)
-                                Spacer(minLength: BPKSpacing.none)
-                            }
-                            .frame(maxWidth: .infinity)
-                        } else {
-                            VStack(spacing: BPKSpacing.sm) {
-                                dayCell(dayDate)
-                                    .modifier(ReadSizeModifier { dayCellHeight = $0.height })
-                                dayAccessoryView(dayDate)
-                            }
-                            .frame(maxWidth: .infinity)
-                            .background(.green)
-                        }
-                    }
-                }
+        let grid = calculator.calculateCalendarGrid(monthDate: monthDate)
+        
+        VStack(alignment: .leading) {
+            ForEach(0..<grid.count, id: \.self) { row in
+                weekRow(grid: grid, row: row)
             }
         }
     }
     
     @ViewBuilder
-    private func previousEmptyCells(daysFromPreviousMonth: Int) -> some View {
-        let preEmptyCells = Array(0..<daysFromPreviousMonth)
-            .map {
-                DayCellIdentifiable(id: "pre-\($0)\(monthDate)", index: $0)
-            }
-        ForEach(preEmptyCells) { _ in
-            VStack(spacing: BPKSpacing.none) {
-                emptyLeadingDayCell()
-                    .frame(height: dayCellHeight)
-                Spacer(minLength: BPKSpacing.none)
+    private func weekRow(grid: [[Date?]], row: Int) -> some View {
+        HStack(alignment: .top, spacing: BPKSpacing.none) {
+            ForEach(0..<grid[0].count, id: \.self) { col in
+                dayCellView(grid: grid, row: row, col: col)
             }
         }
     }
     
     @ViewBuilder
-    private func remainingEmptyCells(remainingCells: Int) -> some View {
-        if remainingCells < daysInAWeek {
-            let remainingEmptyCells = Array(0..<remainingCells)
-                .map {
-                    DayCellIdentifiable(id: "rem-\($0)\(monthDate)", index: $0)
-                }
-            ForEach(remainingEmptyCells) { _ in
-                VStack(spacing: BPKSpacing.none) {
-                    emptyTrailingDayCell()
-                        .frame(height: dayCellHeight)
-                    Spacer(minLength: BPKSpacing.none)
-                }
-            }
+    private func dayCellView(grid: [[Date?]], row: Int, col: Int) -> some View {
+        let dayDate = grid[row][col]
+        if dayDate == nil {
+            emptyCell(grid: grid, row: row)
+        } else if let dayDate {
+            dayCellView(dayDate: dayDate)
         }
     }
     
-    private struct DayCellIdentifiable: Identifiable {
-        let id: String
-        let index: Int
+    @ViewBuilder
+    private func dayCellView(dayDate: Date) -> some View {
+        if !validRange.contains(dayDate) {
+            disabledDayCell(dayDate)
+                .frame(height: dayCellHeight)
+                .frame(maxWidth: .infinity)
+        } else {
+            VStack(spacing: BPKSpacing.sm) {
+                dayCell(dayDate)
+                    .modifier(ReadSizeModifier { dayCellHeight = $0.height })
+                dayAccessoryView(dayDate)
+            }
+            .frame(maxWidth: .infinity)
+        }
     }
     
     @ViewBuilder
-    private func currentMonthDayCell(numberOfDaysInMonth: Int) -> some View {
-        let days = Array(0..<numberOfDaysInMonth)
-            .map {
-                DayCellIdentifiable(id: "\(monthDate)\($0)", index: $0)
-            }
-        ForEach(days) { cellIndex in
-            let dayDate = calendar.date(
-                byAdding: .init(day: cellIndex.index),
-                to: monthDate
-            )!
-            
-            if !validRange.contains(dayDate) {
-                VStack(spacing: BPKSpacing.none) {
-                    DisabledCalendarDayCell(calendar: calendar, date: dayDate)
-                        .frame(height: dayCellHeight)
-                    Spacer(minLength: BPKSpacing.none)
-                }
-            } else {
-                VStack(spacing: BPKSpacing.sm) {
-                    dayCell(dayDate)
-                        .modifier(ReadSizeModifier { dayCellHeight = $0.height })
-                    dayAccessoryView(dayDate)
-                }
-            }
+    private func emptyCell(grid: [[Date?]], row: Int) -> some View {
+        if row == 0 {
+            emptyLeadingDayCell()
+                .frame(maxWidth: .infinity)
+                .frame(height: dayCellHeight)
+        } else if row == grid.count - 1 {
+            emptyTrailingDayCell()
+                .frame(maxWidth: .infinity)
+                .frame(height: dayCellHeight)
         }
     }
 }
@@ -182,17 +104,18 @@ struct CalendarMonthGrid_Previews: PreviewProvider {
         
         CalendarMonthGrid(
             monthDate: calendar.date(from: .init(year: 2023, month: 8, day: 1))!,
-            calendar: calendar,
             validRange: start...end,
             dayCell: { day in
                 BPKText("\(calendar.component(.day, from: day))")
             },
+            disabledDayCell: { DisabledCalendarDayCell(calendar: calendar, date: $0) },
             emptyLeadingDayCell: { Color.red },
             emptyTrailingDayCell: { Color.green },
             dayAccessoryView: { _ in
                 BPKText("$200", style: .caption)
                     .foregroundColor(.infoBannerSuccessColor)
-            }
+            },
+            calculator: DefaultCalendarGridCalculator(calendar: calendar)
         )
     }
 }
