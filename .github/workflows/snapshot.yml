@@ -27,7 +27,6 @@ jobs:
       contents: write
     if: ${{ needs.CheckCommitMessage.outputs.head-commit-message == 'Record snapshots' }}
     uses: ./.github/workflows/_test.yml
-    secrets:
-      GH_APP_PRIVATE_KEY: ${{ secrets.GH_APP_PRIVATE_KEY }}
+    secrets: inherit
     with:
       retake_snapshots: true
