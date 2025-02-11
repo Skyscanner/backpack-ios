@@ -85,7 +85,7 @@
 		53C6622929EA0DAB00BF1A62 /* AttributedTextExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C6620F29EA0DAB00BF1A62 /* AttributedTextExampleView.swift */; };
 		53C7F0B92A4C615D003A8740 /* ChipGroupSingleSelectRailExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7F0B52A4C615D003A8740 /* ChipGroupSingleSelectRailExampleView.swift */; };
 		53C7F0BA2A4C615D003A8740 /* ChipGroupSingleSelectWrapExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7F0B62A4C615D003A8740 /* ChipGroupSingleSelectWrapExampleView.swift */; };
-		53D4614E29E574EB0061C222 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		53D4614E29E574EB0061C222 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		53D6396F2A7D46ED007EF376 /* MapMarkerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D6396E2A7D46ED007EF376 /* MapMarkerExampleView.swift */; };
 		53D7FBB527F715AF00DEE588 /* UIWindowFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D7FBB427F715AF00DEE588 /* UIWindowFactory.swift */; };
 		53E075A527FC780C0033147C /* NavBarGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E075A427FC780C0033147C /* NavBarGroups.swift */; };
@@ -1661,6 +1661,7 @@
 				6003F588195388D20070C39A /* Resources */,
 				84EFE62BE1534CD46CAFBDBF /* [CP] Embed Pods Frameworks */,
 				D68AF8FA2174CB9C00BA743D /* Run Script */,
+				D4B2B22DDFC56AAC3B5F3231 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1832,6 +1833,21 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Backpack-Native/Pods-Backpack-Native-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D4B2B22DDFC56AAC3B5F3231 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Backpack-Native/Pods-Backpack-Native-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D68AF8FA2174CB9C00BA743D /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1952,7 +1968,7 @@
 				5390DB612909940700F0F790 /* ColorTokensViewController.swift in Sources */,
 				794E1FF8280CF63100B965FF /* RadiusTokensView.swift in Sources */,
 				53B6DB6A27FC73A90042B7C0 /* LabelGroups.swift in Sources */,
-				53D4614E29E574EB0061C222 /* (null) in Sources */,
+				53D4614E29E574EB0061C222 /* BuildFile in Sources */,
 				53C6621329EA0DAB00BF1A62 /* SpinnerExampleView.swift in Sources */,
 				53BAC3F12A71415800236CC9 /* SectionHeaderGroups.swift in Sources */,
 				53C6622429EA0DAB00BF1A62 /* ButtonsPlaygroundView.swift in Sources */,

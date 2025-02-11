@@ -28,7 +28,8 @@ struct CalendarMonthGrid<
     let monthDate: Date
     let validRange: ClosedRange<Date>
 
-    @State private var dayCellHeight: CGFloat = 0
+    @State private var accessoryViewHeight: CGFloat? = nil
+    @State private var dayCellHeight: CGFloat? = nil
     @ViewBuilder let dayCell: (Date) -> DayCell
     @ViewBuilder let disabledDayCell: (Date) -> DisabledDayCell
     @ViewBuilder let emptyLeadingDayCell: () -> EmptyLeadingDayCell
@@ -40,7 +41,7 @@ struct CalendarMonthGrid<
     var body: some View {
         let grid = calculator.calculateCalendarGrid(monthDate: monthDate)
         
-        VStack(alignment: .leading, spacing: .lg) {
+        VStack(alignment: .leading, spacing: .md) {
             ForEach(0..<grid.count, id: \.self) { row in
                 weekRow(grid: grid, row: row)
             }
@@ -69,14 +70,19 @@ struct CalendarMonthGrid<
     @ViewBuilder
     private func dayCellView(dayDate: Date) -> some View {
         if !validRange.contains(dayDate) {
-            disabledDayCell(dayDate)
-                .frame(height: dayCellHeight)
-                .frame(maxWidth: .infinity)
+            VStack(spacing: BPKSpacing.sm) {
+                disabledDayCell(dayDate)
+                    .frame(height: dayCellHeight)
+                    .frame(maxWidth: .infinity)
+                Spacer()
+            }
         } else {
             VStack(spacing: BPKSpacing.sm) {
                 dayCell(dayDate)
                     .modifier(ReadSizeModifier { dayCellHeight = $0.height })
                 dayAccessoryView(dayDate)
+                    .frame(height: accessoryViewHeight)
+                    .modifier(ReadSizeModifier { accessoryViewHeight = max($0.height, accessoryViewHeight ?? 0) })
             }
             .frame(maxWidth: .infinity)
         }
