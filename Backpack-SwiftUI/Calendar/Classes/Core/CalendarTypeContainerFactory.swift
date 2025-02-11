@@ -98,8 +98,8 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
                 dateFormatter: accessibilityDateFormatter
             ),
             month: month,
-            selectionHandler: rangeCalendarSelectionHandler,
             calculator: calculator,
+            selectionHandler: rangeCalendarSelectionHandler,
             dayAccessoryView: dayAccessoryView
         )
 

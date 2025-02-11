@@ -199,9 +199,7 @@ struct RangeCalendarContainer_Previews: PreviewProvider {
             ),
             month: start,
             calculator: DefaultCalendarGridCalculator(calendar: calendar),
-            selectionHandler: DefaultRangeCalendarSelectionHandler(
-                instructionAfterSelectingDate: ""
-            ),
+            selectionHandler: DefaultRangeCalendarSelectionHandler(),
             dayAccessoryView: { _ in
                 BPKText("20", style: .caption)
             }

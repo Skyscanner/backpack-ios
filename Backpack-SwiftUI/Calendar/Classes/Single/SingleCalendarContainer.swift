@@ -96,8 +96,8 @@ struct SingleCalendarContainer_Previews: PreviewProvider {
                 dateFormatter: Self.formatter
             ),
             month: start,
-            selectionHandler: DefaultSingleCalendarSelectionHandler(),
             calculator: DefaultCalendarGridCalculator(calendar: calendar),
+            selectionHandler: DefaultSingleCalendarSelectionHandler(),
             dayAccessoryView: { _ in
                 BPKText("20", style: .caption)
             }
