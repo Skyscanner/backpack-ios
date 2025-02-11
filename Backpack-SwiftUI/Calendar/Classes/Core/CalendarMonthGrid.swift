@@ -28,8 +28,8 @@ struct CalendarMonthGrid<
     let monthDate: Date
     let validRange: ClosedRange<Date>
 
-    @State private var accessoryViewHeight: CGFloat? = nil
-    @State private var dayCellHeight: CGFloat? = nil
+    @State private var accessoryViewHeight: CGFloat?
+    @State private var dayCellHeight: CGFloat?
     @ViewBuilder let dayCell: (Date) -> DayCell
     @ViewBuilder let disabledDayCell: (Date) -> DisabledDayCell
     @ViewBuilder let emptyLeadingDayCell: () -> EmptyLeadingDayCell
