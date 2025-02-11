@@ -69,20 +69,14 @@ jobs:
       - name: Check snapshot changes
         id: checkSnapshotChanges
         run: changedFiles=`git status --porcelain` && echo "didChangeFiles=${changedFiles//$'\n'/'%0A'}" >> $GITHUB_OUTPUT
-      
-      - uses: actions/create-github-app-token@v1
-        id: app-token
-        with:
-          app-id: ${{ vars.GH_APP_ID }}
-          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
 
       - name: Save snapshots
         if: ${{inputs.retake_snapshots}}
         env:
-          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+          GITHUB_TOKEN: ${{ secrets.SNAPSHOTS_TOKEN }}
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
+          git config --local user.email "31124577+backpackbot@users.noreply.github.com"
+          git config --local user.name "Backpack Bot"
           git remote set-url origin https://x-access-token:$GITHUB_TOKEN@github.com/${{ github.repository }}
           git fetch origin $GITHUB_HEAD_REF
           git checkout $GITHUB_HEAD_REF
