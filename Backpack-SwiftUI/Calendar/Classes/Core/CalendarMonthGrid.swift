@@ -70,17 +70,22 @@ struct CalendarMonthGrid<
     @ViewBuilder
     private func dayCellView(dayDate: Date) -> some View {
         if !validRange.contains(dayDate) {
-            VStack(spacing: BPKSpacing.sm) {
+            VStack(spacing: cellsSpacing) {
                 disabledDayCell(dayDate)
                     .frame(height: dayCellHeight)
                     .frame(maxWidth: .infinity)
-                Spacer()
+                Spacer(minLength: BPKSpacing.none)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: accessoryViewHeight)
             }
         } else {
-            VStack(spacing: BPKSpacing.sm) {
+            VStack(spacing: cellsSpacing) {
                 dayCell(dayDate)
+                    .frame(height: dayCellHeight)
+                    .frame(maxWidth: .infinity)
                     .modifier(ReadSizeModifier { dayCellHeight = $0.height })
                 dayAccessoryView(dayDate)
+                    .frame(maxWidth: .infinity)
                     .frame(height: accessoryViewHeight)
                     .modifier(ReadSizeModifier { accessoryViewHeight = max($0.height, accessoryViewHeight ?? 0) })
             }
@@ -98,6 +103,14 @@ struct CalendarMonthGrid<
             emptyTrailingDayCell()
                 .frame(maxWidth: .infinity)
                 .frame(height: dayCellHeight)
+        }
+    }
+    
+    var cellsSpacing: BPKSpacing {
+        if let accessoryViewHeight, accessoryViewHeight > 0 {
+            return .sm
+        } else {
+            return .none
         }
     }
 }
