@@ -78,12 +78,13 @@ struct CalendarMonthGrid<
                     .frame(maxWidth: .infinity)
                     .frame(height: accessoryViewHeight)
             }
+            .frame(maxWidth: .infinity)
         } else {
             VStack(spacing: cellsSpacing) {
                 dayCell(dayDate)
                     .frame(height: dayCellHeight)
                     .frame(maxWidth: .infinity)
-                    .modifier(ReadSizeModifier { dayCellHeight = $0.height })
+                    .modifier(ReadSizeModifier { dayCellHeight = max($0.height, dayCellHeight ?? 0) })
                 dayAccessoryView(dayDate)
                     .frame(maxWidth: .infinity)
                     .frame(height: accessoryViewHeight)
