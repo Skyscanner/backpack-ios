@@ -21,17 +21,17 @@ import XCTest
 
 class CalendarGridCalculatorTests: XCTestCase {
     func test_canCalculateGridCorrectly() {
-        let calendar = Calendar.current
+        let calendar = Calendar(identifier: .gregorian)
         let sut = DefaultCalendarGridCalculator(calendar: calendar)
         
         let result = sut.calculateCalendarGrid(monthDate: calendar.date(forDay: 1))
         
         let expected: [[Int?]] = [
-            [nil, nil, 1, 2, 3, 4, 5],
-            [6, 7, 8, 9, 10, 11, 12],
-            [13, 14, 15, 16, 17, 18, 19],
-            [20, 21, 22, 23, 24, 25, 26],
-            [27, 28, 29, 30, nil, nil, nil]
+            [nil, nil, nil, 1, 2, 3, 4],
+            [5, 6, 7, 8, 9, 10, 11],
+            [12, 13, 14, 15, 16, 17, 18],
+            [19, 20, 21, 22, 23, 24, 25],
+            [26, 27, 28, 29, 30, nil, nil]
         ]
         
         XCTAssertEqual(result, expected.toDates(calendar: calendar))

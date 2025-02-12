@@ -93,3 +93,66 @@ BPKCalendar(
     showFloatYearLabel: false
 )
 ```
+
+## Custom date selection handler 
+
+If you need to customise the date selection handling for any reason, you can implement your own implementation of CalendarSelectionHandler for specific date selection type you need (single date selection or range dates selection).
+
+Complete customisation of date selection handling:
+```swift
+struct CustomCalendarSelectionHandler: CalendarSelectionHandler {
+    public let rangeSelectionHandler: RangeCalendarSelectionHandler = CustomRangeCalendarSelectionHandler()
+    public let singleSelectionHandler: SingleCalendarSelectionHandler
+    
+    ....
+}
+
+struct CustomRangeCalendarSelectionHandler: RangeCalendarSelectionHandler {
+    func newRangeSelectionStateFor(
+        selection date: Date,
+        currentSelection: CalendarRangeSelectionState?,
+        dateSelectedAccessibilityCallback: (() -> Void)?
+    ) -> CalendarRangeSelectionState {
+        // Selection handling code which returns CalendarRangeSelectionState
+        // Here you also need to call `dateSelectedAccessibilityCallback` when you're about to change a date selection.
+    }
+}
+
+struct CustomSingleCalendarSelectionHandler: SingleCalendarSelectionHandler {
+    func newSingleSelectionStateFor(
+        selection date: Date,
+        currentSelection: CalendarSingleSelectionState?
+    ) -> CalendarSingleSelectionState {
+        // Selection handling code which returns CalendarSingleSelectionState
+    }
+}
+
+
+BPKCalendar(
+    selectionType: .range(selectedRange: $selectedDateRange),
+    calendar: .current,
+    validRange: validStartDate...validEndDate,
+    calendarSelectionHandler: CustomCalendarSelectionHandler()
+)
+```
+
+Customisation only one type of date selection. In this case only range selection behaviour is replaced, and the single selection is using the default behaviour:
+```swift
+struct CustomRangeCalendarSelectionHandler: RangeCalendarSelectionHandler {
+    func newRangeSelectionStateFor(
+        selection date: Date,
+        currentSelection: CalendarRangeSelectionState?,
+        dateSelectedAccessibilityCallback: (() -> Void)?
+    ) -> CalendarRangeSelectionState {
+        // Selection handling code which returns CalendarRangeSelectionState
+        // Here you also need to call `dateSelectedAccessibilityCallback` when you're about to change a date selection.
+    }
+}
+
+BPKCalendar(
+    selectionType: .range(selectedRange: $selectedDateRange),
+    calendar: .current,
+    validRange: validStartDate...validEndDate,
+    calendarSelectionHandler: DefaultCalendarSelectionHandler(rangeSelectionHandler: CustomRangeCalendarSelectionHandler())
+)
+```
