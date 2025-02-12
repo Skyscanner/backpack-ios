@@ -176,6 +176,7 @@ public extension BPKIcon {
     static let longArrowRight = BPKIcon(name: "long-arrow-right")
     static let longArrowUp = BPKIcon(name: "long-arrow-up")
     static let lounge = BPKIcon(name: "lounge")
+    static let loyalty = BPKIcon(name: "loyalty")
     static let luggageall = BPKIcon(name: "luggageall")
     static let mail = BPKIcon(name: "mail")
     static let map = BPKIcon(name: "map")
@@ -462,6 +463,7 @@ public extension BPKIcon {
         case "long-arrow-right": return .longArrowRight
         case "long-arrow-up": return .longArrowUp
         case "lounge": return .lounge
+        case "loyalty": return .loyalty
         case "luggageall": return .luggageall
         case "mail": return .mail
         case "map": return .map

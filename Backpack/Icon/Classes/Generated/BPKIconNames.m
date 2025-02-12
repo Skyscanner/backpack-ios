@@ -177,6 +177,7 @@ BPKIconName const BPKIconNameLongArrowLeft = @"long-arrow-left";
 BPKIconName const BPKIconNameLongArrowRight = @"long-arrow-right";
 BPKIconName const BPKIconNameLongArrowUp = @"long-arrow-up";
 BPKIconName const BPKIconNameLounge = @"lounge";
+BPKIconName const BPKIconNameLoyalty = @"loyalty";
 BPKIconName const BPKIconNameLuggageall = @"luggageall";
 BPKIconName const BPKIconNameMail = @"mail";
 BPKIconName const BPKIconNameMap = @"map";

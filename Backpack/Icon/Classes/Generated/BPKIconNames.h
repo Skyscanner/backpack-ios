@@ -341,6 +341,8 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameLongArrowUp;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameLounge;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameLoyalty;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameLuggageall;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameMail;

@@ -341,6 +341,8 @@ FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameLongArrowUp;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameLounge;
 /// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameLoyalty;
+/// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameLuggageall;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameMail;

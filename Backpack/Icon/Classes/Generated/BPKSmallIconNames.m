@@ -177,6 +177,7 @@ BPKSmallIconName const BPKSmallIconNameLongArrowLeft = @"long-arrow-left";
 BPKSmallIconName const BPKSmallIconNameLongArrowRight = @"long-arrow-right";
 BPKSmallIconName const BPKSmallIconNameLongArrowUp = @"long-arrow-up";
 BPKSmallIconName const BPKSmallIconNameLounge = @"lounge";
+BPKSmallIconName const BPKSmallIconNameLoyalty = @"loyalty";
 BPKSmallIconName const BPKSmallIconNameLuggageall = @"luggageall";
 BPKSmallIconName const BPKSmallIconNameMail = @"mail";
 BPKSmallIconName const BPKSmallIconNameMap = @"map";
