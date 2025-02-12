@@ -79,17 +79,10 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
                         calendar: calendar,
                         validRange: validRange,
                         monthScroll: initialMonthScroll,
-                        monthHeader: { monthDate in
-                            CalendarMonthHeader(
-                                monthDate: monthDate,
-                                dateFormatter: monthHeaderDateFormatter,
-                                calendar: calendar,
-                                validRange: validRange,
-                                accessoryAction: accessoryAction,
-                                currentlyShownMonth: $currentlyShownMonth,
-                                parentProxy: calendarProxy
-                            )
-                        },
+                        calculator: InMemoryCacheCalendarGridCalculator(
+                            decoratee: DefaultCalendarGridCalculator(calendar: calendar)
+                        ),
+                        monthHeader: { monthHeader(monthDate: $0, calendarProxy: calendarProxy) },
                         dayAccessoryView: dayAccessoryView
                     )
                     if showFloatYearLabel {
@@ -98,6 +91,18 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
                 }
             }
         }
+    }
+    
+    private func monthHeader(monthDate: Date, calendarProxy: GeometryProxy) -> some View {
+        CalendarMonthHeader(
+            monthDate: monthDate,
+            dateFormatter: monthHeaderDateFormatter,
+            calendar: calendar,
+            validRange: validRange,
+            accessoryAction: accessoryAction,
+            currentlyShownMonth: $currentlyShownMonth,
+            parentProxy: calendarProxy
+        )
     }
     
     private var yearBadge: some View {

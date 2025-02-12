@@ -53,14 +53,14 @@ struct DefaultRangeCalendarSelectionHandler: RangeCalendarSelectionHandler {
     }
 }
 
-struct RangeCalendarMonthContainer<MonthHeader: View, DayAccessoryView: View>: View {
+struct RangeCalendarMonthContainer<DayAccessoryView: View>: View {
     @Binding var selectionState: CalendarRangeSelectionState?
     let calendar: Calendar
     let validRange: ClosedRange<Date>
     let accessibilityProvider: RangeDayAccessibilityProvider
     let month: Date
     let selectionHandler: RangeCalendarSelectionHandler
-    @ViewBuilder let monthHeader: MonthHeader
+    let calculator: CalendarGridCalculator
     @ViewBuilder let dayAccessoryView: (Date) -> DayAccessoryView
     
     private func handleSelection(_ date: Date) {
@@ -138,18 +138,16 @@ struct RangeCalendarMonthContainer<MonthHeader: View, DayAccessoryView: View>: V
     }
     
     var body: some View {
-        VStack(spacing: BPKSpacing.none) {
-            monthHeader
-            CalendarMonthGrid(
-                monthDate: month,
-                calendar: calendar,
-                validRange: validRange,
-                dayCell: makeDayCell,
-                emptyLeadingDayCell: { makeEmptyLeadingDayCell(for: month) },
-                emptyTrailingDayCell: { makeEmptyTrailingDayCell(for: month) },
-                dayAccessoryView: dayAccessoryView
-            )
-        }
+        CalendarMonthGrid(
+            monthDate: month,
+            validRange: validRange,
+            dayCell: makeDayCell,
+            disabledDayCell: { DisabledCalendarDayCell(calendar: calendar, date: $0) },
+            emptyLeadingDayCell: { makeEmptyLeadingDayCell(for: month) },
+            emptyTrailingDayCell: { makeEmptyTrailingDayCell(for: month) },
+            dayAccessoryView: dayAccessoryView,
+            calculator: calculator
+        )
     }
     
     /// - Parameters:
@@ -186,6 +184,9 @@ struct RangeCalendarMonthContainer<MonthHeader: View, DayAccessoryView: View>: V
             selection.contains(firstDayOfNextMonth)
         {
             Color(.surfaceSubtleColor)
+        } else {
+            // otherwise we occupy the space with a clear view
+            DefaultEmptyCalendarDayCell()
         }
     }
 }
@@ -226,9 +227,7 @@ struct RangeCalendarContainer_Previews: PreviewProvider {
             selectionHandler: DefaultRangeCalendarSelectionHandler(
                 instructionAfterSelectingDate: ""
             ),
-            monthHeader: {
-                BPKText("\(Self.formatter.string(from: start))")
-            },
+            calculator: DefaultCalendarGridCalculator(calendar: calendar),
             dayAccessoryView: { _ in
                 BPKText("20", style: .caption)
             }
