@@ -25,6 +25,7 @@ struct SingleCalendarMonthContainer<DayAccessoryView: View>: View {
     let accessibilityProvider: SingleDayAccessibilityProvider
     let month: Date
     let calculator: CalendarGridCalculator
+    let selectionHandler: SingleCalendarSelectionHandler
     @ViewBuilder let dayAccessoryView: (Date) -> DayAccessoryView
     
     @ViewBuilder
@@ -52,7 +53,7 @@ struct SingleCalendarMonthContainer<DayAccessoryView: View>: View {
                 DefaultCalendarDayCell(calendar: calendar, date: dayDate)
             }
         } onSelection: {
-            selection = .single(dayDate)
+            selection = selectionHandler.newSingleSelectionStateFor(selection: dayDate, currentSelection: selection)
         }
         .accessibilityAddTraits(.isButton)
         .accessibilityAddTraits(selection?.isSelected(dayDate) == true ? .isSelected : [])
@@ -96,6 +97,7 @@ struct SingleCalendarContainer_Previews: PreviewProvider {
             ),
             month: start,
             calculator: DefaultCalendarGridCalculator(calendar: calendar),
+            selectionHandler: DefaultSingleCalendarSelectionHandler(),
             dayAccessoryView: { _ in
                 BPKText("20", style: .caption)
             }

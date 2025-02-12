@@ -18,41 +18,6 @@
 
 import SwiftUI
 
-protocol RangeCalendarSelectionHandler {
-    func newStateFor(
-        selection date: Date,
-        currentSelection: CalendarRangeSelectionState?
-    ) -> CalendarRangeSelectionState
-}
-
-struct DefaultRangeCalendarSelectionHandler: RangeCalendarSelectionHandler {
-    let instructionAfterSelectingDate: String
-    
-    func newStateFor(
-        selection date: Date,
-        currentSelection: CalendarRangeSelectionState?
-    ) -> CalendarRangeSelectionState {
-        switch currentSelection {
-        case .intermediate(let initialDateSelection):
-            if date < initialDateSelection {
-                UIAccessibility.post(
-                    notification: .announcement,
-                    argument: instructionAfterSelectingDate
-                )
-                return .intermediate(date)
-            } else {
-                return .range(initialDateSelection...date)
-            }
-        default:
-            UIAccessibility.post(
-                notification: .announcement,
-                argument: instructionAfterSelectingDate
-            )
-            return .intermediate(date)
-        }
-    }
-}
-
 struct RangeCalendarMonthContainer<DayAccessoryView: View>: View {
     @Binding var selectionState: CalendarRangeSelectionState?
     let calendar: Calendar
@@ -64,7 +29,16 @@ struct RangeCalendarMonthContainer<DayAccessoryView: View>: View {
     @ViewBuilder let dayAccessoryView: (Date) -> DayAccessoryView
     
     private func handleSelection(_ date: Date) {
-        selectionState = selectionHandler.newStateFor(selection: date, currentSelection: selectionState)
+        selectionState = selectionHandler.newRangeSelectionStateFor(
+            selection: date,
+            currentSelection: selectionState,
+            dateSelectedAccessibilityCallback: {
+                UIAccessibility.post(
+                    notification: .announcement,
+                    argument: accessibilityProvider.accessibilityConfigurations.returnDatePrompt
+                )
+            }
+        )
     }
     
     @ViewBuilder
@@ -224,9 +198,7 @@ struct RangeCalendarContainer_Previews: PreviewProvider {
                 dateFormatter: Self.formatter
             ),
             month: start,
-            selectionHandler: DefaultRangeCalendarSelectionHandler(
-                instructionAfterSelectingDate: ""
-            ),
+            selectionHandler: DefaultRangeCalendarSelectionHandler(),
             calculator: DefaultCalendarGridCalculator(calendar: calendar),
             dayAccessoryView: { _ in
                 BPKText("20", style: .caption)

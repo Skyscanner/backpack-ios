@@ -21,6 +21,8 @@ import SwiftUI
 struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: View {
     let selectionType: CalendarSelectionType
     let calendar: Calendar
+    let singleCalendarSelectionHandler: SingleCalendarSelectionHandler
+    let rangeCalendarSelectionHandler: RangeCalendarSelectionHandler
     let validRange: ClosedRange<Date>
     let monthScroll: MonthScroll?
     let calculator: CalendarGridCalculator
@@ -76,6 +78,7 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
             ),
             month: month,
             calculator: calculator,
+            selectionHandler: singleCalendarSelectionHandler,
             dayAccessoryView: dayAccessoryView
         )
     }
@@ -95,9 +98,7 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
                 dateFormatter: accessibilityDateFormatter
             ),
             month: month,
-            selectionHandler: DefaultRangeCalendarSelectionHandler(
-                instructionAfterSelectingDate: accessibilityConfigurations.returnDatePrompt
-            ),
+            selectionHandler: rangeCalendarSelectionHandler,
             calculator: calculator,
             dayAccessoryView: dayAccessoryView
         )
