@@ -178,6 +178,7 @@ extension BPKIconViewTests {
         .longArrowRight,
         .longArrowUp,
         .lounge,
+        .loyalty,
         .luggageall,
         .mail,
         .map,
