@@ -18,13 +18,14 @@
 
 import SwiftUI
 
-struct SingleCalendarMonthContainer<MonthHeader: View, DayAccessoryView: View>: View {
+struct SingleCalendarMonthContainer<DayAccessoryView: View>: View {
     @Binding var selection: CalendarSingleSelectionState?
     let calendar: Calendar
     let validRange: ClosedRange<Date>
     let accessibilityProvider: SingleDayAccessibilityProvider
     let month: Date
-    @ViewBuilder let monthHeader: MonthHeader
+    let calculator: CalendarGridCalculator
+    let selectionHandler: SingleCalendarSelectionHandler
     @ViewBuilder let dayAccessoryView: (Date) -> DayAccessoryView
     
     @ViewBuilder
@@ -52,7 +53,7 @@ struct SingleCalendarMonthContainer<MonthHeader: View, DayAccessoryView: View>: 
                 DefaultCalendarDayCell(calendar: calendar, date: dayDate)
             }
         } onSelection: {
-            selection = .single(dayDate)
+            selection = selectionHandler.newSingleSelectionStateFor(selection: dayDate, currentSelection: selection)
         }
         .accessibilityAddTraits(.isButton)
         .accessibilityAddTraits(selection?.isSelected(dayDate) == true ? .isSelected : [])
@@ -61,18 +62,16 @@ struct SingleCalendarMonthContainer<MonthHeader: View, DayAccessoryView: View>: 
     }
 
     var body: some View {
-        VStack(spacing: BPKSpacing.none) {
-            monthHeader
-            CalendarMonthGrid(
-                monthDate: month,
-                calendar: calendar,
-                validRange: validRange,
-                dayCell: makeDayCell,
-                emptyLeadingDayCell: { DefaultEmptyCalendarDayCell() },
-                emptyTrailingDayCell: { DefaultEmptyCalendarDayCell() },
-                dayAccessoryView: dayAccessoryView
-            )
-        }
+        CalendarMonthGrid(
+            monthDate: month,
+            validRange: validRange,
+            dayCell: makeDayCell,
+            disabledDayCell: { DisabledCalendarDayCell(calendar: calendar, date: $0) },
+            emptyLeadingDayCell: { DefaultEmptyCalendarDayCell() },
+            emptyTrailingDayCell: { DefaultEmptyCalendarDayCell() },
+            dayAccessoryView: dayAccessoryView,
+            calculator: calculator
+        )
     }
 }
 
@@ -97,9 +96,8 @@ struct SingleCalendarContainer_Previews: PreviewProvider {
                 dateFormatter: Self.formatter
             ),
             month: start,
-            monthHeader: {
-                BPKText("\(Self.formatter.string(from: start))")
-            },
+            calculator: DefaultCalendarGridCalculator(calendar: calendar),
+            selectionHandler: DefaultSingleCalendarSelectionHandler(),
             dayAccessoryView: { _ in
                 BPKText("20", style: .caption)
             }

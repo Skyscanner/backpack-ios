@@ -16,16 +16,18 @@
  * limitations under the License.
  */
 
-import SwiftUI
+public protocol SingleCalendarSelectionHandler {
+    func newSingleSelectionStateFor(
+        selection date: Date,
+        currentSelection: CalendarSingleSelectionState?
+    ) -> CalendarSingleSelectionState
+}
 
-struct DefaultCalendarDayCell: View {
-    let calendar: Calendar
-    let date: Date
-    
-    var body: some View {
-        BPKText("\(calendar.component(.day, from: date))", style: .label1)
-            .lineLimit(1)
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, .md)
+struct DefaultSingleCalendarSelectionHandler: SingleCalendarSelectionHandler {
+    func newSingleSelectionStateFor(
+        selection date: Date,
+        currentSelection: CalendarSingleSelectionState?
+    ) -> CalendarSingleSelectionState {
+        return .single(date)
     }
 }
