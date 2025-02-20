@@ -16,33 +16,42 @@
  * limitations under the License.
  */
 
-import SwiftUI
+import Foundation
 
-extension BPKPriceMapMarker {
+extension BPKHotelMapMarker {
     public enum State {
-        case selected
         case unselected
-        case previousSelected
+        case selected
         
         var foregroundColor: BPKColor {
             switch self {
+            case .unselected:
+                return .corePrimaryColor
             case .selected:
                 return .textOnDarkColor
-            case .unselected:
-                return .textPrimaryColor
-            case .previousSelected:
-                return .textOnLightColor
             }
         }
         
         var backgroundColor: BPKColor {
             switch self {
+            case .unselected:
+                return .powderBlueColor
             case .selected:
                 return .corePrimaryColor
-            case .unselected:
-                return .surfaceDefaultColor
-            case .previousSelected:
-                return .powderBlueColor
+            }
+        }
+        
+        var markerSize: CGSize {
+            switch self {
+            case .unselected: return CGSize(width: 20, height: BPKSpacing.lg.value)
+            case .selected: return CGSize(width: BPKSpacing.lg.value, height: 29)
+            }
+        }
+        
+        var topPadding: CGFloat {
+            switch self {
+            case .unselected: return 2
+            case .selected: return 4
             }
         }
     }

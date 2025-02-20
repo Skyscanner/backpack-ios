@@ -22,8 +22,6 @@ public struct BPKPriceMapMarker: View {
     private let state: State
     private let price: String
     
-    private let flareHeight: CGFloat = 6
-    
     public init(state: State, price: String) {
         self.state = state
         self.price = price
@@ -31,34 +29,25 @@ public struct BPKPriceMapMarker: View {
     
     public var body: some View {
         labelView
-            .if(state == .focused) { label in
-                label.overlay(
-                    LabelFlareShape(flareHeight: flareHeight)
-                        .stroke(Color(state.foregroundColor), lineWidth: BPKSpacing.sm.value)
-                )
-            }
-            .clipShape(LabelFlareShape(flareHeight: flareHeight))
+            .cornerRadius(BPKCornerRadius.sm.value)
             .shadow(.sm)
     }
     
     private var labelView: some View {
-        BPKText(price, style: state.fontStyle)
+        BPKText(price, style: .label3)
             .foregroundColor(state.foregroundColor)
             .padding(.vertical, .sm)
             .padding(.horizontal, .md)
             .background(state.backgroundColor)
-            .padding(.bottom, flareHeight)
-            .background(state.flareColor)
     }
 }
 
 struct BPKPriceMapMarker_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            BPKPriceMapMarker(state: .default, price: "£200")
-            BPKPriceMapMarker(state: .focused, price: "£200")
-            BPKPriceMapMarker(state: .viewed, price: "£200")
-            BPKPriceMapMarker(state: .disabled, price: "Sold out")
+            BPKPriceMapMarker(state: .selected, price: "£200")
+            BPKPriceMapMarker(state: .unselected, price: "£200")
+            BPKPriceMapMarker(state: .previousSelected, price: "£200")
         }
     }
 }

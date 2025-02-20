@@ -30,12 +30,12 @@ extension BPKPoiMapMarker {
                     delta: .degrees(-240)
                 )
                 
-                let courvePoint: CGFloat = 3
+                let courvePoint: CGFloat = 4
                 path.addRelativeArc(
                     center: CGPoint(x: size.width / 2, y: size.height - courvePoint),
                     radius: courvePoint,
-                    startAngle: .degrees(120),
-                    delta: .degrees(-60)
+                    startAngle: .degrees(150),
+                    delta: .degrees(-120)
                 )
                 
                 path.closeSubpath()

@@ -28,6 +28,7 @@ struct MapMarkerExampleView: View {
             case price(String, BPKPriceMapMarker.State)
             case poi(Backpack_SwiftUI.BPKIcon, BPKPoiMapMarker.State)
             case pointer
+            case hotel(BPKHotelMapMarker.State)
         }
         let id = UUID()
         let marker: Marker
@@ -42,36 +43,36 @@ struct MapMarkerExampleView: View {
             )),
             annotationItems: [
                 Annotation(
-                    marker: .price("£200", .default),
+                    marker: .price("£200", .selected),
                     coordinate: .init(latitude: 51.55, longitude: -0.1)
                 ),
                 Annotation(
-                    marker: .price("£200", .focused),
+                    marker: .price("£200", .unselected),
                     coordinate: .init(latitude: 51.53, longitude: -0.1)
                 ),
                 Annotation(
-                    marker: .price("£200", .viewed),
+                    marker: .price("£200", .previousSelected),
                     coordinate: .init(latitude: 51.51, longitude: -0.1)
-                ),
-                Annotation(
-                    marker: .price("Sold out", .disabled),
-                    coordinate: .init(latitude: 51.49, longitude: -0.1)
                 ),
                 Annotation(
                     marker: .pointer,
                     coordinate: .init(latitude: 51.47, longitude: -0.1)
                 ),
                 Annotation(
-                    marker: .poi(.landmark, .default),
+                    marker: .poi(.landmark, .unselected),
                     coordinate: .init(latitude: 51.55, longitude: -0.04)
                 ),
                 Annotation(
-                    marker: .poi(.landmark, .focused),
+                    marker: .poi(.landmark, .selected),
                     coordinate: .init(latitude: 51.53, longitude: -0.04)
                 ),
                 Annotation(
-                    marker: .poi(.landmark, .viewed),
+                    marker: .hotel(.unselected),
                     coordinate: .init(latitude: 51.51, longitude: -0.04)
+                ),
+                Annotation(
+                    marker: .hotel(.selected),
+                    coordinate: .init(latitude: 51.49, longitude: -0.04)
                 )
             ]) { item in
                 MapAnnotation(coordinate: item.coordinate) {
@@ -82,6 +83,8 @@ struct MapMarkerExampleView: View {
                         BPKPoiMapMarker(state: state, icon: icon)
                     case .pointer:
                         BPKPointerMapMarker()
+                    case .hotel(let state):
+                        BPKHotelMapMarker(state: state)
                     }
                 }
         }
