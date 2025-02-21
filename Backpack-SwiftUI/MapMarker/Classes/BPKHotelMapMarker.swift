@@ -26,10 +26,10 @@ public struct BPKHotelMapMarker: View {
     }
     
     public var body: some View {
-        poiMarker { markerShapeView }
+        hotelMarker { markerShapeView }
     }
     
-    private func poiMarker<IconView: View>(withIcon content: () -> IconView) -> some View {
+    private func hotelMarker<IconView: View>(withIcon content: () -> IconView) -> some View {
         ZStack(alignment: .top) {
             content()
             iconView

@@ -51,7 +51,7 @@ extension BPKHotelMapMarker {
         var topPadding: CGFloat {
             switch self {
             case .unselected: return 2
-            case .selected: return 4
+            case .selected: return BPKSpacing.sm.value
             }
         }
     }
