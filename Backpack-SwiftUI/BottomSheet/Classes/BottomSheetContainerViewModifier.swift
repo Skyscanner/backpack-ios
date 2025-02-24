@@ -52,11 +52,14 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
                     let detents: Set<PresentationDetent> = expansible ? [.medium, .large] : [.medium]
                     bottomSheetContent(for: detents)
                 case .fitContent:
-                    ContentFitBottomSheet(
-                        peekHeight: peekHeight,
-                        header: header,
-                        bottomSheetContent: bottomSheetContent
-                    )
+                    GeometryReader { reader in
+                        ContentFitBottomSheet(
+                            peekHeight: peekHeight,
+                            header: header,
+                            bottomSheetContent: bottomSheetContent,
+                            sheetProxy: reader
+                        )
+                    }
                 }
             }
     }

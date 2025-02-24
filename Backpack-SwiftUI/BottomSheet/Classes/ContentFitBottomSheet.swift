@@ -22,6 +22,10 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
     let peekHeight: CGFloat?
     let header: () -> Header
     let bottomSheetContent: () -> Content
+    let sheetProxy: GeometryProxy
+    
+    @State private var showInScrollView: Bool = false
+    @State private var viewHeight: CGFloat = 0
     
     @State private var detentHeight: CGFloat = 0
     
@@ -33,12 +37,55 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
         return finalDetents
     }
     
+//    func isItScrollView() -> some View {
+//        if sheetProxy.size.height + 5.0 < detentHeight {
+//            print("--- Computed ---")
+//            return
+//                ScrollView {
+//                    bottomSheetContent()
+//                }
+//        } else {
+//            print("--- Computed1 ---")
+//            return bottomSheetContent()
+//        }
+////        print("--- Computed ---")
+////        print(sheetProxy.size.height + 5.0 < detentHeight)
+////        print("--- Computed ---")
+////        return sheetProxy.size.height + 5.0 < detentHeight
+//    }
+    
     var body: some View {
         VStack {
             header()
-            bottomSheetContent()
-                .presentationDetents(detents)
+            if sheetProxy.size.height > UIScreen.main.bounds.height * 0.93 {
+                BPKText("SCROLL")
+
+                bottomSheetContent()
+                    .background(
+                        GeometryReader { reader in
+                            Color.clear.onChange(of: reader.size.height, perform: { _ in
+                                showInScrollView = sheetProxy.size.height + 5.0 < detentHeight
+                                viewHeight = reader.size.height
+                            })
+                        }
+                    )
+
+            } else {
+                BPKText("height: \(sheetProxy.size.height)")
+                BPKText("is it true: \(sheetProxy.size.height < UIScreen.main.bounds.height)")
+                
+                bottomSheetContent()
+                    .background(
+                        GeometryReader { reader in
+                            Color.clear.onChange(of: reader.size.height, perform: { _ in
+                                showInScrollView = sheetProxy.size.height + 5.0 < detentHeight
+                                viewHeight = reader.size.height
+                            })
+                        }
+                    )
+            }
         }
+        .presentationDetents(detents)
         .presentationDragIndicator(.visible)
         .readHeight()
         .onPreferenceChange(HeightPreferenceKey.self) { height in
