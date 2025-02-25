@@ -22,10 +22,11 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
     let peekHeight: CGFloat?
     let header: () -> Header
     let bottomSheetContent: () -> Content
-    let sheetProxy: GeometryProxy
+    let sheetProxy: CGSize
     
-    @State private var showInScrollView: Bool = false
-    @State private var viewHeight: CGFloat = 0
+    @State private var showInScroll: Bool = false
+    @State private var scrollViewSize: CGSize = .zero
+    @State private var isPanelInitialising: Bool = true
     
     @State private var detentHeight: CGFloat = 0
     
@@ -40,55 +41,31 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
     var body: some View {
         VStack {
             header()
-            if sheetProxy.size.height > UIScreen.main.bounds.height * 0.94 {
-                ScrollView {
-                    sheetContent()
-                        .presentationDetents([.large])
-                }
-            } else {
-                sheetContent()
-                    .presentationDetents(detents)
-            }
+            bottomSheetContent()
+                .onGeometryChange(for: CGSize.self, of: { $0.size }, action: {
+                    if showInScroll && $0.height < scrollViewSize.height {
+                        showInScroll = false
+                    }
+                })
+                .onChange(of: sheetProxy, perform: {
+                    if !isPanelInitialising {
+                        showInScroll = $0.height < detentHeight
+                    }
+                })
+                .if(showInScroll, transform: { view in
+                    ViewThatFits {
+                        ScrollView {
+                            view
+                        }
+                    }.onGeometryChange(for: CGSize.self, of: { $0.size }, action: { scrollViewSize = $0 })
+                })
+                .presentationDetents(detents)
+
         }
         .presentationDragIndicator(.visible)
-        .readHeight()
-        .onPreferenceChange(HeightPreferenceKey.self) { height in
-            if let height {
-                self.detentHeight = height
-            }
-        }
-    }
-    
-    @ViewBuilder
-    func sheetContent() -> some View {
-        bottomSheetContent()
-            .frame(width: sheetProxy.size.width)
-    }
-}
-
-private struct HeightPreferenceKey: PreferenceKey {
-    static var defaultValue: CGFloat?
-    
-    static func reduce(value: inout CGFloat?, nextValue: () -> CGFloat?) {
-        guard let nextValue = nextValue() else { return }
-        value = nextValue
-    }
-}
-
-private struct ReadHeightModifier: ViewModifier {
-    private var sizeView: some View {
-        GeometryReader { geometry in
-            Color.clear.preference(key: HeightPreferenceKey.self, value: geometry.size.height)
-        }
-    }
-    
-    func body(content: Content) -> some View {
-        content.background(sizeView)
-    }
-}
-
-private extension View {
-    func readHeight() -> some View {
-        self.modifier(ReadHeightModifier())
+        .onGeometryChange(for: CGSize.self, of: { $0.size }, action: {
+            detentHeight = $0.height
+            isPanelInitialising = sheetProxy.height == 0.0
+        })
     }
 }

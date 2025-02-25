@@ -57,7 +57,7 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
                             peekHeight: peekHeight,
                             header: header,
                             bottomSheetContent: bottomSheetContent,
-                            sheetProxy: reader
+                            sheetProxy: reader.size
                         )
                     }
                 }
