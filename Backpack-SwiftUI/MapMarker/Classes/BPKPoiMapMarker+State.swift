@@ -26,7 +26,7 @@ extension BPKPoiMapMarker {
         var backgroundColor: BPKColor {
             switch self {
             case .unselected:
-                return .purpleColor
+                return .mapPoiPinColor
             case .selected:
                 return .corePrimaryColor
             }

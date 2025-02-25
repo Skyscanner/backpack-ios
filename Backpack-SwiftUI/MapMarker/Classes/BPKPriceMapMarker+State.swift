@@ -42,7 +42,7 @@ extension BPKPriceMapMarker {
             case .unselected:
                 return .surfaceDefaultColor
             case .previousSelected:
-                return .powderBlueColor
+                return .mapPreviousSelectionColor
             }
         }
     }

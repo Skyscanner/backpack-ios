@@ -35,7 +35,7 @@ extension BPKHotelMapMarker {
         var backgroundColor: BPKColor {
             switch self {
             case .unselected:
-                return .powderBlueColor
+                return .mapPreviousSelectionColor
             case .selected:
                 return .corePrimaryColor
             }
