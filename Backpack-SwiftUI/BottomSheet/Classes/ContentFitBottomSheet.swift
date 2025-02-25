@@ -48,7 +48,7 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
                     }
                 })
                 .onChange(of: sheetProxy, perform: {
-                    if !isPanelInitialising {
+                    if $0.height != 0.0 {
                         showInScroll = $0.height < detentHeight
                     }
                 })
@@ -65,7 +65,6 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
         .presentationDragIndicator(.visible)
         .onGeometryChange(for: CGSize.self, of: { $0.size }, action: {
             detentHeight = $0.height
-            isPanelInitialising = sheetProxy.height == 0.0
         })
     }
 }

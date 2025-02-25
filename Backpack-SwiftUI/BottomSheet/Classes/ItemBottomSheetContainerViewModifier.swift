@@ -31,8 +31,6 @@ struct ItemBottomSheetContainerViewModifier<
     
     @State var selectedSheetDetent: PresentationDetent
     
-    @State private var contentFitSize: CGSize = .zero
-    
     init(
         item: Binding<Item?>,
         peekHeight: CGFloat?,

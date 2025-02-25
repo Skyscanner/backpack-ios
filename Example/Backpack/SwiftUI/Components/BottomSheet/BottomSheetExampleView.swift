@@ -33,8 +33,6 @@ struct BottomSheetExampleView: View {
     @State private var mediumFixedBottomSheetShown = false
     @State private var fitContentBottomSheetShown = false
     @State private var itemToShow: ExampleItem?
-    
-    @State private var noOfItems: Int = 0
 
     func content(_ text: String = "Bottom sheet content") -> some View {
         VStack {
@@ -102,16 +100,9 @@ struct BottomSheetExampleView: View {
                 presentingController: rootViewController,
                 bottomSheetContent: {
                     VStack {
-                        ForEach(0..<noOfItems, id: \.self) { _ in
-                            Text("Hello, World!")
-                        }
-                        
-                        BPKButton("Add one") {
-                            noOfItems += 1
-                        }
-                        
+                        BPKText("Bottom sheet content")
                         BPKButton("Do Action") {
-                            noOfItems -= 1
+                            fitContentBottomSheetShown.toggle()
                         }
                     }
                     .padding()
@@ -176,3 +167,4 @@ struct BottomSheetExampleView_Previews: PreviewProvider {
         BottomSheetExampleView()
     }
 }
+
