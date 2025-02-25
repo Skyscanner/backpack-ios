@@ -21,30 +21,23 @@ import SwiftUI
 @testable import Backpack_SwiftUI
 
 class BPKMapMarkerTests: XCTestCase {
-    func test_defaultPriceMapMarker() {
+    func test_unselectedPriceMapMarker() {
         assertSnapshot(
-            BPKPriceMapMarker(state: .default, price: "£200")
+            BPKPriceMapMarker(state: .unselected, price: "£200")
                 .padding()
         )
     }
 
-    func test_focusedPriceMapMarker() {
+    func test_selectedPriceMapMarker() {
         assertSnapshot(
-            BPKPriceMapMarker(state: .focused, price: "£200")
+            BPKPriceMapMarker(state: .selected, price: "£200")
                 .padding()
         )
     }
 
-    func test_viewedPriceMapMarker() {
+    func test_previousSelectedPriceMapMarker() {
         assertSnapshot(
-            BPKPriceMapMarker(state: .viewed, price: "£200")
-                .padding()
-        )
-    }
-
-    func test_disabledPriceMapMarker() {
-        assertSnapshot(
-            BPKPriceMapMarker(state: .disabled, price: "Sold out")
+            BPKPriceMapMarker(state: .previousSelected, price: "£200")
                 .padding()
         )
     }
@@ -57,23 +50,30 @@ class BPKMapMarkerTests: XCTestCase {
         )
     }
 
-    func test_defaultPoiMapMarker() {
+    func test_unselectedPoiMapMarker() {
         assertSnapshot(
-            BPKPoiMapMarker(state: .default, icon: .landmark)
+            BPKPoiMapMarker(state: .unselected, icon: .landmark)
                 .padding()
         )
     }
 
-    func test_focusedPoiMapMarker() {
+    func test_selectedPoiMapMarker() {
         assertSnapshot(
-            BPKPoiMapMarker(state: .focused, icon: .landmark)
+            BPKPoiMapMarker(state: .selected, icon: .landmark)
                 .padding()
         )
     }
-
-    func test_viewedPoiMapMarker() {
+    
+    func test_unselectedHotelMapMarker() {
         assertSnapshot(
-            BPKPoiMapMarker(state: .viewed, icon: .landmark)
+            BPKHotelMapMarker(state: .unselected)
+                .padding()
+        )
+    }
+    
+    func test_selectedHotelMapMarker() {
+        assertSnapshot(
+            BPKHotelMapMarker(state: .selected)
                 .padding()
         )
     }

@@ -18,20 +18,18 @@
 
 import SwiftUI
 
-public struct BPKPoiMapMarker: View {
-    private let state: State
-    private let icon: BPKIcon
+public struct BPKHotelMapMarker: View {
+    private let state: BPKHotelMapMarker.State
     
-    public init(state: State, icon: BPKIcon) {
+    public init(state: BPKHotelMapMarker.State) {
         self.state = state
-        self.icon = icon
     }
     
     public var body: some View {
-        poiMarker { markerShapeView }
+        hotelMarker { markerShapeView }
     }
     
-    private func poiMarker<IconView: View>(withIcon content: () -> IconView) -> some View {
+    private func hotelMarker<IconView: View>(withIcon content: () -> IconView) -> some View {
         ZStack(alignment: .top) {
             content()
             iconView
@@ -40,23 +38,21 @@ public struct BPKPoiMapMarker: View {
     }
     
     private var iconView: some View {
-        BPKIconView(icon)
-            .foregroundColor(.textOnDarkColor)
+        BPKIconView(.hotels)
+            .foregroundColor(state.foregroundColor)
             .scaleEffect(0.75)
     }
     
     private var markerShapeView: some View {
         Color(state.backgroundColor)
             .frame(width: state.markerSize.width, height: state.markerSize.height)
-            .clipShape(MarkerShape())
+            .clipShape(BPKPoiMapMarker.MarkerShape())
     }
 }
 
-struct BPKPoiMapMarker_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            BPKPoiMapMarker(state: .unselected, icon: .landmark)
-            BPKPoiMapMarker(state: .selected, icon: .landmark)
-        }
+#Preview {
+    VStack {
+        BPKHotelMapMarker(state: .unselected)
+        BPKHotelMapMarker(state: .selected)
     }
 }

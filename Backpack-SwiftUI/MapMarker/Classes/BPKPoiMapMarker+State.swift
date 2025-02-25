@@ -20,43 +20,29 @@ import SwiftUI
 
 extension BPKPoiMapMarker {
     public enum State {
-        case `default`
-        case focused
-        case viewed
-        
-        var foregroundColor: BPKColor {
-            switch self {
-            case .default:
-                return .surfaceDefaultColor
-            case .viewed:
-                return .coreEcoColor
-            case .focused:
-                return .statusSuccessSpotColor
-            }
-        }
+        case unselected
+        case selected
         
         var backgroundColor: BPKColor {
             switch self {
-            case .default:
-                return .statusSuccessSpotColor
-            case .viewed:
-                return .statusSuccessFillColor
-            case .focused:
-                return .surfaceDefaultColor
+            case .unselected:
+                return .mapPoiPinColor
+            case .selected:
+                return .corePrimaryColor
             }
         }
         
         var markerSize: CGSize {
             switch self {
-            case .focused: return CGSize(width: 32, height: 40)
-            default: return CGSize(width: 26, height: 32)
+            case .unselected: return CGSize(width: 20, height: BPKSpacing.lg.value)
+            case .selected: return CGSize(width: BPKSpacing.lg.value, height: 29)
             }
         }
         
         var topPadding: CGFloat {
             switch self {
-            case .focused: return BPKSpacing.md.value
-            default: return 6
+            case .unselected: return 2
+            case .selected: return BPKSpacing.sm.value
             }
         }
     }

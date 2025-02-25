@@ -23,12 +23,12 @@ public struct BPKPointerMapMarker: View {
     
     public var body: some View {
         Circle()
-            .stroke(Color(.surfaceDefaultColor), lineWidth: 2)
+            .stroke(Color(.textOnDarkColor), lineWidth: 2)
             .background(
                 Circle()
-                    .foregroundColor(.coreAccentColor)
+                    .foregroundColor(.corePrimaryColor)
             )
-            .frame(width: .base, height: .base)
+            .frame(width: 12, height: 12)
     }
 }
 

@@ -18,35 +18,28 @@ The Price Marker receives a price string and a status. The status can be one of 
 
 ```swift
 public enum BPKPriceMapMarkerStatus {
-    case `default`
-    case focused
-    case viewed
-    case disabled
+    case selected
+    case unselected
+    case previousSelected
 }
 ```
 
-### Default Price Marker
+### Selected Price Marker
 
 ```swift
-BPKPriceMapMarker(status: .default, price: "£123")
+BPKPriceMapMarker(status: .selected, price: "£123")
 ```
 
-### Focused Price Marker
+### Unselected Price Marker
 
 ```swift
-BPKPriceMapMarker(status: .focused, price: "£123")
+BPKPriceMapMarker(status: .unselected, price: "£123")
 ```
 
-### Viewed Price Marker
+### Previous Selected Price Marker
 
 ```swift
-BPKPriceMapMarker(status: .viewed, price: "£123")
-```
-
-### Disabled Price Marker
-
-```swift
-BPKPriceMapMarker(status: .disabled, price: "Sold out")
+BPKPriceMapMarker(status: .previousSelected, price: "£123")
 ```
 
 ## Pointer Marker
@@ -61,26 +54,42 @@ The Poi Marker receives an icon and a status. The status can be one of the follo
 
 ```swift
 public enum BPKPoiMapMarkerStatus {
-    case `default`
-    case focused
-    case disabled
+    case unselected
+    case selected
 }
 ```
 
-### Default Poi Marker
+### Unselected Poi Marker
 
 ```swift
-BPKPoiMapMarker(status: .default, icon: .landmark)
+BPKPoiMapMarker(status: .unselected, icon: .landmark)
 ```
 
-### Focused Poi Marker
+### Selected Poi Marker
 
 ```swift
-BPKPoiMapMarker(status: .focused, icon: .landmark)
+BPKPoiMapMarker(status: .selected, icon: .landmark)
 ```
 
-### Disabled Poi Marker
+## Hotel Marker
+
+The Hotel Marker receives a status. The status can be one of the following:
 
 ```swift
-BPKPoiMapMarker(status: .disabled, icon: .landmark)
+public enum BPKHotelMapMarkerStatus {
+    case unselected
+    case selected
+}
+```
+
+### Unselected Hotel Marker
+
+```swift
+BPKHotelMapMarker(status: .unselected)
+```
+
+### Selected Hotel Marker
+
+```swift
+BPKHotelMapMarker(status: .selected)
 ```
