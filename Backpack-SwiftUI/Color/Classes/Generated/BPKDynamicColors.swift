@@ -249,14 +249,4 @@ public extension BPKColor {
     @available(*, deprecated, message: "This colour will be removed in the next major version")
     static let primaryColor = BPKColor(red: 0.000, green: 0.384, blue: 0.890, alpha: 1)
         .darkVariant(BPKColor(red: 0.518, green: 0.914, blue: 1.000, alpha: 1))
-    
-    /// The `powderBlueColor` dynamic color from the Backpack palette.
-
-    static let powderBlueColor = BPKColor(red: 0.812, green: 0.894, blue: 1.000, alpha: 1)
-        .darkVariant(BPKColor(red: 0.812, green: 0.894, blue: 1.000, alpha: 1))
-    
-    /// The `purpleColor` dynamic color from the Backpack palette.
-
-    static let purpleColor = BPKColor(red: 0.557, green: 0.278, blue: 0.729, alpha: 1)
-        .darkVariant(BPKColor(red: 0.557, green: 0.278, blue: 0.729, alpha: 1))
 }
