@@ -22,6 +22,11 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
     let peekHeight: CGFloat?
     let header: () -> Header
     let bottomSheetContent: () -> Content
+    let sheetProxy: CGSize
+    
+    @State private var showInScroll: Bool = false
+    @State private var scrollViewSize: CGSize = .zero
+    @State private var isPanelInitialising: Bool = true
     
     @State private var detentHeight: CGFloat = 0
     
@@ -37,41 +42,29 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
         VStack {
             header()
             bottomSheetContent()
+                .onGeometryChange(for: CGSize.self, of: { $0.size }, action: {
+                    if showInScroll && $0.height < scrollViewSize.height {
+                        showInScroll = false
+                    }
+                })
+                .onChange(of: sheetProxy, perform: {
+                    if $0.height != 0.0 {
+                        showInScroll = $0.height < detentHeight
+                    }
+                })
+                .if(showInScroll, transform: { view in
+                    ViewThatFits {
+                        ScrollView {
+                            view
+                        }
+                    }.onGeometryChange(for: CGSize.self, of: { $0.size }, action: { scrollViewSize = $0 })
+                })
                 .presentationDetents(detents)
+
         }
         .presentationDragIndicator(.visible)
-        .readHeight()
-        .onPreferenceChange(HeightPreferenceKey.self) { height in
-            if let height {
-                self.detentHeight = height
-            }
-        }
-    }
-}
-
-private struct HeightPreferenceKey: PreferenceKey {
-    static var defaultValue: CGFloat?
-    
-    static func reduce(value: inout CGFloat?, nextValue: () -> CGFloat?) {
-        guard let nextValue = nextValue() else { return }
-        value = nextValue
-    }
-}
-
-private struct ReadHeightModifier: ViewModifier {
-    private var sizeView: some View {
-        GeometryReader { geometry in
-            Color.clear.preference(key: HeightPreferenceKey.self, value: geometry.size.height)
-        }
-    }
-    
-    func body(content: Content) -> some View {
-        content.background(sizeView)
-    }
-}
-
-private extension View {
-    func readHeight() -> some View {
-        self.modifier(ReadHeightModifier())
+        .onGeometryChange(for: CGSize.self, of: { $0.size }, action: {
+            detentHeight = $0.height
+        })
     }
 }
