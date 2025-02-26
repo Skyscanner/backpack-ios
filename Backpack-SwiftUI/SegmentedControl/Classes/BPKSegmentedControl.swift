@@ -90,6 +90,7 @@ public struct BPKSegmentedControl: View {
                 }
             )
             .frame(maxHeight: .infinity)
+            .disabled(selectedIndex == index)
 
             if index < items.count - 1 && selectedIndex != index && selectedIndex != index + 1 {
                 separator
