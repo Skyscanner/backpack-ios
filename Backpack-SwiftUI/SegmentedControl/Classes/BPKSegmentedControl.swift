@@ -90,6 +90,7 @@ public struct BPKSegmentedControl: View {
                 }
             )
             .frame(maxHeight: .infinity)
+            .disabled(selectedIndex == index)
 
             if index < items.count - 1 && selectedIndex != index && selectedIndex != index + 1 {
                 separator
@@ -121,7 +122,7 @@ public struct BPKSegmentedControl: View {
 // MARK: - Default component style
 public extension BPKSegmentedControl.Style {
     static let defaultStyle = Self(
-        bgColor: .segmentedControlCanvasDefaultColor,
+        bgColor: .canvasContrastColor,
         textColor: .textPrimaryColor,
         selectedBgColor: .corePrimaryColor,
         selectedTextColor: .textOnDarkColor
