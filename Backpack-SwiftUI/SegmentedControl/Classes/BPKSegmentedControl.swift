@@ -122,7 +122,7 @@ public struct BPKSegmentedControl: View {
 // MARK: - Default component style
 public extension BPKSegmentedControl.Style {
     static let defaultStyle = Self(
-        bgColor: .segmentedControlCanvasDefaultColor,
+        bgColor: .canvasContrastColor,
         textColor: .textPrimaryColor,
         selectedBgColor: .corePrimaryColor,
         selectedTextColor: .textOnDarkColor
