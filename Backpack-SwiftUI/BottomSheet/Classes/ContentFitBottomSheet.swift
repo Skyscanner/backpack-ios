@@ -23,7 +23,10 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
     let header: () -> Header
     let bottomSheetContent: () -> Content
     
+    @State var headerHeight: CGFloat = 0.0
     @State private var detentHeight: CGFloat = 0
+    @State private var initialDetentHeight: CGFloat = 0
+    private let maximumDetentHeight: CGFloat = UIScreen.main.bounds.height * 0.95
     
     private var detents: Set<PresentationDetent> {
         var finalDetents: Set<PresentationDetent> = [.height(detentHeight)]
@@ -34,44 +37,33 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
     }
     
     var body: some View {
-        VStack {
-            header()
-            bottomSheetContent()
-                .presentationDetents(detents)
-        }
-        .presentationDragIndicator(.visible)
-        .readHeight()
-        .onPreferenceChange(HeightPreferenceKey.self) { height in
-            if let height {
-                self.detentHeight = height
+        GeometryReader { _ in
+            VStack(spacing: BPKSpacing.none) {
+                header()
+                    .onGeometryChange(for: CGFloat.self, of: { $0.size.height }, action: { newValue in
+                        headerHeight = newValue
+                    })
+                ScrollView {
+                    bottomSheetContent()
+                        .avoidKeyboard()
+                }
+                .frame(maxHeight: maximumDetentHeight - headerHeight)
+                .fixedSize(horizontal: false, vertical: true)
             }
+            .onGeometryChange(for: CGFloat.self) { geometry in
+                if detentHeight != initialDetentHeight && geometry.size.height > maximumDetentHeight {
+                    return detentHeight
+                }
+                return geometry.size.height
+            } action: { newValue in
+                if initialDetentHeight == 0 {
+                    initialDetentHeight = newValue
+                }
+                detentHeight = newValue
+            }
+            .presentationDetents(detents)
+            .presentationDragIndicator(.visible)
         }
-    }
-}
-
-private struct HeightPreferenceKey: PreferenceKey {
-    static var defaultValue: CGFloat?
-    
-    static func reduce(value: inout CGFloat?, nextValue: () -> CGFloat?) {
-        guard let nextValue = nextValue() else { return }
-        value = nextValue
-    }
-}
-
-private struct ReadHeightModifier: ViewModifier {
-    private var sizeView: some View {
-        GeometryReader { geometry in
-            Color.clear.preference(key: HeightPreferenceKey.self, value: geometry.size.height)
-        }
-    }
-    
-    func body(content: Content) -> some View {
-        content.background(sizeView)
-    }
-}
-
-private extension View {
-    func readHeight() -> some View {
-        self.modifier(ReadHeightModifier())
+        .ignoresSafeArea(.keyboard)
     }
 }
