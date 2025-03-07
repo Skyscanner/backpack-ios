@@ -33,9 +33,10 @@ BPKDynamicStack {
 
 ```swift
 BPKDynamicStack(
-    horizontalAlignment: .leading,
-    verticalAlignment: .center,
-    spacing: .md,
+    primaryHStackAlignment: .leading,
+    secondaryVStackAlignment: .center,
+    primaryHStackSpacing: BPKSpacing = .none,
+    secondaryVStackSpacing: BPKSpacing = .none,
     threshold: .accessibility1
 ) {
     BPKText("First text", style: .heading1)

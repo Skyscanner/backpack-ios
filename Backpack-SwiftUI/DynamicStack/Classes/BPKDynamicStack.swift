@@ -49,25 +49,37 @@ public struct BPKDynamicStack<Content: View>: View {
     }
 
     /**
-     Convenience initialiser that allows specifying alignment and spacing while maintaining dynamic layout switching.
+     Initialises the stack with custom alignments, spacing, and a threshold for switching layouts on Dynamic Type size.
      - Parameters:
-       - horizontalAlignment: The alignment for the vertical stack.
-       - verticalAlignment: The alignment for the horizontal stack.
-       - spacing: The spacing between elements in both layouts.
+       - primaryHStackAlignment: The vertical alignment for the primary horizontal stack.
+       - primaryHStackSpacing: The spacing between elements in the primary horizontal stack.
+       - secondaryVStackSpacing: The spacing between elements in the secondary vertical stack.
+       - secondaryVStackAlignment: The horizontal alignment for the secondary vertical stack.
        - threshold: The Dynamic Type size threshold at which the layout switches.
        - content: The view content inside the stack.
      */
     public init(
-        horizontalAlignment: HorizontalAlignment = .center,
-        verticalAlignment: VerticalAlignment = .center,
-        spacing: BPKSpacing = .none,
+        primaryHStackAlignment: VerticalAlignment = .center,
+        primaryHStackSpacing: BPKSpacing = .none,
+        secondaryVStackAlignment: HorizontalAlignment = .center,
+        secondaryVStackSpacing: BPKSpacing = .none,
         threshold: DynamicTypeSize = .accessibility1,
         @ViewBuilder content: () -> Content
     ) {
         self.init(
             threshold: threshold,
-            primaryLayout: AnyLayout(HStackLayout(alignment: verticalAlignment, spacing: spacing.value)),
-            secondaryLayout: AnyLayout(VStackLayout(alignment: horizontalAlignment, spacing: spacing.value)),
+            primaryLayout: AnyLayout(
+                HStackLayout(
+                    alignment: primaryHStackAlignment,
+                    spacing: primaryHStackSpacing.value
+                )
+            ),
+            secondaryLayout: AnyLayout(
+                VStackLayout(
+                    alignment: secondaryVStackAlignment,
+                    spacing: secondaryVStackSpacing.value
+                )
+            ),
             content: content
         )
     }
