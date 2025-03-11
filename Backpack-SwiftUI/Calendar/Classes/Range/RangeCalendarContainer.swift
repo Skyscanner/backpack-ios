@@ -103,7 +103,6 @@ struct RangeCalendarMonthContainer<DayAccessoryView: View>: View {
                 rangeSelectionState: selectionState
             )
         ))
-//        .accessibility(addTraits: .isButton)
     }
     
     private func initialSelection(_ initialDateSelection: Date, matchesDate date: Date) -> Bool {
