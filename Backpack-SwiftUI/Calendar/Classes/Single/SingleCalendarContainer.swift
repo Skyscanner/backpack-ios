@@ -55,7 +55,7 @@ struct SingleCalendarMonthContainer<DayAccessoryView: View>: View {
         } onSelection: {
             selection = selectionHandler.newSingleSelectionStateFor(selection: dayDate, currentSelection: selection)
         }
-        .accessibilityAddTraits(.isButton)
+//        .accessibilityAddTraits(.isButton)
         .accessibilityAddTraits(selection?.isSelected(dayDate) == true ? .isSelected : [])
         .accessibilityLabel(accessibilityProvider.accessibilityLabel(for: dayDate, selection: selection))
         .accessibilityHint(accessibilityProvider.accessibilityHint(for: dayDate, selection: selection))

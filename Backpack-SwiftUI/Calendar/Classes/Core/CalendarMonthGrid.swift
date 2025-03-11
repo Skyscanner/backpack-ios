@@ -91,6 +91,8 @@ struct CalendarMonthGrid<
                     .modifier(ReadSizeModifier { accessoryViewHeight = max($0.height, accessoryViewHeight ?? 0) })
             }
             .frame(maxWidth: .infinity)
+            .accessibilityElement(children: .combine)
+            .accessibilityAddTraits(.isButton)
         }
     }
     
