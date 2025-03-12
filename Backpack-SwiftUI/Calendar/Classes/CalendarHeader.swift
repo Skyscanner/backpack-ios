@@ -34,7 +34,7 @@ struct CalendarHeader: View {
             }
             Divider()
         }
-        .accessibilityHidden(true)
+        .accessibilityChildren { EmptyView().accessibilityHidden(true) }
     }
     
     private var weekdays: [String] {
