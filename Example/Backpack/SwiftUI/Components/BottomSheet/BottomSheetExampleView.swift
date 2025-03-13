@@ -54,7 +54,7 @@ struct BottomSheetExampleView: View {
                     action: { closableBottomSheetShown.toggle() }
                 ),
                 presentingController: rootViewController,
-                bottomSheetContent: content()
+                bottomSheetContent: { content() }
             )
             .bpkBottomSheet(
                 isPresented: $largeBottomSheetShown,
@@ -65,7 +65,7 @@ struct BottomSheetExampleView: View {
                     action: { largeBottomSheetShown.toggle() }
                 ),
                 presentingController: rootViewController,
-                bottomSheetContent: content()
+                bottomSheetContent: { content() }
             )
             .bpkBottomSheet(
                 isPresented: $mediumBottomSheetShown,
@@ -76,7 +76,7 @@ struct BottomSheetExampleView: View {
                     action: { mediumBottomSheetShown.toggle() }
                 ),
                 presentingController: rootViewController,
-                bottomSheetContent: content()
+                bottomSheetContent: { content() }
             )
             .bpkBottomSheet(
                 isPresented: $mediumFixedBottomSheetShown,
@@ -87,7 +87,7 @@ struct BottomSheetExampleView: View {
                     action: { mediumBottomSheetShown.toggle() }
                 ),
                 presentingController: rootViewController,
-                bottomSheetContent: content()
+                bottomSheetContent: { content() }
             )
             .bpkBottomSheet(
                 isPresented: $fitContentBottomSheetShown,
@@ -98,7 +98,7 @@ struct BottomSheetExampleView: View {
                     action: { fitContentBottomSheetShown.toggle() }
                 ),
                 presentingController: rootViewController,
-                bottomSheetContent:
+                bottomSheetContent: {
                     VStack {
                         BPKText("Bottom sheet content")
                         BPKButton("Do Action") {
@@ -106,6 +106,7 @@ struct BottomSheetExampleView: View {
                         }
                     }
                     .padding()
+                }
             )
     }
     

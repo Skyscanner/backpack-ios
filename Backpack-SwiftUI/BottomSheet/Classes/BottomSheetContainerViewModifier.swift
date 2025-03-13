@@ -21,9 +21,9 @@ import SwiftUI
 struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>: ViewModifier {
     let peekHeight: CGFloat?
     @Binding var isPresented: Bool
-    @ViewBuilder let header: Header
+    @ViewBuilder let header: () -> Header
     let contentMode: BPKBottomSheetContentMode
-    let bottomSheetContent: BottomSheetContent
+    let bottomSheetContent: () -> BottomSheetContent
     
     @State var selectedSheetDetent: PresentationDetent
     
@@ -31,8 +31,8 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
         isPresented: Binding<Bool>,
         peekHeight: CGFloat?,
         contentMode: BPKBottomSheetContentMode,
-        header: Header,
-        bottomSheetContent: BottomSheetContent
+        @ViewBuilder header: @escaping () -> Header,
+        @ViewBuilder bottomSheetContent: @escaping () -> BottomSheetContent
     ) {
         self._isPresented = isPresented
         self.peekHeight = peekHeight
@@ -54,8 +54,8 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
                 case .fitContent:
                     ContentFitBottomSheet(
                         peekHeight: peekHeight,
-                        header: header,
-                        bottomSheetContent: bottomSheetContent
+                        header: header(),
+                        bottomSheetContent: bottomSheetContent()
                     )
                 }
             }
@@ -67,8 +67,8 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
             finalDetents.insert(.height(peekHeight))
         }
         return VStack {
-            header
-            bottomSheetContent
+            header()
+            bottomSheetContent()
                 .presentationDetents(finalDetents, selection: $selectedSheetDetent)
                 .presentationDragIndicator(.visible)
         }

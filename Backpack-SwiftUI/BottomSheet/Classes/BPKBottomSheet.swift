@@ -48,17 +48,21 @@ public extension View {
                 isPresented: isPresented,
                 peekHeight: peekHeight,
                 contentMode: contentMode,
-                header: header(
-                    closeAction: closeAction(
-                        closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
-                        closeAction: { isPresented.wrappedValue.toggle() }
-                    ),
-                    title: title,
-                    action: action
-                ),
-                bottomSheetContent: bottomSheetContent()
-                    .interactiveDismissDisabled()
-                    .presentationBackgroundInteraction(PresentationBackgroundInteraction.enabled)
+                header: {
+                    header(
+                        closeAction: closeAction(
+                            closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
+                            closeAction: { isPresented.wrappedValue.toggle() }
+                        ),
+                        title: title,
+                        action: action
+                    )
+                },
+                bottomSheetContent: {
+                    bottomSheetContent()
+                        .interactiveDismissDisabled()
+                        .presentationBackgroundInteraction(PresentationBackgroundInteraction.enabled)
+                }
 
             )
         )
@@ -86,21 +90,23 @@ public extension View {
         title: String? = nil,
         action: BPKBottomSheetAction? = nil,
         presentingController: UIViewController,
-        bottomSheetContent: BottomSheetContent
+        @ViewBuilder bottomSheetContent: @escaping () -> BottomSheetContent
     ) -> some View {
         modifier(
             BottomSheetContainerViewModifier(
                 isPresented: isPresented,
                 peekHeight: nil,
                 contentMode: contentMode,
-                header: header(
-                    closeAction: closeAction(
-                        closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
-                        closeAction: { isPresented.wrappedValue.toggle() }
-                    ),
-                    title: title,
-                    action: action
-                ),
+                header: {
+                    header(
+                        closeAction: closeAction(
+                            closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
+                            closeAction: { isPresented.wrappedValue.toggle() }
+                        ),
+                        title: title,
+                        action: action
+                    )
+                },
                 bottomSheetContent: bottomSheetContent
             )
         )
@@ -233,7 +239,9 @@ struct BPKBottomSheet_Previews: PreviewProvider {
                         title: "Action",
                         action: {}),
                     presentingController: UIViewController(),
-                    bottomSheetContent: BPKText("Bottom sheet content")
+                    bottomSheetContent: {
+                        BPKText("Bottom sheet content")
+                    }
                 )
         }
     }
