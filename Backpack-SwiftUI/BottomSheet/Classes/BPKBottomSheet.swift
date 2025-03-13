@@ -63,7 +63,6 @@ public extension View {
                         .interactiveDismissDisabled()
                         .presentationBackgroundInteraction(PresentationBackgroundInteraction.enabled)
                 }
-
             )
         )
     }
@@ -238,11 +237,9 @@ struct BPKBottomSheet_Previews: PreviewProvider {
                     action: BPKBottomSheetAction(
                         title: "Action",
                         action: {}),
-                    presentingController: UIViewController(),
-                    bottomSheetContent: {
-                        BPKText("Bottom sheet content")
-                    }
-                )
+                    presentingController: UIViewController()) {
+                    BPKText("Bottom sheet content")
+                }
         }
     }
 }
