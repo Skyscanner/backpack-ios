@@ -20,8 +20,8 @@ import SwiftUI
 
 struct ContentFitBottomSheet<Content: View, Header: View>: View {
     let peekHeight: CGFloat?
-    let header: () -> Header
-    let bottomSheetContent: () -> Content
+    let header: Header
+    let bottomSheetContent: Content
     
     @State var headerHeight: CGFloat = 0.0
     @State private var detentHeight: CGFloat = 0
@@ -39,12 +39,12 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
     var body: some View {
         GeometryReader { _ in
             VStack(spacing: BPKSpacing.none) {
-                header()
+                header
                     .onGeometryChange(for: CGFloat.self, of: { $0.size.height }, action: { newValue in
                         headerHeight = newValue
                     })
                 ScrollView {
-                    bottomSheetContent()
+                    bottomSheetContent
                         .avoidKeyboard()
                 }
                 .frame(maxHeight: maximumDetentHeight - headerHeight)
