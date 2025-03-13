@@ -25,6 +25,7 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
     let rangeCalendarSelectionHandler: RangeCalendarSelectionHandler
     let validRange: ClosedRange<Date>
     let monthScroll: MonthScroll?
+    let scrollLanded: (() -> Void)?
     let calculator: CalendarGridCalculator
     @ViewBuilder let monthHeader: (_ monthDate: Date) -> MonthHeader
     @ViewBuilder let dayAccessoryView: (Date) -> DayAccessoryView
@@ -40,7 +41,8 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
         CalendarContainer(
             calendar: calendar,
             validRange: validRange,
-            monthScroll: monthScroll
+            monthScroll: monthScroll,
+            scrollLanded: scrollLanded
         ) { month in
             VStack(spacing: BPKSpacing.none) {
                 monthHeader(month)

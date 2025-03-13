@@ -22,9 +22,11 @@ struct CalendarContainer<MonthContent: View>: View {
     let calendar: Calendar
     let validRange: ClosedRange<Date>
     let monthScroll: MonthScroll?
+    let scrollLanded: (() -> Void)?
     @ViewBuilder let monthContent: (_ month: Date) -> MonthContent
 
     @State private var hasScrolledToItem = false
+    private let coordinateSpaceName = "calendar_month_coordinates_space"
 
     var body: some View {
         ScrollViewReader { proxy in
@@ -41,8 +43,14 @@ struct CalendarContainer<MonthContent: View>: View {
                         scrollIfNeeded(scrollProxy: proxy)
                     }
                 }
+                .onScrollEnd(in: .named(coordinateSpaceName), action: landedScrollPositionUpdated(_:))
             }
+            .coordinateSpace(name: coordinateSpaceName)
         }
+    }
+
+    private func landedScrollPositionUpdated(_ position: CGFloat) {
+        scrollLanded?()
     }
 
     /// Generates a unique identifier for a given `Date` using the "yyyy-MM" format.
@@ -96,6 +104,7 @@ struct CalendarContainer_Previews: PreviewProvider {
             calendar: calendar,
             validRange: start...end,
             monthScroll: monthScroll,
+            scrollLanded: nil,
             monthContent: { monthNumber in
                 VStack {
                     BPKText("Calendar Grid \(monthNumber)")

@@ -41,6 +41,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
     let selectionType: CalendarSelectionType
     let validRange: ClosedRange<Date>
     private var accessoryAction: ((Date) -> CalendarMonthAccessoryAction?)?
+    private var scrollMonthLanded: ((Date) -> Void)?
     private var initialMonthScroll: MonthScroll?
     private let monthHeaderDateFormatter: DateFormatter
     private let singleCalendarSelectionHandler: SingleCalendarSelectionHandler
@@ -90,6 +91,8 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
                         rangeCalendarSelectionHandler: rangeCalendarSelectionHandler,
                         validRange: validRange,
                         monthScroll: initialMonthScroll,
+                            scrollMonthLanded?(currentlyShownMonth)
+                        },
                         calculator: InMemoryCacheCalendarGridCalculator(
                             decoratee: DefaultCalendarGridCalculator(calendar: calendar)
                         ),
@@ -131,6 +134,13 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
     public func monthAccessoryAction(_ action: ((Date) -> CalendarMonthAccessoryAction?)?) -> BPKCalendar {
         var result = self
         result.accessoryAction = action
+        return result
+    }
+
+    /// Sets CTA call for when scrolling landed in the calendar, returning the first day of landed month inside the action.
+    public func scrollMonthLandedAction(_ action: @escaping ((Date) -> Void)) -> BPKCalendar {
+        var result = self
+        result.scrollMonthLanded = action
         return result
     }
 }
