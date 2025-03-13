@@ -91,6 +91,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
                         rangeCalendarSelectionHandler: rangeCalendarSelectionHandler,
                         validRange: validRange,
                         monthScroll: initialMonthScroll,
+                        scrollLanded: {
                             scrollMonthLanded?(currentlyShownMonth)
                         },
                         calculator: InMemoryCacheCalendarGridCalculator(
