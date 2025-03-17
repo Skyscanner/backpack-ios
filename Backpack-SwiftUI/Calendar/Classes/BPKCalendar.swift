@@ -49,7 +49,8 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
     private let showFloatYearLabel: Bool
     private let dayAccessoryView: (Date) -> DayAccessoryView
     @State private var currentlyShownMonth: Date
-    
+    @State private var currentlyTopMostMonth: Date
+
     public init(
         selectionType: CalendarSelectionType,
         calendar: Calendar,
@@ -62,6 +63,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
     ) {
         self.dayAccessoryView = dayAccessoryView
         _currentlyShownMonth = State(initialValue: validRange.lowerBound)
+        _currentlyTopMostMonth = State(initialValue: validRange.lowerBound)
         self.validRange = validRange
         self.calendar = calendar
         self.selectionType = selectionType
@@ -92,7 +94,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
                         validRange: validRange,
                         monthScroll: initialMonthScroll,
                         scrollLanded: {
-                            scrollMonthLanded?(currentlyShownMonth)
+                            scrollMonthLanded?(currentlyTopMostMonth)
                         },
                         calculator: InMemoryCacheCalendarGridCalculator(
                             decoratee: DefaultCalendarGridCalculator(calendar: calendar)
@@ -116,6 +118,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
             validRange: validRange,
             accessoryAction: accessoryAction,
             currentlyShownMonth: $currentlyShownMonth,
+            currentlyTopMostMonth: $currentlyTopMostMonth,
             parentProxy: calendarProxy
         )
     }

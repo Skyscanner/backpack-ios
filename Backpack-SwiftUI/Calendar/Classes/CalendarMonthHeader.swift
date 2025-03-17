@@ -27,6 +27,7 @@ struct CalendarMonthHeader: View {
     let validRange: ClosedRange<Date>
     let accessoryAction: ((Date) -> CalendarMonthAccessoryAction?)?
     @Binding var currentlyShownMonth: Date
+    @Binding var currentlyTopMostMonth: Date
     let parentProxy: GeometryProxy
     
     var body: some View {
@@ -39,6 +40,10 @@ struct CalendarMonthHeader: View {
                 if isCurrentlyShowingMonth(proxy: monthProxy) {
                     Color.clear
                         .onAppear { currentlyShownMonth = monthDate }
+                }
+                if isTopMostMonth(proxy: monthProxy) {
+                    Color.clear
+                        .onAppear { currentlyTopMostMonth = monthDate }
                 }
             }
             .frame(width: 1)
@@ -77,7 +82,18 @@ struct CalendarMonthHeader: View {
         let calendarVerticalCenter = yParentOrigin + parentHeight / 2
         let currentlyShownValidationRange = yParentOrigin...calendarVerticalCenter
         let yOrigin = proxy.frame(in: .global).origin.y
+        
         return currentlyShownValidationRange.contains(yOrigin)
+    }
+
+    private func isTopMostMonth(proxy: GeometryProxy) -> Bool {
+        let parentGlobalFrame = parentProxy.frame(in: .global)
+        let yParentOrigin = parentGlobalFrame.origin.y
+
+        let monthGlobalFrame = proxy.frame(in: .global)
+        let yMonthOrigin = monthGlobalFrame.origin.y
+
+        return yMonthOrigin <= yParentOrigin
     }
 }
 
@@ -101,7 +117,7 @@ struct CalendarMonthHeader_Previews: PreviewProvider {
                 calendar: Calendar.current,
                 validRange: start...end,
                 accessoryAction: { _ in return .init(title: "Action", action: .custom({ _ in })) },
-                currentlyShownMonth: .constant(Date()),
+                currentlyShownMonth: .constant(Date()), currentlyTopMostMonth: .constant(Date()),
                 parentProxy: proxy
             )
             .border(.black)
