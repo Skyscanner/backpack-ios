@@ -58,8 +58,8 @@ struct ItemBottomSheetContainerViewModifier<
                 case .fitContent:
                     ContentFitBottomSheet(
                         peekHeight: peekHeight,
-                        header: header,
-                        bottomSheetContent: { bottomSheetContent(item) }
+                        header: header(),
+                        bottomSheetContent: bottomSheetContent(item)
                     )
                 }
             }
