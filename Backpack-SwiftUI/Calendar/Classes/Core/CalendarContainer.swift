@@ -17,16 +17,35 @@
  */
 
 import SwiftUI
+import Combine
 
 struct CalendarContainer<MonthContent: View>: View {
     let calendar: Calendar
     let validRange: ClosedRange<Date>
+    let parentProxy: GeometryProxy
     let monthScroll: MonthScroll?
-    let scrollLanded: (() -> Void)?
+    let onScrollToMonth: ((Date) -> Void)?
     @ViewBuilder let monthContent: (_ month: Date) -> MonthContent
 
     @State private var hasScrolledToItem = false
-    private let coordinateSpaceName = "calendar_month_coordinates_space"
+    @StateObject private var visibilityObserver: ItemVisibilityObserver
+
+    init(
+        calendar: Calendar,
+        validRange: ClosedRange<Date>,
+        parentProxy: GeometryProxy,
+        monthScroll: MonthScroll?,
+        onScrollToMonth: ((Date) -> Void)?,
+        monthContent: @escaping (_ month: Date) -> MonthContent
+    ) {
+        _visibilityObserver = StateObject(wrappedValue: ItemVisibilityObserver(parentProxy: parentProxy))
+        self.calendar = calendar
+        self.validRange = validRange
+        self.parentProxy = parentProxy
+        self.monthScroll = monthScroll
+        self.onScrollToMonth = onScrollToMonth
+        self.monthContent = monthContent
+    }
 
     var body: some View {
         ScrollViewReader { proxy in
@@ -38,19 +57,35 @@ struct CalendarContainer<MonthContent: View>: View {
                             .if(monthScroll != nil, transform: { view in
                                 view.id(scrollId(date: firstDayOfMonth))
                             })
+                            .background(
+                                GeometryReader { geo in
+                                    Color.clear
+                                        .preference(
+                                            key: ItemVisibilityPreferenceKey.self,
+                                            value: [monthIndex: geo.frame(in: .global)]
+                                        )
+                                }
+                            )
                     }
                     .onAppear {
                         scrollIfNeeded(scrollProxy: proxy)
                     }
                 }
-                .onScrollEnd(in: .named(coordinateSpaceName), action: landedScrollPositionUpdated(_:))
+                .onPreferenceChange(ItemVisibilityPreferenceKey.self) { preferences in
+                    visibilityObserver.updatePreferences(preferences)
+                }
+                .onChange(of: visibilityObserver.visibleItems) { newVisibleItems in
+                    updateOnScrollToMonthHandler(newVisibleItems: newVisibleItems)
+                }
             }
-            .coordinateSpace(name: coordinateSpaceName)
         }
     }
 
-    private func landedScrollPositionUpdated(_ position: CGFloat) {
-        scrollLanded?()
+    private func updateOnScrollToMonthHandler(newVisibleItems: [Int]? = nil) {
+        guard let topMostVisibleMonthIndex = (newVisibleItems ?? visibilityObserver.visibleItems).sorted().first else {
+            return
+        }
+        onScrollToMonth?(firstDayOf(monthIndex: topMostVisibleMonthIndex))
     }
 
     /// Generates a unique identifier for a given `Date` using the "yyyy-MM" format.
@@ -100,17 +135,64 @@ struct CalendarContainer_Previews: PreviewProvider {
         let end = calendar.date(from: .init(year: 2025, month: 12, day: 25))!
         let monthScroll = MonthScroll(monthToScroll: start)
 
-        CalendarContainer(
-            calendar: calendar,
-            validRange: start...end,
-            monthScroll: monthScroll,
-            scrollLanded: nil,
-            monthContent: { monthNumber in
-                VStack {
-                    BPKText("Calendar Grid \(monthNumber)")
-                    Divider()
+        GeometryReader { proxy in
+            CalendarContainer(
+                calendar: calendar,
+                validRange: start...end,
+                parentProxy: proxy,
+                monthScroll: monthScroll,
+                onScrollToMonth: nil,
+                monthContent: { monthNumber in
+                    VStack {
+                        BPKText("Calendar Grid \(monthNumber)")
+                        Divider()
+                    }
+                }
+            )
+        }
+    }
+}
+
+// MARK: - Item Visibility Detection in Scroll View
+private struct ItemVisibilityPreferenceKey: PreferenceKey {
+    static var defaultValue: [Int: CGRect] = [:]
+
+    static func reduce(value: inout [Int: CGRect], nextValue: () -> [Int: CGRect]) {
+        value.merge(nextValue(), uniquingKeysWith: { $1 })
+    }
+}
+
+private class ItemVisibilityObserver: ObservableObject {
+    @Published var visibleItems: [Int] = []
+
+    private let preferencePublisher = PassthroughSubject<[Int: CGRect], Never>()
+    private var cancellables = Set<AnyCancellable>()
+
+    private var lastEmittedVisibleItems: [Int] = []
+
+    init(parentProxy: GeometryProxy) {
+        preferencePublisher
+            .map { preferences in
+                let parentFrame = parentProxy.frame(in: .global)
+                return preferences.filter { (_, frame) in
+                    frame.intersects(parentFrame)
+                }.map { $0.key }
+            }
+            .removeDuplicates() // Ensures we don't debounce if the list hasn't changed
+            .debounce(for: .milliseconds(200), scheduler: DispatchQueue.main)
+            .sink { [weak self] newVisibleItems in
+                guard let self = self else { return }
+
+                // Emit only if there's a real change in visible items
+                if self.lastEmittedVisibleItems != newVisibleItems {
+                    self.visibleItems = newVisibleItems
+                    self.lastEmittedVisibleItems = newVisibleItems
                 }
             }
-        )
+            .store(in: &cancellables)
+    }
+
+    func updatePreferences(_ preferences: [Int: CGRect]) {
+        preferencePublisher.send(preferences)
     }
 }
