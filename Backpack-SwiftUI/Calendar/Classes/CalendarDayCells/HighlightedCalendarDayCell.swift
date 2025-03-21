@@ -16,13 +16,19 @@
  * limitations under the License.
  */
 
-import Foundation
+import SwiftUI
 
-/// The `CalendarSingleSelectionState` enum represents the different states of a single selection.
-public enum CalendarSingleSelectionState {
-    /// The state, with single date selection
-    case single(Date, highlightedDates: Set<Date>? = nil)
-
-    /// The state the user has selected the whole month.
-    case wholeMonth(ClosedRange<Date>, accessibilityConfig: WholeMonthAccessibilityConfigurations)
+struct HighlightedCalendarDayCell: View {
+    let calendar: Calendar
+    let date: Date
+    
+    var body: some View {
+        BPKText("\(calendar.component(.day, from: date))", style: .label1)
+            .lineLimit(1)
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, .md)
+            .overlay {
+                Circle().stroke(Color.blue, lineWidth: 2)
+            }
+    }
 }

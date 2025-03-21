@@ -31,27 +31,7 @@ struct SingleCalendarMonthContainer<DayAccessoryView: View>: View {
     @ViewBuilder
     private func makeDayCell(_ dayDate: Date) -> some View {
         CalendarSelectableCell {
-            switch selection {
-            case .single(let date):
-                if date == dayDate {
-                    SingleSelectedCell(calendar: calendar, date: dayDate)
-                } else {
-                    DefaultCalendarDayCell(calendar: calendar, date: dayDate)
-                }
-            case .wholeMonth(let closedRange, _):
-                if closedRange.contains(dayDate) {
-                    RangeSelectionCalendarDayCell(
-                        date: dayDate,
-                        selection: closedRange,
-                        calendar: calendar,
-                        highlightRangeEnds: false
-                    )
-                } else {
-                    DefaultCalendarDayCell(calendar: calendar, date: dayDate)
-                }
-            case .none:
-                DefaultCalendarDayCell(calendar: calendar, date: dayDate)
-            }
+            createCell(dayDate: dayDate)
         } onSelection: {
             selection = selectionHandler.newSingleSelectionStateFor(selection: dayDate, currentSelection: selection)
         }
@@ -59,6 +39,34 @@ struct SingleCalendarMonthContainer<DayAccessoryView: View>: View {
         .accessibilityAddTraits(selection?.isSelected(dayDate) == true ? .isSelected : [])
         .accessibilityLabel(accessibilityProvider.accessibilityLabel(for: dayDate, selection: selection))
         .accessibilityHint(accessibilityProvider.accessibilityHint(for: dayDate, selection: selection))
+    }
+    
+    @ViewBuilder func createCell(dayDate: Date) -> some View {
+        switch selection {
+        case .single(let date, let highlightedDates):
+            if highlightedDates?.contains(dayDate) ?? false && date == dayDate {
+                HighlightedSelectedCalendarDayCell(calendar: calendar, date: dayDate)
+            } else if date == dayDate {
+                SingleSelectedCell(calendar: calendar, date: dayDate)
+            } else if highlightedDates?.contains(dayDate) ?? false {
+                HighlightedCalendarDayCell(calendar: calendar, date: dayDate)
+            } else {
+                DefaultCalendarDayCell(calendar: calendar, date: dayDate)
+            }
+        case .wholeMonth(let closedRange, _):
+            if closedRange.contains(dayDate) {
+                RangeSelectionCalendarDayCell(
+                    date: dayDate,
+                    selection: closedRange,
+                    calendar: calendar,
+                    highlightRangeEnds: false
+                )
+            } else {
+                DefaultCalendarDayCell(calendar: calendar, date: dayDate)
+            }
+        case .none:
+            DefaultCalendarDayCell(calendar: calendar, date: dayDate)
+        }
     }
 
     var body: some View {
