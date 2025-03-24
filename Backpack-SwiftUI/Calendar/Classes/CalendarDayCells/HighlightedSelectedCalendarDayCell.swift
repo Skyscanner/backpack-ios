@@ -34,20 +34,5 @@ struct HighlightedSelectedCalendarDayCell: View {
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, .md)
         }
-//        GeometryReader { geometry in
-//            let size = min(geometry.size.width, geometry.size.height)
-//            ZStack {
-//                BPKText("\(calendar.component(.day, from: date))", style: .label1)
-//                    .foregroundColor(.textPrimaryInverseColor)
-//                    .lineLimit(1)
-//                    .frame(width: size, height: size)
-//                    .padding(.vertical, .md)
-//                Circle().fill(Color(.coreAccentColor))
-//                    .frame(width: size * 0.8, height: size * 0.8)
-//                Circle().stroke(Color(.coreAccentColor), lineWidth: 1)
-//                    .frame(width: size, height: size)
-//            }
-//            .frame(width: geometry.size.width, height: geometry.size.height)
-//        }
     }
 }
