@@ -26,6 +26,7 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
     let validRange: ClosedRange<Date>
     let monthScroll: MonthScroll?
     let calculator: CalendarGridCalculator
+    let highlightedDates: Set<Date>?
     @ViewBuilder let monthHeader: (_ monthDate: Date) -> MonthHeader
     @ViewBuilder let dayAccessoryView: (Date) -> DayAccessoryView
     
@@ -79,6 +80,7 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
             month: month,
             calculator: calculator,
             selectionHandler: singleCalendarSelectionHandler,
+            highlightedDates: highlightedDates,
             dayAccessoryView: dayAccessoryView
         )
     }

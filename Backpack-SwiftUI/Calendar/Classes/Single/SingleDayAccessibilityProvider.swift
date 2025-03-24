@@ -52,7 +52,7 @@ struct SingleDayAccessibilityProvider {
 extension CalendarSingleSelectionState {
     func isSelected(_ date: Date) -> Bool {
         switch self {
-        case .single(let selectedDate, _):
+        case .single(let selectedDate):
             return selectedDate == date
         case .wholeMonth(let range, _):
             return range.contains(date)

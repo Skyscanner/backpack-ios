@@ -46,6 +46,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
     private let singleCalendarSelectionHandler: SingleCalendarSelectionHandler
     private let rangeCalendarSelectionHandler: RangeCalendarSelectionHandler
     private let showFloatYearLabel: Bool
+    private let highlightedDates: Set<Date>?
     private let dayAccessoryView: (Date) -> DayAccessoryView
     @State private var currentlyShownMonth: Date
     
@@ -57,6 +58,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
         singleCalendarSelectionHandler: SingleCalendarSelectionHandler? = nil,
         rangeCalendarSelectionHandler: RangeCalendarSelectionHandler? = nil,
         showFloatYearLabel: Bool = true,
+        highlightedDates: Set<Date>? = nil,
         dayAccessoryView: @escaping (Date) -> DayAccessoryView = { _ in EmptyView() }
     ) {
         self.dayAccessoryView = dayAccessoryView
@@ -66,6 +68,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
         self.selectionType = selectionType
         self.initialMonthScroll = initialMonthScroll
         self.showFloatYearLabel = showFloatYearLabel
+        self.highlightedDates = highlightedDates
         self.singleCalendarSelectionHandler = singleCalendarSelectionHandler ?? DefaultSingleCalendarSelectionHandler()
         self.rangeCalendarSelectionHandler = rangeCalendarSelectionHandler ?? DefaultRangeCalendarSelectionHandler()
         
@@ -93,6 +96,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
                         calculator: InMemoryCacheCalendarGridCalculator(
                             decoratee: DefaultCalendarGridCalculator(calendar: calendar)
                         ),
+                        highlightedDates: highlightedDates,
                         monthHeader: { monthHeader(monthDate: $0, calendarProxy: calendarProxy) },
                         dayAccessoryView: dayAccessoryView
                     )

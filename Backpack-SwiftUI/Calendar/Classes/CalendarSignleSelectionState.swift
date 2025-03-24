@@ -21,7 +21,7 @@ import Foundation
 /// The `CalendarSingleSelectionState` enum represents the different states of a single selection.
 public enum CalendarSingleSelectionState {
     /// The state, with single date selection
-    case single(Date, highlightedDates: Set<Date>? = nil)
+    case single(Date)
 
     /// The state the user has selected the whole month.
     case wholeMonth(ClosedRange<Date>, accessibilityConfig: WholeMonthAccessibilityConfigurations)
