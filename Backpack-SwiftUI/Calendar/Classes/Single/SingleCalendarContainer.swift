@@ -79,7 +79,13 @@ struct SingleCalendarMonthContainer<DayAccessoryView: View>: View {
             monthDate: month,
             validRange: validRange,
             dayCell: makeDayCell,
-            disabledDayCell: { DisabledCalendarDayCell(calendar: calendar, date: $0) },
+            disabledDayCell: { date in
+                if highlightedDates?.contains(date) ?? false {
+                    DisabledHighlightedDayCell(calendar: calendar, date: date)
+                } else {
+                    DisabledCalendarDayCell(calendar: calendar, date: date)
+                }
+            },
             emptyLeadingDayCell: { DefaultEmptyCalendarDayCell() },
             emptyTrailingDayCell: { DefaultEmptyCalendarDayCell() },
             dayAccessoryView: dayAccessoryView,

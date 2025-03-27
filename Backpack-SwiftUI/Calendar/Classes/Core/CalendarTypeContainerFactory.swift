@@ -40,7 +40,7 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
     var body: some View {
         CalendarContainer(
             calendar: calendar,
-            validRange: validRange,
+            validRange: adjustedValidRange,
             monthScroll: monthScroll
         ) { month in
             VStack(spacing: BPKSpacing.none) {
@@ -61,6 +61,17 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
                 }
             }
         }
+    }
+    
+    private var adjustedValidRange: ClosedRange<Date> {
+        guard let highlightedDates, !highlightedDates.isEmpty else {
+            return validRange
+        }
+        var minDate = Date()
+        for date in highlightedDates {
+            minDate = min(minDate, date)
+        }
+        return minDate...validRange.upperBound
     }
     
     @ViewBuilder
