@@ -77,6 +77,7 @@ struct CalendarMonthHeader: View {
         let calendarVerticalCenter = yParentOrigin + parentHeight / 2
         let currentlyShownValidationRange = yParentOrigin...calendarVerticalCenter
         let yOrigin = proxy.frame(in: .global).origin.y
+        
         return currentlyShownValidationRange.contains(yOrigin)
     }
 }
