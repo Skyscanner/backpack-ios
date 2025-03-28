@@ -46,7 +46,7 @@ struct SingleCalendarMonthContainer<DayAccessoryView: View>: View {
         switch selection {
         case .single(let date):
             if highlightedDates?.contains(dayDate) ?? false && date == dayDate {
-                HighlightedSelectedCalendarDayCell(calendar: calendar, date: dayDate)
+                LowerAndUpperBoundSelectedCell(calendar: calendar, date: dayDate)
             } else if date == dayDate {
                 SingleSelectedCell(calendar: calendar, date: dayDate)
             } else if highlightedDates?.contains(dayDate) ?? false {
