@@ -32,6 +32,7 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
     private var accessibilityDateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.locale = calendar.locale
+        formatter.timeZone = calendar.timeZone
         formatter.dateStyle = .full
         return formatter
     }
