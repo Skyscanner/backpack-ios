@@ -97,6 +97,8 @@ FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameBaggageCross;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameBaggageGeneric;
 /// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameBaggagePersonalItem;
+/// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameBaggageTick;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameBaggage;

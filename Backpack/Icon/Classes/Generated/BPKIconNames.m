@@ -55,6 +55,7 @@ BPKIconName const BPKIconNameBaggageCheckedNotIncluded = @"baggage-checked-not-i
 BPKIconName const BPKIconNameBaggageChecked = @"baggage-checked";
 BPKIconName const BPKIconNameBaggageCross = @"baggage-cross";
 BPKIconName const BPKIconNameBaggageGeneric = @"baggage-generic";
+BPKIconName const BPKIconNameBaggagePersonalItem = @"baggage-personal-item";
 BPKIconName const BPKIconNameBaggageTick = @"baggage-tick";
 BPKIconName const BPKIconNameBaggage = @"baggage";
 BPKIconName const BPKIconNameBar = @"bar";
