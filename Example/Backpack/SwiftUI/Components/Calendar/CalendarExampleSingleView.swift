@@ -27,8 +27,9 @@ struct CalendarExampleSingleView: View {
     let validRange: ClosedRange<Date>
     let calendar: Calendar
     let formatter: DateFormatter
+    let highlightedDates: Set<Date>?
 
-    init(makeInitialMonthScrollWithAnimation: Bool = false) {
+    init(makeInitialMonthScrollWithAnimation: Bool = false, includeHighlightedDates: Bool = false) {
         let calendar = Calendar.current
         let start = calendar.date(from: .init(year: 2023, month: 11, day: 6))!
         let end = calendar.date(from: .init(year: 2024, month: 11, day: 28))!
@@ -41,6 +42,7 @@ struct CalendarExampleSingleView: View {
         formatter.locale = calendar.locale
         formatter.timeZone = calendar.timeZone
         self.formatter = formatter
+        self.highlightedDates = includeHighlightedDates ? Self.createHighligtedDates(validRange) : nil
 
         var date = calendar.date(from: .init(year: 2023, month: 11, day: 15))!
 
@@ -71,7 +73,8 @@ struct CalendarExampleSingleView: View {
                 ),
                 calendar: calendar,
                 validRange: validRange,
-                initialMonthScroll: monthScroll
+                initialMonthScroll: monthScroll,
+                highlightedDates: highlightedDates
             )
             .monthAccessoryAction { _ in
                 return CalendarMonthAccessoryAction(
@@ -90,6 +93,21 @@ struct CalendarExampleSingleView: View {
             endSelectionState: "Selected as return date",
             betweenSelectionState: "Between departure and return date"
         )
+    }
+    
+    private static func createHighligtedDates(_ validRange: ClosedRange<Date>) -> Set<Date>? {
+        var result: Set<Date> = []
+        let startDate = validRange.lowerBound
+        if let dayAfterToday = Calendar.current.date(byAdding: .day, value: 5, to: startDate) {
+            result.insert(dayAfterToday)
+        }
+        if let secondDayAfterToday = Calendar.current.date(byAdding: .day, value: 10, to: startDate) {
+            result.insert(secondDayAfterToday)
+        }
+        if let dayBeforeToday = Calendar.current.date(byAdding: .day, value: -10, to: startDate) {
+            result.insert(dayBeforeToday)
+        }
+        return result
     }
 }
 

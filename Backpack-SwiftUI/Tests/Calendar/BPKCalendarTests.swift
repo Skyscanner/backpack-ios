@@ -159,4 +159,29 @@ class BPKCalendarTests: XCTestCase {
             .frame(width: 320, height: 720)
         )
     }
+    
+    func test_singleSelectionCalendar_withHighlightedDates() {
+        var calendar = Calendar.current
+        calendar.timeZone = .gmt
+        let testDate = calendar.date(from: DateComponents(year: 2020, month: 2, day: 5))!
+        let highlightedDates = Set([
+            calendar.date(byAdding: .day, value: 5, to: testDate),
+            calendar.date(byAdding: .day, value: 10, to: testDate),
+            calendar.date(byAdding: .day, value: -10, to: testDate)
+        ].compactMap({ $0 }))
+        assertSnapshot(
+            BPKCalendar(
+                selectionType: .single(
+                    selected: .constant(.single(testDate)),
+                    accessibilityConfigurations: SingleAccessibilityConfigurations(
+                        selectionHint: ""
+                    )
+                ),
+                calendar: calendar,
+                validRange: validStart...validEnd,
+                highlightedDates: highlightedDates
+            )
+            .frame(width: 320, height: 720)
+        )
+    }
 }

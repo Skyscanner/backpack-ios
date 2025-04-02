@@ -66,7 +66,9 @@ struct CalendarMonthHeader: View {
 
         let lowerBound = max(validRange.lowerBound, monthRange.lowerBound)
         let upperBound = min(validRange.upperBound, monthRange.upperBound)
-
+        if lowerBound > upperBound {
+            return nil
+        }
         return lowerBound...upperBound
     }
 

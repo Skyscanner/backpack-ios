@@ -86,6 +86,10 @@ struct CalendarGroupsProvider {
                 ),
                 presentableCalendar("With Whole Month Selection", view: CalendarExampleWholeMonthView()),
                 presentableCalendar(
+                    "Single Selection with highlighted dates",
+                    view: CalendarExampleSingleView(includeHighlightedDates: true)
+                ),
+                presentableCalendar(
                     "With Initial Month Scrolling",
                     view: CalendarExampleRangeView(showAccessoryViews: false, makeInitialMonthScroll: true)
                 ),
