@@ -56,6 +56,7 @@ extension BPKIconViewTests {
         .baggageChecked,
         .baggageCross,
         .baggageGeneric,
+        .baggagePersonalItem,
         .baggageTick,
         .baggage,
         .bar,

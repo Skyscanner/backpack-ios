@@ -55,6 +55,7 @@ BPKLargeIconName const BPKLargeIconNameBaggageCheckedNotIncluded = @"baggage-che
 BPKLargeIconName const BPKLargeIconNameBaggageChecked = @"baggage-checked";
 BPKLargeIconName const BPKLargeIconNameBaggageCross = @"baggage-cross";
 BPKLargeIconName const BPKLargeIconNameBaggageGeneric = @"baggage-generic";
+BPKLargeIconName const BPKLargeIconNameBaggagePersonalItem = @"baggage-personal-item";
 BPKLargeIconName const BPKLargeIconNameBaggageTick = @"baggage-tick";
 BPKLargeIconName const BPKLargeIconNameBaggage = @"baggage";
 BPKLargeIconName const BPKLargeIconNameBar = @"bar";
