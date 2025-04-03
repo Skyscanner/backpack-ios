@@ -32,6 +32,7 @@ import SwiftUI
 ///   - initialMonthScroll: The initial scrolling to the month using `MonthScroll`
 ///   - calendarSelectionHandler: Optional date selection handler which handles a tapped date and returns new selection
 ///   - showFloatYearLabel: Set weather the floating year label should be displayed or not
+///   - highlightedDates: It's an optional set of dates to put these dates in a circle to highlight them for users.
 ///   - dayAccessoryView: An additional optional view with extra information beneath the date
 ///
 /// The `BPKCalendar` view also allows you to specify an accessory action. This is a closure that takes a string and
