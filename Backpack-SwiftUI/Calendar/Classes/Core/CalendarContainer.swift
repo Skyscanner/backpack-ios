@@ -17,14 +17,35 @@
  */
 
 import SwiftUI
+import Combine
 
 struct CalendarContainer<MonthContent: View>: View {
     let calendar: Calendar
     let validRange: ClosedRange<Date>
+    let parentProxy: GeometryProxy
     let monthScroll: MonthScroll?
+    let onScrollToMonth: ((Date) -> Void)?
     @ViewBuilder let monthContent: (_ month: Date) -> MonthContent
 
     @State private var hasScrolledToItem = false
+    @StateObject private var visibilityObserver: ItemVisibilityObserver
+
+    init(
+        calendar: Calendar,
+        validRange: ClosedRange<Date>,
+        parentProxy: GeometryProxy,
+        monthScroll: MonthScroll?,
+        onScrollToMonth: ((Date) -> Void)?,
+        monthContent: @escaping (_ month: Date) -> MonthContent
+    ) {
+        _visibilityObserver = StateObject(wrappedValue: ItemVisibilityObserver(parentProxy: parentProxy))
+        self.calendar = calendar
+        self.validRange = validRange
+        self.parentProxy = parentProxy
+        self.monthScroll = monthScroll
+        self.onScrollToMonth = onScrollToMonth
+        self.monthContent = monthContent
+    }
 
     var body: some View {
         ScrollViewReader { proxy in
@@ -36,13 +57,36 @@ struct CalendarContainer<MonthContent: View>: View {
                             .if(monthScroll != nil, transform: { view in
                                 view.id(scrollId(date: firstDayOfMonth))
                             })
+                            .background(
+                                GeometryReader { geo in
+                                    Color.clear
+                                        .preference(
+                                            key: ItemVisibilityPreferenceKey.self,
+                                            value: [monthIndex: geo.frame(in: .global)]
+                                        )
+                                }
+
+                            )
                     }
                     .onAppear {
                         scrollIfNeeded(scrollProxy: proxy)
                     }
                 }
+                .onPreferenceChange(ItemVisibilityPreferenceKey.self) { preferences in
+                    visibilityObserver.updatePreferences(preferences)
+                }
+                .onChange(of: visibilityObserver.visibleItems) { newVisibleItems in
+                    updateOnScrollToMonthHandler(newVisibleItems: newVisibleItems)
+                }
             }
         }
+    }
+
+    private func updateOnScrollToMonthHandler(newVisibleItems: [Int]? = nil) {
+        guard let topMostVisibleMonthIndex = (newVisibleItems ?? visibilityObserver.visibleItems).sorted().first else {
+            return
+        }
+        onScrollToMonth?(firstDayOf(monthIndex: topMostVisibleMonthIndex))
     }
 
     /// Generates a unique identifier for a given `Date` using the "yyyy-MM" format.
@@ -70,7 +114,7 @@ struct CalendarContainer<MonthContent: View>: View {
         let components = calendar.dateComponents([.year, .month], from: firstMonth, to: validRange.upperBound)
         return components.month! + components.year! * 12
     }
-    
+
     private func firstDayOf(monthIndex: Int) -> Date {
         let month = calendar.date(
             byAdding: .init(month: monthIndex),
@@ -92,16 +136,20 @@ struct CalendarContainer_Previews: PreviewProvider {
         let end = calendar.date(from: .init(year: 2025, month: 12, day: 25))!
         let monthScroll = MonthScroll(monthToScroll: start)
 
-        CalendarContainer(
-            calendar: calendar,
-            validRange: start...end,
-            monthScroll: monthScroll,
-            monthContent: { monthNumber in
-                VStack {
-                    BPKText("Calendar Grid \(monthNumber)")
-                    Divider()
+        GeometryReader { proxy in
+            CalendarContainer(
+                calendar: calendar,
+                validRange: start...end,
+                parentProxy: proxy,
+                monthScroll: monthScroll,
+                onScrollToMonth: nil,
+                monthContent: { monthNumber in
+                    VStack {
+                        BPKText("Calendar Grid \(monthNumber)")
+                        Divider()
+                    }
                 }
-            }
-        )
+            )
+        }
     }
 }

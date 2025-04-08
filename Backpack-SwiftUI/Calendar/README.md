@@ -175,3 +175,22 @@ BPKCalendar(
     calendarSelectionHandler: DefaultCalendarSelectionHandler(rangeSelectionHandler: CustomRangeCalendarSelectionHandler())
 )
 ```
+
+## OnScrollToMonth handler 
+
+If you need to customise the on scroll to month handling for any reason, you can add an action to your BPKCalendar definition
+
+)
+```
+func updateOnScroll(monthDate: Date) {
+    // Handle scroll
+}
+
+BPKCalendar(
+    selectionType: .single(selected: $selectedDate),
+    calendar: .current,
+    validRange: startDate...endDate
+)
+.onScrollToMonthAction(updateOnScroll)
+```
+                    
