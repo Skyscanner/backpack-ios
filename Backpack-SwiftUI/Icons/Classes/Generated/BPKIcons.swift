@@ -54,6 +54,7 @@ public extension BPKIcon {
     static let baggageChecked = BPKIcon(name: "baggage-checked")
     static let baggageCross = BPKIcon(name: "baggage-cross")
     static let baggageGeneric = BPKIcon(name: "baggage-generic")
+    static let baggagePersonalItem = BPKIcon(name: "baggage-personal-item")
     static let baggageTick = BPKIcon(name: "baggage-tick")
     static let baggage = BPKIcon(name: "baggage")
     static let bar = BPKIcon(name: "bar")
@@ -341,6 +342,7 @@ public extension BPKIcon {
         case "baggage-checked": return .baggageChecked
         case "baggage-cross": return .baggageCross
         case "baggage-generic": return .baggageGeneric
+        case "baggage-personal-item": return .baggagePersonalItem
         case "baggage-tick": return .baggageTick
         case "baggage": return .baggage
         case "bar": return .bar

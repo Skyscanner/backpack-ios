@@ -97,6 +97,8 @@ FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameBaggageCross;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameBaggageGeneric;
 /// :nodoc:
+FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameBaggagePersonalItem;
+/// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameBaggageTick;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameBaggage;
@@ -138,6 +140,8 @@ FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameCenterLocation;
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameChart;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameChauffeur;
+/// :nodoc:
+FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameCheck;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameChevronDown;
 /// :nodoc:

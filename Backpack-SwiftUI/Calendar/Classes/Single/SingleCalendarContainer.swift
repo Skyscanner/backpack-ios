@@ -26,36 +26,16 @@ struct SingleCalendarMonthContainer<DayAccessoryView: View>: View {
     let month: Date
     let calculator: CalendarGridCalculator
     let selectionHandler: SingleCalendarSelectionHandler
+    let highlightedDates: Set<Date>?
     @ViewBuilder let dayAccessoryView: (Date) -> DayAccessoryView
     
     @ViewBuilder
     private func makeDayCell(_ dayDate: Date) -> some View {
         CalendarSelectableCell {
-            switch selection {
-            case .single(let date):
-                if date == dayDate {
-                    SingleSelectedCell(calendar: calendar, date: dayDate)
-                } else {
-                    DefaultCalendarDayCell(calendar: calendar, date: dayDate)
-                }
-            case .wholeMonth(let closedRange, _):
-                if closedRange.contains(dayDate) {
-                    RangeSelectionCalendarDayCell(
-                        date: dayDate,
-                        selection: closedRange,
-                        calendar: calendar,
-                        highlightRangeEnds: false
-                    )
-                } else {
-                    DefaultCalendarDayCell(calendar: calendar, date: dayDate)
-                }
-            case .none:
-                DefaultCalendarDayCell(calendar: calendar, date: dayDate)
-            }
+            createCell(dayDate: dayDate)
         } onSelection: {
             selection = selectionHandler.newSingleSelectionStateFor(selection: dayDate, currentSelection: selection)
         }
-        .accessibilityAddTraits(.isButton)
         .accessibilityAddTraits(selection?.isSelected(dayDate) == true ? .isSelected : [])
         .accessibilityLabel(accessibilityProvider.accessibilityLabel(for: dayDate, selection: selection))
         .accessibilityHint(accessibilityProvider.accessibilityHint(for: dayDate, selection: selection))
@@ -66,12 +46,50 @@ struct SingleCalendarMonthContainer<DayAccessoryView: View>: View {
             monthDate: month,
             validRange: validRange,
             dayCell: makeDayCell,
-            disabledDayCell: { DisabledCalendarDayCell(calendar: calendar, date: $0) },
+            disabledDayCell: { date in
+                if highlightedDates?.contains(date) ?? false {
+                    DisabledHighlightedDayCell(calendar: calendar, date: date)
+                } else {
+                    DisabledCalendarDayCell(calendar: calendar, date: date)
+                }
+            },
             emptyLeadingDayCell: { DefaultEmptyCalendarDayCell() },
             emptyTrailingDayCell: { DefaultEmptyCalendarDayCell() },
             dayAccessoryView: dayAccessoryView,
             calculator: calculator
         )
+    }
+    
+    @ViewBuilder func createCell(dayDate: Date) -> some View {
+        switch selection {
+        case .single(let date):
+            if highlightedDates?.contains(dayDate) ?? false && date == dayDate {
+                LowerAndUpperBoundSelectedCell(calendar: calendar, date: dayDate)
+            } else if date == dayDate {
+                SingleSelectedCell(calendar: calendar, date: dayDate)
+            } else if highlightedDates?.contains(dayDate) ?? false {
+                HighlightedCalendarDayCell(calendar: calendar, date: dayDate)
+            } else {
+                DefaultCalendarDayCell(calendar: calendar, date: dayDate)
+            }
+        case .wholeMonth(let closedRange, _):
+            if closedRange.contains(dayDate) {
+                RangeSelectionCalendarDayCell(
+                    date: dayDate,
+                    selection: closedRange,
+                    calendar: calendar,
+                    highlightRangeEnds: false
+                )
+            } else {
+                DefaultCalendarDayCell(calendar: calendar, date: dayDate)
+            }
+        case .none:
+            if highlightedDates?.contains(dayDate) ?? false {
+                HighlightedCalendarDayCell(calendar: calendar, date: dayDate)
+            } else {
+                DefaultCalendarDayCell(calendar: calendar, date: dayDate)
+            }
+        }
     }
 }
 
@@ -98,6 +116,7 @@ struct SingleCalendarContainer_Previews: PreviewProvider {
             month: start,
             calculator: DefaultCalendarGridCalculator(calendar: calendar),
             selectionHandler: DefaultSingleCalendarSelectionHandler(),
+            highlightedDates: nil,
             dayAccessoryView: { _ in
                 BPKText("20", style: .caption)
             }

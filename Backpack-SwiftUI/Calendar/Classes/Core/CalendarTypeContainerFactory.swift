@@ -25,13 +25,17 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
     let rangeCalendarSelectionHandler: RangeCalendarSelectionHandler
     let validRange: ClosedRange<Date>
     let monthScroll: MonthScroll?
+    let onScrollToMonth: ((Date) -> Void)?
     let calculator: CalendarGridCalculator
+    let parentProxy: GeometryProxy
+    let highlightedDates: Set<Date>?
     @ViewBuilder let monthHeader: (_ monthDate: Date) -> MonthHeader
     @ViewBuilder let dayAccessoryView: (Date) -> DayAccessoryView
     
     private var accessibilityDateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.locale = calendar.locale
+        formatter.timeZone = calendar.timeZone
         formatter.dateStyle = .full
         return formatter
     }
@@ -39,8 +43,10 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
     var body: some View {
         CalendarContainer(
             calendar: calendar,
-            validRange: validRange,
-            monthScroll: monthScroll
+            validRange: adjustedValidRange,
+            parentProxy: parentProxy,
+            monthScroll: monthScroll,
+            onScrollToMonth: onScrollToMonth
         ) { month in
             VStack(spacing: BPKSpacing.none) {
                 monthHeader(month)
@@ -79,6 +85,7 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
             month: month,
             calculator: calculator,
             selectionHandler: singleCalendarSelectionHandler,
+            highlightedDates: highlightedDates,
             dayAccessoryView: dayAccessoryView
         )
     }
@@ -103,5 +110,16 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
             dayAccessoryView: dayAccessoryView
         )
 
+    }
+    
+    private var adjustedValidRange: ClosedRange<Date> {
+        guard let highlightedDates, !highlightedDates.isEmpty else {
+            return validRange
+        }
+        var minDate = Date()
+        for date in highlightedDates {
+            minDate = min(minDate, date)
+        }
+        return minDate...validRange.upperBound
     }
 }

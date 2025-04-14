@@ -94,6 +94,25 @@ BPKCalendar(
 )
 ```
 
+## Highlighted dates
+
+| Day | Night |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_calendar___highlighted_dates_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_calendar___highlighted_dates_dm.png" alt="" width="375" /> |
+
+It's possible to display and highlight some of days in the calendar. They would be in circles. These days could be outside the valid range, in that case the calendar would show whatever is earlier (the first highlightdd date or the lower bound of the valid range). If a highlighted date was selected, then it's going to be a circled and filled cell at the same time.
+
+```swift
+let otherDays = Set([today, dayBeforeToday, dayAfterToday])
+
+BPKCalendar(
+    selectionType: .single(selected: $selectedDate),
+    calendar: .current,
+    validRange: validStartDate...validEndDate,
+    highlightedDates: otherDays
+)
+```
+
 ## Custom date selection handler 
 
 If you need to customise the date selection handling for any reason, you can implement your own implementation of CalendarSelectionHandler for specific date selection type you need (single date selection or range dates selection).
@@ -156,3 +175,22 @@ BPKCalendar(
     calendarSelectionHandler: DefaultCalendarSelectionHandler(rangeSelectionHandler: CustomRangeCalendarSelectionHandler())
 )
 ```
+
+## OnScrollToMonth handler 
+
+If you need to customise the on scroll to month handling for any reason, you can add an action to your BPKCalendar definition
+
+)
+```
+func updateOnScroll(monthDate: Date) {
+    // Handle scroll
+}
+
+BPKCalendar(
+    selectionType: .single(selected: $selectedDate),
+    calendar: .current,
+    validRange: startDate...endDate
+)
+.onScrollToMonthAction(updateOnScroll)
+```
+                    
