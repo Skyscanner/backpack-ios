@@ -25,6 +25,7 @@
 		256F76152BB479850047AD1C /* SearchInputSummaryExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256F76142BB479850047AD1C /* SearchInputSummaryExampleView.swift */; };
 		25D1337D2C73EFD7002C9562 /* SearchControlInputUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1337C2C73EFD7002C9562 /* SearchControlInputUITest.swift */; };
 		2832E45B2CDE1561000B6DF4 /* CalendarExampleWholeMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2832E45A2CDE1561000B6DF4 /* CalendarExampleWholeMonthView.swift */; };
+		285309EE2DAD6B7800BB6D24 /* DynamicStackGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285309ED2DAD6B7800BB6D24 /* DynamicStackGroups.swift */; };
 		2A62FDDD2AB89F4500D545E5 /* TextAreaExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A62FDDC2AB89F4500D545E5 /* TextAreaExampleView.swift */; };
 		3A7D2D47214AB9F400ECBD5B /* BPKButtonsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D2D46214AB9F400ECBD5B /* BPKButtonsViewController.m */; };
 		3AA018EF215BE26600838FBB /* SpinnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018EE215BE26500838FBB /* SpinnersViewController.swift */; };
@@ -85,7 +86,7 @@
 		53C6622929EA0DAB00BF1A62 /* AttributedTextExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C6620F29EA0DAB00BF1A62 /* AttributedTextExampleView.swift */; };
 		53C7F0B92A4C615D003A8740 /* ChipGroupSingleSelectRailExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7F0B52A4C615D003A8740 /* ChipGroupSingleSelectRailExampleView.swift */; };
 		53C7F0BA2A4C615D003A8740 /* ChipGroupSingleSelectWrapExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7F0B62A4C615D003A8740 /* ChipGroupSingleSelectWrapExampleView.swift */; };
-		53D4614E29E574EB0061C222 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		53D4614E29E574EB0061C222 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		53D6396F2A7D46ED007EF376 /* MapMarkerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D6396E2A7D46ED007EF376 /* MapMarkerExampleView.swift */; };
 		53D7FBB527F715AF00DEE588 /* UIWindowFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D7FBB427F715AF00DEE588 /* UIWindowFactory.swift */; };
 		53E075A527FC780C0033147C /* NavBarGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E075A427FC780C0033147C /* NavBarGroups.swift */; };
@@ -261,6 +262,7 @@
 		256F76142BB479850047AD1C /* SearchInputSummaryExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInputSummaryExampleView.swift; sourceTree = "<group>"; };
 		25D1337C2C73EFD7002C9562 /* SearchControlInputUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchControlInputUITest.swift; sourceTree = "<group>"; };
 		2832E45A2CDE1561000B6DF4 /* CalendarExampleWholeMonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExampleWholeMonthView.swift; sourceTree = "<group>"; };
+		285309ED2DAD6B7800BB6D24 /* DynamicStackGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicStackGroups.swift; sourceTree = "<group>"; };
 		2A62FDDC2AB89F4500D545E5 /* TextAreaExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAreaExampleView.swift; sourceTree = "<group>"; };
 		3A7D2D45214AB9F400ECBD5B /* BPKButtonsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKButtonsViewController.h; sourceTree = "<group>"; };
 		3A7D2D46214AB9F400ECBD5B /* BPKButtonsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKButtonsViewController.m; sourceTree = "<group>"; };
@@ -911,6 +913,7 @@
 				A12A09DD2A49471F0047DD16 /* ChipGroupProvider.swift */,
 				79B94C3D2AA5A33E006CB539 /* GraphicPromoGroupsProvider.swift */,
 				BA809EC72B05FC2E0030D1E7 /* AppSearchModalGroups.swift */,
+				285309ED2DAD6B7800BB6D24 /* DynamicStackGroups.swift */,
 			);
 			path = Groups;
 			sourceTree = "<group>";
@@ -1853,6 +1856,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				285309EE2DAD6B7800BB6D24 /* DynamicStackGroups.swift in Sources */,
 				D219C1E02163918B00C9968D /* DividedCardsViewController.swift in Sources */,
 				53C6621129EA0DAB00BF1A62 /* RatingExampleViewWithImage.swift in Sources */,
 				53C6621D29EA0DAB00BF1A62 /* SkeletonExampleView.swift in Sources */,
@@ -1952,7 +1956,7 @@
 				5390DB612909940700F0F790 /* ColorTokensViewController.swift in Sources */,
 				794E1FF8280CF63100B965FF /* RadiusTokensView.swift in Sources */,
 				53B6DB6A27FC73A90042B7C0 /* LabelGroups.swift in Sources */,
-				53D4614E29E574EB0061C222 /* BuildFile in Sources */,
+				53D4614E29E574EB0061C222 /* (null) in Sources */,
 				53C6621329EA0DAB00BF1A62 /* SpinnerExampleView.swift in Sources */,
 				53BAC3F12A71415800236CC9 /* SectionHeaderGroups.swift in Sources */,
 				53C6622429EA0DAB00BF1A62 /* ButtonsPlaygroundView.swift in Sources */,

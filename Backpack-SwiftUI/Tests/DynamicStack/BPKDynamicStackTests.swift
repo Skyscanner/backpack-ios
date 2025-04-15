@@ -23,7 +23,7 @@ import SwiftUI
 final class BPKDynamicStackTests: XCTestCase {
 
     func test_accessibility() {
-        let dynamicStack = BPKDynamicStack {
+        let dynamicStack = BPKDynamicTypeStack {
             BPKText("This is the first text")
             BPKText("This is the second text")
             BPKText("This is the third text")

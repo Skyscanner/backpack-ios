@@ -19,73 +19,39 @@
 import SwiftUI
 import Backpack_Common
 
-//  A dynamic stack view that adapts its layout based on the user's Dynamic Type size setting.
+/// A stack view that switches between two layouts depending on a given condition.
+///
+/// `BPKDynamicStack` allows you to provide two different layout configurations (e.g., HStack or VStack)
+/// and dynamically switches between them based on an external Boolean condition, such as a Dynamic Type size threshold.
 public struct BPKDynamicStack<Content: View>: View {
-    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-
-    private let threshold: DynamicTypeSize
     private let primaryLayout: AnyLayout
     private let secondaryLayout: AnyLayout
+    @Binding var activateSecondaryLayout: Bool
     private let content: Content
 
     /**
-     Initialises the stack with custom layouts and a threshold for switching based on Dynamic Type size.
+     Initialises a dynamic stack that switches between two layouts depending on the value of `activateSecondaryLayout`.
+
      - Parameters:
-       - threshold: The Dynamic Type size threshold at which the layout switches.
-       - primaryLayout: The layout used for smaller text sizes.
-       - secondaryLayout: The layout used for larger text sizes.
-       - content: The view content inside the stack.
+       - primaryLayout: The primary layout to use when `activateSecondaryLayout` is false.
+       - secondaryLayout: The secondary layout to use when `activateSecondaryLayout` is true.
+       - activateSecondaryLayout: A binding that controls which layout is active.
+       - content: A view builder that provides the content inside the stack.
      */
     public init(
-        threshold: DynamicTypeSize = .accessibility1,
-        primaryLayout: AnyLayout = AnyLayout(HStackLayout()),
-        secondaryLayout: AnyLayout = AnyLayout(VStackLayout()),
+        primaryLayout: AnyLayout,
+        secondaryLayout: AnyLayout,
+        activateSecondaryLayout: Binding<Bool>,
         @ViewBuilder content: () -> Content
     ) {
-        self.threshold = threshold
         self.primaryLayout = primaryLayout
         self.secondaryLayout = secondaryLayout
+        _activateSecondaryLayout = activateSecondaryLayout
         self.content = content()
     }
 
-    /**
-     Initialises the stack with custom alignments, spacing, and a threshold for switching layouts on Dynamic Type size.
-     - Parameters:
-       - primaryHStackAlignment: The vertical alignment for the primary horizontal stack.
-       - primaryHStackSpacing: The spacing between elements in the primary horizontal stack.
-       - secondaryVStackSpacing: The spacing between elements in the secondary vertical stack.
-       - secondaryVStackAlignment: The horizontal alignment for the secondary vertical stack.
-       - threshold: The Dynamic Type size threshold at which the layout switches.
-       - content: The view content inside the stack.
-     */
-    public init(
-        primaryHStackAlignment: VerticalAlignment = .center,
-        primaryHStackSpacing: BPKSpacing = .none,
-        secondaryVStackAlignment: HorizontalAlignment = .center,
-        secondaryVStackSpacing: BPKSpacing = .none,
-        threshold: DynamicTypeSize = .accessibility1,
-        @ViewBuilder content: () -> Content
-    ) {
-        self.init(
-            threshold: threshold,
-            primaryLayout: AnyLayout(
-                HStackLayout(
-                    alignment: primaryHStackAlignment,
-                    spacing: primaryHStackSpacing.value
-                )
-            ),
-            secondaryLayout: AnyLayout(
-                VStackLayout(
-                    alignment: secondaryVStackAlignment,
-                    spacing: secondaryVStackSpacing.value
-                )
-            ),
-            content: content
-        )
-    }
-
     public var body: some View {
-        let layout = dynamicTypeSize >= threshold ? secondaryLayout : primaryLayout
+        let layout = activateSecondaryLayout ? secondaryLayout : primaryLayout
 
         layout {
             content
