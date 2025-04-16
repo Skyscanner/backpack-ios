@@ -25,7 +25,7 @@ struct DisabledHighlightedDayCell: View {
     var body: some View {
         BPKText("\(calendar.component(.day, from: date))", style: .label1)
             .lineLimit(1)
-            .foregroundColor(.textSecondaryColor)
+            .foregroundColor(.textDisabledColor)
             .frame(maxWidth: .infinity)
             .padding(.vertical, .md)
             .overlay {
