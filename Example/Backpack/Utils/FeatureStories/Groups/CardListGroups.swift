@@ -51,7 +51,11 @@ struct CardListGroupsProvider {
                     view: CardListExampleView(layout: .stack(
                         accessory: .expand(
                             expandText: "Show more",
-                            collapseText: "Show less")
+                            collapseText: "Show less",
+                            onExpansionChange: { action in
+                                print("Expand button toggle is: \(action)")
+                            }
+                        )
                     ), totalElements: 9)
                 ),
                 presentable(

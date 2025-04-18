@@ -77,8 +77,10 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
                 cardForElement(element)
             }
             .padding(.horizontal, .base)
-            accessoryView(accessory: accessory)
-                .padding(.horizontal, .base)
+            if initiallyShownCardsCount < elements.count {
+                accessoryView(accessory: accessory)
+                    .padding(.horizontal, .base)
+            }
         }
     }
 
@@ -121,13 +123,14 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
             .buttonStyle(.primary)
             .stretchable()
         }
-        if case .expand(let expandingText, let collapsingText, _) = accessory {
+        if case .expand(let expandingText, let collapsingText, _, let action) = accessory {
             BPKButton(
                 (showingAllCards) ? collapsingText : expandingText,
                 icon: .trailing(icon: BPKIcon(name: (showingAllCards) ? "chevron-up" : "chevron-down"))
             ) {
                 withAnimation {
                     showingAllCards.toggle()
+                    action?(showingAllCards)
                 }
             }
             .buttonStyle(.link)

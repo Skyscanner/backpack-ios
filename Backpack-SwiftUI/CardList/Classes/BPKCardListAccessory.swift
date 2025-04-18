@@ -21,12 +21,13 @@ import SwiftUI
 extension BPKCardListLayout {
     public enum Accessory {
         case sectionHeaderButton(SectionHeaderAction)
-        case expand(expandText: String, collapseText: String, sectionHeaderButton: SectionHeaderAction? = nil)
+        // swiftlint:disable:next line_length
+        case expand(expandText: String, collapseText: String, sectionHeaderButton: SectionHeaderAction? = nil, onExpansionChange: ((Bool) -> Void)? = nil)
         case footerButton(AccessoryAction)
         
         var sectionHeaderAction: SectionHeaderAction? {
             switch self {
-            case .expand(_, _, let sectionHeaderAction):
+            case .expand(_, _, let sectionHeaderAction, _):
                 return sectionHeaderAction
             case .sectionHeaderButton(let sectionHeaderAction):
                 return sectionHeaderAction
