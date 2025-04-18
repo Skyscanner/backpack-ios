@@ -77,10 +77,8 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
                 cardForElement(element)
             }
             .padding(.horizontal, .base)
-            if initiallyShownCardsCount < elements.count {
-                accessoryView(accessory: accessory)
-                    .padding(.horizontal, .base)
-            }
+            accessoryView(accessory: accessory)
+                .padding(.horizontal, .base)
         }
     }
 
@@ -135,6 +133,7 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
             }
             .buttonStyle(.link)
             .stretchable()
+            .opacity(initiallyShownCardsCount < elements.count ? 1 : 0)
         }
     }
 }
