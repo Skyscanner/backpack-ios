@@ -121,13 +121,15 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
             .buttonStyle(.primary)
             .stretchable()
         }
-        if case .expand(let expandingText, let collapsingText, _) = accessory {
+        // swiftlint:disable:next line_length
+        if case .expand(let expandingText, let collapsingText, _, let action) = accessory, initiallyShownCardsCount < elements.count {
             BPKButton(
                 (showingAllCards) ? collapsingText : expandingText,
                 icon: .trailing(icon: BPKIcon(name: (showingAllCards) ? "chevron-up" : "chevron-down"))
             ) {
                 withAnimation {
                     showingAllCards.toggle()
+                    action?(showingAllCards)
                 }
             }
             .buttonStyle(.link)
