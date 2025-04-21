@@ -22,6 +22,12 @@ import SwiftUI
 import Backpack_SwiftUI
 
 class BPKCardListViewTests: XCTestCase {
+    
+    override func setUp() {
+        super.setUp()
+        isRecording = false
+    }
+    
     func testCardListRail() {
         assertSnapshot(
             BPKCardList(
@@ -104,6 +110,21 @@ class BPKCardListViewTests: XCTestCase {
                 layout: .stack(accessory: .expand(expandText: "Show more", collapseText: "Show less")),
                 initiallyShownCardsCount: 2,
                 elements: Array(TestLocation.placeholders[0..<4]),
+                cardForElement: locationStackCard(element:))
+            .padding()
+            .frame(width: 375)
+        )
+    }
+    
+    func testCardListStackWithoutExpandAccessory() {
+        assertSnapshot(
+            BPKCardList(
+                title: "Popular right now",
+                description: "Other travellers are loving these destinations. " +
+                "Search flights, hotels and car hire and join them on the adventure.",
+                layout: .stack(accessory: .expand(expandText: "Show more", collapseText: "Show less")),
+                initiallyShownCardsCount: 3,
+                elements: Array(TestLocation.placeholders[0..<2]),
                 cardForElement: locationStackCard(element:))
             .padding()
             .frame(width: 375)
