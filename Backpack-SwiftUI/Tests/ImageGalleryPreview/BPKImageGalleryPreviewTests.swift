@@ -40,4 +40,13 @@ class BPKImageGalleryPreviewTests: XCTestCase {
             .frame(width: 400, height: 250)
         )
     }
+    
+    func test_imageGalleryPreview_inlineVariant() {
+        assertSnapshot(
+            BPKImageGalleryPreview(
+                image: createImage(),
+                inlineButtonTitle: "View Photos")
+            .frame(width: 375, height: 217)
+        )
+    }
 }
