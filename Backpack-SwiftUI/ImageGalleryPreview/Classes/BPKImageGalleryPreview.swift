@@ -21,7 +21,7 @@ import SwiftUI
 public struct BPKImageGalleryPreview<Content: View>: View {
     private enum Variant {
         case hero
-        case inline
+        case `default`
     }
 
     private let variant: Variant
@@ -47,7 +47,7 @@ public struct BPKImageGalleryPreview<Content: View>: View {
         onImageClicked: ((Int) -> Void)? = nil,
         inlineButtonTitle: String
     ) {
-        self.variant = .inline
+        self.variant = .default
         self.images = [image]
         self._currentIndex = .constant(0)
         self.onImageClicked = onImageClicked
@@ -59,8 +59,8 @@ public struct BPKImageGalleryPreview<Content: View>: View {
             switch variant {
             case .hero:
                 heroView
-            case .inline:
-                inlineView
+            case .default:
+                defaultView
             }
         }
     }
@@ -95,7 +95,7 @@ public struct BPKImageGalleryPreview<Content: View>: View {
         }
     }
     
-    private var inlineView: some View {
+    private var defaultView: some View {
         ZStack(alignment: .bottomTrailing) {
             GeometryReader { geometry in
                 images.first
@@ -179,7 +179,7 @@ struct BPKImageGalleryPreview_Previews: PreviewProvider {
         )
         .frame(height: 350)
         .padding(.base)
-        .previewDisplayName("Inline")
+        .previewDisplayName("Default")
     }
     
 }

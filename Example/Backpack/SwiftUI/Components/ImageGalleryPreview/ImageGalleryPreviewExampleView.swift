@@ -23,7 +23,7 @@ import Backpack_SwiftUI
 struct ImageGalleryPreviewExampleView: View {
     enum Variant {
         case hero
-        case inline
+        case `default`
     }
     let variant: Variant
     @State var currentIndex: Int = 0
@@ -32,8 +32,8 @@ struct ImageGalleryPreviewExampleView: View {
         switch variant {
         case .hero:
             heroView
-        case .inline:
-            inlineView
+        case .default:
+            defaultView
         }
     }
     
@@ -49,7 +49,7 @@ struct ImageGalleryPreviewExampleView: View {
         }
     }
     
-    private var inlineView: some View {
+    private var defaultView: some View {
         BPKImageGalleryPreview(
             image: image(1),
             inlineButtonTitle: "View Photos"
@@ -67,6 +67,6 @@ struct ImageGalleryPreviewExampleView: View {
 struct ImageGalleryPreviewExampleView_Previews: PreviewProvider {
     static var previews: some View {
         ImageGalleryPreviewExampleView(variant: .hero)
-        ImageGalleryPreviewExampleView(variant: .inline)
+        ImageGalleryPreviewExampleView(variant: .default)
     }
 }
