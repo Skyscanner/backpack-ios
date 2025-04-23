@@ -44,13 +44,13 @@ public struct BPKImageGalleryPreview<Content: View>: View {
     
     public init(
         image: Content,
-        onImageClicked: ((Int) -> Void)? = nil,
+        onButtonClicked: (() -> Void)? = nil,
         buttonText: String
     ) {
         self.variant = .default
         self.images = [image]
         self._currentIndex = .constant(0)
-        self.onImageClicked = onImageClicked
+        self.onImageClicked = { _ in onButtonClicked?() }
         self.buttonText = buttonText
     }
     
@@ -97,17 +97,24 @@ public struct BPKImageGalleryPreview<Content: View>: View {
     
     private var defaultView: some View {
         ZStack(alignment: .bottomTrailing) {
+            Rectangle()
+                .foregroundColor(.canvasContrastColor)
             GeometryReader { geometry in
                 images.first
                     .frame(width: geometry.size.width, height: geometry.size.height)
             }
-            RoundedRectangle(cornerRadius: 12)
-                .foregroundColor(.canvasContrastColor)
+            .if(onImageClicked != nil) { view in
+                view.onTapGesture {
+                    onImageClicked!(currentIndex)
+                }
+            }
             if let buttonText {
                 BPKButton(
                     buttonText,
                     icon: BPKButton.Icon.init(icon: .picture, position: .leading),
-                    action: {})
+                    action: {
+                        onImageClicked?(currentIndex)
+                    })
                 .buttonStyle(.primaryOnDark)
                 .padding(.all, BPKSpacing.base)
             }
@@ -174,7 +181,8 @@ struct BPKImageGalleryPreview_Previews: PreviewProvider {
     
     private static var defaultPreview: some View {
         BPKImageGalleryPreview(
-            image: Color.clear,
+            image: Color(BPKColor.coreAccentColor.value),
+            onButtonClicked: { print("Clicked image") },
             buttonText: "View Photos"
         )
         .frame(height: 350)
