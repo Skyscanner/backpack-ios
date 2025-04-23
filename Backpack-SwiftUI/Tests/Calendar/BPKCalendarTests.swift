@@ -167,7 +167,8 @@ class BPKCalendarTests: XCTestCase {
         let highlightedDates = Set([
             calendar.date(byAdding: .day, value: 5, to: testDate),
             calendar.date(byAdding: .day, value: 10, to: testDate),
-            calendar.date(byAdding: .day, value: -10, to: testDate)
+            calendar.date(byAdding: .day, value: -10, to: testDate),
+            calendar.date(byAdding: .day, value: -25, to: testDate)
         ].compactMap({ $0 }))
         assertSnapshot(
             BPKCalendar(

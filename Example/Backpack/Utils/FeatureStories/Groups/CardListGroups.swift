@@ -27,6 +27,7 @@ import Backpack_SwiftUI
 struct CardListGroupsProvider {
     let showPresentable: (Presentable) -> Void
 
+    // swiftlint:disable:next function_body_length
     func swiftUIGroups() -> [Components.Group] {
         SingleGroupProvider(
             cellDataSources: [
@@ -51,8 +52,24 @@ struct CardListGroupsProvider {
                     view: CardListExampleView(layout: .stack(
                         accessory: .expand(
                             expandText: "Show more",
-                            collapseText: "Show less")
+                            collapseText: "Show less",
+                            onExpansionChange: { action in
+                                print("Expand button toggle is: \(action)")
+                            }
+                        )
                     ), totalElements: 9)
+                ),
+                presentable(
+                    "Stack - Accessory Expand Hidden",
+                    view: CardListExampleView(layout: .stack(
+                        accessory: .expand(
+                            expandText: "Show more",
+                            collapseText: "Show less",
+                            onExpansionChange: { action in
+                                print("Expand button toggle is: \(action)")
+                            }
+                        )
+                    ), totalElements: 3)
                 ),
                 presentable(
                     "Stack - Accessory Button",
