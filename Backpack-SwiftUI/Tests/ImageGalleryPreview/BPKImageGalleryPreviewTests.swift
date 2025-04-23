@@ -41,7 +41,7 @@ class BPKImageGalleryPreviewTests: XCTestCase {
         )
     }
     
-    func test_imageGalleryPreview_inlineVariant() {
+    func test_imageGalleryPreview_defaultVariant() {
         assertSnapshot(
             BPKImageGalleryPreview(
                 image: createImage(),
