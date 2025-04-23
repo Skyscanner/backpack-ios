@@ -25,9 +25,9 @@ struct DynamicStackExampleView: View {
             secondaryLayout: AnyLayout(VStackLayout(alignment: .leading)),
             activateSecondaryLayout: .constant(!isLandscape)
         ) {
-            BPKText("First text")
-            BPKText("Middle text")
-            BPKText("Last text")
+    		BPKText("This is the first text")
+    		BPKText("This is the second text")
+    		BPKText("This is the third text")
         }
         .environment(\.horizontalSizeClass, horizontalSizeClass)
     }
@@ -38,33 +38,22 @@ struct DynamicStackExampleView: View {
 
 ## BPKDynamicTypeStack
 
----
-
-## Horizontal BPKDynamicTypeStack
-
-| Day | Night |
-| --- | --- |
-| <img src="https://github.com/user-attachments/assets/05b0a2fb-eaaf-4add-a7f9-08f61385a7a9" alt="" width="375" /> | <img src="https://github.com/user-attachments/assets/8cfa9336-fcd4-4412-a6de-79f37b453043" alt="" width="375" /> |
-
-## Vertical BPKDynamicTypeStack
-
-| Day | Night |
-| --- | --- |
-| <img src="https://github.com/user-attachments/assets/b9efd415-5739-433d-8f09-b51396cf87ef" alt="" width="375" /> | <img src="https://github.com/user-attachments/assets/77201543-2883-49be-8a58-1ad69ab447ff" alt="" width="375" /> |
-
----
-
 `BPKDynamicTypeStack` automatically observes the user’s Dynamic Type size and switches between horizontal and vertical layouts when the size crosses a specified threshold (default is `.accessibility1`).
 
 ### Default usage
 
 ```swift
 BPKDynamicTypeStack {
-    BPKText("First text")
-    BPKText("Middle text")
-    BPKText("Last text")
+    BPKText("This is the first text")
+    BPKText("This is the second text")
+    BPKText("This is the third text")
 }
 ```
+
+### Demo
+
+<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/f1840efd1bf0e12db17ba941a5c56d8337476f95/Backpack-SwiftUI/Tests/DynamicStack/__Snapshots__/BPKDynamicStackTests/test_dynamicTypeStack_accessibility.a11y.png" alt="" width="375" />
+
 
 ### With layout parameters
 
