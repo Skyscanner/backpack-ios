@@ -52,7 +52,7 @@ struct ImageGalleryPreviewExampleView: View {
     private var defaultView: some View {
         BPKImageGalleryPreview(
             image: image(1),
-            inlineButtonTitle: "View Photos"
+            buttonText: "View Photos"
         )
         .padding(.base)
     }

@@ -45,7 +45,7 @@ class BPKImageGalleryPreviewTests: XCTestCase {
         assertSnapshot(
             BPKImageGalleryPreview(
                 image: createImage(),
-                inlineButtonTitle: "View Photos")
+                buttonText: "View Photos")
             .frame(width: 375, height: 217)
         )
     }

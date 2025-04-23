@@ -648,7 +648,7 @@ extension ComponentCellsProvider {
                             PresentableCellDataSource.custom(
                                 title: "Default",
                                 customController: {
-                                    ContentUIHostingController(ImageGalleryPreviewExampleView(variant: .inline))
+                                    ContentUIHostingController(ImageGalleryPreviewExampleView(variant: .default))
                                 },
                                 showPresentable: show(presentable:)
                             )

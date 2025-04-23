@@ -28,7 +28,7 @@ public struct BPKImageGalleryPreview<Content: View>: View {
     private let images: [Content]
     @Binding private var currentIndex: Int
     private let onImageClicked: ((Int) -> Void)?
-    private let inlineButtonTitle: String?
+    private let buttonText: String?
     
     public init(
         images: [Content],
@@ -39,19 +39,19 @@ public struct BPKImageGalleryPreview<Content: View>: View {
         self.images = images
         _currentIndex = currentIndex
         self.onImageClicked = onImageClicked
-        self.inlineButtonTitle = nil
+        self.buttonText = nil
     }
     
     public init(
         image: Content,
         onImageClicked: ((Int) -> Void)? = nil,
-        inlineButtonTitle: String
+        buttonText: String
     ) {
         self.variant = .default
         self.images = [image]
         self._currentIndex = .constant(0)
         self.onImageClicked = onImageClicked
-        self.inlineButtonTitle = inlineButtonTitle
+        self.buttonText = buttonText
     }
     
     public var body: some View {
@@ -102,10 +102,10 @@ public struct BPKImageGalleryPreview<Content: View>: View {
                     .frame(width: geometry.size.width, height: geometry.size.height)
             }
             RoundedRectangle(cornerRadius: 12)
-                .fill(Color.gray.opacity(0.2))
-            if let inlineButtonTitle {
+                .foregroundColor(.canvasContrastColor)
+            if let buttonText {
                 BPKButton(
-                    inlineButtonTitle,
+                    buttonText,
                     icon: BPKButton.Icon.init(icon: .picture, position: .leading),
                     action: {})
                 .buttonStyle(.primaryOnDark)
@@ -139,7 +139,7 @@ struct BPKImageGalleryPreview_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             Self.heroPreview
-            Self.inlinePreview
+            Self.defaultPreview
         }
     }
     
@@ -172,10 +172,10 @@ struct BPKImageGalleryPreview_Previews: PreviewProvider {
         .previewDisplayName("Hero")
     }
     
-    private static var inlinePreview: some View {
+    private static var defaultPreview: some View {
         BPKImageGalleryPreview(
-            image: Color(BPKColor.coreAccentColor.value),
-            inlineButtonTitle: "View Photos"
+            image: Color.clear,
+            buttonText: "View Photos"
         )
         .frame(height: 350)
         .padding(.base)
