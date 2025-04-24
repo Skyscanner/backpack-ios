@@ -19,8 +19,8 @@
 import SwiftUI
 import Backpack_Common
 
-//  A dynamic stack view that adapts its layout based on the user's Dynamic Type size setting.
-public struct BPKDynamicTypeStack<Content: View>: View {
+///  A dynamic layout view that adapts its layout based on the user's Dynamic Type size setting.
+public struct BPKDynamicTypeLayout<Content: View>: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     private let threshold: DynamicTypeSize
@@ -29,12 +29,12 @@ public struct BPKDynamicTypeStack<Content: View>: View {
     private let content: Content
 
     /**
-     Initialises the stack with custom layouts and a threshold for switching based on Dynamic Type size.
+     Initialises the wrapper layout with custom layouts inside and a threshold for switching based on Dynamic Type size.
      - Parameters:
        - threshold: The Dynamic Type size threshold at which the layout switches.
        - primaryLayout: The layout used for smaller text sizes.
        - secondaryLayout: The layout used for larger text sizes.
-       - content: The view content inside the stack.
+       - content: The view content inside the layout.
      */
     public init(
         threshold: DynamicTypeSize = .accessibility1,
@@ -85,7 +85,7 @@ public struct BPKDynamicTypeStack<Content: View>: View {
     }
 
     public var body: some View {
-        BPKDynamicStack(
+        BPKDynamicLayout(
             primaryLayout: primaryLayout,
             secondaryLayout: secondaryLayout,
             activateSecondaryLayout: .constant(dynamicTypeSize >= threshold)

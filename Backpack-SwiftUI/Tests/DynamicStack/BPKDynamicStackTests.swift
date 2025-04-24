@@ -20,21 +20,21 @@ import XCTest
 import SwiftUI
 @testable import Backpack_SwiftUI
 
-final class BPKDynamicStackTests: XCTestCase {
-    func test_dynamicType_device_orientation_example_when_landscape() {
+final class BPKDynamicLayoutTests: XCTestCase {
+    func test_dynamicLayout_device_orientation_example_when_landscape() {
         // Simulate environment manually with `.regular` size class
-        let view = DynamicStackExampleView(horizontalSizeClass: .regular)
+        let view = DynamicLayoutExampleView(horizontalSizeClass: .regular)
         assertA11ySnapshot(view)
     }
 
-    func test_dynamicType_device_orientation_example_when_portrait() {
+    func test_dynamicLayout_device_orientation_example_when_portrait() {
         // Simulate environment manually with `.compact` size class
-        let view = DynamicStackExampleView(horizontalSizeClass: .compact)
+        let view = DynamicLayoutExampleView(horizontalSizeClass: .compact)
         assertA11ySnapshot(view)
     }
 
-    func test_dynamicTypeStack_accessibility() {
-        let dynamicStack = BPKDynamicTypeStack {
+    func test_dynamicTypeLayout_accessibility() {
+        let dynamicStack = BPKDynamicTypeLayout {
             BPKText("This is the first text")
             BPKText("This is the second text")
             BPKText("This is the third text")
@@ -43,12 +43,12 @@ final class BPKDynamicStackTests: XCTestCase {
     }
 }
 
-private struct DynamicStackExampleView: View {
+private struct DynamicLayoutExampleView: View {
     let horizontalSizeClass: UserInterfaceSizeClass?
 
     var body: some View {
         let isLandscape = horizontalSizeClass == .regular
-        return BPKDynamicStack(
+        return BPKDynamicLayout(
             primaryLayout: AnyLayout(HStackLayout(alignment: .center)),
             secondaryLayout: AnyLayout(VStackLayout(alignment: .leading)),
             activateSecondaryLayout: .constant(!isLandscape)

@@ -19,24 +19,24 @@
 import SwiftUI
 import Backpack_Common
 
-/// A stack view that switches between two layouts depending on a given condition.
+/// A layout wrapper view that switches between two layouts depending on a given condition.
 ///
-/// `BPKDynamicStack` allows you to provide two different layout configurations (e.g., HStack or VStack)
+/// `BPKDynamicLayout` allows you to provide two different layout configurations (e.g., HStack or VStack)
 /// and dynamically switches between them based on an external Boolean condition, such as a Dynamic Type size threshold.
-public struct BPKDynamicStack<Content: View>: View {
+public struct BPKDynamicLayout<Content: View>: View {
     private let primaryLayout: AnyLayout
     private let secondaryLayout: AnyLayout
     @Binding var activateSecondaryLayout: Bool
     private let content: Content
 
     /**
-     Initialises a dynamic stack that switches between two layouts depending on the value of `activateSecondaryLayout`.
+     Initialises a dynamic layout that switches between two layouts depending on the value of `activateSecondaryLayout`.
 
      - Parameters:
        - primaryLayout: The primary layout to use when `activateSecondaryLayout` is false.
        - secondaryLayout: The secondary layout to use when `activateSecondaryLayout` is true.
        - activateSecondaryLayout: A binding that controls which layout is active.
-       - content: A view builder that provides the content inside the stack.
+       - content: A view builder that provides the content inside the layout.
      */
     public init(
         primaryLayout: AnyLayout,

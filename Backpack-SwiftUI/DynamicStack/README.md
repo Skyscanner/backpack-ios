@@ -1,26 +1,25 @@
-# Backpack-SwiftUI/DynamicStack
+# Backpack-SwiftUI/DynamicLayout
 
 ## Overview
 
-Backpack provides two stack components that adapt layout based on different conditions:
+Backpack provides layout wrapper components that adapt their structure based on various conditions:
 
-- **`BPKDynamicStack`** – A conditional generic stack that switches layout manually (e.g., based on device orientation or other runtime state).
-- **`BPKDynamicTypeStack`** – A Dynamic Type-aware stack that automatically switches layout based on the user's preferred text size.
+- **`BPKDynamicLayout`** – A conditional, generic layout that switches between inner layouts manually (e.g., based on device orientation or other runtime states).
+- **`BPKDynamicTypeLayout`** – A Dynamic Type-aware layout that automatically switches between inner layouts based on the user's preferred text size.
 
+## BPKDynamicLayout
 
-## BPKDynamicStack
+`BPKDynamicLayout` is a conditional layout container that switches between a **primary** and **secondary** layout based on a Boolean binding you control (e.g., device orientation, screen size, etc.).
 
-`BPKDynamicStack` is a conditional layout container that switches between a **primary** and **secondary** layout based on a Boolean binding you control (e.g., device orientation, screen size, etc).
-
-### Example (based on landscape mode)
+### Example (switch layouts based on landscape mode)
 
 ```swift
-struct DynamicStackExampleView: View {
+struct DynamicLayoutExampleView: View {
     let horizontalSizeClass: UserInterfaceSizeClass?
 
     var body: some View {
         let isLandscape = horizontalSizeClass == .regular
-        return BPKDynamicStack(
+        return BPKDynamicLayout(
             primaryLayout: AnyLayout(HStackLayout(alignment: .center)),
             secondaryLayout: AnyLayout(VStackLayout(alignment: .leading)),
             activateSecondaryLayout: .constant(!isLandscape)
@@ -36,14 +35,14 @@ struct DynamicStackExampleView: View {
 
 ---
 
-## BPKDynamicTypeStack
+## BPKDynamicTypeLayout
 
-`BPKDynamicTypeStack` automatically observes the user’s Dynamic Type size and switches between horizontal and vertical layouts when the size crosses a specified threshold (default is `.accessibility1`).
+`BPKDynamicTypeLayout` automatically observes the user’s Dynamic Type size and switches between horizontal and vertical layouts when the size crosses a specified threshold (default is `.accessibility1`).
 
 ### Default usage
 
 ```swift
-BPKDynamicTypeStack {
+BPKDynamicTypeLayout {
     BPKText("This is the first text")
     BPKText("This is the second text")
     BPKText("This is the third text")
@@ -58,7 +57,7 @@ BPKDynamicTypeStack {
 ### With layout parameters
 
 ```swift
-BPKDynamicTypeStack(
+BPKDynamicTypeLayout(
     primaryHStackAlignment: .center,
     primaryHStackSpacing: .md,
     secondaryVStackAlignment: .leading,
@@ -74,7 +73,7 @@ BPKDynamicTypeStack(
 ### With custom layouts
 
 ```swift
-BPKDynamicTypeStack(
+BPKDynamicTypeLayout(
     threshold: .accessibility3,
     primaryLayout: AnyLayout(HStackLayout(alignment: .top, spacing: .md)),
     secondaryLayout: AnyLayout(VStackLayout(alignment: .leading, spacing: .lg))
@@ -84,5 +83,3 @@ BPKDynamicTypeStack(
     BPKText("Last text", style: .heading5)
 }
 ```
-
----

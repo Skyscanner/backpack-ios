@@ -21,15 +21,15 @@ import SwiftUI
 import Backpack_SwiftUI
 
 @MainActor
-struct DynamicStackGroupsProvider {
+struct DynamicLayoutGroupsProvider {
     let showPresentable: (Presentable) -> Void
 
     func swiftUIGroups() -> [Components.Group] {
         SingleGroupProvider(
             cellDataSources: [
                 presentable(
-                    "Dynamic Type Stack",
-                    view: BPKDynamicTypeStack {
+                    "Dynamic Type Layout",
+                    view: BPKDynamicTypeLayout {
                         BPKText("This is the first text")
                         BPKText("This is the second text")
                         BPKText("This is the third text")

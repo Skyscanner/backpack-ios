@@ -54,7 +54,7 @@ struct ComponentCellsProvider {
             cardCarousel(),
             chips(),
             chipGroup(),
-            dynamicStack(),
+            dynamicLayout(),
             fieldSet(),
             flightLeg(),
             flare(),
@@ -746,13 +746,13 @@ extension ComponentCellsProvider {
         )
     }
 
-    private func dynamicStack() -> CellDataSource {
+    private func dynamicLayout() -> CellDataSource {
         ComponentCellDataSource(
-            title: "Dynamic Stack",
+            title: "Dynamic Layout",
             tabs: [
-                .swiftui(groups: DynamicStackGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
+                .swiftui(groups: DynamicLayoutGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
-            showChildren: { showComponent(title: "Dynamic Stack", tabs: $0) }
+            showChildren: { showComponent(title: "Dynamic Layout", tabs: $0) }
         )
     }
 }
