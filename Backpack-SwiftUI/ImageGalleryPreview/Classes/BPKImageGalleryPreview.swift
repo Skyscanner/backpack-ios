@@ -30,6 +30,11 @@ public struct BPKImageGalleryPreview<Content: View>: View {
     private let onImageClicked: ((Int) -> Void)?
     private let buttonText: String?
     
+    /// Initializes a new instance of Image Gallery Preview in the hero variant.
+    /// - Parameters:
+    ///   - images: The array of images to display as a carousel.
+    ///   - currentIndex: A binding to the currently displayed image index.
+    ///   - onImageClicked: An optional closure to execute when an image is clicked.
     public init(
         images: [Content],
         currentIndex: Binding<Int>,
@@ -38,6 +43,11 @@ public struct BPKImageGalleryPreview<Content: View>: View {
         self.init(variant: .hero(images: images, currentIndex: currentIndex, onImageClicked: onImageClicked))
     }
     
+    /// Initializes a new instance of Image Gallery Preview in the default variant.
+    /// - Parameters:
+    ///   - image: The image to display in the preview.
+    ///   - onButtonClicked: An optional closure to execute when the button is clicked.
+    ///   - buttonText: The text to display on the button.
     public init(
         image: Content,
         onButtonClicked: (() -> Void)? = nil,
