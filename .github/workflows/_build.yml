@@ -86,7 +86,7 @@ jobs:
         run: Pods/SwiftLint/swiftlint lint --strict --config .swiftlint.yml
         working-directory: Example
 
-      - uses: actions/create-github-app-token@v1
+      - uses: actions/create-github-app-token@v2
         id: app-token
         with:
           app-id: ${{ vars.GH_APP_ID }}
