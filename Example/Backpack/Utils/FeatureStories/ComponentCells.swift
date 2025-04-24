@@ -636,9 +636,26 @@ extension ComponentCellsProvider {
         ComponentCellDataSource(
             title: "Image Gallery Preview",
             tabs: [
-                .swiftui(presentable: CustomPresentable(generateViewController: {
-                    ContentUIHostingController(ImageGalleryPreviewExampleView())
-                }))
+                .swiftui(groups:
+                    SingleGroupProvider(
+                        cellDataSources: [
+                            PresentableCellDataSource.custom(
+                                title: "Hero",
+                                customController: {
+                                    ContentUIHostingController(ImageGalleryPreviewExampleView(variant: .hero))
+                                },
+                                showPresentable: show(presentable:)
+                            ),
+                            PresentableCellDataSource.custom(
+                                title: "Default",
+                                customController: {
+                                    ContentUIHostingController(ImageGalleryPreviewExampleView(variant: .default))
+                                },
+                                showPresentable: show(presentable:)
+                            )
+                        ]
+                    ).groups()
+                )
             ],
             showChildren: { showComponent(title: "Image Gallery Preview", tabs: $0) }
         )

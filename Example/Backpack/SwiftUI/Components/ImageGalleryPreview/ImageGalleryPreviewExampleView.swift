@@ -21,9 +21,23 @@ import SwiftUI
 import Backpack_SwiftUI
 
 struct ImageGalleryPreviewExampleView: View {
+    enum Variant {
+        case hero
+        case `default`
+    }
+    let variant: Variant
     @State var currentIndex: Int = 0
     
     var body: some View {
+        switch variant {
+        case .hero:
+            heroView
+        case .default:
+            defaultView
+        }
+    }
+    
+    private var heroView: some View {
         BPKImageGalleryPreview(
             images: (1...4).map(image(_:)),
             currentIndex: $currentIndex,
@@ -35,6 +49,14 @@ struct ImageGalleryPreviewExampleView: View {
         }
     }
     
+    private var defaultView: some View {
+        BPKImageGalleryPreview(
+            image: image(1),
+            buttonText: "View Photos"
+        )
+        .padding(.base)
+    }
+    
     private func image(_ number: Int) -> some View {
         Image("carousel_placeholder_\(number)")
             .resizable()
@@ -44,6 +66,7 @@ struct ImageGalleryPreviewExampleView: View {
 
 struct ImageGalleryPreviewExampleView_Previews: PreviewProvider {
     static var previews: some View {
-        ImageGalleryPreviewExampleView()
+        ImageGalleryPreviewExampleView(variant: .hero)
+        ImageGalleryPreviewExampleView(variant: .default)
     }
 }

@@ -19,21 +19,72 @@
 import SwiftUI
 
 public struct BPKImageGalleryPreview<Content: View>: View {
+    public enum Variant {
+        case hero(images: [Content], currentIndex: Binding<Int>, onImageClicked: ((Int) -> Void)?)
+        case `default`(image: Content, onButtonClicked: (() -> Void)?, buttonText: String)
+    }
+
+    private let variant: Variant
     private let images: [Content]
     @Binding private var currentIndex: Int
     private let onImageClicked: ((Int) -> Void)?
+    private let buttonText: String?
     
+    /// Initializes a new instance of Image Gallery Preview in the hero variant.
+    /// - Parameters:
+    ///   - images: The array of images to display as a carousel.
+    ///   - currentIndex: A binding to the currently displayed image index.
+    ///   - onImageClicked: An optional closure to execute when an image is clicked.
     public init(
         images: [Content],
         currentIndex: Binding<Int>,
         onImageClicked: ((Int) -> Void)? = nil
     ) {
-        self.images = images
-        _currentIndex = currentIndex
-        self.onImageClicked = onImageClicked
+        self.init(variant: .hero(images: images, currentIndex: currentIndex, onImageClicked: onImageClicked))
+    }
+    
+    /// Initializes a new instance of Image Gallery Preview in the default variant.
+    /// - Parameters:
+    ///   - image: The image to display in the preview.
+    ///   - onButtonClicked: An optional closure to execute when the button is clicked.
+    ///   - buttonText: The text to display on the button.
+    public init(
+        image: Content,
+        onButtonClicked: (() -> Void)? = nil,
+        buttonText: String
+    ) {
+        self.init(variant: .default(image: image, onButtonClicked: onButtonClicked, buttonText: buttonText))
+    }
+
+    public init(variant: Variant) {
+        self.variant = variant
+        
+        switch variant {
+        case let .hero(images, currentIndex, onImageClicked):
+            self.images = images
+            self._currentIndex = currentIndex
+            self.onImageClicked = onImageClicked
+            self.buttonText = nil
+        case let .default(image, onButtonClicked, buttonText):
+            self.images = [image]
+            self._currentIndex = .constant(0)
+            self.onImageClicked = { _ in onButtonClicked?() }
+            self.buttonText = buttonText
+        }
     }
     
     public var body: some View {
+        Group {
+            switch variant {
+            case .hero:
+                heroView
+            case .default:
+                defaultView
+            }
+        }
+    }
+    
+    private var heroView: some View {
         ZStack(alignment: .bottomTrailing) {
             InternalCarouselWrapper(
                 images: images,
@@ -61,7 +112,36 @@ public struct BPKImageGalleryPreview<Content: View>: View {
                 .padding(.bottom, 44)
                 .accessibilityHidden(true)
         }
-        
+    }
+    
+    private var defaultView: some View {
+        ZStack(alignment: .bottomTrailing) {
+            Rectangle()
+                .foregroundColor(.canvasContrastColor)
+            GeometryReader { geometry in
+                images.first
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+            }
+            .if(onImageClicked != nil) { view in
+                view.onTapGesture {
+                    onImageClicked!(currentIndex)
+                }
+            }
+            if let buttonText {
+                BPKButton(
+                    buttonText,
+                    icon: BPKButton.Icon.init(icon: .picture, position: .leading),
+                    action: {
+                        onImageClicked?(currentIndex)
+                    })
+                .buttonStyle(.primaryOnDark)
+                .padding(.all, BPKSpacing.base)
+            }
+        }
+        .clipShape(
+            RoundedRectangle(cornerRadius: 12)
+        )
+        .aspectRatio(1.73, contentMode: .fit)
     }
     
     private func accessibilityPageIncrement() {
@@ -83,6 +163,13 @@ public struct BPKImageGalleryPreview<Content: View>: View {
 
 struct BPKImageGalleryPreview_Previews: PreviewProvider {
     static var previews: some View {
+        Group {
+            Self.heroPreview
+            Self.defaultPreview
+        }
+    }
+    
+    private static var heroPreview: some View {
         BPKNavigationView(
             leadingItems: [.init(type: .backButton("Back"), action: {})],
             trailingItems: [
@@ -97,18 +184,29 @@ struct BPKImageGalleryPreview_Previews: PreviewProvider {
                     currentIndex: .constant(0)
                 )
                 .frame(height: 350)
-                
                 VStack(alignment: .leading) {
                     BPKText("Holiday Inn Express London Heathrow T4", style: .heading3)
                         .lineLimit(nil)
                         .padding(.base)
                 }
-                
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(.white)
                 .clipShape(RoundedRectangle(cornerRadius: .lg))
                 Spacer()
             }
         }
+        .previewDisplayName("Hero")
     }
+    
+    private static var defaultPreview: some View {
+        BPKImageGalleryPreview(
+            image: Color(BPKColor.coreAccentColor.value),
+            onButtonClicked: { print("Clicked image") },
+            buttonText: "View Photos"
+        )
+        .frame(height: 350)
+        .padding(.base)
+        .previewDisplayName("Default")
+    }
+    
 }
