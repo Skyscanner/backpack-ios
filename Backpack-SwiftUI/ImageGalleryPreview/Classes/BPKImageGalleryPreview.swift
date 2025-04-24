@@ -19,9 +19,9 @@
 import SwiftUI
 
 public struct BPKImageGalleryPreview<Content: View>: View {
-    private enum Variant {
-        case hero
-        case `default`
+    public enum Variant {
+        case hero(images: [Content], currentIndex: Binding<Int>, onImageClicked: ((Int) -> Void)?)
+        case `default`(image: Content, onButtonClicked: (() -> Void)?, buttonText: String)
     }
 
     private let variant: Variant
@@ -35,11 +35,7 @@ public struct BPKImageGalleryPreview<Content: View>: View {
         currentIndex: Binding<Int>,
         onImageClicked: ((Int) -> Void)? = nil
     ) {
-        self.variant = .hero
-        self.images = images
-        _currentIndex = currentIndex
-        self.onImageClicked = onImageClicked
-        self.buttonText = nil
+        self.init(variant: .hero(images: images, currentIndex: currentIndex, onImageClicked: onImageClicked))
     }
     
     public init(
@@ -47,11 +43,24 @@ public struct BPKImageGalleryPreview<Content: View>: View {
         onButtonClicked: (() -> Void)? = nil,
         buttonText: String
     ) {
-        self.variant = .default
-        self.images = [image]
-        self._currentIndex = .constant(0)
-        self.onImageClicked = { _ in onButtonClicked?() }
-        self.buttonText = buttonText
+        self.init(variant: .default(image: image, onButtonClicked: onButtonClicked, buttonText: buttonText))
+    }
+
+    public init(variant: Variant) {
+        self.variant = variant
+        
+        switch variant {
+        case let .hero(images, currentIndex, onImageClicked):
+            self.images = images
+            self._currentIndex = currentIndex
+            self.onImageClicked = onImageClicked
+            self.buttonText = nil
+        case let .default(image, onButtonClicked, buttonText):
+            self.images = [image]
+            self._currentIndex = .constant(0)
+            self.onImageClicked = { _ in onButtonClicked?() }
+            self.buttonText = buttonText
+        }
     }
     
     public var body: some View {
