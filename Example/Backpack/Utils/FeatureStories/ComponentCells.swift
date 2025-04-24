@@ -54,6 +54,7 @@ struct ComponentCellsProvider {
             cardCarousel(),
             chips(),
             chipGroup(),
+            dynamicLayout(),
             fieldSet(),
             flightLeg(),
             flare(),
@@ -742,6 +743,16 @@ extension ComponentCellsProvider {
                 .swiftui(groups: AppSearchModalGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "App Search Modal", tabs: $0) }
+        )
+    }
+
+    private func dynamicLayout() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Dynamic Layout",
+            tabs: [
+                .swiftui(groups: DynamicLayoutGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
+            ],
+            showChildren: { showComponent(title: "Dynamic Layout", tabs: $0) }
         )
     }
 }
