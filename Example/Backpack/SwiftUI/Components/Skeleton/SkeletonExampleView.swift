@@ -21,39 +21,27 @@ import SwiftUI
 import Backpack_SwiftUI
 
 struct SkeletonExampleView: View {
-    let columns = Array(repeating: GridItem(.flexible(minimum: 32), spacing: 12), count: 7)
-
     var body: some View {
-        ScrollView {
-            VStack {
-                LazyVGrid(columns: columns, spacing: 16) {
-                    ForEach(0..<28, id: \.self) { _ in
-                        BPKSkeleton.headline(size: .custom(size: CGSize(width: 32, height: 12)))
-                            .shimmering(size: .small)
-                    }
-                }
-                .padding()
-                
-                VStack(alignment: .leading, spacing: 16) {
-                    Spacer()
-                    BPKText("Image", style: .heading5)
-                    makeImageSkeletonRow()
-                    
-                    BPKText("Circle", style: .heading5)
-                    makeCircleSkeletonRow()
-                    
-                    BPKText("Headline", style: .heading5)
-                    makeHeadlineSkeletonRow()
-                    
-                    BPKText("Bodytext", style: .heading5)
-                    makeBodytextSkeletonRow()
-                    Spacer()
-                }
-                .shimmering()
+        HStack {
+            VStack(alignment: .leading, spacing: 16) {
+                Spacer()
+                BPKText("Image", style: .heading5)
+                makeImageSkeletonRow()
+
+                BPKText("Circle", style: .heading5)
+                makeCircleSkeletonRow()
+
+                BPKText("Headline", style: .heading5)
+                makeHeadlineSkeletonRow()
+
+                BPKText("Bodytext", style: .heading5)
+                makeBodytextSkeletonRow()
                 Spacer()
             }
-            .padding()
+            .shimmering()
+            Spacer()
         }
+        .padding()
     }
 
     private func makeImageSkeletonRow() -> some View {
