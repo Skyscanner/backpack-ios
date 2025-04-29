@@ -27,13 +27,13 @@ struct SkeletonExampleView: View {
                 Spacer()
                 BPKText("Image", style: .heading5)
                 makeImageSkeletonRow()
-
+                
                 BPKText("Circle", style: .heading5)
                 makeCircleSkeletonRow()
-
+                
                 BPKText("Headline", style: .heading5)
                 makeHeadlineSkeletonRow()
-
+                
                 BPKText("Bodytext", style: .heading5)
                 makeBodytextSkeletonRow()
                 Spacer()
@@ -43,7 +43,7 @@ struct SkeletonExampleView: View {
         }
         .padding()
     }
-
+    
     private func makeImageSkeletonRow() -> some View {
         HStack(alignment: .bottom) {
             VStack {
@@ -56,7 +56,7 @@ struct SkeletonExampleView: View {
             }
         }
     }
-
+    
     private func makeHeadlineSkeletonRow() -> some View {
         HStack(alignment: .bottom) {
             VStack {
@@ -73,7 +73,7 @@ struct SkeletonExampleView: View {
             }
         }
     }
-
+    
     private func makeCircleSkeletonRow() -> some View {
         HStack(alignment: .bottom) {
             VStack {
@@ -86,7 +86,7 @@ struct SkeletonExampleView: View {
             }
         }
     }
-
+    
     private func makeBodytextSkeletonRow() -> some View {
         VStack {
             VStack {
