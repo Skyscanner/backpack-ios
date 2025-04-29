@@ -21,29 +21,43 @@ import SwiftUI
 import Backpack_SwiftUI
 
 struct SkeletonExampleView: View {
+    let columns = Array(repeating: GridItem(.flexible(minimum: 32), spacing: 12), count: 7)
+
     var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 16) {
-                Spacer()
-                BPKText("Image", style: .heading5)
-                makeImageSkeletonRow()
-                
-                BPKText("Circle", style: .heading5)
-                makeCircleSkeletonRow()
-                
-                BPKText("Headline", style: .heading5)
-                makeHeadlineSkeletonRow()
-                
-                BPKText("Bodytext", style: .heading5)
-                makeBodytextSkeletonRow()
-                Spacer()
+        ScrollView {
+            VStack {
+                HStack {
+                    VStack(alignment: .leading, spacing: 16) {
+                        Spacer()
+                        BPKText("Image", style: .heading5)
+                        makeImageSkeletonRow()
+
+                        BPKText("Circle", style: .heading5)
+                        makeCircleSkeletonRow()
+
+                        BPKText("Headline", style: .heading5)
+                        makeHeadlineSkeletonRow()
+
+                        BPKText("Bodytext", style: .heading5)
+                        makeBodytextSkeletonRow()
+                        Spacer()
+                    }
+                    .shimmering()
+                    Spacer()
+                }
+
+                HStack {
+                    VStack(alignment: .leading, spacing: 16) {
+                        BPKText("Custom headline with small Shimmer", style: .heading5)
+                        makeSmallSkeleton()
+                    }
+                    Spacer()
+                }
             }
-            .shimmering()
-            Spacer()
+            .padding()
         }
-        .padding()
     }
-    
+
     private func makeImageSkeletonRow() -> some View {
         HStack(alignment: .bottom) {
             VStack {
@@ -56,7 +70,7 @@ struct SkeletonExampleView: View {
             }
         }
     }
-    
+
     private func makeHeadlineSkeletonRow() -> some View {
         HStack(alignment: .bottom) {
             VStack {
@@ -73,7 +87,7 @@ struct SkeletonExampleView: View {
             }
         }
     }
-    
+
     private func makeCircleSkeletonRow() -> some View {
         HStack(alignment: .bottom) {
             VStack {
@@ -86,7 +100,7 @@ struct SkeletonExampleView: View {
             }
         }
     }
-    
+
     private func makeBodytextSkeletonRow() -> some View {
         VStack {
             VStack {
@@ -94,6 +108,11 @@ struct SkeletonExampleView: View {
                 BPKText("Default", style: .caption)
             }
         }
+    }
+
+    private func makeSmallSkeleton() -> some View {
+        BPKSkeleton.headline(size: .custom(size: CGSize(width: 32, height: 12)))
+            .shimmering(size: .small)
     }
 }
 

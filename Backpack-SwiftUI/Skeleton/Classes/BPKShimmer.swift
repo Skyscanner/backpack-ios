@@ -20,9 +20,8 @@ import SwiftUI
 
 public struct BPKShimmer: ViewModifier {
     @State private var offset: CGFloat = 0.0
-    private let duration: Double
     private let size: Size
-    private let bandSize: CGFloat
+    private let bandSize: CGFloat = 0.3
 
     public enum Size {
         case small, `default`
@@ -30,14 +29,11 @@ public struct BPKShimmer: ViewModifier {
 
     public init(size: Size) {
         self.size = size
-        self.duration = size == .default ? 1.0 : 0.5
-        self.bandSize = size == .default ? 0.3 : 0.3
     }
 
     public func body(content: Content) -> some View {
         Group {
             if size == .default {
-                // ORIGINAL SHIMMER FOR DEFAULT
                 content
                     .mask(defaultMask)
                     .animation(
@@ -49,7 +45,6 @@ public struct BPKShimmer: ViewModifier {
                         offset = 1.0 + bandSize
                     }
             } else {
-                // NEW SMALL SHIMMER METHOD
                 content
                     .overlay(
                         GeometryReader { geo in
@@ -115,6 +110,10 @@ public struct BPKShimmer: ViewModifier {
 
     private func alpha(_ alpha: CGFloat) -> Color {
         Color(BPKColor.skeletonShimmerCenterColor.withAlphaComponent(alpha))
+    }
+
+    private var duration: Double {
+        return size == .default ? 1.0 : 0.5
     }
 }
 
