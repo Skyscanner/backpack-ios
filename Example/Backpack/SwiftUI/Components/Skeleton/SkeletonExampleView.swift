@@ -45,14 +45,8 @@ struct SkeletonExampleView: View {
                     .shimmering()
                     Spacer()
                 }
+                makeSmallSkeleton()
 
-                HStack {
-                    VStack(alignment: .leading, spacing: 16) {
-                        BPKText("Custom headline with small Shimmer", style: .heading5)
-                        makeSmallSkeleton()
-                    }
-                    Spacer()
-                }
             }
             .padding()
         }
@@ -111,8 +105,14 @@ struct SkeletonExampleView: View {
     }
 
     private func makeSmallSkeleton() -> some View {
-        BPKSkeleton.headline(size: .custom(size: CGSize(width: 32, height: 12)))
-            .shimmering(size: .small)
+        HStack {
+            VStack(alignment: .leading, spacing: 16) {
+                BPKText("Custom headline with small Shimmer", style: .heading5)
+                BPKSkeleton.headline(size: .custom(size: CGSize(width: 32, height: 12)))
+                    .shimmering(size: .small)
+            }
+            Spacer()
+        }
     }
 }
 
