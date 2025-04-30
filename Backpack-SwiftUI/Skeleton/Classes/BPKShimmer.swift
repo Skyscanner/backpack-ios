@@ -18,40 +18,71 @@
 
 import SwiftUI
 
-struct BPKShimmer: ViewModifier {
-    @State private var offset = 0.0
-    private let duration = 1.0
+public struct BPKShimmer: ViewModifier {
+    @State private var offset: CGFloat = 0.0
+    private let size: Size
     private let bounce = false
-    private let bandSize = 0.3
-    
+
+    public enum Size {
+        case small, `default`
+    }
+
+    public init(size: Size) {
+        self.size = size
+    }
+
     public func body(content: Content) -> some View {
         content
             .mask(linearGradient)
-            .animation(linearAnimation, value: offset)
+            .animation(size == .default ? linearAnimation : easeInOuAnimation, value: offset)
+            .clipped()
+            .drawingGroup(opaque: false)
             .onAppear {
                 offset = 1.0 + bandSize
             }
     }
-    
+
     private var linearAnimation: Animation {
         .linear(duration: duration).repeatForever(autoreverses: bounce)
     }
-    
+
+    private var easeInOuAnimation: Animation {
+        .easeInOut(duration: duration).delay(0.8).repeatForever(autoreverses: bounce)
+    }
+
     private var linearGradient: LinearGradient {
         .init(
-            gradient: Gradient(colors: [alpha(1), alpha(0.8), alpha(1)]),
+            gradient: gradient,
             startPoint: UnitPoint(x: -bandSize + offset, y: 0.5),
             endPoint: UnitPoint(x: offset, y: 0.5)
         )
     }
-    
+
     private func alpha(_ alpha: CGFloat) -> Color {
-        return Color(BPKColor.skeletonShimmerCenterColor.withAlphaComponent(alpha))
+        Color(BPKColor.skeletonShimmerCenterColor.withAlphaComponent(alpha))
+    }
+
+    private var duration: Double {
+        return size == .default ? 1.0 : 0.5
+    }
+
+    private var bandSize: Double {
+        return size == .default ? 0.3 : 2.0
+    }
+
+    private var gradient: Gradient {
+        return size == .default ?
+        Gradient(colors: [alpha(1), alpha(0.8), alpha(1)]) :
+        Gradient(stops: [
+            .init(color: alpha(1), location: 0.0),
+            .init(color: alpha(0.3), location: 0.5),
+            .init(color: alpha(1), location: 1.0)
+        ])
     }
 }
 
 public extension View {
-    @ViewBuilder func shimmering() -> some View {
-        modifier(BPKShimmer())
+    @ViewBuilder func shimmering(size: BPKShimmer.Size = .default) -> some View {
+        self.modifier(BPKShimmer(size: size))
     }
 }

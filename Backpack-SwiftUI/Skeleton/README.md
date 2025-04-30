@@ -88,12 +88,21 @@ BPKSkeleton.bodytext(size: .custom(size: CGSize(width: 280, height: 61)))
 ```
 
 ### **Shimmer animation**
+|  Options   | Result  |
+|  ----  | ----  |
+| `.default`  |  size: 200 * 40 |
+| `.small`  |   Faster animation with pause between occurrences |
+
 
 ```swift
 import Backpack_SwiftUI
 
 yourView {
 }
-.shimmering()
+.shimmering() // Default
+
+yourView {
+}
+.shimmering(size: .small)
 ```
 
