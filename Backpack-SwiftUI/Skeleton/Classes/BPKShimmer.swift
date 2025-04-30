@@ -21,7 +21,7 @@ import SwiftUI
 public struct BPKShimmer: ViewModifier {
     @State private var offset: CGFloat = 0.0
     private let size: Size
-    private let bandSize: CGFloat = 0.3
+    private let bounce = false
 
     public enum Size {
         case small, `default`
@@ -32,80 +32,30 @@ public struct BPKShimmer: ViewModifier {
     }
 
     public func body(content: Content) -> some View {
-        Group {
-            if size == .default {
-                content
-                    .mask(defaultMask)
-                    .animation(
-                        .linear(duration: duration)
-                            .repeatForever(autoreverses: false),
-                        value: offset
-                    )
-                    .onAppear {
-                        offset = 1.0 + bandSize
-                    }
-            } else {
-                content
-                    .overlay(
-                        GeometryReader { geo in
-                            shimmerOverlay(width: geo.size.width, height: geo.size.height)
-                                .offset(x: offset)
-                                .onAppear {
-                                    startSmallLoop(width: geo.size.width)
-                                }
-                        }
-                    )
-                    .mask(content)
+        content
+            .mask(linearGradient)
+            .animation(size == .default ? linearAnimation : easeInOuAnimation, value: offset)
+            .clipped()
+            .drawingGroup(opaque: false)
+            .onAppear {
+                offset = 1.0 + bandSize
             }
-        }
-        .clipped()
-        .drawingGroup(opaque: false)
     }
 
-    // MARK: Default Size - Mask logic
-    private var defaultMask: LinearGradient {
-        LinearGradient(
-            gradient: Gradient(colors: [
-                alpha(1),
-                alpha(0.8),
-                alpha(1)
-            ]),
+    private var linearAnimation: Animation {
+        .linear(duration: duration).repeatForever(autoreverses: bounce)
+    }
+
+    private var easeInOuAnimation: Animation {
+        .easeInOut(duration: duration).delay(0.8).repeatForever(autoreverses: bounce)
+    }
+
+    private var linearGradient: LinearGradient {
+        .init(
+            gradient: gradient,
             startPoint: UnitPoint(x: -bandSize + offset, y: 0.5),
             endPoint: UnitPoint(x: offset, y: 0.5)
         )
-    }
-
-    // MARK: Small Size - Moving overlay logic
-    private func shimmerOverlay(width: CGFloat, height: CGFloat) -> some View {
-        LinearGradient(
-            gradient: Gradient(colors: [
-                alpha(0.0),
-                alpha(0.8),
-                alpha(0.0)
-            ]),
-            startPoint: .leading,
-            endPoint: .trailing
-        )
-        .frame(width: width * 2.0, height: height) // 2x wider shimmer band
-    }
-
-    private func startSmallLoop(width: CGFloat) {
-        Task {
-            while true {
-                // Reset offscreen left
-                await MainActor.run {
-                    offset = -width * 2
-                }
-
-                // Animate across to right
-                withAnimation(.easeInOut(duration: duration)) {
-                    offset = width * 2
-                }
-
-                // Wait for animation to finish and pause before resetting
-                try? await Task.sleep(nanoseconds: UInt64(duration * 1_000_000_000 * 2.5))
-            }
-        }
     }
 
     private func alpha(_ alpha: CGFloat) -> Color {
@@ -114,6 +64,20 @@ public struct BPKShimmer: ViewModifier {
 
     private var duration: Double {
         return size == .default ? 1.0 : 0.5
+    }
+
+    private var bandSize: Double {
+        return size == .default ? 0.3 : 2.0
+    }
+
+    private var gradient: Gradient {
+        return size == .default ?
+        Gradient(colors: [alpha(1), alpha(0.8), alpha(1)]) :
+        Gradient(stops: [
+            .init(color: alpha(1), location: 0.0),
+            .init(color: alpha(0.3), location: 0.5),
+            .init(color: alpha(1), location: 1.0)
+        ])
     }
 }
 
