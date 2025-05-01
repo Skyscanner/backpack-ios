@@ -36,18 +36,13 @@ public struct BPKSwitch<Content: View>: View {
     /// - Parameter isOn: A binding to a property that indicates whether the switch is
     ///    on or off.
     /// - Parameter text: A string that describes the purpose of the switch.
-    public init(isOn: Binding<Bool>, text: String, truncate: Bool = false) where Content == BPKText {
-        let bpkText: (Bool) -> BPKText = { truncate in
-            if truncate {
-                BPKText(text)
-            } else {
-                BPKText(text)
-                    .lineLimit(nil)
-            }
-        }
+    /// - Parameter truncate: A Boolean value that determines whether the text should be truncated
+    ///    or displayed on multiple lines.
+    public init(isOn: Binding<Bool>, text: String, truncate: Bool = true) where Content == BPKText {
+        let bpkText = truncate ? BPKText(text) : BPKText(text).lineLimit(nil)
 
         self.init(isOn: isOn) {
-            bpkText(truncate)
+            bpkText
         }
     }
     
