@@ -26,7 +26,7 @@ struct BPKCloseButton: View {
     
     var body: some View {
         Button(action: action) {
-            BPKIconView(.close, size: .large)
+            BPKIconView(.close, size: .large, accessibilityLabel: "icon_\(accessibilityLabel)")
         }
         .foregroundColor(.textPrimaryColor)
         .contentShape(Rectangle())
