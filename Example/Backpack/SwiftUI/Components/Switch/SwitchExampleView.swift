@@ -39,7 +39,7 @@ struct SwitchExampleView: View {
             )
             BPKSwitch(
                 isOn: $value,
-                text: "ABC",
+                text: "Switch Text",
                 truncate: false
             ).labelsHidden()
         }

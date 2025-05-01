@@ -28,4 +28,18 @@ class BPKSwitchTests: XCTestCase {
     func testSwitchOffState() {
         assertSnapshot(BPKSwitch(isOn: .constant(false), text: "Test").padding(.sm))
     }
+
+    func testSwitchTruncatedByDefault() {
+        assertSnapshot(BPKSwitch(isOn: .constant(false), text: "line 1\n line 2").padding(.sm))
+    }
+
+    func testSwitchTruncatedFalse() {
+        assertSnapshot(
+            BPKSwitch(
+                isOn: .constant(false),
+                text: "line 1\n line 2",
+                truncate: false
+            ).padding(.sm)
+        )
+    }
 }
