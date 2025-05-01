@@ -36,9 +36,18 @@ public struct BPKSwitch<Content: View>: View {
     /// - Parameter isOn: A binding to a property that indicates whether the switch is
     ///    on or off.
     /// - Parameter text: A string that describes the purpose of the switch.
-    public init(isOn: Binding<Bool>, text: String) where Content == BPKText {
+    public init(isOn: Binding<Bool>, text: String, truncate: Bool = false) where Content == BPKText {
+        let bpkText: (Bool) -> BPKText = { truncate in
+            if truncate {
+                BPKText(text)
+            } else {
+                BPKText(text)
+                    .lineLimit(nil)
+            }
+        }
+
         self.init(isOn: isOn) {
-            BPKText(text)
+            bpkText(truncate)
         }
     }
     
@@ -66,12 +75,25 @@ public struct BPKSwitch<Content: View>: View {
 
 struct BPKSwitch_Previews: PreviewProvider {
     static var previews: some View {
+        // swiftlint:disable closure_body_length
         Group {
             VStack {
                 BPKSwitch(isOn: .constant(true), text: "Test")
                 BPKSwitch(isOn: .constant(false)) {
                     BPKText("Test")
                 }
+                BPKSwitch(
+                    isOn: .constant(true),
+                    // swiftlint:disable:next line_length
+                    text: "This is a sample sentence designed to test the layout behavior, text truncation, and multi-line wrapping in SwiftUI previews, especially when rendering across different screen sizes, accessibility font settings, and dynamic type scaling scenarios.",
+                    truncate: true
+                )
+                BPKSwitch(
+                    isOn: .constant(true),
+                    // swiftlint:disable:next line_length
+                    text: "This is a sample sentence designed to test the layout behavior, text truncation, and multi-line wrapping in SwiftUI previews, especially when rendering across different screen sizes, accessibility font settings, and dynamic type scaling scenarios.",
+                    truncate: false
+                )
             }
             .previewLayout(.sizeThatFits)
             VStack {
@@ -79,6 +101,17 @@ struct BPKSwitch_Previews: PreviewProvider {
                 BPKSwitch(isOn: .constant(false)) {
                     BPKText("Test")
                 }
+                BPKSwitch(
+                    isOn: .constant(true),
+                    // swiftlint:disable:next line_length
+                    text: "This is a sample sentence designed to test the layout behavior, text truncation, and multi-line wrapping in SwiftUI previews, especially when rendering across different screen sizes, accessibility font settings, and dynamic type scaling scenarios."
+                )
+                BPKSwitch(
+                    isOn: .constant(true),
+                    // swiftlint:disable:next line_length
+                    text: "This is a sample sentence designed to test the layout behavior, text truncation, and multi-line wrapping in SwiftUI previews, especially when rendering across different screen sizes, accessibility font settings, and dynamic type scaling scenarios.",
+                    truncate: false
+                )
             }
             .preferredColorScheme(.dark)
             .previewLayout(.sizeThatFits)
