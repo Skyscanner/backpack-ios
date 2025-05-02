@@ -25,6 +25,23 @@ struct SwitchExampleView: View {
     var body: some View {
         VStack {
             BPKSwitch(isOn: $value, text: "Switch is \(value ? "On" : "Off")")
+            BPKSwitch(
+                isOn: $value,
+                // swiftlint:disable:next line_length
+                text: "This is a sample sentence designed to test the layout behavior, text truncation, and multi-line wrapping in SwiftUI previews, especially when rendering across different screen sizes, accessibility font settings, and dynamic type scaling scenarios. ",
+                truncate: true
+            )
+            BPKSwitch(
+                isOn: $value,
+                // swiftlint:disable:next line_length
+                text: "This is a sample sentence designed to test the layout behavior, text truncation, and multi-line wrapping in SwiftUI previews, especially when rendering across different screen sizes, accessibility font settings, and dynamic type scaling scenarios. ",
+                truncate: false
+            )
+            BPKSwitch(
+                isOn: $value,
+                text: "Switch Text",
+                truncate: false
+            ).labelsHidden()
         }
         .padding()
     }
