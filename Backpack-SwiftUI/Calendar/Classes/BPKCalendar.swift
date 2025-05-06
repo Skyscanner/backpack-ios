@@ -63,7 +63,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
         rangeCalendarSelectionHandler: RangeCalendarSelectionHandler? = nil,
         showFloatYearLabel: Bool = true,
         highlightedDates: Set<Date>? = nil,
-        dayAccessoryView: @escaping (Date) -> DayAccessoryView = { _ in EmptyView()}
+        dayAccessoryView: @escaping (Date) -> DayAccessoryView = { _ in EmptyView() }
     ) {
         self.dayAccessoryView = dayAccessoryView
         _currentlyShownMonth = State(initialValue: validRange.lowerBound)
@@ -98,9 +98,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
                         rangeCalendarSelectionHandler: rangeCalendarSelectionHandler,
                         validRange: validRange,
                         monthScroll: initialMonthScroll,
-                        onScrollToMonth: { date in
-                            onScrollToMonthAction?(date)
-                        },
+                        onScrollToMonth: { date in onScrollToMonthAction?(date) },
                         scrollDebounceThreshold: scrollDebounceThreshold,
                         calculator: InMemoryCacheCalendarGridCalculator(
                             decoratee: DefaultCalendarGridCalculator(calendar: calendar)

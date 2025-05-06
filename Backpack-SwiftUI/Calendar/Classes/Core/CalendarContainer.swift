@@ -39,7 +39,12 @@ struct CalendarContainer<MonthContent: View>: View {
         scrollDebounceThreshold: Int,
         monthContent: @escaping (_ month: Date) -> MonthContent
     ) {
-        _visibilityObserver = StateObject(wrappedValue: ItemVisibilityObserver(parentProxy: parentProxy, debounceThreshold: scrollDebounceThreshold))
+        _visibilityObserver = StateObject(
+            wrappedValue: ItemVisibilityObserver(
+                parentProxy: parentProxy,
+                debounceThreshold: scrollDebounceThreshold
+            )
+        )
         self.calendar = calendar
         self.validRange = validRange
         self.parentProxy = parentProxy
