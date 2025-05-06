@@ -54,6 +54,7 @@ struct RangeCalendarMonthContainer<DayAccessoryView: View>: View {
                         intermediateSelectionDate: selectedDate
                     )
                 ))
+                .accessibility(addTraits: .isSelected)
         } else if case .range(let closedRange) = selectionState, closedRange.contains(dayDate) {
             RangeSelectionCalendarDayCell(
                 date: dayDate,
