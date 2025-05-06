@@ -36,7 +36,7 @@ class ItemVisibilityObserver: ObservableObject {
 
     private var lastEmittedVisibleItems: [Int] = []
 
-    init(parentProxy: GeometryProxy) {
+    init(parentProxy: GeometryProxy, debounceThreshold: Int) {
         preferencePublisher
             .map { preferences in
                 let parentFrame = parentProxy.frame(in: .global)
@@ -45,7 +45,7 @@ class ItemVisibilityObserver: ObservableObject {
                 }.map { $0.key }
             }
             .removeDuplicates() // Ensures we don't debounce if the list hasn't changed
-            .debounce(for: .milliseconds(200), scheduler: DispatchQueue.main)
+            .debounce(for: .milliseconds(debounceThreshold), scheduler: DispatchQueue.main)
             .sink { [weak self] newVisibleItems in
                 guard let self = self else { return }
 

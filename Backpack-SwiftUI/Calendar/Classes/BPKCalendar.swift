@@ -43,6 +43,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
     let validRange: ClosedRange<Date>
     private var accessoryAction: ((Date) -> CalendarMonthAccessoryAction?)?
     private var onScrollToMonthAction: ((Date) -> Void)?
+    private var scrollDebounceThreshold: Int
     private var initialMonthScroll: MonthScroll?
     private let monthHeaderDateFormatter: DateFormatter
     private let singleCalendarSelectionHandler: SingleCalendarSelectionHandler
@@ -57,11 +58,12 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
         calendar: Calendar,
         validRange: ClosedRange<Date>,
         initialMonthScroll: MonthScroll? = nil,
+        scrollDebounceThreshold: Int = 200,
         singleCalendarSelectionHandler: SingleCalendarSelectionHandler? = nil,
         rangeCalendarSelectionHandler: RangeCalendarSelectionHandler? = nil,
         showFloatYearLabel: Bool = true,
         highlightedDates: Set<Date>? = nil,
-        dayAccessoryView: @escaping (Date) -> DayAccessoryView = { _ in EmptyView() }
+        dayAccessoryView: @escaping (Date) -> DayAccessoryView = { _ in EmptyView()}
     ) {
         self.dayAccessoryView = dayAccessoryView
         _currentlyShownMonth = State(initialValue: validRange.lowerBound)
@@ -69,6 +71,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
         self.calendar = calendar
         self.selectionType = selectionType
         self.initialMonthScroll = initialMonthScroll
+        self.scrollDebounceThreshold = scrollDebounceThreshold
         self.showFloatYearLabel = showFloatYearLabel
         self.highlightedDates = highlightedDates
         self.singleCalendarSelectionHandler = singleCalendarSelectionHandler ?? DefaultSingleCalendarSelectionHandler()
@@ -98,6 +101,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
                         onScrollToMonth: { date in
                             onScrollToMonthAction?(date)
                         },
+                        scrollDebounceThreshold: scrollDebounceThreshold,
                         calculator: InMemoryCacheCalendarGridCalculator(
                             decoratee: DefaultCalendarGridCalculator(calendar: calendar)
                         ),
