@@ -179,6 +179,7 @@ BPKCalendar(
 ## OnScrollToMonth handler 
 
 If you need to customise the on scroll to month handling for any reason, you can add an action to your BPKCalendar definition
+You can also configurate a debounce threshold to add a delay before your onScrollToMonthAction is triggered
 
 )
 ```
@@ -189,7 +190,8 @@ func updateOnScroll(monthDate: Date) {
 BPKCalendar(
     selectionType: .single(selected: $selectedDate),
     calendar: .current,
-    validRange: startDate...endDate
+    validRange: startDate...endDate,
+    scrollDebounceThreshold: 200 // time in millisecond
 )
 .onScrollToMonthAction(updateOnScroll)
 ```

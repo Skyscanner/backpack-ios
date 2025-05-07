@@ -30,6 +30,7 @@ import SwiftUI
 ///   - validRange: The range of dates that the calendar should allow the user to select.
 ///     This is specified as a`ClosedRange<Date>`.
 ///   - initialMonthScroll: The initial scrolling to the month using `MonthScroll`
+///   - scrollDebounceThreshold: The time in millisecond we should wait before triggering onScrollToMonthAction
 ///   - calendarSelectionHandler: Optional date selection handler which handles a tapped date and returns new selection
 ///   - showFloatYearLabel: Set weather the floating year label should be displayed or not
 ///   - highlightedDates: It's an optional set of dates to put these dates in a circle to highlight them for users.
