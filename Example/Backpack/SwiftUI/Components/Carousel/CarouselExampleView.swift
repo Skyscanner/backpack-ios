@@ -20,7 +20,6 @@
 import SwiftUI
 import Backpack_SwiftUI
 
-// Test commit
 struct CarouselExampleView: View {
     @State var currentIndex: Int = 0
     
