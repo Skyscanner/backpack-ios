@@ -26,6 +26,7 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
     let validRange: ClosedRange<Date>
     let monthScroll: MonthScroll?
     let onScrollToMonth: ((Date) -> Void)?
+    let scrollDebounceThreshold: Int
     let calculator: CalendarGridCalculator
     let parentProxy: GeometryProxy
     let highlightedDates: Set<Date>?
@@ -46,7 +47,8 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
             validRange: adjustedValidRange,
             parentProxy: parentProxy,
             monthScroll: monthScroll,
-            onScrollToMonth: onScrollToMonth
+            onScrollToMonth: onScrollToMonth,
+            scrollDebounceThreshold: scrollDebounceThreshold
         ) { month in
             VStack(spacing: BPKSpacing.none) {
                 monthHeader(month)

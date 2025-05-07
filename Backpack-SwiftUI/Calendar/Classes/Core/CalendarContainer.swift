@@ -36,9 +36,15 @@ struct CalendarContainer<MonthContent: View>: View {
         parentProxy: GeometryProxy,
         monthScroll: MonthScroll?,
         onScrollToMonth: ((Date) -> Void)?,
+        scrollDebounceThreshold: Int,
         monthContent: @escaping (_ month: Date) -> MonthContent
     ) {
-        _visibilityObserver = StateObject(wrappedValue: ItemVisibilityObserver(parentProxy: parentProxy))
+        _visibilityObserver = StateObject(
+            wrappedValue: ItemVisibilityObserver(
+                parentProxy: parentProxy,
+                debounceThreshold: scrollDebounceThreshold
+            )
+        )
         self.calendar = calendar
         self.validRange = validRange
         self.parentProxy = parentProxy
@@ -143,6 +149,7 @@ struct CalendarContainer_Previews: PreviewProvider {
                 parentProxy: proxy,
                 monthScroll: monthScroll,
                 onScrollToMonth: nil,
+                scrollDebounceThreshold: 200,
                 monthContent: { monthNumber in
                     VStack {
                         BPKText("Calendar Grid \(monthNumber)")

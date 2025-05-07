@@ -30,6 +30,7 @@ import SwiftUI
 ///   - validRange: The range of dates that the calendar should allow the user to select.
 ///     This is specified as a`ClosedRange<Date>`.
 ///   - initialMonthScroll: The initial scrolling to the month using `MonthScroll`
+///   - scrollDebounceThreshold: The time in millisecond we should wait before triggering onScrollToMonthAction
 ///   - calendarSelectionHandler: Optional date selection handler which handles a tapped date and returns new selection
 ///   - showFloatYearLabel: Set weather the floating year label should be displayed or not
 ///   - highlightedDates: It's an optional set of dates to put these dates in a circle to highlight them for users.
@@ -43,6 +44,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
     let validRange: ClosedRange<Date>
     private var accessoryAction: ((Date) -> CalendarMonthAccessoryAction?)?
     private var onScrollToMonthAction: ((Date) -> Void)?
+    private var scrollDebounceThreshold: Int
     private var initialMonthScroll: MonthScroll?
     private let monthHeaderDateFormatter: DateFormatter
     private let singleCalendarSelectionHandler: SingleCalendarSelectionHandler
@@ -57,6 +59,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
         calendar: Calendar,
         validRange: ClosedRange<Date>,
         initialMonthScroll: MonthScroll? = nil,
+        scrollDebounceThreshold: Int = 200,
         singleCalendarSelectionHandler: SingleCalendarSelectionHandler? = nil,
         rangeCalendarSelectionHandler: RangeCalendarSelectionHandler? = nil,
         showFloatYearLabel: Bool = true,
@@ -69,6 +72,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
         self.calendar = calendar
         self.selectionType = selectionType
         self.initialMonthScroll = initialMonthScroll
+        self.scrollDebounceThreshold = scrollDebounceThreshold
         self.showFloatYearLabel = showFloatYearLabel
         self.highlightedDates = highlightedDates
         self.singleCalendarSelectionHandler = singleCalendarSelectionHandler ?? DefaultSingleCalendarSelectionHandler()
@@ -95,9 +99,8 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
                         rangeCalendarSelectionHandler: rangeCalendarSelectionHandler,
                         validRange: validRange,
                         monthScroll: initialMonthScroll,
-                        onScrollToMonth: { date in
-                            onScrollToMonthAction?(date)
-                        },
+                        onScrollToMonth: { date in onScrollToMonthAction?(date) },
+                        scrollDebounceThreshold: scrollDebounceThreshold,
                         calculator: InMemoryCacheCalendarGridCalculator(
                             decoratee: DefaultCalendarGridCalculator(calendar: calendar)
                         ),
