@@ -111,7 +111,7 @@ NS_ASSUME_NONNULL_BEGIN
         return BPKColor.white;
     }
 
-    return _linkColor != nil ? _linkColor : BPKColor.primaryColor;
+    return _linkColor != nil ? _linkColor : BPKColor.coreAccentColor;
 }
 
 - (void)updateTextColors {
