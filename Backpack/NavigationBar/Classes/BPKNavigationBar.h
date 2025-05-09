@@ -56,8 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic) BPKNavigationBarStyle style;
 
 /**
- * Set the color of the large title. When `nil` the
- * default color, BPKColor.skyGray` will be used.
+ * Set the color of the large title. When `nil`
  */
 @property(nonatomic, strong, nullable) UIColor *largeTitleTextColor UI_APPEARANCE_SELECTOR;
 

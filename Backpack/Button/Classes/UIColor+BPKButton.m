@@ -23,7 +23,7 @@
 @implementation UIColor(BPKButton)
 
 + (UIColor *)dimColor:(UIColor *)color {
-    return [BPKColor blend:color with:BPKColor.skyGray weight:0.85f];
+    return [BPKColor blend:color with:BPKColor.corePrimaryColor weight:0.85f];
 }
 
 + (UIColor *)reduceOpacityOfColor:(UIColor *)color {
