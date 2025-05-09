@@ -36,7 +36,7 @@ class SpinnersViewController: UIViewController {
         
         stackView.addArrangedSubview(createHeader("TextPrimary"))
         stackView.addArrangedSubview(createRow(forStyle: .textPrimary))
-        
+    
         stackView.addArrangedSubview(createHeader("Disabled"))
         stackView.addArrangedSubview(createRow(forStyle: .disabled))
         
