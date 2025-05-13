@@ -41,9 +41,7 @@ class BPKCalendarTests: XCTestCase {
             BPKCalendar(
                 selectionType: .single(
                     selected: .constant(.single(testDate)),
-                    accessibilityConfigurations: SingleAccessibilityConfigurations(
-                        selectionHint: ""
-                    )
+                    accessibilityConfigurations: SingleAccessibilityConfigurations.predefined(labels: .init())
                 ),
                 calendar: Calendar.current,
                 validRange: validStart...validEnd
@@ -148,9 +146,7 @@ class BPKCalendarTests: XCTestCase {
             BPKCalendar(
                 selectionType: .single(
                     selected: .constant(.single(testDate)),
-                    accessibilityConfigurations: SingleAccessibilityConfigurations(
-                        selectionHint: ""
-                    )
+                    accessibilityConfigurations: SingleAccessibilityConfigurations.predefined(labels: .init())
                 ),
                 calendar: Calendar.current,
                 validRange: validStart...validEnd,
@@ -174,9 +170,7 @@ class BPKCalendarTests: XCTestCase {
             BPKCalendar(
                 selectionType: .single(
                     selected: .constant(.single(testDate)),
-                    accessibilityConfigurations: SingleAccessibilityConfigurations(
-                        selectionHint: ""
-                    )
+                    accessibilityConfigurations: SingleAccessibilityConfigurations.predefined(labels: .init())
                 ),
                 calendar: calendar,
                 validRange: validStart...validEnd,

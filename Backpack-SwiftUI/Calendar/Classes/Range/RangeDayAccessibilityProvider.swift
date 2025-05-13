@@ -31,9 +31,9 @@ struct RangeDayAccessibilityProvider {
             if selection.lowerBound == selection.upperBound {
                 state = accessibilityConfigurations.startAndEndSelectionState
             } else if dayDate == selection.lowerBound {
-                state = accessibilityConfigurations.startSelectionState
+                state = accessibilityConfigurations.rangeAccessibilityLabels.startSelectionLabel(date: dayDate)
             } else if dayDate == selection.upperBound {
-                state = accessibilityConfigurations.endSelectionState
+                state = accessibilityConfigurations.rangeAccessibilityLabels.endSelectionLabel(date: dayDate)
             } else {
                 state = accessibilityConfigurations.betweenSelectionState
             }
@@ -44,15 +44,18 @@ struct RangeDayAccessibilityProvider {
     
     func accessibilityLabel(for dayDate: Date, intermediateSelectionDate: Date) -> String {
         let baseLabel = accessibilityLabel(for: dayDate)
-        let state = accessibilityConfigurations.startSelectionState
-        return "\(baseLabel), \(state)"
+        if let state = accessibilityConfigurations.rangeAccessibilityLabels.startSelectionLabel(date: dayDate) {
+            return "\(baseLabel), \(state)"
+        } else {
+            return "\(baseLabel)"
+        }
     }
     
     func accessibilityHint(for dayDate: Date, rangeSelectionState: CalendarRangeSelectionState?) -> String {
         if shouldClearSelectedDates(for: dayDate, rangeSelectionState: rangeSelectionState) {
-            return accessibilityConfigurations.startSelectionHint
+            return accessibilityConfigurations.rangeAccessibilityLabels.startSelectionHint(date: dayDate) ?? ""
         }
-        return accessibilityConfigurations.endSelectionHint
+        return accessibilityConfigurations.rangeAccessibilityLabels.endSelectionHint(date: dayDate) ?? ""
     }
 
     private func shouldClearSelectedDates(
