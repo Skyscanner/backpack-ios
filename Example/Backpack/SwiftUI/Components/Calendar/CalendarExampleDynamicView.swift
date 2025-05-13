@@ -55,7 +55,7 @@ struct CalendarExampleDynamicView: View {
                     .init(title: "Single", onClick: {
                         selection = .single(
                             selected: $singleSelection,
-                            accessibilityConfigurations: .init(selectionHint: "Select a date")
+                            accessibilityConfigurations: .predefined(labels: .init(selectionHint: "Select a date"))
                         )
                         selectedTab = 0
                     }),

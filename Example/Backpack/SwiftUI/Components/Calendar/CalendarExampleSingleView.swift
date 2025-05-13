@@ -67,8 +67,8 @@ struct CalendarExampleSingleView: View {
             BPKCalendar(
                 selectionType: .single(
                     selected: $selection,
-                    accessibilityConfigurations: SingleAccessibilityConfigurations(
-                        selectionHint: "Double tap to select date"
+                    accessibilityConfigurations: SingleAccessibilityConfigurations.predefined(
+                        labels: AccessibilityLabels(selectionHint: "Double tap to select date")
                     )
                 ),
                 calendar: calendar,
