@@ -26,7 +26,8 @@ asdf install
 
 # Install basic dependencies
 bundle install
-npm install --registry=https://registry.npmjs.org/ 
+npm install --registry=https://registry.npmjs.org/
+npm run build # generating SVG resources 
 
 # navigate to Example app
 cd Example
