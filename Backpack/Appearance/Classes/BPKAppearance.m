@@ -27,7 +27,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)apply {
     [UITabBar appearance].tintColor = BPKColor.coreAccentColor;
     [UITabBar appearance].unselectedItemTintColor = BPKColor.textSecondaryColor;
-    // TODO at a later stage: [UIView appearance].tintColor = BPKColor.primaryColor;
 }
 
 @end
