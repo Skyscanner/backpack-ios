@@ -16,20 +16,18 @@
  * limitations under the License.
  */
 
-public protocol SingleCalendarSelectionHandler {
-    func newSingleSelectionStateFor(
-        selection date: Date,
-        currentSelection: CalendarSingleSelectionState?,
-        accessibilityAnnouncement: ((String) -> Void)
-    ) -> CalendarSingleSelectionState
-}
-
-struct DefaultSingleCalendarSelectionHandler: SingleCalendarSelectionHandler {
-    func newSingleSelectionStateFor(
-        selection date: Date,
-        currentSelection: CalendarSingleSelectionState?,
-        accessibilityAnnouncement: ((String) -> Void)
-    ) -> CalendarSingleSelectionState {
-        return .single(date)
+/// Create a configuration with given accessibility strings for a selection.
+/// - Parameters:
+///   - selectionHint: The hint provided to assistive technologies informing a user how to select the first
+///     date in the range.
+///   - selectionState: The label provided to assistive technologies informing a user that a date is selected
+///     as the first date in the range.
+public struct AccessibilityLabels {
+    let selectionState: String
+    let selectionHint: String
+    
+    public init(selectionState: String = "", selectionHint: String = "") {
+        self.selectionState = selectionState
+        self.selectionHint = selectionHint
     }
 }

@@ -21,7 +21,11 @@ struct SingleDayAccessibilityProvider {
     let dateFormatter: DateFormatter
     
     func accessibilityLabel(for dayDate: Date, selection: CalendarSingleSelectionState?) -> String {
-        let baseLabel = dateFormatter.string(from: dayDate)
+        let baseLabel = if let label = accessibilityConfigurations.selectionLabel(date: dayDate) {
+            "\(dateFormatter.string(from: dayDate)) \(label)"
+        } else {
+            dateFormatter.string(from: dayDate)
+        }
 
         if case .wholeMonth(let range, let accessibilityConfig) = selection {
             var state: String?
@@ -42,10 +46,13 @@ struct SingleDayAccessibilityProvider {
     }
 
     func accessibilityHint(for dayDate: Date, selection: CalendarSingleSelectionState?) -> String {
-        if selection?.isSelected(dayDate) == true {
+        guard
+            let hint = accessibilityConfigurations.selectionHint(date: dayDate),
+            selection?.isSelected(dayDate) != true
+        else {
             return ""
         }
-        return accessibilityConfigurations.selectionHint
+        return hint
     }
 }
 

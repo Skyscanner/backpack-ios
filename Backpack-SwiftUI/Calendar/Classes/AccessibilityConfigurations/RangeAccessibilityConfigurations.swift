@@ -18,14 +18,7 @@
 
 /// Create a multi-selection configuration with given accessibility strings.
 /// - Parameters:
-///   - startSelectionHint: The hint provided to assistive technologies informing a user how to select the first
-///     date in the range.
-///   - endSelectionHint: The hint provided to assistive technologies informing a user how to select the second
-///     date in the range.
-///   - startSelectionState: The label provided to assistive technologies informing a user that a date is selected
-///     as the first date in the range.
-///   - endSelectionState: The label provided to assistive technologies informing a user that a date is selected
-///     as the second date in the range.
+///   - rangeAccessibilityLabels: The eunmaration with a hint and a state selection accessibility labels
 ///   - betweenSelectionState: The label provided to assistive technologies informing a user that a date lies
 ///     between the first and second selected dates.
 ///   - startAndEndSelectionState: The label provided to assistive technologies informing a user that a date
@@ -33,14 +26,23 @@
 ///   - returnDatePrompt: The prompt provided to assistive technologies informing a user that they should now
 ///     select a second date.
 public struct RangeAccessibilityConfigurations {
-    let startSelectionHint: String
-    let endSelectionHint: String
-    let startSelectionState: String
-    let endSelectionState: String
+    let rangeAccessibilityLabels: RangeAccessibilityLabelsConfigurations
     let betweenSelectionState: String
     let startAndEndSelectionState: String
     let returnDatePrompt: String
 
+    public init(
+        accessibilityLabelCallback: @escaping ((Date) -> (String, String)),
+        betweenSelectionState: String,
+        startAndEndSelectionState: String,
+        returnDatePrompt: String
+    ) {
+        self.rangeAccessibilityLabels = .dynamic(accessibilityLabelCallback: accessibilityLabelCallback)
+        self.betweenSelectionState = betweenSelectionState
+        self.startAndEndSelectionState = startAndEndSelectionState
+        self.returnDatePrompt = returnDatePrompt
+    }
+    
     public init(
         startSelectionHint: String,
         endSelectionHint: String,
@@ -50,10 +52,15 @@ public struct RangeAccessibilityConfigurations {
         startAndEndSelectionState: String,
         returnDatePrompt: String
     ) {
-        self.startSelectionHint = startSelectionHint
-        self.endSelectionHint = endSelectionHint
-        self.startSelectionState = startSelectionState
-        self.endSelectionState = endSelectionState
+        let startAccessibilityLabel = AccessibilityLabels(
+            selectionState: startSelectionState,
+            selectionHint: startSelectionHint
+        )
+        let endAccessibilityLabel = AccessibilityLabels(
+            selectionState: endSelectionState,
+            selectionHint: endSelectionHint
+        )
+        self.rangeAccessibilityLabels = .predefined(start: startAccessibilityLabel, end: endAccessibilityLabel)
         self.betweenSelectionState = betweenSelectionState
         self.startAndEndSelectionState = startAndEndSelectionState
         self.returnDatePrompt = returnDatePrompt
