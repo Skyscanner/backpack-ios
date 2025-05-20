@@ -16,27 +16,42 @@
  * limitations under the License.
  */
 
-/// Create a single-selection configuration with given accessibility strings.
-/// - Parameters:
-///   - selectionHint: The hint provided to assistive technologies informing a user how to select a date.
-public enum SingleAccessibilityConfigurations {
+public enum RangeAccessibilityLabelsConfigurations {
     case dynamic(accessibilityLabelCallback: ((Date) -> (label: String, hint: String)))
-    case predefined(labels: AccessibilityLabels)
-
-    func selectionLabel(date: Date) -> String? {
+    case predefined(start: AccessibilityLabels, end: AccessibilityLabels)
+    
+    func startSelectionLabel(date: Date) -> String? {
         switch self {
         case .dynamic(let callback):
             return callback(date).label
-        case .predefined(let labels):
+        case .predefined(let labels, _):
             return labels.selectionState
         }
     }
     
-    func selectionHint(date: Date) -> String? {
+    func startSelectionHint(date: Date) -> String? {
         switch self {
         case .dynamic(let callback):
             return callback(date).hint
-        case .predefined(let labels):
+        case .predefined(let labels, _):
+            return labels.selectionHint
+        }
+    }
+    
+    func endSelectionLabel(date: Date) -> String? {
+        switch self {
+        case .dynamic(let callback):
+            return callback(date).label
+        case .predefined(_, let labels):
+            return labels.selectionState
+        }
+    }
+    
+    func endSelectionHint(date: Date) -> String? {
+        switch self {
+        case .dynamic(let callback):
+            return callback(date).hint
+        case .predefined(_, let labels):
             return labels.selectionHint
         }
     }
