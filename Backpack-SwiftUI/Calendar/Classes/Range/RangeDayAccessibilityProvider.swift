@@ -20,7 +20,7 @@ struct RangeDayAccessibilityProvider {
     let accessibilityConfigurations: RangeAccessibilityConfigurations
     let dateFormatter: DateFormatter
     
-    func ч> -> String {
+    func accessibilityLabel(for dayDate: Date) -> String {
         dateFormatter.string(from: dayDate)
     }
     
