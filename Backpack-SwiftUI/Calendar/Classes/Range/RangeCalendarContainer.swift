@@ -102,7 +102,7 @@ struct RangeCalendarMonthContainer<DayAccessoryView: View>: View {
             accessibilityProvider.accessibilityHint(
                 for: dayDate,
                 rangeSelectionState: selectionState
-            )
+            ) ?? ""
         ))
     }
     

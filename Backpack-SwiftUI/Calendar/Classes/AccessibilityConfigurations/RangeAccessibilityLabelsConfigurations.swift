@@ -17,13 +17,13 @@
  */
 
 public enum RangeAccessibilityLabelsConfigurations {
-    case dynamic(accessibilityLabelCallback: ((Date) -> (String, String)))
+    case dynamic(accessibilityLabelCallback: ((Date) -> (label: String, hint: String)))
     case predefined(start: AccessibilityLabels, end: AccessibilityLabels)
     
     func startSelectionLabel(date: Date) -> String? {
         switch self {
         case .dynamic(let callback):
-            return callback(date).0
+            return callback(date).label
         case .predefined(let labels, _):
             return labels.selectionState
         }
@@ -32,7 +32,7 @@ public enum RangeAccessibilityLabelsConfigurations {
     func startSelectionHint(date: Date) -> String? {
         switch self {
         case .dynamic(let callback):
-            return callback(date).1
+            return callback(date).hint
         case .predefined(let labels, _):
             return labels.selectionHint
         }
@@ -41,7 +41,7 @@ public enum RangeAccessibilityLabelsConfigurations {
     func endSelectionLabel(date: Date) -> String? {
         switch self {
         case .dynamic(let callback):
-            return callback(date).0
+            return callback(date).label
         case .predefined(_, let labels):
             return labels.selectionState
         }
@@ -50,7 +50,7 @@ public enum RangeAccessibilityLabelsConfigurations {
     func endSelectionHint(date: Date) -> String? {
         switch self {
         case .dynamic(let callback):
-            return callback(date).1
+            return callback(date).hint
         case .predefined(_, let labels):
             return labels.selectionHint
         }

@@ -20,7 +20,7 @@ struct RangeDayAccessibilityProvider {
     let accessibilityConfigurations: RangeAccessibilityConfigurations
     let dateFormatter: DateFormatter
     
-    func accessibilityLabel(for dayDate: Date) -> String {
+    func ч> -> String {
         dateFormatter.string(from: dayDate)
     }
     
@@ -51,11 +51,11 @@ struct RangeDayAccessibilityProvider {
         }
     }
     
-    func accessibilityHint(for dayDate: Date, rangeSelectionState: CalendarRangeSelectionState?) -> String {
+    func accessibilityHint(for dayDate: Date, rangeSelectionState: CalendarRangeSelectionState?) -> String? {
         if shouldClearSelectedDates(for: dayDate, rangeSelectionState: rangeSelectionState) {
-            return accessibilityConfigurations.rangeAccessibilityLabels.startSelectionHint(date: dayDate) ?? ""
+            return accessibilityConfigurations.rangeAccessibilityLabels.startSelectionHint(date: dayDate)
         }
-        return accessibilityConfigurations.rangeAccessibilityLabels.endSelectionHint(date: dayDate) ?? ""
+        return accessibilityConfigurations.rangeAccessibilityLabels.endSelectionHint(date: dayDate)
     }
 
     private func shouldClearSelectedDates(
