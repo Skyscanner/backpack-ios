@@ -20,13 +20,13 @@
 /// - Parameters:
 ///   - selectionHint: The hint provided to assistive technologies informing a user how to select a date.
 public enum SingleAccessibilityConfigurations {
-    case dynamic(accessibilityLabelCallback: ((Date) -> (String, String)))
+    case dynamic(accessibilityLabelCallback: ((Date) -> (label: String, hint: String)))
     case predefined(labels: AccessibilityLabels)
 
     func selectionLabel(date: Date) -> String? {
         switch self {
         case .dynamic(let callback):
-            return callback(date).0
+            return callback(date).label
         case .predefined(let labels):
             return labels.selectionState
         }
@@ -35,7 +35,7 @@ public enum SingleAccessibilityConfigurations {
     func selectionHint(date: Date) -> String? {
         switch self {
         case .dynamic(let callback):
-            return callback(date).1
+            return callback(date).hint
         case .predefined(let labels):
             return labels.selectionHint
         }
