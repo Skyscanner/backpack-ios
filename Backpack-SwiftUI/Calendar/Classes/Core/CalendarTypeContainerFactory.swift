@@ -25,14 +25,14 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
     let rangeCalendarSelectionHandler: RangeCalendarSelectionHandler
     let validRange: ClosedRange<Date>
     let monthScroll: MonthScroll?
-    let onScrollToMonth: ((Date) -> Void)?
+    let onScrollToMonth: (([Date]) -> Void)?
     let scrollDebounceThreshold: Int
     let calculator: CalendarGridCalculator
     let parentProxy: GeometryProxy
     let highlightedDates: Set<Date>?
     @ViewBuilder let monthHeader: (_ monthDate: Date) -> MonthHeader
     @ViewBuilder let dayAccessoryView: (Date) -> DayAccessoryView
-    
+
     private var accessibilityDateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.locale = calendar.locale
@@ -69,7 +69,7 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
             }
         }
     }
-    
+
     @ViewBuilder
     private func singleCalendarMonthContainer(
         forMonth month: Date,
@@ -91,7 +91,7 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
             dayAccessoryView: dayAccessoryView
         )
     }
-    
+
     @ViewBuilder
     private func rangeMonthContainer(
         forMonth month: Date,
@@ -113,7 +113,7 @@ struct CalendarTypeContainerFactory<MonthHeader: View, DayAccessoryView: View>: 
         )
 
     }
-    
+
     private var adjustedValidRange: ClosedRange<Date> {
         guard let highlightedDates, !highlightedDates.isEmpty else {
             return validRange
