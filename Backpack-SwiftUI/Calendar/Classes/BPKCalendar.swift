@@ -43,7 +43,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
     let selectionType: CalendarSelectionType
     let validRange: ClosedRange<Date>
     private var accessoryAction: ((Date) -> CalendarMonthAccessoryAction?)?
-    private var onScrollToMonthAction: ((Date) -> Void)?
+    private var onScrollToMonthAction: (([Date]) -> Void)?
     private var scrollDebounceThreshold: Int
     private var initialMonthScroll: MonthScroll?
     private let monthHeaderDateFormatter: DateFormatter
@@ -53,7 +53,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
     private let highlightedDates: Set<Date>?
     private let dayAccessoryView: (Date) -> DayAccessoryView
     @State private var currentlyShownMonth: Date
-    
+
     public init(
         selectionType: CalendarSelectionType,
         calendar: Calendar,
@@ -77,7 +77,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
         self.highlightedDates = highlightedDates
         self.singleCalendarSelectionHandler = singleCalendarSelectionHandler ?? DefaultSingleCalendarSelectionHandler()
         self.rangeCalendarSelectionHandler = rangeCalendarSelectionHandler ?? DefaultRangeCalendarSelectionHandler()
-        
+
         monthHeaderDateFormatter = DateFormatter()
         monthHeaderDateFormatter.timeZone = calendar.timeZone
         monthHeaderDateFormatter.dateFormat = DateFormatter.dateFormat(
@@ -86,7 +86,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
             locale: Locale.current
         )
     }
-    
+
     public var body: some View {
         GeometryReader { calendarProxy in
             VStack(spacing: BPKSpacing.none) {
@@ -99,7 +99,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
                         rangeCalendarSelectionHandler: rangeCalendarSelectionHandler,
                         validRange: validRange,
                         monthScroll: initialMonthScroll,
-                        onScrollToMonth: { date in onScrollToMonthAction?(date) },
+                        onScrollToMonth: { dates in onScrollToMonthAction?(dates) },
                         scrollDebounceThreshold: scrollDebounceThreshold,
                         calculator: InMemoryCacheCalendarGridCalculator(
                             decoratee: DefaultCalendarGridCalculator(calendar: calendar)
@@ -116,7 +116,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
             }
         }
     }
-    
+
     private func monthHeader(monthDate: Date, calendarProxy: GeometryProxy) -> some View {
         CalendarMonthHeader(
             monthDate: monthDate,
@@ -128,7 +128,7 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
             parentProxy: calendarProxy
         )
     }
-    
+
     private var yearBadge: some View {
         VStack {
             CalendarBadge(
@@ -139,17 +139,17 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
             Spacer()
         }
     }
-    
+
     /// Sets the accessory action for the calendar to be applied to each month, based on the give month `Date`.
     public func monthAccessoryAction(_ action: ((Date) -> CalendarMonthAccessoryAction?)?) -> BPKCalendar {
         var result = self
         result.accessoryAction = action
         return result
     }
-    
+
     /// Sets CTA call for when scrolling landed in the calendar,
     /// returning the first day of landed month inside the action.
-    public func onScrollToMonthAction(_ action: @escaping ((Date) -> Void)) -> BPKCalendar {
+    public func onScrollToMonthAction(_ action: @escaping (([Date]) -> Void)) -> BPKCalendar {
         var result = self
         result.onScrollToMonthAction = action
         return result
@@ -161,10 +161,10 @@ struct BPKCalendar_Previews: PreviewProvider {
         let calendar = Calendar.current
         let minValidDate = calendar.date(from: .init(year: 2023, month: 10, day: 12))!
         let maxValidDate = calendar.date(from: .init(year: 2025, month: 12, day: 2))!
-        
+
         let minSelectedDate = calendar.date(from: .init(year: 2023, month: 11, day: 19))!
         let maxSelectedDate = calendar.date(from: .init(year: 2023, month: 11, day: 30))!
-        
+
         return BPKCalendar(
             selectionType: .range(
                 selection: .constant(.range(minSelectedDate...maxSelectedDate)),
