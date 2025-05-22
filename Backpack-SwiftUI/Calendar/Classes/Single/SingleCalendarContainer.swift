@@ -38,10 +38,12 @@ struct SingleCalendarMonthContainer<DayAccessoryView: View>: View {
                 selection: dayDate,
                 currentSelection: selection,
                 accessibilityAnnouncement: { announcementText in
-                    UIAccessibility.post(
-                        notification: .announcement,
-                        argument: announcementText
-                    )
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        UIAccessibility.post(
+                            notification: .announcement,
+                            argument: announcementText
+                        )
+                    }
                 }
             )
         }
