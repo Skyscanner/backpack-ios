@@ -856,6 +856,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (UIColor *)blend:(UIColor*)firstColor with:(UIColor*)secondColor weight:(double)weight;
 
+@end
+
+@interface BPKColor ()
+
 /**
  * Generates a dynamic color given a light and dark variant.
  *
@@ -864,6 +868,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @deprecated Please use only available BPKColors.
  */
 + (UIColor *)dynamicColorWithLightVariant:(UIColor *)lightVariant darkVariant:(UIColor *)darkVariant __deprecated_msg("Please use only available BPKColors");
+
 
 @end
 NS_ASSUME_NONNULL_END
