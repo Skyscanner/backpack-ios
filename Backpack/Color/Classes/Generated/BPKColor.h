@@ -846,6 +846,7 @@ NS_ASSUME_NONNULL_BEGIN
 */
 @property(nonatomic, class, readonly) UIColor * primaryColor __deprecated;
 
+
 /**
  * Combines two `UIColor` values with a specified weighting.
  *
@@ -854,6 +855,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param weight The relative weighting of the first color. Close to `1.0f` gives more weight to `firstColor`. Close to `0.0f` gives more weight to `secondColor`.
  */
 + (UIColor *)blend:(UIColor*)firstColor with:(UIColor*)secondColor weight:(double)weight;
+
 @end
 NS_ASSUME_NONNULL_END
 // clang-format on
