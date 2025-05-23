@@ -127,7 +127,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIColor *)colorForSpinnerStyle:(BPKSpinnerStyle)style {
     switch (style) {
     case BPKSpinnerStylePrimary:
-        return [BPKColor dynamicColorWithLightVariant:BPKColor.skyBlue darkVariant:BPKColor.white];
+        return BPKColor.textPrimaryColor;
     case BPKSpinnerStyleSecondary:
         return BPKColor.textPrimaryColor;
     case BPKSpinnerStyleDark:
