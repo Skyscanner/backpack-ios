@@ -28,14 +28,8 @@ final class BottomSheetPersistentViewController: UIViewController {
         let closeButton = BPKButton(size: .default, style: .secondary)
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         closeButton.setImage(BPKIcon.makeLargeTemplateIcon(name: .close))
-        closeButton.secondaryBackgroundColor = BPKColor.dynamicColor(
-            withLightVariant: BPKColor.white,
-            darkVariant: BPKColor.blackTint06
-        )
-        closeButton.secondaryContentColor = BPKColor.dynamicColor(
-            withLightVariant: BPKColor.skyGray,
-            darkVariant: BPKColor.blackTint01
-        )
+        closeButton.secondaryBackgroundColor = BPKColor.canvasColor
+        closeButton.secondaryContentColor = BPKColor.corePrimaryColor
         closeButton.secondaryBorderColor = BPKColor.clear
         return closeButton
     }()

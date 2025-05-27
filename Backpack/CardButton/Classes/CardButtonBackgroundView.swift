@@ -21,10 +21,7 @@ internal class CardButtonBackgroundView: UIView {
     init() {
         super.init(frame: .zero)
 
-        backgroundColor = BPKColor.dynamicColor(
-            withLightVariant: BPKColor.white.withAlphaComponent(0.5),
-            darkVariant: BPKColor.black.withAlphaComponent(0.5)
-        )
+        backgroundColor = BPKColor.cardButtonContainedFillColor.withAlphaComponent(0.5)
         isUserInteractionEnabled = false
         translatesAutoresizingMaskIntoConstraints = false
     }
