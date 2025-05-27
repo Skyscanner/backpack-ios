@@ -29,10 +29,8 @@ internal extension BPKColor {
     private static var dynamicColorsCache = NSCache<NSString, UIColor>()
     
     static func dynamicColor(lightVariant: UIColor, darkVariant: UIColor) -> UIColor {
-        // Only on iOS 13+ can we do trait-based dynamic coloring
-        if #available(iOS 13.0, *) {
             // 1. Build a cache key
-            let key = "\(lightVariant.cacheKey)_\(darkVariant.cacheKey)" as NSString
+        let key = "\(lightVariant.cacheKey)_\(darkVariant.cacheKey)" as NSString
             
             // 2. Return cached if we have it
             if let cached = dynamicColorsCache.object(forKey: key) {
@@ -47,10 +45,6 @@ internal extension BPKColor {
             // 4. Cache & return
             dynamicColorsCache.setObject(dynamic, forKey: key)
             return dynamic
-        }
-        
-        // 5. Fallback pre-iOS 13
-        return lightVariant
     }
 
     /// The `badgeBackgroundNormalColor` internal color.
