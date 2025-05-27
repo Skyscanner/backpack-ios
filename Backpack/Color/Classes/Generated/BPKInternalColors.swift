@@ -52,7 +52,7 @@ internal extension BPKColor {
         // 5. Fallback pre-iOS 13
         return lightVariant
     }
-    
+
     /// The `badgeBackgroundNormalColor` internal color.
     
     static let badgeBackgroundNormalColor = BPKColor.dynamicColor(
