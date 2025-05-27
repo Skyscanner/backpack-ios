@@ -378,3 +378,20 @@ internal extension BPKColor {
         lightVariant: UIColor(red: 0.008, green: 0.302, blue: 0.686, alpha: 1),
         darkVariant: UIColor(red: 0.020, green: 0.255, blue: 0.518, alpha: 1))
 }
+
+private extension UIColor {
+    /// A crude cache-key generator: e.g. “#RRGGBBAA”
+    var cacheKey: String {
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+        getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        return String(format: "#%02X%02X%02X%02X",
+            Int(red * 255),
+            Int(green * 255),
+            Int(blue * 255),
+            Int(alpha * 255))
+    }
+}
+
