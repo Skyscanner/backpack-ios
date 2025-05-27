@@ -24,12 +24,13 @@ import UIKit
 
 // swiftlint:disable bpk_use_colour_token
 // swiftlint:disable identifier_name
+// swiftlint:disable indentation_width
 internal extension BPKColor {
 
     private static var dynamicColorsCache = NSCache<NSString, UIColor>()
     
     static func dynamicColor(lightVariant: UIColor, darkVariant: UIColor) -> UIColor {
-            // 1. Build a cache key
+        // 1. Build a cache key
         let key = "\(lightVariant.cacheKey)_\(darkVariant.cacheKey)" as NSString
             
             // 2. Return cached if we have it
@@ -379,11 +380,15 @@ private extension UIColor {
         var green: CGFloat = 0
         var blue: CGFloat = 0
         var alpha: CGFloat = 0
-        getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+
+        guard self.getRed(&red, green: &green, blue: &blue, alpha: &alpha) else {
+            return "non-rgb-color:\(self.description)"
+        }
+
         return String(format: "#%02X%02X%02X%02X",
-            Int(red * 255),
-            Int(green * 255),
-            Int(blue * 255),
-            Int(alpha * 255))
+                      Int(round(red * 255)),
+                      Int(round(green * 255)),
+                      Int(round(blue * 255)),
+                      Int(round(alpha * 255)))
     }
 }
