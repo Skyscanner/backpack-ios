@@ -33,19 +33,19 @@ internal extension BPKColor {
         // 1. Build a cache key
         let key = "\(lightVariant.cacheKey)_\(darkVariant.cacheKey)" as NSString
             
-            // 2. Return cached if we have it
-            if let cached = dynamicColorsCache.object(forKey: key) {
-                return cached
-            }
+        // 2. Return cached if we have it
+        if let cached = dynamicColorsCache.object(forKey: key) {
+            return cached
+        }
+        
+        // 3. Create the dynamic provider
+        let dynamic = UIColor { traitCollection in
+            traitCollection.userInterfaceStyle == .dark ? darkVariant : lightVariant
+        }
             
-            // 3. Create the dynamic provider
-            let dynamic = UIColor { traitCollection in
-                traitCollection.userInterfaceStyle == .dark ? darkVariant : lightVariant
-            }
-            
-            // 4. Cache & return
-            dynamicColorsCache.setObject(dynamic, forKey: key)
-            return dynamic
+        // 4. Cache & return
+        dynamicColorsCache.setObject(dynamic, forKey: key)
+        return dynamic
     }
 
     /// The `badgeBackgroundNormalColor` internal color.
