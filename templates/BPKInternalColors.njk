@@ -47,7 +47,6 @@ internal extension BPKColor {
         dynamicColorsCache.setObject(dynamic, forKey: key)
         return dynamic
     }
-
 {% for c in internalColor %}
     /// The `{{c.name}}` internal color.
     {% if c.deprecated %}@available(*, deprecated, message: "This colour will be removed in the next major version"){% endif %}
