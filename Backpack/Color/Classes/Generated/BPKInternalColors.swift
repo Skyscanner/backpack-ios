@@ -53,7 +53,6 @@ internal extension BPKColor {
         return lightVariant
     }
     
-
     /// The `badgeBackgroundNormalColor` internal color.
     
     static let badgeBackgroundNormalColor = BPKColor.dynamicColor(
@@ -394,4 +393,3 @@ private extension UIColor {
             Int(alpha * 255))
     }
 }
-
