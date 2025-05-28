@@ -39,6 +39,7 @@ public struct MonthScroll {
     public init(monthToScroll: Date, anchor: UnitPoint = .top, animated: Bool = false) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM"
+        dateFormatter.timeZone = .gmt
 
         self.scrollId = dateFormatter.string(from: monthToScroll)
         self.anchor = anchor
