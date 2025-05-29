@@ -79,22 +79,12 @@ struct CalendarContainer<MonthContent: View>: View {
                     }
                 }
                 .onPreferenceChange(ItemVisibilityPreferenceKey.self) { preferences in
-                    onPreferenceChange(preferences)
+                    visibilityObserver.updatePreferences(preferences)
+                }
+                .onChange(of: visibilityObserver.visibleItems) { newVisibleItems in
+                    updateOnScrollToMonthHandler(newVisibleItems: newVisibleItems)
                 }
             }
-        }
-    }
-
-    private func onPreferenceChange(_ preferences: [Int: CGRect]) {
-        visibilityObserver.updatePreferences(preferences)
-
-        // Detect all partially visible months (intersecting the screen)
-        let visibleIndexes = preferences.compactMap { index, frame in
-            frame.intersects(parentProxy.frame(in: .global)) ? index : nil
-        }
-
-        if !visibleIndexes.isEmpty {
-            updateOnScrollToMonthHandler(newVisibleItems: visibleIndexes)
         }
     }
 
