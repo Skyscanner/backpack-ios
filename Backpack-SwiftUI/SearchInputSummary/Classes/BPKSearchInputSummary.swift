@@ -102,7 +102,6 @@ public struct BPKSearchInputSummary: View {
         .if(!BPKFont.enableDynamicType, transform: {
             $0.sizeCategory(.large)
         })
-        .id("\(accessibilityIdentifier)_accessory_\(text.isEmpty ? "hidden" : "visible")")
     }
     
     @ViewBuilder
