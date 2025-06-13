@@ -84,6 +84,8 @@ struct CollapsedNavigationBar: View {
         Button(action: action) {
             BPKIconView(icon, size: .large)
         }
+        .accessibilityElement()
+        .accessibilityAddTraits(.isButton)
         .accessibilityLabel(accessibilityLabel)
         .foregroundColor(style.foregroundColor(expanded: expanded))
         .accessibilityIdentifier(accessibilityIdentifier ?? "")
