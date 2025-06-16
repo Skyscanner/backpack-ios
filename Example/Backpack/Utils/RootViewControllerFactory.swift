@@ -36,13 +36,3 @@ struct DefaultRootViewControllerFactory: RootViewControllerFactory {
         )
     }
 }
-
-struct ThemedViewControllerFactoryDecorator: RootViewControllerFactory {
-    let decoratee: () -> UIViewController
-    
-    func create() -> UIViewController {
-        ThemeHelpers.applyAllThemes()
-        let activeTheme = ThemeHelpers.themeDefinition(forTheme: Settings.sharedSettings.activeTheme)
-        return BPKThemeContainerController(themeDefinition: activeTheme, rootViewController: decoratee())
-    }
-}

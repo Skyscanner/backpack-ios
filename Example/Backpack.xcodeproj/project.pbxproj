@@ -86,7 +86,7 @@
 		53C6622929EA0DAB00BF1A62 /* AttributedTextExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C6620F29EA0DAB00BF1A62 /* AttributedTextExampleView.swift */; };
 		53C7F0B92A4C615D003A8740 /* ChipGroupSingleSelectRailExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7F0B52A4C615D003A8740 /* ChipGroupSingleSelectRailExampleView.swift */; };
 		53C7F0BA2A4C615D003A8740 /* ChipGroupSingleSelectWrapExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7F0B62A4C615D003A8740 /* ChipGroupSingleSelectWrapExampleView.swift */; };
-		53D4614E29E574EB0061C222 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		53D4614E29E574EB0061C222 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		53D6396F2A7D46ED007EF376 /* MapMarkerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D6396E2A7D46ED007EF376 /* MapMarkerExampleView.swift */; };
 		53D7FBB527F715AF00DEE588 /* UIWindowFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D7FBB427F715AF00DEE588 /* UIWindowFactory.swift */; };
 		53E075A527FC780C0033147C /* NavBarGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E075A427FC780C0033147C /* NavBarGroups.swift */; };
@@ -180,7 +180,6 @@
 		D27EE92C2193163900C877EA /* ChipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27EE92B2193163900C877EA /* ChipsViewController.swift */; };
 		D282E867259E04F4000AD77E /* TextFieldsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D282E865259E04F3000AD77E /* TextFieldsViewController.swift */; };
 		D28443EB22FC42A30066F88B /* FlareViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28443E922FC42A30066F88B /* FlareViewViewController.swift */; };
-		D28784922250FCBD00353E32 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28784902250FCBD00353E32 /* Settings.swift */; };
 		D28784932250FCBD00353E32 /* ThemeHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28784912250FCBD00353E32 /* ThemeHelpers.swift */; };
 		D28B3611219C209000E82A79 /* ChipUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B3610219C209000E82A79 /* ChipUITest.swift */; };
 		D297B8FD23B9038D008D094A /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28D0E8323B21BE4008B4C09 /* SnapshotHelper.swift */; };
@@ -428,7 +427,6 @@
 		D27EE92B2193163900C877EA /* ChipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsViewController.swift; sourceTree = "<group>"; };
 		D282E865259E04F3000AD77E /* TextFieldsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldsViewController.swift; sourceTree = "<group>"; };
 		D28443E922FC42A30066F88B /* FlareViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlareViewViewController.swift; sourceTree = "<group>"; };
-		D28784902250FCBD00353E32 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		D28784912250FCBD00353E32 /* ThemeHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeHelpers.swift; sourceTree = "<group>"; };
 		D28B3610219C209000E82A79 /* ChipUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipUITest.swift; sourceTree = "<group>"; };
 		D28D0E8123B2183D008B4C09 /* Screenshots.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Screenshots.swift; sourceTree = "<group>"; };
@@ -1539,7 +1537,6 @@
 				53E075BC27FC9FE10033147C /* Presentable */,
 				D6FA3DB2224E21F800CFA094 /* Categories */,
 				D2161D4F2146B8910097D0B1 /* Views */,
-				D28784902250FCBD00353E32 /* Settings.swift */,
 				E397BEA522F5FFDD00C8EC04 /* Storyboards.swift */,
 				D28784912250FCBD00353E32 /* ThemeHelpers.swift */,
 				D263EA8B22B7B5D400569757 /* ThemeRegistry.swift */,
@@ -1664,7 +1661,6 @@
 				6003F588195388D20070C39A /* Resources */,
 				84EFE62BE1534CD46CAFBDBF /* [CP] Embed Pods Frameworks */,
 				D68AF8FA2174CB9C00BA743D /* Run Script */,
-				9E4461F697D0839CDC7188C5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1836,21 +1832,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Backpack-Native/Pods-Backpack-Native-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9E4461F697D0839CDC7188C5 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Backpack-Native/Pods-Backpack-Native-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		D68AF8FA2174CB9C00BA743D /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1902,7 +1883,6 @@
 				A12269752A68C09B00C7C0CD /* BottomSheetExampleView.swift in Sources */,
 				6055821721523A1300BF9F3E /* IconsViewController.swift in Sources */,
 				53C6622729EA0DAB00BF1A62 /* DialogExampleView.swift in Sources */,
-				D28784922250FCBD00353E32 /* Settings.swift in Sources */,
 				794337A9283C77BD00797D1C /* TabsViewController.swift in Sources */,
 				5346243A2A74292D0059A0B5 /* ChipGroupMultipleSelectRailExampleView.swift in Sources */,
 				D270C066243B61C60036A040 /* TabBarControllerStoryViewController.swift in Sources */,
@@ -1972,7 +1952,7 @@
 				5390DB612909940700F0F790 /* ColorTokensViewController.swift in Sources */,
 				794E1FF8280CF63100B965FF /* RadiusTokensView.swift in Sources */,
 				53B6DB6A27FC73A90042B7C0 /* LabelGroups.swift in Sources */,
-				53D4614E29E574EB0061C222 /* BuildFile in Sources */,
+				53D4614E29E574EB0061C222 /* (null) in Sources */,
 				53C6621329EA0DAB00BF1A62 /* SpinnerExampleView.swift in Sources */,
 				53BAC3F12A71415800236CC9 /* SectionHeaderGroups.swift in Sources */,
 				53C6622429EA0DAB00BF1A62 /* ButtonsPlaygroundView.swift in Sources */,
