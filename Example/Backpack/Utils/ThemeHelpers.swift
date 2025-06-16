@@ -22,23 +22,6 @@ import Backpack.Theme
 
 class ThemeHelpers: NSObject {
 
-    enum ThemeName: Int {
-        case none = 0
-    }
-
-    class func applyAllThemes() {
-        apply(theme: BPKDefaultTheme())
-    }
-
-    class func apply(theme: BPKThemeDefinition) {
-        BPKTheme.apply(theme)
-        ThemeRegistry.register(theme: theme)
-    }
-
-    class func isThemingSupported() -> Bool {
-        return ProcessInfo.processInfo.environment["THEMING_ENABLED"] != "NO"
-    }
-
     @objc
     class func overrideUserInterfaceStyle() -> Bool {
         return ProcessInfo.processInfo.environment["OVERRIDE_INTERFACE_STLYE"] == "YES"
@@ -50,12 +33,5 @@ class ThemeHelpers: NSObject {
     
     class func forceLightMode() -> Bool {
         return ProcessInfo.processInfo.arguments.contains("FORCE_LIGHT_MODE")
-    }
-
-    class func themeDefinition(forTheme: ThemeName) -> BPKThemeDefinition {
-        switch forTheme {
-        case .none:
-            return BPKDefaultTheme()
-        }
     }
 }
