@@ -47,9 +47,6 @@ struct CalendarMonthHeader: View {
                     switch accessory.action {
                     case .custom(let action):
                         action(monthDate)
-                    case .wholeMonthSelection(let action):
-                        guard let range = monthRangeFor(date: monthDate) else { return }
-                        action(range)
                     }
                 }
                 .buttonStyle(.link)

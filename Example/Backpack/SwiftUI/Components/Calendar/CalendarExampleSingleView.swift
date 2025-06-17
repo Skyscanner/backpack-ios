@@ -76,14 +76,6 @@ struct CalendarExampleSingleView: View {
                 initialMonthScroll: monthScroll,
                 highlightedDates: highlightedDates
             )
-            .monthAccessoryAction { _ in
-                return CalendarMonthAccessoryAction(
-                    title: "Select whole month",
-                    action: .wholeMonthSelection({ monthRange in
-                        selection = .wholeMonth(monthRange, accessibilityConfig: wholeMonthAccessibilityConfig())
-                    })
-                )
-            }
         }
     }
 
