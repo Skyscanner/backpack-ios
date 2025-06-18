@@ -25,6 +25,7 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
     private let initiallyShownCardsCount: Int
     private let elements: [Element]
     private let cardForElement: (_ element: Element) -> Content
+    private let headerPadding: (Edge.Set, BPKSpacing)
     @State private var showingAllCards = false
 
     public init(
@@ -33,6 +34,7 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
         layout: BPKCardListLayout,
         initiallyShownCardsCount: Int = 3,
         elements: [Element],
+        headerPadding: (Edge.Set, BPKSpacing) = (.all, .base),
         @ViewBuilder cardForElement: @escaping (_: Element) -> Content
     ) {
         self.title = title
@@ -40,6 +42,7 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
         self.layout = layout
         self.initiallyShownCardsCount = initiallyShownCardsCount
         self.elements = elements
+        self.headerPadding = headerPadding
         self.cardForElement = cardForElement
     }
 
@@ -91,10 +94,10 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
                     action: sectionHeaderAction.action)
                 .buttonStyle(.primary)
             }
-            .padding(.base)
+            .padding(headerPadding.0, headerPadding.1)
         } else {
             return BPKSectionHeader(title: title, description: description)
-                .padding(.base)
+                .padding(headerPadding.0, headerPadding.1)
         }
     }
     
