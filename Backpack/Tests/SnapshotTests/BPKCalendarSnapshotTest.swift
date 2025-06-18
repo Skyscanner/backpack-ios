@@ -226,30 +226,6 @@ final class BPKCalendarSnapshotTest: XCTestCase, BPKCalendarDelegate {
         assertSnapshot(customSnapshotView)
     }
     
-    func testCalendarWithWholeMonthButton() {
-        // Given
-        sut.selectionConfiguration = BPKCalendarSelectionConfigurationRange(
-            startSelectionHint: "",
-            endSelectionHint: "",
-            startSelectionState: "",
-            endSelectionState: "",
-            betweenSelectionState: "",
-            startAndEndSelectionState: "",
-            returnDatePrompt: ""
-        )
-        
-        sut.wholeMonthSelectionConfiguration = .init(
-            title: "Select whole month"
-        )
-        
-        // When
-        sut.selectWholeMonth(BPKSimpleDate(date: date1, for: sut.gregorian))
-        sut.reloadData()
-        
-        // Then
-        assertSnapshot(snapshotView)
-    }
-    
     // MARK: Helpers
     private func setupViews(calendar: BPKCalendar) -> UIView {
         let snapshotView = UIView()

@@ -140,13 +140,6 @@ public struct BPKCalendar<DayAccessoryView: View>: View {
         }
     }
 
-    /// Sets the accessory action for the calendar to be applied to each month, based on the give month `Date`.
-    public func monthAccessoryAction(_ action: ((Date) -> CalendarMonthAccessoryAction?)?) -> BPKCalendar {
-        var result = self
-        result.accessoryAction = action
-        return result
-    }
-
     /// Sets CTA call for when scrolling landed in the calendar,
     /// returning the first day of landed month inside the action.
     public func onScrollToMonthAction(_ action: @escaping (([Date]) -> Void)) -> BPKCalendar {
@@ -184,8 +177,5 @@ struct BPKCalendar_Previews: PreviewProvider {
                 BPKText("20", style: .caption)
             }
         )
-        .monthAccessoryAction { _ in
-            return CalendarMonthAccessoryAction(title: "Select whole month", action: .custom({ _ in }))
-        }
     }
 }
