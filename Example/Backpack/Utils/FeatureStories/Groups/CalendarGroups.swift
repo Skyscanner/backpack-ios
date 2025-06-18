@@ -75,7 +75,6 @@ struct CalendarGroupsProvider {
                     "With No Float Year Labelst",
                     view: CalendarExampleRangeView(showAccessoryViews: false, showFloatYearLabel: false)
                 ),
-                presentableCalendar("With Whole Month Selection", view: CalendarExampleWholeMonthView()),
                 presentableCalendar(
                     "Single Selection with highlighted dates",
                     view: CalendarExampleSingleView(includeHighlightedDates: true)
