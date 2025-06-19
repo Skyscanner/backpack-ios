@@ -46,6 +46,16 @@
 
 To create a Card List component, you need to choose if you want a rail (horizontal) layout or a stack (vertical) layout.
 
+### Header Padding (optional)
+
+You can control the padding around the section header using the `headerPadding:` parameter. This accepts an `Edge.Set` and `BPKSpacing` value.
+
+```swift
+headerPadding: ([.leading, .trailing, .bottom], .base)
+```
+
+If no value is provided, it defaults to `(.all, .base)`.
+
 ### Rail layout
 
 ```swift
@@ -60,7 +70,9 @@ BPKCardList(
     description: "Description about this section (optional)",
     layout: .rail(),
     initiallyShownCards: 2,
-    elements: Array(repeating: TestElement(id: 1), count: 4)) {
+    elements: Array(repeating: TestElement(id: 1), count: 4),
+    headerPadding: ([.leading, .trailing, .bottom], .base)
+    ) {
         Text("Element \(element.id)")
     }
 ```
@@ -87,7 +99,9 @@ BPKCardList(
                 }
     ),
     initiallyShownCards: 2,
-    elements: Array(repeating: TestElement(id: 1), count: 4)) {
+    elements: Array(repeating: TestElement(id: 1), count: 4),
+    headerPadding: ([.leading, .trailing, .bottom], .base)
+    ) {
         Text("Element \(element.id)")
     }
 ```
@@ -106,7 +120,9 @@ BPKCardList(
     description: "Description about this section (optional)",
     layout: .stack(),
     initiallyShownCards: 2,
-    elements: Array(repeating: TestElement(id: 1), count: 4)) {
+    elements: Array(repeating: TestElement(id: 1), count: 4),
+    headerPadding: ([.leading, .trailing, .bottom], .base)
+    ) {
         Text("Element \(element.id)")
     }
 ```
@@ -140,7 +156,9 @@ BPKCardList(
         )
     ),
     initiallyShownCards: 2,
-    elements: Array(repeating: TestElement(id: 1), count: 4)) {
+    elements: Array(repeating: TestElement(id: 1), count: 4),
+    headerPadding: ([.leading, .trailing, .bottom], .base)
+    ) {
         Text("Element \(element.id)")
     }
 ```
@@ -166,7 +184,9 @@ BPKCardList(
         accessory: .expand(expandText: "Show more", collapseText: "Show less"),
     ),
     initiallyShownCards: 2,
-    elements: Array(repeating: TestElement(id: 1), count: 4)) {
+    elements: Array(repeating: TestElement(id: 1), count: 4),
+    headerPadding: ([.leading, .trailing, .bottom], .base)
+    ) {
         Text("Element \(element.id)")
     }
 ```
@@ -196,7 +216,9 @@ BPKCardList(
         )
     ),
     initiallyShownCards: 2,
-    elements: Array(repeating: TestElement(id: 1), count: 4)) {
+    elements: Array(repeating: TestElement(id: 1), count: 4),
+    headerPadding: ([.leading, .trailing, .bottom], .base)
+    ) {
         Text("Element \(element.id)")
     }
 ```
@@ -226,7 +248,9 @@ BPKCardList(
         )
     ),
     initiallyShownCards: 2,
-    elements: Array(repeating: TestElement(id: 1), count: 4)) {
+    elements: Array(repeating: TestElement(id: 1), count: 4),
+    headerPadding: ([.leading, .trailing, .bottom], .base)
+    ) {
         Text("Element \(element.id)")
     }
 ```
