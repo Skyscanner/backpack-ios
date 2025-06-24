@@ -41,6 +41,41 @@ class BPKMapMarkerTests: XCTestCase {
                 .padding()
         )
     }
+    
+    func test_unselectedPriceMapMarker_withCustomIcon() {
+        assertSnapshot(
+            BPKPriceMapMarker(state: .unselected, price: "£200", icon: .custom(.airports))
+                .padding()
+        )
+    }
+    
+    func test_selectedPriceMapMarker_withCustomIcon() {
+        assertSnapshot(
+            BPKPriceMapMarker(state: .selected, price: "£200", icon: .custom(.airports))
+                .padding()
+        )
+    }
+    
+    func test_previousSelectedPriceMapMarker_withCustomIcon() {
+        assertSnapshot(
+            BPKPriceMapMarker(state: .previousSelected, price: "£200", icon: .custom(.airports))
+                .padding()
+        )
+    }
+    
+    func test_unselectedPriceMapMarker_withSaveIcon() {
+        assertSnapshot(
+            BPKPriceMapMarker(state: .unselected, price: "£200", icon: .save)
+                .padding()
+        )
+    }
+    
+    func test_selectedPriceMapMarker_withSaveIcon() {
+        assertSnapshot(
+            BPKPriceMapMarker(state: .selected, price: "£200", icon: .save)
+                .padding()
+        )
+    }
 
     func test_pointerMapMarker() {
         assertSnapshot(

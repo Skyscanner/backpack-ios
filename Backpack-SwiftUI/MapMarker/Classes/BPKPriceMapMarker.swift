@@ -19,12 +19,19 @@
 import SwiftUI
 
 public struct BPKPriceMapMarker: View {
+    
     private let state: State
     private let price: String
+    private let icon: Icon?
     
-    public init(state: State, price: String) {
+    public init(
+        state: State,
+        price: String,
+        icon: Icon? = nil
+    ) {
         self.state = state
         self.price = price
+        self.icon = icon
     }
     
     public var body: some View {
@@ -33,21 +40,41 @@ public struct BPKPriceMapMarker: View {
             .shadow(.sm)
     }
     
+    @ViewBuilder
     private var labelView: some View {
-        BPKText(price, style: .label3)
-            .foregroundColor(state.foregroundColor)
-            .padding(.vertical, .sm)
-            .padding(.horizontal, .md)
-            .background(state.backgroundColor)
+        HStack(spacing: .md) {
+            if let icon {
+                BPKIconView(icon.bpkIcon)
+                    .foregroundColor(iconForegroundColor)
+            }
+            
+            BPKText(price, style: .label3)
+                .foregroundColor(state.foregroundColor)
+        }
+        .padding(.vertical, .sm)
+        .padding(.horizontal, .md)
+        .background(state.backgroundColor)
+    }
+    
+    private var iconForegroundColor: BPKColor {
+        if case .save = icon, state != .selected {
+            return .surfaceHeroColor
+        }
+        return state.foregroundColor
     }
 }
 
 struct BPKPriceMapMarker_Previews: PreviewProvider {
     static var previews: some View {
-        VStack {
+        VStack(spacing: .base) {
             BPKPriceMapMarker(state: .selected, price: "£200")
             BPKPriceMapMarker(state: .unselected, price: "£200")
             BPKPriceMapMarker(state: .previousSelected, price: "£200")
+            BPKPriceMapMarker(state: .selected, price: "£200", icon: .custom(.airports))
+            BPKPriceMapMarker(state: .unselected, price: "£200", icon: .custom(.airports))
+            BPKPriceMapMarker(state: .previousSelected, price: "£200", icon: .custom(.airports))
+            BPKPriceMapMarker(state: .unselected, price: "£200", icon: .save)
+            BPKPriceMapMarker(state: .selected, price: "£200", icon: .save)
         }
     }
 }
