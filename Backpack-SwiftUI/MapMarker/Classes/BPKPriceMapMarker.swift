@@ -45,7 +45,7 @@ public struct BPKPriceMapMarker: View {
         HStack(spacing: .md) {
             if let icon {
                 BPKIconView(icon.bpkIcon)
-                    .foregroundColor(iconColor(for: icon, state: state))
+                    .foregroundColor(iconForegroundColor)
             }
             
             BPKText(price, style: .label3)
@@ -56,13 +56,11 @@ public struct BPKPriceMapMarker: View {
         .background(state.backgroundColor)
     }
     
-    private func iconColor(for icon: Icon, state: State) -> BPKColor {
-        switch icon {
-        case .save:
-            return state == .selected ? .textOnDarkColor : .surfaceHeroColor
-        case .custom:
-            return state.foregroundColor
+    private var iconForegroundColor: BPKColor {
+        if case .save = icon, state != .selected {
+            return .surfaceHeroColor
         }
+        return state.foregroundColor
     }
 }
 
