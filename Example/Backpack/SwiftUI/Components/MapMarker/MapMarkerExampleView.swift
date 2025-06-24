@@ -25,7 +25,7 @@ struct MapMarkerExampleView: View {
     struct Annotation: Identifiable {
         // swiftlint:disable nesting
         enum Marker {
-            case price(String, BPKPriceMapMarker.State)
+            case price(String, BPKPriceMapMarker.State, BPKPriceMapMarker.Icon?)
             case poi(Backpack_SwiftUI.BPKIcon, BPKPoiMapMarker.State)
             case pointer
             case hotel(BPKHotelMapMarker.State)
@@ -43,20 +43,40 @@ struct MapMarkerExampleView: View {
             )),
             annotationItems: [
                 Annotation(
-                    marker: .price("£200", .selected),
+                    marker: .price("£200", .selected, nil),
+                    coordinate: .init(latitude: 51.57, longitude: -0.1)
+                ),
+                Annotation(
+                    marker: .price("£200", .unselected, nil),
                     coordinate: .init(latitude: 51.55, longitude: -0.1)
                 ),
                 Annotation(
-                    marker: .price("£200", .unselected),
+                    marker: .price("£200", .previousSelected, nil),
                     coordinate: .init(latitude: 51.53, longitude: -0.1)
                 ),
                 Annotation(
-                    marker: .price("£200", .previousSelected),
+                    marker: .price("£300", .unselected, .custom(.airports)),
                     coordinate: .init(latitude: 51.51, longitude: -0.1)
                 ),
                 Annotation(
-                    marker: .pointer,
+                    marker: .price("£300", .previousSelected, .custom(.airports)),
+                    coordinate: .init(latitude: 51.49, longitude: -0.1)
+                ),
+                Annotation(
+                    marker: .price("£300", .selected, .custom(.airports)),
                     coordinate: .init(latitude: 51.47, longitude: -0.1)
+                ),
+                Annotation(
+                    marker: .price("£200", .previousSelected, .save),
+                    coordinate: .init(latitude: 51.45, longitude: -0.1)
+                ),
+                Annotation(
+                    marker: .price("£200", .selected, .save),
+                    coordinate: .init(latitude: 51.43, longitude: -0.1)
+                ),
+                Annotation(
+                    marker: .pointer,
+                    coordinate: .init(latitude: 51.45, longitude: -0.06)
                 ),
                 Annotation(
                     marker: .poi(.landmark, .unselected),
@@ -77,8 +97,8 @@ struct MapMarkerExampleView: View {
             ]) { item in
                 MapAnnotation(coordinate: item.coordinate) {
                     switch item.marker {
-                    case .price(let price, let state):
-                        BPKPriceMapMarker(state: state, price: price)
+                    case .price(let price, let state, let icon):
+                        BPKPriceMapMarker(state: state, price: price, icon: icon)
                     case .poi(let icon, let state):
                         BPKPoiMapMarker(state: state, icon: icon)
                     case .pointer:
