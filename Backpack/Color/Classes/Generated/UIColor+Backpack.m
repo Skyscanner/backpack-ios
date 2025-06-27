@@ -64,28 +64,12 @@
     return BPKColor.harbour;
 }
 
-+ (UIColor *)bpk_blackTint01 {
-    return BPKColor.blackTint01;
-}
-
 + (UIColor *)bpk_skyGrayTint07 {
     return BPKColor.skyGrayTint07;
 }
 
-+ (UIColor *)bpk_blackTint03 {
-    return BPKColor.blackTint03;
-}
-
-+ (UIColor *)bpk_blackTint04 {
-    return BPKColor.blackTint04;
-}
-
 + (UIColor *)bpk_white {
     return BPKColor.white;
-}
-
-+ (UIColor *)bpk_blackTint06 {
-    return BPKColor.blackTint06;
 }
 
 + (UIColor *)bpk_panjin {
@@ -124,8 +108,24 @@
     return BPKColor.textQuaternaryLightColor;
 }
 
++ (UIColor *)bpk_textSecondaryDarkColor {
+    return BPKColor.textSecondaryDarkColor;
+}
+
 + (UIColor *)bpk_textSecondaryLightColor {
     return BPKColor.textSecondaryLightColor;
+}
+
++ (UIColor *)bpk_backgroundElevation03DarkColor {
+    return BPKColor.backgroundElevation03DarkColor;
+}
+
++ (UIColor *)bpk_lineDarkColor {
+    return BPKColor.lineDarkColor;
+}
+
++ (UIColor *)bpk_backgroundElevation01DarkColor {
+    return BPKColor.backgroundElevation01DarkColor;
 }
 
 + (UIColor *)bpk_lineLightColor {
@@ -153,16 +153,8 @@
     return BPKColor.valensole;
 }
 
-+ (UIColor *)bpk_blackTint02 {
-    return BPKColor.blackTint01;
-}
-
 + (UIColor *)bpk_abisko {
     return BPKColor.skyBlueShade03;
-}
-
-+ (UIColor *)bpk_blackTint05 {
-    return BPKColor.blackTint04;
 }
 
 + (UIColor *)bpk_tochigi {
@@ -213,28 +205,12 @@
     return BPKColor.textQuaternaryDarkColor;
 }
 
-+ (UIColor *)bpk_textSecondaryDarkColor {
-    return BPKColor.blackTint06;
-}
-
 + (UIColor *)bpk_textTertiaryLightColor {
     return BPKColor.textQuaternaryLightColor;
 }
 
-+ (UIColor *)bpk_backgroundElevation03DarkColor {
-    return BPKColor.blackTint03;
-}
-
 + (UIColor *)bpk_backgroundElevation02DarkColor {
-    return BPKColor.blackTint03;
-}
-
-+ (UIColor *)bpk_lineDarkColor {
-    return BPKColor.blackTint04;
-}
-
-+ (UIColor *)bpk_backgroundElevation01DarkColor {
-    return BPKColor.blackTint01;
+    return BPKColor.backgroundElevation03DarkColor;
 }
 
 + (UIColor *)bpk_backgroundAlternativeSecondaryDarkColor {
@@ -274,7 +250,7 @@
 }
 
 + (UIColor *)bpk_backgroundSecondaryDarkColor {
-    return BPKColor.blackTint01;
+    return BPKColor.backgroundElevation01DarkColor;
 }
 
 + (UIColor *)bpk_primaryDarkColor {
@@ -286,7 +262,7 @@
 }
 
 + (UIColor *)bpk_backgroundAlternativeDarkColor {
-    return BPKColor.blackTint01;
+    return BPKColor.backgroundElevation01DarkColor;
 }
 
 + (UIColor *)bpk_primaryLightColor {

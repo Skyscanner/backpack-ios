@@ -129,25 +129,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor * bpk_skyGrayTint06 __deprecated;
 
 /**
- * The `blackTint01` color from the Backpack palette - rgb(19, 29, 43).
- *
- * <div style="width: 100px; height: 100px; background: #131d2bff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
-*/
-@property(nonatomic, class, readonly) UIColor * bpk_blackTint01 __deprecated;
-
-/**
  * The `skyGrayTint07` color from the Backpack palette - rgb(239, 241, 242).
  *
  * <div style="width: 100px; height: 100px; background: #eff1f2ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_skyGrayTint07 __deprecated;
-
-/**
- * The `blackTint02` color from the Backpack palette - rgb(19, 29, 43).
- *
- * <div style="width: 100px; height: 100px; background: #131d2bff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
-*/
-@property(nonatomic, class, readonly) UIColor * bpk_blackTint02 __deprecated;
 
 /**
  * The `abisko` color from the Backpack palette - rgb(5, 32, 60).
@@ -157,39 +143,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor * bpk_abisko __deprecated;
 
 /**
- * The `blackTint03` color from the Backpack palette - rgb(36, 51, 70).
- *
- * <div style="width: 100px; height: 100px; background: #243346ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
-*/
-@property(nonatomic, class, readonly) UIColor * bpk_blackTint03 __deprecated;
-
-/**
- * The `blackTint04` color from the Backpack palette - rgb(68, 80, 95).
- *
- * <div style="width: 100px; height: 100px; background: #44505fff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
-*/
-@property(nonatomic, class, readonly) UIColor * bpk_blackTint04 __deprecated;
-
-/**
  * The `white` color from the Backpack palette - rgb(255, 255, 255).
  *
  * <div style="width: 100px; height: 100px; background: #ffffffff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_white;
-
-/**
- * The `blackTint05` color from the Backpack palette - rgb(68, 80, 95).
- *
- * <div style="width: 100px; height: 100px; background: #44505fff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
-*/
-@property(nonatomic, class, readonly) UIColor * bpk_blackTint05 __deprecated;
-
-/**
- * The `blackTint06` color from the Backpack palette - rgb(189, 196, 203).
- *
- * <div style="width: 100px; height: 100px; background: #bdc4cbff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
-*/
-@property(nonatomic, class, readonly) UIColor * bpk_blackTint06 __deprecated;
 
 /**
  * The `panjin` color from the Backpack palette - rgb(231, 8, 102).
@@ -651,7 +609,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The `surfaceLowContrastColor` dynamic color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background-color: #f7f9fbff; background: linear-gradient(0.375turn, #f7f9fbff 49%, #243346ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background-color: #f5f7faff; background: linear-gradient(0.375turn, #f5f7faff 49%, #243346ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_surfaceLowContrastColor;
 
