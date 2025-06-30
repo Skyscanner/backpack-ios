@@ -67,17 +67,17 @@ NS_ASSUME_NONNULL_BEGIN
     return [[BPKGradient alloc] initWithColors:self.colors startPoint:newStart endPoint:newEnd];
 }
 
-//- (instancetype)initPrimaryWithDirection:(BPKGradientDirection)direction {
-//    return [self initWithColors:@[BPKColor.skyBlue, BPKColor.primaryGradientLight]
-//                     startPoint:[[self class] startPointForDirection:direction]
-//                       endPoint:[[self class] endPointForDirection:direction]];
-//}
-//
-//- (instancetype)initBaselineScrimWithDirection:(BPKGradientDirection)direction {
-//    return [self initWithColors:@[[BPKColor.skyGray colorWithAlphaComponent:0.6], [[self class] scrimBaselineEndColor]]
-//                     startPoint:[[self class] startPointForDirection:direction]
-//                       endPoint:[[self class] endPointForDirection:direction]];
-//}
+- (instancetype)initPrimaryWithDirection:(BPKGradientDirection)direction {
+    return [self initWithColors:@[BPKColor.skyBlue, BPKColor.coreAccentColor]
+                     startPoint:[[self class] startPointForDirection:direction]
+                       endPoint:[[self class] endPointForDirection:direction]];
+}
+
+- (instancetype)initBaselineScrimWithDirection:(BPKGradientDirection)direction {
+    return [self initWithColors:@[[BPKColor.surfaceContrastColor colorWithAlphaComponent:0.6], [[self class] scrimBaselineEndColor]]
+                     startPoint:[[self class] startPointForDirection:direction]
+                       endPoint:[[self class] endPointForDirection:direction]];
+}
 
 + (instancetype)primary {
     static dispatch_once_t gradientOnceToken;
