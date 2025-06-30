@@ -19,11 +19,11 @@ All files are released with the Apache 2.0 licence.
 ### Environment
 
 We use asdf to manage our language runtimes. This will be installed when you run `./fullsetup`. All dependency versions are managed in `.tool-versions`
-Use the version of Xcode specified in [our build pipeline](https://github.com/Skyscanner/backpack-ios/blob/main/.github/workflows/_build.yml#L131), however the project should work with old versions of the same major. 
+Use the version of Xcode specified in [our build pipeline](https://github.com/Skyscanner/backpack-ios/blob/main/.github/workflows/_build.yml#L136), however the project should work with old versions of the same major. 
 
 ### Code style
 
-1. All new components are written in Swift
+1. All new components are written in SwiftUI
 1. We sparingly update Objective-c components and rather upgrade to Swift with UIKit or provide a SwiftUI version
 
 Please follow the [Swift Style Guide](https://google.github.io/swift/) when writing Swift. Follow other conventions and patterns established in the source code already when the style-guide cannot help you. The goal is that the codebase should look like it was written by a single author.
@@ -38,7 +38,7 @@ Run the following commands from your terminal, these should be run from the root
 If you want to add a new component, we will need the following:
 
 - Design (Figma file)
-- UIKit or SwiftUI component
+- SwiftUI component
 - Accessibility
 - Stories
 - Tests (unit & snapshot)
@@ -48,20 +48,97 @@ If you want to add a new component, we will need the following:
 
 Figma is the preferred format for non-technical folks. We’d appreciate if you could provide an exact match of your component in Figma format together with examples for each state e.g. disabled, expanded etc.
 
-### UIKit and SwiftUI component
-
-Make sure that when you contribute you are considering a UIKit and a SwiftUI version of your component. The UIKit component should live in the Backpack folder. A SwiftUI component needs to be located in Backpack-SwiftUI.
+### SwiftUI component
 
 A component folder structure is setup as follows. Please take a look at the setup of existing components for examples. 
 
-* Backpack
+* Backpack-SwiftUI
     - {ComponentName}
         - Classes
             - BPK{ComponentName.swift}
             - {Any supporting swift files}
         - README.md
+        
+<details>
+<summary>Example: Creating a new Badge component</summary>
+        
+```swift
+/// A view that displays one line of text with an optional icon
+/// By default the style of BPKBadge is set to `.normal`
+///
+/// Use `badgeStyle(_ style: BPKBadge.Style)` to change the style of the badge
+///
+public struct BPKBadge: View {
+    private let title: String
+    private let icon: BPKIcon?
+    private var style: BPKBadge.Style = .normal
+    
+    public init(_ title: String, icon: BPKIcon? = nil) {
+        self.title = title
+        self.icon = icon
+    }
+    
+    public var body: some View {
+        content
+            .padding([.leading, .trailing], .md)
+            .padding([.top, .bottom], .sm)
+            .frame(minHeight: 24)
+            .background(style.backgroundColor)
+            .clipShape(RoundedRectangle(cornerRadius: .xs))
+            .outline(style.borderColor, cornerRadius: .xs)
+            .accessibilityElement()
+            .accessibilityLabel(title)
+            .if(!BPKFont.enableDynamicType, transform: {
+                $0.sizeCategory(.large)
+            })
+    }
+    
+    /// Sets the style of the badge
+    ///
+    /// - Parameter style: The `BPKBadge.Style` to change the appearance
+    ///   view.
+    ///
+    /// - Returns: A BPKBadge that uses the style you supply.
+    public func badgeStyle(_ style: BPKBadge.Style) -> BPKBadge {
+        var result = self
+        result.style = style
+        return result
+    }
+    
+    public func createBadgeIconView(icon: BPKIcon?) -> BPKIconView? {
+        guard let badgeIcon = icon else {
+            switch style {
+            case .success:
+                return BPKIconView(BPKIcon.tickCircle, size: .small)
+            case .warning:
+                return BPKIconView(BPKIcon.informationCircle, size: .small)
+            case .destructive:
+                return BPKIconView(BPKIcon.exclamation, size: .small)
+            default:
+                return nil
+            }
+        }
+        return BPKIconView(badgeIcon, size: .small)
+    }
+    
+    private var content: some View {
+        HStack(spacing: .sm) {
+            if let badgeIconView = createBadgeIconView(icon: icon) {
+                badgeIconView.foregroundColor(style.iconColor)
+            }
+            BPKText(title, style: .footnote)
+                .foregroundColor(style.foregroundColor)
+        }
+    }
+    public enum Style {
+        case normal, strong, success, warning, destructive, inverse, outline, brand
+    }
+}
 
-For SwiftUI the root folder will be `Backpack-SwiftUI`. The structure is otherwise the same.
+
+```
+</details>
+        
 
 ### Accessibility
 All of our components must be accessible. 
@@ -77,15 +154,102 @@ At a mimimum you should make sure your component meets the following criteria:
 
 In SwiftUI, you must create at least one Accessibility snapshot that tests Dynamic Type, you can do this by adding a new test for your component. Below we included an example accessibility test.
 
+<details>
+<summary>Example: Creating an accessibility test for a Badge component</summary>
+
+Here's an example of a simple accessibility test for the Badge component:
+
 ```swift
 func test_accessibility() {
     let badge = BPKBadge("Test badge", icon: .accessibility)
     assertA11ySnapshot(badge)
 }
 ```
+</details>
 
 ### Stories
-Each component needs to be visually documented in our example app. Make sure to add a new entry and showcase your component in each of its different states and variants. 
+Each component needs to be visually documented in our example app. Make sure to add a new entry and showcase your component in each of its different states and variants.
+
+<details>
+<summary>Example: Creating a story for a Badge component</summary>
+
+Here's an example of a complete story for the Badge component with multiple variants:
+
+ ```swift
+ struct BadgeExampleVIew: View {
+    var body: some View {
+        ZStack {
+            Color(.canvasColor)
+                .ignoresSafeArea()
+            VStack(spacing: 0) {
+                makeBadgeRow(text: "Normal", icon: .tickCircle, style: .normal)
+                makeBadgeRow(text: "Strong", icon: .tickCircle, style: .strong)
+                makeBadgeRow(text: "Success", icon: .tickCircle, style: .success)
+                makeBadgeRow(text: "Warning", icon: .informationCircle, style: .warning)
+                makeBadgeRow(text: "Critical", icon: .exclamation, style: .destructive)
+                makeBadgeRow(text: "Inverse", icon: .tickCircle, style: .inverse, background: .corePrimaryColor)
+                makeBadgeRow(text: "Outline", icon: .tickCircle, style: .outline, background: .corePrimaryColor)
+                makeBadgeRow(text: "Brand", icon: .priceTag, style: .brand)
+                Spacer()
+            }
+        }
+    }
+    
+    private func makeBadgeRow(
+        text: String,
+        icon: Backpack_SwiftUI.BPKIcon,
+        style: Backpack_SwiftUI.BPKBadge.Style,
+        background: Backpack_SwiftUI.BPKColor = .canvasColor
+    ) -> some View {
+        HStack {
+            Spacer()
+            if ![BPKBadge.Style.success, BPKBadge.Style.warning, BPKBadge.Style.destructive].contains(style) {
+                BPKBadge(text)
+                    .badgeStyle(style)
+            } else {
+                Spacer()
+            }
+            Spacer()
+            BPKBadge(text, icon: icon)
+                .badgeStyle(style)
+            Spacer()
+        }
+        .padding()
+        .background(background)
+    }
+}
+ ```
+ 
+ This story will need to be added to the ComponentCellsProvider struct
+ 
+ ```swift
+     private func badge() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Badges",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(BadgeExampleVIew())
+                }))
+            ],
+            showChildren: { showComponent(title: "Badges", tabs: $0) }
+        )
+    }
+ ```
+ 
+ Don't forget to add it to the cells' datasources
+  
+ ```swift
+     func cells() -> [Components.Cell] {
+        let dataSources: [CellDataSource] = [
+            ...
+            badge(),
+            ...
+            ]
+        return dataSources.map(\.cell)
+    }
+ ```
+ 
+</details>
 
 ### Tests
 Our components need to be well tested. We require all business logic to be covered by unit tests. The component and all of its types and states need to be captured in Snapshot tests. Please review existing components to learn how we set up these tests.
@@ -94,6 +258,66 @@ Our CI runs on Intel hardware, so you might find your snapshots failing when rec
 Otherwise, please create a commit on your pull request with `Record snapshots` to trigger a Github Action that will re-record your snapshots. 
 
 Once your snapshots are generated, please manually verify that they are correct before merging your pull request.
+
+<details>
+<summary>Example: Creating a snapshot test for a Badge component</summary>
+
+Here's an example of a simple snapshot test for the Badge component:
+
+ ```swift
+     func test_badgeWithoutIcon() {
+        // Then
+        assertSnapshot(
+                BPKBadge("Test badge", icon: nil)
+            }
+        )
+    }
+     
+     func test_badgeWithIcon() {
+        // Then
+        assertSnapshot(
+                BPKBadge("Test badge", icon: .tickCircle)
+            }
+        )
+    }
+ ```
+For components with many variants, you can use parameterized tests:
+
+```swift
+       let styles: [(BPKBadge.Style, BPKColor)] = [
+        (.normal, .surfaceDefaultColor),
+        (.strong, .surfaceDefaultColor),
+        (.success, .surfaceDefaultColor),
+        (.warning, .surfaceDefaultColor),
+        (.destructive, .surfaceDefaultColor),
+        (.inverse, .surfaceHighlightColor),
+        (.outline, .surfaceHighlightColor),
+        (.brand, .surfaceDefaultColor)
+    ]
+    
+    private func testView(icon: BPKIcon? = nil) -> some View {
+        VStack(spacing: 0) {
+            ForEach(styles, id: \.0) {
+                BPKBadge("Test badge", icon: icon)
+                    .badgeStyle($0.0)
+                    .padding(4)
+                    .background($0.1)
+            }
+        }
+    }
+
+    func test_allBadgesWithoutIcon() {
+        // Then
+        assertSnapshot(testView())
+    }
+    
+    func test_allBadgesWithIcon() {
+        // Then
+        assertSnapshot(testView(icon: .tickCircle))
+    }
+ ```
+ 
+ </details>
 
 ### Documentation
 See our design system documentation at [skyscanner.design](https://www.skyscanner.design).
@@ -248,10 +472,10 @@ public var type: BPKChipType = .option {
     }
 }
 ```
-3. Released by Koala
+3. Released by Donburi
 4. Adopt changes in project
 5. Run experiment
-    - if experiment is successful, publish documentation (only Koala members) and remove experimental code.
+    - if experiment is successful, publish documentation (only Donburi members) and remove experimental code.
     - if experiment is unsuccessful and further iterations are needed, repeat from step 2. Otherwise, remove experimental code. That’s all!
 </details>
 
