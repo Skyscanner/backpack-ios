@@ -16,6 +16,7 @@
  * limitations under the License.
  */
 
+// swiftlint:disable line_length
 import SwiftUI
 import Backpack
 
