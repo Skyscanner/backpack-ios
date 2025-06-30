@@ -80,6 +80,7 @@ class TappableLinkLabelsViewController: UIViewController, BPKTappableLinkLabelDe
         let firstLinkContent = "Backpack"
         let secondLinkContent = "Skyscanner's"
 
+        // FIX THIS ONE
         displayView.backgroundColor = style == .alternate ? .red : BPKColor.canvasColor
 
         let firstRange = NSRange(content.range(of: firstLinkContent)!, in: content)
