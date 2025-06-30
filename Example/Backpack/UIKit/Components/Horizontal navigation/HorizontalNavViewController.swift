@@ -63,7 +63,7 @@ class HorizontalNavigationItemWithBackground<
 >: UIButton, BPKHorizontalNavigationItem {
     // MARK: - BPKHorizontalNavigationItem
 
-    public var selectedColor: UIColor? = BPKColor.primaryColor
+    public var selectedColor: UIColor? = BPKColor.corePrimaryColor
 
     public var appearance: BPKHorizontalNavigationAppearance = .normal
 
@@ -274,7 +274,7 @@ class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegat
         nav.appearance = appearance
 
         if appearance == .alternate {
-            nav.backgroundColor = BPKColor.skyGray
+            nav.backgroundColor = BPKColor.surfaceContrastColor
         }
     }
 }

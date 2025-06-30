@@ -61,10 +61,10 @@ class TappableLinkLabelsViewController: UIViewController, BPKTappableLinkLabelDe
         super .viewWillDisappear(animated)
 
         if isAlternateStyleWithLightMode() {
-            let titleAttributes = [NSAttributedString.Key.foregroundColor: BPKColor.skyGray]
+            let titleAttributes = [NSAttributedString.Key.foregroundColor: BPKColor.surfaceContrastColor]
             self.navigationController?.navigationBar.titleTextAttributes = titleAttributes
             self.navigationController?.navigationBar.largeTitleTextAttributes = titleAttributes
-            self.navigationController?.navigationBar.tintColor = BPKColor.skyGray
+            self.navigationController?.navigationBar.tintColor = BPKColor.surfaceContrastColor
         }
     }
 
@@ -80,7 +80,7 @@ class TappableLinkLabelsViewController: UIViewController, BPKTappableLinkLabelDe
         let firstLinkContent = "Backpack"
         let secondLinkContent = "Skyscanner's"
 
-        displayView.backgroundColor = style == .alternate ? BPKColor.skyBlueShade03 : BPKColor.backgroundColor
+        displayView.backgroundColor = style == .alternate ? BPKColor.skyBlueShade03 : BPKColor.canvasColor
 
         let firstRange = NSRange(content.range(of: firstLinkContent)!, in: content)
         let secondRange = NSRange(content.range(of: secondLinkContent)!, in: content)

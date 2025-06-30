@@ -160,93 +160,38 @@ public extension BPKColor {
     static let textPrimaryColor = BPKColor(red: 0.086, green: 0.086, blue: 0.086, alpha: 1)
         .darkVariant(BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1))
 
-    /// The `textQuaternaryColor` dynamic color from the Backpack palette.
-    @available(*, deprecated, message: "This colour will be removed in the next major version")
-    static let textQuaternaryColor = BPKColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 0.2)
-        .darkVariant(BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.2))
-
     /// The `textErrorColor` dynamic color from the Backpack palette.
     
     static let textErrorColor = BPKColor(red: 0.906, green: 0.031, blue: 0.400, alpha: 1)
         .darkVariant(BPKColor(red: 1.000, green: 0.392, blue: 0.612, alpha: 1))
-
-    /// The `textTertiaryColor` dynamic color from the Backpack palette.
-    @available(*, deprecated, message: "This colour will be removed in the next major version")
-    static let textTertiaryColor = BPKColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 0.2)
-        .darkVariant(BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.2))
-
-    /// The `textSecondaryColor` dynamic color from the Backpack palette.
-    
-    static let textSecondaryColor = BPKColor(red: 0.384, green: 0.412, blue: 0.443, alpha: 1)
-        .darkVariant(BPKColor(red: 0.741, green: 0.769, blue: 0.796, alpha: 1))
 
     /// The `textPrimaryInverseColor` dynamic color from the Backpack palette.
     
     static let textPrimaryInverseColor = BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1)
         .darkVariant(BPKColor(red: 0.004, green: 0.035, blue: 0.075, alpha: 1))
 
-    /// The `scrimColor` dynamic color from the Backpack palette.
+    /// The `textSecondaryColor` dynamic color from the Backpack palette.
     
-    static let scrimColor = BPKColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 0.7019607843137254)
-        .darkVariant(BPKColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 0.7019607843137254))
-
-    /// The `backgroundElevation03Color` dynamic color from the Backpack palette.
-    @available(*, deprecated, message: "This colour will be removed in the next major version")
-    static let backgroundElevation03Color = BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1)
-        .darkVariant(BPKColor(red: 0.141, green: 0.200, blue: 0.275, alpha: 1))
-
-    /// The `backgroundElevation02Color` dynamic color from the Backpack palette.
-    @available(*, deprecated, message: "This colour will be removed in the next major version")
-    static let backgroundElevation02Color = BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1)
-        .darkVariant(BPKColor(red: 0.141, green: 0.200, blue: 0.275, alpha: 1))
-
-    /// The `lineOnDarkColor` dynamic color from the Backpack palette.
-    
-    static let lineOnDarkColor = BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.5019607843137255)
-        .darkVariant(BPKColor(red: 0.267, green: 0.314, blue: 0.373, alpha: 1))
+    static let textSecondaryColor = BPKColor(red: 0.384, green: 0.412, blue: 0.443, alpha: 1)
+        .darkVariant(BPKColor(red: 0.741, green: 0.769, blue: 0.796, alpha: 1))
 
     /// The `lineColor` dynamic color from the Backpack palette.
     
     static let lineColor = BPKColor(red: 0.757, green: 0.780, blue: 0.812, alpha: 1)
         .darkVariant(BPKColor(red: 0.267, green: 0.314, blue: 0.373, alpha: 1))
 
-    /// The `backgroundElevation01Color` dynamic color from the Backpack palette.
-    @available(*, deprecated, message: "This colour will be removed in the next major version")
-    static let backgroundElevation01Color = BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1)
-        .darkVariant(BPKColor(red: 0.075, green: 0.114, blue: 0.169, alpha: 1))
+    /// The `lineOnDarkColor` dynamic color from the Backpack palette.
+    
+    static let lineOnDarkColor = BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.5019607843137255)
+        .darkVariant(BPKColor(red: 0.267, green: 0.314, blue: 0.373, alpha: 1))
 
-    /// The `backgroundAlternativeSecondaryColor` dynamic color from the Backpack palette.
-    @available(*, deprecated, message: "This colour will be removed in the next major version")
-    static let backgroundAlternativeSecondaryColor = BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1)
-        .darkVariant(BPKColor(red: 0.004, green: 0.035, blue: 0.075, alpha: 1))
-
-    /// The `backgroundColor` dynamic color from the Backpack palette.
-    @available(*, deprecated, message: "This colour will be removed in the next major version")
-    static let backgroundColor = BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1)
-        .darkVariant(BPKColor(red: 0.004, green: 0.035, blue: 0.075, alpha: 1))
+    /// The `scrimColor` dynamic color from the Backpack palette.
+    
+    static let scrimColor = BPKColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 0.7019607843137254)
+        .darkVariant(BPKColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 0.7019607843137254))
 
     /// The `overlayColor` dynamic color from the Backpack palette.
     
     static let overlayColor = BPKColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 0.2)
         .darkVariant(BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.8))
-
-    /// The `backgroundTertiaryColor` dynamic color from the Backpack palette.
-    @available(*, deprecated, message: "This colour will be removed in the next major version")
-    static let backgroundTertiaryColor = BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1)
-        .darkVariant(BPKColor(red: 0.004, green: 0.035, blue: 0.075, alpha: 1))
-
-    /// The `backgroundSecondaryColor` dynamic color from the Backpack palette.
-    @available(*, deprecated, message: "This colour will be removed in the next major version")
-    static let backgroundSecondaryColor = BPKColor(red: 0.937, green: 0.953, blue: 0.973, alpha: 1)
-        .darkVariant(BPKColor(red: 0.075, green: 0.114, blue: 0.169, alpha: 1))
-
-    /// The `backgroundAlternativeColor` dynamic color from the Backpack palette.
-    @available(*, deprecated, message: "This colour will be removed in the next major version")
-    static let backgroundAlternativeColor = BPKColor(red: 0.937, green: 0.953, blue: 0.973, alpha: 1)
-        .darkVariant(BPKColor(red: 0.075, green: 0.114, blue: 0.169, alpha: 1))
-
-    /// The `primaryColor` dynamic color from the Backpack palette.
-    @available(*, deprecated, message: "This colour will be removed in the next major version")
-    static let primaryColor = BPKColor(red: 0.000, green: 0.384, blue: 0.890, alpha: 1)
-        .darkVariant(BPKColor(red: 0.518, green: 0.914, blue: 1.000, alpha: 1))
 }

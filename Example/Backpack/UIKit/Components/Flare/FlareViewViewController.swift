@@ -59,7 +59,7 @@ class FlareViewViewController: UIViewController {
         }
 
         if backgroundImage {
-            label.textColor = BPKColor.skyGray
+            label.textColor = BPKColor.surfaceContrastColor
 
             let image = UIImage(named: "pilanesburg-south-africa")
             let imageView = UIImageView.init(image: image)

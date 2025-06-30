@@ -99,8 +99,8 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
         calendar.locale = Locale.current
         calendar.delegate = self
         if alternativeBackgroundColor {
-            view.backgroundColor = BPKColor.backgroundSecondaryColor
-            myView.backgroundColor = BPKColor.backgroundSecondaryColor
+            view.backgroundColor = BPKColor.canvasContrastColor
+            myView.backgroundColor = BPKColor.canvasContrastColor
         }
     }
 

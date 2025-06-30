@@ -38,7 +38,7 @@ class TappableLinkLabelsSelectorViewController: UITableViewController {
                 segue.destination.title = "Single link"
             case .linkWithCustomColor:
                 segue.destination.title = "Link with custom color"
-                maybeTappableLinkLabelsController?.textColor = Backpack.BPKColor.panjin
+                maybeTappableLinkLabelsController?.textColor = Backpack.BPKColor.statusDangerSpotColor
             case .multipleLinks:
                 segue.destination.title = "Multiple links"
                 maybeTappableLinkLabelsController?.linkCount = .double
