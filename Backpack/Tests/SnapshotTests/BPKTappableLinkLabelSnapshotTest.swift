@@ -30,7 +30,7 @@ class BPKTappableLinkLabelSnapshotTest: XCTestCase {
         withStyles styles: [BPKFontStyle],
         textColor: UIColor? = nil,
         linkColor: UIColor? = nil,
-        backgroundColor: UIColor = BPKColor.skyGrayTint06,
+        backgroundColor: UIColor = BPKColor.surfaceContrastColor,
         tappableLabelStyle: BPKTappableLinkLabelStyle? = nil
     ) -> UIView {
         viewsInStack(withStyles: styles, backgroundColor: backgroundColor) { style in
@@ -81,7 +81,7 @@ class BPKTappableLinkLabelSnapshotTest: XCTestCase {
     func testViewSnapshotWithColorApplied() {
         assertSnapshot(createView(
             withStyles: .headingStyles,
-            textColor: BPKColor.panjin
+            textColor: BPKColor.statusDangerSpotColor
         ))
     }
 }
