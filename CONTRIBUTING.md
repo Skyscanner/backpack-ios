@@ -24,7 +24,7 @@ Use the version of Xcode specified in [our build pipeline](https://github.com/Sk
 ### Code style
 
 1. All new components are written in SwiftUI
-1. We sparingly update Objective-c components and rather upgrade to Swift with UIKit or provide a SwiftUI version
+1. We sparingly update Objective-c components to Swift (SwiftUI) version
 
 Please follow the [Swift Style Guide](https://google.github.io/swift/) when writing Swift. Follow other conventions and patterns established in the source code already when the style-guide cannot help you. The goal is that the codebase should look like it was written by a single author.
 
@@ -331,7 +331,7 @@ Please see the [code review guidelines](https://github.com/Skyscanner/backpack/b
 <details>
     <summary>Testing</summary>
 
-Tests can be run as usual from Xcode(Product -> Test or cmd+U). Snapshot tests should be run on the [device specified for CI](https://github.com/Skyscanner/backpack-ios/blob/main/scripts/ci#L7).
+Tests can be run as usual from Xcode(Product -> Test or cmd+U). Snapshot tests should be run on the [device specified for CI](https://github.com/Skyscanner/backpack-ios/blob/main/scripts/ci#L7) with the Xcode version defined in [the _test.yml workflow](https://github.com/Skyscanner/backpack-ios/blob/main/.github/workflows/_test.yml#L62).
 </details>
 
 <details>
@@ -367,6 +367,12 @@ Snapshot tests are used to capture images of components under different configur
 
 ```
 git commit --allow-empty -m "record snapshots"
+```
+
+After checking on your PR that the new snapshots are as expected, create a new empty commit to rerun the tests on the CI
+
+```
+git commit --allow-empty -m "Retry"
 ```
 
 If you want to test your snapshot tests locally change `isRecording = false` to `isRecording = true` in the relevant test file and re-run the tests on the [device specified for CI](https://github.com/Skyscanner/backpack-ios/blob/main/scripts/ci#L7). This will update the images on disk. Remember to revert `isRecording` and the snapshot updates afterwards otherwise the tests will fail. 

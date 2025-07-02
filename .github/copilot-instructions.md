@@ -8,7 +8,7 @@ Below are the standards and best practices for developing components in the Back
 - SwiftUI is the standard for all new component development in Backpack iOS
 - New components should be developed using SwiftUI and located in Backpack-SwiftUI/
 - UIKit components should be maintained for backward compatibility, but new development should prioritize SwiftUI implementations
-- Only update UIKit components when absolutely necessary - encourage users to migrate to SwiftUI
+- Only update UIKit components when absolutely necessary - encourage users to migrate to SwiftUI component counterpart
 
 ### Project Structure
 Components should follow the established folder structure:
@@ -54,7 +54,8 @@ Accessibility is fundamental to all Backpack components. Components must be usab
    - Components must support Dynamic Type scaling
    - Text should scale appropriately with user's font size preferences
    - Layouts must adapt gracefully to larger text sizes
-   - Use BPKFont.enableDynamicType flag and sizeCategory(.large) when needed
+   - Use `BPKDynamicLayout` and `BPKDynamicTypeLayout` when making flexible layout based on a size threshold.
+   - Control the enablement of Dynamic type via BPKFont.enableDynamicType flag. Default it to sizeCategory(.large) when dynamic type is not enabled. 
 
 6. **State Communication**
    - Error states must be communicated both visually and programmatically
@@ -107,6 +108,7 @@ Proper use of design tokens ensures consistency and supports theming across the 
    - Support both light and dark mode automatically
    - Common tokens: .textPrimaryColor, .corePrimaryColor, .surfaceDefaultColor, etc.
    - Apply colors using .foregroundColor() and .background() modifiers
+   - Only internal colours (`internal extension BPKColor`) and .clear can have single variant
 
 2. **Spacing Tokens**
    - Use BPKSpacing tokens for all spacing (padding, margins, gaps)
@@ -214,7 +216,8 @@ Comprehensive testing ensures components work correctly and continue to work as 
    - Create snapshot tests for all visual states and variations
    - Test both light and dark themes
    - Test RTL layouts
-   - Test Dynamic Type scaling
+   - Use `assertSnapshot` helper that asserts light, dark, and RTL mode
+   - Test Dynamic Type scaling (via assertA11ySnapshot helper)
    - Use the specified CI device for consistency
    - Place tests in appropriate test targets
 
@@ -369,7 +372,7 @@ Before contributing, ensure you're familiar with the project setup and contribut
 - Understanding the build and test processes
 - Following the established code review process
 - Using proper git workflow and commit messages
-- Running snapshot tests on appropriate CI devices
+- Running snapshot tests on appropriate CI devices (based on the device spec defined in `scrips/ci` and Xcode version defined in `.github/workflows/_test.yml`)
 - Taking screenshots for documentation updates
 
 ## Getting Help
