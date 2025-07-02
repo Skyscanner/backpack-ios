@@ -26,7 +26,7 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
     private let elements: [Element]
     private let cardForElement: (_ element: Element) -> Content
     private let headerPadding: (Edge.Set, BPKSpacing)
-    @State private var showingAllCards = false
+    @Binding private var showingAllCards: Bool
 
     public init(
         title: String,
@@ -35,6 +35,7 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
         initiallyShownCardsCount: Int = 3,
         elements: [Element],
         headerPadding: (Edge.Set, BPKSpacing) = (.all, .base),
+        showingAllCards: Binding<Bool> = .constant(false),
         @ViewBuilder cardForElement: @escaping (_: Element) -> Content
     ) {
         self.title = title
@@ -43,6 +44,7 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
         self.initiallyShownCardsCount = initiallyShownCardsCount
         self.elements = elements
         self.headerPadding = headerPadding
+        self._showingAllCards = showingAllCards
         self.cardForElement = cardForElement
     }
 
