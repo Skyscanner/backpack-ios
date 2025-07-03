@@ -71,8 +71,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testDividedInitWithPaddedAndWithSubviews {
     UIView *firstInnerView = [[UIView alloc] initWithFrame:CGRectZero];
     UIView *secondInnerView = [[UIView alloc] initWithFrame:CGRectZero];
-    firstInnerView.backgroundColor = [BPKColor systemRed];
-    secondInnerView.backgroundColor = [BPKColor systemGreen];
+    firstInnerView.backgroundColor = [BPKColor coreAccentColor];
+    secondInnerView.backgroundColor = [BPKColor statusWarningFillColor];
 
     BPKDividedCard *c = [[BPKDividedCard alloc] initWithPrimarySubview:firstInnerView secondarySubview:secondInnerView padded:YES];
     XCTAssertTrue(c.padded);
@@ -83,8 +83,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testDividedSetPadded {
     UIView *firstInnerView = [[UIView alloc] initWithFrame:CGRectZero];
     UIView *secondInnerView = [[UIView alloc] initWithFrame:CGRectZero];
-    firstInnerView.backgroundColor = [BPKColor systemRed];
-    secondInnerView.backgroundColor = [BPKColor systemGreen];
+    firstInnerView.backgroundColor = [BPKColor coreAccentColor];
+    secondInnerView.backgroundColor = [BPKColor statusWarningFillColor];
 
     BPKDividedCard *c = [[BPKDividedCard alloc] initWithPrimarySubview:firstInnerView secondarySubview:secondInnerView padded:YES];
 
@@ -97,8 +97,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testDividedInitWithoutPaddedAndWithSubviews {
     UIView *firstInnerView = [[UIView alloc] initWithFrame:CGRectZero];
     UIView *secondInnerView = [[UIView alloc] initWithFrame:CGRectZero];
-    firstInnerView.backgroundColor = [BPKColor systemRed];
-    secondInnerView.backgroundColor = [BPKColor systemGreen];
+    firstInnerView.backgroundColor = [BPKColor coreAccentColor];
+    secondInnerView.backgroundColor = [BPKColor statusWarningFillColor];
 
     BPKDividedCard *c = [[BPKDividedCard alloc] initWithPrimarySubview:firstInnerView secondarySubview:secondInnerView padded:NO];
     XCTAssertFalse(c.padded);
@@ -116,8 +116,8 @@ NS_ASSUME_NONNULL_BEGIN
 
     UIView *firstInnerView = [[UIView alloc] initWithFrame:CGRectZero];
     UIView *secondInnerView = [[UIView alloc] initWithFrame:CGRectZero];
-    firstInnerView.backgroundColor = BPKColor.systemRed;
-    secondInnerView.backgroundColor = BPKColor.systemGreen;
+    firstInnerView.backgroundColor = [BPKColor coreAccentColor];
+    secondInnerView.backgroundColor = [BPKColor statusWarningFillColor];
 
     [c setPrimarySubview:firstInnerView secondarySubview:secondInnerView];
 

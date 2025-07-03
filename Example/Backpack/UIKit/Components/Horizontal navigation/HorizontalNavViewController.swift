@@ -63,7 +63,7 @@ class HorizontalNavigationItemWithBackground<
 >: UIButton, BPKHorizontalNavigationItem {
     // MARK: - BPKHorizontalNavigationItem
 
-    public var selectedColor: UIColor? = BPKColor.primaryColor
+    public var selectedColor: UIColor? = BPKColor.corePrimaryColor
 
     public var appearance: BPKHorizontalNavigationAppearance = .normal
 
@@ -205,7 +205,7 @@ class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegat
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .bpk_background
+        view.backgroundColor = BPKColor.canvasColor
 
         if small {
             view.addSubview(smallHorizontalNav)
@@ -274,7 +274,7 @@ class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegat
         nav.appearance = appearance
 
         if appearance == .alternate {
-            nav.backgroundColor = BPKColor.skyGray
+            nav.backgroundColor = BPKColor.surfaceContrastColor
         }
     }
 }

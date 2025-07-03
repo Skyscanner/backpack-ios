@@ -221,7 +221,7 @@ class BPKHorizontalNavigationSnapshotTests: XCTestCase {
 
     func testWithTheming() {
         let testView: NavContainer<BPKHorizontalNavigationSizeDefault> = createWithIcons()
-        testView.nav?.selectedColor = .bpk_erfoud
+        testView.nav?.selectedColor = BPKColor.statusWarningFillColor
         assertSnapshot(testView)
     }
 
@@ -245,7 +245,7 @@ class BPKHorizontalNavigationSnapshotTests: XCTestCase {
 
     func testWithAlternateAppearance() {
         let testView: NavContainer<BPKHorizontalNavigationSizeDefault> = create()
-        testView.backgroundColor = .bpk_skyGray
+        testView.backgroundColor = BPKColor.surfaceContrastColor
         testView.nav?.appearance = .alternate
         assertSnapshot(testView)
     }
@@ -284,7 +284,7 @@ extension BPKHorizontalNavigation.AnyOption {
     >: UIButton, BPKHorizontalNavigationItem {
         // MARK: - BPKHorizontalNavigationItem
 
-        public var selectedColor: UIColor? = BPKColor.primaryColor
+        public var selectedColor: UIColor? = BPKColor.corePrimaryColor
 
         public var appearance: BPKHorizontalNavigationAppearance = .normal
 
