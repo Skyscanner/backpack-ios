@@ -47,13 +47,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor * skyBlue;
 
 /**
- * The `black` color from the Backpack palette - rgb(1, 9, 19).
- *
- * <div style="width: 100px; height: 100px; background: #010913ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
-*/
-@property(nonatomic, class, readonly) UIColor * black;
-
-/**
  * The `shadowSmColor` color from the Backpack palette - rgb(22, 22, 22).
  *
  * <div style="width: 100px; height: 100px; background: #161616ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>

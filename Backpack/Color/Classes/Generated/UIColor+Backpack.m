@@ -32,10 +32,6 @@
     return BPKColor.skyBlue;
 }
 
-+ (UIColor *)bpk_black {
-    return BPKColor.black;
-}
-
 + (UIColor *)bpk_shadowSmColor {
     return BPKColor.shadowSmColor;
 }

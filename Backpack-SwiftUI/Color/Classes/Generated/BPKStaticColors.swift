@@ -30,10 +30,6 @@ public extension BPKColor {
     
     static let skyBlue = BPKColor(red: 0.000, green: 0.384, blue: 0.890, alpha: 1)
 
-    /// The `black` color from the Backpack palette - rgb(1, 9, 19)
-    
-    static let black = BPKColor(red: 0.004, green: 0.035, blue: 0.075, alpha: 1)
-
     /// The `shadowSmColor` color from the Backpack palette - rgb(22, 22, 22)
     
     static let shadowSmColor = BPKColor(red: 0.086, green: 0.086, blue: 0.086, alpha: 1)

@@ -42,10 +42,6 @@
     return [UIColor colorWithRed:0.000 green:0.384 blue:0.890 alpha:1];
 }
 
-+ (UIColor *)black {
-    return [UIColor colorWithRed:0.004 green:0.035 blue:0.075 alpha:1];
-}
-
 + (UIColor *)shadowSmColor {
     return [UIColor colorWithRed:0.086 green:0.086 blue:0.086 alpha:1];
 }
