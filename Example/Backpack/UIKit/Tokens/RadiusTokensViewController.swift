@@ -71,7 +71,7 @@ class RadiusTokensViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         let label = BPKLabel()
         label.text = "\(cornerRadius.0) = \(Int(cornerRadius.1))"
-        label.textColor = BPKColor.white
+        label.textColor = BPKColor.textOnDarkColor
         label.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(label)
         NSLayoutConstraint.activate([
