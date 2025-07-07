@@ -57,7 +57,7 @@ public struct BPKPriceMapMarker: View {
     }
     
     private var iconForegroundColor: BPKColor {
-        if case .save = icon, state != .selected {
+        if case .save = icon, state == .unselected {
             return .surfaceHeroColor
         }
         return state.foregroundColor
@@ -75,6 +75,7 @@ struct BPKPriceMapMarker_Previews: PreviewProvider {
             BPKPriceMapMarker(state: .previousSelected, price: "£200", icon: .custom(.airports))
             BPKPriceMapMarker(state: .unselected, price: "£200", icon: .save)
             BPKPriceMapMarker(state: .selected, price: "£200", icon: .save)
+            BPKPriceMapMarker(state: .previousSelected, price: "£200", icon: .save)
         }
     }
 }

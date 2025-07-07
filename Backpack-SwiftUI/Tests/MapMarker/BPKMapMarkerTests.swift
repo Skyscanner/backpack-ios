@@ -76,6 +76,13 @@ class BPKMapMarkerTests: XCTestCase {
                 .padding()
         )
     }
+    
+    func test_previousSelectedPriceMapMarker_withSaveIcon() {
+        assertSnapshot(
+            BPKPriceMapMarker(state: .previousSelected, price: "£200", icon: .save)
+                .padding()
+        )
+    }
 
     func test_pointerMapMarker() {
         assertSnapshot(

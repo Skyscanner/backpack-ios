@@ -75,6 +75,10 @@ struct MapMarkerExampleView: View {
                     coordinate: .init(latitude: 51.43, longitude: -0.1)
                 ),
                 Annotation(
+                    marker: .price("£200", .previousSelected, .save),
+                    coordinate: .init(latitude: 51.41, longitude: -0.1)
+                ),
+                Annotation(
                     marker: .pointer,
                     coordinate: .init(latitude: 51.45, longitude: -0.06)
                 ),
