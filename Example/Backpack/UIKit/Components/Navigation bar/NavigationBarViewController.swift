@@ -54,6 +54,8 @@ class NavigationBarViewController: UIViewController {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.isHidden = false
     }
+    
+    // I SHOULD SEE THIS!
 
     override func viewDidLoad() {
         super.viewDidLoad()
