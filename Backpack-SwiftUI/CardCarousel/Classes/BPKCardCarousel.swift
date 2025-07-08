@@ -227,7 +227,7 @@ internal struct InternalCardCarousel<Content: View>: View {
             BPKCarouselCard(
                 content: {
                     Rectangle()
-                        .foregroundColor(.skyBlue)
+                        .foregroundColor(.coreAccentColor)
                 },
                 title: "Test Title",
                 description: "Test description",
