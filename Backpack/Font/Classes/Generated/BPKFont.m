@@ -167,7 +167,7 @@ NS_ASSUME_NONNULL_BEGIN
              return [fontManager semiboldFontWithSize:64 textStyle:UIFontTextStyleLargeTitle];
              
            case BPKFontStyleTextHero5:
-             return [fontManager semiboldFontWithSize:48 textStyle:UIFontTextStyleLargeTitle];
+             return [fontManager heavyFontWithSize:48 textStyle:UIFontTextStyleLargeTitle];
              
            case BPKFontStyleTextLabel1:
              return [fontManager semiboldFontWithSize:16 textStyle:UIFontTextStyleBody];

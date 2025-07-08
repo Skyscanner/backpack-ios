@@ -132,10 +132,10 @@ public extension BPKFontStyle {
         lineHeight: 72
     )
 
-    /// Represents font size 48 with weight semibold.
+    /// Represents font size 48 with weight black.
     static let hero5 = BPKFontStyle(
-        font: .semibold(size: 48, textStyle: .largeTitle),
-        fontFixed: .semiboldFixed(size: 48),
+        font: .black(size: 48, textStyle: .largeTitle),
+        fontFixed: .blackFixed(size: 48),
         letterSpacing: -2,
         lineHeight: 56
     )

@@ -90,7 +90,7 @@ typedef NS_ENUM(NSUInteger, BPKFontStyle) {
     BPKFontStyleTextHero4 = 22,
 
     /**
-     * Represents font size 48 with weight UIFontWeightBold.
+     * Represents font size 48 with weight UIFontWeightBlack.
      */
     BPKFontStyleTextHero5 = 23,
 
