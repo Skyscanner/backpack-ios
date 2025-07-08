@@ -22,18 +22,6 @@ public extension BPKColor {
         self.init(value: UIColor(red: red, green: green, blue: blue, alpha: alpha))
     }
 
-    /// The `white` color from the Backpack palette - rgb(255, 255, 255)
-    
-    static let white = BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1)
-
-    /// The `skyBlue` color from the Backpack palette - rgb(0, 98, 227)
-    
-    static let skyBlue = BPKColor(red: 0.000, green: 0.384, blue: 0.890, alpha: 1)
-
-    /// The `black` color from the Backpack palette - rgb(1, 9, 19)
-    
-    static let black = BPKColor(red: 0.004, green: 0.035, blue: 0.075, alpha: 1)
-
     /// The `shadowSmColor` color from the Backpack palette - rgb(22, 22, 22)
     
     static let shadowSmColor = BPKColor(red: 0.086, green: 0.086, blue: 0.086, alpha: 1)
@@ -41,8 +29,4 @@ public extension BPKColor {
     /// The `shadowLgColor` color from the Backpack palette - rgb(22, 22, 22)
     
     static let shadowLgColor = BPKColor(red: 0.086, green: 0.086, blue: 0.086, alpha: 1)
-
-    /// The `touchableOverlayColor` color from the Backpack palette - rgb(22, 22, 22)
-    
-    static let touchableOverlayColor = BPKColor(red: 0.086, green: 0.086, blue: 0.086, alpha: 1)
 }

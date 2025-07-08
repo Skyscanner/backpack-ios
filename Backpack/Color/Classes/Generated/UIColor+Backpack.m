@@ -24,28 +24,12 @@
 @implementation UIColor(Backpack)
 
 
-+ (UIColor *)bpk_white {
-    return BPKColor.white;
-}
-
-+ (UIColor *)bpk_skyBlue {
-    return BPKColor.skyBlue;
-}
-
-+ (UIColor *)bpk_black {
-    return BPKColor.black;
-}
-
 + (UIColor *)bpk_shadowSmColor {
     return BPKColor.shadowSmColor;
 }
 
 
 + (UIColor *)bpk_shadowLgColor {
-    return BPKColor.shadowSmColor;
-}
-
-+ (UIColor *)bpk_touchableOverlayColor {
     return BPKColor.shadowSmColor;
 }
 

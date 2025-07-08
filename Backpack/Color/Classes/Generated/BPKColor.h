@@ -33,27 +33,6 @@ NS_ASSUME_NONNULL_BEGIN
 ///-----------------------
 
 /**
- * The `white` color from the Backpack palette - rgb(255, 255, 255).
- *
- * <div style="width: 100px; height: 100px; background: #ffffffff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
-*/
-@property(nonatomic, class, readonly) UIColor * white;
-
-/**
- * The `skyBlue` color from the Backpack palette - rgb(0, 98, 227).
- *
- * <div style="width: 100px; height: 100px; background: #0062e3ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
-*/
-@property(nonatomic, class, readonly) UIColor * skyBlue;
-
-/**
- * The `black` color from the Backpack palette - rgb(1, 9, 19).
- *
- * <div style="width: 100px; height: 100px; background: #010913ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
-*/
-@property(nonatomic, class, readonly) UIColor * black;
-
-/**
  * The `shadowSmColor` color from the Backpack palette - rgb(22, 22, 22).
  *
  * <div style="width: 100px; height: 100px; background: #161616ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
@@ -66,13 +45,6 @@ NS_ASSUME_NONNULL_BEGIN
  * <div style="width: 100px; height: 100px; background: #161616ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * shadowLgColor;
-
-/**
- * The `touchableOverlayColor` color from the Backpack palette - rgb(22, 22, 22).
- *
- * <div style="width: 100px; height: 100px; background: #161616ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
-*/
-@property(nonatomic, class, readonly) UIColor * touchableOverlayColor;
 
 /**
  * The `clear` color from the Backpack palette.
