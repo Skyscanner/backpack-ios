@@ -52,7 +52,7 @@ struct ButtonsExampleView: View {
     private var switchTextColor: Backpack_SwiftUI.BPKColor {
         switch style {
         case .secondaryOnDark, .linkOnDark, .primaryOnDark:
-            return .white
+            return .textOnDarkColor
         default:
             return .textPrimaryColor
         }
