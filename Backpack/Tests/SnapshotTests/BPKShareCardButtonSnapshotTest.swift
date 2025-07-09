@@ -44,7 +44,7 @@ class BPKShareCardButtonSnapshotTest: XCTestCase {
         case .contained:
             return BPKColor.surfaceHighlightColor
         case .onDark:
-            return BPKColor.black
+            return BPKColor.surfaceContrastColor
         }
     }
 

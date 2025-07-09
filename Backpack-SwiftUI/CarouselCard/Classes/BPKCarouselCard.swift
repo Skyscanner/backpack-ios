@@ -95,7 +95,7 @@ struct BPKCarouselCard_Previews: PreviewProvider {
         BPKCarouselCard(
             content: {
                 Rectangle()
-                    .foregroundColor(BPKColor.skyBlue)
+                    .foregroundColor(BPKColor.coreAccentColor)
             },
             title: "Test Title",
             description: "Test description",

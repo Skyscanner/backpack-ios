@@ -24,7 +24,7 @@ internal extension BPKBadge.Style {
         case .inverse:
             return BPKColor.surfaceDefaultColor
         case .outline:
-            return BPKColor.white.withAlphaComponent(0)
+            return BPKColor.textOnDarkColor.withAlphaComponent(0)
         case .strong:
             return BPKColor.corePrimaryColor
         case .brand:

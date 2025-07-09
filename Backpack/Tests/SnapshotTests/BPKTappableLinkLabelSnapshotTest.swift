@@ -66,7 +66,7 @@ class BPKTappableLinkLabelSnapshotTest: XCTestCase {
     func testViewSnapshotWithAlternateStyle() {
         assertSnapshot(createView(
             withStyles: .regularStyles,
-            backgroundColor: BPKColor.skyBlue,
+            backgroundColor: BPKColor.coreAccentColor,
             tappableLabelStyle: .alternate
         ))
     }
