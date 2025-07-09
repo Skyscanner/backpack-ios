@@ -25,7 +25,7 @@ class BPKSkeletonTests: XCTestCase {
     // swiftlint:disable closure_body_length
     private func sutView() -> some View {
         ZStack {
-            Color(.clear.darkVariant(.black))
+            Color(.clear.darkVariant(.surfaceContrastColor))
             VStack {
                 Group {
                     BPKSkeleton.image()
