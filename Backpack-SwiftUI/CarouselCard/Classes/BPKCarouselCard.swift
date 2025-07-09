@@ -58,7 +58,7 @@ public struct BPKCarouselCard<Content: View>: View {
                     })
                 }
             }
-            .background(.white.darkVariant(.badgeBackgroundNormalColor))
+            .background(.textOnDarkColor.darkVariant(.badgeBackgroundNormalColor))
             .clipShape(RoundedRectangle(cornerRadius: .md))
             .shadow(.lg)
         }
