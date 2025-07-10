@@ -34,14 +34,6 @@
 
 @implementation BPKColor
 
-+ (UIColor *)shadowSmColor {
-    return [UIColor colorWithRed:0.086 green:0.086 blue:0.086 alpha:1];
-}
-
-
-+ (UIColor *)shadowLgColor {
-    return self.class.shadowSmColor;
-}
 
 
 + (UIColor *)canvasColor {
@@ -202,6 +194,11 @@
 + (UIColor *)overlayColor {
     return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:0.000 green:0.000 blue:0.000 alpha:0.2] 
                                           darkVariant:[UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:0.8]];
+}
+
++ (UIColor *)shadowColor {
+    return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:0.086 green:0.086 blue:0.086 alpha:1] 
+                                          darkVariant:[UIColor colorWithRed:0.086 green:0.086 blue:0.086 alpha:1]];
 }
 
 + (UIColor *)clear {

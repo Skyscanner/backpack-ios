@@ -31,20 +31,6 @@ NS_ASSUME_NONNULL_BEGIN
 ///-----------------------
 
 /**
- * The `shadowSmColor` color from the Backpack palette - rgb(22, 22, 22).
- *
- * <div style="width: 100px; height: 100px; background: #161616ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
-*/
-@property(nonatomic, class, readonly) UIColor * bpk_shadowSmColor;
-
-/**
- * The `shadowLgColor` color from the Backpack palette - rgb(22, 22, 22).
- *
- * <div style="width: 100px; height: 100px; background: #161616ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
-*/
-@property(nonatomic, class, readonly) UIColor * bpk_shadowLgColor;
-
-/**
  * The `clear` color from the Backpack palette.
 */
 @property(nonatomic, class, readonly) UIColor * bpk_clear;
@@ -276,6 +262,13 @@ NS_ASSUME_NONNULL_BEGIN
  * <div style="width: 100px; height: 100px; background-color: #00000033; background: linear-gradient(0.375turn, #00000033 49%, #ffffffcc 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_overlayColor;
+
+/**
+ * The `shadowColor` dynamic color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background-color: #161616ff; background: linear-gradient(0.375turn, #161616ff 49%, #161616ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * bpk_shadowColor;
 
 
 @end

@@ -24,14 +24,6 @@
 @implementation UIColor(Backpack)
 
 
-+ (UIColor *)bpk_shadowSmColor {
-    return BPKColor.shadowSmColor;
-}
-
-
-+ (UIColor *)bpk_shadowLgColor {
-    return BPKColor.shadowSmColor;
-}
 
 
 + (UIColor *)bpk_canvasColor {
@@ -160,6 +152,10 @@
 
 + (UIColor *)bpk_overlayColor {
     return BPKColor.overlayColor;
+}
+
++ (UIColor *)bpk_shadowColor {
+    return BPKColor.shadowColor;
 }
 
 + (UIColor *)bpk_clear {

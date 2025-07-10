@@ -194,4 +194,9 @@ public extension BPKColor {
     
     static let overlayColor = BPKColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 0.2)
         .darkVariant(BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.8))
+
+    /// The `shadowColor` dynamic color from the Backpack palette.
+    
+    static let shadowColor = BPKColor(red: 0.086, green: 0.086, blue: 0.086, alpha: 1)
+        .darkVariant(BPKColor(red: 0.086, green: 0.086, blue: 0.086, alpha: 1))
 }

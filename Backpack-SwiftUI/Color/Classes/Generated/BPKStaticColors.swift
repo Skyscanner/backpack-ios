@@ -21,12 +21,4 @@ public extension BPKColor {
     private init(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
         self.init(value: UIColor(red: red, green: green, blue: blue, alpha: alpha))
     }
-
-    /// The `shadowSmColor` color from the Backpack palette - rgb(22, 22, 22)
-    
-    static let shadowSmColor = BPKColor(red: 0.086, green: 0.086, blue: 0.086, alpha: 1)
-
-    /// The `shadowLgColor` color from the Backpack palette - rgb(22, 22, 22)
-    
-    static let shadowLgColor = BPKColor(red: 0.086, green: 0.086, blue: 0.086, alpha: 1)
 }
