@@ -188,7 +188,7 @@ NS_ASSUME_NONNULL_BEGIN
              return [fontManager regularFontWithSize:24 textStyle:UIFontTextStyleSubheadline];
              
            case BPKFontStyleTextXsLarken:
-             return [fontManager semiboldFontWithSize:12 textStyle:.UIFontTextStyleCaption1];
+             return [fontManager semiboldFontWithSize:12 textStyle:UIFontTextStyleCaption1];
              
             default:
               NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);

@@ -116,7 +116,7 @@ const TEXT_STYLE_MAP_UIKIT = {
     BPKFontStyleTextFootnote: "UIFontTextStyleFootnote",
     BPKFontStyleTextCaption: "UIFontTextStyleCaption1",
 
-    BPKFontStyleTextXsLarken: ".UIFontTextStyleCaption1",
+    BPKFontStyleTextXsLarken: "UIFontTextStyleCaption1",
     BPKFontStyleTextSmLarken: "UIFontTextStyleFootnote",
     BPKFontStyleTextBaseLarken: "UIFontTextStyleBody",
 }
