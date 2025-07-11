@@ -26,7 +26,7 @@ struct CardWrapperExampleView: View {
             BPKCardWrapper(backgroundColor: .coreAccentColor) {
                 HStack {
                     BPKText("Wrapper title", style: .label1)
-                        .foregroundColor(.textPrimaryInverseColor)
+                        .foregroundColor(.textOnDarkColor)
                     Spacer()
                 }
                 .padding([.leading, .trailing], .base)
