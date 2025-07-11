@@ -145,7 +145,7 @@ NSString *const ToastAccessibilityIdentifier = @"toastView";
 - (void)setupHUD {
     self.hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
     self.hud.bezelView.backgroundColor = [BPKColor.corePrimaryColor colorWithAlphaComponent:0.8];
-    self.hud.contentColor = BPKColor.white;
+    self.hud.contentColor = BPKColor.textOnDarkColor;
     self.hud.delegate = self;
     self.hud.accessibilityIdentifier = ToastAccessibilityIdentifier;
     self.hud.isAccessibilityElement = NO;

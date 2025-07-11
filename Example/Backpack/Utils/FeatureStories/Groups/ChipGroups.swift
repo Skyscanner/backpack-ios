@@ -33,7 +33,7 @@ struct ChipsGroupsProvider {
             customController: { ChipsViewController(style: style, titleColor: titleColor) },
             enrich: { controller in
                 if style == .onDark {
-                    controller.view.backgroundColor = BPKColor.black
+                    controller.view.backgroundColor = BPKColor.surfaceContrastColor
                 }
                 
                 if style == .onImage {

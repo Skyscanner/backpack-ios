@@ -50,10 +50,10 @@ class TappableLinkLabelsViewController: UIViewController, BPKTappableLinkLabelDe
         super.viewWillAppear(animated)
 
         if isAlternateStyleWithLightMode() {
-            let titleAttributes = [NSAttributedString.Key.foregroundColor: BPKColor.white]
+            let titleAttributes = [NSAttributedString.Key.foregroundColor: BPKColor.textOnDarkColor]
             self.navigationController?.navigationBar.titleTextAttributes = titleAttributes
             self.navigationController?.navigationBar.largeTitleTextAttributes = titleAttributes
-            self.navigationController?.navigationBar.tintColor = BPKColor.white
+            self.navigationController?.navigationBar.tintColor = BPKColor.textOnDarkColor
         }
     }
 

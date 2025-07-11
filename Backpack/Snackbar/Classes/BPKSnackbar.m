@@ -108,9 +108,9 @@ static int const BPKSnackbarHeight = 60;
         // Make the text label wider to distribute remaining space
         [self.textLabel setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
 
-        self.titleLabel.textColor = BPKColor.white;
-        self.textLabel.textColor = BPKColor.white;
-        self.leftIconContainer.tintColor = BPKColor.white;
+        self.titleLabel.textColor = BPKColor.textOnDarkColor;
+        self.textLabel.textColor = BPKColor.textOnDarkColor;
+        self.leftIconContainer.tintColor = BPKColor.textOnDarkColor;
         self.actionButton.linkContentColor = BPKColor.textOnDarkColor;
         [self.actionButton addTarget:self action:@selector(actionButtonDismissSnackbar) forControlEvents:UIControlEventTouchUpInside];
 

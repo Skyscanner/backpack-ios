@@ -44,6 +44,10 @@ const FONT_ENUM_VALUES = {
 
     BPKFontStyleTextFootnote: 34,
     BPKFontStyleTextCaption: 35,
+
+    BPKFontStyleTextXsLarken: 37,
+    BPKFontStyleTextSmLarken: 38,
+    BPKFontStyleTextBaseLarken: 39,
 };
 
 const WEIGHT_MAP_OBJC = {
@@ -81,6 +85,11 @@ const TEXT_STYLE_MAP_SWIFTUI = {
 
     BPKFontStyleTextFootnote: ".footnote",
     BPKFontStyleTextCaption: ".caption",
+
+    BPKFontStyleTextXsLarken: ".caption",
+    BPKFontStyleTextSmLarken: ".footnote",
+    BPKFontStyleTextBaseLarken: ".body",
+
 }
 
 const TEXT_STYLE_MAP_UIKIT = {
@@ -106,6 +115,10 @@ const TEXT_STYLE_MAP_UIKIT = {
 
     BPKFontStyleTextFootnote: "UIFontTextStyleFootnote",
     BPKFontStyleTextCaption: "UIFontTextStyleCaption1",
+
+    BPKFontStyleTextXsLarken: "UIFontTextStyleCaption1",
+    BPKFontStyleTextSmLarken: "UIFontTextStyleFootnote",
+    BPKFontStyleTextBaseLarken: "UIFontTextStyleBody",
 }
 
 const convertFontWeight = (weightMap, weightString) => {

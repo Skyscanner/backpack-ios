@@ -30,11 +30,11 @@ class FlareViewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        flareView.backgroundColor = BPKColor.skyBlue
+        flareView.backgroundColor = BPKColor.coreAccentColor
 
         let label = BPKLabel(fontStyle: .textHeading3)
         label.text = "Much wow!"
-        label.textColor = BPKColor.white
+        label.textColor = BPKColor.textOnDarkColor
         label.translatesAutoresizingMaskIntoConstraints = false
         flareView.contentView.addSubview(label)
 

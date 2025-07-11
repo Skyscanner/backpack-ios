@@ -133,7 +133,7 @@ NS_ASSUME_NONNULL_BEGIN
     case BPKSpinnerStyleDark:
         return BPKColor.textSecondaryColor;
     case BPKSpinnerStyleLight:
-        return BPKColor.white;
+        return BPKColor.textOnDarkColor;
     case BPKSpinnerStyleTextPrimary:
         return BPKColor.textPrimaryColor;
     case BPKSpinnerStyleDisabled:

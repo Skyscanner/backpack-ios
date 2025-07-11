@@ -36,7 +36,7 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) { BPKGrayColor50, BPKGrayColor100, BPKG
         return themeContainer.themeDefinition.primaryColor;
     }
 
-    return BPKColor.skyBlue;
+    return BPKColor.coreAccentColor;
 }
 
 + (NSString *)didChangeNotification {
