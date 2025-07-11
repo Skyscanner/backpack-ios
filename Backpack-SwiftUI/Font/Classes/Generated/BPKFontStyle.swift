@@ -28,6 +28,14 @@ public struct BPKFontStyle {
 
 public extension BPKFontStyle {
     
+    /// Represents font size 16 with weight semibold.
+    static let baseLarken = BPKFontStyle(
+        font: .semibold(size: 16, textStyle: .body),
+        fontFixed: .semiboldFixed(size: 16),
+        letterSpacing: 0,
+        lineHeight: 20
+    )
+
     /// Represents font size 16 with weight regular.
     static let bodyDefault = BPKFontStyle(
         font: .regular(size: 16, textStyle: .body),
@@ -164,12 +172,28 @@ public extension BPKFontStyle {
         lineHeight: 16
     )
 
+    /// Represents font size 14 with weight semibold.
+    static let smLarken = BPKFontStyle(
+        font: .semibold(size: 14, textStyle: .footnote),
+        fontFixed: .semiboldFixed(size: 14),
+        letterSpacing: 0,
+        lineHeight: 20
+    )
+
     /// Represents font size 24 with weight regular.
     static let subheading = BPKFontStyle(
         font: .regular(size: 24, textStyle: .subheadline),
         fontFixed: .regularFixed(size: 24),
         letterSpacing: 0,
         lineHeight: 32
+    )
+
+    /// Represents font size 12 with weight semibold.
+    static let xsLarken = BPKFontStyle(
+        font: .semibold(size: 12, textStyle: .caption),
+        fontFixed: .semiboldFixed(size: 12),
+        letterSpacing: 0,
+        lineHeight: 16
     )
 
 }

@@ -127,6 +127,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIFont *)fontForStyle:(BPKFontStyle)style fontManager:(BPKFontManager *)fontManager {
     switch (style) {
        
+           case BPKFontStyleTextBaseLarken:
+             return [fontManager semiboldFontWithSize:16 textStyle:UIFontTextStyleBody];
+             
            case BPKFontStyleTextBodyDefault:
              return [fontManager regularFontWithSize:16 textStyle:UIFontTextStyleBody];
              
@@ -178,8 +181,14 @@ NS_ASSUME_NONNULL_BEGIN
            case BPKFontStyleTextLabel3:
              return [fontManager semiboldFontWithSize:12 textStyle:UIFontTextStyleBody];
              
+           case BPKFontStyleTextSmLarken:
+             return [fontManager semiboldFontWithSize:14 textStyle:UIFontTextStyleFootnote];
+             
            case BPKFontStyleTextSubheading:
              return [fontManager regularFontWithSize:24 textStyle:UIFontTextStyleSubheadline];
+             
+           case BPKFontStyleTextXsLarken:
+             return [fontManager semiboldFontWithSize:12 textStyle:.UIFontTextStyleCaption1];
              
             default:
               NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);
@@ -211,6 +220,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (CGFloat)lineHeightForStyle:(BPKFontStyle)style {
     switch (style) {
+        case BPKFontStyleTextBaseLarken: 
+            // Corresponding to Line Height BASE-TIGHT
+            return 20;
         case BPKFontStyleTextBodyDefault: 
             // Corresponding to Line Height BASE
             return 24;
@@ -262,9 +274,15 @@ NS_ASSUME_NONNULL_BEGIN
         case BPKFontStyleTextLabel3: 
             // Corresponding to Line Height XS
             return 16;
+        case BPKFontStyleTextSmLarken: 
+            // Corresponding to Line Height SM
+            return 20;
         case BPKFontStyleTextSubheading: 
             // Corresponding to Line Height XL
             return 32;
+        case BPKFontStyleTextXsLarken: 
+            // Corresponding to Line Height XS
+            return 16;
         
         default:
             return 0; // No Defined Line Height
