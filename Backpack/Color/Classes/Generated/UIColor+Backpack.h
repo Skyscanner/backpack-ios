@@ -31,6 +31,13 @@ NS_ASSUME_NONNULL_BEGIN
 ///-----------------------
 
 /**
+ * The `iDontWantThisAnymore` color from the Backpack palette - rgb(255, 255, 255).
+ *
+ * <div style="width: 100px; height: 100px; background: #ffffffff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * bpk_iDontWantThisAnymore;
+
+/**
  * The `clear` color from the Backpack palette.
 */
 @property(nonatomic, class, readonly) UIColor * bpk_clear;

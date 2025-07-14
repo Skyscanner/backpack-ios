@@ -21,4 +21,8 @@ public extension BPKColor {
     private init(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
         self.init(value: UIColor(red: red, green: green, blue: blue, alpha: alpha))
     }
+
+    /// The `iDontWantThisAnymore` color from the Backpack palette - rgb(255, 255, 255)
+    
+    static let iDontWantThisAnymore = BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1)
 }

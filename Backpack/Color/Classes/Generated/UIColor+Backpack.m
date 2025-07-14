@@ -24,6 +24,10 @@
 @implementation UIColor(Backpack)
 
 
++ (UIColor *)bpk_iDontWantThisAnymore {
+    return BPKColor.iDontWantThisAnymore;
+}
+
 
 
 + (UIColor *)bpk_canvasColor {

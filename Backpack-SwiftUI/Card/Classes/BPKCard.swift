@@ -60,7 +60,7 @@ public struct BPKCard<Content: View>: View {
         }
         .buttonStyle(CardButtonStyle(
             cornerRadius: cornerRadius,
-            backgroundColor: elevation.backgroundColor
+            backgroundColor: BPKColor.iDontWantThisAnymore
         ))
         .shadow(elevation.shadow)
     }

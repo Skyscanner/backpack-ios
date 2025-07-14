@@ -34,6 +34,10 @@
 
 @implementation BPKColor
 
++ (UIColor *)iDontWantThisAnymore {
+    return [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1];
+}
+
 
 
 + (UIColor *)canvasColor {
