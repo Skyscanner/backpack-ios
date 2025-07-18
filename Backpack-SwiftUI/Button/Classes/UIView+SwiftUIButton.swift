@@ -20,10 +20,12 @@ import SwiftUI
 import Combine
 
 public final class SwiftUIButtonViewModel: ObservableObject {
-    @Published public var isDisabled: Bool
+    @Published public var isEnabled: Bool
+    @Published public var isLoading: Bool
 
-    public init(isDisabled: Bool) {
-        self.isDisabled = isDisabled
+    public init(isEnabled: Bool, isLoading: Bool) {
+        self.isEnabled = isEnabled
+        self.isLoading = isLoading
     }
 }
 
@@ -36,9 +38,13 @@ public struct ReactiveSwiftUIBPKButtonWrapper: View {
     @ObservedObject var viewModel: SwiftUIButtonViewModel
 
     public var body: some View {
-        BPKButton(title, enabled: $viewModel.isDisabled, size: size, action: action)
-            .buttonStyle(style)
-            .stretchable()
+        BPKButton(title,
+            loading: $viewModel.isLoading,
+            enabled: $viewModel.isEnabled,
+            size: size,
+            action: action)
+        .buttonStyle(style)
+        .stretchable()
     }
 }
 
@@ -83,10 +89,11 @@ public extension UIView {
         accessibilityIdentifier: String? = nil,
         style: Backpack_SwiftUI.BPKButton.Style,
         size: BPKButton.Size = .default,
-        initialDisabled: Bool = false,
+        isEnabled: Bool = false,
+        isLoading: Bool = false,
         action: @escaping () -> Void
     ) -> (UIView, SwiftUIButtonViewModel) {
-        let viewModel = SwiftUIButtonViewModel(isDisabled: initialDisabled)
+        let viewModel = SwiftUIButtonViewModel(isEnabled: isEnabled, isLoading: isLoading)
 
         let wrapperView = ReactiveSwiftUIBPKButtonWrapper(
             title: title,
