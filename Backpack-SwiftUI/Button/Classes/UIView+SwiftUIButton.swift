@@ -29,9 +29,9 @@ public extension UIView {
     /// - Returns: A UIView containing the SwiftUI button
     static func makeSwiftUIBPKButton(
         title: String,
-        accessibilityIdentifier: String?,
+        accessibilityIdentifier: String? = nil,
         style: Backpack_SwiftUI.BPKButton.Style,
-        size: BPKButton.Size,
+        size: BPKButton.Size = .default,
         action: @escaping () -> Void
     ) -> UIView {
         let swiftUIButton = BPKButton(
