@@ -36,10 +36,9 @@ public struct ReactiveSwiftUIBPKButtonWrapper: View {
     @ObservedObject var viewModel: SwiftUIButtonViewModel
 
     public var body: some View {
-        BPKButton(title, size: size, action: action)
+        BPKButton(title, enabled: $viewModel.isDisabled, size: size, action: action)
             .buttonStyle(style)
             .stretchable()
-            .disabled(viewModel.isDisabled)
     }
 }
 
