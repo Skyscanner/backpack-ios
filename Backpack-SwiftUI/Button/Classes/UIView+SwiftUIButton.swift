@@ -20,7 +20,7 @@ import SwiftUI
 import Combine
 
 public final class SwiftUIButtonViewModel: ObservableObject {
-    @Published var isDisabled: Bool
+    @Published public var isDisabled: Bool
 
     public init(isDisabled: Bool) {
         self.isDisabled = isDisabled
