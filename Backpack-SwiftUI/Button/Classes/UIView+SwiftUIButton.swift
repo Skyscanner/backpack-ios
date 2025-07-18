@@ -17,12 +17,39 @@
  */
 
 import SwiftUI
+import Combine
+
+
+final class SwiftUIButtonViewModel: ObservableObject {
+    @Published var isDisabled: Bool
+
+    init(isDisabled: Bool) {
+        self.isDisabled = isDisabled
+    }
+}
+
+struct ReactiveSwiftUIBPKButtonWrapper: View {
+    let title: String
+    let style: Backpack_SwiftUI.BPKButton.Style
+    let size: BPKButton.Size
+    let action: () -> Void
+
+    @ObservedObject var viewModel: SwiftUIButtonViewModel
+
+    var body: some View {
+        BPKButton(title, size: size, action: action)
+            .buttonStyle(style)
+            .stretchable()
+            .disabled(viewModel.isDisabled)
+    }
+}
 
 public extension UIView {
     /// Creates a SwiftUI BPKButton wrapped in a UIHostingController and returns its view
     /// - Parameters:
     ///   - title: The button title
     ///   - accessibilityIdentifier: The accessibility identifier for the button
+    ///   - accessibilityLabel: The accessibility label for the button
     ///   - style: The BPKButton style (e.g., .featured, .secondary)
     ///   - size: The BPKButton size (e.g, .large, default)
     ///   - action: The action to perform when the button is tapped
@@ -30,6 +57,7 @@ public extension UIView {
     static func makeSwiftUIBPKButton(
         title: String,
         accessibilityIdentifier: String? = nil,
+        accessibilityLabel: String? = nil,
         style: Backpack_SwiftUI.BPKButton.Style,
         size: BPKButton.Size = .default,
         action: @escaping () -> Void
@@ -46,7 +74,35 @@ public extension UIView {
         hostingController.view.backgroundColor = .clear
         hostingController.view.translatesAutoresizingMaskIntoConstraints = false
         hostingController.view.accessibilityIdentifier = accessibilityIdentifier
+        hostingController.view.accessibilityLabel = accessibilityLabel
         
         return hostingController.view
+    }
+    
+    /// Creates a SwiftUI BPKButton wrapped in a UIHostingController and returns both the view and its ViewModel
+    internal static func makeReactiveSwiftUIBPKButton(
+        title: String,
+        accessibilityIdentifier: String? = nil,
+        style: Backpack_SwiftUI.BPKButton.Style,
+        size: BPKButton.Size = .default,
+        initialDisabled: Bool = false,
+        action: @escaping () -> Void
+    ) -> (UIView, SwiftUIButtonViewModel) {
+        let viewModel = SwiftUIButtonViewModel(isDisabled: initialDisabled)
+
+        let wrapperView = ReactiveSwiftUIBPKButtonWrapper(
+            title: title,
+            style: style,
+            size: size,
+            action: action,
+            viewModel: viewModel
+        )
+
+        let hostingController = UIHostingController(rootView: wrapperView)
+        hostingController.view.backgroundColor = .clear
+        hostingController.view.translatesAutoresizingMaskIntoConstraints = false
+        hostingController.view.accessibilityIdentifier = accessibilityIdentifier
+
+        return (hostingController.view, viewModel)
     }
 }
