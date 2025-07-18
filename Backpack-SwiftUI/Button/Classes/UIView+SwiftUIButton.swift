@@ -24,17 +24,19 @@ public extension UIView {
     ///   - title: The button title
     ///   - accessibilityIdentifier: The accessibility identifier for the button
     ///   - style: The BPKButton style (e.g., .featured, .secondary)
+    ///   - size: The BPKButton size (e.g, .large, default)
     ///   - action: The action to perform when the button is tapped
     /// - Returns: A UIView containing the SwiftUI button
     static func makeSwiftUIBPKButton(
         title: String,
-        accessibilityIdentifier: String,
+        accessibilityIdentifier: String?,
         style: Backpack_SwiftUI.BPKButton.Style,
+        size: BPKButton.Size,
         action: @escaping () -> Void
     ) -> UIView {
         let swiftUIButton = BPKButton(
             title,
-            size: .large,
+            size: size,
             action: action
         )
         .buttonStyle(style)
