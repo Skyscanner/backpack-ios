@@ -19,16 +19,15 @@
 import SwiftUI
 import Combine
 
-
 public final class SwiftUIButtonViewModel: ObservableObject {
     @Published var isDisabled: Bool
 
-    init(isDisabled: Bool) {
+    public init(isDisabled: Bool) {
         self.isDisabled = isDisabled
     }
 }
 
-struct ReactiveSwiftUIBPKButtonWrapper: View {
+public struct ReactiveSwiftUIBPKButtonWrapper: View {
     let title: String
     let style: Backpack_SwiftUI.BPKButton.Style
     let size: BPKButton.Size
@@ -36,7 +35,7 @@ struct ReactiveSwiftUIBPKButtonWrapper: View {
 
     @ObservedObject var viewModel: SwiftUIButtonViewModel
 
-    var body: some View {
+    public var body: some View {
         BPKButton(title, size: size, action: action)
             .buttonStyle(style)
             .stretchable()
@@ -80,7 +79,7 @@ public extension UIView {
     }
     
     /// Creates a SwiftUI BPKButton wrapped in a UIHostingController and returns both the view and its ViewModel
-    internal static func makeReactiveSwiftUIBPKButton(
+    static func makeReactiveSwiftUIBPKButton(
         title: String,
         accessibilityIdentifier: String? = nil,
         style: Backpack_SwiftUI.BPKButton.Style,
