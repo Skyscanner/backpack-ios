@@ -1,7 +1,8 @@
+//
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2025 Skyscanner Ltd
+ * Copyright © 2025 Skyscanner Ltd. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,3 +18,24 @@
  */
 
 import SwiftUI
+import Backpack
+import Backpack_SwiftUI
+
+struct BlurTokensView: View {
+    
+    var body: some View {
+        VStack(spacing: 24) {
+            Text("BLURSSSSSSSSSS")
+        }
+        .padding()
+    }
+}
+
+struct BlurTokensView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            BlurTokensView()
+                .previewLayout(.sizeThatFits)
+        }
+    }
+}
