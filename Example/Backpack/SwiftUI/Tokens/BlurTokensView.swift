@@ -26,9 +26,6 @@ import Backpack_SwiftUI
 
 struct BlurTokensView: View {
     
-    @State var uniformRadius: CGFloat = 4
-    @State var progressiveRadius: CGFloat = 10
-    
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
             Text("No Blurs")
@@ -36,39 +33,36 @@ struct BlurTokensView: View {
                 Image("dialog_image")
                     .resizable()
                     .frame(width: 150, height: 150)
+                    .cornerRadius(BPKCornerRadiusMd)
                 
                 Image("chessboard")
                     .resizable()
                     .frame(width: 150, height: 150)
+                    .cornerRadius(BPKCornerRadiusMd)
             }
             Text("Uniform")
             HStack(spacing: 8) {
                 Image("dialog_image")
                     .resizable()
                     .frame(width: 150, height: 150)
-                    .blur(BPKBlur(radius: uniformRadius))
+                    .blur(BPKBlur(radius: 4))
+                    .cornerRadius(BPKCornerRadiusMd)
                 
                 Image("chessboard")
                     .resizable()
                     .frame(width: 150, height: 150)
-                    .blur(BPKBlur(radius: uniformRadius))
-            }
-            HStack {
-                Slider(value: $uniformRadius, in: 0...10)
-                Text("Value: \(uniformRadius)")
+                    .blur(BPKBlur(radius: 4))
+                    .cornerRadius(BPKCornerRadiusMd)
             }
             Text("Progressive")
             HStack(spacing: 8) {
-                BPKImageVariableBlurView(imageName: "dialog_image",
-                                         blurRadius: Float(progressiveRadius), width: 150, height: 150)
-                BPKImageVariableBlurView(imageName: "chessboard",
-                                         blurRadius: Float(progressiveRadius), width: 150, height: 150)
+                BPKProgessiveBlurView(imageName: "dialog_image",
+                                         blurRadius: Float(24), width: 150, height: 150)
+                .cornerRadius(BPKCornerRadiusMd)
+                BPKProgessiveBlurView(imageName: "chessboard",
+                                         blurRadius: Float(24), width: 150, height: 150)
+                .cornerRadius(BPKCornerRadiusMd)
             }
-            HStack {
-                Slider(value: $progressiveRadius, in: 0...50)
-                Text("Value: \(progressiveRadius)")
-            }
-
         }
         .padding()
     }
