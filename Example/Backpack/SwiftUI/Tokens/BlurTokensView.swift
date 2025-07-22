@@ -17,15 +17,58 @@
  * limitations under the License.
  */
 
+import CoreImage
 import SwiftUI
 import Backpack
 import Backpack_SwiftUI
 
+// swiftlint:disable indentation_width closure_body_length
+
 struct BlurTokensView: View {
     
+    @State var uniformRadius: CGFloat = 4
+    @State var progressiveRadius: CGFloat = 10
+    
     var body: some View {
-        VStack(spacing: 24) {
-            Text("BLURSSSSSSSSSS")
+        VStack(alignment: .center, spacing: 10) {
+            Text("No Blurs")
+            HStack(spacing: 8) {
+                Image("dialog_image")
+                    .resizable()
+                    .frame(width: 150, height: 150)
+                
+                Image("chessboard")
+                    .resizable()
+                    .frame(width: 150, height: 150)
+            }
+            Text("Uniform")
+            HStack(spacing: 8) {
+                Image("dialog_image")
+                    .resizable()
+                    .frame(width: 150, height: 150)
+                    .blur(BPKBlur(radius: uniformRadius))
+                
+                Image("chessboard")
+                    .resizable()
+                    .frame(width: 150, height: 150)
+                    .blur(BPKBlur(radius: uniformRadius))
+            }
+            HStack {
+                Slider(value: $uniformRadius, in: 0...10)
+                Text("Value: \(uniformRadius)")
+            }
+            Text("Progressive")
+            HStack(spacing: 8) {
+                BPKImageVariableBlurView(imageName: "dialog_image",
+                                         blurRadius: Float(progressiveRadius), width: 150, height: 150)
+                BPKImageVariableBlurView(imageName: "chessboard",
+                                         blurRadius: Float(progressiveRadius), width: 150, height: 150)
+            }
+            HStack {
+                Slider(value: $progressiveRadius, in: 0...50)
+                Text("Value: \(progressiveRadius)")
+            }
+
         }
         .padding()
     }

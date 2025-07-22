@@ -17,3 +17,32 @@
  */
 
 import SwiftUI
+
+/// A model that encapsulates blur styling options for SwiftUI views.
+/// It allows for both standard and progressive (gradient-based) blurs.
+
+public struct BPKBlur {
+    /// The radius of the blur effect.
+    let radius: CGFloat
+
+    /// Whether the blur should treat the view as opaque.
+    /// Setting this to `true` can improve performance if transparency isn't needed.
+    let opaque: Bool = true
+
+    /// Creates a new instance of `BPKBlur`.
+    /// - Parameters:
+    ///   - radius: The blur radius to apply.
+    ///   - opaque: Whether the blur should be opaque (`true`) or allow transparency (`false`). Defaults to `false`.`.
+    public init(radius: CGFloat) {
+        self.radius = radius
+    }
+}
+
+public extension View {
+    /// Applies a `BPKBlur` effect to the view.
+    /// - Parameter blur: A `BPKBlur` configuration defining the type and style of the blur.
+    /// - Returns: A modified view with the blur applied.
+    func blur(_ blur: BPKBlur) -> some View {
+        self.blur(radius: blur.radius, opaque: blur.opaque)
+    }
+}
