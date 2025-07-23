@@ -48,7 +48,7 @@ struct BlurTokensView: View {
                     Image("dialog_image")
                         .resizable()
                         .frame(width: 150, height: 150)
-                        .blur(BPKBlur(radius: 4))
+                        .blur(radius: 4, opaque: true)
                         .cornerRadius(BPKCornerRadiusMd)
                     
                     Image("chessboard")
@@ -61,10 +61,8 @@ struct BlurTokensView: View {
                 HStack(spacing: 8) {
                     BPKProgessiveBlurView(imageName: "dialog_image",
                                           blurRadius: Float(progressiveRadius), width: 150, height: 150)
-                    .cornerRadius(BPKCornerRadiusMd)
                     BPKProgessiveBlurView(imageName: "chessboard",
                                           blurRadius: Float(progressiveRadius), width: 150, height: 150)
-                    .cornerRadius(BPKCornerRadiusMd)
                 }
                 
                 BPKProgessiveBlurView(imageName: "dialog_image",

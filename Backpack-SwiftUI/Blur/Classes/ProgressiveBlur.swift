@@ -49,7 +49,7 @@ func getImageMask(maskExtent: CGRect) -> CIImage {
     // Apply a gamma curve to soften the transition (non-linear)
     let gammaFilter = CIFilter.gammaAdjust()
     gammaFilter.inputImage = baseGradient
-    gammaFilter.power = 2.2  // Values > 1 = slower start, more gradual
+    gammaFilter.power = 0.5 // Values > 1 = slower start, more gradual
     let softenedGradient = gammaFilter.outputImage.unsafelyUnwrapped
 
     return softenedGradient

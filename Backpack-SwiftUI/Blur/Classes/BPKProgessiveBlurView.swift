@@ -42,6 +42,8 @@ public struct BPKProgessiveBlurView: View {
             if let image = image {
                 Image(uiImage: image)
                     .resizable()
+                    .scaledToFit()
+                    .cornerRadius(12)
                     .frame(width: width, height: height)
             }
         }
