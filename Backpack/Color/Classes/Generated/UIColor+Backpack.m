@@ -126,6 +126,10 @@
     return BPKColor.textPrimaryColor;
 }
 
++ (UIColor *)bpk_textSuccessColor {
+    return BPKColor.textSuccessColor;
+}
+
 + (UIColor *)bpk_textErrorColor {
     return BPKColor.textErrorColor;
 }
