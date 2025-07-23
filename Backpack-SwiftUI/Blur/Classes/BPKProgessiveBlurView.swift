@@ -48,20 +48,19 @@ public struct BPKProgessiveBlurView: View {
         .onAppear {
             processBlur()
         }
+        .onChange(of: blurRadius) { _ in
+            processBlur()
+        }
     }
 
     private func processBlur() {
         guard let uiImage = UIImage(named: imageName) else { return }
         guard let ciImage = CIImage(image: uiImage) else { return }
 
-        let originalExtent = ciImage.extent
-        let imageMask = getImageMask(maskHeight: originalExtent.height)
-        let blurredImage = maskImageWithProgressiveBlur(ciImage: ciImage, mask: imageMask, blurRadius: self.blurRadius)
-
-        let croppedImage = blurredImage.cropped(to: originalExtent)
-
-        guard let cgImage = context.createCGImage(croppedImage, from: originalExtent) else { return }
-
+        let imageMask = getImageMask(maskExtent: ciImage.extent)
+        let blurredImage = maskImageWithVaribleBlur(ciImage: ciImage, mask: imageMask, blurRadius: self.blurRadius)
+        guard let cgImage = context.createCGImage(blurredImage, from: blurredImage.extent) else { return }
+        
         image = UIImage(cgImage: cgImage)
     }
 }

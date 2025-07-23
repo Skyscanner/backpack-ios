@@ -26,45 +26,57 @@ import Backpack_SwiftUI
 
 struct BlurTokensView: View {
     
+    @State var progressiveRadius = 24.0
+    
     var body: some View {
-        VStack(alignment: .center, spacing: 10) {
-            Text("No Blurs")
-            HStack(spacing: 8) {
-                Image("dialog_image")
-                    .resizable()
-                    .frame(width: 150, height: 150)
+        ScrollView {
+            VStack(alignment: .center, spacing: 10) {
+                Text("No Blurs")
+                HStack(spacing: 8) {
+                    Image("dialog_image")
+                        .resizable()
+                        .frame(width: 150, height: 150)
+                        .cornerRadius(BPKCornerRadiusMd)
+                    
+                    Image("chessboard")
+                        .resizable()
+                        .frame(width: 150, height: 150)
+                        .cornerRadius(BPKCornerRadiusMd)
+                }
+                Text("Uniform")
+                HStack(spacing: 8) {
+                    Image("dialog_image")
+                        .resizable()
+                        .frame(width: 150, height: 150)
+                        .blur(BPKBlur(radius: 4))
+                        .cornerRadius(BPKCornerRadiusMd)
+                    
+                    Image("chessboard")
+                        .resizable()
+                        .frame(width: 150, height: 150)
+                        .blur(BPKBlur(radius: 4))
+                        .cornerRadius(BPKCornerRadiusMd)
+                }
+                Text("Progressive")
+                HStack(spacing: 8) {
+                    BPKProgessiveBlurView(imageName: "dialog_image",
+                                          blurRadius: Float(progressiveRadius), width: 150, height: 150)
                     .cornerRadius(BPKCornerRadiusMd)
+                    BPKProgessiveBlurView(imageName: "chessboard",
+                                          blurRadius: Float(progressiveRadius), width: 150, height: 150)
+                    .cornerRadius(BPKCornerRadiusMd)
+                }
+                HStack {
+                    Slider(value: $progressiveRadius, in: 0...50)
+                    Text("Value: \(progressiveRadius, specifier: "%.2f")")
+                }
                 
-                Image("chessboard")
-                    .resizable()
-                    .frame(width: 150, height: 150)
-                    .cornerRadius(BPKCornerRadiusMd)
-            }
-            Text("Uniform")
-            HStack(spacing: 8) {
-                Image("dialog_image")
-                    .resizable()
-                    .frame(width: 150, height: 150)
-                    .blur(BPKBlur(radius: 4))
-                    .cornerRadius(BPKCornerRadiusMd)
-                
-                Image("chessboard")
-                    .resizable()
-                    .frame(width: 150, height: 150)
-                    .blur(BPKBlur(radius: 4))
-                    .cornerRadius(BPKCornerRadiusMd)
-            }
-            Text("Progressive")
-            HStack(spacing: 8) {
                 BPKProgessiveBlurView(imageName: "dialog_image",
-                                         blurRadius: Float(24), width: 150, height: 150)
-                .cornerRadius(BPKCornerRadiusMd)
-                BPKProgessiveBlurView(imageName: "chessboard",
-                                         blurRadius: Float(24), width: 150, height: 150)
-                .cornerRadius(BPKCornerRadiusMd)
+                                      blurRadius: Float(progressiveRadius), width: 300, height: 300)
+
             }
+            .padding()
         }
-        .padding()
     }
 }
 

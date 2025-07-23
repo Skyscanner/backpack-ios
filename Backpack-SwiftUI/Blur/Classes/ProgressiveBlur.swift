@@ -18,23 +18,39 @@
 
 import CoreImage.CIFilterBuiltins
 
-public func maskImageWithProgressiveBlur(ciImage: CIImage, mask: CIImage, blurRadius: Float) -> CIImage {
-    let filter = CIFilter.maskedVariableBlur()
+func maskImageWithVaribleBlur(ciImage: CIImage, mask: CIImage, blurRadius: Float) -> CIImage {
+    let clampFilter = ciImage.clampedToExtent()
+    let blurFilter = CIFilter.maskedVariableBlur()
+    blurFilter.inputImage = clampFilter
+    blurFilter.mask = mask
+    blurFilter.radius = blurRadius
+    guard let blurred = blurFilter.outputImage else { return ciImage }
 
-    filter.inputImage = ciImage
-    filter.mask = mask
-    filter.radius = blurRadius
+    let croppedBlurred = blurred.cropped(to: ciImage.extent)
 
-    return filter.outputImage!
+    let blendFilter = CIFilter.blendWithMask()
+    blendFilter.inputImage = croppedBlurred
+    blendFilter.backgroundImage = ciImage
+    blendFilter.maskImage = mask
+
+    return blendFilter.outputImage ?? ciImage
 }
 
-func getImageMask(maskHeight: Double) -> CIImage {
-    // Create a mask that goes from white to black vertically.
-    let mask = CIFilter.smoothLinearGradient()
-    mask.color0 = .white
-    mask.color1 = .black
-    mask.point0 = CGPoint(x: 0, y: 0)
-    mask.point1 = CGPoint(x: 0, y: maskHeight)
+func getImageMask(maskExtent: CGRect) -> CIImage {
+    // Start with a smooth linear gradient
+    let gradient = CIFilter.smoothLinearGradient()
+    gradient.color0 = .white
+    gradient.color1 = .black
+    gradient.point0 = CGPoint(x: 0, y: 0)
+    gradient.point1 = CGPoint(x: 0, y: maskExtent.height)
+    let baseGradient = gradient.outputImage.unsafelyUnwrapped
+        .cropped(to: maskExtent)
 
-    return mask.outputImage.unsafelyUnwrapped
+    // Apply a gamma curve to soften the transition (non-linear)
+    let gammaFilter = CIFilter.gammaAdjust()
+    gammaFilter.inputImage = baseGradient
+    gammaFilter.power = 2.2  // Values > 1 = slower start, more gradual
+    let softenedGradient = gammaFilter.outputImage.unsafelyUnwrapped
+
+    return softenedGradient
 }
