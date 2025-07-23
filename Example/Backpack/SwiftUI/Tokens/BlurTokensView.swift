@@ -66,13 +66,15 @@ struct BlurTokensView: View {
                                           blurRadius: Float(progressiveRadius), width: 150, height: 150)
                     .cornerRadius(BPKCornerRadiusMd)
                 }
+                
+                BPKProgessiveBlurView(imageName: "dialog_image",
+                                      blurRadius: Float(progressiveRadius), width: 300, height: 300)
+                .cornerRadius(BPKCornerRadiusMd)
+                
                 HStack {
                     Slider(value: $progressiveRadius, in: 0...50)
                     Text("Value: \(progressiveRadius, specifier: "%.2f")")
                 }
-                
-                BPKProgessiveBlurView(imageName: "dialog_image",
-                                      blurRadius: Float(progressiveRadius), width: 300, height: 300)
 
             }
             .padding()
