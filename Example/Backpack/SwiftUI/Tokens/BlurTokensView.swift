@@ -22,11 +22,8 @@ import SwiftUI
 import Backpack
 import Backpack_SwiftUI
 
-// swiftlint:disable indentation_width closure_body_length
-
+// swiftlint:disable closure_body_length
 struct BlurTokensView: View {
-    
-    @State var progressiveRadius = 24.0
     
     var body: some View {
         ScrollView {
@@ -48,31 +45,23 @@ struct BlurTokensView: View {
                     Image("dialog_image")
                         .resizable()
                         .frame(width: 150, height: 150)
-                        .blur(radius: 4, opaque: true)
+                        .blur(BPKBlur())
                         .cornerRadius(BPKCornerRadiusMd)
                     
                     Image("chessboard")
                         .resizable()
                         .frame(width: 150, height: 150)
-                        .blur(BPKBlur(radius: 4))
+                        .blur(BPKBlur())
                         .cornerRadius(BPKCornerRadiusMd)
                 }
                 Text("Progressive")
                 HStack(spacing: 8) {
-                    BPKProgessiveBlurView(imageName: "dialog_image",
-                                          blurRadius: Float(progressiveRadius), width: 150, height: 150)
-                    BPKProgessiveBlurView(imageName: "chessboard",
-                                          blurRadius: Float(progressiveRadius), width: 150, height: 150)
+                    BPKProgessiveBlurView(imageName: "dialog_image", width: 150, height: 150)
+                    BPKProgessiveBlurView(imageName: "chessboard", width: 150, height: 150)
                 }
                 
-                BPKProgessiveBlurView(imageName: "dialog_image",
-                                      blurRadius: Float(progressiveRadius), width: 300, height: 300)
+                BPKProgessiveBlurView(imageName: "dialog_image", width: 300, height: 300)
                 .cornerRadius(BPKCornerRadiusMd)
-                
-                HStack {
-                    Slider(value: $progressiveRadius, in: 0...50)
-                    Text("Value: \(progressiveRadius, specifier: "%.2f")")
-                }
 
             }
             .padding()

@@ -24,15 +24,14 @@ public struct BPKProgessiveBlurView: View {
     @State private var image: UIImage?
 
     private let imageName: String
-    private let blurRadius: Float
+    private let blurRadius: Float = 24
     private let width: CGFloat
     private let height: CGFloat
     private let context = CIContext()
 
-    public init(imageName: String, blurRadius: Float, width: CGFloat,
+    public init(imageName: String, width: CGFloat,
                 height: CGFloat) {
         self.imageName = imageName
-        self.blurRadius = blurRadius
         self.width = width
         self.height = height
     }

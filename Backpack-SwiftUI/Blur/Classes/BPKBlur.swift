@@ -23,14 +23,10 @@ import SwiftUI
 
 public struct BPKBlur {
     /// The radius of the blur effect.
-    let radius: CGFloat
-
-    /// Creates a new instance of `BPKBlur`.
-    /// - Parameters:
-    ///   - radius: The blur radius to apply.
-    public init(radius: CGFloat) {
-        self.radius = radius
-    }
+    let radius: CGFloat = 4
+    
+    public init() {}
+    
 }
 
 public extension View {
