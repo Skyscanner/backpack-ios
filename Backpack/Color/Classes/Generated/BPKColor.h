@@ -217,6 +217,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor * textPrimaryColor;
 
 /**
+ * The `textSuccessColor` dynamic color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background-color: #0c838aff; background: linear-gradient(0.375turn, #0c838aff 49%, #62f1c6ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * textSuccessColor;
+
+/**
  * The `textErrorColor` dynamic color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background-color: #e70866ff; background: linear-gradient(0.375turn, #e70866ff 49%, #ff649cff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
