@@ -1,12 +1,24 @@
-//
-//  VisualEffect+Blur.swift
-//  Pods
-//
-//  Created by Ilkay Hamit on 24/07/2025.
-//
+/*
+ * Backpack - Skyscanner's Design System
+ *
+ * Copyright 2018-2025 Skyscanner Ltd
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-// swiftlint:disable line_length comma
 import SwiftUI
+import Metal
+import MetalKit
 
 @available(iOS 17, macOS 14, macCatalyst 17, tvOS 17, visionOS 1, *)
 public extension VisualEffect {
@@ -32,7 +44,7 @@ public extension VisualEffect {
         isEnabled: Bool = true
     ) -> some VisualEffect {
         self.layerEffect(
-            ShaderLibrary.default.variableBlur(
+            BackpackShaderLibrary.variableBlur(
                 .boundingRect,
                 .float(radius),
                 .float(CGFloat(maxSampleCount)),
@@ -43,7 +55,7 @@ public extension VisualEffect {
             isEnabled: isEnabled
         )
         .layerEffect(
-            ShaderLibrary.default.variableBlur(
+            BackpackShaderLibrary.variableBlur(
                 .boundingRect,
                 .float(radius),
                 .float(CGFloat(maxSampleCount)),

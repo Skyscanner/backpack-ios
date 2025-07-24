@@ -21,6 +21,8 @@ import CoreImage
 import SwiftUI
 import Backpack
 import Backpack_SwiftUI
+import Metal
+import MetalKit
 
 // swiftlint:disable closure_body_length
 struct BlurTokensView: View {
@@ -65,6 +67,9 @@ struct BlurTokensView: View {
                 
                 if #available(iOS 17, *) {
                     Image("chessboard")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 150, height: 150)
                         .gradientBlur(radius: 20)
                 } else {
                     Text("VERSION TOO OLD!")
