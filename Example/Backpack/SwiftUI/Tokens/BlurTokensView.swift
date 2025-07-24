@@ -27,6 +27,8 @@ import MetalKit
 // swiftlint:disable closure_body_length
 struct BlurTokensView: View {
     
+    @State var radius = 0.0
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .center, spacing: 10) {
@@ -75,6 +77,13 @@ struct BlurTokensView: View {
                             .gradientBlur(radius: 24)
                     }
                 }
+                if #available(iOS 17, *) {
+                    Image("dialog_flare")
+                        .frame(width: 300, height: 300)
+                        .gradientBlur(radius: radius)
+                }
+                
+                Slider(value: $radius, in: 0...50)
             }
             .padding()
         }

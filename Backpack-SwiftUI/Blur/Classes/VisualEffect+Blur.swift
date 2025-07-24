@@ -163,8 +163,8 @@ public extension View {
                 Path(bottomHalf),
                 with: .linearGradient(
                     Gradient(stops: [
-                        .init(color: Color.white.opacity(0.5), location: 0.0),
-                        .init(color: Color.white.opacity(0.3), location: 0.5),
+                        .init(color: Color.black.opacity(0.5), location: 0.0),
+                        .init(color: Color.black.opacity(0.3), location: 0.5),
                         .init(color: .clear, location: 1.0)
                     ]),
                     startPoint: CGPoint(x: bottomHalf.midX, y: bottomHalf.maxY),
