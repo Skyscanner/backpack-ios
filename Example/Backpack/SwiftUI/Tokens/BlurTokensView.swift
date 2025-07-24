@@ -62,6 +62,13 @@ struct BlurTokensView: View {
                 
                 BPKProgessiveBlurView(imageName: "dialog_image", width: 300, height: 300)
                 .cornerRadius(BPKCornerRadiusMd)
+                
+                if #available(iOS 17, *) {
+                    Image("chessboard")
+                        .gradientBlur(radius: 20)
+                } else {
+                    Text("VERSION TOO OLD!")
+                }
 
             }
             .padding()
