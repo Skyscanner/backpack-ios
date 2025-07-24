@@ -1050,7 +1050,6 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				EEF89AC92E2FEDDD00BF1C83 /* IntentTriggerButton */,
 				EEF89AC12E2EAE4E00BF1C83 /* TappableContainer */,
 				EED519BE2D3EBD8300F898D7 /* SegmentedControl */,
 				25006AAE2C60B15D0038D7CA /* SearchControlInput */,
@@ -1641,17 +1640,10 @@
 		EEF89AC12E2EAE4E00BF1C83 /* TappableContainer */ = {
 			isa = PBXGroup;
 			children = (
+				EEF89ACA2E2FEDE600BF1C83 /* IntentTriggerButtonExampleView.swift */,
 				EEF89AC22E2EAE5A00BF1C83 /* TappableContainerExampleView.swift */,
 			);
 			path = TappableContainer;
-			sourceTree = "<group>";
-		};
-		EEF89AC92E2FEDDD00BF1C83 /* IntentTriggerButton */ = {
-			isa = PBXGroup;
-			children = (
-				EEF89ACA2E2FEDE600BF1C83 /* IntentTriggerButtonExampleView.swift */,
-			);
-			path = IntentTriggerButton;
 			sourceTree = "<group>";
 		};
 		F00CA3D7299D532E0027ACE7 /* FloatingNotification */ = {

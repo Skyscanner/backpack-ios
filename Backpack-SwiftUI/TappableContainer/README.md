@@ -1,20 +1,21 @@
-# TappableContainer
+# TappableContainer & IntentTriggerButton
 
 [![Cocoapods](https://img.shields.io/cocoapods/v/Backpack-SwiftUI.svg?style=flat)](hhttps://cocoapods.org/pods/Backpack-SwiftUI)
-[![class reference](https://img.shields.io/badge/Class%20reference-iOS-blue)](https://backpack.github.io/ios/versions/latest/swiftui/Structs/BPKTappableContainer.html)
 [![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack-SwiftUI/TappableContainer)
 
-## Default
+Interactive container components for wrapping content with tap functionality.
+
+## TappableContainer
+
+Wraps any SwiftUI view to make it tappable with proper accessibility support.
 
 | Day | Night |
 | --- | --- |
 | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_tappable-container___default_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_tappable-container___default_dm.png" alt="" width="375" /> |
 
-## Usage
+### Usage
 
-### Basic tappable container
-
-Wrap any SwiftUI view to make it tappable with proper accessibility support.
+**Basic tappable container**
 
     BPKTappableContainer(
         accessibilityLabel: "Tap to continue",
@@ -26,16 +27,13 @@ Wrap any SwiftUI view to make it tappable with proper accessibility support.
             .clipShape(RoundedRectangle(cornerRadius: .sm))
     }
 
-### Tappable container with no tap animation
-
-Use `.noTapAnimation` button style when your content has its own interaction styling or you want to remove visual tap feedback.
+**Tappable card with no animation**
 
     BPKTappableContainer(
         accessibilityLabel: "View flight details",
         action: { showFlightDetails() },
         buttonStyleType: .noTapAnimation
     ) {
-        // Content with custom hover/press states
         HStack(spacing: .md) {
             BPKIconView(.aircraft, size: .large)
             BPKText("Flight Details", style: .heading5)
@@ -47,64 +45,82 @@ Use `.noTapAnimation` button style when your content has its own interaction sty
         .clipShape(RoundedRectangle(cornerRadius: .lg))
     }
 
-### Tappable card with complex content
+### Button Style Types
+- **`.plain` (default)**: Standard iOS tap feedback
+- **`.noTapAnimation`**: No visual feedback - use for custom interaction styling
 
-    BPKTappableContainer(
-        accessibilityLabel: "View flight details",
-        action: { 
-            // Navigate to flight details
-            showFlightDetails() 
-        }
-    ) {
-        HStack(spacing: .md) {
-            BPKIconView(.aircraft, size: .large)
-                .foregroundColor(.coreAccentColor)
-            
-            VStack(alignment: .leading, spacing: .sm) {
-                BPKText("Flight Details", style: .heading5)
-                BPKText("London to Paris", style: .caption)
-                    .foregroundColor(.textSecondaryColor)
+### Parameters
+- `accessibilityLabel`: String describing what happens when tapped (required)
+- `action`: Closure executed when the container is tapped (required)
+- `buttonStyleType`: Button style type - `.plain` or `.noTapAnimation` (optional)
+- `content`: SwiftUI view builder containing the content to make tappable (required)
+
+---
+
+## IntentTriggerButton
+
+**iOS 17.0+ only** - Triggers App Intents for system integration with Siri, Shortcuts, and widgets.
+
+| Day | Night |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_intent-trigger-button___default_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_intent-trigger-button___default_dm.png" alt="" width="375" /> |
+
+### Usage
+
+**Basic example**
+
+    if #available(iOS 17.0, *) {
+        BPKIntentTriggerButton(
+            intent: RefreshWidgetIntent(),
+            label: {
+                HStack {
+                    BPKIconView(.refresh, size: .small)
+                    BPKText("Refresh Data", style: .bodyDefault)
+                }
             }
-            
-            Spacer()
-            
-            BPKIconView(.chevronRight, size: .small)
-                .foregroundColor(.textSecondaryColor)
-        }
-        .padding(.base)
-        .background(.surfaceDefaultColor)
-        .clipShape(RoundedRectangle(cornerRadius: .lg))
+        )
     }
 
-### Button style types
+**Widget-style button**
 
-Choose between two button style types:
+    if #available(iOS 17.0, *) {
+        BPKIntentTriggerButton(
+            intent: RefreshWidgetIntent(),
+            label: {
+                BPKIconView(.refresh, size: .small)
+                    .foregroundColor(.coreAccentColor)
+            }
+        )
+    }
 
-**Plain (default)**
-- Preserves content appearance
-- Provides standard iOS tap feedback
-- Recommended for most use cases
+### Creating App Intents
 
-    BPKTappableContainer(
-        accessibilityLabel: "Standard tap feedback",
-        action: { /* action */ },
-        buttonStyleType: .plain
-    ) { /* content */ }
+Define your App Intent to use with the button:
 
-**No Tap Animation**
-- Removes visual tap feedback
-- Use when content has custom interaction styling
-- Ideal for cards or containers with their own press states
+    import AppIntents
 
-    BPKTappableContainer(
-        accessibilityLabel: "No visual feedback",
-        action: { /* action */ },
-        buttonStyleType: .noTapAnimation
-    ) { /* content */ }
+    struct RefreshWidgetIntent: AppIntent {
+        static var title: LocalizedStringResource = "Refresh Widget"
+        static var description = IntentDescription("Refreshes the widget data")
+        
+        func perform() async throws -> some IntentResult {
+            // Your refresh logic here
+            return .result()
+        }
+    }
 
-### Accessibility considerations
+### Parameters
+- `intent`: The App Intent to trigger when the button is tapped (required)
+- `label`: View builder that creates the button's visual content (required)
 
-Always provide a meaningful `accessibilityLabel` that describes what will happen when the container is tapped:
+### Requirements
+- iOS 17.0+ (must be wrapped in availability check)
+- App Intents framework
+- Perfect for WidgetKit extensions and system integration
+
+## Accessibility
+
+Always provide meaningful accessibility labels:
 
     // Good - describes the action
     BPKTappableContainer(
@@ -112,23 +128,6 @@ Always provide a meaningful `accessibilityLabel` that describes what will happen
         action: { bookFlight() }
     ) { /* content */ }
 
-    // Avoid - too generic
-    BPKTappableContainer(
-        accessibilityLabel: "Tap here",
-        action: { bookFlight() }
-    ) { /* content */ }
-
-## Features
-
-- **Accessibility Support**: Automatically adds button traits and uses provided accessibility labels
-- **Flexible Button Styles**: Choose between plain style with feedback or no-animation style
-- **Generic Content**: Accepts any SwiftUI view as content using `@ViewBuilder`
-- **Touch Feedback**: Configurable touch feedback behavior based on button style
-- **Flexible**: Works with simple text, complex cards, lists, or any SwiftUI view hierarchy
-
-## Parameters
-
-- `accessibilityLabel`: String describing what happens when tapped (required)
-- `action`: Closure executed when the container is tapped (required)
-- `buttonStyleType`: Button style type - `.plain` (default) or `.noTapAnimation` (optional)
-- `content`: SwiftUI view builder containing the content to make tappable (required)
+    // For IntentTriggerButton, add labels to content views
+    BPKIconView(.refresh, size: .small)
+        .accessibilityLabel("Refresh")
