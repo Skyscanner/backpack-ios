@@ -61,7 +61,6 @@ public struct BPKProgessiveBlurView: View {
                 Image(uiImage: image)
                     .resizable() // Allow the image to be resized
                     .scaledToFit() // Maintain aspect ratio while fitting in frame
-                    .cornerRadius(12) // Apply rounded corners with 12pt radius
                     .frame(width: width, height: height) // Set the display dimensions
             }
         }
