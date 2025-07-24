@@ -67,6 +67,7 @@ struct ComponentCellsProvider {
             imageGalleryGridView(),
             imageGallerySlideshow(),
             insetBanner(),
+            intentTriggerButton(),
             label(),
             navBar(),
             navigationTabsGroup(),
@@ -784,6 +785,21 @@ extension ComponentCellsProvider {
                 .swiftui(groups: DynamicLayoutGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "Dynamic Layout", tabs: $0) }
+        )
+    }
+    private func intentTriggerButton() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Intent Trigger Button",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    if #available(iOS 17.0, *) {
+                        return ContentUIHostingController(IntentTriggerButtonExampleView())
+                    } else {
+                        return ContentUIHostingController(IntentTriggerButtonExampleViewFallback())
+                    }
+                }))
+            ],
+            showChildren: { showComponent(title: "Intent Trigger Button", tabs: $0) }
         )
     }
 }
