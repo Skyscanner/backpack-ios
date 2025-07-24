@@ -20,6 +20,7 @@ import SwiftUI
 import Metal
 import MetalKit
 
+// swiftlint:disable line_length comma
 @available(iOS 17, macOS 14, macCatalyst 17, tvOS 17, visionOS 1, *)
 public extension VisualEffect {
     
@@ -93,6 +94,7 @@ public extension View {
                 mask: mask
             )
         }
+        .clipped()
     }
     
     /// Applies a variable blur to the view, with the blur radius at each pixel determined by a mask that you create.
@@ -127,8 +129,9 @@ public extension View {
                 })
             )
         }
+        .clipped()
     }
-    
+
     /// Applies a variable blur with a bottom-to-top gradient fade effect.
     ///
     /// - Parameters:
@@ -169,5 +172,6 @@ public extension View {
                 )
             )
         }
+        .clipped()
     }
 }
