@@ -16,10 +16,10 @@
  * limitations under the License.
  */
 
+// swiftlint:disable indentation_width
 import CoreImage.CIFilterBuiltins
 import SwiftUI
 
-// swiftlint:disable indentation_width
 /// A SwiftUI view that displays an image with progressive blur effect.
 /// Progressive blur creates a variable blur effect across the image, typically used
 /// for creating depth or focus effects where parts of the image are more blurred than others.
@@ -31,7 +31,7 @@ public struct BPKProgessiveBlurView: View {
     private let imageName: String
     
     /// The blur radius value used for the progressive blur effect (24 points)
-    private let blurRadius: Float = 24
+    private var blurRadius: Float = 24
     
     /// The desired width for the displayed image
     private let width: CGFloat
@@ -81,11 +81,9 @@ public struct BPKProgessiveBlurView: View {
         guard let ciImage = CIImage(image: uiImage) else { return }
 
         // Create a mask that defines the blur intensity across different areas of the image
-        // NOTE: This method is missing from the current implementation
         let imageMask = getImageMask(maskExtent: ciImage.extent)
         
         // Apply variable blur using the mask - areas with different mask values get different blur amounts
-        // NOTE: This method is missing from the current implementation  
         let blurredImage = maskImageWithVaribleBlur(ciImage: ciImage, mask: imageMask, blurRadius: self.blurRadius)
         
         // Convert the processed CIImage back to CGImage

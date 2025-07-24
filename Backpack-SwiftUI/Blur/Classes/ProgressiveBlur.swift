@@ -16,6 +16,7 @@
  * limitations under the License.
  */
 
+// swiftlint:disable line_length
 import CoreImage.CIFilterBuiltins
 
 /// Applies variable blur to an image using a mask to control blur intensity across different regions.
@@ -58,7 +59,7 @@ func getImageMask(maskExtent: CGRect) -> CIImage {
     gradient.color0 = .white // Top of image gets maximum blur (white = full blur)
     gradient.color1 = .black // Bottom of image stays sharp (black = no blur)
     gradient.point0 = CGPoint(x: 0, y: 0) // Start point at top-left
-    gradient.point1 = CGPoint(x: 0, y: maskExtent.height) // End point at bottom-left (vertical gradient)
+    gradient.point1 = CGPoint(x: 0, y: maskExtent.height / 2) // End point at bottom-left (vertical gradient)
     
     // Crop the infinite gradient to match the image dimensions
     let baseGradient = gradient.outputImage.unsafelyUnwrapped
