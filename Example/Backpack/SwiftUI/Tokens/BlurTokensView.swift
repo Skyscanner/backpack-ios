@@ -56,25 +56,25 @@ struct BlurTokensView: View {
                         .blur(BPKBlur())
                         .cornerRadius(BPKCornerRadiusMd)
                 }
-                Text("Progressive")
+                Text("Progressive pre iOS 17")
                 HStack(spacing: 8) {
                     BPKProgessiveBlurView(imageName: "dialog_image", width: 150, height: 150)
                     BPKProgessiveBlurView(imageName: "chessboard", width: 150, height: 150)
                 }
                 
-                BPKProgessiveBlurView(imageName: "dialog_image", width: 300, height: 300)
-                .cornerRadius(BPKCornerRadiusMd)
-                
-                if #available(iOS 17, *) {
-                    Image("chessboard")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 150, height: 150)
-                        .gradientBlur(radius: 20)
-                } else {
-                    Text("VERSION TOO OLD!")
+                Text("Progressive iOS 17+")
+                HStack(spacing: 8) {
+                    if #available(iOS 17, *) {
+                        Image("dialog_image")
+                            .resizable()
+                            .frame(width: 150, height: 150)
+                            .gradientBlur(radius: 24)
+                        Image("chessboard")
+                            .resizable()
+                            .frame(width: 150, height: 150)
+                            .gradientBlur(radius: 24)
+                    }
                 }
-
             }
             .padding()
         }
