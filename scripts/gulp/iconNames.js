@@ -33,19 +33,27 @@ const iconsUIKit = () => {
       .join('')
       .replace('Ios', 'iOS');
 
-  // Once we drop support for the legacy API, we can leave the suffix in the string
-  // so that `BPKIcon.m` doesn't need to add it back in programmatically
-  const templateData = (entries, suffix = '') =>
-    Object.assign(
-      ...entries.map(([k]) => {
+  const templateData = (entries, suffix = '') => {
+    if (!Array.isArray(entries)) {
+      throw new TypeError('Expected entries to be an array');
+    }
+
+    console.log(`Generating icon mappings (suffix: '${suffix}')...`);
+    console.log('Entries passed to templateData:', entries);
+
+    const mapped = entries
+      .filter(Boolean)
+      .map(([k]) => {
         const key = k.endsWith(suffix)
           ? k.substring(0, k.length - suffix.length)
           : k;
         return {
           [key]: codify(key),
         };
-      }),
-    );
+      });
+
+    return Object.assign({}, ...mapped);
+  };
 
   return {
     icons: templateData(combinedEntries),
@@ -71,7 +79,8 @@ const iconsSwiftUI = () => {
     entries.map(([key]) => ({
       name: codify(key),
       file: key
-    }))
+    }));
+
   return {
     icons: templateData(largeEntries)
   }

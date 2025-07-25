@@ -19,8 +19,5 @@
 
 #import "BPKXlIconNames.h"
 
-BPKXlIconName const BPKXlIconNameStarHalf = @"star-half";
-BPKXlIconName const BPKXlIconNameStarOutline = @"star-outline";
-BPKXlIconName const BPKXlIconNameStar = @"star";
 
 // clang-format on
