@@ -6,8 +6,6 @@ updates:
       interval: daily
       time: "10:00"
     open-pull-requests-limit: 10
-    labels:
-      - dependencies
 
   - package-ecosystem: npm
     directory: "/"
@@ -15,8 +13,6 @@ updates:
       interval: daily
       time: "10:00"
     open-pull-requests-limit: 10
-    labels:
-      - dependencies
     versioning-strategy: increase-if-necessary
     allow:
       - dependency-type: "direct"
@@ -27,5 +23,3 @@ updates:
       interval: daily
       time: "10:00"
     open-pull-requests-limit: 10
-    labels:
-      - dependencies
