@@ -47,13 +47,13 @@ struct BlurTokensView: View {
                     Image("dialog_image")
                         .resizable()
                         .frame(width: 150, height: 150)
-                        .blur(BPKBlurUniform())
+                        .blur(BPKUniformBlur())
                         .cornerRadius(BPKCornerRadiusMd)
                     
                     Image("dialog_flare")
                         .resizable()
                         .frame(width: 150, height: 150)
-                        .blur(BPKBlurUniform())
+                        .blur(BPKUniformBlur())
                         .cornerRadius(BPKCornerRadiusMd)
                 }
                 Text("Progressive pre iOS 17")

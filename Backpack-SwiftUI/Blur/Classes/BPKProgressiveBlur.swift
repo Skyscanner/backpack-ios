@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public struct BPKBlurProgressive: ViewModifier {
+public struct BPKProgressiveBlur: ViewModifier {
     let radius: CGFloat
     
     public func body(content: Content) -> some View {
@@ -71,6 +71,6 @@ public struct BPKBlurProgressive: ViewModifier {
 // Extension to make the modifier easy to use
 public extension View {
     func bpkProgressiveBlur() -> some View {
-        self.modifier(BPKBlurProgressive(radius: 10))
+        self.modifier(BPKProgressiveBlur(radius: 10))
     }
 }
