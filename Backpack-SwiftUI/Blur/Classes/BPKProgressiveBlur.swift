@@ -26,41 +26,6 @@ public struct BPKProgressiveBlur: ViewModifier {
     
     public func body(content: Content) -> some View {
         content
-            // First overlay: Creates a basic progressive blur foundation
-            .overlay(
-                GeometryReader { _ in
-                    // Create a linear gradient that defines the blur intensity
-                    // This gradient goes from transparent (no blur) to opaque (full blur)
-                    LinearGradient(
-                        gradient: Gradient(stops: [
-                            .init(color: .clear, location: 0.0),      // No blur at top (0%)
-                            .init(color: .clear, location: 0.5),      // Still no blur at middle (50%)
-                            .init(color: .black, location: 1.0)       // Full blur intensity at bottom (100%)
-                        ]),
-                        startPoint: .top,    // Start gradient from top
-                        endPoint: .bottom    // End gradient at bottom
-                    )
-                    // Apply uniform blur to the entire gradient overlay
-                    .blur(radius: radius)
-                    // Mask the blurred gradient to control where the blur effect appears
-                    // This mask is currently all clear, so this overlay won't be visible
-                    // (This appears to be leftover from development/experimentation)
-                    .mask(
-                        LinearGradient(
-                            gradient: Gradient(stops: [
-                                .init(color: .clear, location: 0.0),    // Transparent at top
-                                .init(color: .clear, location: 0.5),    // Transparent at middle
-                                .init(color: .clear, location: 1.0)     // Transparent at bottom
-                            ]),
-                            startPoint: .top,
-                            endPoint: .bottom
-                        )
-                    )
-                    // Blend mode to combine this overlay with the original content
-                    .blendMode(.multiply)
-                }
-            )
-            // Second overlay: The main progressive blur implementation
             .overlay(
                 GeometryReader { _ in
                     // Duplicate the original content to create the blurred version

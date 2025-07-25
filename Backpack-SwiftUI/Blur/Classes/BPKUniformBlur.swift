@@ -18,8 +18,8 @@
 
 import SwiftUI
 
-/// A model that encapsulates blur styling options for SwiftUI views.
-/// It allows for both standard and progressive (gradient-based) blurs.
+/// A model that encapsulates uniform blur styling options for SwiftUI views.
+/// This struct provides a simple way to apply a uniform blur effect.
 
 public struct BPKUniformBlur {
     /// The radius of the blur effect.
