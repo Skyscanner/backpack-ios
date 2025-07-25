@@ -24,10 +24,11 @@ import Backpack_SwiftUI
 import Metal
 import MetalKit
 
-// swiftlint:disable closure_body_length
+// swiftlint:disable closure_body_length indentation_width trailing_whitespace
 struct BlurTokensView: View {
     
     @State var radius = 0.0
+    @State var progressiveOld = 0.0
     
     var body: some View {
         ScrollView {
@@ -59,26 +60,32 @@ struct BlurTokensView: View {
                         .cornerRadius(BPKCornerRadiusMd)
                 }
                 Text("Progressive pre iOS 17")
-                HStack(spacing: 8) {
-                    BPKProgessiveBlurView(imageName: "dialog_image", width: 150, height: 150)
-                    BPKProgessiveBlurView(imageName: "chessboard", width: 150, height: 150)
-                }
+                BPKProgessiveBlurView(imageName: "dialog_image",
+                                      width: 300, height: 300, blurRadius: Float(progressiveOld))
+//                HStack(spacing: 8) {
+//                    BPKProgessiveBlurView(imageName: "dialog_image",
+//                                          width: 150, height: 150, blurRadius: Float(progressiveOld))
+//                        .cornerRadius(12)
+//                    BPKProgessiveBlurView(imageName: "chessboard",
+//                                          width: 150, height: 150, blurRadius: Float(progressiveOld))
+//                        .cornerRadius(12)
+//                }
+//                
+                Slider(value: $progressiveOld, in: 0...50)
                 
                 Text("Progressive iOS 17+")
-                HStack(spacing: 8) {
-                    if #available(iOS 17, *) {
-                        Image("dialog_image")
-                            .resizable()
-                            .frame(width: 150, height: 150)
-                            .gradientBlur(radius: 24)
-                        Image("chessboard")
-                            .resizable()
-                            .frame(width: 150, height: 150)
-                            .gradientBlur(radius: 24)
-                    }
-                }
+//                HStack(spacing: 8) {
+//                    if #available(iOS 17, *) {
+//                        Image("dialog_image")
+//                            .frame(width: 150, height: 150)
+//                            .gradientBlur(radius: radius)
+//                        Image("chessboard")
+//                            .frame(width: 150, height: 150)
+//                            .gradientBlur(radius: radius)
+//                    }
+//                }
                 if #available(iOS 17, *) {
-                    Image("dialog_flare")
+                    Image("dialog_image")
                         .frame(width: 300, height: 300)
                         .gradientBlur(radius: radius)
                 }

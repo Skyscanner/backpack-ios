@@ -48,10 +48,11 @@ public struct BPKProgessiveBlurView: View {
     ///   - width: The width to display the image at
     ///   - height: The height to display the image at
     public init(imageName: String, width: CGFloat,
-                height: CGFloat) {
+                height: CGFloat, blurRadius: Float) {
         self.imageName = imageName
         self.width = width
         self.height = height
+        self.blurRadius = blurRadius
     }
 
     public var body: some View {
@@ -60,12 +61,15 @@ public struct BPKProgessiveBlurView: View {
             if let image = image {
                 Image(uiImage: image)
                     .resizable() // Allow the image to be resized
-                    .scaledToFit() // Maintain aspect ratio while fitting in frame
+                    .scaledToFit()
                     .frame(width: width, height: height) // Set the display dimensions
             }
         }
         .onAppear {
             // Process the blur effect when the view first appears
+            processBlur()
+        }
+        .onChange(of: blurRadius) { _ in
             processBlur()
         }
     }
