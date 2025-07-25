@@ -32,7 +32,10 @@ Pod::Spec.new do |s|
     git: 'https://github.com/Skyscanner/backpack-ios.git', tag: s.version.to_s
   }
   s.ios.deployment_target = '16.0'
-  s.source_files = 'Backpack-SwiftUI/*/Classes/**/*.swift'
+  s.source_files = 'Backpack-SwiftUI/*/Classes/**/*.{swift,metal}'
+  s.resource_bundles = {
+    'Backpack-SwiftUI' => ['Backpack-SwiftUI/*/Classes/**/*.metal']
+  }
 
   s.dependency 'Backpack-Common'
 

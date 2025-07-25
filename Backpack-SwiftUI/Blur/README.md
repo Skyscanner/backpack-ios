@@ -1,0 +1,100 @@
+# Blur Effects
+
+[![License](https://img.shields.io/cocoapods/l/Backpack-SwiftUI.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0)
+[![SwiftUI Compatibility](https://img.shields.io/badge/SwiftUI-Compatible-blue)](https://backpack.github.io/ios/versions/latest/swiftui/Structs/BlurEffects.html)
+[![View on GitHub](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack-SwiftUI/Blur)
+
+## Previews
+
+| Uniform | Progressive Blur Pre iOS 17 | Progressive Blur iOS 17+ |
+| ------------ | ---------------- | ---------- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_blur-uniform___default_lm.png" alt="" width="375" /> | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_blur-progessive-17-lower___default_lm.png" alt="" width="375" /> | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_blur-progessive___default_lm.png" alt="" width="375" /> |
+
+## Usage
+
+### Uniform Blur
+
+Applies a fixed-radius blur to any SwiftUI view.
+
+```swift
+BPKUniformBlur()
+```
+
+**Example:**
+
+```swift
+Text("Blurred Content")
+    .blur(BPKUniformBlur())
+```
+
+---
+
+### Progressive Blur
+
+Applies a blur that increases gradually from the top of the view to the bottom.
+
+```swift
+.someView()
+    .bpkProgressiveBlur()
+```
+
+**Example:**
+
+```swift
+Image("example-image")
+    .resizable()
+    .bpkProgressiveBlur()
+```
+
+---
+
+### Metal Progressive Blur
+
+Applies a Metal-based GPU-accelerated variable blur using a vertical gradient mask.
+
+```swift
+.someView()
+    .bpkProgressiveMetalBlur()
+```
+
+**Example:**
+
+```swift
+Image("example-image")
+    .resizable()
+    .bpkProgressiveMetalBlur()
+```
+
+---
+
+## Blur Types
+
+### `BPKUniformBlur`
+
+- **Type**: Static blur
+- **Radius**: 4pt
+- **Performance**: High
+- **Use case**: Simple, consistent blur overlays
+
+### `BPKProgressiveBlur`
+
+- **Type**: Vertical gradient blur
+- **Radius**: 10pt (default)
+- **Performance**: Medium
+- **Use case**: UI cards, fading overlays
+
+### `bpkProgressiveMetalBlur`
+
+- **Type**: Shader-based mask blur
+- **Radius**: 50pt (default)
+- **Performance**: GPU-accelerated
+- **Use case**: High-fidelity fades and animations
+
+---
+
+## Accessibility
+
+These visual effects are non-interactive and should be combined with accessible labels or containers as appropriate.
+
+---
+

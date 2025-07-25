@@ -55,7 +55,7 @@ SPEC CHECKSUMS:
   Backpack: db8f6ed74fd42b941ed26074f14afbd94259d3df
   Backpack-Common: e8993f9fa4e7a79236ea16a4a06b5f73f3517d53
   Backpack-Fonts: 2ed96553a5325156a154d788defbdc6306dae5ef
-  Backpack-SwiftUI: 81618ef879e0ea31d02f644f5f61685185cd0ba5
+  Backpack-SwiftUI: 68146835f8aa1cbfa4814e24dce4abbb0b8d0d84
   FloatingPanel: 11559d3700c39f1c2ee8dbb7a5415223b52fdce0
   OCMock: 29f6e52085b4e7d9b075cbf03ed7c3112f82f934
   SnapshotTesting: 6141c48b6aa76ead61431ca665c14ab9a066c53b
