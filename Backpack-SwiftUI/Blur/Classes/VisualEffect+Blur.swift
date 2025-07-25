@@ -139,15 +139,11 @@ public extension View {
     ///   - maxSampleCount: The maximum number of samples the shader may take. Defaults to 15.
     ///   - verticalPassFirst: Whether to perform the vertical blur pass first. Defaults to `false`.
     /// - Returns: The view with the gradient blur effect applied.
-    func gradientBlur(
-        radius: CGFloat,
-        maxSampleCount: Int = 15,
-        verticalPassFirst: Bool = false
-    ) -> some View {
+    func bpkProgressiveMetalBlur() -> some View {
         self.variableBlur(
-            radius: radius,
-            maxSampleCount: maxSampleCount,
-            verticalPassFirst: verticalPassFirst
+            radius: 50,
+            maxSampleCount: 15,
+            verticalPassFirst: false
         ) { geometryProxy, context in
             let frame = geometryProxy.frame(in: .local)
             let halfHeight = frame.height / 2

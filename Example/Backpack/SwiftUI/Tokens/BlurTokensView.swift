@@ -24,7 +24,7 @@ import Backpack_SwiftUI
 import Metal
 import MetalKit
 
-// swiftlint:disable closure_body_length indentation_width trailing_whitespace
+// swiftlint:disable closure_body_length
 struct BlurTokensView: View {
     
     @State var radius = 0.0
@@ -40,7 +40,7 @@ struct BlurTokensView: View {
                         .frame(width: 150, height: 150)
                         .cornerRadius(BPKCornerRadiusMd)
                     
-                    Image("chessboard")
+                    Image("dialog_flare")
                         .resizable()
                         .frame(width: 150, height: 150)
                         .cornerRadius(BPKCornerRadiusMd)
@@ -50,47 +50,38 @@ struct BlurTokensView: View {
                     Image("dialog_image")
                         .resizable()
                         .frame(width: 150, height: 150)
-                        .blur(BPKBlur())
+                        .blur(BPKBlurUniform())
                         .cornerRadius(BPKCornerRadiusMd)
                     
-                    Image("chessboard")
+                    Image("dialog_flare")
                         .resizable()
                         .frame(width: 150, height: 150)
-                        .blur(BPKBlur())
+                        .blur(BPKBlurUniform())
                         .cornerRadius(BPKCornerRadiusMd)
                 }
                 Text("Progressive pre iOS 17")
-                BPKProgessiveBlurView(imageName: "dialog_image",
-                                      width: 300, height: 300, blurRadius: Float(progressiveOld))
-//                HStack(spacing: 8) {
-//                    BPKProgessiveBlurView(imageName: "dialog_image",
-//                                          width: 150, height: 150, blurRadius: Float(progressiveOld))
-//                        .cornerRadius(12)
-//                    BPKProgessiveBlurView(imageName: "chessboard",
-//                                          width: 150, height: 150, blurRadius: Float(progressiveOld))
-//                        .cornerRadius(12)
-//                }
-//                
-                Slider(value: $progressiveOld, in: 0...50)
+                Image("dialog_image")
+                    .resizable()
+                    .frame(width: 200, height: 200)
+                    .bpkProgressiveBlur()
+                    .cornerRadius(BPKCornerRadiusMd)
+                
+                Image("dialog_flare")
+                    .resizable()
+                    .frame(width: 200, height: 200)
+                    .bpkProgressiveBlur()
+                    .cornerRadius(BPKCornerRadiusMd)
                 
                 Text("Progressive iOS 17+")
-//                HStack(spacing: 8) {
-//                    if #available(iOS 17, *) {
-//                        Image("dialog_image")
-//                            .frame(width: 150, height: 150)
-//                            .gradientBlur(radius: radius)
-//                        Image("chessboard")
-//                            .frame(width: 150, height: 150)
-//                            .gradientBlur(radius: radius)
-//                    }
-//                }
                 if #available(iOS 17, *) {
                     Image("dialog_image")
-                        .frame(width: 300, height: 300)
-                        .gradientBlur(radius: radius)
+                        .frame(width: 200, height: 200)
+                        .bpkProgressiveMetalBlur()
+                    
+                    Image("dialog_flare")
+                        .frame(width: 200, height: 200)
+                        .bpkProgressiveMetalBlur()
                 }
-                
-                Slider(value: $radius, in: 0...50)
             }
             .padding()
         }
