@@ -22,7 +22,7 @@ import MetalKit
 
 // swiftlint:disable line_length comma
 @available(iOS 17, macOS 14, macCatalyst 17, tvOS 17, visionOS 1, *)
-public extension VisualEffect {
+extension VisualEffect {
     
     /// Applies a variable blur, with the blur radius at each pixel determined by a mask image.
     ///
@@ -71,32 +71,6 @@ public extension VisualEffect {
 
 @available(iOS 17, macOS 14, macCatalyst 17, tvOS 17, visionOS 1, *)
 public extension View {
-    
-    /// Applies a variable blur to the view, with the blur radius at each pixel determined by a mask image.
-    ///
-    /// - Parameters:
-    ///   - radius: The radial size of the blur in areas where the mask is fully opaque.
-    ///   - maxSampleCount: The maximum number of samples the shader may take from the view's layer in each direction. Higher numbers produce a smoother, higher quality blur but are more GPU intensive. Values larger than `radius` have no effect. The default of 15 provides balanced results but may cause banding on some images at larger blur radii.
-    ///   - verticalPassFirst: Whether or not to perform the vertical blur pass before the horizontal one. Changing this parameter may reduce smearing artifacts. Defaults to `false`, i.e. perform the horizontal pass first.
-    ///   - mask: An `Image` to use as the mask for the blur strength.
-    /// - Returns: The view with the variable blur effect applied.
-    func variableBlur(
-        radius: CGFloat,
-        maxSampleCount: Int = 15,
-        verticalPassFirst: Bool = false,
-        mask: Image
-    ) -> some View {
-        self.visualEffect { content, _ in
-            content.variableBlur(
-                radius: radius,
-                maxSampleCount: maxSampleCount,
-                verticalPassFirst: verticalPassFirst,
-                mask: mask
-            )
-        }
-        .clipped()
-    }
-    
     /// Applies a variable blur to the view, with the blur radius at each pixel determined by a mask that you create.
     ///
     /// - Parameters:
@@ -113,7 +87,7 @@ public extension View {
     /// - Note: Because the blur is split into horizontal and vertical passes for performance, certain mask images over certain patterns may cause "smearing" artifacts along one axis. Changing the `verticalPassFirst` parameter may reduce this, but may cause smearing in the other direction.. To avoid smearing entirely, avoid drawing hard edges in your `maskRenderer`.
     ///
     /// - Important: Because this effect is implemented as a SwiftUI `layerEffect`, it is subject to the same limitations. Namely, views backed by AppKit or UIKit views may not render. Instead, they log a warning and display a placeholder image to highlight the error.
-    func variableBlur(
+    private func variableBlur(
         radius: CGFloat,
         maxSampleCount: Int = 15,
         verticalPassFirst: Bool = false,
