@@ -27,9 +27,6 @@ import MetalKit
 // swiftlint:disable closure_body_length
 struct BlurTokensView: View {
     
-    @State var radius = 0.0
-    @State var progressiveOld = 0.0
-    
     var body: some View {
         ScrollView {
             VStack(alignment: .center, spacing: 10) {
@@ -62,25 +59,27 @@ struct BlurTokensView: View {
                 Text("Progressive pre iOS 17")
                 Image("dialog_image")
                     .resizable()
-                    .frame(width: 200, height: 200)
+                    .frame(width: 300, height: 300)
                     .bpkProgressiveBlur()
                     .cornerRadius(BPKCornerRadiusMd)
                 
                 Image("dialog_flare")
                     .resizable()
-                    .frame(width: 200, height: 200)
+                    .frame(width: 300, height: 300)
                     .bpkProgressiveBlur()
                     .cornerRadius(BPKCornerRadiusMd)
                 
                 Text("Progressive iOS 17+")
                 if #available(iOS 17, *) {
                     Image("dialog_image")
-                        .frame(width: 200, height: 200)
+                        .frame(width: 300, height: 300)
                         .bpkProgressiveMetalBlur()
+                        .cornerRadius(BPKCornerRadiusMd)
                     
                     Image("dialog_flare")
-                        .frame(width: 200, height: 200)
+                        .frame(width: 300, height: 300)
                         .bpkProgressiveMetalBlur()
+                        .cornerRadius(BPKCornerRadiusMd)
                 }
             }
             .padding()
