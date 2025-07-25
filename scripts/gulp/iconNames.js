@@ -19,7 +19,7 @@
 const { capitaliseFirstLetter, lowercaseFirstLetter } = require('./utils/formatUtils');
 
 const iconsUIKit = () => {
-  const content = require('@skyscanner/bpk-svgs/dist/iconMapping.json')
+  const content = require('@skyscanner/bpk-svgs/dist/iconMapping.json');
   const combinedEntries = Object.entries(content).filter((x) => !x[0].endsWith('-sm'));
   const smallEntries = Object.entries(content).filter((x) => x[0].endsWith('-sm'));
   const largeEntries = Object.entries(content).filter((x) => !x[0].endsWith('-sm') && !x[0].endsWith('-xl'));
@@ -55,16 +55,24 @@ const iconsUIKit = () => {
     return Object.assign({}, ...mapped);
   };
 
-  return {
+  const result = {
     icons: templateData(combinedEntries),
     smallIcons: templateData(smallEntries, '-sm'),
     largeIcons: templateData(largeEntries),
-    xlIcons: templateData(xlEntries, '-xl'),
+  };
+
+  // ✅ Only add xlIcons if there are any entries
+  if (xlEntries.length > 0) {
+    result.xlIcons = templateData(xlEntries, '-xl');
+  } else {
+    console.warn('⚠️ No XL icons found — skipping xlIcons generation.');
   }
-}
+
+  return result;
+};
 
 const iconsSwiftUI = () => {
-  const content = require('@skyscanner/bpk-svgs/dist/iconMapping.json')
+  const content = require('@skyscanner/bpk-svgs/dist/iconMapping.json');
   const largeEntries = Object.entries(content).filter((x) => !x[0].endsWith('-sm') && !x[0].endsWith('-xl'));
 
   const codify = (name) =>
@@ -73,7 +81,7 @@ const iconsSwiftUI = () => {
       .split('-')
       .map(capitaliseFirstLetter)
       .join('')
-      .replace('Ios', 'iOS'))
+      .replace('Ios', 'iOS'));
 
   const templateData = (entries) =>
     entries.map(([key]) => ({
@@ -83,10 +91,10 @@ const iconsSwiftUI = () => {
 
   return {
     icons: templateData(largeEntries)
-  }
-}
+  };
+};
 
 module.exports = {
   iconsUIKit,
   iconsSwiftUI
-}
+};
