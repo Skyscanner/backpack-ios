@@ -132,3 +132,71 @@ module.exports = {
   iconsUIKit,
   iconsSwiftUI,
 };
+
+
+
+// const { capitaliseFirstLetter, lowercaseFirstLetter } = require('./utils/formatUtils');
+
+// const iconsUIKit = () => {
+//   const content = require('@skyscanner/bpk-svgs/dist/iconMapping.json')
+//   const combinedEntries = Object.entries(content).filter((x) => !x[0].endsWith('-sm'));
+//   const smallEntries = Object.entries(content).filter((x) => x[0].endsWith('-sm'));
+//   const largeEntries = Object.entries(content).filter((x) => !x[0].endsWith('-sm') && !x[0].endsWith('-xl'));
+//   const xlEntries = Object.entries(content).filter((x) => x[0].endsWith('-xl'));
+
+//   const codify = (name) =>
+//     name
+//       .replace('--', '-')
+//       .split('-')
+//       .map(capitaliseFirstLetter)
+//       .join('')
+//       .replace('Ios', 'iOS');
+
+//   // Once we drop support for the legacy API, we can leave the suffix in the string
+//   // so that `BPKIcon.m` doesn't need to add it back in programmatically
+//   const templateData = (entries, suffix = '') =>
+//     Object.assign(
+//       ...entries.map(([k]) => {
+//         const key = k.endsWith(suffix)
+//           ? k.substring(0, k.length - suffix.length)
+//           : k;
+//         return {
+//           [key]: codify(key),
+//         };
+//       }),
+//     );
+
+//   return {
+//     icons: templateData(combinedEntries),
+//     smallIcons: templateData(smallEntries, '-sm'),
+//     largeIcons: templateData(largeEntries),
+//     xlIcons: templateData(xlEntries, '-xl'),
+//   }
+// }
+
+// const iconsSwiftUI = () => {
+//   const content = require('@skyscanner/bpk-svgs/dist/iconMapping.json')
+//   const largeEntries = Object.entries(content).filter((x) => !x[0].endsWith('-sm') && !x[0].endsWith('-xl'));
+
+//   const codify = (name) =>
+//     lowercaseFirstLetter(name
+//       .replace('--', '-')
+//       .split('-')
+//       .map(capitaliseFirstLetter)
+//       .join('')
+//       .replace('Ios', 'iOS'))
+
+//   const templateData = (entries) =>
+//     entries.map(([key]) => ({
+//       name: codify(key),
+//       file: key
+//     }))
+//   return {
+//     icons: templateData(largeEntries)
+//   }
+// }
+
+// module.exports = {
+//   iconsUIKit,
+//   iconsSwiftUI
+// }
