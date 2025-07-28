@@ -21,17 +21,14 @@ import SwiftUI
 @available(iOS 17, macOS 14, macCatalyst 17, tvOS 17, visionOS 1, *)
 struct BackpackShaderLibrary {
     private static var shaderLibrary: ShaderLibrary {
-        // Get the bundle for this framework
         let bundle = Bundle(for: BundleToken.self)
         
-        // Look for the resource bundle created by CocoaPods
         if let resourceBundleURL = bundle.url(
             forResource: "Backpack-SwiftUI", withExtension: "bundle"
         ), let resourceBundle = Bundle(url: resourceBundleURL) {
             return ShaderLibrary.bundle(resourceBundle)
         }
 
-        // Fallback to the framework bundle itself
         return ShaderLibrary.bundle(bundle)
     }
     
