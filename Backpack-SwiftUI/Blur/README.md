@@ -39,7 +39,7 @@ Applies a blur that increases gradually from the top of the view to the bottom.
 
 ```swift
 .someView()
-    .bpkProgressiveBlur()
+    .bpkProgressiveBlurFallback()
 ```
 
 **Example:**
@@ -47,7 +47,7 @@ Applies a blur that increases gradually from the top of the view to the bottom.
 ```swift
 Image("example-image")
     .resizable()
-    .bpkProgressiveBlur()
+    .bpkProgressiveBlurFallback()
 ```
 
 ---
@@ -58,7 +58,7 @@ Applies a Metal-based GPU-accelerated variable blur using a vertical gradient ma
 
 ```swift
 .someView()
-    .bpkProgressiveMetalBlur()
+    .bpkProgressiveBlur()
 ```
 
 **Example:**
@@ -66,7 +66,7 @@ Applies a Metal-based GPU-accelerated variable blur using a vertical gradient ma
 ```swift
 Image("example-image")
     .resizable()
-    .bpkProgressiveMetalBlur()
+    .bpkProgressiveBlur()
 ```
 
 ---

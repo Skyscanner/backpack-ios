@@ -20,7 +20,7 @@ import SwiftUI
 
 /// A ViewModifier that applies a progressive blur effect to a view
 /// The blur gradually increases from no blur at the top to full blur at the bottom
-public struct BPKProgressiveBlur: ViewModifier {
+public struct BPKProgressiveBlurFallback: ViewModifier {
     /// The maximum blur radius to apply at the bottom of the view
     let radius: CGFloat
     
@@ -55,6 +55,7 @@ public struct BPKProgressiveBlur: ViewModifier {
                             )
                         )
                 }
+                    .clipped()
             )
     }
 }
@@ -65,7 +66,7 @@ public extension View {
     /// Applies a progressive blur effect with a default radius of 10 points
     /// The blur effect starts from no blur at the top and gradually increases to full blur at the bottom
     /// - Returns: A view with the progressive blur modifier applied
-    func bpkProgressiveBlur() -> some View {
-        self.modifier(BPKProgressiveBlur(radius: 10))
+    func bpkProgressiveBlurFallback() -> some View {
+        self.modifier(BPKProgressiveBlurFallback(radius: 10))
     }
 }

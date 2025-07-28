@@ -113,7 +113,7 @@ public extension View {
     ///   - maxSampleCount: The maximum number of samples the shader may take. Defaults to 15.
     ///   - verticalPassFirst: Whether to perform the vertical blur pass first. Defaults to `false`.
     /// - Returns: The view with the gradient blur effect applied.
-    func bpkProgressiveMetalBlur() -> some View {
+    func bpkProgressiveBlur() -> some View {
         self.variableBlur(
             radius: 24,
             maxSampleCount: 15,

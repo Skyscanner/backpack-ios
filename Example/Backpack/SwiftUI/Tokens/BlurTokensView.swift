@@ -74,13 +74,13 @@ struct BlurTokensView: View {
                 Image("dialog_image")
                     .resizable()
                     .frame(width: 300, height: 300)
-                    .bpkProgressiveBlur()
+                    .bpkProgressiveBlurFallback()
                     .cornerRadius(BPKCornerRadiusMd)
                 
                 Image("dialog_flare")
                     .resizable()
                     .frame(width: 300, height: 300)
-                    .bpkProgressiveBlur()
+                    .bpkProgressiveBlurFallback()
                     .cornerRadius(BPKCornerRadiusMd)
                 
                 Text("Progressive iOS 17+")
@@ -88,13 +88,13 @@ struct BlurTokensView: View {
                     Image("dialog_image")
                         .resizable()
                         .frame(width: 300, height: 300)
-                        .bpkProgressiveMetalBlur()
+                        .bpkProgressiveBlur()
                         .cornerRadius(BPKCornerRadiusMd)
                     
                     Image("dialog_flare")
                         .resizable()
                         .frame(width: 300, height: 300)
-                        .bpkProgressiveMetalBlur()
+                        .bpkProgressiveBlur()
                         .cornerRadius(BPKCornerRadiusMd)
                 }
             }
