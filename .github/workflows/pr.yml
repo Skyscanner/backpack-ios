@@ -41,15 +41,82 @@ jobs:
           app-id: ${{ vars.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
 
-      - name: Fetch Dependabot metadata
-        id: dependabot-metadata
+      - name: Dependabot metadata
+        id: metadata
         uses: dependabot/fetch-metadata@v2.4.0
         with:
-          github-token: "${{ steps.app-token.outputs.token }}"
-      
-      - name: Add bpk label
-        if: contains(steps.dependabot-metadata.outputs.dependency-names, 'bpk-')
-        run: gh pr edit "$PR_URL" --add-label "bpk" --remove-label "javascript"
-        env:
-          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
-          PR_URL: ${{github.event.pull_request.html_url}}
+          github-token: ${{ steps.app-token.outputs.token }}
+
+      - name: Apply dependency labels
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ steps.app-token.outputs.token }}
+          script: |
+            const prNumber = context.issue.number;
+            const updateType = '${{ steps.metadata.outputs.update-type }}';
+
+            // Get current labels
+            const { data: currentLabels } = await github.rest.issues.listLabelsOnIssue({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber
+            });
+
+            const currentLabelNames = currentLabels.map(label => label.name);
+            const conflictingLabels = ['major', 'minor', 'patch'];
+
+            // Remove conflicting labels if they exist
+            for (const conflictingLabel of conflictingLabels) {
+              if (currentLabelNames.includes(conflictingLabel)) {
+                await github.rest.issues.removeLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: prNumber,
+                  name: conflictingLabel
+                });
+                console.log(`Removed conflicting label: ${conflictingLabel}`);
+              }
+            }
+
+            // Determine specific dependency label based on update type
+            let specificLabel = null;
+            switch (updateType) {
+              case 'version-update:semver-major':
+              case 'version-update:semver-premajor':
+                specificLabel = 'majorDependency';
+                break;
+              case 'version-update:semver-minor':
+              case 'version-update:semver-preminor':
+                specificLabel = 'minorDependency';
+                break;
+              case 'version-update:semver-patch':
+              case 'version-update:semver-prepatch':
+                specificLabel = 'patchDependency';
+                break;
+              default:
+                console.log(`Unknown update type: ${updateType}, will use dependencies only`);
+            }
+
+            const labelsToAdd = [];
+
+            // Add the dependencies label if it's not already present (required for CI)
+            if (!currentLabelNames.includes('dependencies')) {
+              labelsToAdd.push('dependencies');
+            }
+
+            // Add specific dependency label if determined and not already present
+            if (specificLabel && !currentLabelNames.includes(specificLabel)) {
+              labelsToAdd.push(specificLabel);
+            }
+
+            if (labelsToAdd.length > 0) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                labels: labelsToAdd
+              });
+              console.log(`Added labels: ${labelsToAdd.join(', ')}`);
+            } else {
+              console.log('All required labels already present');
+            }
