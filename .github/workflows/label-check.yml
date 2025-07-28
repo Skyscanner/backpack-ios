@@ -17,7 +17,5 @@ jobs:
 
       - uses: docker://agilepathway/pull-request-label-checker:latest
         with:
-          one_of: >-
-            major,minor,patch,dependencies,skip-changelog,
-            majorDependency,minorDependency,patchDependency
+          one_of: major,minor,patch,dependencies,skip-changelog,majorDependency,minorDependency,patchDependency
           repo_token: ${{ steps.app-token.outputs.token }}
