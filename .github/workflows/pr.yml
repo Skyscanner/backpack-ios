@@ -41,48 +41,12 @@ jobs:
           app-id: ${{ vars.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
 
-      - name: Fetch Dependabot metadata
-        id: dependabot-metadata
-        uses: dependabot/fetch-metadata@v2.4.0
-        with:
-          github-token: "${{ steps.app-token.outputs.token }}"
-
-      - name: Add bpk label
-        if: contains(steps.dependabot-metadata.outputs.dependency-names, 'bpk-')
-        run: gh pr edit "$PR_URL" --add-label "bpk" --remove-label "javascript"
-        env:
-          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
-          PR_URL: ${{github.event.pull_request.html_url}}
-
-      - name: Apply appropriate dependency labels
+      - name: Apply dependencies label
         uses: actions/github-script@v7
         with:
           github-token: ${{ steps.app-token.outputs.token }}
           script: |
-            const updateType =
-              '${{ steps.dependabot-metadata.outputs.update-type }}';
             const prNumber = context.issue.number;
-
-            // Map update types to appropriate labels
-            let labelToAdd = 'dependencies'; // fallback
-
-            switch(updateType) {
-              case 'version-update:semver-major':
-              case 'version-update:semver-premajor':
-                labelToAdd = 'majorDependency';
-                break;
-              case 'version-update:semver-minor':
-              case 'version-update:semver-preminor':
-                labelToAdd = 'minorDependency';
-                break;
-              case 'version-update:semver-patch':
-              case 'version-update:semver-prepatch':
-                labelToAdd = 'patchDependency';
-                break;
-              default:
-                labelToAdd = 'dependencies';
-                break;
-            }
 
             // Get current labels
             const { data: currentLabels } =
@@ -108,28 +72,15 @@ jobs:
               }
             }
 
-            // Remove the generic 'dependencies' label if we're adding specific
-            if (labelToAdd !== 'dependencies' &&
-                currentLabelNames.includes('dependencies')) {
-              await github.rest.issues.removeLabel({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: prNumber,
-                name: 'dependencies'
-              });
-              console.log('Removed generic dependencies label');
-            }
-
-            // Add the appropriate label if it's not already present
-            if (!currentLabelNames.includes(labelToAdd)) {
+            // Add the dependencies label if it's not already present
+            if (!currentLabelNames.includes('dependencies')) {
               await github.rest.issues.addLabels({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: prNumber,
-                labels: [labelToAdd]
+                labels: ['dependencies']
               });
-              console.log(`Added label: ${labelToAdd} ` +
-                         `for update type: ${updateType}`);
+              console.log('Added dependencies label');
             } else {
-              console.log(`Label ${labelToAdd} already present`);
+              console.log('Dependencies label already present');
             }
