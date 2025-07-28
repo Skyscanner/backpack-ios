@@ -70,4 +70,3 @@ public extension View {
         self.modifier(BPKProgressiveBlurFallback(radius: 10))
     }
 }
-
