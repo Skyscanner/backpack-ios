@@ -6,7 +6,7 @@
 
 ## Previews
 
-| Uniform | Progressive Blur Pre iOS 17 | Progressive Blur iOS 17+ |
+| Uniform | Progressive Blur iOS 17 fallback | Progressive Blur iOS 17+ |
 | ------------ | ---------------- | ---------- |
 | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_blur-uniform___default_lm.png" alt="" width="375" /> | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_blur-progessive-17-lower___default_lm.png" alt="" width="375" /> | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_blur-progessive___default_lm.png" alt="" width="375" /> |
 
@@ -25,11 +25,15 @@ BPKUniformBlur()
 ```swift
 Text("Blurred Content")
     .blur(BPKUniformBlur())
+
+Image("example-image")
+    .resizable()
+    .blur(BPKUniformBlur())
 ```
 
 ---
 
-### Progressive Blur
+### Progressive Blur - iOS 17 fallback
 
 Applies a blur that increases gradually from the top of the view to the bottom.
 
@@ -48,7 +52,7 @@ Image("example-image")
 
 ---
 
-### Metal Progressive Blur
+### Metal Progressive Blur - iOS 17+
 
 Applies a Metal-based GPU-accelerated variable blur using a vertical gradient mask.
 
@@ -81,14 +85,14 @@ Image("example-image")
 - **Type**: Vertical gradient blur
 - **Radius**: 10pt (default)
 - **Performance**: Medium
-- **Use case**: UI cards, fading overlays
+- **Use case**: iOS 17 fallback
 
 ### `bpkProgressiveMetalBlur`
 
 - **Type**: Shader-based mask blur
 - **Radius**: 50pt (default)
 - **Performance**: GPU-accelerated
-- **Use case**: High-fidelity fades and animations
+- **Use case**: iOS 17+
 
 ---
 
