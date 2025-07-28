@@ -14,7 +14,6 @@ import SwiftUI
 import Metal
 import MetalKit
 
-// swiftlint:disable line_length comma
 @available(iOS 17, macOS 14, macCatalyst 17, tvOS 17, visionOS 1, *)
 extension VisualEffect {
     
@@ -38,7 +37,7 @@ extension VisualEffect {
                 .image(mask),
                 .float(verticalPassFirst ? 1 : 0)
             ),
-            maxSampleOffset: CGSize(width: radius , height: radius),
+            maxSampleOffset: CGSize(width: radius, height: radius),
             isEnabled: isEnabled
         )
         .layerEffect(
