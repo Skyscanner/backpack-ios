@@ -42,18 +42,32 @@ struct BlurTokensView: View {
                         .frame(width: 150, height: 150)
                         .cornerRadius(BPKCornerRadiusMd)
                 }
-                Text("Uniform")
+                Text("Uniform - Opaque false")
                 HStack(spacing: 8) {
                     Image("dialog_image")
                         .resizable()
                         .frame(width: 150, height: 150)
-                        .blur(BPKUniformBlur())
+                        .blur(BPKUniformBlur(opaque: false))
                         .cornerRadius(BPKCornerRadiusMd)
                     
                     Image("dialog_flare")
                         .resizable()
                         .frame(width: 150, height: 150)
-                        .blur(BPKUniformBlur())
+                        .blur(BPKUniformBlur(opaque: false))
+                        .cornerRadius(BPKCornerRadiusMd)
+                }
+                Text("Uniform - Opaque true")
+                HStack(spacing: 8) {
+                    Image("dialog_image")
+                        .resizable()
+                        .frame(width: 150, height: 150)
+                        .blur(BPKUniformBlur(opaque: true))
+                        .cornerRadius(BPKCornerRadiusMd)
+                    
+                    Image("dialog_flare")
+                        .resizable()
+                        .frame(width: 150, height: 150)
+                        .blur(BPKUniformBlur(opaque: true))
                         .cornerRadius(BPKCornerRadiusMd)
                 }
                 Text("Progressive pre iOS 17")
@@ -72,11 +86,13 @@ struct BlurTokensView: View {
                 Text("Progressive iOS 17+")
                 if #available(iOS 17, *) {
                     Image("dialog_image")
+                        .resizable()
                         .frame(width: 300, height: 300)
                         .bpkProgressiveMetalBlur()
                         .cornerRadius(BPKCornerRadiusMd)
                     
                     Image("dialog_flare")
+                        .resizable()
                         .frame(width: 300, height: 300)
                         .bpkProgressiveMetalBlur()
                         .cornerRadius(BPKCornerRadiusMd)

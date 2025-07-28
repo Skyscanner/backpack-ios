@@ -115,7 +115,7 @@ public extension View {
     /// - Returns: The view with the gradient blur effect applied.
     func bpkProgressiveMetalBlur() -> some View {
         self.variableBlur(
-            radius: 50,
+            radius: 24,
             maxSampleCount: 15,
             verticalPassFirst: false
         ) { geometryProxy, context in

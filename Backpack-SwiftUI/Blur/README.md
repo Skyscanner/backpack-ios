@@ -17,18 +17,18 @@
 Applies a fixed-radius blur to any SwiftUI view.
 
 ```swift
-BPKUniformBlur()
+BPKUniformBlur(opaque: Bool)
 ```
 
 **Example:**
 
 ```swift
 Text("Blurred Content")
-    .blur(BPKUniformBlur())
+    .blur(BPKUniformBlur(opaque: false))
 
 Image("example-image")
     .resizable()
-    .blur(BPKUniformBlur())
+    .blur(BPKUniformBlur(opaque: true))
 ```
 
 ---
@@ -76,9 +76,9 @@ Image("example-image")
 ### `BPKUniformBlur`
 
 - **Type**: Static blur
-- **Radius**: 4pt
+- **Radius**: 4pt (default)
 - **Performance**: High
-- **Use case**: Simple, consistent blur overlays
+- **Use case**: Simple, consistent blur overlays, opaque bool depending on image background
 
 ### `BPKProgressiveBlur`
 
@@ -90,7 +90,7 @@ Image("example-image")
 ### `bpkProgressiveMetalBlur`
 
 - **Type**: Shader-based mask blur
-- **Radius**: 50pt (default)
+- **Radius**: 24pt (default)
 - **Performance**: GPU-accelerated
 - **Use case**: iOS 17+
 

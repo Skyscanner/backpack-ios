@@ -24,8 +24,11 @@ import SwiftUI
 public struct BPKUniformBlur {
     /// The radius of the blur effect.
     let radius: CGFloat = 4
+    var opaque: Bool
     
-    public init() {}
+    public init(opaque: Bool) {
+        self.opaque = opaque
+    }
     
 }
 
@@ -34,6 +37,6 @@ public extension View {
     /// - Parameter blur: A `BPKBlur` configuration defining the type and style of the blur.
     /// - Returns: A modified view with the blur applied.
     func blur(_ blur: BPKUniformBlur) -> some View {
-        self.blur(radius: blur.radius, opaque: true)
+        self.blur(radius: blur.radius, opaque: blur.opaque)
     }
 }
