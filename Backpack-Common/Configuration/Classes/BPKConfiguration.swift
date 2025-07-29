@@ -35,7 +35,7 @@ public struct BPKConfigSet {
     public var names: [String: String]
     public var behaviours: [String: Bool]
 
-    init(
+    public init(
         fonts: [String: Font] = [:],
         colors: [String: Color] = [:],
         spacings: [String: CGFloat] = [:],
@@ -92,69 +92,69 @@ public extension BPKConfigSet {
 
 // MARK: - Helper for dictate the layer of configuration
 
-public extension BPKConfigSet {
+public extension Optional where Wrapped == BPKConfigSet {
 
-    func font(for key: String, _ default: Font? = nil) -> Font {
-        let output = self.fonts[key]
+    func font(for key: String, _ `default`: Font? = nil) -> Font {
+        let output = self?.fonts[key]
         ?? `default`
         ?? BPKConfiguration.shared.global.fonts[key]
 
         if let output {
             return output
         } else {
-            assertionFailure("No value defined for `\(key)` in \(self)")
+            assertionFailure("No value defined for `\(key)` in \(String(describing: self))")
             return .body
         }
     }
 
-    func color(for key: String, _ default: Color? = nil) -> Color {
-        let output = self.colors[key]
+    func color(for key: String, _ `default`: Color? = nil) -> Color {
+        let output = self?.colors[key]
         ?? `default`
         ?? BPKConfiguration.shared.global.colors[key]
 
         if let output {
             return output
         } else {
-            assertionFailure("No value defined for `\(key)` in \(self)")
+            assertionFailure("No value defined for `\(key)` in \(String(describing: self))")
             return .black
         }
     }
 
-    func spacing(for key: String, _ default: CGFloat? = nil) -> CGFloat {
-        let output = self.spacings[key]
+    func spacing(for key: String, _ `default`: CGFloat? = nil) -> CGFloat {
+        let output = self?.spacings[key]
         ?? `default`
         ?? BPKConfiguration.shared.global.spacings[key]
 
         if let output {
             return output
         } else {
-            assertionFailure("No value defined for `\(key)` in \(self)")
+            assertionFailure("No value defined for `\(key)` in \(String(describing: self))")
             return 0
         }
     }
 
-    func name(for key: String, _ default: String? = nil) -> String {
-        let output = self.names[key]
+    func name(for key: String, _ `default`: String? = nil) -> String {
+        let output = self?.names[key]
         ?? `default`
         ?? BPKConfiguration.shared.global.names[key]
 
         if let output {
             return output
         } else {
-            assertionFailure("No value defined for `\(key)` in \(self)")
+            assertionFailure("No value defined for `\(key)` in \(String(describing: self))")
             return ""
         }
     }
 
-    func behaviour(for key: String, _ default: Bool? = nil) -> Bool {
-        let output = self.behaviours[key]
+    func behaviour(for key: String, _ `default`: Bool? = nil) -> Bool {
+        let output = self?.behaviours[key]
         ?? `default`
         ?? BPKConfiguration.shared.global.behaviours[key]
 
         if let output {
             return output
         } else {
-            assertionFailure("No value defined for `\(key)` in \(self)")
+            assertionFailure("No value defined for `\(key)` in \(String(describing: self))")
             return false
         }
     }
