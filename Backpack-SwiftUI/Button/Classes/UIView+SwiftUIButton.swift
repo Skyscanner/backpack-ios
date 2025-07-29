@@ -22,28 +22,37 @@ import Combine
 public final class SwiftUIButtonViewModel: ObservableObject {
     @Published public var isEnabled: Bool
     @Published public var isLoading: Bool
+    @Published public var title: String
+    public var style: Backpack_SwiftUI.BPKButton.Style
+    public var size: BPKButton.Size
+    public var action: () -> Void
+    
 
-    public init(isEnabled: Bool, isLoading: Bool) {
+    public init(isEnabled: Bool,
+                isLoading: Bool,
+                title: String,
+                style: Backpack_SwiftUI.BPKButton.Style,
+                size: BPKButton.Size = .default,
+                action: @escaping () -> Void) {
         self.isEnabled = isEnabled
         self.isLoading = isLoading
+        self.title = title
+        self.style = style
+        self.size = size
+        self.action = action
     }
 }
 
 public struct ReactiveSwiftUIBPKButtonWrapper: View {
-    let title: String
-    let style: Backpack_SwiftUI.BPKButton.Style
-    let size: BPKButton.Size
-    let action: () -> Void
-
     @ObservedObject var viewModel: SwiftUIButtonViewModel
 
     public var body: some View {
-        BPKButton(title,
+        BPKButton(viewModel.title,
             loading: $viewModel.isLoading,
             enabled: $viewModel.isEnabled,
-            size: size,
-            action: action)
-        .buttonStyle(style)
+            size: viewModel.size,
+            action: viewModel.action)
+        .buttonStyle(viewModel.style)
         .stretchable()
     }
 }
@@ -93,13 +102,14 @@ public extension UIView {
         isLoading: Bool = false,
         action: @escaping () -> Void
     ) -> (UIView, SwiftUIButtonViewModel) {
-        let viewModel = SwiftUIButtonViewModel(isEnabled: isEnabled, isLoading: isLoading)
-
+        let viewModel = SwiftUIButtonViewModel(isEnabled: isEnabled,
+                                               isLoading: isLoading,
+                                               title: title,
+                                               style: style,
+                                               size: size,
+                                               action: action)
+        
         let wrapperView = ReactiveSwiftUIBPKButtonWrapper(
-            title: title,
-            style: style,
-            size: size,
-            action: action,
             viewModel: viewModel
         )
 
