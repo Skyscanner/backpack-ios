@@ -19,11 +19,6 @@
 import SwiftUI
 import Backpack_Common
 
-let chipConfig = BPKConfigSet(
-    spacings: ["horizontal_space": BPKSpacing.md.value],
-    behaviours: ["round_corners": true]
-)
-
 public struct BPKChip: View {
     let text: String
     let icon: BPKIcon?
