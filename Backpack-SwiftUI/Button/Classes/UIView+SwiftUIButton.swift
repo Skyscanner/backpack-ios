@@ -16,6 +16,7 @@
  * limitations under the License.
  */
 
+// swiftlint:disable indentation_width
 import SwiftUI
 import Combine
 
@@ -27,13 +28,13 @@ public final class SwiftUIButtonViewModel: ObservableObject {
     public var size: BPKButton.Size
     public var action: () -> Void
     
-
     public init(isEnabled: Bool,
                 isLoading: Bool,
                 title: String,
                 style: Backpack_SwiftUI.BPKButton.Style,
                 size: BPKButton.Size = .default,
                 action: @escaping () -> Void) {
+        
         self.isEnabled = isEnabled
         self.isLoading = isLoading
         self.title = title
