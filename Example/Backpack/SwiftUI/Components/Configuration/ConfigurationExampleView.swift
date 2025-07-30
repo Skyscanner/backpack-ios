@@ -28,7 +28,7 @@ struct ConfigurationExampleView: View {
     @State private var selectedChip4 = false
 
     let chipExampleAlternateConfig = BPKConfigSet(
-        spacings: ["horizontal_space": BPKSpacing.md.value],
+        spacings: ["vertical_space": BPKSpacing.md.value],
         behaviours: ["round_corners": true]
     )
 

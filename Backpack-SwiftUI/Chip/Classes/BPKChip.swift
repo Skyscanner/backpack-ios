@@ -55,7 +55,7 @@ public struct BPKChip: View {
                     .font(style: .footnote)
             }
             .padding(.horizontal, .base)
-            .padding(.vertical, config.spacing(for: "horizontal_space", BPKSpacing.none.value))
+            .padding(.vertical, config.spacing(for: "vertical_space", BPKSpacing.none.value))
         }
         .buttonStyle(
             ChipButtonStyle(
