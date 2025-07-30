@@ -23,15 +23,15 @@ import Combine
 public final class SwiftUIButtonViewModel: ObservableObject {
     @Published public var isEnabled: Bool
     @Published public var isLoading: Bool
-    @Published public var title: String
-    public var style: Backpack_SwiftUI.BPKButton.Style
+    @Published public var title: String?
+    public var style: BPKButton.Style
     public var size: BPKButton.Size
     public var action: () -> Void
     
     public init(isEnabled: Bool,
                 isLoading: Bool,
-                title: String,
-                style: Backpack_SwiftUI.BPKButton.Style,
+                title: String? = nil,
+                style: BPKButton.Style,
                 size: BPKButton.Size = .default,
                 action: @escaping () -> Void) {
         
@@ -48,7 +48,7 @@ public struct ReactiveSwiftUIBPKButtonWrapper: View {
     @ObservedObject var viewModel: SwiftUIButtonViewModel
 
     public var body: some View {
-        BPKButton(viewModel.title,
+        BPKButton(viewModel.title ?? "",
             loading: $viewModel.isLoading,
             enabled: $viewModel.isEnabled,
             size: viewModel.size,
@@ -95,11 +95,12 @@ public extension UIView {
     
     /// Creates a SwiftUI BPKButton wrapped in a UIHostingController and returns both the view and its ViewModel
     static func makeReactiveSwiftUIBPKButton(
-        title: String,
+        title: String? = "",
         accessibilityIdentifier: String? = nil,
-        style: Backpack_SwiftUI.BPKButton.Style,
+        accessibilityLabel: String? = nil,
+        style: BPKButton.Style,
         size: BPKButton.Size = .default,
-        isEnabled: Bool = false,
+        isEnabled: Bool = true,
         isLoading: Bool = false,
         action: @escaping () -> Void
     ) -> (UIView, SwiftUIButtonViewModel) {
@@ -118,7 +119,9 @@ public extension UIView {
         hostingController.view.backgroundColor = .clear
         hostingController.view.translatesAutoresizingMaskIntoConstraints = false
         hostingController.view.accessibilityIdentifier = accessibilityIdentifier
+        hostingController.view.accessibilityLabel = accessibilityLabel
 
         return (hostingController.view, viewModel)
     }
 }
+
