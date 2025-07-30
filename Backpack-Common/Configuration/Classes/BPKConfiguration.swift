@@ -30,20 +30,26 @@ public enum BPKComponent: String, Hashable {
 
 public struct BPKConfigSet {
     public var fonts: [String: Font]
+    public var fontsLegacy: [String: UIFont] // UIKit Fonts
     public var colors: [String: Color]
+    public var colorsLegacy: [String: UIColor] // UIKit Colour
     public var spacings: [String: CGFloat]
     public var names: [String: String]
     public var behaviours: [String: Bool]
 
     public init(
         fonts: [String: Font] = [:],
+        fontsLegacy: [String: UIFont] = [:],
         colors: [String: Color] = [:],
+        colorsLegacy: [String: UIColor] = [:],
         spacings: [String: CGFloat] = [:],
         names: [String: String] = [:],
         behaviours: [String: Bool] = [:]
     ) {
         self.fonts = fonts
+        self.fontsLegacy = fontsLegacy
         self.colors = colors
+        self.colorsLegacy = colorsLegacy
         self.spacings = spacings
         self.names = names
         self.behaviours = behaviours
@@ -65,7 +71,10 @@ public final class BPKConfiguration: BPKConfigurationProtocol {
     public func config(for component: BPKComponent) -> BPKConfigSet? {
         return BPKConfiguration.shared.perComponent[component]
     }
+}
 
+// MARK: - Helper
+extension BPKConfiguration {
     var global: BPKConfigSet {
         BPKConfiguration.shared.config(for: .global) ?? .globalDefault
     }
@@ -74,7 +83,9 @@ public final class BPKConfiguration: BPKConfigurationProtocol {
 extension BPKConfigSet {
     public static let globalDefault = BPKConfigSet(
         fonts: [:],
+        fontsLegacy: [:],
         colors: [:],
+        colorsLegacy: [:],
         spacings: [:],
         names: [:],
         behaviours: [:]
@@ -107,10 +118,36 @@ public extension Optional where Wrapped == BPKConfigSet {
         }
     }
 
+    func fontLegacy(for key: String, _ `default`: UIFont? = nil) -> UIFont {
+        let output = self?.fontsLegacy[key]
+        ?? `default`
+        ?? BPKConfiguration.shared.global.fontsLegacy[key]
+
+        if let output {
+            return output
+        } else {
+            assertionFailure("No value defined for `\(key)` in \(String(describing: self))")
+            return .boldSystemFont(ofSize: 10)
+        }
+    }
+
     func color(for key: String, _ `default`: Color? = nil) -> Color {
         let output = self?.colors[key]
         ?? `default`
         ?? BPKConfiguration.shared.global.colors[key]
+
+        if let output {
+            return output
+        } else {
+            assertionFailure("No value defined for `\(key)` in \(String(describing: self))")
+            return .black
+        }
+    }
+
+    func colorLegacy(for key: String, _ `default`: UIColor? = nil) -> UIColor {
+        let output = self?.colorsLegacy[key]
+        ?? `default`
+        ?? BPKConfiguration.shared.global.colorsLegacy[key]
 
         if let output {
             return output
