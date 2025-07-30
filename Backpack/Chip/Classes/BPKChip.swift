@@ -17,6 +17,7 @@
  */
 
 import Foundation
+import Backpack_Common
 
 @objcMembers
 @objc
@@ -52,6 +53,11 @@ public class BPKChip: UIControl {
             updateLookAndFeel()
         }
     }
+    
+    /**
+     * Configuration set for customizing chip appearance and behavior.
+     */
+    public let config: BPKConfigSet?
     
     public override var isSelected: Bool {
         didSet {
@@ -117,6 +123,8 @@ public class BPKChip: UIControl {
     }()
     
     private var trailingConstraint: NSLayoutConstraint?
+    private var topConstraint: NSLayoutConstraint?
+    private var bottomConstraint: NSLayoutConstraint?
     
     private lazy var tintLayer: CALayer = {
         let layer = CALayer()
@@ -130,9 +138,10 @@ public class BPKChip: UIControl {
      *
      * @param title String to use as the title.
      * @param icon BPKChip.Icon to use as the icon
+     * @param configOverride Optional BPKConfigSet to override default configuration
      */
-    public convenience init(title: String, icon: BPKSmallIconName? = nil) {
-        self.init(frame: .zero)
+    public convenience init(title: String, icon: BPKSmallIconName? = nil, configOverride: BPKConfigSet? = nil) {
+        self.init(frame: .zero, configOverride: configOverride)
         self.title = title
         self.icon = icon
         
@@ -143,9 +152,11 @@ public class BPKChip: UIControl {
      * Create a `BPKChip` with a given frame.
      *
      * @param frame The initial frame of the chip.
+     * @param configOverride Optional BPKConfigSet to override default configuration
      * @return `BPKChip` instance.
      */
-    public override init(frame: CGRect) {
+    public init(frame: CGRect, configOverride: BPKConfigSet? = nil) {
+        self.config = BPKConfigSet.setFor(.bpkChip, override: configOverride)
         super.init(frame: frame)
         setup()
     }
@@ -157,6 +168,7 @@ public class BPKChip: UIControl {
      * @return `BPKChip` instance.
      */
     public required init?(coder: NSCoder) {
+        self.config = BPKConfigSet.setFor(.bpkChip, override: nil)
         super.init(coder: coder)
         setup()
     }
@@ -165,8 +177,8 @@ public class BPKChip: UIControl {
         super.layoutSubviews()
         
         tintLayer.frame = self.bounds
-        tintLayer.cornerRadius = BPKSpacingMd
-        self.layer.cornerRadius = BPKSpacingMd
+        tintLayer.cornerRadius = cornerRadius
+        self.layer.cornerRadius = cornerRadius
     }
     
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -174,6 +186,20 @@ public class BPKChip: UIControl {
         if previousTraitCollection?.userInterfaceStyle != traitCollection.userInterfaceStyle {
             updateLookAndFeel()
         }
+    }
+    
+    /// Computed property for corner radius based on configuration
+    private var cornerRadius: CGFloat {
+        if config.behaviour(for: "round_corners", false) == true {
+            return bounds.height / 2.0
+        } else {
+            return BPKSpacingMd
+        }
+    }
+    
+    /// Computed property for vertical spacing based on configuration
+    private var verticalSpacing: CGFloat {
+        return config.spacing(for: "vertical_space", BPKSpacingSm)
     }
 }
 
@@ -189,14 +215,17 @@ extension BPKChip {
             equalTo: trailingAnchor,
             constant: -chipTrailingSpacing
         )
+        
+        topConstraint = containerStackView.topAnchor.constraint(equalTo: topAnchor, constant: verticalSpacing)
+        bottomConstraint = containerStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -verticalSpacing)
                 
         NSLayoutConstraint.activate([
             containerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: chipLeadingSpacing),
             trailingConstraint!,
             containerStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             heightAnchor.constraint(greaterThanOrEqualToConstant: BPKSpacingXl),
-            containerStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -BPKSpacingSm),
-            containerStackView.topAnchor.constraint(equalTo: topAnchor, constant: BPKSpacingSm)
+            bottomConstraint!,
+            topConstraint!
         ])
         
         addTarget(self, action: #selector(handleSingleTap), for: .touchUpInside)
@@ -223,7 +252,13 @@ extension BPKChip {
         placeElements()
         
         trailingConstraint?.constant = -self.chipTrailingSpacing
+        
+        // Update vertical spacing constraints based on configuration
+        topConstraint?.constant = verticalSpacing
+        bottomConstraint?.constant = -verticalSpacing
+        
         setNeedsUpdateConstraints()
+        setNeedsLayout() // Ensure layout is updated for corner radius changes
         
         if let shadow = self.shadow {
             shadow.apply(to: layer)
