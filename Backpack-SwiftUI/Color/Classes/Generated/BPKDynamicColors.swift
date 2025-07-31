@@ -160,6 +160,11 @@ public extension BPKColor {
     static let textPrimaryColor = BPKColor(red: 0.086, green: 0.086, blue: 0.086, alpha: 1)
         .darkVariant(BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1))
 
+    /// The `textSuccessColor` dynamic color from the Backpack palette.
+    
+    static let textSuccessColor = BPKColor(red: 0.047, green: 0.514, blue: 0.541, alpha: 1)
+        .darkVariant(BPKColor(red: 0.384, green: 0.945, blue: 0.776, alpha: 1))
+
     /// The `textErrorColor` dynamic color from the Backpack palette.
     
     static let textErrorColor = BPKColor(red: 0.906, green: 0.031, blue: 0.400, alpha: 1)

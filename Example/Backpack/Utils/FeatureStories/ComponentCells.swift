@@ -67,6 +67,7 @@ struct ComponentCellsProvider {
             imageGalleryGridView(),
             imageGallerySlideshow(),
             insetBanner(),
+            intentTriggerButton(),
             label(),
             navBar(),
             navigationTabsGroup(),
@@ -92,6 +93,7 @@ struct ComponentCellsProvider {
             starRatings(),
             switches(),
             tabBarControllers(),
+            tappableContainer(),
             tappableLinkLabels(),
             textArea(),
             textField(),
@@ -533,6 +535,19 @@ extension ComponentCellsProvider {
             showPresentable: show(presentable:)
         )
     }
+
+    private func tappableContainer() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Tappable container",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(TappableContainerExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Tappable container", tabs: $0) }
+        )
+    }
+
     private func tappableLinkLabels() -> CellDataSource {
         PresentableCellDataSource(
             title: "Tappable link labels",
@@ -770,6 +785,21 @@ extension ComponentCellsProvider {
                 .swiftui(groups: DynamicLayoutGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "Dynamic Layout", tabs: $0) }
+        )
+    }
+    private func intentTriggerButton() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Intent Trigger Button",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    if #available(iOS 17.0, *) {
+                        return ContentUIHostingController(IntentTriggerButtonExampleView())
+                    } else {
+                        return ContentUIHostingController(IntentTriggerButtonExampleViewFallback())
+                    }
+                }))
+            ],
+            showChildren: { showComponent(title: "Intent Trigger Button", tabs: $0) }
         )
     }
 }

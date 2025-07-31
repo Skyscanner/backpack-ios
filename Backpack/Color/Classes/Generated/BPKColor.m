@@ -161,6 +161,11 @@
                                           darkVariant:[UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1]];
 }
 
++ (UIColor *)textSuccessColor {
+    return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:0.047 green:0.514 blue:0.541 alpha:1] 
+                                          darkVariant:[UIColor colorWithRed:0.384 green:0.945 blue:0.776 alpha:1]];
+}
+
 + (UIColor *)textErrorColor {
     return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:0.906 green:0.031 blue:0.400 alpha:1] 
                                           darkVariant:[UIColor colorWithRed:1.000 green:0.392 blue:0.612 alpha:1]];
