@@ -24,6 +24,7 @@ public final class SwiftUIButtonViewModel: ObservableObject {
     @Published public var isEnabled: Bool
     @Published public var isLoading: Bool
     @Published public var title: String?
+    public var icon: BPKButton.Icon?
     public var style: BPKButton.Style
     public var size: BPKButton.Size
     public var action: () -> Void
@@ -31,6 +32,7 @@ public final class SwiftUIButtonViewModel: ObservableObject {
     public init(isEnabled: Bool,
                 isLoading: Bool,
                 title: String? = nil,
+                icon: BPKButton.Icon? = nil,
                 style: BPKButton.Style,
                 size: BPKButton.Size = .default,
                 action: @escaping () -> Void) {
@@ -38,6 +40,7 @@ public final class SwiftUIButtonViewModel: ObservableObject {
         self.isEnabled = isEnabled
         self.isLoading = isLoading
         self.title = title
+        self.icon = icon
         self.style = style
         self.size = size
         self.action = action
@@ -49,6 +52,7 @@ public struct ReactiveSwiftUIBPKButtonWrapper: View {
 
     public var body: some View {
         BPKButton(viewModel.title ?? "",
+                  icon: viewModel.icon,
             loading: $viewModel.isLoading,
             enabled: $viewModel.isEnabled,
             size: viewModel.size,
@@ -59,43 +63,11 @@ public struct ReactiveSwiftUIBPKButtonWrapper: View {
 }
 
 public extension UIView {
-    /// Creates a SwiftUI BPKButton wrapped in a UIHostingController and returns its view
-    /// - Parameters:
-    ///   - title: The button title
-    ///   - accessibilityIdentifier: The accessibility identifier for the button
-    ///   - accessibilityLabel: The accessibility label for the button
-    ///   - style: The BPKButton style (e.g., .featured, .secondary)
-    ///   - size: The BPKButton size (e.g, .large, default)
-    ///   - action: The action to perform when the button is tapped
-    /// - Returns: A UIView containing the SwiftUI button
-    static func makeSwiftUIBPKButton(
-        title: String,
-        accessibilityIdentifier: String? = nil,
-        accessibilityLabel: String? = nil,
-        style: Backpack_SwiftUI.BPKButton.Style,
-        size: BPKButton.Size = .default,
-        action: @escaping () -> Void
-    ) -> UIView {
-        let swiftUIButton = BPKButton(
-            title,
-            size: size,
-            action: action
-        )
-        .buttonStyle(style)
-        .stretchable()
-
-        let hostingController = UIHostingController(rootView: swiftUIButton)
-        hostingController.view.backgroundColor = .clear
-        hostingController.view.translatesAutoresizingMaskIntoConstraints = false
-        hostingController.view.accessibilityIdentifier = accessibilityIdentifier
-        hostingController.view.accessibilityLabel = accessibilityLabel
-        
-        return hostingController.view
-    }
     
     /// Creates a SwiftUI BPKButton wrapped in a UIHostingController and returns both the view and its ViewModel
     static func makeReactiveSwiftUIBPKButton(
         title: String? = "",
+        icon: BPKButton.Icon? = nil,
         accessibilityIdentifier: String? = nil,
         accessibilityLabel: String? = nil,
         style: BPKButton.Style,
@@ -107,6 +79,7 @@ public extension UIView {
         let viewModel = SwiftUIButtonViewModel(isEnabled: isEnabled,
                                                isLoading: isLoading,
                                                title: title,
+                                               icon: icon,
                                                style: style,
                                                size: size,
                                                action: action)
@@ -114,14 +87,13 @@ public extension UIView {
         let wrapperView = ReactiveSwiftUIBPKButtonWrapper(
             viewModel: viewModel
         )
-
+        
         let hostingController = UIHostingController(rootView: wrapperView)
         hostingController.view.backgroundColor = .clear
         hostingController.view.translatesAutoresizingMaskIntoConstraints = false
         hostingController.view.accessibilityIdentifier = accessibilityIdentifier
         hostingController.view.accessibilityLabel = accessibilityLabel
-
+        
         return (hostingController.view, viewModel)
     }
 }
-
