@@ -17,24 +17,37 @@
  */
 
 import SwiftUI
+import Backpack_Common
 
 struct ChipButtonStyle: ButtonStyle {
     let style: BPKChipStyle
     let selected: Bool
     let disabled: Bool
-    
+    let config: BPKConfigSet?
+
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .frame(minHeight: .xl)
             .lineLimit(1)
             .background(backgroundColor(configuration.isPressed))
             .foregroundColor(foregroundColor(configuration.isPressed))
-            .clipShape(RoundedRectangle(cornerRadius: .sm))
-            .outline(outlineColor(configuration.isPressed), cornerRadius: .sm)
+            .clipShape(cornerShape)
+            .overlay(
+                cornerShape
+                    .stroke(Color(outlineColor(configuration.isPressed)), lineWidth: 1)
+            )
             .if(style == .onImage) { $0.shadow(.sm) }
             .if(!BPKFont.enableDynamicType, transform: {
                 $0.sizeCategory(.large)
             })
+    }
+    
+    private var cornerShape: some Shape {
+        if config.behaviour(for: "round_corners", false) {
+            return AnyShape(Capsule())
+        } else {
+            return AnyShape(RoundedRectangle(cornerRadius: BPKCornerRadius.sm.value))
+        }
     }
     
     private func outlineColor(_ isPressed: Bool) -> BPKColor {
@@ -99,5 +112,18 @@ struct ChipButtonStyle: ButtonStyle {
         case .onDark:
             return selected ? .textPrimaryColor : .textOnDarkColor
         }
+    }
+}
+
+// Helper struct to type-erase shapes
+struct AnyShape: Shape {
+    private let _path: (CGRect) -> Path
+    
+    init<S: Shape>(_ shape: S) {
+        _path = shape.path(in:)
+    }
+    
+    func path(in rect: CGRect) -> Path {
+        return _path(rect)
     }
 }
