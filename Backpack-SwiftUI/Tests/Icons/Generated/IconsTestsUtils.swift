@@ -129,6 +129,7 @@ extension BPKIconViewTests {
         .filter,
         .fingerprint,
         .flag,
+        .flame,
         .flask,
         .flightFlexible,
         .flightLanding,
@@ -154,6 +155,7 @@ extension BPKIconViewTests {
         .hotelsPetsAllowed,
         .hotelsSmoking,
         .hotels,
+        .incompatible,
         .infant,
         .informationLanguageAlert,
         .informationLanguageQuestion,
@@ -255,6 +257,7 @@ extension BPKIconViewTests {
         .swapVertical,
         .swap,
         .taxi,
+        .temperature,
         .thumbsDown,
         .thumbsUp,
         .tickCircle,
@@ -296,6 +299,9 @@ extension BPKIconViewTests {
         .window,
         .worldAmer,
         .worldApac,
-        .worldEmea
+        .worldEmea,
+        .starHalfXxxl,
+        .starOutlineXxxl,
+        .starXxxl
     ]
 }
