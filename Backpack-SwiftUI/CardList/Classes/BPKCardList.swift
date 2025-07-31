@@ -139,6 +139,7 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
             }
             .buttonStyle(.link)
             .stretchable()
+            .accessibilityIdentifier("BPKCardListExpandButton")
         }
     }
 }
