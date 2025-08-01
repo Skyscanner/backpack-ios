@@ -17,8 +17,10 @@
  */
 
 import SwiftUI
-import AppIntents
 import Backpack_Common
+
+#if canImport(AppIntents)
+import AppIntents
 
 /// A button component that triggers App Intents when tapped.
 ///
@@ -69,6 +71,31 @@ public struct BPKIntentTriggerButton<Content: View, Intent: AppIntent>: View {
     }
 }
 
+/// A wrapper component that ensures safe usage of BPKIntentTriggerButton across iOS versions.
+///
+/// If iOS <17, the fallback is a disabled button with the same visual content (dimmed).
+public struct BPKCompatibleIntentButton<Content: View, Intent: AppIntent>: View {
+    private let intent: Intent
+    private let label: () -> Content
+    
+    public init(intent: Intent, @ViewBuilder label: @escaping () -> Content) {
+        self.intent = intent
+        self.label = label
+    }
+    
+    public var body: some View {
+        if #available(iOS 17.0, *) {
+            BPKIntentTriggerButton(intent: intent, label: label)
+        } else {
+            Button(action: {}, label: {
+                label()
+                    .opacity(0.5)
+            })
+            .disabled(true)
+        }
+    }
+}
+
 #if DEBUG
 @available(iOS 17.0, *)
 struct BPKIntentTriggerButton_Previews: PreviewProvider {
@@ -84,18 +111,17 @@ struct BPKIntentTriggerButton_Previews: PreviewProvider {
     
     static var previews: some View {
         VStack(spacing: 16) {
-            BPKIntentTriggerButton(
-                intent: PreviewIntent(),
-                label: {
-                    Image(systemName: "star.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 24)
-                        .foregroundColor(.yellow)
-                }
-            )
+            BPKCompatibleIntentButton(intent: PreviewIntent()) {
+                Image(systemName: "star.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 24)
+                    .foregroundColor(.yellow)
+            }
         }
         .padding()
     }
 }
 #endif
+
+#endif // canImport(AppIntents)
