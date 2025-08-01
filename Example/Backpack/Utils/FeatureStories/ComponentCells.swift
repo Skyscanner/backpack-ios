@@ -18,7 +18,7 @@
 
 import Foundation
 
-// swiftlint:disable file_length
+// swiftlint:disable file_length indentation_width line_length
 @MainActor
 struct ComponentCellsProvider {
     let navigator: PresentableNavigator
@@ -67,7 +67,6 @@ struct ComponentCellsProvider {
             imageGalleryGridView(),
             imageGallerySlideshow(),
             insetBanner(),
-            intentTriggerButton(),
             label(),
             navBar(),
             navigationTabsGroup(),
@@ -422,7 +421,7 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Search Input Summary", tabs: $0) }
         )
     }
-
+    
     private func segmentPicker() -> CellDataSource {
         ComponentCellDataSource(
             title: "Segmented Control",
@@ -434,7 +433,7 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Segmented Control", tabs: $0) }
         )
     }
-
+    
     private func select() -> CellDataSource {
         ComponentCellDataSource(
             title: "Select",
@@ -535,7 +534,7 @@ extension ComponentCellsProvider {
             showPresentable: show(presentable:)
         )
     }
-
+    
     private func tappableContainer() -> CellDataSource {
         ComponentCellDataSource(
             title: "Tappable container",
@@ -547,7 +546,7 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Tappable container", tabs: $0) }
         )
     }
-
+    
     private func tappableLinkLabels() -> CellDataSource {
         PresentableCellDataSource(
             title: "Tappable link labels",
@@ -652,25 +651,25 @@ extension ComponentCellsProvider {
             title: "Image Gallery Preview",
             tabs: [
                 .swiftui(groups:
-                    SingleGroupProvider(
-                        cellDataSources: [
-                            PresentableCellDataSource.custom(
-                                title: "Hero",
-                                customController: {
-                                    ContentUIHostingController(ImageGalleryPreviewExampleView(variant: .hero))
-                                },
-                                showPresentable: show(presentable:)
-                            ),
-                            PresentableCellDataSource.custom(
-                                title: "Default",
-                                customController: {
-                                    ContentUIHostingController(ImageGalleryPreviewExampleView(variant: .default))
-                                },
-                                showPresentable: show(presentable:)
-                            )
-                        ]
-                    ).groups()
-                )
+                            SingleGroupProvider(
+                                cellDataSources: [
+                                    PresentableCellDataSource.custom(
+                                        title: "Hero",
+                                        customController: {
+                                            ContentUIHostingController(ImageGalleryPreviewExampleView(variant: .hero))
+                                        },
+                                        showPresentable: show(presentable:)
+                                    ),
+                                    PresentableCellDataSource.custom(
+                                        title: "Default",
+                                        customController: {
+                                            ContentUIHostingController(ImageGalleryPreviewExampleView(variant: .default))
+                                        },
+                                        showPresentable: show(presentable:)
+                                    )
+                                ]
+                            ).groups()
+                        )
             ],
             showChildren: { showComponent(title: "Image Gallery Preview", tabs: $0) }
         )
@@ -777,7 +776,7 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "App Search Modal", tabs: $0) }
         )
     }
-
+    
     private func dynamicLayout() -> CellDataSource {
         ComponentCellDataSource(
             title: "Dynamic Layout",
@@ -785,21 +784,6 @@ extension ComponentCellsProvider {
                 .swiftui(groups: DynamicLayoutGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "Dynamic Layout", tabs: $0) }
-        )
-    }
-    private func intentTriggerButton() -> CellDataSource {
-        ComponentCellDataSource(
-            title: "Intent Trigger Button",
-            tabs: [
-                .swiftui(presentable: CustomPresentable(generateViewController: {
-                    if #available(iOS 17.0, *) {
-                        return ContentUIHostingController(IntentTriggerButtonExampleView())
-                    } else {
-                        return ContentUIHostingController(IntentTriggerButtonExampleViewFallback())
-                    }
-                }))
-            ],
-            showChildren: { showComponent(title: "Intent Trigger Button", tabs: $0) }
         )
     }
 }
