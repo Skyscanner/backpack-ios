@@ -52,8 +52,7 @@ struct TokenCellsProvider {
             ),
             spacingGroup,
             radiiGroup,
-            shadowGroup,
-            blurGroup
+            shadowGroup
         ]
         return dataSources.map(\.cell)
     }
@@ -131,21 +130,6 @@ struct TokenCellsProvider {
                     PresentableCellDataSource(
                         title: "UIKit",
                         storyboard: .named("Main", on: "ShadowsViewController"),
-                        showPresentable: show(presentable:)
-                    )
-                ]).groups(),
-            showChildren: { showChildren(for: "Gradients", children: $0) }
-        )
-    }
-    
-    private var blurGroup: GroupCellDataSource {
-        GroupCellDataSource(
-            title: "Blurs",
-            groups: SingleGroupProvider(
-                cellDataSources: [
-                    PresentableCellDataSource.custom(
-                        title: "SwiftUI",
-                        customController: { ContentUIHostingController(BlurTokensView()) },
                         showPresentable: show(presentable:)
                     )
                 ]).groups(),
