@@ -18,7 +18,7 @@
 
 import Foundation
 
-// swiftlint:disable file_length indentation_width line_length
+// swiftlint:disable file_length
 @MainActor
 struct ComponentCellsProvider {
     let navigator: PresentableNavigator
@@ -35,7 +35,7 @@ struct ComponentCellsProvider {
     private func showComponent(title: String, tabs: [Components.Tab]) {
         navigator.present(title: title, tabs: tabs)
     }
-
+    
     // swiftlint:disable:next function_body_length
     func cells() -> [Components.Cell] {
         let dataSources: [CellDataSource] = [
@@ -651,25 +651,25 @@ extension ComponentCellsProvider {
             title: "Image Gallery Preview",
             tabs: [
                 .swiftui(groups:
-                            SingleGroupProvider(
-                                cellDataSources: [
-                                    PresentableCellDataSource.custom(
-                                        title: "Hero",
-                                        customController: {
-                                            ContentUIHostingController(ImageGalleryPreviewExampleView(variant: .hero))
-                                        },
-                                        showPresentable: show(presentable:)
-                                    ),
-                                    PresentableCellDataSource.custom(
-                                        title: "Default",
-                                        customController: {
-                                            ContentUIHostingController(ImageGalleryPreviewExampleView(variant: .default))
-                                        },
-                                        showPresentable: show(presentable:)
-                                    )
-                                ]
-                            ).groups()
-                        )
+                    SingleGroupProvider(
+                        cellDataSources: [
+                            PresentableCellDataSource.custom(
+                                title: "Hero",
+                                customController: {
+                                    ContentUIHostingController(ImageGalleryPreviewExampleView(variant: .hero))
+                                },
+                                showPresentable: show(presentable:)
+                            ),
+                            PresentableCellDataSource.custom(
+                                title: "Default",
+                                customController: {
+                                    ContentUIHostingController(ImageGalleryPreviewExampleView(variant: .default))
+                                },
+                                showPresentable: show(presentable:)
+                            )
+                        ]
+                    ).groups()
+                )
             ],
             showChildren: { showComponent(title: "Image Gallery Preview", tabs: $0) }
         )
