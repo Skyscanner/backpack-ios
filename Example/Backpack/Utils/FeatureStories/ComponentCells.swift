@@ -35,7 +35,7 @@ struct ComponentCellsProvider {
     private func showComponent(title: String, tabs: [Components.Tab]) {
         navigator.present(title: title, tabs: tabs)
     }
-
+    
     // swiftlint:disable:next function_body_length
     func cells() -> [Components.Cell] {
         let dataSources: [CellDataSource] = [
@@ -67,7 +67,6 @@ struct ComponentCellsProvider {
             imageGalleryGridView(),
             imageGallerySlideshow(),
             insetBanner(),
-            intentTriggerButton(),
             label(),
             navBar(),
             navigationTabsGroup(),
@@ -422,7 +421,7 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Search Input Summary", tabs: $0) }
         )
     }
-
+    
     private func segmentPicker() -> CellDataSource {
         ComponentCellDataSource(
             title: "Segmented Control",
@@ -434,7 +433,7 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Segmented Control", tabs: $0) }
         )
     }
-
+    
     private func select() -> CellDataSource {
         ComponentCellDataSource(
             title: "Select",
@@ -535,7 +534,7 @@ extension ComponentCellsProvider {
             showPresentable: show(presentable:)
         )
     }
-
+    
     private func tappableContainer() -> CellDataSource {
         ComponentCellDataSource(
             title: "Tappable container",
@@ -547,7 +546,7 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Tappable container", tabs: $0) }
         )
     }
-
+    
     private func tappableLinkLabels() -> CellDataSource {
         PresentableCellDataSource(
             title: "Tappable link labels",
@@ -777,7 +776,7 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "App Search Modal", tabs: $0) }
         )
     }
-
+    
     private func dynamicLayout() -> CellDataSource {
         ComponentCellDataSource(
             title: "Dynamic Layout",
@@ -785,21 +784,6 @@ extension ComponentCellsProvider {
                 .swiftui(groups: DynamicLayoutGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "Dynamic Layout", tabs: $0) }
-        )
-    }
-    private func intentTriggerButton() -> CellDataSource {
-        ComponentCellDataSource(
-            title: "Intent Trigger Button",
-            tabs: [
-                .swiftui(presentable: CustomPresentable(generateViewController: {
-                    if #available(iOS 17.0, *) {
-                        return ContentUIHostingController(IntentTriggerButtonExampleView())
-                    } else {
-                        return ContentUIHostingController(IntentTriggerButtonExampleViewFallback())
-                    }
-                }))
-            ],
-            showChildren: { showComponent(title: "Intent Trigger Button", tabs: $0) }
         )
     }
 }
