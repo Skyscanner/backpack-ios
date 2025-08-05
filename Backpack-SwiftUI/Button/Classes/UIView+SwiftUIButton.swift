@@ -30,7 +30,6 @@ public final class SwiftUIButtonViewModel: ObservableObject {
     public var action: () -> Void
     public var accessibilityIdentifier: String
     
-    
     public init(isEnabled: Bool,
                 isLoading: Bool,
                 title: String? = nil,
