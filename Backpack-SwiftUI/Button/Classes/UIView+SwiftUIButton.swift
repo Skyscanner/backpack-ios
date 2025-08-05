@@ -38,8 +38,8 @@ public final class SwiftUIButtonViewModel: ObservableObject {
                 style: BPKButton.Style,
                 size: BPKButton.Size = .default,
                 action: @escaping () -> Void,
-                accessibilityIdentifier: String?,
-                accessibilityLabel: String?) {
+                accessibilityIdentifier: String? = nil,
+                accessibilityLabel: String? = nil) {
         
         self.isEnabled = isEnabled
         self.isLoading = isLoading
@@ -80,8 +80,8 @@ public extension UIView {
     static func makeReactiveSwiftUIBPKButton(
         title: String? = "",
         icon: BPKButton.Icon? = nil,
-        accessibilityIdentifier: String?,
-        accessibilityLabel: String?,
+        accessibilityIdentifier: String? = nil,
+        accessibilityLabel: String? = nil,
         style: BPKButton.Style,
         size: BPKButton.Size = .default,
         isEnabled: Bool = true,
