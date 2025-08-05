@@ -122,12 +122,12 @@ public struct BPKSlider: View {
         let clampedValue = max(sliderBounds.lowerBound, min(roundedValue, sliderBounds.upperBound))
         
         if clampedValue >= sliderBounds.lowerBound && clampedValue <= sliderBounds.upperBound {
-            // Trigger haptic feedback when value changes
-            if clampedValue != lastHapticValue {
+            // Trigger haptic feedback only when value changes by at least the step amount
+            if abs(clampedValue - lastHapticValue) >= step {
                 hapticFeedback.impactOccurred()
                 lastHapticValue = clampedValue
             }
-            value = clampedValue
+            self.value = clampedValue
         }
     }
     
@@ -135,6 +135,7 @@ public struct BPKSlider: View {
         let newValue = min(value + step, sliderBounds.upperBound)
         if newValue != value {
             hapticFeedback.impactOccurred()
+            lastHapticValue = newValue
         }
         value = newValue
         onDragEnded(value)
@@ -144,6 +145,7 @@ public struct BPKSlider: View {
         let newValue = max(value - step, sliderBounds.lowerBound)
         if newValue != value {
             hapticFeedback.impactOccurred()
+            lastHapticValue = newValue
         }
         value = newValue
         onDragEnded(value)

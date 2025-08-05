@@ -31,6 +31,7 @@ public extension BPKRangeSlider {
 }
 
 /// A view that displays a horizontal slider with two thumbs.
+// swiftlint:disable type_body_length
 public struct BPKRangeSlider: View {
     @Binding private var selectedRange: ClosedRange<Float>
     private let sliderBounds: ClosedRange<Float>
@@ -50,6 +51,11 @@ public struct BPKRangeSlider: View {
     @State var height: CGFloat = .zero
     
     @Environment(\.layoutDirection) private var layoutDirection
+    
+    // Add haptic feedback generator
+    private let hapticFeedback = UIImpactFeedbackGenerator(style: .light)
+    @State private var lastHapticValueLower: Float = 0
+    @State private var lastHapticValueUpper: Float = 0
     
     /// Creates a new instance of `BPKRangeSlider`.
     ///
@@ -76,6 +82,8 @@ public struct BPKRangeSlider: View {
         self.minSpacing = minSpacing
         self.thumbnailLabels = thumbnailLabels
         self.onDragEnded = onDragEnded
+        self._lastHapticValueLower = State(initialValue: selectedRange.wrappedValue.lowerBound)
+        self._lastHapticValueUpper = State(initialValue: selectedRange.wrappedValue.upperBound)
     }
     
     public var body: some View {
@@ -112,6 +120,7 @@ public struct BPKRangeSlider: View {
                     .padding(.bottom, (thumbSize / 2) - (sliderHeight / 2))
                 Rectangle()
                     .fill(Color(.coreAccentColor))
+                    .cornerRadius(8)
                     .frame(width: fillLineWidth(sliderSize: sliderSize), height: sliderHeight)
                     .offset(x: fillLineOffset(sliderSize: sliderSize))
                     .padding(.bottom, (thumbSize / 2) - (sliderHeight / 2))
@@ -202,24 +211,40 @@ public struct BPKRangeSlider: View {
     
     private func incrementLeading() {
         let newValue = min($selectedRange.wrappedValue.lowerBound + step, selectedRange.upperBound)
+        if newValue != $selectedRange.wrappedValue.lowerBound {
+            hapticFeedback.impactOccurred()
+            lastHapticValueLower = newValue
+        }
         $selectedRange.wrappedValue = newValue...$selectedRange.wrappedValue.upperBound
         onDragEnded(selectedRange)
     }
     
     private func decrementLeading() {
         let newValue = max($selectedRange.wrappedValue.lowerBound - step, sliderBounds.lowerBound)
+        if newValue != $selectedRange.wrappedValue.lowerBound {
+            hapticFeedback.impactOccurred()
+            lastHapticValueLower = newValue
+        }
         $selectedRange.wrappedValue = newValue...$selectedRange.wrappedValue.upperBound
         onDragEnded(selectedRange)
     }
     
     private func incrementTrailing() {
         let newValue = min($selectedRange.wrappedValue.upperBound + step, sliderBounds.upperBound)
+        if newValue != $selectedRange.wrappedValue.upperBound {
+            hapticFeedback.impactOccurred()
+            lastHapticValueUpper = newValue
+        }
         $selectedRange.wrappedValue = $selectedRange.wrappedValue.lowerBound...newValue
         onDragEnded(selectedRange)
     }
     
     private func decrementTrailing() {
         let newValue = max($selectedRange.wrappedValue.upperBound - step, selectedRange.lowerBound)
+        if newValue != $selectedRange.wrappedValue.upperBound {
+            hapticFeedback.impactOccurred()
+            lastHapticValueUpper = newValue
+        }
         $selectedRange.wrappedValue = $selectedRange.wrappedValue.lowerBound...newValue
         onDragEnded(selectedRange)
     }
@@ -243,6 +268,11 @@ public struct BPKRangeSlider: View {
         let isSmallerThanUpperBound = roundedValue <= sliderBounds.upperBound
         let isWithinMinSpacing = roundedValue - selectedRange.lowerBound - minSpacing >= 0
         if isGreaterThanLeadingThumb && isSmallerThanUpperBound && isWithinMinSpacing {
+            // Trigger haptic feedback only when value changes by at least the step amount
+            if abs(roundedValue - lastHapticValueUpper) >= step {
+                hapticFeedback.impactOccurred()
+                lastHapticValueUpper = roundedValue
+            }
             $selectedRange.wrappedValue = $selectedRange.wrappedValue.lowerBound...roundedValue
         }
     }
@@ -266,6 +296,11 @@ public struct BPKRangeSlider: View {
         let isGreaterThanLowerBound = roundedValue >= sliderBounds.lowerBound
         let isWithinMinSpacing = selectedRange.upperBound - roundedValue - minSpacing >= 0
         if isSmallerThanTrailingThumb && isGreaterThanLowerBound && isWithinMinSpacing {
+            // Trigger haptic feedback only when value changes by at least the step amount
+            if abs(roundedValue - lastHapticValueLower) >= step {
+                hapticFeedback.impactOccurred()
+                lastHapticValueLower = roundedValue
+            }
             $selectedRange.wrappedValue = roundedValue...$selectedRange.wrappedValue.upperBound
         }
     }
