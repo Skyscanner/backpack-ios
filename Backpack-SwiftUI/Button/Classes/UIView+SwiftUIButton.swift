@@ -28,8 +28,7 @@ public final class SwiftUIButtonViewModel: ObservableObject {
     public var style: BPKButton.Style
     public var size: BPKButton.Size
     public var action: () -> Void
-    public var accessibilityLabel: String?
-    public var accessibilityIdentifier: String?
+    public var accessibilityIdentifier: String
     
     
     public init(isEnabled: Bool,
@@ -39,8 +38,7 @@ public final class SwiftUIButtonViewModel: ObservableObject {
                 style: BPKButton.Style,
                 size: BPKButton.Size = .default,
                 action: @escaping () -> Void,
-                accessibilityLabel: String? = nil,
-                accessibilityIdentifier: String? = nil) {
+                accessibilityIdentifier: String) {
         
         self.isEnabled = isEnabled
         self.isLoading = isLoading
@@ -49,7 +47,6 @@ public final class SwiftUIButtonViewModel: ObservableObject {
         self.style = style
         self.size = size
         self.action = action
-        self.accessibilityLabel = accessibilityLabel
         self.accessibilityIdentifier = accessibilityIdentifier
     }
 }
@@ -66,10 +63,7 @@ public struct ReactiveSwiftUIBPKButtonWrapper: View {
             action: viewModel.action)
         .buttonStyle(viewModel.style)
         .stretchable()
-        if let identifier = viewModel.accessibilityIdentifier {
-            button = button.accessibilityIdentifier(identifier)
-        }
-        return button.accessibilityLabel(viewModel.accessibilityLabel ?? "")
+        .accessibilityIdentifier(viewModel.accessibilityIdentifier)
     }
 }
 
@@ -79,8 +73,7 @@ public extension UIView {
     static func makeReactiveSwiftUIBPKButton(
         title: String? = "",
         icon: BPKButton.Icon? = nil,
-        accessibilityIdentifier: String? = nil,
-        accessibilityLabel: String? = nil,
+        accessibilityIdentifier: String,
         style: BPKButton.Style,
         size: BPKButton.Size = .default,
         isEnabled: Bool = true,
@@ -94,7 +87,6 @@ public extension UIView {
                                                style: style,
                                                size: size,
                                                action: action,
-                                               accessibilityLabel: accessibilityLabel,
                                                accessibilityIdentifier: accessibilityIdentifier)
         
         let wrapperView = ReactiveSwiftUIBPKButtonWrapper(
