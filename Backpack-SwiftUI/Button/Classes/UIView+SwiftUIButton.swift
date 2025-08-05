@@ -49,6 +49,7 @@ public final class SwiftUIButtonViewModel: ObservableObject {
         self.size = size
         self.action = action
         self.accessibilityIdentifier = accessibilityIdentifier
+        self.accessibilityLabel = accessibilityLabel
     }
 }
 
