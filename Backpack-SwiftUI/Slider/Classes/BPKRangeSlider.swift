@@ -225,7 +225,7 @@ public struct BPKRangeSlider: View {
     }
     
     private func handleTrailingThumbDrag(value: DragGesture.Value, sliderSize: CGSize) {
-        let roundedValue = BPKSliderHelpers.calculateNewValueFromDrag(
+        var roundedValue = BPKSliderHelpers.calculateNewValueFromDrag(
             xLocation: value.location.x,
             sliderWidth: sliderSize.width,
             thumbSize: thumbSize,
@@ -233,6 +233,12 @@ public struct BPKRangeSlider: View {
             step: step,
             layoutDirection: layoutDirection
         )
+        
+        // If the value exceeds the upper bound, set it to the upper bound
+        if roundedValue > sliderBounds.upperBound {
+            roundedValue = sliderBounds.upperBound
+        }
+        
         let isGreaterThanLeadingThumb = roundedValue >= selectedRange.lowerBound
         let isSmallerThanUpperBound = roundedValue <= sliderBounds.upperBound
         let isWithinMinSpacing = roundedValue - selectedRange.lowerBound - minSpacing >= 0
@@ -242,7 +248,7 @@ public struct BPKRangeSlider: View {
     }
     
     private func handleLeadingThumbDrag(value: DragGesture.Value, sliderSize: CGSize) {
-        let roundedValue = BPKSliderHelpers.calculateNewValueFromDrag(
+        var roundedValue = BPKSliderHelpers.calculateNewValueFromDrag(
             xLocation: value.location.x,
             sliderWidth: sliderSize.width,
             thumbSize: thumbSize,
@@ -250,6 +256,12 @@ public struct BPKRangeSlider: View {
             step: step,
             layoutDirection: layoutDirection
         )
+        
+        // If the value is below the lower bound, set it to the lower bound
+        if roundedValue < sliderBounds.lowerBound {
+            roundedValue = sliderBounds.lowerBound
+        }
+        
         let isSmallerThanTrailingThumb = roundedValue <= selectedRange.upperBound
         let isGreaterThanLowerBound = roundedValue >= sliderBounds.lowerBound
         let isWithinMinSpacing = selectedRange.upperBound - roundedValue - minSpacing >= 0

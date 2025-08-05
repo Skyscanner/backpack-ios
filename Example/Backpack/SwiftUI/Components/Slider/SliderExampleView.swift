@@ -25,7 +25,8 @@ struct SliderExampleView: View {
     @State var selectedRange: ClosedRange<Float> = -20...20
     @State var selectedRangeLabels: ClosedRange<Float> = -20...20
     @State var selectedValue: Float = 20
-    
+    @State var selectedTimeRange: ClosedRange<Float> = 0...Float((24 * 60) - 1)
+
     // swiftlint:disable closure_body_length
     var body: some View {
         VStack(alignment: .leading) {
@@ -55,6 +56,22 @@ struct SliderExampleView: View {
             )
             .trailingAccessibility(label: "Trailing")
             .leadingAccessibility(label: "Leading")
+
+            BPKText("Time range")
+            BPKRangeSlider(
+                selectedRange: $selectedTimeRange,
+                sliderBounds: 0...Float((24 * 60) - 1),
+                step: 15,
+                thumbnailLabels: .init(
+                    lowerThumbnail:
+                        "\(Int(selectedTimeRange.lowerBound / 60)):\(Int(selectedTimeRange.lowerBound) % 60)",
+                    upperThumbnail:
+                        "\(Int(selectedTimeRange.upperBound / 60)):\(Int(selectedTimeRange.upperBound) % 60)")
+            )
+            .trailingAccessibility(label: "Trailing")
+            .leadingAccessibility(label: "Leading")
+            .accessibilityHidden(true)
+
         }
         .padding()
     }
