@@ -66,8 +66,10 @@ public struct ReactiveSwiftUIBPKButtonWrapper: View {
             action: viewModel.action)
         .buttonStyle(viewModel.style)
         .stretchable()
-        .accessibilityIdentifier(viewModel.accessibilityIdentifier ?? "")
-        .accessibilityLabel(viewModel.accessibilityLabel ?? "")
+        if let identifier = viewModel.accessibilityIdentifier {
+            button = button.accessibilityIdentifier(identifier)
+        }
+        return button.accessibilityLabel(viewModel.accessibilityLabel ?? "")
     }
 }
 
