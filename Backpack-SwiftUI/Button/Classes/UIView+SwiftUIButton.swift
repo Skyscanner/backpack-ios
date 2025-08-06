@@ -77,6 +77,8 @@ public struct ReactiveSwiftUIBPKButtonWrapper: View {
 public extension UIView {
     
     /// Creates a SwiftUI BPKButton wrapped in a UIHostingController and returns both the view and its ViewModel
+    /// This method is valid to use however be cautious with some usage in UIKit
+    /// Current known issue in StackViews with a hoziontal setting, more issues could occur.
     static func makeReactiveSwiftUIBPKButton(
         title: String? = "",
         icon: BPKButton.Icon? = nil,
