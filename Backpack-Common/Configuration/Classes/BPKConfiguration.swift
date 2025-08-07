@@ -21,6 +21,7 @@ import SwiftUI
 public protocol BPKConfigurationProtocol {
     func set(_ values: [BPKComponent: BPKConfigSet])
     func config(for component: BPKComponent) -> BPKConfigSet?
+    func reset()
 }
 
 public enum BPKComponent: String, Hashable {
@@ -70,6 +71,10 @@ public final class BPKConfiguration: BPKConfigurationProtocol {
 
     public func config(for component: BPKComponent) -> BPKConfigSet? {
         return BPKConfiguration.shared.perComponent[component]
+    }
+
+    public func reset() {
+        BPKConfiguration.shared.perComponent.removeAll()
     }
 }
 
