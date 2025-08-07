@@ -104,95 +104,86 @@ public extension BPKConfigSet {
 // MARK: - Helper for dictate the layer of configuration
 
 public extension Optional where Wrapped == BPKConfigSet {
-
     func font(for key: String, _ `default`: Font? = nil) -> Font {
-        let output = self?.fonts[key]
-        ?? `default`
-        ?? BPKConfiguration.shared.global.fonts[key]
-
-        if let output {
-            return output
-        } else {
-            assertionFailure("No value defined for `\(key)` in \(String(describing: self))")
-            return .body
-        }
+        getValue(
+            key: key,
+            from: \.fonts,
+            default: `default`,
+            fallback: .body
+        )
     }
 
     func fontLegacy(for key: String, _ `default`: UIFont? = nil) -> UIFont {
-        let output = self?.fontsLegacy[key]
-        ?? `default`
-        ?? BPKConfiguration.shared.global.fontsLegacy[key]
-
-        if let output {
-            return output
-        } else {
-            assertionFailure("No value defined for `\(key)` in \(String(describing: self))")
-            return .boldSystemFont(ofSize: 10)
-        }
+        getValue(
+            key: key,
+            from: \.fontsLegacy,
+            default: `default`,
+            fallback: .boldSystemFont(ofSize: 10)
+        )
     }
 
     func color(for key: String, _ `default`: Color? = nil) -> Color {
-        let output = self?.colors[key]
-        ?? `default`
-        ?? BPKConfiguration.shared.global.colors[key]
-
-        if let output {
-            return output
-        } else {
-            assertionFailure("No value defined for `\(key)` in \(String(describing: self))")
-            return .black
-        }
+        getValue(
+            key: key,
+            from: \.colors,
+            default: `default`,
+            fallback: .black
+        )
     }
 
     func colorLegacy(for key: String, _ `default`: UIColor? = nil) -> UIColor {
-        let output = self?.colorsLegacy[key]
-        ?? `default`
-        ?? BPKConfiguration.shared.global.colorsLegacy[key]
-
-        if let output {
-            return output
-        } else {
-            assertionFailure("No value defined for `\(key)` in \(String(describing: self))")
-            return .black
-        }
+        getValue(
+            key: key,
+            from: \.colorsLegacy,
+            default: `default`,
+            fallback: .black
+        )
     }
 
     func spacing(for key: String, _ `default`: CGFloat? = nil) -> CGFloat {
-        let output = self?.spacings[key]
-        ?? `default`
-        ?? BPKConfiguration.shared.global.spacings[key]
-
-        if let output {
-            return output
-        } else {
-            assertionFailure("No value defined for `\(key)` in \(String(describing: self))")
-            return 0
-        }
+        getValue(
+            key: key,
+            from: \.spacings,
+            default: `default`,
+            fallback: 0
+        )
     }
 
     func name(for key: String, _ `default`: String? = nil) -> String {
-        let output = self?.names[key]
-        ?? `default`
-        ?? BPKConfiguration.shared.global.names[key]
-
-        if let output {
-            return output
-        } else {
-            assertionFailure("No value defined for `\(key)` in \(String(describing: self))")
-            return ""
-        }
+        getValue(
+            key: key,
+            from: \.names,
+            default: `default`,
+            fallback: ""
+        )
     }
 
     func behaviour(for key: String, _ `default`: Bool? = nil) -> Bool {
-        let output = self?.behaviours[key]
+        getValue(
+            key: key,
+            from: \.behaviours,
+            default: `default`,
+            fallback: false
+        )
+    }
+}
+
+private extension Optional where Wrapped == BPKConfigSet {
+    private func getValue<T>(
+        key: String,
+        from dict: (BPKConfigSet) -> [String: T]?,
+        `default`: T?,
+        fallback: T
+    ) -> T {
+        let output = self.flatMap { dict($0)?[key] }
         ?? `default`
-        ?? BPKConfiguration.shared.global.behaviours[key]
+        ?? dict(BPKConfiguration.shared.global)?[key]
 
         if let output {
             return output
         } else {
             assertionFailure("No value defined for `\(key)` in \(String(describing: self))")
-            return false
+            return fallback
         }
     }
 }
