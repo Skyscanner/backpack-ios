@@ -28,6 +28,8 @@ public final class SwiftUIButtonViewModel: ObservableObject {
     public var style: BPKButton.Style
     public var size: BPKButton.Size
     public var action: () -> Void
+    public var accessibilityIdentifier: String?
+    public var accessibilityLabel: String?
     
     public init(isEnabled: Bool,
                 isLoading: Bool,
@@ -35,7 +37,9 @@ public final class SwiftUIButtonViewModel: ObservableObject {
                 icon: BPKButton.Icon? = nil,
                 style: BPKButton.Style,
                 size: BPKButton.Size = .default,
-                action: @escaping () -> Void) {
+                action: @escaping () -> Void,
+                accessibilityIdentifier: String? = nil,
+                accessibilityLabel: String? = nil) {
         
         self.isEnabled = isEnabled
         self.isLoading = isLoading
@@ -44,12 +48,14 @@ public final class SwiftUIButtonViewModel: ObservableObject {
         self.style = style
         self.size = size
         self.action = action
+        self.accessibilityIdentifier = accessibilityIdentifier
+        self.accessibilityLabel = accessibilityLabel
     }
 }
 
 public struct ReactiveSwiftUIBPKButtonWrapper: View {
     @ObservedObject var viewModel: SwiftUIButtonViewModel
-
+    
     public var body: some View {
         BPKButton(viewModel.title ?? "",
                   icon: viewModel.icon,
@@ -59,12 +65,20 @@ public struct ReactiveSwiftUIBPKButtonWrapper: View {
             action: viewModel.action)
         .buttonStyle(viewModel.style)
         .stretchable()
+        .if((viewModel.accessibilityLabel?.isEmpty == false)) { button in
+            button.accessibilityLabel(viewModel.accessibilityLabel!)
+        }
+        .if((viewModel.accessibilityIdentifier?.isEmpty == false)) { button in
+            button.accessibilityIdentifier(viewModel.accessibilityIdentifier!)
+        }
     }
 }
 
 public extension UIView {
     
     /// Creates a SwiftUI BPKButton wrapped in a UIHostingController and returns both the view and its ViewModel
+    /// This method is valid to use however be cautious with some usage in UIKit
+    /// Current known issue in StackViews with a hoziontal setting, more issues could occur.
     static func makeReactiveSwiftUIBPKButton(
         title: String? = "",
         icon: BPKButton.Icon? = nil,
@@ -82,7 +96,9 @@ public extension UIView {
                                                icon: icon,
                                                style: style,
                                                size: size,
-                                               action: action)
+                                               action: action,
+                                               accessibilityIdentifier: accessibilityIdentifier,
+                                               accessibilityLabel: accessibilityLabel)
         
         let wrapperView = ReactiveSwiftUIBPKButtonWrapper(
             viewModel: viewModel
@@ -91,8 +107,6 @@ public extension UIView {
         let hostingController = UIHostingController(rootView: wrapperView)
         hostingController.view.backgroundColor = .clear
         hostingController.view.translatesAutoresizingMaskIntoConstraints = false
-        hostingController.view.accessibilityIdentifier = accessibilityIdentifier
-        hostingController.view.accessibilityLabel = accessibilityLabel
         
         return (hostingController.view, viewModel)
     }
