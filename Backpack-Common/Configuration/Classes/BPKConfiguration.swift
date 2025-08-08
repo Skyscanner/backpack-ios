@@ -18,26 +18,63 @@
 
 import SwiftUI
 
+/// Protocol defining the interface for managing Backpack component configurations.
+/// Allows setting, retrieving, and resetting configuration sets for different components.
 public protocol BPKConfigurationProtocol {
+    /// Sets configuration values for multiple components at once
+    /// - Parameter values: A dictionary mapping components to their configuration sets
     func set(_ values: [BPKComponent: BPKConfigSet])
+    
+    /// Retrieves the configuration set for a specific component
+    /// - Parameter component: The component to retrieve configuration for
+    /// - Returns: The configuration set for the component, or nil if not found
     func config(for component: BPKComponent) -> BPKConfigSet?
+    
+    /// Clears all component configurations
     func reset()
 }
 
+/// Enum representing different Backpack components that can be configured
 public enum BPKComponent: String, Hashable {
+    /// Global configuration affecting all components
     case global
+    
+    /// Configuration for the Chip component
     case bpkChip
 }
 
+/// A configuration set containing theming values for fonts, colors, spacing, etc.
 public struct BPKConfigSet {
+    /// SwiftUI fonts configuration
     public var fonts: [String: Font]
-    public var fontsLegacy: [String: UIFont] // UIKit Fonts
+    
+    /// UIKit fonts configuration (legacy support)
+    public var fontsLegacy: [String: UIFont]
+    
+    /// SwiftUI colors configuration
     public var colors: [String: Color]
-    public var colorsLegacy: [String: UIColor] // UIKit Colour
+    
+    /// UIKit colors configuration (legacy support)
+    public var colorsLegacy: [String: UIColor]
+    
+    /// Spacing values configuration
     public var spacings: [String: CGFloat]
+    
+    /// Component name mappings
     public var names: [String: String]
+    
+    /// Behavioral flags configuration
     public var behaviours: [String: Bool]
 
+    /// Creates a new configuration set with optional initial values
+    /// - Parameters:
+    ///   - fonts: SwiftUI fonts dictionary
+    ///   - fontsLegacy: UIKit fonts dictionary
+    ///   - colors: SwiftUI colors dictionary
+    ///   - colorsLegacy: UIKit colors dictionary
+    ///   - spacings: Spacing values dictionary
+    ///   - names: Component names dictionary
+    ///   - behaviours: Behavioral flags dictionary
     public init(
         fonts: [String: Font] = [:],
         fontsLegacy: [String: UIFont] = [:],
@@ -59,8 +96,12 @@ public struct BPKConfigSet {
 
 // MARK: - Implementation
 
+/// Singleton class implementing the configuration protocol for Backpack components
 public final class BPKConfiguration: BPKConfigurationProtocol {
+    /// Storage for component-specific configurations
     private var perComponent: [BPKComponent: BPKConfigSet] = [:]
+    
+    /// Shared singleton instance
     public static let shared = BPKConfiguration()
 
     private init() {}
@@ -80,12 +121,14 @@ public final class BPKConfiguration: BPKConfigurationProtocol {
 
 // MARK: - Helper
 extension BPKConfiguration {
+    /// Accesses the global configuration set
     var global: BPKConfigSet {
         BPKConfiguration.shared.config(for: .global) ?? .globalDefault
     }
 }
 
 extension BPKConfigSet {
+    /// Default global configuration with empty values
     public static let globalDefault = BPKConfigSet(
         fonts: [:],
         fontsLegacy: [:],
@@ -98,6 +141,11 @@ extension BPKConfigSet {
 }
 
 public extension BPKConfigSet {
+    /// Helper to retrieve configuration for a component, with optional override
+    /// - Parameters:
+    ///   - componentName: Component to retrieve configuration for
+    ///   - override: Optional override configuration
+    /// - Returns: Configuration set for the component
     static func setFor(
         _ componentName: BPKComponent,
         override: BPKConfigSet? = nil
@@ -109,6 +157,11 @@ public extension BPKConfigSet {
 // MARK: - Helper for dictate the layer of configuration
 
 public extension Optional where Wrapped == BPKConfigSet {
+    /// Retrieves a font value with fallback chain: component > default > global > system fallback
+    /// - Parameters:
+    ///   - key: The configuration key
+    ///   - default: Optional default value
+    /// - Returns: The resolved font value
     func font(for key: String, _ `default`: Font? = nil) -> Font {
         getValue(
             key: key,
@@ -118,6 +171,11 @@ public extension Optional where Wrapped == BPKConfigSet {
         )
     }
 
+    /// Retrieves a UIKit font value with fallback chain: component > default > global > system fallback
+    /// - Parameters:
+    ///   - key: The configuration key
+    ///   - default: Optional default value
+    /// - Returns: The resolved UIKit font value
     func fontLegacy(for key: String, _ `default`: UIFont? = nil) -> UIFont {
         getValue(
             key: key,
@@ -127,6 +185,11 @@ public extension Optional where Wrapped == BPKConfigSet {
         )
     }
 
+    /// Retrieves a color value with fallback chain: component > default > global > system fallback
+    /// - Parameters:
+    ///   - key: The configuration key
+    ///   - default: Optional default value
+    /// - Returns: The resolved color value
     func color(for key: String, _ `default`: Color? = nil) -> Color {
         getValue(
             key: key,
@@ -136,6 +199,11 @@ public extension Optional where Wrapped == BPKConfigSet {
         )
     }
 
+    /// Retrieves a UIKit color value with fallback chain: component > default > global > system fallback
+    /// - Parameters:
+    ///   - key: The configuration key
+    ///   - default: Optional default value
+    /// - Returns: The resolved UIKit color value
     func colorLegacy(for key: String, _ `default`: UIColor? = nil) -> UIColor {
         getValue(
             key: key,
@@ -145,6 +213,11 @@ public extension Optional where Wrapped == BPKConfigSet {
         )
     }
 
+    /// Retrieves a spacing value with fallback chain: component > default > global > zero
+    /// - Parameters:
+    ///   - key: The configuration key
+    ///   - default: Optional default value
+    /// - Returns: The resolved spacing value
     func spacing(for key: String, _ `default`: CGFloat? = nil) -> CGFloat {
         getValue(
             key: key,
@@ -154,6 +227,11 @@ public extension Optional where Wrapped == BPKConfigSet {
         )
     }
 
+    /// Retrieves a name value with fallback chain: component > default > global > empty string
+    /// - Parameters:
+    ///   - key: The configuration key
+    ///   - default: Optional default value
+    /// - Returns: The resolved name value
     func name(for key: String, _ `default`: String? = nil) -> String {
         getValue(
             key: key,
@@ -163,6 +241,11 @@ public extension Optional where Wrapped == BPKConfigSet {
         )
     }
 
+    /// Retrieves a behavior flag with fallback chain: component > default > global > false
+    /// - Parameters:
+    ///   - key: The configuration key
+    ///   - default: Optional default value
+    /// - Returns: The resolved behavior value
     func behaviour(for key: String, _ `default`: Bool? = nil) -> Bool {
         getValue(
             key: key,
