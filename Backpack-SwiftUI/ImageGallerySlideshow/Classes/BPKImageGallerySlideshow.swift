@@ -61,7 +61,6 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
                             pageIndicatorVisibility: .hidden,
                             currentIndex: $currentIndex
                         )
-                        .frame(maxWidth: 400, maxHeight: 400)
                     }
                     BPKBadge("\(currentIndex + 1)/\(images.count)")
                         .badgeStyle(.strong)
