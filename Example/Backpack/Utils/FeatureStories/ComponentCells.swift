@@ -17,6 +17,7 @@
  */
 
 import Foundation
+import Backpack_Common
 
 // swiftlint:disable file_length
 @MainActor
@@ -38,6 +39,8 @@ struct ComponentCellsProvider {
 
     // swiftlint:disable:next function_body_length
     func cells() -> [Components.Cell] {
+        BpkConfiguration.shared.set(chipConfig: true)
+        
         let dataSources: [CellDataSource] = [
             appSearchModal(),
             badge(),

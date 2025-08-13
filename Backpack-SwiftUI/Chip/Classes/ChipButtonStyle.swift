@@ -23,7 +23,7 @@ struct ChipButtonStyle: ButtonStyle {
     let style: BPKChipStyle
     let selected: Bool
     let disabled: Bool
-    let config: BPKConfigSet?
+    let config: BpkConfiguration?
 
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
@@ -43,7 +43,7 @@ struct ChipButtonStyle: ButtonStyle {
     }
     
     private var cornerShape: some Shape {
-        if config.behaviour(for: "round_corners", false) {
+        if let radiusToken = config?.chipConfig?.radiusToken, radiusToken == .roundCorners {
             return AnyShape(Capsule())
         } else {
             return AnyShape(RoundedRectangle(cornerRadius: BPKCornerRadius.sm.value))

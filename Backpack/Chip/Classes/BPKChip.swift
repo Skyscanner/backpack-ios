@@ -57,7 +57,7 @@ public class BPKChip: UIControl {
     /**
      * Configuration set for customizing chip appearance and behavior.
      */
-    public let config: BPKConfigSet?
+    public let config: BpkConfiguration?
     
     public override var isSelected: Bool {
         didSet {
@@ -140,7 +140,7 @@ public class BPKChip: UIControl {
      * @param icon BPKChip.Icon to use as the icon
      * @param configOverride Optional BPKConfigSet to override default configuration
      */
-    public convenience init(title: String, icon: BPKSmallIconName? = nil, configOverride: BPKConfigSet? = nil) {
+    public convenience init(title: String, icon: BPKSmallIconName? = nil, configOverride: BpkConfiguration? = nil) {
         self.init(frame: .zero, configOverride: configOverride)
         self.title = title
         self.icon = icon
@@ -155,8 +155,8 @@ public class BPKChip: UIControl {
      * @param configOverride Optional BPKConfigSet to override default configuration
      * @return `BPKChip` instance.
      */
-    public init(frame: CGRect, configOverride: BPKConfigSet? = nil) {
-        self.config = BPKConfigSet.setFor(.bpkChip, override: configOverride)
+    public init(frame: CGRect, configOverride: BpkConfiguration? = nil) {
+        self.config = configOverride
         super.init(frame: frame)
         setup()
     }
@@ -168,7 +168,7 @@ public class BPKChip: UIControl {
      * @return `BPKChip` instance.
      */
     public required init?(coder: NSCoder) {
-        self.config = BPKConfigSet.setFor(.bpkChip, override: nil)
+        self.config = BpkConfiguration.shared
         super.init(coder: coder)
         setup()
     }
@@ -190,7 +190,8 @@ public class BPKChip: UIControl {
     
     /// Computed property for corner radius based on configuration
     private var cornerRadius: CGFloat {
-        if config.behaviour(for: "round_corners", false) == true {
+        
+        if let radiusToken = config?.chipConfig?.radiusToken, radiusToken == .roundCorners {
             return bounds.height / 2.0
         } else {
             return BPKSpacingMd
@@ -199,7 +200,7 @@ public class BPKChip: UIControl {
     
     /// Computed property for vertical spacing based on configuration
     private var verticalSpacing: CGFloat {
-        return config.spacing(for: "vertical_space", BPKSpacingSm)
+        return config?.chipConfig?.height ?? BPKSpacingSm
     }
 }
 

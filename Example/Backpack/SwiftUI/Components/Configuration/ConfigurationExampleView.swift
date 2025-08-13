@@ -27,11 +27,6 @@ struct ConfigurationExampleView: View {
     @State private var selectedChip3 = false
     @State private var selectedChip4 = false
 
-    let chipExampleAlternateConfig = BPKConfigSet(
-        spacings: ["vertical_space": BPKSpacing.md.value],
-        behaviours: ["round_corners": true]
-    )
-
     // swiftlint:disable closure_body_length
     var body: some View {
         VStack(spacing: .xl) {
@@ -63,7 +58,7 @@ struct ConfigurationExampleView: View {
                 HStack(spacing: .md) {
                     BPKChip(
                         "Chip 3",
-                        configOverride: chipExampleAlternateConfig,
+                        configOverride: BpkConfiguration.shared,
                         selected: selectedChip3
                     ) {
                         selectedChip3.toggle()
@@ -72,7 +67,7 @@ struct ConfigurationExampleView: View {
                     BPKChip(
                         "Chip 4",
                         icon: .heart,
-                        configOverride: chipExampleAlternateConfig,
+                        configOverride: BpkConfiguration.shared,
                         selected: selectedChip4
                     ) {
                         selectedChip4.toggle()
