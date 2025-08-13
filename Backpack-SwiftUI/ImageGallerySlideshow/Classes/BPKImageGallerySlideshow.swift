@@ -52,20 +52,16 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
                 .padding([.leading, .top], .base)
                 
                 ZStack(alignment: .bottom) {
-                    GeometryReader { proxy in
-                        InternalCarouselWrapper(
-                            images: images.map {
-                                $0.content()
-                                    .frame(width: proxy.size.width, height: proxy.size.width)
-                            },
-                            pageIndicatorVisibility: .hidden,
-                            currentIndex: $currentIndex
-                        )
-                    }
+                    InternalCarouselWrapper(
+                        images: images.map { $0.content() },
+                        pageIndicatorVisibility: .hidden,
+                        currentIndex: $currentIndex
+                    )
                     BPKBadge("\(currentIndex + 1)/\(images.count)")
                         .badgeStyle(.strong)
                         .padding(.bottom, 20)
                 }
+                .aspectRatio(1.0, contentMode: .fill)
                 .accessibilityElement(children: .ignore)
                 .accessibilityHidden(true)
                 

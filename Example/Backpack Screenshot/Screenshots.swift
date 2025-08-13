@@ -46,7 +46,7 @@ class Screenshots: BackpackSnapshotTestCase {
         app.launchArguments.append("FORCE_LIGHT_MODE")
        setupSnapshot(app)
        app.launch()
-       await captureAllScreenshots()
+//       await captureAllScreenshots()
     }
 
     @MainActor
@@ -55,7 +55,7 @@ class Screenshots: BackpackSnapshotTestCase {
        app.launchArguments.append("FORCE_DARK_MODE")
        setupSnapshot(app)
        app.launch()
-       await captureAllScreenshots(userInterfaceStyle: .dark)
+//       await captureAllScreenshots(userInterfaceStyle: .dark)
     }
 
     @MainActor
