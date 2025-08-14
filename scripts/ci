@@ -3,7 +3,7 @@ set -e
 
 EXAMPLE_WORKSPACE="Example/Backpack.xcworkspace"
 SWIFT=${SWIFT:-'5.0'}
-BUILD_SDK=${BUILD_SDK:-'iphonesimulator18.0'}
+BUILD_SDK=${BUILD_SDK:-'iphonesimulator18.5'}
 DESTINATION=${DESTINATION:-"platform=iOS Simulator,name=iPhone SE (3rd generation)"}
 
 function analyze() {
@@ -51,12 +51,6 @@ function check_modules() {
         fi
     fi
 }
-
-function download_simulators() {
-    xcodebuild -downloadPlatform iOS
-}
-
-download_simulators
 
 if [ $# -lt 2 ]; then
     echo "No arguments provided. Running all tests."
