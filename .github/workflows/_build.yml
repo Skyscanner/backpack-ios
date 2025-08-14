@@ -15,7 +15,7 @@ jobs:
     name: Install Dependencies
     runs-on: macos-15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Verify Bundler Version
         run: if [[ $(cat Gemfile.lock | sed -n '/BUNDLED WITH/{n;p;}' | sed '/^$/d;s/[[:blank:]]//g') != "2.2.3" ]]; then echo "Error - Gemfile.lock should be bundled with bundler 2.2.3"; exit 64; fi
@@ -29,7 +29,7 @@ jobs:
     needs: [Setup]
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Cache Node modules
         uses: actions/cache@v4
@@ -108,7 +108,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Cache Bundler install Gems
         uses: actions/cache@v4
