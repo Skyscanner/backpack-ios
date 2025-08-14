@@ -52,6 +52,12 @@ function check_modules() {
     fi
 }
 
+function download_simulators() {
+    xcodebuild -downloadPlatform iOS
+}
+
+download_simulators
+
 if [ $# -lt 2 ]; then
     echo "No arguments provided. Running all tests."
     check_modules "uikit" "test"
