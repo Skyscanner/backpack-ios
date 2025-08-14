@@ -41,4 +41,10 @@ public extension BPKSpacing {
 
     /// The Skyscanner extra extra large spacing (40pt).
     static var xxl: BPKSpacing { BPKSpacing(value: 40) }
+
+    /// The Skyscanner extra extra extra large spacing (64pt).
+    static var xxxl: BPKSpacing { BPKSpacing(value: 64) }
+
+    /// The Skyscanner extra extra extra extra large spacing (96pt).
+    static var xxxxl: BPKSpacing { BPKSpacing(value: 96) }
 }

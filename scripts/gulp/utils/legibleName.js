@@ -25,6 +25,7 @@ const LEGIBLE_NAMES = [
   { identifier: 'Xl', legibleName: 'extra large' },
   { identifier: 'Xxl', legibleName: 'extra extra large' },
   { identifier: 'Xxxl', legibleName: 'extra extra extra large' },
+  { identifier: 'Xxxxl', legibleName: 'extra extra extra extra large' },
   { identifier: 'Pill', legibleName: 'pill' },
   { identifier: 'None', legibleName: 'none' },
   { identifier: 'IconText', legibleName: 'icon text' },
