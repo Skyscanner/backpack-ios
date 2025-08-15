@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# https://github.com/actions/runner-images/issues/551#issuecomment-637344435
+
+sudo mkdir -p /Library/Developer/CoreSimulator/Profiles/Runtimes
+sudo ln -s /Applications/Xcode_16.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime /Library/Developer/CoreSimulator/Profiles/Runtimes/iOS\ 18.0.simruntime
+xcrun simctl list runtimes
+xcrun simctl create custom-test-device "iPhone SE (3rd generation)" "com.apple.CoreSimulator.SimRuntime.iOS-18-0"
+xcrun simctl list devices 18.0
