@@ -74,7 +74,9 @@ jobs:
         working-directory: Example
 
       - name: Select Xcode 16
-        run: sudo xcode-select --switch /Applications/Xcode_16.app
+        run: | 
+          sudo xcode-select --switch /Applications/Xcode_16.app
+          sudo xcodebuild -runFirstLaunch
 
       - name: Download iOS platform
         run: xcodebuild -downloadPlatform iOS
@@ -137,7 +139,9 @@ jobs:
         working-directory: Example
 
       - name: Select Xcode 16
-        run: sudo xcode-select --switch /Applications/Xcode_16.app
+        run: | 
+          sudo xcode-select --switch /Applications/Xcode_16.app
+          sudo xcodebuild -runFirstLaunch
 
       - name: Download iOS platform
         run: xcodebuild -downloadPlatform iOS
