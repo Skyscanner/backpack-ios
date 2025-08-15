@@ -62,6 +62,9 @@ jobs:
       - name: Select Xcode 16
         run: sudo xcode-select --switch /Applications/Xcode_16.app
 
+      - name: Download iOS platform
+        run: xcodebuild -downloadPlatform iOS
+
       - name: Remove snapshots
         if: ${{inputs.retake_snapshots}}
         run: find . -type d -name "__Snapshots__" -exec rm -rf {}  +;
