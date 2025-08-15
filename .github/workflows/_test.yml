@@ -61,12 +61,12 @@ jobs:
 
       - name: Select Xcode 16
         run: | 
-          sudo xcode-select --switch /Applications/Xcode_16.app
-          sudo xcodebuild -runFirstLaunch
-
-      - name: Download iOS platform
-        run: xcodebuild -downloadPlatform iOS
-
+          sudo xcode-select -s '/Applications/Xcode_16.app/Contents/Developer'
+          export DEVELOPER_DIR="/Applications/Xcode_16.app/Contents/Developer"
+          sudo pkill -9 -f CoreSimulator
+          xcrun simctl shutdown all || true
+          xcodebuild -downloadPlatform iOS
+          
       - name: Remove snapshots
         if: ${{inputs.retake_snapshots}}
         run: find . -type d -name "__Snapshots__" -exec rm -rf {}  +;
