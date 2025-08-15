@@ -1,11 +1,11 @@
 #!/bin/bash
 
+# https://github.blog/changelog/2025-07-11-upcoming-changes-to-macos-hosted-runners-macos-latest-migration-and-xcode-support-policy-updates/#xcode-support-policy-update
 # https://github.com/actions/runner-images/issues/551#issuecomment-2592352081
 
 
 # https://github.com/actions/runner-images/blob/main/images/macos/macos-15-arm64-Readme.md#installed-sdks
-sudo xcodebuild -downloadPlatform iOS -buildVersion 18.0 -exportPath ./SimulatorRuntimes/
-sudo xcodebuild -importPlatform ./SimulatorRuntimes/iphonesimulator_18.0_22A3351.dmg
+sudo xcodebuild -downloadPlatform iOS
 
 
 # https://github.com/actions/runner-images/blob/main/images/macos/macos-15-arm64-Readme.md#installed-simulators
