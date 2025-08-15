@@ -74,9 +74,7 @@ jobs:
         working-directory: Example
 
       - name: Select Xcode 16
-        run: |
-          sudo xcode-select --switch /Applications/Xcode_16.app
-          sudo xcodebuild -runFirstLaunch
+        run: sudo xcode-select --switch /Applications/Xcode_16.app
 
       - name: Install iOS Simulator
         run: ./scripts/install-sim
@@ -139,9 +137,7 @@ jobs:
         working-directory: Example
 
       - name: Select Xcode 16
-        run: |
-          sudo xcode-select --switch /Applications/Xcode_16.app
-          sudo xcodebuild -runFirstLaunch
+        run: sudo xcode-select --switch /Applications/Xcode_16.app
 
       - name: Install iOS Simulator
         run: ./scripts/install-sim
