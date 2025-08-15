@@ -17,12 +17,14 @@
  */
 
 import SwiftUI
+import Backpack_Common
 
 public struct BPKChip: View {
     let text: String
     let icon: BPKIcon?
     let style: BPKChipStyle
     let selected: Bool
+    let config: BpkConfiguration?
     let onClick: () -> Void
     
     private var disabled = false
@@ -30,6 +32,7 @@ public struct BPKChip: View {
     public init(
         _ text: String,
         icon: BPKIcon? = nil,
+        configOverride: BpkConfiguration? = nil,
         selected: Bool = false,
         style: BPKChipStyle = .default,
         onClick: @escaping () -> Void
@@ -39,6 +42,7 @@ public struct BPKChip: View {
         self.style = style
         self.selected = selected
         self.onClick = onClick
+        self.config = configOverride
     }
     
     public var body: some View {
@@ -51,12 +55,14 @@ public struct BPKChip: View {
                     .font(style: .footnote)
             }
             .padding(.horizontal, .base)
+            .padding(.vertical, config?.chipConfig?.height ?? BPKSpacing.none.value)
         }
         .buttonStyle(
             ChipButtonStyle(
                 style: style,
                 selected: selected,
-                disabled: disabled
+                disabled: disabled,
+                config: config
             )
         )
         .accessibilityAddTraits(selected ? [.isSelected] : [])

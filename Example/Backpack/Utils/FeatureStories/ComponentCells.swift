@@ -17,6 +17,7 @@
  */
 
 import Foundation
+import Backpack_Common
 
 // swiftlint:disable file_length
 @MainActor
@@ -38,6 +39,8 @@ struct ComponentCellsProvider {
     
     // swiftlint:disable:next function_body_length
     func cells() -> [Components.Cell] {
+        BpkConfiguration.shared.set(chipConfig: true)
+        
         let dataSources: [CellDataSource] = [
             appSearchModal(),
             badge(),
@@ -54,6 +57,7 @@ struct ComponentCellsProvider {
             cardCarousel(),
             chips(),
             chipGroup(),
+            configuration(),
             dynamicLayout(),
             fieldSet(),
             flightLeg(),
@@ -216,6 +220,17 @@ extension ComponentCellsProvider {
                 .swiftui(groups: ChipGroupProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "Chip Group", tabs: $0) }
+        )
+    }
+    private func configuration() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Configuration",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(ConfigurationExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Chips", tabs: $0) }
         )
     }
     private func flare() -> CellDataSource {
