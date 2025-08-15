@@ -3,12 +3,10 @@
 # https://github.com/actions/runner-images/issues/551#issuecomment-2592352081
 
 
-# Shouldn't be necessary to install platform if iphonesimulator18.0 is listed on
 # https://github.com/actions/runner-images/blob/main/images/macos/macos-15-arm64-Readme.md#installed-sdks
-# sudo xcodebuild -downloadPlatform iOS -buildVersion 18.0 -exportPath ./SimulatorRuntimes/
-# sudo xcodebuild -importPlatform ./SimulatorRuntimes/iphonesimulator_18.0_22A3351.dmg
+sudo xcodebuild -downloadPlatform iOS -buildVersion 18.0 -exportPath ./SimulatorRuntimes/
+sudo xcodebuild -importPlatform ./SimulatorRuntimes/iphonesimulator_18.0_22A3351.dmg
 
 
-# iPhone SE (3rd generation) isn't listed on
 # https://github.com/actions/runner-images/blob/main/images/macos/macos-15-arm64-Readme.md#installed-simulators
 xcrun simctl create "iPhone SE (3rd generation)" "com.apple.CoreSimulator.SimDeviceType.iPhone-SE-3rd-generation" "com.apple.CoreSimulator.SimRuntime.iOS-18-0"
