@@ -1,9 +1,14 @@
 #!/bin/bash
 
-# https://github.com/actions/runner-images/issues/551#issuecomment-637344435
+# https://github.com/actions/runner-images/issues/551#issuecomment-2592352081
 
-sudo mkdir -p /Library/Developer/CoreSimulator/Profiles/Runtimes
-sudo ln -s /Applications/Xcode_16.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime /Library/Developer/CoreSimulator/Profiles/Runtimes/iOS\ 18.0.simruntime
-xcrun simctl list runtimes
-xcrun simctl create custom-test-device "iPhone SE (3rd generation)" "com.apple.CoreSimulator.SimRuntime.iOS-18-0"
-xcrun simctl list devices 18.0
+
+# Shouldn't be necessary to install platform if iphonesimulator18.0 is listed on
+# https://github.com/actions/runner-images/blob/main/images/macos/macos-15-arm64-Readme.md#installed-sdks
+# sudo xcodebuild -downloadPlatform iOS -buildVersion 18.0 -exportPath ./SimulatorRuntimes/
+# sudo xcodebuild -importPlatform ./SimulatorRuntimes/iphonesimulator_18.0_22A3351.dmg
+
+
+# iPhone SE (3rd generation) isn't listed on
+# https://github.com/actions/runner-images/blob/main/images/macos/macos-15-arm64-Readme.md#installed-simulators
+xcrun simctl create "iPhone SE (3rd generation)" "com.apple.CoreSimulator.SimDeviceType.iPhone-SE-3rd-generation" "com.apple.CoreSimulator.SimRuntime.iOS-18-0"
