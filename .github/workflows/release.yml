@@ -36,9 +36,6 @@ jobs:
 
     - name: Select Xcode 16
       run: sudo xcode-select --switch /Applications/Xcode_16.app
-        
-    - name: Install iOS Simulator
-      run: ./scripts/install-sim
 
     - name: Publish Pods - Backpack Common
       run: |
@@ -69,9 +66,6 @@ jobs:
     - name: Select Xcode 16
       run: sudo xcode-select --switch /Applications/Xcode_16.app
 
-    - name: Install iOS Simulator
-      run: ./scripts/install-sim
-
     - name: Publish Pods - Backpack UIKit
       run: |
         set -eo pipefail
@@ -100,9 +94,6 @@ jobs:
 
     - name: Select Xcode 16
       run: sudo xcode-select --switch /Applications/Xcode_16.app
-      
-    - name: Install iOS Simulator
-      run: ./scripts/install-sim
 
     - name: Publish Pods - Backpack SwiftUI
       run: |
