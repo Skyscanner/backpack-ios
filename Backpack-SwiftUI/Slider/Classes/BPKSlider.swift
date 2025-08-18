@@ -28,8 +28,8 @@ public struct BPKSlider: View {
 
     private let sliderHeight: CGFloat = 4
     private let thumbSize: CGFloat = 20
-    private var thumbAccessibilityLabel = ""
-    
+    private var accessibilityIdentifier = ""
+
     @Environment(\.layoutDirection) private var layoutDirection
     
     // Add haptic feedback generator
@@ -77,14 +77,16 @@ public struct BPKSlider: View {
                 .frame(width: fillLineWidth(sliderSize: sliderSize), height: sliderHeight)
                 .cornerRadius(8)
                 .offset(x: fillLineOffset(sliderSize: sliderSize))
+                .accessibilityIdentifier(accessibilityIdentifier)
+                .accessibilityHidden(true)
             thumbView(sliderSize: sliderSize)
         }
     }
-    
-    /// Sets the accessibility label for the thumb.
-    public func thumbAccessibility(label: String) -> BPKSlider {
+
+    /// Sets the accessibility identifier.
+    public func accessibilityIdentifier(_ identifier: String) -> BPKSlider {
         var result = self
-        result.thumbAccessibilityLabel = label
+        result.accessibilityIdentifier = identifier
         return result
     }
     
@@ -97,7 +99,7 @@ public struct BPKSlider: View {
         } onDragEnded: {
             onDragEnded(value)
         }
-        .accessibilityLabel(thumbAccessibilityLabel)
+        .accessibilityIdentifier("\(accessibilityIdentifier)_thumb")
         .accessibility(value: Text("\(value)"))
         .accessibilityAdjustableAction { direction in
             switch direction {
@@ -106,6 +108,7 @@ public struct BPKSlider: View {
             @unknown default: break
             }
         }
+        .accessibilityHidden(true)
     }
     
     private func handleThumbDrag(value dragValue: DragGesture.Value, sliderSize: CGSize) {

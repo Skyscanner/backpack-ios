@@ -43,8 +43,7 @@ public struct BPKRangeSlider: View {
     private let sliderHeight: CGFloat = 4
     private let thumbSize: CGFloat = 20
     private let flareHeight: CGFloat = 6
-    private var trailingAccessibilityLabel = ""
-    private var leadingAccessibilityLabel = ""
+    private var accessibilityIdentifier = ""
     @State private var isDraggingLeadingThumb = false
     @State private var isDraggingTrailingThumb = false
     
@@ -137,7 +136,7 @@ public struct BPKRangeSlider: View {
                     }
                 )
                 
-                .accessibilityLabel(trailingAccessibilityLabel)
+                .accessibilityIdentifier("\(accessibilityIdentifier)_end")
                 .accessibility(value: Text("\(selectedRange.upperBound)"))
                 .accessibilityAdjustableAction { direction in
                     switch direction {
@@ -147,6 +146,7 @@ public struct BPKRangeSlider: View {
                     }
                 }
                 
+                .accessibilityHidden(true)
                 SliderThumbView(
                     size: thumbSize,
                     offset: leadingThumbOffset(sliderSize: sliderSize),
@@ -159,7 +159,7 @@ public struct BPKRangeSlider: View {
                         onDragEnded(selectedRange)
                     }
                 )
-                .accessibilityLabel(leadingAccessibilityLabel)
+                .accessibilityIdentifier("\(accessibilityIdentifier)_start")
                 .accessibility(value: Text("\(selectedRange.lowerBound)"))
                 .accessibilityAdjustableAction { direction in
                     switch direction {
@@ -194,18 +194,11 @@ public struct BPKRangeSlider: View {
             .frame(height: thumbSize)
             .offset(y: -(thumbSize + flareHeight + BPKSpacing.sm.value))
     }
-    
-    /// Sets the accessibility label for the trailing thumb.
-    public func trailingAccessibility(label: String) -> BPKRangeSlider {
+
+    /// Sets the accessibility identifier.
+    public func accessibilityIdentifier(_ identifier: String) -> BPKRangeSlider {
         var result = self
-        result.trailingAccessibilityLabel = label
-        return result
-    }
-    
-    /// Sets the accessibility label for the leading thumb.
-    public func leadingAccessibility(label: String) -> BPKRangeSlider {
-        var result = self
-        result.leadingAccessibilityLabel = label
+        result.accessibilityIdentifier = identifier
         return result
     }
     
