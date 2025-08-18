@@ -22,7 +22,6 @@ import Backpack_SwiftUI
 
 struct TappableContainerExampleView: View {
 
-    // Test Release Build
     var body: some View {
         VStack(spacing: BPKSpacing.lg) {
             simpleTextExample
