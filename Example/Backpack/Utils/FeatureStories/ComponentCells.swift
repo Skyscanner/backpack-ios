@@ -39,8 +39,6 @@ struct ComponentCellsProvider {
 
     // swiftlint:disable:next function_body_length
     func cells() -> [Components.Cell] {
-        BpkConfiguration.shared.set(chipConfig: true)
-        
         let dataSources: [CellDataSource] = [
             appSearchModal(),
             badge(),
@@ -223,7 +221,10 @@ extension ComponentCellsProvider {
         )
     }
     private func configuration() -> CellDataSource {
-        ComponentCellDataSource(
+        
+        BpkConfiguration.shared.set(chipConfig: true)
+        
+        return ComponentCellDataSource(
             title: "Configuration",
             tabs: [
                 .swiftui(presentable: CustomPresentable(generateViewController: {

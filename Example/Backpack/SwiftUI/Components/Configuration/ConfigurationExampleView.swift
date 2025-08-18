@@ -27,25 +27,8 @@ struct ConfigurationExampleView: View {
     @State private var selectedChip3 = false
     @State private var selectedChip4 = false
 
-    // swiftlint:disable closure_body_length
     var body: some View {
         VStack(spacing: .xl) {
-            VStack(spacing: .md) {
-                Text("Default Configuration")
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                
-                HStack(spacing: .md) {
-                    BPKChip("Chip 1", selected: selectedChip1) {
-                        selectedChip1.toggle()
-                    }
-                    
-                    BPKChip("Chip 2", icon: .heart, selected: selectedChip2) {
-                        selectedChip2.toggle()
-                    }
-                }
-            }
-            
             VStack(spacing: .md) {
                 Text("Alternate Configuration")
                     .font(.title2)
@@ -58,7 +41,6 @@ struct ConfigurationExampleView: View {
                 HStack(spacing: .md) {
                     BPKChip(
                         "Chip 3",
-                        configOverride: BpkConfiguration.shared,
                         selected: selectedChip3
                     ) {
                         selectedChip3.toggle()
@@ -67,7 +49,6 @@ struct ConfigurationExampleView: View {
                     BPKChip(
                         "Chip 4",
                         icon: .heart,
-                        configOverride: BpkConfiguration.shared,
                         selected: selectedChip4
                     ) {
                         selectedChip4.toggle()
