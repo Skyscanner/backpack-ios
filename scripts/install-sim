@@ -5,8 +5,8 @@
 
 # https://github.com/actions/runner-images/issues/12758#issuecomment-3189512995
 # Necessary to avoid random `Finding content...Unable to connect to simulator.`
-echo "Setting DEVELOPER_DIR to /Applications/Xcode_16.app/Contents/Developer"
-export DEVELOPER_DIR="/Applications/Xcode_16.app/Contents/Developer"
+echo "Setting DEVELOPER_DIR to /Applications/Xcode_16.4.app/Contents/Developer"
+export DEVELOPER_DIR="/Applications/Xcode_16.4.app/Contents/Developer"
 echo "Killing all CoreSimulator processes..."
 sudo pkill -9 -f CoreSimulator
 echo "Shutting down all simulators..."
