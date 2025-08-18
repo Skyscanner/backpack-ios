@@ -76,6 +76,9 @@ jobs:
       - name: Select Xcode 16
         run: sudo xcode-select --switch /Applications/Xcode_16.app
 
+      - name: Install iOS Simulator
+        run: ./scripts/install-sim
+
       - name: Install clang-format
         run: brew install clang-format
 
@@ -135,6 +138,9 @@ jobs:
 
       - name: Select Xcode 16
         run: sudo xcode-select --switch /Applications/Xcode_16.app
+
+      - name: Install iOS Simulator
+        run: ./scripts/install-sim
 
       - name: Analyze
         run: ./scripts/ci ${{ matrix.schemes }} analysis
