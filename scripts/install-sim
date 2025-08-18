@@ -19,3 +19,20 @@ sudo xcodebuild -downloadPlatform iOS
 
 # https://github.com/actions/runner-images/blob/main/images/macos/macos-15-arm64-Readme.md#installed-simulators
 xcrun simctl create "iPhone SE (3rd generation)" "com.apple.CoreSimulator.SimDeviceType.iPhone-SE-3rd-generation" "com.apple.CoreSimulator.SimRuntime.iOS-18-0"
+
+# Boot the simulator and open the Simulator app
+xcrun simctl boot "iPhone SE (3rd generation)" || true
+open -a Simulator
+
+# Wait for the simulator to be fully booted
+SIM_UDID=$(xcrun simctl list devices | grep 'iPhone SE (3rd generation)' | grep -oE '[A-F0-9\-]{36}' | head -n 1)
+TIMEOUT=180
+ELAPSED=0
+while [[ $(xcrun simctl list | grep "$SIM_UDID" | grep -c "Booted") -eq 0 && $ELAPSED -lt $TIMEOUT ]]; do
+  sleep 2
+  ELAPSED=$((ELAPSED+2))
+done
+if [[ $ELAPSED -ge $TIMEOUT ]]; then
+  echo "Simulator failed to boot within $TIMEOUT seconds" >&2
+  exit 1
+fi
