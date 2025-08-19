@@ -60,10 +60,7 @@ jobs:
         working-directory: Example
 
       - name: Select Xcode 16
-        run: sudo xcode-select --switch /Applications/Xcode_16.app
-
-      - name: Install iOS Simulator
-        run: ./scripts/install-sim
+        run: sudo xcode-select --switch /Applications/Xcode_16.4.app
 
       - name: Install sourcekitten
         run: brew install sourcekitten
