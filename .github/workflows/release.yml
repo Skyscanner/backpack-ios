@@ -35,7 +35,7 @@ jobs:
       run: bundle install --jobs 4 --retry 3
 
     - name: Select Xcode 16
-      run: sudo xcode-select --switch /Applications/Xcode_16.app
+      run: sudo xcode-select --switch /Applications/Xcode_16.4.app
         
     - name: Install iOS Simulator
       run: ./scripts/install-sim
@@ -67,7 +67,7 @@ jobs:
       run: bundle install --jobs 4 --retry 3
 
     - name: Select Xcode 16
-      run: sudo xcode-select --switch /Applications/Xcode_16.app
+      run: sudo xcode-select --switch /Applications/Xcode_16.4.app
 
     - name: Install iOS Simulator
       run: ./scripts/install-sim
@@ -99,7 +99,7 @@ jobs:
       run: bundle install --jobs 4 --retry 3
 
     - name: Select Xcode 16
-      run: sudo xcode-select --switch /Applications/Xcode_16.app
+      run: sudo xcode-select --switch /Applications/Xcode_16.4.app
       
     - name: Install iOS Simulator
       run: ./scripts/install-sim
