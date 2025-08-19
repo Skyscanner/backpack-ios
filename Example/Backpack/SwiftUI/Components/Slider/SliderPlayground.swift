@@ -66,7 +66,7 @@ struct SliderPlayground: View {
                 sliderBounds: 0...100,
                 step: step
             )
-            .thumbAccessibility(label: "Volume")
+            .accessibilityIdentifier("Volume")
             .frame(width: 200)
         }
     }
@@ -88,8 +88,7 @@ struct SliderPlayground: View {
                 step: step,
                 minSpacing: minSpacing
             )
-            .trailingAccessibility(label: "Max temperature")
-            .leadingAccessibility(label: "Min temperature")
+            accessibilityIdentifier("Temperature")
             .frame(width: 200)
         }
     }
