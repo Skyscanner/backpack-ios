@@ -124,6 +124,7 @@ public struct BPKRangeSlider: View {
                     .offset(x: fillLineOffset(sliderSize: sliderSize))
                     .padding(.bottom, (thumbSize / 2) - (sliderHeight / 2))
                     .accessibilityIdentifier(accessibilityIdentifier)
+                    .accessibilityHidden(true)
                 SliderThumbView(
                     size: thumbSize,
                     offset: trailingThumbOffset(sliderSize: sliderSize),
