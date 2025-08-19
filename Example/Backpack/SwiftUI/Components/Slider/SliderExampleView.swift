@@ -42,8 +42,6 @@ struct SliderExampleView: View {
                 sliderBounds: -50...50,
                 minSpacing: 5
             )
-            .trailingAccessibility(label: "Trailing")
-            .leadingAccessibility(label: "Leading")
             
             BPKText("Range With Thumbnails")
             BPKRangeSlider(
@@ -54,8 +52,6 @@ struct SliderExampleView: View {
                     lowerThumbnail: "\(selectedRangeLabels.lowerBound)",
                     upperThumbnail: "\(selectedRangeLabels.upperBound)")
             )
-            .trailingAccessibility(label: "Trailing")
-            .leadingAccessibility(label: "Leading")
 
             BPKText("Time range")
             BPKRangeSlider(
@@ -67,10 +63,7 @@ struct SliderExampleView: View {
                         "\(Int(selectedTimeRange.lowerBound / 60)):\(Int(selectedTimeRange.lowerBound) % 60)",
                     upperThumbnail:
                         "\(Int(selectedTimeRange.upperBound / 60)):\(Int(selectedTimeRange.upperBound) % 60)")
-            )
-            .trailingAccessibility(label: "Trailing")
-            .leadingAccessibility(label: "Leading")
-            .accessibilityHidden(true)
+            ).accessibilityHidden(true)
 
         }
         .padding()
