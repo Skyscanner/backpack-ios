@@ -223,22 +223,26 @@ public struct BPKRangeSlider: View {
     }
     
     private func incrementTrailing() {
+        // Ensure trailing thumb can't go below start of range + step
+        let minimumValue = sliderBounds.lowerBound + step
         let newValue = min($selectedRange.wrappedValue.upperBound + step, sliderBounds.upperBound)
         if newValue != $selectedRange.wrappedValue.upperBound {
             hapticFeedback.impactOccurred()
             lastHapticValueUpper = newValue
         }
-        $selectedRange.wrappedValue = $selectedRange.wrappedValue.lowerBound...newValue
+        $selectedRange.wrappedValue = $selectedRange.wrappedValue.lowerBound...max(newValue, minimumValue)
         onDragEnded(selectedRange)
     }
     
     private func decrementTrailing() {
+        // Ensure trailing thumb can't go below start of range + step
+        let minimumValue = sliderBounds.lowerBound + step
         let newValue = max($selectedRange.wrappedValue.upperBound - step, selectedRange.lowerBound)
         if newValue != $selectedRange.wrappedValue.upperBound {
             hapticFeedback.impactOccurred()
             lastHapticValueUpper = newValue
         }
-        $selectedRange.wrappedValue = $selectedRange.wrappedValue.lowerBound...newValue
+        $selectedRange.wrappedValue = $selectedRange.wrappedValue.lowerBound...max(newValue, minimumValue)
         onDragEnded(selectedRange)
     }
     
@@ -256,6 +260,10 @@ public struct BPKRangeSlider: View {
         if roundedValue > sliderBounds.upperBound {
             roundedValue = sliderBounds.upperBound
         }
+        
+        // Ensure trailing thumb can't go below start of range + step
+        let minimumValue = sliderBounds.lowerBound + step
+        roundedValue = max(roundedValue, minimumValue)
         
         let isGreaterThanLeadingThumb = roundedValue >= selectedRange.lowerBound
         let isSmallerThanUpperBound = roundedValue <= sliderBounds.upperBound
@@ -284,6 +292,10 @@ public struct BPKRangeSlider: View {
         if roundedValue < sliderBounds.lowerBound {
             roundedValue = sliderBounds.lowerBound
         }
+        
+        // Ensure leading thumb can't go above trailing thumb - step
+        let maximumValue = $selectedRange.wrappedValue.upperBound - step
+        roundedValue = min(roundedValue, maximumValue)
         
         let isSmallerThanTrailingThumb = roundedValue <= selectedRange.upperBound
         let isGreaterThanLowerBound = roundedValue >= sliderBounds.lowerBound
