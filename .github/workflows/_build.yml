@@ -74,10 +74,7 @@ jobs:
         working-directory: Example
 
       - name: Select Xcode 16
-        run: sudo xcode-select --switch /Applications/Xcode_16.app
-
-      - name: Install iOS Simulator
-        run: ./scripts/install-sim
+        run: sudo xcode-select --switch /Applications/Xcode_16.4.app
 
       - name: Install clang-format
         run: brew install clang-format
@@ -137,10 +134,7 @@ jobs:
         working-directory: Example
 
       - name: Select Xcode 16
-        run: sudo xcode-select --switch /Applications/Xcode_16.app
-
-      - name: Install iOS Simulator
-        run: ./scripts/install-sim
+        run: sudo xcode-select --switch /Applications/Xcode_16.4.app
 
       - name: Analyze
         run: ./scripts/ci ${{ matrix.schemes }} analysis

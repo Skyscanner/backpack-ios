@@ -5,8 +5,11 @@
 
 # https://github.com/actions/runner-images/issues/12758#issuecomment-3189512995
 # Necessary to avoid random `Finding content...Unable to connect to simulator.`
-export DEVELOPER_DIR="/Applications/Xcode_16.app/Contents/Developer"
+echo "Setting DEVELOPER_DIR to /Applications/Xcode_16.4.app/Contents/Developer"
+export DEVELOPER_DIR="/Applications/Xcode_16.4.app/Contents/Developer"
+echo "Killing all CoreSimulator processes..."
 sudo pkill -9 -f CoreSimulator
+echo "Shutting down all simulators..."
 xcrun simctl shutdown all || true
 
 
@@ -14,8 +17,36 @@ xcrun simctl shutdown all || true
 
 
 # https://github.com/actions/runner-images/blob/main/images/macos/macos-15-arm64-Readme.md#installed-sdks
+echo "Downloading iOS platform SDK if needed..."
 sudo xcodebuild -downloadPlatform iOS
 
 
 # https://github.com/actions/runner-images/blob/main/images/macos/macos-15-arm64-Readme.md#installed-simulators
-xcrun simctl create "iPhone SE (3rd generation)" "com.apple.CoreSimulator.SimDeviceType.iPhone-SE-3rd-generation" "com.apple.CoreSimulator.SimRuntime.iOS-18-0"
+
+# Parameterize device type and runtime, with defaults
+SIM_DEVICE_TYPE="${SIM_DEVICE_TYPE:-com.apple.CoreSimulator.SimDeviceType.iPhone-SE-3rd-generation}"
+SIM_RUNTIME="${SIM_RUNTIME:-com.apple.CoreSimulator.SimRuntime.iOS-18-0}"
+SIM_DEVICE_NAME="${SIM_DEVICE_NAME:-iPhone SE (3rd generation)}"
+echo "Using SIM_DEVICE_TYPE: $SIM_DEVICE_TYPE"
+echo "Using SIM_RUNTIME: $SIM_RUNTIME"
+echo "Using SIM_DEVICE_NAME: $SIM_DEVICE_NAME"
+# Check if device type exists
+echo "Checking if device type exists..."
+if ! xcrun simctl list devicetypes | grep -q "$SIM_DEVICE_TYPE"; then
+  echo "Error: Device type $SIM_DEVICE_TYPE not found. Available device types:"
+  xcrun simctl list devicetypes
+  exit 1
+fi
+echo "Device type found."
+# Check if runtime exists
+echo "Checking if runtime exists..."
+if ! xcrun simctl list runtimes | grep -q "$SIM_RUNTIME"; then
+  echo "Error: Runtime $SIM_RUNTIME not found. Available runtimes:"
+  xcrun simctl list runtimes
+  exit 1
+fi
+echo "Runtime found."
+# Create simulator
+echo "Creating simulator: $SIM_DEVICE_NAME ($SIM_DEVICE_TYPE, $SIM_RUNTIME)"
+xcrun simctl create "$SIM_DEVICE_NAME" "$SIM_DEVICE_TYPE" "$SIM_RUNTIME"
+echo "Simulator creation complete."
