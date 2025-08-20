@@ -1,10 +1,12 @@
 # Backpack iOS Scripts Overview
 
-This document explains the purpose and usage of each script and folder in the `scripts/` directory of the Backpack iOS project. These scripts automate development, testing, documentation, and design token generation tasks.
+This document explains the purpose and usage of each script and folder in the `scripts/` directory of the Backpack iOS project. These scripts automate design token generation tasks.
 
 ## Gulp Scripts
 
 Contains Node.js scripts for generating and managing design tokens and icons.
+
+Gulp scripts are usually run as part of a larger build process. If any individual script fails (for example, due to a missing file or an error in the code), the whole process will stop immediately. This means you must fix the error before the scripts can finish running and generate the required files. This helps catch problems early and ensures that all generated code is up to date and correct.
 
 ## Script Robustness & Breaking Changes
 
