@@ -13,7 +13,7 @@ defaults:
 jobs:
   Setup:
     name: Install Dependencies
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
 
@@ -25,7 +25,7 @@ jobs:
 
   Lint:
     name: Lint Project
-    runs-on: macos-14
+    runs-on: macos-15
     needs: [Setup]
     steps:
       - name: Checkout code
@@ -74,7 +74,7 @@ jobs:
         working-directory: Example
 
       - name: Select Xcode 16
-        run: sudo xcode-select --switch /Applications/Xcode_16.app/Contents/Developer
+        run: sudo xcode-select --switch /Applications/Xcode_16.4.app
 
       - name: Install clang-format
         run: brew install clang-format
@@ -99,7 +99,7 @@ jobs:
 
   AnalyzePods:
     name: Analyzing pods
-    runs-on: macos-14
+    runs-on: macos-15
     needs: [Setup]
     strategy:
       fail-fast: false
@@ -134,7 +134,7 @@ jobs:
         working-directory: Example
 
       - name: Select Xcode 16
-        run: sudo xcode-select --switch /Applications/Xcode_16.app/Contents/Developer
+        run: sudo xcode-select --switch /Applications/Xcode_16.4.app
 
       - name: Analyze
         run: ./scripts/ci ${{ matrix.schemes }} analysis
@@ -148,7 +148,7 @@ jobs:
 
   UploadArtifacts:
     name: Upload Artifacts
-    runs-on: macos-14
+    runs-on: macos-15
     needs: [TestPods]
     steps:
       - name: Save assets
