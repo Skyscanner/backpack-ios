@@ -58,7 +58,8 @@ public struct BPKDropdownChip: View {
             ChipButtonStyle(
                 style: style,
                 selected: selected,
-                disabled: disabled
+                disabled: disabled,
+                config: nil // To be addressed - To review later
             )
         )
         .accessibilityAddTraits(selected ? [.isSelected] : [])
