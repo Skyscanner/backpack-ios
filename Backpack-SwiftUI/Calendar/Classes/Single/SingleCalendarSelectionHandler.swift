@@ -19,14 +19,16 @@
 public protocol SingleCalendarSelectionHandler {
     func newSingleSelectionStateFor(
         selection date: Date,
-        currentSelection: CalendarSingleSelectionState?
+        currentSelection: CalendarSingleSelectionState?,
+        accessibilityAnnouncement: ((String) -> Void)
     ) -> CalendarSingleSelectionState
 }
 
 struct DefaultSingleCalendarSelectionHandler: SingleCalendarSelectionHandler {
     func newSingleSelectionStateFor(
         selection date: Date,
-        currentSelection: CalendarSingleSelectionState?
+        currentSelection: CalendarSingleSelectionState?,
+        accessibilityAnnouncement: ((String) -> Void)
     ) -> CalendarSingleSelectionState {
         return .single(date)
     }

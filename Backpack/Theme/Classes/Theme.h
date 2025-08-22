@@ -20,7 +20,6 @@
 #define __BACKPACK_THEMES__
 
 // Skyscanner default theme
-#import "BPKDefaultTheme.h"
 
 #import "BPKTheme.h"
 #import "BPKThemeContainer.h"

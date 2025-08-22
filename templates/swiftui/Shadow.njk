@@ -19,5 +19,5 @@
 public extension BPKShadow {
     {% for s in shadow %}
     /// The Skyscanner {{s.legibleName}} shadow.
-    static let {{s.swiftuiName}} = BPKShadow(color: .{{s.name}}Color, radius: {{s.radius}}, offset: Offset(x: {{s.offset.x}}, y: {{s.offset.y}}), opacity: {{s.opacity}})
+    static let {{s.swiftuiName}} = BPKShadow(color: .{{s.swiftuiColorName}}Color, radius: {{s.radius}}, offset: Offset(x: {{s.offset.x}}, y: {{s.offset.y}}), opacity: {{s.opacity}})
 {% endfor %}}

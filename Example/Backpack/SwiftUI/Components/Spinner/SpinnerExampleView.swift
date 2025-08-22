@@ -30,7 +30,7 @@ struct SpinnerExampleView: View {
             makeSpinnerRow(.disabled)
             
             BPKText("OnDarkSurface", style: .heading4)
-            makeSpinnerRow(.onDarkSurface, foregroundColor: .white)
+            makeSpinnerRow(.onDarkSurface, foregroundColor: .textOnDarkColor)
                 .background(.black)
         }
         .padding()

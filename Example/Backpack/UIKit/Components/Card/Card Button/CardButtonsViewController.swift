@@ -169,7 +169,7 @@ extension CardButtonsViewController {
         static let stylesAndBackgroundsPerRow: [(BPKCardButtonStyle, UIColor)] = [
             (style: .default, backgroundColor: BPKColor.surfaceDefaultColor),
             (style: .contained, backgroundColor: BPKColor.surfaceHighlightColor),
-            (style: .onDark, backgroundColor: BPKColor.black)
+            (style: .onDark, backgroundColor: BPKColor.surfaceContrastColor)
         ]
 
         static func shareButtonRow(size: BPKCardButtonSize) -> Row {

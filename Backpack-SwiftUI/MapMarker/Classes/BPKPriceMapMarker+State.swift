@@ -29,7 +29,7 @@ extension BPKPriceMapMarker {
             case .selected:
                 return .textOnDarkColor
             case .unselected:
-                return .textPrimaryColor
+                return .textOnLightColor
             case .previousSelected:
                 return .textOnLightColor
             }
@@ -40,9 +40,23 @@ extension BPKPriceMapMarker {
             case .selected:
                 return .corePrimaryColor
             case .unselected:
-                return .surfaceDefaultColor
+                return .textOnDarkColor
             case .previousSelected:
                 return .mapPreviousSelectionColor
+            }
+        }
+    }
+    
+    public enum Icon {
+        case save
+        case custom(BPKIcon)
+        
+        var bpkIcon: BPKIcon {
+            switch self {
+            case .save:
+                .heart
+            case .custom(let customIcon):
+                customIcon
             }
         }
     }

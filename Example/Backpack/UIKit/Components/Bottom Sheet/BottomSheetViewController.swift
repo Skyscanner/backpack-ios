@@ -63,7 +63,7 @@ extension BottomSheetViewController {
                 forRootController: bottomSection
             )
 
-            bottomSection.view.backgroundColor = BPKColor.backgroundTertiaryColor
+            bottomSection.view.backgroundColor = BPKColor.canvasColor
             wrappedBottomSection.view.backgroundColor = bottomSection.view.backgroundColor
 
             let sheet = BPKBottomSheet(
@@ -88,7 +88,7 @@ extension BottomSheetViewController {
                 forRootController: bottomSection
             )
 
-            bottomSection.view.backgroundColor = BPKColor.backgroundTertiaryColor
+            bottomSection.view.backgroundColor = BPKColor.canvasColor
             wrappedBottomSection.view.backgroundColor = bottomSection.view.backgroundColor
 
             let sheet = BPKBottomSheet(

@@ -162,7 +162,7 @@ fileprivate extension BPKBadgeType {
         case .inverse:
             return BPKColor.surfaceDefaultColor
         case .outline:
-            return BPKColor.white.withAlphaComponent(0)
+            return BPKColor.textOnDarkColor
         case .strong:
             return BPKColor.corePrimaryColor
         case .brand:

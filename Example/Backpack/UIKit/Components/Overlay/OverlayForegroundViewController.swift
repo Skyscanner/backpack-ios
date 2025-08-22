@@ -34,7 +34,7 @@ class OverlayForegroundViewController: UIViewController {
         
         let foregroundContent = BPKLabel(fontStyle: .textHero5)
         foregroundContent.text = "Barcelona"
-        foregroundContent.textColor = BPKColor.white
+        foregroundContent.textColor = BPKColor.textOnDarkColor
         foregroundContent.translatesAutoresizingMaskIntoConstraints = false
         
         let overlay = BPKOverlay(content: content, overlayType: .bottomMedium, foregroundContent: foregroundContent)

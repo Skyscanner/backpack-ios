@@ -67,8 +67,8 @@ struct CalendarExampleSingleView: View {
             BPKCalendar(
                 selectionType: .single(
                     selected: $selection,
-                    accessibilityConfigurations: SingleAccessibilityConfigurations(
-                        selectionHint: "Double tap to select date"
+                    accessibilityConfigurations: SingleAccessibilityConfigurations.predefined(
+                        labels: AccessibilityLabels(selectionHint: "Double tap to select date")
                     )
                 ),
                 calendar: calendar,
@@ -76,14 +76,6 @@ struct CalendarExampleSingleView: View {
                 initialMonthScroll: monthScroll,
                 highlightedDates: highlightedDates
             )
-            .monthAccessoryAction { _ in
-                return CalendarMonthAccessoryAction(
-                    title: "Select whole month",
-                    action: .wholeMonthSelection({ monthRange in
-                        selection = .wholeMonth(monthRange, accessibilityConfig: wholeMonthAccessibilityConfig())
-                    })
-                )
-            }
         }
     }
 

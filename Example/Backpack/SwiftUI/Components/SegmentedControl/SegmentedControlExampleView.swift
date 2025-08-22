@@ -42,7 +42,10 @@ struct SegmentedControlExampleView: View {
                 selectedIndex: $selectedIndex,
                 accessibilityLabel: accessibilityLabel,
                 style: .init(
-                    bgColor: .black, textColor: .white, selectedBgColor: .white, selectedTextColor: .black
+                    bgColor: .surfaceContrastColor,
+                    textColor: .textOnDarkColor,
+                    selectedBgColor: .textOnDarkColor,
+                    selectedTextColor: .surfaceContrastColor
                     )
             )
 

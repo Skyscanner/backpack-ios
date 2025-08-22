@@ -25,7 +25,7 @@ class CardWrapperTests: XCTestCase {
         HStack(spacing: 5) {
             BPKIconView(.flag)
             BPKText(title, style: .caption)
-                .foregroundColor(.white)
+                .foregroundColor(.textOnDarkColor)
             Spacer()
         }
         .foregroundColor(.white)

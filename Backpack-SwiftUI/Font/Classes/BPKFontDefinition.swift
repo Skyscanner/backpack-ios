@@ -20,12 +20,14 @@ public protocol BPKFontDefinition {
     var fontFamily: String { get }
     var regularFontFace: String { get }
     var semiboldFontFace: String { get }
+    var blackFontFace: String { get }
 }
 
 public struct BPKRelativeFontDefinition: BPKFontDefinition {
     public var fontFamily = "SkyscannerRelativeiOS"
     public var regularFontFace = "SkyscannerRelativeiOS-Book"
     public var semiboldFontFace = "SkyscannerRelativeiOS-Bold"
+    public var blackFontFace = "SkyscannerRelativeiOS-Black"
     
     public init() {}
 }
@@ -34,6 +36,7 @@ public struct FallbackFontDefinition: BPKFontDefinition {
     public var fontFamily = "Helvetica Neue"
     public var regularFontFace = "HelveticaNeue"
     public var semiboldFontFace = "HelveticaNeue-Medium"
+    public var blackFontFace = "HelveticaNeue-Bold"
     
     public init() {}
 }

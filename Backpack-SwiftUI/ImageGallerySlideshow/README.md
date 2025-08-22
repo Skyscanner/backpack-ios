@@ -8,7 +8,7 @@
 
 | Day | Night |
 | --- | --- |
-| <img src="../../screenshots/iPhone-swiftui_image-gallery-slideshow___default_lm.png" alt="" width="375" /> |<img src="../../screenshots/iPhone-swiftui_image-gallery-slideshow___default_dm.png" alt="" width="375" /> |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_image-gallery-slideshow___default_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_image-gallery-slideshow___default_dm.png" alt="" width="375" /> |
  
 ## Usage
 

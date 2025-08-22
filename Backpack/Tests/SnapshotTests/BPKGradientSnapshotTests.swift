@@ -45,7 +45,7 @@ final class BPKGradientSnapshotTests: XCTestCase {
     func testBaselineScrimGradient() {
         // Given
         let container = UIView()
-        container.backgroundColor = BPKColor.white
+        container.backgroundColor = BPKColor.textOnDarkColor
         container.translatesAutoresizingMaskIntoConstraints = false
         
         let sut = BPKGradientView(gradient: BPKGradient.baselineScrim())

@@ -16,6 +16,7 @@
  * limitations under the License.
  */
 
+// swiftlint:disable line_length
 import SwiftUI
 import Backpack
 
@@ -56,12 +57,12 @@ struct ButtonGroupsProvider {
             cellDataSources: [
                 presentable("Primary", style: .primary),
                 presentable("Secondary", style: .secondary),
-                presentable("Secondary On Dark", style: .secondaryOnDark, backgroundColor: BPKColor.skyGray),
+                presentable("Secondary On Dark", style: .secondaryOnDark, backgroundColor: BPKColor.surfaceContrastColor),
                 presentable("Destructive", style: .destructive),
                 presentable("Featured", style: .featured),
                 presentable("Link", style: .link),
-                presentable("Link On Dark", style: .linkOnDark, backgroundColor: BPKColor.skyGray),
-                presentable("Primary On Dark", style: .primaryOnDark, backgroundColor: BPKColor.skyGray),
+                presentable("Link On Dark", style: .linkOnDark, backgroundColor: BPKColor.surfaceContrastColor),
+                presentable("Primary On Dark", style: .primaryOnDark, backgroundColor: BPKColor.surfaceContrastColor),
                 presentable("Primary On Light", style: .primaryOnLight)
             ]
         ).groups()

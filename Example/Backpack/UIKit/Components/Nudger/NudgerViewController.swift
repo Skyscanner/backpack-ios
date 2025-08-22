@@ -39,7 +39,7 @@ class NudgerViewController: UIViewController {
 
     override func loadView() {
         let view = UIView()
-        view.backgroundColor = BPKColor.backgroundColor
+        view.backgroundColor = BPKColor.canvasColor
 
         self.view = view
     }

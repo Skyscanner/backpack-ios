@@ -83,7 +83,7 @@ public struct BPKSearchInputSummary: View {
                     view.accessibilityElement()
                 })
                 .accessibilityValue(customAccessibilityValue ?? text)
-                .accessibilityLabel(placeholder)
+                .accessibilityLabel(accessibilityLabel)
                 .accessibilityAddTraits(readOnly ? [] : .isSearchField)
                 .accessibilityIdentifier(accessibilityIdentifier)
                 .focused($focused)
@@ -103,7 +103,14 @@ public struct BPKSearchInputSummary: View {
             $0.sizeCategory(.large)
         })
     }
-    
+
+    private var accessibilityLabel: String {
+        if case let .text(prefixText)? = inputPrefix {
+            return "\(prefixText), \(placeholder)"
+        }
+        return placeholder
+    }
+
     @ViewBuilder
     private var accessory: some View {
         Button(action: clearAction.action) {

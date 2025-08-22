@@ -103,7 +103,7 @@ private extension Backpack_SwiftUI.BPKCardButtonStyle {
         case .contained:
             return .surfaceHighlightColor
         case .onDark:
-            return .black
+            return .surfaceContrastColor
         }
     }
 }

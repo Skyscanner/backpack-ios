@@ -58,9 +58,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         defaultController.navigationItem.title = "Backpack"
         presentableNavigator.navigationController = navigationController
         
-        guard ThemeHelpers.isThemingSupported() else { return navigationController }
-        
-        let themed = ThemedViewControllerFactoryDecorator { navigationController }.create()
-        return themed
+        return navigationController
     }
 }

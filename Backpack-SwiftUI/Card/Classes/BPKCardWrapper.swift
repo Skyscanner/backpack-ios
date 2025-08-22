@@ -60,7 +60,7 @@ struct BPKCardWrapper_Previews: PreviewProvider {
                 HStack(spacing: 5) {
                     BPKIconView(.flag)
                     BPKText("BPKCard", style: .caption)
-                        .foregroundColor(.white)
+                        .foregroundColor(.textOnDarkColor)
                     Spacer()
                 }
                 .foregroundColor(.white)
@@ -75,7 +75,7 @@ struct BPKCardWrapper_Previews: PreviewProvider {
                 HStack(spacing: 5) {
                     BPKIconView(.flag)
                     BPKText("PrimaryColor", style: .caption)
-                        .foregroundColor(.white)
+                        .foregroundColor(.textOnDarkColor)
                     Spacer()
                 }
                 .foregroundColor(.white)
@@ -90,7 +90,7 @@ struct BPKCardWrapper_Previews: PreviewProvider {
                 HStack(spacing: 5) {
                     BPKIconView(.flag)
                     BPKText("BPKDividedCard", style: .caption)
-                        .foregroundColor(.white)
+                        .foregroundColor(.textOnDarkColor)
                     Spacer()
                 }
                 .foregroundColor(.white)

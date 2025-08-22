@@ -25,7 +25,8 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
     private let initiallyShownCardsCount: Int
     private let elements: [Element]
     private let cardForElement: (_ element: Element) -> Content
-    @State private var showingAllCards = false
+    private let headerPadding: (Edge.Set, BPKSpacing)
+    @Binding private var showingAllCards: Bool
 
     public init(
         title: String,
@@ -33,6 +34,8 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
         layout: BPKCardListLayout,
         initiallyShownCardsCount: Int = 3,
         elements: [Element],
+        headerPadding: (Edge.Set, BPKSpacing) = (.all, .base),
+        showingAllCards: Binding<Bool> = .constant(false),
         @ViewBuilder cardForElement: @escaping (_: Element) -> Content
     ) {
         self.title = title
@@ -40,6 +43,8 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
         self.layout = layout
         self.initiallyShownCardsCount = initiallyShownCardsCount
         self.elements = elements
+        self.headerPadding = headerPadding
+        self._showingAllCards = showingAllCards
         self.cardForElement = cardForElement
     }
 
@@ -91,10 +96,10 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
                     action: sectionHeaderAction.action)
                 .buttonStyle(.primary)
             }
-            .padding(.base)
+            .padding(headerPadding.0, headerPadding.1)
         } else {
             return BPKSectionHeader(title: title, description: description)
-                .padding(.base)
+                .padding(headerPadding.0, headerPadding.1)
         }
     }
     
@@ -134,6 +139,7 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
             }
             .buttonStyle(.link)
             .stretchable()
+            .accessibilityIdentifier("BPKCardListExpandButton")
         }
     }
 }

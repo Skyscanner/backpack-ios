@@ -35,7 +35,7 @@ struct ComponentCellsProvider {
     private func showComponent(title: String, tabs: [Components.Tab]) {
         navigator.present(title: title, tabs: tabs)
     }
-
+    
     // swiftlint:disable:next function_body_length
     func cells() -> [Components.Cell] {
         let dataSources: [CellDataSource] = [
@@ -92,6 +92,7 @@ struct ComponentCellsProvider {
             starRatings(),
             switches(),
             tabBarControllers(),
+            tappableContainer(),
             tappableLinkLabels(),
             textArea(),
             textField(),
@@ -420,7 +421,7 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Search Input Summary", tabs: $0) }
         )
     }
-
+    
     private func segmentPicker() -> CellDataSource {
         ComponentCellDataSource(
             title: "Segmented Control",
@@ -432,7 +433,7 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Segmented Control", tabs: $0) }
         )
     }
-
+    
     private func select() -> CellDataSource {
         ComponentCellDataSource(
             title: "Select",
@@ -533,6 +534,19 @@ extension ComponentCellsProvider {
             showPresentable: show(presentable:)
         )
     }
+    
+    private func tappableContainer() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Tappable container",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(TappableContainerExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Tappable container", tabs: $0) }
+        )
+    }
+    
     private func tappableLinkLabels() -> CellDataSource {
         PresentableCellDataSource(
             title: "Tappable link labels",
@@ -762,7 +776,7 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "App Search Modal", tabs: $0) }
         )
     }
-
+    
     private func dynamicLayout() -> CellDataSource {
         ComponentCellDataSource(
             title: "Dynamic Layout",

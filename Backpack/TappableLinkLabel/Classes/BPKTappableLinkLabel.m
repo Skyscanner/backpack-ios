@@ -99,7 +99,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSDictionary *)customFontAttributes {
     if (self.style == BPKTappableLinkLabelStyleAlternate) {
-        return @{NSForegroundColorAttributeName: BPKColor.white};
+        return @{NSForegroundColorAttributeName: BPKColor.textOnDarkColor};
     } else if (_textColor) {
         return @{NSForegroundColorAttributeName: _textColor};
     }
@@ -108,7 +108,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (UIColor *)linkDisplayColor {
     if (self.style == BPKTappableLinkLabelStyleAlternate) {
-        return BPKColor.white;
+        return BPKColor.textOnDarkColor;
     }
 
     return _linkColor != nil ? _linkColor : BPKColor.coreAccentColor;

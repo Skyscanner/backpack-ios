@@ -24,11 +24,53 @@ import UIKit
 
 // swiftlint:disable bpk_use_colour_token
 // swiftlint:disable identifier_name
+// swiftlint:disable indentation_width
 internal extension BPKColor {
+
+    private static var dynamicColorsCache = NSCache<NSString, UIColor>()
+    
+    static func dynamicColor(lightVariant: UIColor, darkVariant: UIColor) -> UIColor {
+        // 1. Build a cache key
+        let key = "\(lightVariant.cacheKey)_\(darkVariant.cacheKey)" as NSString
+            
+        // 2. Return cached if we have it
+        if let cached = dynamicColorsCache.object(forKey: key) {
+            return cached
+        }
+        
+        // 3. Create the dynamic provider
+        let dynamic = UIColor { traitCollection in
+            traitCollection.userInterfaceStyle == .dark ? darkVariant : lightVariant
+        }
+            
+        // 4. Cache & return
+        dynamicColorsCache.setObject(dynamic, forKey: key)
+        return dynamic
+    }
 {% for c in internalColor %}
     /// The `{{c.name}}` internal color.
     {% if c.deprecated %}@available(*, deprecated, message: "This colour will be removed in the next major version"){% endif %}
     static let {{c.name}} = BPKColor.dynamicColor(
-        withLightVariant: UIColor(red: {{c.value.r}}, green: {{c.value.g}}, blue: {{c.value.b}}, alpha: {{c.value.a}}),
+        lightVariant: UIColor(red: {{c.value.r}}, green: {{c.value.g}}, blue: {{c.value.b}}, alpha: {{c.value.a}}),
         darkVariant: UIColor(red: {{c.darkValue.r}}, green: {{c.darkValue.g}}, blue: {{c.darkValue.b}}, alpha: {{c.darkValue.a}}))
 {% endfor %}}
+
+private extension UIColor {
+    /// A crude cache-key generator: e.g. “#RRGGBBAA”
+    var cacheKey: String {
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+
+        guard self.getRed(&red, green: &green, blue: &blue, alpha: &alpha) else {
+            return "non-rgb-color:\(self.description)"
+        }
+
+        return String(format: "#%02X%02X%02X%02X",
+                      Int(round(red * 255)),
+                      Int(round(green * 255)),
+                      Int(round(blue * 255)),
+                      Int(round(alpha * 255)))
+    }
+}

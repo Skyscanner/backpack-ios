@@ -178,12 +178,12 @@ BPKCalendar(
 
 ## OnScrollToMonth handler 
 
-If you need to customise the on scroll to month handling for any reason, you can add an action to your BPKCalendar definition
+If you need to customise the on scroll to month handling for any reason, you can add an action to your BPKCalendar definition. The handler will return all the months that are visible on screen.
 You can also configurate a debounce threshold to add a delay before your onScrollToMonthAction is triggered
 
 )
 ```
-func updateOnScroll(monthDate: Date) {
+func updateOnScroll(monthDates: [Date]) {
     // Handle scroll
 }
 

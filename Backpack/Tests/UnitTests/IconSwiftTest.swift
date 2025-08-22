@@ -23,7 +23,7 @@ import Backpack
 class IconSwiftTest: XCTestCase {
 
     func testCreateWithEnum() {
-        let icon = BPKIcon.makeLargeIcon(name: .flag, color: BPKColor.skyBlue)
+        let icon = BPKIcon.makeLargeIcon(name: .flag, color: BPKColor.coreAccentColor)
 
         XCTAssertNotNil(icon)
     }

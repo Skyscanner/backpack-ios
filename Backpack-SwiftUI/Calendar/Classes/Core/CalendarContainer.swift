@@ -24,7 +24,7 @@ struct CalendarContainer<MonthContent: View>: View {
     let validRange: ClosedRange<Date>
     let parentProxy: GeometryProxy
     let monthScroll: MonthScroll?
-    let onScrollToMonth: ((Date) -> Void)?
+    let onScrollToMonth: (([Date]) -> Void)?
     @ViewBuilder let monthContent: (_ month: Date) -> MonthContent
 
     @State private var hasScrolledToItem = false
@@ -35,7 +35,7 @@ struct CalendarContainer<MonthContent: View>: View {
         validRange: ClosedRange<Date>,
         parentProxy: GeometryProxy,
         monthScroll: MonthScroll?,
-        onScrollToMonth: ((Date) -> Void)?,
+        onScrollToMonth: (([Date]) -> Void)?,
         scrollDebounceThreshold: Int,
         monthContent: @escaping (_ month: Date) -> MonthContent
     ) {
@@ -89,10 +89,9 @@ struct CalendarContainer<MonthContent: View>: View {
     }
 
     private func updateOnScrollToMonthHandler(newVisibleItems: [Int]? = nil) {
-        guard let topMostVisibleMonthIndex = (newVisibleItems ?? visibilityObserver.visibleItems).sorted().first else {
-            return
-        }
-        onScrollToMonth?(firstDayOf(monthIndex: topMostVisibleMonthIndex))
+        let indexes = (newVisibleItems ?? visibilityObserver.visibleItems).sorted()
+        let dates = indexes.map { firstDayOf(monthIndex: $0) }
+        onScrollToMonth?(dates)
     }
 
     /// Generates a unique identifier for a given `Date` using the "yyyy-MM" format.

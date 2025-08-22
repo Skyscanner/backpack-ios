@@ -113,7 +113,7 @@ class CardWrappersViewController: UIViewController {
                 
         let label = BPKLabel(fontStyle: .textLabel1)
         label.text = "Wrapper title"
-        label.textColor = BPKColor.textPrimaryInverseColor
+        label.textColor = BPKColor.textOnDarkColor
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
         header.addArrangedSubview(label)
         

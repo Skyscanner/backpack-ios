@@ -34,7 +34,16 @@ struct SingleCalendarMonthContainer<DayAccessoryView: View>: View {
         CalendarSelectableCell {
             createCell(dayDate: dayDate)
         } onSelection: {
-            selection = selectionHandler.newSingleSelectionStateFor(selection: dayDate, currentSelection: selection)
+            selection = selectionHandler.newSingleSelectionStateFor(
+                selection: dayDate,
+                currentSelection: selection,
+                accessibilityAnnouncement: { announcementText in
+                    UIAccessibility.post(
+                        notification: .announcement,
+                        argument: announcementText
+                    )
+                }
+            )
         }
         .accessibilityAddTraits(selection?.isSelected(dayDate) == true ? .isSelected : [])
         .accessibilityLabel(accessibilityProvider.accessibilityLabel(for: dayDate, selection: selection))
@@ -110,7 +119,7 @@ struct SingleCalendarContainer_Previews: PreviewProvider {
             calendar: calendar,
             validRange: start...end,
             accessibilityProvider: SingleDayAccessibilityProvider(
-                accessibilityConfigurations: .init(selectionHint: ""),
+                accessibilityConfigurations: .predefined(labels: .init(selectionState: "", selectionHint: "")),
                 dateFormatter: Self.formatter
             ),
             month: start,

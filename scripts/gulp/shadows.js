@@ -18,6 +18,7 @@
 
 const _ = require('lodash');
 const { lowercaseFirstLetter } = require('./utils/formatUtils');
+const tokens = require('@skyscanner/bpk-foundations-ios/tokens/base.ios.json');
 
 const VALID_SHADOWS = new Set(['sm', 'lg']);
 
@@ -26,7 +27,6 @@ const shadows = (properties, parseColor, getLegibleName) => _.chain(properties)
   .filter(({ name }) => {
     const size = name
       .replace('shadow', '')
-      .replace('Color', '')
       .replace('OffsetHeight', '')
       .replace('OffsetWidth', '')
       .replace('Opacity', '')
@@ -39,7 +39,6 @@ const shadows = (properties, parseColor, getLegibleName) => _.chain(properties)
       .replace('OffsetWidth', '')
       .replace('Opacity', '')
       .replace('Radius', '')
-      .replace('Color', ''),
   )
   .map((values, key) => [values, key])
   .map(([properties, key]) => {
@@ -55,14 +54,14 @@ const shadows = (properties, parseColor, getLegibleName) => _.chain(properties)
     );
     const opacityProp = _.filter(properties, findByName(`${key}Opacity`));
     const radiusProp = _.filter(properties, findByName(`${key}Radius`));
-    const colorProp = _.filter(properties, findByName(`${key}Color`));
+    const shadowColor = tokens.properties.find(key => key.name === "shadowColor")
 
     if (
       offsetHeightProp.length === 0 ||
       offsetWidthProp.length === 0 ||
       opacityProp.length === 0 ||
       radiusProp.length === 0 ||
-      colorProp.length === 0
+      shadowColor.length === 0
     ) {
       throw new Error(
         `Expected all shadow definitions to have offset, opacity, radius and color. ${key} did not`,
@@ -76,11 +75,11 @@ const shadows = (properties, parseColor, getLegibleName) => _.chain(properties)
         x: offsetWidthProp[0].value,
         y: offsetHeightProp[0].value,
       },
-      color: parseColor(colorProp[0].value),
+      color: parseColor(shadowColor.value),
       opacity: opacityProp[0].value,
       radius: radiusProp[0].value,
       swiftuiName: lowercaseFirstLetter(key.replace('shadow', '')),
-      swiftuiColorName: lowercaseFirstLetter(key.replace('shadow', '')),
+      swiftuiColorName: "shadow",
       legibleName: getLegibleName(key),
     };
   })

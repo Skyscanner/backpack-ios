@@ -56,7 +56,11 @@ struct InternalCarouselWrapper<Content: View>: UIViewRepresentable {
         )
         carousel.delegate = context.coordinator
         
-        let uiImages = images.map { UIHostingController(rootView: $0).view! }
+        let uiImages = images.map {
+            let view = UIHostingController(rootView: $0).view!
+            view.backgroundColor = .clear
+            return view
+        }
         carousel.set(images: uiImages)
         carousel.setCurrentImage(index: currentIndex)
         return carousel

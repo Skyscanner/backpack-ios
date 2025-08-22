@@ -58,7 +58,7 @@ public struct BPKCarouselCard<Content: View>: View {
                     })
                 }
             }
-            .background(.white.darkVariant(.badgeBackgroundNormalColor))
+            .background(.textOnDarkColor.darkVariant(.badgeBackgroundNormalColor))
             .clipShape(RoundedRectangle(cornerRadius: .md))
             .shadow(.lg)
         }
@@ -95,7 +95,7 @@ struct BPKCarouselCard_Previews: PreviewProvider {
         BPKCarouselCard(
             content: {
                 Rectangle()
-                    .foregroundColor(BPKColor.skyBlue)
+                    .foregroundColor(BPKColor.coreAccentColor)
             },
             title: "Test Title",
             description: "Test description",

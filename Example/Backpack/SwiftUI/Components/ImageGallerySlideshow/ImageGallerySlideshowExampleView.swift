@@ -49,7 +49,7 @@ struct ImageGallerySlideshowExampleView: View {
     private func image(_ number: Int) -> some View {
         Image("carousel_placeholder_\(number)")
             .resizable()
-            .aspectRatio(contentMode: .fill)
+            .aspectRatio(contentMode: .fit)
     }
 }
 

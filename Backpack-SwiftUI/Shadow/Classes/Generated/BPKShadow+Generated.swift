@@ -19,8 +19,8 @@
 public extension BPKShadow {
     
     /// The Skyscanner small shadow.
-    static let sm = BPKShadow(color: .shadowSmColor, radius: 3, offset: Offset(x: 0, y: 1), opacity: 0.15)
+    static let sm = BPKShadow(color: .shadowColor, radius: 3, offset: Offset(x: 0, y: 1), opacity: 0.15)
 
     /// The Skyscanner large shadow.
-    static let lg = BPKShadow(color: .shadowLgColor, radius: 16, offset: Offset(x: 0, y: 4), opacity: 0.15)
+    static let lg = BPKShadow(color: .shadowColor, radius: 16, offset: Offset(x: 0, y: 4), opacity: 0.15)
 }

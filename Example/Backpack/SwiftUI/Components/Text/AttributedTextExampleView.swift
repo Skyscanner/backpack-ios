@@ -27,7 +27,7 @@ struct AttributedTextExampleView: View {
         .init("Which supports ", style: .heading2),
         .init("multiple different font styles "),
         .init("You can simply create a ", style: .heading3),
-        .init("BPKAttributedText ", style: .heading1, color: .skyBlue),
+        .init("BPKAttributedText ", style: .heading1, color: .coreAccentColor),
         .init("and pass different ", style: .footnote),
         .init("items with different ", style: .label3),
         .init("font styles "),

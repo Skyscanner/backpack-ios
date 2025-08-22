@@ -28,25 +28,25 @@
 @implementation BPKIconTest
 
 - (void)testCreateWithEnum {
-    UIImage *rendered = [BPKIcon largeIconNamed:BPKIconNameFlag color:BPKColor.systemRed];
+    UIImage *rendered = [BPKIcon largeIconNamed:BPKIconNameFlag color:BPKColor.corePrimaryColor];
 
     XCTAssertNotNil(rendered);
 }
 
 - (void)testCreateSmallWithEnum {
-    UIImage *rendered = [BPKIcon smallIconNamed:BPKSmallIconNameFlag color:BPKColor.systemRed];
+    UIImage *rendered = [BPKIcon smallIconNamed:BPKSmallIconNameFlag color:BPKColor.corePrimaryColor];
 
     XCTAssertNotNil(rendered);
 }
 
 - (void)testCreateLargeWithEnum {
-    UIImage *rendered = [BPKIcon largeIconNamed:BPKLargeIconNameFlag color:BPKColor.systemRed];
+    UIImage *rendered = [BPKIcon largeIconNamed:BPKLargeIconNameFlag color:BPKColor.corePrimaryColor];
 
     XCTAssertNotNil(rendered);
 }
 
 - (void)testCreateXlWithEnum {
-    UIImage *rendered = [BPKIcon xlIconNamed:BPKXlIconNameStarHalf color:BPKColor.systemRed];
+    UIImage *rendered = [BPKIcon xlIconNamed:BPKXlIconNameStarHalf color:BPKColor.corePrimaryColor];
 
     XCTAssertNotNil(rendered);
 }

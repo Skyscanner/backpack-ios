@@ -87,4 +87,23 @@ extension Font {
                 Font.custom(name, fixedSize: size)
         }
     }
+    
+    static func black(size: CGFloat, textStyle: TextStyle) -> Font {
+        return customOrDefault(
+            BPKFont.fontDefinition?.blackFontFace,
+            size: size,
+            weight: .black,
+            textStyle: textStyle
+        )
+    }
+    
+    static func blackFixed(size: CGFloat) -> Font {
+        return customOrDefault(
+            BPKFont.fontDefinition?.blackFontFace,
+            size: size,
+            weight: .black,
+            textStyle: .body) { name, size, _ in
+                Font.custom(name, fixedSize: size)
+        }
+    }
 }

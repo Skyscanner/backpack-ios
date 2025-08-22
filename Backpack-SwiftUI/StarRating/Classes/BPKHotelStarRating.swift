@@ -39,8 +39,7 @@ public struct BPKHotelStarRating: View {
     public var body: some View {
         HStack(spacing: 0) {
             ForEach(0..<rating, id: \.self) { _ in
-                BPKIconView(.star, size: size.starSize)
-                    .foregroundColor(.textSecondaryColor)
+                BPKStarView(type: .full, size: size.starSize)
                     .accessibilityHidden(true)
             }
         }

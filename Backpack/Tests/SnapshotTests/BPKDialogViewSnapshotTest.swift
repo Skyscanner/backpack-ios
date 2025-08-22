@@ -98,7 +98,7 @@ class BPKDialogViewSnapshotTest: XCTestCase {
             actions: [.continue, .skip],
             cornerStyle: .large
         )
-        flare.backgroundView.backgroundColor = BPKColor.skyBlue
+        flare.backgroundView.backgroundColor = BPKColor.coreAccentColor
         assertSnapshot(wrap(dialog))
     }
     
@@ -112,7 +112,7 @@ class BPKDialogViewSnapshotTest: XCTestCase {
             actions: [.continue, .skip],
             cornerStyle: .large
         )
-        flare.backgroundView.backgroundColor = BPKColor.skyBlue
+        flare.backgroundView.backgroundColor = BPKColor.coreAccentColor
         dialog.buttonSize = .default
         assertSnapshot(wrap(dialog))
     }
@@ -127,7 +127,7 @@ class BPKDialogViewSnapshotTest: XCTestCase {
             actions: [.continue, .skip],
             cornerStyle: .large
         )
-        flare.backgroundView.backgroundColor = BPKColor.skyBlue
+        flare.backgroundView.backgroundColor = BPKColor.coreAccentColor
         flare.heightAnchor.constraint(equalToConstant: 280).isActive = true
         dialog.buttonSize = .default
         assertSnapshot(wrap(dialog))
@@ -176,7 +176,7 @@ class BPKDialogViewSnapshotTest: XCTestCase {
             cornerStyle: .default,
             textAlignmnet: .left
         )
-        imageView.backgroundColor = BPKColor.skyBlue
+        imageView.backgroundColor = BPKColor.coreAccentColor
         imageView.heightAnchor.constraint(equalToConstant: 280).isActive = true
         assertSnapshot(wrap(dialog))
     }
