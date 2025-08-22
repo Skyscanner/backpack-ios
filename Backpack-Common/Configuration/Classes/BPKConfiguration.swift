@@ -68,10 +68,9 @@ public final class BpkConfiguration {
         buttonConfig: Bool = false,
         textConfig: Bool = false,
         cardConfig: Bool = false
-    ) {
+    ) throws {
         guard !hasSet else {
-            // throw ConfigurationError.configAlreadySet
-            return
+            throw ConfigurationError.configAlreadySet
         }
         hasSet = true
         
