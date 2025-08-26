@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SnM-BG-eES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SnM-BG-eES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,11 +14,11 @@
             <objects>
                 <viewController storyboardIdentifier="StarRatings" title="Star ratings" id="EmK-I9-Wpo" customClass="StarRatingsViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Eg-4N-VKy">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="838"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="886"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="CLl-Jn-XQ1">
-                                <rect key="frame" x="20" y="64" width="374" height="774"/>
+                                <rect key="frame" x="20" y="16" width="374" height="870"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Axk-Ui-8pc">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="193.5"/>
@@ -66,7 +66,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="V0W-gw-wJX">
-                                        <rect key="frame" x="0.0" y="577.5" width="374" height="114.5"/>
+                                        <rect key="frame" x="0.0" y="577.5" width="374" height="210.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Move to set rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XGS-Oi-pKH" customClass="BPKLabel">
                                                 <rect key="frame" x="0.0" y="0.0" width="137.5" height="20.5"/>
@@ -75,7 +75,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="pk6-NL-36q">
-                                                <rect key="frame" x="-2" y="36.5" width="378" height="79"/>
+                                                <rect key="frame" x="-2" y="36.5" width="378" height="175"/>
                                                 <connections>
                                                     <action selector="userDidChangeRating:" destination="EmK-I9-Wpo" eventType="valueChanged" id="Lq9-Dn-9G6"/>
                                                 </connections>
@@ -87,7 +87,7 @@
                                         </constraints>
                                     </stackView>
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wmj-oS-FSb">
-                                        <rect key="frame" x="0.0" y="724" width="240" height="50"/>
+                                        <rect key="frame" x="0.0" y="820" width="240" height="50"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
@@ -108,7 +108,6 @@
                     </view>
                     <connections>
                         <outlet property="defaultSizeTitleLabel" destination="dam-GI-g0h" id="679-eN-Oak"/>
-                        <outlet property="extraLargeRatingView" destination="6Zv-Qs-vOV" id="a6O-rU-6NG"/>
                         <outlet property="largeSizeTitleLabel" destination="RC6-Lb-boD" id="ww8-HI-2Y5"/>
                         <outlet property="largeStarRatingView" destination="FHe-DR-aBx" id="PsF-bW-d63"/>
                         <outlet property="ratingSlider" destination="pk6-NL-36q" id="OaE-Jg-GGI"/>
@@ -131,14 +130,14 @@
                             <tableViewSection id="ouW-wO-Hlb">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="3aU-QL-5xd">
-                                        <rect key="frame" x="0.0" y="18" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="18" width="414" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3aU-QL-5xd" id="iFG-Ic-Ada">
-                                            <rect key="frame" x="0.0" y="0.0" width="383.5" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383.5" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Interactive" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9g-ik-08N" customClass="BPKLabel">
-                                                    <rect key="frame" x="20" y="11" width="355.5" height="22"/>
+                                                    <rect key="frame" x="20" y="11" width="355.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -156,14 +155,14 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="crF-k3-r94">
-                                        <rect key="frame" x="0.0" y="62" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="61" width="414" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="crF-k3-r94" id="NLD-M8-bh7">
-                                            <rect key="frame" x="0.0" y="0.0" width="383.5" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383.5" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Docs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JlL-nM-bD6" customClass="BPKLabel">
-                                                    <rect key="frame" x="20" y="11" width="355.5" height="22"/>
+                                                    <rect key="frame" x="20" y="11" width="355.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -198,7 +197,7 @@
             <objects>
                 <viewController title="Star Ratings" id="Hso-HF-6Gq" customClass="StarRatingsDocViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WgD-m1-qLm">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="838"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="886"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UuO-id-zlp">
@@ -366,36 +365,6 @@
                                             <constraint firstItem="1Bd-Id-7Hy" firstAttribute="leading" secondItem="N0b-h1-0AJ" secondAttribute="leading" id="m8n-vz-jyT"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h7N-uz-AZX">
-                                        <rect key="frame" x="0.0" y="366" width="374" height="43.5"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Extra large - 3 stars" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8z6-XH-sEi" customClass="BPKLabel">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vlx-zI-5bC" customClass="BPKHotelStarRating" customModule="Backpack">
-                                                <rect key="frame" x="0.0" y="27.5" width="80" height="16"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="rating">
-                                                        <real key="value" value="2.5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                        </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="vlx-zI-5bC" secondAttribute="bottom" id="AFW-KM-jiJ"/>
-                                            <constraint firstItem="8z6-XH-sEi" firstAttribute="top" secondItem="h7N-uz-AZX" secondAttribute="top" id="GZj-iw-3XP"/>
-                                            <constraint firstAttribute="trailing" secondItem="8z6-XH-sEi" secondAttribute="trailing" id="UNe-It-cCz"/>
-                                            <constraint firstItem="vlx-zI-5bC" firstAttribute="leading" secondItem="h7N-uz-AZX" secondAttribute="leading" id="Wm7-Su-oPo"/>
-                                            <constraint firstItem="vlx-zI-5bC" firstAttribute="top" secondItem="8z6-XH-sEi" secondAttribute="bottom" constant="8" id="he7-lP-cp8"/>
-                                            <constraint firstItem="8z6-XH-sEi" firstAttribute="leading" secondItem="h7N-uz-AZX" secondAttribute="leading" id="nSb-FA-lCV"/>
-                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vlx-zI-5bC" secondAttribute="trailing" id="xwN-fa-2p9"/>
-                                        </constraints>
-                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -403,12 +372,9 @@
                                     <constraint firstItem="4ui-iq-cwN" firstAttribute="leading" secondItem="UuO-id-zlp" secondAttribute="leading" id="7HS-2e-NEu"/>
                                     <constraint firstAttribute="trailing" secondItem="ZtZ-Bk-QvX" secondAttribute="trailing" id="7JW-cw-tvA"/>
                                     <constraint firstItem="ZtZ-Bk-QvX" firstAttribute="top" secondItem="F9v-lO-Zps" secondAttribute="bottom" constant="16" id="7LD-lb-j8y"/>
-                                    <constraint firstItem="h7N-uz-AZX" firstAttribute="leading" secondItem="UuO-id-zlp" secondAttribute="leading" id="7uN-SB-oVF"/>
                                     <constraint firstAttribute="trailing" secondItem="N0b-h1-0AJ" secondAttribute="trailing" id="AYH-To-2nF"/>
                                     <constraint firstItem="0e7-AA-fCY" firstAttribute="leading" secondItem="UuO-id-zlp" secondAttribute="leading" id="Awc-bD-v1A"/>
-                                    <constraint firstAttribute="trailing" secondItem="h7N-uz-AZX" secondAttribute="trailing" id="I4H-wk-Xrl"/>
                                     <constraint firstItem="4ui-iq-cwN" firstAttribute="top" secondItem="ZtZ-Bk-QvX" secondAttribute="bottom" constant="16" id="Knw-fd-QZN"/>
-                                    <constraint firstAttribute="bottom" secondItem="h7N-uz-AZX" secondAttribute="bottom" id="M2C-mJ-NHd"/>
                                     <constraint firstAttribute="trailing" secondItem="F9v-lO-Zps" secondAttribute="trailing" id="PYf-rm-bzR"/>
                                     <constraint firstItem="4yf-tV-X9F" firstAttribute="leading" secondItem="UuO-id-zlp" secondAttribute="leading" id="Tbn-7m-Y8l"/>
                                     <constraint firstItem="0e7-AA-fCY" firstAttribute="top" secondItem="UuO-id-zlp" secondAttribute="top" id="bUt-kd-agc"/>
@@ -422,7 +388,6 @@
                                     <constraint firstItem="N0b-h1-0AJ" firstAttribute="leading" secondItem="UuO-id-zlp" secondAttribute="leading" id="rKv-47-RpI"/>
                                     <constraint firstItem="15Q-op-9fb" firstAttribute="leading" secondItem="UuO-id-zlp" secondAttribute="leading" id="yid-2q-Uza"/>
                                     <constraint firstItem="N0b-h1-0AJ" firstAttribute="top" secondItem="4yf-tV-X9F" secondAttribute="bottom" constant="16" id="zI0-8j-UbE"/>
-                                    <constraint firstItem="h7N-uz-AZX" firstAttribute="top" secondItem="N0b-h1-0AJ" secondAttribute="bottom" constant="16" id="zJa-MB-LOt"/>
                                     <constraint firstItem="4yf-tV-X9F" firstAttribute="top" secondItem="15Q-op-9fb" secondAttribute="bottom" constant="16" id="zvb-Lx-Our"/>
                                 </constraints>
                             </view>
@@ -436,9 +401,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="extraLargeHotelStarRating" destination="vlx-zI-5bC" id="5jk-48-Shg"/>
-                        <outlet property="extraLargeRating" destination="LKC-sr-rLq" id="Nis-Zt-R3B"/>
-                        <outlet property="extraLargeRatingTitle" destination="YCV-VI-INa" id="NsY-WY-otJ"/>
                         <outlet property="largeHotelStarRating" destination="1Bd-Id-7Hy" id="lWg-JU-vfL"/>
                         <outlet property="largeRating" destination="hWA-hQ-W5H" id="Hml-11-odf"/>
                         <outlet property="largeRatingTitle" destination="7DR-5x-BUv" id="hq6-9r-nlW"/>
@@ -452,44 +414,6 @@
             <point key="canvasLocation" x="-152.17391304347828" y="493.52678571428567"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="7DR-5x-BUv">
-            <size key="intrinsicContentSize" width="87.5" height="20.5"/>
-        </designable>
-        <designable name="8z6-XH-sEi">
-            <size key="intrinsicContentSize" width="149.5" height="20.5"/>
-        </designable>
-        <designable name="9RI-jy-noH">
-            <size key="intrinsicContentSize" width="111.5" height="20.5"/>
-        </designable>
-        <designable name="HDe-ba-X2D">
-            <size key="intrinsicContentSize" width="110" height="20.5"/>
-        </designable>
-        <designable name="JlL-nM-bD6">
-            <size key="intrinsicContentSize" width="39.5" height="20.5"/>
-        </designable>
-        <designable name="Ng2-gk-wdz">
-            <size key="intrinsicContentSize" width="74" height="20.5"/>
-        </designable>
-        <designable name="RC6-Lb-boD">
-            <size key="intrinsicContentSize" width="43.5" height="20.5"/>
-        </designable>
-        <designable name="XGS-Oi-pKH">
-            <size key="intrinsicContentSize" width="137.5" height="20.5"/>
-        </designable>
-        <designable name="YCV-VI-INa">
-            <size key="intrinsicContentSize" width="73.5" height="20.5"/>
-        </designable>
-        <designable name="dam-GI-g0h">
-            <size key="intrinsicContentSize" width="55" height="20.5"/>
-        </designable>
-        <designable name="e0D-bX-jCa">
-            <size key="intrinsicContentSize" width="223" height="20.5"/>
-        </designable>
-        <designable name="l9g-ik-08N">
-            <size key="intrinsicContentSize" width="80" height="20.5"/>
-        </designable>
-    </designables>
     <resources>
         <systemColor name="groupTableViewBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

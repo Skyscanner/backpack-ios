@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "temperature-sm.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

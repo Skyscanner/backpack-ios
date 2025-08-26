@@ -24,7 +24,7 @@ const rename = require('gulp-rename');
 const { iconsUIKit, iconsSwiftUI } = require('../../iconNames');
 
 const iconsForExamples = Object.keys(require('@skyscanner/bpk-svgs/dist/iconMapping.json'))
-  .filter(iconName => !iconName.endsWith('-xl'))
+  .filter(iconName => !iconName.endsWith('-xl') && !iconName.endsWith('-xxxl'))
 
 const generateFromTemplate = (template, templateData, renameTo, destination) => {
   gulp
@@ -42,7 +42,7 @@ const generateIconNamesUIKit = (output, templatesFolder) => (done) => {
   };
   const allTemplates = path.join(
     templatesFolder,
-    `{BPKIconNames.h.njk,BPKIcons.swift.njk,BPKIconNames.m.njk,BPKSmallIconNames.h.njk,BPKSmallIconNames.m.njk,BPKLargeIconNames.h.njk,BPKLargeIconNames.m.njk,BPKXlIconNames.h.njk,BPKXlIconNames.m.njk}`
+    `{BPKIconNames.h.njk,BPKIcons.swift.njk,BPKIconNames.m.njk,BPKSmallIconNames.h.njk,BPKSmallIconNames.m.njk,BPKLargeIconNames.h.njk,BPKLargeIconNames.m.njk}`
   );
   generateFromTemplate(
     allTemplates,

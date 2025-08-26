@@ -71,7 +71,7 @@ class BPKStarRatingSnapshotTest: XCTestCase {
     
     private let roundings: [BPKStarRatingRounding] = [.down, .up, .nearest]
     
-    private let sizes: [BPKStarSize] = [.small, .large, .xLarge]
+    private let sizes: [BPKStarSize] = [.small, .large]
     
     func testStarRatingSizesRatingsAndRoundings() {
         assertSnapshot(
