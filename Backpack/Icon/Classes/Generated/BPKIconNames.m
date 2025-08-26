@@ -299,8 +299,5 @@ BPKIconName const BPKIconNameWindow = @"window";
 BPKIconName const BPKIconNameWorldAmer = @"world--amer";
 BPKIconName const BPKIconNameWorldApac = @"world--apac";
 BPKIconName const BPKIconNameWorldEmea = @"world--emea";
-BPKIconName const BPKIconNameStarHalfXxxl = @"star-half-xxxl";
-BPKIconName const BPKIconNameStarOutlineXxxl = @"star-outline-xxxl";
-BPKIconName const BPKIconNameStarXxxl = @"star-xxxl";
 
 // clang-format on

@@ -584,11 +584,5 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameWorldAmer;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameWorldApac;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameWorldEmea;
-/// :nodoc:
-FOUNDATION_EXPORT BPKIconName const BPKIconNameStarHalfXxxl;
-/// :nodoc:
-FOUNDATION_EXPORT BPKIconName const BPKIconNameStarOutlineXxxl;
-/// :nodoc:
-FOUNDATION_EXPORT BPKIconName const BPKIconNameStarXxxl;
 
 // clang-format on

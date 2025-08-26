@@ -298,9 +298,6 @@ public extension BPKIcon {
     static let worldAmer = BPKIcon(name: "world--amer")
     static let worldApac = BPKIcon(name: "world--apac")
     static let worldEmea = BPKIcon(name: "world--emea")
-    static let starHalfXxxl = BPKIcon(name: "star-half-xxxl")
-    static let starOutlineXxxl = BPKIcon(name: "star-outline-xxxl")
-    static let starXxxl = BPKIcon(name: "star-xxxl")
     
 }
 
@@ -592,9 +589,6 @@ public extension BPKIcon {
         case "world--amer": return .worldAmer
         case "world--apac": return .worldApac
         case "world--emea": return .worldEmea
-        case "star-half-xxxl": return .starHalfXxxl
-        case "star-outline-xxxl": return .starOutlineXxxl
-        case "star-xxxl": return .starXxxl
         
         default: return nil
         }

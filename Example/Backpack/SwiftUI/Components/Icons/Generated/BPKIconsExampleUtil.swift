@@ -869,9 +869,6 @@ struct IconsExampleViewContent {
         .window,
         .worldAmer,
         .worldApac,
-        .worldEmea,
-        .starHalfXxxl,
-        .starOutlineXxxl,
-        .starXxxl
+        .worldEmea
     ]
 }

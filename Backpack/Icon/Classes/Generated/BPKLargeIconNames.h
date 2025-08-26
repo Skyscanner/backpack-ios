@@ -584,11 +584,5 @@ FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameWorldAmer;
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameWorldApac;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameWorldEmea;
-/// :nodoc:
-FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameStarHalfXxxl;
-/// :nodoc:
-FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameStarOutlineXxxl;
-/// :nodoc:
-FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameStarXxxl;
 
 // clang-format on

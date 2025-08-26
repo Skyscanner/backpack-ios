@@ -299,9 +299,6 @@ extension BPKIconViewTests {
         .window,
         .worldAmer,
         .worldApac,
-        .worldEmea,
-        .starHalfXxxl,
-        .starOutlineXxxl,
-        .starXxxl
+        .worldEmea
     ]
 }

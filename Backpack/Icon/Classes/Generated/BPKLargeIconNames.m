@@ -299,8 +299,5 @@ BPKLargeIconName const BPKLargeIconNameWindow = @"window";
 BPKLargeIconName const BPKLargeIconNameWorldAmer = @"world--amer";
 BPKLargeIconName const BPKLargeIconNameWorldApac = @"world--apac";
 BPKLargeIconName const BPKLargeIconNameWorldEmea = @"world--emea";
-BPKLargeIconName const BPKLargeIconNameStarHalfXxxl = @"star-half-xxxl";
-BPKLargeIconName const BPKLargeIconNameStarOutlineXxxl = @"star-outline-xxxl";
-BPKLargeIconName const BPKLargeIconNameStarXxxl = @"star-xxxl";
 
 // clang-format on
