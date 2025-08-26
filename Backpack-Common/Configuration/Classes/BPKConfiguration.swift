@@ -37,8 +37,11 @@ public final class BpkConfiguration {
     
     /// Configuration for the Chip component
     public struct BpkButtonConfig {
-        var size: CGFloat?
-        var colorName: String?
+        public var height: CGFloat?
+        public var heightDimension: String?
+        public var color: Color?
+        public var radius: CGFloat?
+        public var radiusToken: RadiusToken?
     }
     
     public struct BpkTextConfig {
@@ -80,6 +83,16 @@ public final class BpkConfiguration {
                 color: .accentColor,
                 height: 12,
                 heightDimension: "bpk_new_chip_height",
+                radius: 100,
+                radiusToken: .roundCorners
+            )
+        }
+        
+        if buttonConfig {
+            self.buttonConfig = BpkButtonConfig(
+                height: 24,
+                heightDimension: "bpk_new_button_height",
+                color: .green,
                 radius: 100,
                 radiusToken: .roundCorners
             )

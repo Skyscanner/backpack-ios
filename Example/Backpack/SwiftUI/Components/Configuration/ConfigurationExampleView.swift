@@ -38,27 +38,53 @@ struct ConfigurationExampleView: View {
                     .font(.caption)
                     .foregroundColor(.textSecondaryColor)
                 
-                HStack(spacing: .md) {
-                    BPKChip(
-                        "Chip 3",
-                        selected: selectedChip3
-                    ) {
-                        selectedChip3.toggle()
-                    }
+                chipView
+                
+                dropDownChipView
 
-                    BPKChip(
-                        "Chip 4",
-                        icon: .heart,
-                        selected: selectedChip4
-                    ) {
-                        selectedChip4.toggle()
-                    }
-                }
             }
             
             Spacer()
         }
         .padding()
         .navigationTitle("Chip Configuration")
+    }
+    
+    var chipView: some View {
+        HStack(spacing: .md) {
+            BPKChip(
+                "Chip 1",
+                selected: selectedChip1
+            ) {
+                selectedChip1.toggle()
+            }
+
+            BPKChip(
+                "Chip 2",
+                icon: .heart,
+                selected: selectedChip2
+            ) {
+                selectedChip2.toggle()
+            }
+        }
+    }
+    
+    var dropDownChipView: some View {
+        HStack(spacing: .md) {
+            BPKDropdownChip(
+                "DropdownChip 1",
+                selected: selectedChip3
+            ) {
+                selectedChip3.toggle()
+            }
+
+            BPKDropdownChip(
+                "DropdownChip 2",
+                icon: .heart,
+                selected: selectedChip4
+            ) {
+                selectedChip4.toggle()
+            }
+        }
     }
 }
