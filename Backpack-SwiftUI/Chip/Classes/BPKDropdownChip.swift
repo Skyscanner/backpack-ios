@@ -17,6 +17,7 @@
  */
 
 import SwiftUI
+import Backpack_Common
 
 public struct BPKDropdownChip: View {
     let text: String
@@ -24,6 +25,7 @@ public struct BPKDropdownChip: View {
     let style: BPKChipStyle
     let selected: Bool
     let onClick: () -> Void
+    let config: BpkConfiguration?
     
     private var disabled = false
     
@@ -39,6 +41,7 @@ public struct BPKDropdownChip: View {
         self.selected = selected
         self.style = style
         self.onClick = onClick
+        self.config = BpkConfiguration.shared
     }
     
     public var body: some View {
@@ -58,7 +61,8 @@ public struct BPKDropdownChip: View {
             ChipButtonStyle(
                 style: style,
                 selected: selected,
-                disabled: disabled
+                disabled: disabled,
+                config: config
             )
         )
         .accessibilityAddTraits(selected ? [.isSelected] : [])
