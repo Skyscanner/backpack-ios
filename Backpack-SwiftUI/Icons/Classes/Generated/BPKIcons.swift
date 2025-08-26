@@ -127,6 +127,7 @@ public extension BPKIcon {
     static let filter = BPKIcon(name: "filter")
     static let fingerprint = BPKIcon(name: "fingerprint")
     static let flag = BPKIcon(name: "flag")
+    static let flame = BPKIcon(name: "flame")
     static let flask = BPKIcon(name: "flask")
     static let flightFlexible = BPKIcon(name: "flight-flexible")
     static let flightLanding = BPKIcon(name: "flight-landing")
@@ -152,6 +153,7 @@ public extension BPKIcon {
     static let hotelsPetsAllowed = BPKIcon(name: "hotels--pets-allowed")
     static let hotelsSmoking = BPKIcon(name: "hotels--smoking")
     static let hotels = BPKIcon(name: "hotels")
+    static let incompatible = BPKIcon(name: "incompatible")
     static let infant = BPKIcon(name: "infant")
     static let informationLanguageAlert = BPKIcon(name: "information--language-alert")
     static let informationLanguageQuestion = BPKIcon(name: "information--language-question")
@@ -253,6 +255,7 @@ public extension BPKIcon {
     static let swapVertical = BPKIcon(name: "swap--vertical")
     static let swap = BPKIcon(name: "swap")
     static let taxi = BPKIcon(name: "taxi")
+    static let temperature = BPKIcon(name: "temperature")
     static let thumbsDown = BPKIcon(name: "thumbs-down")
     static let thumbsUp = BPKIcon(name: "thumbs-up")
     static let tickCircle = BPKIcon(name: "tick-circle")
@@ -295,6 +298,9 @@ public extension BPKIcon {
     static let worldAmer = BPKIcon(name: "world--amer")
     static let worldApac = BPKIcon(name: "world--apac")
     static let worldEmea = BPKIcon(name: "world--emea")
+    static let starHalfXxxl = BPKIcon(name: "star-half-xxxl")
+    static let starOutlineXxxl = BPKIcon(name: "star-outline-xxxl")
+    static let starXxxl = BPKIcon(name: "star-xxxl")
     
 }
 
@@ -415,6 +421,7 @@ public extension BPKIcon {
         case "filter": return .filter
         case "fingerprint": return .fingerprint
         case "flag": return .flag
+        case "flame": return .flame
         case "flask": return .flask
         case "flight-flexible": return .flightFlexible
         case "flight-landing": return .flightLanding
@@ -440,6 +447,7 @@ public extension BPKIcon {
         case "hotels--pets-allowed": return .hotelsPetsAllowed
         case "hotels--smoking": return .hotelsSmoking
         case "hotels": return .hotels
+        case "incompatible": return .incompatible
         case "infant": return .infant
         case "information--language-alert": return .informationLanguageAlert
         case "information--language-question": return .informationLanguageQuestion
@@ -541,6 +549,7 @@ public extension BPKIcon {
         case "swap--vertical": return .swapVertical
         case "swap": return .swap
         case "taxi": return .taxi
+        case "temperature": return .temperature
         case "thumbs-down": return .thumbsDown
         case "thumbs-up": return .thumbsUp
         case "tick-circle": return .tickCircle
@@ -583,6 +592,9 @@ public extension BPKIcon {
         case "world--amer": return .worldAmer
         case "world--apac": return .worldApac
         case "world--emea": return .worldEmea
+        case "star-half-xxxl": return .starHalfXxxl
+        case "star-outline-xxxl": return .starOutlineXxxl
+        case "star-xxxl": return .starXxxl
         
         default: return nil
         }

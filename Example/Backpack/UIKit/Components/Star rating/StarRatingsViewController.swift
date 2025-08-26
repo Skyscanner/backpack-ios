@@ -26,19 +26,15 @@ class StarRatingsViewController: UIViewController {
     @IBOutlet weak var starRatingView: BPKStarRating!
     @IBOutlet weak var largeStarRatingView: BPKStarRating!
     @IBOutlet weak var ratingSlider: UISlider!
-    @IBOutlet weak var extraLargeRatingView: BPKStarRating!
     override func viewDidLoad() {
         starRatingView.rating = ratingSlider.value
         largeStarRatingView.rating = ratingSlider.value
         largeStarRatingView.size = .large
-        extraLargeRatingView.size = .xLarge
-        extraLargeRatingView.isUserInteractionEnabled = true
         updateLabels()
     }
     @IBAction func userDidChangeRating(_ sender: UISlider) {
         starRatingView.rating = sender.value
         largeStarRatingView.rating = sender.value
-        extraLargeRatingView.rating = sender.value
         updateLabels()
     }
     func updateLabels() {

@@ -20,7 +20,6 @@
 #import "BPKIconNames.h"
 #import "BPKLargeIconNames.h"
 #import "BPKSmallIconNames.h"
-#import "BPKXlIconNames.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -41,14 +40,6 @@ typedef NS_ENUM(NSUInteger, BPKIconSize) {
      * Large icon size.
      */
     BPKIconSizeLarge,
-
-    /**
-     * Extra large icon size.
-     *
-     * **Note:** This should be used rarely as icons are not designed to be scaled this large
-     * please review usage of every icon used at this size carefully.
-     */
-    BPKIconSizeXLarge
 };
 
 @class UIImage;
@@ -129,15 +120,6 @@ typedef NS_ENUM(NSUInteger, BPKIconSize) {
 + (UIImage *)largeTemplateIconNamed:(BPKLargeIconName)name NS_SWIFT_NAME(makeLargeTemplateIcon(name:));
 
 /**
- * Render a given extra-large icon as a UIImage for use as a template, i.e. with
- * `renderMode` set to `UIImageRenderingModeAlwaysTemplate`.
- *
- * @param name The name of the icon e.g. "flight".
- * @return The rendered icon as a `UIImage` in template mode.
- */
-+ (UIImage *)xlTemplateIconNamed:(BPKXlIconName)name NS_SWIFT_NAME(makeXlTemplateIcon(name:));
-
-/**
  * Render a given small icon as a UIImage.
  *
  * @param name The name of the icon e.g. "flight".
@@ -154,15 +136,6 @@ typedef NS_ENUM(NSUInteger, BPKIconSize) {
  * @return The rendered icon as a `UIImage`.
  */
 + (UIImage *)largeIconNamed:(BPKLargeIconName)name color:(UIColor *)color NS_SWIFT_NAME(makeLargeIcon(name:color:));
-
-/**
- * Render a given small icon as a UIImage.
- *
- * @param name The name of the icon e.g. "flight".
- * @param color The color to render the icon in.
- * @return The rendered icon as a `UIImage`.
- */
-+ (UIImage *)xlIconNamed:(BPKXlIconName)name color:(UIColor *)color NS_SWIFT_NAME(makeXlIcon(name:color:));
 
 @end
 NS_ASSUME_NONNULL_END
