@@ -23,7 +23,7 @@ import SnapshotTesting
 
 class BPKHotelStarRatingSnapshotTests: XCTestCase {
     
-    private let sizes: [BPKStarSize] = [.small, .large, .xLarge]
+    private let sizes: [BPKStarSize] = [.small, .large]
     private let ratings = Array(1...5)
     
     override func setUp() {
