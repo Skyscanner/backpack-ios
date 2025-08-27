@@ -24,7 +24,7 @@ jobs:
     needs: [Build]
     steps:
     - name: Checkout source code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         ref: main
 
@@ -53,7 +53,7 @@ jobs:
     needs: [Build]
     steps:
     - name: Checkout source code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         ref: main
 
@@ -82,7 +82,7 @@ jobs:
     needs: [Build]
     steps:
     - name: Checkout source code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         ref: main
 
@@ -111,7 +111,7 @@ jobs:
     needs: [Deploy-SwiftUI, Deploy-UIKit, Deploy-Common]
     steps:
     - name: Checkout source code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         ref: main
 
