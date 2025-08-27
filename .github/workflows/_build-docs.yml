@@ -11,6 +11,7 @@ jobs:
   BuildDocs:
     name: Build Docs
     runs-on: macos-15
+    timeout-minutes: 20
     permissions:
       statuses: write
       pull-requests: write

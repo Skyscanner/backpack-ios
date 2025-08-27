@@ -14,6 +14,7 @@ jobs:
   Setup:
     name: Install Dependencies
     runs-on: macos-15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
 
@@ -27,6 +28,7 @@ jobs:
     name: Lint Project
     runs-on: macos-15
     needs: [Setup]
+    timeout-minutes: 20
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -101,6 +103,7 @@ jobs:
     name: Analyzing pods
     runs-on: macos-15
     needs: [Setup]
+    timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
@@ -150,6 +153,7 @@ jobs:
     name: Upload Artifacts
     runs-on: macos-15
     needs: [TestPods]
+    timeout-minutes: 20
     steps:
       - name: Save assets
         uses: actions/upload-artifact@v4
