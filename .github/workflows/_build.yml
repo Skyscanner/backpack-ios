@@ -139,6 +139,9 @@ jobs:
       - name: Select Xcode 16
         run: sudo xcode-select --switch /Applications/Xcode_16.2.app
 
+      - name: List Runtimes
+        run: xcrun simctl list runtimes
+
       - name: Analyze
         run: ./scripts/ci ${{ matrix.schemes }} analysis
 
