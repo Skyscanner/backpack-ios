@@ -223,6 +223,11 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
         
+        await navigate(title: "Price Range") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "price-range", scenario: "all", userInterfaceStyle: userInterfaceStyle)
+        }
+        
         await navigate(title: "Chips") {
             switchTab(title: "SwiftUI")
             app.tables.staticTexts["Default"].tap()

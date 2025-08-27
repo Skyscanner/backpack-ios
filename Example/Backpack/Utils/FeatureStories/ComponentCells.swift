@@ -76,6 +76,7 @@ struct ComponentCellsProvider {
             pageIndicators(),
             panels(),
             price(),
+            priceRange(),
             progressBar(),
             ratings(),
             ratingBar(),
@@ -704,6 +705,17 @@ extension ComponentCellsProvider {
                 .swiftui(groups: PriceGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "Price", tabs: $0) }
+        )
+    }
+    private func priceRange() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Price Range",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(PriceRangeExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Price Range", tabs: $0) }
         )
     }
     private func fieldSet() -> CellDataSource {
