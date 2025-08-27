@@ -45,7 +45,7 @@ public struct BPKPriceRange: View {
                 }
             }
         }
-        .accessibilityElement(children: .ignore)
+        .accessibilityHidden(true)
     }
     
     private var barView: some View {
