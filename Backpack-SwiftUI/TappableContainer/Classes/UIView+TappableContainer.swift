@@ -25,9 +25,8 @@ public extension UIView {
         accessibilityLabel: String,
         action: @escaping () -> Void,
         noTapAnimation: Bool = false,
-        contentView: @escaping () -> Content,
+        @ViewBuilder contentView: @escaping () -> Content,
         accessibilityIdentifier: String
-        // extraSetup: ((UIHostingController<AnyView>) -> Void)? = nil
     ) -> UIHostingController<BPKTappableContainer<Content>> {
 
         let root = BPKTappableContainer(
@@ -37,7 +36,6 @@ public extension UIView {
         ) {
             contentView()
         }
-        //let root = AnyView(contentView)
         let hostingController = UIHostingController(rootView: root)
 
         let hostingView = hostingController.view!
@@ -53,12 +51,26 @@ public extension UIView {
         ])
 
         hostingView.accessibilityIdentifier = accessibilityIdentifier
-        // hostingView.accessibilityLabel = a11yLabel
-
         hostingController.sizingOptions = .intrinsicContentSize
 
-        //extraSetup?(hostingController)
         return hostingController
     }
 
+    static func updateReactiveSwiftUITappableContainer<Content: View>(
+        _ hostingController: UIHostingController<BPKTappableContainer<Content>>,
+        accessibilityLabel: String,
+        action: @escaping () -> Void,
+        noTapAnimation: Bool = false,
+        @ViewBuilder contentView: @escaping () -> Content
+    ) {
+        let updatedRoot = BPKTappableContainer(
+            accessibilityLabel: accessibilityLabel,
+            action: action,
+            buttonStyleType: noTapAnimation ? .noTapAnimation : .plain
+        ) {
+            contentView()
+        }
+
+        hostingController.rootView = updatedRoot
+    }
 }
