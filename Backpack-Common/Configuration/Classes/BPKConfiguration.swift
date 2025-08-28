@@ -17,6 +17,7 @@
  */
 
 import SwiftUI
+import Foundation
 
 public final class BpkConfiguration {
     /// Shared singleton instance
@@ -26,6 +27,13 @@ public final class BpkConfiguration {
     
     /// Checking for previous config setting
     private var hasSet = false
+    
+    // Tracking if any configuration has been accessed
+    private var configIsAccessed: Bool = false
+    private let configurationAccessQueue = DispatchQueue(label: "com.backpack.configuration.access", attributes: .concurrent)
+    
+    // Callback for configuration access
+    public var onConfigurationAccessed: (() -> Void)?
     
     enum ConfigurationError: Error {
         case configAlreadySet
@@ -61,10 +69,46 @@ public final class BpkConfiguration {
     }
     
     /// Setting stored configs
-    public var chipConfig: BpkChipConfig?
-    public var buttonConfig: BpkButtonConfig?
-    public var textConfig: BpkTextConfig?
-    public var cardConfig: BpkCardConfig?
+    private var _chipConfig: BpkChipConfig?
+    private var _buttonConfig: BpkButtonConfig?
+    private var _textConfig: BpkTextConfig?
+    private var _cardConfig: BpkCardConfig?
+    
+    public var chipConfig: BpkChipConfig? {
+        get { getConfig { self._chipConfig } }
+        set { _chipConfig = newValue }
+    }
+    
+    public var buttonConfig: BpkButtonConfig? {
+        get { getConfig { self._buttonConfig } }
+        set { _buttonConfig = newValue }
+    }
+    
+    public var textConfig: BpkTextConfig? {
+        get { getConfig { self._textConfig } }
+        set { _textConfig = newValue }
+    }
+    
+    public var cardConfig: BpkCardConfig? {
+        get { getConfig { self._cardConfig } }
+        set { _cardConfig = newValue }
+    }
+    
+    private func getConfig<T>(getter: () -> T) -> T {
+        emitSignalIfNeeded()
+        return configurationAccessQueue.sync {
+            getter()
+        }
+    }
+    
+    private func emitSignalIfNeeded() {
+        configurationAccessQueue.async(flags: .barrier) {
+            if !self.configIsAccessed {
+                self.configIsAccessed = true
+                self.onConfigurationAccessed?()
+            }
+        }
+    }
     
     public func set(
         chipConfig: Bool = false,
