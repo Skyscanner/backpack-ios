@@ -78,6 +78,9 @@ jobs:
       - name: Install clang-format
         run: brew install clang-format
 
+      - name: Discard changes to Gemfile.lock
+        run: git checkout -- Gemfile.lock
+
       - name: Check pristine
         run: ./scripts/lint
 
