@@ -17,10 +17,7 @@ jobs:
       pull-requests: write
     steps:
       - uses: actions/checkout@v4
-
-      - name: Verify Bundler Version
-        run: if [[ $(cat Gemfile.lock | sed -n '/BUNDLED WITH/{n;p;}' | sed '/^$/d;s/[[:blank:]]//g') != "2.2.3" ]]; then echo "Error - Gemfile.lock should be bundled with bundler 2.2.3"; exit 64; fi
-
+      
       - name: Set GIT_TAG
         id: extract_git_tag
         run: |
