@@ -13,7 +13,7 @@ defaults:
 jobs:
   Setup:
     name: Install Dependencies
-    runs-on: macos-15
+    runs-on: macos-14
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
@@ -26,7 +26,7 @@ jobs:
 
   Lint:
     name: Lint Project
-    runs-on: macos-15
+    runs-on: macos-14
     needs: [Setup]
     timeout-minutes: 20
     steps:
@@ -81,6 +81,9 @@ jobs:
       - name: Install clang-format
         run: brew install clang-format
 
+      - name: Discard changes to Gemfile.lock
+        run: git checkout -- Gemfile.lock
+
       - name: Check pristine
         run: ./scripts/lint
 
@@ -101,7 +104,7 @@ jobs:
 
   AnalyzePods:
     name: Analyzing pods
-    runs-on: macos-15
+    runs-on: macos-14
     needs: [Setup]
     timeout-minutes: 20
     strategy:
@@ -151,7 +154,7 @@ jobs:
 
   UploadArtifacts:
     name: Upload Artifacts
-    runs-on: macos-15
+    runs-on: macos-14
     needs: [TestPods]
     timeout-minutes: 20
     steps:
