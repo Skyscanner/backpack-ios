@@ -26,7 +26,7 @@ public extension UIView {
         action: @escaping () -> Void,
         noTapAnimation: Bool = false,
         @ViewBuilder contentView: @escaping () -> Content,
-        accessibilityIdentifier: String
+        accessibilityIdentifier: String? = nil
     ) -> UIHostingController<BPKTappableContainer<Content>> {
 
         let root = BPKTappableContainer(
