@@ -81,5 +81,6 @@ struct ItemBottomSheetContainerViewModifier<
         }
         .background(backgroundColor)
         .frame(maxHeight: .infinity, alignment: .top)
+        .ignoresSafeArea(.container, edges: .bottom)
     }
 }
