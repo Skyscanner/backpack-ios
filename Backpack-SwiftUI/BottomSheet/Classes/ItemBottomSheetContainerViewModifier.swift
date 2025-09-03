@@ -28,6 +28,7 @@ struct ItemBottomSheetContainerViewModifier<
     @ViewBuilder let header: () -> Header
     let contentMode: BPKBottomSheetContentMode
     let bottomSheetContent: (Item) -> BottomSheetContent
+    let backgroundColor: BPKColor
     
     @State var selectedSheetDetent: PresentationDetent
     
@@ -35,6 +36,7 @@ struct ItemBottomSheetContainerViewModifier<
         item: Binding<Item?>,
         peekHeight: CGFloat?,
         contentMode: BPKBottomSheetContentMode,
+        backgroundColor: BPKColor = .surfaceElevatedColor,
         @ViewBuilder header: @escaping () -> Header,
         @ViewBuilder bottomSheetContent: @escaping (Item) -> BottomSheetContent
     ) {
@@ -44,6 +46,7 @@ struct ItemBottomSheetContainerViewModifier<
         self.contentMode = contentMode
         self.header = header
         self.bottomSheetContent = bottomSheetContent
+        self.backgroundColor = backgroundColor
     }
     
     func body(content: Content) -> some View {
@@ -76,6 +79,7 @@ struct ItemBottomSheetContainerViewModifier<
                 .presentationDetents(finalDetents, selection: $selectedSheetDetent)
                 .presentationDragIndicator(.visible)
         }
+        .background(backgroundColor)
         .frame(maxHeight: .infinity, alignment: .top)
     }
 }
