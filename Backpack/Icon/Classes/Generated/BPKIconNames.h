@@ -243,6 +243,8 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameFingerprint;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameFlag;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameFlame;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameFlask;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameFlightFlexible;
@@ -292,6 +294,8 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameHotelsPetsAllowed;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameHotelsSmoking;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameHotels;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameIncompatible;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameInfant;
 /// :nodoc:
@@ -495,6 +499,8 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameSwap;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameTaxi;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameTemperature;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameThumbsDown;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameThumbsUp;
@@ -578,11 +584,5 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameWorldAmer;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameWorldApac;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameWorldEmea;
-/// :nodoc:
-FOUNDATION_EXPORT BPKIconName const BPKIconNameStarHalfXl;
-/// :nodoc:
-FOUNDATION_EXPORT BPKIconName const BPKIconNameStarOutlineXl;
-/// :nodoc:
-FOUNDATION_EXPORT BPKIconName const BPKIconNameStarXl;
 
 // clang-format on

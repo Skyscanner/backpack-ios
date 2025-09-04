@@ -153,6 +153,7 @@
 		B31283822A77D2410034EE29 /* CardListExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31283812A77D2410034EE29 /* CardListExampleView.swift */; };
 		B31283842A780A1F0034EE29 /* CardListGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31283832A780A1F0034EE29 /* CardListGroups.swift */; };
 		B3E50A2B2A618A400083FBFE /* SectionHeaderExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E50A2A2A618A400083FBFE /* SectionHeaderExampleView.swift */; };
+		BA4EE38E2E5D9E4100D9B42D /* PriceRangeExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4EE38D2E5D9E4100D9B42D /* PriceRangeExampleView.swift */; };
 		BA809EC52B05ED410030D1E7 /* AppSearchModalExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA809EC42B05ED410030D1E7 /* AppSearchModalExampleView.swift */; };
 		BA809EC82B05FC2E0030D1E7 /* AppSearchModalGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA809EC72B05FC2E0030D1E7 /* AppSearchModalGroups.swift */; };
 		BA8F350E2C104AFD0093FA79 /* CardButtonExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F350D2C104AFD0093FA79 /* CardButtonExampleView.swift */; };
@@ -402,6 +403,7 @@
 		B31283812A77D2410034EE29 /* CardListExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListExampleView.swift; sourceTree = "<group>"; };
 		B31283832A780A1F0034EE29 /* CardListGroups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListGroups.swift; sourceTree = "<group>"; };
 		B3E50A2A2A618A400083FBFE /* SectionHeaderExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderExampleView.swift; sourceTree = "<group>"; };
+		BA4EE38D2E5D9E4100D9B42D /* PriceRangeExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceRangeExampleView.swift; sourceTree = "<group>"; };
 		BA809EC42B05ED410030D1E7 /* AppSearchModalExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSearchModalExampleView.swift; sourceTree = "<group>"; };
 		BA809EC72B05FC2E0030D1E7 /* AppSearchModalGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSearchModalGroups.swift; sourceTree = "<group>"; };
 		BA8F350D2C104AFD0093FA79 /* CardButtonExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardButtonExampleView.swift; sourceTree = "<group>"; };
@@ -1062,6 +1064,7 @@
 			isa = PBXGroup;
 			children = (
 				28CF33702E39273C00A9DF34 /* Configuration */,
+				BA4EE38C2E5D9E0800D9B42D /* PriceRange */,
 				EEF89AC12E2EAE4E00BF1C83 /* TappableContainer */,
 				EED519BE2D3EBD8300F898D7 /* SegmentedControl */,
 				25006AAE2C60B15D0038D7CA /* SearchControlInput */,
@@ -1479,6 +1482,14 @@
 				B3E50A2A2A618A400083FBFE /* SectionHeaderExampleView.swift */,
 			);
 			path = SectionHeader;
+			sourceTree = "<group>";
+		};
+		BA4EE38C2E5D9E0800D9B42D /* PriceRange */ = {
+			isa = PBXGroup;
+			children = (
+				BA4EE38D2E5D9E4100D9B42D /* PriceRangeExampleView.swift */,
+			);
+			path = PriceRange;
 			sourceTree = "<group>";
 		};
 		BA809EC32B05ED100030D1E7 /* AppSearchModal */ = {
@@ -2024,6 +2035,7 @@
 				53E075A727FC95D70033147C /* MapGroups.swift in Sources */,
 				E397BEA622F5FFDD00C8EC04 /* Storyboards.swift in Sources */,
 				D217702425ACCC9700C0FD8C /* EnrichablePresentable.swift in Sources */,
+				BA4EE38E2E5D9E4100D9B42D /* PriceRangeExampleView.swift in Sources */,
 				D2297C2B232A7F3F006E00E0 /* RatingsViewController.swift in Sources */,
 				DB08530C2C45567600314EE8 /* CarouselCardExampleView.swift in Sources */,
 				79B94C3E2AA5A33E006CB539 /* GraphicPromoGroupsProvider.swift in Sources */,

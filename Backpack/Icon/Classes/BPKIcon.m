@@ -102,9 +102,6 @@ NS_ASSUME_NONNULL_BEGIN
     case BPKIconSizeLarge:
         sizeName = @"lg";
         break;
-    case BPKIconSizeXLarge:
-        sizeName = @"xl";
-        break;
     default:
         NSAssert(NO, @"Unknown icon size");
         sizeName = @"unknown";
@@ -122,9 +119,6 @@ NS_ASSUME_NONNULL_BEGIN
         break;
     case BPKIconSizeLarge:
         return self.concreteSizeForLargeIcon;
-        break;
-    case BPKIconSizeXLarge:
-        return self.concreteSizeForXlIcon;
         break;
     default:
         NSAssert(NO, @"Unsupported icon size");
@@ -159,13 +153,6 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma GCC diagnostic pop
 }
 
-+ (UIImage *)xlTemplateIconNamed:(BPKXlIconName)name {
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-    return [self templateIconNamed:name size:BPKIconSizeXLarge];
-#pragma GCC diagnostic pop
-}
-
 + (UIImage *)smallIconNamed:(BPKSmallIconName)name color:(UIColor *)color {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
@@ -177,13 +164,6 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     return [self iconNamed:name color:color size:BPKIconSizeLarge];
-#pragma GCC diagnostic pop
-}
-
-+ (UIImage *)xlIconNamed:(BPKXlIconName)name color:(UIColor *)color {
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-    return [self iconNamed:name color:color size:BPKIconSizeXLarge];
 #pragma GCC diagnostic pop
 }
 

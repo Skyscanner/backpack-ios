@@ -18,7 +18,8 @@ defaults:
 jobs:
   TestPods:
     name: Testing Pods
-    runs-on: macos-15
+    runs-on: macos-14
+    timeout-minutes: 35
     outputs:
       changed-files: ${{ steps.checkSnapshotChanges.outputs.didChangeFiles }}
     steps:
@@ -34,7 +35,7 @@ jobs:
           token: ${{ steps.app-token.outputs.token }}
 
       - name: Set up node and ruby
-        uses: asdf-vm/actions/install@v3 # Sets ruby and node version via `.tool-versions`
+        uses: asdf-vm/actions/install@v4 # Sets ruby and node version via `.tool-versions`
 
       - name: Cache Bundler install Gems
         uses: actions/cache@v4
@@ -60,7 +61,7 @@ jobs:
         working-directory: Example
 
       - name: Select Xcode 16
-        run: sudo xcode-select --switch /Applications/Xcode_16.4.app
+        run: sudo xcode-select --switch /Applications/Xcode_16.2.app
 
       - name: Remove snapshots
         if: ${{inputs.retake_snapshots}}

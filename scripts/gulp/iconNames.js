@@ -20,10 +20,9 @@ const { capitaliseFirstLetter, lowercaseFirstLetter } = require('./utils/formatU
 
 const iconsUIKit = () => {
   const content = require('@skyscanner/bpk-svgs/dist/iconMapping.json')
-  const combinedEntries = Object.entries(content).filter((x) => !x[0].endsWith('-sm'));
-  const smallEntries = Object.entries(content).filter((x) => x[0].endsWith('-sm'));
-  const largeEntries = Object.entries(content).filter((x) => !x[0].endsWith('-sm') && !x[0].endsWith('-xl'));
-  const xlEntries = Object.entries(content).filter((x) => x[0].endsWith('-xl'));
+  const combinedEntries = Object.entries(content).filter((x) => !x[0].endsWith('-sm') && !x[0].includes('-xxxl'));
+  const smallEntries = Object.entries(content).filter((x) => x[0].endsWith('-sm') && !x[0].includes('-xxxl'));
+  const largeEntries = Object.entries(content).filter((x) => !x[0].endsWith('-sm') && !x[0].includes('-xxxl'));
 
   const codify = (name) =>
     name
@@ -51,13 +50,12 @@ const iconsUIKit = () => {
     icons: templateData(combinedEntries),
     smallIcons: templateData(smallEntries, '-sm'),
     largeIcons: templateData(largeEntries),
-    xlIcons: templateData(xlEntries, '-xl'),
   }
 }
 
 const iconsSwiftUI = () => {
   const content = require('@skyscanner/bpk-svgs/dist/iconMapping.json')
-  const largeEntries = Object.entries(content).filter((x) => !x[0].endsWith('-sm') && !x[0].endsWith('-xl'));
+  const largeEntries = Object.entries(content).filter((x) => !x[0].endsWith('-sm') && !x[0].includes('-xxxl'));
 
   const codify = (name) =>
     lowercaseFirstLetter(name

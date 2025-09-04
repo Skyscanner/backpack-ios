@@ -243,6 +243,8 @@ FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameFingerprint;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameFlag;
 /// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameFlame;
+/// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameFlask;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameFlightFlexible;
@@ -292,6 +294,8 @@ FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameHotelsPetsAllowed;
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameHotelsSmoking;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameHotels;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameIncompatible;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameInfant;
 /// :nodoc:
@@ -494,6 +498,8 @@ FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameSwapVertical;
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameSwap;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameTaxi;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameTemperature;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameThumbsDown;
 /// :nodoc:

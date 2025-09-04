@@ -18,6 +18,7 @@
 
 import SwiftUI
 import Foundation
+// swiftlint:disable line_length
 
 public final class BpkConfiguration {
     /// Shared singleton instance

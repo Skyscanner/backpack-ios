@@ -13,20 +13,19 @@ defaults:
 jobs:
   Setup:
     name: Install Dependencies
-    runs-on: macos-15
+    runs-on: macos-14
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
 
-      - name: Verify Bundler Version
-        run: if [[ $(cat Gemfile.lock | sed -n '/BUNDLED WITH/{n;p;}' | sed '/^$/d;s/[[:blank:]]//g') != "2.2.3" ]]; then echo "Error - Gemfile.lock should be bundled with bundler 2.2.3"; exit 64; fi
-
       - name: Set up node and ruby
-        uses: asdf-vm/actions/install@v3 # Sets ruby and node version via `.tool-versions`
+        uses: asdf-vm/actions/install@v4 # Sets ruby and node version via `.tool-versions`
 
   Lint:
     name: Lint Project
-    runs-on: macos-15
+    runs-on: macos-14
     needs: [Setup]
+    timeout-minutes: 20
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -74,10 +73,13 @@ jobs:
         working-directory: Example
 
       - name: Select Xcode 16
-        run: sudo xcode-select --switch /Applications/Xcode_16.4.app
+        run: sudo xcode-select --switch /Applications/Xcode_16.2.app
 
       - name: Install clang-format
         run: brew install clang-format
+
+      - name: Discard changes to Gemfile.lock
+        run: git checkout -- Gemfile.lock
 
       - name: Check pristine
         run: ./scripts/lint
@@ -99,8 +101,9 @@ jobs:
 
   AnalyzePods:
     name: Analyzing pods
-    runs-on: macos-15
+    runs-on: macos-14
     needs: [Setup]
+    timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
@@ -134,7 +137,10 @@ jobs:
         working-directory: Example
 
       - name: Select Xcode 16
-        run: sudo xcode-select --switch /Applications/Xcode_16.4.app
+        run: sudo xcode-select --switch /Applications/Xcode_16.2.app
+
+      - name: List Runtimes
+        run: xcrun simctl list runtimes
 
       - name: Analyze
         run: ./scripts/ci ${{ matrix.schemes }} analysis
@@ -148,8 +154,9 @@ jobs:
 
   UploadArtifacts:
     name: Upload Artifacts
-    runs-on: macos-15
+    runs-on: macos-14
     needs: [TestPods]
+    timeout-minutes: 20
     steps:
       - name: Save assets
         uses: actions/upload-artifact@v4

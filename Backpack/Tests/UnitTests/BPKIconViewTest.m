@@ -39,12 +39,6 @@
     XCTAssertEqual(iconView.size, BPKIconSizeLarge);
 }
 
-- (void)testExtraLargeIconViewInitWithFrame {
-    BPKXlIconView *iconView = [[BPKXlIconView alloc] initWithFrame:CGRectZero];
-
-    XCTAssertEqual(iconView.size, BPKIconSizeXLarge);
-}
-
 - (void)testSmallIconViewInitWithIconName {
     BPKSmallIconView *iconView = [[BPKSmallIconView alloc] initWithIconName:BPKSmallIconNameStar];
 
@@ -55,12 +49,6 @@
     BPKLargeIconView *iconView = [[BPKLargeIconView alloc] initWithIconName:BPKLargeIconNameStar];
 
     XCTAssertEqual(iconView.size, BPKIconSizeLarge);
-}
-
-- (void)testExtraLargeIconViewInitWithIconName {
-    BPKXlIconView *iconView = [[BPKXlIconView alloc] initWithIconName:BPKXlIconNameStar];
-
-    XCTAssertEqual(iconView.size, BPKIconSizeXLarge);
 }
 
 @end

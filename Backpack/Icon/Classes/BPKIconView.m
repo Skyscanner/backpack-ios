@@ -54,9 +54,6 @@ NS_ASSUME_NONNULL_BEGIN
         case BPKIconSizeLarge:
             super.image = [BPKIcon largeTemplateIconNamed:self.iconName];
             break;
-        case BPKIconSizeXLarge:
-            super.image = [BPKIcon xlTemplateIconNamed:self.iconName];
-            break;
         }
     }
     [self setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
