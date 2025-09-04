@@ -124,7 +124,6 @@ public struct BPKRangeSlider: View {
                     .offset(x: fillLineOffset(sliderSize: sliderSize))
                     .padding(.bottom, (thumbSize / 2) - (sliderHeight / 2))
                     .accessibilityIdentifier(accessibilityIdentifier)
-                    .accessibilityHidden(true)
                 SliderThumbView(
                     size: thumbSize,
                     offset: trailingThumbOffset(sliderSize: sliderSize),
@@ -146,7 +145,6 @@ public struct BPKRangeSlider: View {
                     @unknown default: break
                     }
                 }
-                .accessibilityHidden(true)
 
                 SliderThumbView(
                     size: thumbSize,
@@ -169,17 +167,14 @@ public struct BPKRangeSlider: View {
                     @unknown default: break
                     }
                 }
-                .accessibilityHidden(true)
             }
             if let thumbnailLabels = thumbnailLabels, isDraggingTrailingThumb {
                 thumbLabel(thumbnailLabels.upperThumbnail)
                     .offset(x: trailingThumbOffset(sliderSize: sliderSize))
-                    .accessibilityHidden(true)
             }
             if let thumbnailLabels = thumbnailLabels, isDraggingLeadingThumb {
                 thumbLabel(thumbnailLabels.lowerThumbnail)
                     .offset(x: leadingThumbOffset(sliderSize: sliderSize))
-                    .accessibilityHidden(true)
             }
         }
     }

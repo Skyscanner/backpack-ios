@@ -78,7 +78,6 @@ public struct BPKSlider: View {
                 .cornerRadius(8)
                 .offset(x: fillLineOffset(sliderSize: sliderSize))
                 .accessibilityIdentifier(accessibilityIdentifier)
-                .accessibilityHidden(true)
             thumbView(sliderSize: sliderSize)
         }
     }
@@ -108,7 +107,6 @@ public struct BPKSlider: View {
             @unknown default: break
             }
         }
-        .accessibilityHidden(true)
     }
     
     private func handleThumbDrag(value dragValue: DragGesture.Value, sliderSize: CGSize) {
