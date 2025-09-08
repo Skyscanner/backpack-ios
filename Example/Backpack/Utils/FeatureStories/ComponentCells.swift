@@ -222,9 +222,11 @@ extension ComponentCellsProvider {
         )
     }
     private func configuration() -> CellDataSource {
-        
         do {
-            try BpkConfiguration.shared.set(chipConfig: true)
+            try BpkConfiguration.shared.set(
+                chipConfig: true,
+                textConfig: true
+            )
         } catch {
             return ComponentCellDataSource(
                 title: "Configuration",

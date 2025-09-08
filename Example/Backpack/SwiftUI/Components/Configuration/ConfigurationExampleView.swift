@@ -41,6 +41,11 @@ struct ConfigurationExampleView: View {
                 chipView
                 
                 dropDownChipView
+                
+                BPKText(
+                    "Note: The `BPKDropdownChip`"
+                )
+                .foregroundColor(.textSecondaryColor)
 
             }
             

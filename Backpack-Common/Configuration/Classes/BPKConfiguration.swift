@@ -60,6 +60,7 @@ public final class BpkConfiguration {
     public struct BpkTextConfig {
         public var font: Font?
         public var fontFixed: Font?
+        public var letterSpacing: CGFloat?
         public var size: CGFloat?
     }
     
@@ -151,8 +152,10 @@ public final class BpkConfiguration {
         
         if textConfig {
             self.textConfig = BpkTextConfig(
-                font: .body,
-                size: 30
+                font: .caption2,
+                fontFixed: .caption2,
+                letterSpacing: 10,
+                size: 100
             )
         }
     }

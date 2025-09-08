@@ -17,6 +17,7 @@
  */
 
 import SwiftUI
+import Backpack_Common
 
 /// A view that displays one or more lines of text
 /// By default the color of BPKText is set to `BPKColor.textPrimary` with a lineLimit of 1
@@ -31,10 +32,18 @@ public struct BPKText: View {
     private var textColor = Color(BPKColor.textPrimaryColor)
     private var lineLimit: Int? = 1
     private var strikethrough: Bool = false
+    private var config: BpkConfiguration
     
     public init(_ text: String, style: BPKFontStyle = .bodyDefault) {
         self.text = Text(LocalizedStringKey(text))
-        self.style = style
+        self.config = BpkConfiguration.shared
+        
+        self.style = BPKFontStyle(
+            font: config.textConfig?.font ?? style.font,
+            fontFixed: config.textConfig?.fontFixed ?? style.fontFixed,
+            letterSpacing: 10,
+            lineHeight: config.textConfig?.size ?? style.lineHeight
+        )
     }
     
     public var body: some View {
@@ -85,6 +94,7 @@ public extension BPKText {
     init(_ text: Text, style: BPKFontStyle = .bodyDefault) {
         self.text = text
         self.style = style
+        self.config = BpkConfiguration.shared
     }
 }
 
