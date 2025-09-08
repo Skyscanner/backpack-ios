@@ -25,7 +25,5 @@
 #import "BPKLargeIconView.h"
 #import "BPKSmallIconNames.h"
 #import "BPKSmallIconView.h"
-#import "BPKXlIconNames.h"
-#import "BPKXlIconView.h"
 
 #endif
