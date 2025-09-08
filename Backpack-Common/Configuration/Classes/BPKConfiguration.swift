@@ -22,12 +22,16 @@ import Foundation
 
 public final class BpkConfiguration {
     /// Shared singleton instance
-    public static let shared = BpkConfiguration()
+    public static var shared = BpkConfiguration()
     
     private init() {}
     
     /// Checking for previous config setting
     private var hasSet = false
+    
+    public static func reset() {
+        shared = BpkConfiguration()
+    }
     
     // Tracking if any configuration has been accessed
     private var configIsAccessed: Bool = false
@@ -54,7 +58,9 @@ public final class BpkConfiguration {
     }
     
     public struct BpkTextConfig {
-        var fontName: String?
+        public var font: Font?
+        public var fontFixed: Font?
+        public var size: CGFloat?
     }
     
     public struct BpkCardConfig {
@@ -140,6 +146,13 @@ public final class BpkConfiguration {
                 color: .green,
                 radius: 100,
                 radiusToken: .roundCorners
+            )
+        }
+        
+        if textConfig {
+            self.textConfig = BpkTextConfig(
+                font: .body,
+                size: 30
             )
         }
     }
