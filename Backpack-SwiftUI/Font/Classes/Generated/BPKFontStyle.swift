@@ -18,21 +18,12 @@
  
 import UIKit
 import SwiftUI
-import Backpack_Common
 
 public struct BPKFontStyle {
     public let font: Font
     public let fontFixed: Font
     public let letterSpacing: CGFloat
     public let lineHeight: CGFloat
-    
-    init(font: Font, fontFixed: Font, letterSpacing: CGFloat, lineHeight: CGFloat) {
-        self.font = font
-        self.fontFixed = font
-        self.letterSpacing = letterSpacing
-        self.lineHeight = lineHeight
-        
-    }
 }
 
 public extension BPKFontStyle {

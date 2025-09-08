@@ -1,6 +1,6 @@
 //
 //  BPKConfigurationTests.swift
-//  Pods
+//  Backpack-Common-Unit-Tests
 //
 //  Created by Kynan Song on 08/09/2025.
 //
@@ -8,8 +8,8 @@
 import XCTest
 @testable import Backpack_Common
 
-class BPKConfigurationTest: XCTestCase {
-    
+final class BPKConfigurationTests: XCTestCase {
+
     func testConfigurationChipsIsFalseConfigIsNil() {
         
         // Given
