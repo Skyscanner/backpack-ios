@@ -57,7 +57,7 @@ public class BPKChip: UIControl {
     /**
      * Configuration set for customizing chip appearance and behavior.
      */
-    public let config: BpkConfiguration?
+    public var config: BpkConfiguration?
     
     public override var isSelected: Bool {
         didSet {
@@ -140,6 +140,15 @@ public class BPKChip: UIControl {
      * @param icon BPKChip.Icon to use as the icon
      * @param configOverride Optional BPKConfigSet to override default configuration
      */
+    public convenience init(title: String, icon: BPKSmallIconName? = nil) {
+        self.init(frame: .zero)
+        self.config = nil
+        self.title = title
+        self.icon = icon
+        
+        updateLookAndFeel()
+    }
+    
     public convenience init(title: String, icon: BPKSmallIconName? = nil, configOverride: BpkConfiguration? = nil) {
         self.init(frame: .zero, configOverride: configOverride)
         self.title = title
@@ -155,6 +164,12 @@ public class BPKChip: UIControl {
      * @param configOverride Optional BPKConfigSet to override default configuration
      * @return `BPKChip` instance.
      */
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.config = nil
+        setup()
+    }
+    
     public init(frame: CGRect, configOverride: BpkConfiguration? = nil) {
         self.config = configOverride
         super.init(frame: frame)
