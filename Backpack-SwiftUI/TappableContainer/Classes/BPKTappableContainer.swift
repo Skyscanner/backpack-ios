@@ -34,9 +34,11 @@ public struct BPKTappableContainer<Content: View>: View {
         /// Button style with no tap animation or visual feedback
         case noTapAnimation
     }
-    
+
     private let action: () -> Void
     private let accessibilityLabel: String
+    private let accessbilityIdentifier: String?
+    private let accessibilityValue: String?
     private let content: () -> Content
     private let buttonStyleType: ButtonStyleType
 
@@ -49,11 +51,15 @@ public struct BPKTappableContainer<Content: View>: View {
     ///   - content: A ViewBuilder closure containing the content to make tappable
     public init(
         accessibilityLabel: String,
+        accessbilityIdentifier: String? = nil,
+        accessbilityValue: String? = nil,
         action: @escaping () -> Void,
         buttonStyleType: ButtonStyleType = .plain,
         @ViewBuilder content: @escaping () -> Content
     ) {
         self.accessibilityLabel = accessibilityLabel
+        self.accessbilityIdentifier = accessbilityIdentifier
+        self.accessibilityValue = accessbilityValue
         self.action = action
         self.buttonStyleType = buttonStyleType
         self.content = content
@@ -67,13 +73,17 @@ public struct BPKTappableContainer<Content: View>: View {
             }
             .buttonStyle(.plain)
             .accessibilityLabel(accessibilityLabel)
-            
+            .accessibilityIdentifier(accessbilityIdentifier ?? "")
+            .accessibilityValue(accessibilityValue ?? "")
+
         case .noTapAnimation:
             Button(action: action) {
                 content()
             }
             .buttonStyle(NoTapAnimationStyle())
             .accessibilityLabel(accessibilityLabel)
+            .accessibilityIdentifier(accessbilityIdentifier ?? "")
+            .accessibilityValue(accessibilityValue ?? "")
         }
     }
 }
