@@ -47,7 +47,7 @@ public struct BPKSnippet: View {
             imageView
 
             if let headline {
-                BPKText(headline, style: .heading5)
+                BPKText(headline, style: .heading4)
                     .lineLimit(nil)
                     .accessibilityAddTraits(.isHeader)
                     .padding(.top, .base)
