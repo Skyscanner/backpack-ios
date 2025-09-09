@@ -69,6 +69,7 @@ public struct BPKSnippet: View {
             }
         }
         .accessibilityElement(children: .combine)
+        .fixedSize(horizontal: false, vertical: true)
         .accessibilityAddTraits(.isButton)
         .onTapGesture {
             onClick?()
