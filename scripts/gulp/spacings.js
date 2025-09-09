@@ -28,6 +28,8 @@ const VALID_SPACINGS = new Set([
   'lg',
   'xl',
   'xxl',
+  'xxxl',
+  'xxxxl',
   'icontext',
 ]);
 

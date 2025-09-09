@@ -45,10 +45,4 @@
     XCTAssertNotNil(rendered);
 }
 
-- (void)testCreateXlWithEnum {
-    UIImage *rendered = [BPKIcon xlIconNamed:BPKXlIconNameStarHalf color:BPKColor.corePrimaryColor];
-
-    XCTAssertNotNil(rendered);
-}
-
 @end

@@ -41,6 +41,7 @@ public extension View {
         closeButtonAccessibilityLabel: String? = nil,
         title: String? = nil,
         action: BPKBottomSheetAction? = nil,
+        backgroundColor: BPKColor = .surfaceElevatedColor,
         @ViewBuilder bottomSheetContent: @escaping () -> BottomSheetContent
     ) -> some View {
         modifier(
@@ -48,6 +49,7 @@ public extension View {
                 isPresented: isPresented,
                 peekHeight: peekHeight,
                 contentMode: contentMode,
+                backgroundColor: backgroundColor,
                 header: {
                     header(
                         closeAction: closeAction(
@@ -88,6 +90,7 @@ public extension View {
         closeButtonAccessibilityLabel: String? = nil,
         title: String? = nil,
         action: BPKBottomSheetAction? = nil,
+        backgroundColor: BPKColor = .surfaceElevatedColor,
         presentingController: UIViewController,
         @ViewBuilder bottomSheetContent: @escaping () -> BottomSheetContent
     ) -> some View {
@@ -96,6 +99,7 @@ public extension View {
                 isPresented: isPresented,
                 peekHeight: nil,
                 contentMode: contentMode,
+                backgroundColor: backgroundColor,
                 header: {
                     header(
                         closeAction: closeAction(
@@ -134,6 +138,7 @@ public extension View {
         closeButtonAccessibilityLabel: String? = nil,
         title: String? = nil,
         action: BPKBottomSheetAction? = nil,
+        backgroundColor: BPKColor = .surfaceElevatedColor,
         presentingController: UIViewController,
         @ViewBuilder bottomSheetContent: @escaping (Item) -> BottomSheetContent
     ) -> some View {
@@ -142,6 +147,7 @@ public extension View {
                 item: item,
                 peekHeight: peekHeight,
                 contentMode: contentMode,
+                backgroundColor: backgroundColor,
                 header: {
                     header(
                         closeAction: closeAction(
@@ -180,6 +186,7 @@ public extension View {
         closeButtonAccessibilityLabel: String? = nil,
         title: String? = nil,
         action: BPKBottomSheetAction? = nil,
+        backgroundColor: BPKColor = .surfaceElevatedColor,
         presentingController: UIViewController,
         @ViewBuilder bottomSheetContent: @escaping (Item) -> BottomSheetContent
     ) -> some View {
@@ -188,6 +195,7 @@ public extension View {
                 item: item,
                 peekHeight: nil,
                 contentMode: contentMode,
+                backgroundColor: backgroundColor,
                 header: {
                     header(
                         closeAction: closeAction(

@@ -60,5 +60,15 @@ extern CGFloat const BPKSpacingXl;
  */
 extern CGFloat const BPKSpacingXxl;
 
+/**
+ * The Skyscanner extra extra extra large spacing(64pt).
+ */
+extern CGFloat const BPKSpacingXxxl;
+
+/**
+ * The Skyscanner extra extra extra extra large spacing(96pt).
+ */
+extern CGFloat const BPKSpacingXxxxl;
+
 NS_ASSUME_NONNULL_END
 // clang-format on

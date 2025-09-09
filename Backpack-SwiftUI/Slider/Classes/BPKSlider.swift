@@ -28,9 +28,13 @@ public struct BPKSlider: View {
 
     private let sliderHeight: CGFloat = 4
     private let thumbSize: CGFloat = 20
-    private var thumbAccessibilityLabel = ""
-    
+    private var accessibilityIdentifier = ""
+
     @Environment(\.layoutDirection) private var layoutDirection
+    
+    // Add haptic feedback generator
+    private let hapticFeedback = UIImpactFeedbackGenerator(style: .light)
+    @State private var lastHapticValue: Float = 0
     
     /// Creates a new instance of `BPKSlider`.
     ///
@@ -51,6 +55,7 @@ public struct BPKSlider: View {
         self.sliderBounds = sliderBounds
         self.step = step
         self.onDragEnded = onDragEnded
+        self._lastHapticValue = State(initialValue: value.wrappedValue)
     }
     
     public var body: some View {
@@ -70,15 +75,17 @@ public struct BPKSlider: View {
             Rectangle()
                 .fill(Color(.coreAccentColor))
                 .frame(width: fillLineWidth(sliderSize: sliderSize), height: sliderHeight)
+                .cornerRadius(8)
                 .offset(x: fillLineOffset(sliderSize: sliderSize))
+                .accessibilityIdentifier(accessibilityIdentifier)
             thumbView(sliderSize: sliderSize)
         }
     }
-    
-    /// Sets the accessibility label for the thumb.
-    public func thumbAccessibility(label: String) -> BPKSlider {
+
+    /// Sets the accessibility identifier.
+    public func accessibilityIdentifier(_ identifier: String) -> BPKSlider {
         var result = self
-        result.thumbAccessibilityLabel = label
+        result.accessibilityIdentifier = identifier
         return result
     }
     
@@ -91,7 +98,7 @@ public struct BPKSlider: View {
         } onDragEnded: {
             onDragEnded(value)
         }
-        .accessibilityLabel(thumbAccessibilityLabel)
+        .accessibilityIdentifier("\(accessibilityIdentifier)_thumb")
         .accessibility(value: Text("\(value)"))
         .accessibilityAdjustableAction { direction in
             switch direction {
@@ -102,32 +109,6 @@ public struct BPKSlider: View {
         }
     }
     
-    private func increment() {
-        value = min(value + step, sliderBounds.upperBound)
-        onDragEnded(value)
-    }
-    
-    private func decrement() {
-        value = max(value - step, sliderBounds.lowerBound)
-        onDragEnded(value)
-    }
-    
-    private func fillLineWidth(sliderSize: CGSize) -> CGFloat {
-        let percentage = BPKSliderHelpers.percentageOfValue(
-            value: value,
-            sliderBounds: sliderBounds
-        )
-        return sliderSize.width * CGFloat(percentage)
-    }
-
-    private func fillLineOffset(sliderSize: CGSize) -> CGFloat {
-        let percentage = BPKSliderHelpers.percentageOfValue(
-            value: value,
-            sliderBounds: sliderBounds
-        )
-        return (sliderSize.width * CGFloat(percentage) / 2) - (sliderSize.width / 2)
-    }
-
     private func handleThumbDrag(value dragValue: DragGesture.Value, sliderSize: CGSize) {
         let roundedValue = BPKSliderHelpers.calculateNewValueFromDrag(
             xLocation: dragValue.location.x,
@@ -137,9 +118,58 @@ public struct BPKSlider: View {
             step: step,
             layoutDirection: layoutDirection
         )
-        if roundedValue >= sliderBounds.lowerBound && roundedValue <= sliderBounds.upperBound {
-            value = roundedValue
+        
+        // Ensure the calculated value is within bounds to prevent RTL jumping
+        let clampedValue = max(sliderBounds.lowerBound, min(roundedValue, sliderBounds.upperBound))
+        
+        if clampedValue >= sliderBounds.lowerBound && clampedValue <= sliderBounds.upperBound {
+            // Trigger haptic feedback only when value changes by at least the step amount
+            if abs(clampedValue - lastHapticValue) >= step {
+                hapticFeedback.impactOccurred()
+                lastHapticValue = clampedValue
+            }
+            self.value = clampedValue
         }
+    }
+    
+    private func increment() {
+        let newValue = min(value + step, sliderBounds.upperBound)
+        if newValue != value {
+            hapticFeedback.impactOccurred()
+            lastHapticValue = newValue
+        }
+        value = newValue
+        onDragEnded(value)
+    }
+    
+    private func decrement() {
+        let newValue = max(value - step, sliderBounds.lowerBound)
+        if newValue != value {
+            hapticFeedback.impactOccurred()
+            lastHapticValue = newValue
+        }
+        value = newValue
+        onDragEnded(value)
+    }
+    
+    private func fillLineWidth(sliderSize: CGSize) -> CGFloat {
+        let percentage = BPKSliderHelpers.percentageOfValue(
+            value: value,
+            sliderBounds: sliderBounds
+        )
+        // Ensure percentage is within valid range to prevent RTL issues
+        let clampedPercentage = max(0, min(percentage, 1))
+        return sliderSize.width * CGFloat(clampedPercentage)
+    }
+
+    private func fillLineOffset(sliderSize: CGSize) -> CGFloat {
+        let percentage = BPKSliderHelpers.percentageOfValue(
+            value: value,
+            sliderBounds: sliderBounds
+        )
+        // Ensure percentage is within valid range to prevent RTL issues
+        let clampedPercentage = max(0, min(percentage, 1))
+        return (sliderSize.width * CGFloat(clampedPercentage) / 2) - (sliderSize.width / 2)
     }
     
     private func thumbOffset(sliderSize: CGSize) -> CGFloat {
@@ -147,7 +177,9 @@ public struct BPKSlider: View {
             value: value,
             sliderBounds: sliderBounds
         )
-        return sliderSize.width * CGFloat(percentage) - (sliderSize.width / 2)
+        // Ensure percentage is within valid range to prevent RTL issues
+        let clampedPercentage = max(0, min(percentage, 1))
+        return sliderSize.width * CGFloat(clampedPercentage) - (sliderSize.width / 2)
     }
 }
 
