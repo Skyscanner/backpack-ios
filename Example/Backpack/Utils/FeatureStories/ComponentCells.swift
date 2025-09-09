@@ -243,7 +243,7 @@ extension ComponentCellsProvider {
                     ContentUIHostingController(ConfigurationExampleView())
                 }))
             ],
-            showChildren: { showComponent(title: "Chips", tabs: $0) }
+            showChildren: { showComponent(title: "Configuration", tabs: $0) }
         )
     }
     private func flare() -> CellDataSource {
