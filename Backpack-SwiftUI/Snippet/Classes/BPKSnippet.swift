@@ -59,9 +59,9 @@ public struct BPKSnippet: View {
             }
             if let bodyText {
                 let topPadding: CGFloat = {
-                    if subheading != nil { return .xl }
-                    if headline != nil { return .sm }
-                    return .base
+                    if subheading != nil { return BPKSpacing.xl.value }
+                    if headline != nil { return BPKSpacing.sm.value }
+                    return BPKSpacing.base.value
                 }()
                 BPKText(bodyText, style: .bodyDefault)
                     .lineLimit(nil)
