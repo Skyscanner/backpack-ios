@@ -50,17 +50,22 @@ public struct BPKSnippet: View {
                 BPKText(headline, style: .heading5)
                     .lineLimit(nil)
                     .accessibilityAddTraits(.isHeader)
-                    .padding(.bottom, .sm)
+                    .padding(.top, .base)
             }
             if let subheading {
                 BPKText(subheading, style: .subheading)
                     .lineLimit(nil)
-                    .padding(.bottom, .xl)
+                    .padding(.top, headline != nil ? .sm : .base)
             }
             if let bodyText {
+                let topPadding: CGFloat = {
+                    if subheading != nil { return .xl }
+                    if headline != nil { return .sm }
+                    return .base
+                }()
                 BPKText(bodyText, style: .bodyDefault)
                     .lineLimit(nil)
-                    .padding(.bottom, .base)
+                    .padding(.top, topPadding)
             }
         }
         .accessibilityElement(children: .combine)
@@ -80,7 +85,6 @@ public struct BPKSnippet: View {
         }
         .aspectRatio(aspectRatio(for: imageOrientation), contentMode: .fit)
         .clipShape(RoundedRectangle(cornerRadius: .md, style: .continuous))
-        .padding(.bottom, .md)
     }
     
     private func aspectRatio(for imageOrientation: ImageOrientation) -> CGFloat {
