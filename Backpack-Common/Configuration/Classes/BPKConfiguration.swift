@@ -45,13 +45,7 @@ public final class BpkConfiguration {
     }
     
     /// Configuration for the Chip component
-    public struct BpkButtonConfig {
-        public var height: CGFloat?
-        public var heightDimension: String?
-        public var color: Color?
-        public var radius: CGFloat?
-        public var radiusToken: RadiusToken?
-    }
+    public struct BpkButtonConfig {}
     
     public struct BpkTextConfig {
         public var font: Font?
@@ -60,9 +54,7 @@ public final class BpkConfiguration {
         public var size: CGFloat?
     }
     
-    public struct BpkCardConfig {
-        var cornerRadius: CGFloat?
-    }
+    public struct BpkCardConfig {}
     
     public struct BpkChipConfig {
         public var color: Color?
@@ -136,24 +128,11 @@ public final class BpkConfiguration {
             )
         }
         
-        if buttonConfig {
-            self.buttonConfig = BpkButtonConfig(
-                height: 24,
-                heightDimension: "bpk_new_button_height",
-                color: .green,
-                radius: 100,
-                radiusToken: .roundCorners
-            )
-        }
+        if buttonConfig {}
         
-        if textConfig {
-            self.textConfig = BpkTextConfig(
-                font: .caption2,
-                fontFixed: .caption2,
-                letterSpacing: 10,
-                size: 100
-            )
-        }
+        if textConfig {}
+        
+        if cardConfig {}
     }
 }
 
