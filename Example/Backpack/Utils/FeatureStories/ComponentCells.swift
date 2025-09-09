@@ -225,8 +225,7 @@ extension ComponentCellsProvider {
         do {
             let config = BpkConfiguration.shared
             try config.set(
-                chipConfig: true,
-                textConfig: true
+                chipConfig: true
             )
         } catch {
             return ComponentCellDataSource(

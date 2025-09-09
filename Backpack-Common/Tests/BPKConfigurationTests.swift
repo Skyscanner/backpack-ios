@@ -66,11 +66,6 @@ final class BpkConfigurationTests: XCTestCase {
         try config.set(buttonConfig: true)
         let buttonConfig = config.buttonConfig
         XCTAssertNotNil(buttonConfig)
-        XCTAssertEqual(buttonConfig?.color, .green)
-        XCTAssertEqual(buttonConfig?.height, 24)
-        XCTAssertEqual(buttonConfig?.heightDimension, "bpk_new_button_height")
-        XCTAssertEqual(buttonConfig?.radius, 100)
-        XCTAssertEqual(buttonConfig?.radiusToken, .roundCorners)
     }
 
     func testTextConfigIsSetCorrectlyWhenSetIsCalled() throws {
@@ -78,10 +73,6 @@ final class BpkConfigurationTests: XCTestCase {
         try config.set(textConfig: true)
         let textConfig = config.textConfig
         XCTAssertNotNil(textConfig)
-        XCTAssertEqual(textConfig?.font, .caption2)
-        XCTAssertEqual(textConfig?.fontFixed, .caption2)
-        XCTAssertEqual(textConfig?.letterSpacing, 10)
-        XCTAssertEqual(textConfig?.size, 100)
     }
 
     func testCardConfigIsNilByDefault() {

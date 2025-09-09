@@ -44,7 +44,7 @@ public final class BpkConfiguration {
         case roundCorners
     }
     
-    /// Configuration for the Chip component
+    /// Component configurations
     public struct BpkButtonConfig {}
     
     public struct BpkTextConfig {
@@ -128,11 +128,17 @@ public final class BpkConfiguration {
             )
         }
         
-        if buttonConfig {}
+        if buttonConfig {
+            self.buttonConfig = BpkButtonConfig()
+        }
         
-        if textConfig {}
+        if textConfig {
+            self.textConfig = BpkTextConfig()
+        }
         
-        if cardConfig {}
+        if cardConfig {
+            self.cardConfig = BpkCardConfig()
+        }
     }
 }
 
