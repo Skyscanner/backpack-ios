@@ -22,16 +22,12 @@ import Foundation
 
 public final class BpkConfiguration {
     /// Shared singleton instance
-    public static var shared = BpkConfiguration()
+    public static let shared = BpkConfiguration()
     
     private init() {}
     
     /// Checking for previous config setting
     private var hasSet = false
-    
-    public static func reset() {
-        shared = BpkConfiguration()
-    }
     
     // Tracking if any configuration has been accessed
     private var configIsAccessed: Bool = false
@@ -158,5 +154,17 @@ public final class BpkConfiguration {
                 size: 100
             )
         }
+    }
+}
+
+extension BpkConfiguration {
+    public func reset() {
+        chipConfig = nil
+        buttonConfig = nil
+        textConfig = nil
+        cardConfig = nil
+        hasSet = false
+        configIsAccessed = false
+        onConfigurationAccessed = nil
     }
 }

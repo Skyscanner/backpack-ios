@@ -223,7 +223,8 @@ extension ComponentCellsProvider {
     }
     private func configuration() -> CellDataSource {
         do {
-            try BpkConfiguration.shared.set(
+            let config = BpkConfiguration.shared
+            try config.set(
                 chipConfig: true,
                 textConfig: true
             )

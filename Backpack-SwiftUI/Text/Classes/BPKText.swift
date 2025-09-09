@@ -41,7 +41,7 @@ public struct BPKText: View {
         self.style = BPKFontStyle(
             font: config.textConfig?.font ?? style.font,
             fontFixed: config.textConfig?.fontFixed ?? style.fontFixed,
-            letterSpacing: 10,
+            letterSpacing: config.textConfig?.letterSpacing ?? style.letterSpacing ,
             lineHeight: config.textConfig?.size ?? style.lineHeight
         )
     }

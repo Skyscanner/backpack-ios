@@ -17,39 +17,90 @@
  */
 
 import XCTest
+import SwiftUI
 @testable import Backpack_Common
 
-final class BPKConfigurationTests: XCTestCase {
-
-    func testConfigurationChipsIsFalseConfigIsNil() {
-        
-        // Given
-        do {
-            try BpkConfiguration.shared.set(chipConfig: false)
-        } catch {
-            XCTFail("Failed to set chip config")
-        }
-        
-        // When
-        let chipsConfig = BpkConfiguration.shared.chipConfig
-        // Then
-        XCTAssertNil(chipsConfig)
+final class BpkConfigurationTests: XCTestCase {
+    
+    override func setUp() {
+        super.setUp()
+        BpkConfiguration.shared.reset()
     }
     
-    func testConfigurationChipsIsTrueConfigNotNil() {
-        
-        // Given
-        BpkConfiguration.reset()
-        
-        do {
-            try BpkConfiguration.shared.set(chipConfig: true)
-        } catch {
-            XCTFail("Failed to set chip config")
+    func testConfigurationAccessedCallbackIsCalledOnceWhenConfigIsAccessed() {
+        let config = BpkConfiguration.shared
+        let expectation = self.expectation(description: "Configuration accessed callback called")
+        var callCount = 0
+        config.onConfigurationAccessed = {
+            callCount += 1
+            expectation.fulfill()
         }
-        
-        // When
-        let chipsConfig = BpkConfiguration.shared.chipConfig
-        // Then
-        XCTAssertNotNil(chipsConfig)
+        _ = config.chipConfig
+        _ = config.buttonConfig
+        waitForExpectations(timeout: 1)
+        XCTAssertEqual(callCount, 1)
+    }
+
+    func testSetThrowsErrorIfCalledTwice() {
+        let config = BpkConfiguration.shared
+        try? config.set(chipConfig: true)
+        XCTAssertThrowsError(try config.set(chipConfig: true)) { error in
+            XCTAssertEqual(error as? BpkConfiguration.ConfigurationError, .configAlreadySet)
+        }
+    }
+
+    func testChipConfigIsSetCorrectlyWhenSetIsCalled() throws {
+        let config = BpkConfiguration.shared
+        try config.set(chipConfig: true)
+        let chipConfig = config.chipConfig
+        XCTAssertNotNil(chipConfig)
+        XCTAssertEqual(chipConfig?.color, .accentColor)
+        XCTAssertEqual(chipConfig?.height, 12)
+        XCTAssertEqual(chipConfig?.heightDimension, "bpk_new_chip_height")
+        XCTAssertEqual(chipConfig?.radius, 100)
+        XCTAssertEqual(chipConfig?.radiusToken, .roundCorners)
+    }
+
+    func testButtonConfigIsSetCorrectlyWhenSetIsCalled() throws {
+        let config = BpkConfiguration.shared
+        try config.set(buttonConfig: true)
+        let buttonConfig = config.buttonConfig
+        XCTAssertNotNil(buttonConfig)
+        XCTAssertEqual(buttonConfig?.color, .green)
+        XCTAssertEqual(buttonConfig?.height, 24)
+        XCTAssertEqual(buttonConfig?.heightDimension, "bpk_new_button_height")
+        XCTAssertEqual(buttonConfig?.radius, 100)
+        XCTAssertEqual(buttonConfig?.radiusToken, .roundCorners)
+    }
+
+    func testTextConfigIsSetCorrectlyWhenSetIsCalled() throws {
+        let config = BpkConfiguration.shared
+        try config.set(textConfig: true)
+        let textConfig = config.textConfig
+        XCTAssertNotNil(textConfig)
+        XCTAssertEqual(textConfig?.font, .caption2)
+        XCTAssertEqual(textConfig?.fontFixed, .caption2)
+        XCTAssertEqual(textConfig?.letterSpacing, 10)
+        XCTAssertEqual(textConfig?.size, 100)
+    }
+
+    func testCardConfigIsNilByDefault() {
+        let config = BpkConfiguration.shared
+        XCTAssertNil(config.cardConfig)
+    }
+
+    func testChipConfigIsNilByDefault() {
+        let config = BpkConfiguration.shared
+        XCTAssertNil(config.chipConfig)
+    }
+
+    func testButtonConfigIsNilByDefault() {
+        let config = BpkConfiguration.shared
+        XCTAssertNil(config.buttonConfig)
+    }
+
+    func testTextConfigIsNilByDefault() {
+        let config = BpkConfiguration.shared
+        XCTAssertNil(config.textConfig)
     }
 }

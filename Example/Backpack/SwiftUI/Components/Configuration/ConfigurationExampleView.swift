@@ -53,6 +53,9 @@ struct ConfigurationExampleView: View {
         }
         .padding()
         .navigationTitle("Chip Configuration")
+        .onDisappear {
+            BpkConfiguration.shared.reset()
+        }
     }
     
     var chipView: some View {
