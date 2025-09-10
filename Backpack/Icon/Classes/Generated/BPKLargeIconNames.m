@@ -282,6 +282,7 @@ BPKLargeIconName const BPKLargeIconNameUpload = @"upload";
 BPKLargeIconName const BPKLargeIconNameUseLocation = @"use-location";
 BPKLargeIconName const BPKLargeIconNameView = @"view";
 BPKLargeIconName const BPKLargeIconNameVirus = @"virus";
+BPKLargeIconName const BPKLargeIconNameWalk = @"walk";
 BPKLargeIconName const BPKLargeIconNameWallet = @"wallet";
 BPKLargeIconName const BPKLargeIconNameWeatherClear = @"weather--clear";
 BPKLargeIconName const BPKLargeIconNameWeatherCloudy = @"weather--cloudy";

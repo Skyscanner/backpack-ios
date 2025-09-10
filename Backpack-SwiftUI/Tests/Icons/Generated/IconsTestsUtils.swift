@@ -283,6 +283,7 @@ extension BPKIconViewTests {
         .useLocation,
         .view,
         .virus,
+        .walk,
         .wallet,
         .weatherClear,
         .weatherCloudy,
