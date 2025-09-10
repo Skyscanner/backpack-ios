@@ -357,12 +357,9 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             app.tables.staticTexts["Rail - 3 total elements"].tap()
             saveScreenshot(component: "card-list", scenario: "rail-3-elements", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
-            // Single element rail scenario (full-width behaviour)
-            if app.tables.staticTexts["Rail - 1 element"].waitForExistence(timeout: 1) {
-                app.tables.staticTexts["Rail - 1 element"].tap()
-                saveScreenshot(component: "card-list", scenario: "rail-1-element", userInterfaceStyle: userInterfaceStyle)
-                tapBackButton()
-            }
+            app.tables.staticTexts["Rail - 1 element"].tap()
+            saveScreenshot(component: "card-list", scenario: "rail-1-element", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
             app.tables.staticTexts["Rail - 12 total elements & Section Header Button"].tap()
             saveScreenshot(component: "card-list", scenario: "rail-12-elements-with-section-header-button", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
