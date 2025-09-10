@@ -551,6 +551,8 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameView;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameVirus;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameWalk;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameWallet;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameWeatherClear;

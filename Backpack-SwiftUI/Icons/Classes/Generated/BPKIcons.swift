@@ -281,6 +281,7 @@ public extension BPKIcon {
     static let useLocation = BPKIcon(name: "use-location")
     static let view = BPKIcon(name: "view")
     static let virus = BPKIcon(name: "virus")
+    static let walk = BPKIcon(name: "walk")
     static let wallet = BPKIcon(name: "wallet")
     static let weatherClear = BPKIcon(name: "weather--clear")
     static let weatherCloudy = BPKIcon(name: "weather--cloudy")
@@ -572,6 +573,7 @@ public extension BPKIcon {
         case "use-location": return .useLocation
         case "view": return .view
         case "virus": return .virus
+        case "walk": return .walk
         case "wallet": return .wallet
         case "weather--clear": return .weatherClear
         case "weather--cloudy": return .weatherCloudy
