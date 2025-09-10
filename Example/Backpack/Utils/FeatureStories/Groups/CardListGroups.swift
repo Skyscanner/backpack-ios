@@ -45,7 +45,8 @@ struct CardListGroupsProvider {
                 ),
                 presentable(
                     "Rail - 12 total elements & Section Header Button",
-                    view: CardListExampleView(layout: .rail(sectionHeaderAction: .example, cardWidth: 281), totalElements: 12)
+                    view: CardListExampleView(layout: .rail(sectionHeaderAction: .example, cardWidth: 281),
+                                              totalElements: 12)
                 ),
                 presentable(
                     "Stack - 3 initial, 12 total elements",
