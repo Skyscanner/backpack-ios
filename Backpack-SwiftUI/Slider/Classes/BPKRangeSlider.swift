@@ -31,6 +31,7 @@ public extension BPKRangeSlider {
 }
 
 /// A view that displays a horizontal slider with two thumbs.
+// swiftlint:disable type_body_length
 public struct BPKRangeSlider: View {
     @Binding private var selectedRange: ClosedRange<Float>
     private let sliderBounds: ClosedRange<Float>
@@ -42,14 +43,18 @@ public struct BPKRangeSlider: View {
     private let sliderHeight: CGFloat = 4
     private let thumbSize: CGFloat = 20
     private let flareHeight: CGFloat = 6
-    private var trailingAccessibilityLabel = ""
-    private var leadingAccessibilityLabel = ""
+    private var accessibilityIdentifier = ""
     @State private var isDraggingLeadingThumb = false
     @State private var isDraggingTrailingThumb = false
     
     @State var height: CGFloat = .zero
     
     @Environment(\.layoutDirection) private var layoutDirection
+    
+    // Add haptic feedback generator
+    private let hapticFeedback = UIImpactFeedbackGenerator(style: .light)
+    @State private var lastHapticValueLower: Float = 0
+    @State private var lastHapticValueUpper: Float = 0
     
     /// Creates a new instance of `BPKRangeSlider`.
     ///
@@ -76,6 +81,8 @@ public struct BPKRangeSlider: View {
         self.minSpacing = minSpacing
         self.thumbnailLabels = thumbnailLabels
         self.onDragEnded = onDragEnded
+        self._lastHapticValueLower = State(initialValue: selectedRange.wrappedValue.lowerBound)
+        self._lastHapticValueUpper = State(initialValue: selectedRange.wrappedValue.upperBound)
     }
     
     public var body: some View {
@@ -112,9 +119,11 @@ public struct BPKRangeSlider: View {
                     .padding(.bottom, (thumbSize / 2) - (sliderHeight / 2))
                 Rectangle()
                     .fill(Color(.coreAccentColor))
+                    .cornerRadius(8)
                     .frame(width: fillLineWidth(sliderSize: sliderSize), height: sliderHeight)
                     .offset(x: fillLineOffset(sliderSize: sliderSize))
                     .padding(.bottom, (thumbSize / 2) - (sliderHeight / 2))
+                    .accessibilityIdentifier(accessibilityIdentifier)
                 SliderThumbView(
                     size: thumbSize,
                     offset: trailingThumbOffset(sliderSize: sliderSize),
@@ -127,8 +136,7 @@ public struct BPKRangeSlider: View {
                         isDraggingTrailingThumb = false
                     }
                 )
-                
-                .accessibilityLabel(trailingAccessibilityLabel)
+                .accessibilityIdentifier("\(accessibilityIdentifier)_end")
                 .accessibility(value: Text("\(selectedRange.upperBound)"))
                 .accessibilityAdjustableAction { direction in
                     switch direction {
@@ -137,7 +145,7 @@ public struct BPKRangeSlider: View {
                     @unknown default: break
                     }
                 }
-                
+
                 SliderThumbView(
                     size: thumbSize,
                     offset: leadingThumbOffset(sliderSize: sliderSize),
@@ -150,7 +158,7 @@ public struct BPKRangeSlider: View {
                         onDragEnded(selectedRange)
                     }
                 )
-                .accessibilityLabel(leadingAccessibilityLabel)
+                .accessibilityIdentifier("\(accessibilityIdentifier)_start")
                 .accessibility(value: Text("\(selectedRange.lowerBound)"))
                 .accessibilityAdjustableAction { direction in
                     switch direction {
@@ -163,12 +171,10 @@ public struct BPKRangeSlider: View {
             if let thumbnailLabels = thumbnailLabels, isDraggingTrailingThumb {
                 thumbLabel(thumbnailLabels.upperThumbnail)
                     .offset(x: trailingThumbOffset(sliderSize: sliderSize))
-                    .accessibilityHidden(true)
             }
             if let thumbnailLabels = thumbnailLabels, isDraggingLeadingThumb {
                 thumbLabel(thumbnailLabels.lowerThumbnail)
                     .offset(x: leadingThumbOffset(sliderSize: sliderSize))
-                    .accessibilityHidden(true)
             }
         }
     }
@@ -185,47 +191,60 @@ public struct BPKRangeSlider: View {
             .frame(height: thumbSize)
             .offset(y: -(thumbSize + flareHeight + BPKSpacing.sm.value))
     }
-    
-    /// Sets the accessibility label for the trailing thumb.
-    public func trailingAccessibility(label: String) -> BPKRangeSlider {
+
+    /// Sets the accessibility identifier.
+    public func accessibilityIdentifier(_ identifier: String) -> BPKRangeSlider {
         var result = self
-        result.trailingAccessibilityLabel = label
-        return result
-    }
-    
-    /// Sets the accessibility label for the leading thumb.
-    public func leadingAccessibility(label: String) -> BPKRangeSlider {
-        var result = self
-        result.leadingAccessibilityLabel = label
+        result.accessibilityIdentifier = identifier
         return result
     }
     
     private func incrementLeading() {
         let newValue = min($selectedRange.wrappedValue.lowerBound + step, selectedRange.upperBound)
+        if newValue != $selectedRange.wrappedValue.lowerBound {
+            hapticFeedback.impactOccurred()
+            lastHapticValueLower = newValue
+        }
         $selectedRange.wrappedValue = newValue...$selectedRange.wrappedValue.upperBound
         onDragEnded(selectedRange)
     }
     
     private func decrementLeading() {
         let newValue = max($selectedRange.wrappedValue.lowerBound - step, sliderBounds.lowerBound)
+        if newValue != $selectedRange.wrappedValue.lowerBound {
+            hapticFeedback.impactOccurred()
+            lastHapticValueLower = newValue
+        }
         $selectedRange.wrappedValue = newValue...$selectedRange.wrappedValue.upperBound
         onDragEnded(selectedRange)
     }
     
     private func incrementTrailing() {
+        // Ensure trailing thumb can't go below start of range + step
+        let minimumValue = sliderBounds.lowerBound + step
         let newValue = min($selectedRange.wrappedValue.upperBound + step, sliderBounds.upperBound)
-        $selectedRange.wrappedValue = $selectedRange.wrappedValue.lowerBound...newValue
+        if newValue != $selectedRange.wrappedValue.upperBound {
+            hapticFeedback.impactOccurred()
+            lastHapticValueUpper = newValue
+        }
+        $selectedRange.wrappedValue = $selectedRange.wrappedValue.lowerBound...max(newValue, minimumValue)
         onDragEnded(selectedRange)
     }
     
     private func decrementTrailing() {
+        // Ensure trailing thumb can't go below start of range + step
+        let minimumValue = sliderBounds.lowerBound + step
         let newValue = max($selectedRange.wrappedValue.upperBound - step, selectedRange.lowerBound)
-        $selectedRange.wrappedValue = $selectedRange.wrappedValue.lowerBound...newValue
+        if newValue != $selectedRange.wrappedValue.upperBound {
+            hapticFeedback.impactOccurred()
+            lastHapticValueUpper = newValue
+        }
+        $selectedRange.wrappedValue = $selectedRange.wrappedValue.lowerBound...max(newValue, minimumValue)
         onDragEnded(selectedRange)
     }
     
     private func handleTrailingThumbDrag(value: DragGesture.Value, sliderSize: CGSize) {
-        let roundedValue = BPKSliderHelpers.calculateNewValueFromDrag(
+        var roundedValue = BPKSliderHelpers.calculateNewValueFromDrag(
             xLocation: value.location.x,
             sliderWidth: sliderSize.width,
             thumbSize: thumbSize,
@@ -233,16 +252,31 @@ public struct BPKRangeSlider: View {
             step: step,
             layoutDirection: layoutDirection
         )
+        
+        // If the value exceeds the upper bound, set it to the upper bound
+        if roundedValue > sliderBounds.upperBound {
+            roundedValue = sliderBounds.upperBound
+        }
+        
+        // Ensure trailing thumb can't go below start of range + step
+        let minimumValue = sliderBounds.lowerBound + step
+        roundedValue = max(roundedValue, minimumValue)
+        
         let isGreaterThanLeadingThumb = roundedValue >= selectedRange.lowerBound
         let isSmallerThanUpperBound = roundedValue <= sliderBounds.upperBound
         let isWithinMinSpacing = roundedValue - selectedRange.lowerBound - minSpacing >= 0
         if isGreaterThanLeadingThumb && isSmallerThanUpperBound && isWithinMinSpacing {
+            // Trigger haptic feedback only when value changes by at least the step amount
+            if abs(roundedValue - lastHapticValueUpper) >= step {
+                hapticFeedback.impactOccurred()
+                lastHapticValueUpper = roundedValue
+            }
             $selectedRange.wrappedValue = $selectedRange.wrappedValue.lowerBound...roundedValue
         }
     }
     
     private func handleLeadingThumbDrag(value: DragGesture.Value, sliderSize: CGSize) {
-        let roundedValue = BPKSliderHelpers.calculateNewValueFromDrag(
+        var roundedValue = BPKSliderHelpers.calculateNewValueFromDrag(
             xLocation: value.location.x,
             sliderWidth: sliderSize.width,
             thumbSize: thumbSize,
@@ -250,10 +284,25 @@ public struct BPKRangeSlider: View {
             step: step,
             layoutDirection: layoutDirection
         )
+        
+        // If the value is below the lower bound, set it to the lower bound
+        if roundedValue < sliderBounds.lowerBound {
+            roundedValue = sliderBounds.lowerBound
+        }
+        
+        // Ensure leading thumb can't go above trailing thumb - step
+        let maximumValue = $selectedRange.wrappedValue.upperBound - step
+        roundedValue = min(roundedValue, maximumValue)
+        
         let isSmallerThanTrailingThumb = roundedValue <= selectedRange.upperBound
         let isGreaterThanLowerBound = roundedValue >= sliderBounds.lowerBound
         let isWithinMinSpacing = selectedRange.upperBound - roundedValue - minSpacing >= 0
         if isSmallerThanTrailingThumb && isGreaterThanLowerBound && isWithinMinSpacing {
+            // Trigger haptic feedback only when value changes by at least the step amount
+            if abs(roundedValue - lastHapticValueLower) >= step {
+                hapticFeedback.impactOccurred()
+                lastHapticValueLower = roundedValue
+            }
             $selectedRange.wrappedValue = roundedValue...$selectedRange.wrappedValue.upperBound
         }
     }
