@@ -62,6 +62,20 @@ class BPKCardListViewTests: XCTestCase {
         )
     }
 
+    func testCardListRailSingleElement() {
+        assertSnapshot(
+            BPKCardList(
+                title: "Recommended",
+                description: nil,
+                layout: .rail(),
+                initiallyShownCardsCount: 1,
+                elements: [TestLocation.placeholders[0]],
+                cardForElement: locationRailCard(element:))
+            .padding()
+            .frame(width: 375)
+        )
+    }
+
     func testCardListStack() {
         assertSnapshot(
             BPKCardList(
