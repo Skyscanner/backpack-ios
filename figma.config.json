@@ -1,0 +1,9 @@
+{
+  "codeConnect": {
+    "parser": "swift",
+    "include": ["**/*.figma.swift"],
+    "exclude": ["Pods/**", "build/**", "DerivedData/**"],
+    "xcodeprojPath": "Backpack.xcodeproj",
+    "label": "iOS (Backpack SwiftUI)"
+  }
+}
