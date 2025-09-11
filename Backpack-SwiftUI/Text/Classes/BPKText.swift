@@ -35,13 +35,7 @@ public struct BPKText: View {
     
     public init(_ text: String, style: BPKFontStyle = .bodyDefault) {
         self.text = Text(LocalizedStringKey(text))
-        
-        self.style = BPKFontStyle(
-            font: style.font,
-            fontFixed: style.fontFixed,
-            letterSpacing: style.letterSpacing ,
-            lineHeight: style.lineHeight
-        )
+        self.style = style
     }
     
     public var body: some View {
