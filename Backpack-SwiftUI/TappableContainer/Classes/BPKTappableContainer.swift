@@ -37,7 +37,7 @@ public struct BPKTappableContainer<Content: View>: View {
 
     private let action: () -> Void
     private let accessibilityLabel: String
-    private let accessibilityIdentifier: String?
+    private let accessbilityIdentifier: String?
     private let accessibilityValue: String?
     private let content: () -> Content
     private let buttonStyleType: ButtonStyleType
@@ -51,15 +51,15 @@ public struct BPKTappableContainer<Content: View>: View {
     ///   - content: A ViewBuilder closure containing the content to make tappable
     public init(
         accessibilityLabel: String,
-        accessibilityIdentifier: String? = nil,
-        accessibilityValue: String? = nil,
+        accessbilityIdentifier: String? = nil,
+        accessbilityValue: String? = nil,
         action: @escaping () -> Void,
         buttonStyleType: ButtonStyleType = .plain,
         @ViewBuilder content: @escaping () -> Content
     ) {
         self.accessibilityLabel = accessibilityLabel
-        self.accessibilityIdentifier = accessibilityIdentifier
-        self.accessibilityValue = accessibilityValue
+        self.accessbilityIdentifier = accessbilityIdentifier
+        self.accessibilityValue = accessbilityValue
         self.action = action
         self.buttonStyleType = buttonStyleType
         self.content = content
@@ -73,7 +73,7 @@ public struct BPKTappableContainer<Content: View>: View {
             }
             .buttonStyle(.plain)
             .accessibilityLabel(accessibilityLabel)
-            .accessibilityIdentifier(accessibilityIdentifier ?? "")
+            .accessibilityIdentifier(accessbilityIdentifier ?? "")
             .accessibilityValue(accessibilityValue ?? "")
 
         case .noTapAnimation:
@@ -82,7 +82,7 @@ public struct BPKTappableContainer<Content: View>: View {
             }
             .buttonStyle(NoTapAnimationStyle())
             .accessibilityLabel(accessibilityLabel)
-            .accessibilityIdentifier(accessibilityIdentifier ?? "")
+            .accessibilityIdentifier(accessbilityIdentifier ?? "")
             .accessibilityValue(accessibilityValue ?? "")
         }
     }
