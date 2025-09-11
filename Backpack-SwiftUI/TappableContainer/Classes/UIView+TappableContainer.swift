@@ -23,11 +23,11 @@ public extension UIView {
     static func makeReactiveSwiftUITappableContainer<Content: View>(
         button: UIView,
         accessibilityLabel: String,
-        accessibilityIdentifier: String? = nil,
         accessibilityValue: String? = nil,
         action: @escaping () -> Void,
         noTapAnimation: Bool = false,
-        @ViewBuilder contentView: @escaping () -> Content
+        @ViewBuilder contentView: @escaping () -> Content,
+        accessibilityIdentifier: String? = nil
     ) -> UIHostingController<BPKTappableContainer<Content>> {
 
         let root = BPKTappableContainer(
