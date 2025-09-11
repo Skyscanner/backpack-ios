@@ -88,16 +88,11 @@ public struct BPKRangeSlider: View {
     public var body: some View {
         GeometryReader { geomentry in
             sliderView(sliderSize: geomentry.size)
-//                .background(GeometryReader { proxy in
-//                    Color.clear.onAppear {
-//                        height = proxy.size.height
-//                    }
-//                })
         }
         .fixedSize(horizontal: false, vertical: true)
         .frame(height: thumbSize)
         .padding([.leading, .trailing], thumbSize / 2)
-        //.onAppear(perform: clampSelectedRangeToBounds)
+        .onAppear(perform: clampSelectedRangeToBounds)
     }
 
     private func clampSelectedRangeToBounds() {
@@ -112,73 +107,68 @@ public struct BPKRangeSlider: View {
     // swiftlint:disable closure_body_length
     // swiftlint:disable function_body_length
     @ViewBuilder private func sliderView(sliderSize: CGSize) -> some View {
-
-        ZStack { //(alignment: .center) {
-           // ZStack(alignment: .bottom) {
-                Capsule()
-                    .fill(Color(.lineColor))
-                    .frame(width: sliderSize.width, height: sliderHeight)
-                    //.padding(.bottom, (thumbSize / 2) - (sliderHeight / 2))
-                Rectangle()
-                    .fill(Color(.coreAccentColor))
-                    .cornerRadius(8)
-                    .frame(width: fillLineWidth(sliderSize: sliderSize), height: sliderHeight)
-                    .offset(x: fillLineOffset(sliderSize: sliderSize))
-                    //.padding(.bottom, (thumbSize / 2) - (sliderHeight / 2))
-                    //.accessibilityIdentifier(accessibilityIdentifier)
-                SliderThumbView(
-                    size: thumbSize,
-                    offset: trailingThumbOffset(sliderSize: sliderSize),
-                    onDrag: { value in
-                        isDraggingTrailingThumb = true
-                        handleTrailingThumbDrag(value: value, sliderSize: sliderSize)
-                    },
-                    onDragEnded: {
-                        onDragEnded(selectedRange)
-                        isDraggingTrailingThumb = false
-                    }
-                )
-                //.accessibilityIdentifier("\(accessibilityIdentifier)_end")
-                .accessibility(value: Text("\(selectedRange.upperBound)"))
-                .accessibilityAdjustableAction { direction in
-                    switch direction {
-                    case .increment: incrementTrailing()
-                    case .decrement: decrementTrailing()
-                    @unknown default: break
-                    }
+        ZStack {
+            Capsule()
+                .fill(Color(.lineColor))
+                .frame(width: sliderSize.width, height: sliderHeight)
+            Rectangle()
+                .fill(Color(.coreAccentColor))
+                .cornerRadius(8)
+                .frame(width: fillLineWidth(sliderSize: sliderSize), height: sliderHeight)
+                .offset(x: fillLineOffset(sliderSize: sliderSize))
+                .accessibilityIdentifier(accessibilityIdentifier)
+            SliderThumbView(
+                size: thumbSize,
+                offset: trailingThumbOffset(sliderSize: sliderSize),
+                onDrag: { value in
+                    isDraggingTrailingThumb = true
+                    handleTrailingThumbDrag(value: value, sliderSize: sliderSize)
+                },
+                onDragEnded: {
+                    onDragEnded(selectedRange)
+                    isDraggingTrailingThumb = false
                 }
-
-                SliderThumbView(
-                    size: thumbSize,
-                    offset: leadingThumbOffset(sliderSize: sliderSize),
-                    onDrag: { value in
-                        isDraggingLeadingThumb = true
-                        handleLeadingThumbDrag(value: value, sliderSize: sliderSize)
-                    },
-                    onDragEnded: {
-                        isDraggingLeadingThumb = false
-                        onDragEnded(selectedRange)
-                    }
-                )
-                .accessibilityIdentifier("\(accessibilityIdentifier)_start")
-                .accessibility(value: Text("\(selectedRange.lowerBound)"))
-                .accessibilityAdjustableAction { direction in
-                    switch direction {
-                    case .increment: incrementLeading()
-                    case .decrement: decrementLeading()
-                    @unknown default: break
-                    }
+            )
+            .accessibilityIdentifier("\(accessibilityIdentifier)_end")
+            .accessibility(value: Text("\(selectedRange.upperBound)"))
+            .accessibilityAdjustableAction { direction in
+                switch direction {
+                case .increment: incrementTrailing()
+                case .decrement: decrementTrailing()
+                @unknown default: break
                 }
             }
-            if let thumbnailLabels = thumbnailLabels, isDraggingTrailingThumb {
-                thumbLabel(thumbnailLabels.upperThumbnail)
-                    .offset(x: trailingThumbOffset(sliderSize: sliderSize))
+
+            SliderThumbView(
+                size: thumbSize,
+                offset: leadingThumbOffset(sliderSize: sliderSize),
+                onDrag: { value in
+                    isDraggingLeadingThumb = true
+                    handleLeadingThumbDrag(value: value, sliderSize: sliderSize)
+                },
+                onDragEnded: {
+                    isDraggingLeadingThumb = false
+                    onDragEnded(selectedRange)
+                }
+            )
+            .accessibilityIdentifier("\(accessibilityIdentifier)_start")
+            .accessibility(value: Text("\(selectedRange.lowerBound)"))
+            .accessibilityAdjustableAction { direction in
+                switch direction {
+                case .increment: incrementLeading()
+                case .decrement: decrementLeading()
+                @unknown default: break
+                }
             }
-            if let thumbnailLabels = thumbnailLabels, isDraggingLeadingThumb {
-                thumbLabel(thumbnailLabels.lowerThumbnail)
-                    .offset(x: leadingThumbOffset(sliderSize: sliderSize))
-            }
-        //}
+        }
+        if let thumbnailLabels = thumbnailLabels, isDraggingTrailingThumb {
+            thumbLabel(thumbnailLabels.upperThumbnail)
+                .offset(x: trailingThumbOffset(sliderSize: sliderSize))
+        }
+        if let thumbnailLabels = thumbnailLabels, isDraggingLeadingThumb {
+            thumbLabel(thumbnailLabels.lowerThumbnail)
+                .offset(x: leadingThumbOffset(sliderSize: sliderSize))
+        }
     }
 
     private func thumbLabel(_ text: String) -> some View {
