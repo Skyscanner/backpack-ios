@@ -282,6 +282,7 @@ BPKIconName const BPKIconNameUpload = @"upload";
 BPKIconName const BPKIconNameUseLocation = @"use-location";
 BPKIconName const BPKIconNameView = @"view";
 BPKIconName const BPKIconNameVirus = @"virus";
+BPKIconName const BPKIconNameWalk = @"walk";
 BPKIconName const BPKIconNameWallet = @"wallet";
 BPKIconName const BPKIconNameWeatherClear = @"weather--clear";
 BPKIconName const BPKIconNameWeatherCloudy = @"weather--cloudy";
