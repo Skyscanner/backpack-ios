@@ -32,17 +32,15 @@ public struct BPKText: View {
     private var textColor = Color(BPKColor.textPrimaryColor)
     private var lineLimit: Int? = 1
     private var strikethrough: Bool = false
-    private var config: BpkConfiguration
     
     public init(_ text: String, style: BPKFontStyle = .bodyDefault) {
         self.text = Text(LocalizedStringKey(text))
-        self.config = BpkConfiguration.shared
         
         self.style = BPKFontStyle(
-            font: config.textConfig?.font ?? style.font,
-            fontFixed: config.textConfig?.fontFixed ?? style.fontFixed,
-            letterSpacing: config.textConfig?.letterSpacing ?? style.letterSpacing ,
-            lineHeight: config.textConfig?.size ?? style.lineHeight
+            font: style.font,
+            fontFixed: style.fontFixed,
+            letterSpacing: style.letterSpacing ,
+            lineHeight: style.lineHeight
         )
     }
     
@@ -94,7 +92,6 @@ public extension BPKText {
     init(_ text: Text, style: BPKFontStyle = .bodyDefault) {
         self.text = text
         self.style = style
-        self.config = BpkConfiguration.shared
     }
 }
 

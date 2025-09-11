@@ -28,31 +28,45 @@ final class BpkConfigurationTests: XCTestCase {
     }
     
     func testConfigurationAccessedCallbackIsCalledOnceWhenConfigIsAccessed() {
+        // Given
         let config = BpkConfiguration.shared
         let expectation = self.expectation(description: "Configuration accessed callback called")
         var callCount = 0
+        
+        // When
         config.onConfigurationAccessed = {
             callCount += 1
             expectation.fulfill()
         }
         _ = config.chipConfig
-        _ = config.buttonConfig
+        
+        // Then
         waitForExpectations(timeout: 1)
         XCTAssertEqual(callCount, 1)
     }
 
     func testSetThrowsErrorIfCalledTwice() {
+        // Given
         let config = BpkConfiguration.shared
+        
+        // When
         try? config.set(chipConfig: true)
+        
+        // Then
         XCTAssertThrowsError(try config.set(chipConfig: true)) { error in
             XCTAssertEqual(error as? BpkConfiguration.ConfigurationError, .configAlreadySet)
         }
     }
 
     func testChipConfigIsSetCorrectlyWhenSetIsCalled() throws {
+        // Given
         let config = BpkConfiguration.shared
+        
+        // When
         try config.set(chipConfig: true)
         let chipConfig = config.chipConfig
+        
+        // Then
         XCTAssertNotNil(chipConfig)
         XCTAssertEqual(chipConfig?.color, .accentColor)
         XCTAssertEqual(chipConfig?.height, 12)
@@ -61,37 +75,11 @@ final class BpkConfigurationTests: XCTestCase {
         XCTAssertEqual(chipConfig?.radiusToken, .roundCorners)
     }
 
-    func testButtonConfigIsSetCorrectlyWhenSetIsCalled() throws {
-        let config = BpkConfiguration.shared
-        try config.set(buttonConfig: true)
-        let buttonConfig = config.buttonConfig
-        XCTAssertNotNil(buttonConfig)
-    }
-
-    func testTextConfigIsSetCorrectlyWhenSetIsCalled() throws {
-        let config = BpkConfiguration.shared
-        try config.set(textConfig: true)
-        let textConfig = config.textConfig
-        XCTAssertNotNil(textConfig)
-    }
-
-    func testCardConfigIsNilByDefault() {
-        let config = BpkConfiguration.shared
-        XCTAssertNil(config.cardConfig)
-    }
-
     func testChipConfigIsNilByDefault() {
+        // Given
         let config = BpkConfiguration.shared
+        
+        // Then
         XCTAssertNil(config.chipConfig)
-    }
-
-    func testButtonConfigIsNilByDefault() {
-        let config = BpkConfiguration.shared
-        XCTAssertNil(config.buttonConfig)
-    }
-
-    func testTextConfigIsNilByDefault() {
-        let config = BpkConfiguration.shared
-        XCTAssertNil(config.textConfig)
     }
 }

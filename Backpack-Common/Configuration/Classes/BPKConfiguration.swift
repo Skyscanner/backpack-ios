@@ -66,28 +66,10 @@ public final class BpkConfiguration {
     
     /// Setting stored configs
     private var _chipConfig: BpkChipConfig?
-    private var _buttonConfig: BpkButtonConfig?
-    private var _textConfig: BpkTextConfig?
-    private var _cardConfig: BpkCardConfig?
     
     public var chipConfig: BpkChipConfig? {
         get { getConfig { self._chipConfig } }
         set { _chipConfig = newValue }
-    }
-    
-    public var buttonConfig: BpkButtonConfig? {
-        get { getConfig { self._buttonConfig } }
-        set { _buttonConfig = newValue }
-    }
-    
-    public var textConfig: BpkTextConfig? {
-        get { getConfig { self._textConfig } }
-        set { _textConfig = newValue }
-    }
-    
-    public var cardConfig: BpkCardConfig? {
-        get { getConfig { self._cardConfig } }
-        set { _cardConfig = newValue }
     }
     
     private func getConfig<T>(getter: () -> T) -> T {
@@ -107,10 +89,7 @@ public final class BpkConfiguration {
     }
     
     public func set(
-        chipConfig: Bool = false,
-        buttonConfig: Bool = false,
-        textConfig: Bool = false,
-        cardConfig: Bool = false
+        chipConfig: Bool = false
     ) throws {
         guard !hasSet else {
             throw ConfigurationError.configAlreadySet
@@ -127,27 +106,12 @@ public final class BpkConfiguration {
                 radiusToken: .roundCorners
             )
         }
-        
-        if buttonConfig {
-            self.buttonConfig = BpkButtonConfig()
-        }
-        
-        if textConfig {
-            self.textConfig = BpkTextConfig()
-        }
-        
-        if cardConfig {
-            self.cardConfig = BpkCardConfig()
-        }
     }
 }
 
 extension BpkConfiguration {
     public func reset() {
         chipConfig = nil
-        buttonConfig = nil
-        textConfig = nil
-        cardConfig = nil
         hasSet = false
         configIsAccessed = false
         onConfigurationAccessed = nil

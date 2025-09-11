@@ -27,7 +27,6 @@ public struct BPKButton: View {
     private var matchesParentWidth = false
     private var accessibilityLabel: String
     private let action: () -> Void
-    public let config: BpkConfiguration?
 
     @Binding private var loading: Bool
     @Binding private var enabled: Bool
@@ -47,7 +46,6 @@ public struct BPKButton: View {
         self._enabled = enabled
         self.action = action
         self.size = size
-        self.config = BpkConfiguration.shared
     }
     
     public init(
@@ -65,7 +63,6 @@ public struct BPKButton: View {
         self._enabled = enabled
         self.action = action
         self.size = size
-        self.config = BpkConfiguration.shared
     }
     
     public var body: some View {
