@@ -23,18 +23,17 @@ public extension UIView {
     static func makeReactiveSwiftUITappableContainer<Content: View>(
         button: UIView,
         accessibilityLabel: String,
-        accessbilityIdentifier: String? = nil,
-        accessbilityValue: String? = nil,
+        accessibilityIdentifier: String? = nil,
+        accessibilityValue: String? = nil,
         action: @escaping () -> Void,
         noTapAnimation: Bool = false,
-        @ViewBuilder contentView: @escaping () -> Content,
-        accessibilityIdentifier: String? = nil
+        @ViewBuilder contentView: @escaping () -> Content
     ) -> UIHostingController<BPKTappableContainer<Content>> {
 
         let root = BPKTappableContainer(
             accessibilityLabel: accessibilityLabel,
-            accessbilityIdentifier: accessbilityIdentifier,
-            accessbilityValue: accessbilityValue,
+            accessibilityIdentifier: accessibilityIdentifier,
+            accessibilityValue: accessibilityValue,
             action: action,
             buttonStyleType: noTapAnimation ? .noTapAnimation : .plain
         ) {
@@ -62,16 +61,16 @@ public extension UIView {
     static func updateReactiveSwiftUITappableContainer<Content: View>(
         _ hostingController: UIHostingController<BPKTappableContainer<Content>>,
         accessibilityLabel: String,
-        accessbilityIdentifier: String? = nil,
-        accessbilityValue: String? = nil,
+        accessibilityIdentifier: String? = nil,
+        accessibilityValue: String? = nil,
         action: @escaping () -> Void,
         noTapAnimation: Bool = false,
         @ViewBuilder contentView: @escaping () -> Content
     ) {
         let updatedRoot = BPKTappableContainer(
             accessibilityLabel: accessibilityLabel,
-            accessbilityIdentifier: accessbilityIdentifier,
-            accessbilityValue: accessbilityValue,
+            accessibilityIdentifier: accessibilityIdentifier,
+            accessibilityValue: accessibilityValue,
             action: action,
             buttonStyleType: noTapAnimation ? .noTapAnimation : .plain
         ) {
