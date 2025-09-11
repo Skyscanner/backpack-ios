@@ -33,7 +33,7 @@ class BPKCardListViewTests: XCTestCase {
             BPKCardList(
                 title: "Must-visit spots",
                 description: "Check out these world-famous destinations perfect for visiting in spring.",
-                layout: .rail(),
+                layout: .rail(cardWidth: 281),
                 initiallyShownCardsCount: 2,
                 elements: Array(TestLocation.placeholders[0..<4]),
                 cardForElement: locationRailCard(element:))
@@ -52,7 +52,8 @@ class BPKCardListViewTests: XCTestCase {
                         icon: .addCircle,
                         accessibilityLabel: "Add item") {
                             print("Tap add button")
-                    }
+                    },
+                    cardWidth: 281
                 ),
                 initiallyShownCardsCount: 2,
                 elements: Array(TestLocation.placeholders[0..<4]),
@@ -67,7 +68,7 @@ class BPKCardListViewTests: XCTestCase {
             BPKCardList(
                 title: "Recommended",
                 description: nil,
-                layout: .rail(),
+                layout: .rail(cardWidth: 281),
                 initiallyShownCardsCount: 1,
                 elements: [TestLocation.placeholders[0]],
                 cardForElement: locationRailCard(element:))
@@ -215,7 +216,6 @@ class BPKCardListViewTests: XCTestCase {
             headline: element.name,
             bodyText: element.description,
             imageOrientation: .landscape)
-        .frame(width: 281)
     }
 
     private func locationStackCard(element: TestLocation) -> some View {
