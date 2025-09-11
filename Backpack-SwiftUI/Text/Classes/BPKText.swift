@@ -17,7 +17,6 @@
  */
 
 import SwiftUI
-import Backpack_Common
 
 /// A view that displays one or more lines of text
 /// By default the color of BPKText is set to `BPKColor.textPrimary` with a lineLimit of 1
