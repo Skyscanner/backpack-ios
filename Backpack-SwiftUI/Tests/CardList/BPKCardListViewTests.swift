@@ -71,7 +71,6 @@ class BPKCardListViewTests: XCTestCase {
                 initiallyShownCardsCount: 1,
                 elements: [TestLocation.placeholders[0]],
                 cardForElement: locationRailCard(element:))
-            .padding()
             .frame(width: 375)
         )
     }
