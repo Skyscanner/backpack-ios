@@ -34,10 +34,18 @@ struct ChipButtonStyle: ButtonStyle {
                     cornerShape
                         .stroke(Color(outlineColor(configuration.isPressed)), lineWidth: 1)
                 )
+                .if(style == .onImage) { $0.shadow(.sm) }
+                .if(!BPKFont.enableDynamicType, transform: {
+                    $0.sizeCategory(.large)
+                })
         } else {
             chipLabelView(configuration: configuration)
                 .clipShape(RoundedRectangle(cornerRadius: .sm))
                 .outline(outlineColor(configuration.isPressed), cornerRadius: .sm)
+                .if(style == .onImage) { $0.shadow(.sm) }
+                .if(!BPKFont.enableDynamicType, transform: {
+                    $0.sizeCategory(.large)
+                })
         }
     }
     
@@ -49,10 +57,6 @@ struct ChipButtonStyle: ButtonStyle {
             .lineLimit(1)
             .background(backgroundColor(configuration.isPressed))
             .foregroundColor(foregroundColor(configuration.isPressed))
-            .if(style == .onImage) { $0.shadow(.sm) }
-            .if(!BPKFont.enableDynamicType, transform: {
-                $0.sizeCategory(.large)
-            })
     }
     
     private var cornerShape: some Shape {
