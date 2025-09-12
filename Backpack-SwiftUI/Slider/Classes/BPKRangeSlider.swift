@@ -15,14 +15,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 import SwiftUI
 
 public extension BPKRangeSlider {
     struct ThumbnailLabels {
         let lowerThumbnail: String
         let upperThumbnail: String
-        
+
         public init(lowerThumbnail: String, upperThumbnail: String) {
             self.lowerThumbnail = lowerThumbnail
             self.upperThumbnail = upperThumbnail
@@ -46,16 +46,16 @@ public struct BPKRangeSlider: View {
     private var accessibilityIdentifier = ""
     @State private var isDraggingLeadingThumb = false
     @State private var isDraggingTrailingThumb = false
-    
+
     @State var height: CGFloat = .zero
-    
+
     @Environment(\.layoutDirection) private var layoutDirection
-    
+
     // Add haptic feedback generator
     private let hapticFeedback = UIImpactFeedbackGenerator(style: .light)
     @State private var lastHapticValueLower: Float = 0
     @State private var lastHapticValueUpper: Float = 0
-    
+
     /// Creates a new instance of `BPKRangeSlider`.
     ///
     /// If the selected range is outside the bounds of the slider, it will be clamped to the bounds.
@@ -84,21 +84,17 @@ public struct BPKRangeSlider: View {
         self._lastHapticValueLower = State(initialValue: selectedRange.wrappedValue.lowerBound)
         self._lastHapticValueUpper = State(initialValue: selectedRange.wrappedValue.upperBound)
     }
-    
+
     public var body: some View {
         GeometryReader { geomentry in
             sliderView(sliderSize: geomentry.size)
-                .background(GeometryReader { proxy in
-                    Color.clear.onAppear {
-                        height = proxy.size.height
-                    }
-                })
         }
-        .frame(height: height)
+        .fixedSize(horizontal: false, vertical: true)
+        .frame(height: thumbSize)
         .padding([.leading, .trailing], thumbSize / 2)
         .onAppear(perform: clampSelectedRangeToBounds)
     }
-    
+
     private func clampSelectedRangeToBounds() {
         if selectedRange.lowerBound < sliderBounds.lowerBound {
             $selectedRange.wrappedValue = sliderBounds.lowerBound...$selectedRange.wrappedValue.upperBound
@@ -107,78 +103,74 @@ public struct BPKRangeSlider: View {
             $selectedRange.wrappedValue = $selectedRange.wrappedValue.lowerBound...sliderBounds.upperBound
         }
     }
-    
+
     // swiftlint:disable closure_body_length
     // swiftlint:disable function_body_length
     @ViewBuilder private func sliderView(sliderSize: CGSize) -> some View {
-        ZStack(alignment: .center) {
-            ZStack(alignment: .bottom) {
-                Capsule()
-                    .fill(Color(.lineColor))
-                    .frame(width: sliderSize.width, height: sliderHeight)
-                    .padding(.bottom, (thumbSize / 2) - (sliderHeight / 2))
-                Rectangle()
-                    .fill(Color(.coreAccentColor))
-                    .cornerRadius(8)
-                    .frame(width: fillLineWidth(sliderSize: sliderSize), height: sliderHeight)
-                    .offset(x: fillLineOffset(sliderSize: sliderSize))
-                    .padding(.bottom, (thumbSize / 2) - (sliderHeight / 2))
-                    .accessibilityIdentifier(accessibilityIdentifier)
-                SliderThumbView(
-                    size: thumbSize,
-                    offset: trailingThumbOffset(sliderSize: sliderSize),
-                    onDrag: { value in
-                        isDraggingTrailingThumb = true
-                        handleTrailingThumbDrag(value: value, sliderSize: sliderSize)
-                    },
-                    onDragEnded: {
-                        onDragEnded(selectedRange)
-                        isDraggingTrailingThumb = false
-                    }
-                )
-                .accessibilityIdentifier("\(accessibilityIdentifier)_end")
-                .accessibility(value: Text("\(selectedRange.upperBound)"))
-                .accessibilityAdjustableAction { direction in
-                    switch direction {
-                    case .increment: incrementTrailing()
-                    case .decrement: decrementTrailing()
-                    @unknown default: break
-                    }
+        ZStack {
+            Capsule()
+                .fill(Color(.lineColor))
+                .frame(width: sliderSize.width, height: sliderHeight)
+            Rectangle()
+                .fill(Color(.coreAccentColor))
+                .cornerRadius(8)
+                .frame(width: fillLineWidth(sliderSize: sliderSize), height: sliderHeight)
+                .offset(x: fillLineOffset(sliderSize: sliderSize))
+                .accessibilityIdentifier(accessibilityIdentifier)
+            SliderThumbView(
+                size: thumbSize,
+                offset: trailingThumbOffset(sliderSize: sliderSize),
+                onDrag: { value in
+                    isDraggingTrailingThumb = true
+                    handleTrailingThumbDrag(value: value, sliderSize: sliderSize)
+                },
+                onDragEnded: {
+                    onDragEnded(selectedRange)
+                    isDraggingTrailingThumb = false
                 }
+            )
+            .accessibilityIdentifier("\(accessibilityIdentifier)_end")
+            .accessibility(value: Text("\(selectedRange.upperBound)"))
+            .accessibilityAdjustableAction { direction in
+                switch direction {
+                case .increment: incrementTrailing()
+                case .decrement: decrementTrailing()
+                @unknown default: break
+                }
+            }
 
-                SliderThumbView(
-                    size: thumbSize,
-                    offset: leadingThumbOffset(sliderSize: sliderSize),
-                    onDrag: { value in
-                        isDraggingLeadingThumb = true
-                        handleLeadingThumbDrag(value: value, sliderSize: sliderSize)
-                    },
-                    onDragEnded: {
-                        isDraggingLeadingThumb = false
-                        onDragEnded(selectedRange)
-                    }
-                )
-                .accessibilityIdentifier("\(accessibilityIdentifier)_start")
-                .accessibility(value: Text("\(selectedRange.lowerBound)"))
-                .accessibilityAdjustableAction { direction in
-                    switch direction {
-                    case .increment: incrementLeading()
-                    case .decrement: decrementLeading()
-                    @unknown default: break
-                    }
+            SliderThumbView(
+                size: thumbSize,
+                offset: leadingThumbOffset(sliderSize: sliderSize),
+                onDrag: { value in
+                    isDraggingLeadingThumb = true
+                    handleLeadingThumbDrag(value: value, sliderSize: sliderSize)
+                },
+                onDragEnded: {
+                    isDraggingLeadingThumb = false
+                    onDragEnded(selectedRange)
                 }
-            }
-            if let thumbnailLabels = thumbnailLabels, isDraggingTrailingThumb {
-                thumbLabel(thumbnailLabels.upperThumbnail)
-                    .offset(x: trailingThumbOffset(sliderSize: sliderSize))
-            }
-            if let thumbnailLabels = thumbnailLabels, isDraggingLeadingThumb {
-                thumbLabel(thumbnailLabels.lowerThumbnail)
-                    .offset(x: leadingThumbOffset(sliderSize: sliderSize))
+            )
+            .accessibilityIdentifier("\(accessibilityIdentifier)_start")
+            .accessibility(value: Text("\(selectedRange.lowerBound)"))
+            .accessibilityAdjustableAction { direction in
+                switch direction {
+                case .increment: incrementLeading()
+                case .decrement: decrementLeading()
+                @unknown default: break
+                }
             }
         }
+        if let thumbnailLabels = thumbnailLabels, isDraggingTrailingThumb {
+            thumbLabel(thumbnailLabels.upperThumbnail)
+                .offset(x: trailingThumbOffset(sliderSize: sliderSize))
+        }
+        if let thumbnailLabels = thumbnailLabels, isDraggingLeadingThumb {
+            thumbLabel(thumbnailLabels.lowerThumbnail)
+                .offset(x: leadingThumbOffset(sliderSize: sliderSize))
+        }
     }
-    
+
     private func thumbLabel(_ text: String) -> some View {
         BPKText(text, style: .label2)
             .foregroundColor(.textPrimaryInverseColor)
@@ -198,7 +190,7 @@ public struct BPKRangeSlider: View {
         result.accessibilityIdentifier = identifier
         return result
     }
-    
+
     private func incrementLeading() {
         let newValue = min($selectedRange.wrappedValue.lowerBound + step, selectedRange.upperBound)
         if newValue != $selectedRange.wrappedValue.lowerBound {
@@ -208,7 +200,7 @@ public struct BPKRangeSlider: View {
         $selectedRange.wrappedValue = newValue...$selectedRange.wrappedValue.upperBound
         onDragEnded(selectedRange)
     }
-    
+
     private func decrementLeading() {
         let newValue = max($selectedRange.wrappedValue.lowerBound - step, sliderBounds.lowerBound)
         if newValue != $selectedRange.wrappedValue.lowerBound {
@@ -218,7 +210,7 @@ public struct BPKRangeSlider: View {
         $selectedRange.wrappedValue = newValue...$selectedRange.wrappedValue.upperBound
         onDragEnded(selectedRange)
     }
-    
+
     private func incrementTrailing() {
         // Ensure trailing thumb can't go below start of range + step
         let minimumValue = sliderBounds.lowerBound + step
@@ -230,7 +222,7 @@ public struct BPKRangeSlider: View {
         $selectedRange.wrappedValue = $selectedRange.wrappedValue.lowerBound...max(newValue, minimumValue)
         onDragEnded(selectedRange)
     }
-    
+
     private func decrementTrailing() {
         // Ensure trailing thumb can't go below start of range + step
         let minimumValue = sliderBounds.lowerBound + step
@@ -242,7 +234,7 @@ public struct BPKRangeSlider: View {
         $selectedRange.wrappedValue = $selectedRange.wrappedValue.lowerBound...max(newValue, minimumValue)
         onDragEnded(selectedRange)
     }
-    
+
     private func handleTrailingThumbDrag(value: DragGesture.Value, sliderSize: CGSize) {
         var roundedValue = BPKSliderHelpers.calculateNewValueFromDrag(
             xLocation: value.location.x,
@@ -252,16 +244,16 @@ public struct BPKRangeSlider: View {
             step: step,
             layoutDirection: layoutDirection
         )
-        
+
         // If the value exceeds the upper bound, set it to the upper bound
         if roundedValue > sliderBounds.upperBound {
             roundedValue = sliderBounds.upperBound
         }
-        
+
         // Ensure trailing thumb can't go below start of range + step
         let minimumValue = sliderBounds.lowerBound + step
         roundedValue = max(roundedValue, minimumValue)
-        
+
         let isGreaterThanLeadingThumb = roundedValue >= selectedRange.lowerBound
         let isSmallerThanUpperBound = roundedValue <= sliderBounds.upperBound
         let isWithinMinSpacing = roundedValue - selectedRange.lowerBound - minSpacing >= 0
@@ -274,7 +266,7 @@ public struct BPKRangeSlider: View {
             $selectedRange.wrappedValue = $selectedRange.wrappedValue.lowerBound...roundedValue
         }
     }
-    
+
     private func handleLeadingThumbDrag(value: DragGesture.Value, sliderSize: CGSize) {
         var roundedValue = BPKSliderHelpers.calculateNewValueFromDrag(
             xLocation: value.location.x,
@@ -284,16 +276,16 @@ public struct BPKRangeSlider: View {
             step: step,
             layoutDirection: layoutDirection
         )
-        
+
         // If the value is below the lower bound, set it to the lower bound
         if roundedValue < sliderBounds.lowerBound {
             roundedValue = sliderBounds.lowerBound
         }
-        
+
         // Ensure leading thumb can't go above trailing thumb - step
         let maximumValue = $selectedRange.wrappedValue.upperBound - step
         roundedValue = min(roundedValue, maximumValue)
-        
+
         let isSmallerThanTrailingThumb = roundedValue <= selectedRange.upperBound
         let isGreaterThanLowerBound = roundedValue >= sliderBounds.lowerBound
         let isWithinMinSpacing = selectedRange.upperBound - roundedValue - minSpacing >= 0
@@ -306,31 +298,31 @@ public struct BPKRangeSlider: View {
             $selectedRange.wrappedValue = roundedValue...$selectedRange.wrappedValue.upperBound
         }
     }
-    
+
     private func leadingThumbOffset(sliderSize: CGSize) -> CGFloat {
         thumbOffset(
             forBound: selectedPercentageBounds().lower,
             sliderSize: sliderSize
         )
     }
-    
+
     private func trailingThumbOffset(sliderSize: CGSize) -> CGFloat {
         thumbOffset(
             forBound: selectedPercentageBounds().upper,
             sliderSize: sliderSize
         )
     }
-    
+
     private func thumbOffset(forBound bound: Float, sliderSize: CGSize) -> CGFloat {
         sliderSize.width * CGFloat(bound) - (sliderSize.width / 2)
     }
-    
+
     private func fillLineOffset(sliderSize: CGSize) -> CGFloat {
         let (lowerBound, upperBound) = selectedPercentageBounds()
         let centerPercentagePoint = (lowerBound + upperBound) / 2
         return sliderSize.width * CGFloat(centerPercentagePoint) - (sliderSize.width / 2)
     }
-    
+
     private func fillLineWidth(sliderSize: CGSize) -> CGFloat {
         let (lowerBound, upperBound) = selectedPercentageBounds()
         return sliderSize.width * CGFloat(upperBound - lowerBound)
