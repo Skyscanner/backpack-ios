@@ -94,7 +94,6 @@ struct CardListExampleView: View {
             headline: element.name,
             bodyText: element.description,
             imageOrientation: .landscape)
-        .frame(width: 281)
     }
 
     struct Location: Identifiable {

@@ -10,6 +10,27 @@
 | --- | --- |
 | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_card-list___rail-3-elements_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_card-list___rail-3-elements_dm.png" alt="" width="375" /> |
 
+### Single item rail
+
+When the rail layout receives only one element it expands to fill the full available width instead of rendering a horizontally scrollable container. This mirrors the expected design parity and provides a better visual balance for solitary content.
+
+| Day | Night |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_card-list___rail-1-element_lm.png" alt="Single rail element light" width="375" /> | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_card-list___rail-1-element_dm.png" alt="Single rail element dark" width="375" /> |
+
+Usage example:
+
+```swift
+BPKCardList(
+    title: "Recommended",
+    description: nil,
+    layout: .rail(), // single element => full width
+    elements: [Model(id: 1)]
+) { element in
+    MyCardView(model: element)
+}
+```
+
 ## Rail with section header button
 
 | Day | Night |
@@ -78,9 +99,26 @@ BPKCardList(
     initiallyShownCardsCount: 2,
     elements: Array(repeating: TestElement(id: 1), count: 4),
     headerPadding: ([.leading, .trailing, .bottom], .base)
-    ) {
-        Text("Element \(element.id)")
-    }
+) { element in
+    Text("Element \(element.id)")
+}
+
+#### Fixed card width (optional)
+
+You can constrain each card in a rail to a fixed width by supplying `cardWidth:`:
+
+```swift
+BPKCardList(
+    title: "Section title",
+    description: nil,
+    layout: .rail(cardWidth: 240),
+    elements: models
+) { element in
+    ProductCard(model: element)
+}
+```
+
+If `cardWidth` is omitted the card sizes are determined by their intrinsic content. The single-item full-width behaviour still applies regardless of `cardWidth` (the width is ignored in the 1‑item case so the card stretches).
 ```
 
 #### Section header
@@ -97,19 +135,20 @@ struct TestElement: Identifiable {
 BPKCardList(
     title: "Section title",
     description: "Description about this section (optional)",
-        layout: .rail(
-            sectionHeaderAction: .init(
-                icon: .addCircle,
-                accessibilityLabel: "Add item") {
-                    print("Tap add button")
-                }
+    layout: .rail(
+        sectionHeaderAction: .init(
+            icon: .addCircle,
+            accessibilityLabel: "Add item") {
+                print("Tap add button")
+            },
+        cardWidth: 240
     ),
     initiallyShownCardsCount: 2,
     elements: Array(repeating: TestElement(id: 1), count: 4),
     headerPadding: ([.leading, .trailing, .bottom], .base)
-    ) {
-        Text("Element \(element.id)")
-    }
+) { element in
+    Text("Element \(element.id)")
+}
 ```
 
 ### Stack layout
