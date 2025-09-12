@@ -17,6 +17,7 @@
  */
 
 import SwiftUI
+import Backpack_Common
 
 struct BPKStickyChip: View {
     let stickyChip: BPKMultiSelectChipGroup.StickyChipItem
@@ -31,7 +32,8 @@ struct BPKStickyChip: View {
             ChipButtonStyle(
                 style: style,
                 selected: stickyChip.selected,
-                disabled: false
+                disabled: false,
+                config: BpkConfiguration.shared
             )
         )
         .accessibilityAddTraits(stickyChip.selected ? [.isSelected] : [])

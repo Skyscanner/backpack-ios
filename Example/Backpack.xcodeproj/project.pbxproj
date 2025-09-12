@@ -26,6 +26,7 @@
 		25D1337D2C73EFD7002C9562 /* SearchControlInputUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1337C2C73EFD7002C9562 /* SearchControlInputUITest.swift */; };
 		2832E45B2CDE1561000B6DF4 /* CalendarExampleWholeMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2832E45A2CDE1561000B6DF4 /* CalendarExampleWholeMonthView.swift */; };
 		285309EE2DAD6B7800BB6D24 /* DynamicLayoutGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285309ED2DAD6B7800BB6D24 /* DynamicLayoutGroups.swift */; };
+		28CF33712E39273C00A9DF34 /* ConfigurationExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CF336F2E39273C00A9DF34 /* ConfigurationExampleView.swift */; };
 		2A62FDDD2AB89F4500D545E5 /* TextAreaExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A62FDDC2AB89F4500D545E5 /* TextAreaExampleView.swift */; };
 		3A7D2D47214AB9F400ECBD5B /* BPKButtonsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D2D46214AB9F400ECBD5B /* BPKButtonsViewController.m */; };
 		3AA018EF215BE26600838FBB /* SpinnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018EE215BE26500838FBB /* SpinnersViewController.swift */; };
@@ -265,6 +266,7 @@
 		25D1337C2C73EFD7002C9562 /* SearchControlInputUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchControlInputUITest.swift; sourceTree = "<group>"; };
 		2832E45A2CDE1561000B6DF4 /* CalendarExampleWholeMonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExampleWholeMonthView.swift; sourceTree = "<group>"; };
 		285309ED2DAD6B7800BB6D24 /* DynamicLayoutGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLayoutGroups.swift; sourceTree = "<group>"; };
+		28CF336F2E39273C00A9DF34 /* ConfigurationExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationExampleView.swift; sourceTree = "<group>"; };
 		2A62FDDC2AB89F4500D545E5 /* TextAreaExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAreaExampleView.swift; sourceTree = "<group>"; };
 		3A7D2D45214AB9F400ECBD5B /* BPKButtonsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKButtonsViewController.h; sourceTree = "<group>"; };
 		3A7D2D46214AB9F400ECBD5B /* BPKButtonsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKButtonsViewController.m; sourceTree = "<group>"; };
@@ -593,6 +595,14 @@
 				256F76142BB479850047AD1C /* SearchInputSummaryExampleView.swift */,
 			);
 			path = SearchInputSummary;
+			sourceTree = "<group>";
+		};
+		28CF33702E39273C00A9DF34 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				28CF336F2E39273C00A9DF34 /* ConfigurationExampleView.swift */,
+			);
+			path = Configuration;
 			sourceTree = "<group>";
 		};
 		2A8000102AB3DC3B009FDB10 /* TextArea */ = {
@@ -1053,6 +1063,7 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				28CF33702E39273C00A9DF34 /* Configuration */,
 				BA4EE38C2E5D9E0800D9B42D /* PriceRange */,
 				EEF89AC12E2EAE4E00BF1C83 /* TappableContainer */,
 				EED519BE2D3EBD8300F898D7 /* SegmentedControl */,
@@ -1064,7 +1075,6 @@
 				539E51872BC844C1001FB36F /* HorizontalNavigation */,
 				1AF3D2C82BB18924001623A4 /* ImageGalleryGridView */,
 				E2B9D19D2BB3579F0053C14C /* NavigationTabGroup */,
-				E2B9D19C2BB357950053C14C /* NavigationTab */,
 				539897C62BA8A8E600C8D939 /* ImageGallerySlideshow */,
 				539897BD2BA852E500C8D939 /* ImageGalleryPreview */,
 				53BA7BCC2B9B5E6900F93982 /* RatingBar */,
@@ -1612,13 +1622,6 @@
 			path = CardCarousel;
 			sourceTree = "<group>";
 		};
-		E2B9D19C2BB357950053C14C /* NavigationTab */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = NavigationTab;
-			sourceTree = "<group>";
-		};
 		E2B9D19D2BB3579F0053C14C /* NavigationTabGroup */ = {
 			isa = PBXGroup;
 			children = (
@@ -2002,6 +2005,7 @@
 				D211A90C22D8B42B00447B64 /* HorizontalNavViewController.swift in Sources */,
 				53D6396F2A7D46ED007EF376 /* MapMarkerExampleView.swift in Sources */,
 				EED519BF2D3EBD8300F898D7 /* SegmentedControlExampleView.swift in Sources */,
+				28CF33712E39273C00A9DF34 /* ConfigurationExampleView.swift in Sources */,
 				BA809EC82B05FC2E0030D1E7 /* AppSearchModalGroups.swift in Sources */,
 				53C7F0BA2A4C615D003A8740 /* ChipGroupSingleSelectWrapExampleView.swift in Sources */,
 				1318F74E2C77734C00D42847 /* FieldSetExampleView.swift in Sources */,
