@@ -24,31 +24,42 @@ struct ChipButtonStyle: ButtonStyle {
     let selected: Bool
     let disabled: Bool
     let config: BpkConfiguration?
-    
+
     func makeBody(configuration: Self.Configuration) -> some View {
+        
+        if config?.chipConfig != nil {
+            chipLabelView(configuration: configuration)
+                .clipShape(cornerShape)
+                .overlay(
+                    cornerShape
+                        .stroke(Color(outlineColor(configuration.isPressed)), lineWidth: 1)
+                )
+        } else {
+            chipLabelView(configuration: configuration)
+                .clipShape(RoundedRectangle(cornerRadius: .sm))
+                .outline(outlineColor(configuration.isPressed), cornerRadius: .sm)
+        }
+    }
+    
+    private func chipLabelView(
+        configuration: Self.Configuration
+    ) -> some View {
         configuration.label
             .frame(minHeight: .xl)
             .lineLimit(1)
             .background(backgroundColor(configuration.isPressed))
             .foregroundColor(foregroundColor(configuration.isPressed))
-            .clipShape(RoundedRectangle(cornerRadius: cornerShape))
-            .outline(outlineColor(configuration.isPressed), cornerRadius: cornerShape)
             .if(style == .onImage) { $0.shadow(.sm) }
             .if(!BPKFont.enableDynamicType, transform: {
                 $0.sizeCategory(.large)
             })
     }
     
-    private var cornerShape: BPKCornerRadius {
+    private var cornerShape: some Shape {
         if let radiusToken = config?.chipConfig?.radiusToken, radiusToken == .roundCorners {
-            
-            guard let radius = config?.chipConfig?.radius else {
-                return .sm
-            }
-            
-            return BPKCornerRadius(value: radius)
+            return AnyShape(Capsule())
         } else {
-            return .sm
+            return AnyShape(RoundedRectangle(cornerRadius: BPKCornerRadius.sm.value))
         }
     }
     
