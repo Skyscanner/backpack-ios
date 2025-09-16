@@ -19,7 +19,8 @@
 const path = require('path');
 const data = require('gulp-data');
 const gulp = require('gulp');
-const nunjucks = require('gulp-nunjucks');
+// const nunjucks = require('gulp-nunjucks');
+import nunjucks from 'nunjucks'
 const rename = require('gulp-rename');
 const { iconsSwiftUI } = require('../../iconNames');
 
