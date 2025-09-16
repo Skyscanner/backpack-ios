@@ -19,20 +19,30 @@
 const path = require('path');
 const data = require('gulp-data');
 const gulp = require('gulp');
-const nunjucks = require('gulp-nunjucks');
 const rename = require('gulp-rename');
 
-const generateAutoMirrorIconNames = (templateFolder) => (done) => {
-    const content = require('@skyscanner/bpk-svgs/dist/metadata.json');
-    const iconNames = Object.entries(content).filter((x) => x[1].autoMirror).map(item => item[0]);
+// Lazy-load the ESM-only gulp-nunjucks from CJS
+const getNunjucksCompile = async () =>
+  (await import('gulp-nunjucks')).nunjucksCompile;
 
-    gulp
-      .src(path.join(templateFolder, 'BPKAutoMirrorIconNames.njk'))
-      .pipe(data({iconNames}))
-      .pipe(nunjucks.compile())
-      .pipe(rename('BPKAutoMirrorIconNames.swift'))
-      .pipe(gulp.dest('Backpack-Common/Icons/Generated'))
-    done()
-}
+const generateAutoMirrorIconNames = (templateFolder) => async () => {
+  const { default: content } = await import('@skyscanner/bpk-svgs/dist/metadata.json', {
+    assert: { type: 'json' }
+  }).catch(() => ({ default: require('@skyscanner/bpk-svgs/dist/metadata.json') })); // fallback for Node <20
 
-module.exports = generateAutoMirrorIconNames
+  const iconNames = Object.entries(content)
+    .filter(([, v]) => v.autoMirror)
+    .map(([k]) => k);
+
+  const nunjucksCompile = await getNunjucksCompile();
+
+  // Return the stream (no manual done())
+  return gulp
+    .src(path.join(templateFolder, 'BPKAutoMirrorIconNames.njk'))
+    .pipe(data({ iconNames }))
+    .pipe(nunjucksCompile())
+    .pipe(rename('BPKAutoMirrorIconNames.swift'))
+    .pipe(gulp.dest('Backpack-Common/Icons/Generated'));
+};
+
+module.exports = generateAutoMirrorIconNames;
