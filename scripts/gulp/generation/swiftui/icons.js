@@ -29,8 +29,7 @@ const generateIconNamesSwiftUI = (templateFolder) => async () => {
     .pipe(data(iconsSwiftUI()))
     .pipe(nunjucksCompile())
     .pipe(rename('BPKIcons.swift'))
-    .pipe(gulp.dest('Backpack-SwiftUI/Icons/Classes/Generated'))
-  done()
+    .pipe(gulp.dest('Backpack-SwiftUI/Icons/Classes/Generated'));
 };
 
 module.exports = generateIconNamesSwiftUI
