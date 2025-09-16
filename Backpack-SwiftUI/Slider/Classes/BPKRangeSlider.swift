@@ -65,7 +65,7 @@ public struct BPKRangeSlider: View {
     ///   - sliderBounds: The bounds of the slider.
     ///   - step: The step size of the slider. Defaults to 1.
     ///   - minSpacing: The minimum spacing between the two thumbs. Defaults to 0.
-    ///   - thumbnailLabels: The minimum spacing between the two thumbs. Defaults to 0.
+    ///   - thumbnailLabels: The thumbnail labels for the thumbs. Defaults to nil.
     ///   - onDragEnded: A closure that is called when the user stops dragging the slider.
     public init(
         selectedRange: Binding<ClosedRange<Float>>,
@@ -212,8 +212,8 @@ public struct BPKRangeSlider: View {
     }
 
     private func incrementTrailing() {
-        // Ensure trailing thumb can't go below start of range + step
-        let minimumValue = sliderBounds.lowerBound + step
+        // Ensure trailing thumb maintains minimum spacing
+        let minimumValue = selectedRange.lowerBound + minSpacing
         let newValue = min($selectedRange.wrappedValue.upperBound + step, sliderBounds.upperBound)
         if newValue != $selectedRange.wrappedValue.upperBound {
             hapticFeedback.impactOccurred()
@@ -224,14 +224,14 @@ public struct BPKRangeSlider: View {
     }
 
     private func decrementTrailing() {
-        // Ensure trailing thumb can't go below start of range + step
-        let minimumValue = sliderBounds.lowerBound + step
-        let newValue = max($selectedRange.wrappedValue.upperBound - step, selectedRange.lowerBound)
+        // Ensure trailing thumb maintains minimum spacing
+        let minimumValue = selectedRange.lowerBound + minSpacing
+        let newValue = max($selectedRange.wrappedValue.upperBound - step, minimumValue)
         if newValue != $selectedRange.wrappedValue.upperBound {
             hapticFeedback.impactOccurred()
             lastHapticValueUpper = newValue
         }
-        $selectedRange.wrappedValue = $selectedRange.wrappedValue.lowerBound...max(newValue, minimumValue)
+        $selectedRange.wrappedValue = $selectedRange.wrappedValue.lowerBound...newValue
         onDragEnded(selectedRange)
     }
 
@@ -250,8 +250,8 @@ public struct BPKRangeSlider: View {
             roundedValue = sliderBounds.upperBound
         }
 
-        // Ensure trailing thumb can't go below start of range + step
-        let minimumValue = sliderBounds.lowerBound + step
+        // Ensure trailing thumb maintains minimum spacing from leading thumb
+        let minimumValue = selectedRange.lowerBound + minSpacing
         roundedValue = max(roundedValue, minimumValue)
 
         let isGreaterThanLeadingThumb = roundedValue >= selectedRange.lowerBound
@@ -282,8 +282,8 @@ public struct BPKRangeSlider: View {
             roundedValue = sliderBounds.lowerBound
         }
 
-        // Ensure leading thumb can't go above trailing thumb - step
-        let maximumValue = $selectedRange.wrappedValue.upperBound - step
+        // Ensure leading thumb maintains minimum spacing from trailing thumb
+        let maximumValue = selectedRange.upperBound - minSpacing
         roundedValue = min(roundedValue, maximumValue)
 
         let isSmallerThanTrailingThumb = roundedValue <= selectedRange.upperBound
