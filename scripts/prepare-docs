@@ -67,26 +67,41 @@ build_api_documentation() {
     print_success "API documentation build completed"
 }
 
+create_basic_index_html() {
+    local version="$1"
+
+    print_info "Creating basic index.html redirect..."
+
+    # Ensure docs directory exists
+    mkdir -p docs
+
+    # Create the basic redirect index.html
+    cat > docs/index.html << EOF
+<!DOCTYPE html>
+  <html>
+    <meta http-equiv="refresh" content="0;url=/ios/versions/latest/index.html" />
+    <script type="text/javascript">
+      const iosDocsPath = (window.location + '').split('ios/versions/latest');
+      if (iosDocsPath.length > 1) {
+        window.location = \`/ios/versions/$version\${iosDocsPath[1]}\`;
+      }
+    </script>
+  </html>
+EOF
+
+    print_success "Created docs/index.html"
+}
+
 create_component_documentation_structure() {
     print_info "Creating component documentation directory structure..."
 
     # Create directories for component documentation
     mkdir -p "${COMPONENT_DOCS_OUTPUT_DIR}"/{uikit,swiftui,screenshots}
 
-    # Clean existing component documentation to ensure fresh copy
-    clean_existing_component_docs "${COMPONENT_DOCS_OUTPUT_DIR}/uikit"
-    clean_existing_component_docs "${COMPONENT_DOCS_OUTPUT_DIR}/swiftui"
-    clean_existing_component_docs "${COMPONENT_DOCS_OUTPUT_DIR}/screenshots"
+    # Ensure docs directory exists
+    mkdir -p docs
 
-    print_success "Component documentation structure created (preserving API docs)"
-}
-
-clean_existing_component_docs() {
-    local target_directory="$1"
-
-    if [[ -d "$target_directory" ]]; then
-        rm -rf "${target_directory:?}"/*
-    fi
+    print_success "Component documentation structure created"
 }
 
 copy_framework_component_documentation() {
@@ -121,10 +136,9 @@ process_single_component() {
 
     if [[ -f "$component_readme_file" ]]; then
         copy_component_readme "$component_readme_file" "$target_framework_subdirectory" "$component_name"
-        print_info "  📝 Copied ${component_name}"
         return 0
     else
-        print_warning "  📝 No README found for ${component_name}"
+        print_warning "No README found for ${component_name}"
         return 1
     fi
 }
@@ -150,7 +164,6 @@ update_repository_urls_in_documentation() {
         if contains_old_repository_url "$markdown_file"; then
             replace_repository_urls_in_file "$markdown_file"
             ((files_updated++))
-            print_info "  🔗 Updated URLs in $(basename "$markdown_file")"
         fi
     done < <(find "$COMPONENT_DOCS_OUTPUT_DIR" -name "*.md" -print0)
 
@@ -252,6 +265,8 @@ main() {
         step_number=2
     else
         print_info "📖 Skipping API documentation build (component-only mode)"
+        # Create basic index.html for component-only mode
+        create_basic_index_html "$version"
         echo ""
         step_number=1
     fi

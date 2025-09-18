@@ -7,7 +7,7 @@ on:
       - 'Backpack/**/README.md'
       - 'Backpack-SwiftUI/**/README.md'
       - 'screenshots/**'
-      - 'scripts/prepare-docs.sh'
+      - 'scripts/prepare-docs'
       - 'ARCHITECTURE.md'
       - '.github/workflows/pr-docs-test.yml'
       - '.github/workflows/release.yml'
@@ -30,7 +30,7 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Prepare component documentation
-        run: ./scripts/prepare-docs.sh
+        run: ./scripts/prepare-docs
 
       - name: Verify documentation structure
         run: |

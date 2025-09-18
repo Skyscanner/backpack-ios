@@ -130,7 +130,7 @@ jobs:
 
     - name: Build and verify docs (release)
       if: github.event.release.tag_name != ''
-      run: ./scripts/prepare-docs.sh $RELEASE_VERSION
+      run: ./scripts/prepare-docs $RELEASE_VERSION
       env:
         RELEASE_VERSION: ${{ github.event.release.tag_name }}
 
