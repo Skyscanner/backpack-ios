@@ -114,7 +114,6 @@ jobs:
           keep_files: true
           external_repository: backpack/ios
           publish_branch: pr-docs-test
-          force_orphan: true
 
       - name: Output documentation URL
         run: |
