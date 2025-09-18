@@ -1,0 +1,311 @@
+#!/bin/bash
+
+# =============================================================================
+# Backpack iOS Complete Documentation Preparation Script
+#
+# This script builds both API documentation (Jazzy) and component documentation,
+# aggregating component README files and preparing everything for publishing
+# to backpack/ios GitHub Pages
+# =============================================================================
+
+set -euo pipefail  # Exit on error, undefined vars, pipe failures
+
+# Change to project root directory to ensure correct relative paths
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+
+# =============================================================================
+# CONFIGURATION
+# =============================================================================
+
+readonly SOURCE_REPO_NAME="Skyscanner/backpack-ios"
+readonly TARGET_REPO_NAME="backpack/ios"
+readonly COMPONENT_DOCS_OUTPUT_DIR="docs/docs"
+readonly UIKIT_SOURCE_DIRECTORY="Backpack"
+readonly SWIFTUI_SOURCE_DIRECTORY="Backpack-SwiftUI"
+readonly SCREENSHOTS_SOURCE_DIRECTORY="screenshots"
+readonly BUILD_DOCS_SCRIPT="$(dirname "${BASH_SOURCE[0]}")/build-docs"
+
+# =============================================================================
+# LOGGING UTILITIES
+# =============================================================================
+
+print_info() {
+    echo "ℹ️  $1"
+}
+
+print_success() {
+    echo "✅ $1"
+}
+
+print_error() {
+    echo "❌ $1" >&2
+}
+
+print_warning() {
+    echo "⚠️  $1"
+}
+
+# =============================================================================
+# CORE FUNCTIONS
+# =============================================================================
+
+build_api_documentation() {
+    local version="$1"
+
+    print_info "Building API documentation with Jazzy for version: $version"
+
+    if [[ ! -f "$BUILD_DOCS_SCRIPT" ]]; then
+        print_error "build-docs script not found at: $BUILD_DOCS_SCRIPT"
+        return 1
+    fi
+
+    if ! "$BUILD_DOCS_SCRIPT" "$version"; then
+        print_error "API documentation build failed"
+        return 1
+    fi
+
+    print_success "API documentation build completed"
+}
+
+create_component_documentation_structure() {
+    print_info "Creating component documentation directory structure..."
+
+    # Create directories for component documentation
+    mkdir -p "${COMPONENT_DOCS_OUTPUT_DIR}"/{uikit,swiftui,screenshots}
+
+    # Clean existing component documentation to ensure fresh copy
+    clean_existing_component_docs "${COMPONENT_DOCS_OUTPUT_DIR}/uikit"
+    clean_existing_component_docs "${COMPONENT_DOCS_OUTPUT_DIR}/swiftui"
+    clean_existing_component_docs "${COMPONENT_DOCS_OUTPUT_DIR}/screenshots"
+
+    print_success "Component documentation structure created (preserving API docs)"
+}
+
+clean_existing_component_docs() {
+    local target_directory="$1"
+
+    if [[ -d "$target_directory" ]]; then
+        rm -rf "${target_directory:?}"/*
+    fi
+}
+
+copy_framework_component_documentation() {
+    local source_framework_directory="$1"
+    local target_framework_subdirectory="$2"
+    local framework_display_name="$3"
+
+    print_info "Copying ${framework_display_name} component documentation..."
+
+    local components_copied=0
+
+    # Process each component directory in the source framework
+    for component_directory in "${source_framework_directory}"/*; do
+        if [[ -d "$component_directory" ]]; then
+            if process_single_component "$component_directory" "$target_framework_subdirectory"; then
+                ((components_copied++))
+            fi
+        fi
+    done
+
+    print_success "Copied ${components_copied} ${framework_display_name} components"
+}
+
+process_single_component() {
+    local component_directory="$1"
+    local target_framework_subdirectory="$2"
+
+    local component_name
+    component_name=$(basename "$component_directory")
+
+    local component_readme_file="${component_directory}/README.md"
+
+    if [[ -f "$component_readme_file" ]]; then
+        copy_component_readme "$component_readme_file" "$target_framework_subdirectory" "$component_name"
+        print_info "  📝 Copied ${component_name}"
+        return 0
+    else
+        print_warning "  📝 No README found for ${component_name}"
+        return 1
+    fi
+}
+
+copy_component_readme() {
+    local source_readme_file="$1"
+    local target_framework_subdirectory="$2"
+    local component_name="$3"
+
+    local target_component_directory="${COMPONENT_DOCS_OUTPUT_DIR}/${target_framework_subdirectory}/${component_name}"
+
+    mkdir -p "$target_component_directory"
+    cp "$source_readme_file" "$target_component_directory/"
+}
+
+update_repository_urls_in_documentation() {
+    print_info "Updating repository URLs in documentation files..."
+
+    local files_updated=0
+
+    # Process all markdown files in component documentation
+    while IFS= read -r -d '' markdown_file; do
+        if contains_old_repository_url "$markdown_file"; then
+            replace_repository_urls_in_file "$markdown_file"
+            ((files_updated++))
+            print_info "  🔗 Updated URLs in $(basename "$markdown_file")"
+        fi
+    done < <(find "$COMPONENT_DOCS_OUTPUT_DIR" -name "*.md" -print0)
+
+    print_success "Updated URLs in ${files_updated} files"
+}
+
+contains_old_repository_url() {
+    local markdown_file="$1"
+    grep -q "$SOURCE_REPO_NAME" "$markdown_file"
+}
+
+replace_repository_urls_in_file() {
+    local markdown_file="$1"
+    local temporary_file
+    temporary_file=$(mktemp)
+
+    sed "s|${SOURCE_REPO_NAME}|${TARGET_REPO_NAME}|g" "$markdown_file" > "$temporary_file"
+    mv "$temporary_file" "$markdown_file"
+}
+
+copy_screenshot_assets() {
+    print_info "Copying screenshot assets..."
+
+    if [[ -d "$SCREENSHOTS_SOURCE_DIRECTORY" ]]; then
+        cp -r "$SCREENSHOTS_SOURCE_DIRECTORY"/* "${COMPONENT_DOCS_OUTPUT_DIR}/screenshots/"
+        local screenshot_count=$(find "${COMPONENT_DOCS_OUTPUT_DIR}/screenshots" -type f | wc -l)
+        print_success "Copied $screenshot_count screenshot files"
+    else
+        print_error "Screenshots directory not found: $SCREENSHOTS_SOURCE_DIRECTORY"
+        return 1
+    fi
+}
+
+
+validate_component_documentation_output() {
+    print_info "Validating component documentation output..."
+
+    local validation_errors=0
+
+    # Check if main directories exist
+    for directory in "uikit" "swiftui" "screenshots"; do
+        if [[ ! -d "${COMPONENT_DOCS_OUTPUT_DIR}/$directory" ]]; then
+            print_error "Missing directory: ${COMPONENT_DOCS_OUTPUT_DIR}/$directory"
+            ((validation_errors++))
+        fi
+    done
+
+    # Count components
+    local uikit_components=$(find "${COMPONENT_DOCS_OUTPUT_DIR}/uikit" -name "README.md" | wc -l)
+    local swiftui_components=$(find "${COMPONENT_DOCS_OUTPUT_DIR}/swiftui" -name "README.md" | wc -l)
+    local total_screenshots=$(find "${COMPONENT_DOCS_OUTPUT_DIR}/screenshots" -type f | wc -l)
+
+    print_info "📊 Component documentation summary:"
+    print_info "  • UIKit components: $uikit_components"
+    print_info "  • SwiftUI components: $swiftui_components"
+    print_info "  • Screenshot files: $total_screenshots"
+
+    if [[ $validation_errors -eq 0 ]]; then
+        print_success "Validation passed - component documentation is ready for publishing!"
+        return 0
+    else
+        print_error "Validation failed with $validation_errors errors"
+        return 1
+    fi
+}
+
+# =============================================================================
+# MAIN EXECUTION
+# =============================================================================
+
+main() {
+    # Check if version parameter is provided (optional for component-only mode)
+    local version="${1:-}"
+    local component_only_mode=false
+
+    if [[ -z "$version" ]]; then
+        print_info "No version specified - running in component-only mode (skipping API docs)"
+        component_only_mode=true
+        version="latest"
+    fi
+
+    print_info "🚀 Starting iOS documentation preparation for version: $version"
+    print_info "   Source repository: $SOURCE_REPO_NAME"
+    print_info "   Target repository: $TARGET_REPO_NAME"
+    print_info "   Component docs output: $COMPONENT_DOCS_OUTPUT_DIR"
+    if [[ "$component_only_mode" == "true" ]]; then
+        print_info "   Mode: Component documentation only"
+    else
+        print_info "   Mode: Complete documentation (API + Components)"
+    fi
+    echo ""
+
+    # Step 1: Build API documentation with Jazzy (skip in component-only mode)
+    if [[ "$component_only_mode" == "false" ]]; then
+        print_info "📖 Step 1: Building API documentation..."
+        print_info "----------------------------------------"
+        build_api_documentation "$version"
+        echo ""
+        step_number=2
+    else
+        print_info "📖 Skipping API documentation build (component-only mode)"
+        echo ""
+        step_number=1
+    fi
+
+    # Step N: Prepare component documentation
+    print_info "📝 Step $step_number: Preparing component documentation..."
+    print_info "-----------------------------------------------"
+    create_component_documentation_structure
+    copy_framework_component_documentation "$UIKIT_SOURCE_DIRECTORY" "uikit" "UIKit"
+    copy_framework_component_documentation "$SWIFTUI_SOURCE_DIRECTORY" "swiftui" "SwiftUI"
+    update_repository_urls_in_documentation
+    copy_screenshot_assets
+    validate_component_documentation_output
+    echo ""
+
+    # Final validation
+    ((step_number++))
+    print_info "🔍 Step $step_number: Final validation..."
+    print_info "------------------------------"
+
+    # Check that API documentation exists (only in complete mode)
+    if [[ "$component_only_mode" == "false" && ! -d "docs/versions/$version" ]]; then
+        print_error "API documentation not found at docs/versions/$version"
+        exit 1
+    fi
+
+    # Count components and files
+    local uikit_components=$(find docs/docs/uikit -name "README.md" | wc -l)
+    local swiftui_components=$(find docs/docs/swiftui -name "README.md" | wc -l)
+    local screenshot_count=$(find docs/docs/screenshots -type f | wc -l)
+
+    if [[ "$component_only_mode" == "false" ]]; then
+        print_info "📊 Complete Documentation Summary:"
+        print_info "  📱 API Documentation: docs/versions/$version/"
+        print_info "  📝 Component Documentation: $COMPONENT_DOCS_OUTPUT_DIR/"
+    else
+        print_info "📊 Component Documentation Summary:"
+        print_info "  📝 Component Documentation: $COMPONENT_DOCS_OUTPUT_DIR/"
+    fi
+    print_info "  🧩 UIKit Components: $uikit_components"
+    print_info "  🔧 SwiftUI Components: $swiftui_components"
+    print_info "  📸 Screenshots: $screenshot_count"
+    echo ""
+
+    if [[ "$component_only_mode" == "false" ]]; then
+        print_success "🎉 Complete documentation preparation successful!"
+    else
+        print_success "🎉 Component documentation preparation successful!"
+    fi
+    print_info "📁 Output directory: docs/"
+    print_info "🌐 Ready for deployment to https://github.com/$TARGET_REPO_NAME"
+}
+
+# Execute main function if script is run directly
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    main "$@"
+fi
