@@ -29,7 +29,7 @@ struct CalendarContainer<MonthContent: View>: View {
 
     @State private var hasScrolledToItem = false
     @StateObject private var visibilityObserver: ItemVisibilityObserver
-    @Environment(\.accessibilityVoiceOverEnabled) var vo
+    @Environment(\.accessibilityVoiceOverEnabled) var voiceOverEnabled
 
     init(
         calendar: Calendar,
@@ -85,7 +85,7 @@ struct CalendarContainer<MonthContent: View>: View {
                 .onChange(of: visibilityObserver.visibleItems) { newVisibleItems in
                     updateOnScrollToMonthHandler(newVisibleItems: newVisibleItems)
                 }
-                .padding(.horizontal, vo ? BPKSpacing.md.value : 0)
+                .padding(.horizontal, voiceOverEnabled ? BPKSpacing.md.value : 0)
             }
         }
     }
