@@ -20,6 +20,7 @@ jobs:
   test-documentation-publishing:
     name: Test Documentation Publishing
     runs-on: macos-14
+    environment: Publishing
     timeout-minutes: 10
     permissions:
       contents: read
