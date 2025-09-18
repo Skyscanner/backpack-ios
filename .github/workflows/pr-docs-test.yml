@@ -31,7 +31,7 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Prepare component documentation
-        run: ./scripts/prepare-docs
+        run: ./scripts/prepare-docs pr-${{ github.event.pull_request.number }}
 
       - name: Verify documentation structure
         run: |
