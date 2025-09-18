@@ -17,9 +17,7 @@
  */
 
 const path = require('path');
-
 const gulp = require('gulp');
-const nunjucks = require('gulp-nunjucks');
 const data = require('gulp-data');
 const merge2 = require('merge2');
 const _ = require('lodash');
@@ -42,6 +40,15 @@ const generateIconNamesSwiftUI = require('./scripts/gulp/generation/swiftui/icon
 const { generateIconNamesUIKit, generateIconExampleUtil, generateIconExampleTestsUtil } = require('./scripts/gulp/generation/uikit/icons');
 const generateAutoMirrorIconNames = require('./scripts/gulp/autoMirrorIconNames');
 
+// ESM interop helper for gulp-nunjucks v6
+let nunjucksCompilePromise;
+const getNunjucksCompile = () => {
+  if (!nunjucksCompilePromise) {
+    nunjucksCompilePromise = import('gulp-nunjucks').then(m => m.nunjucksCompile);
+  }
+  return nunjucksCompilePromise;
+};
+
 const PATHS = {
   templates: {
     objc: path.join(__dirname, 'templates'),
@@ -51,8 +58,7 @@ const PATHS = {
 };
 
 const parseSwiftUITokens = (tokensData) => {
-  const properties = tokensData.properties
-
+  const properties = tokensData.properties;
   return _.chain([
     ...radiiTokens.swiftui(properties),
     ...spacingTokens.swiftui(properties),
@@ -62,12 +68,12 @@ const parseSwiftUITokens = (tokensData) => {
     ...colors(properties, entry => (!hasOldSemanticSuffix(entry) && !entry.deprecated)),
     ...shadows(properties, parseColor, getLegibleName),
   ])
-    .groupBy(({ type }) => type)
-    .value();
+  .groupBy(({ type }) => type)
+  .value();
 };
 
 const parseUIKitTokens = (tokensData) => {
-  const properties = tokensData.properties
+  const properties = tokensData.properties;
   return _.chain([
     ...dynamicColors(properties),
     ...internalColors(properties),
@@ -79,34 +85,42 @@ const parseUIKitTokens = (tokensData) => {
     ...shadows(properties, parseColor, getLegibleName),
     ...durations(properties),
   ])
-    .groupBy(({ type }) => type)
-    .value();
+  .groupBy(({ type }) => type)
+  .value();
 };
 
-const generateFromTemplate = (templatesFolder, templateData) =>
+// Build a generator factory AFTER nunjucksCompile is available
+const makeGenerateFromTemplate = (nunjucksCompile) => (templatesFolder, templateData) =>
   (template, destination) => gulp
     .src(path.join(templatesFolder, template))
     .pipe(data(() => templateData))
-    .pipe(nunjucks.compile())
-    .pipe(destination)
+    .pipe(nunjucksCompile())
+    .pipe(destination);
 
-const generateSwiftUI = (templateData) => () => {
-  const streams = swiftUI(generateFromTemplate(PATHS.templates.swiftui, templateData))
-  return merge2(streams).pipe(gulp.dest('Backpack-SwiftUI'))
-}
+const generateSwiftUI = (templateData) => async () => {
+  const nunjucksCompile = await getNunjucksCompile();
+  const generateFromTemplate = makeGenerateFromTemplate(nunjucksCompile);
+  const streams = swiftUI(generateFromTemplate(PATHS.templates.swiftui, templateData));
+  return merge2(streams).pipe(gulp.dest('Backpack-SwiftUI'));
+};
 
-const generateUIKit = (templateData) => () => {
-  const streams = objectiveC(generateFromTemplate(PATHS.templates.objc, templateData))
+const generateUIKit = (templateData) => async () => {
+  const nunjucksCompile = await getNunjucksCompile();
+  const generateFromTemplate = makeGenerateFromTemplate(nunjucksCompile);
+  const streams = objectiveC(generateFromTemplate(PATHS.templates.objc, templateData));
   return merge2(streams).pipe(gulp.dest(PATHS.output));
-}
+};
 
-gulp.task('generate-icons', gulp.series(
-  generateIconNamesSwiftUI(PATHS.templates.swiftui),
-  generateIconNamesUIKit(PATHS.output, PATHS.templates.objc),
-  generateIconExampleUtil(PATHS.templates.objc),
-  generateIconExampleTestsUtil(PATHS.templates.objc, PATHS.templates.swiftui),
-  generateSvgIcons(`${PATHS.templates.objc}/icons/AssetContents.json`),
-  generateAutoMirrorIconNames(PATHS.templates.objc)),
+gulp.task(
+  'generate-icons',
+  gulp.series(
+    generateIconNamesSwiftUI(PATHS.templates.swiftui),
+    generateIconNamesUIKit(PATHS.output, PATHS.templates.objc),
+    generateIconExampleUtil(PATHS.templates.objc),
+    generateIconExampleTestsUtil(PATHS.templates.objc, PATHS.templates.swiftui),
+    generateSvgIcons(`${PATHS.templates.objc}/icons/AssetContents.json`),
+    generateAutoMirrorIconNames(PATHS.templates.objc)
+  )
 );
 
 gulp.task(
