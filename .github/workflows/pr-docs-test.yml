@@ -108,7 +108,7 @@ jobs:
       - name: Deploy test documentation to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          personal_token: ${{ secrets.DEPLOY_KEY }}
+          personal_token: ${{ secrets.DEPLOY_TOKEN }}
           publish_dir: docs/
           keep_files: true
           external_repository: backpack/ios
