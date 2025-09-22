@@ -1,0 +1,11 @@
+{
+  "codeConnect": {
+    "parser": "swift",
+    "include": ["**/*.figma.swift", "**/*.swift"],
+    "exclude": ["build/**", "DerivedData/**", "Pods/**"],
+    "xcodeprojPath": "Backpack.xcodeproj",
+    "importMapping": {
+      "Backpack/**": "Backpack"
+    }
+  }
+}
