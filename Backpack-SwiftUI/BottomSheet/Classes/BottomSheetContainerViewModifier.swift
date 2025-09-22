@@ -60,6 +60,9 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
                         header: header(),
                         bottomSheetContent: bottomSheetContent()
                     )
+                    .background(backgroundColor)
+                    .frame(maxHeight: .infinity, alignment: .top)
+                    .ignoresSafeArea(.container, edges: .bottom)
                 }
             }
     }
