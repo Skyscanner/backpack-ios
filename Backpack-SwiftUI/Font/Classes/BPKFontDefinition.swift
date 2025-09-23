@@ -33,12 +33,12 @@ public struct BPKRelativeFontDefinition: BPKFontDefinition {
 }
 
 public struct BPKRelativeFontDefinitionBeta: BPKFontDefinition {
-  public var fontFamily = "SkyscannerRelativeiOS"
-  public var regularFontFace = "SkyscannerRelativeiOS-Book"
-  public var semiboldFontFace = "SkyscannerRelativeiOS-Bold"
-  public var blackFontFace = "SkyscannerRelativeiOS-Black"
-   
-  public init() {}
+    public var fontFamily = "SkyscannerRelativeiOS"
+    public var regularFontFace = "SkyscannerRelativeiOS-Book"
+    public var semiboldFontFace = "SkyscannerRelativeiOS-Bold"
+    public var blackFontFace = "SkyscannerRelativeiOS-Black"
+       
+    public init() {}
 }
 
 public struct FallbackFontDefinition: BPKFontDefinition {
