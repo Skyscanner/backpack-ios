@@ -32,6 +32,15 @@ public struct BPKRelativeFontDefinition: BPKFontDefinition {
     public init() {}
 }
 
+public struct BPKRelativeFontDefinitionBeta: BPKFontDefinition {
+  public var fontFamily = "SkyscannerRelativeiOS"
+  public var regularFontFace = "SkyscannerRelativeiOS-Book"
+  public var semiboldFontFace = "SkyscannerRelativeiOS-Bold"
+  public var blackFontFace = "SkyscannerRelativeiOS-Black"
+   
+  public init() {}
+}
+
 public struct FallbackFontDefinition: BPKFontDefinition {
     public var fontFamily = "Helvetica Neue"
     public var regularFontFace = "HelveticaNeue"
