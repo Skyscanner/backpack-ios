@@ -14,7 +14,6 @@ public class BPKRelativeFontDefinitionBeta: NSObject, BPKFontDefinitionProtocol 
     public var fontFamily = "SkyscannerRelativeiOS"
     public var regularFontFace = "SkyscannerRelativeiOS-Book"
     public var semiboldFontFace = "SkyscannerRelativeiOS-Bold"
-    public var blackFontFace = "SkyscannerRelativeiOS-Black"
    
     public override init() {}
 }
