@@ -22,7 +22,6 @@
 #import "BPKFont.h"
 #import "BPKFontDefinitionProtocol.h"
 #import "BPKRelativeFontDefinition.h"
-#import "BPKRelativeFontDefinitionBeta.h"
 
 
 #endif
