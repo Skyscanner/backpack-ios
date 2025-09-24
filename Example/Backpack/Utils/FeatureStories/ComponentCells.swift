@@ -86,7 +86,6 @@ struct ComponentCellsProvider {
             sectionHeader(),
             segmentPicker(),
             select(),
-            snackbar(),
             skeleton(),
             sliders(),
             snippets(),
@@ -451,13 +450,6 @@ extension ComponentCellsProvider {
                 }))
             ],
             showChildren: { showComponent(title: "Select Pickers", tabs: $0) }
-        )
-    }
-    private func snackbar() -> CellDataSource {
-        PresentableCellDataSource(
-            title: "Snackbar",
-            storyboard: .named("Snackbar", on: "SnackbarViewController"),
-            showPresentable: show(presentable:)
         )
     }
     private func sliders() -> CellDataSource {

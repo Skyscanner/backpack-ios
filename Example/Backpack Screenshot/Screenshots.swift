@@ -379,21 +379,6 @@ class Screenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "rating", scenario: "with-custom-title-view-image-view", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
-
-        await navigate(title: "Snackbar") {
-            app.tables.staticTexts["With text"].tap()
-            saveScreenshot(component: "snack-bar", scenario: "with-text", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-            app.tables.staticTexts["With text and button"].tap()
-            saveScreenshot(component: "snack-bar", scenario: "with-text-and-button",
-                           userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-            app.tables.staticTexts["With text and icon only button"].tap()
-            saveScreenshot(component: "snack-bar", scenario: "with-text-and-icon-only-button",
-                           userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-        }
-
         await navigate(title: "Spinners") {
             saveScreenshot(component: "spinner", scenario: "all", userInterfaceStyle: userInterfaceStyle)
         }

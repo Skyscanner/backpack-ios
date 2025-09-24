@@ -109,9 +109,6 @@
 		760E41E5232BD50700A0CE8D /* ToastUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760E41E4232BD50700A0CE8D /* ToastUITest.swift */; };
 		760E41E72334EBDC00A0CE8D /* StarRatingsDocViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760E41E62334EBDC00A0CE8D /* StarRatingsDocViewController.swift */; };
 		7639E567232909C7004D7B09 /* ToastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7639E566232909C7004D7B09 /* ToastViewController.swift */; };
-		764D0038237DDD7600FE60AC /* Snackbar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 764D0037237DDD7600FE60AC /* Snackbar.storyboard */; };
-		764D003A237DE4E300FE60AC /* SnackbarSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764D0039237DE4E300FE60AC /* SnackbarSelectorViewController.swift */; };
-		764D003C237DE51000FE60AC /* SnackbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764D003B237DE51000FE60AC /* SnackbarViewController.swift */; };
 		7904384529F11DC7006CD8E0 /* SliderExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7904384329F11DC7006CD8E0 /* SliderExampleView.swift */; };
 		7904384629F11DC7006CD8E0 /* SliderPlayground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7904384429F11DC7006CD8E0 /* SliderPlayground.swift */; };
 		7904384A29F11EA8006CD8E0 /* SliderGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7904384929F11EA7006CD8E0 /* SliderGroups.swift */; };
@@ -347,9 +344,6 @@
 		760E41E4232BD50700A0CE8D /* ToastUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastUITest.swift; sourceTree = "<group>"; };
 		760E41E62334EBDC00A0CE8D /* StarRatingsDocViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingsDocViewController.swift; sourceTree = "<group>"; };
 		7639E566232909C7004D7B09 /* ToastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastViewController.swift; sourceTree = "<group>"; };
-		764D0037237DDD7600FE60AC /* Snackbar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Snackbar.storyboard; sourceTree = "<group>"; };
-		764D0039237DE4E300FE60AC /* SnackbarSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackbarSelectorViewController.swift; sourceTree = "<group>"; };
-		764D003B237DE51000FE60AC /* SnackbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackbarViewController.swift; sourceTree = "<group>"; };
 		7904384329F11DC7006CD8E0 /* SliderExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderExampleView.swift; sourceTree = "<group>"; };
 		7904384429F11DC7006CD8E0 /* SliderPlayground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderPlayground.swift; sourceTree = "<group>"; };
 		7904384929F11EA7006CD8E0 /* SliderGroups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderGroups.swift; sourceTree = "<group>"; };
@@ -1112,7 +1106,6 @@
 				793EC5652836153C00D627F6 /* Horizontal navigation */,
 				793EC5642836152F00D627F6 /* Map */,
 				793EC5632836151D00D627F6 /* Progress bar */,
-				793EC5622836150600D627F6 /* Snackbar */,
 				793EC561283614F500D627F6 /* Toast */,
 				793EC560283614D000D627F6 /* Overlay */,
 				793EC55F283614BE00D627F6 /* Rating */,
@@ -1236,16 +1229,6 @@
 				7639E566232909C7004D7B09 /* ToastViewController.swift */,
 			);
 			path = Toast;
-			sourceTree = "<group>";
-		};
-		793EC5622836150600D627F6 /* Snackbar */ = {
-			isa = PBXGroup;
-			children = (
-				764D0037237DDD7600FE60AC /* Snackbar.storyboard */,
-				764D0039237DE4E300FE60AC /* SnackbarSelectorViewController.swift */,
-				764D003B237DE51000FE60AC /* SnackbarViewController.swift */,
-			);
-			path = Snackbar;
 			sourceTree = "<group>";
 		};
 		793EC5632836151D00D627F6 /* Progress bar */ = {
@@ -1736,7 +1719,6 @@
 				58CFF14722D3837900C45B0B /* StarRatings.storyboard in Resources */,
 				D6D164A02153934500FFB667 /* Buttons.storyboard in Resources */,
 				D2EB965325C05E0800988978 /* Map.storyboard in Resources */,
-				764D0038237DDD7600FE60AC /* Snackbar.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1877,7 +1859,6 @@
 				797FA4F628312A00006E2A87 /* TextGroups.swift in Sources */,
 				53C6622329EA0DAB00BF1A62 /* ButtonsExampleView.swift in Sources */,
 				7904384629F11DC7006CD8E0 /* SliderPlayground.swift in Sources */,
-				764D003C237DE51000FE60AC /* SnackbarViewController.swift in Sources */,
 				53BA7BCE2B9B5E6A00F93982 /* RatingBarExampleView.swift in Sources */,
 				53E075AC27FC9AB00033147C /* CellsDataSource.swift in Sources */,
 				794E1FF6280A8A0000B965FF /* ContentUIHostingController.swift in Sources */,
@@ -1938,7 +1919,6 @@
 				5346243D2A7437A10059A0B5 /* ProgressBarExampleView.swift in Sources */,
 				53C6622629EA0DAB00BF1A62 /* ChipExampleView.swift in Sources */,
 				D261F26C22C0E6B600A4A476 /* TappableLinkLabelsViewController.swift in Sources */,
-				764D003A237DE4E300FE60AC /* SnackbarSelectorViewController.swift in Sources */,
 				53C6621A29EA0DAB00BF1A62 /* DividedCardExampleView.swift in Sources */,
 				7904384529F11DC7006CD8E0 /* SliderExampleView.swift in Sources */,
 				D643B6DE2142C36C008AB669 /* GradientViewController.swift in Sources */,
