@@ -1,3 +1,21 @@
+/*
+ * Backpack - Skyscanner's Design System
+ *
+ * Copyright 2025 Skyscanner Ltd
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 // swift-tools-version: 5.9
 import PackageDescription
 
@@ -125,7 +143,101 @@ let backpackSwiftTestSources: [String] = [
     "UnitTests/IconSwiftTest.swift"
 ]
 
-let backpackObjCExcludes = ["Tests"] + backpackSwiftSources
+let backpackObjCSources: [String] = [
+    "Appearance/Classes",
+    "BorderWidth/Classes",
+    "Button/Classes",
+    "Card/Classes",
+    "Color/Classes",
+    "DarkMode/Classes",
+    "Dialog/Classes",
+    "Duration/Classes",
+    "FlareView/Classes",
+    "Font/Classes",
+    "Gradient/Classes",
+    "Icon/Classes",
+    "Label/Classes",
+    "Map/Classes",
+    "NavigationBar/Classes",
+    "ProgressBar/Classes",
+    "RTLSupport/Classes",
+    "Radii/Classes",
+    "Shadow/Classes",
+    "Spacing/Classes",
+    "Spinner/Classes",
+    "StarRating/Classes",
+    "Switch/Classes",
+    "TappableLinkLabel/Classes",
+    "TextField/Classes",
+    "TextView/Classes",
+    "Theme/Classes",
+    "Toast/Classes",
+    "Backpack.h",
+    "Common.h"
+]
+
+let backpackSwiftUISources: [String] = [
+    "AppSearchModal/Classes",
+    "Badge/Classes",
+    "BannerAlert/Classes",
+    "Blur/Classes",
+    "BottomSheet/Classes",
+    "Button/Classes",
+    "Calendar/Classes",
+    "Card/Classes",
+    "CardButton/Classes",
+    "CardCarousel/Classes",
+    "CardList/Classes",
+    "Carousel/Classes",
+    "CarouselCard/Classes",
+    "Chip/Classes",
+    "ChipGroup/Classes",
+    "Color/Classes",
+    "Dialog/Classes",
+    "DynamicLayout/Classes",
+    "FieldSet/Classes",
+    "Flare/Classes",
+    "FlowStackView/Classes",
+    "Font/Classes",
+    "GraphicPromo/Classes",
+    "HorizontalNavigation/Classes",
+    "Icons/Classes",
+    "ImageGalleryGrid/Classes",
+    "ImageGalleryPreview/Classes",
+    "ImageGallerySlideshow/Classes",
+    "InsetBanner/Classes",
+    "MapMarker/Classes",
+    "NavigationBar/Classes",
+    "NavigationTab/Classes",
+    "Nudger/Classes",
+    "Overlay/Classes",
+    "PageIndicator/Classes",
+    "Panel/Classes",
+    "Price/Classes",
+    "PriceRange/Classes",
+    "ProgressBar/Classes",
+    "Radii/Classes",
+    "Rating/Classes",
+    "RatingBar/Classes",
+    "SearchControlInput/Classes",
+    "SearchInputSummary/Classes",
+    "SectionHeader/Classes",
+    "SegmentedControl/Classes",
+    "Select/Classes",
+    "Shadow/Classes",
+    "Skeleton/Classes",
+    "Slider/Classes",
+    "Snippet/Classes",
+    "Spacing/Classes",
+    "Spinner/Classes",
+    "StarRating/Classes",
+    "Switch/Classes",
+    "TappableContainer/Classes",
+    "Text/Classes",
+    "TextArea/Classes",
+    "TextField/Classes",
+    "Utils/Classes"
+]
 
 let package = Package(
     name: "Backpack",
@@ -158,7 +270,8 @@ let package = Package(
         .target(
             name: "BackpackObjC",
             path: "Backpack",
-            exclude: backpackObjCExcludes,
+            exclude: backpackSwiftSources,
+            sources: backpackObjCSources,
             publicHeadersPath: ".",
             cSettings: [
                 .headerSearchPath(".")
@@ -189,8 +302,9 @@ let package = Package(
             ],
             path: "Backpack-SwiftUI",
             exclude: [
-                "Tests"
+                "Blur/Classes/VariableBlur.metal"
             ],
+            sources: backpackSwiftUISources,
             resources: [
                 .process("Blur/Classes/VariableBlur.metal")
             ],
@@ -201,6 +315,10 @@ let package = Package(
         .target(
             name: "Backpack_Fonts",
             path: "Backpack-Fonts",
+            exclude: [
+                "Backpack-Fonts.podspec",
+                "Scripts"
+            ],
             sources: [
                 "Sources"
             ],
@@ -216,6 +334,9 @@ let package = Package(
                 .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
             ],
             path: "Backpack/Tests",
+            exclude: [
+                "SnapshotTests/__Snapshots__"
+            ],
             sources: backpackSwiftTestSources,
             resources: [
                 .process("SnapshotTests/Images.xcassets")

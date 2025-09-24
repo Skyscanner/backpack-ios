@@ -19,6 +19,7 @@
 /**
  * Enum values for specifying line style
  */
+#import <Foundation/Foundation.h>
 typedef NS_ENUM(NSUInteger, BPKCardDividerLineStyle) {
     /**
      * Dotted line style.

@@ -19,6 +19,7 @@
 /**
  * Enum values for specifying corner style
  */
+#import <Foundation/Foundation.h>
 typedef NS_ENUM(NSUInteger, BPKCardCornerStyle) {
     /**
      * Small corner radius style.

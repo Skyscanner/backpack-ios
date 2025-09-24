@@ -19,6 +19,8 @@
 #ifndef __BACKPACK__
 #define __BACKPACK__
 
+#import <UIKit/UIKit.h>
+
 #import "BorderWidth.h"
 #import "Color.h"
 #import "Duration.h"
