@@ -364,10 +364,6 @@ extension ComponentCellsProvider {
         ComponentCellDataSource(
             title: "Panels",
             tabs: [
-                .uikit(presentable: loadStoryboard(
-                    name: "Panel",
-                    identifier: "PanelsViewController"
-                )),
                 .swiftui(presentable: CustomPresentable(generateViewController: {
                     ContentUIHostingController(PanelExampleView())
                 }))

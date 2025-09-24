@@ -183,12 +183,9 @@
 		D297B8FE23B9038D008D094A /* Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28D0E8123B2183D008B4C09 /* Screenshots.swift */; };
 		D2B8A01B2147FF6A002290DE /* PreviewCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */; };
 		D2BBC1C922560FDD002DA71A /* BPKTableViewSelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BBC1C822560FDD002DA71A /* BPKTableViewSelectableCell.swift */; };
-		D2C4467023158479009E58A5 /* Panel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2C4466F23158479009E58A5 /* Panel.storyboard */; };
 		D2CCB828243F538400788DEC /* BarCharts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2CCB827243F538400788DEC /* BarCharts.storyboard */; };
 		D2CCB82B243F544300788DEC /* BarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CCB829243F544300788DEC /* BarChartViewController.swift */; };
 		D2CD11E7215E4D83000CEA5C /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */; };
-		D2D624AB231586F600D8ED38 /* PanelSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D624A9231586F500D8ED38 /* PanelSelectorViewController.swift */; };
-		D2D624AC231586F600D8ED38 /* PanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D624AA231586F600D8ED38 /* PanelViewController.swift */; };
 		D2EB964C25C05DF600988978 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EB964B25C05DF600988978 /* MapViewController.swift */; };
 		D2EB965325C05E0800988978 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2EB965225C05E0800988978 /* Map.storyboard */; };
 		D61ACE052306E238001C976E /* NavigationBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61ACE042306E238001C976E /* NavigationBarViewController.swift */; };
@@ -427,12 +424,9 @@
 		D297B8F723B90379008D094A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCollectionViewHeader.swift; sourceTree = "<group>"; };
 		D2BBC1C822560FDD002DA71A /* BPKTableViewSelectableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPKTableViewSelectableCell.swift; sourceTree = "<group>"; };
-		D2C4466F23158479009E58A5 /* Panel.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Panel.storyboard; sourceTree = "<group>"; };
 		D2CCB827243F538400788DEC /* BarCharts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BarCharts.storyboard; sourceTree = "<group>"; };
 		D2CCB829243F544300788DEC /* BarChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartViewController.swift; sourceTree = "<group>"; };
 		D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
-		D2D624A9231586F500D8ED38 /* PanelSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanelSelectorViewController.swift; sourceTree = "<group>"; };
-		D2D624AA231586F600D8ED38 /* PanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanelViewController.swift; sourceTree = "<group>"; };
 		D2EB964B25C05DF600988978 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D2EB965225C05E0800988978 /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		D61ACE042306E238001C976E /* NavigationBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarViewController.swift; sourceTree = "<group>"; };
@@ -1122,7 +1116,6 @@
 				793EC561283614F500D627F6 /* Toast */,
 				793EC560283614D000D627F6 /* Overlay */,
 				793EC55F283614BE00D627F6 /* Rating */,
-				793EC55E283614AE00D627F6 /* Panel */,
 				793EC55D283614A600D627F6 /* Link */,
 				793EC55C2836148700D627F6 /* Text */,
 				793EC55B2836147700D627F6 /* Flare */,
@@ -1218,16 +1211,6 @@
 				D261F26B22C0E6B600A4A476 /* TappableLinkLabelsViewController.swift */,
 			);
 			path = Link;
-			sourceTree = "<group>";
-		};
-		793EC55E283614AE00D627F6 /* Panel */ = {
-			isa = PBXGroup;
-			children = (
-				D2C4466F23158479009E58A5 /* Panel.storyboard */,
-				D2D624A9231586F500D8ED38 /* PanelSelectorViewController.swift */,
-				D2D624AA231586F600D8ED38 /* PanelViewController.swift */,
-			);
-			path = Panel;
 			sourceTree = "<group>";
 		};
 		793EC55F283614BE00D627F6 /* Rating */ = {
@@ -1741,7 +1724,6 @@
 				D24D602B22F84CEC002847D1 /* TextField.storyboard in Resources */,
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				D278358D22EA2A81004C79CF /* ProgressBar.storyboard in Resources */,
-				D2C4467023158479009E58A5 /* Panel.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				E38947D222F5CB3300A357DB /* BottomSheet.storyboard in Resources */,
 				D2CCB828243F538400788DEC /* BarCharts.storyboard in Resources */,
@@ -1911,7 +1893,6 @@
 				53D7FBB527F715AF00DEE588 /* UIWindowFactory.swift in Sources */,
 				D28784932250FCBD00353E32 /* ThemeHelpers.swift in Sources */,
 				53B6DB6027FC3A030042B7C0 /* CardGroups.swift in Sources */,
-				D2D624AB231586F600D8ED38 /* PanelSelectorViewController.swift in Sources */,
 				F00CA3D9299D53450027ACE7 /* FloatingNotificationViewController.swift in Sources */,
 				0E844AF7289141C2004C5865 /* SkeletonViewController.swift in Sources */,
 				53E075B327FC9BBB0033147C /* SingleGroupProvider.swift in Sources */,
@@ -2002,7 +1983,6 @@
 				BAD421BC299CBCEB00B45668 /* CardWrappersViewController.swift in Sources */,
 				794E1FF0280A829D00B965FF /* SpacingTokensView.swift in Sources */,
 				53E075B127FC9B290033147C /* PresentableCellDataSource.swift in Sources */,
-				D2D624AC231586F600D8ED38 /* PanelViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

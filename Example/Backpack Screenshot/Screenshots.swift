@@ -362,19 +362,6 @@ class Screenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "overlay", scenario: "vignette", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
-
-        await navigate(title: "Panels") {
-            app.tables.staticTexts["Default"].tap()
-            saveScreenshot(component: "panel", scenario: "default", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-            app.tables.staticTexts["Without padding"].tap()
-            saveScreenshot(component: "panel", scenario: "without-padding", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-            app.tables.staticTexts["Elevated"].tap()
-            saveScreenshot(component: "panel", scenario: "elevated", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-        }
-
         await navigate(title: "Progress bar") {
             app.buttons["Increase"].tap()
             app.buttons["Increase"].tap()

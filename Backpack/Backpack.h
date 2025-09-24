@@ -38,7 +38,6 @@
 #import "Label.h"
 #import "Map.h"
 #import "NavigationBar.h"
-#import "Panel.h"
 #import "ProgressBar.h"
 #import "Snackbar.h"
 #import "Spinner.h"
