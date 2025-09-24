@@ -1,0 +1,9 @@
+module BackpackObjC {
+  umbrella header "Backpack.h"
+  export *
+  module * { export * }
+}
+
+module Backpack {
+  export BackpackObjC
+}

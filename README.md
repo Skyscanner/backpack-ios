@@ -17,6 +17,31 @@
 
 ## Installation
 
+### Swift Package Manager
+
+Add Backpack as a dependency in your `Package.swift` (or through Xcode's **File → Add Package Dependencies…**):
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/Skyscanner/backpack-ios.git", from: "<latest-version>")
+],
+targets: [
+    .target(
+        name: "YourApp",
+        dependencies: [
+            .product(name: "Backpack", package: "backpack-ios"),
+            .product(name: "Backpack_SwiftUI", package: "backpack-ios"), // optional
+            .product(name: "Backpack_Common", package: "backpack-ios"),  // optional
+            .product(name: "Backpack_Fonts", package: "backpack-ios")     // optional
+        ]
+    )
+]
+```
+
+Replace `<latest-version>` with the tag you wish to consume.
+
+### CocoaPods
+
 Backpack is available through [CocoaPods](https://cocoapods.org). To install
 all of it, simply add the following line to your Podfile:
 

@@ -20,9 +20,13 @@ import Foundation
 
 class TestsBundle {
     static var bundle: Bundle? {
+        #if SWIFT_PACKAGE
+        return .module
+        #else
         guard
             let path = Bundle(for: Self.self).path(forResource: "UnitTestsImages", ofType: "bundle")
         else { return nil }
         return Bundle(path: path)
+        #endif
     }
 }
