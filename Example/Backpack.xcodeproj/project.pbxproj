@@ -201,7 +201,6 @@
 		D6D6BB6421958C3200312C1C /* Gradients.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6D6BB6321958C3200312C1C /* Gradients.storyboard */; };
 		D6DC0AF8216BBB2D0003AC5D /* DialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DC0AF6216BBB2C0003AC5D /* DialogViewController.swift */; };
 		D6FA3DB4224E220D00CFA094 /* UIWindow+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FA3DB3224E220D00CFA094 /* UIWindow+Utility.swift */; };
-		D6FC4E582625DBF6000BA351 /* NudgerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC4E572625DBF6000BA351 /* NudgerViewController.swift */; };
 		DB08530C2C45567600314EE8 /* CarouselCardExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB08530B2C45567600314EE8 /* CarouselCardExampleView.swift */; };
 		DB0A8DA82C57F535003DC186 /* CardCarouselExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0A8DA72C57F535003DC186 /* CardCarouselExampleView.swift */; };
 		E2B9D19F2BB357B60053C14C /* NavigationTabGroupExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B9D19E2BB357B60053C14C /* NavigationTabGroupExampleView.swift */; };
@@ -451,7 +450,6 @@
 		D6D6BB6321958C3200312C1C /* Gradients.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Gradients.storyboard; sourceTree = "<group>"; };
 		D6DC0AF6216BBB2C0003AC5D /* DialogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogViewController.swift; sourceTree = "<group>"; };
 		D6FA3DB3224E220D00CFA094 /* UIWindow+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Utility.swift"; sourceTree = "<group>"; };
-		D6FC4E572625DBF6000BA351 /* NudgerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NudgerViewController.swift; sourceTree = "<group>"; };
 		D71748A6B9AA3B05B9A0CDEB /* Pods_Backpack_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Backpack_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB08530B2C45567600314EE8 /* CarouselCardExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCardExampleView.swift; sourceTree = "<group>"; };
 		DB0A8DA72C57F535003DC186 /* CardCarouselExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCarouselExampleView.swift; sourceTree = "<group>"; };
@@ -1114,7 +1112,6 @@
 				793EC56C283615A300D627F6 /* Navigation bar */,
 				793EC56B2836159300D627F6 /* Icon */,
 				793EC56A2836158100D627F6 /* Star rating */,
-				793EC5692836157700D627F6 /* Nudger */,
 				793EC5682836156900D627F6 /* Text input */,
 				793EC5672836155B00D627F6 /* Switch */,
 				793EC5662836154B00D627F6 /* Tab bar */,
@@ -1318,14 +1315,6 @@
 				D282E865259E04F3000AD77E /* TextFieldsViewController.swift */,
 			);
 			path = "Text input";
-			sourceTree = "<group>";
-		};
-		793EC5692836157700D627F6 /* Nudger */ = {
-			isa = PBXGroup;
-			children = (
-				D6FC4E572625DBF6000BA351 /* NudgerViewController.swift */,
-			);
-			path = Nudger;
 			sourceTree = "<group>";
 		};
 		793EC56A2836158100D627F6 /* Star rating */ = {
@@ -1876,7 +1865,6 @@
 				7940D38D29EEB63500330480 /* StarRatingGroupsProvider.swift in Sources */,
 				25006AB02C60B1740038D7CA /* SearchControlInputExampleView.swift in Sources */,
 				D6391600202CAAC8006E8329 /* BPKShadowViewController.m in Sources */,
-				D6FC4E582625DBF6000BA351 /* NudgerViewController.swift in Sources */,
 				E397BEA222F5F59000C8EC04 /* BottomSheetScrollableContentViewController.swift in Sources */,
 				539897C82BA8A8FF00C8D939 /* ImageGallerySlideshowExampleView.swift in Sources */,
 				7976E5C228BB0E4700471AA2 /* ColorChipView.swift in Sources */,

@@ -316,21 +316,6 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Navigation bars", tabs: $0) }
         )
     }
-    private func nudger() -> CellDataSource {
-        ComponentCellDataSource(
-            title: "Nudger",
-            tabs: [
-                .uikit(presentable: CustomPresentable(
-                    generateViewController: {
-                        NudgerViewController()
-                    })),
-                .swiftui(presentable: CustomPresentable(generateViewController: {
-                    ContentUIHostingController(NudgerExampleView())
-                }))
-            ],
-            showChildren: { showComponent(title: "Nudger", tabs: $0) }
-        )
-    }
     private func overlayViews() -> CellDataSource {
         ComponentCellDataSource(
             title: "Overlay",
@@ -362,6 +347,17 @@ extension ComponentCellsProvider {
                 }))
             ],
             showChildren: { showComponent(title: "Navigation Tabs Group", tabs: $0) }
+        )
+    }
+    private func nudger() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Nudger",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(NudgerExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Nudger", tabs: $0) }
         )
     }
     private func panels() -> CellDataSource {

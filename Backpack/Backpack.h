@@ -38,7 +38,6 @@
 #import "Label.h"
 #import "Map.h"
 #import "NavigationBar.h"
-#import "Nudger.h"
 #import "Panel.h"
 #import "ProgressBar.h"
 #import "Snackbar.h"
