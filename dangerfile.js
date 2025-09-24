@@ -75,8 +75,10 @@ if (unlicensedFiles.length > 0) {
   );
 }
 
+const excludedFiles = ['dangerfile.js', 'Package.swift'];
+
 const listOfFilesExcludingThisOne = fileChanges.filter(
-  (path) => path !== 'dangerfile.js',
+  (path) => !excludedFiles.includes(path),
 );
 
 schedule(async () => {
