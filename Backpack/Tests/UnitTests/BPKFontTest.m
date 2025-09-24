@@ -20,7 +20,51 @@
 
 #import <Backpack/BPKFontManager.h>
 #import <Backpack/Font.h>
-#import <OCMock/OCMock.h>
+
+static NSString *BPKFontManagerStubKey(CGFloat size, UIFontTextStyle style) {
+    return [NSString stringWithFormat:@"%.2f|%@", size, style];
+}
+
+@interface BPKFontManagerStub : BPKFontManager
+- (instancetype)initWithRegularFonts:(NSDictionary<NSString *, UIFont *> *)regularFonts
+                       semiboldFonts:(NSDictionary<NSString *, UIFont *> *)semiboldFonts
+                         heavyFonts:(NSDictionary<NSString *, UIFont *> *)heavyFonts;
+@end
+
+@implementation BPKFontManagerStub {
+    NSDictionary<NSString *, UIFont *> *_regularFonts;
+    NSDictionary<NSString *, UIFont *> *_semiboldFonts;
+    NSDictionary<NSString *, UIFont *> *_heavyFonts;
+}
+
+- (instancetype)initWithRegularFonts:(NSDictionary<NSString *, UIFont *> *)regularFonts
+                       semiboldFonts:(NSDictionary<NSString *, UIFont *> *)semiboldFonts
+                         heavyFonts:(NSDictionary<NSString *, UIFont *> *)heavyFonts {
+    self = [super init];
+    if (self) {
+        _regularFonts = [regularFonts copy];
+        _semiboldFonts = [semiboldFonts copy];
+        _heavyFonts = [heavyFonts copy];
+    }
+    return self;
+}
+
+- (UIFont *)regularFontWithSize:(CGFloat)size textStyle:(UIFontTextStyle)style {
+    UIFont *font = _regularFonts[BPKFontManagerStubKey(size, style)];
+    return font ?: [UIFont systemFontOfSize:size];
+}
+
+- (UIFont *)semiboldFontWithSize:(CGFloat)size textStyle:(UIFontTextStyle)style {
+    UIFont *font = _semiboldFonts[BPKFontManagerStubKey(size, style)];
+    return font ?: [UIFont boldSystemFontOfSize:size];
+}
+
+- (UIFont *)heavyFontWithSize:(CGFloat)size textStyle:(UIFontTextStyle)style {
+    UIFont *font = _heavyFonts[BPKFontManagerStubKey(size, style)];
+    return font ?: [UIFont systemFontOfSize:size weight:UIFontWeightHeavy];
+}
+
+@end
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKFontTest : XCTestCase
@@ -64,16 +108,20 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testAttributesForFontStyleWithCustomFontDefinitionInjected {
-    BPKFontManager *mockFontManager = OCMClassMock(BPKFontManager.class);
-    OCMStub([mockFontManager regularFontWithSize:20.0 textStyle:UIFontTextStyleBody]).andReturn([UIFont fontWithName:@"SnellRoundhand" size:16.0]);
-    OCMStub([mockFontManager semiboldFontWithSize:20.0 textStyle:UIFontTextStyleTitle3])
-        .andReturn([UIFont fontWithName:@"SnellRoundhand-Bold" size:20.0]);
-    OCMStub([mockFontManager semiboldFontWithSize:24.0 textStyle:UIFontTextStyleTitle3])
-        .andReturn([UIFont fontWithName:@"SnellRoundhand-Black" size:24.0]);
+    NSDictionary<NSString *, UIFont *> *regularFonts = @{
+        BPKFontManagerStubKey(20.0, UIFontTextStyleBody): [UIFont fontWithName:@"SnellRoundhand" size:16.0],
+    };
+    NSDictionary<NSString *, UIFont *> *semiboldFonts = @{
+        BPKFontManagerStubKey(20.0, UIFontTextStyleTitle3): [UIFont fontWithName:@"SnellRoundhand-Bold" size:20.0],
+        BPKFontManagerStubKey(24.0, UIFontTextStyleTitle3): [UIFont fontWithName:@"SnellRoundhand-Black" size:24.0],
+    };
+    BPKFontManagerStub *fontManager = [[BPKFontManagerStub alloc] initWithRegularFonts:regularFonts
+                                                                        semiboldFonts:semiboldFonts
+                                                                          heavyFonts:@{}];
 
-    NSDictionary *regularAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextBodyLongform fontManager:mockFontManager];
-    NSDictionary *semiboldAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextHeading4 fontManager:mockFontManager];
-    NSDictionary *heavyAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextHeading3 fontManager:mockFontManager];
+    NSDictionary *regularAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextBodyLongform fontManager:fontManager];
+    NSDictionary *semiboldAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextHeading4 fontManager:fontManager];
+    NSDictionary *heavyAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextHeading3 fontManager:fontManager];
 
     UIFont *resultingRegularFont = regularAttributes[NSFontAttributeName];
     UIFont *resultingSemiboldFont = semiboldAttributes[NSFontAttributeName];
