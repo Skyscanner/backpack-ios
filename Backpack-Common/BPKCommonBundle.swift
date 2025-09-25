@@ -21,6 +21,9 @@ import Foundation
 @objc
 public class BPKCommonBundle: NSObject {
     @objc public static var iconsBundle: Bundle {
+        #if SWIFT_PACKAGE
+        return .module
+        #else
         guard
             let url = Bundle(for: BPKCommonBundle.self).resourceURL?.appendingPathComponent("Icons.bundle"),
             let bundle = Bundle(url: url)
@@ -28,5 +31,6 @@ public class BPKCommonBundle: NSObject {
             return .main
         }
         return bundle
+        #endif
     }
 }

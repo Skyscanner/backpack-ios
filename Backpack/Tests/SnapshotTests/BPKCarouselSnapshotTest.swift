@@ -95,15 +95,16 @@ extension BPKCarouselSnapshotTest {
         ])
         return parentView
     }
-    
+
     private func image(named: String) -> UIImage? {
-        guard let bundlePath = Bundle(for: Self.self).path(forResource: "SnapshotTestImages", ofType: "bundle") else {
-            XCTFail("Could not locate resource")
-            return nil
-        }
-        
-        let bundle = Bundle(path: bundlePath)
-        
+        let bundle: Bundle?
+        #if SWIFT_PACKAGE
+        bundle = .module
+        #else
+        bundle = Bundle(for: Self.self).path(forResource: "SnapshotTestImages", ofType: "bundle")
+            .flatMap(Bundle.init(path:))
+        #endif
+
         guard let image = UIImage(named: named, in: bundle, compatibleWith: nil) else {
             XCTFail("Could not locate resource")
             return nil

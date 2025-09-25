@@ -18,6 +18,7 @@
 #ifndef BPK_Common_h
 #define BPK_Common_h
 
+#import <Foundation/Foundation.h>
 #import <pthread.h>
 
 #define BPKAssertMainThread() NSAssert(0 != pthread_main_np(), @"This method must be called on the main thread")

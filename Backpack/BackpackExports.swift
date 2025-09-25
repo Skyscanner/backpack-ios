@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018 Skyscanner Ltd
+ * Copyright 2025 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,17 +16,4 @@
  * limitations under the License.
  */
 
-import Foundation
-
-class TestsBundle {
-    static var bundle: Bundle? {
-        #if SWIFT_PACKAGE
-        return .module
-        #else
-        guard
-            let path = Bundle(for: Self.self).path(forResource: "UnitTestsImages", ofType: "bundle")
-        else { return nil }
-        return Bundle(path: path)
-        #endif
-    }
-}
+@_exported import BackpackObjC
