@@ -1,7 +1,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "BPKFontDefinitionProtocol.h"
 #import <Backpack_Common/Backpack_Common-Swift.h>
 
 NS_ASSUME_NONNULL_BEGIN
