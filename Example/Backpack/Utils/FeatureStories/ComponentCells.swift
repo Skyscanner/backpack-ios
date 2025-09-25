@@ -86,7 +86,6 @@ struct ComponentCellsProvider {
             sectionHeader(),
             segmentPicker(),
             select(),
-            snackbar(),
             skeleton(),
             sliders(),
             snippets(),
@@ -316,21 +315,6 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Navigation bars", tabs: $0) }
         )
     }
-    private func nudger() -> CellDataSource {
-        ComponentCellDataSource(
-            title: "Nudger",
-            tabs: [
-                .uikit(presentable: CustomPresentable(
-                    generateViewController: {
-                        NudgerViewController()
-                    })),
-                .swiftui(presentable: CustomPresentable(generateViewController: {
-                    ContentUIHostingController(NudgerExampleView())
-                }))
-            ],
-            showChildren: { showComponent(title: "Nudger", tabs: $0) }
-        )
-    }
     private func overlayViews() -> CellDataSource {
         ComponentCellDataSource(
             title: "Overlay",
@@ -364,14 +348,21 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Navigation Tabs Group", tabs: $0) }
         )
     }
+    private func nudger() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Nudger",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(NudgerExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Nudger", tabs: $0) }
+        )
+    }
     private func panels() -> CellDataSource {
         ComponentCellDataSource(
             title: "Panels",
             tabs: [
-                .uikit(presentable: loadStoryboard(
-                    name: "Panel",
-                    identifier: "PanelsViewController"
-                )),
                 .swiftui(presentable: CustomPresentable(generateViewController: {
                     ContentUIHostingController(PanelExampleView())
                 }))
@@ -459,13 +450,6 @@ extension ComponentCellsProvider {
                 }))
             ],
             showChildren: { showComponent(title: "Select Pickers", tabs: $0) }
-        )
-    }
-    private func snackbar() -> CellDataSource {
-        PresentableCellDataSource(
-            title: "Snackbar",
-            storyboard: .named("Snackbar", on: "SnackbarViewController"),
-            showPresentable: show(presentable:)
         )
     }
     private func sliders() -> CellDataSource {
