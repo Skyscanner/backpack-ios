@@ -21,7 +21,9 @@
 #import "BPKButtonAppearance.h"
 #import "BPKButtonAppearanceSet.h"
 #import "UIColor+BPKButton.h"
+#if __has_include(<Backpack/Backpack-Swift.h>)
 #import <Backpack/Backpack-Swift.h>
+#endif
 
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
@@ -32,6 +34,8 @@
 #import <Backpack/Radii.h>
 #import <Backpack/Spacing.h>
 #import <Backpack/UIView+BPKRTL.h>
+
+@class BPKButtonAppearanceSets;
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKLegacyLinkButton ()
@@ -104,7 +108,30 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (BPKButtonAppearance *)currentAppearance {
-    BPKButtonAppearanceSet *appearanceSet = BPKButtonAppearanceSets.link;
+    BPKButtonAppearanceSet *appearanceSet = nil;
+#if __has_include(<Backpack/Backpack-Swift.h>)
+    appearanceSet = [BPKButtonAppearanceSets link];
+#else
+    UIColor *clear = [BPKColor clear];
+    UIColor *pressed = [BPKColor buttonLinkPressedForegroundColor];
+    UIColor *disabledBackground = [clear colorWithAlphaComponent:0];
+    appearanceSet = [[BPKButtonAppearanceSet alloc] initWithRegularAppearance:[[BPKButtonAppearance alloc] initWithBorderColor:nil
+                                                                                                         gradientStartColor:clear
+                                                                                                           gradientEndColor:clear
+                                                                                                            foregroundColor:[BPKColor buttonLinkNormalForegroundColor]]
+                                                        loadingAppearance:[[BPKButtonAppearance alloc] initWithBorderColor:nil
+                                                                                                         gradientStartColor:clear
+                                                                                                           gradientEndColor:clear
+                                                                                                            foregroundColor:pressed]
+                                                       disabledAppearance:[[BPKButtonAppearance alloc] initWithBorderColor:nil
+                                                                                                         gradientStartColor:disabledBackground
+                                                                                                           gradientEndColor:disabledBackground
+                                                                                                            foregroundColor:[BPKColor textDisabledColor]]
+                                                    highlightedAppearance:[[BPKButtonAppearance alloc] initWithBorderColor:nil
+                                                                                                         gradientStartColor:clear
+                                                                                                           gradientEndColor:clear
+                                                                                                            foregroundColor:pressed]];
+#endif
 
     if (self.isLoading) {
         return appearanceSet.loadingAppearance;

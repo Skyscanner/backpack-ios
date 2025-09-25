@@ -22,7 +22,7 @@ public enum BackpackFontsBundle {
     /// Bundle containing the optional Backpack font resources.
     public static var bundle: Bundle {
         #if SWIFT_PACKAGE
-        return .module
+        return Bundle(for: BundleToken.self)
         #else
         return Bundle(for: BundleToken.self)
         #endif

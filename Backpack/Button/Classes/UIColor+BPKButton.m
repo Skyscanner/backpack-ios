@@ -18,7 +18,7 @@
  */
 #import "UIColor+BPKButton.h"
 
-#import "Backpack/Color.h"
+#import <Backpack/Color.h>
 
 @implementation UIColor(BPKButton)
 
@@ -31,4 +31,3 @@
 }
 
 @end
-

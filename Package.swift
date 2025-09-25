@@ -1,5 +1,6 @@
 // swift-tools-version: 5.9
 import PackageDescription
+import Foundation
 
 let backpackSwiftSources: [String] = [
     "BackpackExports.swift",
@@ -23,7 +24,6 @@ let backpackSwiftSources: [String] = [
     "BottomSheet/Classes/IntrinsicBottomSheetLayout.swift",
     "BottomSheet/Classes/ModalBottomSheetLayout.swift",
     "BottomSheet/Classes/PersistentBottomSheetLayout.swift",
-    "Button/Classes/BPKButtonAppearanceSets.swift",
     "Card/Classes/BPKCardElevation.swift",
     "Card/Classes/BPKCardWrapper.swift",
     "CardButton/Classes/CardButtonBackgroundView.swift",
@@ -221,6 +221,55 @@ let backpackSwiftUISources: [String] = [
     "Utils/Classes"
 ]
 
+let backpackSwiftUIReadmes: [String] = {
+    let targetRoot = "Backpack-SwiftUI"
+    guard let subpaths = try? FileManager.default.subpathsOfDirectory(atPath: targetRoot) else {
+        return []
+    }
+    return subpaths.filter { $0.hasSuffix("README.md") }
+}()
+
+let backpackSwiftUIExcludes = ["Blur/Classes/VariableBlur.metal"] + backpackSwiftUIReadmes
+
+let backpackTargetExcludes = [
+    "Tests"
+]
+
+let backpackObjCHeaderSearchPaths: [CSetting] = {
+    let targetRoot = "Backpack"
+    let fileManager = FileManager.default
+    var directories = Set(
+        backpackObjCSources.compactMap { relativePath -> String? in
+            let absolutePath = targetRoot + "/" + relativePath
+            var isDirectory: ObjCBool = false
+            guard fileManager.fileExists(atPath: absolutePath, isDirectory: &isDirectory), isDirectory.boolValue else {
+                return nil
+            }
+            return relativePath
+        }
+    )
+
+    for path in directories where path.hasSuffix("/Classes") {
+        let generatedPath = path + "/Generated"
+        if fileManager.fileExists(atPath: targetRoot + "/" + generatedPath) {
+            directories.insert(generatedPath)
+        }
+    }
+
+    directories.insert(".")
+    directories.insert("..")
+    directories.insert("../.build/debug/Backpack_Common.build/include")
+    directories.insert("../.build/release/Backpack_Common.build/include")
+    directories.insert("../.build/arm64-apple-ios-simulator/debug/Backpack_Common.build/include")
+    directories.insert("../.build/arm64-apple-ios-simulator/release/Backpack_Common.build/include")
+    directories.insert("../.build/debug/Backpack.build/include")
+    directories.insert("../.build/release/Backpack.build/include")
+    directories.insert("../.build/arm64-apple-ios-simulator/debug/Backpack.build/include")
+    directories.insert("../.build/arm64-apple-ios-simulator/release/Backpack.build/include")
+
+    return directories.sorted().map { .headerSearchPath($0) } + [.define("BPK_SWIFT_PACKAGE")]
+}()
+
 let package = Package(
     name: "Backpack",
     defaultLocalization: "en",
@@ -251,13 +300,14 @@ let package = Package(
         ),
         .target(
             name: "BackpackObjC",
+            dependencies: [
+                "Backpack_Common"
+            ],
             path: "Backpack",
-            exclude: backpackSwiftSources,
+            exclude: backpackSwiftSources + backpackTargetExcludes,
             sources: backpackObjCSources,
             publicHeadersPath: ".",
-            cSettings: [
-                .headerSearchPath(".")
-            ],
+            cSettings: backpackObjCHeaderSearchPaths,
             linkerSettings: [
                 .linkedFramework("UIKit"),
                 .linkedFramework("Foundation"),
@@ -275,6 +325,7 @@ let package = Package(
                 .product(name: "FloatingPanel", package: "FloatingPanel")
             ],
             path: "Backpack",
+            exclude: backpackTargetExcludes,
             sources: backpackSwiftSources
         ),
         .target(
@@ -283,9 +334,7 @@ let package = Package(
                 "Backpack_Common"
             ],
             path: "Backpack-SwiftUI",
-            exclude: [
-                "Blur/Classes/VariableBlur.metal"
-            ],
+            exclude: backpackSwiftUIExcludes,
             sources: backpackSwiftUISources,
             resources: [
                 .process("Blur/Classes/VariableBlur.metal")

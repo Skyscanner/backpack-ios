@@ -16,6 +16,7 @@
  * limitations under the License.
  */
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 #import "BPKIconNames.h"
 #import "BPKLargeIconNames.h"

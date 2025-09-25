@@ -18,10 +18,9 @@
  */
 
 #import <Foundation/Foundation.h>
-
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@class UIColor;
 /**
  * BPKColor is the entry point for the Backpack color palette. It expose the whole palette
  * as static methods.

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "sdk": "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.0.sdk",
+  "toolchain-bin-dir": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
+  "target": "arm64-apple-ios18.0-simulator",
+  "extra-cc-flags": [],
+  "extra-cpp-flags": [],
+  "extra-cxx-flags": [],
+  "extra-swiftc-flags": [],
+  "extra-linker-flags": []
+}

@@ -30,7 +30,9 @@
 #import "BPKButtonAppearanceSet.h"
 #import "UIColor+BPKButton.h"
 
+#if __has_include(<Backpack/Backpack-Swift.h>)
 #import <Backpack/Backpack-Swift.h>
+#endif
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 #import <Backpack/DarkMode.h>
@@ -40,6 +42,114 @@
 #import <Backpack/Radii.h>
 #import <Backpack/Spacing.h>
 #import <Backpack/UIView+BPKRTL.h>
+
+@class BPKButtonAppearanceSets;
+
+#if !__has_include(<Backpack/Backpack-Swift.h>)
+static BPKButtonAppearance *BPKButtonAppearanceMake(UIColor *background, UIColor *foreground) {
+    return [[BPKButtonAppearance alloc] initWithBorderColor:nil
+                                         gradientStartColor:background
+                                           gradientEndColor:background
+                                            foregroundColor:foreground];
+}
+
+static BPKButtonAppearance *BPKButtonDisabledAppearance(void) {
+    static BPKButtonAppearance *appearance;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        appearance = BPKButtonAppearanceMake([BPKColor buttonDisabledBackgroundColor], [BPKColor textDisabledColor]);
+    });
+    return appearance;
+}
+
+static BPKButtonAppearanceSet *BPKButtonAppearanceSetMake(BPKButtonAppearance *regular,
+                                                          BPKButtonAppearance *loading,
+                                                          BPKButtonAppearance *disabled,
+                                                          BPKButtonAppearance *highlighted) {
+    return [[BPKButtonAppearanceSet alloc] initWithRegularAppearance:regular
+                                                   loadingAppearance:loading
+                                                  disabledAppearance:disabled
+                                               highlightedAppearance:highlighted];
+}
+
+static BPKButtonAppearanceSet *BPKButtonAppearanceSetForStyle(BPKButtonStyle style) {
+    switch (style) {
+    case BPKButtonStylePrimary: {
+        UIColor *pressed = [BPKColor buttonPrimaryPressedBackgroundColor];
+        UIColor *regular = [BPKColor buttonPrimaryNormalBackgroundColor];
+        UIColor *foreground = [BPKColor textOnDarkColor];
+        return BPKButtonAppearanceSetMake(BPKButtonAppearanceMake(regular, foreground),
+                                          BPKButtonAppearanceMake(pressed, foreground),
+                                          BPKButtonDisabledAppearance(),
+                                          BPKButtonAppearanceMake(pressed, foreground));
+    }
+    case BPKButtonStyleSecondary: {
+        UIColor *pressed = [BPKColor buttonSecondaryPressedBackgroundColor];
+        UIColor *regular = [BPKColor buttonSecondaryNormalBackgroundColor];
+        UIColor *foreground = [BPKColor textPrimaryColor];
+        return BPKButtonAppearanceSetMake(BPKButtonAppearanceMake(regular, foreground),
+                                          BPKButtonAppearanceMake(pressed, foreground),
+                                          BPKButtonDisabledAppearance(),
+                                          BPKButtonAppearanceMake(pressed, foreground));
+    }
+    case BPKButtonStyleDestructive: {
+        UIColor *pressed = [BPKColor buttonDestructivePressedBackgroundColor];
+        return BPKButtonAppearanceSetMake(BPKButtonAppearanceMake([BPKColor buttonDestructiveNormalBackgroundColor],
+                                                                 [BPKColor buttonDestructiveNormalForegroundColor]),
+                                          BPKButtonAppearanceMake(pressed, [BPKColor textPrimaryInverseColor]),
+                                          BPKButtonDisabledAppearance(),
+                                          BPKButtonAppearanceMake(pressed, [BPKColor textPrimaryInverseColor]));
+    }
+    case BPKButtonStyleFeatured: {
+        UIColor *pressed = [BPKColor buttonFeaturedPressedBackgroundColor];
+        UIColor *regular = [BPKColor buttonFeaturedNormalBackgroundColor];
+        UIColor *foreground = [BPKColor textPrimaryInverseColor];
+        return BPKButtonAppearanceSetMake(BPKButtonAppearanceMake(regular, foreground),
+                                          BPKButtonAppearanceMake(pressed, foreground),
+                                          BPKButtonDisabledAppearance(),
+                                          BPKButtonAppearanceMake(pressed, foreground));
+    }
+    case BPKButtonStyleLink: {
+        UIColor *clear = [BPKColor clear];
+        UIColor *pressed = [BPKColor buttonLinkPressedForegroundColor];
+        UIColor *disabledBackground = [clear colorWithAlphaComponent:0];
+        return BPKButtonAppearanceSetMake(BPKButtonAppearanceMake(clear, [BPKColor buttonLinkNormalForegroundColor]),
+                                          BPKButtonAppearanceMake(clear, pressed),
+                                          BPKButtonAppearanceMake(disabledBackground, [BPKColor textDisabledColor]),
+                                          BPKButtonAppearanceMake(clear, pressed));
+    }
+    case BPKButtonStyleLinkOnDark: {
+        UIColor *clear = [BPKColor clear];
+        UIColor *pressed = [BPKColor buttonLinkOnDarkPressedForegroundColor];
+        UIColor *disabledBackground = [clear colorWithAlphaComponent:0];
+        return BPKButtonAppearanceSetMake(BPKButtonAppearanceMake(clear, [BPKColor buttonLinkOnDarkNormalForegroundColor]),
+                                          BPKButtonAppearanceMake(clear, pressed),
+                                          BPKButtonAppearanceMake(disabledBackground, [BPKColor buttonLinkOnDarkDisabledForegroundColor]),
+                                          BPKButtonAppearanceMake(clear, pressed));
+    }
+    case BPKButtonStylePrimaryOnDark:
+        return BPKButtonAppearanceSetMake(BPKButtonAppearanceMake([BPKColor buttonPrimaryOnDarkNormalBackgroundColor], [BPKColor textOnLightColor]),
+                                          BPKButtonAppearanceMake([BPKColor buttonPrimaryOnDarkPressedBackgroundColor], [BPKColor textOnLightColor]),
+                                          BPKButtonAppearanceMake([BPKColor buttonPrimaryOnDarkDisabledBackgroundColor], [BPKColor buttonPrimaryOnDarkDisabledForegroundColor]),
+                                          BPKButtonAppearanceMake([BPKColor buttonPrimaryOnDarkPressedBackgroundColor], [BPKColor textOnLightColor]));
+    case BPKButtonStylePrimaryOnLight:
+        return BPKButtonAppearanceSetMake(BPKButtonAppearanceMake([BPKColor buttonPrimaryOnLightNormalBackgroundColor], [BPKColor textOnDarkColor]),
+                                          BPKButtonAppearanceMake([BPKColor buttonPrimaryOnLightPressedBackgroundColor], [BPKColor textOnDarkColor]),
+                                          BPKButtonAppearanceMake([BPKColor buttonPrimaryOnLightDisabledBackgroundColor], [BPKColor buttonPrimaryOnLightDisabledForegroundColor]),
+                                          BPKButtonAppearanceMake([BPKColor buttonPrimaryOnLightPressedBackgroundColor], [BPKColor textOnDarkColor]));
+    case BPKButtonStyleSecondaryOnDark:
+        return BPKButtonAppearanceSetMake(BPKButtonAppearanceMake([BPKColor buttonSecondaryOnDarkNormalBackgroundColor], [BPKColor textOnDarkColor]),
+                                          BPKButtonAppearanceMake([BPKColor buttonSecondaryOnDarkPressedBackgroundColor], [BPKColor textOnDarkColor]),
+                                          BPKButtonAppearanceMake([BPKColor buttonSecondaryOnDarkDisabledBackgroundColor], [BPKColor buttonSecondaryOnDarkDisabledForegroundColor]),
+                                          BPKButtonAppearanceMake([BPKColor buttonSecondaryOnDarkPressedBackgroundColor], [BPKColor textOnDarkColor]));
+    default:
+        return BPKButtonAppearanceSetMake(BPKButtonAppearanceMake([BPKColor buttonPrimaryNormalBackgroundColor], [BPKColor textOnDarkColor]),
+                                          BPKButtonAppearanceMake([BPKColor buttonPrimaryPressedBackgroundColor], [BPKColor textOnDarkColor]),
+                                          BPKButtonDisabledAppearance(),
+                                          BPKButtonAppearanceMake([BPKColor buttonPrimaryPressedBackgroundColor], [BPKColor textOnDarkColor]));
+    }
+}
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKButton ()
@@ -304,7 +414,11 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (BPKButtonAppearance *)currentAppearance {
+#if __has_include(<Backpack/Backpack-Swift.h>)
     BPKButtonAppearanceSet *appearanceSet = [BPKButtonAppearanceSets appearanceFromStyle:self.style];
+#else
+    BPKButtonAppearanceSet *appearanceSet = BPKButtonAppearanceSetForStyle(self.style);
+#endif
     if (self.isLoading)
         return appearanceSet.loadingAppearance;
     if (!self.isEnabled)

@@ -17,7 +17,9 @@
  */
 #import "BPKIcon.h"
 
+#if __has_include(<Backpack_Common/Backpack_Common-Swift.h>)
 #import <Backpack_Common/Backpack_Common-Swift.h>
+#endif
 #import <CoreText/CoreText.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -44,6 +46,46 @@ NS_ASSUME_NONNULL_BEGIN
     return [NSString stringWithFormat:@"%@%@", name, @"-lg"];
 }
 
++ (NSSet<NSString *> *)autoMirrorIconNamesFallback {
+    static NSSet<NSString *> *names;
+    static dispatch_once_t onceToken;
+
+    dispatch_once(&onceToken, ^{
+      names = [NSSet setWithArray:@[
+        @"arrow-left",
+        @"arrow-right",
+        @"chevron-left",
+        @"chevron-right",
+        @"depart",
+        @"fast-track",
+        @"list",
+        @"long-arrow-left",
+        @"long-arrow-right",
+        @"native-android--back",
+        @"native-android--forward",
+        @"policy",
+        @"return",
+        @"share",
+        @"star-half",
+        @"swap--horizontal",
+        @"swap--vertical",
+        @"trend--down",
+        @"trend--steady",
+        @"trend--up"
+      ]];
+    });
+
+    return names;
+}
+
++ (BOOL)shouldAutoMirrorIconNamed:(NSString *)name {
+#if __has_include(<Backpack_Common/Backpack_Common-Swift.h>)
+    return [BPKAutoMirrorIconNames.items containsObject:name];
+#else
+    return [[self autoMirrorIconNamesFallback] containsObject:name];
+#endif
+}
+
 + (UIImage *)iconNamed:(NSString *)name color:(UIColor *)color size:(BPKIconSize)size {
     NSString *cacheKey = [self cacheKeyForIconNamed:name withColor:color size:size];
     UIImage *icon = [self.imageCache objectForKey:cacheKey];
@@ -53,7 +95,12 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     NSString *iconName = [BPKIcon iconName:name forSize:size];
-    NSBundle *iconsBundle = BPKCommonBundle.iconsBundle;
+    NSBundle *iconsBundle = nil;
+#if __has_include(<Backpack_Common/Backpack_Common-Swift.h>)
+    iconsBundle = BPKCommonBundle.iconsBundle;
+#else
+    iconsBundle = [NSBundle bundleForClass:self];
+#endif
     icon = [UIImage imageNamed:iconName inBundle:iconsBundle withConfiguration:nil];
     if (icon == nil) {
         // To avoid nil checking everywhere in this file
@@ -70,7 +117,7 @@ NS_ASSUME_NONNULL_BEGIN
     icon = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
 
-    if ([BPKAutoMirrorIconNames.items containsObject:name]) {
+    if ([self shouldAutoMirrorIconNamed:name]) {
         icon = [icon imageFlippedForRightToLeftLayoutDirection];
     }
 

@@ -17,7 +17,7 @@
  */
 #import "BPKTappableLinkLabel.h"
 
-#import "TTTAttributedLabel.h"
+#import "TTTAttributedLabel/TTTAttributedLabel.h"
 
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
