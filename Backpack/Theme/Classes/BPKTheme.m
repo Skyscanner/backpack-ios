@@ -70,10 +70,6 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) { BPKGrayColor50, BPKGrayColor100, BPKG
     buttonAppearance.destructiveBackgroundColor = theme.buttonDestructiveBackgroundColor;
     buttonAppearance.destructiveBorderColor = theme.buttonDestructiveBorderColor;
 
-    BPKCalendar *calendarAppearance = [BPKCalendar appearanceWhenContainedInInstancesOfClasses:@[class]];
-    calendarAppearance.dateSelectedContentColor = theme.calendarDateSelectedContentColor;
-    calendarAppearance.dateSelectedBackgroundColor = theme.calendarDateSelectedBackgroundColor;
-
     BPKPrimaryGradientView *primaryGradientViewAppearance = [BPKPrimaryGradientView appearanceWhenContainedInInstancesOfClasses:@[class]];
     primaryGradientViewAppearance.gradient = theme.primaryGradient;
 

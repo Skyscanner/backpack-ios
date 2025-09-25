@@ -46,7 +46,6 @@ struct ComponentCellsProvider {
             barChart(),
             bottomSheet(),
             button(),
-            calendar(),
             card(),
             cardButton(),
             cardList(),
@@ -162,16 +161,6 @@ extension ComponentCellsProvider {
                 .swiftui(groups: ButtonGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "Labels", tabs: $0) }
-        )
-    }
-    private func calendar() -> CellDataSource {
-        ComponentCellDataSource(
-            title: "Calendar",
-            tabs: [
-                .uikit(groups: CalendarGroupsProvider(showPresentable: show(presentable:)).groups()),
-                .swiftui(groups: CalendarGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
-            ],
-            showChildren: { showComponent(title: "Calendar", tabs: $0) }
         )
     }
     private func card() -> CellDataSource {

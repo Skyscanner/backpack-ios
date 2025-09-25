@@ -30,7 +30,6 @@
 
 #import "Appearance.h"
 #import "Button.h"
-#import "Calendar.h"
 #import "Card.h"
 #import "DarkMode.h"
 #import "Dialog.h"
@@ -42,7 +41,6 @@
 #import "Nudger.h"
 #import "Panel.h"
 #import "ProgressBar.h"
-#import "SimpleDate.h"
 #import "Snackbar.h"
 #import "Spinner.h"
 #import "StarRating.h"

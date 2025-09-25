@@ -51,7 +51,6 @@ Pod::Spec.new do |s|
   end  
 
   s.test_spec 'UnitTests' do |test_spec|
-    test_spec.dependency 'OCMock', '~> 3.8.1'
     test_spec.source_files = 'Backpack/Tests/UnitTests/**/*.{swift,h,m}'
     test_spec.ios.resource_bundle = {
     'UnitTestImages' => 'Backpack/Tests/UnitTests/Images*'
