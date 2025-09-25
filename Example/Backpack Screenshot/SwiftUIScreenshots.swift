@@ -293,12 +293,10 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         }
         
         await navigate(title: "Panels") {
-            switchTab(title: "SwiftUI")
             saveScreenshot(component: "panel", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
         await navigate(title: "Nudger") {
-            switchTab(title: "SwiftUI")
             saveScreenshot(component: "nudger", scenario: "default",
                            userInterfaceStyle: userInterfaceStyle)
         }
@@ -673,12 +671,10 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         }
         
         await navigate(title: "Panels") {
-            switchTab(title: "SwiftUI")
             saveScreenshot(component: "panel", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
         await navigate(title: "Nudger") {
-            switchTab(title: "SwiftUI")
             saveScreenshot(component: "nudger", scenario: "default",
                            userInterfaceStyle: userInterfaceStyle)
         }
