@@ -20,6 +20,7 @@ import UIKit
 
 import Backpack
 import Backpack_SwiftUI
+import Backpack_Common
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -31,10 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setupRelativeFont() {
         guard !ProcessInfo.processInfo.arguments.contains("DISABLE_RELATIVE") else { return }
         let relativeFontDefinition = Backpack.BPKRelativeFontDefinition()
-        let relativeTestFont = UIFont(name: relativeFontDefinition.regularFontFace, size: 12)
+        let relativeTestFont = UIFont(name: relativeFontDefinition.regularFontFace.toString(), size: 12)
         if relativeTestFont != nil {
             BPKFont.setFontDefinition(relativeFontDefinition)
-            BPKFont.setFontDefinition(Backpack_SwiftUI.BPKRelativeFontDefinition())
+            BPKFont.setFontDefinition(Backpack_Common.BPKRelativeFontDefinition())
         }
         Backpack.BPKFont.setDynamicTypeEnabled(true)
         Backpack_SwiftUI.BPKFont.setDynamicType(enabled: true)

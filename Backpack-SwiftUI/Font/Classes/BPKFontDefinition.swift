@@ -16,14 +16,14 @@
  * limitations under the License.
  */
 
-public protocol BPKFontDefinition {
+public protocol BPKFontDefinitionOld {
     var fontFamily: String { get }
     var regularFontFace: String { get }
     var semiboldFontFace: String { get }
     var blackFontFace: String { get }
 }
 
-public struct BPKRelativeFontDefinition: BPKFontDefinition {
+public struct BPKRelativeFontDefinition: BPKFontDefinitionOld {
     public var fontFamily = "SkyscannerRelativeiOS"
     public var regularFontFace = "SkyscannerRelativeiOS-Book"
     public var semiboldFontFace = "SkyscannerRelativeiOS-Bold"
@@ -32,7 +32,7 @@ public struct BPKRelativeFontDefinition: BPKFontDefinition {
     public init() {}
 }
 
-public struct BPKRelativeFontDefinitionBeta: BPKFontDefinition {
+public struct BPKRelativeFontDefinitionBeta: BPKFontDefinitionOld {
     public var fontFamily = "SkyscannerRelativeiOS"
     public var regularFontFace = "SkyscannerRelativeiOS-Book"
     public var semiboldFontFace = "SkyscannerRelativeiOS-Bold"
@@ -41,7 +41,7 @@ public struct BPKRelativeFontDefinitionBeta: BPKFontDefinition {
     public init() {}
 }
 
-public struct FallbackFontDefinition: BPKFontDefinition {
+public struct FallbackFontDefinition: BPKFontDefinitionOld {
     public var fontFamily = "Helvetica Neue"
     public var regularFontFace = "HelveticaNeue"
     public var semiboldFontFace = "HelveticaNeue-Medium"

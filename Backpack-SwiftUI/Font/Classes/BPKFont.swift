@@ -17,12 +17,13 @@
  */
 
 import SwiftUI
+import Backpack_Common
 
 public struct BPKFont {
-    static var fontDefinition: BPKFontDefinition?
+    static var fontDefinition: BPKFontDefinitionProtocol?
     static var enableDynamicType: Bool = false
     
-    public static func setFontDefinition(_ fontDefinition: BPKFontDefinition) {
+    public static func setFontDefinition(_ fontDefinition: BPKFontDefinitionProtocol) {
         BPKFont.fontDefinition = fontDefinition
     }
     
@@ -52,7 +53,7 @@ extension Font {
     
     static func regular(size: CGFloat, textStyle: TextStyle) -> Font {
         return customOrDefault(
-            BPKFont.fontDefinition?.regularFontFace,
+            BPKFont.fontDefinition?.regularFontFace.toString(),
             size: size,
             weight: .regular,
             textStyle: textStyle
@@ -61,7 +62,7 @@ extension Font {
     
     static func regularFixed(size: CGFloat) -> Font {
         return customOrDefault(
-            BPKFont.fontDefinition?.regularFontFace,
+            BPKFont.fontDefinition?.regularFontFace.toString(),
             size: size,
             weight: .regular,
             textStyle: .body) { name, size, _ in
@@ -71,7 +72,7 @@ extension Font {
     
     static func semibold(size: CGFloat, textStyle: TextStyle) -> Font {
         return customOrDefault(
-            BPKFont.fontDefinition?.semiboldFontFace,
+            BPKFont.fontDefinition?.semiboldFontFace.toString(),
             size: size,
             weight: .semibold,
             textStyle: textStyle
@@ -80,7 +81,7 @@ extension Font {
     
     static func semiboldFixed(size: CGFloat) -> Font {
         return customOrDefault(
-            BPKFont.fontDefinition?.semiboldFontFace,
+            BPKFont.fontDefinition?.semiboldFontFace.toString(),
             size: size,
             weight: .semibold,
             textStyle: .body) { name, size, _ in
@@ -90,7 +91,7 @@ extension Font {
     
     static func black(size: CGFloat, textStyle: TextStyle) -> Font {
         return customOrDefault(
-            BPKFont.fontDefinition?.blackFontFace,
+            BPKFont.fontDefinition?.blackFontFace.toString(),
             size: size,
             weight: .black,
             textStyle: textStyle
@@ -99,11 +100,17 @@ extension Font {
     
     static func blackFixed(size: CGFloat) -> Font {
         return customOrDefault(
-            BPKFont.fontDefinition?.blackFontFace,
+            BPKFont.fontDefinition?.blackFontFace.toString(),
             size: size,
             weight: .black,
             textStyle: .body) { name, size, _ in
                 Font.custom(name, fixedSize: size)
         }
+    }
+}
+
+extension NSString {
+    public func toString() -> String {
+        return self as String
     }
 }

@@ -20,7 +20,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol BPKFontDefinitionProtocol
+@protocol BPKFontDefinitionProtocolOld
 
 @required
 @property(nonatomic, readonly, strong) NSString *fontFamily;
