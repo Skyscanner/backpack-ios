@@ -1,11 +1,14 @@
 # OS X
 .DS_Store
 
-# Xcode
+# Swift Package Manager
+.swiftpm/
 .build/
 Packages/
 Package.pins
 Package.resolved
+
+# Xcode
 build/
 bpk-fonts-tmp/
 Example/Backpack/Resources/SkyscannerRelative*
