@@ -2,6 +2,10 @@
 .DS_Store
 
 # Xcode
+.build/
+Packages/
+Package.pins
+Package.resolved
 build/
 bpk-fonts-tmp/
 Example/Backpack/Resources/SkyscannerRelative*
