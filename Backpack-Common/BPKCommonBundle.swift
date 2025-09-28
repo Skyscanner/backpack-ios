@@ -21,6 +21,11 @@ import Foundation
 @objc
 public class BPKCommonBundle: NSObject {
     @objc public static var iconsBundle: Bundle {
+        #if SWIFT_PACKAGE
+        // For SPM builds, icons are available through Bundle.module
+        return Bundle.module
+        #else
+        // For CocoaPods builds, use the traditional Icons.bundle lookup
         guard
             let url = Bundle(for: BPKCommonBundle.self).resourceURL?.appendingPathComponent("Icons.bundle"),
             let bundle = Bundle(url: url)
@@ -28,5 +33,6 @@ public class BPKCommonBundle: NSObject {
             return .main
         }
         return bundle
+        #endif
     }
 }

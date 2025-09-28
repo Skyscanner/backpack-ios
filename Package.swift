@@ -119,7 +119,17 @@ let package = Package(
       dependencies: ["Backpack_Common"],
       path: "Backpack-Common/Tests"
     ),
-
+    .testTarget(
+        name: "BackpackSwiftUITests",
+        dependencies: [
+            "Backpack_SwiftUI",
+            .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
+        ],
+        path: "Backpack-SwiftUI/Tests",
+        resources: [
+            .process("Images")
+        ]
+    ),
   ],
   swiftLanguageVersions: [.v5]
 )
