@@ -7,8 +7,8 @@ let package = Package(
     .iOS(.v16)
   ],
   products: [
-    .library(name: "Backpack-Common", targets: ["BackpackCommon"]),
-    .library(name: "Backpack-SwiftUI", targets: ["BackpackSwiftUI"]),
+    .library(name: "Backpack-Common", targets: ["Backpack_Common"]),
+    .library(name: "Backpack-SwiftUI", targets: ["Backpack_SwiftUI"]),
   ],
   dependencies: [
     // Only needed for SwiftUI test target
@@ -18,16 +18,18 @@ let package = Package(
 
     // MARK: - BackpackCommon (source-based)
     .target(
-      name: "BackpackCommon",
+      name: "Backpack_Common",
       path: "Backpack-Common",
       exclude: [
         "Tests"
       ],
       sources: [
+        // Common
         "BackpackCommonImports.swift",
         "BPKCommonBundle.swift",
         "BPKCommonRatingScale.swift",
 
+        // Components
         "Carousel/Classes",
         "Configuration/Classes",
         "Icons/Generated"
@@ -39,22 +41,82 @@ let package = Package(
 
     // MARK: - BackpackSwiftUI (depends on BackpackCommon)
     .target(
-      name: "BackpackSwiftUI",
-      dependencies: ["BackpackCommon"],
+      name: "Backpack_SwiftUI",
+      dependencies: ["Backpack_Common"],
       path: "Backpack-SwiftUI",
       exclude: [
         "Tests"
       ],
       sources: [
-        "BackpackSwiftUIImports.swift",
+        "AppSearchModal/Classes",
+        "Badge/Classes",
+        "BannerAlert/Classes",
+        "Blur/Classes",
+        "BottomSheet/Classes",
+        "Button/Classes",
+        "Calendar/Classes",
+        "Card/Classes",
+        "CardButton/Classes",
+        "CardCarousel/Classes",
+        "CardList/Classes",
+        "Carousel/Classes",
+        "CarouselCard/Classes",
+        "Chip/Classes",
+        "ChipGroup/Classes",
         "Color/Classes",
+        "Dialog/Classes",
+        "DynamicLayout/Classes",
+        "FieldSet/Classes",
+        "Flare/Classes",
+        "FlowStackView/Classes",
+        "Font/Classes",
+        "GraphicPromo/Classes",
+        "HorizontalNavigation/Classes",
+        "Icons/Classes",
+        "ImageGalleryGrid/Classes",
+        "ImageGalleryPreview/Classes",
+        "ImageGallerySlideshow/Classes",
+        "InsetBanner/Classes",
+        "MapMarker/Classes",
+        "NavigationBar/Classes",
+        "NavigationTab/Classes",
+        "Nudger/Classes",
+        "Overlay/Classes",
+        "PageIndicator/Classes",
+        "Panel/Classes",
+        "Price/Classes",
+        "PriceRange/Classes",
+        "ProgressBar/Classes",
+        "Radii/Classes",
+        "Rating/Classes",
+        "RatingBar/Classes",
+        "SearchControlInput/Classes",
+        "SearchInputSummary/Classes",
+        "SectionHeader/Classes",
+        "SegmentedControl/Classes",
+        "Select/Classes",
+        "Shadow/Classes",
+        "Skeleton/Classes",
+        "Slider/Classes",
+        "Snippet/Classes",
+        "Spacing/Classes",
+        "Spinner/Classes",
+        "StarRating/Classes",
+        "Switch/Classes",
+        "TappableContainer/Classes",
+        "Text/Classes",
+        "TextArea/Classes",
+        "TextField/Classes",
+        "Utils/Classes",
+
+        "BackpackSwiftUIImports.swift",
       ]
     ),
 
     // MARK: - Tests
     .testTarget(
       name: "BackpackCommonTests",
-      dependencies: ["BackpackCommon"],
+      dependencies: ["Backpack_Common"],
       path: "Backpack-Common/Tests"
     ),
 
