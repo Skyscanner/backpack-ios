@@ -12,7 +12,8 @@ let package = Package(
   ],
   dependencies: [
     // Only needed for SwiftUI test target
-    .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.9.0")
+    .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.9.0"),
+    .package(url: "https://github.com/figma/code-connect", from: "1.0.0")
   ],
   targets: [
 
@@ -42,7 +43,10 @@ let package = Package(
     // MARK: - BackpackSwiftUI (depends on BackpackCommon)
     .target(
       name: "Backpack_SwiftUI",
-      dependencies: ["Backpack_Common"],
+      dependencies: [
+        "Backpack_Common",
+        .product(name: "Figma", package: "code-connect")
+      ],
       path: "Backpack-SwiftUI",
       exclude: [
         "Tests"
@@ -108,6 +112,8 @@ let package = Package(
         "TextArea/Classes",
         "TextField/Classes",
         "Utils/Classes",
+
+        "FigmaCodeConnect",
 
         "BackpackSwiftUIImports.swift",
       ]
