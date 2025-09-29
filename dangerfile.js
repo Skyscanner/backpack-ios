@@ -25,9 +25,23 @@ import fs from 'fs';
 
 import { danger, fail, warn, schedule } from 'danger';
 
+// Function to check if a file should be excluded from DangerJS checks
+const shouldExcludeFile = (filePath) => {
+  const excludedFiles = [
+    'dangerfile.js',
+    'Package.swift'
+  ];
+  const excludedPatterns = [
+    /Package\.swift$/
+  ];
+  
+  return excludedFiles.includes(filePath) || 
+         excludedPatterns.some(pattern => pattern.test(filePath));
+};
+
 // Applies to js, css, scss and sh files that are not located in dist or flow-typed folders.
 const shouldContainLicensingInformation = (filePath) =>
-  filePath.match(/\.(js|sh|swift|h|m|njk)$/);
+  filePath.match(/\.(js|sh|swift|h|m|njk)$/) && !shouldExcludeFile(filePath);
 
 const createdFiles = danger.git.created_files;
 const modifiedFiles = danger.git.modified_files;
@@ -76,7 +90,7 @@ if (unlicensedFiles.length > 0) {
 }
 
 const listOfFilesExcludingThisOne = fileChanges.filter(
-  (path) => path !== 'dangerfile.js',
+  (path) => !shouldExcludeFile(path),
 );
 
 schedule(async () => {
