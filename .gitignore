@@ -1,6 +1,13 @@
 # OS X
 .DS_Store
 
+# Swift Package Manager
+.swiftpm/
+.build/
+Packages/
+Package.pins
+Package.resolved
+
 # Xcode
 build/
 bpk-fonts-tmp/
