@@ -60,6 +60,14 @@ public extension BPKFontStyle {
         lineHeight: 16
     )
 
+    /// Represents font size 32 with weight black.
+    static let display7 = BPKFontStyle(
+        font: .black(size: 32, textStyle: .largeTitle),
+        fontFixed: .blackFixed(size: 32),
+        letterSpacing: -1.6,
+        lineHeight: 28
+    )
+
     /// Represents font size 14 with weight regular.
     static let footnote = BPKFontStyle(
         font: .regular(size: 14, textStyle: .footnote),

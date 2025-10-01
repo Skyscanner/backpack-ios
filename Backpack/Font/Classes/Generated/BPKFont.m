@@ -139,6 +139,9 @@ NS_ASSUME_NONNULL_BEGIN
            case BPKFontStyleTextCaption:
              return [fontManager regularFontWithSize:12 textStyle:UIFontTextStyleCaption1];
              
+           case BPKFontStyleTextDisplay7:
+             return [fontManager heavyFontWithSize:32 textStyle:UIFontTextStyleLargeTitle];
+             
            case BPKFontStyleTextFootnote:
              return [fontManager regularFontWithSize:14 textStyle:UIFontTextStyleFootnote];
              
@@ -197,6 +200,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSNumber *)letterSpacingForStyle:(BPKFontStyle)style {
     switch (style) {
+        case BPKFontStyleTextDisplay7: 
+            // Corresponding to Letter Spacing VDL2_SM
+            return @(-1.6);
         case BPKFontStyleTextHero1: 
             // Corresponding to Letter Spacing TIGHT
             return @(-2);
@@ -232,6 +238,9 @@ NS_ASSUME_NONNULL_BEGIN
         case BPKFontStyleTextCaption: 
             // Corresponding to Line Height XS
             return 16;
+        case BPKFontStyleTextDisplay7: 
+            // Corresponding to Line Height LG
+            return 28;
         case BPKFontStyleTextFootnote: 
             // Corresponding to Line Height SM
             return 20;
