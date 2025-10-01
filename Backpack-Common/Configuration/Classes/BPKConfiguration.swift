@@ -47,7 +47,7 @@ public final class BpkConfiguration {
     /// Component configurations
     public struct BpkButtonConfig {}
     
-    public struct BpkTextConfig {
+    public struct TypographyConfig {
         public var font: Font?
         public var fontFixed: Font?
         public var letterSpacing: CGFloat?
@@ -72,6 +72,49 @@ public final class BpkConfiguration {
         set { _chipConfig = newValue }
     }
     
+    private var _typographyConfig: TypographyConfig?
+    private var _heading1Config: TypographyConfig?
+    private var _heading2Config: TypographyConfig?
+    private var _heading3Config: TypographyConfig?
+    private var _heading4Config: TypographyConfig?
+    private var _heading5Config: TypographyConfig?
+    private var _hero5Config: TypographyConfig?
+    
+    public var typographyConfig: TypographyConfig? {
+        get { getConfig { self._typographyConfig } }
+        set { _typographyConfig = newValue }
+    }
+    
+    public var hero5Config: TypographyConfig? {
+        get { getConfig { self._hero5Config } }
+        set { _hero5Config = newValue }
+    }
+    
+    public var heading1Config: TypographyConfig? {
+        get { getConfig { self._heading1Config } }
+        set { _heading1Config = newValue }
+    }
+    
+    public var heading2Config: TypographyConfig? {
+        get { getConfig { self._heading2Config } }
+        set { _heading2Config = newValue }
+    }
+    
+    public var heading3Config: TypographyConfig? {
+        get { getConfig { self._heading3Config } }
+        set { _heading3Config = newValue }
+    }
+    
+    public var heading4Config: TypographyConfig? {
+        get { getConfig { self._heading4Config } }
+        set { _heading4Config = newValue }
+    }
+    
+    public var heading5Config: TypographyConfig? {
+        get { getConfig { self._heading5Config } }
+        set { _heading5Config = newValue }
+    }
+    
     private func getConfig<T>(getter: () -> T) -> T {
         emitSignalIfNeeded()
         return configurationAccessQueue.sync {
@@ -89,7 +132,8 @@ public final class BpkConfiguration {
     }
     
     public func set(
-        chipConfig: Bool = false
+        chipConfig: Bool = false,
+        typographyConfig: Bool = false
     ) throws {
         guard !hasSet else {
             throw ConfigurationError.configAlreadySet
@@ -104,6 +148,32 @@ public final class BpkConfiguration {
                 heightDimension: "bpk_new_chip_height",
                 radius: 100,
                 radiusToken: .roundCorners
+            )
+        }
+        
+        if typographyConfig {
+            self.hero5Config = TypographyConfig(
+                letterSpacing: -1.2
+            )
+            
+            self.heading1Config = TypographyConfig(
+                letterSpacing: -1.2
+            )
+            
+            self.heading2Config = TypographyConfig(
+                letterSpacing: -1
+            )
+            
+            self.heading3Config = TypographyConfig(
+                letterSpacing: -0.6
+            )
+            
+            self.heading4Config = TypographyConfig(
+                letterSpacing: -0.6
+            )
+            
+            self.heading5Config = TypographyConfig(
+                letterSpacing: -0.6
             )
         }
     }

@@ -41,6 +41,13 @@ struct ConfigurationExampleView: View {
                 chipView
                 
                 dropDownChipView
+                
+                newTypographyStyles
+                
+                Spacer()
+                
+                BPKText("Heading 1 spacing", style: .heading1)
+                    .foregroundColor(.black)
             }
             
             Spacer()
@@ -87,6 +94,19 @@ struct ConfigurationExampleView: View {
             ) {
                 selectedChip4.toggle()
             }
+        }
+    }
+    
+    var newTypographyStyles: some View {
+        VStack(spacing: 4) {
+            BPKText("Editorial 4", style: .editorial4)
+                .foregroundColor(.black)
+            BPKText("Editorial 5", style: .editorial5)
+                .foregroundColor(.black)
+            BPKText("Editorial 6", style: .editorial6)
+                .foregroundColor(.black)
+            BPKText("Display 6", style: .display7)
+                .foregroundColor(.black)
         }
     }
 }

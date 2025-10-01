@@ -18,22 +18,34 @@
  
 import UIKit
 import SwiftUI
+import Backpack_Common
 
 public struct BPKFontStyle {
     public let font: Font
     public let fontFixed: Font
     public let letterSpacing: CGFloat
     public let lineHeight: CGFloat
+
+    static let config = BpkConfiguration.shared
 }
 
 public extension BPKFontStyle {
-    {% for f in font %}
-    /// Represents font size {{f.size}} with weight {{f.weight}}.
-    static let {{f.name}} = BPKFontStyle(
-        font: .{{f.weight}}(size: {{f.size}}, textStyle: {{f.textStyle}}),
-        fontFixed: .{{f.weight}}Fixed(size: {{f.size}}),
-        letterSpacing: {% if f.letterSpacing != null -%}{{f.letterSpacing.value}}{% else -%}0{% endif %},
-        lineHeight: {% if f.lineHeight != null -%}{{f.lineHeight.value}}{% else -%}0{% endif %}
-    )
+{%- set letterSpacingOverrides = {
+"hero5": "config.hero5Config?.letterSpacing ?? 0",
+"hero6": "config.hero6Config?.letterSpacing ?? 0",
+"heading1": "config.heading1Config?.letterSpacing ?? 0",
+"heading2": "config.heading2Config?.letterSpacing ?? 0",
+"heading3": "config.heading3Config?.letterSpacing ?? 0",
+"heading4": "config.heading4Config?.letterSpacing ?? 0",
+"heading5": "config.heading5Config?.letterSpacing ?? 0"} -%}
+
+{% for f in font %}
+/// Represents font size {{f.size}} with weight {{f.weight}}.
+static let {{f.name}} = BPKFontStyle(
+    font: .{{f.weight}}(size: {{f.size}}, textStyle: {{f.textStyle}}),
+    fontFixed: .{{f.weight}}Fixed(size: {{f.size}}),
+    letterSpacing: {% if letterSpacingOverrides[f.name] is defined -%}{{ letterSpacingOverrides[f.name] }}{% elseif f.letterSpacing != null -%}{{ f.letterSpacing.value }}{% else -%}0{% endif %},
+    lineHeight: {% if f.lineHeight != null -%}{{f.lineHeight.value}}{% else -%}0{% endif %}
+)
 {% endfor %}
 }
