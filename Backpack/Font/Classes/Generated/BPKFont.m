@@ -142,6 +142,15 @@ NS_ASSUME_NONNULL_BEGIN
            case BPKFontStyleTextDisplay7:
              return [fontManager heavyFontWithSize:32 textStyle:UIFontTextStyleLargeTitle];
              
+           case BPKFontStyleTextEditorial4:
+             return [fontManager regularFontWithSize:16 textStyle:UIFontTextStyleBody];
+             
+           case BPKFontStyleTextEditorial5:
+             return [fontManager regularFontWithSize:14 textStyle:UIFontTextStyleBody];
+             
+           case BPKFontStyleTextEditorial6:
+             return [fontManager regularFontWithSize:12 textStyle:UIFontTextStyleBody];
+             
            case BPKFontStyleTextFootnote:
              return [fontManager regularFontWithSize:14 textStyle:UIFontTextStyleFootnote];
              
@@ -241,6 +250,15 @@ NS_ASSUME_NONNULL_BEGIN
         case BPKFontStyleTextDisplay7: 
             // Corresponding to Line Height LG
             return 28;
+        case BPKFontStyleTextEditorial4: 
+            // Corresponding to Line Height XS
+            return 16;
+        case BPKFontStyleTextEditorial5: 
+            // Corresponding to Line Height XS
+            return 16;
+        case BPKFontStyleTextEditorial6: 
+            // Corresponding to Line Height XS
+            return 16;
         case BPKFontStyleTextFootnote: 
             // Corresponding to Line Height SM
             return 20;

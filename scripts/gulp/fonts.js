@@ -50,6 +50,10 @@ const FONT_ENUM_VALUES = {
     BPKFontStyleTextBaseLarken: 39,
 
     BPKFontStyleTextDisplay7: 40,
+
+    BPKFontStyleTextEditorial4: 41,
+    BPKFontStyleTextEditorial5: 42,
+    BPKFontStyleTextEditorial6: 43
 };
 
 const WEIGHT_MAP_OBJC = {
@@ -92,8 +96,11 @@ const TEXT_STYLE_MAP_SWIFTUI = {
     BPKFontStyleTextSmLarken: ".footnote",
     BPKFontStyleTextBaseLarken: ".body",
 
-    BPKFontStyleTextDisplay7: ".largeTitle"
+    BPKFontStyleTextDisplay7: ".largeTitle",
 
+    BPKFontStyleTextEditorial4: ".body",
+    BPKFontStyleTextEditorial5: ".body",
+    BPKFontStyleTextEditorial6: ".body"
 }
 
 const TEXT_STYLE_MAP_UIKIT = {
@@ -124,7 +131,11 @@ const TEXT_STYLE_MAP_UIKIT = {
     BPKFontStyleTextSmLarken: "UIFontTextStyleFootnote",
     BPKFontStyleTextBaseLarken: "UIFontTextStyleBody",
 
-    BPKFontStyleTextDisplay7: "UIFontTextStyleLargeTitle"
+    BPKFontStyleTextDisplay7: "UIFontTextStyleLargeTitle",
+
+    BPKFontStyleTextEditorial4: "UIFontTextStyleBody",
+    BPKFontStyleTextEditorial5: "UIFontTextStyleBody",
+    BPKFontStyleTextEditorial6: "UIFontTextStyleBody"
 }
 
 const convertFontWeight = (weightMap, weightString) => {

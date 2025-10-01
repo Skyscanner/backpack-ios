@@ -50,6 +50,21 @@ typedef NS_ENUM(NSUInteger, BPKFontStyle) {
     BPKFontStyleTextDisplay7 = 40,
 
     /**
+     * Represents font size 16 with weight UIFontWeightRegular.
+     */
+    BPKFontStyleTextEditorial4 = 41,
+
+    /**
+     * Represents font size 14 with weight UIFontWeightRegular.
+     */
+    BPKFontStyleTextEditorial5 = 42,
+
+    /**
+     * Represents font size 12 with weight UIFontWeightRegular.
+     */
+    BPKFontStyleTextEditorial6 = 43,
+
+    /**
      * Represents font size 14 with weight UIFontWeightRegular.
      */
     BPKFontStyleTextFootnote = 34,
