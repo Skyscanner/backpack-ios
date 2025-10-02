@@ -99,6 +99,16 @@ public final class BpkConfiguration: NSObject {
         set { _heading3Config = newValue }
     }
     
+    public var heading4Config: TypographyConfig? {
+        get { getConfig { self._heading4Config } }
+        set { _heading4Config = newValue }
+    }
+    
+    public var heading5Config: TypographyConfig? {
+        get { getConfig { self._heading5Config } }
+        set { _heading5Config = newValue }
+    }
+    
     private func getConfig<T>(getter: () -> T) -> T {
         emitSignalIfNeeded()
         return configurationAccessQueue.sync {
@@ -112,6 +122,64 @@ public final class BpkConfiguration: NSObject {
                 self.configIsAccessed = true
                 self.onConfigurationAccessed?()
             }
+        }
+    }
+    
+    private func setTypographyExperiment(typographyConfig: Bool) {
+        if typographyConfig {
+            self.hero5Config = TypographyConfig(
+                font: .toUIFont(
+                    font: .black(size: 48, textStyle: .largeTitle)
+                ),
+                fontFixed: .toUIFont(
+                    font: .blackFixed(size: 48)),
+                letterSpacing: -1.2
+            )
+            
+            self.heading1Config = TypographyConfig(
+                font: .toUIFont(
+                    font: .black(size: 40, textStyle: .title)
+                ),
+                fontFixed: .toUIFont(
+                    font: .blackFixed(size: 40)),
+                letterSpacing: -1.2
+            )
+            
+            self.heading2Config = TypographyConfig(
+                font: .toUIFont(
+                    font: .black(size: 32, textStyle: .title2)
+                ),
+                fontFixed: .toUIFont(
+                    font: .blackFixed(size: 32)),
+                letterSpacing: -1
+            )
+            
+            self.heading3Config = TypographyConfig(
+                font: .toUIFont(
+                    font: .black(size: 24, textStyle: .title3)
+                ),
+                fontFixed: .toUIFont(
+                    font: .blackFixed(size: 24)),
+                letterSpacing: -0.6
+            )
+            
+            self.heading4Config = TypographyConfig(
+                font: .toUIFont(
+                    font: .black(size: 20, textStyle: .title3)
+                ),
+                fontFixed: .toUIFont(
+                    font: .blackFixed(size: 20)),
+                letterSpacing: -0.6
+            )
+            
+            self.heading5Config = TypographyConfig(
+                font: .toUIFont(
+                    font: .black(size: 16, textStyle: .title3)
+                ),
+                fontFixed: .toUIFont(
+                    font: .blackFixed(size: 16)),
+                letterSpacing: -0.6
+            )
         }
     }
     
@@ -135,15 +203,7 @@ public final class BpkConfiguration: NSObject {
             )
         }
         
-        if typographyConfig {
-            self.hero5Config = TypographyConfig(letterSpacing: -1.2)
-            
-            self.heading1Config = TypographyConfig(letterSpacing: -1.2)
-            
-            self.heading2Config = TypographyConfig(letterSpacing: -1)
-            
-            self.heading3Config = TypographyConfig(letterSpacing: -0.6)
-        }
+        setTypographyExperiment(typographyConfig: typographyConfig)
     }
 }
 
@@ -176,9 +236,28 @@ public class TypographyConfig: NSObject {
     }
 }
 
-extension TypographyConfig {
-    public var swiftUIFont: Font? {
-        guard let font = self.font else { return nil }
-        return Font(font) // UIKit UIFont → SwiftUI Font
+extension UIFont {
+    public var toFont: Font? {
+        return Font(self)
+    }
+}
+
+extension UIFont {
+    class func toUIFont(font: Font) -> UIFont {
+        let mapping: [Font: UIFont.TextStyle] = [
+            .largeTitle: .largeTitle,
+            .title: .title1,
+            .title2: .title2,
+            .title3: .title3,
+            .headline: .headline,
+            .subheadline: .subheadline,
+            .callout: .callout,
+            .caption: .caption1,
+            .caption2: .caption2,
+            .footnote: .footnote
+        ]
+
+        let style = mapping[font] ?? .body
+        return UIFont.preferredFont(forTextStyle: style)
     }
 }

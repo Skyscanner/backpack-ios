@@ -17,6 +17,7 @@
  */
 
 import SwiftUI
+import Backpack_Common
 
 /// A control that displays an editable text interface.
 ///

@@ -32,18 +32,31 @@ public struct BPKFontStyle {
 public extension BPKFontStyle {
 {%- set letterSpacingOverrides = {
 "hero5": "config.hero5Config?.letterSpacing ?? 0",
-"hero6": "config.hero6Config?.letterSpacing ?? 0",
 "heading1": "config.heading1Config?.letterSpacing ?? 0",
 "heading2": "config.heading2Config?.letterSpacing ?? 0",
 "heading3": "config.heading3Config?.letterSpacing ?? 0",
-"heading4": "config.heading3Config?.letterSpacing ?? 0",
-"heading5": "config.heading3Config?.letterSpacing ?? 0"} -%}
+"heading4": "config.heading4Config?.letterSpacing ?? 0",
+"heading5": "config.heading5Config?.letterSpacing ?? 0"} -%}
+
+{%- set letterFontOverrides = {
+"heading1": "config.heading1Config?.font?.toFont ?? .semiboldFixed(size: 40)",
+"heading2": "config.heading2Config?.font?.toFont ?? .semiboldFixed(size: 32)",
+"heading3": "config.heading3Config?.font?.toFont ?? .semiboldFixed(size: 24)",
+"heading4": "config.heading4Config?.font?.toFont ?? .semiboldFixed(size: 20)",
+"heading5": "config.heading5Config?.font?.toFont ?? .semiboldFixed(size: 16)"} -%}
+
+{%- set letterFontFixedOverrides = {
+"heading1": "config.heading1Config?.fontFixed?.toFont ?? .semiboldFixed(size: 40)",
+"heading2": "config.heading2Config?.fontFixed?.toFont ?? .semiboldFixed(size: 32)",
+"heading3": "config.heading3Config?.fontFixed?.toFont ?? .semiboldFixed(size: 24)",
+"heading4": "config.heading4Config?.fontFixed?.toFont ?? .semiboldFixed(size: 20)",
+"heading5": "config.heading5Config?.fontFixed?.toFont ?? .semiboldFixed(size: 16)"} -%}
 
 {% for f in font %}
 /// Represents font size {{f.size}} with weight {{f.weight}}.
 static let {{f.name}} = BPKFontStyle(
-    font: .{{f.weight}}(size: {{f.size}}, textStyle: {{f.textStyle}}),
-    fontFixed: .{{f.weight}}Fixed(size: {{f.size}}),
+    font: {% if letterFontOverrides[f.name] is defined -%}{{ letterFontOverrides[f.name] }}{% elseif f.font != null -%}.{{f.weight}}(size: {{f.size}}, textStyle: {{f.textStyle}}){% else -%}.{{f.weight}}(size: {{f.size}}, textStyle: {{f.textStyle}}){% endif %},
+    fontFixed: {% if letterFontFixedOverrides[f.name] is defined -%}{{ letterFontFixedOverrides[f.name] }}{% elseif f.fontFixed != null -%}.{{f.weight}}Fixed(size: {{f.size}}){% else -%}.{{f.weight}}Fixed(size: {{f.size}}){% endif %},
     letterSpacing: {% if letterSpacingOverrides[f.name] is defined -%}{{ letterSpacingOverrides[f.name] }}{% elseif f.letterSpacing != null -%}{{ f.letterSpacing.value }}{% else -%}0{% endif %},
     lineHeight: {% if f.lineHeight != null -%}{{f.lineHeight.value}}{% else -%}0{% endif %}
 )

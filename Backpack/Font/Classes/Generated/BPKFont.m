@@ -226,10 +226,10 @@ NS_ASSUME_NONNULL_BEGIN
             return @(config.heading3Config ? config.heading3Config.letterSpacing : 0);
         case BPKFontStyleTextHeading4:
             // Corresponding to Letter Spacing VDL2_SM
-            return @(config.heading3Config ? config.heading3Config.letterSpacing : 0);
+            return @(config.heading4Config ? config.heading4Config.letterSpacing : 0);
         case BPKFontStyleTextHeading5:
             // Corresponding to Letter Spacing VDL2_SM
-            return @(config.heading3Config ? config.heading3Config.letterSpacing : 0);
+            return @(config.heading5Config ? config.heading5Config.letterSpacing : 0);
         case BPKFontStyleTextHero1:
             // Corresponding to Letter Spacing TIGHT
             return @(-2);

@@ -104,41 +104,41 @@ static let footnote = BPKFontStyle(
 
 /// Represents font size 40 with weight semibold.
 static let heading1 = BPKFontStyle(
-    font: .semibold(size: 40, textStyle: .title),
-    fontFixed: .semiboldFixed(size: 40),
+    font: config.heading1Config?.font?.toFont ?? .semiboldFixed(size: 40),
+    fontFixed: config.heading1Config?.fontFixed?.toFont ?? .semiboldFixed(size: 40),
     letterSpacing: config.heading1Config?.letterSpacing ?? 0,
     lineHeight: 48
 )
 
 /// Represents font size 32 with weight semibold.
 static let heading2 = BPKFontStyle(
-    font: .semibold(size: 32, textStyle: .title2),
-    fontFixed: .semiboldFixed(size: 32),
+    font: config.heading2Config?.font?.toFont ?? .semiboldFixed(size: 32),
+    fontFixed: config.heading2Config?.fontFixed?.toFont ?? .semiboldFixed(size: 32),
     letterSpacing: config.heading2Config?.letterSpacing ?? 0,
     lineHeight: 40
 )
 
 /// Represents font size 24 with weight semibold.
 static let heading3 = BPKFontStyle(
-    font: .semibold(size: 24, textStyle: .title3),
-    fontFixed: .semiboldFixed(size: 24),
+    font: config.heading3Config?.font?.toFont ?? .semiboldFixed(size: 24),
+    fontFixed: config.heading3Config?.fontFixed?.toFont ?? .semiboldFixed(size: 24),
     letterSpacing: config.heading3Config?.letterSpacing ?? 0,
     lineHeight: 28
 )
 
 /// Represents font size 20 with weight semibold.
 static let heading4 = BPKFontStyle(
-    font: .semibold(size: 20, textStyle: .title3),
-    fontFixed: .semiboldFixed(size: 20),
-    letterSpacing: config.heading3Config?.letterSpacing ?? 0,
+    font: config.heading4Config?.font?.toFont ?? .semiboldFixed(size: 20),
+    fontFixed: config.heading4Config?.fontFixed?.toFont ?? .semiboldFixed(size: 20),
+    letterSpacing: config.heading4Config?.letterSpacing ?? 0,
     lineHeight: 24
 )
 
 /// Represents font size 16 with weight semibold.
 static let heading5 = BPKFontStyle(
-    font: .semibold(size: 16, textStyle: .title3),
-    fontFixed: .semiboldFixed(size: 16),
-    letterSpacing: config.heading3Config?.letterSpacing ?? 0,
+    font: config.heading5Config?.font?.toFont ?? .semiboldFixed(size: 16),
+    fontFixed: config.heading5Config?.fontFixed?.toFont ?? .semiboldFixed(size: 16),
+    letterSpacing: config.heading5Config?.letterSpacing ?? 0,
     lineHeight: 20
 )
 
