@@ -141,14 +141,28 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (NSNumber *)letterSpacingForStyle:(BPKFontStyle)style {
+    {% set letterSpacingOverrides = {
+        "BPKFontStyleTextHero5": "config.hero5Config ? config.hero5Config.letterSpacing : -2",
+        "BPKFontStyleTextHero6": "config.hero6Config ? config.hero6Config.letterSpacing : -1",
+        "BPKFontStyleTextHeading1": "config.heading1Config ? config.heading1Config.letterSpacing : 0",
+        "BPKFontStyleTextHeading2": "config.heading2Config ? config.heading2Config.letterSpacing : 0",
+        "BPKFontStyleTextHeading3": "config.heading3Config ? config.heading3Config.letterSpacing : 0",
+        "BPKFontStyleTextHeading4": "config.heading3Config ? config.heading3Config.letterSpacing : 0",
+        "BPKFontStyleTextHeading5": "config.heading3Config ? config.heading3Config.letterSpacing : 0"} %}
+    BpkConfiguration *config = [BpkConfiguration shared];
+
     switch (style) {
-        {% for f in font %}{% if f.letterSpacing != null -%}case {{f.enumName}}: 
+    {%- for f in font %}
+        {%- if f.letterSpacing != null %}
+        case {{f.enumName}}:
             // Corresponding to Letter Spacing {{f.letterSpacing.name}}
-            return @({{f.letterSpacing.value}});
-        {% endif %}{% endfor %}
+            return @({% if letterSpacingOverrides[f.enumName] is defined -%}{{letterSpacingOverrides[f.enumName]}}{% else -%}{{f.letterSpacing.value}}{% endif %});
+        {%- endif %}
+    {%- endfor %}
         default:
             return @(0); // No Defined Letter Spacing
     }
+
 }
 
 + (CGFloat)lineHeightForStyle:(BPKFontStyle)style {

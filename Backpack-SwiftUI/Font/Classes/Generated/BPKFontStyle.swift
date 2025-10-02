@@ -130,7 +130,7 @@ static let heading3 = BPKFontStyle(
 static let heading4 = BPKFontStyle(
     font: .semibold(size: 20, textStyle: .title3),
     fontFixed: .semiboldFixed(size: 20),
-    letterSpacing: config.heading4Config?.letterSpacing ?? 0,
+    letterSpacing: config.heading3Config?.letterSpacing ?? 0,
     lineHeight: 24
 )
 
@@ -138,7 +138,7 @@ static let heading4 = BPKFontStyle(
 static let heading5 = BPKFontStyle(
     font: .semibold(size: 16, textStyle: .title3),
     fontFixed: .semiboldFixed(size: 16),
-    letterSpacing: config.heading5Config?.letterSpacing ?? 0,
+    letterSpacing: config.heading3Config?.letterSpacing ?? 0,
     lineHeight: 20
 )
 

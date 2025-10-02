@@ -208,29 +208,47 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (NSNumber *)letterSpacingForStyle:(BPKFontStyle)style {
+    
+    BpkConfiguration *config = [BpkConfiguration shared];
+
     switch (style) {
-        case BPKFontStyleTextDisplay7: 
+        case BPKFontStyleTextDisplay7:
             // Corresponding to Letter Spacing VDL2_SM
             return @(-1.6);
-        case BPKFontStyleTextHero1: 
+        case BPKFontStyleTextHeading1:
+            // Corresponding to Letter Spacing VDL2_SM
+            return @(config.heading1Config ? config.heading1Config.letterSpacing : 0);
+        case BPKFontStyleTextHeading2:
+            // Corresponding to Letter Spacing VDL2_SM
+            return @(config.heading2Config ? config.heading2Config.letterSpacing : 0);
+        case BPKFontStyleTextHeading3:
+            // Corresponding to Letter Spacing VDL2_SM
+            return @(config.heading3Config ? config.heading3Config.letterSpacing : 0);
+        case BPKFontStyleTextHeading4:
+            // Corresponding to Letter Spacing VDL2_SM
+            return @(config.heading3Config ? config.heading3Config.letterSpacing : 0);
+        case BPKFontStyleTextHeading5:
+            // Corresponding to Letter Spacing VDL2_SM
+            return @(config.heading3Config ? config.heading3Config.letterSpacing : 0);
+        case BPKFontStyleTextHero1:
             // Corresponding to Letter Spacing TIGHT
             return @(-2);
-        case BPKFontStyleTextHero2: 
+        case BPKFontStyleTextHero2:
             // Corresponding to Letter Spacing TIGHT
             return @(-2);
-        case BPKFontStyleTextHero3: 
+        case BPKFontStyleTextHero3:
             // Corresponding to Letter Spacing TIGHT
             return @(-2);
-        case BPKFontStyleTextHero4: 
+        case BPKFontStyleTextHero4:
             // Corresponding to Letter Spacing TIGHT
             return @(-2);
-        case BPKFontStyleTextHero5: 
+        case BPKFontStyleTextHero5:
             // Corresponding to Letter Spacing TIGHT
-            return @(-2);
-        
+            return @(config.hero5Config ? config.hero5Config.letterSpacing : -2);
         default:
             return @(0); // No Defined Letter Spacing
     }
+
 }
 
 + (CGFloat)lineHeightForStyle:(BPKFontStyle)style {

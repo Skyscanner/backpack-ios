@@ -20,11 +20,12 @@ import SwiftUI
 import Foundation
 // swiftlint:disable line_length
 
-public final class BpkConfiguration {
+@objcMembers
+public final class BpkConfiguration: NSObject {
     /// Shared singleton instance
     public static let shared = BpkConfiguration()
     
-    private init() {}
+    private override init() {}
     
     /// Checking for previous config setting
     private var hasSet = false
@@ -47,13 +48,6 @@ public final class BpkConfiguration {
     /// Component configurations
     public struct BpkButtonConfig {}
     
-    public struct TypographyConfig {
-        public var font: Font?
-        public var fontFixed: Font?
-        public var letterSpacing: CGFloat?
-        public var size: CGFloat?
-    }
-    
     public struct BpkCardConfig {}
     
     public struct BpkChipConfig {
@@ -72,13 +66,13 @@ public final class BpkConfiguration {
         set { _chipConfig = newValue }
     }
     
-    private var _typographyConfig: TypographyConfig?
-    private var _heading1Config: TypographyConfig?
-    private var _heading2Config: TypographyConfig?
-    private var _heading3Config: TypographyConfig?
-    private var _heading4Config: TypographyConfig?
-    private var _heading5Config: TypographyConfig?
-    private var _hero5Config: TypographyConfig?
+    @objc private var _typographyConfig: TypographyConfig?
+    @objc private var _heading1Config: TypographyConfig?
+    @objc private var _heading2Config: TypographyConfig?
+    @objc private var _heading3Config: TypographyConfig?
+    @objc private var _heading4Config: TypographyConfig?
+    @objc private var _heading5Config: TypographyConfig?
+    @objc private var _hero5Config: TypographyConfig?
     
     public var typographyConfig: TypographyConfig? {
         get { getConfig { self._typographyConfig } }
@@ -103,16 +97,6 @@ public final class BpkConfiguration {
     public var heading3Config: TypographyConfig? {
         get { getConfig { self._heading3Config } }
         set { _heading3Config = newValue }
-    }
-    
-    public var heading4Config: TypographyConfig? {
-        get { getConfig { self._heading4Config } }
-        set { _heading4Config = newValue }
-    }
-    
-    public var heading5Config: TypographyConfig? {
-        get { getConfig { self._heading5Config } }
-        set { _heading5Config = newValue }
     }
     
     private func getConfig<T>(getter: () -> T) -> T {
@@ -152,29 +136,13 @@ public final class BpkConfiguration {
         }
         
         if typographyConfig {
-            self.hero5Config = TypographyConfig(
-                letterSpacing: -1.2
-            )
+            self.hero5Config = TypographyConfig(letterSpacing: -1.2)
             
-            self.heading1Config = TypographyConfig(
-                letterSpacing: -1.2
-            )
+            self.heading1Config = TypographyConfig(letterSpacing: -1.2)
             
-            self.heading2Config = TypographyConfig(
-                letterSpacing: -1
-            )
+            self.heading2Config = TypographyConfig(letterSpacing: -1)
             
-            self.heading3Config = TypographyConfig(
-                letterSpacing: -0.6
-            )
-            
-            self.heading4Config = TypographyConfig(
-                letterSpacing: -0.6
-            )
-            
-            self.heading5Config = TypographyConfig(
-                letterSpacing: -0.6
-            )
+            self.heading3Config = TypographyConfig(letterSpacing: -0.6)
         }
     }
 }
@@ -185,5 +153,32 @@ extension BpkConfiguration {
         hasSet = false
         configIsAccessed = false
         onConfigurationAccessed = nil
+    }
+}
+
+@objcMembers
+public class TypographyConfig: NSObject {
+    public var font: UIFont?
+    public var fontFixed: UIFont?
+    public var letterSpacing: CGFloat = 0
+    public var size: CGFloat = 0
+    
+    init(
+        font: UIFont? = nil,
+        fontFixed: UIFont? = nil,
+        letterSpacing: CGFloat = 0,
+        size: CGFloat = 0
+    ) {
+        self.font = font
+        self.fontFixed = fontFixed
+        self.letterSpacing = letterSpacing
+        self.size = size
+    }
+}
+
+extension TypographyConfig {
+    public var swiftUIFont: Font? {
+        guard let font = self.font else { return nil }
+        return Font(font) // UIKit UIFont → SwiftUI Font
     }
 }
