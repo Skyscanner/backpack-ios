@@ -125,18 +125,33 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (UIFont *)fontForStyle:(BPKFontStyle)style fontManager:(BPKFontManager *)fontManager {
+    BpkConfiguration *config = [BpkConfiguration shared];
+
     switch (style) {
-       {% for f in font %}
-           case {{f.enumName}}:
-             {% if f.weight.includes("UIFontWeightBlack") -%}
-               return [fontManager heavyFontWithSize:{{f.size}} textStyle:{{f.textStyle}}];
-             {% elif f.weight.includes("UIFontWeightBold") -%}
-               return [fontManager semiboldFontWithSize:{{f.size}} textStyle:{{f.textStyle}}];
-             {% else -%}
-               return [fontManager regularFontWithSize:{{f.size}} textStyle:{{f.textStyle}}];
-             {% endif %}{% endfor %}
-            default:
-              NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);
+    {% for f in font %}
+        case {{f.enumName}}:
+            {% if f.weight.includes("UIFontWeightBlack") -%}
+                return [fontManager heavyFontWithSize:{{f.size}} textStyle:{{f.textStyle}}];
+            {% elif f.weight.includes("UIFontWeightBold") -%}
+                {%- if f.enumName in [
+                    "BPKFontStyleTextHeading1",
+                    "BPKFontStyleTextHeading2",
+                    "BPKFontStyleTextHeading3",
+                    "BPKFontStyleTextHeading4",
+                    "BPKFontStyleTextHeading5"
+                ] -%}
+                return config.{{f.enumName|replace("BPKFontStyleTextHeading","heading")}}Config
+                    ? config.{{f.enumName|replace("BPKFontStyleTextHeading","heading")}}Config.font
+                    : [fontManager semiboldFontWithSize:{{f.size}} textStyle:{{f.textStyle}}];
+                {% else -%}
+                    return [fontManager semiboldFontWithSize:{{f.size}} textStyle:{{f.textStyle}}];
+                {% endif -%}
+            {% else -%}
+                return [fontManager regularFontWithSize:{{f.size}} textStyle:{{f.textStyle}}];
+            {% endif -%}
+    {% endfor %}
+        default:
+            NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);
     }
 }
 

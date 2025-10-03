@@ -125,85 +125,97 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (UIFont *)fontForStyle:(BPKFontStyle)style fontManager:(BPKFontManager *)fontManager {
+    BpkConfiguration *config = [BpkConfiguration shared];
+
     switch (style) {
-       
-           case BPKFontStyleTextBaseLarken:
-             return [fontManager semiboldFontWithSize:16 textStyle:UIFontTextStyleBody];
-             
-           case BPKFontStyleTextBodyDefault:
-             return [fontManager regularFontWithSize:16 textStyle:UIFontTextStyleBody];
-             
-           case BPKFontStyleTextBodyLongform:
-             return [fontManager regularFontWithSize:20 textStyle:UIFontTextStyleBody];
-             
-           case BPKFontStyleTextCaption:
-             return [fontManager regularFontWithSize:12 textStyle:UIFontTextStyleCaption1];
-             
-           case BPKFontStyleTextDisplay7:
-             return [fontManager heavyFontWithSize:32 textStyle:UIFontTextStyleLargeTitle];
-             
-           case BPKFontStyleTextEditorial4:
-             return [fontManager regularFontWithSize:16 textStyle:UIFontTextStyleBody];
-             
-           case BPKFontStyleTextEditorial5:
-             return [fontManager regularFontWithSize:14 textStyle:UIFontTextStyleBody];
-             
-           case BPKFontStyleTextEditorial6:
-             return [fontManager regularFontWithSize:12 textStyle:UIFontTextStyleBody];
-             
-           case BPKFontStyleTextFootnote:
-             return [fontManager regularFontWithSize:14 textStyle:UIFontTextStyleFootnote];
-             
-           case BPKFontStyleTextHeading1:
-             return [fontManager semiboldFontWithSize:40 textStyle:UIFontTextStyleTitle1];
-             
-           case BPKFontStyleTextHeading2:
-             return [fontManager semiboldFontWithSize:32 textStyle:UIFontTextStyleTitle2];
-             
-           case BPKFontStyleTextHeading3:
-             return [fontManager semiboldFontWithSize:24 textStyle:UIFontTextStyleTitle3];
-             
-           case BPKFontStyleTextHeading4:
-             return [fontManager semiboldFontWithSize:20 textStyle:UIFontTextStyleTitle3];
-             
-           case BPKFontStyleTextHeading5:
-             return [fontManager semiboldFontWithSize:16 textStyle:UIFontTextStyleTitle3];
-             
-           case BPKFontStyleTextHero1:
-             return [fontManager semiboldFontWithSize:120 textStyle:UIFontTextStyleLargeTitle];
-             
-           case BPKFontStyleTextHero2:
-             return [fontManager semiboldFontWithSize:96 textStyle:UIFontTextStyleLargeTitle];
-             
-           case BPKFontStyleTextHero3:
-             return [fontManager semiboldFontWithSize:76 textStyle:UIFontTextStyleLargeTitle];
-             
-           case BPKFontStyleTextHero4:
-             return [fontManager semiboldFontWithSize:64 textStyle:UIFontTextStyleLargeTitle];
-             
-           case BPKFontStyleTextHero5:
-             return [fontManager heavyFontWithSize:48 textStyle:UIFontTextStyleLargeTitle];
-             
-           case BPKFontStyleTextLabel1:
-             return [fontManager semiboldFontWithSize:16 textStyle:UIFontTextStyleBody];
-             
-           case BPKFontStyleTextLabel2:
-             return [fontManager semiboldFontWithSize:14 textStyle:UIFontTextStyleBody];
-             
-           case BPKFontStyleTextLabel3:
-             return [fontManager semiboldFontWithSize:12 textStyle:UIFontTextStyleBody];
-             
-           case BPKFontStyleTextSmLarken:
-             return [fontManager semiboldFontWithSize:14 textStyle:UIFontTextStyleFootnote];
-             
-           case BPKFontStyleTextSubheading:
-             return [fontManager regularFontWithSize:24 textStyle:UIFontTextStyleSubheadline];
-             
-           case BPKFontStyleTextXsLarken:
-             return [fontManager semiboldFontWithSize:12 textStyle:UIFontTextStyleCaption1];
-             
-            default:
-              NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);
+    
+        case BPKFontStyleTextBaseLarken:
+            return [fontManager semiboldFontWithSize:16 textStyle:UIFontTextStyleBody];
+                
+        case BPKFontStyleTextBodyDefault:
+            return [fontManager regularFontWithSize:16 textStyle:UIFontTextStyleBody];
+            
+        case BPKFontStyleTextBodyLongform:
+            return [fontManager regularFontWithSize:20 textStyle:UIFontTextStyleBody];
+            
+        case BPKFontStyleTextCaption:
+            return [fontManager regularFontWithSize:12 textStyle:UIFontTextStyleCaption1];
+            
+        case BPKFontStyleTextDisplay7:
+            return [fontManager heavyFontWithSize:32 textStyle:UIFontTextStyleLargeTitle];
+            
+        case BPKFontStyleTextEditorial4:
+            return [fontManager regularFontWithSize:16 textStyle:UIFontTextStyleBody];
+            
+        case BPKFontStyleTextEditorial5:
+            return [fontManager regularFontWithSize:14 textStyle:UIFontTextStyleBody];
+            
+        case BPKFontStyleTextEditorial6:
+            return [fontManager regularFontWithSize:12 textStyle:UIFontTextStyleBody];
+            
+        case BPKFontStyleTextFootnote:
+            return [fontManager regularFontWithSize:14 textStyle:UIFontTextStyleFootnote];
+            
+        case BPKFontStyleTextHeading1:
+            return config.heading1Config
+                    ? config.heading1Config.font
+                    : [fontManager semiboldFontWithSize:40 textStyle:UIFontTextStyleTitle1];
+                
+        case BPKFontStyleTextHeading2:
+            return config.heading2Config
+                    ? config.heading2Config.font
+                    : [fontManager semiboldFontWithSize:32 textStyle:UIFontTextStyleTitle2];
+                
+        case BPKFontStyleTextHeading3:
+            return config.heading3Config
+                    ? config.heading3Config.font
+                    : [fontManager semiboldFontWithSize:24 textStyle:UIFontTextStyleTitle3];
+                
+        case BPKFontStyleTextHeading4:
+            return config.heading4Config
+                    ? config.heading4Config.font
+                    : [fontManager semiboldFontWithSize:20 textStyle:UIFontTextStyleTitle3];
+                
+        case BPKFontStyleTextHeading5:
+            return config.heading5Config
+                    ? config.heading5Config.font
+                    : [fontManager semiboldFontWithSize:16 textStyle:UIFontTextStyleTitle3];
+                
+        case BPKFontStyleTextHero1:
+            return [fontManager semiboldFontWithSize:120 textStyle:UIFontTextStyleLargeTitle];
+                
+        case BPKFontStyleTextHero2:
+            return [fontManager semiboldFontWithSize:96 textStyle:UIFontTextStyleLargeTitle];
+                
+        case BPKFontStyleTextHero3:
+            return [fontManager semiboldFontWithSize:76 textStyle:UIFontTextStyleLargeTitle];
+                
+        case BPKFontStyleTextHero4:
+            return [fontManager semiboldFontWithSize:64 textStyle:UIFontTextStyleLargeTitle];
+                
+        case BPKFontStyleTextHero5:
+            return [fontManager heavyFontWithSize:48 textStyle:UIFontTextStyleLargeTitle];
+            
+        case BPKFontStyleTextLabel1:
+            return [fontManager semiboldFontWithSize:16 textStyle:UIFontTextStyleBody];
+                
+        case BPKFontStyleTextLabel2:
+            return [fontManager semiboldFontWithSize:14 textStyle:UIFontTextStyleBody];
+                
+        case BPKFontStyleTextLabel3:
+            return [fontManager semiboldFontWithSize:12 textStyle:UIFontTextStyleBody];
+                
+        case BPKFontStyleTextSmLarken:
+            return [fontManager semiboldFontWithSize:14 textStyle:UIFontTextStyleFootnote];
+                
+        case BPKFontStyleTextSubheading:
+            return [fontManager regularFontWithSize:24 textStyle:UIFontTextStyleSubheadline];
+            
+        case BPKFontStyleTextXsLarken:
+            return [fontManager semiboldFontWithSize:12 textStyle:UIFontTextStyleCaption1];
+                
+        default:
+            NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);
     }
 }
 
