@@ -127,6 +127,17 @@ BPKButton(
 }
 ```
 
+### Button with Image
+> Should only be used for login buttons
+```swift
+BPKButton(
+    title: "Provider Name",
+    image: Image("ProviderImageName")
+) {
+    print("Button tap closure")
+}
+```
+
 ### Button with large size
 
 ```swift
@@ -137,3 +148,4 @@ BPKButton(
     print("Button tap closure")
 }
 ```
+

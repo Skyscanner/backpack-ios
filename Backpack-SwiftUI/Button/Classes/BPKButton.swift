@@ -263,7 +263,7 @@ struct BPKButton_Previews: PreviewProvider {
             BPKButton("Label", icon: BPKButton.Icon(icon: .longArrowRight, position: .trailing)) {}
             BPKButton(icon: .longArrowRight, accessibilityLabel: "Continue") {}
             BPKButton("Label", loading: .constant(true)) {}
-            BPKButton("Third Party Login", image: Image(systemName: "creditcard")) {}
+            BPKButton("Label", image: Image(systemName: "creditcard")) {}
         }
         .previewLayout(.sizeThatFits)
     }
