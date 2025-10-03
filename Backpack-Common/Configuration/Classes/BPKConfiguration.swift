@@ -137,6 +137,11 @@ public final class BpkConfiguration: NSObject {
             )
             
             self.heading1Config = TypographyConfig(
+                font: .toUIFont(
+                    font: .black(size: 40, textStyle: .title2)
+                ),
+                fontFixed: .toUIFont(
+                    font: .blackFixed(size: 40)),
                 letterSpacing: -1.2
             )
             
