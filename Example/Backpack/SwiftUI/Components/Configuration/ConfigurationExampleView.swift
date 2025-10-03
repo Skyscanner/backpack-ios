@@ -105,7 +105,7 @@ struct ConfigurationExampleView: View {
                 .foregroundColor(.black)
             BPKText("Editorial 6", style: .editorial6)
                 .foregroundColor(.black)
-            BPKText("Display 6", style: .display7)
+            BPKText("Display 7", style: .display7)
                 .foregroundColor(.black)
         }
     }

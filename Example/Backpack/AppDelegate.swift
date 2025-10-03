@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setupRelativeFont() {
         guard !ProcessInfo.processInfo.arguments.contains("DISABLE_RELATIVE") else { return }
         let relativeFontDefinition = Backpack.BPKRelativeFontDefinition()
-        let relativeTestFont = UIFont(name: relativeFontDefinition.regularFontFace.toString(), size: 12)
+        let relativeTestFont = UIFont(name: relativeFontDefinition.regularFontFace as String, size: 12)
         if relativeTestFont != nil {
             Backpack.BPKFont.setFontDefinition(relativeFontDefinition)
             BPKFont.setFontDefinition(relativeFontDefinition)
