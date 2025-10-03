@@ -27,6 +27,7 @@ const FONT_ENUM_VALUES = {
     BPKFontStyleTextHero3: 21,
     BPKFontStyleTextHero4: 22,
     BPKFontStyleTextHero5: 23,
+    BPKFontStyleTextHero6: 44,
 
     BPKFontStyleTextHeading5: 24,
     BPKFontStyleTextHeading4: 25,
@@ -74,6 +75,7 @@ const TEXT_STYLE_MAP_SWIFTUI = {
     BPKFontStyleTextHero3: ".largeTitle",
     BPKFontStyleTextHero4: ".largeTitle",
     BPKFontStyleTextHero5: ".largeTitle",
+    BPKFontStyleTextHero6: ".largeTitle",
 
     BPKFontStyleTextHeading5: ".title3",
     BPKFontStyleTextHeading4: ".title3",
@@ -109,6 +111,7 @@ const TEXT_STYLE_MAP_UIKIT = {
     BPKFontStyleTextHero3: "UIFontTextStyleLargeTitle",
     BPKFontStyleTextHero4: "UIFontTextStyleLargeTitle",
     BPKFontStyleTextHero5: "UIFontTextStyleLargeTitle",
+    BPKFontStyleTextHero6: "UIFontTextStyleLargeTitle",
 
     BPKFontStyleTextHeading5: "UIFontTextStyleTitle3",
     BPKFontStyleTextHeading4: "UIFontTextStyleTitle3",

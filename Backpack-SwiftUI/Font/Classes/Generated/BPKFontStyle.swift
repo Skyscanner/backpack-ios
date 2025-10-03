@@ -182,6 +182,14 @@ static let hero5 = BPKFontStyle(
     lineHeight: 56
 )
 
+/// Represents font size 40 with weight black.
+static let hero6 = BPKFontStyle(
+    font: .black(size: 40, textStyle: .largeTitle),
+    fontFixed: .blackFixed(size: 40),
+    letterSpacing: -1.2,
+    lineHeight: 56
+)
+
 /// Represents font size 16 with weight semibold.
 static let label1 = BPKFontStyle(
     font: .semibold(size: 16, textStyle: .body),

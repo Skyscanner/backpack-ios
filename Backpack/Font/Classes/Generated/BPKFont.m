@@ -196,6 +196,9 @@ NS_ASSUME_NONNULL_BEGIN
         case BPKFontStyleTextHero5:
             return [fontManager heavyFontWithSize:48 textStyle:UIFontTextStyleLargeTitle];
             
+        case BPKFontStyleTextHero6:
+            return [fontManager heavyFontWithSize:40 textStyle:UIFontTextStyleLargeTitle];
+            
         case BPKFontStyleTextLabel1:
             return [fontManager semiboldFontWithSize:16 textStyle:UIFontTextStyleBody];
                 
@@ -257,6 +260,9 @@ NS_ASSUME_NONNULL_BEGIN
         case BPKFontStyleTextHero5:
             // Corresponding to Letter Spacing TIGHT
             return @(config.hero5Config ? config.hero5Config.letterSpacing : -2);
+        case BPKFontStyleTextHero6:
+            // Corresponding to Letter Spacing VDL2_MD
+            return @(config.hero6Config ? config.hero6Config.letterSpacing : -1);
         default:
             return @(0); // No Defined Letter Spacing
     }
@@ -320,6 +326,9 @@ NS_ASSUME_NONNULL_BEGIN
             // Corresponding to Line Height 5XL
             return 72;
         case BPKFontStyleTextHero5: 
+            // Corresponding to Line Height XXXXL
+            return 56;
+        case BPKFontStyleTextHero6: 
             // Corresponding to Line Height XXXXL
             return 56;
         case BPKFontStyleTextLabel1: 
