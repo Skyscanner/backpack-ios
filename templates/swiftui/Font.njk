@@ -39,18 +39,18 @@ public extension BPKFontStyle {
 "heading5": "config.heading5Config?.letterSpacing ?? 0"} -%}
 
 {%- set letterFontOverrides = {
-"heading1": "config.heading1Config?.font?.toFont ?? .semiboldFixed(size: 40)",
-"heading2": "config.heading2Config?.font?.toFont ?? .semiboldFixed(size: 32)",
-"heading3": "config.heading3Config?.font?.toFont ?? .semiboldFixed(size: 24)",
-"heading4": "config.heading4Config?.font?.toFont ?? .semiboldFixed(size: 20)",
-"heading5": "config.heading5Config?.font?.toFont ?? .semiboldFixed(size: 16)"} -%}
+"heading1": "config.heading1Config?.getFont(isFixed: false) ?? .semibold(size: 40, textStyle: .title)",
+"heading2": "config.heading2Config?.getFont(isFixed: false) ?? .semibold(size: 32, textStyle: .title2)",
+"heading3": "config.heading3Config?.getFont(isFixed: false) ?? .semibold(size: 24, textStyle: .title3)",
+"heading4": "config.heading4Config?.getFont(isFixed: false) ?? .semibold(size: 20, textStyle: .title3)",
+"heading5": "config.heading5Config?.getFont(isFixed: false) ?? .semibold(size: 16, textStyle: .title3)"} -%}
 
 {%- set letterFontFixedOverrides = {
-"heading1": "config.heading1Config?.fontFixed?.toFont ?? .semiboldFixed(size: 40)",
-"heading2": "config.heading2Config?.fontFixed?.toFont ?? .semiboldFixed(size: 32)",
-"heading3": "config.heading3Config?.fontFixed?.toFont ?? .semiboldFixed(size: 24)",
-"heading4": "config.heading4Config?.fontFixed?.toFont ?? .semiboldFixed(size: 20)",
-"heading5": "config.heading5Config?.fontFixed?.toFont ?? .semiboldFixed(size: 16)"} -%}
+"heading1": "config.heading1Config?.getFont(isFixed: true) ?? .semiboldFixed(size: 40)",
+"heading2": "config.heading2Config?.getFont(isFixed: true) ?? .semiboldFixed(size: 32)",
+"heading3": "config.heading3Config?.getFont(isFixed: true) ?? .semiboldFixed(size: 24)",
+"heading4": "config.heading4Config?.getFont(isFixed: true) ?? .semiboldFixed(size: 20)",
+"heading5": "config.heading5Config?.getFont(isFixed: true) ?? .semiboldFixed(size: 16)"} -%}
 
 {% for f in font %}
 /// Represents font size {{f.size}} with weight {{f.weight}}.

@@ -229,11 +229,16 @@ public class TypographyConfig: NSObject {
         self.letterSpacing = letterSpacing
         self.size = size
     }
-}
-
-extension UIFont {
-    public var toFont: Font? {
-        return Font(self)
+    
+    public func getFont(isFixed: Bool) -> Font? {
+        if let font = self.font, isFixed, let fontFixed = self.fontFixed {
+            if isFixed {
+                return Font(fontFixed)
+            } else {
+                return Font(font)
+            }
+        }
+        return nil
     }
 }
 
