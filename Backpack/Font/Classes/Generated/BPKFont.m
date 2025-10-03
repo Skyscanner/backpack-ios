@@ -228,19 +228,19 @@ NS_ASSUME_NONNULL_BEGIN
             // Corresponding to Letter Spacing VDL2_SM
             return @(-1.6);
         case BPKFontStyleTextHeading1:
-            // Corresponding to Letter Spacing VDL2_SM
+            // Corresponding to Letter Spacing XS
             return @(config.heading1Config ? config.heading1Config.letterSpacing : 0);
         case BPKFontStyleTextHeading2:
-            // Corresponding to Letter Spacing VDL2_SM
+            // Corresponding to Letter Spacing XS
             return @(config.heading2Config ? config.heading2Config.letterSpacing : 0);
         case BPKFontStyleTextHeading3:
-            // Corresponding to Letter Spacing VDL2_SM
+            // Corresponding to Letter Spacing XS
             return @(config.heading3Config ? config.heading3Config.letterSpacing : 0);
         case BPKFontStyleTextHeading4:
-            // Corresponding to Letter Spacing VDL2_SM
+            // Corresponding to Letter Spacing XS
             return @(config.heading4Config ? config.heading4Config.letterSpacing : 0);
         case BPKFontStyleTextHeading5:
-            // Corresponding to Letter Spacing VDL2_SM
+            // Corresponding to Letter Spacing XS
             return @(config.heading5Config ? config.heading5Config.letterSpacing : 0);
         case BPKFontStyleTextHero1:
             // Corresponding to Letter Spacing TIGHT
