@@ -237,22 +237,37 @@ extension UIFont {
     }
 }
 
+extension Font {
+    var textStyleMapping: UIFont.TextStyle {
+        switch self {
+        case Font.largeTitle:
+            .largeTitle
+        case Font.title:
+            .title1
+        case Font.title2:
+            .title2
+        case Font.title3:
+            .title3
+        case Font.headline:
+            .headline
+        case Font.subheadline:
+            .subheadline
+        case Font.callout:
+            .callout
+        case Font.caption:
+            .caption1
+        case Font.caption2:
+            .caption2
+        case Font.footnote:
+            .footnote
+        default:
+            .body
+        }
+    }
+}
+
 extension UIFont {
     class func toUIFont(font: Font) -> UIFont {
-        let mapping: [Font: UIFont.TextStyle] = [
-            .largeTitle: .largeTitle,
-            .title: .title1,
-            .title2: .title2,
-            .title3: .title3,
-            .headline: .headline,
-            .subheadline: .subheadline,
-            .callout: .callout,
-            .caption: .caption1,
-            .caption2: .caption2,
-            .footnote: .footnote
-        ]
-
-        let style = mapping[font] ?? .body
-        return UIFont.preferredFont(forTextStyle: style)
+        return UIFont.preferredFont(forTextStyle: font.textStyleMapping)
     }
 }
