@@ -22,6 +22,7 @@ import Backpack_Common
 public struct BPKButton: View {
     private let title: String?
     private let icon: Icon?
+    private let leadingImage: Image?
     private let size: BPKButton.Size
     private var style: BPKButton.Style = .primary
     private var matchesParentWidth = false
@@ -30,7 +31,7 @@ public struct BPKButton: View {
 
     @Binding private var loading: Bool
     @Binding private var enabled: Bool
-    
+
     public init(
         icon: BPKIcon,
         accessibilityLabel: String,
@@ -42,12 +43,13 @@ public struct BPKButton: View {
         self.title = nil
         self.accessibilityLabel = accessibilityLabel
         self.icon = Icon(icon: icon, position: .leading)
+        self.leadingImage = nil
         self._loading = loading
         self._enabled = enabled
         self.action = action
         self.size = size
     }
-    
+
     public init(
         _ title: String,
         icon: Icon? = nil,
@@ -59,12 +61,31 @@ public struct BPKButton: View {
         self.title = title
         self.accessibilityLabel = title
         self.icon = icon
+        self.leadingImage = nil
         self._loading = loading
         self._enabled = enabled
         self.action = action
         self.size = size
     }
-    
+
+    public init(
+        _ title: String,
+        image: Image,
+        loading: Binding<Bool> = .constant(false),
+        enabled: Binding<Bool> = .constant(true),
+        size: BPKButton.Size = .default,
+        action: @escaping () -> Void
+    ) {
+        self.title = title
+        self.accessibilityLabel = title
+        self.icon = nil
+        self.leadingImage = image
+        self._loading = loading
+        self._enabled = enabled
+        self.action = action
+        self.size = size
+    }
+
     public var body: some View {
         Button(action: action) {
             ZStack {
@@ -76,8 +97,13 @@ public struct BPKButton: View {
                         colorSetFactory: DefaultButtonColorSetFactory()
                     )
                 )
-                ButtonContentView(title: title, size: size, icon: icon)
-                    .opacity(loading ? 0 : 1)
+                ButtonContentView(
+                    title: title,
+                    size: size,
+                    icon: icon,
+                    leadingImage: leadingImage
+                )
+                .opacity(loading ? 0 : 1)
             }
         }
         .accessibilityLabel(accessibilityLabel)
@@ -85,7 +111,7 @@ public struct BPKButton: View {
         .disabled(!enabled || loading)
         .clipShape(RoundedRectangle(cornerRadius: .sm))
     }
-    
+
     public func buttonStyle(_ style: BPKButton.Style) -> BPKButton {
         var result = self
         result.style = style
@@ -97,7 +123,7 @@ public struct BPKButton: View {
         result.accessibilityLabel = accessibilityLabel
         return result
     }
-    
+
     private var buttonStyle: CurrentStateButtonStyle {
         CurrentStateButtonStyle(
             style: style,
@@ -110,13 +136,13 @@ public struct BPKButton: View {
             )
         )
     }
-    
+
     public func stretchable() -> BPKButton {
         var result = self
         result.matchesParentWidth = true
         return result
     }
-    
+
     private func currentState(isPressed: Bool) -> BPKButton.CurrentState {
         if !enabled { return .disabled }
         if loading { return .loading }
@@ -134,18 +160,18 @@ private struct ButtonLoadingContentView: View {
     let size: BPKButton.Size
     let style: BPKButton.Style
     let colorProvider: ButtonColorProvider
-    
+
     var body: some View {
         if loading {
             BPKSpinner(spinnerSize, color: spinnerColor)
                 .accessibilityHidden(true)
         }
     }
-    
+
     private var spinnerColor: BPKColor {
         colorProvider.color(forStyle: style, currentState: .loading).foreground
     }
-    
+
     private var spinnerSize: BPKSpinner.Size {
         size == .default ? .sm : .lg
     }
@@ -156,7 +182,8 @@ private struct ButtonContentView: View {
     let title: String?
     let size: BPKButton.Size
     let icon: BPKButton.Icon?
-    
+    let leadingImage: Image?
+
     var body: some View {
         if let icon = icon {
             if let title = title, title != "" {
@@ -164,11 +191,17 @@ private struct ButtonContentView: View {
             } else {
                 content(withIcon: icon)
             }
+        } else if let leadingImage = leadingImage {
+            if let title = title, title != "" {
+                content(withLeadingImage: leadingImage, title: title)
+            } else {
+                content(withLeadingImageOnly: leadingImage)
+            }
         } else if let title = title {
             content(withTitle: title)
         }
     }
-    
+
     private func content(withTitle title: String) -> some View {
         Text(title)
             .font(style: .label1)
@@ -177,16 +210,16 @@ private struct ButtonContentView: View {
                 $0.sizeCategory(.large)
             })
     }
-    
+
     private func lineLimit() -> Int? {
         let isDefaultSizeOrSmaller = sizeCategory <= .large
         return isDefaultSizeOrSmaller ? 1 : nil
     }
-    
+
     private var iconSize: BPKIcon.Size {
         size == .large ? .large : .small
     }
-    
+
     private func content(withIcon icon: BPKButton.Icon, title: String) -> some View {
         HStack(spacing: .md) {
             if icon.position == .leading {
@@ -198,9 +231,27 @@ private struct ButtonContentView: View {
             }
         }
     }
-    
+
     private func content(withIcon icon: BPKButton.Icon) -> BPKIconView {
         BPKIconView(icon.icon, size: iconSize)
+    }
+
+    private func content(withLeadingImage image: Image, title: String) -> some View {
+        HStack(spacing: .md) {
+            content(withLeadingImageOnly: image)
+            content(withTitle: title)
+        }
+    }
+
+    private func content(withLeadingImageOnly image: Image) -> some View {
+        image
+            .resizable()
+            .scaledToFit()
+            .frame(width: imageSize, height: imageSize)
+    }
+
+    private var imageSize: CGFloat {
+        size == .large ? 24 : 16
     }
 }
 
@@ -212,6 +263,7 @@ struct BPKButton_Previews: PreviewProvider {
             BPKButton("Label", icon: BPKButton.Icon(icon: .longArrowRight, position: .trailing)) {}
             BPKButton(icon: .longArrowRight, accessibilityLabel: "Continue") {}
             BPKButton("Label", loading: .constant(true)) {}
+            BPKButton("Label", image: Image(systemName: "creditcard")) {}
         }
         .previewLayout(.sizeThatFits)
     }
