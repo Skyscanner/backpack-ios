@@ -158,7 +158,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSNumber *)letterSpacingForStyle:(BPKFontStyle)style {
     {% set letterSpacingOverrides = {
         "BPKFontStyleTextHero5": "config.hero5Config ? config.hero5Config.letterSpacing : -2",
-        "BPKFontStyleTextHero6": "config.hero6Config ? config.hero6Config.letterSpacing : -1",
         "BPKFontStyleTextHeading1": "config.heading1Config ? config.heading1Config.letterSpacing : 0",
         "BPKFontStyleTextHeading2": "config.heading2Config ? config.heading2Config.letterSpacing : 0",
         "BPKFontStyleTextHeading3": "config.heading3Config ? config.heading3Config.letterSpacing : 0",

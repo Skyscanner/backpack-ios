@@ -262,7 +262,7 @@ NS_ASSUME_NONNULL_BEGIN
             return @(config.hero5Config ? config.hero5Config.letterSpacing : -2);
         case BPKFontStyleTextHero6:
             // Corresponding to Letter Spacing VDL2_MD
-            return @(config.hero6Config ? config.hero6Config.letterSpacing : -1);
+            return @(-1.2);
         default:
             return @(0); // No Defined Letter Spacing
     }
