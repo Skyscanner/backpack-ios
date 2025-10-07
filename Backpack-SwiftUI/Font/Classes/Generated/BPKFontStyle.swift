@@ -104,40 +104,40 @@ static let footnote = BPKFontStyle(
 
 /// Represents font size 40 with weight semibold.
 static let heading1 = BPKFontStyle(
-    font: config.heading1Config?.getFont(isFixed: false) ?? .semibold(size: 40, textStyle: .title),
-    fontFixed: config.heading1Config?.getFont(isFixed: true) ?? .semiboldFixed(size: 40),
+    font: config.font(.heading1Config, defaultFont: .semibold(size: 40, textStyle: .title), fixed: false),
+    fontFixed: config.font(.heading1Config, defaultFont: .semiboldFixed(size: 40), fixed: true),
     letterSpacing: config.heading1Config?.letterSpacing ?? 0,
     lineHeight: 48
 )
 
 /// Represents font size 32 with weight semibold.
 static let heading2 = BPKFontStyle(
-    font: config.heading2Config?.getFont(isFixed: false) ?? .semibold(size: 32, textStyle: .title2),
-    fontFixed: config.heading2Config?.getFont(isFixed: true) ?? .semiboldFixed(size: 32),
+    font: config.font(.heading2Config, defaultFont: .semibold(size: 32, textStyle: .title), fixed: false),
+    fontFixed: config.font(.heading2Config, defaultFont: .semiboldFixed(size: 32), fixed: true),
     letterSpacing: config.heading2Config?.letterSpacing ?? 0,
     lineHeight: 40
 )
 
 /// Represents font size 24 with weight semibold.
 static let heading3 = BPKFontStyle(
-    font: config.heading3Config?.getFont(isFixed: false) ?? .semibold(size: 24, textStyle: .title3),
-    fontFixed: config.heading3Config?.getFont(isFixed: true) ?? .semiboldFixed(size: 24),
+    font: config.font(.heading3Config, defaultFont: .semibold(size: 24, textStyle: .title), fixed: false),
+    fontFixed: config.font(.heading3Config, defaultFont: .semiboldFixed(size: 24), fixed: true),
     letterSpacing: config.heading3Config?.letterSpacing ?? 0,
     lineHeight: 28
 )
 
 /// Represents font size 20 with weight semibold.
 static let heading4 = BPKFontStyle(
-    font: config.heading4Config?.getFont(isFixed: false) ?? .semibold(size: 20, textStyle: .title3),
-    fontFixed: config.heading4Config?.getFont(isFixed: true) ?? .semiboldFixed(size: 20),
+    font: config.font(.heading4Config, defaultFont: .semibold(size: 20, textStyle: .title), fixed: false),
+    fontFixed: config.font(.heading4Config, defaultFont: .semiboldFixed(size: 20), fixed: true),
     letterSpacing: config.heading4Config?.letterSpacing ?? 0,
     lineHeight: 24
 )
 
 /// Represents font size 16 with weight semibold.
 static let heading5 = BPKFontStyle(
-    font: config.heading5Config?.getFont(isFixed: false) ?? .semibold(size: 16, textStyle: .title3),
-    fontFixed: config.heading5Config?.getFont(isFixed: true) ?? .semiboldFixed(size: 16),
+    font: config.font(.heading5Config, defaultFont: .semibold(size: 16, textStyle: .title), fixed: false),
+    fontFixed: config.font(.heading5Config, defaultFont: .semiboldFixed(size: 40), fixed: true),
     letterSpacing: config.heading5Config?.letterSpacing ?? 0,
     lineHeight: 20
 )

@@ -39,18 +39,18 @@ public extension BPKFontStyle {
 "heading5": "config.heading5Config?.letterSpacing ?? 0"} -%}
 
 {%- set letterFontOverrides = {
-"heading1": "config.heading1Config?.getFont(isFixed: false) ?? .semibold(size: 40, textStyle: .title)",
-"heading2": "config.heading2Config?.getFont(isFixed: false) ?? .semibold(size: 32, textStyle: .title2)",
-"heading3": "config.heading3Config?.getFont(isFixed: false) ?? .semibold(size: 24, textStyle: .title3)",
-"heading4": "config.heading4Config?.getFont(isFixed: false) ?? .semibold(size: 20, textStyle: .title3)",
-"heading5": "config.heading5Config?.getFont(isFixed: false) ?? .semibold(size: 16, textStyle: .title3)"} -%}
+"heading1": "config.font(.heading1Config, defaultFont: .semibold(size: 40, textStyle: .title), fixed: false)",
+"heading2": "config.font(.heading2Config, defaultFont: .semibold(size: 32, textStyle: .title), fixed: false)",
+"heading3": "config.font(.heading3Config, defaultFont: .semibold(size: 24, textStyle: .title), fixed: false)",
+"heading4": "config.font(.heading4Config, defaultFont: .semibold(size: 20, textStyle: .title), fixed: false)",
+"heading5": "config.font(.heading5Config, defaultFont: .semibold(size: 16, textStyle: .title), fixed: false)"} -%}
 
 {%- set letterFontFixedOverrides = {
-"heading1": "config.heading1Config?.getFont(isFixed: true) ?? .semiboldFixed(size: 40)",
-"heading2": "config.heading2Config?.getFont(isFixed: true) ?? .semiboldFixed(size: 32)",
-"heading3": "config.heading3Config?.getFont(isFixed: true) ?? .semiboldFixed(size: 24)",
-"heading4": "config.heading4Config?.getFont(isFixed: true) ?? .semiboldFixed(size: 20)",
-"heading5": "config.heading5Config?.getFont(isFixed: true) ?? .semiboldFixed(size: 16)"} -%}
+"heading1": "config.font(.heading1Config, defaultFont: .semiboldFixed(size: 40), fixed: true)",
+"heading2": "config.font(.heading2Config, defaultFont: .semiboldFixed(size: 32), fixed: true)",
+"heading3": "config.font(.heading3Config, defaultFont: .semiboldFixed(size: 24), fixed: true)",
+"heading4": "config.font(.heading4Config, defaultFont: .semiboldFixed(size: 20), fixed: true)",
+"heading5": "config.font(.heading5Config, defaultFont: .semiboldFixed(size: 40), fixed: true)"} -%}
 
 {% for f in font %}
 /// Represents font size {{f.size}} with weight {{f.weight}}.
