@@ -31,7 +31,7 @@ public struct BPKFontStyle {
 
 public extension BPKFontStyle {
 {%- set letterSpacingOverrides = {
-"hero5": "config.hero5Config?.letterSpacing ?? 0",
+"hero5": "config.hero5Config?.letterSpacing ?? -2",
 "heading1": "config.heading1Config?.letterSpacing ?? 0",
 "heading2": "config.heading2Config?.letterSpacing ?? 0",
 "heading3": "config.heading3Config?.letterSpacing ?? 0",
@@ -40,17 +40,17 @@ public extension BPKFontStyle {
 
 {%- set letterFontOverrides = {
 "heading1": "config.font(.heading1Config, defaultFont: .semibold(size: 40, textStyle: .title), fixed: false)",
-"heading2": "config.font(.heading2Config, defaultFont: .semibold(size: 32, textStyle: .title), fixed: false)",
-"heading3": "config.font(.heading3Config, defaultFont: .semibold(size: 24, textStyle: .title), fixed: false)",
-"heading4": "config.font(.heading4Config, defaultFont: .semibold(size: 20, textStyle: .title), fixed: false)",
-"heading5": "config.font(.heading5Config, defaultFont: .semibold(size: 16, textStyle: .title), fixed: false)"} -%}
+"heading2": "config.font(.heading2Config, defaultFont: .semibold(size: 32, textStyle: .title2), fixed: false)",
+"heading3": "config.font(.heading3Config, defaultFont: .semibold(size: 24, textStyle: .title3), fixed: false)",
+"heading4": "config.font(.heading4Config, defaultFont: .semibold(size: 20, textStyle: .title3), fixed: false)",
+"heading5": "config.font(.heading5Config, defaultFont: .semibold(size: 16, textStyle: .title3), fixed: false)"} -%}
 
 {%- set letterFontFixedOverrides = {
 "heading1": "config.font(.heading1Config, defaultFont: .semiboldFixed(size: 40), fixed: true)",
 "heading2": "config.font(.heading2Config, defaultFont: .semiboldFixed(size: 32), fixed: true)",
 "heading3": "config.font(.heading3Config, defaultFont: .semiboldFixed(size: 24), fixed: true)",
 "heading4": "config.font(.heading4Config, defaultFont: .semiboldFixed(size: 20), fixed: true)",
-"heading5": "config.font(.heading5Config, defaultFont: .semiboldFixed(size: 40), fixed: true)"} -%}
+"heading5": "config.font(.heading5Config, defaultFont: .semiboldFixed(size: 16), fixed: true)"} -%}
 
 {% for f in font %}
 /// Represents font size {{f.size}} with weight {{f.weight}}.

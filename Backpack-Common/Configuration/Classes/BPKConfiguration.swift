@@ -66,7 +66,7 @@ public final class BpkConfiguration: NSObject {
         set { _chipConfig = newValue }
     }
     
-    @objc private var _typographyConfig: TypographyConfig?
+    private var _typographyConfigSet: Bool = false
     @objc private var _heading1Config: TypographyConfig?
     @objc private var _heading2Config: TypographyConfig?
     @objc private var _heading3Config: TypographyConfig?
@@ -74,9 +74,9 @@ public final class BpkConfiguration: NSObject {
     @objc private var _heading5Config: TypographyConfig?
     @objc private var _hero5Config: TypographyConfig?
     
-    public var typographyConfig: TypographyConfig? {
-        get { getConfig { self._typographyConfig } }
-        set { _typographyConfig = newValue }
+    public var typographyConfigSet: Bool {
+        get { getConfig { self._typographyConfigSet } }
+        set { _typographyConfigSet = newValue }
     }
     
     public var hero5Config: TypographyConfig? {
@@ -127,6 +127,9 @@ public final class BpkConfiguration: NSObject {
     
     private func setTypographyExperiment(typographyConfig: Bool) {
         if typographyConfig {
+            
+            self.typographyConfigSet = true
+            
             self.hero5Config = TypographyConfig(
                 font: .toUIFont(
                     font: .black(size: 48, textStyle: .largeTitle)
@@ -228,6 +231,14 @@ public final class BpkConfiguration: NSObject {
 
 extension BpkConfiguration {
     public func reset() {
+        
+        var typographyConfigs = [heading1Config, heading2Config, heading3Config, heading4Config, heading5Config, hero5Config]
+        
+        for config in typographyConfigs.indices {
+            typographyConfigs[config] = nil
+        }
+        
+        typographyConfigSet = false
         chipConfig = nil
         hasSet = false
         configIsAccessed = false
