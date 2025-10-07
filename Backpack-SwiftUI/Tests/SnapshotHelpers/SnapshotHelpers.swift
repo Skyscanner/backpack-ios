@@ -21,6 +21,7 @@ import SwiftUI
 import XCTest
 import SnapshotTesting
 import Backpack_SwiftUI
+import Backpack_Common
 
 /// Create snapshots of a SwiftUI view using several pre-defined options.
 /// This will create as many png snapshots as modes are defined.
