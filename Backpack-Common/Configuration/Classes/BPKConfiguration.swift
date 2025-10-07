@@ -187,22 +187,27 @@ public final class BpkConfiguration: NSObject {
     }
     
     public func font(_ token: TypographyTokenConfig?, defaultFont: Font, fixed: Bool) -> Font {
-        switch token {
-        case .heading1Config:
-            return fixed ? .blackFixed(size: 40) : .black(size: 40, textStyle: .title2)
-        case .heading2Config:
-            return fixed ? .blackFixed(size: 32) : .black(size: 32, textStyle: .title2)
-        case .heading3Config:
-            return fixed ? .blackFixed(size: 24) : .black(size: 24, textStyle: .title3)
-        case .heading4Config:
-            return fixed ? .blackFixed(size: 20) : .black(size: 20, textStyle: .title3)
-        case .heading5Config:
-            return fixed ? .blackFixed(size: 16) : .black(size: 16, textStyle: .title3)
-        case .hero5Config:
-            return fixed ? .blackFixed(size: 48) : .black(size: 48, textStyle: .largeTitle)
-        case .none:
-            return defaultFont
+        
+        if typographyConfigSet {
+            switch token {
+            case .heading1Config:
+                return fixed ? .blackFixed(size: 40) : .black(size: 40, textStyle: .title2)
+            case .heading2Config:
+                return fixed ? .blackFixed(size: 32) : .black(size: 32, textStyle: .title2)
+            case .heading3Config:
+                return fixed ? .blackFixed(size: 24) : .black(size: 24, textStyle: .title3)
+            case .heading4Config:
+                return fixed ? .blackFixed(size: 20) : .black(size: 20, textStyle: .title3)
+            case .heading5Config:
+                return fixed ? .blackFixed(size: 16) : .black(size: 16, textStyle: .title3)
+            case .hero5Config:
+                return fixed ? .blackFixed(size: 48) : .black(size: 48, textStyle: .largeTitle)
+            case .none:
+                return defaultFont
+            }
         }
+        
+        return defaultFont
     }
     
     public func set(
