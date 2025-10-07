@@ -183,6 +183,25 @@ public final class BpkConfiguration: NSObject {
         }
     }
     
+    public func font(_ token: TypographyTokenConfig?, defaultFont: Font, fixed: Bool) -> Font {
+        switch token {
+        case .heading1Config:
+            return fixed ? .blackFixed(size: 40) : .black(size: 40, textStyle: .title2)
+        case .heading2Config:
+            return fixed ? .blackFixed(size: 32) : .black(size: 32, textStyle: .title2)
+        case .heading3Config:
+            return fixed ? .blackFixed(size: 24) : .black(size: 24, textStyle: .title3)
+        case .heading4Config:
+            return fixed ? .blackFixed(size: 20) : .black(size: 20, textStyle: .title3)
+        case .heading5Config:
+            return fixed ? .blackFixed(size: 16) : .black(size: 16, textStyle: .title3)
+        case .hero5Config:
+            return fixed ? .blackFixed(size: 48) : .black(size: 48, textStyle: .largeTitle)
+        case .none:
+            return defaultFont
+        }
+    }
+    
     public func set(
         chipConfig: Bool = false,
         typographyConfig: Bool = false
@@ -216,6 +235,15 @@ extension BpkConfiguration {
     }
 }
 
+public enum TypographyTokenConfig {
+    case heading1Config
+    case heading2Config
+    case heading3Config
+    case heading4Config
+    case heading5Config
+    case hero5Config
+}
+
 @objcMembers
 public class TypographyConfig: NSObject {
     public var font: UIFont?
@@ -233,17 +261,6 @@ public class TypographyConfig: NSObject {
         self.fontFixed = fontFixed
         self.letterSpacing = letterSpacing
         self.size = size
-    }
-    
-    public func getFont(isFixed: Bool) -> Font? {
-        if let font = self.font, isFixed, let fontFixed = self.fontFixed {
-            if isFixed {
-                return Font(fontFixed)
-            } else {
-                return Font(font)
-            }
-        }
-        return nil
     }
 }
 

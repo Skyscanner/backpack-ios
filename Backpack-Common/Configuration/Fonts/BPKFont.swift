@@ -39,10 +39,14 @@ extension Font {
         textStyle: TextStyle,
         fontProvider: (String, CGFloat, TextStyle) -> Font = Font.custom(_:size:relativeTo:)
     ) -> Font {
-        
+
         guard let name else {
             if weight == .semibold {
                 return fontProvider("HelveticaNeue-Medium", size, textStyle)
+            }
+            
+            if weight == .black {
+                return fontProvider("HelveticaNeue-Bold", size, textStyle)
             }
             
             return fontProvider("HelveticaNeue", size, textStyle)
