@@ -60,7 +60,7 @@ public extension UIView {
     /// Creates a SwiftUI BPKCard wrapped in a UIHostingController and returns both the view and its ViewModel
     /// This method is valid to use however be cautious with some usage in UIKit
     /// Current known issue in StackViews with a horizontal setting, more issues could occur.
-    static func bpkCardSwiftUIWrapperBaker<Content: View>(
+    static func bpkCardSwiftUIWrapperMaker<Content: View>(
         padding: BPKCard<Content>.Padding = .small,
         cornerStyle: BPKCard<Content>.CornerStyle = .small,
         elevation: BPKCardElevation = .default,
