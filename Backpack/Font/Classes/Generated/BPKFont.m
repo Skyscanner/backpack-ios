@@ -139,6 +139,18 @@ NS_ASSUME_NONNULL_BEGIN
            case BPKFontStyleTextCaption:
              return [fontManager regularFontWithSize:12 textStyle:UIFontTextStyleCaption1];
              
+           case BPKFontStyleTextDisplay7:
+             return [fontManager heavyFontWithSize:32 textStyle:UIFontTextStyleLargeTitle];
+             
+           case BPKFontStyleTextEditorial4:
+             return [fontManager regularFontWithSize:16 textStyle:UIFontTextStyleBody];
+             
+           case BPKFontStyleTextEditorial5:
+             return [fontManager regularFontWithSize:14 textStyle:UIFontTextStyleBody];
+             
+           case BPKFontStyleTextEditorial6:
+             return [fontManager regularFontWithSize:12 textStyle:UIFontTextStyleBody];
+             
            case BPKFontStyleTextFootnote:
              return [fontManager regularFontWithSize:14 textStyle:UIFontTextStyleFootnote];
              
@@ -172,6 +184,9 @@ NS_ASSUME_NONNULL_BEGIN
            case BPKFontStyleTextHero5:
              return [fontManager heavyFontWithSize:48 textStyle:UIFontTextStyleLargeTitle];
              
+           case BPKFontStyleTextHero6:
+             return [fontManager heavyFontWithSize:40 textStyle:UIFontTextStyleLargeTitle];
+             
            case BPKFontStyleTextLabel1:
              return [fontManager semiboldFontWithSize:16 textStyle:UIFontTextStyleBody];
              
@@ -197,6 +212,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSNumber *)letterSpacingForStyle:(BPKFontStyle)style {
     switch (style) {
+        case BPKFontStyleTextDisplay7: 
+            // Corresponding to Letter Spacing VDL2_SM
+            return @(-1.6);
+        case BPKFontStyleTextHeading1: 
+            // Corresponding to Letter Spacing XS
+            return @(0);
+        case BPKFontStyleTextHeading2: 
+            // Corresponding to Letter Spacing XS
+            return @(0);
+        case BPKFontStyleTextHeading3: 
+            // Corresponding to Letter Spacing XS
+            return @(0);
+        case BPKFontStyleTextHeading4: 
+            // Corresponding to Letter Spacing XS
+            return @(0);
+        case BPKFontStyleTextHeading5: 
+            // Corresponding to Letter Spacing XS
+            return @(0);
         case BPKFontStyleTextHero1: 
             // Corresponding to Letter Spacing TIGHT
             return @(-2);
@@ -212,6 +245,9 @@ NS_ASSUME_NONNULL_BEGIN
         case BPKFontStyleTextHero5: 
             // Corresponding to Letter Spacing TIGHT
             return @(-2);
+        case BPKFontStyleTextHero6: 
+            // Corresponding to Letter Spacing VDL2_MD
+            return @(-1.2);
         
         default:
             return @(0); // No Defined Letter Spacing
@@ -230,6 +266,18 @@ NS_ASSUME_NONNULL_BEGIN
             // Corresponding to Line Height LG
             return 28;
         case BPKFontStyleTextCaption: 
+            // Corresponding to Line Height XS
+            return 16;
+        case BPKFontStyleTextDisplay7: 
+            // Corresponding to Line Height LG
+            return 28;
+        case BPKFontStyleTextEditorial4: 
+            // Corresponding to Line Height XS
+            return 16;
+        case BPKFontStyleTextEditorial5: 
+            // Corresponding to Line Height XS
+            return 16;
+        case BPKFontStyleTextEditorial6: 
             // Corresponding to Line Height XS
             return 16;
         case BPKFontStyleTextFootnote: 
@@ -263,6 +311,9 @@ NS_ASSUME_NONNULL_BEGIN
             // Corresponding to Line Height 5XL
             return 72;
         case BPKFontStyleTextHero5: 
+            // Corresponding to Line Height XXXXL
+            return 56;
+        case BPKFontStyleTextHero6: 
             // Corresponding to Line Height XXXXL
             return 56;
         case BPKFontStyleTextLabel1: 

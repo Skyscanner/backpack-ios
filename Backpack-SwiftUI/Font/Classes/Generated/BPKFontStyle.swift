@@ -60,6 +60,38 @@ public extension BPKFontStyle {
         lineHeight: 16
     )
 
+    /// Represents font size 32 with weight black.
+    static let display7 = BPKFontStyle(
+        font: .black(size: 32, textStyle: .largeTitle),
+        fontFixed: .blackFixed(size: 32),
+        letterSpacing: -1.6,
+        lineHeight: 28
+    )
+
+    /// Represents font size 16 with weight regular.
+    static let editorial4 = BPKFontStyle(
+        font: .regular(size: 16, textStyle: .body),
+        fontFixed: .regularFixed(size: 16),
+        letterSpacing: 0,
+        lineHeight: 16
+    )
+
+    /// Represents font size 14 with weight regular.
+    static let editorial5 = BPKFontStyle(
+        font: .regular(size: 14, textStyle: .body),
+        fontFixed: .regularFixed(size: 14),
+        letterSpacing: 0,
+        lineHeight: 16
+    )
+
+    /// Represents font size 12 with weight regular.
+    static let editorial6 = BPKFontStyle(
+        font: .regular(size: 12, textStyle: .body),
+        fontFixed: .regularFixed(size: 12),
+        letterSpacing: 0,
+        lineHeight: 16
+    )
+
     /// Represents font size 14 with weight regular.
     static let footnote = BPKFontStyle(
         font: .regular(size: 14, textStyle: .footnote),
@@ -145,6 +177,14 @@ public extension BPKFontStyle {
         font: .black(size: 48, textStyle: .largeTitle),
         fontFixed: .blackFixed(size: 48),
         letterSpacing: -2,
+        lineHeight: 56
+    )
+
+    /// Represents font size 40 with weight black.
+    static let hero6 = BPKFontStyle(
+        font: .black(size: 40, textStyle: .largeTitle),
+        fontFixed: .blackFixed(size: 40),
+        letterSpacing: -1.2,
         lineHeight: 56
     )
 
