@@ -22,7 +22,7 @@
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@babel/preset-env": "^7.15.6",
-    "@skyscanner/bpk-foundations-ios": "^22.3.0",
+    "@skyscanner/bpk-foundations-ios": "^22.4.0",
     "@skyscanner/bpk-svgs": "^20.8.0",
     "@babel/eslint-parser": "^7.22.9",
     "danger": "^13.0.4",
