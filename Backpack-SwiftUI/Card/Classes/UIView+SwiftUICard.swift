@@ -39,7 +39,7 @@ public final class BPKCardSwiftUIViewModel<Content: View>: ObservableObject {
     }
 }
 
-public struct BPKCardReactiveSwiftUIWrapper<Content: View>: View {
+public struct BPKCardSwiftUIWrapper<Content: View>: View {
     @ObservedObject var viewModel: BPKCardSwiftUIViewModel<Content>
     @ViewBuilder var contentView: () -> Content
 
@@ -60,7 +60,7 @@ public extension UIView {
     /// Creates a SwiftUI BPKCard wrapped in a UIHostingController and returns both the view and its ViewModel
     /// This method is valid to use however be cautious with some usage in UIKit
     /// Current known issue in StackViews with a horizontal setting, more issues could occur.
-    static func makeReactiveSwiftUIBPKCard<Content: View>(
+    static func bpkCardSwiftUIWrapperBaker<Content: View>(
         padding: BPKCard<Content>.Padding = .small,
         cornerStyle: BPKCard<Content>.CornerStyle = .small,
         elevation: BPKCardElevation = .default,
@@ -74,7 +74,7 @@ public extension UIView {
             tapAction: tapAction
         )
 
-        let wrapperView = BPKCardReactiveSwiftUIWrapper(
+        let wrapperView = BPKCardSwiftUIWrapper(
             viewModel: viewModel,
             contentView: content
         )
