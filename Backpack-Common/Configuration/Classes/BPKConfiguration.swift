@@ -20,11 +20,12 @@ import SwiftUI
 import Foundation
 // swiftlint:disable line_length
 
-public final class BpkConfiguration {
+@objcMembers
+public final class BpkConfiguration: NSObject {
     /// Shared singleton instance
     public static let shared = BpkConfiguration()
     
-    private init() {}
+    private override init() {}
     
     /// Checking for previous config setting
     private var hasSet = false
@@ -47,13 +48,6 @@ public final class BpkConfiguration {
     /// Component configurations
     public struct BpkButtonConfig {}
     
-    public struct BpkTextConfig {
-        public var font: Font?
-        public var fontFixed: Font?
-        public var letterSpacing: CGFloat?
-        public var size: CGFloat?
-    }
-    
     public struct BpkCardConfig {}
     
     public struct BpkChipConfig {
@@ -72,6 +66,49 @@ public final class BpkConfiguration {
         set { _chipConfig = newValue }
     }
     
+    private var _typographyConfigSet: Bool = false
+    @objc private var _heading1Config: TypographyConfig?
+    @objc private var _heading2Config: TypographyConfig?
+    @objc private var _heading3Config: TypographyConfig?
+    @objc private var _heading4Config: TypographyConfig?
+    @objc private var _heading5Config: TypographyConfig?
+    @objc private var _hero5Config: TypographyConfig?
+    
+    public var typographyConfigSet: Bool {
+        get { getConfig { self._typographyConfigSet } }
+        set { _typographyConfigSet = newValue }
+    }
+    
+    public var hero5Config: TypographyConfig? {
+        get { getConfig { self._hero5Config } }
+        set { _hero5Config = newValue }
+    }
+    
+    public var heading1Config: TypographyConfig? {
+        get { getConfig { self._heading1Config } }
+        set { _heading1Config = newValue }
+    }
+    
+    public var heading2Config: TypographyConfig? {
+        get { getConfig { self._heading2Config } }
+        set { _heading2Config = newValue }
+    }
+    
+    public var heading3Config: TypographyConfig? {
+        get { getConfig { self._heading3Config } }
+        set { _heading3Config = newValue }
+    }
+    
+    public var heading4Config: TypographyConfig? {
+        get { getConfig { self._heading4Config } }
+        set { _heading4Config = newValue }
+    }
+    
+    public var heading5Config: TypographyConfig? {
+        get { getConfig { self._heading5Config } }
+        set { _heading5Config = newValue }
+    }
+    
     private func getConfig<T>(getter: () -> T) -> T {
         emitSignalIfNeeded()
         return configurationAccessQueue.sync {
@@ -88,8 +125,94 @@ public final class BpkConfiguration {
         }
     }
     
+    private func setTypographyExperiment(typographyConfig: Bool) {
+        if typographyConfig {
+            
+            self.typographyConfigSet = true
+            
+            self.hero5Config = TypographyConfig(
+                font: .toUIFont(
+                    font: .black(size: 48, textStyle: .largeTitle)
+                ),
+                fontFixed: .toUIFont(
+                    font: .blackFixed(size: 48)),
+                letterSpacing: -1.2
+            )
+            
+            self.heading1Config = TypographyConfig(
+                font: .toUIFont(
+                    font: .black(size: 40, textStyle: .title2)
+                ),
+                fontFixed: .toUIFont(
+                    font: .blackFixed(size: 40)),
+                letterSpacing: -1.2
+            )
+            
+            self.heading2Config = TypographyConfig(
+                font: .toUIFont(
+                    font: .black(size: 32, textStyle: .title2)
+                ),
+                fontFixed: .toUIFont(
+                    font: .blackFixed(size: 32)),
+                letterSpacing: -1
+            )
+            
+            self.heading3Config = TypographyConfig(
+                font: .toUIFont(
+                    font: .black(size: 24, textStyle: .title3)
+                ),
+                fontFixed: .toUIFont(
+                    font: .blackFixed(size: 24)),
+                letterSpacing: -0.6
+            )
+            
+            self.heading4Config = TypographyConfig(
+                font: .toUIFont(
+                    font: .black(size: 20, textStyle: .title3)
+                ),
+                fontFixed: .toUIFont(
+                    font: .blackFixed(size: 20)),
+                letterSpacing: -0.6
+            )
+            
+            self.heading5Config = TypographyConfig(
+                font: .toUIFont(
+                    font: .black(size: 16, textStyle: .title3)
+                ),
+                fontFixed: .toUIFont(
+                    font: .blackFixed(size: 16)),
+                letterSpacing: -0.6
+            )
+        }
+    }
+    
+    public func font(_ token: TypographyTokenConfig?, defaultFont: Font, fixed: Bool) -> Font {
+        
+        if typographyConfigSet {
+            switch token {
+            case .heading1Config:
+                return fixed ? .blackFixed(size: 40) : .black(size: 40, textStyle: .title2)
+            case .heading2Config:
+                return fixed ? .blackFixed(size: 32) : .black(size: 32, textStyle: .title2)
+            case .heading3Config:
+                return fixed ? .blackFixed(size: 24) : .black(size: 24, textStyle: .title3)
+            case .heading4Config:
+                return fixed ? .blackFixed(size: 20) : .black(size: 20, textStyle: .title3)
+            case .heading5Config:
+                return fixed ? .blackFixed(size: 16) : .black(size: 16, textStyle: .title3)
+            case .hero5Config:
+                return fixed ? .blackFixed(size: 48) : .black(size: 48, textStyle: .largeTitle)
+            case .none:
+                return defaultFont
+            }
+        }
+        
+        return defaultFont
+    }
+    
     public func set(
-        chipConfig: Bool = false
+        chipConfig: Bool = false,
+        typographyConfig: Bool = false
     ) throws {
         guard !hasSet else {
             throw ConfigurationError.configAlreadySet
@@ -106,14 +229,88 @@ public final class BpkConfiguration {
                 radiusToken: .roundCorners
             )
         }
+        
+        setTypographyExperiment(typographyConfig: typographyConfig)
     }
 }
 
 extension BpkConfiguration {
     public func reset() {
+        
+        var typographyConfigs = [heading1Config, heading2Config, heading3Config, heading4Config, heading5Config, hero5Config]
+        
+        for config in typographyConfigs.indices {
+            typographyConfigs[config] = nil
+        }
+        
+        typographyConfigSet = false
         chipConfig = nil
         hasSet = false
         configIsAccessed = false
         onConfigurationAccessed = nil
+    }
+}
+
+public enum TypographyTokenConfig {
+    case heading1Config
+    case heading2Config
+    case heading3Config
+    case heading4Config
+    case heading5Config
+    case hero5Config
+}
+
+@objcMembers
+public class TypographyConfig: NSObject {
+    public var font: UIFont?
+    public var fontFixed: UIFont?
+    public var letterSpacing: CGFloat = 0
+    public var size: CGFloat = 0
+    
+    init(
+        font: UIFont? = nil,
+        fontFixed: UIFont? = nil,
+        letterSpacing: CGFloat = 0,
+        size: CGFloat = 0
+    ) {
+        self.font = font
+        self.fontFixed = fontFixed
+        self.letterSpacing = letterSpacing
+        self.size = size
+    }
+}
+
+extension Font {
+    var textStyleMapping: UIFont.TextStyle {
+        switch self {
+        case Font.largeTitle:
+            .largeTitle
+        case Font.title:
+            .title1
+        case Font.title2:
+            .title2
+        case Font.title3:
+            .title3
+        case Font.headline:
+            .headline
+        case Font.subheadline:
+            .subheadline
+        case Font.callout:
+            .callout
+        case Font.caption:
+            .caption1
+        case Font.caption2:
+            .caption2
+        case Font.footnote:
+            .footnote
+        default:
+            .body
+        }
+    }
+}
+
+extension UIFont {
+    class func toUIFont(font: Font) -> UIFont {
+        return UIFont.preferredFont(forTextStyle: font.textStyleMapping)
     }
 }

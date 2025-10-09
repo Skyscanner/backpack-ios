@@ -17,6 +17,7 @@
  */
 
 import SwiftUI
+import Backpack_Common
 
 struct NavigationTabStyle: ButtonStyle {
     let style: BPKNavigationTabGroup.Style
