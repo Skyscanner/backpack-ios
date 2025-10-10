@@ -94,7 +94,7 @@ struct ComponentCellsProvider {
             switches(),
             tabBarControllers(),
             tappableContainer(),
-            tappableLinkLabels(),
+            links(),
             textArea(),
             textField(),
             textViews(),
@@ -547,11 +547,23 @@ extension ComponentCellsProvider {
         )
     }
     
-    private func tappableLinkLabels() -> CellDataSource {
-        PresentableCellDataSource(
-            title: "Tappable link labels",
-            storyboard: .named("TappableLinkLabels", on: "TappableLinkLabelsViewController"),
-            showPresentable: show(presentable:)
+    private func links() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Links",
+            tabs: [
+                .uikit(
+                    presentable: loadStoryboard(
+                        name: "TappableLinkLabels",
+                        identifier: "TappableLinkLabelsViewController"
+                    )
+                ),
+                .swiftui(
+                    presentable: CustomPresentable(generateViewController: {
+                        ContentUIHostingController(LinkExampleView())
+                    })
+                )
+            ],
+            showChildren: { showComponent(title: "Links", tabs: $0) }
         )
     }
     private func textArea() -> CellDataSource {
