@@ -70,13 +70,9 @@ public struct BPKLink: View {
     }
 
     public var body: some View {
-        Text(styled)
-            .font(style: .bodyDefault)
-            .if(!BPKFont.enableDynamicType, transform: {
-                $0.sizeCategory(.large)
-            })
+        BPKText(styled, style: .bodyDefault, preservesForegroundColors: true)
+            .lineLimit(nil)
             .environment(\.openURL, openURLAction)
-            .accessibilityHint("Double tap to activate link")
     }
 
     private var openURLAction: OpenURLAction {

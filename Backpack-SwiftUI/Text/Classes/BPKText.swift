@@ -31,17 +31,21 @@ public struct BPKText: View {
     private var textColor = Color(BPKColor.textPrimaryColor)
     private var lineLimit: Int? = 1
     private var strikethrough: Bool = false
+    private var overridesTextColor = true
     
     public init(_ text: String, style: BPKFontStyle = .bodyDefault) {
         self.text = Text(LocalizedStringKey(text))
         self.style = style
+        self.overridesTextColor = true
     }
     
     public var body: some View {
         text
             .strikethrough(strikethrough)
             .font(style: style)
-            .foregroundColor(textColor)
+            .if(overridesTextColor, transform: {
+                $0.foregroundColor(textColor)
+            })
             .lineLimit(lineLimit)
             .if(!BPKFont.enableDynamicType, transform: {
                 $0.sizeCategory(.large)
@@ -57,6 +61,7 @@ public struct BPKText: View {
     public func foregroundColor(_ color: BPKColor) -> BPKText {
         var view = self
         view.textColor = Color(color)
+        view.overridesTextColor = true
         return view
     }
     
@@ -85,6 +90,19 @@ public extension BPKText {
     init(_ text: Text, style: BPKFontStyle = .bodyDefault) {
         self.text = text
         self.style = style
+        self.overridesTextColor = true
+    }
+
+    init(
+        _ attributedString: AttributedString,
+        style: BPKFontStyle = .bodyDefault,
+        preservesForegroundColors: Bool = true
+    ) {
+        self.text = Text(attributedString)
+        self.style = style
+        if preservesForegroundColors {
+            self.overridesTextColor = false
+        }
     }
 }
 
