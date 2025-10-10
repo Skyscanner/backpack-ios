@@ -22,7 +22,7 @@ public struct BPKFont {
     public static var fontDefinition: BPKFontDefinitionProtocol?
     public static var enableDynamicType: Bool = false
     
-    public static func setFontDefinition(_ fontDefinition: BPKFontDefinitionProtocol) {
+    public static func setSwiftFontDefinition(_ fontDefinition: BPKFontDefinitionProtocol) {
         BPKFont.fontDefinition = fontDefinition
     }
     
