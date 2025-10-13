@@ -77,6 +77,7 @@ let package = Package(
         "ImageGalleryPreview/Classes",
         "ImageGallerySlideshow/Classes",
         "InsetBanner/Classes",
+        "Link/Classes",
         "MapMarker/Classes",
         "NavigationBar/Classes",
         "NavigationTab/Classes",
