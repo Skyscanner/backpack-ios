@@ -277,9 +277,14 @@ extension Font {
 
     static func blackUIFont(size: CGFloat, style: TextStyle) -> UIFont {
         let face = BPKFont.fontDefinition?.blackFontFace as String?
-        return toUIFont(font: .black(size: size, textStyle: style),
-                        face: face,
-                        size: size,
-                        weight: .black)
+        return toUIFont(
+            font: .black(
+                size: size,
+                textStyle: style
+            ),
+            face: face,
+            size: size,
+            weight: .black
+        )
     }
 }
