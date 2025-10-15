@@ -218,13 +218,11 @@ public final class BpkConfiguration: NSObject {
 
 extension BpkConfiguration {
     public func reset() {
-        
-        var typographyConfigs = [heading1Config, heading2Config, heading3Config, heading4Config, heading5Config, hero5Config]
-        
-        for config in typographyConfigs.indices {
-            typographyConfigs[config] = nil
-        }
-        
+        heading1Config = nil
+        heading2Config = nil
+        heading3Config = nil
+        heading4Config = nil
+        heading5Config = nil
         typographyConfigSet = false
         chipConfig = nil
         hasSet = false
