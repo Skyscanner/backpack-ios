@@ -131,56 +131,38 @@ public final class BpkConfiguration: NSObject {
             self.typographyConfigSet = true
             
             self.hero5Config = TypographyConfig(
-                font: .toUIFont(
-                    font: .black(size: 48, textStyle: .largeTitle)
-                ),
-                fontFixed: .toUIFont(
-                    font: .blackFixed(size: 48)),
+                font: Font.blackUIFont(size: 48, style: .title2),
+                fontFixed: Font.blackUIFont(size: 48, style: .title2),
                 letterSpacing: -1.2
             )
             
             self.heading1Config = TypographyConfig(
-                font: .toUIFont(
-                    font: .black(size: 40, textStyle: .title2)
-                ),
-                fontFixed: .toUIFont(
-                    font: .blackFixed(size: 40)),
+                font: Font.blackUIFont(size: 40, style: .title2),
+                fontFixed: Font.blackUIFont(size: 40, style: .title2),
                 letterSpacing: -1.2
             )
             
             self.heading2Config = TypographyConfig(
-                font: .toUIFont(
-                    font: .black(size: 32, textStyle: .title2)
-                ),
-                fontFixed: .toUIFont(
-                    font: .blackFixed(size: 32)),
+                font: Font.blackUIFont(size: 32, style: .title2),
+                fontFixed: Font.blackUIFont(size: 32, style: .title2),
                 letterSpacing: -1
             )
             
             self.heading3Config = TypographyConfig(
-                font: .toUIFont(
-                    font: .black(size: 24, textStyle: .title3)
-                ),
-                fontFixed: .toUIFont(
-                    font: .blackFixed(size: 24)),
+                font: Font.blackUIFont(size: 24, style: .title3),
+                fontFixed: Font.blackUIFont(size: 24, style: .title3),
                 letterSpacing: -0.6
             )
             
             self.heading4Config = TypographyConfig(
-                font: .toUIFont(
-                    font: .black(size: 20, textStyle: .title3)
-                ),
-                fontFixed: .toUIFont(
-                    font: .blackFixed(size: 20)),
+                font: Font.blackUIFont(size: 20, style: .title3),
+                fontFixed: Font.blackUIFont(size: 48, style: .title3),
                 letterSpacing: -0.6
             )
             
             self.heading5Config = TypographyConfig(
-                font: .toUIFont(
-                    font: .black(size: 16, textStyle: .title3)
-                ),
-                fontFixed: .toUIFont(
-                    font: .blackFixed(size: 16)),
+                font: Font.blackUIFont(size: 16, style: .title2),
+                fontFixed: Font.blackUIFont(size: 16, style: .title2),
                 letterSpacing: -0.6
             )
         }
@@ -281,36 +263,25 @@ public class TypographyConfig: NSObject {
 }
 
 extension Font {
-    var textStyleMapping: UIFont.TextStyle {
-        switch self {
-        case Font.largeTitle:
-            .largeTitle
-        case Font.title:
-            .title1
-        case Font.title2:
-            .title2
-        case Font.title3:
-            .title3
-        case Font.headline:
-            .headline
-        case Font.subheadline:
-            .subheadline
-        case Font.callout:
-            .callout
-        case Font.caption:
-            .caption1
-        case Font.caption2:
-            .caption2
-        case Font.footnote:
-            .footnote
-        default:
-            .body
+    
+    static func toUIFont(
+        font: Font,
+        face: String? = nil,
+        size: CGFloat,
+        weight: UIFont.Weight
+    ) -> UIFont {
+        if let face = face, let custom = UIFont(name: face, size: size) {
+            return custom
+        } else {
+            return UIFont.systemFont(ofSize: size, weight: weight)
         }
     }
-}
 
-extension UIFont {
-    class func toUIFont(font: Font) -> UIFont {
-        return UIFont.preferredFont(forTextStyle: font.textStyleMapping)
+    static func blackUIFont(size: CGFloat, style: TextStyle) -> UIFont {
+        let face = BPKFont.fontDefinition?.blackFontFace as String?
+        return toUIFont(font: .black(size: size, textStyle: style),
+                        face: face,
+                        size: size,
+                        weight: .black)
     }
 }
