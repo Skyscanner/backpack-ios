@@ -61,6 +61,7 @@ struct SponsoredInsetBannerExampleView: View {
                 accessibilityHint: "Double tap for more information"),
             variant: .onDark,
             backgroundColor: orangeColor,
+            image: Image("carousel_placeholder_1"),
         )
     }
     

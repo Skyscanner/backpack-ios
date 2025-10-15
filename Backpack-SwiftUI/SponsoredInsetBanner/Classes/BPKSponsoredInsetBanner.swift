@@ -27,6 +27,7 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
     private let variant: Variant
     private let backgroundColor: Color
     private let customAccessibilityLabel: String?
+    private let image: Image?
     
     public init(
         logoContent: LogoContent? = nil,
@@ -35,7 +36,8 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
         callToAction: CallToAction? = nil,
         variant: Variant,
         backgroundColor: Color,
-        customAccessibilityLabel: String? = nil
+        customAccessibilityLabel: String? = nil,
+        image: Image? = nil
     ) {
         self.logo = logoContent
         self.title = title
@@ -44,6 +46,7 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
         self.variant = variant
         self.backgroundColor = backgroundColor
         self.customAccessibilityLabel = customAccessibilityLabel
+        self.image = image
     }
     
     public init(
@@ -52,7 +55,8 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
         callToAction: CallToAction? = nil,
         variant: Variant,
         backgroundColor: Color,
-        customAccessibilityLabel: String? = nil
+        customAccessibilityLabel: String? = nil,
+        image: Image? = nil
     ) {
         self.logo = logoContent
         self.title = nil
@@ -61,6 +65,7 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
         self.variant = variant
         self.backgroundColor = backgroundColor
         self.customAccessibilityLabel = customAccessibilityLabel
+        self.image = image
     }
     
     public init(
@@ -68,7 +73,8 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
         callToAction: CallToAction? = nil,
         variant: Variant,
         backgroundColor: Color,
-        customAccessibilityLabel: String? = nil
+        customAccessibilityLabel: String? = nil,
+        image: Image? = nil
     ) {
         self.logo = logoContent
         self.title = nil
@@ -77,6 +83,7 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
         self.variant = variant
         self.backgroundColor = backgroundColor
         self.customAccessibilityLabel = customAccessibilityLabel
+        self.image = image
     }
     
     public var body: some View {
@@ -84,6 +91,13 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
             topView
                 .background(backgroundColor)
                 .zIndex(1)
+            if let image = image {
+                image
+                    .resizable()
+                    .scaledToFill()
+                    .frame(height: 120)
+                    .clipped()
+            }
         }
         .background(
             RoundedRectangle(cornerRadius: .sm, style: .continuous)
@@ -167,6 +181,7 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
 private enum Constants {
     static let maxLogoWidth: CGFloat = 88.0
     static let maxLogoHeight: CGFloat = 22.0
+    static let maxImageHeight: CGFloat = 120.0
 }
 
 struct BPKSponsoredInsetBanner_Previews: PreviewProvider {
