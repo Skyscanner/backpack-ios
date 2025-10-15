@@ -20,69 +20,113 @@
 import SwiftUI
 import Combine
 
-public final class BPKCardSwiftUIViewModel<Content: View>: ObservableObject {
-
-    public let elevation: BPKCardElevation
-    public let padding: BPKCard<Content>.Padding
-    public let cornerStyle: BPKCard<Content>.CornerStyle
-    public var tapAction: () -> Void = {}
-
-    public init(padding: BPKCard<Content>.Padding = .small,
-                cornerStyle: BPKCard<Content>.CornerStyle = .small,
-                elevation: BPKCardElevation = .default,
-                tapAction: @escaping () -> Void = {}) {
-
-        self.cornerStyle = cornerStyle
-        self.elevation = elevation
-        self.padding = padding
-        self.tapAction = tapAction
-    }
+public enum CornerStyle {
+    case large, small
 }
 
-public struct BPKCardSwiftUIWrapper<Content: View>: View {
-    @ObservedObject var viewModel: BPKCardSwiftUIViewModel<Content>
-    @ViewBuilder var contentView: () -> Content
+public enum Padding {
+    case none, small
+}
+
+public struct BPKCardSwiftUIWrapper: View {
+    let contentView: UIView
+
+    let elevation: BPKCardElevation
+    let padding: Padding
+    let cornerStyle: CornerStyle
+    let tapAction: () -> Void
 
     public var body: some View {
         BPKCard(
-            padding: viewModel.padding,
-            cornerStyle: viewModel.cornerStyle,
-            elevation: viewModel.elevation
+            padding: padding == .small ? .small : .none,
+            cornerStyle: cornerStyle == .small ? .small : .large,
+            elevation: elevation
         ) {
-            contentView()
+          HostedView(view: contentView)
         }
-        .onTapGesture(perform: viewModel.tapAction)
+        .onTapGesture(perform: tapAction)
     }
 }
 
-public extension UIView {
+private struct HostedView: UIViewRepresentable {
+    let view: UIView
 
-    /// Creates a SwiftUI BPKCard wrapped in a UIHostingController and returns both the view and its ViewModel
-    /// This method is valid to use however be cautious with some usage in UIKit
-    /// Current known issue in StackViews with a horizontal setting, more issues could occur.
-    static func bpkCardSwiftUIWrapperMaker<Content: View>(
-        padding: BPKCard<Content>.Padding = .small,
-        cornerStyle: BPKCard<Content>.CornerStyle = .small,
-        elevation: BPKCardElevation = .default,
-        @ViewBuilder content: @escaping () -> Content,
-        tapAction: @escaping () -> Void = {}
-    ) -> (UIView, BPKCardSwiftUIViewModel<Content>) {
-        let viewModel = BPKCardSwiftUIViewModel<Content>(
-            padding: padding,
-            cornerStyle: cornerStyle,
-            elevation: elevation,
-            tapAction: tapAction
+    func makeUIView(context: Context) -> HostedUIViewContainer {
+        let container = HostedUIViewContainer()
+        container.host(view)
+        return container
+    }
+
+    func updateUIView(_ uiView: HostedUIViewContainer, context: Context) {
+        uiView.host(view)
+    }
+}
+
+private final class HostedUIViewContainer: UIView {
+    private weak var hostedView: UIView?
+    private var hostedConstraints: [NSLayoutConstraint] = []
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configureView()
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        configureView()
+    }
+
+    func host(_ view: UIView) {
+        guard hostedView !== view else {
+            hostedView?.setNeedsLayout()
+            hostedView?.layoutIfNeeded()
+            invalidateIntrinsicContentSize()
+            return
+        }
+
+        hostedView?.removeFromSuperview()
+        NSLayoutConstraint.deactivate(hostedConstraints)
+        hostedConstraints.removeAll()
+
+        hostedView = view
+        view.removeFromSuperview()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+
+        hostedConstraints = [
+            view.topAnchor.constraint(equalTo: topAnchor),
+            view.leadingAnchor.constraint(equalTo: leadingAnchor),
+            view.trailingAnchor.constraint(equalTo: trailingAnchor),
+            view.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ]
+
+        NSLayoutConstraint.activate(hostedConstraints)
+
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
+        invalidateIntrinsicContentSize()
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        hostedView?.layoutIfNeeded()
+    }
+
+    override var intrinsicContentSize: CGSize {
+        guard let hostedView else {
+            return .zero
+        }
+
+        return hostedView.systemLayoutSizeFitting(
+            UIView.layoutFittingCompressedSize,
+            withHorizontalFittingPriority: .fittingSizeLevel,
+            verticalFittingPriority: .fittingSizeLevel
         )
+    }
 
-        let wrapperView = BPKCardSwiftUIWrapper(
-            viewModel: viewModel,
-            contentView: content
-        )
-
-        let hostingController = UIHostingController(rootView: wrapperView)
-        hostingController.view.backgroundColor = UIColor.clear
-        hostingController.view.translatesAutoresizingMaskIntoConstraints = false
-
-        return (hostingController.view, viewModel)
+    private func configureView() {
+        backgroundColor = .clear
+        setContentHuggingPriority(.required, for: .vertical)
+        setContentCompressionResistancePriority(.required, for: .vertical)
     }
 }
