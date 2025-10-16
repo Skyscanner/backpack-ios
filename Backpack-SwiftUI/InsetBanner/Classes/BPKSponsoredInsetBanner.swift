@@ -112,7 +112,9 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
                 titlesView
                 Spacer()
                 VStack {
-                    buttonContent
+                    Button(action: callToAction.onClick) {
+                        buttonContent
+                    }
                     Spacer()
                 }
             }
@@ -135,14 +137,12 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
     }
     
     private var buttonContent: some View {
-        Button(action: callToAction.onClick) {
-            HStack {
-                BPKText(callToAction.text, style: .caption)
-                    .foregroundColor(variant.color)
-                    .lineLimit(nil)
-                if callToAction.showIcon {
-                    iconView
-                }
+        HStack {
+            BPKText(callToAction.text, style: .caption)
+                .foregroundColor(variant.color)
+                .lineLimit(nil)
+            if callToAction.showIcon {
+                iconView
             }
         }
     }
