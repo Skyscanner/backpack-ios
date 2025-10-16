@@ -35,11 +35,13 @@ extension BPKSponsoredInsetBanner {
         public let text: String
         public let accessibilityHint: String
         public let showIcon: Bool
+        public let onClick: () -> Void
         
         public init(text: String, accessibilityHint: String, showIcon: Bool = true) {
             self.text = text
             self.accessibilityHint = accessibilityHint
             self.showIcon = showIcon
+            self.onClick = {}
         }
     }
 }

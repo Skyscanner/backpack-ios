@@ -91,13 +91,6 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
             topView
                 .background(backgroundColor)
                 .zIndex(1)
-            if let image = image {
-                image
-                    .resizable()
-                    .scaledToFill()
-                    .frame(height: 120)
-                    .clipped()
-            }
         }
         .background(
             RoundedRectangle(cornerRadius: .sm, style: .continuous)
@@ -114,14 +107,23 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
     }
     
     private var topView: some View {
-        HStack() {
+        VStack() {
             buttonContent
+            .accessibilityElement(children: .combine)
+            .buttonStyle(SponsoredInsetBannerButtonStyle(
+                foregroundColor: (variant == .onDark) ?
+                    Color(BPKColor.textOnDarkColor) :
+                    Color(BPKColor.textOnLightColor),
+                backgroundColor: backgroundColor
+            ))
+            if let image = image {
+                image
+                    .resizable()
+                    .scaledToFill()
+                    .frame(height: 120)
+                    .clipped()
+            }
         }
-        .accessibilityElement(children: .combine)
-        .buttonStyle(SponsoredInsetBannerButtonStyle(
-            foregroundColor: (variant == .onDark) ? Color(BPKColor.textOnDarkColor) : Color(BPKColor.textOnLightColor),
-            backgroundColor: backgroundColor
-        ))
     }
     
     private var buttonContent: some View {
@@ -129,12 +131,14 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
             titlesView
             Spacer()
             VStack {
-                HStack {
-                    BPKText(callToAction.text, style: .caption)
-                        .foregroundColor(variant.color)
-                        .lineLimit(nil)
-                    if callToAction.showIcon {
-                        iconView
+                Button(action: callToAction.onClick) {
+                    HStack {
+                        BPKText(callToAction.text, style: .caption)
+                            .foregroundColor(variant.color)
+                            .lineLimit(nil)
+                        if callToAction.showIcon {
+                            iconView
+                        }
                     }
                 }
                 Spacer()
