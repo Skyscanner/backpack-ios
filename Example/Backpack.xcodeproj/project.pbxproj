@@ -500,16 +500,9 @@
 			isa = PBXGroup;
 			children = (
 				0245783D2ABC3AA1006008D1 /* InsetBannerExampleView.swift */,
-			);
-			path = InsetBanner;
-			sourceTree = "<group>";
-		};
-		0245783H2ABC3A8F006008D1 /* SponsoredInsetBanner */ = {
-			isa = PBXGroup;
-			children = (
 				0245783G2ABC3AA1006008D1 /* SponsoredInsetBannerExampleView.swift */,
 			);
-			path = SponsoredInsetBanner;
+			path = InsetBanner;
 			sourceTree = "<group>";
 		};
 		0E844AF5289141AA004C5865 /* Skeleton */ = {
@@ -1064,7 +1057,6 @@
 				53C661E929EA0DAA00BF1A62 /* Flare */,
 				53C6620029EA0DAB00BF1A62 /* Icons */,
 				0245783C2ABC3A8F006008D1 /* InsetBanner */,
-				0245783H2ABC3A8F006008D1 /* SponsoredInsetBanner */,
 				53C661EF29EA0DAA00BF1A62 /* Nudger */,
 				53C661F129EA0DAA00BF1A62 /* Overlay */,
 				53C661F729EA0DAA00BF1A62 /* PageIndicator */,
