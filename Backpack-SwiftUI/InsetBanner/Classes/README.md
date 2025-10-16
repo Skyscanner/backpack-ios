@@ -69,3 +69,24 @@ BPKInsetBanner(
     backgroundColor: Color(red: 1.000, green: 0.400, blue: 0.004, opacity: 1.000)
 )
 ```
+
+
+# Sponsored Inset Banner
+
+## Usage
+
+All text fields in `BPKSponsoredInsetBanner` are optional. It requires having a logo and the sponsored + info icon section. The background colour is customizable, while the text and info icon's colour rely on the `variant`.
+
+```
+BPKSponsoredInsetBanner(
+    logoContent: Image("skyland").resizable().scaledToFit(),
+    title: "On Light variant",
+    subheadline: "Subheadline",
+    callToAction: .init(
+        text: "Sponsored",
+        accessibilityHint: "Double tap for more information"
+    ),
+    variant: .onLight,
+    backgroundColor: yellowColor)
+    image: Image("carousel_placeholder_1"),
+```
