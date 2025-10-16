@@ -108,7 +108,15 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
     
     private var topView: some View {
         VStack() {
-            buttonContent
+            HStack(spacing: .md) {
+                titlesView
+                Spacer()
+                VStack {
+                    buttonContent
+                    Spacer()
+                }
+            }
+            .padding(.base)
             .accessibilityElement(children: .combine)
             .buttonStyle(SponsoredInsetBannerButtonStyle(
                 foregroundColor: (variant == .onDark) ?
@@ -127,24 +135,16 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
     }
     
     private var buttonContent: some View {
-        HStack(spacing: .md) {
-            titlesView
-            Spacer()
-            VStack {
-                Button(action: callToAction.onClick) {
-                    HStack {
-                        BPKText(callToAction.text, style: .caption)
-                            .foregroundColor(variant.color)
-                            .lineLimit(nil)
-                        if callToAction.showIcon {
-                            iconView
-                        }
-                    }
+        Button(action: callToAction.onClick) {
+            HStack {
+                BPKText(callToAction.text, style: .caption)
+                    .foregroundColor(variant.color)
+                    .lineLimit(nil)
+                if callToAction.showIcon {
+                    iconView
                 }
-                Spacer()
             }
         }
-        .padding(.base)
     }
     
     private var titlesView: some View {
