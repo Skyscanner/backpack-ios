@@ -20,20 +20,20 @@
 import SwiftUI
 
 public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
-    private let logo: LogoContent?
+    private let logo: LogoContent
     private let title: String?
     private let subheadline: String?
-    private let callToAction: CallToAction?
+    private let callToAction: CallToAction
     private let variant: Variant
     private let backgroundColor: Color
     private let customAccessibilityLabel: String?
     private let image: Image?
     
     public init(
-        logoContent: LogoContent? = nil,
-        title: String,
+        logoContent: LogoContent,
+        title: String? = nil,
         subheadline: String? = nil,
-        callToAction: CallToAction? = nil,
+        callToAction: CallToAction,
         variant: Variant,
         backgroundColor: Color,
         customAccessibilityLabel: String? = nil,
@@ -50,9 +50,9 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
     }
     
     public init(
-        logoContent: LogoContent? = nil,
-        subheadline: String,
-        callToAction: CallToAction? = nil,
+        logoContent: LogoContent,
+        subheadline: String? = nil,
+        callToAction: CallToAction,
         variant: Variant,
         backgroundColor: Color,
         customAccessibilityLabel: String? = nil,
@@ -70,7 +70,7 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
     
     public init(
         logoContent: LogoContent,
-        callToAction: CallToAction? = nil,
+        callToAction: CallToAction,
         variant: Variant,
         backgroundColor: Color,
         customAccessibilityLabel: String? = nil,
@@ -128,32 +128,26 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
         HStack(spacing: .md) {
             titlesView
             Spacer()
-            if let callToAction = callToAction {
-                VStack {
-                    HStack {
-                        BPKText(callToAction.text, style: .caption)
-                            .foregroundColor(variant.color)
-                            .lineLimit(nil)
-                        if callToAction.showIcon {
-                            iconView
-                        }
+            VStack {
+                HStack {
+                    BPKText(callToAction.text, style: .caption)
+                        .foregroundColor(variant.color)
+                        .lineLimit(nil)
+                    if callToAction.showIcon {
+                        iconView
                     }
-                    Spacer()
                 }
-                
+                Spacer()
             }
-            
         }
         .padding(.base)
     }
     
     private var titlesView: some View {
         VStack(alignment: .leading, spacing: .sm) {
-            if let logo = logo {
-                logo
-                    .frame(maxWidth: Constants.maxLogoWidth, maxHeight: Constants.maxLogoHeight)
-                    .fixedSize(horizontal: true, vertical: false)
-            }
+            logo
+                .frame(maxWidth: Constants.maxLogoWidth, maxHeight: Constants.maxLogoHeight)
+                .fixedSize(horizontal: true, vertical: false)
             if let title = title {
                 BPKText(title, style: .label2)
                     .foregroundColor(variant.color)
@@ -170,11 +164,8 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
     private var iconView: some View {
         BPKIconView(.informationCircle)
             .foregroundColor(variant.color)
-            .if(callToAction?.accessibilityHint != nil) { icon in
-                icon
-                    .accessibilityElement()
-                    .accessibilityHint(callToAction?.accessibilityHint ?? "")
-            }
+            .accessibilityElement()
+            .accessibilityHint(callToAction.accessibilityHint)
     }
 }
 
@@ -186,7 +177,8 @@ private enum Constants {
 
 struct BPKSponsoredInsetBanner_Previews: PreviewProvider {
     static var previews: some View {
-        BPKSponsoredInsetBanner<EmptyView>(
+        BPKSponsoredInsetBanner(
+            logoContent: Image("skyland").resizable().scaledToFit(),
             title: "Title",
             subheadline: "Subheading",
             callToAction: .init(

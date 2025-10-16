@@ -37,16 +37,26 @@ struct SponsoredInsetBannerExampleView: View {
     }
     
     private var titleOnlyView: some View {
-        BPKSponsoredInsetBanner<EmptyView>(
+        BPKSponsoredInsetBanner(
+            logoContent: Image("skyland").resizable().scaledToFit(),
             title: "Title",
+            callToAction: .init(
+                text: "Sponsored",
+                accessibilityHint: "Double tap for more information"
+            ),
             variant: .onDark,
             backgroundColor: orangeColor)
     }
     
     private var allTitlesView: some View {
-        BPKSponsoredInsetBanner<EmptyView>(
+        BPKSponsoredInsetBanner(
+            logoContent: Image("skyland").resizable().scaledToFit(),
             title: "Title",
             subheadline: "Subheadline",
+            callToAction: .init(
+                text: "Sponsored",
+                accessibilityHint: "Double tap for more information"
+            ),
             variant: .onDark,
             backgroundColor: orangeColor)
     }
@@ -58,7 +68,8 @@ struct SponsoredInsetBannerExampleView: View {
             subheadline: "Subheading",
             callToAction: .init(
                 text: "Sponsored",
-                accessibilityHint: "Double tap for more information"),
+                accessibilityHint: "Double tap for more information"
+            ),
             variant: .onDark,
             backgroundColor: orangeColor,
             image: Image("carousel_placeholder_1"),
@@ -66,15 +77,21 @@ struct SponsoredInsetBannerExampleView: View {
     }
     
     private var onLightView: some View {
-        BPKSponsoredInsetBanner<EmptyView>(
+        BPKSponsoredInsetBanner(
+            logoContent: Image("skyland").resizable().scaledToFit(),
             title: "On Light variant",
             subheadline: "Subheadline",
+            callToAction: .init(
+                text: "Sponsored",
+                accessibilityHint: "Double tap for more information"
+            ),
             variant: .onLight,
             backgroundColor: yellowColor)
     }
     
     private var sponsoredWithoutCTAOnLightView: some View {
-        BPKSponsoredInsetBanner<EmptyView>(
+        BPKSponsoredInsetBanner(
+            logoContent: Image("skyland").resizable().scaledToFit(),
             title: "On Light Variant",
             subheadline: "Without info icon",
             callToAction: .init(
