@@ -26,7 +26,9 @@ struct SponsoredInsetBannerExampleView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: .base) {
+                noTitleView
                 titleOnlyView
+                subheadlineOnlyView
                 allTitlesView
                 onLightView
                 sponsoredWithoutCTAOnLightView
@@ -36,10 +38,33 @@ struct SponsoredInsetBannerExampleView: View {
         }
     }
     
+    private var noTitleView: some View {
+        BPKSponsoredInsetBanner(
+            logoContent: Image("skyland").resizable().scaledToFit(),
+            callToAction: .init(
+                text: "Sponsored",
+                accessibilityHint: "Double tap for more information"
+            ),
+            variant: .onDark,
+            backgroundColor: orangeColor)
+    }
+    
     private var titleOnlyView: some View {
         BPKSponsoredInsetBanner(
             logoContent: Image("skyland").resizable().scaledToFit(),
             title: "Title",
+            callToAction: .init(
+                text: "Sponsored",
+                accessibilityHint: "Double tap for more information"
+            ),
+            variant: .onDark,
+            backgroundColor: orangeColor)
+    }
+    
+    private var subheadlineOnlyView: some View {
+        BPKSponsoredInsetBanner(
+            logoContent: Image("skyland").resizable().scaledToFit(),
+            subheadline: "Subheadline",
             callToAction: .init(
                 text: "Sponsored",
                 accessibilityHint: "Double tap for more information"
