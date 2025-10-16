@@ -141,9 +141,7 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
             BPKText(callToAction.text, style: .caption)
                 .foregroundColor(variant.color)
                 .lineLimit(nil)
-            if callToAction.showIcon {
-                iconView
-            }
+            iconView
         }
     }
     
@@ -187,8 +185,8 @@ struct BPKSponsoredInsetBanner_Previews: PreviewProvider {
             subheadline: "Subheading",
             callToAction: .init(
                 text: "Sponsored",
-                accessibilityHint: "Double tap for more information",
-                showIcon: true),
+                accessibilityHint: "Double tap for more information"
+            ),
             variant: .onDark,
             backgroundColor: Color(red: 1.000, green: 0.400, blue: 0.004, opacity: 1.000))
         .padding(.base)

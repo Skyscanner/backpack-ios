@@ -121,8 +121,8 @@ struct SponsoredInsetBannerExampleView: View {
             subheadline: "Without info icon",
             callToAction: .init(
                 text: "Sponsored",
-                accessibilityHint: "Double tap for more information",
-                showIcon: false),
+                accessibilityHint: "Double tap for more information"
+            ),
             variant: .onLight,
             backgroundColor: yellowColor)
     }

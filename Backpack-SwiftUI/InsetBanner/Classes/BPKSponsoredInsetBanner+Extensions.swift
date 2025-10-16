@@ -34,13 +34,11 @@ extension BPKSponsoredInsetBanner {
     public struct CallToAction {
         public let text: String
         public let accessibilityHint: String
-        public let showIcon: Bool
         public let onClick: () -> Void
         
-        public init(text: String, accessibilityHint: String, showIcon: Bool = true) {
+        public init(text: String, accessibilityHint: String) {
             self.text = text
             self.accessibilityHint = accessibilityHint
-            self.showIcon = showIcon
             self.onClick = {}
         }
     }
