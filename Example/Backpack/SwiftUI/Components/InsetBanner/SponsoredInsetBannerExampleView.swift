@@ -43,7 +43,8 @@ struct SponsoredInsetBannerExampleView: View {
             logoContent: Image("skyland").resizable().scaledToFit(),
             callToAction: .init(
                 text: "Sponsored",
-                accessibilityHint: "Double tap for more information"
+                accessibilityHint: "Double tap for more information",
+                onClick: {}
             ),
             variant: .onDark,
             backgroundColor: orangeColor)
@@ -55,7 +56,8 @@ struct SponsoredInsetBannerExampleView: View {
             title: "Title",
             callToAction: .init(
                 text: "Sponsored",
-                accessibilityHint: "Double tap for more information"
+                accessibilityHint: "Double tap for more information",
+                onClick: {}
             ),
             variant: .onDark,
             backgroundColor: orangeColor)
@@ -67,7 +69,8 @@ struct SponsoredInsetBannerExampleView: View {
             subheadline: "Subheadline",
             callToAction: .init(
                 text: "Sponsored",
-                accessibilityHint: "Double tap for more information"
+                accessibilityHint: "Double tap for more information",
+                onClick: {}
             ),
             variant: .onDark,
             backgroundColor: orangeColor)
@@ -80,7 +83,8 @@ struct SponsoredInsetBannerExampleView: View {
             subheadline: "Subheadline",
             callToAction: .init(
                 text: "Sponsored",
-                accessibilityHint: "Double tap for more information"
+                accessibilityHint: "Double tap for more information",
+                onClick: {}
             ),
             variant: .onDark,
             backgroundColor: orangeColor)
@@ -93,7 +97,8 @@ struct SponsoredInsetBannerExampleView: View {
             subheadline: "Subheading",
             callToAction: .init(
                 text: "Sponsored",
-                accessibilityHint: "Double tap for more information"
+                accessibilityHint: "Double tap for more information",
+                onClick: {}
             ),
             variant: .onDark,
             backgroundColor: orangeColor,
@@ -108,7 +113,8 @@ struct SponsoredInsetBannerExampleView: View {
             subheadline: "Subheadline",
             callToAction: .init(
                 text: "Sponsored",
-                accessibilityHint: "Double tap for more information"
+                accessibilityHint: "Double tap for more information",
+                onClick: {}
             ),
             variant: .onLight,
             backgroundColor: yellowColor)
@@ -121,7 +127,8 @@ struct SponsoredInsetBannerExampleView: View {
             subheadline: "Without info icon",
             callToAction: .init(
                 text: "Sponsored",
-                accessibilityHint: "Double tap for more information"
+                accessibilityHint: "Double tap for more information",
+                onClick: {}
             ),
             variant: .onLight,
             backgroundColor: yellowColor)

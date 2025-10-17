@@ -28,6 +28,11 @@ class BPKSponsoredInsetBannerViewTests: XCTestCase {
         assertSnapshot(
             BPKSponsoredInsetBanner(
                 logoContent: Image("skyland", bundle: TestsBundle.bundle).resizable().scaledToFit(),
+                callToAction: .init(
+                    text: "Sponsored",
+                    accessibilityHint: "Double tap for more information",
+                    onClick: {}
+                ),
                 variant: .onDark,
                 backgroundColor: orangeColor)
             .frame(width: 375)
@@ -41,6 +46,11 @@ class BPKSponsoredInsetBannerViewTests: XCTestCase {
                 logoContent: Image("skyland", bundle: TestsBundle.bundle).resizable().scaledToFit(),
                 title: "Title",
                 subheadline: "Subheadline",
+                callToAction: .init(
+                    text: "Sponsored",
+                    accessibilityHint: "Double tap for more information",
+                    onClick: {}
+                ),
                 variant: .onDark,
                 backgroundColor: orangeColor)
             .frame(width: 375)
@@ -56,7 +66,9 @@ class BPKSponsoredInsetBannerViewTests: XCTestCase {
                 subheadline: "Subheadline",
                 callToAction: .init(
                     text: "Sponsored",
-                    accessibilityHint: "Double tap for more information"),
+                    accessibilityHint: "Double tap for more information",
+                    onClick: {}
+                ),
                 variant: .onDark,
                 backgroundColor: orangeColor)
             .frame(width: 375)
@@ -70,6 +82,11 @@ class BPKSponsoredInsetBannerViewTests: XCTestCase {
                 logoContent: Image("skyland", bundle: TestsBundle.bundle).resizable().scaledToFit(),
                 title: "On Light variant",
                 subheadline: "Subheadline",
+                callToAction: .init(
+                    text: "Sponsored",
+                    accessibilityHint: "Double tap for more information",
+                    onClick: {}
+                ),
                 variant: .onLight,
                 backgroundColor: yellowColor)
             .frame(width: 375)
@@ -80,11 +97,12 @@ class BPKSponsoredInsetBannerViewTests: XCTestCase {
     func testSponsoredInsetBannerOnLightWithImage() {
         assertSnapshot(
             BPKSponsoredInsetBanner(
-                logoContent: Image("skyland", bundle: TestsBundle.bundle).resizable().scaledToFit(), 
+                logoContent: Image("skyland", bundle: TestsBundle.bundle).resizable().scaledToFit(),
                 subheadline: "Subheadline only",
                 callToAction: .init(
                     text: "Sponsored",
                     accessibilityHint: "Double tap for more information",
+                    onClick: {}
                 ),
                 variant: .onLight,
                 backgroundColor: orangeColor,
@@ -94,8 +112,7 @@ class BPKSponsoredInsetBannerViewTests: XCTestCase {
             .padding()
         )
     }
-    
-    
+
     func testSponsoredInsetBannerWithImageTitlesAndCallToAction() {
         assertSnapshot(
             BPKSponsoredInsetBanner(
@@ -104,24 +121,25 @@ class BPKSponsoredInsetBannerViewTests: XCTestCase {
                 subheadline: "Subheading",
                 callToAction: .init(
                     text: "Sponsored",
-                    accessibilityHint: "Inset Banner"),
+                    accessibilityHint: "Double tap for more information",
+                    onClick: {}
+                ),
                 variant: .onDark,
                 backgroundColor: orangeColor)
             .frame(width: 375)
             .padding()
         )
     }
-    
 
-    
-    func testSponsoredInsetBannerOnDarkWithSubheadlineOnly() {
+    func testSponsoredInsetBannerOnDarkNoTitle() {
         assertSnapshot(
             BPKSponsoredInsetBanner(
-                logoContent: Image("skyland", bundle: TestsBundle.bundle).resizable().scaledToFit(), 
+                logoContent: Image("skyland", bundle: TestsBundle.bundle).resizable().scaledToFit(),
                 subheadline: "Subheadline only",
                 callToAction: .init(
                     text: "Sponsored",
                     accessibilityHint: "Double tap for more information",
+                    onClick: {}
                 ),
                 variant: .onDark,
                 backgroundColor: orangeColor)
@@ -133,11 +151,12 @@ class BPKSponsoredInsetBannerViewTests: XCTestCase {
     func testSponsoredInsetBannerOnDarkWithSubheadlineOnlyAndImage() {
         assertSnapshot(
             BPKSponsoredInsetBanner(
-                logoContent: Image("skyland", bundle: TestsBundle.bundle).resizable().scaledToFit(), 
+                logoContent: Image("skyland", bundle: TestsBundle.bundle).resizable().scaledToFit(),
                 subheadline: "Subheadline only",
                 callToAction: .init(
                     text: "Sponsored",
                     accessibilityHint: "Double tap for more information",
+                    onClick: {}
                 ),
                 variant: .onDark,
                 backgroundColor: orangeColor,
@@ -155,6 +174,7 @@ class BPKSponsoredInsetBannerViewTests: XCTestCase {
                 callToAction: .init(
                     text: "Sponsored",
                     accessibilityHint: "Double tap for more information",
+                    onClick: {}
                 ),
                 variant: .onDark,
                 backgroundColor: orangeColor)
@@ -175,6 +195,11 @@ class BPKSponsoredInsetBannerViewTests: XCTestCase {
                 subheadline: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
                 "Sed sit amet sagittis tellus, quis pharetra massa." +
                 " Nunc nec nisl condimentum, efficitur sem vitae, facilisis erat. ",
+                callToAction: .init(
+                    text: "Sponsored",
+                    accessibilityHint: "Double tap for more information",
+                    onClick: {}
+                ),
                 variant: .onDark,
                 backgroundColor: orangeColor)
             .frame(width: 375)

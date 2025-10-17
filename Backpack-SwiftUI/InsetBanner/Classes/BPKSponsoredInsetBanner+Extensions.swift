@@ -36,10 +36,10 @@ extension BPKSponsoredInsetBanner {
         public let accessibilityHint: String
         public let onClick: () -> Void
         
-        public init(text: String, accessibilityHint: String) {
+        public init(text: String, accessibilityHint: String, onClick: @escaping () -> Void) {
             self.text = text
             self.accessibilityHint = accessibilityHint
-            self.onClick = {}
+            self.onClick = onClick
         }
     }
 }

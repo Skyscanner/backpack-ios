@@ -185,7 +185,8 @@ struct BPKSponsoredInsetBanner_Previews: PreviewProvider {
             subheadline: "Subheading",
             callToAction: .init(
                 text: "Sponsored",
-                accessibilityHint: "Double tap for more information"
+                accessibilityHint: "Double tap for more information",
+                onClick: {}
             ),
             variant: .onDark,
             backgroundColor: Color(red: 1.000, green: 0.400, blue: 0.004, opacity: 1.000))
