@@ -106,7 +106,7 @@ class BPKSponsoredInsetBannerViewTests: XCTestCase {
                 ),
                 variant: .onLight,
                 backgroundColor: orangeColor,
-                image: Image("carousel_placeholder_1")
+                image: Image("dialog_image", bundle: TestsBundle.bundle),
             )
             .frame(width: 375)
             .padding()
@@ -160,7 +160,7 @@ class BPKSponsoredInsetBannerViewTests: XCTestCase {
                 ),
                 variant: .onDark,
                 backgroundColor: orangeColor,
-                image: Image("carousel_placeholder_1")
+                image: Image("dialog_image", bundle: TestsBundle.bundle),
             )
             .frame(width: 375)
             .padding()
