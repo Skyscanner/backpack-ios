@@ -94,7 +94,12 @@ BPKSponsoredInsetBanner(
         accessibilityHint: "Double tap for more information"
     ),
     variant: .onLight,
+<<<<<<< HEAD
     backgroundColor: yellowColor
     image: Image("carousel_placeholder_1"),
+=======
+    backgroundColor: yellowColor,
+    image: Image("carousel_placeholder_1")
+>>>>>>> 1bd6e9613174d8946cc93f19d8414699382aeb05
 )
 ```
