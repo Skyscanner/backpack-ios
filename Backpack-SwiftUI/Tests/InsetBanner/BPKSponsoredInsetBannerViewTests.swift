@@ -106,7 +106,7 @@ class BPKSponsoredInsetBannerViewTests: XCTestCase {
                 ),
                 variant: .onLight,
                 backgroundColor: orangeColor,
-                image: Image("dialog_image", bundle: TestsBundle.bundle),
+                image: Image("dialog_image"),
             )
             .frame(width: 375)
             .padding()
