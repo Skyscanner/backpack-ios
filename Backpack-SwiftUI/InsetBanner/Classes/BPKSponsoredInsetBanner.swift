@@ -33,7 +33,7 @@ public struct BPKSponsoredInsetBanner<LogoContent: View, ImageContent: View>: Vi
     /// Initialize a BPKSponsoredInsetBanner with all optional content
     ///
     /// - Parameters:
-    ///   - logo: The logo content to display (required)
+    ///   - logo: The logo content to display (mandatory)
     ///   - sponsoredLabel: The sponsored label text (required)
     ///   - onSponsoredLabelTapped: Action to perform when tapping the sponsored label
     ///   - sponsoredAccessibilityHint: Optional accessibility hint for the sponsored label
