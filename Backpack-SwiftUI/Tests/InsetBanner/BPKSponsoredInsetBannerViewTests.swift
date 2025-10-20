@@ -27,7 +27,8 @@ class BPKSponsoredInsetBannerViewTests: XCTestCase {
             BPKSponsoredInsetBanner(
                 logo: Image("skyland", bundle: TestsBundle.bundle).resizable().scaledToFit(),
                 sponsoredLabel: "Sponsored",
-                onSponsoredLabelTapped: {}
+                onSponsoredLabelTapped: {},
+                sponsoredAccessibilityHint: "Double tap for more information"
             )
             .frame(width: 375)
             .padding()
@@ -40,6 +41,7 @@ class BPKSponsoredInsetBannerViewTests: XCTestCase {
                 logo: Image("skyland", bundle: TestsBundle.bundle).resizable().scaledToFit(),
                 sponsoredLabel: "Sponsored",
                 onSponsoredLabelTapped: {},
+                sponsoredAccessibilityHint: "Double tap for more information",
                 title: "Amazing offer just for you"
             )
             .frame(width: 375)
@@ -53,6 +55,7 @@ class BPKSponsoredInsetBannerViewTests: XCTestCase {
                 logo: Image("skyland", bundle: TestsBundle.bundle).resizable().scaledToFit(),
                 sponsoredLabel: "Sponsored",
                 onSponsoredLabelTapped: {},
+                sponsoredAccessibilityHint: "Double tap for more information",
                 title: "Amazing offer just for you",
                 subheadline: "Limited time only - book now"
             )
@@ -67,6 +70,7 @@ class BPKSponsoredInsetBannerViewTests: XCTestCase {
                 logo: Image("skyland", bundle: TestsBundle.bundle).resizable().scaledToFit(),
                 sponsoredLabel: "Sponsored",
                 onSponsoredLabelTapped: {},
+                sponsoredAccessibilityHint: "Double tap for more information",
                 title: "Amazing offer",
                 subheadline: "Limited time only",
                 image: Image("carousel_0", bundle: TestsBundle.bundle).resizable().scaledToFit()
@@ -82,6 +86,7 @@ class BPKSponsoredInsetBannerViewTests: XCTestCase {
                 logo: Image("skyland", bundle: TestsBundle.bundle).resizable().scaledToFit(),
                 sponsoredLabel: "Sponsored",
                 onSponsoredLabelTapped: {},
+                sponsoredAccessibilityHint: "Double tap for more information",
                 image: Image("carousel_0", bundle: TestsBundle.bundle).resizable().scaledToFit()
             )
             .frame(width: 375)
@@ -95,6 +100,7 @@ class BPKSponsoredInsetBannerViewTests: XCTestCase {
                 logo: Image("skyland", bundle: TestsBundle.bundle).resizable().scaledToFit(),
                 sponsoredLabel: "Sponsored",
                 onSponsoredLabelTapped: {},
+                sponsoredAccessibilityHint: "Double tap for more information",
                 title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
                 "Sed sit amet sagittis tellus, quis pharetra massa.",
                 subheadline: "Nunc nec nisl condimentum, efficitur sem vitae, facilisis erat. " +
@@ -111,6 +117,7 @@ class BPKSponsoredInsetBannerViewTests: XCTestCase {
                 logo: Image("skyland", bundle: TestsBundle.bundle).resizable().scaledToFit(),
                 sponsoredLabel: "Sponsored",
                 onSponsoredLabelTapped: {},
+                sponsoredAccessibilityHint: "Double tap for more information",
                 subheadline: "Book now and save up to 40%"
             )
             .frame(width: 375)
@@ -124,6 +131,7 @@ class BPKSponsoredInsetBannerViewTests: XCTestCase {
                 logo: Image("skyland", bundle: TestsBundle.bundle).resizable().scaledToFit(),
                 sponsoredLabel: "Sponsored",
                 onSponsoredLabelTapped: {},
+                sponsoredAccessibilityHint: "Double tap for more information",
                 title: "Amazing offer",
                 subheadline: "Limited time only"
             )

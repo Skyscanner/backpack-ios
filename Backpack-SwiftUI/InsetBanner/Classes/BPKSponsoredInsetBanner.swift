@@ -24,6 +24,7 @@ import SwiftUI
 public struct BPKSponsoredInsetBanner<LogoContent: View, ImageContent: View>: View {
     private let logo: LogoContent
     private let sponsoredLabel: String
+    private let sponsoredAccessibilityHint: String?
     private let onSponsoredLabelTapped: () -> Void
     private let title: String?
     private let subheadline: String?
@@ -35,6 +36,7 @@ public struct BPKSponsoredInsetBanner<LogoContent: View, ImageContent: View>: Vi
     ///   - logo: The logo content to display (required)
     ///   - sponsoredLabel: The sponsored label text (required)
     ///   - onSponsoredLabelTapped: Action to perform when tapping the sponsored label
+    ///   - sponsoredAccessibilityHint: Optional accessibility hint for the sponsored label
     ///   - title: Optional title text
     ///   - subheadline: Optional subheadline text
     ///   - image: Optional image content
@@ -42,12 +44,14 @@ public struct BPKSponsoredInsetBanner<LogoContent: View, ImageContent: View>: Vi
         logo: LogoContent,
         sponsoredLabel: String,
         onSponsoredLabelTapped: @escaping () -> Void,
+        sponsoredAccessibilityHint: String? = nil,
         title: String? = nil,
         subheadline: String? = nil,
         image: ImageContent? = nil
     ) {
         self.logo = logo
         self.sponsoredLabel = sponsoredLabel
+        self.sponsoredAccessibilityHint = sponsoredAccessibilityHint
         self.onSponsoredLabelTapped = onSponsoredLabelTapped
         self.title = title
         self.subheadline = subheadline
@@ -108,8 +112,13 @@ public struct BPKSponsoredInsetBanner<LogoContent: View, ImageContent: View>: Vi
                     .foregroundColor(.textLinkColor)
                     .lineLimit(nil)
                 
-                BPKIconView(.informationCircle, size: .small)
+                BPKIconView(.informationCircle)
                     .foregroundColor(.textLinkColor)
+                    .if(sponsoredAccessibilityHint != nil) { icon in
+                        icon
+                            .accessibilityElement()
+                            .accessibilityHint(sponsoredAccessibilityHint ?? "")
+                    }
             }
         }
         .accessibilityElement(children: .combine)
@@ -133,17 +142,20 @@ extension BPKSponsoredInsetBanner where ImageContent == EmptyView {
     ///   - logo: The logo content to display (required)
     ///   - sponsoredLabel: The sponsored label text (required)
     ///   - onSponsoredLabelTapped: Action to perform when tapping the sponsored label
+    ///   - sponsoredAccessibilityHint: Optional accessibility hint for the sponsored label
     ///   - title: Optional title text
     ///   - subheadline: Optional subheadline text
     public init(
         logo: LogoContent,
         sponsoredLabel: String,
         onSponsoredLabelTapped: @escaping () -> Void,
+        sponsoredAccessibilityHint: String? = nil,
         title: String? = nil,
         subheadline: String? = nil
     ) {
         self.logo = logo
         self.sponsoredLabel = sponsoredLabel
+        self.sponsoredAccessibilityHint = sponsoredAccessibilityHint
         self.onSponsoredLabelTapped = onSponsoredLabelTapped
         self.title = title
         self.subheadline = subheadline

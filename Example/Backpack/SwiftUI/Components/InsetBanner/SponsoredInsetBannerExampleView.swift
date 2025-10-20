@@ -41,7 +41,8 @@ struct SponsoredInsetBannerExampleView: View {
             sponsoredLabel: "Sponsored",
             onSponsoredLabelTapped: {
                 print("Sponsored label tapped")
-            }
+            },
+            sponsoredAccessibilityHint: "Double tap for more information"
         )
     }
     
@@ -52,6 +53,7 @@ struct SponsoredInsetBannerExampleView: View {
             onSponsoredLabelTapped: {
                 print("Sponsored label tapped")
             },
+            sponsoredAccessibilityHint: "Double tap for more information",
             title: "Amazing offer just for you"
         )
     }
@@ -63,6 +65,7 @@ struct SponsoredInsetBannerExampleView: View {
             onSponsoredLabelTapped: {
                 print("Sponsored label tapped")
             },
+            sponsoredAccessibilityHint: "Double tap for more information",
             title: "Amazing offer just for you",
             subheadline: "Limited time only - book now and save"
         )
@@ -75,6 +78,7 @@ struct SponsoredInsetBannerExampleView: View {
             onSponsoredLabelTapped: {
                 print("Sponsored label tapped")
             },
+            sponsoredAccessibilityHint: "Double tap for more information",
             title: "Summer getaway",
             subheadline: "Save up to 40% on selected destinations",
             image: Image("carousel_0").resizable().scaledToFit()
@@ -88,6 +92,7 @@ struct SponsoredInsetBannerExampleView: View {
             onSponsoredLabelTapped: {
                 print("Sponsored label tapped")
             },
+            sponsoredAccessibilityHint: "Double tap for more information",
             image: Image("carousel_0").resizable().scaledToFit()
         )
     }
@@ -99,6 +104,7 @@ struct SponsoredInsetBannerExampleView: View {
             onSponsoredLabelTapped: {
                 print("Sponsored label tapped")
             },
+            sponsoredAccessibilityHint: "Double tap for more information",
             subheadline: "Book now and save up to 40%"
         )
     }

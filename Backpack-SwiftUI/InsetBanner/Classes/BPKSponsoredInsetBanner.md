@@ -22,7 +22,8 @@ BPKSponsoredInsetBanner(
     sponsoredLabel: "Sponsored",
     onSponsoredLabelTapped: {
         // Handle sponsored info tap
-    }
+    },
+    sponsoredAccessibilityHint: "Double tap for more information"
 )
 ```
 
@@ -35,6 +36,7 @@ BPKSponsoredInsetBanner(
     onSponsoredLabelTapped: {
         // Handle sponsored info tap
     },
+    sponsoredAccessibilityHint: "Double tap for more information",
     title: "Amazing offer just for you",
     subheadline: "Limited time only - book now"
 )
@@ -51,6 +53,7 @@ BPKSponsoredInsetBanner(
     onSponsoredLabelTapped: {
         // Handle sponsored info tap
     },
+    sponsoredAccessibilityHint: "Double tap for more information",
     title: "Summer getaway",
     subheadline: "Save up to 40% on selected destinations",
     image: Image("destination").resizable().scaledToFit()
@@ -62,6 +65,7 @@ BPKSponsoredInsetBanner(
 - **logo** (required): The logo content to display. Can be any `View` but it's recommended to use an image or loading indicator. Maximum size: 88pt × 22pt.
 - **sponsoredLabel** (required): The text for the sponsored label, typically "Sponsored".
 - **onSponsoredLabelTapped** (required): Action to perform when the sponsored label with info icon is tapped.
+- **sponsoredAccessibilityHint** (optional): Accessibility hint for the sponsored label button.
 - **title** (optional): The main title text.
 - **subheadline** (optional): Additional descriptive text.
 - **image** (optional): An image to display below the main content. Maximum height: 120pt.
