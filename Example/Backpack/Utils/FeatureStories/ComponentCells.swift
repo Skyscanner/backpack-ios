@@ -771,9 +771,7 @@ extension ComponentCellsProvider {
         ComponentCellDataSource(
             title: "Inset Banner",
             tabs: [
-                .swiftui(presentable: CustomPresentable(generateViewController: {
-                    ContentUIHostingController(InsetBannerExampleView())
-                }))
+                .swiftui(groups: InsetBannerGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "Inset Banner", tabs: $0) }
         )
