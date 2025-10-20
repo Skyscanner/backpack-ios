@@ -105,19 +105,10 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
                 .accessibilityLabel(customAccessibilityLabel ?? "")
         }
     }
-    
+
     private var topView: some View {
         VStack() {
-            HStack(spacing: .md) {
-                titlesView
-                Spacer()
-                VStack {
-                    Button(action: callToAction.onClick) {
-                        buttonContent
-                    }
-                    Spacer()
-                }
-            }
+            mainContent
             .padding(.base)
             .accessibilityElement(children: .combine)
             .buttonStyle(SponsoredInsetBannerButtonStyle(
@@ -136,6 +127,21 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
         }
     }
     
+    private var mainContent: some View {
+        VStack {
+            HStack(spacing: .md) {
+                logo
+                    .frame(maxWidth: Constants.maxLogoWidth, maxHeight: Constants.maxLogoHeight)
+                    .fixedSize(horizontal: true, vertical: false)
+                Spacer()
+                Button(action: callToAction.onClick) {
+                    buttonContent
+                }
+            }
+            titlesView
+        }
+    }
+    
     private var buttonContent: some View {
         HStack {
             BPKText(callToAction.text, style: .caption)
@@ -146,20 +152,20 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
     }
     
     private var titlesView: some View {
-        VStack(alignment: .leading, spacing: .sm) {
-            logo
-                .frame(maxWidth: Constants.maxLogoWidth, maxHeight: Constants.maxLogoHeight)
-                .fixedSize(horizontal: true, vertical: false)
-            if let title = title {
-                BPKText(title, style: .label2)
-                    .foregroundColor(variant.color)
-                    .lineLimit(nil)
+        HStack {
+            VStack(alignment: .leading, spacing: .sm) {
+                if let title = title {
+                    BPKText(title, style: .label2)
+                        .foregroundColor(variant.color)
+                        .lineLimit(nil)
+                }
+                if let subheadline = subheadline {
+                    BPKText(subheadline, style: .caption)
+                        .foregroundColor(variant.color)
+                        .lineLimit(nil)
+                }
             }
-            if let subheadline = subheadline {
-                BPKText(subheadline, style: .caption)
-                    .foregroundColor(variant.color)
-                    .lineLimit(nil)
-            }
+            Spacer()
         }
     }
     
