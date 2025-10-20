@@ -23,29 +23,25 @@ public enum CornerStyle {
     case large, small
 }
 
-public enum Padding {
-    case none, small
-}
-
 public struct BPKCardSwiftUIWrapper: View {
     var contentView: UIView
 
     var elevation: BPKCardElevation
-    var padding: Padding
+    var padded: Bool
     var cornerStyle: CornerStyle
     var tapAction: (() -> Void)?
 
-    public init(contentView: UIView, elevation: BPKCardElevation = .default, padding: Padding = .small, cornerStyle: CornerStyle = .small, tapAction: (() -> Void)? = nil) {
+    public init(contentView: UIView, elevation: BPKCardElevation = .default, padded: Bool = true, cornerStyle: CornerStyle = .small, tapAction: (() -> Void)? = nil) {
         self.contentView = contentView
         self.elevation = elevation
-        self.padding = padding
+        self.padded = padded
         self.cornerStyle = cornerStyle
         self.tapAction = tapAction
     }
 
     public var body: some View {
         BPKCard(
-            padding: padding == .small ? .small : .none,
+            padding: padded ? .small : .none,
             cornerStyle: cornerStyle == .small ? .small : .large,
             elevation: elevation
         ) {
