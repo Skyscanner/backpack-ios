@@ -107,17 +107,18 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
     }
 
     private var topView: some View {
-        VStack() {
+        VStack(spacing: 0) {
             mainContent
-            .padding(.base)
-            .accessibilityElement(children: .combine)
-            .buttonStyle(SponsoredInsetBannerButtonStyle(
-                foregroundColor: (variant == .onDark) ?
+                .padding(.horizontal, .base)
+                .padding(.vertical, .md)
+                .accessibilityElement(children: .combine)
+                .buttonStyle(SponsoredInsetBannerButtonStyle(
+                    foregroundColor: (variant == .onDark) ?
                     Color(BPKColor.textOnDarkColor) :
-                    Color(BPKColor.textOnLightColor),
-                backgroundColor: backgroundColor
-            ))
-            if let image = image {
+                        Color(BPKColor.textOnLightColor),
+                    backgroundColor: backgroundColor
+                ))
+            if let image {
                 image
                     .resizable()
                     .scaledToFill()
@@ -128,8 +129,8 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
     }
     
     private var mainContent: some View {
-        VStack {
-            HStack(spacing: .md) {
+        VStack(spacing: 0) {
+            HStack(alignment: .center, spacing: .md) {
                 logo
                     .frame(maxWidth: Constants.maxLogoWidth, maxHeight: Constants.maxLogoHeight)
                     .fixedSize(horizontal: true, vertical: false)
@@ -195,7 +196,8 @@ struct BPKSponsoredInsetBanner_Previews: PreviewProvider {
                 onClick: {}
             ),
             variant: .onDark,
-            backgroundColor: Color(red: 1.000, green: 0.400, blue: 0.004, opacity: 1.000))
+            backgroundColor: Color(red: 1.000, green: 0.400, blue: 0.004, opacity: 1.000),
+            image: Image(uiImage: UIImage()))
         .padding(.base)
     }
 }
