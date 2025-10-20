@@ -150,7 +150,7 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
             logo
                 .frame(maxWidth: Constants.maxLogoWidth, maxHeight: Constants.maxLogoHeight)
                 .fixedSize(horizontal: true, vertical: false)
-            if let title = title {
+            if let title {
                 BPKText(title, style: .label2)
                     .foregroundColor(variant.color)
                     .lineLimit(nil)
