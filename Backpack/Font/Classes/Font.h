@@ -20,7 +20,6 @@
 #define __BACKPACK_FONT__
 
 #import "BPKFont.h"
-#import "BPKFontDefinitionProtocol.h"
-#import "BPKRelativeFontDefinition.h"
+#import <Backpack_Common/Backpack_Common-Swift.h>
 
 #endif
