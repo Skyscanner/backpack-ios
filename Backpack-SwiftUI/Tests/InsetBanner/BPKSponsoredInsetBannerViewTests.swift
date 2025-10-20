@@ -22,6 +22,11 @@ import SnapshotTesting
 import Backpack_SwiftUI
 
 class BPKSponsoredInsetBannerViewTests: XCTestCase {
+    override func setUp() {
+        super.setUp()
+        isRecording = true
+    }
+    
     private let orangeColor = Color(red: 1.000, green: 0.400, blue: 0.004, opacity: 1.000)
     private let yellowColor = Color(red: 1.000, green: 0.890, blue: 0.000, opacity: 1.000)
     func testSponsoredInsetBannerWithNoTitleorSubheadline() {
