@@ -108,7 +108,7 @@ struct SponsoredInsetBannerExampleView: View {
     
     private var onLightView: some View {
         BPKSponsoredInsetBanner(
-            logoContent: Image("skyland").resizable().scaledToFit(),
+            logoContent: Image("skyland-black").resizable().scaledToFit(),
             title: "On Light variant",
             subheadline: "Subheadline",
             callToAction: .init(
@@ -122,7 +122,7 @@ struct SponsoredInsetBannerExampleView: View {
     
     private var sponsoredWithoutCTAOnLightView: some View {
         BPKSponsoredInsetBanner(
-            logoContent: Image("skyland").resizable().scaledToFit(),
+            logoContent: Image("skyland-black").resizable().scaledToFit(),
             title: "On Light Variant",
             subheadline: "Without info icon",
             callToAction: .init(
