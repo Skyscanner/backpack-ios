@@ -84,7 +84,7 @@ BPKInsetBanner(
 
 All text fields in `BPKSponsoredInsetBanner` are optional. It requires having a logo and the sponsored + info icon section. The background colour is customizable, while the text and info icon's colour rely on the `variant`.
 
-```
+```swift
 BPKSponsoredInsetBanner(
     logoContent: Image("skyland").resizable().scaledToFit(),
     title: "On Light variant",

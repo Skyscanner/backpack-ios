@@ -154,7 +154,7 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
     private var titlesView: some View {
         HStack {
             VStack(alignment: .leading, spacing: .sm) {
-                if let title = title {
+                if let title {
                     BPKText(title, style: .label2)
                         .foregroundColor(variant.color)
                         .lineLimit(nil)
