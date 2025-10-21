@@ -31,12 +31,11 @@ public struct BPKCardSwiftUIWrapper: View {
     var cornerStyle: CornerStyle
     var tapAction: (() -> Void)?
 
-    public init(
-        contentView: UIView,
-        elevation: BPKCardElevation = .default,
-        padded: Bool = true,
-        cornerStyle: CornerStyle = .small,
-        tapAction: (() -> Void)? = nil) {
+    public init(contentView: UIView,
+                elevation: BPKCardElevation = .default,
+                padded: Bool = true,
+                cornerStyle: CornerStyle = .small,
+                tapAction: (() -> Void)? = nil) {
         self.contentView = contentView
         self.elevation = elevation
         self.padded = padded
@@ -102,10 +101,6 @@ private final class HostedUIViewContainer: UIView {
             return
         }
 
-        hostedView?.removeFromSuperview()
-        NSLayoutConstraint.deactivate(hostedConstraints)
-        hostedConstraints.removeAll()
-
         hostedView = view
         view.removeFromSuperview()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -140,31 +135,6 @@ private final class HostedUIViewContainer: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         hostedView?.layoutIfNeeded()
-    }
-
-    override var intrinsicContentSize: CGSize {
-        guard let hostedView else {
-            return .zero
-        }
-
-        // Try to use bounds width if available, otherwise fall back to frame width
-        var width = bounds.width
-        if width <= 0 {
-            width = frame.width
-        }
-
-        // If still no width, return a size that indicates we need width constraint
-        guard width > 0 else {
-            return CGSize(width: UIView.noIntrinsicMetric, height: UIView.noIntrinsicMetric)
-        }
-
-        let size = hostedView.systemLayoutSizeFitting(
-            CGSize(width: width, height: UIView.layoutFittingCompressedSize.height),
-            withHorizontalFittingPriority: .required,
-            verticalFittingPriority: .fittingSizeLevel
-        )
-
-        return size
     }
 
     override func sizeThatFits(_ size: CGSize) -> CGSize {
