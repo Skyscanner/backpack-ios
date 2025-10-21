@@ -102,7 +102,7 @@ struct SponsoredInsetBannerExampleView: View {
             ),
             variant: .onDark,
             backgroundColor: orangeColor,
-            image: Image("carousel_placeholder_1"),
+            image: Image("carousel_placeholder_1")
         )
     }
     
