@@ -31,7 +31,12 @@ public struct BPKCardSwiftUIWrapper: View {
     var cornerStyle: CornerStyle
     var tapAction: (() -> Void)?
 
-    public init(contentView: UIView, elevation: BPKCardElevation = .default, padded: Bool = true, cornerStyle: CornerStyle = .small, tapAction: (() -> Void)? = nil) {
+    public init(
+        contentView: UIView,
+        elevation: BPKCardElevation = .default,
+        padded: Bool = true,
+        cornerStyle: CornerStyle = .small,
+        tapAction: (() -> Void)? = nil) {
         self.contentView = contentView
         self.elevation = elevation
         self.padded = padded
