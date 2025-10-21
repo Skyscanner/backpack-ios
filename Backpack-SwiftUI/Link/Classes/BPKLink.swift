@@ -47,17 +47,25 @@ public enum BPKLinkStyle {
 public struct BPKLink: View {
     private let styled: AttributedString
     private let onCustomLink: (URL) -> Void
+    private let fontStyle: BPKFontStyle
 
     public init(
         markdown: String,
         style: BPKLinkStyle = .default,
+        fontStyle: BPKFontStyle = .bodyDefault,
+        textColor: BPKColor? = nil,
         onCustomLink: @escaping (URL) -> Void = { _ in }
     ) {
         self.onCustomLink = onCustomLink
+        self.fontStyle = fontStyle
 
         let parsedMarkdown = try? AttributedString(markdown: markdown)
         var attributed = parsedMarkdown ?? AttributedString(markdown)
-        attributed.foregroundColor = style.textColor
+        if let textColor {
+            attributed.foregroundColor = Color(textColor)
+        } else {
+            attributed.foregroundColor = style.textColor
+        }
 
         for run in attributed.runs {
             guard run.link != nil else { continue }
@@ -70,9 +78,10 @@ public struct BPKLink: View {
     }
 
     public var body: some View {
-        BPKText(styled, style: .bodyDefault, preservesForegroundColors: true)
+        BPKText(styled, style: fontStyle, preservesForegroundColors: true)
             .lineLimit(nil)
             .environment(\.openURL, openURLAction)
+            .accessibilityHint("Double tap to activate link")
     }
 
     private var openURLAction: OpenURLAction {

@@ -27,7 +27,18 @@ BPKPrice(
     leadingText: "App only deal",
     previousPrice: "£2033",
     trailingText: "per day",
+    cta: "[View details](app://price-details)",
     alignment: .leading,
     size: size
+)
+
+BPKPrice(
+    price: "£1830",
+    cta: "[View details](app://price-details)",
+    ctaOnCustomLink: { url in
+        // Handle deep links
+    },
+    alignment: .leading,
+    size: .small
 )
 ```
