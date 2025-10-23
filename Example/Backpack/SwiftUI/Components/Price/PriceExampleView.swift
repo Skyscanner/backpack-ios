@@ -64,7 +64,16 @@ struct PriceExampleView: View {
                     trailingText: trailingText,
                     size: size
                 )
-                
+
+                BPKPrice(
+                    price: price,
+                    trailingText: trailingText,
+                    cta: "[View details](app://price-details)",
+                    ctaOnCustomLink: { _ in },
+                    alignment: .leading,
+                    size: size
+                )
+
                 if size != .large {
                     BPKPrice(
                         price: price,
