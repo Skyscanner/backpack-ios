@@ -202,7 +202,7 @@ struct BPKSponsoredInsetBanner_Previews: PreviewProvider {
     }
 }
 
-fileprivate struct LargerHitArea: ViewModifier {
+private struct LargerHitArea: ViewModifier {
     var insets: CGFloat
     func body(content: Content) -> some View {
         content
@@ -212,7 +212,7 @@ fileprivate struct LargerHitArea: ViewModifier {
     }
 }
 
-fileprivate extension View {
+private extension View {
     func largerHitArea(_ insets: CGFloat = 20) -> some View {
         modifier(LargerHitArea(insets: insets))
     }
