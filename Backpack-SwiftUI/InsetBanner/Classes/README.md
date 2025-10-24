@@ -69,3 +69,32 @@ BPKInsetBanner(
     backgroundColor: Color(red: 1.000, green: 0.400, blue: 0.004, opacity: 1.000)
 )
 ```
+
+
+# Sponsored Inset Banner
+
+## Default
+
+| Day | Night |
+| --- | --- |
+| <img width="314" height="317" alt="image" src="https://github.com/user-attachments/assets/a9b24828-dba1-44a6-a17e-84c10d03bdb7" /> |<img width="314" height="401" alt="image" src="https://github.com/user-attachments/assets/e0075ef8-75ca-4104-ae6d-fd6fad72554f" />|
+.
+
+## Usage
+
+All text fields in `BPKSponsoredInsetBanner` are optional. It requires having a logo and the sponsored + info icon section. The background colour is customizable, while the text and info icon's colour rely on the `variant`.
+
+```swift
+BPKSponsoredInsetBanner(
+    logoContent: Image("skyland").resizable().scaledToFit(),
+    title: "On Light variant",
+    subheadline: "Subheadline",
+    callToAction: .init(
+        text: "Sponsored",
+        accessibilityHint: "Double tap for more information"
+    ),
+    variant: .onLight,
+    backgroundColor: yellowColor,
+    image: Image("carousel_placeholder_1")
+)
+```
