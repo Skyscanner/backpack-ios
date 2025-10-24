@@ -97,7 +97,7 @@ class BPKSponsoredInsetBannerViewTests: XCTestCase {
     func testSponsoredInsetBannerOnLightWithImage() {
         assertSnapshot(
             BPKSponsoredInsetBanner(
-                logoContent: Image("skyland", bundle: TestsBundle.bundle).resizable().scaledToFit(),
+                logoContent: Image("skyland-black", bundle: TestsBundle.bundle).resizable().scaledToFit(),
                 subheadline: "Subheadline only",
                 callToAction: .init(
                     text: "Sponsored",
