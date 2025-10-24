@@ -99,11 +99,6 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
         .clipShape(
             RoundedRectangle(cornerRadius: .sm, style: .continuous)
         )
-        .if(customAccessibilityLabel != nil) { view in
-            view
-                .accessibilityElement(children: .ignore)
-                .accessibilityLabel(customAccessibilityLabel ?? "")
-        }
     }
 
     private var topView: some View {
@@ -111,7 +106,6 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
             mainContent
                 .padding(.horizontal, .base)
                 .padding(.vertical, .md)
-                .accessibilityElement(children: .combine)
                 .buttonStyle(SponsoredInsetBannerButtonStyle(
                     foregroundColor: (variant == .onDark) ?
                     Color(BPKColor.textOnDarkColor) :
@@ -124,6 +118,7 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
                     .scaledToFill()
                     .frame(height: 120)
                     .clipped()
+                    .contentShape(Rectangle())
             }
         }
     }
@@ -134,9 +129,15 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
                 logo
                     .frame(maxWidth: Constants.maxLogoWidth, maxHeight: Constants.maxLogoHeight)
                     .fixedSize(horizontal: true, vertical: false)
+                    .if(customAccessibilityLabel != nil) { view in
+                        view
+                            .accessibilityElement(children: .ignore)
+                            .accessibilityLabel(customAccessibilityLabel ?? "")
+                    }
                 Spacer()
                 Button(action: callToAction.onClick) {
                     buttonContent
+                        .largerHitArea(10)
                 }
             }
             titlesView
@@ -196,8 +197,23 @@ struct BPKSponsoredInsetBanner_Previews: PreviewProvider {
                 onClick: {}
             ),
             variant: .onDark,
-            backgroundColor: Color(red: 1.000, green: 0.400, blue: 0.004, opacity: 1.000),
-            image: Image(uiImage: UIImage()))
+            backgroundColor: Color(red: 1.000, green: 0.400, blue: 0.004, opacity: 1.000))
         .padding(.base)
+    }
+}
+
+fileprivate struct LargerHitArea: ViewModifier {
+    var insets: CGFloat
+    func body(content: Content) -> some View {
+        content
+            .padding(insets)
+            .contentShape(Rectangle())
+            .padding(-insets)
+    }
+}
+
+fileprivate extension View {
+    func largerHitArea(_ insets: CGFloat = 20) -> some View {
+        modifier(LargerHitArea(insets: insets))
     }
 }

@@ -47,7 +47,8 @@ struct SponsoredInsetBannerExampleView: View {
                 onClick: {}
             ),
             variant: .onDark,
-            backgroundColor: orangeColor)
+            backgroundColor: orangeColor,
+            customAccessibilityLabel: "Advertisement by Skyland")
     }
     
     private var titleOnlyView: some View {
