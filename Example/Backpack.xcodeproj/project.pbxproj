@@ -10,6 +10,7 @@
 		006034DBB76C671434F6252A /* Pods_Backpack_Native.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDBC7CA36756032862B5D581 /* Pods_Backpack_Native.framework */; };
 		022519872A7011CD00D7A06D /* SnippetExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022519862A7011CD00D7A06D /* SnippetExampleView.swift */; };
 		0245783E2ABC3AA1006008D1 /* InsetBannerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0245783D2ABC3AA1006008D1 /* InsetBannerExampleView.swift */; };
+		0245783F2ABC3AA1006008D1 /* SponsoredInsetBannerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0245783G2ABC3AA1006008D1 /* SponsoredInsetBannerExampleView.swift */; };
 		02D34C4A2A712A2200F99085 /* SnippetGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D34C492A712A2200F99085 /* SnippetGroups.swift */; };
 		0E844AF7289141C2004C5865 /* SkeletonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E844AF6289141C2004C5865 /* SkeletonViewController.swift */; };
 		1318F74D2C7772F000D42847 /* TextFieldExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1318F74C2C7772F000D42847 /* TextFieldExampleView.swift */; };
@@ -232,6 +233,7 @@
 /* Begin PBXFileReference section */
 		022519862A7011CD00D7A06D /* SnippetExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetExampleView.swift; sourceTree = "<group>"; };
 		0245783D2ABC3AA1006008D1 /* InsetBannerExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetBannerExampleView.swift; sourceTree = "<group>"; };
+		0245783G2ABC3AA1006008D1 /* SponsoredInsetBannerExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponsoredInsetBannerExampleView.swift; sourceTree = "<group>"; };
 		02D34C492A712A2200F99085 /* SnippetGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetGroups.swift; sourceTree = "<group>"; };
 		090E9C65F965012C0DF5C1E3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		0E844AF6289141C2004C5865 /* SkeletonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonViewController.swift; sourceTree = "<group>"; };
@@ -498,6 +500,7 @@
 			isa = PBXGroup;
 			children = (
 				0245783D2ABC3AA1006008D1 /* InsetBannerExampleView.swift */,
+				0245783G2ABC3AA1006008D1 /* SponsoredInsetBannerExampleView.swift */,
 			);
 			path = InsetBanner;
 			sourceTree = "<group>";
@@ -1809,6 +1812,7 @@
 				1A68212D2B3308C80048220E /* AppSearchModalExampleViewModel.swift in Sources */,
 				53C6621229EA0DAB00BF1A62 /* SwitchExampleView.swift in Sources */,
 				0245783E2ABC3AA1006008D1 /* InsetBannerExampleView.swift in Sources */,
+				0245783F2ABC3AA1006008D1 /* SponsoredInsetBannerExampleView.swift in Sources */,
 				D61ACE052306E238001C976E /* NavigationBarViewController.swift in Sources */,
 				D26B8B86219EAC72006FE706 /* BadgesViewController.swift in Sources */,
 				539897BF2BA852E500C8D939 /* ImageGalleryPreviewExampleView.swift in Sources */,
