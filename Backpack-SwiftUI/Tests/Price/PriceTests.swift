@@ -27,12 +27,20 @@ class PriceTests: XCTestCase {
         let previousPrice: String?
         let leadingText: String?
         let trailingText: String?
-        
-        init(price: String, previousPrice: String? = nil, leadingText: String? = nil, trailingText: String? = nil) {
+        let cta: ((URL) -> Void)?
+
+        init(
+            price: String,
+            previousPrice: String? = nil,
+            leadingText: String? = nil,
+            trailingText: String? = nil,
+            cta: ((URL) -> Void)? = nil
+        ) {
             self.price = price
             self.previousPrice = previousPrice
             self.leadingText = leadingText
             self.trailingText = trailingText
+            self.cta = cta
         }
     }
     
@@ -41,7 +49,14 @@ class PriceTests: XCTestCase {
         .init(price: "£1,830", trailingText: "per day"),
         .init(price: "£1,830", previousPrice: "£2033", trailingText: "per day"),
         .init(price: "£1,830", leadingText: "App only deal", trailingText: "per day"),
-        .init(price: "£1,830", previousPrice: "£2033", leadingText: "App only deal", trailingText: "per day")
+        .init(price: "£1,830", previousPrice: "£2033", leadingText: "App only deal", trailingText: "per day"),
+        .init(
+            price: "£1,830",
+            previousPrice: "£2033",
+            leadingText: "App only deal",
+            trailingText: "per day",
+            cta: { _ in
+            })
     ]
     
     private func testView(size: BPKPrice.Size, alignment: BPKPrice.Alignment) -> some View {
