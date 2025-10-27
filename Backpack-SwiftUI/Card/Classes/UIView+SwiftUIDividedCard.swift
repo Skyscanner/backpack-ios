@@ -24,14 +24,14 @@ public struct BPKDividedCardSwiftUIWrapper: View {
     private let elevation: BPKCardElevation
     private let primaryContent: UIView
     private let secondaryContent: UIView
-    private var tapAction: () -> Void = {}
+    private let tapAction: (() -> Void)?
     private let alignment: HorizontalAlignment
 
     public init(elevation: BPKCardElevation = .default,
                 alignment: HorizontalAlignment = .leading,
                 primaryContent: UIView,
                 secondaryContent: UIView,
-                tapAction: @escaping (() -> Void)) {
+                tapAction: (() -> Void)? = nil) {
         self.elevation = elevation
         self.alignment = alignment
         self.primaryContent = primaryContent
@@ -45,8 +45,8 @@ public struct BPKDividedCardSwiftUIWrapper: View {
         } secondaryContent: {
             HostedView(view: secondaryContent)
         }
-        .onTapGesture {
-            tapAction()
+        .if(tapAction != nil) { view in
+            view.onTapGesture(perform: tapAction!)
         }
 
     }
