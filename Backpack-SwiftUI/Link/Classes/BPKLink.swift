@@ -35,9 +35,9 @@ public enum BPKLinkStyle {
     var linkColor: Color {
         switch self {
         case .default:
-            return Color(BPKColor.buttonLinkNormalForegroundColor)
+            return Color(BPKColor.textPrimaryColor)
         case .onContrast:
-            return Color(BPKColor.buttonLinkOnDarkNormalForegroundColor)
+            return Color(BPKColor.textOnDarkColor)
         }
     }
 }
