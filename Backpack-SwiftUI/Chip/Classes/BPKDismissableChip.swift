@@ -24,6 +24,7 @@ public struct BPKDismissableChip: View {
     let icon: BPKIcon?
     let style: BPKChipStyle
     let onClick: () -> Void
+    let config: BpkConfiguration?
     
     public init(
         _ text: String,
@@ -35,12 +36,14 @@ public struct BPKDismissableChip: View {
         self.icon = icon
         self.style = style
         self.onClick = onClick
+        self.config = BpkConfiguration.shared
     }
     
     public var body: some View {
         HStack(spacing: .md) {
             if let icon {
                 BPKIconView(icon)
+                
             }
             Text(text)
                 .font(style: .footnote)
@@ -49,10 +52,11 @@ public struct BPKDismissableChip: View {
         }
         .padding(.trailing, .md)
         .padding(.leading, .base)
+        .padding(.vertical, config?.chipConfig?.height ?? BPKSpacing.none.value)
         .frame(minHeight: .xl)
         .background(backgroundColor)
         .foregroundColor(foregroundColor)
-        .clipShape(RoundedRectangle(cornerRadius: .sm))
+        .clipShape(cornerShape)
         .if(style == .onImage) { $0.shadow(.sm) }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(text)
@@ -64,25 +68,44 @@ public struct BPKDismissableChip: View {
     }
     
     private var accessoryViewColor: BPKColor {
+        let chipConfig = self.config?.chipConfig
+        
         switch style {
-        case .`default`: return .textDisabledOnDarkColor
-        case .onDark: return .chipOnDarkOnDismissIconColor
+        case .`default`: return chipConfig != nil ? .textPrimaryInverseColor : .textDisabledOnDarkColor
+        case .onDark: return chipConfig != nil ? .textOnLightColor : .chipOnDarkOnDismissIconColor
         case .onImage: return .textDisabledOnDarkColor
         }
     }
     
+    private var cornerShape: some Shape {
+        if let radiusToken = config?.chipConfig?.radiusToken, radiusToken == .roundCorners {
+            return AnyShape(Capsule())
+        } else {
+            return AnyShape(RoundedRectangle(cornerRadius: BPKCornerRadius.sm.value))
+        }
+    }
+    
     private var backgroundColor: BPKColor {
+        let chipConfig = self.config?.chipConfig
+        
+        // To add to foundations.
+        let chipOnFillLight = UIColor(red: 21/255, green: 70/255, blue: 121/255, alpha: 1)
+        let chipOnFillDark = UIColor(red: 0.000, green: 0.384, blue: 0.890, alpha: 1)
+        let chipOnFill = UIColor.dynamicColorTest(light: chipOnFillLight, dark: chipOnFillDark)
+        
         switch style {
-        case .`default`: return .corePrimaryColor
-        case .onDark: return .chipOnDarkOnBackgroundColor
+        case .`default`: return chipConfig != nil ? .coreAccentColor : .corePrimaryColor
+        case .onDark: return chipConfig != nil ? .textOnDarkColor  : .chipOnDarkOnBackgroundColor
         case .onImage: return .corePrimaryColor
         }
     }
     
     private var foregroundColor: BPKColor {
+        let chipConfig = self.config?.chipConfig
+        
         switch style {
-        case .`default`: return .textOnDarkColor
-        case .onDark: return .textPrimaryColor
+        case .`default`: return chipConfig != nil ? .textPrimaryInverseColor : .textOnDarkColor
+        case .onDark: return chipConfig != nil ? .textOnLightColor : .textPrimaryColor
         case .onImage: return .textOnDarkColor
         }
     }

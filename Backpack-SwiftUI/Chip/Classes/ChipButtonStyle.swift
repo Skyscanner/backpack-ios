@@ -69,7 +69,7 @@ struct ChipButtonStyle: ButtonStyle {
     
     private func outlineColor(_ isPressed: Bool) -> BPKColor {
         
-        let config = self.config?.chipConfig
+        let chipConfig = self.config?.chipConfig
         
         if disabled {
             return .buttonDisabledBackgroundColor
@@ -77,17 +77,17 @@ struct ChipButtonStyle: ButtonStyle {
         switch style {
         case .`default`:
             if selected || isPressed {
-                return config != nil ? .coreAccentColor : .corePrimaryColor
+                return chipConfig != nil ? .coreAccentColor : .corePrimaryColor
             }
             
             return config != nil ? .clear : .lineColor
         case .onDark:
             if selected {
-                return .surfaceDefaultColor
+                return chipConfig != nil ? .textOnDarkColor : .surfaceDefaultColor
             }
             
             if isPressed {
-                return .chipOnDarkPressedStrokeColor
+                return chipConfig != nil ? .textOnDarkColor : .chipOnDarkPressedStrokeColor
             }
             
             return .lineOnDarkColor
@@ -105,18 +105,31 @@ struct ChipButtonStyle: ButtonStyle {
     }
     
     private func backgroundColor(_ isPressed: Bool) -> BPKColor {
+        
+        let chipConfig = self.config?.chipConfig
+        
         if disabled {
             return .chipDisabledBackgroundColor
         }
         switch style {
         case .`default`:
             
-            if config != nil {
+            if chipConfig != nil {
                 return selected ? .coreAccentColor : .surfaceDefaultColor
             }
             
             return selected ? .corePrimaryColor : .clear
         case .onDark:
+            
+            // To add to foundations.
+            let chipOnFillLight = UIColor(red: 21/255, green: 70/255, blue: 121/255, alpha: 1)
+            let chipOnFillDark = UIColor(red: 0.000, green: 0.384, blue: 0.890, alpha: 1)
+            let chipOnFill = UIColor.dynamicColorTest(light: chipOnFillLight, dark: chipOnFillDark)
+            
+            if chipConfig != nil {
+                return selected ? .textOnDarkColor : BPKColor(value: chipOnFill)
+            }
+            
             return selected ? .chipOnDarkOnBackgroundColor : .clear
         case .onImage:
             if selected { return .corePrimaryColor }
@@ -128,13 +141,26 @@ struct ChipButtonStyle: ButtonStyle {
     }
     
     private func foregroundColor(_ isPressed: Bool) -> BPKColor {
+        
+        let chipConfig = self.config?.chipConfig
+        
         if disabled {
             return .textDisabledColor
         }
         switch style {
         case .`default`, .onImage:
+            
+            if chipConfig != nil {
+                return selected ? .textPrimaryInverseColor : .textPrimaryColor
+            }
+            
             return selected ? .textOnDarkColor : .textPrimaryColor
         case .onDark:
+            
+            if chipConfig != nil {
+                return selected ? .textOnLightColor : .textOnDarkColor
+            }
+            
             return selected ? .textPrimaryColor : .textOnDarkColor
         }
     }
@@ -150,5 +176,34 @@ struct AnyShape: Shape {
     
     func path(in rect: CGRect) -> Path {
         return _path(rect)
+    }
+}
+
+// As we are not adding the new colours to Foundations yet, this is to handle the new colouring.
+extension UIColor {
+    private static var dynamicColorsCache = NSCache<NSString, UIColor>()
+
+    static func dynamicColorTest(light: UIColor, dark: UIColor) -> UIColor {
+        guard #available(iOS 13.0, *) else {
+            return light
+        }
+
+        let key = "\(light.cacheKey)_\(dark.cacheKey)" as NSString
+
+        if let cached = dynamicColorsCache.object(forKey: key) {
+            return cached
+        }
+
+        let dynamicColour = UIColor { traits -> UIColor in
+            traits.userInterfaceStyle == .dark ? dark : light
+        }
+
+        dynamicColorsCache.setObject(dynamicColour, forKey: key)
+        return dynamicColour
+    }
+
+    private var cacheKey: String {
+        guard let components = cgColor.components else { return description }
+        return components.map(String.init).joined(separator: "_")
     }
 }

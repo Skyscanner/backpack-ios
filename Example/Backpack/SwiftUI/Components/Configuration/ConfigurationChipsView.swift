@@ -25,9 +25,44 @@ struct ConfigurationChipsView: View {
     @State private var selectedChip1 = false
     @State private var selectedChip2 = true
     @State private var selectedChip3 = false
+    
+    @State private var style: Backpack_SwiftUI.BPKChipStyle = .default
+    @State private var backGroundColor: Color = .clear
 
     var body: some View {
-        VStack(spacing: .lg) {
+        ZStack {
+            if #available(iOS 17.0, *) {
+                Color(backGroundColor)
+                    .ignoresSafeArea(edges: .all)
+            }
+            
+            VStack(spacing: .lg) {
+
+                configText
+                
+                chipViewDefault
+                
+                dropDownChipView
+                
+                BPKDismissableChip("Dismiss", style: style, onClick: {
+                    
+                })
+                
+                chipViewImage
+                
+                Spacer()
+                
+                styleButtons
+            }
+        }
+        .navigationTitle("Chip Configuration")
+        .onDisappear {
+            BpkConfiguration.shared.reset()
+        }
+    }
+    
+    var configText: some View {
+        VStack(spacing: .md) {
             Text("Alternate Configuration")
                 .font(.title2)
                 .fontWeight(.semibold)
@@ -42,20 +77,25 @@ struct ConfigurationChipsView: View {
                 Text("Disabled")
             }
             .padding(.leading, .base)
-            
-            chipViewDefault
-            
-            dropDownChipView
-            
-            BPKDismissableChip("Dismiss") {}
-            
-            chipViewImage
-            
-            Spacer()
         }
-        .navigationTitle("Chip Configuration")
-        .onDisappear {
-            BpkConfiguration.shared.reset()
+    }
+    
+    var styleButtons: some View {
+        HStack(alignment: .center, spacing: .lg) {
+            Button("Default") {
+                style = .default
+                backGroundColor = .clear
+            }
+            
+            Button("onContrast") {
+                style = .default
+                backGroundColor = .gray
+            }
+            
+            Button("OnDark") {
+                style = .onDark
+                backGroundColor = Color(cgColor: BPKColor.surfaceContrastColor.cgColor)
+            }
         }
     }
     
@@ -64,7 +104,7 @@ struct ConfigurationChipsView: View {
             BPKChip(
                 "Chip 1",
                 selected: selectedChip1,
-                style: .default
+                style: style
             ) {
                 selectedChip1.toggle()
             }
@@ -72,7 +112,7 @@ struct ConfigurationChipsView: View {
             BPKChip(
                 "Chip 2",
                 selected: selectedChip2,
-                style: .default
+                style: style
             ) {
                 selectedChip2.toggle()
             }
@@ -80,7 +120,7 @@ struct ConfigurationChipsView: View {
             BPKChip(
                 "Chip 3",
                 selected: selectedChip3,
-                style: .default
+                style: style
             ) {
                 selectedChip3.toggle()
             }
@@ -92,27 +132,27 @@ struct ConfigurationChipsView: View {
         HStack(spacing: .md) {
             BPKChip(
                 "Chip 1",
-                icon: .heart,
+                icon: .deals,
                 selected: selectedChip1,
-                style: .default
+                style: style
             ) {
                 selectedChip1.toggle()
             }
 
             BPKChip(
                 "Chip 2",
-                icon: .heart,
+                icon: .deals,
                 selected: selectedChip2,
-                style: .default
+                style: style
             ) {
                 selectedChip2.toggle()
             }
             
             BPKChip(
                 "Chip 3",
-                icon: .heart,
+                icon: .deals,
                 selected: selectedChip3,
-                style: .default
+                style: style
             ) {}
             .disabled(true)
         }
@@ -122,21 +162,24 @@ struct ConfigurationChipsView: View {
         HStack(spacing: .md) {
             BPKDropdownChip(
                 "Dropdown",
-                selected: selectedChip1
+                selected: selectedChip1,
+                style: style
             ) {
                 selectedChip1.toggle()
             }
 
             BPKDropdownChip(
                 "Dropdown",
-                selected: selectedChip2
+                selected: selectedChip2,
+                style: style
             ) {
                 selectedChip2.toggle()
             }
             
             BPKDropdownChip(
                 "Dropdown",
-                selected: selectedChip3
+                selected: selectedChip3,
+                style: style
             ) {}
                 .disabled(true)
         }
