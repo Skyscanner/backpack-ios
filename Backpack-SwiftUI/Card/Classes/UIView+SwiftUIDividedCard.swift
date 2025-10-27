@@ -19,7 +19,6 @@
 // swiftlint:disable indentation_width
 import SwiftUI
 
-
 public struct BPKDividedCardSwiftUIWrapper: View {
     private let elevation: BPKCardElevation
     private let primaryContent: UIView
@@ -48,7 +47,6 @@ public struct BPKDividedCardSwiftUIWrapper: View {
         .if(tapAction != nil) { view in
             view.onTapGesture(perform: tapAction!)
         }
-
     }
 }
 
