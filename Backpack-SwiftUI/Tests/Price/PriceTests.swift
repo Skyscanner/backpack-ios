@@ -67,6 +67,7 @@ class PriceTests: XCTestCase {
                     leadingText: item.leadingText,
                     previousPrice: item.previousPrice,
                     trailingText: item.trailingText,
+                    cta: item.cta,
                     alignment: alignment,
                     size: size
                 )
