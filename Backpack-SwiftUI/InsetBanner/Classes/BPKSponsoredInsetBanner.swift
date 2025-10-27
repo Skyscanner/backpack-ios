@@ -127,7 +127,8 @@ public struct BPKSponsoredInsetBanner<LogoContent: View>: View {
         VStack(spacing: 0) {
             HStack(alignment: .center, spacing: .md) {
                 logo
-                    .frame(maxWidth: Constants.maxLogoWidth, maxHeight: Constants.maxLogoHeight)
+                    .frame(maxWidth: Constants.maxLogoWidth)
+                    .frame(height: Constants.maxLogoHeight)
                     .fixedSize(horizontal: true, vertical: false)
                     .if(customAccessibilityLabel != nil) { view in
                         view
