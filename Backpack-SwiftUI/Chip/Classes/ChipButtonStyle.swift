@@ -123,7 +123,7 @@ struct ChipButtonStyle: ButtonStyle {
             
             // To add to foundations.
             let chipOnFillLight = UIColor(red: 21/255, green: 70/255, blue: 121/255, alpha: 1)
-            let chipOnFillDark = UIColor(red: 0.000, green: 0.384, blue: 0.890, alpha: 1)
+            let chipOnFillDark = UIColor(red: 2/255, green: 77/255, blue: 175/255, alpha: 1)
             let chipOnFill = UIColor.dynamicColorTest(light: chipOnFillLight, dark: chipOnFillDark)
             
             if chipConfig != nil {
