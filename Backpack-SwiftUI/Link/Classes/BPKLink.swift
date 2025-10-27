@@ -19,29 +19,6 @@
 import SwiftUI
 import Backpack_Common
 
-public enum BPKLinkStyle {
-    case `default`
-    case onContrast
-
-    var textColor: Color {
-        switch self {
-        case .default:
-            return Color(BPKColor.textPrimaryColor)
-        case .onContrast:
-            return Color(BPKColor.textOnDarkColor)
-        }
-    }
-
-    var linkColor: Color {
-        switch self {
-        case .default:
-            return Color(BPKColor.textPrimaryColor)
-        case .onContrast:
-            return Color(BPKColor.textOnDarkColor)
-        }
-    }
-}
-
 /// Inline rich text that can contain multiple links. Links are styled and routed as:
 /// http/https → system, anything else → onCustomLink(URL)
 public struct BPKLink: View {
@@ -81,7 +58,6 @@ public struct BPKLink: View {
         BPKText(styled, style: fontStyle, preservesForegroundColors: true)
             .lineLimit(nil)
             .environment(\.openURL, openURLAction)
-            .accessibilityHint("Double tap to activate link")
     }
 
     private var openURLAction: OpenURLAction {
@@ -92,6 +68,30 @@ public struct BPKLink: View {
 
             onCustomLink(url)
             return .handled
+        }
+    }
+}
+
+// MARK: - Style
+public enum BPKLinkStyle {
+    case `default`
+    case onContrast
+
+    var textColor: Color {
+        switch self {
+        case .default:
+            return Color(BPKColor.textPrimaryColor)
+        case .onContrast:
+            return Color(BPKColor.textOnDarkColor)
+        }
+    }
+
+    var linkColor: Color {
+        switch self {
+        case .default:
+            return Color(BPKColor.textPrimaryColor)
+        case .onContrast:
+            return Color(BPKColor.textOnDarkColor)
         }
     }
 }
