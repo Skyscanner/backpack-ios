@@ -125,6 +125,19 @@ public final class BpkConfiguration: NSObject {
         }
     }
     
+    private func setChipExperiment(chipConfig: Bool) {
+        /// Example experiment configs
+        if chipConfig {
+            self.chipConfig = BpkChipConfig(
+                color: .accentColor,
+                height: 8,
+                heightDimension: "bpk_new_chip_height",
+                radius: 100,
+                radiusToken: .roundCorners
+            )
+        }
+    }
+    
     private func setTypographyExperiment(typographyConfig: Bool) {
         if typographyConfig {
             
@@ -201,16 +214,7 @@ public final class BpkConfiguration: NSObject {
         }
         hasSet = true
         
-        /// Example experiment configs
-        if chipConfig {
-            self.chipConfig = BpkChipConfig(
-                color: .accentColor,
-                height: 12,
-                heightDimension: "bpk_new_chip_height",
-                radius: 100,
-                radiusToken: .roundCorners
-            )
-        }
+        setChipExperiment(chipConfig: chipConfig)
         
         setTypographyExperiment(typographyConfig: typographyConfig)
     }

@@ -68,16 +68,19 @@ struct ChipButtonStyle: ButtonStyle {
     }
     
     private func outlineColor(_ isPressed: Bool) -> BPKColor {
+        
+        let config = self.config?.chipConfig
+        
         if disabled {
             return .buttonDisabledBackgroundColor
         }
         switch style {
         case .`default`:
             if selected || isPressed {
-                return .corePrimaryColor
+                return config != nil ? .coreAccentColor : .corePrimaryColor
             }
             
-            return .lineColor
+            return config != nil ? .clear : .lineColor
         case .onDark:
             if selected {
                 return .surfaceDefaultColor
@@ -107,6 +110,11 @@ struct ChipButtonStyle: ButtonStyle {
         }
         switch style {
         case .`default`:
+            
+            if config != nil {
+                return selected ? .coreAccentColor : .surfaceDefaultColor
+            }
+            
             return selected ? .corePrimaryColor : .clear
         case .onDark:
             return selected ? .chipOnDarkOnBackgroundColor : .clear

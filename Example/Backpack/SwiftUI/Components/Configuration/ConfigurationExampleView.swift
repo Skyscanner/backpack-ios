@@ -22,107 +22,32 @@ import Backpack_SwiftUI
 import Backpack_Common
 
 struct ConfigurationExampleView: View {
-    @State private var selectedChip1 = false
-    @State private var selectedChip2 = false
-    @State private var selectedChip3 = false
-    @State private var selectedChip4 = false
+    let chipConfigView = ConfigurationChipsView()
+    let typographyConfigView = ConfigurationTypographyView()
 
     var body: some View {
-        VStack(spacing: .xl) {
-            VStack(spacing: .md) {
-                Text("Alternate Configuration")
-                    .font(.title2)
-                    .fontWeight(.semibold)
-
-                Text("Round corners & custom spacing")
-                    .font(.caption)
-                    .foregroundColor(.textSecondaryColor)
-                
-                chipView
-                
-                dropDownChipView
-                
-                newTypographyStyles
-                
-                changeTypographyStyles
-            }
-            
-            Spacer()
-        }
-        .padding()
-        .navigationTitle("Chip Configuration")
-        .onDisappear {
-            BpkConfiguration.shared.reset()
-        }
-    }
-    
-    var chipView: some View {
-        HStack(spacing: .md) {
-            BPKChip(
-                "Chip 1",
-                selected: selectedChip1
-            ) {
-                selectedChip1.toggle()
-            }
-
-            BPKChip(
-                "Chip 2",
-                icon: .heart,
-                selected: selectedChip2
-            ) {
-                selectedChip2.toggle()
+        
+        let configViews: [(name: String, destination: () -> AnyView)] = [
+            ("Chips", { AnyView(ConfigurationChipsView()) }),
+            ("Typography", { AnyView(ConfigurationTypographyView()) })
+        ]
+        
+        List(configViews, id: \.name) { item in
+            NavigationLink(destination: item.destination()) {
+                Text(item.name)
             }
         }
-    }
-    
-    var dropDownChipView: some View {
-        HStack(spacing: .md) {
-            BPKDropdownChip(
-                "DropdownChip 1",
-                selected: selectedChip3
-            ) {
-                selectedChip3.toggle()
+        .navigationTitle("Configuration Example")
+        .onAppear {
+            do {
+                let config = BpkConfiguration.shared
+                try config.set(
+                    chipConfig: true,
+                    typographyConfig: true
+                )
+            } catch {
+                print("No config set")
             }
-
-            BPKDropdownChip(
-                "DropdownChip 2",
-                icon: .heart,
-                selected: selectedChip4
-            ) {
-                selectedChip4.toggle()
-            }
-        }
-    }
-    
-    var newTypographyStyles: some View {
-        VStack(spacing: 4) {
-            BPKText("Editorial 4", style: .editorial4)
-                .foregroundColor(.black)
-            BPKText("Editorial 5", style: .editorial5)
-                .foregroundColor(.black)
-            BPKText("Editorial 6", style: .editorial6)
-                .foregroundColor(.black)
-            BPKText("Display 7", style: .display7)
-                .foregroundColor(.black)
-        }
-    }
-    
-    var changeTypographyStyles: some View {
-        VStack(spacing: 4) {
-            BPKText("Heading 1 changes", style: .heading1)
-                .foregroundColor(.black)
-            BPKText("Heading 2 changes", style: .heading2)
-                .foregroundColor(.black)
-            BPKText("Heading 3 changes", style: .heading3)
-                .foregroundColor(.black)
-            BPKText("Heading 4 changes", style: .heading4)
-                .foregroundColor(.black)
-            BPKText("Heading 5 changes", style: .heading5)
-                .foregroundColor(.black)
-            BPKText("Hero 5 changes", style: .hero5)
-                .foregroundColor(.black)
-            BPKText("Hero 6 changes", style: .hero6)
-                .foregroundColor(.black)
         }
     }
 }
