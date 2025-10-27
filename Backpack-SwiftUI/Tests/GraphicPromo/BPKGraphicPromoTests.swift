@@ -19,6 +19,7 @@
 import XCTest
 import SwiftUI
 @testable import Backpack_SwiftUI
+@testable import Backpack_Common
 
 class BPKGraphicPromoTests: XCTestCase {
     func test_topAligned() {

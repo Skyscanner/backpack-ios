@@ -17,6 +17,7 @@
  */
 
 import SwiftUI
+import Backpack_Common
 
 /// A view that displays one line of text with an optional icon
 /// By default the style of BPKBadge is set to `.normal`

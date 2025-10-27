@@ -213,7 +213,8 @@ extension ComponentCellsProvider {
         do {
             let config = BpkConfiguration.shared
             try config.set(
-                chipConfig: true
+                chipConfig: true,
+                typographyConfig: true
             )
         } catch {
             return ComponentCellDataSource(

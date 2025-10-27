@@ -19,10 +19,10 @@
 import SwiftUI
 
 public struct BPKFont {
-    static var fontDefinition: BPKFontDefinition?
-    static var enableDynamicType: Bool = false
+    public static var fontDefinition: BPKFontDefinitionProtocol?
+    public static var enableDynamicType: Bool = false
     
-    public static func setFontDefinition(_ fontDefinition: BPKFontDefinition) {
+    public static func setSwiftFontDefinition(_ fontDefinition: BPKFontDefinitionProtocol) {
         BPKFont.fontDefinition = fontDefinition
     }
     
@@ -32,16 +32,23 @@ public struct BPKFont {
 }
 
 extension Font {
-    static func customOrDefault(
+    public static func customOrDefault(
         _ name: String?,
         size: CGFloat,
         weight: Weight,
         textStyle: TextStyle,
         fontProvider: (String, CGFloat, TextStyle) -> Font = Font.custom(_:size:relativeTo:)
     ) -> Font {
+
         guard let name else {
             if weight == .semibold {
                 return fontProvider("HelveticaNeue-Medium", size, textStyle)
+            }
+            
+            let typographyConfig = BpkConfiguration.shared.typographyConfigSet
+            
+            if weight == .black && typographyConfig {
+                return fontProvider("HelveticaNeue-Bold", size, textStyle)
             }
             
             return fontProvider("HelveticaNeue", size, textStyle)
@@ -50,18 +57,20 @@ extension Font {
         return fontProvider(name, size, textStyle)
     }
     
-    static func regular(size: CGFloat, textStyle: TextStyle) -> Font {
+    public static func regular(size: CGFloat, textStyle: TextStyle) -> Font {
+        let regularFontFace = BPKFont.fontDefinition?.regularFontFace as String?
         return customOrDefault(
-            BPKFont.fontDefinition?.regularFontFace,
+            regularFontFace,
             size: size,
             weight: .regular,
             textStyle: textStyle
         )
     }
     
-    static func regularFixed(size: CGFloat) -> Font {
+    public static func regularFixed(size: CGFloat) -> Font {
+        let regularFontFace = BPKFont.fontDefinition?.regularFontFace as String?
         return customOrDefault(
-            BPKFont.fontDefinition?.regularFontFace,
+            regularFontFace,
             size: size,
             weight: .regular,
             textStyle: .body) { name, size, _ in
@@ -69,18 +78,20 @@ extension Font {
         }
     }
     
-    static func semibold(size: CGFloat, textStyle: TextStyle) -> Font {
+    public static func semibold(size: CGFloat, textStyle: TextStyle) -> Font {
+        let semiboldFontFace = BPKFont.fontDefinition?.semiboldFontFace as String?
         return customOrDefault(
-            BPKFont.fontDefinition?.semiboldFontFace,
+            semiboldFontFace,
             size: size,
             weight: .semibold,
             textStyle: textStyle
         )
     }
     
-    static func semiboldFixed(size: CGFloat) -> Font {
+    public static func semiboldFixed(size: CGFloat) -> Font {
+        let semiboldFontFace = BPKFont.fontDefinition?.semiboldFontFace as String?
         return customOrDefault(
-            BPKFont.fontDefinition?.semiboldFontFace,
+            semiboldFontFace,
             size: size,
             weight: .semibold,
             textStyle: .body) { name, size, _ in
@@ -88,18 +99,20 @@ extension Font {
         }
     }
     
-    static func black(size: CGFloat, textStyle: TextStyle) -> Font {
+    public static func black(size: CGFloat, textStyle: TextStyle) -> Font {
+        let blackFontFace = BPKFont.fontDefinition?.blackFontFace as String?
         return customOrDefault(
-            BPKFont.fontDefinition?.blackFontFace,
+            blackFontFace,
             size: size,
             weight: .black,
             textStyle: textStyle
         )
     }
     
-    static func blackFixed(size: CGFloat) -> Font {
+    public static func blackFixed(size: CGFloat) -> Font {
+        let blackFontFace = BPKFont.fontDefinition?.blackFontFace as String?
         return customOrDefault(
-            BPKFont.fontDefinition?.blackFontFace,
+            blackFontFace,
             size: size,
             weight: .black,
             textStyle: .body) { name, size, _ in
