@@ -33,8 +33,8 @@ public struct BPKPrice: View {
     private let previousPrice: String?
     private let trailingText: String?
     private let icon: (BPKIcon, String)?
-    private let cta: String?
-    private let ctaOnCustomLink: (URL) -> Void
+    private let cta: ((URL) -> Void)?
+    private let linkStyle: BPKLinkStyle
     private let alignment: Alignment
     private let size: Size
     
@@ -44,8 +44,8 @@ public struct BPKPrice: View {
         previousPrice: String? = nil,
         trailingText: String? = nil,
         icon: (BPKIcon, String)? = nil,
-        cta: String? = nil,
-        ctaOnCustomLink: @escaping (URL) -> Void = { _ in },
+        cta: ((URL) -> Void)? = nil,
+        linkStyle: BPKLinkStyle = .default,
         alignment: Alignment = .leading,
         size: Size
     ) {
@@ -54,49 +54,33 @@ public struct BPKPrice: View {
         self.previousPrice = previousPrice
         self.trailingText = trailingText
         self.icon = icon
-        self.cta = cta
-        self.ctaOnCustomLink = ctaOnCustomLink
         self.alignment = alignment
         self.size = size
+        self.cta = cta
+        self.linkStyle = linkStyle
     }
     
     public var body: some View {
-        Group {
-            switch alignment {
-            case .leading:
-                VStack(alignment: .leading, spacing: BPKSpacing.none) {
-                    content
-                    ctaView
-                }
-            case .trailing:
-                VStack(alignment: .trailing, spacing: BPKSpacing.none) {
-                    content
-                    ctaView
-                }
-            case .row:
-                if cta == nil {
-                    HStack(alignment: .firstTextBaseline, spacing: .sm) {
-                        content
-                    }
-                } else {
-                    VStack(alignment: .leading, spacing: BPKSpacing.none) {
-                        HStack(alignment: .firstTextBaseline, spacing: .sm) {
-                            content
-                        }
-                        ctaView
-                    }
-                }
+        switch alignment {
+        case .leading:
+            VStack(alignment: .leading, spacing: BPKSpacing.none) {
+                content
+            }
+        case .trailing:
+            VStack(alignment: .trailing, spacing: BPKSpacing.none) {
+                content
+            }
+        case .row:
+            HStack(alignment: .firstTextBaseline, spacing: .sm) {
+                content
             }
         }
-        .if(!BPKFont.enableDynamicType, transform: {
-            $0.sizeCategory(.large)
-        })
     }
     
     private var content: some View {
         Group {
             additionalInfoLabel
-            
+
             switch alignment {
             case .leading, .row:
                 HStack(alignment: .firstTextBaseline, spacing: .sm) {
@@ -108,19 +92,18 @@ public struct BPKPrice: View {
                 }
             }
         }
+        .if(!BPKFont.enableDynamicType, transform: {
+            $0.sizeCategory(.large)
+        })
     }
 
     private var additionalInfoLabel: some View {
         HStack(spacing: .sm) {
             ForEach(additionalInfo, id: \.self) { item in
                 let color = (item == previousPrice) ? BPKColor.textErrorColor: BPKColor.textSecondaryColor
-                BPKLink(
-                    markdown: item,
-                    fontStyle: accessoryFontStyle,
-                    textColor: color
-                )
-                .lineLimit(1)
-                .strikethrough(item == previousPrice)
+                BPKText(item, style: accessoryFontStyle)
+                    .foregroundColor(color)
+                    .strikethrough(item == previousPrice)
             }
         }
     }
@@ -129,40 +112,50 @@ public struct BPKPrice: View {
     private var priceLabel: some View {
         switch alignment {
         case .leading, .row:
-            BPKLink(markdown: price, fontStyle: priceFontStyle)
-                .lineLimit(1)
+            priceText(price, style: priceFontStyle)
             if let icon {
                 redirectingIcon(icon: icon)
                     .offset(y: 2)
             }
         case .trailing:
             HStack(spacing: .sm) {
-                BPKLink(markdown: price, fontStyle: priceFontStyle)
-                    .lineLimit(1)
+                priceText(price, style: priceFontStyle)
                 if let icon {
                     redirectingIcon(icon: icon)
                 }
             }
         }
         if let trailingText = trailingText {
-            BPKLink(
-                markdown: trailingText,
-                fontStyle: accessoryFontStyle,
-                textColor: .textSecondaryColor
+            priceText(
+                trailingText,
+                style: accessoryFontStyle,
+                foregroundColor: .textSecondaryColor
             )
-            .lineLimit(1)
         }
     }
 
     @ViewBuilder
-    private var ctaView: some View {
+    private func priceText(
+        _ text: String,
+        style: BPKFontStyle,
+        foregroundColor: BPKColor? = nil
+    ) -> some View {
         if let cta {
             BPKLink(
-                markdown: cta,
-                fontStyle: accessoryFontStyle,
-                onCustomLink: ctaOnCustomLink
+                markdown: text,
+                style: linkStyle,
+                fontStyle: style,
+                textColor: foregroundColor,
+                onCustomLink: cta
             )
-            .padding(.top, .sm)
+        } else {
+            BPKText(
+                text,
+                style: style
+            )
+            .if(foregroundColor != nil) {
+                $0.foregroundColor(.textSecondaryColor)
+            }
         }
     }
     
