@@ -27,20 +27,20 @@ class PriceTests: XCTestCase {
         let previousPrice: String?
         let leadingText: String?
         let trailingText: String?
-        let cta: ((URL) -> Void)?
+        let onPriceClicked: (() -> Void)?
 
         init(
             price: String,
             previousPrice: String? = nil,
             leadingText: String? = nil,
             trailingText: String? = nil,
-            cta: ((URL) -> Void)? = nil
+            onPriceClicked: (() -> Void)? = nil
         ) {
             self.price = price
             self.previousPrice = previousPrice
             self.leadingText = leadingText
             self.trailingText = trailingText
-            self.cta = cta
+            self.onPriceClicked = onPriceClicked
         }
     }
     
@@ -55,8 +55,8 @@ class PriceTests: XCTestCase {
             previousPrice: "£2033",
             leadingText: "App only deal",
             trailingText: "per day",
-            cta: { _ in
-            })
+            onPriceClicked: {}
+        )
     ]
     
     private func testView(size: BPKPrice.Size, alignment: BPKPrice.Alignment) -> some View {
@@ -67,7 +67,7 @@ class PriceTests: XCTestCase {
                     leadingText: item.leadingText,
                     previousPrice: item.previousPrice,
                     trailingText: item.trailingText,
-                    cta: item.cta,
+                    onPriceClicked: item.onPriceClicked,
                     alignment: alignment,
                     size: size
                 )

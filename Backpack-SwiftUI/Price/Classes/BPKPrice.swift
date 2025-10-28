@@ -33,7 +33,7 @@ public struct BPKPrice: View {
     private let previousPrice: String?
     private let trailingText: String?
     private let icon: (BPKIcon, String)?
-    private let cta: ((URL) -> Void)?
+    private let onPriceClicked: (() -> Void)?
     private let linkStyle: BPKLinkStyle
     private let alignment: Alignment
     private let size: Size
@@ -44,7 +44,7 @@ public struct BPKPrice: View {
         previousPrice: String? = nil,
         trailingText: String? = nil,
         icon: (BPKIcon, String)? = nil,
-        cta: ((URL) -> Void)? = nil,
+        onPriceClicked: (() -> Void)? = nil,
         linkStyle: BPKLinkStyle = .default,
         alignment: Alignment = .leading,
         size: Size
@@ -56,7 +56,7 @@ public struct BPKPrice: View {
         self.icon = icon
         self.alignment = alignment
         self.size = size
-        self.cta = cta
+        self.onPriceClicked = onPriceClicked
         self.linkStyle = linkStyle
     }
     
@@ -126,36 +126,25 @@ public struct BPKPrice: View {
             }
         }
         if let trailingText = trailingText {
-            priceText(
-                trailingText,
-                style: accessoryFontStyle,
-                foregroundColor: .textSecondaryColor
-            )
+            BPKText(trailingText, style: accessoryFontStyle)
+                .foregroundColor(.textSecondaryColor)
         }
     }
 
     @ViewBuilder
     private func priceText(
         _ text: String,
-        style: BPKFontStyle,
-        foregroundColor: BPKColor? = nil
+        style: BPKFontStyle
     ) -> some View {
-        if let cta {
+        if let onPriceClicked {
             BPKLink(
-                markdown: text,
+                markdown: "[\(text)](\(text))",
                 style: linkStyle,
                 fontStyle: style,
-                textColor: foregroundColor,
-                onCustomLink: cta
+                onCustomLink: { _ in onPriceClicked() }
             )
         } else {
-            BPKText(
-                text,
-                style: style
-            )
-            .if(foregroundColor != nil) {
-                $0.foregroundColor(.textSecondaryColor)
-            }
+            BPKText(text, style: style)
         }
     }
     
