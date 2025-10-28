@@ -121,13 +121,8 @@ struct ChipButtonStyle: ButtonStyle {
             return selected ? .corePrimaryColor : .clear
         case .onDark:
             
-            // To add to foundations.
-            let chipOnFillLight = UIColor(red: 21/255, green: 70/255, blue: 121/255, alpha: 1)
-            let chipOnFillDark = UIColor(red: 2/255, green: 77/255, blue: 175/255, alpha: 1)
-            let chipOnFill = UIColor.dynamicColorTest(light: chipOnFillLight, dark: chipOnFillDark)
-            
-            if chipConfig != nil {
-                return selected ? .textOnDarkColor : BPKColor(value: chipOnFill)
+            if chipConfig != nil, let chipDarkFill = chipConfig?.color {
+                return selected ? .textOnDarkColor : BPKColor(value: chipDarkFill)
             }
             
             return selected ? .chipOnDarkOnBackgroundColor : .clear
@@ -180,34 +175,5 @@ struct AnyShape: Shape {
     
     func path(in rect: CGRect) -> Path {
         return _path(rect)
-    }
-}
-
-// As we are not adding the new colours to Foundations yet, this is to handle the new colouring.
-extension UIColor {
-    private static var dynamicColorsCache = NSCache<NSString, UIColor>()
-
-    static func dynamicColorTest(light: UIColor, dark: UIColor) -> UIColor {
-        guard #available(iOS 13.0, *) else {
-            return light
-        }
-
-        let key = "\(light.cacheKey)_\(dark.cacheKey)" as NSString
-
-        if let cached = dynamicColorsCache.object(forKey: key) {
-            return cached
-        }
-
-        let dynamicColour = UIColor { traits -> UIColor in
-            traits.userInterfaceStyle == .dark ? dark : light
-        }
-
-        dynamicColorsCache.setObject(dynamicColour, forKey: key)
-        return dynamicColour
-    }
-
-    private var cacheKey: String {
-        guard let components = cgColor.components else { return description }
-        return components.map(String.init).joined(separator: "_")
     }
 }

@@ -56,19 +56,18 @@ struct BPKChipAppearanceSets {
     )
     
     private static let onDarkAppearanceExperiment = {
-        // To add to foundations.
-        let chipOnFill = UIColor.dynamicColorTest(
-            light: UIColor(red: 21/255, green: 70/255, blue: 121/255, alpha: 1),
-            dark: UIColor(red: 2/255, green: 77/255, blue: 175/255, alpha: 1)
-        )
+        
+        guard let config = BpkConfiguration.shared.chipConfig, let chipDarkOnFill = config.color else {
+            return onDarkAppearance
+        }
         
         return AppearanceSet(
             normal: Colors(
-                background: chipOnFill,
+                background: chipDarkOnFill,
                 content: BPKColor.textOnDarkColor,
                 stroke: BPKColor.clear),
             highlighted: Colors(
-                background: chipOnFill,
+                background: chipDarkOnFill,
                 content: BPKColor.textOnLightColor,
                 stroke: BPKColor.textOnDarkColor),
             selected: Colors(
@@ -122,34 +121,39 @@ struct BPKChipAppearanceSets {
         )
     )
 
-    private static let defaultAppearanceExperiment = AppearanceSet(
-        normal: Colors(
-            background: BPKColor.surfaceDefaultColor,
-            content: BPKColor.textPrimaryColor,
-            stroke: BPKColor.clear
-        ),
-        highlighted: Colors(
-            background: BPKColor.surfaceDefaultColor,
-            content: BPKColor.textPrimaryColor,
-            stroke: BPKColor.coreAccentColor
-        ),
-        selected: Colors(
-            background: BPKColor.coreAccentColor,
-            content: BPKColor.textPrimaryInverseColor
-        ),
-        disabled: Colors(
-            background: BPKColor.chipDisabledBackgroundColor,
-            content: BPKColor.textDisabledColor
+    private static let defaultAppearanceExperiment =  {
+        
+        guard BpkConfiguration.shared.chipConfig != nil else {
+            return defaultAppearance
+        }
+        
+        return AppearanceSet(
+            normal: Colors(
+                background: BPKColor.surfaceDefaultColor,
+                content: BPKColor.textPrimaryColor,
+                stroke: BPKColor.lineColor
+            ),
+            highlighted: Colors(
+                background: BPKColor.surfaceDefaultColor,
+                content: BPKColor.textPrimaryColor,
+                stroke: BPKColor.coreAccentColor
+            ),
+            selected: Colors(
+                background: BPKColor.coreAccentColor,
+                content: BPKColor.textPrimaryInverseColor
+            ),
+            disabled: Colors(
+                background: BPKColor.chipDisabledBackgroundColor,
+                content: BPKColor.textDisabledColor
+            )
         )
-    )
+    }()
 
     static func appearance(fromStyle style: BPKChipStyle) -> AppearanceSet {
         
-        let config = BpkConfiguration.shared.chipConfig
-        
         switch style {
-        case .`default`: return config != nil ? defaultAppearanceExperiment : defaultAppearance
-        case .onDark: return config != nil ? onDarkAppearanceExperiment : onDarkAppearance
+        case .`default`: return defaultAppearanceExperiment
+        case .onDark: return onDarkAppearanceExperiment
         case .onImage: return onImageAppearance
         }
     }

@@ -51,7 +51,7 @@ public final class BpkConfiguration: NSObject {
     public struct BpkCardConfig {}
     
     public struct BpkChipConfig {
-        public var color: Color?
+        public var color: UIColor?
         public var height: CGFloat?
         public var heightDimension: String?
         public var radius: CGFloat?
@@ -126,9 +126,16 @@ public final class BpkConfiguration: NSObject {
     }
     
     private func setChipExperiment(chipConfig: Bool) {
+        
+        // To add to foundations.
+        let onFillLight = UIColor(red: 21/255, green: 70/255, blue: 121/255, alpha: 1)
+        let onFillDark = UIColor(red: 2/255, green: 77/255, blue: 175/255, alpha: 1)
+        let chipOnDarkFill = UIColor.dynamicColorTest(light: onFillLight, dark: onFillDark)
+        
         /// Example experiment configs
         if chipConfig {
             self.chipConfig = BpkChipConfig(
+                color: chipOnDarkFill,
                 height: 8,
                 heightDimension: "bpk_new_chip_height",
                 radius: 100,
@@ -219,21 +226,6 @@ public final class BpkConfiguration: NSObject {
     }
 }
 
-extension BpkConfiguration {
-    public func reset() {
-        heading1Config = nil
-        heading2Config = nil
-        heading3Config = nil
-        heading4Config = nil
-        heading5Config = nil
-        typographyConfigSet = false
-        chipConfig = nil
-        hasSet = false
-        configIsAccessed = false
-        onConfigurationAccessed = nil
-    }
-}
-
 public enum TypographyTokenConfig {
     case heading1Config
     case heading2Config
@@ -263,31 +255,17 @@ public class TypographyConfig: NSObject {
     }
 }
 
-extension Font {
-    
-    static func toUIFont(
-        font: Font,
-        face: String? = nil,
-        size: CGFloat,
-        weight: UIFont.Weight
-    ) -> UIFont {
-        if let face = face, let custom = UIFont(name: face, size: size) {
-            return custom
-        } else {
-            return UIFont.systemFont(ofSize: size, weight: weight)
-        }
-    }
-
-    static func blackUIFont(size: CGFloat, style: TextStyle) -> UIFont {
-        let face = BPKFont.fontDefinition?.blackFontFace as String?
-        return toUIFont(
-            font: .black(
-                size: size,
-                textStyle: style
-            ),
-            face: face,
-            size: size,
-            weight: .black
-        )
+extension BpkConfiguration {
+    public func reset() {
+        heading1Config = nil
+        heading2Config = nil
+        heading3Config = nil
+        heading4Config = nil
+        heading5Config = nil
+        typographyConfigSet = false
+        chipConfig = nil
+        hasSet = false
+        configIsAccessed = false
+        onConfigurationAccessed = nil
     }
 }
