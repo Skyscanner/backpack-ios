@@ -55,7 +55,7 @@ public struct BPKLink: View {
     }
 
     public var body: some View {
-        BPKText(styled, style: fontStyle, preservesForegroundColors: true)
+        BPKText(Text(styled), style: fontStyle)
             .lineLimit(nil)
             .environment(\.openURL, openURLAction)
     }
