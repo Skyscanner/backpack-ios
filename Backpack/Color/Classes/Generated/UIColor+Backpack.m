@@ -74,6 +74,10 @@
     return BPKColor.surfaceHeroColor;
 }
 
++ (UIColor *)bpk_surfaceTintColor {
+    return BPKColor.surfaceTintColor;
+}
+
 + (UIColor *)bpk_surfaceDefaultColor {
     return BPKColor.surfaceDefaultColor;
 }
