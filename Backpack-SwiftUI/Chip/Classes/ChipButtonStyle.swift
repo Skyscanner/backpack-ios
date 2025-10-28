@@ -80,7 +80,7 @@ struct ChipButtonStyle: ButtonStyle {
                 return chipConfig != nil ? .coreAccentColor : .corePrimaryColor
             }
             
-            return config != nil && style == .onContrast ? .lineColor : .clear
+            return config != nil && style != .onContrast ? .lineColor : .clear
         case .onDark:
             if selected {
                 return chipConfig != nil ? .textOnDarkColor : .surfaceDefaultColor
