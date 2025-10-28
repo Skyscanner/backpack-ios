@@ -95,6 +95,11 @@ public extension BPKColor {
     static let surfaceHeroColor = BPKColor(red: 0.000, green: 0.384, blue: 0.890, alpha: 1)
         .darkVariant(BPKColor(red: 0.004, green: 0.035, blue: 0.075, alpha: 1))
 
+    /// The `surfaceTintColor` dynamic color from the Backpack palette.
+    
+    static let surfaceTintColor = BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.10196078431372549)
+        .darkVariant(BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.10196078431372549))
+
     /// The `surfaceDefaultColor` dynamic color from the Backpack palette.
     
     static let surfaceDefaultColor = BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1)

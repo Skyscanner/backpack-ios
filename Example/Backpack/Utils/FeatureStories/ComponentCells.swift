@@ -91,6 +91,7 @@ struct ComponentCellsProvider {
             sliders(),
             snippets(),
             spinners(),
+            sponsoredInsetBanner(),
             starRatings(),
             switches(),
             tabBarControllers(),
@@ -790,7 +791,17 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Inset Banner", tabs: $0) }
         )
     }
-    
+    private func sponsoredInsetBanner() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Sponsored Inset Banner",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(SponsoredInsetBannerExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Sponsored Inset Banner", tabs: $0) }
+        )
+    }
     private func appSearchModal() -> CellDataSource {
         ComponentCellDataSource(
             title: "App Search Modal",
