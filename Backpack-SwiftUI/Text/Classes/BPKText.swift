@@ -42,6 +42,7 @@ public struct BPKText: View {
         text
             .strikethrough(strikethrough)
             .font(style: style)
+            .foregroundColor(textColor)
             .lineLimit(lineLimit)
             .if(!BPKFont.enableDynamicType, transform: {
                 $0.sizeCategory(.large)
