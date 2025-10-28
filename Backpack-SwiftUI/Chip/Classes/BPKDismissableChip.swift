@@ -71,7 +71,7 @@ public struct BPKDismissableChip: View {
         let chipConfig = self.config?.chipConfig
         
         switch style {
-        case .`default`: return chipConfig != nil ? .textPrimaryInverseColor : .textDisabledOnDarkColor
+        case .`default`, .onContrast: return chipConfig != nil ? .textPrimaryInverseColor : .textDisabledOnDarkColor
         case .onDark: return chipConfig != nil ? .textOnLightColor : .chipOnDarkOnDismissIconColor
         case .onImage: return chipConfig != nil ? .textOnDarkColor : .textDisabledOnDarkColor
         }
@@ -88,13 +88,8 @@ public struct BPKDismissableChip: View {
     private var backgroundColor: BPKColor {
         let chipConfig = self.config?.chipConfig
         
-        // To add to foundations.
-        let chipOnFillLight = UIColor(red: 21/255, green: 70/255, blue: 121/255, alpha: 1)
-        let chipOnFillDark = UIColor(red: 0.000, green: 0.384, blue: 0.890, alpha: 1)
-        let chipOnFill = UIColor.dynamicColorTest(light: chipOnFillLight, dark: chipOnFillDark)
-        
         switch style {
-        case .`default`: return chipConfig != nil ? .coreAccentColor : .corePrimaryColor
+        case .`default`, .onContrast: return chipConfig != nil ? .coreAccentColor : .corePrimaryColor
         case .onDark: return chipConfig != nil ? .textOnDarkColor  : .chipOnDarkOnBackgroundColor
         case .onImage: return .corePrimaryColor
         }
@@ -104,7 +99,7 @@ public struct BPKDismissableChip: View {
         let chipConfig = self.config?.chipConfig
         
         switch style {
-        case .`default`: return chipConfig != nil ? .textPrimaryInverseColor : .textOnDarkColor
+        case .`default`, .onContrast: return chipConfig != nil ? .textPrimaryInverseColor : .textOnDarkColor
         case .onDark: return chipConfig != nil ? .textOnLightColor : .textPrimaryColor
         case .onImage: return .textOnDarkColor
         }

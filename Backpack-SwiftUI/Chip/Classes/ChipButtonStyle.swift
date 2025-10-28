@@ -75,12 +75,12 @@ struct ChipButtonStyle: ButtonStyle {
             return .buttonDisabledBackgroundColor
         }
         switch style {
-        case .`default`:
+        case .`default`, .onContrast:
             if selected || isPressed {
                 return chipConfig != nil ? .coreAccentColor : .corePrimaryColor
             }
             
-            return config != nil ? .clear : .lineColor
+            return config != nil && style != .onContrast ? .lineColor : .clear
         case .onDark:
             if selected {
                 return chipConfig != nil ? .textOnDarkColor : .surfaceDefaultColor
@@ -90,7 +90,7 @@ struct ChipButtonStyle: ButtonStyle {
                 return chipConfig != nil ? .textOnDarkColor : .chipOnDarkPressedStrokeColor
             }
             
-            return .lineOnDarkColor
+            return chipConfig != nil ? .clear : .lineOnDarkColor
         case .onImage:
             if selected {
                 return .corePrimaryColor
@@ -112,7 +112,7 @@ struct ChipButtonStyle: ButtonStyle {
             return .chipDisabledBackgroundColor
         }
         switch style {
-        case .`default`:
+        case .`default`, .onContrast:
             
             if chipConfig != nil {
                 return selected ? .coreAccentColor : .surfaceDefaultColor
@@ -148,7 +148,7 @@ struct ChipButtonStyle: ButtonStyle {
             return .textDisabledColor
         }
         switch style {
-        case .`default`:
+        case .`default`, .onContrast:
             
             if chipConfig != nil {
                 return selected ? .textPrimaryInverseColor : .textPrimaryColor

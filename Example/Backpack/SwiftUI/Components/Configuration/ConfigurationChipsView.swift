@@ -97,7 +97,7 @@ struct ConfigurationChipsView: View {
             }
             
             Button("onContrast") {
-                style = .default
+                style = .onContrast
                 backGroundColor = .gray
                 showImage = false
             }

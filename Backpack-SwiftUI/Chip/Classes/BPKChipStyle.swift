@@ -19,5 +19,5 @@
 import SwiftUI
 
 public enum BPKChipStyle {
-    case `default`, onDark, onImage
+    case `default`, onDark, onImage, onContrast
 }

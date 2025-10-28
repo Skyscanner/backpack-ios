@@ -129,7 +129,6 @@ public final class BpkConfiguration: NSObject {
         /// Example experiment configs
         if chipConfig {
             self.chipConfig = BpkChipConfig(
-                color: .accentColor,
                 height: 8,
                 heightDimension: "bpk_new_chip_height",
                 radius: 100,
