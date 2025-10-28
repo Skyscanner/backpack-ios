@@ -92,13 +92,13 @@ struct ConfigurationChipsView: View {
         HStack(alignment: .center, spacing: .lg) {
             Button("Default") {
                 style = .default
-                backGroundColor = .clear
+                backGroundColor = .gray
                 showImage = false
             }
             
             Button("onContrast") {
                 style = .onContrast
-                backGroundColor = .gray
+                backGroundColor = .clear
                 showImage = false
             }
             
