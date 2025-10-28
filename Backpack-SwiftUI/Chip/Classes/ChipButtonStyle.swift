@@ -148,13 +148,20 @@ struct ChipButtonStyle: ButtonStyle {
             return .textDisabledColor
         }
         switch style {
-        case .`default`, .onImage:
+        case .`default`:
             
             if chipConfig != nil {
                 return selected ? .textPrimaryInverseColor : .textPrimaryColor
             }
             
             return selected ? .textOnDarkColor : .textPrimaryColor
+        case .onImage:
+            if chipConfig != nil {
+                return selected ? .textOnDarkColor : .textPrimaryColor
+            }
+            
+            return selected ? .textOnDarkColor : .textPrimaryColor
+            
         case .onDark:
             
             if chipConfig != nil {

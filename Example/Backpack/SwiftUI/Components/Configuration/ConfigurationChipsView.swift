@@ -28,12 +28,20 @@ struct ConfigurationChipsView: View {
     
     @State private var style: Backpack_SwiftUI.BPKChipStyle = .default
     @State private var backGroundColor: Color = .clear
+    @State private var showImage = false
 
     var body: some View {
         ZStack {
             if #available(iOS 17.0, *) {
-                Color(backGroundColor)
-                    .ignoresSafeArea(edges: .all)
+                if showImage {
+                    Image("canadian_rockies_canada")
+                        .resizable()
+                        .scaledToFill()
+                        .ignoresSafeArea(edges: .all)
+                } else {
+                    Color(backGroundColor)
+                        .ignoresSafeArea(edges: .all)
+                }
             }
             
             VStack(spacing: .lg) {
@@ -85,16 +93,25 @@ struct ConfigurationChipsView: View {
             Button("Default") {
                 style = .default
                 backGroundColor = .clear
+                showImage = false
             }
             
             Button("onContrast") {
                 style = .default
                 backGroundColor = .gray
+                showImage = false
             }
             
             Button("OnDark") {
                 style = .onDark
                 backGroundColor = Color(cgColor: BPKColor.surfaceContrastColor.cgColor)
+                showImage = false
+            }
+            
+            Button("OnImage") {
+                style = .onImage
+                backGroundColor = .clear
+                showImage = true
             }
         }
     }

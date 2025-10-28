@@ -73,7 +73,7 @@ public struct BPKDismissableChip: View {
         switch style {
         case .`default`: return chipConfig != nil ? .textPrimaryInverseColor : .textDisabledOnDarkColor
         case .onDark: return chipConfig != nil ? .textOnLightColor : .chipOnDarkOnDismissIconColor
-        case .onImage: return .textDisabledOnDarkColor
+        case .onImage: return chipConfig != nil ? .textOnDarkColor : .textDisabledOnDarkColor
         }
     }
     
