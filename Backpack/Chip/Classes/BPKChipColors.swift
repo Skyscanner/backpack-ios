@@ -129,7 +129,7 @@ struct BPKChipAppearanceSets {
         
         return AppearanceSet(
             normal: Colors(
-                background: BPKColor.surfaceDefaultColor,
+                background: BPKColor.clear,
                 content: BPKColor.textPrimaryColor,
                 stroke: BPKColor.lineColor
             ),
