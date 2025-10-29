@@ -34,7 +34,6 @@ public struct BPKPrice: View {
     private let trailingText: String?
     private let icon: (BPKIcon, String)?
     private let onPriceClicked: (() -> Void)?
-    private let linkStyle: BPKLinkStyle
     private let alignment: Alignment
     private let size: Size
     
@@ -45,7 +44,6 @@ public struct BPKPrice: View {
         trailingText: String? = nil,
         icon: (BPKIcon, String)? = nil,
         onPriceClicked: (() -> Void)? = nil,
-        linkStyle: BPKLinkStyle = .default,
         alignment: Alignment = .leading,
         size: Size
     ) {
@@ -57,7 +55,6 @@ public struct BPKPrice: View {
         self.alignment = alignment
         self.size = size
         self.onPriceClicked = onPriceClicked
-        self.linkStyle = linkStyle
     }
     
     public var body: some View {
@@ -139,7 +136,6 @@ public struct BPKPrice: View {
         if let onPriceClicked {
             BPKLink(
                 markdown: "[\(text)](\(text))",
-                style: linkStyle,
                 fontStyle: style,
                 onCustomLink: { _ in onPriceClicked() }
             )
