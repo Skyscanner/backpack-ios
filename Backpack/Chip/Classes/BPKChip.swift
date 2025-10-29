@@ -142,7 +142,7 @@ public class BPKChip: UIControl {
      */
     public convenience init(title: String, icon: BPKSmallIconName? = nil) {
         self.init(frame: .zero)
-        self.config = nil
+        self.config = BpkConfiguration.shared
         self.title = title
         self.icon = icon
         

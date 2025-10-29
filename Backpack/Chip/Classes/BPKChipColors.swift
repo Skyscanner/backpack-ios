@@ -148,11 +148,33 @@ struct BPKChipAppearanceSets {
             )
         )
     }()
+    
+    private static let onContrastAppearanceExperiment = AppearanceSet(
+        normal: Colors(
+            background: BPKColor.surfaceDefaultColor,
+            content: BPKColor.textPrimaryColor,
+            stroke: BPKColor.clear
+        ),
+        highlighted: Colors(
+            background: BPKColor.surfaceDefaultColor,
+            content: BPKColor.textPrimaryColor,
+            stroke: BPKColor.coreAccentColor
+        ),
+        selected: Colors(
+            background: BPKColor.coreAccentColor,
+            content: BPKColor.textPrimaryInverseColor
+        ),
+        disabled: Colors(
+            background: BPKColor.chipDisabledBackgroundColor,
+            content: BPKColor.textDisabledColor
+        )
+    )
 
     static func appearance(fromStyle style: BPKChipStyle) -> AppearanceSet {
         
         switch style {
         case .`default`: return defaultAppearanceExperiment
+        case .onContrast: return onContrastAppearanceExperiment
         case .onDark: return onDarkAppearanceExperiment
         case .onImage: return onImageAppearance
         }
