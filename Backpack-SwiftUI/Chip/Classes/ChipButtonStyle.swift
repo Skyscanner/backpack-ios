@@ -112,13 +112,15 @@ struct ChipButtonStyle: ButtonStyle {
             return .chipDisabledBackgroundColor
         }
         switch style {
-        case .`default`, .onContrast:
+        case .`default`:
             
             if chipConfig != nil {
-                return selected ? .coreAccentColor : .surfaceDefaultColor
+                return selected ? .coreAccentColor : .clear
             }
             
             return selected ? .corePrimaryColor : .clear
+        case .onContrast:
+            return selected ? .coreAccentColor : .surfaceDefaultColor
         case .onDark:
             
             if chipConfig != nil, let chipDarkFill = chipConfig?.color {
