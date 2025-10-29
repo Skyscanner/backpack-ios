@@ -44,12 +44,13 @@ class BPKLinkTests: XCTestCase {
     }
 
     func test_accessibilitySnapshot() {
-        let view = BPKLink(
-            markdown:
-                "Read our [accessibility statement](https://www.example.com/accessibility) or " +
+        let view = VStack(alignment: .leading, spacing: .lg) {
+            BPKLink(
+                markdown:
+                    "Read our [accessibility statement](https://www.example.com/accessibility) or " +
                 "[contact us](app://support)."
-        ) { _ in }
-            .fixedSize(horizontal: false, vertical: true)
+            ) { _ in }
+        }
 
         assertA11ySnapshot(view)
     }
