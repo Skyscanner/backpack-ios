@@ -16,12 +16,6 @@
 | --- | --- |
 | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_graphic-promo___bottom-aligned_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_graphic-promo___bottom-aligned_dm.png" alt="" width="375" /> |
 
-## Top aligned - Sponsored
-
-| Day | Night |
-| --- | --- |
-| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_graphic-promo___top-aligned-sponsored_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_graphic-promo___top-aligned-sponsored_dm.png" alt="" width="375" /> |
-
 ## Bottom aligned - Sponsored
 
 | Day | Night |
