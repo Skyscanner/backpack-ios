@@ -30,7 +30,6 @@ public struct BPKLink: View {
         markdown: String,
         style: BPKLinkStyle = .default,
         fontStyle: BPKFontStyle = .bodyDefault,
-        textColor: BPKColor? = nil,
         onCustomLink: @escaping (URL) -> Void = { _ in }
     ) {
         self.onCustomLink = onCustomLink
@@ -38,11 +37,7 @@ public struct BPKLink: View {
 
         let parsedMarkdown = try? AttributedString(markdown: markdown)
         var attributed = parsedMarkdown ?? AttributedString(markdown)
-        if let textColor {
-            attributed.foregroundColor = Color(textColor)
-        } else {
-            attributed.foregroundColor = style.textColor
-        }
+        attributed.foregroundColor = style.textColor
 
         for run in attributed.runs {
             guard run.link != nil else { continue }
