@@ -50,8 +50,9 @@ class BPKLinkTests: XCTestCase {
                     "Read our [accessibility statement](https://www.example.com/accessibility) or " +
                 "[contact us](app://support)."
             ) { _ in }
+                .fixedSize(horizontal: false, vertical: true)
         }
 
-        assertA11ySnapshot(view)
+        assertA11ySnapshot(view, customHeight: 400)
     }
 }
