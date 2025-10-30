@@ -32,6 +32,7 @@ let package = Package(
         // Components
         "Carousel/Classes",
         "Configuration/Classes",
+        "Configuration/Fonts",
         "Icons/Generated"
       ],
       resources: [
@@ -45,7 +46,8 @@ let package = Package(
       dependencies: ["Backpack_Common"],
       path: "Backpack-SwiftUI",
       exclude: [
-        "Tests"
+        "Tests",
+        "Blur/Classes/VariableBlur.metal"
       ],
       sources: [
         "AppSearchModal/Classes",
@@ -111,6 +113,9 @@ let package = Package(
         "Utils/Classes",
 
         "BackpackSwiftUIImports.swift",
+      ],
+      resources: [
+        .process("Blur/Classes/VariableBlur.metal")
       ]
     ),
 
@@ -128,7 +133,7 @@ let package = Package(
         ],
         path: "Backpack-SwiftUI/Tests",
         resources: [
-            .process("Images")
+            .process("Images.xcassets")
         ]
     ),
   ],
