@@ -134,7 +134,7 @@ struct BPKChipAppearanceSets {
                 stroke: BPKColor.lineColor
             ),
             highlighted: Colors(
-                background: BPKColor.surfaceDefaultColor,
+                background: BPKColor.clear,
                 content: BPKColor.textPrimaryColor,
                 stroke: BPKColor.coreAccentColor
             ),
