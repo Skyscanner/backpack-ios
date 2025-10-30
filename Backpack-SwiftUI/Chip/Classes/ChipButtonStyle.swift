@@ -26,27 +26,21 @@ struct ChipButtonStyle: ButtonStyle {
     let config: BpkConfiguration?
 
     func makeBody(configuration: Self.Configuration) -> some View {
-        
+        chipLabelView(configuration: configuration)
+            .clipShape(RoundedRectangle(cornerRadius: setRadius()))
+            .outline(outlineColor(configuration.isPressed), cornerRadius: setRadius())
+            .if(style == .onImage) { $0.shadow(.sm) }
+            .if(!BPKFont.enableDynamicType, transform: {
+                $0.sizeCategory(.large)
+            })
+    }
+    
+    private func setRadius() -> BPKCornerRadius {
         if config?.chipConfig != nil {
-            chipLabelView(configuration: configuration)
-                .clipShape(cornerShape)
-                .overlay(
-                    cornerShape
-                        .stroke(Color(outlineColor(configuration.isPressed)), lineWidth: 1)
-                )
-                .if(style == .onImage) { $0.shadow(.sm) }
-                .if(!BPKFont.enableDynamicType, transform: {
-                    $0.sizeCategory(.large)
-                })
-        } else {
-            chipLabelView(configuration: configuration)
-                .clipShape(RoundedRectangle(cornerRadius: .sm))
-                .outline(outlineColor(configuration.isPressed), cornerRadius: .sm)
-                .if(style == .onImage) { $0.shadow(.sm) }
-                .if(!BPKFont.enableDynamicType, transform: {
-                    $0.sizeCategory(.large)
-                })
+            return .lg
         }
+        
+        return .sm
     }
     
     private func chipLabelView(
@@ -59,35 +53,30 @@ struct ChipButtonStyle: ButtonStyle {
             .foregroundColor(foregroundColor(configuration.isPressed))
     }
     
-    private var cornerShape: some Shape {
-        if let radiusToken = config?.chipConfig?.radiusToken, radiusToken == .roundCorners {
-            return AnyShape(Capsule())
-        } else {
-            return AnyShape(RoundedRectangle(cornerRadius: BPKCornerRadius.sm.value))
-        }
-    }
-    
     private func outlineColor(_ isPressed: Bool) -> BPKColor {
+        
+        let chipConfig = self.config?.chipConfig
+        
         if disabled {
             return .buttonDisabledBackgroundColor
         }
         switch style {
-        case .`default`:
+        case .`default`, .onContrast:
             if selected || isPressed {
-                return .corePrimaryColor
+                return chipConfig != nil ? .coreAccentColor : .corePrimaryColor
             }
             
-            return .lineColor
+            return config != nil && style != .onContrast ? .lineColor : .clear
         case .onDark:
             if selected {
-                return .surfaceDefaultColor
+                return chipConfig != nil ? .textOnDarkColor : .surfaceDefaultColor
             }
             
             if isPressed {
-                return .chipOnDarkPressedStrokeColor
+                return chipConfig != nil ? .textOnDarkColor : .chipOnDarkPressedStrokeColor
             }
             
-            return .lineOnDarkColor
+            return chipConfig != nil ? .clear : .lineOnDarkColor
         case .onImage:
             if selected {
                 return .corePrimaryColor
@@ -102,13 +91,28 @@ struct ChipButtonStyle: ButtonStyle {
     }
     
     private func backgroundColor(_ isPressed: Bool) -> BPKColor {
+        
+        let chipConfig = self.config?.chipConfig
+        
         if disabled {
             return .chipDisabledBackgroundColor
         }
         switch style {
         case .`default`:
+            
+            if chipConfig != nil {
+                return selected ? .coreAccentColor : .clear
+            }
+            
             return selected ? .corePrimaryColor : .clear
+        case .onContrast:
+            return selected ? .coreAccentColor : .surfaceDefaultColor
         case .onDark:
+            
+            if chipConfig != nil, let chipDarkFill = chipConfig?.color {
+                return selected ? .textOnDarkColor : BPKColor(value: chipDarkFill)
+            }
+            
             return selected ? .chipOnDarkOnBackgroundColor : .clear
         case .onImage:
             if selected { return .corePrimaryColor }
@@ -120,13 +124,30 @@ struct ChipButtonStyle: ButtonStyle {
     }
     
     private func foregroundColor(_ isPressed: Bool) -> BPKColor {
+        
+        let chipConfig = self.config?.chipConfig
+        
         if disabled {
             return .textDisabledColor
         }
         switch style {
-        case .`default`, .onImage:
+        case .`default`, .onContrast:
+            
+            if chipConfig != nil {
+                return selected ? .textPrimaryInverseColor : .textPrimaryColor
+            }
+            
             return selected ? .textOnDarkColor : .textPrimaryColor
+        case .onImage:
+            
+            return selected ? .textOnDarkColor : .textPrimaryColor
+            
         case .onDark:
+            
+            if chipConfig != nil {
+                return selected ? .textOnLightColor : .textOnDarkColor
+            }
+            
             return selected ? .textPrimaryColor : .textOnDarkColor
         }
     }
