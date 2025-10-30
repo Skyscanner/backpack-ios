@@ -33,6 +33,7 @@ public struct BPKPrice: View {
     private let previousPrice: String?
     private let trailingText: String?
     private let icon: (BPKIcon, String)?
+    private let onPriceClicked: (() -> Void)?
     private let alignment: Alignment
     private let size: Size
     
@@ -42,6 +43,7 @@ public struct BPKPrice: View {
         previousPrice: String? = nil,
         trailingText: String? = nil,
         icon: (BPKIcon, String)? = nil,
+        onPriceClicked: (() -> Void)? = nil,
         alignment: Alignment = .leading,
         size: Size
     ) {
@@ -52,6 +54,7 @@ public struct BPKPrice: View {
         self.icon = icon
         self.alignment = alignment
         self.size = size
+        self.onPriceClicked = onPriceClicked
     }
     
     public var body: some View {
@@ -74,7 +77,7 @@ public struct BPKPrice: View {
     private var content: some View {
         Group {
             additionalInfoLabel
-            
+
             switch alignment {
             case .leading, .row:
                 HStack(alignment: .firstTextBaseline, spacing: .sm) {
@@ -90,7 +93,7 @@ public struct BPKPrice: View {
             $0.sizeCategory(.large)
         })
     }
-    
+
     private var additionalInfoLabel: some View {
         HStack(spacing: .sm) {
             ForEach(additionalInfo, id: \.self) { item in
@@ -106,14 +109,14 @@ public struct BPKPrice: View {
     private var priceLabel: some View {
         switch alignment {
         case .leading, .row:
-            BPKText(price, style: priceFontStyle)
+            priceText(price, style: priceFontStyle)
             if let icon {
                 redirectingIcon(icon: icon)
                     .offset(y: 2)
             }
         case .trailing:
             HStack(spacing: .sm) {
-                BPKText(price, style: priceFontStyle)
+                priceText(price, style: priceFontStyle)
                 if let icon {
                     redirectingIcon(icon: icon)
                 }
@@ -122,6 +125,22 @@ public struct BPKPrice: View {
         if let trailingText = trailingText {
             BPKText(trailingText, style: accessoryFontStyle)
                 .foregroundColor(.textSecondaryColor)
+        }
+    }
+
+    @ViewBuilder
+    private func priceText(
+        _ text: String,
+        style: BPKFontStyle
+    ) -> some View {
+        if let onPriceClicked {
+            BPKLink(
+                markdown: "[\(text)](\(text))",
+                fontStyle: style,
+                onCustomLink: { _ in onPriceClicked() }
+            )
+        } else {
+            BPKText(text, style: style)
         }
     }
     
