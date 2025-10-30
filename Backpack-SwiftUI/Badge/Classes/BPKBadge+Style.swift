@@ -16,13 +16,15 @@
  * limitations under the License.
  */
 
+import Backpack_Common
+
 internal extension BPKBadge.Style {
-    var backgroundColor: BPKColor {
+    func backgroundColor(_ config: BpkConfiguration?) -> BPKColor {
         switch self {
         case .success, .warning, .destructive, .normal:
-            return BPKColor.badgeBackgroundNormalColor
+            return config == nil ? BPKColor.badgeBackgroundNormalColor : BPKColor.clear
         case .inverse:
-            return BPKColor.surfaceDefaultColor
+            return config == nil ? BPKColor.surfaceDefaultColor : BPKColor.clear
         case .outline:
             return BPKColor.clear
         case .strong:
@@ -32,10 +34,12 @@ internal extension BPKBadge.Style {
         }
     }
     
-    var foregroundColor: BPKColor {
+    func foregroundColor(_ config: BpkConfiguration?) -> BPKColor {
         switch self {
-        case .success, .warning, .destructive, .normal, .inverse:
+        case .success, .warning, .destructive, .normal:
             return BPKColor.textPrimaryColor
+        case .inverse:
+            return config == nil ? BPKColor.textPrimaryColor : BPKColor.textOnDarkColor
         case .outline, .strong:
             return BPKColor.textOnDarkColor
         case .brand:
@@ -43,16 +47,16 @@ internal extension BPKBadge.Style {
         }
     }
     
-    var borderColor: BPKColor? {
+    func borderColor(_ config: BpkConfiguration?) -> BPKColor? {
         switch self {
         case .outline:
-            return BPKColor.textOnDarkColor
+            return config == nil ? BPKColor.textOnDarkColor : BPKColor.clear
         default:
             return nil
         }
     }
     
-    var iconColor: BPKColor {
+    func iconColor(_ config: BpkConfiguration?) -> BPKColor {
         switch self {
         case .success:
             return BPKColor.statusSuccessSpotColor
@@ -61,7 +65,7 @@ internal extension BPKBadge.Style {
         case .destructive:
             return BPKColor.statusDangerSpotColor
         case .normal, .strong, .inverse, .outline, .brand:
-            return foregroundColor
+            return foregroundColor(config)
         }
     }
 }
