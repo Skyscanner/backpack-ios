@@ -126,13 +126,10 @@ public final class BpkConfiguration: NSObject {
     }
     
     private func setChipExperiment(chipConfig: Bool) {
-        
-        // To add to foundations.
         let onFillLight = UIColor(red: 21/255, green: 70/255, blue: 121/255, alpha: 1)
         let onFillDark = UIColor(red: 2/255, green: 77/255, blue: 175/255, alpha: 1)
         let chipOnDarkFill = UIColor.dynamicColorTest(light: onFillLight, dark: onFillDark)
         
-        /// Example experiment configs
         if chipConfig {
             self.chipConfig = BpkChipConfig(
                 color: chipOnDarkFill,

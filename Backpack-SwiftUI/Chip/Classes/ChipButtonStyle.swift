@@ -53,14 +53,6 @@ struct ChipButtonStyle: ButtonStyle {
             .foregroundColor(foregroundColor(configuration.isPressed))
     }
     
-    private var cornerShape: some Shape {
-        if let radiusToken = config?.chipConfig?.radiusToken, radiusToken == .roundCorners {
-            return AnyShape(Capsule())
-        } else {
-            return AnyShape(RoundedRectangle(cornerRadius: BPKCornerRadius.sm.value))
-        }
-    }
-    
     private func outlineColor(_ isPressed: Bool) -> BPKColor {
         
         let chipConfig = self.config?.chipConfig
