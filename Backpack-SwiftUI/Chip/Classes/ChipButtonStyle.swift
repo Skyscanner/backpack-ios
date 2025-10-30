@@ -26,27 +26,21 @@ struct ChipButtonStyle: ButtonStyle {
     let config: BpkConfiguration?
 
     func makeBody(configuration: Self.Configuration) -> some View {
-        
+        chipLabelView(configuration: configuration)
+            .clipShape(RoundedRectangle(cornerRadius: setRadius()))
+            .outline(outlineColor(configuration.isPressed), cornerRadius: setRadius())
+            .if(style == .onImage) { $0.shadow(.sm) }
+            .if(!BPKFont.enableDynamicType, transform: {
+                $0.sizeCategory(.large)
+            })
+    }
+    
+    private func setRadius() -> BPKCornerRadius {
         if config?.chipConfig != nil {
-            chipLabelView(configuration: configuration)
-                .clipShape(cornerShape)
-                .overlay(
-                    cornerShape
-                        .stroke(Color(outlineColor(configuration.isPressed)), lineWidth: 1)
-                )
-                .if(style == .onImage) { $0.shadow(.sm) }
-                .if(!BPKFont.enableDynamicType, transform: {
-                    $0.sizeCategory(.large)
-                })
-        } else {
-            chipLabelView(configuration: configuration)
-                .clipShape(RoundedRectangle(cornerRadius: .sm))
-                .outline(outlineColor(configuration.isPressed), cornerRadius: .sm)
-                .if(style == .onImage) { $0.shadow(.sm) }
-                .if(!BPKFont.enableDynamicType, transform: {
-                    $0.sizeCategory(.large)
-                })
+            return .lg
         }
+        
+        return .sm
     }
     
     private func chipLabelView(
