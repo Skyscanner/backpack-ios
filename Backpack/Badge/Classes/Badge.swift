@@ -17,6 +17,7 @@
  */
 
 import UIKit
+import Backpack_Common
 
 @objcMembers
 @objc
@@ -40,7 +41,7 @@ public class BPKBadge: UIView {
     }
     
     private let label: BPKLabel = {
-        let label = BPKLabel(fontStyle: .textFootnote)
+        let label = BPKLabel(fontStyle: BpkConfiguration.shared.badgeConfig == nil ? .textFootnote : .textCaption)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -82,7 +83,9 @@ public class BPKBadge: UIView {
         label.textColor = type.textColor
         
         if type == .outline {
-            layer.borderColor = BPKColor.textOnDarkColor.cgColor
+            layer.borderColor = BpkConfiguration.shared.badgeConfig == nil ?
+            BPKColor.textOnDarkColor.cgColor :
+            BPKColor.clear.cgColor
             layer.borderWidth = BPKBorderWidthSm
         }
         
@@ -146,8 +149,10 @@ public class BPKBadge: UIView {
 fileprivate extension BPKBadgeType {
     var textColor: UIColor {
         switch self {
-        case .success, .warning, .destructive, .normal, .inverse:
+        case .success, .warning, .destructive, .normal:
             return BPKColor.textPrimaryColor
+        case .inverse:
+            return BpkConfiguration.shared.badgeConfig == nil ? BPKColor.textPrimaryColor : BPKColor.textOnDarkColor
         case .outline, .strong:
             return BPKColor.textOnDarkColor
         case .brand:
@@ -156,11 +161,12 @@ fileprivate extension BPKBadgeType {
     }
     
     var backgroundColor: UIColor {
+        let config = BpkConfiguration.shared.badgeConfig
         switch self {
         case .success, .warning, .destructive, .normal:
-            return BPKColor.badgeBackgroundNormalColor
+            return config == nil ? BPKColor.badgeBackgroundNormalColor : BPKColor.clear
         case .inverse:
-            return BPKColor.surfaceDefaultColor
+            return config == nil ? BPKColor.surfaceDefaultColor : BPKColor.clear
         case .outline:
             return BPKColor.textOnDarkColor
         case .strong:
