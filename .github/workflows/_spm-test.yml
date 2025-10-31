@@ -28,6 +28,7 @@ jobs:
           cat <<EOF_DEST > "$destination_file"
           {
             "version": 1,
+            "platform": "ios",
             "sdk": "$sdk_path",
             "toolchain-bin-dir": "$toolchain_dir",
             "target": "arm64-apple-ios16.0-simulator",
