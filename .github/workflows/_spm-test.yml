@@ -18,7 +18,7 @@ jobs:
       - name: Select Xcode 16
         run: sudo xcode-select --switch /Applications/Xcode_16.2.app
 
-      - name: Build Backpack Swift Package Tests
+      - name: Run Backpack Swift Package Tests (Xcode build system)
         run: |
           set -eo pipefail
           destination_file=$(mktemp)
@@ -38,5 +38,7 @@ jobs:
           }
           EOF_DEST
 
-          swift build --build-tests --destination "$destination_file"
+          swift test \
+            --build-system xcode \
+            --destination "$destination_file"
           rm "$destination_file"
