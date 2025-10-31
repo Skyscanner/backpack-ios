@@ -17,14 +17,18 @@ function analyze() {
 }
 
 function runTests() {
+    local scheme="$1"
+    shift
+
     xcodebuild test \
         -enableCodeCoverage YES \
         -workspace $EXAMPLE_WORKSPACE \
-        -scheme "$1" \
+        -scheme "$scheme" \
         SWIFT_VERSION=$SWIFT \
         -sdk $BUILD_SDK \
         -destination "$(echo $DESTINATION)" \
-        ONLY_ACTIVE_ARCH=YES 2>&1
+        ONLY_ACTIVE_ARCH=YES \
+        "$@" 2>&1
 }
 
 function check_modules() {
@@ -38,6 +42,9 @@ function check_modules() {
 
         elif [ $1 == "swiftui" ]; then
             runTests "Backpack SwiftUI"
+
+        elif [ $1 == "common" ]; then
+            runTests "Backpack-Common-Tests"
         fi
     elif [ $2 == "analysis" ]; then
         if [ $1 == "uikit" ]; then

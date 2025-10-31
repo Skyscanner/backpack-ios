@@ -210,21 +210,8 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Chip Group", tabs: $0) }
         )
     }
+    
     private func configuration() -> CellDataSource {
-        do {
-            let config = BpkConfiguration.shared
-            try config.set(
-                chipConfig: true,
-                typographyConfig: true
-            )
-        } catch {
-            return ComponentCellDataSource(
-                title: "Configuration",
-                tabs: [],
-                showChildren: { _ in }
-            )
-        }
-        
         return ComponentCellDataSource(
             title: "Configuration",
             tabs: [

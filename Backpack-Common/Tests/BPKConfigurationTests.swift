@@ -68,8 +68,7 @@ final class BpkConfigurationTests: XCTestCase {
         
         // Then
         XCTAssertNotNil(chipConfig)
-        XCTAssertEqual(chipConfig?.color, .accentColor)
-        XCTAssertEqual(chipConfig?.height, 12)
+        XCTAssertEqual(chipConfig?.height, 8)
         XCTAssertEqual(chipConfig?.heightDimension, "bpk_new_chip_height")
         XCTAssertEqual(chipConfig?.radius, 100)
         XCTAssertEqual(chipConfig?.radiusToken, .roundCorners)

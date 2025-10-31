@@ -35,7 +35,7 @@ struct BPKChipAppearanceSets {
             self.stroke = stroke
         }
     }
-
+    
     private static let onDarkAppearance = AppearanceSet(
         normal: Colors(
             background: BPKColor.clear,
@@ -55,6 +55,32 @@ struct BPKChipAppearanceSets {
         )
     )
     
+    private static let onDarkAppearanceExperiment = {
+        
+        guard let config = BpkConfiguration.shared.chipConfig, let chipDarkOnFill = config.color else {
+            return onDarkAppearance
+        }
+        
+        return AppearanceSet(
+            normal: Colors(
+                background: chipDarkOnFill,
+                content: BPKColor.textOnDarkColor,
+                stroke: BPKColor.clear),
+            highlighted: Colors(
+                background: chipDarkOnFill,
+                content: BPKColor.textOnLightColor,
+                stroke: BPKColor.textOnDarkColor),
+            selected: Colors(
+                background: BPKColor.textOnDarkColor,
+                content: BPKColor.textOnLightColor
+            ),
+            disabled: Colors(
+                background: BPKColor.chipDisabledBackgroundColor,
+                content: BPKColor.textDisabledColor
+            )
+        )
+    }()
+    
     private static let onImageAppearance = AppearanceSet(
         normal: Colors(
             background: BPKColor.surfaceDefaultColor,
@@ -73,7 +99,7 @@ struct BPKChipAppearanceSets {
             content: BPKColor.textDisabledColor
         )
     )
-
+    
     private static let defaultAppearance = AppearanceSet(
         normal: Colors(
             background: BPKColor.clear,
@@ -95,11 +121,91 @@ struct BPKChipAppearanceSets {
         )
     )
 
+    private static let defaultAppearanceExperiment =  {
+        
+        guard BpkConfiguration.shared.chipConfig != nil else {
+            return defaultAppearance
+        }
+        
+        return AppearanceSet(
+            normal: Colors(
+                background: BPKColor.clear,
+                content: BPKColor.textPrimaryColor,
+                stroke: BPKColor.lineColor
+            ),
+            highlighted: Colors(
+                background: BPKColor.clear,
+                content: BPKColor.textPrimaryColor,
+                stroke: BPKColor.coreAccentColor
+            ),
+            selected: Colors(
+                background: BPKColor.coreAccentColor,
+                content: BPKColor.textPrimaryInverseColor
+            ),
+            disabled: Colors(
+                background: BPKColor.chipDisabledBackgroundColor,
+                content: BPKColor.textDisabledColor
+            )
+        )
+    }()
+    
+    private static let onContrastAppearanceExperiment = AppearanceSet(
+        normal: Colors(
+            background: BPKColor.surfaceDefaultColor,
+            content: BPKColor.textPrimaryColor,
+            stroke: BPKColor.clear
+        ),
+        highlighted: Colors(
+            background: BPKColor.surfaceDefaultColor,
+            content: BPKColor.textPrimaryColor,
+            stroke: BPKColor.coreAccentColor
+        ),
+        selected: Colors(
+            background: BPKColor.coreAccentColor,
+            content: BPKColor.textPrimaryInverseColor
+        ),
+        disabled: Colors(
+            background: BPKColor.chipDisabledBackgroundColor,
+            content: BPKColor.textDisabledColor
+        )
+    )
+
     static func appearance(fromStyle style: BPKChipStyle) -> AppearanceSet {
+        
         switch style {
-        case .`default`: return defaultAppearance
-        case .onDark: return onDarkAppearance
+        case .`default`: return defaultAppearanceExperiment
+        case .onContrast: return onContrastAppearanceExperiment
+        case .onDark: return onDarkAppearanceExperiment
         case .onImage: return onImageAppearance
         }
+    }
+}
+
+// As we are not adding the new colours to Foundations yet, this is to handle the new colouring.
+extension UIColor {
+    private static var dynamicColorsCache = NSCache<NSString, UIColor>()
+
+    static func dynamicColorTest(light: UIColor, dark: UIColor) -> UIColor {
+        guard #available(iOS 13.0, *) else {
+            return light
+        }
+
+        let key = "\(light.cacheKey)_\(dark.cacheKey)" as NSString
+
+        if let cached = dynamicColorsCache.object(forKey: key) {
+            return cached
+        }
+
+        let dynamicColour = UIColor { traits -> UIColor in
+            traits.userInterfaceStyle == .dark ? dark : light
+        }
+
+        dynamicColorsCache.setObject(dynamicColour, forKey: key)
+        return dynamicColour
+    }
+
+    private var cacheKey: String {
+        guard let components = cgColor.components else { return description }
+        return components.map(String.init).joined(separator: "_")
     }
 }

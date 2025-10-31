@@ -142,7 +142,7 @@ public class BPKChip: UIControl {
      */
     public convenience init(title: String, icon: BPKSmallIconName? = nil) {
         self.init(frame: .zero)
-        self.config = nil
+        self.config = BpkConfiguration.shared
         self.title = title
         self.icon = icon
         
@@ -333,6 +333,9 @@ extension BPKChip {
     }
     
     private var accessoryColor: UIColor {
+        
+        let chipConfig = config?.chipConfig
+        
         if !isEnabled {
             let appearance = BPKChipAppearanceSets.appearance(fromStyle: style)
             return appearance.disabled.content
@@ -340,9 +343,9 @@ extension BPKChip {
         
         if type == .dismiss && !isHighlighted {
             if style == .onDark {
-                return BPKColor.chipOnDarkOnDismissIconColor
+                return chipConfig != nil ?  BPKColor.textOnLightColor : BPKColor.chipOnDarkOnDismissIconColor
             } else {
-                return BPKColor.textDisabledOnDarkColor
+                return chipConfig != nil ?  BPKColor.textOnDarkColor : BPKColor.textDisabledOnDarkColor
             }
         }
         
