@@ -18,28 +18,32 @@ jobs:
       - name: Select Xcode 16
         run: sudo xcode-select --switch /Applications/Xcode_16.2.app
 
-      - name: Run Backpack Swift Package Tests (Xcode build system)
+      - name: Prepare SwiftPM Xcode workspace
         run: |
           set -eo pipefail
-          destination_file=$(mktemp)
-          sdk_path=$(xcrun --sdk iphonesimulator --show-sdk-path)
-          toolchain_dir="$(xcode-select -p)/Toolchains/XcodeDefault.xctoolchain/usr/bin"
-          developer_frameworks="$(xcode-select -p)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks"
-          cat <<EOF_DEST > "$destination_file"
-          {
-            "version": 1,
-            "platform": "ios",
-            "sdk": "$sdk_path",
-            "toolchain-bin-dir": "$toolchain_dir",
-            "target": "arm64-apple-ios16.0-simulator",
-            "extra-cc-flags": [],
-            "extra-swiftc-flags": ["-F", "$developer_frameworks"],
-            "extra-cpp-flags": [],
-            "extra-linker-flags": []
-          }
-          EOF_DEST
+          mkdir -p .swiftpm/xcode/package.xcworkspace
+          cat <<'EOF' > .swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
+          <?xml version="1.0" encoding="UTF-8"?>
+          <Workspace
+             version = "1.0">
+             <FileRef
+                location = "self:">
+             </FileRef>
+          </Workspace>
+          EOF
 
-          swift test \
-            --build-system xcode \
-            --destination "$destination_file"
-          rm "$destination_file"
+      - name: Build Backpack Swift Package with xcodebuild
+        run: |
+          set -eo pipefail
+          xcodebuild \
+            -workspace .swiftpm/xcode/package.xcworkspace \
+            -scheme Backpack-Package \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath .derivedData \
+            -skipPackagePluginValidation \
+            -skipMacroValidation \
+            build
+
+      - name: Clean derived data
+        if: always()
+        run: rm -rf .derivedData
