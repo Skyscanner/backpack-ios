@@ -15,22 +15,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
-      - name: Select Xcode 16
-        run: sudo xcode-select --switch /Applications/Xcode_16.2.app
-
-      - name: Prepare SwiftPM Xcode workspace
-        run: |
-          set -eo pipefail
-          mkdir -p .swiftpm/xcode/package.xcworkspace
-          cat <<'EOF' > .swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
-          <?xml version="1.0" encoding="UTF-8"?>
-          <Workspace
-             version = "1.0">
-             <FileRef
-                location = "self:">
-             </FileRef>
-          </Workspace>
-          EOF
+      - name: Setup SwiftPM workspace
+        uses: ./.github/actions/spm-setup
 
       - name: Run Backpack Swift Package tests
         env:

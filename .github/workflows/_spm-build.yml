@@ -15,27 +15,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
-      - name: Select Xcode 16
-        run: sudo xcode-select --switch /Applications/Xcode_16.2.app
+      - name: Setup SwiftPM workspace
+        uses: ./.github/actions/spm-setup
 
       - name: Build Backpack Swift Package
+        env:
+          SPM_DESTINATION: platform=iOS Simulator,name=iPhone SE (3rd generation),OS=17.5
         run: |
           set -eo pipefail
-          destination_file=$(mktemp)
-          sdk_path=$(xcrun --sdk iphonesimulator --show-sdk-path)
-          toolchain_dir="$(xcode-select -p)/Toolchains/XcodeDefault.xctoolchain/usr/bin"
-          cat <<EOF_DEST > "$destination_file"
-          {
-            "version": 1,
-            "sdk": "$sdk_path",
-            "toolchain-bin-dir": "$toolchain_dir",
-            "target": "arm64-apple-ios16.0-simulator",
-            "extra-cc-flags": [],
-            "extra-swiftc-flags": [],
-            "extra-cpp-flags": [],
-            "extra-linker-flags": []
-          }
-          EOF_DEST
+          xcodebuild \
+            -workspace .swiftpm/xcode/package.xcworkspace \
+            -scheme Backpack-Package \
+            -destination "$SPM_DESTINATION" \
+            -derivedDataPath .derivedData \
+            -skipPackagePluginValidation \
+            -skipMacroValidation \
+            build
 
-          swift build --destination "$destination_file"
-          rm "$destination_file"
+      - name: Clean derived data
+        if: always()
+        run: rm -rf .derivedData
