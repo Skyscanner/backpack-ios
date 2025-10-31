@@ -32,17 +32,19 @@ jobs:
           </Workspace>
           EOF
 
-      - name: Build Backpack Swift Package with xcodebuild
+      - name: Run Backpack Swift Package tests
+        env:
+          SPM_DESTINATION: platform=iOS Simulator,name=iPhone SE (3rd generation),OS=17.5
         run: |
           set -eo pipefail
           xcodebuild \
             -workspace .swiftpm/xcode/package.xcworkspace \
             -scheme Backpack-Package \
-            -destination 'generic/platform=iOS Simulator' \
+            -destination "$SPM_DESTINATION" \
             -derivedDataPath .derivedData \
             -skipPackagePluginValidation \
             -skipMacroValidation \
-            build
+            test
 
       - name: Clean derived data
         if: always()
