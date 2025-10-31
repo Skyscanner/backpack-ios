@@ -1,5 +1,17 @@
 // swift-tools-version: 5.9
 import PackageDescription
+import Foundation
+
+func readmePaths(relativeTo path: String) -> [String] {
+  guard let enumerator = FileManager.default.enumerator(atPath: path) else { return [] }
+  return enumerator.compactMap { element in
+    guard let element = element as? String else { return nil }
+    return element.lowercased().hasSuffix("readme.md") ? element : nil
+  }
+}
+
+let backpackCommonExcludedReadmes = readmePaths(relativeTo: "Backpack-Common")
+let backpackSwiftUIExcludedReadmes = readmePaths(relativeTo: "Backpack-SwiftUI")
 
 let package = Package(
   name: "Backpack",
@@ -22,7 +34,7 @@ let package = Package(
       path: "Backpack-Common",
       exclude: [
         "Tests"
-      ],
+      ] + backpackCommonExcludedReadmes,
       sources: [
         // Common
         "BackpackCommonImports.swift",
@@ -32,6 +44,7 @@ let package = Package(
         // Components
         "Carousel/Classes",
         "Configuration/Classes",
+        "Configuration/Fonts",
         "Icons/Generated"
       ],
       resources: [
@@ -45,8 +58,9 @@ let package = Package(
       dependencies: ["Backpack_Common"],
       path: "Backpack-SwiftUI",
       exclude: [
-        "Tests"
-      ],
+        "Tests",
+        "Blur/Classes/VariableBlur.metal"
+      ] + backpackSwiftUIExcludedReadmes,
       sources: [
         "AppSearchModal/Classes",
         "Badge/Classes",
@@ -111,6 +125,9 @@ let package = Package(
         "Utils/Classes",
 
         "BackpackSwiftUIImports.swift",
+      ],
+      resources: [
+        .process("Blur/Classes/VariableBlur.metal")
       ]
     ),
 
@@ -128,7 +145,7 @@ let package = Package(
         ],
         path: "Backpack-SwiftUI/Tests",
         resources: [
-            .process("Images")
+            .process("Images.xcassets")
         ]
     ),
   ],

@@ -94,6 +94,11 @@ jobs:
           git diff-index --quiet HEAD || git commit -m "Updated snapshots"
           git push
 
+  TestSwiftPM:
+    name: SwiftPM Tests
+    uses: ./.github/workflows/_spm-test.yml
+    secrets: inherit
+
   NotifyChanges:
     name: "Notify about changes made"
     runs-on: ubuntu-22.04
