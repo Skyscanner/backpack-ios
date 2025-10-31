@@ -75,6 +75,10 @@ jobs:
         run: ./scripts/ci swiftui test
         continue-on-error: ${{inputs.retake_snapshots}}
 
+      - name: Run Common tests
+        run: ./scripts/ci common test
+        continue-on-error: ${{inputs.retake_snapshots}}
+
       - name: Check snapshot changes
         id: checkSnapshotChanges
         run: changedFiles=`git status --porcelain` && echo "didChangeFiles=${changedFiles//$'\n'/'%0A'}" >> $GITHUB_OUTPUT
