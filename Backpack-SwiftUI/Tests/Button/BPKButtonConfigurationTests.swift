@@ -104,11 +104,11 @@ final class BPKButtonConfigurationTests: XCTestCase {
         assertSnapshot(
             ZStack {
                 HStack(spacing: 2) {
-                    BPKButton("Secondary", size: .large) {}
+                    BPKButton("Secondary on dark", size: .large) {}
                         .buttonStyle(.secondaryOnDark)
                         .padding()
                     
-                    BPKButton("Secondary") {}
+                    BPKButton("Secondary on dark") {}
                         .buttonStyle(.secondaryOnDark)
                         .padding()
                     

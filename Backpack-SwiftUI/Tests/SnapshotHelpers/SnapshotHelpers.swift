@@ -39,7 +39,7 @@ func assertSnapshot<V: View>(
     line: UInt = #line
 ) {
     let view: UIView = UIHostingController(rootView: view).view
-    isRecording = false
+    isRecording = true
     modes.forEach { mode in
         assertSnapshot(
             matching: view,
