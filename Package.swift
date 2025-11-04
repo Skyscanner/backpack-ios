@@ -13,20 +13,30 @@ func readmePaths(relativeTo path: String) -> [String] {
 let backpackCommonExcludedReadmes = readmePaths(relativeTo: "Backpack-Common")
 let backpackSwiftUIExcludedReadmes = readmePaths(relativeTo: "Backpack-SwiftUI")
 
-let package = Package(
-  name: "Backpack",
-  platforms: [
-    .iOS(.v16)
-  ],
-  products: [
-    .library(name: "Backpack-Common", targets: ["Backpack_Common"]),
-    .library(name: "Backpack-SwiftUI", targets: ["Backpack_SwiftUI"]),
-  ],
-  dependencies: [
-    // Only needed for SwiftUI test target
-    .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.9.0")
-  ],
-  targets: [
+let backpackUIKitSourceDirs = [
+  "BottomSheet/Classes",
+  "Carousel/Classes",
+  "Overlay/Classes",
+  "PageIndicator/Classes",
+  "Skeleton/Classes",
+  "TabBarController/Classes",
+  "BackpackUIKitImports.swift",
+  "Color/Classes/Generated/BPKInternalColors.swift"
+]
+let products: [Product] = [
+  .library(name: "Backpack-Common", targets: ["Backpack_Common"]),
+  .library(name: "Backpack-SwiftUI", targets: ["Backpack_SwiftUI"]),
+  .library(name: "Backpack", targets: ["Backpack"])
+]
+
+let dependencies: [Package.Dependency] = [
+  // Only needed for SwiftUI test target
+  .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.9.0"),
+  // Required for the UIKit BottomSheet component
+  .package(url: "https://github.com/scenee/FloatingPanel", from: "2.8.6")
+]
+
+let targets: [Target] = [
 
     // MARK: - BackpackCommon (source-based)
     .target(
@@ -131,6 +141,37 @@ let package = Package(
       ]
     ),
 
+    // MARK: - Backpack Tokens (Objective-C generated tokens)
+    .target(
+      name: "BackpackTokens",
+      path: "BackpackTokens",
+      sources: ["Sources"],
+      publicHeadersPath: "include",
+      cSettings: [
+        .headerSearchPath("../Backpack/Color/Classes/Generated"),
+        .headerSearchPath("../Backpack/Spacing/Classes/Generated"),
+        .headerSearchPath("../Backpack/Radii/Classes/Generated"),
+        .headerSearchPath("../Backpack/BorderWidth/Classes/Generated"),
+        .headerSearchPath("../Backpack/Duration/Classes/Generated"),
+        .headerSearchPath("../Backpack/DarkMode/Classes")
+      ]
+    ),
+
+    // MARK: - Backpack UIKit (subset of Swift components)
+    .target(
+      name: "Backpack",
+      dependencies: [
+        "Backpack_Common",
+        "BackpackTokens",
+        .product(name: "FloatingPanel", package: "FloatingPanel")
+      ],
+      path: "Backpack",
+      exclude: [
+        "Tests"
+      ],
+      sources: backpackUIKitSourceDirs
+    ),
+
     // MARK: - Tests
     .testTarget(
       name: "BackpackCommonTests",
@@ -148,6 +189,15 @@ let package = Package(
             .process("Images.xcassets")
         ]
     ),
+]
+
+let package = Package(
+  name: "Backpack",
+  platforms: [
+    .iOS(.v16)
   ],
+  products: products,
+  dependencies: dependencies,
+  targets: targets,
   swiftLanguageVersions: [.v5]
 )
