@@ -16,11 +16,13 @@
  * limitations under the License.
  */
 
+import Backpack_Common
+// swiftlint:disable line_length
 struct ButtonColorProvider {
     let colorSetFactory: ButtonColorSetFactory
     
-    func color(forStyle style: BPKButton.Style, currentState: BPKButton.CurrentState) -> BPKButtonColors {
-        let colorSet = colorSetFactory.colorSet(forStyle: style)
+    func color(forStyle style: BPKButton.Style, currentState: BPKButton.CurrentState, config: BpkConfiguration?) -> BPKButtonColors {
+        let colorSet = colorSetFactory.colorSet(forStyle: style, config: config)
         switch currentState {
         case .regular: return colorSet.regular
         case .loading: return colorSet.loading
@@ -30,14 +32,14 @@ struct ButtonColorProvider {
     }
 }
 protocol ButtonColorSetFactory {
-    func colorSet(forStyle style: BPKButton.Style) -> BPKButtonColorSet
+    func colorSet(forStyle style: BPKButton.Style, config: BpkConfiguration?) -> BPKButtonColorSet
 }
 
 struct DefaultButtonColorSetFactory: ButtonColorSetFactory {
-    func colorSet(forStyle style: BPKButton.Style) -> BPKButtonColorSet {
+    func colorSet(forStyle style: BPKButton.Style, config: BpkConfiguration?) -> BPKButtonColorSet {
         switch style {
         case .primary: return PrimaryBPKButtonColorSet()
-        case .secondary: return SecondaryBPKButtonColorSet()
+        case .secondary: return SecondaryBPKButtonColorSet(config: config ?? nil)
         case .secondaryOnDark: return SecondaryOnDarkBPKButtonColorSet()
         case .destructive: return DestructiveBPKButtonColorSet()
         case .featured: return FeaturedBPKButtonColorSet()

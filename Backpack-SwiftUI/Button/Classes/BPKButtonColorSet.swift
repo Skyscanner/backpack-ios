@@ -16,6 +16,9 @@
  * limitations under the License.
  */
 
+// swiftlint:disable indentation_width
+import Backpack_Common
+
 protocol BPKButtonColorSet {
     var regular: BPKButtonColors { get }
     var highlighted: BPKButtonColors { get }
@@ -40,11 +43,26 @@ struct PrimaryBPKButtonColorSet: BPKButtonColorSet {
 }
 
 struct SecondaryBPKButtonColorSet: BPKButtonColorSet {
+    var config: BpkConfiguration?
     var regular = BPKButtonColors(background: .buttonSecondaryNormalBackgroundColor, foreground: .textPrimaryColor)
     var highlighted = BPKButtonColors(background: .buttonSecondaryPressedBackgroundColor, foreground: .textPrimaryColor)
     var disabled = BPKButtonColors.buttonDisabled
     
-    init() {}
+    init(config: BpkConfiguration?) {
+        self.config = config
+        
+        if let backgroundColour = config?.buttonConfig?.secondaryButtonBackgroundColour,
+            let foregroundColour = config?.buttonConfig?.secondaryButtonForegroundColour {
+            regular = BPKButtonColors(background: BPKColor(value: backgroundColour),
+                                      foreground: BPKColor(value: foregroundColour))
+        }
+        
+        if let backgroundColourPressed = config?.buttonConfig?.secondaryButtonPressedBackgroundColour,
+           let foregroundColour = config?.buttonConfig?.secondaryButtonForegroundColour {
+            highlighted = BPKButtonColors(background: BPKColor(value: backgroundColourPressed),
+                                          foreground: BPKColor(value: foregroundColour))
+        }
+    }
 }
 
 struct SecondaryOnDarkBPKButtonColorSet: BPKButtonColorSet {

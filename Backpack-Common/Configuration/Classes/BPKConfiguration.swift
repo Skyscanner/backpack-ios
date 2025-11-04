@@ -46,7 +46,20 @@ public final class BpkConfiguration: NSObject {
     }
     
     /// Component configurations
-    public struct BpkButtonConfig {}
+    public struct BpkButtonConfig {
+        public var radius: CGFloat?
+        public var height: CGFloat?
+        public var secondaryButtonBackgroundColour: UIColor?
+        public var secondaryButtonForegroundColour: UIColor?
+        public var secondaryButtonPressedBackgroundColour: UIColor?
+    }
+    
+    private var _buttonConfig: BpkButtonConfig?
+    
+    public var buttonConfig: BpkButtonConfig? {
+        get { getConfig { self._buttonConfig } }
+        set { _buttonConfig = newValue }
+    }
     
     public struct BpkCardConfig {}
     
@@ -122,6 +135,24 @@ public final class BpkConfiguration: NSObject {
                 self.configIsAccessed = true
                 self.onConfigurationAccessed?()
             }
+        }
+    }
+    
+    private func setButtonExperiment(buttonConfig: Bool) {
+        let secondaryLight = UIColor(red: 0.890, green: 0.941, blue: 1.000, alpha: 1.0)
+        let secondaryDark = UIColor(red: 0.141, green: 0.200, blue: 0.275, alpha: 1.0)
+        let buttonBackgroundColour = UIColor.dynamicColorTest(light: secondaryLight, dark: secondaryDark)
+        
+        let secondaryForegroundLight = UIColor(red: 2/255, green: 77/255, blue: 175/255, alpha: 1.0)
+        let secondaryForegroundDark = UIColor(red: 255, green: 255, blue: 255, alpha: 1.0)
+        let buttonForegroundColour = UIColor.dynamicColorTest(light: secondaryForegroundLight, dark: secondaryForegroundDark)
+        
+        let pressedBackgroundLight = UIColor(red: 180/255, green: 215/255, blue: 255/255, alpha: 1.0)
+        let pressedBackgroundDark = UIColor(red: 68/255, green: 80/255, blue: 95/255, alpha: 1.0)
+        let pressedBackgroundColour = UIColor.dynamicColorTest(light: pressedBackgroundLight, dark: pressedBackgroundDark)
+        
+        if buttonConfig {
+            self.buttonConfig = BpkButtonConfig(radius: 100.0, height: 56, secondaryButtonBackgroundColour: buttonBackgroundColour, secondaryButtonForegroundColour: buttonForegroundColour, secondaryButtonPressedBackgroundColour: pressedBackgroundColour)
         }
     }
     
@@ -210,7 +241,8 @@ public final class BpkConfiguration: NSObject {
     
     public func set(
         chipConfig: Bool = false,
-        typographyConfig: Bool = false
+        typographyConfig: Bool = false,
+        buttonConfig: Bool = false,
     ) throws {
         guard !hasSet else {
             throw ConfigurationError.configAlreadySet
@@ -220,6 +252,8 @@ public final class BpkConfiguration: NSObject {
         setChipExperiment(chipConfig: chipConfig)
         
         setTypographyExperiment(typographyConfig: typographyConfig)
+        
+        setButtonExperiment(buttonConfig: buttonConfig)
     }
 }
 
