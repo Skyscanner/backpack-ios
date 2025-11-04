@@ -187,7 +187,10 @@ let targets: [Target] = [
     ),
     .testTarget(
       name: "BackpackTests",
-      dependencies: ["Backpack"],
+      dependencies: [
+        "Backpack",
+        "BackpackTokens"
+      ],
       path: "Backpack/Tests/UnitTests",
       sources: [
         "BPKSkeletonTests.swift"
