@@ -145,7 +145,14 @@ let targets: [Target] = [
     .target(
       name: "BackpackTokens",
       path: "BackpackTokens",
-      sources: ["Sources"],
+      sources: [
+        "Sources",
+        "../Backpack/Color/Classes/Generated/BPKColor.m",
+        "../Backpack/Spacing/Classes/Generated/BPKSpacing.m",
+        "../Backpack/Radii/Classes/Generated/BPKRadii.m",
+        "../Backpack/BorderWidth/Classes/Generated/BPKBorderWidth.m",
+        "../Backpack/Duration/Classes/Generated/BPKDuration.m"
+      ],
       publicHeadersPath: "include",
       cSettings: [
         .headerSearchPath("../Backpack/Color/Classes/Generated"),
