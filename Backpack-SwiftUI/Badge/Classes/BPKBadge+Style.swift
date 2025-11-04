@@ -68,4 +68,13 @@ internal extension BPKBadge.Style {
             return foregroundColor(config)
         }
     }
+
+    func horizontalPadding(_ config: BpkConfiguration?) -> BPKSpacing {
+        switch self {
+        case .strong, .brand:
+            return .md
+        default:
+            return config?.badgeConfig == nil ? .md : .none
+        }
+    }
 }

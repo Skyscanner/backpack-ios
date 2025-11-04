@@ -129,8 +129,8 @@ public class BPKBadge: UIView {
         
         NSLayoutConstraint.activate([
             heightAnchor.constraint(greaterThanOrEqualToConstant: BPKSpacingLg),
-            containerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: BPKSpacingMd),
-            trailingAnchor.constraint(equalTo: containerStackView.trailingAnchor, constant: BPKSpacingMd),
+            containerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: type.horizontalPadding),
+            trailingAnchor.constraint(equalTo: containerStackView.trailingAnchor, constant: type.horizontalPadding),
             containerStackView.topAnchor.constraint(equalTo: topAnchor, constant: BPKSpacingSm),
             bottomAnchor.constraint(equalTo: containerStackView.bottomAnchor, constant: BPKSpacingSm)
         ])
@@ -186,6 +186,16 @@ fileprivate extension BPKBadgeType {
             return BPKColor.statusDangerSpotColor
         case .normal, .strong, .inverse, .outline, .brand:
             return textColor
+        }
+    }
+
+    var horizontalPadding: CGFloat {
+        let config = BpkConfiguration.shared.badgeConfig
+        switch self {
+        case .strong, .brand:
+            return BPKSpacingMd
+        default:
+            return config == nil ? BPKSpacingMd : BPKSpacingNone
         }
     }
 }

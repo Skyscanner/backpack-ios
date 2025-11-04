@@ -38,7 +38,7 @@ public struct BPKBadge: View {
     
     public var body: some View {
         content
-            .padding([.leading, .trailing], .md)
+            .padding([.leading, .trailing], style.horizontalPadding(config))
             .padding([.top, .bottom], .sm)
             .frame(minHeight: 24)
             .background(style.backgroundColor(config))
