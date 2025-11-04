@@ -295,6 +295,7 @@ extension BpkConfiguration {
         heading5Config = nil
         typographyConfigSet = false
         chipConfig = nil
+        buttonConfig = nil
         hasSet = false
         configIsAccessed = false
         onConfigurationAccessed = nil

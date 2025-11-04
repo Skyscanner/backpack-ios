@@ -38,42 +38,57 @@ struct ConfigurationButtonView: View {
                     BPKButton("Primary", loading: $loading, enabled: $enabled) {}
                         .buttonStyle(.primary)
                 }
-                HStack {
-                    BPKButton("Primary on Dark", loading: $loading, enabled: $enabled, size: .large) {}
-                        .buttonStyle(.primaryOnDark)
-                    BPKButton("Primary on Dark", loading: $loading, enabled: $enabled) {}
-                        .buttonStyle(.primaryOnDark)
+                
+                ZStack {
+                    HStack {
+                        BPKButton("Primary on Dark", loading: $loading, enabled: $enabled, size: .large) {}
+                            .buttonStyle(.primaryOnDark)
+                        BPKButton("Primary on Dark", loading: $loading, enabled: $enabled) {}
+                            .buttonStyle(.primaryOnDark)
+                    }
                 }
+                .padding()
+                .background(.black)
+
                 HStack {
                     BPKButton("Primary on Light", loading: $loading, enabled: $enabled, size: .large) {}
                         .buttonStyle(.primaryOnLight)
                     BPKButton("Primary on Light", loading: $loading, enabled: $enabled) {}
                         .buttonStyle(.primaryOnLight)
                 }
+                
                 HStack {
                     BPKButton("Secondary", loading: $loading, enabled: $enabled, size: .large) {}
                         .buttonStyle(.secondary)
                     BPKButton("Secondary", loading: $loading, enabled: $enabled) {}
                         .buttonStyle(.secondary)
                 }
-                HStack {
-                    BPKButton("Secondary on Dark", loading: $loading, enabled: $enabled, size: .large) {}
-                        .buttonStyle(.secondaryOnDark)
-                    BPKButton("Secondary on Dark", loading: $loading, enabled: $enabled) {}
-                        .buttonStyle(.secondaryOnDark)
+                
+                ZStack {
+                    HStack {
+                        BPKButton("Secondary on Dark", loading: $loading, enabled: $enabled, size: .large) {}
+                            .buttonStyle(.secondaryOnDark)
+                        BPKButton("Secondary on Dark", loading: $loading, enabled: $enabled) {}
+                            .buttonStyle(.secondaryOnDark)
+                    }
                 }
+                .padding()
+                .background(.black)
+
                 HStack {
                     BPKButton("Featured", loading: $loading, enabled: $enabled, size: .large) {}
                         .buttonStyle(.featured)
                     BPKButton("Featured", loading: $loading, enabled: $enabled) {}
                         .buttonStyle(.featured)
                 }
+                
                 HStack {
                     BPKButton("Destructive", loading: $loading, enabled: $enabled, size: .large) {}
                         .buttonStyle(.destructive)
                     BPKButton("Destructive", loading: $loading, enabled: $enabled) {}
                         .buttonStyle(.destructive)
                 }
+                
                 HStack {
                     Toggle("Enabled", isOn: $enabled)
                     Toggle("Loading", isOn: $loading)
@@ -84,6 +99,9 @@ struct ConfigurationButtonView: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
+        .onDisappear {
+            BpkConfiguration.shared.reset()
+        }
     }
 }
 
