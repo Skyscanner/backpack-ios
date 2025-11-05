@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
+import Foundation
+
 public protocol SingleCalendarSelectionHandler {
     func newSingleSelectionStateFor(
         selection date: Date,

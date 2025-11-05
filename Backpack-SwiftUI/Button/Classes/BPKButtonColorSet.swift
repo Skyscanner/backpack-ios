@@ -16,6 +16,11 @@
  * limitations under the License.
  */
 
+import UIKit
+#if SWIFT_PACKAGE
+import BackpackTokens
+#endif
+
 protocol BPKButtonColorSet {
     var regular: BPKButtonColors { get }
     var highlighted: BPKButtonColors { get }

@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
+import Foundation
+
 protocol CalendarGridCalculator {
     func calculateCalendarGrid(monthDate: Date) -> [[Date?]]
 }

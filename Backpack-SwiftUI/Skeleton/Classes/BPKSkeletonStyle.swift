@@ -16,6 +16,11 @@
  * limitations under the License.
  */
 
+import CoreGraphics
+#if SWIFT_PACKAGE
+import BackpackTokens
+#endif
+
 extension BPKSkeleton {
     public enum Style {
         case `default`, rounded

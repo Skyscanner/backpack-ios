@@ -17,6 +17,9 @@
  */
 
 import UIKit
+#if SWIFT_PACKAGE
+import BackpackTokens
+#endif
 
 /// Backpack Internal Colors
 /// These colors are internal on purpose and can only be used by Backpack components

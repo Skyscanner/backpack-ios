@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
+import Foundation
+
 struct RangeDayAccessibilityProvider {
     let accessibilityConfigurations: RangeAccessibilityConfigurations
     let dateFormatter: DateFormatter

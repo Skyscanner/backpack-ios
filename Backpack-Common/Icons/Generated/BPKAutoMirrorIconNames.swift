@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
+import Foundation
+
 @objc
 public class BPKAutoMirrorIconNames: NSObject {
     @objc public static let items = [

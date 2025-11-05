@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
+import Foundation
+
 public protocol RangeCalendarSelectionHandler {
     func newRangeSelectionStateFor(
         selection date: Date,

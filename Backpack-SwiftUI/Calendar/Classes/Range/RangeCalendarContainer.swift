@@ -16,7 +16,11 @@
  * limitations under the License.
  */
 
+import Foundation
 import SwiftUI
+#if SWIFT_PACKAGE
+import BackpackTokens
+#endif
 
 struct RangeCalendarMonthContainer<DayAccessoryView: View>: View {
     @Binding var selectionState: CalendarRangeSelectionState?

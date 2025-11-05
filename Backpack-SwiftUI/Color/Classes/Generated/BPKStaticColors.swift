@@ -16,6 +16,11 @@
  * limitations under the License.
  */
 
+import UIKit
+#if SWIFT_PACKAGE
+import BackpackTokens
+#endif
+
 /// Backpack Static Colors
 public extension BPKColor {
     private init(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {

@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
+import Foundation
+
 @objc public protocol BPKFontDefinitionProtocol: NSObjectProtocol {
     var fontFamily: NSString { get }
     var regularFontFace: NSString { get }

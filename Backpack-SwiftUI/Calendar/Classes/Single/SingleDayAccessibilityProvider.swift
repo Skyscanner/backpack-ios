@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
+import Foundation
+
 struct SingleDayAccessibilityProvider {
     let accessibilityConfigurations: SingleAccessibilityConfigurations
     let dateFormatter: DateFormatter

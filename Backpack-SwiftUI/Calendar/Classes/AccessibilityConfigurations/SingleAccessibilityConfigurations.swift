@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
+import Foundation
+
 /// Create a single-selection configuration with given accessibility strings.
 /// - Parameters:
 ///   - selectionHint: The hint provided to assistive technologies informing a user how to select a date.

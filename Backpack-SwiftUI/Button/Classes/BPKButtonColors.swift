@@ -16,6 +16,10 @@
  * limitations under the License.
  */
 
+#if SWIFT_PACKAGE
+import BackpackTokens
+#endif
+
 struct BPKButtonColors {
     let background: BPKColor
     let foreground: BPKColor
