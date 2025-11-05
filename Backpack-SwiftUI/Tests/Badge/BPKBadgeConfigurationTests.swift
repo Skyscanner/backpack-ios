@@ -21,7 +21,7 @@ import SwiftUI
 @testable import Backpack_SwiftUI
 @testable import Backpack_Common
 
-class BBPKBadgeConfigurationTests: XCTestCase {
+class BPKBadgeConfigurationTests: XCTestCase {
     override func setUp() {
         super.setUp()
 

@@ -24,7 +24,7 @@ internal extension BPKBadge.Style {
         case .success, .warning, .destructive, .normal:
             return config?.badgeConfig == nil ? BPKColor.badgeBackgroundNormalColor : BPKColor.clear
         case .inverse:
-            return config?.badgeConfig == nil ? BPKColor.surfaceDefaultColor : BPKColor.clear
+            return BPKColor.surfaceDefaultColor
         case .outline:
             return BPKColor.clear
         case .strong:
@@ -36,10 +36,8 @@ internal extension BPKBadge.Style {
     
     func foregroundColor(_ config: BpkConfiguration?) -> BPKColor {
         switch self {
-        case .success, .warning, .destructive, .normal:
+        case .success, .warning, .destructive, .normal, .inverse:
             return BPKColor.textPrimaryColor
-        case .inverse:
-            return config?.badgeConfig == nil ? BPKColor.textPrimaryColor : BPKColor.textOnDarkColor
         case .outline, .strong:
             return BPKColor.textOnDarkColor
         case .brand:
@@ -71,7 +69,7 @@ internal extension BPKBadge.Style {
 
     func horizontalPadding(_ config: BpkConfiguration?) -> BPKSpacing {
         switch self {
-        case .strong, .brand:
+        case .strong, .brand, .inverse, .outline:
             return .md
         default:
             return config?.badgeConfig == nil ? .md : .none
