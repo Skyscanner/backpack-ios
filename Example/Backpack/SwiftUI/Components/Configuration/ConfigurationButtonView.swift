@@ -31,6 +31,7 @@ struct ConfigurationButtonView: View {
                 Text("Radius - 100  Large Height - 56")
                 Text("Default Height - 36")
                 Text("Secondary Button colour change")
+                Text("Font size 14pt")
                 
                 HStack {
                     BPKButton("Primary", loading: $loading, enabled: $enabled, size: .large) {}
