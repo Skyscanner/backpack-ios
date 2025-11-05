@@ -242,7 +242,7 @@ public final class BpkConfiguration: NSObject {
     public func set(
         chipConfig: Bool = false,
         typographyConfig: Bool = false,
-        buttonConfig: Bool = false,
+        buttonConfig: Bool = false
     ) throws {
         guard !hasSet else {
             throw ConfigurationError.configAlreadySet
