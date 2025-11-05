@@ -52,6 +52,7 @@ public final class BpkConfiguration: NSObject {
         public var secondaryButtonBackgroundColour: UIColor?
         public var secondaryButtonForegroundColour: UIColor?
         public var secondaryButtonPressedBackgroundColour: UIColor?
+        public var setFontLabel2: Bool?
     }
     
     private var _buttonConfig: BpkButtonConfig?
@@ -152,7 +153,7 @@ public final class BpkConfiguration: NSObject {
         let pressedBackgroundColour = UIColor.dynamicColorTest(light: pressedBackgroundLight, dark: pressedBackgroundDark)
         
         if buttonConfig {
-            self.buttonConfig = BpkButtonConfig(radius: 100.0, height: 56, secondaryButtonBackgroundColour: buttonBackgroundColour, secondaryButtonForegroundColour: buttonForegroundColour, secondaryButtonPressedBackgroundColour: pressedBackgroundColour)
+            self.buttonConfig = BpkButtonConfig(radius: 100.0, height: 56, secondaryButtonBackgroundColour: buttonBackgroundColour, secondaryButtonForegroundColour: buttonForegroundColour, secondaryButtonPressedBackgroundColour: pressedBackgroundColour, setFontLabel2: true)
         }
     }
     

@@ -105,7 +105,8 @@ public struct BPKButton: View {
                     title: title,
                     size: size,
                     icon: icon,
-                    leadingImage: leadingImage
+                    leadingImage: leadingImage,
+                    config: config
                 )
                 .opacity(loading ? 0 : 1)
             }
@@ -197,6 +198,7 @@ private struct ButtonContentView: View {
     let size: BPKButton.Size
     let icon: BPKButton.Icon?
     let leadingImage: Image?
+    let config: BpkConfiguration?
 
     var body: some View {
         if let icon = icon {
@@ -218,7 +220,7 @@ private struct ButtonContentView: View {
 
     private func content(withTitle title: String) -> some View {
         Text(title)
-            .font(style: .label1)
+            .font(style: config?.buttonConfig?.setFontLabel2 ?? false ? .label2 : .label1)
             .lineLimit(lineLimit())
             .if(!BPKFont.enableDynamicType, transform: {
                 $0.sizeCategory(.large)
