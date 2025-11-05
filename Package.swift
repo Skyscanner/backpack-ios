@@ -146,15 +146,16 @@ let targets: [Target] = [
       name: "BackpackTokens",
       path: "BackpackTokens",
       sources: [
-        "Sources",
-        "../Backpack/Color/Classes/Generated/BPKColor.m",
-        "../Backpack/Spacing/Classes/Generated/BPKSpacing.m",
-        "../Backpack/Radii/Classes/Generated/BPKRadii.m",
-        "../Backpack/BorderWidth/Classes/Generated/BPKBorderWidth.m",
-        "../Backpack/Duration/Classes/Generated/BPKDuration.m"
+        "Sources/BPKColor.m",
+        "Sources/BPKSpacing.m",
+        "Sources/BPKRadii.m",
+        "Sources/BPKBorderWidth.m",
+        "Sources/BPKDuration.m"
       ],
       publicHeadersPath: "include",
       cSettings: [
+        .unsafeFlags(["-include", "BackpackTokensPrefix.h"]),
+        .headerSearchPath("Sources"),
         .headerSearchPath("../Backpack/Color/Classes/Generated"),
         .headerSearchPath("../Backpack/Spacing/Classes/Generated"),
         .headerSearchPath("../Backpack/Radii/Classes/Generated"),
@@ -192,6 +193,9 @@ let targets: [Target] = [
         "BackpackTokens"
       ],
       path: "Backpack/Tests/UnitTests",
+      exclude: [
+        "Images.xcassets"
+      ],
       sources: [
         "BPKSkeletonTests.swift"
       ]

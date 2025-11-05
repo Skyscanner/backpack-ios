@@ -16,5 +16,4 @@
  * limitations under the License.
  */
 
-#import <Foundation/Foundation.h>
-#import "../../Backpack/BorderWidth/Classes/Generated/BPKBorderWidth.h"
+#import <UIKit/UIKit.h>
