@@ -220,7 +220,7 @@ private struct ButtonContentView: View {
 
     private func content(withTitle title: String) -> some View {
         Text(title)
-            .font(style: config?.buttonConfig?.setFontLabel2 ?? false ? .label2 : .label1)
+            .font(style: config?.buttonConfig?.setFontLabel2 ?? false && size == .default ? .label2 : .label1)
             .lineLimit(lineLimit())
             .if(!BPKFont.enableDynamicType, transform: {
                 $0.sizeCategory(.large)
