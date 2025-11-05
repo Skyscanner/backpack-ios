@@ -130,7 +130,7 @@ public class BPKBadge: UIView {
         NSLayoutConstraint.activate([
             heightAnchor.constraint(greaterThanOrEqualToConstant: BPKSpacingLg),
             containerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: type.horizontalPadding),
-            trailingAnchor.constraint(equalTo: containerStackView.trailingAnchor, constant: type.horizontalPadding),
+            trailingAnchor.constraint(equalTo: containerStackView.trailingAnchor, constant: BPKSpacingMd),
             containerStackView.topAnchor.constraint(equalTo: topAnchor, constant: BPKSpacingSm),
             bottomAnchor.constraint(equalTo: containerStackView.bottomAnchor, constant: BPKSpacingSm)
         ])
