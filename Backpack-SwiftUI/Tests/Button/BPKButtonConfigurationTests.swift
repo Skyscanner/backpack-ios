@@ -72,16 +72,19 @@ final class BPKButtonConfigurationTests: XCTestCase {
     
     func test_primaryOnDarkButton_configuration() {
         assertSnapshot(
-            HStack(spacing: 2) {
-                BPKButton("Primary on dark", size: .large) {}
-                    .buttonStyle(.primaryOnDark)
-                    .padding()
-                
-                BPKButton("Primary on dark") {}
-                    .buttonStyle(.primaryOnDark)
-                    .padding()
-                
-            }.padding()
+            ZStack {
+                HStack(spacing: 2) {
+                    BPKButton("Primary on dark", size: .large) {}
+                        .buttonStyle(.primaryOnDark)
+                        .padding()
+                    
+                    BPKButton("Primary on dark") {}
+                        .buttonStyle(.primaryOnDark)
+                        .padding()
+                }
+            }
+            .padding()
+            .background(.black)
         )
     }
     
@@ -111,7 +114,6 @@ final class BPKButtonConfigurationTests: XCTestCase {
                     BPKButton("Secondary on dark") {}
                         .buttonStyle(.secondaryOnDark)
                         .padding()
-                    
                 }
             }
             .padding()
