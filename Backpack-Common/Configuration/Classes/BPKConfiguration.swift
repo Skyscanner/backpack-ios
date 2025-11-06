@@ -46,6 +46,9 @@ public final class BpkConfiguration: NSObject {
     }
     
     /// Component configurations
+    public struct BpkBadgeConfig {
+    }
+
     public struct BpkButtonConfig {}
     
     public struct BpkCardConfig {}
@@ -59,6 +62,13 @@ public final class BpkConfiguration: NSObject {
     }
     
     /// Setting stored configs
+    private var _badgeConfig: BpkBadgeConfig?
+
+    public var badgeConfig: BpkBadgeConfig? {
+        get { getConfig { self._badgeConfig } }
+        set { _badgeConfig = newValue }
+    }
+
     private var _chipConfig: BpkChipConfig?
     
     public var chipConfig: BpkChipConfig? {
@@ -140,7 +150,13 @@ public final class BpkConfiguration: NSObject {
             )
         }
     }
-    
+
+    private func setBadgeExperiment(badgeConfig: Bool) {
+        if badgeConfig {
+            self.badgeConfig = BpkBadgeConfig()
+        }
+    }
+
     private func setTypographyExperiment(typographyConfig: Bool) {
         if typographyConfig {
             
@@ -210,7 +226,8 @@ public final class BpkConfiguration: NSObject {
     
     public func set(
         chipConfig: Bool = false,
-        typographyConfig: Bool = false
+        typographyConfig: Bool = false,
+        badgeConfig: Bool = false
     ) throws {
         guard !hasSet else {
             throw ConfigurationError.configAlreadySet
@@ -218,7 +235,7 @@ public final class BpkConfiguration: NSObject {
         hasSet = true
         
         setChipExperiment(chipConfig: chipConfig)
-        
+        setBadgeExperiment(badgeConfig: badgeConfig)
         setTypographyExperiment(typographyConfig: typographyConfig)
     }
 }
@@ -261,6 +278,7 @@ extension BpkConfiguration {
         heading5Config = nil
         typographyConfigSet = false
         chipConfig = nil
+        badgeConfig = nil
         hasSet = false
         configIsAccessed = false
         onConfigurationAccessed = nil

@@ -17,6 +17,7 @@
  */
 
 import UIKit
+import Backpack_Common
 
 @objcMembers
 @objc
@@ -40,7 +41,7 @@ public class BPKBadge: UIView {
     }
     
     private let label: BPKLabel = {
-        let label = BPKLabel(fontStyle: .textFootnote)
+        let label = BPKLabel(fontStyle: BpkConfiguration.shared.badgeConfig == nil ? .textFootnote : .textCaption)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -82,7 +83,9 @@ public class BPKBadge: UIView {
         label.textColor = type.textColor
         
         if type == .outline {
-            layer.borderColor = BPKColor.textOnDarkColor.cgColor
+            layer.borderColor = BpkConfiguration.shared.badgeConfig == nil ?
+            BPKColor.textOnDarkColor.cgColor :
+            BPKColor.clear.cgColor
             layer.borderWidth = BPKBorderWidthSm
         }
         
@@ -126,7 +129,7 @@ public class BPKBadge: UIView {
         
         NSLayoutConstraint.activate([
             heightAnchor.constraint(greaterThanOrEqualToConstant: BPKSpacingLg),
-            containerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: BPKSpacingMd),
+            containerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: type.horizontalPadding),
             trailingAnchor.constraint(equalTo: containerStackView.trailingAnchor, constant: BPKSpacingMd),
             containerStackView.topAnchor.constraint(equalTo: topAnchor, constant: BPKSpacingSm),
             bottomAnchor.constraint(equalTo: containerStackView.bottomAnchor, constant: BPKSpacingSm)
@@ -156,9 +159,10 @@ fileprivate extension BPKBadgeType {
     }
     
     var backgroundColor: UIColor {
+        let config = BpkConfiguration.shared.badgeConfig
         switch self {
         case .success, .warning, .destructive, .normal:
-            return BPKColor.badgeBackgroundNormalColor
+            return config == nil ? BPKColor.badgeBackgroundNormalColor : BPKColor.clear
         case .inverse:
             return BPKColor.surfaceDefaultColor
         case .outline:
@@ -180,6 +184,16 @@ fileprivate extension BPKBadgeType {
             return BPKColor.statusDangerSpotColor
         case .normal, .strong, .inverse, .outline, .brand:
             return textColor
+        }
+    }
+
+    var horizontalPadding: CGFloat {
+        let config = BpkConfiguration.shared.badgeConfig
+        switch self {
+        case .strong, .brand, .inverse, .outline:
+            return BPKSpacingMd
+        default:
+            return config == nil ? BPKSpacingMd : BPKSpacingNone
         }
     }
 }

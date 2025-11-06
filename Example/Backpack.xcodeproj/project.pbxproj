@@ -210,6 +210,7 @@
 		E397BEA222F5F59000C8EC04 /* BottomSheetScrollableContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA122F5F59000C8EC04 /* BottomSheetScrollableContentViewController.swift */; };
 		E397BEA422F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA322F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift */; };
 		E397BEA622F5FFDD00C8EC04 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA522F5FFDD00C8EC04 /* Storyboards.swift */; };
+		EED38AA42EB37AAE00A77904 /* ConfigurationBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED38AA32EB37AA200A77904 /* ConfigurationBadgeView.swift */; };
 		EED519BF2D3EBD8300F898D7 /* SegmentedControlExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED519BD2D3EBD8300F898D7 /* SegmentedControlExampleView.swift */; };
 		EEF89AC32E2EAE6100BF1C83 /* TappableContainerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF89AC22E2EAE5A00BF1C83 /* TappableContainerExampleView.swift */; };
 		F00CA3D9299D53450027ACE7 /* FloatingNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00CA3D8299D53450027ACE7 /* FloatingNotificationViewController.swift */; };
@@ -459,6 +460,7 @@
 		E397BEA322F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetBottomSectionVIewController.swift; sourceTree = "<group>"; };
 		E397BEA522F5FFDD00C8EC04 /* Storyboards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		EDBC7CA36756032862B5D581 /* Pods_Backpack_Native.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Backpack_Native.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EED38AA32EB37AA200A77904 /* ConfigurationBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationBadgeView.swift; sourceTree = "<group>"; };
 		EED519BD2D3EBD8300F898D7 /* SegmentedControlExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlExampleView.swift; sourceTree = "<group>"; };
 		EEF89AC22E2EAE5A00BF1C83 /* TappableContainerExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableContainerExampleView.swift; sourceTree = "<group>"; };
 		F00CA3D8299D53450027ACE7 /* FloatingNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingNotificationViewController.swift; sourceTree = "<group>"; };
@@ -579,6 +581,7 @@
 		28CF33702E39273C00A9DF34 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
+				EED38AA32EB37AA200A77904 /* ConfigurationBadgeView.swift */,
 				24BB6A012EAF73C500E982A4 /* ConfigurationTypographyView.swift */,
 				28CF336F2E39273C00A9DF34 /* ConfigurationExampleView.swift */,
 				24BB69FF2EAF733F00E982A4 /* ConfigurationChipsView.swift */,
@@ -1854,6 +1857,7 @@
 				E397BEA222F5F59000C8EC04 /* BottomSheetScrollableContentViewController.swift in Sources */,
 				539897C82BA8A8FF00C8D939 /* ImageGallerySlideshowExampleView.swift in Sources */,
 				7976E5C228BB0E4700471AA2 /* ColorChipView.swift in Sources */,
+				EED38AA42EB37AAE00A77904 /* ConfigurationBadgeView.swift in Sources */,
 				53C6621529EA0DAB00BF1A62 /* BadgeExampleVIew.swift in Sources */,
 				B31283822A77D2410034EE29 /* CardListExampleView.swift in Sources */,
 				E397BEA422F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift in Sources */,

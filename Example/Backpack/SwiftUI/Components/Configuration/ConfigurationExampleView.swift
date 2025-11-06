@@ -24,12 +24,14 @@ import Backpack_Common
 struct ConfigurationExampleView: View {
     let chipConfigView = ConfigurationChipsView()
     let typographyConfigView = ConfigurationTypographyView()
+    let badgeConfigView = ConfigurationBadgeView()
 
     var body: some View {
         
         let configViews: [(name: String, destination: () -> AnyView)] = [
             ("Chips", { AnyView(ConfigurationChipsView()) }),
-            ("Typography", { AnyView(ConfigurationTypographyView()) })
+            ("Typography", { AnyView(ConfigurationTypographyView()) }),
+            ("Badge", { AnyView(ConfigurationBadgeView()) })
         ]
         
         List(configViews, id: \.name) { item in
@@ -43,7 +45,8 @@ struct ConfigurationExampleView: View {
                 let config = BpkConfiguration.shared
                 try config.set(
                     chipConfig: true,
-                    typographyConfig: true
+                    typographyConfig: true,
+                    badgeConfig: true
                 )
             } catch {
                 print("No config set")
