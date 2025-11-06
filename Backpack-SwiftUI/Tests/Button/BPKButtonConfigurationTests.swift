@@ -151,4 +151,19 @@ final class BPKButtonConfigurationTests: XCTestCase {
             }.padding()
         )
     }
+    
+    func test_secondaryOnContrastButton_configuration() {
+        assertSnapshot(
+            HStack(spacing: 2) {
+                BPKButton("Secondary on contrast", size: .large) {}
+                    .buttonStyle(.secondaryOnContrast)
+                    .padding()
+                
+                BPKButton("Secondary on contrast") {}
+                    .buttonStyle(.secondaryOnContrast)
+                    .padding()
+                
+            }.padding()
+        )
+    }
 }

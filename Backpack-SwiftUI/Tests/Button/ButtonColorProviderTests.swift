@@ -75,4 +75,10 @@ class ButtonColorProviderTests: XCTestCase {
         XCTAssertTrue(colorSet is PrimaryOnLightBPKButtonColorSet)
     }
     
+    func testSecondaryOnContrastReturnsSecondaryOnContrastColors() {
+        let sut = DefaultButtonColorSetFactory()
+        let colorSet = sut.colorSet(forStyle: .secondaryOnContrast)
+        XCTAssertTrue(colorSet is SecondaryOnContrastBPKButtonColorSet)
+    }
+    
 }

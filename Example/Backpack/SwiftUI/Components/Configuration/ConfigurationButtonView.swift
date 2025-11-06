@@ -75,6 +75,13 @@ struct ConfigurationButtonView: View {
                 }
                 .padding()
                 .background(.black)
+                
+                HStack {
+                    BPKButton("Secondary on Contrast", loading: $loading, enabled: $enabled, size: .large) {}
+                        .buttonStyle(.secondaryOnContrast)
+                    BPKButton("Secondary on Contrast", loading: $loading, enabled: $enabled) {}
+                        .buttonStyle(.secondaryOnContrast)
+                }
 
                 HStack {
                     BPKButton("Featured", loading: $loading, enabled: $enabled, size: .large) {}

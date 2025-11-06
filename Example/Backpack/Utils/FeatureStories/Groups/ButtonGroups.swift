@@ -75,6 +75,7 @@ struct ButtonGroupsProvider {
                 presentable("Primary", view: ButtonsExampleView(style: .primary)),
                 presentable("Secondary", view: ButtonsExampleView(style: .secondary)),
                 presentable("Secondary On Dark", view: ButtonsExampleView(style: .secondaryOnDark)),
+                presentable("Secondary On Contrast", view: ButtonsExampleView(style: .secondaryOnContrast)),
                 presentable("Destructive", view: ButtonsExampleView(style: .destructive)),
                 presentable("Featured", view: ButtonsExampleView(style: .featured)),
                 presentable("Link", view: ButtonsExampleView(style: .link)),
