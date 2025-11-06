@@ -64,16 +64,6 @@ public class BPKBadge: UIView {
         self.message = message
         self.type = type
         self.icon = icon
-        updateLookAndFeel()
-    }
-    
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-    
-    public required init?(coder: NSCoder) {
-        super.init(coder: coder)
         setup()
     }
     
