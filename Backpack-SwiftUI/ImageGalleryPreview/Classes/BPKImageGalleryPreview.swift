@@ -107,7 +107,7 @@ public struct BPKImageGalleryPreview<Content: View>: View {
                         break
                     }
                 })
-            BPKBadge("\(currentIndex + 1)/\(images.count)")
+            BPKBadge("\(currentIndex + 1)/\(images.count)").badgeStyle(.inverse)
                 .padding(.trailing, 12)
                 .padding(.bottom, 44)
                 .accessibilityHidden(true)

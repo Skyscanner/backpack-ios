@@ -84,6 +84,7 @@ struct ButtonsPlaygroundView: View {
             Text("Featured").tag(BPKButton.Style.featured)
             Text("Secondary").tag(BPKButton.Style.secondary)
             Text("Secondry On Dark").tag(BPKButton.Style.secondaryOnDark)
+            Text("Secondary On Contrast").tag(BPKButton.Style.secondaryOnContrast)
             Text("Link").tag(BPKButton.Style.link)
             Text("Link On Dark").tag(BPKButton.Style.linkOnDark)
         }

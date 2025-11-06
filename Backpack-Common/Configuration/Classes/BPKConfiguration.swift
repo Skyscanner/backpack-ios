@@ -46,8 +46,25 @@ public final class BpkConfiguration: NSObject {
     }
     
     /// Component configurations
-    public struct BpkButtonConfig {}
+    public struct BpkButtonConfig {
+        public var radius: CGFloat?
+        public var height: CGFloat?
+        public var secondaryButtonBackgroundColour: UIColor?
+        public var secondaryButtonForegroundColour: UIColor?
+        public var secondaryButtonPressedBackgroundColour: UIColor?
+        public var setFontLabel2: Bool?
+    }
     
+    private var _buttonConfig: BpkButtonConfig?
+    
+    public var buttonConfig: BpkButtonConfig? {
+        get { getConfig { self._buttonConfig } }
+        set { _buttonConfig = newValue }
+    }
+    
+    public struct BpkBadgeConfig {
+    }
+
     public struct BpkCardConfig {}
     
     public struct BpkChipConfig {
@@ -59,6 +76,13 @@ public final class BpkConfiguration: NSObject {
     }
     
     /// Setting stored configs
+    private var _badgeConfig: BpkBadgeConfig?
+
+    public var badgeConfig: BpkBadgeConfig? {
+        get { getConfig { self._badgeConfig } }
+        set { _badgeConfig = newValue }
+    }
+
     private var _chipConfig: BpkChipConfig?
     
     public var chipConfig: BpkChipConfig? {
@@ -125,6 +149,24 @@ public final class BpkConfiguration: NSObject {
         }
     }
     
+    private func setButtonExperiment(buttonConfig: Bool) {
+        let secondaryLight = UIColor(red: 0.890, green: 0.941, blue: 1.000, alpha: 1.0)
+        let secondaryDark = UIColor(red: 0.141, green: 0.200, blue: 0.275, alpha: 1.0)
+        let buttonBackgroundColour = UIColor.dynamicColorTest(light: secondaryLight, dark: secondaryDark)
+        
+        let secondaryForegroundLight = UIColor(red: 2/255, green: 77/255, blue: 175/255, alpha: 1.0)
+        let secondaryForegroundDark = UIColor(red: 255, green: 255, blue: 255, alpha: 1.0)
+        let buttonForegroundColour = UIColor.dynamicColorTest(light: secondaryForegroundLight, dark: secondaryForegroundDark)
+        
+        let pressedBackgroundLight = UIColor(red: 180/255, green: 215/255, blue: 255/255, alpha: 1.0)
+        let pressedBackgroundDark = UIColor(red: 68/255, green: 80/255, blue: 95/255, alpha: 1.0)
+        let pressedBackgroundColour = UIColor.dynamicColorTest(light: pressedBackgroundLight, dark: pressedBackgroundDark)
+        
+        if buttonConfig {
+            self.buttonConfig = BpkButtonConfig(radius: 100.0, height: 56, secondaryButtonBackgroundColour: buttonBackgroundColour, secondaryButtonForegroundColour: buttonForegroundColour, secondaryButtonPressedBackgroundColour: pressedBackgroundColour, setFontLabel2: true)
+        }
+    }
+    
     private func setChipExperiment(chipConfig: Bool) {
         let onFillLight = UIColor(red: 21/255, green: 70/255, blue: 121/255, alpha: 1)
         let onFillDark = UIColor(red: 2/255, green: 77/255, blue: 175/255, alpha: 1)
@@ -140,7 +182,13 @@ public final class BpkConfiguration: NSObject {
             )
         }
     }
-    
+
+    private func setBadgeExperiment(badgeConfig: Bool) {
+        if badgeConfig {
+            self.badgeConfig = BpkBadgeConfig()
+        }
+    }
+
     private func setTypographyExperiment(typographyConfig: Bool) {
         if typographyConfig {
             
@@ -210,7 +258,9 @@ public final class BpkConfiguration: NSObject {
     
     public func set(
         chipConfig: Bool = false,
-        typographyConfig: Bool = false
+        typographyConfig: Bool = false,
+        buttonConfig: Bool = false,
+        badgeConfig: Bool = false
     ) throws {
         guard !hasSet else {
             throw ConfigurationError.configAlreadySet
@@ -218,8 +268,10 @@ public final class BpkConfiguration: NSObject {
         hasSet = true
         
         setChipExperiment(chipConfig: chipConfig)
-        
+        setBadgeExperiment(badgeConfig: badgeConfig)
         setTypographyExperiment(typographyConfig: typographyConfig)
+        
+        setButtonExperiment(buttonConfig: buttonConfig)
     }
 }
 
@@ -261,6 +313,8 @@ extension BpkConfiguration {
         heading5Config = nil
         typographyConfigSet = false
         chipConfig = nil
+        buttonConfig = nil
+        badgeConfig = nil
         hasSet = false
         configIsAccessed = false
         onConfigurationAccessed = nil

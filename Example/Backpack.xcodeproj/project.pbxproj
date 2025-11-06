@@ -82,7 +82,6 @@
 		53C6622729EA0DAB00BF1A62 /* DialogExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C6620C29EA0DAB00BF1A62 /* DialogExampleView.swift */; };
 		53C6622829EA0DAB00BF1A62 /* TextExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C6620E29EA0DAB00BF1A62 /* TextExampleView.swift */; };
 		53C6622929EA0DAB00BF1A62 /* AttributedTextExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C6620F29EA0DAB00BF1A62 /* AttributedTextExampleView.swift */; };
-		E6822E46AF304B16800B6609 /* LinkExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2848C51D99141B190D97447 /* LinkExampleView.swift */; };
 		53C7F0B92A4C615D003A8740 /* ChipGroupSingleSelectRailExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7F0B52A4C615D003A8740 /* ChipGroupSingleSelectRailExampleView.swift */; };
 		53C7F0BA2A4C615D003A8740 /* ChipGroupSingleSelectWrapExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7F0B62A4C615D003A8740 /* ChipGroupSingleSelectWrapExampleView.swift */; };
 		53D4614E29E574EB0061C222 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -154,6 +153,7 @@
 		BA8F350E2C104AFD0093FA79 /* CardButtonExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F350D2C104AFD0093FA79 /* CardButtonExampleView.swift */; };
 		BAD421BC299CBCEB00B45668 /* CardWrappersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD421BB299CBCEB00B45668 /* CardWrappersViewController.swift */; };
 		C40C7BA22E2E86640081EF50 /* BlurTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40C7BA12E2E865F0081EF50 /* BlurTokensView.swift */; };
+		C495BDB52EB8F299000EB522 /* ConfigurationButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495BDB42EB8F299000EB522 /* ConfigurationButtonView.swift */; };
 		D205510922675DAE00BC5BCC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D205510722675DAE00BC5BCC /* LaunchScreen.xib */; };
 		D211A90C22D8B42B00447B64 /* HorizontalNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D211A90A22D8B42B00447B64 /* HorizontalNavViewController.swift */; };
 		D216C21322E974B100045A9E /* HorizontalNavigationUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D216C21222E974B100045A9E /* HorizontalNavigationUITest.swift */; };
@@ -210,6 +210,8 @@
 		E397BEA222F5F59000C8EC04 /* BottomSheetScrollableContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA122F5F59000C8EC04 /* BottomSheetScrollableContentViewController.swift */; };
 		E397BEA422F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA322F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift */; };
 		E397BEA622F5FFDD00C8EC04 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA522F5FFDD00C8EC04 /* Storyboards.swift */; };
+		E6822E46AF304B16800B6609 /* LinkExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2848C51D99141B190D97447 /* LinkExampleView.swift */; };
+		EED38AA42EB37AAE00A77904 /* ConfigurationBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED38AA32EB37AA200A77904 /* ConfigurationBadgeView.swift */; };
 		EED519BF2D3EBD8300F898D7 /* SegmentedControlExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED519BD2D3EBD8300F898D7 /* SegmentedControlExampleView.swift */; };
 		EEF89AC32E2EAE6100BF1C83 /* TappableContainerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF89AC22E2EAE5A00BF1C83 /* TappableContainerExampleView.swift */; };
 		F00CA3D9299D53450027ACE7 /* FloatingNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00CA3D8299D53450027ACE7 /* FloatingNotificationViewController.swift */; };
@@ -314,7 +316,6 @@
 		53C6620C29EA0DAB00BF1A62 /* DialogExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogExampleView.swift; sourceTree = "<group>"; };
 		53C6620E29EA0DAB00BF1A62 /* TextExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextExampleView.swift; sourceTree = "<group>"; };
 		53C6620F29EA0DAB00BF1A62 /* AttributedTextExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributedTextExampleView.swift; sourceTree = "<group>"; };
-		A2848C51D99141B190D97447 /* LinkExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkExampleView.swift; sourceTree = "<group>"; };
 		53C7F0B52A4C615D003A8740 /* ChipGroupSingleSelectRailExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChipGroupSingleSelectRailExampleView.swift; sourceTree = "<group>"; };
 		53C7F0B62A4C615D003A8740 /* ChipGroupSingleSelectWrapExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChipGroupSingleSelectWrapExampleView.swift; sourceTree = "<group>"; };
 		53D6396E2A7D46ED007EF376 /* MapMarkerExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMarkerExampleView.swift; sourceTree = "<group>"; };
@@ -381,6 +382,7 @@
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A12269742A68C09B00C7C0CD /* BottomSheetExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetExampleView.swift; sourceTree = "<group>"; };
 		A12A09DD2A49471F0047DD16 /* ChipGroupProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipGroupProvider.swift; sourceTree = "<group>"; };
+		A2848C51D99141B190D97447 /* LinkExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkExampleView.swift; sourceTree = "<group>"; };
 		AA7CFD8B29965EE20023C12B /* PriceExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceExampleViewController.swift; sourceTree = "<group>"; };
 		AAD90D0129D58F8D0003E133 /* BPKFlightLegViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPKFlightLegViewController.swift; sourceTree = "<group>"; };
 		AAF235D9298BF788003D8507 /* PageIndicatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicatorViewController.swift; sourceTree = "<group>"; };
@@ -393,6 +395,7 @@
 		BA8F350D2C104AFD0093FA79 /* CardButtonExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardButtonExampleView.swift; sourceTree = "<group>"; };
 		BAD421BB299CBCEB00B45668 /* CardWrappersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardWrappersViewController.swift; sourceTree = "<group>"; };
 		C40C7BA12E2E865F0081EF50 /* BlurTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurTokensView.swift; sourceTree = "<group>"; };
+		C495BDB42EB8F299000EB522 /* ConfigurationButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationButtonView.swift; sourceTree = "<group>"; };
 		C663CF67A51D3C1D5CCA2BD1 /* Pods-Backpack Native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack Native.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack Native/Pods-Backpack Native.release.xcconfig"; sourceTree = "<group>"; };
 		D205510822675DAE00BC5BCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		D211A90A22D8B42B00447B64 /* HorizontalNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalNavViewController.swift; sourceTree = "<group>"; };
@@ -459,6 +462,7 @@
 		E397BEA322F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetBottomSectionVIewController.swift; sourceTree = "<group>"; };
 		E397BEA522F5FFDD00C8EC04 /* Storyboards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		EDBC7CA36756032862B5D581 /* Pods_Backpack_Native.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Backpack_Native.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EED38AA32EB37AA200A77904 /* ConfigurationBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationBadgeView.swift; sourceTree = "<group>"; };
 		EED519BD2D3EBD8300F898D7 /* SegmentedControlExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlExampleView.swift; sourceTree = "<group>"; };
 		EEF89AC22E2EAE5A00BF1C83 /* TappableContainerExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableContainerExampleView.swift; sourceTree = "<group>"; };
 		F00CA3D8299D53450027ACE7 /* FloatingNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingNotificationViewController.swift; sourceTree = "<group>"; };
@@ -579,9 +583,11 @@
 		28CF33702E39273C00A9DF34 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
+				EED38AA32EB37AA200A77904 /* ConfigurationBadgeView.swift */,
 				24BB6A012EAF73C500E982A4 /* ConfigurationTypographyView.swift */,
 				28CF336F2E39273C00A9DF34 /* ConfigurationExampleView.swift */,
 				24BB69FF2EAF733F00E982A4 /* ConfigurationChipsView.swift */,
+				C495BDB42EB8F299000EB522 /* ConfigurationButtonView.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -840,14 +846,6 @@
 				53C6620C29EA0DAB00BF1A62 /* DialogExampleView.swift */,
 			);
 			path = Dialog;
-			sourceTree = "<group>";
-		};
-		B8B45CA82B324312AF2B5777 /* Link */ = {
-			isa = PBXGroup;
-			children = (
-				A2848C51D99141B190D97447 /* LinkExampleView.swift */,
-			);
-			path = Link;
 			sourceTree = "<group>";
 		};
 		53C6620D29EA0DAB00BF1A62 /* Text */ = {
@@ -1420,6 +1418,14 @@
 			path = SectionHeader;
 			sourceTree = "<group>";
 		};
+		B8B45CA82B324312AF2B5777 /* Link */ = {
+			isa = PBXGroup;
+			children = (
+				A2848C51D99141B190D97447 /* LinkExampleView.swift */,
+			);
+			path = Link;
+			sourceTree = "<group>";
+		};
 		BA4EE38C2E5D9E0800D9B42D /* PriceRange */ = {
 			isa = PBXGroup;
 			children = (
@@ -1845,6 +1851,7 @@
 				53C6622729EA0DAB00BF1A62 /* DialogExampleView.swift in Sources */,
 				794337A9283C77BD00797D1C /* TabsViewController.swift in Sources */,
 				24BB6A022EAF73CD00E982A4 /* ConfigurationTypographyView.swift in Sources */,
+				C495BDB52EB8F299000EB522 /* ConfigurationButtonView.swift in Sources */,
 				5346243A2A74292D0059A0B5 /* ChipGroupMultipleSelectRailExampleView.swift in Sources */,
 				D270C066243B61C60036A040 /* TabBarControllerStoryViewController.swift in Sources */,
 				022519872A7011CD00D7A06D /* SnippetExampleView.swift in Sources */,
@@ -1854,6 +1861,7 @@
 				E397BEA222F5F59000C8EC04 /* BottomSheetScrollableContentViewController.swift in Sources */,
 				539897C82BA8A8FF00C8D939 /* ImageGallerySlideshowExampleView.swift in Sources */,
 				7976E5C228BB0E4700471AA2 /* ColorChipView.swift in Sources */,
+				EED38AA42EB37AAE00A77904 /* ConfigurationBadgeView.swift in Sources */,
 				53C6621529EA0DAB00BF1A62 /* BadgeExampleVIew.swift in Sources */,
 				B31283822A77D2410034EE29 /* CardListExampleView.swift in Sources */,
 				E397BEA422F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift in Sources */,

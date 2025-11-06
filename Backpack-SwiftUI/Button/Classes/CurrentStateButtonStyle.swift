@@ -16,6 +16,7 @@
  * limitations under the License.
  */
 
+import Backpack_Common
 import SwiftUI
 
 struct CurrentStateButtonStyle: ButtonStyle {
@@ -25,9 +26,14 @@ struct CurrentStateButtonStyle: ButtonStyle {
     let matchesParentWidth: Bool
     let getCurrentState: (_ isPressed: Bool) -> BPKButton.CurrentState
     let colorProvider: ButtonColorProvider
+    let config: BpkConfiguration?
     
     private var height: CGFloat {
-        size == .default ? 36 : 48
+        if let height = config?.buttonConfig?.height {
+            size == .default ? 36 : height
+        } else {
+            size == .default ? 36 : 48
+        }
     }
     
     private var width: CGFloat? {
@@ -47,7 +53,7 @@ struct CurrentStateButtonStyle: ButtonStyle {
     
     private func colors(forConfiguration configuration: Configuration) -> BPKButtonColors {
         let currentState = getCurrentState(configuration.isPressed)
-        return colorProvider.color(forStyle: style, currentState: currentState)
+        return colorProvider.color(forStyle: style, currentState: currentState, config: config)
     }
     
     func makeBody(configuration: Configuration) -> some View {

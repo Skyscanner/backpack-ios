@@ -16,7 +16,9 @@
  * limitations under the License.
  */
 
+// swiftlint:disable indentation_width
 import UIKit
+import Backpack_Common
 #if SWIFT_PACKAGE
 import BackpackTokens
 #endif
@@ -45,11 +47,26 @@ struct PrimaryBPKButtonColorSet: BPKButtonColorSet {
 }
 
 struct SecondaryBPKButtonColorSet: BPKButtonColorSet {
+    var config: BpkConfiguration?
     var regular = BPKButtonColors(background: .buttonSecondaryNormalBackgroundColor, foreground: .textPrimaryColor)
     var highlighted = BPKButtonColors(background: .buttonSecondaryPressedBackgroundColor, foreground: .textPrimaryColor)
     var disabled = BPKButtonColors.buttonDisabled
     
-    init() {}
+    init(config: BpkConfiguration?) {
+        self.config = config
+        
+        if let backgroundColour = config?.buttonConfig?.secondaryButtonBackgroundColour,
+            let foregroundColour = config?.buttonConfig?.secondaryButtonForegroundColour {
+            regular = BPKButtonColors(background: BPKColor(value: backgroundColour),
+                                      foreground: BPKColor(value: foregroundColour))
+        }
+        
+        if let backgroundColourPressed = config?.buttonConfig?.secondaryButtonPressedBackgroundColour,
+           let foregroundColour = config?.buttonConfig?.secondaryButtonForegroundColour {
+            highlighted = BPKButtonColors(background: BPKColor(value: backgroundColourPressed),
+                                          foreground: BPKColor(value: foregroundColour))
+        }
+    }
 }
 
 struct SecondaryOnDarkBPKButtonColorSet: BPKButtonColorSet {
@@ -62,6 +79,34 @@ struct SecondaryOnDarkBPKButtonColorSet: BPKButtonColorSet {
         foreground: .buttonSecondaryOnDarkDisabledForegroundColor)
     
     init() {}
+}
+
+struct SecondaryOnContrastBPKButtonColorSet: BPKButtonColorSet {
+
+    var regular: BPKButtonColors
+    var highlighted: BPKButtonColors
+    var disabled = BPKButtonColors.buttonDisabled
+    
+    init() {
+        let regularLight = UIColor(red: 207/255, green: 228/255, blue: 255/255, alpha: 1)
+        let regularDark = UIColor(red: 36/255, green: 51/255, blue: 70/255, alpha: 1)
+        let regularColour = UIColor.dynamicColorTest(light: regularLight, dark: regularDark)
+
+        let secondaryForegroundLight = UIColor(red: 2/255, green: 77/255, blue: 175/255, alpha: 1.0)
+        let secondaryForegroundDark = UIColor(red: 1, green: 1, blue: 1, alpha: 1.0)
+        let buttonForegroundColour = UIColor.dynamicColorTest(light: secondaryForegroundLight,
+                                                              dark: secondaryForegroundDark)
+        
+        let highlightedLight = UIColor(red: 180/255, green: 215/255, blue: 255/255, alpha: 1)
+        let highlightedDark = UIColor(red: 60/255, green: 80/255, blue: 95/255, alpha: 1)
+        let highlightedColour = UIColor.dynamicColorTest(light: highlightedLight,
+                                                         dark: highlightedDark)
+        
+        regular = BPKButtonColors(background: BPKColor(value: regularColour),
+                                  foreground: BPKColor(value: buttonForegroundColour))
+        highlighted = BPKButtonColors(background: BPKColor(value: highlightedColour),
+                                      foreground: BPKColor(value: buttonForegroundColour))
+    }
 }
 
 struct DestructiveBPKButtonColorSet: BPKButtonColorSet {

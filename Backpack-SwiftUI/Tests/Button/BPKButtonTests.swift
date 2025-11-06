@@ -92,6 +92,13 @@ class BPKButtonTests: XCTestCase {
         )
     }
     
+    func testSecondaryOnContrast() {
+        assertSnapshot(
+            allStates(for: .secondaryOnContrast)
+                .background(.canvasContrastColor)
+        )
+    }
+    
     func testAccessibilityDynamicType() {
         let sut = BPKButton("Search all our flights today, because why would you wait for tomorrow!", action: {})
         assertA11ySnapshot(sut, customHeight: 500)
