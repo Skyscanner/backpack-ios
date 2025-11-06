@@ -36,10 +36,10 @@ protocol ButtonColorSetFactory {
 }
 
 struct DefaultButtonColorSetFactory: ButtonColorSetFactory {
-    func colorSet(forStyle style: BPKButton.Style, config: BpkConfiguration?) -> BPKButtonColorSet {
+    func colorSet(forStyle style: BPKButton.Style, config: BpkConfiguration? = nil) -> BPKButtonColorSet {
         switch style {
         case .primary: return PrimaryBPKButtonColorSet()
-        case .secondary: return SecondaryBPKButtonColorSet(config: config ?? nil)
+        case .secondary: return SecondaryBPKButtonColorSet(config: config)
         case .secondaryOnDark: return SecondaryOnDarkBPKButtonColorSet()
         case .destructive: return DestructiveBPKButtonColorSet()
         case .featured: return FeaturedBPKButtonColorSet()

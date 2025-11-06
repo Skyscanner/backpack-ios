@@ -23,55 +23,55 @@ import SwiftUI
 class ButtonColorProviderTests: XCTestCase {
     func testPrimaryStyleReturnsPrimarySetColors() {
         let sut = DefaultButtonColorSetFactory()
-        let colorSet = sut.colorSet(forStyle: .primary, config: nil)
+        let colorSet = sut.colorSet(forStyle: .primary)
         XCTAssertTrue(colorSet is PrimaryBPKButtonColorSet)
     }
     
     func testSecondaryStyleReturnsSecondarySetColors() {
         let sut = DefaultButtonColorSetFactory()
-        let colorSet = sut.colorSet(forStyle: .secondary, config: nil)
+        let colorSet = sut.colorSet(forStyle: .secondary)
         XCTAssertTrue(colorSet is SecondaryBPKButtonColorSet)
     }
     
     func testSecondaryOnDarkStyleReturnsSecondaryOnDarkSetColors() {
         let sut = DefaultButtonColorSetFactory()
-        let colorSet = sut.colorSet(forStyle: .secondaryOnDark, config: nil)
+        let colorSet = sut.colorSet(forStyle: .secondaryOnDark)
         XCTAssertTrue(colorSet is SecondaryOnDarkBPKButtonColorSet)
     }
     
     func testDestructiveStyleReturnsDestructiveSetColors() {
         let sut = DefaultButtonColorSetFactory()
-        let colorSet = sut.colorSet(forStyle: .destructive, config: nil)
+        let colorSet = sut.colorSet(forStyle: .destructive)
         XCTAssertTrue(colorSet is DestructiveBPKButtonColorSet)
     }
     
     func testFeaturedStyleReturnsFeaturedSetColors() {
         let sut = DefaultButtonColorSetFactory()
-        let colorSet = sut.colorSet(forStyle: .featured, config: nil)
+        let colorSet = sut.colorSet(forStyle: .featured)
         XCTAssertTrue(colorSet is FeaturedBPKButtonColorSet)
     }
     
     func testLinkStyleReturnsLinkSetColors() {
         let sut = DefaultButtonColorSetFactory()
-        let colorSet = sut.colorSet(forStyle: .link, config: nil)
+        let colorSet = sut.colorSet(forStyle: .link)
         XCTAssertTrue(colorSet is LinkBPKButtonColorSet)
     }
     
     func testLinkOnDarkStyleReturnsLinkOnDarkSetColors() {
         let sut = DefaultButtonColorSetFactory()
-        let colorSet = sut.colorSet(forStyle: .linkOnDark, config: nil)
+        let colorSet = sut.colorSet(forStyle: .linkOnDark)
         XCTAssertTrue(colorSet is LinkOnDarkBPKButtonColorSet)
     }
     
     func testPrimaryOnDarkStyleReturnsPrimaryOnDarkSetColors() {
         let sut = DefaultButtonColorSetFactory()
-        let colorSet = sut.colorSet(forStyle: .primaryOnDark, config: nil)
+        let colorSet = sut.colorSet(forStyle: .primaryOnDark)
         XCTAssertTrue(colorSet is PrimaryOnDarkBPKButtonColorSet)
     }
     
     func testPrimaryOnLightStyleReturnsPrimaryOnLightSetColors() {
         let sut = DefaultButtonColorSetFactory()
-        let colorSet = sut.colorSet(forStyle: .primaryOnLight, config: nil)
+        let colorSet = sut.colorSet(forStyle: .primaryOnLight)
         XCTAssertTrue(colorSet is PrimaryOnLightBPKButtonColorSet)
     }
     
