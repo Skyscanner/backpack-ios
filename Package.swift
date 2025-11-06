@@ -12,21 +12,32 @@ func readmePaths(relativeTo path: String) -> [String] {
 
 let backpackCommonExcludedReadmes = readmePaths(relativeTo: "Backpack-Common")
 let backpackSwiftUIExcludedReadmes = readmePaths(relativeTo: "Backpack-SwiftUI")
+let backpackExcludedReadmes = readmePaths(relativeTo: "Backpack")
 
-let package = Package(
-  name: "Backpack",
-  platforms: [
-    .iOS(.v16)
-  ],
-  products: [
-    .library(name: "Backpack-Common", targets: ["Backpack_Common"]),
-    .library(name: "Backpack-SwiftUI", targets: ["Backpack_SwiftUI"]),
-  ],
-  dependencies: [
-    // Only needed for SwiftUI test target
-    .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.9.0")
-  ],
-  targets: [
+let backpackUIKitSourceDirs = [
+  "BottomSheet",
+  "Carousel",
+  "Overlay",
+  "PageIndicator",
+  "Skeleton",
+  "TabBarController",
+  "BackpackUIKitImports.swift",
+  "Color/Classes/Generated/BPKInternalColors.swift"
+]
+let products: [Product] = [
+  .library(name: "Backpack-Common", targets: ["Backpack_Common"]),
+  .library(name: "Backpack-SwiftUI", targets: ["Backpack_SwiftUI"]),
+  .library(name: "Backpack", targets: ["Backpack"])
+]
+
+let dependencies: [Package.Dependency] = [
+  // Only needed for SwiftUI test target
+  .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.9.0"),
+  // Required for the UIKit BottomSheet component
+  .package(url: "https://github.com/scenee/FloatingPanel", from: "2.8.6")
+]
+
+let targets: [Target] = [
 
     // MARK: - BackpackCommon (source-based)
     .target(
@@ -42,9 +53,8 @@ let package = Package(
         "BPKCommonRatingScale.swift",
 
         // Components
-        "Carousel/Classes",
-        "Configuration/Classes",
-        "Configuration/Fonts",
+        "Carousel",
+        "Configuration",
         "Icons/Generated"
       ],
       resources: [
@@ -62,73 +72,112 @@ let package = Package(
         "Blur/Classes/VariableBlur.metal"
       ] + backpackSwiftUIExcludedReadmes,
       sources: [
-        "AppSearchModal/Classes",
-        "Badge/Classes",
-        "BannerAlert/Classes",
-        "Blur/Classes",
-        "BottomSheet/Classes",
-        "Button/Classes",
-        "Calendar/Classes",
-        "Card/Classes",
-        "CardButton/Classes",
-        "CardCarousel/Classes",
-        "CardList/Classes",
-        "Carousel/Classes",
-        "CarouselCard/Classes",
-        "Chip/Classes",
-        "ChipGroup/Classes",
-        "Color/Classes",
-        "Dialog/Classes",
-        "DynamicLayout/Classes",
-        "FieldSet/Classes",
-        "Flare/Classes",
-        "FlowStackView/Classes",
-        "Font/Classes",
-        "GraphicPromo/Classes",
-        "HorizontalNavigation/Classes",
-        "Icons/Classes",
-        "ImageGalleryGrid/Classes",
-        "ImageGalleryPreview/Classes",
-        "ImageGallerySlideshow/Classes",
-        "InsetBanner/Classes",
-        "Link/Classes",
-        "MapMarker/Classes",
-        "NavigationBar/Classes",
-        "NavigationTab/Classes",
-        "Nudger/Classes",
-        "Overlay/Classes",
-        "PageIndicator/Classes",
-        "Panel/Classes",
-        "Price/Classes",
-        "PriceRange/Classes",
-        "ProgressBar/Classes",
-        "Radii/Classes",
-        "Rating/Classes",
-        "RatingBar/Classes",
-        "SearchControlInput/Classes",
-        "SearchInputSummary/Classes",
-        "SectionHeader/Classes",
-        "SegmentedControl/Classes",
-        "Select/Classes",
-        "Shadow/Classes",
-        "Skeleton/Classes",
-        "Slider/Classes",
-        "Snippet/Classes",
-        "Spacing/Classes",
-        "Spinner/Classes",
-        "StarRating/Classes",
-        "Switch/Classes",
-        "TappableContainer/Classes",
-        "Text/Classes",
-        "TextArea/Classes",
-        "TextField/Classes",
-        "Utils/Classes",
+        "AppSearchModal",
+        "Badge",
+        "BannerAlert",
+        "Blur",
+        "BottomSheet",
+        "Button",
+        "Calendar",
+        "Card",
+        "CardButton",
+        "CardCarousel",
+        "CardList",
+        "Carousel",
+        "CarouselCard",
+        "Chip",
+        "ChipGroup",
+        "Color",
+        "Dialog",
+        "DynamicLayout",
+        "FieldSet",
+        "Flare",
+        "FlowStackView",
+        "Font",
+        "GraphicPromo",
+        "HorizontalNavigation",
+        "Icons",
+        "ImageGalleryGrid",
+        "ImageGalleryPreview",
+        "ImageGallerySlideshow",
+        "InsetBanner",
+        "Link",
+        "MapMarker",
+        "NavigationBar",
+        "NavigationTab",
+        "Nudger",
+        "Overlay",
+        "PageIndicator",
+        "Panel",
+        "Price",
+        "PriceRange",
+        "ProgressBar",
+        "Radii",
+        "Rating",
+        "RatingBar",
+        "SearchControlInput",
+        "SearchInputSummary",
+        "SectionHeader",
+        "SegmentedControl",
+        "Select",
+        "Shadow",
+        "Skeleton",
+        "Slider",
+        "Snippet",
+        "Spacing",
+        "Spinner",
+        "StarRating",
+        "Switch",
+        "TappableContainer",
+        "Text",
+        "TextArea",
+        "TextField",
+        "Utils",
 
         "BackpackSwiftUIImports.swift",
       ],
       resources: [
         .process("Blur/Classes/VariableBlur.metal")
       ]
+    ),
+
+    // MARK: - Backpack Tokens (Objective-C generated tokens)
+    .target(
+      name: "BackpackTokens",
+      path: "BackpackTokens",
+      sources: [
+        "Sources/BPKColor.m",
+        "Sources/BPKSpacing.m",
+        "Sources/BPKRadii.m",
+        "Sources/BPKBorderWidth.m",
+        "Sources/BPKDuration.m"
+      ],
+      publicHeadersPath: "include",
+      cSettings: [
+        .unsafeFlags(["-include", "BackpackTokensPrefix.h"]),
+        .headerSearchPath("Sources"),
+        .headerSearchPath("../Backpack/Color/Classes/Generated"),
+        .headerSearchPath("../Backpack/Spacing/Classes/Generated"),
+        .headerSearchPath("../Backpack/Radii/Classes/Generated"),
+        .headerSearchPath("../Backpack/BorderWidth/Classes/Generated"),
+        .headerSearchPath("../Backpack/Duration/Classes/Generated"),
+        .headerSearchPath("../Backpack/DarkMode/Classes")
+      ]
+    ),
+
+    // MARK: - Backpack UIKit (subset of Swift components)
+    .target(
+      name: "Backpack",
+      dependencies: [
+        "Backpack_Common",
+        "BackpackTokens",
+        .product(name: "FloatingPanel", package: "FloatingPanel")
+      ],
+      path: "Backpack",
+      exclude: [
+        "Tests"
+      ] + backpackExcludedReadmes,
+      sources: backpackUIKitSourceDirs
     ),
 
     // MARK: - Tests
@@ -138,16 +187,39 @@ let package = Package(
       path: "Backpack-Common/Tests"
     ),
     .testTarget(
-        name: "BackpackSwiftUITests",
-        dependencies: [
-            "Backpack_SwiftUI",
-            .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
-        ],
-        path: "Backpack-SwiftUI/Tests",
-        resources: [
-            .process("Images.xcassets")
-        ]
+      name: "BackpackTests",
+      dependencies: [
+        "Backpack",
+        "BackpackTokens"
+      ],
+      path: "Backpack/Tests/UnitTests",
+      exclude: [
+        "Images.xcassets"
+      ],
+      sources: [
+        "BPKSkeletonTests.swift"
+      ]
     ),
+    .testTarget(
+      name: "BackpackSwiftUITests",
+      dependencies: [
+        "Backpack_SwiftUI",
+        .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
+      ],
+      path: "Backpack-SwiftUI/Tests",
+      resources: [
+        .process("Images.xcassets")
+      ]
+    ),
+]
+
+let package = Package(
+  name: "Backpack",
+  platforms: [
+    .iOS(.v16)
   ],
+  products: products,
+  dependencies: dependencies,
+  targets: targets,
   swiftLanguageVersions: [.v5]
 )

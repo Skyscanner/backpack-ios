@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
+import QuartzCore
+
 public enum BPKOverlayType {
     case solidLow, solidMedium, solidHigh
     
