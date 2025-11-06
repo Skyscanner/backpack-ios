@@ -42,6 +42,9 @@ extension BPKButton {
         /// Secondary on Dark button style, suitable for use on dark coloured backgrounds.
         case secondaryOnDark
         
+        /// Secondary on Contrast button style, suitable for use on contrast backgrounds.
+        case secondaryOnContrast
+        
         /// Link on Dark button style, suitable for use on dark coloured backgrounds.
         case linkOnDark
     }

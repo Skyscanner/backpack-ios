@@ -24,6 +24,7 @@ import Backpack_Common
 struct ConfigurationExampleView: View {
     let chipConfigView = ConfigurationChipsView()
     let typographyConfigView = ConfigurationTypographyView()
+    let buttonConfigView = ConfigurationButtonView()
     let badgeConfigView = ConfigurationBadgeView()
 
     var body: some View {
@@ -31,6 +32,7 @@ struct ConfigurationExampleView: View {
         let configViews: [(name: String, destination: () -> AnyView)] = [
             ("Chips", { AnyView(ConfigurationChipsView()) }),
             ("Typography", { AnyView(ConfigurationTypographyView()) }),
+            ("Button", { AnyView(ConfigurationButtonView()) }),
             ("Badge", { AnyView(ConfigurationBadgeView()) })
         ]
         
@@ -46,6 +48,7 @@ struct ConfigurationExampleView: View {
                 try config.set(
                     chipConfig: true,
                     typographyConfig: true,
+                    buttonConfig: true,
                     badgeConfig: true
                 )
             } catch {
