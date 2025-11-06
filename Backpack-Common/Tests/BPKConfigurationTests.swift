@@ -81,4 +81,24 @@ final class BpkConfigurationTests: XCTestCase {
         // Then
         XCTAssertNil(config.chipConfig)
     }
+
+    func testBadgeConfigIsSetCorrectlyWhenSetIsCalled() throws {
+        // Given
+        let config = BpkConfiguration.shared
+
+        // When
+        try config.set(badgeConfig: true)
+        let badgeConfig = config.badgeConfig
+
+        // Then
+        XCTAssertNotNil(badgeConfig)
+    }
+
+    func testBadgeConfigIsNilByDefault() {
+        // Given
+        let config = BpkConfiguration.shared
+
+        // Then
+        XCTAssertNil(config.badgeConfig)
+    }
 }

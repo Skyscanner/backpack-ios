@@ -16,11 +16,13 @@
  * limitations under the License.
  */
 
+import Backpack_Common
+
 internal extension BPKBadge.Style {
-    var backgroundColor: BPKColor {
+    func backgroundColor(_ config: BpkConfiguration?) -> BPKColor {
         switch self {
         case .success, .warning, .destructive, .normal:
-            return BPKColor.badgeBackgroundNormalColor
+            return config?.badgeConfig == nil ? BPKColor.badgeBackgroundNormalColor : BPKColor.clear
         case .inverse:
             return BPKColor.surfaceDefaultColor
         case .outline:
@@ -32,7 +34,7 @@ internal extension BPKBadge.Style {
         }
     }
     
-    var foregroundColor: BPKColor {
+    func foregroundColor(_ config: BpkConfiguration?) -> BPKColor {
         switch self {
         case .success, .warning, .destructive, .normal, .inverse:
             return BPKColor.textPrimaryColor
@@ -43,16 +45,16 @@ internal extension BPKBadge.Style {
         }
     }
     
-    var borderColor: BPKColor? {
+    func borderColor(_ config: BpkConfiguration?) -> BPKColor? {
         switch self {
         case .outline:
-            return BPKColor.textOnDarkColor
+            return config?.badgeConfig == nil ? BPKColor.textOnDarkColor : BPKColor.clear
         default:
             return nil
         }
     }
     
-    var iconColor: BPKColor {
+    func iconColor(_ config: BpkConfiguration?) -> BPKColor {
         switch self {
         case .success:
             return BPKColor.statusSuccessSpotColor
@@ -61,7 +63,16 @@ internal extension BPKBadge.Style {
         case .destructive:
             return BPKColor.statusDangerSpotColor
         case .normal, .strong, .inverse, .outline, .brand:
-            return foregroundColor
+            return foregroundColor(config)
+        }
+    }
+
+    func horizontalPadding(_ config: BpkConfiguration?) -> BPKSpacing {
+        switch self {
+        case .strong, .brand, .inverse, .outline:
+            return .md
+        default:
+            return config?.badgeConfig == nil ? .md : .none
         }
     }
 }
