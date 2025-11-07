@@ -20,7 +20,7 @@ const _ = require('lodash');
 const { formatPrefixedConstName, lowercaseFirstLetter } = require('./utils/formatUtils');
 const getLegibleName = require('./utils/legibleName');
 
-const VALID_RADII = new Set(['xs', 'sm', 'md', 'lg', 'pill']);
+const VALID_RADII = new Set(['xs', 'sm', 'md', 'lg', 'full']);
 
 const radii = (properties, formatName) => _.chain(properties)
   .filter(({ category }) => category === 'radii')

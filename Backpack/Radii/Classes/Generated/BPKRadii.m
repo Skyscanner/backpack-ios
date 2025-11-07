@@ -18,6 +18,8 @@
  */
 #import "BPKRadii.h"
 
+CGFloat const BPKCornerRadiusFull = 100;
+
 CGFloat const BPKCornerRadiusMd = 12;
 
 CGFloat const BPKCornerRadiusSm = 8;

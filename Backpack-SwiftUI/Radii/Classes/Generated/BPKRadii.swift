@@ -35,6 +35,9 @@ public extension RoundedRectangle {
 
 public extension BPKCornerRadius {
     
+    /// The Skyscanner full radius.
+    static let full = BPKCornerRadius(value: 100)
+
     /// The Skyscanner medium radius.
     static let md = BPKCornerRadius(value: 12)
 
