@@ -64,10 +64,8 @@ internal extension BPKBadge.Style {
             return BPKColor.statusWarningSpotColor
         case .destructive:
             return BPKColor.statusDangerSpotColor
-        case .normal, .strong, .inverse, .outline, .brand:
+        case .normal, .strong, .inverse, .outline, .brand, .subtle:
             return foregroundColor(config)
-        case .subtle:
-            return BPKColor.textPrimaryColor
         }
     }
 
