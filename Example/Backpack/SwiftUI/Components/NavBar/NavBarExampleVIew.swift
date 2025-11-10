@@ -24,8 +24,9 @@ struct NavBarExampleView: View {
     @State var defaultNavBar = false
     @State var transparent = false
     @State var surfaceContrast = false
+    @State var canvasContrast = false
     @State var forcesCompactNavbars = false
-    
+
     var body: some View {
         VStack {
             BPKSwitch(isOn: $forcesCompactNavbars, text: "Forces compact title")
@@ -39,6 +40,10 @@ struct NavBarExampleView: View {
             .stretchable()
             BPKButton("Surface Contrast") {
                 surfaceContrast.toggle()
+            }
+            .stretchable()
+            BPKButton("Canvas Contrast") {
+                canvasContrast.toggle()
             }
             .stretchable()
         }
@@ -58,7 +63,7 @@ struct NavBarExampleView: View {
                 sheetContent
             }
         })
-        
+
         .sheet(isPresented: $transparent, content: {
             BPKNavigationView(
                 title: "Transparent",
@@ -89,8 +94,23 @@ struct NavBarExampleView: View {
                 sheetContent
             }
         })
+        .sheet(isPresented: $canvasContrast, content: {
+            BPKNavigationView(
+                title: "Canvas Contrast",
+                leadingItems: [.init(type: .closeButton("Close"), action: {
+                    canvasContrast.toggle()
+                })],
+                trailingItems: [
+                    .init(type: .icon(.accessibility, "accessibility"), action: {}),
+                    .init(type: .icon(.alertAdd, "Add"), action: {})
+                ],
+                style: .canvasContrast(forcesCompactNavbars ? .inline : .large)
+            ) {
+                sheetContent
+            }
+        })
     }
-    
+
     private var sheetContent: some View {
         ScrollView {
             VStack {
