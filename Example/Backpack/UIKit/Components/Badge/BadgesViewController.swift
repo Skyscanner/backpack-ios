@@ -28,6 +28,7 @@ private struct BadgeExample {
 class BadgesViewController: UIViewController {
     private let badges: [BadgeExample] = [
         BadgeExample(type: .normal, message: "Normal", showOverDarkBackground: false),
+        BadgeExample(type: .subtle, message: "Subtle", showOverDarkBackground: false),
         BadgeExample(type: .strong, message: "Strong", showOverDarkBackground: false),
         BadgeExample(type: .success, message: "Success", showOverDarkBackground: false),
         BadgeExample(type: .warning, message: "Warning", showOverDarkBackground: false),

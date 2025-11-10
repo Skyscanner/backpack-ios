@@ -26,4 +26,5 @@ public enum BPKBadgeType: UInt {
     case normal
     case strong
     case brand
+    case subtle
 }
