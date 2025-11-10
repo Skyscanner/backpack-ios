@@ -72,4 +72,8 @@ class BPKNavigationViewTests: XCTestCase {
     func test_surfaceContrast() {
         assertSnapshot(navView(style: .surfaceContrast, content: viewContent))
     }
+
+    func test_canvasContrast() {
+        assertSnapshot(navView(style: .canvasContrast, content: viewContent))
+    }
 }
