@@ -50,7 +50,6 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
                 .frame(maxHeight: maximumDetentHeight - headerHeight)
                 .fixedSize(horizontal: false, vertical: true)
             }
-            .background(.surfaceElevatedColor)
             .onGeometryChange(for: CGFloat.self) { geometry in
                 if detentHeight != initialDetentHeight && geometry.size.height > maximumDetentHeight {
                     return detentHeight
