@@ -20,6 +20,14 @@ import SwiftUI
 import Foundation
 // swiftlint:disable line_length
 
+public enum BpkConfigurations {
+    case all
+    case chips
+    case typography
+    case badges
+    case buttons
+}
+
 @objcMembers
 public final class BpkConfiguration: NSObject {
     /// Shared singleton instance
@@ -272,6 +280,35 @@ public final class BpkConfiguration: NSObject {
         setTypographyExperiment(typographyConfig: typographyConfig)
         
         setButtonExperiment(buttonConfig: buttonConfig)
+    }
+    
+    public func setNew(configs: [BpkConfigurations]) throws {
+        guard !hasSet else {
+            throw ConfigurationError.configAlreadySet
+        }
+        hasSet = true
+        
+        for config in configs {
+            switch config {
+            case .all:
+                setAllConfigs()
+            case .chips:
+                setChipExperiment(chipConfig: true)
+            case .typography:
+                setTypographyExperiment(typographyConfig: true)
+            case .badges:
+                setBadgeExperiment(badgeConfig: true)
+            case .buttons:
+                setButtonExperiment(buttonConfig: true)
+            }
+        }
+    }
+    
+    func setAllConfigs() {
+        setChipExperiment(chipConfig: true)
+        setTypographyExperiment(typographyConfig: true)
+        setBadgeExperiment(badgeConfig: true)
+        setButtonExperiment(buttonConfig: true)
     }
 }
 
