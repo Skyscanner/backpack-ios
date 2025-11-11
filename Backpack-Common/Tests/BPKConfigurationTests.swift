@@ -50,10 +50,10 @@ final class BpkConfigurationTests: XCTestCase {
         let config = BpkConfiguration.shared
         
         // When
-        try? config.set(chipConfig: true)
+        try? config.set(configs: ["backpack_chips"])
         
         // Then
-        XCTAssertThrowsError(try config.set(chipConfig: true)) { error in
+        XCTAssertThrowsError(try config.set(configs: ["backpack_chips"])) { error in
             XCTAssertEqual(error as? BpkConfiguration.ConfigurationError, .configAlreadySet)
         }
     }
@@ -63,7 +63,7 @@ final class BpkConfigurationTests: XCTestCase {
         let config = BpkConfiguration.shared
         
         // When
-        try config.set(chipConfig: true)
+        try config.set(configs: ["backpack_chips"])
         let chipConfig = config.chipConfig
         
         // Then
@@ -87,7 +87,7 @@ final class BpkConfigurationTests: XCTestCase {
         let config = BpkConfiguration.shared
 
         // When
-        try config.set(badgeConfig: true)
+        try config.set(configs: ["backpack_badge"])
         let badgeConfig = config.badgeConfig
 
         // Then

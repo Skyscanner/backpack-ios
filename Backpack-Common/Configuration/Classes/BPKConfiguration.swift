@@ -256,25 +256,7 @@ public final class BpkConfiguration: NSObject {
         return defaultFont
     }
     
-    public func set(
-        chipConfig: Bool = false,
-        typographyConfig: Bool = false,
-        buttonConfig: Bool = false,
-        badgeConfig: Bool = false
-    ) throws {
-        guard !hasSet else {
-            throw ConfigurationError.configAlreadySet
-        }
-        hasSet = true
-        
-        setChipExperiment(chipConfig: chipConfig)
-        setBadgeExperiment(badgeConfig: badgeConfig)
-        setTypographyExperiment(typographyConfig: typographyConfig)
-        
-        setButtonExperiment(buttonConfig: buttonConfig)
-    }
-    
-    public func setNew(configs: [String]) throws {
+    public func set(configs: [String]) throws {
         guard !hasSet else {
             throw ConfigurationError.configAlreadySet
         }
