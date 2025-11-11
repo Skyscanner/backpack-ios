@@ -247,26 +247,36 @@ public final class BpkConfiguration: NSObject {
         return defaultFont
     }
     
+    enum ConfigTypes: String {
+        case chips = "backpack_chips"
+        case typography = "donburi_ios_backpack_pilot"
+        case badge = "backpack_badge"
+        case button = "backpack_button"
+        case all = "backpack_all"
+    }
+    
     public func set(configs: [String]) throws {
         guard !hasSet else {
             throw ConfigurationError.configAlreadySet
         }
         hasSet = true
         
-        for config in configs {
+        for configString in configs {
+            guard let config = ConfigTypes(rawValue: configString) else {
+                continue
+            }
+
             switch config {
-            case "backpack_all":
+            case .all:
                 setAllConfigs()
-            case "backpack_chips":
+            case .chips:
                 setChipExperiment()
-            case "donburi_ios_backpack_pilot":
+            case .typography:
                 setTypographyExperiment()
-            case "backpack_badge":
+            case .badge:
                 setBadgeExperiment()
-            case "backpack_button":
+            case .button:
                 setButtonExperiment()
-            default:
-                return
             }
         }
     }
