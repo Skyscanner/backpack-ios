@@ -247,7 +247,7 @@ public final class BpkConfiguration: NSObject {
         return defaultFont
     }
     
-    enum ConfigTypes: String {
+    enum ConfigType: String {
         case chips = "backpack_chips"
         case typography = "donburi_ios_backpack_pilot"
         case badge = "backpack_badge"
@@ -262,7 +262,7 @@ public final class BpkConfiguration: NSObject {
         hasSet = true
         
         for configString in configs {
-            guard let config = ConfigTypes(rawValue: configString) else {
+            guard let config = ConfigType(rawValue: configString) else {
                 continue
             }
 
