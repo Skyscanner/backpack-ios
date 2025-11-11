@@ -139,7 +139,7 @@ public class BPKBadge: UIView {
 fileprivate extension BPKBadgeType {
     var textColor: UIColor {
         switch self {
-        case .success, .warning, .destructive, .normal, .inverse:
+        case .success, .warning, .destructive, .normal, .inverse, .subtle:
             return BPKColor.textPrimaryColor
         case .outline, .strong:
             return BPKColor.textOnDarkColor
@@ -161,6 +161,8 @@ fileprivate extension BPKBadgeType {
             return BPKColor.corePrimaryColor
         case .brand:
             return BPKColor.coreAccentColor
+        case .subtle:
+            return BPKColor.badgeBackgroundNormalColor
         }
     }
     
@@ -172,7 +174,7 @@ fileprivate extension BPKBadgeType {
             return BPKColor.statusWarningSpotColor
         case .destructive:
             return BPKColor.statusDangerSpotColor
-        case .normal, .strong, .inverse, .outline, .brand:
+        case .normal, .strong, .inverse, .outline, .brand, .subtle:
             return textColor
         }
     }
@@ -180,7 +182,7 @@ fileprivate extension BPKBadgeType {
     var horizontalPadding: CGFloat {
         let config = BpkConfiguration.shared.badgeConfig
         switch self {
-        case .strong, .brand, .inverse, .outline:
+        case .strong, .brand, .inverse, .outline, .subtle:
             return BPKSpacingMd
         default:
             return config == nil ? BPKSpacingMd : BPKSpacingNone

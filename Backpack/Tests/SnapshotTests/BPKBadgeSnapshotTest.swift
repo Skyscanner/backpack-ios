@@ -21,6 +21,7 @@ import Backpack
 
 import SnapshotTesting
 
+// swiftlint:disable line_length
 class BPKBadgeSnapshotTest: XCTestCase {
     
     override func setUp() {
@@ -45,7 +46,7 @@ class BPKBadgeSnapshotTest: XCTestCase {
         parentView.translatesAutoresizingMaskIntoConstraints = false
         parentView.addSubview(stackView)
 
-        let badges = [BPKBadgeType.inverse, .outline, .success, .warning, .destructive, .strong, .normal, .brand]
+        let badges = [BPKBadgeType.inverse, .outline, .success, .warning, .destructive, .strong, .normal, .brand, .subtle]
             .map { BPKBadge(type: $0, icon: icon, message: "Backpack rocks!") }
         badges.forEach(stackView.addArrangedSubview(_:))
         NSLayoutConstraint.activate([

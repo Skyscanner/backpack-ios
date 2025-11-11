@@ -28,6 +28,7 @@ struct ConfigurationBadgeView: View {
             VStack(spacing: .lg) {
                 configText
                 normalBadge
+                subtleBadge
                 strongBadge
                 successBadge
                 warningBadge
@@ -64,6 +65,13 @@ struct ConfigurationBadgeView: View {
         HStack(alignment: .center, spacing: .xxxl) {
             BPKBadge("Normal")
             BPKBadge("Normal", icon: .tickCircle)
+        }
+    }
+    
+    var subtleBadge: some View {
+        HStack(alignment: .center, spacing: .xxxl) {
+            BPKBadge("Subtle").badgeStyle(.subtle)
+            BPKBadge("Subtle", icon: .tickCircle).badgeStyle(.subtle)
         }
     }
 

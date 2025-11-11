@@ -24,6 +24,7 @@ class BPKBadgeTests: XCTestCase {
     
     let styles: [(BPKBadge.Style, BPKColor)] = [
         (.normal, .surfaceDefaultColor),
+        (.subtle, .surfaceDefaultColor),
         (.strong, .surfaceDefaultColor),
         (.success, .surfaceDefaultColor),
         (.warning, .surfaceDefaultColor),

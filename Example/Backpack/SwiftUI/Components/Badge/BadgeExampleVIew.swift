@@ -27,6 +27,7 @@ struct BadgeExampleVIew: View {
                 .ignoresSafeArea()
             VStack(spacing: 0) {
                 makeBadgeRow(text: "Normal", icon: .tickCircle, style: .normal)
+                makeBadgeRow(text: "Subtle", icon: .tickCircle, style: .subtle)
                 makeBadgeRow(text: "Strong", icon: .tickCircle, style: .strong)
                 makeBadgeRow(text: "Success", icon: .tickCircle, style: .success)
                 makeBadgeRow(text: "Warning", icon: .informationCircle, style: .warning)

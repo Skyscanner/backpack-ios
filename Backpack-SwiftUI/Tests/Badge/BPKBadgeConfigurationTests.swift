@@ -43,6 +43,7 @@ class BPKBadgeConfigurationTests: XCTestCase {
         assertSnapshot(
             VStack {
                 BPKBadge("Normal")
+                BPKBadge("Subtle").badgeStyle(.subtle)
                 BPKBadge("Strong").badgeStyle(.strong)
                 HStack {
                     BPKBadge("Inverse").badgeStyle(.inverse).padding(.horizontal, .base).padding(.vertical, .md)
@@ -56,6 +57,7 @@ class BPKBadgeConfigurationTests: XCTestCase {
         assertSnapshot(
             VStack {
                 BPKBadge("Normal", icon: .tickCircle)
+                BPKBadge("Subtle", icon: .tickCircle).badgeStyle(.subtle)
                 BPKBadge("Strong", icon: .tickCircle).badgeStyle(.strong)
                 BPKBadge("Success", icon: .tickCircle).badgeStyle(.success)
                 BPKBadge("Warning", icon: .informationCircle).badgeStyle(.warning)
