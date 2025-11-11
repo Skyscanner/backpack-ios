@@ -40,12 +40,12 @@ public struct BPKRating<Content: View>: View {
                     BPKText(
                         "/",
                         style: size.fontStyle.ratingScaleLabelFontStyle
-                    ).foregroundColor(.textSecondaryColor)
+                    ).foregroundColor(.textPrimaryColor)
                         .layoutPriority(3)
                     BPKText(
                         ratingScale.displayedScale(),
                         style: size.fontStyle.ratingScaleLabelFontStyle
-                    ).foregroundColor(.textSecondaryColor)
+                    ).foregroundColor(.textPrimaryColor)
                         .layoutPriority(3)
                 }
             }
@@ -73,7 +73,7 @@ public struct BPKRating<Content: View>: View {
         size: Size = .default,
         subtitle: String? = nil,
         showScale: Bool = true,
-        @ViewBuilder titleViewBuilder: @escaping () -> Content
+        @ViewBuilder titleViewBuilder: @escaping () -> Content = { EmptyView() }
     ) {
         self.value = value
         self.ratingScale = ratingScale
@@ -90,7 +90,7 @@ public struct BPKRating<Content: View>: View {
                 subtitle,
                 style: size.fontStyle.subtitleLabelFontStyle
             )
-            .foregroundColor(.textSecondaryColor)
+            .foregroundColor(.textPrimaryColor)
         } else {
             EmptyView()
         }
