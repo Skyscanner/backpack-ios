@@ -26,6 +26,7 @@ struct ConfigurationExampleView: View {
     let typographyConfigView = ConfigurationTypographyView()
     let buttonConfigView = ConfigurationButtonView()
     let badgeConfigView = ConfigurationBadgeView()
+    let cardConfigView = ConfigurationCardView()
 
     var body: some View {
         
@@ -33,7 +34,8 @@ struct ConfigurationExampleView: View {
             ("Chips", { AnyView(ConfigurationChipsView()) }),
             ("Typography", { AnyView(ConfigurationTypographyView()) }),
             ("Button", { AnyView(ConfigurationButtonView()) }),
-            ("Badge", { AnyView(ConfigurationBadgeView()) })
+            ("Badge", { AnyView(ConfigurationBadgeView()) }),
+            ("Card", { AnyView(ConfigurationCardView()) })
         ]
         
         List(configViews, id: \.name) { item in
@@ -49,7 +51,8 @@ struct ConfigurationExampleView: View {
                     chipConfig: true,
                     typographyConfig: true,
                     buttonConfig: true,
-                    badgeConfig: true
+                    badgeConfig: true,
+                    cardConfig: true
                 )
             } catch {
                 print("No config set")

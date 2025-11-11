@@ -41,6 +41,7 @@ struct CardExampleView: View {
                 }
             }
             .padding()
+            .background(.canvasContrastColor)
         }
     }
 

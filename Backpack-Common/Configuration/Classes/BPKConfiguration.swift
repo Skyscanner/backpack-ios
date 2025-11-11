@@ -54,14 +54,7 @@ public final class BpkConfiguration: NSObject {
         public var secondaryButtonPressedBackgroundColour: UIColor?
         public var setFontLabel2: Bool?
     }
-    
-    private var _buttonConfig: BpkButtonConfig?
-    
-    public var buttonConfig: BpkButtonConfig? {
-        get { getConfig { self._buttonConfig } }
-        set { _buttonConfig = newValue }
-    }
-    
+        
     public struct BpkBadgeConfig {
     }
 
@@ -76,6 +69,20 @@ public final class BpkConfiguration: NSObject {
     }
     
     /// Setting stored configs
+    
+    private var _cardConfig: BpkCardConfig?
+    public var cardConfig: BpkCardConfig? {
+        get { getConfig { self._cardConfig } }
+        set { _cardConfig = newValue }
+    }
+    
+    private var _buttonConfig: BpkButtonConfig?
+    
+    public var buttonConfig: BpkButtonConfig? {
+        get { getConfig { self._buttonConfig } }
+        set { _buttonConfig = newValue }
+    }
+    
     private var _badgeConfig: BpkBadgeConfig?
 
     public var badgeConfig: BpkBadgeConfig? {
@@ -188,6 +195,12 @@ public final class BpkConfiguration: NSObject {
             self.badgeConfig = BpkBadgeConfig()
         }
     }
+    
+    private func setCardExperiment(cardConfig: Bool) {
+        if cardConfig {
+            self.cardConfig = BpkCardConfig()
+        }
+    }
 
     private func setTypographyExperiment(typographyConfig: Bool) {
         if typographyConfig {
@@ -260,7 +273,8 @@ public final class BpkConfiguration: NSObject {
         chipConfig: Bool = false,
         typographyConfig: Bool = false,
         buttonConfig: Bool = false,
-        badgeConfig: Bool = false
+        badgeConfig: Bool = false,
+        cardConfig: Bool = false,
     ) throws {
         guard !hasSet else {
             throw ConfigurationError.configAlreadySet
@@ -272,6 +286,7 @@ public final class BpkConfiguration: NSObject {
         setTypographyExperiment(typographyConfig: typographyConfig)
         
         setButtonExperiment(buttonConfig: buttonConfig)
+        setCardExperiment(cardConfig: cardConfig)
     }
 }
 
@@ -315,6 +330,7 @@ extension BpkConfiguration {
         chipConfig = nil
         buttonConfig = nil
         badgeConfig = nil
+        cardConfig = nil
         hasSet = false
         configIsAccessed = false
         onConfigurationAccessed = nil

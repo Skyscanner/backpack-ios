@@ -17,6 +17,7 @@
  */
 
 import SwiftUI
+import Backpack_Common
 
 public struct BPKCard<Content: View>: View {
     public enum CornerStyle {
@@ -36,7 +37,8 @@ public struct BPKCard<Content: View>: View {
     private let padding: Padding
     private let cornerStyle: CornerStyle
     private var tapAction : () -> Void = {}
-
+    private let config: BpkConfiguration?
+    
     public init(
         padding: Padding = .small,
         cornerStyle: CornerStyle = .small,
@@ -45,8 +47,9 @@ public struct BPKCard<Content: View>: View {
     ) {
         self.content = content()
         self.cornerStyle = cornerStyle
-        self.elevation = elevation
         self.padding = padding
+        self.elevation = elevation
+        self.config = BpkConfiguration.shared
     }
 
     private var cornerRadius: BPKCornerRadius {

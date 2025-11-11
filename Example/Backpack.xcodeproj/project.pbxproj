@@ -153,6 +153,7 @@
 		BA8F350E2C104AFD0093FA79 /* CardButtonExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F350D2C104AFD0093FA79 /* CardButtonExampleView.swift */; };
 		BAD421BC299CBCEB00B45668 /* CardWrappersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD421BB299CBCEB00B45668 /* CardWrappersViewController.swift */; };
 		C40C7BA22E2E86640081EF50 /* BlurTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40C7BA12E2E865F0081EF50 /* BlurTokensView.swift */; };
+		C45755F22EC3808A00D2D01E /* ConfigurationCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45755F12EC3808A00D2D01E /* ConfigurationCardView.swift */; };
 		C495BDB52EB8F299000EB522 /* ConfigurationButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495BDB42EB8F299000EB522 /* ConfigurationButtonView.swift */; };
 		D205510922675DAE00BC5BCC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D205510722675DAE00BC5BCC /* LaunchScreen.xib */; };
 		D211A90C22D8B42B00447B64 /* HorizontalNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D211A90A22D8B42B00447B64 /* HorizontalNavViewController.swift */; };
@@ -395,6 +396,7 @@
 		BA8F350D2C104AFD0093FA79 /* CardButtonExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardButtonExampleView.swift; sourceTree = "<group>"; };
 		BAD421BB299CBCEB00B45668 /* CardWrappersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardWrappersViewController.swift; sourceTree = "<group>"; };
 		C40C7BA12E2E865F0081EF50 /* BlurTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurTokensView.swift; sourceTree = "<group>"; };
+		C45755F12EC3808A00D2D01E /* ConfigurationCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationCardView.swift; sourceTree = "<group>"; };
 		C495BDB42EB8F299000EB522 /* ConfigurationButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationButtonView.swift; sourceTree = "<group>"; };
 		C663CF67A51D3C1D5CCA2BD1 /* Pods-Backpack Native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack Native.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack Native/Pods-Backpack Native.release.xcconfig"; sourceTree = "<group>"; };
 		D205510822675DAE00BC5BCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -588,6 +590,7 @@
 				28CF336F2E39273C00A9DF34 /* ConfigurationExampleView.swift */,
 				24BB69FF2EAF733F00E982A4 /* ConfigurationChipsView.swift */,
 				C495BDB42EB8F299000EB522 /* ConfigurationButtonView.swift */,
+				C45755F12EC3808A00D2D01E /* ConfigurationCardView.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -1835,6 +1838,7 @@
 				1A68212D2B3308C80048220E /* AppSearchModalExampleViewModel.swift in Sources */,
 				53C6621229EA0DAB00BF1A62 /* SwitchExampleView.swift in Sources */,
 				0245783E2ABC3AA1006008D1 /* InsetBannerExampleView.swift in Sources */,
+				C45755F22EC3808A00D2D01E /* ConfigurationCardView.swift in Sources */,
 				0245783F2ABC3AA1006008D1 /* SponsoredInsetBannerExampleView.swift in Sources */,
 				D61ACE052306E238001C976E /* NavigationBarViewController.swift in Sources */,
 				D26B8B86219EAC72006FE706 /* BadgesViewController.swift in Sources */,
