@@ -22,7 +22,7 @@ import Foundation
 
 public enum ConfigType: String {
     case chips = "backpack_chips"
-    case typography = "donburi_ios_backpack_pilot"
+    case typography = "backpack_experiment"
     case badge = "backpack_badge"
     case button = "backpack_button"
     case all = "backpack_all"
