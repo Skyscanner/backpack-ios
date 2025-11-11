@@ -20,6 +20,14 @@ import SwiftUI
 import Foundation
 // swiftlint:disable line_length
 
+public enum ConfigType: String {
+    case chips = "backpack_chips"
+    case typography = "donburi_ios_backpack_pilot"
+    case badge = "backpack_badge"
+    case button = "backpack_button"
+    case all = "backpack_all"
+}
+
 @objcMembers
 public final class BpkConfiguration: NSObject {
     /// Shared singleton instance
@@ -247,25 +255,13 @@ public final class BpkConfiguration: NSObject {
         return defaultFont
     }
     
-    enum ConfigType: String {
-        case chips = "backpack_chips"
-        case typography = "donburi_ios_backpack_pilot"
-        case badge = "backpack_badge"
-        case button = "backpack_button"
-        case all = "backpack_all"
-    }
-    
-    public func set(configs: [String]) throws {
+    public func set(configs: [ConfigType]) throws {
         guard !hasSet else {
             throw ConfigurationError.configAlreadySet
         }
         hasSet = true
         
-        for configString in configs {
-            guard let config = ConfigType(rawValue: configString) else {
-                continue
-            }
-
+        for config in configs {
             switch config {
             case .all:
                 setAllConfigs()

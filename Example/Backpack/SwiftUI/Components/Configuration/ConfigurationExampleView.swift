@@ -45,7 +45,7 @@ struct ConfigurationExampleView: View {
         .onAppear {
             do {
                 let config = BpkConfiguration.shared
-                try config.set(configs: ["backpack_all"])
+                try config.set(configs: [.all])
             } catch {
                 print("No config set")
             }
