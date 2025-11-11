@@ -28,7 +28,7 @@ final class BPKButtonConfigurationTests: XCTestCase {
         
         let config = BpkConfiguration.shared
         do {
-            try config.setNew(configs: [.buttons])
+            try config.setNew(configs: ["BUTTON"])
         } catch {
             XCTFail("Failed to set chip config")
         }
