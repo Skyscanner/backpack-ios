@@ -16,9 +16,27 @@
  * limitations under the License.
  */
 
-@_exported import UIKit
-@_exported import BackpackTokens
-@_exported import Backpack_Common
-#if canImport(BackpackObjC)
-@_exported import BackpackObjC
-#endif
+#import <Foundation/Foundation.h>
+#import "BPKButton.h"
+
+@class BPKButtonAppearanceSet;
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface BPKButtonAppearanceSets : NSObject
+
++ (BPKButtonAppearanceSet *)primary;
++ (BPKButtonAppearanceSet *)secondary;
++ (BPKButtonAppearanceSet *)featured;
++ (BPKButtonAppearanceSet *)destructive;
++ (BPKButtonAppearanceSet *)link;
++ (BPKButtonAppearanceSet *)linkOnDark;
++ (BPKButtonAppearanceSet *)primaryOnDark;
++ (BPKButtonAppearanceSet *)primaryOnLight;
++ (BPKButtonAppearanceSet *)secondaryOnDark;
+
++ (BPKButtonAppearanceSet *)appearanceFromStyle:(BPKButtonStyle)style;
+
+@end
+
+NS_ASSUME_NONNULL_END

@@ -28,9 +28,9 @@
 #import "BPKButton.h"
 #import "BPKButtonAppearance.h"
 #import "BPKButtonAppearanceSet.h"
+#import "BPKButtonAppearanceSets.h"
 #import "UIColor+BPKButton.h"
 
-#import <Backpack/Backpack-Swift.h>
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 #import <Backpack/DarkMode.h>

@@ -14,16 +14,131 @@ let backpackCommonExcludedReadmes = readmePaths(relativeTo: "Backpack-Common")
 let backpackSwiftUIExcludedReadmes = readmePaths(relativeTo: "Backpack-SwiftUI")
 let backpackExcludedReadmes = readmePaths(relativeTo: "Backpack")
 
-let backpackUIKitSourceDirs = [
+let backpackUIKitObjcSourceDirs = [
+  "Appearance",
+  "BorderWidth",
+  "Button",
+  "Card",
+  "Color",
+  "Dialog",
+  "Duration",
+  "FlareView",
+  "Font",
+  "Gradient",
+  "Icon",
+  "Label",
+  "Map",
+  "NavigationBar",
+  "ProgressBar",
+  "Radii",
+  "RTLSupport",
+  "Shadow",
+  "Spacing",
+  "Spinner",
+  "StarRating",
+  "Switch",
+  "TappableLinkLabel",
+  "TextField",
+  "TextView",
+  "Theme",
+  "Toast"
+]
+
+let backpackUIKitSwiftSources = [
+  "BackpackUIKitImports.swift",
+  "Badge",
+  "BarChart",
   "BottomSheet",
+  "CardButton",
   "Carousel",
+  "Chip",
+  "FlightLeg",
+  "FloatingNotification",
+  "HorizontalNavigation",
   "Overlay",
   "PageIndicator",
+  "Price",
+  "Rating",
   "Skeleton",
   "TabBarController",
-  "BackpackUIKitImports.swift",
-  "Color/Classes/Generated/BPKInternalColors.swift"
+  "Card/Classes/BPKCardElevation.swift",
+  "Card/Classes/BPKCardWrapper.swift",
+  "Color/Classes/Generated/BPKInternalColors.swift",
+  "StarRating/Classes/BPKHotelStarRating.swift"
 ]
+
+let backpackObjcExcludedFiles = [
+  "Card/Classes/BPKCardElevation.swift",
+  "Card/Classes/BPKCardWrapper.swift",
+  "Color/Classes/Generated/BPKInternalColors.swift",
+  "StarRating/Classes/BPKHotelStarRating.swift"
+]
+
+let backpackSwiftUISourceDirs = [
+  "AppSearchModal",
+  "Badge",
+  "BannerAlert",
+  "Blur",
+  "BottomSheet",
+  "Button",
+  "Calendar",
+  "Card",
+  "CardButton",
+  "CardCarousel",
+  "CardList",
+  "Carousel",
+  "CarouselCard",
+  "Chip",
+  "ChipGroup",
+  "Color",
+  "Dialog",
+  "DynamicLayout",
+  "FieldSet",
+  "Flare",
+  "FlowStackView",
+  "Font",
+  "GraphicPromo",
+  "HorizontalNavigation",
+  "Icons",
+  "ImageGalleryGrid",
+  "ImageGalleryPreview",
+  "ImageGallerySlideshow",
+  "InsetBanner",
+  "Link",
+  "MapMarker",
+  "NavigationBar",
+  "NavigationTab",
+  "Nudger",
+  "Overlay",
+  "PageIndicator",
+  "Panel",
+  "Price",
+  "PriceRange",
+  "ProgressBar",
+  "Radii",
+  "Rating",
+  "RatingBar",
+  "SearchControlInput",
+  "SearchInputSummary",
+  "SectionHeader",
+  "SegmentedControl",
+  "Select",
+  "Shadow",
+  "Skeleton",
+  "Slider",
+  "Snippet",
+  "Spacing",
+  "Spinner",
+  "StarRating",
+  "Switch",
+  "TappableContainer",
+  "Text",
+  "TextArea",
+  "TextField",
+  "Utils",
+  "BackpackSwiftUIImports.swift"
+]
+
 let products: [Product] = [
   .library(name: "Backpack-Common", targets: ["Backpack_Common"]),
   .library(name: "Backpack-SwiftUI", targets: ["Backpack_SwiftUI"]),
@@ -71,71 +186,7 @@ let targets: [Target] = [
         "Tests",
         "Blur/Classes/VariableBlur.metal"
       ] + backpackSwiftUIExcludedReadmes,
-      sources: [
-        "AppSearchModal",
-        "Badge",
-        "BannerAlert",
-        "Blur",
-        "BottomSheet",
-        "Button",
-        "Calendar",
-        "Card",
-        "CardButton",
-        "CardCarousel",
-        "CardList",
-        "Carousel",
-        "CarouselCard",
-        "Chip",
-        "ChipGroup",
-        "Color",
-        "Dialog",
-        "DynamicLayout",
-        "FieldSet",
-        "Flare",
-        "FlowStackView",
-        "Font",
-        "GraphicPromo",
-        "HorizontalNavigation",
-        "Icons",
-        "ImageGalleryGrid",
-        "ImageGalleryPreview",
-        "ImageGallerySlideshow",
-        "InsetBanner",
-        "Link",
-        "MapMarker",
-        "NavigationBar",
-        "NavigationTab",
-        "Nudger",
-        "Overlay",
-        "PageIndicator",
-        "Panel",
-        "Price",
-        "PriceRange",
-        "ProgressBar",
-        "Radii",
-        "Rating",
-        "RatingBar",
-        "SearchControlInput",
-        "SearchInputSummary",
-        "SectionHeader",
-        "SegmentedControl",
-        "Select",
-        "Shadow",
-        "Skeleton",
-        "Slider",
-        "Snippet",
-        "Spacing",
-        "Spinner",
-        "StarRating",
-        "Switch",
-        "TappableContainer",
-        "Text",
-        "TextArea",
-        "TextField",
-        "Utils",
-
-        "BackpackSwiftUIImports.swift",
-      ],
+      sources: backpackSwiftUISourceDirs,
       resources: [
         .process("Blur/Classes/VariableBlur.metal")
       ]
@@ -165,19 +216,34 @@ let targets: [Target] = [
       ]
     ),
 
-    // MARK: - Backpack UIKit (subset of Swift components)
+    // MARK: - Backpack UIKit ObjC core
+    .target(
+      name: "BackpackObjC",
+      path: "Backpack",
+      exclude: [
+        "Tests"
+      ] + backpackExcludedReadmes + backpackObjcExcludedFiles,
+      sources: backpackUIKitObjcSourceDirs,
+      publicHeadersPath: ".",
+      cSettings: [
+        .headerSearchPath(".")
+      ]
+    ),
+
+    // MARK: - Backpack UIKit (Swift facade)
     .target(
       name: "Backpack",
       dependencies: [
         "Backpack_Common",
         "BackpackTokens",
+        "BackpackObjC",
         .product(name: "FloatingPanel", package: "FloatingPanel")
       ],
       path: "Backpack",
       exclude: [
         "Tests"
       ] + backpackExcludedReadmes,
-      sources: backpackUIKitSourceDirs
+      sources: backpackUIKitSwiftSources
     ),
 
     // MARK: - Tests

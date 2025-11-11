@@ -1,3 +1,4 @@
+
 /*
  * Backpack - Skyscanner's Design System
  *
@@ -15,10 +16,4 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-@_exported import UIKit
-@_exported import BackpackTokens
-@_exported import Backpack_Common
-#if canImport(BackpackObjC)
-@_exported import BackpackObjC
-#endif
+#import "Button/Classes/Button.h"

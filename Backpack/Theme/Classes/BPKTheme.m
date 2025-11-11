@@ -18,7 +18,6 @@
 
 #import "BPKTheme.h"
 
-#import <Backpack/Backpack-Swift.h>
 #import <Backpack/Backpack.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -82,8 +81,13 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) { BPKGrayColor50, BPKGrayColor100, BPKG
     BPKProgressBar *progressBarAppearance = [BPKProgressBar appearanceWhenContainedInInstancesOfClasses:@[class]];
     progressBarAppearance.fillColor = theme.progressBarPrimaryColor;
 
-    BPKHorizontalNavigationObjc *horizontalNavAppearance = [BPKHorizontalNavigationObjc appearanceWhenContainedInInstancesOfClasses:@[class]];
-    horizontalNavAppearance.selectedColor = theme.horiontalNavigationSelectedColor;
+    Class horizontalNavClass = NSClassFromString(@"BPKHorizontalNavigationObjc");
+    if (horizontalNavClass != Nil) {
+        id horizontalNavAppearance = [horizontalNavClass appearanceWhenContainedInInstancesOfClasses:@[class]];
+        if ([horizontalNavAppearance respondsToSelector:@selector(setSelectedColor:)]) {
+            [horizontalNavAppearance setSelectedColor:theme.horiontalNavigationSelectedColor];
+        }
+    }
 }
 
 @end

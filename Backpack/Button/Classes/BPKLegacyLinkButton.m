@@ -20,8 +20,8 @@
 #import "BPKButton.h"
 #import "BPKButtonAppearance.h"
 #import "BPKButtonAppearanceSet.h"
+#import "BPKButtonAppearanceSets.h"
 #import "UIColor+BPKButton.h"
-#import <Backpack/Backpack-Swift.h>
 
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
@@ -104,7 +104,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (BPKButtonAppearance *)currentAppearance {
-    BPKButtonAppearanceSet *appearanceSet = BPKButtonAppearanceSets.link;
+    BPKButtonAppearanceSet *appearanceSet = [BPKButtonAppearanceSets link];
 
     if (self.isLoading) {
         return appearanceSet.loadingAppearance;
