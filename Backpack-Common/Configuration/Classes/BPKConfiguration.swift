@@ -282,15 +282,15 @@ public final class BpkConfiguration: NSObject {
         
         for config in configs {
             switch config {
-            case "ALL":
+            case "backpack_all":
                 setAllConfigs()
-            case "CHIPS":
+            case "backpack_chips":
                 setChipExperiment(chipConfig: true)
             case "donburi_ios_backpack_pilot":
                 setTypographyExperiment(typographyConfig: true)
-            case "BADGE":
+            case "backpack_badge":
                 setBadgeExperiment(badgeConfig: true)
-            case "BUTTON":
+            case "backpack_button":
                 setButtonExperiment(buttonConfig: true)
             default:
                 return
