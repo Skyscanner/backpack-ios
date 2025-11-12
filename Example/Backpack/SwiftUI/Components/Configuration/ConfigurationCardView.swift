@@ -37,7 +37,7 @@ struct ConfigurationCardView: View {
                 }
             }
             .padding()
-            .background(.surfaceContrastColor)
+            .background(.canvasContrastColor)
 
             VStack(spacing: 40) {
                 BPKCard(cardStyle: .onDefault) {
