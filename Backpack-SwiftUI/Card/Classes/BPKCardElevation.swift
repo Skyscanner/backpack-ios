@@ -26,8 +26,4 @@ public enum BPKCardElevation {
         case .`default`: return .sm
         }
     }
-
-    var backgroundColor: BPKColor {
-        self == .focus ? .surfaceElevatedColor : .surfaceDefaultColor
-    }
 }

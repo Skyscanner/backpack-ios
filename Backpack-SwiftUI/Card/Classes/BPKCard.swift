@@ -36,24 +36,40 @@ public struct BPKCard<Content: View>: View {
     private let content: Content
     private let padding: Padding
     private let cornerStyle: CornerStyle
+    private let style: Style
     private var tapAction : () -> Void = {}
     private let config: BpkConfiguration?
-    
+
     public init(
         padding: Padding = .small,
         cornerStyle: CornerStyle = .small,
         elevation: BPKCardElevation = .default,
+        style: Style = .onContrast,
         @ViewBuilder content: () -> Content
     ) {
         self.content = content()
         self.cornerStyle = cornerStyle
         self.padding = padding
         self.elevation = elevation
+        self.style = style
         self.config = BpkConfiguration.shared
     }
 
     private var cornerRadius: BPKCornerRadius {
         cornerStyle == .small ? .sm : .lg
+    }
+
+    private var effectiveElevation: BPKCardElevation {
+        config?.cardConfig != nil ? .none : elevation
+    }
+
+    private var backgroundColor: BPKColor {
+        switch style {
+        case .onDefault:
+            return .canvasContrastColor
+        case .onContrast:
+            return effectiveElevation == .focus ? .surfaceElevatedColor : .surfaceDefaultColor
+        }
     }
 
     public var body: some View {
@@ -63,9 +79,9 @@ public struct BPKCard<Content: View>: View {
         }
         .buttonStyle(CardButtonStyle(
             cornerRadius: cornerRadius,
-            backgroundColor: elevation.backgroundColor
+            backgroundColor: backgroundColor
         ))
-        .shadow(elevation.shadow)
+        .shadow(effectiveElevation.shadow)
     }
     
     public func onTapGesture(perform: @escaping () -> Void) -> BPKCard {
@@ -109,6 +125,12 @@ struct BPKCard_Previews: PreviewProvider {
             }
             BPKCard(cornerStyle: .large) {
                 BPKText("Large Corner")
+            }
+            BPKCard(style: .onDefault) {
+                BPKText("On Default Style")
+            }
+            BPKCard(elevation: .focus, style: .onDefault) {
+                BPKText("Focused On Default")
             }
         }
         .padding()

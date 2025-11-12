@@ -22,23 +22,48 @@ import SwiftUI
 
 struct ConfigurationCardView: View {
     var body: some View {
-        VStack(spacing: 40) {
-            BPKCard() {
-                BPKText("Default")
+        ScrollView {
+            VStack(spacing: 40) {
+                BPKCard() {
+                    content(title: "Default")
+                }
+                BPKCard(elevation: .focus) {
+                    content(title: "Focused")
+                }
+                BPKCard(padding: .none) {
+                    content(title: "Not padded")
+                }
+                BPKCard(cornerStyle: .large) {
+                    content(title: "Large Corner")
+                }
             }
-            BPKCard(elevation: .focus) {
-                BPKText("Focused")
+            .padding()
+            .background(.surfaceContrastColor)
+            VStack(spacing: 40) {
+                BPKCard(style: .onDefault) {
+                    content(title: "On Default")
+                }
+                BPKCard(elevation: .focus, style: .onDefault) {
+                    content(title: "Focused on Default")
+                }
             }
-            BPKCard(padding: .none) {
-                BPKText("Not Padded")
-            }
-            BPKCard(cornerStyle: .large) {
-                BPKText("Large Corner")
-            }
+            .padding()
+            .background(.surfaceDefaultColor)
         }
-        .padding()
         .previewLayout(.sizeThatFits)
-        .background(.canvasContrastColor)
+        .onDisappear {
+            BpkConfiguration.shared.reset()
+        }
+    }
+    
+    private func content(title: String) -> some View {
+        VStack {
+            BPKText(title, style: .heading3)
+            BPKText(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                style: .bodyDefault
+            ).lineLimit(2)
+        }
     }
 }
 

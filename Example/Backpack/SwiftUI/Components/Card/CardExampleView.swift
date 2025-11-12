@@ -39,9 +39,14 @@ struct CardExampleView: View {
                 BPKCard(cornerStyle: .large) {
                     content(title: "Large Corner")
                 }
+                BPKCard(style: .onDefault) {
+                    content(title: "On Default")
+                }
+                BPKCard(elevation: .focus, style: .onDefault) {
+                    content(title: "Focused on Default")
+                }
             }
             .padding()
-            .background(.canvasContrastColor)
         }
     }
 
