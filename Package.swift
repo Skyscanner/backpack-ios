@@ -24,6 +24,89 @@ let backpackUIKitSourceDirs = [
   "BackpackUIKitImports.swift",
   "Color/Classes/Generated/BPKInternalColors.swift"
 ]
+let backpackCommonSourceDirs = [
+  // Common
+  "BackpackCommonImports.swift",
+  "BPKCommonBundle.swift",
+  "BPKCommonRatingScale.swift",
+
+  // Components
+  "Carousel",
+  "Configuration",
+  "Icons/Generated"
+]
+let backpackSwiftUISourceDirs = [
+  "AppSearchModal",
+  "Badge",
+  "BannerAlert",
+  "Blur",
+  "BottomSheet",
+  "Button",
+  "Calendar",
+  "Card",
+  "CardButton",
+  "CardCarousel",
+  "CardList",
+  "Carousel",
+  "CarouselCard",
+  "Chip",
+  "ChipGroup",
+  "Color",
+  "Dialog",
+  "DynamicLayout",
+  "FieldSet",
+  "Flare",
+  "FlowStackView",
+  "Font",
+  "GraphicPromo",
+  "HorizontalNavigation",
+  "Icons",
+  "ImageGalleryGrid",
+  "ImageGalleryPreview",
+  "ImageGallerySlideshow",
+  "InsetBanner",
+  "Link",
+  "MapMarker",
+  "NavigationBar",
+  "NavigationTab",
+  "Nudger",
+  "Overlay",
+  "PageIndicator",
+  "Panel",
+  "Price",
+  "PriceRange",
+  "ProgressBar",
+  "Radii",
+  "Rating",
+  "RatingBar",
+  "SearchControlInput",
+  "SearchInputSummary",
+  "SectionHeader",
+  "SegmentedControl",
+  "Select",
+  "Shadow",
+  "Skeleton",
+  "Slider",
+  "Snippet",
+  "Spacing",
+  "Spinner",
+  "StarRating",
+  "Switch",
+  "TappableContainer",
+  "Text",
+  "TextArea",
+  "TextField",
+  "Utils",
+
+  "BackpackSwiftUIImports.swift",
+]
+let backpackTokensSourceFiles = [
+  "Sources/BPKColor.m",
+  "Sources/BPKSpacing.m",
+  "Sources/BPKRadii.m",
+  "Sources/BPKBorderWidth.m",
+  "Sources/BPKDuration.m"
+]
 let products: [Product] = [
   .library(name: "Backpack-Common", targets: ["Backpack_Common"]),
   .library(name: "Backpack-SwiftUI", targets: ["Backpack_SwiftUI"]),
@@ -46,17 +129,7 @@ let targets: [Target] = [
       exclude: [
         "Tests"
       ] + backpackCommonExcludedReadmes,
-      sources: [
-        // Common
-        "BackpackCommonImports.swift",
-        "BPKCommonBundle.swift",
-        "BPKCommonRatingScale.swift",
-
-        // Components
-        "Carousel",
-        "Configuration",
-        "Icons/Generated"
-      ],
+      sources: backpackCommonSourceDirs,
       resources: [
         .process("Icons/Assets")
       ]
@@ -71,71 +144,7 @@ let targets: [Target] = [
         "Tests",
         "Blur/Classes/VariableBlur.metal"
       ] + backpackSwiftUIExcludedReadmes,
-      sources: [
-        "AppSearchModal",
-        "Badge",
-        "BannerAlert",
-        "Blur",
-        "BottomSheet",
-        "Button",
-        "Calendar",
-        "Card",
-        "CardButton",
-        "CardCarousel",
-        "CardList",
-        "Carousel",
-        "CarouselCard",
-        "Chip",
-        "ChipGroup",
-        "Color",
-        "Dialog",
-        "DynamicLayout",
-        "FieldSet",
-        "Flare",
-        "FlowStackView",
-        "Font",
-        "GraphicPromo",
-        "HorizontalNavigation",
-        "Icons",
-        "ImageGalleryGrid",
-        "ImageGalleryPreview",
-        "ImageGallerySlideshow",
-        "InsetBanner",
-        "Link",
-        "MapMarker",
-        "NavigationBar",
-        "NavigationTab",
-        "Nudger",
-        "Overlay",
-        "PageIndicator",
-        "Panel",
-        "Price",
-        "PriceRange",
-        "ProgressBar",
-        "Radii",
-        "Rating",
-        "RatingBar",
-        "SearchControlInput",
-        "SearchInputSummary",
-        "SectionHeader",
-        "SegmentedControl",
-        "Select",
-        "Shadow",
-        "Skeleton",
-        "Slider",
-        "Snippet",
-        "Spacing",
-        "Spinner",
-        "StarRating",
-        "Switch",
-        "TappableContainer",
-        "Text",
-        "TextArea",
-        "TextField",
-        "Utils",
-
-        "BackpackSwiftUIImports.swift",
-      ],
+      sources: backpackSwiftUISourceDirs,
       resources: [
         .process("Blur/Classes/VariableBlur.metal")
       ]
@@ -143,18 +152,12 @@ let targets: [Target] = [
 
     // MARK: - Backpack Tokens (Objective-C generated tokens)
     .target(
-      name: "BackpackTokens",
-      path: "BackpackTokens",
-      sources: [
-        "Sources/BPKColor.m",
-        "Sources/BPKSpacing.m",
-        "Sources/BPKRadii.m",
-        "Sources/BPKBorderWidth.m",
-        "Sources/BPKDuration.m"
-      ],
+      name: "Backpack_Tokens",
+      path: "Backpack-Tokens",
+      sources: backpackTokensSourceFiles,
       publicHeadersPath: "include",
       cSettings: [
-        .unsafeFlags(["-include", "BackpackTokensPrefix.h"]),
+        .unsafeFlags(["-include", "Backpack_TokensPrefix.h"]),
         .headerSearchPath("Sources"),
         .headerSearchPath("../Backpack/Color/Classes/Generated"),
         .headerSearchPath("../Backpack/Spacing/Classes/Generated"),
@@ -170,7 +173,7 @@ let targets: [Target] = [
       name: "Backpack",
       dependencies: [
         "Backpack_Common",
-        "BackpackTokens",
+        "Backpack_Tokens",
         .product(name: "FloatingPanel", package: "FloatingPanel")
       ],
       path: "Backpack",
@@ -190,7 +193,7 @@ let targets: [Target] = [
       name: "BackpackTests",
       dependencies: [
         "Backpack",
-        "BackpackTokens"
+        "Backpack_Tokens"
       ],
       path: "Backpack/Tests/UnitTests",
       exclude: [
