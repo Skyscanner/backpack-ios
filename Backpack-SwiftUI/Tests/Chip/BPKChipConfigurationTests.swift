@@ -28,7 +28,7 @@ class BPKChipConfigurationTests: XCTestCase {
         
         let config = BpkConfiguration.shared
         do {
-            try config.set(chipConfig: true)
+            try config.set(configs: [.chips])
         } catch {
             XCTFail("Failed to set chip config")
         }

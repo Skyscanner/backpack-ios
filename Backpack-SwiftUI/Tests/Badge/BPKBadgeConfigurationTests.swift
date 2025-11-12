@@ -27,7 +27,7 @@ class BPKBadgeConfigurationTests: XCTestCase {
 
         let config = BpkConfiguration.shared
         do {
-            try config.set(badgeConfig: true)
+            try config.set(configs: [.badge])
         } catch {
             XCTFail("Failed to set badge config")
         }

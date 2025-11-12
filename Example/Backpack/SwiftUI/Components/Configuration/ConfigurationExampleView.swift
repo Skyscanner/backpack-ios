@@ -45,12 +45,7 @@ struct ConfigurationExampleView: View {
         .onAppear {
             do {
                 let config = BpkConfiguration.shared
-                try config.set(
-                    chipConfig: true,
-                    typographyConfig: true,
-                    buttonConfig: true,
-                    badgeConfig: true
-                )
+                try config.set(configs: [.all])
             } catch {
                 print("No config set")
             }

@@ -20,6 +20,14 @@ import SwiftUI
 import Foundation
 // swiftlint:disable line_length
 
+public enum ConfigType: String {
+    case chips = "backpack_chips"
+    case typography = "backpack_experiment"
+    case badge = "backpack_badge"
+    case button = "backpack_button"
+    case all = "backpack_all"
+}
+
 @objcMembers
 public final class BpkConfiguration: NSObject {
     /// Shared singleton instance
@@ -149,7 +157,7 @@ public final class BpkConfiguration: NSObject {
         }
     }
     
-    private func setButtonExperiment(buttonConfig: Bool) {
+    private func setButtonExperiment() {
         let secondaryLight = UIColor(red: 0.890, green: 0.941, blue: 1.000, alpha: 1.0)
         let secondaryDark = UIColor(red: 0.141, green: 0.200, blue: 0.275, alpha: 1.0)
         let buttonBackgroundColour = UIColor.dynamicColorTest(light: secondaryLight, dark: secondaryDark)
@@ -162,74 +170,65 @@ public final class BpkConfiguration: NSObject {
         let pressedBackgroundDark = UIColor(red: 68/255, green: 80/255, blue: 95/255, alpha: 1.0)
         let pressedBackgroundColour = UIColor.dynamicColorTest(light: pressedBackgroundLight, dark: pressedBackgroundDark)
         
-        if buttonConfig {
-            self.buttonConfig = BpkButtonConfig(radius: 100.0, height: 56, secondaryButtonBackgroundColour: buttonBackgroundColour, secondaryButtonForegroundColour: buttonForegroundColour, secondaryButtonPressedBackgroundColour: pressedBackgroundColour, setFontLabel2: true)
-        }
+        self.buttonConfig = BpkButtonConfig(radius: 100.0, height: 56, secondaryButtonBackgroundColour: buttonBackgroundColour, secondaryButtonForegroundColour: buttonForegroundColour, secondaryButtonPressedBackgroundColour: pressedBackgroundColour, setFontLabel2: true)
     }
     
-    private func setChipExperiment(chipConfig: Bool) {
+    private func setChipExperiment() {
         let onFillLight = UIColor(red: 21/255, green: 70/255, blue: 121/255, alpha: 1)
         let onFillDark = UIColor(red: 2/255, green: 77/255, blue: 175/255, alpha: 1)
         let chipOnDarkFill = UIColor.dynamicColorTest(light: onFillLight, dark: onFillDark)
         
-        if chipConfig {
-            self.chipConfig = BpkChipConfig(
-                color: chipOnDarkFill,
-                height: 8,
-                heightDimension: "bpk_new_chip_height",
-                radius: 100,
-                radiusToken: .roundCorners
-            )
-        }
+        self.chipConfig = BpkChipConfig(
+            color: chipOnDarkFill,
+            height: 8,
+            heightDimension: "bpk_new_chip_height",
+            radius: 100,
+            radiusToken: .roundCorners
+        )
     }
 
-    private func setBadgeExperiment(badgeConfig: Bool) {
-        if badgeConfig {
-            self.badgeConfig = BpkBadgeConfig()
-        }
+    private func setBadgeExperiment() {
+        self.badgeConfig = BpkBadgeConfig()
     }
 
-    private func setTypographyExperiment(typographyConfig: Bool) {
-        if typographyConfig {
-            
-            self.typographyConfigSet = true
-            
-            self.hero5Config = TypographyConfig(
-                font: Font.blackUIFont(size: 48, style: .title2),
-                fontFixed: Font.blackUIFont(size: 48, style: .title2),
-                letterSpacing: -1.2
-            )
-            
-            self.heading1Config = TypographyConfig(
-                font: Font.blackUIFont(size: 40, style: .title2),
-                fontFixed: Font.blackUIFont(size: 40, style: .title2),
-                letterSpacing: -1.2
-            )
-            
-            self.heading2Config = TypographyConfig(
-                font: Font.blackUIFont(size: 32, style: .title2),
-                fontFixed: Font.blackUIFont(size: 32, style: .title2),
-                letterSpacing: -1
-            )
-            
-            self.heading3Config = TypographyConfig(
-                font: Font.blackUIFont(size: 24, style: .title3),
-                fontFixed: Font.blackUIFont(size: 24, style: .title3),
-                letterSpacing: -0.6
-            )
-            
-            self.heading4Config = TypographyConfig(
-                font: Font.blackUIFont(size: 20, style: .title3),
-                fontFixed: Font.blackUIFont(size: 48, style: .title3),
-                letterSpacing: -0.6
-            )
-            
-            self.heading5Config = TypographyConfig(
-                font: Font.blackUIFont(size: 16, style: .title2),
-                fontFixed: Font.blackUIFont(size: 16, style: .title2),
-                letterSpacing: -0.6
-            )
-        }
+    private func setTypographyExperiment() {
+        self.typographyConfigSet = true
+        
+        self.hero5Config = TypographyConfig(
+            font: Font.blackUIFont(size: 48, style: .title2),
+            fontFixed: Font.blackUIFont(size: 48, style: .title2),
+            letterSpacing: -1.2
+        )
+        
+        self.heading1Config = TypographyConfig(
+            font: Font.blackUIFont(size: 40, style: .title2),
+            fontFixed: Font.blackUIFont(size: 40, style: .title2),
+            letterSpacing: -1.2
+        )
+        
+        self.heading2Config = TypographyConfig(
+            font: Font.blackUIFont(size: 32, style: .title2),
+            fontFixed: Font.blackUIFont(size: 32, style: .title2),
+            letterSpacing: -1
+        )
+        
+        self.heading3Config = TypographyConfig(
+            font: Font.blackUIFont(size: 24, style: .title3),
+            fontFixed: Font.blackUIFont(size: 24, style: .title3),
+            letterSpacing: -0.6
+        )
+        
+        self.heading4Config = TypographyConfig(
+            font: Font.blackUIFont(size: 20, style: .title3),
+            fontFixed: Font.blackUIFont(size: 48, style: .title3),
+            letterSpacing: -0.6
+        )
+        
+        self.heading5Config = TypographyConfig(
+            font: Font.blackUIFont(size: 16, style: .title2),
+            fontFixed: Font.blackUIFont(size: 16, style: .title2),
+            letterSpacing: -0.6
+        )
     }
     
     public func font(_ token: TypographyTokenConfig?, defaultFont: Font, fixed: Bool) -> Font {
@@ -256,22 +255,33 @@ public final class BpkConfiguration: NSObject {
         return defaultFont
     }
     
-    public func set(
-        chipConfig: Bool = false,
-        typographyConfig: Bool = false,
-        buttonConfig: Bool = false,
-        badgeConfig: Bool = false
-    ) throws {
+    public func set(configs: [ConfigType]) throws {
         guard !hasSet else {
             throw ConfigurationError.configAlreadySet
         }
         hasSet = true
         
-        setChipExperiment(chipConfig: chipConfig)
-        setBadgeExperiment(badgeConfig: badgeConfig)
-        setTypographyExperiment(typographyConfig: typographyConfig)
-        
-        setButtonExperiment(buttonConfig: buttonConfig)
+        for config in configs {
+            switch config {
+            case .all:
+                setAllConfigs()
+            case .chips:
+                setChipExperiment()
+            case .typography:
+                setTypographyExperiment()
+            case .badge:
+                setBadgeExperiment()
+            case .button:
+                setButtonExperiment()
+            }
+        }
+    }
+    
+    func setAllConfigs() {
+        setChipExperiment()
+        setTypographyExperiment()
+        setBadgeExperiment()
+        setButtonExperiment()
     }
 }
 
