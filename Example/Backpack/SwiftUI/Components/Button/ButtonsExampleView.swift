@@ -43,7 +43,7 @@ struct ButtonsExampleView: View {
     private var backgroundColor: Backpack_SwiftUI.BPKColor {
         switch style {
         case .secondaryOnDark, .linkOnDark, .primaryOnDark:
-            return .canvasContrastColor
+            return .surfaceContrastColor
         default:
             return .canvasColor
         }

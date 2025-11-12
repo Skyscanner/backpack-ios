@@ -130,16 +130,16 @@ struct FeaturedBPKButtonColorSet: BPKButtonColorSet {
 }
 
 struct LinkBPKButtonColorSet: BPKButtonColorSet {
-    var regular = BPKButtonColors.clear(withForeground: .buttonLinkNormalForegroundColor)
-    var highlighted = BPKButtonColors.clear(withForeground: .buttonLinkPressedForegroundColor)
+    var regular = BPKButtonColors.clear(withForeground: .textPrimaryColor)
+    var highlighted = BPKButtonColors.clear(withForeground: .textPrimaryColor)
     var disabled = BPKButtonColors(background: .clear, foreground: .textDisabledColor)
     
     init() {}
 }
 
 struct LinkOnDarkBPKButtonColorSet: BPKButtonColorSet {
-    var regular = BPKButtonColors.clear(withForeground: .buttonLinkOnDarkNormalForegroundColor)
-    var highlighted = BPKButtonColors.clear(withForeground: .buttonLinkOnDarkPressedForegroundColor)
+    var regular = BPKButtonColors.clear(withForeground: .textOnDarkColor)
+    var highlighted = BPKButtonColors.clear(withForeground: .textOnDarkColor)
     var disabled = BPKButtonColors.clear(withForeground: .buttonLinkOnDarkDisabledForegroundColor)
     
     init() {}
