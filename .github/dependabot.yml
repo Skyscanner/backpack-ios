@@ -3,15 +3,17 @@ updates:
   - package-ecosystem: bundler
     directory: "/"
     schedule:
-      interval: daily
-      time: "10:00"
+      interval: weekly
+      day: monday
+      time: "19:00"
     open-pull-requests-limit: 10
 
   - package-ecosystem: npm
     directory: "/"
     schedule:
-      interval: daily
-      time: "10:00"
+      interval: weekly
+      day: monday
+      time: "19:00"
     open-pull-requests-limit: 10
     versioning-strategy: increase-if-necessary
     allow:
@@ -20,6 +22,7 @@ updates:
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
-      interval: daily
-      time: "10:00"
+      interval: weekly
+      day: monday
+      time: "19:00"
     open-pull-requests-limit: 10
