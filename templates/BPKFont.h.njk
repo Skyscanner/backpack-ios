@@ -17,6 +17,7 @@
  * limitations under the License.
  */
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 /**
  * These constants represent the font style.

@@ -25,7 +25,9 @@ let backpackUIKitSourceDirs = [
   "Color/Classes/Generated/BPKInternalColors.swift"
 ]
 let backpackObjCSourceDirs = [
-  "Switch/Classes"
+  "Switch/Classes",
+  "TextView/Classes",
+  "Font/Classes"
 ]
 let backpackCommonSourceDirs = [
   // Common
@@ -175,7 +177,8 @@ let targets: [Target] = [
     .target(
       name: "Backpack_ObjC",
       dependencies: [
-        "Backpack_Tokens"
+        "Backpack_Tokens",
+        "Backpack_Common"
       ],
       path: "Backpack",
       exclude: [
@@ -184,7 +187,7 @@ let targets: [Target] = [
         "Color/Classes/Generated/BPKInternalColors.swift"
       ] + backpackExcludedReadmes,
       sources: backpackObjCSourceDirs,
-      publicHeadersPath: "Switch/Classes",
+      publicHeadersPath: "SPMObjCHeaders",
       cSettings: [
         .headerSearchPath(".."),
         .headerSearchPath("Color/Classes/Generated")
