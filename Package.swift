@@ -28,6 +28,7 @@ let backpackObjCSourceDirs = [
   "Switch/Classes",
   "TextView/Classes",
   "TextField/Classes",
+  "TappableLinkLabel/Classes",
   "Font/Classes"
 ]
 let backpackCommonSourceDirs = [
@@ -191,7 +192,8 @@ let targets: [Target] = [
       publicHeadersPath: "SPMObjCHeaders",
       cSettings: [
         .headerSearchPath(".."),
-        .headerSearchPath("Color/Classes/Generated")
+        .headerSearchPath("Color/Classes/Generated"),
+        .headerSearchPath("SPMObjCHeaders/Backpack")
       ]
     ),
 
