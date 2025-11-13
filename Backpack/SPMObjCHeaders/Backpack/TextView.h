@@ -19,6 +19,6 @@
 #ifndef __BACKPACK_SPM_SHIM_TEXTVIEW_H__
 #define __BACKPACK_SPM_SHIM_TEXTVIEW_H__
 
-#include "../TextView.h"
+#import "../TextView.h"
 
 #endif

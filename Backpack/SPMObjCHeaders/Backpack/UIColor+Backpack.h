@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_SPM_SHIM_BPKTAPPABLELINKLABEL_H__
-#define __BACKPACK_SPM_SHIM_BPKTAPPABLELINKLABEL_H__
+#ifndef __BACKPACK_SPM_SHIM_UICOLOR_BACKPACK_H__
+#define __BACKPACK_SPM_SHIM_UICOLOR_BACKPACK_H__
 
-#import "../TappableLinkLabel/Classes/BPKTappableLinkLabel.h"
+#import "../Color/Classes/Generated/UIColor+Backpack.h"
 
 #endif

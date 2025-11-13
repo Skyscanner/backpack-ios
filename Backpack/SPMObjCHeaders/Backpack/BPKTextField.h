@@ -19,6 +19,6 @@
 #ifndef __BACKPACK_SPM_SHIM_BPKTEXTFIELD_H__
 #define __BACKPACK_SPM_SHIM_BPKTEXTFIELD_H__
 
-#include "../BPKTextField.h"
+#import "../TextField/Classes/BPKTextField.h"
 
 #endif

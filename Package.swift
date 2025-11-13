@@ -193,7 +193,14 @@ let targets: [Target] = [
       cSettings: [
         .headerSearchPath(".."),
         .headerSearchPath("Color/Classes/Generated"),
-        .headerSearchPath("SPMObjCHeaders/Backpack")
+        .headerSearchPath("Spacing/Classes/Generated"),
+        .headerSearchPath("Radii/Classes/Generated"),
+        .headerSearchPath("BorderWidth/Classes/Generated"),
+        .headerSearchPath("Duration/Classes/Generated"),
+        .headerSearchPath("Font/Classes/Generated"),
+        .headerSearchPath("DarkMode/Classes"),
+        .headerSearchPath("SPMObjCHeaders/Backpack"),
+        .headerSearchPath("TappableLinkLabel/Classes/TTTAttributedLabel")
       ]
     ),
 

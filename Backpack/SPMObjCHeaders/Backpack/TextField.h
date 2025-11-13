@@ -19,6 +19,6 @@
 #ifndef __BACKPACK_SPM_SHIM_TEXTFIELD_H__
 #define __BACKPACK_SPM_SHIM_TEXTFIELD_H__
 
-#include "../TextField.h"
+#import "../TextField.h"
 
 #endif

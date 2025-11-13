@@ -19,6 +19,6 @@
 #ifndef __BACKPACK_SPM_SHIM_BPKSWITCH_H__
 #define __BACKPACK_SPM_SHIM_BPKSWITCH_H__
 
-#include "../BPKSwitch.h"
+#import "../Switch/Classes/BPKSwitch.h"
 
 #endif

@@ -19,6 +19,6 @@
 #ifndef __BACKPACK_SPM_TOP_BACKPACK_H__
 #define __BACKPACK_SPM_TOP_BACKPACK_H__
 
-#include "../Backpack.h"
+#import "Backpack/Backpack.h"
 
 #endif

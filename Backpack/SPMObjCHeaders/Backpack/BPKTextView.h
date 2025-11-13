@@ -19,6 +19,6 @@
 #ifndef __BACKPACK_SPM_SHIM_BPKTEXTVIEW_H__
 #define __BACKPACK_SPM_SHIM_BPKTEXTVIEW_H__
 
-#include "../BPKTextView.h"
+#import "../TextView/Classes/BPKTextView.h"
 
 #endif

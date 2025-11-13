@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_SPM_SHIM_BPKTAPPABLELINKLABEL_H__
-#define __BACKPACK_SPM_SHIM_BPKTAPPABLELINKLABEL_H__
+#ifndef __BACKPACK_SPM_SHIM_BPKSPACING_H__
+#define __BACKPACK_SPM_SHIM_BPKSPACING_H__
 
-#import "../TappableLinkLabel/Classes/BPKTappableLinkLabel.h"
+#import "../Spacing/Classes/Generated/BPKSpacing.h"
 
 #endif

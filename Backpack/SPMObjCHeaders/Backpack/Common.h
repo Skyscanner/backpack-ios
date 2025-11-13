@@ -19,6 +19,6 @@
 #ifndef __BACKPACK_SPM_EXPORT_COMMON_H__
 #define __BACKPACK_SPM_EXPORT_COMMON_H__
 
-#include "../Common.h"
+#import "../Common.h"
 
 #endif

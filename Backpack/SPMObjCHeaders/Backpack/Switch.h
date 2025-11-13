@@ -19,6 +19,6 @@
 #ifndef __BACKPACK_SPM_SHIM_SWITCH_H__
 #define __BACKPACK_SPM_SHIM_SWITCH_H__
 
-#include "../Switch.h"
+#import "../Switch.h"
 
 #endif

@@ -19,6 +19,6 @@
 #ifndef __BACKPACK_SPM_BPKTAPPABLELINKLABEL__
 #define __BACKPACK_SPM_BPKTAPPABLELINKLABEL__
 
-#include "../TappableLinkLabel/Classes/BPKTappableLinkLabel.h"
+#import "../TappableLinkLabel/Classes/BPKTappableLinkLabel.h"
 
 #endif

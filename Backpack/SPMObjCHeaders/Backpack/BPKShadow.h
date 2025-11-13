@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_SPM_SHIM_BPKTAPPABLELINKLABEL_H__
-#define __BACKPACK_SPM_SHIM_BPKTAPPABLELINKLABEL_H__
+#ifndef __BACKPACK_SPM_SHIM_BPKSHADOW_H__
+#define __BACKPACK_SPM_SHIM_BPKSHADOW_H__
 
-#import "../TappableLinkLabel/Classes/BPKTappableLinkLabel.h"
+#import "../Shadow/Classes/Generated/BPKShadow.h"
 
 #endif

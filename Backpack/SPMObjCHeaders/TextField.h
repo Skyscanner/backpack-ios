@@ -19,6 +19,6 @@
 #ifndef __BACKPACK_SPM_TEXTFIELD__
 #define __BACKPACK_SPM_TEXTFIELD__
 
-#include "../TextField/Classes/TextField.h"
+#import "../TextField/Classes/TextField.h"
 
 #endif

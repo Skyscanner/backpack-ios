@@ -19,6 +19,6 @@
 #ifndef __BACKPACK_SPM_BORDERWIDTH__
 #define __BACKPACK_SPM_BORDERWIDTH__
 
-#include "../BorderWidth/Classes/BorderWidth.h"
+#import "../BorderWidth/Classes/BorderWidth.h"
 
 #endif

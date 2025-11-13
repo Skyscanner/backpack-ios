@@ -19,6 +19,6 @@
 #ifndef __BACKPACK_SPM_SHIM_FONT_H__
 #define __BACKPACK_SPM_SHIM_FONT_H__
 
-#include "../Font.h"
+#import "../Font.h"
 
 #endif

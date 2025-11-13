@@ -19,6 +19,6 @@
 #ifndef __BACKPACK_SPM_SHIM_BPKFONT_H__
 #define __BACKPACK_SPM_SHIM_BPKFONT_H__
 
-#include "../BPKFont.h"
+#import "../Font/Classes/Generated/BPKFont.h"
 
 #endif

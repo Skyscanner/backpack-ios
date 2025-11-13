@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_SPM_SHIM_BPKTAPPABLELINKLABEL_H__
-#define __BACKPACK_SPM_SHIM_BPKTAPPABLELINKLABEL_H__
+#ifndef __BACKPACK_COLOR_GENERATED_BRIDGE__
+#define __BACKPACK_COLOR_GENERATED_BRIDGE__
 
-#import "../TappableLinkLabel/Classes/BPKTappableLinkLabel.h"
+#import "Generated/BPKColor.h"
 
 #endif

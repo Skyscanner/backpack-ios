@@ -19,6 +19,6 @@
 #ifndef __BACKPACK_SPM_EXPORT_RADII_H__
 #define __BACKPACK_SPM_EXPORT_RADII_H__
 
-#include "../Radii.h"
+#import "../Radii.h"
 
 #endif
