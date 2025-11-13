@@ -24,6 +24,9 @@ let backpackUIKitSourceDirs = [
   "BackpackUIKitImports.swift",
   "Color/Classes/Generated/BPKInternalColors.swift"
 ]
+let backpackObjCSourceDirs = [
+  "Switch/Classes"
+]
 let backpackCommonSourceDirs = [
   // Common
   "BackpackCommonImports.swift",
@@ -168,12 +171,33 @@ let targets: [Target] = [
       ]
     ),
 
+    // MARK: - Backpack Objective-C (initial subset)
+    .target(
+      name: "Backpack_ObjC",
+      dependencies: [
+        "Backpack_Tokens"
+      ],
+      path: "Backpack",
+      exclude: [
+        "Tests",
+        "Backpack.h",
+        "Color/Classes/Generated/BPKInternalColors.swift"
+      ] + backpackExcludedReadmes,
+      sources: backpackObjCSourceDirs,
+      publicHeadersPath: "Switch/Classes",
+      cSettings: [
+        .headerSearchPath(".."),
+        .headerSearchPath("Color/Classes/Generated")
+      ]
+    ),
+
     // MARK: - Backpack UIKit (subset of Swift components)
     .target(
       name: "Backpack",
       dependencies: [
         "Backpack_Common",
         "Backpack_Tokens",
+        "Backpack_ObjC",
         .product(name: "FloatingPanel", package: "FloatingPanel")
       ],
       path: "Backpack",
