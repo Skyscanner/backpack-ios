@@ -41,7 +41,7 @@ struct DefaultButtonColorSetFactory: ButtonColorSetFactory {
         case .primary: return PrimaryBPKButtonColorSet()
         case .secondary: return SecondaryBPKButtonColorSet(config: config)
         case .secondaryOnDark: return SecondaryOnDarkBPKButtonColorSet()
-        case .secondaryOnContrast: return SecondaryOnContrastBPKButtonColorSet()
+        case .secondaryOnContrast: return SecondaryOnContrastBPKButtonColorSet(config: config)
         case .destructive: return DestructiveBPKButtonColorSet()
         case .featured: return FeaturedBPKButtonColorSet()
         case .link: return LinkBPKButtonColorSet()

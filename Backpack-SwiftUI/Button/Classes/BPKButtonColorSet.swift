@@ -78,30 +78,35 @@ struct SecondaryOnDarkBPKButtonColorSet: BPKButtonColorSet {
 }
 
 struct SecondaryOnContrastBPKButtonColorSet: BPKButtonColorSet {
-
-    var regular: BPKButtonColors
-    var highlighted: BPKButtonColors
+    var config: BpkConfiguration?
+    var regular = BPKButtonColors(background: .buttonSecondaryNormalBackgroundColor, foreground: .textPrimaryColor)
+    var highlighted = BPKButtonColors(background: .buttonSecondaryPressedBackgroundColor, foreground: .textPrimaryColor)
     var disabled = BPKButtonColors.buttonDisabled
     
-    init() {
-        let regularLight = UIColor(red: 207/255, green: 228/255, blue: 255/255, alpha: 1)
-        let regularDark = UIColor(red: 36/255, green: 51/255, blue: 70/255, alpha: 1)
-        let regularColour = UIColor.dynamicColorTest(light: regularLight, dark: regularDark)
+    init(config: BpkConfiguration?) {
+        self.config = config
+        
+        if config?.buttonConfig != nil {
+            let regularLight = UIColor(red: 207/255, green: 228/255, blue: 255/255, alpha: 1)
+            let regularDark = UIColor(red: 36/255, green: 51/255, blue: 70/255, alpha: 1)
+            let regularColour = UIColor.dynamicColorTest(light: regularLight, dark: regularDark)
 
-        let secondaryForegroundLight = UIColor(red: 2/255, green: 77/255, blue: 175/255, alpha: 1.0)
-        let secondaryForegroundDark = UIColor(red: 1, green: 1, blue: 1, alpha: 1.0)
-        let buttonForegroundColour = UIColor.dynamicColorTest(light: secondaryForegroundLight,
-                                                              dark: secondaryForegroundDark)
-        
-        let highlightedLight = UIColor(red: 180/255, green: 215/255, blue: 255/255, alpha: 1)
-        let highlightedDark = UIColor(red: 60/255, green: 80/255, blue: 95/255, alpha: 1)
-        let highlightedColour = UIColor.dynamicColorTest(light: highlightedLight,
-                                                         dark: highlightedDark)
-        
-        regular = BPKButtonColors(background: BPKColor(value: regularColour),
-                                  foreground: BPKColor(value: buttonForegroundColour))
-        highlighted = BPKButtonColors(background: BPKColor(value: highlightedColour),
+            let secondaryForegroundLight = UIColor(red: 2/255, green: 77/255, blue: 175/255, alpha: 1.0)
+            let secondaryForegroundDark = UIColor(red: 1, green: 1, blue: 1, alpha: 1.0)
+            let buttonForegroundColour = UIColor.dynamicColorTest(light: secondaryForegroundLight,
+                                                                  dark: secondaryForegroundDark)
+            
+            let highlightedLight = UIColor(red: 180/255, green: 215/255, blue: 255/255, alpha: 1)
+            let highlightedDark = UIColor(red: 60/255, green: 80/255, blue: 95/255, alpha: 1)
+            let highlightedColour = UIColor.dynamicColorTest(light: highlightedLight,
+                                                             dark: highlightedDark)
+            
+            regular = BPKButtonColors(background: BPKColor(value: regularColour),
                                       foreground: BPKColor(value: buttonForegroundColour))
+            highlighted = BPKButtonColors(background: BPKColor(value: highlightedColour),
+                                          foreground: BPKColor(value: buttonForegroundColour))
+        }
+
     }
 }
 
