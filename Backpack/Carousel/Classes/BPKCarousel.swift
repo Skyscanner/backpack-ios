@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-import Foundation
+import UIKit
 import Backpack_Common
 
 public protocol BPKCarouselDelegate: AnyObject {

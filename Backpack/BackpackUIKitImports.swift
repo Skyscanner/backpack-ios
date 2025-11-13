@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
-@_exported import UIKit
-@_exported import BackpackTokens
-@_exported import Backpack_Common
+import UIKit
+#if SWIFT_PACKAGE
+import BackpackTokens
+#endif
+import Backpack_Common

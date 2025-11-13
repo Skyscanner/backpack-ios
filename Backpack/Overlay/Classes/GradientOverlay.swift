@@ -17,6 +17,9 @@
  */
 
 import QuartzCore
+#if SWIFT_PACKAGE
+import BackpackTokens
+#endif
 
 final class GradientOverlay: CAGradientLayer {
     enum OverlayType {

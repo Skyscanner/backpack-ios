@@ -18,6 +18,9 @@
 
 import Foundation
 import UIKit
+#if SWIFT_PACKAGE
+import BackpackTokens
+#endif
 
 public class BPKTextSkeleton: UIView {
     var textRows = [UIView]()
