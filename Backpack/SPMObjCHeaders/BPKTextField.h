@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_SPM_BPKFONT__
-#define __BACKPACK_SPM_BPKFONT__
+#ifndef __BACKPACK_SPM_BPKTEXTFIELD__
+#define __BACKPACK_SPM_BPKTEXTFIELD__
 
-#include "../Font/Classes/Generated/BPKFont.h"
+#include "../TextField/Classes/BPKTextField.h"
 
 #endif

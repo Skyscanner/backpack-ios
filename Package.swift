@@ -27,6 +27,7 @@ let backpackUIKitSourceDirs = [
 let backpackObjCSourceDirs = [
   "Switch/Classes",
   "TextView/Classes",
+  "TextField/Classes",
   "Font/Classes"
 ]
 let backpackCommonSourceDirs = [
