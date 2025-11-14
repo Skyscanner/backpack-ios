@@ -29,7 +29,11 @@ let backpackObjCSourceDirs = [
   "TextView/Classes",
   "TextField/Classes",
   "TappableLinkLabel/Classes",
-  "Font/Classes"
+  "Font/Classes",
+  "FlareView/Classes",
+  "Icon/Classes",
+  "Label/Classes",
+  "Map/Classes"
 ]
 let backpackCommonSourceDirs = [
   // Common
