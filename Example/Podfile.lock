@@ -49,7 +49,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Backpack: 0e01823e531855b7a80c3d1dd08f28dcd602108d
+  Backpack: 5508a499c2a67fa2e05ef427f3e6273861879cbf
   Backpack-Common: e8993f9fa4e7a79236ea16a4a06b5f73f3517d53
   Backpack-Fonts: 2ed96553a5325156a154d788defbdc6306dae5ef
   Backpack-SwiftUI: 68146835f8aa1cbfa4814e24dce4abbb0b8d0d84
