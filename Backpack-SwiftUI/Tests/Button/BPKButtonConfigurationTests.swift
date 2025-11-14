@@ -30,7 +30,7 @@ final class BPKButtonConfigurationTests: XCTestCase {
         do {
             try config.set(configs: [.button])
         } catch {
-            XCTFail("Failed to set chip config")
+            XCTFail("Failed to set button config")
         }
     }
     

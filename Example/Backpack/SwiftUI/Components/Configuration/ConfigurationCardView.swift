@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright © 2022 Skyscanner Ltd. All rights reserved.
+ * Copyright © 2025 Skyscanner Ltd. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,34 +16,40 @@
  * limitations under the License.
  */
 
-import SwiftUI
 import Backpack_SwiftUI
+import SwiftUI
 
-struct CardExampleView: View {
-
+struct ConfigurationCardView: View {
     var body: some View {
         ScrollView {
-            VStack {
-                BPKCard {
+            VStack(spacing: 40) {
+                BPKCard() {
                     content(title: "Default")
                 }
                 BPKCard(elevation: .focus) {
                     content(title: "Focused")
                 }
-                BPKCard(elevation: .none) {
-                    content(title: "Not elevated")
-                }
                 BPKCard(padding: .none) {
-                    content(title: "Not Padded")
+                    content(title: "Not padded")
                 }
                 BPKCard(cornerStyle: .large) {
                     content(title: "Large Corner")
                 }
+            }
+            .padding()
+            .background(.canvasContrastColor)
+
+            VStack(spacing: 40) {
                 BPKCard(cardStyle: .onDefault) {
-                    content(title: "On Default Style")
+                    content(title: "On Default")
                 }
             }
             .padding()
+            .background(.surfaceDefaultColor)
+        }
+        .previewLayout(.sizeThatFits)
+        .onDisappear {
+            BpkConfiguration.shared.reset()
         }
     }
 
@@ -55,11 +61,5 @@ struct CardExampleView: View {
                 style: .bodyDefault
             ).lineLimit(2)
         }
-    }
-}
-
-struct CardExampleView_Previews: PreviewProvider {
-    static var previews: some View {
-        CardExampleView()
     }
 }

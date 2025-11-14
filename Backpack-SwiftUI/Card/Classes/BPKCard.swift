@@ -16,6 +16,7 @@
  * limitations under the License.
  */
 
+import Backpack_Common
 import SwiftUI
 
 public struct BPKCard<Content: View>: View {
@@ -36,9 +37,12 @@ public struct BPKCard<Content: View>: View {
     private let padding: Padding
     private let cornerStyle: CornerStyle
     private var tapAction : () -> Void = {}
+    private let cardStyle: BPKCardStyle
+    private let config: BpkConfiguration?
 
     public init(
         padding: Padding = .small,
+        cardStyle: BPKCardStyle = .onContrast,
         cornerStyle: CornerStyle = .small,
         elevation: BPKCardElevation = .default,
         @ViewBuilder content: () -> Content
@@ -47,6 +51,8 @@ public struct BPKCard<Content: View>: View {
         self.cornerStyle = cornerStyle
         self.elevation = elevation
         self.padding = padding
+        self.config = BpkConfiguration.shared
+        self.cardStyle = cardStyle
     }
 
     private var cornerRadius: BPKCornerRadius {
@@ -60,9 +66,9 @@ public struct BPKCard<Content: View>: View {
         }
         .buttonStyle(CardButtonStyle(
             cornerRadius: cornerRadius,
-            backgroundColor: elevation.backgroundColor
+            backgroundColor: elevation.backgroundColor(for: cardStyle, config: config)
         ))
-        .shadow(elevation.shadow)
+        .shadow(elevation.shadow(for: cardStyle, config: config))
     }
     
     public func onTapGesture(perform: @escaping () -> Void) -> BPKCard {
