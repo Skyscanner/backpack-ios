@@ -35,12 +35,31 @@ Pod::Spec.new do |s|
   s.source_files = 'Backpack/Backpack.h', 'Backpack/Common.h', 'Backpack/*/Classes/**/*.{h,m,swift}'
   s.exclude_files = 'Backpack/Tests/**'
   s.public_header_files = 'Backpack/Backpack.h', 'Backpack/*/Classes/**/*.h'
-
   s.dependency 'FloatingPanel', '2.8.6'
   s.dependency 'Backpack-Common'
   s.frameworks = 'UIKit', 'Foundation', 'CoreText'
   s.requires_arc = true
   s.swift_versions = ['5.0', '4.2', '4.0']
+  s.script_phases = [{
+    :name => 'Backpack Generated Headers',
+    :execution_position => :before_compile,
+    :shell_path => '/bin/sh',
+    :script => <<-SCRIPT
+set -euo pipefail
+
+if [ -z "${PUBLIC_HEADERS_FOLDER_PATH:-}" ]; then
+  exit 0
+fi
+
+DEST="${BUILT_PRODUCTS_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/Generated"
+mkdir -p "$DEST"
+
+find "${PODS_TARGET_SRCROOT}/Backpack" -path '*/Classes/Generated/*.h' -print0 | \
+while IFS= read -r -d '' HEADER; do
+  cp -f "$HEADER" "$DEST/$(basename "$HEADER")"
+done
+SCRIPT
+  }]
 
   s.test_spec 'SnapshotTests' do |test_spec|
     test_spec.dependency 'SnapshotTesting', '~> 1.9.0'
