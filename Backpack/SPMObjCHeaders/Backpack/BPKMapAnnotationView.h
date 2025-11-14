@@ -16,7 +16,9 @@
  * limitations under the License.
  */
 
-@_exported import UIKit
-@_exported import Backpack_Tokens
-@_exported import Backpack_Common
-@_exported import Backpack_ObjC
+#ifndef __BACKPACK_SPM_SHIM_BPKMapAnnotationView_H__
+#define __BACKPACK_SPM_SHIM_BPKMapAnnotationView_H__
+
+#import "../Map/Classes/BPKMapAnnotationView.h"
+
+#endif

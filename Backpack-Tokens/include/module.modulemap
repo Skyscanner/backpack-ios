@@ -16,7 +16,7 @@
 // limitations under the License.
 //
 
-module BackpackTokens {
+module Backpack_Tokens {
   header "../../Backpack/Color/Classes/Generated/BPKColor.h"
   header "../../Backpack/Spacing/Classes/Generated/BPKSpacing.h"
   header "../../Backpack/Radii/Classes/Generated/BPKRadii.h"

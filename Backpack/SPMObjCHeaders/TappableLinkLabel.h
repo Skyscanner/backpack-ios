@@ -16,7 +16,9 @@
  * limitations under the License.
  */
 
-@_exported import UIKit
-@_exported import Backpack_Tokens
-@_exported import Backpack_Common
-@_exported import Backpack_ObjC
+#ifndef __BACKPACK_SPM_TAPPABLELINKLABEL__
+#define __BACKPACK_SPM_TAPPABLELINKLABEL__
+
+#import "../TappableLinkLabel/Classes/TappableLinkLabel.h"
+
+#endif

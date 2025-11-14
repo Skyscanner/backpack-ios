@@ -28,6 +28,15 @@
 #import "Shadow.h"
 #import "Spacing.h"
 
+#import "Generated/BPKBorderWidth.h"
+#import "Generated/BPKColor.h"
+#import "Generated/BPKDuration.h"
+#import "Generated/BPKFont.h"
+#import "Generated/BPKRadii.h"
+#import "Generated/BPKShadow.h"
+#import "Generated/BPKSpacing.h"
+#import "Generated/UIColor+Backpack.h"
+
 #import "Appearance.h"
 #import "Button.h"
 #import "Card.h"
