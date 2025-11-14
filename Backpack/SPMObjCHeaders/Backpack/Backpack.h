@@ -19,20 +19,20 @@
 #ifndef __BACKPACK_SPM_EXPORT_BACKPACK_H__
 #define __BACKPACK_SPM_EXPORT_BACKPACK_H__
 
-#import "Common.h"
-#import "Color.h"
-#import "Font.h"
 #import "BPKFont.h"
 #import "BPKFontManager.h"
+#import "BPKSwitch.h"
+#import "BPKTappableLinkLabel.h"
+#import "BPKTextField.h"
+#import "BPKTextView.h"
 #import "BorderWidth.h"
+#import "Color.h"
+#import "Common.h"
+#import "Font.h"
 #import "Radii.h"
 #import "Switch.h"
-#import "BPKSwitch.h"
 #import "TappableLinkLabel.h"
-#import "BPKTappableLinkLabel.h"
 #import "TextField.h"
-#import "BPKTextField.h"
 #import "TextView.h"
-#import "BPKTextView.h"
 
 #endif
