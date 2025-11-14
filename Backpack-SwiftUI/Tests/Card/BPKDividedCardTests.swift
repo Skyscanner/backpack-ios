@@ -52,6 +52,21 @@ class BPKDividedCardTests: XCTestCase {
         )
     }
     
+    func testDividedCardOnContrast() {
+        assertSnapshot(
+            ZStack {
+                Color(BPKColor.canvasContrastColor)
+                    .ignoresSafeArea()
+                BPKDividedCard(cardStyle: .onContrast) {
+                    primaryContent(title: "On Contrast")
+                } secondaryContent: {
+                    secondaryContent()
+                }
+                .padding()
+            }
+        )
+    }
+
     func testDividedCardOnFocused() {
         assertSnapshot(
             ZStack {

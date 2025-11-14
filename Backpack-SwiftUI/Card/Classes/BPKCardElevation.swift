@@ -37,7 +37,7 @@ public enum BPKCardElevation {
     func backgroundColor(for style: BPKCardStyle, config: BpkConfiguration?) -> BPKColor {
         // When config.CardConfig is enabled and onDefault style, use canvasContrast
         if config?.cardConfig != nil && style == .onDefault {
-            return .canvasContrastColor
+            return .surfaceLowContrastColor
         }
 
         switch style {
