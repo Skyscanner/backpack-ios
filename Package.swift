@@ -33,7 +33,9 @@ let backpackObjCSourceDirs = [
   "FlareView/Classes",
   "Icon/Classes",
   "Label/Classes",
-  "Map/Classes"
+  "Map/Classes",
+  "Shadow/Classes",
+  "Spacing/Classes"
 ]
 let backpackCommonSourceDirs = [
   // Common
@@ -198,6 +200,7 @@ let targets: [Target] = [
         .headerSearchPath(".."),
         .headerSearchPath("Color/Classes/Generated"),
         .headerSearchPath("Spacing/Classes/Generated"),
+        .headerSearchPath("Shadow/Classes/Generated"),
         .headerSearchPath("Radii/Classes/Generated"),
         .headerSearchPath("BorderWidth/Classes/Generated"),
         .headerSearchPath("Duration/Classes/Generated"),
