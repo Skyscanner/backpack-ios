@@ -18,7 +18,7 @@
 #import <UIKit/UIKit.h>
 
 #import "BPKIcon.h"
-#import "BPKIconNames.h"
+#import <Backpack/BPKIconNames.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
