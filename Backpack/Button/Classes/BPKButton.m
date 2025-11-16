@@ -39,6 +39,7 @@
 #import <Backpack/Radii.h>
 #import <Backpack/Spacing.h>
 #import <Backpack/UIView+BPKRTL.h>
+#import <objc/message.h>
 
 static UIColor *BPKDynamicColor(CGFloat lr, CGFloat lg, CGFloat lb, CGFloat la, CGFloat dr, CGFloat dg, CGFloat db, CGFloat da) {
     return [UIColor colorWithDynamicProvider:^UIColor *_Nonnull(UITraitCollection *_Nonnull traitCollection) {
@@ -392,7 +393,17 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (BPKButtonAppearance *)currentAppearance {
-    BPKButtonAppearanceSet *appearanceSet = BPKButtonAppearanceSetForStyle(self.style);
+    BPKButtonAppearanceSet *appearanceSet = nil;
+    Class appearanceSetsSwiftClass = NSClassFromString(@"Backpack.BPKButtonAppearanceSets");
+    if (appearanceSetsSwiftClass && [appearanceSetsSwiftClass respondsToSelector:@selector(appearanceFromStyle:)]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        appearanceSet = [appearanceSetsSwiftClass performSelector:@selector(appearanceFromStyle:) withObject:@(self.style)];
+#pragma clang diagnostic pop
+    }
+    if (appearanceSet == nil) {
+        appearanceSet = BPKButtonAppearanceSetForStyle(self.style);
+    }
     if (self.isLoading)
         return appearanceSet.loadingAppearance;
     if (!self.isEnabled)
