@@ -16,6 +16,7 @@
  * limitations under the License.
  */
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 #import "BPKIconNames.h"
 #import "BPKLargeIconNames.h"
@@ -41,8 +42,6 @@ typedef NS_ENUM(NSUInteger, BPKIconSize) {
      */
     BPKIconSizeLarge,
 };
-
-@class UIImage;
 
 /**
  * This class encapsulates all Backpack icons and the ability to render them as `UIImage`. It
