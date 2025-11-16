@@ -34,8 +34,7 @@ let backpackObjCSourceDirs = [
   "Icon/Classes",
   "Label/Classes",
   "Map/Classes",
-  "Shadow/Classes",
-  "Spacing/Classes"
+  "Shadow/Classes"
 ]
 let backpackCommonSourceDirs = [
   // Common
@@ -200,6 +199,7 @@ let targets: [Target] = [
         .headerSearchPath(".."),
         .headerSearchPath("Color/Classes/Generated"),
         .headerSearchPath("Spacing/Classes/Generated"),
+        .headerSearchPath("Spacing/Classes"),
         .headerSearchPath("Icon/Classes"),
         .headerSearchPath("Icon/Classes/Generated"),
         .headerSearchPath("Shadow/Classes/Generated"),
