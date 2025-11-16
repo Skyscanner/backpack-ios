@@ -31,10 +31,16 @@ let backpackObjCSourceDirs = [
   "TappableLinkLabel/Classes",
   "Font/Classes",
   "FlareView/Classes",
+  "Button/Classes",
   "Icon/Classes",
   "Label/Classes",
   "Map/Classes",
-  "Shadow/Classes"
+  "NavigationBar/Classes",
+  "ProgressBar/Classes",
+  "RTLSupport/Classes",
+  "Gradient/Classes",
+  "Shadow/Classes",
+  "Spinner/Classes"
 ]
 let backpackCommonSourceDirs = [
   // Common
@@ -180,7 +186,7 @@ let targets: [Target] = [
       ]
     ),
 
-    // MARK: - Backpack Objective-C (initial subset)
+    // MARK: - Backpack Objective-C (expanded subset)
     .target(
       name: "Backpack_ObjC",
       dependencies: [
@@ -191,7 +197,10 @@ let targets: [Target] = [
       exclude: [
         "Tests",
         "Backpack.h",
-        "Color/Classes/Generated/BPKInternalColors.swift"
+        "Color/Classes/Generated/BPKInternalColors.swift",
+        "Button/Classes/BPKButtonAppearanceSets.swift",
+        "Button/Classes/BPKLegacyLinkButton.h",
+        "Button/Classes/BPKLegacyLinkButton.m"
       ] + backpackExcludedReadmes,
       sources: backpackObjCSourceDirs,
       publicHeadersPath: "SPMObjCHeaders",
@@ -200,8 +209,13 @@ let targets: [Target] = [
         .headerSearchPath("Color/Classes/Generated"),
         .headerSearchPath("Spacing/Classes/Generated"),
         .headerSearchPath("Spacing/Classes"),
+        .headerSearchPath("Button/Classes"),
         .headerSearchPath("Icon/Classes"),
         .headerSearchPath("Icon/Classes/Generated"),
+        .headerSearchPath("NavigationBar/Classes"),
+        .headerSearchPath("Label/Classes"),
+        .headerSearchPath("RTLSupport/Classes"),
+        .headerSearchPath("Gradient/Classes"),
         .headerSearchPath("Shadow/Classes/Generated"),
         .headerSearchPath("Radii/Classes/Generated"),
         .headerSearchPath("BorderWidth/Classes/Generated"),
