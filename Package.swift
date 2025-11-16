@@ -200,6 +200,7 @@ let targets: [Target] = [
         .headerSearchPath(".."),
         .headerSearchPath("Color/Classes/Generated"),
         .headerSearchPath("Spacing/Classes/Generated"),
+        .headerSearchPath("Icon/Classes"),
         .headerSearchPath("Icon/Classes/Generated"),
         .headerSearchPath("Shadow/Classes/Generated"),
         .headerSearchPath("Radii/Classes/Generated"),

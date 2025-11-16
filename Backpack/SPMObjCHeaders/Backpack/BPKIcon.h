@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_SPM_SHIM_${header } _H__
-#define __BACKPACK_SPM_SHIM_$ {header} _H__
+#ifndef __BACKPACK_SPM_SHIM_BPKICON_H__
+#define __BACKPACK_SPM_SHIM_BPKICON_H__
 
-#import "../Icon/Classes/${header}.h"
+#import "../Icon/Classes/BPKIcon.h"
 
 #endif
