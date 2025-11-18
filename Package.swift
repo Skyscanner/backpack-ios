@@ -35,6 +35,7 @@ let backpackObjCSourceDirs = [
   "Button/Classes",
   "Icon/Classes",
   "Label/Classes",
+  "Card/Classes",
   "Map/Classes",
   "NavigationBar/Classes",
   "ProgressBar/Classes",
@@ -206,7 +207,9 @@ let targets: [Target] = [
         "Button/Classes/BPKButtonAppearanceSets.swift",
         "Button/Classes/BPKLegacyLinkButton.h",
         "Button/Classes/BPKLegacyLinkButton.m",
-        "StarRating/Classes/BPKHotelStarRating.swift"
+        "StarRating/Classes/BPKHotelStarRating.swift",
+        "Card/Classes/BPKCardElevation.swift",
+        "Card/Classes/BPKCardWrapper.swift"
       ] + backpackExcludedReadmes,
       sources: backpackObjCSourceDirs,
       publicHeadersPath: "SPMObjCHeaders",

@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018 Skyscanner Ltd
+ * Copyright 2025 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,24 +16,9 @@
  * limitations under the License.
  */
 
-#import <Foundation/Foundation.h>
+#ifndef __BACKPACK_SPM_BPKCARDDIVIDER_H__
+#define __BACKPACK_SPM_BPKCARDDIVIDER_H__
 
-/**
- * Enum values for specifying line style
- */
-typedef NS_ENUM(NSUInteger, BPKCardDividerLineStyle) {
-    /**
-     * Dotted line style.
-     */
-    BPKCardDividerLineDotted = 0,
+#import "../Card/Classes/BPKCardDivider.h"
 
-    /**
-     * Solid link style.
-     */
-    BPKCardDividerLineSolid = 1,
-};
-
-/**
- * The default line-style that is applied to the divider card when none is specified.
- */
-FOUNDATION_EXPORT BPKCardDividerLineStyle const BPKCardDividerDefaultLineStyle;
+#endif
