@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_SPM_BORDERWIDTH__
-#define __BACKPACK_SPM_BORDERWIDTH__
+#ifndef __BACKPACK_DURATION_FULL_PUBLIC__
+#define __BACKPACK_DURATION_FULL_PUBLIC__
 
-#import <Backpack_Tokens/Backpack/BPKBorderWidth.h>
+#import "../../../Backpack/Duration/Classes/Duration.h"
 
 #endif

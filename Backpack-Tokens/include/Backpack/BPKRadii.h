@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_SPM_BORDERWIDTH__
-#define __BACKPACK_SPM_BORDERWIDTH__
+#ifndef __BACKPACK_RADII_PUBLIC__
+#define __BACKPACK_RADII_PUBLIC__
 
-#import <Backpack_Tokens/Backpack/BPKBorderWidth.h>
+#import "../../../Backpack/Radii/Classes/Generated/BPKRadii.h"
 
 #endif
