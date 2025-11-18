@@ -37,6 +37,7 @@ let backpackObjCSourceDirs = [
   "Map/Classes",
   "NavigationBar/Classes",
   "ProgressBar/Classes",
+  "Toast/Classes",
   "RTLSupport/Classes",
   "Gradient/Classes",
   "Shadow/Classes",
