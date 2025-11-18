@@ -222,6 +222,7 @@ let targets: [Target] = [
         .headerSearchPath("Icon/Classes/Generated"),
         .headerSearchPath("NavigationBar/Classes"),
         .headerSearchPath("Label/Classes"),
+        .headerSearchPath("Dialog/Classes"),
         .headerSearchPath("Theme/Classes"),
         .headerSearchPath("ProgressBar/Classes"),
         .headerSearchPath("RTLSupport/Classes"),

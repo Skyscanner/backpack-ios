@@ -102,7 +102,6 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) { BPKGrayColor50, BPKGrayColor100, BPKG
     BPKHorizontalNavigationObjc *horizontalNavAppearance = [BPKHorizontalNavigationObjc appearanceWhenContainedInInstancesOfClasses:@[class]];
     horizontalNavAppearance.selectedColor = theme.horiontalNavigationSelectedColor;
 #endif
-
 }
 
 @end
