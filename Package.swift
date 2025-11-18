@@ -20,6 +20,7 @@ let backpackUIKitSourceDirs = [
   "Overlay",
   "PageIndicator",
   "Skeleton",
+  "StarRating/Classes/BPKHotelStarRating.swift",
   "TabBarController",
   "BackpackUIKitImports.swift",
   "Color/Classes/Generated/BPKInternalColors.swift"
@@ -38,6 +39,7 @@ let backpackObjCSourceDirs = [
   "NavigationBar/Classes",
   "ProgressBar/Classes",
   "Toast/Classes",
+  "StarRating/Classes",
   "RTLSupport/Classes",
   "Gradient/Classes",
   "Shadow/Classes",
@@ -202,7 +204,8 @@ let targets: [Target] = [
         "Color/Classes/Generated/BPKInternalColors.swift",
         "Button/Classes/BPKButtonAppearanceSets.swift",
         "Button/Classes/BPKLegacyLinkButton.h",
-        "Button/Classes/BPKLegacyLinkButton.m"
+        "Button/Classes/BPKLegacyLinkButton.m",
+        "StarRating/Classes/BPKHotelStarRating.swift"
       ] + backpackExcludedReadmes,
       sources: backpackObjCSourceDirs,
       publicHeadersPath: "SPMObjCHeaders",
@@ -226,6 +229,7 @@ let targets: [Target] = [
         .headerSearchPath("Font/Classes/Generated"),
         .headerSearchPath("DarkMode/Classes"),
         .headerSearchPath("SPMObjCHeaders/Backpack"),
+        .headerSearchPath("SPMObjCHeaders"),
         .headerSearchPath("TappableLinkLabel/Classes/TTTAttributedLabel")
       ]
     ),
