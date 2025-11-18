@@ -19,23 +19,21 @@
 #import "BPKTheme.h"
 
 #import <UIKit/UIKit.h>
-#import "Color.h"
-#import "Switch.h"
-#import "Spinner.h"
-#import "Button.h"
-#import "Gradient.h"
-#import "TappableLinkLabel.h"
-#import "StarRating.h"
-#if !defined(SWIFT_PACKAGE)
-#import "BPKProgressBar.h"
-#import <Backpack/Backpack-Swift.h>
-#endif
 
-#import "BPKThemeDefinition.h"
 #import "BPKThemeContainer.h"
+#import "BPKThemeDefinition.h"
+#import "Button.h"
+#import "Color.h"
+#import "Gradient.h"
+#import "Spinner.h"
+#import "StarRating.h"
+#import "Switch.h"
+#import "TappableLinkLabel.h"
 #import "UIView+BPKThemeContainer.h"
 
 #if !defined(SWIFT_PACKAGE)
+#import "BPKProgressBar.h"
+#import <Backpack/Backpack-Swift.h>
 @class BPKHorizontalNavigationObjc;
 #endif
 
