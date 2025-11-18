@@ -40,7 +40,8 @@ let backpackObjCSourceDirs = [
   "RTLSupport/Classes",
   "Gradient/Classes",
   "Shadow/Classes",
-  "Spinner/Classes"
+  "Spinner/Classes",
+  "Appearance/Classes"
 ]
 let backpackCommonSourceDirs = [
   // Common
@@ -217,6 +218,7 @@ let targets: [Target] = [
         .headerSearchPath("RTLSupport/Classes"),
         .headerSearchPath("Gradient/Classes"),
         .headerSearchPath("Shadow/Classes/Generated"),
+        .headerSearchPath("Appearance/Classes"),
         .headerSearchPath("Radii/Classes/Generated"),
         .headerSearchPath("BorderWidth/Classes/Generated"),
         .headerSearchPath("Duration/Classes/Generated"),

@@ -19,6 +19,8 @@
 #ifndef __BACKPACK_SPM_EXPORT_BACKPACK_H__
 #define __BACKPACK_SPM_EXPORT_BACKPACK_H__
 
+#import "Appearance.h"
+#import "BPKAppearance.h"
 #import "BPKButton.h"
 #import "BPKButtonAppearance.h"
 #import "BPKButtonAppearanceSet.h"
