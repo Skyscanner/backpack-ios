@@ -40,8 +40,6 @@ let backpackObjCSourceDirs = [
   "ProgressBar/Classes",
   "Toast/Classes",
   "StarRating/Classes",
-  "Duration/Classes",
-  "Color/Classes",
   "Theme/Classes",
   "RTLSupport/Classes",
   "Gradient/Classes",
