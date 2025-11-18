@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018 Skyscanner Ltd
+ * Copyright 2025 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,21 +16,9 @@
  * limitations under the License.
  */
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#ifndef __BACKPACK_SPM_SHIM_BPKTHEMEDEFINITION_H__
+#define __BACKPACK_SPM_SHIM_BPKTHEMEDEFINITION_H__
 
-NS_ASSUME_NONNULL_BEGIN
+#import "../BPKThemeDefinition.h"
 
-/**
- * An abstract base class to define a theme that can be applied to a
- * view hierarchy containing Backpack components. This should be subclassed
- * to create concrete themes.
- */
-@protocol BPKThemeDefinition;
-@interface BPKThemeContainer : UIView
-
-@property(strong, readonly) id<BPKThemeDefinition> themeDefinition;
-
-@end
-
-NS_ASSUME_NONNULL_END
+#endif
