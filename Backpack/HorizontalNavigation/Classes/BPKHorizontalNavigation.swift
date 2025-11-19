@@ -25,6 +25,7 @@ import UIKit
  * It's typically used like a ``UISegementedControl`` e.g. to control which out of many potential
  * views are being displayed in a given view.
  */
+// swiftlint:disable nesting
 // swiftlint:disable:next type_body_length
 public class BPKHorizontalNavigation<Size: BPKHorizontalNavigationSize>: UIControl {
     struct TextOption<OptionSize: BPKHorizontalNavigationSize>: BPKHorizontalNavigationOption {
