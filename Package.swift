@@ -16,6 +16,8 @@ let backpackExcludedReadmes = readmePaths(relativeTo: "Backpack")
 
 let backpackUIKitSourceDirs = [
   "BottomSheet",
+  "Chip",
+  "Badge",
   "Carousel",
   "Overlay",
   "PageIndicator",
