@@ -51,6 +51,16 @@ Pod::Spec.new do |s|
     :script => <<-SCRIPT
 set -euo pipefail
 
+# Only run when building the Backpack pod itself.
+TARGET_ENV="${TARGET_NAME:-${TARGETNAME:-}}"
+case "$TARGET_ENV" in
+  "Backpack"|"Pods-Backpack")
+    ;;
+  *)
+    exit 0
+    ;;
+esac
+
 if [ -z "${PUBLIC_HEADERS_FOLDER_PATH:-}" ]; then
   exit 0
 fi
