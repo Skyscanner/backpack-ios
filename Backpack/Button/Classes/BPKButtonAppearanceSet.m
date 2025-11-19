@@ -17,8 +17,8 @@
  */
 
 #import "BPKButtonAppearanceSet.h"
-#import "BPKButtonAppearance.h"
 #import "BPKButton.h"
+#import "BPKButtonAppearance.h"
 #import <Backpack/Color.h>
 
 static UIColor *BPKDynamicColor(CGFloat lr, CGFloat lg, CGFloat lb, CGFloat la, CGFloat dr, CGFloat dg, CGFloat db, CGFloat da) {
@@ -34,15 +34,15 @@ static BPKButtonAppearance *BPKAppearance(UIColor *background, UIColor *foregrou
     return [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:background gradientEndColor:background foregroundColor:foreground];
 }
 
-#define BPK_DEFINE_BUTTON_COLOR(name, lr, lg, lb, la, dr, dg, db, da) \
-static UIColor *name(void) { \
-    static UIColor *color; \
-    static dispatch_once_t onceToken; \
-    dispatch_once(&onceToken, ^{ \
-        color = BPKDynamicColor(lr, lg, lb, la, dr, dg, db, da); \
-    }); \
-    return color; \
-}
+#define BPK_DEFINE_BUTTON_COLOR(name, lr, lg, lb, la, dr, dg, db, da)                                                                                \
+    static UIColor *name(void) {                                                                                                                     \
+        static UIColor *color;                                                                                                                       \
+        static dispatch_once_t onceToken;                                                                                                            \
+        dispatch_once(&onceToken, ^{                                                                                                                 \
+          color = BPKDynamicColor(lr, lg, lb, la, dr, dg, db, da);                                                                                   \
+        });                                                                                                                                          \
+        return color;                                                                                                                                \
+    }
 
 BPK_DEFINE_BUTTON_COLOR(BPKButtonDisabledBackgroundColor, 0.878, 0.894, 0.914, 1.0, 0.043, 0.071, 0.114, 1.0)
 BPK_DEFINE_BUTTON_COLOR(BPKButtonPrimaryNormalBackgroundColor, 0.020, 0.125, 0.235, 1.0, 0.008, 0.302, 0.686, 1.0)
@@ -67,7 +67,8 @@ BPK_DEFINE_BUTTON_COLOR(BPKButtonPrimaryOnLightNormalBackgroundColor, 0.020, 0.1
 BPK_DEFINE_BUTTON_COLOR(BPKButtonPrimaryOnLightPressedBackgroundColor, 0.082, 0.275, 0.475, 1.0, 0.020, 0.255, 0.518, 1.0)
 BPK_DEFINE_BUTTON_COLOR(BPKButtonPrimaryOnLightDisabledBackgroundColor, 0.878, 0.894, 0.914, 1.0, 0.043, 0.071, 0.114, 1.0)
 BPK_DEFINE_BUTTON_COLOR(BPKButtonPrimaryOnLightDisabledForegroundColor, 0.000, 0.000, 0.000, 0.2, 1.000, 1.000, 1.000, 0.2)
-BPK_DEFINE_BUTTON_COLOR(BPKButtonSecondaryOnDarkNormalBackgroundColor, 1.000, 1.000, 1.000, 0.10196078431372549, 1.000, 1.000, 1.000, 0.10196078431372549)
+BPK_DEFINE_BUTTON_COLOR(BPKButtonSecondaryOnDarkNormalBackgroundColor, 1.000, 1.000, 1.000, 0.10196078431372549, 1.000, 1.000, 1.000,
+                        0.10196078431372549)
 BPK_DEFINE_BUTTON_COLOR(BPKButtonSecondaryOnDarkPressedBackgroundColor, 0.004, 0.035, 0.075, 1.0, 0.004, 0.035, 0.075, 1.0)
 BPK_DEFINE_BUTTON_COLOR(BPKButtonSecondaryOnDarkDisabledBackgroundColor, 0.043, 0.071, 0.114, 1.0, 0.043, 0.071, 0.114, 1.0)
 BPK_DEFINE_BUTTON_COLOR(BPKButtonSecondaryOnDarkDisabledForegroundColor, 1.000, 1.000, 1.000, 0.2, 1.000, 1.000, 1.000, 0.2)
@@ -122,13 +123,15 @@ BPKButtonAppearanceSet *BPKButtonAppearanceSetForStyle(BPKButtonStyle style) {
         return [[BPKButtonAppearanceSet alloc]
             initWithRegularAppearance:BPKAppearance(BPKButtonPrimaryOnLightNormalBackgroundColor(), BPKColor.textOnDarkColor)
                     loadingAppearance:BPKAppearance(BPKButtonPrimaryOnLightPressedBackgroundColor(), BPKColor.textOnDarkColor)
-                   disabledAppearance:BPKAppearance(BPKButtonPrimaryOnLightDisabledBackgroundColor(), BPKButtonPrimaryOnLightDisabledForegroundColor())
+                   disabledAppearance:BPKAppearance(BPKButtonPrimaryOnLightDisabledBackgroundColor(),
+                                                    BPKButtonPrimaryOnLightDisabledForegroundColor())
                 highlightedAppearance:BPKAppearance(BPKButtonPrimaryOnLightPressedBackgroundColor(), BPKColor.textOnDarkColor)];
     case BPKButtonStyleSecondaryOnDark:
         return [[BPKButtonAppearanceSet alloc]
             initWithRegularAppearance:BPKAppearance(BPKButtonSecondaryOnDarkNormalBackgroundColor(), BPKColor.textOnDarkColor)
                     loadingAppearance:BPKAppearance(BPKButtonSecondaryOnDarkPressedBackgroundColor(), BPKColor.textOnDarkColor)
-                   disabledAppearance:BPKAppearance(BPKButtonSecondaryOnDarkDisabledBackgroundColor(), BPKButtonSecondaryOnDarkDisabledForegroundColor())
+                   disabledAppearance:BPKAppearance(BPKButtonSecondaryOnDarkDisabledBackgroundColor(),
+                                                    BPKButtonSecondaryOnDarkDisabledForegroundColor())
                 highlightedAppearance:BPKAppearance(BPKButtonSecondaryOnDarkPressedBackgroundColor(), BPKColor.textOnDarkColor)];
     default:
         return [[BPKButtonAppearanceSet alloc]

@@ -32,6 +32,7 @@ let backpackUIKitSourceDirs = [
   "StarRating/Classes/BPKHotelStarRating.swift",
   "TabBarController",
   "BackpackUIKitImports.swift",
+  "Color/Classes/Generated/BPKInternalColors.swift",
   "Card/Classes/BPKCardElevation.swift",
   "Card/Classes/BPKCardWrapper.swift"
 ]
@@ -46,6 +47,7 @@ let backpackObjCSourceDirs = [
   "Dialog/Classes",
   "Icon/Classes",
   "Label/Classes",
+  "Color/Classes/Generated/UIColor+Backpack.m",
   "Card/Classes",
   "Map/Classes",
   "NavigationBar/Classes",
