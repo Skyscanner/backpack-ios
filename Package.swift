@@ -147,7 +147,8 @@ let backpackTokensSourceFiles = [
 let products: [Product] = [
   .library(name: "Backpack-Common", targets: ["Backpack_Common"]),
   .library(name: "Backpack-SwiftUI", targets: ["Backpack_SwiftUI"]),
-  .library(name: "Backpack", targets: ["Backpack"])
+  .library(name: "Backpack", targets: ["Backpack"]),
+  .library(name: "Backpack-Fonts", targets: ["Backpack_Fonts"])
 ]
 
 let dependencies: [Package.Dependency] = [
@@ -268,6 +269,22 @@ let targets: [Target] = [
         "Tests"
       ] + backpackExcludedReadmes,
       sources: backpackUIKitSourceDirs
+    ),
+
+    // MARK: - Backpack Fonts (resource-only target)
+    .target(
+      name: "Backpack_Fonts",
+      path: "Backpack-Fonts",
+      exclude: [
+        "Scripts",
+        "Backpack-Fonts.podspec"
+      ],
+      sources: [
+        "Sources"
+      ],
+      resources: [
+        .process("Assets")
+      ]
     ),
 
     // MARK: - Tests
