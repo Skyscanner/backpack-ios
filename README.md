@@ -32,7 +32,7 @@ pod 'Backpack-SwiftUI'
 
 ### Swift Package Manager Example workspace
 
-If you want to experiment with Backpack through Swift Package Manager, open `Example/Backpack-SPM.xcworkspace`. The workspace shares the same example app targets but resolves Backpack, Backpack-SwiftUI, Backpack-Common, and Backpack-Fonts through the package manifest instead of CocoaPods. Before building, make sure the proprietary fonts are available (see [Relative font](CONTRIBUTING.md#skyscanner-employees)).
+If you want to experiment with Backpack through Swift Package Manager, open `Example/Backpack-SPM.xcworkspace`. The workspace shares the same example app targets but resolves Backpack, Backpack-SwiftUI, Backpack-Common, and Backpack-Fonts through the package manifest instead of CocoaPods. The `Backpack-Native` target runs the `Backpack-Fonts/Scripts/download-relative-fonts.rb` helper automatically so Skyscanner employees always get the proprietary fonts; ensure you have the required network/VPN access (see [Relative font](CONTRIBUTING.md#skyscanner-employees)).
 
 ## Documentation
 

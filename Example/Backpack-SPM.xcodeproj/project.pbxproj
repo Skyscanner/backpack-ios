@@ -1604,6 +1604,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "Backpack-Native" */;
 			buildPhases = (
+				EE1F0614745D90EEE6506266 /* Prepare Backpack Fonts */,
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
@@ -1764,7 +1765,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-				shellScript = "if which swiftlint >/dev/null; then\n  swiftlint lint --strict\nelse\n  echo \"warning: SwiftLint not installed, skipping lint\"\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint lint --strict\nelse\n  echo \"warning: SwiftLint not installed, skipping lint\"\nfi\n";
+		};
+		EE1F0614745D90EEE6506266 /* Prepare Backpack Fonts */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Prepare Backpack Fonts";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\nFONT_DIR=\"${SRCROOT}/../Backpack-Fonts/Assets\"\nif ls \"$FONT_DIR\"/SkyscannerRelativeiOS*.ttf >/dev/null 2>&1; then\n  echo \"Backpack fonts already present\"\n  exit 0\nfi\n\necho \"Backpack fonts missing – attempting download via Backpack-Fonts/Scripts/download-relative-fonts.rb\"\nif [ ! -d \"${SRCROOT}/../Backpack-Fonts\" ]; then\n  echo \"error: Missing Backpack-Fonts directory\"\n  exit 1\nfi\n\nif command -v ruby >/dev/null 2>&1; then\n  (cd \"${SRCROOT}/../Backpack-Fonts\" && BPK_USE_RELATIVE=1 ./Scripts/download-relative-fonts.rb)\nelse\n  echo \"error: Ruby is required to download fonts\"\n  exit 1\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
