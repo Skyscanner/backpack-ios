@@ -17,15 +17,22 @@ let backpackExcludedReadmes = readmePaths(relativeTo: "Backpack")
 let backpackUIKitSourceDirs = [
   "BottomSheet",
   "Chip",
+  "CardButton",
+  "FlightLeg",
+  "FloatingNotification",
+  "BarChart",
   "Badge",
   "Carousel",
+  "Price",
   "Overlay",
   "PageIndicator",
   "Skeleton",
   "StarRating/Classes/BPKHotelStarRating.swift",
   "TabBarController",
   "BackpackUIKitImports.swift",
-  "Color/Classes/Generated/BPKInternalColors.swift"
+  "Color/Classes/Generated/BPKInternalColors.swift",
+  "Card/Classes/BPKCardElevation.swift",
+  "Card/Classes/BPKCardWrapper.swift"
 ]
 let backpackObjCSourceDirs = [
   "Switch/Classes",
