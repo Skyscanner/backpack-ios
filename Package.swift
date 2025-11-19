@@ -32,7 +32,6 @@ let backpackUIKitSourceDirs = [
   "StarRating/Classes/BPKHotelStarRating.swift",
   "TabBarController",
   "BackpackUIKitImports.swift",
-  "Color/Classes/Generated/BPKInternalColors.swift",
   "Card/Classes/BPKCardElevation.swift",
   "Card/Classes/BPKCardWrapper.swift"
 ]
@@ -47,7 +46,6 @@ let backpackObjCSourceDirs = [
   "Dialog/Classes",
   "Icon/Classes",
   "Label/Classes",
-  "Color/Classes/Generated/UIColor+Backpack.m",
   "Card/Classes",
   "Map/Classes",
   "NavigationBar/Classes",
@@ -172,8 +170,8 @@ let targets: [Target] = [
       ]
     ),
 
-    // MARK: - BackpackSwiftUI (depends on BackpackCommon)
-    .target(
+  // MARK: - BackpackSwiftUI (depends on BackpackCommon)
+  .target(
       name: "Backpack_SwiftUI",
       dependencies: ["Backpack_Common"],
       path: "Backpack-SwiftUI",
@@ -217,7 +215,6 @@ let targets: [Target] = [
         "Tests",
         "Backpack.h",
         "Color/Classes/Generated/BPKInternalColors.swift",
-        "Button/Classes/BPKButtonAppearanceSets.swift",
         "Button/Classes/BPKLegacyLinkButton.h",
         "Button/Classes/BPKLegacyLinkButton.m",
         "StarRating/Classes/BPKHotelStarRating.swift",

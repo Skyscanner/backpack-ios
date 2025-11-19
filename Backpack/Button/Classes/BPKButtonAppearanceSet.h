@@ -18,6 +18,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "BPKButton.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -55,6 +56,8 @@ NS_ASSUME_NONNULL_BEGIN
                         loadingAppearance:(BPKButtonAppearance *)loadingAppearance
                        disabledAppearance:(BPKButtonAppearance *)disabledAppearance
                     highlightedAppearance:(BPKButtonAppearance *)highlightedAppearance;
+
+FOUNDATION_EXPORT BPKButtonAppearanceSet *BPKButtonAppearanceSetForStyle(BPKButtonStyle style);
 
 /*
  * Creates an new instance of `BPKButtonAppearanceSet` with cloned appearances that match the current instance.
