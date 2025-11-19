@@ -31,10 +31,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func setupRelativeFont() {
         guard !ProcessInfo.processInfo.arguments.contains("DISABLE_RELATIVE") else { return }
-        let relativeFontDefinition = Backpack.BPKRelativeFontDefinition()
+        let relativeFontDefinition = BPKRelativeFontDefinition()
         let relativeTestFont = UIFont(name: relativeFontDefinition.regularFontFace as String, size: 12)
         if relativeTestFont != nil {
+#if BACKPACK_SPM_EXAMPLE
+            // Swift Package consumption already sets the Swift definition below.
+#else
             Backpack.BPKFont.setFontDefinition(relativeFontDefinition)
+#endif
             BPKFont.setSwiftFontDefinition(relativeFontDefinition)
         }
         Backpack.BPKFont.setDynamicTypeEnabled(true)

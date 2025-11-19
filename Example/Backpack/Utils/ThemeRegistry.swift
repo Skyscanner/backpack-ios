@@ -18,7 +18,7 @@
  */
 
 import Foundation
-import Backpack.Theme
+import Backpack
 
 class ThemeRegistry: NSObject {
     
