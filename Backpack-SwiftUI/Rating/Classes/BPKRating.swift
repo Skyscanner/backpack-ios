@@ -25,6 +25,7 @@ public struct BPKRating<Content: View>: View {
     private let ratingScale: Scale
     private let size: Size
     private let subtitle: String?
+    private let usePrimaryColorOnly: Bool
     private let showScale: Bool
     @ViewBuilder private var titleViewBuilder: () -> Content
     
@@ -40,12 +41,12 @@ public struct BPKRating<Content: View>: View {
                     BPKText(
                         "/",
                         style: size.fontStyle.ratingScaleLabelFontStyle
-                    ).foregroundColor(.textPrimaryColor)
+                    ).foregroundColor(usePrimaryColorOnly ? .textPrimaryColor : .textSecondaryColor)
                         .layoutPriority(3)
                     BPKText(
                         ratingScale.displayedScale(),
                         style: size.fontStyle.ratingScaleLabelFontStyle
-                    ).foregroundColor(.textPrimaryColor)
+                    ).foregroundColor(usePrimaryColorOnly ? .textPrimaryColor : .textSecondaryColor)
                         .layoutPriority(3)
                 }
             }
@@ -72,6 +73,7 @@ public struct BPKRating<Content: View>: View {
         ratingScale: Scale = .zeroToFive,
         size: Size = .default,
         subtitle: String? = nil,
+        usePrimaryColorOnly: Bool = false,
         showScale: Bool = true,
         @ViewBuilder titleViewBuilder: @escaping () -> Content = { EmptyView() }
     ) {
@@ -79,6 +81,7 @@ public struct BPKRating<Content: View>: View {
         self.ratingScale = ratingScale
         self.size = size
         self.subtitle = subtitle
+        self.usePrimaryColorOnly = usePrimaryColorOnly
         self.showScale = showScale
         self.titleViewBuilder = titleViewBuilder
     }
@@ -90,7 +93,7 @@ public struct BPKRating<Content: View>: View {
                 subtitle,
                 style: size.fontStyle.subtitleLabelFontStyle
             )
-            .foregroundColor(.textPrimaryColor)
+            .foregroundColor(usePrimaryColorOnly ? .textPrimaryColor : .textSecondaryColor)
         } else {
             EmptyView()
         }
@@ -103,12 +106,14 @@ extension BPKRating where Content == BPKText {
         ratingScale: Scale = .zeroToFive,
         size: Size = .default,
         subtitle: String? = nil,
+        usePrimaryColorOnly: Bool = false,
         showScale: Bool = true
     ) {
         self.value = value
         self.ratingScale = ratingScale
         self.size = size
         self.subtitle = subtitle
+        self.usePrimaryColorOnly = usePrimaryColorOnly
         self.showScale = showScale
 
         self.titleViewBuilder = {

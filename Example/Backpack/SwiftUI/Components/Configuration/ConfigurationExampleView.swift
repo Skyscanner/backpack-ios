@@ -33,7 +33,8 @@ struct ConfigurationExampleView: View {
             ("Chips", { AnyView(ConfigurationChipsView()) }),
             ("Typography", { AnyView(ConfigurationTypographyView()) }),
             ("Button", { AnyView(ConfigurationButtonView()) }),
-            ("Badge", { AnyView(ConfigurationBadgeView()) })
+            ("Badge", { AnyView(ConfigurationBadgeView()) }),
+            ("Card", { AnyView(ConfigurationCardView()) })
         ]
         
         List(configViews, id: \.name) { item in

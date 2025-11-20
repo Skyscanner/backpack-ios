@@ -16,10 +16,17 @@
  * limitations under the License.
  */
 
+import Backpack_Common
+
 public enum BPKCardElevation {
     case `default`, focus, none
 
-    var shadow: BPKShadow? {
+    func shadow(for style: BPKCardStyle, config: BpkConfiguration?) -> BPKShadow? {
+        // When config.CardConfig is enabled, turn off all elevation
+        if config?.cardConfig != nil {
+            return nil
+        }
+
         switch self {
         case .none: return nil
         case .focus: return .lg
@@ -27,7 +34,17 @@ public enum BPKCardElevation {
         }
     }
 
-    var backgroundColor: BPKColor {
-        self == .focus ? .surfaceElevatedColor : .surfaceDefaultColor
+    func backgroundColor(for style: BPKCardStyle, config: BpkConfiguration?) -> BPKColor {
+        // When config.CardConfig is enabled and onDefault style, use canvasContrast
+        if config?.cardConfig != nil && style == .onDefault {
+            return .surfaceLowContrastColor
+        }
+
+        switch style {
+        case .onDefault:
+            return self == .focus ? .surfaceElevatedColor : .surfaceDefaultColor
+        case .onContrast:
+            return self == .focus ? .surfaceElevatedColor : .surfaceDefaultColor
+        }
     }
 }

@@ -25,6 +25,7 @@ public enum ConfigType: String {
     case typography = "backpack_experiment"
     case badge = "backpack_badge"
     case button = "backpack_button"
+    case card = "backpack_card"
     case all = "backpack_all"
 }
 
@@ -70,8 +71,7 @@ public final class BpkConfiguration: NSObject {
         set { _buttonConfig = newValue }
     }
     
-    public struct BpkBadgeConfig {
-    }
+    public struct BpkBadgeConfig {}
 
     public struct BpkCardConfig {}
     
@@ -96,6 +96,13 @@ public final class BpkConfiguration: NSObject {
     public var chipConfig: BpkChipConfig? {
         get { getConfig { self._chipConfig } }
         set { _chipConfig = newValue }
+    }
+    
+    private var _cardConfig: BpkCardConfig?
+
+    public var cardConfig: BpkCardConfig? {
+        get { getConfig { self._cardConfig } }
+        set { _cardConfig = newValue }
     }
     
     private var _typographyConfigSet: Bool = false
@@ -171,6 +178,10 @@ public final class BpkConfiguration: NSObject {
         let pressedBackgroundColour = UIColor.dynamicColorTest(light: pressedBackgroundLight, dark: pressedBackgroundDark)
         
         self.buttonConfig = BpkButtonConfig(radius: 100.0, height: 56, secondaryButtonBackgroundColour: buttonBackgroundColour, secondaryButtonForegroundColour: buttonForegroundColour, secondaryButtonPressedBackgroundColour: pressedBackgroundColour, setFontLabel2: true)
+    }
+    
+    private func setCardExperiment() {
+        self.cardConfig = BpkCardConfig()
     }
     
     private func setChipExperiment() {
@@ -273,6 +284,8 @@ public final class BpkConfiguration: NSObject {
                 setBadgeExperiment()
             case .button:
                 setButtonExperiment()
+            case .card:
+                setCardExperiment()
             }
         }
     }
@@ -282,6 +295,7 @@ public final class BpkConfiguration: NSObject {
         setTypographyExperiment()
         setBadgeExperiment()
         setButtonExperiment()
+        setCardExperiment()
     }
 }
 
@@ -325,6 +339,7 @@ extension BpkConfiguration {
         chipConfig = nil
         buttonConfig = nil
         badgeConfig = nil
+        cardConfig = nil
         hasSet = false
         configIsAccessed = false
         onConfigurationAccessed = nil

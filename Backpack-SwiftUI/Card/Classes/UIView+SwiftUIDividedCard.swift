@@ -21,17 +21,20 @@ import SwiftUI
 
 public struct BPKDividedCardSwiftUIWrapper: View {
     private let elevation: BPKCardElevation
+    private let cardStyle: BPKCardStyle
     private let primaryContent: UIView
     private let secondaryContent: UIView
     private let tapAction: (() -> Void)?
     private let alignment: HorizontalAlignment
 
     public init(elevation: BPKCardElevation = .default,
+                cardStyle: BPKCardStyle = .onContrast,
                 alignment: HorizontalAlignment = .leading,
                 primaryContent: UIView,
                 secondaryContent: UIView,
                 tapAction: (() -> Void)? = nil) {
         self.elevation = elevation
+        self.cardStyle = cardStyle
         self.alignment = alignment
         self.primaryContent = primaryContent
         self.secondaryContent = secondaryContent
@@ -39,7 +42,7 @@ public struct BPKDividedCardSwiftUIWrapper: View {
     }
 
     public var body: some View {
-        BPKDividedCard(alignment: alignment, elevation: elevation) {
+        BPKDividedCard(alignment: alignment, cardStyle: cardStyle, elevation: elevation) {
             HostedView(view: primaryContent)
         } secondaryContent: {
             HostedView(view: secondaryContent)

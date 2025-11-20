@@ -24,21 +24,24 @@ public struct BPKDividedCard<PrimaryContent: View, SecondaryContent: View>: View
     private let secondaryContent: SecondaryContent
     private var tapAction: () -> Void = {}
     private let alignment: HorizontalAlignment
+    private let cardStyle: BPKCardStyle
 
     public init(
         alignment: HorizontalAlignment = .center,
+        cardStyle: BPKCardStyle = .onContrast,
         elevation: BPKCardElevation = .default,
         @ViewBuilder primaryContent: () -> PrimaryContent,
         @ViewBuilder secondaryContent: () -> SecondaryContent
     ) {
         self.alignment = alignment
         self.elevation = elevation
+        self.cardStyle = cardStyle
         self.primaryContent = primaryContent()
         self.secondaryContent = secondaryContent()
     }
 
     public var body: some View {
-        BPKCard(padding: .none, elevation: elevation) {
+        BPKCard(padding: .none, cardStyle: cardStyle, elevation: elevation) {
             VStack(alignment: alignment, spacing: 0) {
                 primaryContent
                 Color(BPKColor.lineColor)
