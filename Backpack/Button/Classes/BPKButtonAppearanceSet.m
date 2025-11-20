@@ -25,7 +25,7 @@
 + (UIColor *)dynamicColorWithLightVariant:(UIColor *)lightVariant darkVariant:(UIColor *)darkVariant;
 @end
 
-static UIColor *BPKButtonDynamicColor(CGFloat lr, CGFloat lg, CGFloat lb, CGFloat la, CGFloat dr, CGFloat dg, CGFloat db, CGFloat da) {
+static inline UIColor *BPKButtonColor(CGFloat lr, CGFloat lg, CGFloat lb, CGFloat la, CGFloat dr, CGFloat dg, CGFloat db, CGFloat da) {
     return [BPKColor dynamicColorWithLightVariant:[UIColor colorWithRed:lr green:lg blue:lb alpha:la]
                                       darkVariant:[UIColor colorWithRed:dr green:dg blue:db alpha:da]];
 }
@@ -43,247 +43,84 @@ static BPKButtonAppearance *BPKAppearance(UIColor *background, UIColor *foregrou
 // initialisation. BPKButton is maintenance-only; new work should use the SwiftUI
 // counterpart.
 
-static UIColor *BPKButtonDisabledBackgroundColor(void) {
-    static UIColor *color;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      color = BPKButtonDynamicColor(0.878, 0.894, 0.914, 1.0, 0.043, 0.071, 0.114, 1.0);
-    });
-    return color;
+static inline UIColor *BPKButtonDisabledBackgroundColor(void) { return BPKButtonColor(0.878, 0.894, 0.914, 1.0, 0.043, 0.071, 0.114, 1.0); }
+
+static inline UIColor *BPKButtonPrimaryNormalBackgroundColor(void) { return BPKButtonColor(0.020, 0.125, 0.235, 1.0, 0.008, 0.302, 0.686, 1.0); }
+
+static inline UIColor *BPKButtonPrimaryPressedBackgroundColor(void) { return BPKButtonColor(0.082, 0.275, 0.475, 1.0, 0.020, 0.255, 0.518, 1.0); }
+
+static inline UIColor *BPKButtonSecondaryNormalBackgroundColor(void) { return BPKButtonColor(0.878, 0.894, 0.914, 1.0, 0.141, 0.200, 0.275, 1.0); }
+
+static inline UIColor *BPKButtonSecondaryPressedBackgroundColor(void) { return BPKButtonColor(0.757, 0.780, 0.812, 1.0, 0.004, 0.035, 0.075, 1.0); }
+
+static inline UIColor *BPKButtonFeaturedNormalBackgroundColor(void) { return BPKButtonColor(0.000, 0.384, 0.890, 1.0, 0.518, 0.914, 1.000, 1.0); }
+
+static inline UIColor *BPKButtonFeaturedPressedBackgroundColor(void) { return BPKButtonColor(0.008, 0.302, 0.686, 1.0, 0.820, 0.969, 1.000, 1.0); }
+
+static inline UIColor *BPKButtonDestructiveNormalBackgroundColor(void) { return BPKButtonColor(0.878, 0.894, 0.914, 1.0, 0.141, 0.200, 0.275, 1.0); }
+
+static inline UIColor *BPKButtonDestructiveNormalForegroundColor(void) { return BPKButtonColor(0.906, 0.031, 0.400, 1.0, 1.000, 0.392, 0.612, 1.0); }
+
+static inline UIColor *BPKButtonDestructivePressedBackgroundColor(void) { return BPKButtonColor(0.906, 0.031, 0.400, 1.0, 1.000, 0.392, 0.612, 1.0); }
+
+static inline UIColor *BPKButtonLinkNormalForegroundColor(void) { return BPKButtonColor(0.000, 0.384, 0.890, 1.0, 0.518, 0.914, 1.000, 1.0); }
+
+static inline UIColor *BPKButtonLinkPressedForegroundColor(void) { return BPKButtonColor(0.008, 0.302, 0.686, 1.0, 0.820, 0.969, 1.000, 1.0); }
+
+static inline UIColor *BPKButtonLinkOnDarkNormalForegroundColor(void) { return BPKButtonColor(1.000, 1.000, 1.000, 1.0, 1.000, 1.000, 1.000, 1.0); }
+
+static inline UIColor *BPKButtonLinkOnDarkPressedForegroundColor(void) {
+    return BPKButtonColor(1.000, 1.000, 1.000, 0.5019607843137255, 1.000, 1.000, 1.000, 0.5019607843137255);
 }
 
-static UIColor *BPKButtonPrimaryNormalBackgroundColor(void) {
-    static UIColor *color;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      color = BPKButtonDynamicColor(0.020, 0.125, 0.235, 1.0, 0.008, 0.302, 0.686, 1.0);
-    });
-    return color;
+static inline UIColor *BPKButtonLinkOnDarkDisabledForegroundColor(void) { return BPKButtonColor(1.000, 1.000, 1.000, 0.2, 1.000, 1.000, 1.000, 0.2); }
+
+static inline UIColor *BPKButtonPrimaryOnDarkNormalBackgroundColor(void) {
+    return BPKButtonColor(1.000, 1.000, 1.000, 1.0, 1.000, 1.000, 1.000, 1.0);
 }
 
-static UIColor *BPKButtonPrimaryPressedBackgroundColor(void) {
-    static UIColor *color;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      color = BPKButtonDynamicColor(0.082, 0.275, 0.475, 1.0, 0.020, 0.255, 0.518, 1.0);
-    });
-    return color;
+static inline UIColor *BPKButtonPrimaryOnDarkPressedBackgroundColor(void) {
+    return BPKButtonColor(0.757, 0.780, 0.812, 1.0, 0.757, 0.780, 0.812, 1.0);
 }
 
-static UIColor *BPKButtonSecondaryNormalBackgroundColor(void) {
-    static UIColor *color;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      color = BPKButtonDynamicColor(0.878, 0.894, 0.914, 1.0, 0.141, 0.200, 0.275, 1.0);
-    });
-    return color;
+static inline UIColor *BPKButtonPrimaryOnDarkDisabledBackgroundColor(void) {
+    return BPKButtonColor(0.878, 0.894, 0.914, 1.0, 0.043, 0.071, 0.114, 1.0);
 }
 
-static UIColor *BPKButtonSecondaryPressedBackgroundColor(void) {
-    static UIColor *color;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      color = BPKButtonDynamicColor(0.757, 0.780, 0.812, 1.0, 0.004, 0.035, 0.075, 1.0);
-    });
-    return color;
+static inline UIColor *BPKButtonPrimaryOnDarkDisabledForegroundColor(void) {
+    return BPKButtonColor(0.000, 0.000, 0.000, 0.2, 1.000, 1.000, 1.000, 0.2);
 }
 
-static UIColor *BPKButtonFeaturedNormalBackgroundColor(void) {
-    static UIColor *color;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      color = BPKButtonDynamicColor(0.000, 0.384, 0.890, 1.0, 0.518, 0.914, 1.000, 1.0);
-    });
-    return color;
+static inline UIColor *BPKButtonPrimaryOnLightNormalBackgroundColor(void) {
+    return BPKButtonColor(0.000, 0.384, 0.890, 1.0, 0.518, 0.914, 1.000, 1.0);
 }
 
-static UIColor *BPKButtonFeaturedPressedBackgroundColor(void) {
-    static UIColor *color;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      color = BPKButtonDynamicColor(0.008, 0.302, 0.686, 1.0, 0.820, 0.969, 1.000, 1.0);
-    });
-    return color;
+static inline UIColor *BPKButtonPrimaryOnLightPressedBackgroundColor(void) {
+    return BPKButtonColor(0.008, 0.302, 0.686, 1.0, 0.820, 0.969, 1.000, 1.0);
 }
 
-static UIColor *BPKButtonDestructiveNormalBackgroundColor(void) {
-    static UIColor *color;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      color = BPKButtonDynamicColor(0.878, 0.894, 0.914, 1.0, 0.141, 0.200, 0.275, 1.0);
-    });
-    return color;
+static inline UIColor *BPKButtonPrimaryOnLightDisabledBackgroundColor(void) {
+    return BPKButtonColor(0.878, 0.894, 0.914, 1.0, 0.043, 0.071, 0.114, 1.0);
 }
 
-static UIColor *BPKButtonDestructiveNormalForegroundColor(void) {
-    static UIColor *color;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      color = BPKButtonDynamicColor(0.906, 0.031, 0.400, 1.0, 1.000, 0.392, 0.612, 1.0);
-    });
-    return color;
+static inline UIColor *BPKButtonPrimaryOnLightDisabledForegroundColor(void) {
+    return BPKButtonColor(0.141, 0.200, 0.275, 1.0, 0.141, 0.200, 0.275, 1.0);
 }
 
-static UIColor *BPKButtonDestructivePressedBackgroundColor(void) {
-    static UIColor *color;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      color = BPKButtonDynamicColor(0.906, 0.031, 0.400, 1.0, 1.000, 0.392, 0.612, 1.0);
-    });
-    return color;
+static inline UIColor *BPKButtonSecondaryOnDarkNormalBackgroundColor(void) {
+    return BPKButtonColor(0.000, 0.000, 0.000, 1.0, 0.000, 0.000, 0.000, 1.0);
 }
 
-static UIColor *BPKButtonLinkNormalForegroundColor(void) {
-    static UIColor *color;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      color = BPKButtonDynamicColor(0.000, 0.384, 0.890, 1.0, 0.518, 0.914, 1.000, 1.0);
-    });
-    return color;
+static inline UIColor *BPKButtonSecondaryOnDarkPressedBackgroundColor(void) {
+    return BPKButtonColor(0.263, 0.286, 0.314, 1.0, 0.263, 0.286, 0.314, 1.0);
 }
 
-static UIColor *BPKButtonLinkPressedForegroundColor(void) {
-    static UIColor *color;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      color = BPKButtonDynamicColor(0.008, 0.302, 0.686, 1.0, 0.820, 0.969, 1.000, 1.0);
-    });
-    return color;
+static inline UIColor *BPKButtonSecondaryOnDarkDisabledBackgroundColor(void) {
+    return BPKButtonColor(0.119, 0.129, 0.145, 1.0, 0.119, 0.129, 0.145, 1.0);
 }
 
-static UIColor *BPKButtonLinkOnDarkNormalForegroundColor(void) {
-    static UIColor *color;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      color = BPKButtonDynamicColor(1.000, 1.000, 1.000, 1.0, 1.000, 1.000, 1.000, 1.0);
-    });
-    return color;
-}
-
-static UIColor *BPKButtonLinkOnDarkPressedForegroundColor(void) {
-    static UIColor *color;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      color = BPKButtonDynamicColor(1.000, 1.000, 1.000, 0.5019607843137255, 1.000, 1.000, 1.000, 0.5019607843137255);
-    });
-    return color;
-}
-
-static UIColor *BPKButtonLinkOnDarkDisabledForegroundColor(void) {
-    static UIColor *color;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      color = BPKButtonDynamicColor(1.000, 1.000, 1.000, 0.2, 1.000, 1.000, 1.000, 0.2);
-    });
-    return color;
-}
-
-static UIColor *BPKButtonPrimaryOnDarkNormalBackgroundColor(void) {
-    static UIColor *color;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      color = BPKButtonDynamicColor(1.000, 1.000, 1.000, 1.0, 1.000, 1.000, 1.000, 1.0);
-    });
-    return color;
-}
-
-static UIColor *BPKButtonPrimaryOnDarkPressedBackgroundColor(void) {
-    static UIColor *color;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      color = BPKButtonDynamicColor(0.757, 0.780, 0.812, 1.0, 0.757, 0.780, 0.812, 1.0);
-    });
-    return color;
-}
-
-static UIColor *BPKButtonPrimaryOnDarkDisabledBackgroundColor(void) {
-    static UIColor *color;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      color = BPKButtonDynamicColor(0.878, 0.894, 0.914, 1.0, 0.043, 0.071, 0.114, 1.0);
-    });
-    return color;
-}
-
-static UIColor *BPKButtonPrimaryOnDarkDisabledForegroundColor(void) {
-    static UIColor *color;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      color = BPKButtonDynamicColor(0.000, 0.000, 0.000, 0.2, 1.000, 1.000, 1.000, 0.2);
-    });
-    return color;
-}
-
-static UIColor *BPKButtonPrimaryOnLightNormalBackgroundColor(void) {
-    static UIColor *color;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      color = BPKButtonDynamicColor(0.000, 0.384, 0.890, 1.0, 0.518, 0.914, 1.000, 1.0);
-    });
-    return color;
-}
-
-static UIColor *BPKButtonPrimaryOnLightPressedBackgroundColor(void) {
-    static UIColor *color;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      color = BPKButtonDynamicColor(0.008, 0.302, 0.686, 1.0, 0.820, 0.969, 1.000, 1.0);
-    });
-    return color;
-}
-
-static UIColor *BPKButtonPrimaryOnLightDisabledBackgroundColor(void) {
-    static UIColor *color;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      color = BPKButtonDynamicColor(0.878, 0.894, 0.914, 1.0, 0.043, 0.071, 0.114, 1.0);
-    });
-    return color;
-}
-
-static UIColor *BPKButtonPrimaryOnLightDisabledForegroundColor(void) {
-    static UIColor *color;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      color = BPKButtonDynamicColor(0.141, 0.200, 0.275, 1.0, 0.141, 0.200, 0.275, 1.0);
-    });
-    return color;
-}
-
-static UIColor *BPKButtonSecondaryOnDarkNormalBackgroundColor(void) {
-    static UIColor *color;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      color = BPKButtonDynamicColor(0.000, 0.000, 0.000, 1.0, 0.000, 0.000, 0.000, 1.0);
-    });
-    return color;
-}
-
-static UIColor *BPKButtonSecondaryOnDarkPressedBackgroundColor(void) {
-    static UIColor *color;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      color = BPKButtonDynamicColor(0.263, 0.286, 0.314, 1.0, 0.263, 0.286, 0.314, 1.0);
-    });
-    return color;
-}
-
-static UIColor *BPKButtonSecondaryOnDarkDisabledBackgroundColor(void) {
-    static UIColor *color;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      color = BPKButtonDynamicColor(0.119, 0.129, 0.145, 1.0, 0.119, 0.129, 0.145, 1.0);
-    });
-    return color;
-}
-
-static UIColor *BPKButtonSecondaryOnDarkDisabledForegroundColor(void) {
-    static UIColor *color;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      color = BPKButtonDynamicColor(0.392, 0.412, 0.439, 1.0, 0.392, 0.412, 0.439, 1.0);
-    });
-    return color;
+static inline UIColor *BPKButtonSecondaryOnDarkDisabledForegroundColor(void) {
+    return BPKButtonColor(0.392, 0.412, 0.439, 1.0, 0.392, 0.412, 0.439, 1.0);
 }
 
 BPKButtonAppearanceSet *BPKButtonAppearanceSetForStyle(BPKButtonStyle style) {
@@ -352,8 +189,6 @@ BPKButtonAppearanceSet *BPKButtonAppearanceSetForStyle(BPKButtonStyle style) {
                 highlightedAppearance:BPKAppearance(BPKButtonPrimaryPressedBackgroundColor(), BPKColor.textOnDarkColor)];
     }
 }
-
-#undef BPK_DEFINE_BUTTON_COLOR
 
 NS_ASSUME_NONNULL_BEGIN
 

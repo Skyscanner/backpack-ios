@@ -24,6 +24,11 @@
 #import <Backpack/Icon.h>
 #import <Backpack/Label.h>
 
+#pragma clang diagnostic push
+// The UIKit demo still showcases legacy BPKButton variants, so suppress the
+// deprecation warnings inside this example controller only.
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKButtonsViewController ()
 @property (weak, nonatomic) IBOutlet UIView *buttonsContainer;
@@ -129,4 +134,5 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 @end
+#pragma clang diagnostic pop
 NS_ASSUME_NONNULL_END
