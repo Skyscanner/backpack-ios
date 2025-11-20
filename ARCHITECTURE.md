@@ -1,6 +1,6 @@
 # Architecture
 
-This project uses a mix of technologies and languages to achieve its goals. This document describes what those technologies are and their responsibilities.
+This project uses a mix of technologies and languages to achieve its goals. This document describes what those technologies are and their responsibilities. 
 
 ## NPM 
 
