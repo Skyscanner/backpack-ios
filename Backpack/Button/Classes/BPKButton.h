@@ -16,7 +16,10 @@
  * limitations under the License.
  */
 
-#import "BPKLabel.h"
+#import <Backpack/BPKLabel.h>
+
+// WARNING: BPKButton remains for maintenance only; prefer the SwiftUI Backpack
+// button for new features.
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 /**
@@ -107,7 +110,8 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * `BPKButton` is a subclass of `UIButton` configured with Skyscanner style properties.
  */
-IB_DESIGNABLE @interface BPKButton : UIControl
+IB_DESIGNABLE __attribute__((deprecated("BPKButton is maintenance only; use Backpack's SwiftUI button instead")))
+@interface BPKButton : UIControl
 
 /// :nodoc:
 @property(nullable, nonatomic, strong) UIColor *featuredContentColor UI_APPEARANCE_SELECTOR;
