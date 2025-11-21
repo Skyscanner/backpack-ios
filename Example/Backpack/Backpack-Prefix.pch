@@ -26,3 +26,5 @@
     @import UIKit;
     @import Foundation;
 #endif
+
+#define BPK_DISABLE_BPKBUTTON_DEPRECATION 1
