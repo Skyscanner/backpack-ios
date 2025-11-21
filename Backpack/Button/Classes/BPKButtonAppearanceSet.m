@@ -19,8 +19,8 @@
 #import "BPKButtonAppearanceSet.h"
 #import "BPKButton.h"
 #import "BPKButtonAppearance.h"
-#import <Backpack/Color.h>
 #import <Backpack/BPKColor+Internal.h>
+#import <Backpack/Color.h>
 
 static BPKButtonAppearance *BPKAppearance(UIColor *background, UIColor *foreground) {
     BPKButtonAppearance *appearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil
@@ -55,27 +55,30 @@ BPKButtonAppearanceSet *BPKButtonAppearanceSetForStyle(BPKButtonStyle style) {
                 highlightedAppearance:BPKAppearance(BPKColor.internalButtonFeaturedPressedBackgroundColor, BPKColor.textPrimaryInverseColor)];
     case BPKButtonStyleDestructive:
         return [[BPKButtonAppearanceSet alloc]
-            initWithRegularAppearance:BPKAppearance(BPKColor.internalButtonDestructiveNormalBackgroundColor, BPKColor.internalButtonDestructiveNormalForegroundColor)
+            initWithRegularAppearance:BPKAppearance(BPKColor.internalButtonDestructiveNormalBackgroundColor,
+                                                    BPKColor.internalButtonDestructiveNormalForegroundColor)
                     loadingAppearance:BPKAppearance(BPKColor.internalButtonDestructivePressedBackgroundColor, BPKColor.textPrimaryInverseColor)
                    disabledAppearance:disabledAppearance
                 highlightedAppearance:BPKAppearance(BPKColor.internalButtonDestructivePressedBackgroundColor, BPKColor.textPrimaryInverseColor)];
     case BPKButtonStyleLink:
-        return [[BPKButtonAppearanceSet alloc] initWithRegularAppearance:BPKAppearance(UIColor.clearColor, BPKColor.internalButtonLinkNormalForegroundColor)
-                                                       loadingAppearance:BPKAppearance(UIColor.clearColor, BPKColor.internalButtonLinkPressedForegroundColor)
-                                                      disabledAppearance:BPKAppearance(UIColor.clearColor, BPKColor.textDisabledColor)
-                                                   highlightedAppearance:BPKAppearance(UIColor.clearColor, BPKColor.internalButtonLinkPressedForegroundColor)];
+        return [[BPKButtonAppearanceSet alloc]
+            initWithRegularAppearance:BPKAppearance(UIColor.clearColor, BPKColor.internalButtonLinkNormalForegroundColor)
+                    loadingAppearance:BPKAppearance(UIColor.clearColor, BPKColor.internalButtonLinkPressedForegroundColor)
+                   disabledAppearance:BPKAppearance(UIColor.clearColor, BPKColor.textDisabledColor)
+                highlightedAppearance:BPKAppearance(UIColor.clearColor, BPKColor.internalButtonLinkPressedForegroundColor)];
     case BPKButtonStyleLinkOnDark:
-        return
-            [[BPKButtonAppearanceSet alloc] initWithRegularAppearance:BPKAppearance(UIColor.clearColor, BPKColor.internalButtonLinkOnDarkNormalForegroundColor)
-                                                    loadingAppearance:BPKAppearance(UIColor.clearColor, BPKColor.internalButtonLinkOnDarkPressedForegroundColor)
-                                                   disabledAppearance:BPKAppearance(UIColor.clearColor, BPKColor.internalButtonLinkOnDarkDisabledForegroundColor)
-                                                highlightedAppearance:BPKAppearance(UIColor.clearColor, BPKColor.internalButtonLinkOnDarkPressedForegroundColor)];
+        return [[BPKButtonAppearanceSet alloc]
+            initWithRegularAppearance:BPKAppearance(UIColor.clearColor, BPKColor.internalButtonLinkOnDarkNormalForegroundColor)
+                    loadingAppearance:BPKAppearance(UIColor.clearColor, BPKColor.internalButtonLinkOnDarkPressedForegroundColor)
+                   disabledAppearance:BPKAppearance(UIColor.clearColor, BPKColor.internalButtonLinkOnDarkDisabledForegroundColor)
+                highlightedAppearance:BPKAppearance(UIColor.clearColor, BPKColor.internalButtonLinkOnDarkPressedForegroundColor)];
     case BPKButtonStylePrimaryOnDark:
         return [[BPKButtonAppearanceSet alloc]
-            initWithRegularAppearance:BPKAppearance(BPKColor.internalButtonPrimaryOnDarkNormalBackgroundColor, BPKColor.textPrimaryColor)
-                    loadingAppearance:BPKAppearance(BPKColor.internalButtonPrimaryOnDarkPressedBackgroundColor, BPKColor.textPrimaryColor)
-                   disabledAppearance:BPKAppearance(BPKColor.internalButtonPrimaryOnDarkDisabledBackgroundColor, BPKColor.internalButtonPrimaryOnDarkDisabledForegroundColor)
-                highlightedAppearance:BPKAppearance(BPKColor.internalButtonPrimaryOnDarkPressedBackgroundColor, BPKColor.textPrimaryColor)];
+            initWithRegularAppearance:BPKAppearance(BPKColor.internalButtonPrimaryOnDarkNormalBackgroundColor, BPKColor.textOnLightColor)
+                    loadingAppearance:BPKAppearance(BPKColor.internalButtonPrimaryOnDarkPressedBackgroundColor, BPKColor.textOnLightColor)
+                   disabledAppearance:BPKAppearance(BPKColor.internalButtonPrimaryOnDarkDisabledBackgroundColor,
+                                                    BPKColor.internalButtonPrimaryOnDarkDisabledForegroundColor)
+                highlightedAppearance:BPKAppearance(BPKColor.internalButtonPrimaryOnDarkPressedBackgroundColor, BPKColor.textOnLightColor)];
     case BPKButtonStylePrimaryOnLight:
         return [[BPKButtonAppearanceSet alloc]
             initWithRegularAppearance:BPKAppearance(BPKColor.internalButtonPrimaryOnLightNormalBackgroundColor, BPKColor.textOnDarkColor)
