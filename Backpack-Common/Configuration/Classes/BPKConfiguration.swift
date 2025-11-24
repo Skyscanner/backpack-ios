@@ -26,6 +26,7 @@ public enum ConfigType: String {
     case badge = "backpack_badge"
     case button = "backpack_button"
     case card = "backpack_card"
+    case icon = "backpack_icon"
     case all = "backpack_all"
 }
 
@@ -81,6 +82,10 @@ public final class BpkConfiguration: NSObject {
         public var heightDimension: String?
         public var radius: CGFloat?
         public var radiusToken: RadiusToken?
+    }
+    
+    public struct BpkIconConfig {
+        public var setBpkIcon: Bool?
     }
     
     /// Setting stored configs
@@ -148,6 +153,13 @@ public final class BpkConfiguration: NSObject {
         set { _heading5Config = newValue }
     }
     
+    private var _iconConfig: BpkIconConfig?
+
+    public var iconConfig: BpkIconConfig? {
+        get { getConfig { self._iconConfig } }
+        set { _iconConfig = newValue }
+    }
+    
     private func getConfig<T>(getter: () -> T) -> T {
         emitSignalIfNeeded()
         return configurationAccessQueue.sync {
@@ -200,6 +212,10 @@ public final class BpkConfiguration: NSObject {
 
     private func setBadgeExperiment() {
         self.badgeConfig = BpkBadgeConfig()
+    }
+    
+    private func setIconExperiment() {
+        self.iconConfig = BpkIconConfig(setBpkIcon: true)
     }
 
     private func setTypographyExperiment() {
@@ -286,6 +302,8 @@ public final class BpkConfiguration: NSObject {
                 setButtonExperiment()
             case .card:
                 setCardExperiment()
+            case .icon:
+                setIconExperiment()
             }
         }
     }
@@ -296,6 +314,7 @@ public final class BpkConfiguration: NSObject {
         setBadgeExperiment()
         setButtonExperiment()
         setCardExperiment()
+        setIconExperiment()
     }
 }
 
@@ -340,6 +359,7 @@ extension BpkConfiguration {
         buttonConfig = nil
         badgeConfig = nil
         cardConfig = nil
+        iconConfig = nil
         hasSet = false
         configIsAccessed = false
         onConfigurationAccessed = nil
