@@ -21,20 +21,20 @@ import Backpack_Common
 
 public struct BPKIconView: View {
     let icon: BPKIcon
-    let vdlIconName: String?
+    let vdlIcon: Image?
     let size: BPKIcon.Size
     let accessibilityLabel: String?
 
-    public init(_ icon: BPKIcon, vdlIconName: String? = nil, size: BPKIcon.Size = .small) {
+    public init(_ icon: BPKIcon, vdlIcon: Image? = nil, size: BPKIcon.Size = .small) {
         self.icon = icon
-        self.vdlIconName = vdlIconName
+        self.vdlIcon = vdlIcon
         self.size = size
         self.accessibilityLabel = nil
     }
     
-    public init(_ icon: BPKIcon, vdlIconName: String? = nil, size: BPKIcon.Size = .small, accessibilityLabel: String) {
+    public init(_ icon: BPKIcon, vdlIcon: Image? = nil, size: BPKIcon.Size = .small, accessibilityLabel: String) {
         self.icon = icon
-        self.vdlIconName = vdlIconName
+        self.vdlIcon = vdlIcon
         self.size = size
         self.accessibilityLabel = accessibilityLabel
     }
@@ -57,8 +57,8 @@ public struct BPKIconView: View {
     public var body: some View {
         let enableAccessibility = accessibilityLabel?.isEmpty == false
         
-        if let iconName = vdlIconName {
-            Image(vdlIcon: iconName, size: size, shouldEnableAccessibility: enableAccessibility)
+        if let vdlImage = vdlIcon {
+            vdlImage
                 .resizable()
                 .renderingMode(.template)
                 .flipsForRightToLeftLayoutDirection(shouldAutoMirror)
@@ -75,7 +75,6 @@ public struct BPKIconView: View {
                 .if(enableAccessibility, transform: { view in
                     view.accessibilityLabel(accessibilityLabel ?? "")
                 })
-
         }
 
     }
@@ -103,15 +102,6 @@ private extension Image {
             self.init(iconName, bundle: icon.bundle)
         } else {
             self.init(decorative: iconName, bundle: icon.bundle)
-        }
-    }
-    
-    init(vdlIcon: String, size: BPKIcon.Size = .small, shouldEnableAccessibility: Bool) {
-        let iconName = "\(vdlIcon)-\(size.suffix)"
-        if shouldEnableAccessibility {
-            self.init(iconName, bundle: .main)
-        } else {
-            self.init(decorative: iconName, bundle: .main)
         }
     }
 }
