@@ -21,6 +21,7 @@
 #import "BPKButtonAppearance.h"
 #import "BPKButtonAppearanceSet.h"
 #import "UIColor+BPKButton.h"
+
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 #import <Backpack/DarkMode.h>
@@ -49,8 +50,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) UIActivityIndicatorView *spinner;
 @property(nonatomic, strong) NSNumber *cornerRadius;
 @end
-
-BPKButtonAppearanceSet *BPKButtonAppearanceSetForStyle(BPKButtonStyle style);
 
 @implementation BPKLegacyLinkButton
 

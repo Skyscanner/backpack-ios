@@ -1,3 +1,4 @@
+// clang-format off
 /*
  * Backpack - Skyscanner's Design System
  *
@@ -16,16 +17,24 @@
  * limitations under the License.
  */
 
-#import <Backpack/Button.h>
-#import <Foundation/Foundation.h>
+#import "BPKColor.h"
 
 NS_ASSUME_NONNULL_BEGIN
+/// Backpack Internal Colors
+/// These colors are internal on purpose and can only be used by Backpack components.
+/// Do not use these colors in your own designs.
+@interface BPKColor (BPKInternalColors)
 
-__attribute__((deprecated("BPKNavigationBarButton is maintenance only; prefer the SwiftUI navigation components")))
-@interface BPKNavigationBarButton : BPKButton
-
-@property(nonatomic, strong) UIColor *contentColor;
+///-----------------------
+/// @name Colors
+///-----------------------
+{% for c in internalColor %}
+/**
+ * The `{{c.name}}` internal color.
+ */
+@property(nonatomic, class, readonly) UIColor * {{c.objcName}}{{" __deprecated" if c.deprecated}};
+{% endfor %}
 
 @end
-
 NS_ASSUME_NONNULL_END
+// clang-format on
