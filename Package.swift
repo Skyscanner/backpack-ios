@@ -59,7 +59,7 @@ let backpackObjCSourceDirs = [
   "Gradient/Classes",
   "Shadow/Classes",
   "Spinner/Classes",
-  "Appearance/Classes"
+  // "Appearance/Classes"
 ]
 let backpackCommonSourceDirs = [
   "BackpackCommonImports.swift",
@@ -239,7 +239,7 @@ let targets: [Target] = [
         .headerSearchPath("StarRating/Classes"),
         .headerSearchPath("Gradient/Classes"),
         .headerSearchPath("Shadow/Classes/Generated"),
-        .headerSearchPath("Appearance/Classes"),
+        // .headerSearchPath("Appearance/Classes"),
         .headerSearchPath("Radii/Classes/Generated"),
         .headerSearchPath("BorderWidth/Classes/Generated"),
         .headerSearchPath("Duration/Classes/Generated"),
@@ -255,7 +255,7 @@ let targets: [Target] = [
     .target(
       name: "Backpack",
       dependencies: [
-        " ",
+        "Backpack_Common",
         "Backpack_Tokens",
         "Backpack_ObjC",
         .product(name: "FloatingPanel", package: "FloatingPanel")
