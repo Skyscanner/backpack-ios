@@ -333,7 +333,6 @@
 		53E075B827FC9FAF0033147C /* StoryboardPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardPresentable.swift; sourceTree = "<group>"; };
 		53E075BA27FC9FD30033147C /* CustomPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPresentable.swift; sourceTree = "<group>"; };
 		53E075BD27FCBE8C0033147C /* RootViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewControllerFactory.swift; sourceTree = "<group>"; };
-		54DDBEECFBF1FCED05A9179D /* Pods-Backpack Native.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack Native.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack Native/Pods-Backpack Native.debug.xcconfig"; sourceTree = "<group>"; };
 		58CFF14622D3837900C45B0B /* StarRatings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StarRatings.storyboard; sourceTree = "<group>"; };
 		58CFF14822D383C300C45B0B /* StarRatingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingsViewController.swift; sourceTree = "<group>"; };
 		5BDC00DF358FDC7E213EC2B3 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -398,7 +397,6 @@
 		C40C7BA12E2E865F0081EF50 /* BlurTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurTokensView.swift; sourceTree = "<group>"; };
 		C495BDB42EB8F299000EB522 /* ConfigurationButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationButtonView.swift; sourceTree = "<group>"; };
 		C4EA5D812EC4F3E20082F2B4 /* ConfigurationCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationCardView.swift; sourceTree = "<group>"; };
-		C663CF67A51D3C1D5CCA2BD1 /* Pods-Backpack Native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack Native.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack Native/Pods-Backpack Native.release.xcconfig"; sourceTree = "<group>"; };
 		D205510822675DAE00BC5BCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		D211A90A22D8B42B00447B64 /* HorizontalNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalNavViewController.swift; sourceTree = "<group>"; };
 		D216C21222E974B100045A9E /* HorizontalNavigationUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalNavigationUITest.swift; sourceTree = "<group>"; };
@@ -1459,8 +1457,6 @@
 			children = (
 				749A593BF4A88C859392AAF6 /* Pods-Backpack_Example.debug.xcconfig */,
 				11F0F39D8252943CD3B0C19D /* Pods-Backpack_Example.release.xcconfig */,
-				54DDBEECFBF1FCED05A9179D /* Pods-Backpack Native.debug.xcconfig */,
-				C663CF67A51D3C1D5CCA2BD1 /* Pods-Backpack Native.release.xcconfig */,
 				0F386FFD6327F785FBB09093 /* Pods-Backpack-Native.debug.xcconfig */,
 				3DDD5D1DB6A77816BAA9481F /* Pods-Backpack-Native.release.xcconfig */,
 			);
