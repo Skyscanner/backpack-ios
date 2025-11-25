@@ -44,13 +44,13 @@ let backpackObjCSourceDirs = [
   "Font/Classes",
   "FlareView/Classes",
   "Button/Classes",
-  "Dialog/Classes",
+  // "Dialog/Classes",
   "Icon/Classes",
   "Label/Classes",
   "Color/Classes/Generated/UIColor+Backpack.m",
   "Card/Classes",
-  "Map/Classes",
-  "NavigationBar/Classes",
+  // "Map/Classes",
+  // "NavigationBar/Classes",
   "ProgressBar/Classes",
   "Toast/Classes",
   "StarRating/Classes",
@@ -62,12 +62,9 @@ let backpackObjCSourceDirs = [
   "Appearance/Classes"
 ]
 let backpackCommonSourceDirs = [
-  // Common
   "BackpackCommonImports.swift",
   "BPKCommonBundle.swift",
   "BPKCommonRatingScale.swift",
-
-  // Components
   "Carousel",
   "Configuration",
   "Icons/Generated"
@@ -234,9 +231,8 @@ let targets: [Target] = [
         .headerSearchPath("Button/Classes"),
         .headerSearchPath("Icon/Classes"),
         .headerSearchPath("Icon/Classes/Generated"),
-        .headerSearchPath("NavigationBar/Classes"),
+        // .headerSearchPath("NavigationBar/Classes"),
         .headerSearchPath("Label/Classes"),
-        .headerSearchPath("Dialog/Classes"),
         .headerSearchPath("Theme/Classes"),
         .headerSearchPath("ProgressBar/Classes"),
         .headerSearchPath("RTLSupport/Classes"),
@@ -259,7 +255,7 @@ let targets: [Target] = [
     .target(
       name: "Backpack",
       dependencies: [
-        "Backpack_Common",
+        " ",
         "Backpack_Tokens",
         "Backpack_ObjC",
         .product(name: "FloatingPanel", package: "FloatingPanel")
