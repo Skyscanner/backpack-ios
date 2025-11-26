@@ -20,6 +20,17 @@
 import Foundation
 import UIKit
 
+#if SWIFT_PACKAGE
+import Backpack_ObjC
+public typealias BPKStarType = Backpack_ObjC.BPKStar
+public typealias BPKStarSizeType = Backpack_ObjC.BPKStarSize
+public typealias BPKStarStateType = Backpack_ObjC.BPKStarState
+#else
+public typealias BPKStarType = BPKStar
+public typealias BPKStarSizeType = BPKStarSize
+public typealias BPKStarStateType = BPKStarState
+#endif
+
 public class BPKHotelStarRating: UIStackView {
     
     public var rating: Int {
@@ -29,14 +40,14 @@ public class BPKHotelStarRating: UIStackView {
         }
     }
     
-    public var size: BPKStarSize {
+    public var size: BPKStarSizeType {
         didSet {
             guard size != oldValue else { return }
             updateLookAndFeel()
         }
     }
     
-    public init(size: BPKStarSize = .small, rating: Int = 0) {
+    public init(size: BPKStarSizeType = .small, rating: Int = 0) {
         self.size = size
         self.rating = rating
         super.init(frame: .zero)
@@ -72,8 +83,8 @@ public class BPKHotelStarRating: UIStackView {
         guard rating > 0 else { return }
         
         for _ in Range(1...rating) {
-            let star = BPKStar(size: size)
-            star.state = .full
+            let star = BPKStarType(size: size)
+            star.state = BPKStarStateType.full
             addArrangedSubview(star)
         }
     }

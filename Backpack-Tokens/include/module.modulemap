@@ -16,12 +16,17 @@
 // limitations under the License.
 //
 
-module BackpackTokens {
-  header "../../Backpack/Color/Classes/Generated/BPKColor.h"
-  header "../../Backpack/Spacing/Classes/Generated/BPKSpacing.h"
-  header "../../Backpack/Radii/Classes/Generated/BPKRadii.h"
-  header "../../Backpack/BorderWidth/Classes/Generated/BPKBorderWidth.h"
-  header "../../Backpack/Duration/Classes/Generated/BPKDuration.h"
+module Backpack_Tokens {
+  header "Backpack/Color.h"
+  header "Backpack/BPKColor.h"
+  header "Backpack/Spacing.h"
+  header "Backpack/BPKSpacing.h"
+  header "Backpack/Radii.h"
+  header "Backpack/BPKRadii.h"
+  header "Backpack/BorderWidth.h"
+  header "Backpack/BPKBorderWidth.h"
+  header "Backpack/Duration.h"
+  header "Backpack/BPKDuration.h"
   header "Backpack/DarkMode.h"
   export *
 }
