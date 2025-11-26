@@ -83,13 +83,25 @@ FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameBaggageRemove;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameBaggageCabinAdd;
 /// :nodoc:
+FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameBaggageCabinIncludedTick;
+/// :nodoc:
+FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameBaggageCabinNotIncludedCross;
+/// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameBaggageCabinNotIncluded;
+/// :nodoc:
+FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameBaggageCabinUncertain;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameBaggageCabin;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameBaggageCheckedAdd;
 /// :nodoc:
+FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameBaggageCheckedIncludedTick;
+/// :nodoc:
+FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameBaggageCheckedNotIncludedCross;
+/// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameBaggageCheckedNotIncluded;
+/// :nodoc:
+FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameBaggageCheckedUncertain;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameBaggageChecked;
 /// :nodoc:

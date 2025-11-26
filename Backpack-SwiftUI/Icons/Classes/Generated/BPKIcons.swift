@@ -47,10 +47,16 @@ public extension BPKIcon {
     static let baggageAdd = BPKIcon(name: "baggage--add")
     static let baggageRemove = BPKIcon(name: "baggage--remove")
     static let baggageCabinAdd = BPKIcon(name: "baggage-cabin-add")
+    static let baggageCabinIncludedTick = BPKIcon(name: "baggage-cabin-included-tick")
+    static let baggageCabinNotIncludedCross = BPKIcon(name: "baggage-cabin-not-included-cross")
     static let baggageCabinNotIncluded = BPKIcon(name: "baggage-cabin-not-included")
+    static let baggageCabinUncertain = BPKIcon(name: "baggage-cabin-uncertain")
     static let baggageCabin = BPKIcon(name: "baggage-cabin")
     static let baggageCheckedAdd = BPKIcon(name: "baggage-checked-add")
+    static let baggageCheckedIncludedTick = BPKIcon(name: "baggage-checked-included-tick")
+    static let baggageCheckedNotIncludedCross = BPKIcon(name: "baggage-checked-not-included-cross")
     static let baggageCheckedNotIncluded = BPKIcon(name: "baggage-checked-not-included")
+    static let baggageCheckedUncertain = BPKIcon(name: "baggage-checked-uncertain")
     static let baggageChecked = BPKIcon(name: "baggage-checked")
     static let baggageCross = BPKIcon(name: "baggage-cross")
     static let baggageGeneric = BPKIcon(name: "baggage-generic")
@@ -339,10 +345,16 @@ public extension BPKIcon {
         case "baggage--add": return .baggageAdd
         case "baggage--remove": return .baggageRemove
         case "baggage-cabin-add": return .baggageCabinAdd
+        case "baggage-cabin-included-tick": return .baggageCabinIncludedTick
+        case "baggage-cabin-not-included-cross": return .baggageCabinNotIncludedCross
         case "baggage-cabin-not-included": return .baggageCabinNotIncluded
+        case "baggage-cabin-uncertain": return .baggageCabinUncertain
         case "baggage-cabin": return .baggageCabin
         case "baggage-checked-add": return .baggageCheckedAdd
+        case "baggage-checked-included-tick": return .baggageCheckedIncludedTick
+        case "baggage-checked-not-included-cross": return .baggageCheckedNotIncludedCross
         case "baggage-checked-not-included": return .baggageCheckedNotIncluded
+        case "baggage-checked-uncertain": return .baggageCheckedUncertain
         case "baggage-checked": return .baggageChecked
         case "baggage-cross": return .baggageCross
         case "baggage-generic": return .baggageGeneric
