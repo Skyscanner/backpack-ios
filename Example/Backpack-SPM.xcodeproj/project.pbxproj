@@ -31,6 +31,7 @@
 		289894B22ED70CDD00DDC932 /* Backpack-Common in Frameworks */ = {isa = PBXBuildFile; productRef = 289894B12ED70CDD00DDC932 /* Backpack-Common */; };
 		289894B42ED70CDD00DDC932 /* Backpack-Fonts in Frameworks */ = {isa = PBXBuildFile; productRef = 289894B32ED70CDD00DDC932 /* Backpack-Fonts */; };
 		289894B62ED70CDD00DDC932 /* Backpack-SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 289894B52ED70CDD00DDC932 /* Backpack-SwiftUI */; };
+		289894B82ED70E2900DDC932 /* ConfigurationCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289894B72ED70E2900DDC932 /* ConfigurationCardView.swift */; };
 		28CF33712E39273C00A9DF34 /* ConfigurationExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CF336F2E39273C00A9DF34 /* ConfigurationExampleView.swift */; };
 		2A62FDDD2AB89F4500D545E5 /* TextAreaExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A62FDDC2AB89F4500D545E5 /* TextAreaExampleView.swift */; };
 		3A7D2D47214AB9F400ECBD5B /* BPKButtonsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D2D46214AB9F400ECBD5B /* BPKButtonsViewController.m */; };
@@ -260,6 +261,7 @@
 		256F76142BB479850047AD1C /* SearchInputSummaryExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInputSummaryExampleView.swift; sourceTree = "<group>"; };
 		25D1337C2C73EFD7002C9562 /* SearchControlInputUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchControlInputUITest.swift; sourceTree = "<group>"; };
 		285309ED2DAD6B7800BB6D24 /* DynamicLayoutGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLayoutGroups.swift; sourceTree = "<group>"; };
+		289894B72ED70E2900DDC932 /* ConfigurationCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationCardView.swift; sourceTree = "<group>"; };
 		28CF336F2E39273C00A9DF34 /* ConfigurationExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationExampleView.swift; sourceTree = "<group>"; };
 		2A62FDDC2AB89F4500D545E5 /* TextAreaExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAreaExampleView.swift; sourceTree = "<group>"; };
 		3A7D2D45214AB9F400ECBD5B /* BPKButtonsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKButtonsViewController.h; sourceTree = "<group>"; };
@@ -582,6 +584,7 @@
 			children = (
 				EED38AA32EB37AA200A77904 /* ConfigurationBadgeView.swift */,
 				24BB6A012EAF73C500E982A4 /* ConfigurationTypographyView.swift */,
+				289894B72ED70E2900DDC932 /* ConfigurationCardView.swift */,
 				28CF336F2E39273C00A9DF34 /* ConfigurationExampleView.swift */,
 				24BB69FF2EAF733F00E982A4 /* ConfigurationChipsView.swift */,
 				C495BDB42EB8F299000EB522 /* ConfigurationButtonView.swift */,
@@ -1808,6 +1811,7 @@
 				1A68212D2B3308C80048220E /* AppSearchModalExampleViewModel.swift in Sources */,
 				53C6621229EA0DAB00BF1A62 /* SwitchExampleView.swift in Sources */,
 				0245783E2ABC3AA1006008D1 /* InsetBannerExampleView.swift in Sources */,
+				289894B82ED70E2900DDC932 /* ConfigurationCardView.swift in Sources */,
 				0245783F2ABC3AA1006008D1 /* SponsoredInsetBannerExampleView.swift in Sources */,
 				D61ACE052306E238001C976E /* NavigationBarViewController.swift in Sources */,
 				D26B8B86219EAC72006FE706 /* BadgesViewController.swift in Sources */,
