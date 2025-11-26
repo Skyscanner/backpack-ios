@@ -64,7 +64,6 @@ public struct BPKIconView: View {
             vdlImage
                 .resizable()
                 .renderingMode(.template)
-                .tint(Color(BPKColor.textPrimaryInverseColor))
                 .flipsForRightToLeftLayoutDirection(shouldAutoMirror)
                 .frame(width: dimension, height: dimension)
                 .if(enableAccessibility, transform: { view in
