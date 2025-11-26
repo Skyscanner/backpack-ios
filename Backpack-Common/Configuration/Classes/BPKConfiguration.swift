@@ -170,7 +170,7 @@ public final class BpkConfiguration: NSObject {
         let buttonBackgroundColour = UIColor.dynamicColorTest(light: secondaryLight, dark: secondaryDark)
         
         let secondaryForegroundLight = UIColor(red: 2/255, green: 77/255, blue: 175/255, alpha: 1.0)
-        let secondaryForegroundDark = UIColor(red: 255, green: 255, blue: 255, alpha: 1.0)
+        let secondaryForegroundDark = UIColor(red: 1, green: 1, blue: 1, alpha: 1.0)
         let buttonForegroundColour = UIColor.dynamicColorTest(light: secondaryForegroundLight, dark: secondaryForegroundDark)
         
         let pressedBackgroundLight = UIColor(red: 180/255, green: 215/255, blue: 255/255, alpha: 1.0)
