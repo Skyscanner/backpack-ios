@@ -24,12 +24,14 @@ public struct BPKIconView: View {
     let vdlIcon: Image?
     let size: BPKIcon.Size
     let accessibilityLabel: String?
+    let config: BpkConfiguration?
 
     public init(_ icon: BPKIcon, vdlIcon: Image? = nil, size: BPKIcon.Size = .small) {
         self.icon = icon
         self.vdlIcon = vdlIcon
         self.size = size
         self.accessibilityLabel = nil
+        self.config = BpkConfiguration.shared
     }
     
     public init(_ icon: BPKIcon, vdlIcon: Image? = nil, size: BPKIcon.Size = .small, accessibilityLabel: String) {
@@ -37,6 +39,7 @@ public struct BPKIconView: View {
         self.vdlIcon = vdlIcon
         self.size = size
         self.accessibilityLabel = accessibilityLabel
+        self.config = BpkConfiguration.shared
     }
     
     @ScaledMetric private var scaledSmallSize: CGFloat = 16
@@ -57,7 +60,7 @@ public struct BPKIconView: View {
     public var body: some View {
         let enableAccessibility = accessibilityLabel?.isEmpty == false
         
-        if let vdlImage = vdlIcon {
+        if let vdlImage = vdlIcon, config?.iconConfig != nil {
             vdlImage
                 .resizable()
                 .renderingMode(.template)
