@@ -23,7 +23,7 @@
     "@babel/core": "^7.15.5",
     "@babel/preset-env": "^7.15.6",
     "@skyscanner/bpk-foundations-ios": "^23.0.0",
-    "@skyscanner/bpk-svgs": "^20.8.0",
+    "@skyscanner/bpk-svgs": "^20.10.0",
     "@babel/eslint-parser": "^7.22.9",
     "danger": "^13.0.4",
     "eslint_d": "^14.0.1",
