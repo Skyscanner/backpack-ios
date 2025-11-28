@@ -561,6 +561,12 @@ FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameUpload;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameUseLocation;
 /// :nodoc:
+FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameVdlCars;
+/// :nodoc:
+FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameVdlFlight;
+/// :nodoc:
+FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameVdlHotels;
+/// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameView;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameVirus;

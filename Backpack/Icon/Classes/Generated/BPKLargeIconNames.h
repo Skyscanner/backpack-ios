@@ -559,6 +559,36 @@ FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameUpload;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameUseLocation;
 /// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVdlCars;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVdlFlight;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVdlHomeBeach;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVdlHomeCars;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVdlHomeFlight;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVdlHomeHotels;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVdlHotels;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVdlTabDropsSelected;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVdlTabDrops;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVdlTabProfileSelected;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVdlTabProfile;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVdlTabSavedSelected;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVdlTabSaved;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVdlTabSearchSelected;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVdlTabSearch;
+/// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameView;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVirus;
