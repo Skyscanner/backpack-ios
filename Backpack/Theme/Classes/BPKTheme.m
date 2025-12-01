@@ -18,24 +18,8 @@
 
 #import "BPKTheme.h"
 
-#import <UIKit/UIKit.h>
-
-#import "BPKThemeContainer.h"
-#import "BPKThemeDefinition.h"
-#import "Button.h"
-#import "Color.h"
-#import "Gradient.h"
-#import "Spinner.h"
-#import "StarRating.h"
-#import "Switch.h"
-#import "TappableLinkLabel.h"
-#import "UIView+BPKThemeContainer.h"
-
-#if !defined(SWIFT_PACKAGE)
-#import "BPKProgressBar.h"
 #import <Backpack/Backpack-Swift.h>
-@class BPKHorizontalNavigationObjc;
-#endif
+#import <Backpack/Backpack.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -95,13 +79,11 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) { BPKGrayColor50, BPKGrayColor100, BPKG
     BPKStar *starAppearance = [BPKStar appearanceWhenContainedInInstancesOfClasses:@[class]];
     starAppearance.starFilledColor = theme.starFilledColor;
 
-#if !defined(SWIFT_PACKAGE)
     BPKProgressBar *progressBarAppearance = [BPKProgressBar appearanceWhenContainedInInstancesOfClasses:@[class]];
     progressBarAppearance.fillColor = theme.progressBarPrimaryColor;
 
     BPKHorizontalNavigationObjc *horizontalNavAppearance = [BPKHorizontalNavigationObjc appearanceWhenContainedInInstancesOfClasses:@[class]];
     horizontalNavAppearance.selectedColor = theme.horiontalNavigationSelectedColor;
-#endif
 }
 
 @end

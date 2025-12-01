@@ -17,7 +17,7 @@
  */
 
 import UIKit
-import Backpack
+import Backpack.Switch
 
 class SwitchesViewController: UIViewController {
     override func viewDidLoad() {

@@ -16,9 +16,6 @@
  * limitations under the License.
  */
 
-import UIKit
-import Backpack
-
 final class RatingsViewController: UIViewController {
 
     enum TitleType {
