@@ -35,7 +35,6 @@ Pod::Spec.new do |s|
   s.source_files = 'Backpack/Backpack.h', 'Backpack/Common.h', 'Backpack/*/Classes/**/*.{h,m,swift}'
   s.exclude_files = 'Backpack/Tests/**'
   s.public_header_files = 'Backpack/Backpack.h', 'Backpack/*/Classes/**/*.h'
-  s.private_header_files = 'Backpack/{BorderWidth,Color,Duration,Font,Radii,Shadow,Spacing}/Classes/Generated/**/*.h'
   s.dependency 'FloatingPanel', '2.8.6'
   s.dependency 'Backpack-Common'
   s.frameworks = 'UIKit', 'Foundation', 'CoreText'
