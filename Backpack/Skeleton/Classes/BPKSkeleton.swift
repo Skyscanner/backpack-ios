@@ -19,6 +19,9 @@
 import Foundation
 import UIKit
 import SwiftUI
+#if SWIFT_PACKAGE
+import BackpackTokens
+#endif
 
 enum BPKSkeletonConstants {
     static let backgroundColor = BPKColor.surfaceHighlightColor

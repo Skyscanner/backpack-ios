@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
+import CoreGraphics
+
 extension BPKSkeleton {
     public enum Size {
         case small, `default`, large, custom(size: CGSize)
