@@ -35,51 +35,13 @@ Pod::Spec.new do |s|
   s.source_files = 'Backpack/Backpack.h', 'Backpack/Common.h', 'Backpack/*/Classes/**/*.{h,m,swift}'
   s.exclude_files = 'Backpack/Tests/**'
   s.public_header_files = 'Backpack/Backpack.h', 'Backpack/*/Classes/**/*.h'
-  s.private_header_files = 'Backpack/{BorderWidth,Color,Duration,Font,Radii,Shadow,Spacing}/Classes/Generated/**/*.h'
+
   s.dependency 'FloatingPanel', '2.8.6'
   s.dependency 'Backpack-Common'
   s.frameworks = 'UIKit', 'Foundation', 'CoreText'
   s.requires_arc = true
   s.swift_versions = ['5.0', '4.2', '4.0']
-  s.pod_target_xcconfig = {
-    'HEADER_SEARCH_PATHS' => '$(inherited) "${PODS_TARGET_SRCROOT}/Backpack" "${BUILT_PRODUCTS_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}"'
-  }
-  s.script_phases = [{
-    :name => 'Backpack Generated Headers',
-    :execution_position => :before_compile,
-    :shell_path => '/bin/sh',
-    :script => <<-SCRIPT
-set -euo pipefail
 
-# Only run when building the Backpack pod itself.
-TARGET_ENV="${TARGET_NAME:-${TARGETNAME:-}}"
-case "$TARGET_ENV" in
-  "Backpack"|"Pods-Backpack")
-    ;;
-  *)
-    exit 0
-    ;;
-esac
-
-if [ -z "${PUBLIC_HEADERS_FOLDER_PATH:-}" ]; then
-  exit 0
-fi
-
-DEST="${BUILT_PRODUCTS_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/Generated"
-mkdir -p "$DEST"
-rm -f "$DEST"/*.h
-
-find "${PODS_TARGET_SRCROOT}/Backpack" -path '*/Classes/Generated/*.h' -print0 | \
-while IFS= read -r -d '' HEADER; do
-  case "$HEADER" in
-    *"/Icon/"*)
-      continue
-      ;;
-  esac
-  cp -f "$HEADER" "$DEST/$(basename "$HEADER")"
-done
-SCRIPT
-  }]
   s.test_spec 'SnapshotTests' do |test_spec|
     test_spec.dependency 'SnapshotTesting', '~> 1.9.0'
     test_spec.source_files = 'Backpack/Tests/SnapshotTests/**/*.{swift,h,m}'

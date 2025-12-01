@@ -16,8 +16,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef __BACKPACK_GENERATED_BPKCOLOR_INTERNAL__
-#define __BACKPACK_GENERATED_BPKCOLOR_INTERNAL__
 
 #import "BPKColor.h"
 
@@ -303,8 +301,5 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @end
-
 NS_ASSUME_NONNULL_END
-
-#endif
 // clang-format on
