@@ -18,7 +18,6 @@
 
 import Backpack_SwiftUI
 import SwiftUI
-import Backpack_Common
 
 struct ConfigurationCardView: View {
     var body: some View {
