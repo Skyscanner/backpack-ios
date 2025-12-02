@@ -61,8 +61,8 @@ final class FloatingNotificationView: UIView {
         return label
     }()
     
-    let button: BPKButton = {
-        let button = BPKButton(size: .default, style: .primary)
+    let button: BPKObjcUIKitButton = {
+        let button = BPKObjcUIKitButton(size: .default, style: .primary)
         button.primaryGradientStartColor = .clear
         button.primaryGradientEndColor = .clear
         button.translatesAutoresizingMaskIntoConstraints = false

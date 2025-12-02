@@ -17,7 +17,7 @@
  */
 
 #import "BPKLegacyLinkButton.h"
-#import "BPKButton.h"
+#import "BPKObjcUIKitButton.h"
 #import "BPKButtonAppearance.h"
 #import "BPKButtonAppearanceSet.h"
 #import "UIColor+BPKButton.h"

@@ -55,7 +55,7 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) { BPKGrayColor50, BPKGrayColor100, BPKG
     [[BPKSwitch appearanceWhenContainedInInstancesOfClasses:@[class]] setPrimaryColor:theme.switchPrimaryColor];
     [[BPKSpinner appearanceWhenContainedInInstancesOfClasses:@[class]] setPrimaryColor:theme.spinnerPrimaryColor];
 
-    BPKButton *buttonAppearance = [BPKButton appearanceWhenContainedInInstancesOfClasses:@[class]];
+    BPKObjcUIKitButton *buttonAppearance = [BPKObjcUIKitButton appearanceWhenContainedInInstancesOfClasses:@[class]];
     buttonAppearance.linkContentColor = theme.buttonLinkContentColor;
     buttonAppearance.primaryContentColor = theme.buttonPrimaryContentColor;
     buttonAppearance.primaryGradientStartColor = theme.buttonPrimaryGradientStartColor;

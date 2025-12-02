@@ -20,11 +20,14 @@
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
-@interface BPKNavigationBarButton : BPKButton
+@interface BPKNavigationBarButton : BPKObjcUIKitButton
 
 @property(nonatomic, strong) UIColor *contentColor;
 
 @end
 
+#pragma clang diagnostic pop
 NS_ASSUME_NONNULL_END

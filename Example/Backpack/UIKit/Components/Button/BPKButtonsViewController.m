@@ -25,30 +25,33 @@
 #import <Backpack/Label.h>
 
 NS_ASSUME_NONNULL_BEGIN
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 @interface BPKButtonsViewController ()
 @property (weak, nonatomic) IBOutlet UIView *buttonsContainer;
 @property(strong, nonatomic) IBOutletCollection(UIView) NSArray *contentViews;
 @property(strong, nonatomic) IBOutletCollection(BPKLabel) NSArray *storyHeadings;
-@property(weak, nonatomic) IBOutlet BPKButton *defaultTextButton;
-@property(weak, nonatomic) IBOutlet BPKButton *defaultIconOnlyButton;
-@property(weak, nonatomic) IBOutlet BPKButton *defaultTrailingIconButton;
-@property(weak, nonatomic) IBOutlet BPKButton *defaultLeadingIconButton;
-@property(weak, nonatomic) IBOutlet BPKButton *defaultDisabledButton;
-@property(weak, nonatomic) IBOutlet BPKButton *defaultLoadingButton;
-@property(weak, nonatomic) IBOutlet BPKButton *defaultLoadingIconOnlyButton;
-@property(weak, nonatomic) IBOutlet BPKButton *defaultLoadingTitleOnlyButton;
+@property(weak, nonatomic) IBOutlet BPKObjcUIKitButton *defaultTextButton;
+@property(weak, nonatomic) IBOutlet BPKObjcUIKitButton *defaultIconOnlyButton;
+@property(weak, nonatomic) IBOutlet BPKObjcUIKitButton *defaultTrailingIconButton;
+@property(weak, nonatomic) IBOutlet BPKObjcUIKitButton *defaultLeadingIconButton;
+@property(weak, nonatomic) IBOutlet BPKObjcUIKitButton *defaultDisabledButton;
+@property(weak, nonatomic) IBOutlet BPKObjcUIKitButton *defaultLoadingButton;
+@property(weak, nonatomic) IBOutlet BPKObjcUIKitButton *defaultLoadingIconOnlyButton;
+@property(weak, nonatomic) IBOutlet BPKObjcUIKitButton *defaultLoadingTitleOnlyButton;
 
-@property(weak, nonatomic) IBOutlet BPKButton *largeTextButton;
-@property(weak, nonatomic) IBOutlet BPKButton *largeIconOnlyButton;
-@property(weak, nonatomic) IBOutlet BPKButton *largeTrailingIconButton;
-@property(weak, nonatomic) IBOutlet BPKButton *largeLeadingIconButton;
-@property(weak, nonatomic) IBOutlet BPKButton *largeDisabledButton;
-@property(weak, nonatomic) IBOutlet BPKButton *largeLoadingButton;
-@property(weak, nonatomic) IBOutlet BPKButton *largeLoadingIconOnlyButton;
-@property(weak, nonatomic) IBOutlet BPKButton *largeLoadingTitleOnlyButton;
+@property(weak, nonatomic) IBOutlet BPKObjcUIKitButton *largeTextButton;
+@property(weak, nonatomic) IBOutlet BPKObjcUIKitButton *largeIconOnlyButton;
+@property(weak, nonatomic) IBOutlet BPKObjcUIKitButton *largeTrailingIconButton;
+@property(weak, nonatomic) IBOutlet BPKObjcUIKitButton *largeLeadingIconButton;
+@property(weak, nonatomic) IBOutlet BPKObjcUIKitButton *largeDisabledButton;
+@property(weak, nonatomic) IBOutlet BPKObjcUIKitButton *largeLoadingButton;
+@property(weak, nonatomic) IBOutlet BPKObjcUIKitButton *largeLoadingIconOnlyButton;
+@property(weak, nonatomic) IBOutlet BPKObjcUIKitButton *largeLoadingTitleOnlyButton;
 
-- (void)setupButton:(BPKButton *)button image:(UIImage *_Nullable)image title:(NSString *_Nullable)title;
+- (void)setupButton:(BPKObjcUIKitButton *)button image:(UIImage *_Nullable)image title:(NSString *_Nullable)title;
 @property(nonatomic, getter=isRTL, readonly) BOOL isRTL;
+
 @end
 
 @implementation BPKButtonsViewController
@@ -109,7 +112,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.largeLoadingTitleOnlyButton.isLoading = YES;
 }
 
-- (void)setupButton:(BPKButton *)button image:(UIImage *_Nullable)image title:(NSString *_Nullable)title {
+- (void)setupButton:(BPKObjcUIKitButton *)button image:(UIImage *_Nullable)image title:(NSString *_Nullable)title {
     [button setImage:image];
     [button setTitle:title];
 }
@@ -127,6 +130,8 @@ NS_ASSUME_NONNULL_BEGIN
     self.largeLoadingTitleOnlyButton.isLoading = sender.on;
     self.largeLoadingButton.isLoading = sender.on;
 }
+
+#pragma clang diagnostic pop
 
 @end
 NS_ASSUME_NONNULL_END

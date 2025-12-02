@@ -34,7 +34,7 @@ class BPKButtonSnapshotTest: XCTestCase {
         case regular, loading, regularThemed, loadingThemed
     }
     
-    private func applyTheme(to button: BPKButton) {
+    private func applyTheme(to button: BPKObjcUIKitButton) {
         button.primaryGradientStartColor = .red
         button.primaryGradientEndColor = .blue
         button.primaryContentColor = .black
@@ -61,7 +61,7 @@ class BPKButtonSnapshotTest: XCTestCase {
             
             viewsInStack(withStyles: allStates) { state in
                 viewsInStack(withStyles: allSizes) { size in
-                    let button = BPKButton(size: size, style: style)
+                    let button = BPKObjcUIKitButton(size: size, style: style)
                     button.isLoading = state == .loading || state == .loadingThemed
                     if type != .justIcon { button.title = "Button" }
                     if type != .regular { button.setImage(icon(forSize: size)) }
@@ -125,7 +125,7 @@ class BPKButtonSnapshotTest: XCTestCase {
     
     func testBigButtonWithIconHasContentCentered() {
         let stack = viewsInStack(withStyles: [BPKButtonImagePosition.leading, .trailing]) { position in
-            let button = BPKButton(size: .large, style: .primary)
+            let button = BPKObjcUIKitButton(size: .large, style: .primary)
             button.translatesAutoresizingMaskIntoConstraints = false
             button.title = "Tap me"
             button.setImage(icon(forSize: .large))

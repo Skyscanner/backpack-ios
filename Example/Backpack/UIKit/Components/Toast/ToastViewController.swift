@@ -27,11 +27,11 @@ enum ToastType {
 }
 
 class ToastViewController: UIViewController {
-    @IBOutlet weak var showButton: BPKButton!
+    @IBOutlet weak var showButton: UIButton!
     var type: ToastType = .defaultToast
     var toastHideTime: TimeInterval = 6
 
-    @IBAction func show(_ sender: BPKButton) {
+    @IBAction func show(_ sender: UIButton) {
         switch type {
         case .docs:
             showPersistentToast()
@@ -44,7 +44,7 @@ class ToastViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        showButton.title = "Show Toast"
+        showButton.setTitle("Show Toast", for: .normal)
     }
     
     func showPersistentToast() {

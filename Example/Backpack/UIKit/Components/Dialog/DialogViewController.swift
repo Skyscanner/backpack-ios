@@ -26,8 +26,8 @@ enum DialogType {
 class DialogViewController: UIViewController {
     var type: DialogType = .success
     
-    private lazy var showButton: BPKButton = {
-        let button = BPKButton(size: .large, style: .primary)
+    private lazy var showButton: BPKObjcUIKitButton = {
+        let button = BPKObjcUIKitButton(size: .large, style: .primary)
         button.title = "Show dialog"
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(showDialog), for: .touchUpInside)

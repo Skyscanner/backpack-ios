@@ -25,7 +25,7 @@
  * then UIKit will fall back to using [UITraitCollection currentTraitCollection] which does not reflect the override.
  */
 
-#import "BPKButton.h"
+#import "BPKObjcUIKitButton.h"
 #import "BPKButtonAppearance.h"
 #import "BPKButtonAppearanceSet.h"
 #import "UIColor+BPKButton.h"
@@ -42,7 +42,7 @@
 #import <Backpack/UIView+BPKRTL.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@interface BPKButton ()
+@interface BPKObjcUIKitButton ()
 
 @property(nonatomic) BPKGradientLayer *gradientLayer;
 
@@ -60,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@implementation BPKButton
+@implementation BPKObjcUIKitButton
 
 - (instancetype)initWithSize:(BPKButtonSize)size style:(BPKButtonStyle)style {
     BPKAssertMainThread();

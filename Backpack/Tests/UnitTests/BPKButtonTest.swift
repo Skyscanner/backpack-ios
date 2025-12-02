@@ -25,7 +25,7 @@ final class BPKButtonTest: XCTestCase {
     /// as soon as any update was done to the button. The issue happened with enabled/title/color etc.
     func test_regularButton_usesTitle_asA11yLabel() {
         // Given
-        let sut = BPKButton(size: .default, style: .primary)
+        let sut = BPKObjcUIKitButton(size: .default, style: .primary)
         let expectedLabel = "Test button"
         
         // When
@@ -37,7 +37,7 @@ final class BPKButtonTest: XCTestCase {
     
     func test_regularButton_doesntOverrideA11yLabel() {
         // Given
-        let sut = BPKButton(size: .default, style: .primary)
+        let sut = BPKObjcUIKitButton(size: .default, style: .primary)
         let expectedLabel = "Accessibility Label"
         
         // When
@@ -51,7 +51,7 @@ final class BPKButtonTest: XCTestCase {
     
     func test_iconButton_doesntOverrideA11yLabel() {
         // Given
-        let sut = BPKButton(size: .default, style: .primary)
+        let sut = BPKObjcUIKitButton(size: .default, style: .primary)
         let expectedLabel = "Accessibility Label"
         
         // When
@@ -65,7 +65,7 @@ final class BPKButtonTest: XCTestCase {
     
     func test_regularButton_updatingTitleWithoutCustomA11yLabel_updatesLabel() {
         // Given
-        let sut = BPKButton(size: .default, style: .primary)
+        let sut = BPKObjcUIKitButton(size: .default, style: .primary)
         let expectedLabel = "New test button"
         
         // When
@@ -78,7 +78,7 @@ final class BPKButtonTest: XCTestCase {
     
     func test_regularButton_updatingTitleWithCustomA11yLabel_doesNotUpdateLabel() {
         // Given
-        let sut = BPKButton(size: .default, style: .primary)
+        let sut = BPKObjcUIKitButton(size: .default, style: .primary)
         let expectedLabel = "Accessibility Label"
         
         // When
@@ -92,7 +92,7 @@ final class BPKButtonTest: XCTestCase {
     
     func test_regularButton_setTitle_nil() {
         // Given
-        let sut = BPKButton(size: .default, style: .primary)
+        let sut = BPKObjcUIKitButton(size: .default, style: .primary)
         
         // When
         sut.title = "Other test button"

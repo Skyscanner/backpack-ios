@@ -21,16 +21,14 @@ import Backpack
 
 class ProgressBarViewController: UIViewController {
     @IBOutlet weak var progressBar: BPKProgressBar!
-    @IBOutlet weak var increaseButton: BPKButton!
-    @IBOutlet weak var resetButton: BPKButton!
+    @IBOutlet weak var increaseButton: UIButton!
+    @IBOutlet weak var resetButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        resetButton.title = "Reset"
-        increaseButton.title = "Increase"
+        resetButton.setTitle("Reset", for: .normal)
+        increaseButton.setTitle("Increase", for: .normal)
         progressBar.progress = 0.0
-        resetButton.style = .secondary
         resetButton.isEnabled = false
 
         increaseButton.addTarget(self, action: #selector(increaseButtonTapped), for: .touchUpInside)
