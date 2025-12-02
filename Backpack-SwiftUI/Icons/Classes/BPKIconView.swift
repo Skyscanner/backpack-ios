@@ -21,25 +21,19 @@ import Backpack_Common
 
 public struct BPKIconView: View {
     let icon: BPKIcon
-    let vdlIcon: Image?
     let size: BPKIcon.Size
     let accessibilityLabel: String?
-    let config: BpkConfiguration?
 
-    public init(_ icon: BPKIcon, vdlIcon: Image? = nil, size: BPKIcon.Size = .small) {
+    public init(_ icon: BPKIcon, size: BPKIcon.Size = .small) {
         self.icon = icon
-        self.vdlIcon = vdlIcon
         self.size = size
         self.accessibilityLabel = nil
-        self.config = BpkConfiguration.shared
     }
     
-    public init(_ icon: BPKIcon, vdlIcon: Image? = nil, size: BPKIcon.Size = .small, accessibilityLabel: String) {
+    public init(_ icon: BPKIcon, size: BPKIcon.Size = .small, accessibilityLabel: String) {
         self.icon = icon
-        self.vdlIcon = vdlIcon
         self.size = size
         self.accessibilityLabel = accessibilityLabel
-        self.config = BpkConfiguration.shared
     }
     
     @ScaledMetric private var scaledSmallSize: CGFloat = 16
@@ -59,27 +53,15 @@ public struct BPKIconView: View {
 
     public var body: some View {
         let enableAccessibility = accessibilityLabel?.isEmpty == false
-        
-        if let vdlImage = vdlIcon, config?.iconConfig != nil {
-            vdlImage
-                .resizable()
-                .renderingMode(.template)
-                .flipsForRightToLeftLayoutDirection(shouldAutoMirror)
-                .frame(width: dimension, height: dimension)
-                .if(enableAccessibility, transform: { view in
-                    view.accessibilityLabel(accessibilityLabel ?? "")
-                })
-        } else {
-            Image(icon: icon, size: size, shouldEnableAccessibility: enableAccessibility)
-                .resizable()
-                .renderingMode(.template)
-                .flipsForRightToLeftLayoutDirection(shouldAutoMirror)
-                .frame(width: dimension, height: dimension)
-                .if(enableAccessibility, transform: { view in
-                    view.accessibilityLabel(accessibilityLabel ?? "")
-                })
-        }
 
+        Image(icon: icon, size: size, shouldEnableAccessibility: enableAccessibility)
+            .resizable()
+            .renderingMode(.template)
+            .flipsForRightToLeftLayoutDirection(shouldAutoMirror)
+            .frame(width: dimension, height: dimension)
+            .if(enableAccessibility, transform: { view in
+                view.accessibilityLabel(accessibilityLabel ?? "")
+            })
     }
     
     private var shouldAutoMirror: Bool {
