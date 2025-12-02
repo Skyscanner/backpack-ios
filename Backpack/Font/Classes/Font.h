@@ -20,10 +20,6 @@
 #define __BACKPACK_FONT__
 
 #import "BPKFont.h"
-#if __has_include(<Backpack_Common/Backpack_Common-Swift.h>)
 #import <Backpack_Common/Backpack_Common-Swift.h>
-#elif __has_include("Backpack_Common-Swift.h")
-#import "Backpack_Common-Swift.h"
-#endif
 
 #endif

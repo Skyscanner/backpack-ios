@@ -21,7 +21,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-__attribute__((deprecated("BPKNavigationBarButton is maintenance only; prefer the SwiftUI navigation components")))
 @interface BPKNavigationBarButton : BPKButton
 
 @property(nonatomic, strong) UIColor *contentColor;

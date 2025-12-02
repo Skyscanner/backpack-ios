@@ -16,10 +16,7 @@
  * limitations under the License.
  */
 
-#import <Backpack/BPKLabel.h>
-
-// WARNING: BPKButton remains for maintenance only; prefer the SwiftUI Backpack
-// button for new features.
+#import "BPKLabel.h"
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 /**

@@ -17,9 +17,6 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_GENERATED_BPKCOLOR__
-#define __BACKPACK_GENERATED_BPKCOLOR__
-
 #import <Foundation/Foundation.h>
 
 
@@ -300,8 +297,5 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIColor *)blend:(UIColor*)firstColor with:(UIColor*)secondColor weight:(double)weight;
 
 @end
-
 NS_ASSUME_NONNULL_END
-
-#endif
 // clang-format on

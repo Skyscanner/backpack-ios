@@ -17,6 +17,5 @@
  */
 
 @_exported import UIKit
-@_exported import Backpack_Tokens
+@_exported import BackpackTokens
 @_exported import Backpack_Common
-@_exported import Backpack_ObjC

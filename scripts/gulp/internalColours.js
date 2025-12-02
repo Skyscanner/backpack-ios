@@ -36,21 +36,15 @@ const internalColors = (properties) => _.chain(properties)
       darkValue,
       name,
       ...rest
-    }) => {
-      const parsedValue = parseColor(value);
-      const parsedDarkValue = parseColor(darkValue !== undefined ? darkValue : value);
-      const swiftName = name[0].toLowerCase() + name.slice(1);
-      return {
-        value: parsedValue,
-        darkValue: parsedDarkValue,
-        name: swiftName,
-        objcName: `internal${name}`,
-        hex: value.toString(),
-        darkHex: (darkValue !== undefined ? darkValue : value).toString(),
-        ...rest,
-        type: 'internalColor',
-      };
-    },
+    }) => ({
+      value: parseColor(value),
+      darkValue: parseColor(darkValue !== undefined ? darkValue : value),
+      name: name[0].toLowerCase() + name.slice(1),
+      hex: value.toString(),
+      darkHex: (darkValue !== undefined ? darkValue : value).toString(),
+      ...rest,
+      type: 'internalColor',
+    }),
   )
   .value();
 

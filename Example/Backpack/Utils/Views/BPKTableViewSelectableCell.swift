@@ -17,7 +17,9 @@
  */
 
 import UIKit
-import Backpack
+import Backpack.Spacing
+import Backpack.Icon
+import Backpack.Theme
 
 class BPKTableViewSelectableCell: UITableViewCell {
 
