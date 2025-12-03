@@ -74,7 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
     firstInnerView.backgroundColor = [BPKColor coreAccentColor];
     secondInnerView.backgroundColor = [BPKColor statusWarningFillColor];
 
-    BPKDividedCard *c = [[BPKDividedCard alloc] initWithPrimarySubview:firstInnerView secondarySubview:secondInnerView padded:YES];
+    BPKObjcUIKitDividedCard *c = [[BPKObjcUIKitDividedCard alloc] initWithPrimarySubview:firstInnerView secondarySubview:secondInnerView padded:YES];
     XCTAssertTrue(c.padded);
     XCTAssertTrue(c.primarySubview == firstInnerView);
     XCTAssertTrue(c.secondarySubview == secondInnerView);
@@ -86,7 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
     firstInnerView.backgroundColor = [BPKColor coreAccentColor];
     secondInnerView.backgroundColor = [BPKColor statusWarningFillColor];
 
-    BPKDividedCard *c = [[BPKDividedCard alloc] initWithPrimarySubview:firstInnerView secondarySubview:secondInnerView padded:YES];
+    BPKObjcUIKitDividedCard *c = [[BPKObjcUIKitDividedCard alloc] initWithPrimarySubview:firstInnerView secondarySubview:secondInnerView padded:YES];
 
     c.padded = false;
     XCTAssertFalse(c.padded);
@@ -100,19 +100,19 @@ NS_ASSUME_NONNULL_BEGIN
     firstInnerView.backgroundColor = [BPKColor coreAccentColor];
     secondInnerView.backgroundColor = [BPKColor statusWarningFillColor];
 
-    BPKDividedCard *c = [[BPKDividedCard alloc] initWithPrimarySubview:firstInnerView secondarySubview:secondInnerView padded:NO];
+    BPKObjcUIKitDividedCard *c = [[BPKObjcUIKitDividedCard alloc] initWithPrimarySubview:firstInnerView secondarySubview:secondInnerView padded:NO];
     XCTAssertFalse(c.padded);
     XCTAssertTrue(c.primarySubview == firstInnerView);
     XCTAssertTrue(c.secondarySubview == secondInnerView);
 }
 
 - (void)testDividedInitWithPaddedAndWithoutSubviews {
-    BPKDividedCard *c = [[BPKDividedCard alloc] initWithPadded:YES];
+    BPKObjcUIKitDividedCard *c = [[BPKObjcUIKitDividedCard alloc] initWithPadded:YES];
     XCTAssertTrue(c.padded);
 }
 
 - (void)testDividedSetSubviews {
-    BPKDividedCard *c = [[BPKDividedCard alloc] initWithPadded:YES];
+    BPKObjcUIKitDividedCard *c = [[BPKObjcUIKitDividedCard alloc] initWithPadded:YES];
 
     UIView *firstInnerView = [[UIView alloc] initWithFrame:CGRectZero];
     UIView *secondInnerView = [[UIView alloc] initWithFrame:CGRectZero];

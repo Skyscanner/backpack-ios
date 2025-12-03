@@ -40,7 +40,7 @@ final class BPKDividedCardSnapshotTest: XCTestCase {
     
     func testDividedSnapshotWithPaddedHorizontal() {
         // Given
-        let sut = BPKDividedCard(padded: true)
+        let sut = BPKObjcUIKitDividedCard(padded: true)
         
         // When
         configure(card: sut, withPrimarySubview: primaryInnerView, secondarySubview: secondaryInnerView)
@@ -52,7 +52,7 @@ final class BPKDividedCardSnapshotTest: XCTestCase {
     
     func createDividedSnapshotWithPaddedHorizontalAndLargeCornerStyle() {
         // Given
-        let sut = BPKDividedCard(padded: true)
+        let sut = BPKObjcUIKitDividedCard(padded: true)
         sut.cornerStyle = .large
         
         // When
@@ -65,7 +65,7 @@ final class BPKDividedCardSnapshotTest: XCTestCase {
     
     func testDividedSnapshotWithPaddedVertical() {
         // Given
-        let sut = BPKDividedCard(padded: true)
+        let sut = BPKObjcUIKitDividedCard(padded: true)
         sut.orientation = .vertical
         
         // When
@@ -78,7 +78,7 @@ final class BPKDividedCardSnapshotTest: XCTestCase {
     
     func testDividedSnapshotWithoutPaddedHorizontal() {
         // Given
-        let sut = BPKDividedCard(padded: false)
+        let sut = BPKObjcUIKitDividedCard(padded: false)
         
         // When
         configure(card: sut, withPrimarySubview: primaryInnerView, secondarySubview: secondaryInnerView)
@@ -90,7 +90,7 @@ final class BPKDividedCardSnapshotTest: XCTestCase {
     
     func testDividedSnapshotWithoutPaddedHorizontalAndLargeCornerStyle() {
         // Given
-        let sut = BPKDividedCard(padded: false)
+        let sut = BPKObjcUIKitDividedCard(padded: false)
         sut.cornerStyle = .large
         
         // When
@@ -103,7 +103,7 @@ final class BPKDividedCardSnapshotTest: XCTestCase {
     
     func testDividedSnapshotWithoutPaddedVertical() {
         // Given
-        let sut = BPKDividedCard(padded: false)
+        let sut = BPKObjcUIKitDividedCard(padded: false)
         sut.orientation = .vertical
         
         // When
@@ -116,7 +116,7 @@ final class BPKDividedCardSnapshotTest: XCTestCase {
     
     func testDividedSnapshotVerticalSolidLine() {
         // Given
-        let sut = BPKDividedCard(padded: true)
+        let sut = BPKObjcUIKitDividedCard(padded: true)
         sut.orientation = .vertical
         sut.lineStyle = .solid
         
@@ -130,7 +130,7 @@ final class BPKDividedCardSnapshotTest: XCTestCase {
     
     func testDividedSnapshotVerticalSolidLineWithoutPadding() {
         // Given
-        let sut = BPKDividedCard(padded: false)
+        let sut = BPKObjcUIKitDividedCard(padded: false)
         sut.orientation = .vertical
         sut.lineStyle = .solid
         
@@ -143,7 +143,10 @@ final class BPKDividedCardSnapshotTest: XCTestCase {
     }
     
     // MARK: Helpers
-    private func configure(card: BPKDividedCard, withPrimarySubview primarySubview: UIView, secondarySubview: UIView) {
+    private func configure(
+        card: BPKObjcUIKitDividedCard,
+        withPrimarySubview primarySubview: UIView,
+        secondarySubview: UIView) {
         [primarySubview, secondarySubview, card].forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
         card.setSubviews(primarySubview: primarySubview, secondarySubview: secondarySubview)
                 

@@ -103,7 +103,7 @@ final class BPKCardWrapperSnapshotTests: XCTestCase {
     func testViewSnapshotWithDividedCard() {
         // Given
         let sut = BPKCardWrapper(
-            header: createHeader(title: "BPKDividedCard"),
+            header: createHeader(title: "BPKObjcUIKitDividedCard"),
             card: createCard(
                 isDivided: true,
                 cornerStyle: .small,
@@ -121,7 +121,7 @@ final class BPKCardWrapperSnapshotTests: XCTestCase {
     func testViewSnapshotWithDividedCardAndNotPadded() {
         // Given
         let sut = BPKCardWrapper(
-            header: createHeader(title: "BPKDividedCard not padded"),
+            header: createHeader(title: "BPKObjcUIKitDividedCard not padded"),
             card: createCard(
                 isDivided: true,
                 cornerStyle: .small,
@@ -153,7 +153,7 @@ extension BPKCardWrapperSnapshotTests {
         let label2 = createContectLabel(text: "Lorem ipsum dolor sit amet")
         
         if isDivided {
-            let card = BPKDividedCard()
+            let card = BPKObjcUIKitDividedCard()
             card.setSubviews(primarySubview: label1, secondarySubview: label2)
             card.lineStyle = .solid
             card.orientation = .vertical

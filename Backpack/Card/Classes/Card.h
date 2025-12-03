@@ -23,5 +23,5 @@
 #import "BPKCardConfigurationButton.h"
 #import "BPKCardConfigurationContainer.h"
 #import "BPKCardConfigurationLink.h"
-#import "BPKDividedCard.h"
+#import "BPKObjcUIKitDividedCard.h"
 #endif

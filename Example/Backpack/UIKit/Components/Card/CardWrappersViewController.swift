@@ -72,7 +72,7 @@ class CardWrappersViewController: UIViewController {
         label2.numberOfLines = 0
         
         if isCardDivided {
-            let card = BPKDividedCard()
+            let card = BPKObjcUIKitDividedCard()
             card.setSubviews(primarySubview: label1, secondarySubview: label2)
             card.lineStyle = .solid
             card.orientation = .vertical
