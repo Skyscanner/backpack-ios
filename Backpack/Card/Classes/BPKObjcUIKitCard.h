@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
  * Cards are a lightweight control with a shadow.
  * Cards can be configured to have padding or not.
  */
+DEPRECATED_MSG_ATTRIBUTE("BPKObjcUIKitCard is deprecated. Use the SwiftUI BPKCard or Swift wrapper instead.")
 IB_DESIGNABLE @interface BPKObjcUIKitCard : UIControl
 
 /**

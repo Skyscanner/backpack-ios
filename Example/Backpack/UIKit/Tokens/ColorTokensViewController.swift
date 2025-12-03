@@ -159,7 +159,7 @@ class ColorTokensViewController: UIViewController {
             container.trailingAnchor.constraint(equalTo: colorLabel.trailingAnchor, constant: BPKSpacingMd)
         ])
         
-        let card = BPKCard(padded: false)
+        let card = BPKObjcUIKitCard(padded: false)
         card.subview = container
         return card
     }

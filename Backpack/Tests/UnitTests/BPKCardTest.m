@@ -30,37 +30,37 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation BPKCardTest
 
 - (void)testInitWithPadded {
-    BPKCard *c1 = [[BPKCard alloc] initWithPadded:YES];
+    BPKObjcUIKitCard *c1 = [[BPKObjcUIKitCard alloc] initWithPadded:YES];
     XCTAssertTrue(c1.padded);
     XCTAssertEqual(c1.cornerStyle, BPKCardCornerStyleSmall);
 
-    BPKCard *c2 = [[BPKCard alloc] initWithPadded:NO];
+    BPKObjcUIKitCard *c2 = [[BPKObjcUIKitCard alloc] initWithPadded:NO];
     XCTAssertFalse(c2.padded);
     XCTAssertEqual(c1.cornerStyle, BPKCardCornerStyleSmall);
 }
 
 - (void)testInitWithPaddedAndCornerStyle {
-    BPKCard *c1 = [[BPKCard alloc] initWithPadded:YES cornerStyle:BPKCardCornerStyleLarge];
+    BPKObjcUIKitCard *c1 = [[BPKObjcUIKitCard alloc] initWithPadded:YES cornerStyle:BPKCardCornerStyleLarge];
     XCTAssertEqual(c1.cornerStyle, BPKCardCornerStyleLarge);
 
-    BPKCard *c2 = [[BPKCard alloc] initWithPadded:YES cornerStyle:BPKCardCornerStyleSmall];
+    BPKObjcUIKitCard *c2 = [[BPKObjcUIKitCard alloc] initWithPadded:YES cornerStyle:BPKCardCornerStyleSmall];
     XCTAssertEqual(c2.cornerStyle, BPKCardCornerStyleSmall);
 }
 
 - (void)testSetPadded {
-    BPKCard *c = [[BPKCard alloc] initWithPadded:YES];
+    BPKObjcUIKitCard *c = [[BPKObjcUIKitCard alloc] initWithPadded:YES];
     c.padded = NO;
     XCTAssertFalse(c.padded);
 }
 
 - (void)testSetCornerStyle {
-    BPKCard *c = [[BPKCard alloc] initWithPadded:YES];
+    BPKObjcUIKitCard *c = [[BPKObjcUIKitCard alloc] initWithPadded:YES];
     c.cornerStyle = BPKCardCornerStyleLarge;
     XCTAssertEqual(c.cornerStyle, BPKCardCornerStyleLarge);
 }
 
 - (void)testSetSubview {
-    BPKCard *c = [[BPKCard alloc] initWithPadded:YES];
+    BPKObjcUIKitCard *c = [[BPKObjcUIKitCard alloc] initWithPadded:YES];
     BPKLabel *testLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBodyDefault];
     testLabel.text = @"TEST";
     [c setSubview:testLabel];
@@ -127,7 +127,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testContainerConfiguration {
-    BPKCard *c = [[BPKCard alloc] initWithPadded:YES];
+    BPKObjcUIKitCard *c = [[BPKObjcUIKitCard alloc] initWithPadded:YES];
 
     XCTAssertTrue(c.padded);
     XCTAssertTrue(c.accessibilityTraits == UIAccessibilityTraitNone);
@@ -136,7 +136,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testButtonConfiguration {
-    BPKCard *c = [[BPKCard alloc] initWithPadded:YES];
+    BPKObjcUIKitCard *c = [[BPKObjcUIKitCard alloc] initWithPadded:YES];
     c.configuration = [[BPKCardConfigurationButton alloc] initWithAccessibilityLabel:@"Test label"];
 
     XCTAssertTrue(c.padded);
@@ -146,7 +146,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testLinkConfiguration {
-    BPKCard *c = [[BPKCard alloc] initWithPadded:YES];
+    BPKObjcUIKitCard *c = [[BPKObjcUIKitCard alloc] initWithPadded:YES];
     c.configuration = [[BPKCardConfigurationLink alloc] initWithAccessibilityLabel:@"Test label"];
 
     XCTAssertTrue(c.padded);

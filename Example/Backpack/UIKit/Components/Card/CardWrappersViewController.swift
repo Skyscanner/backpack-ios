@@ -56,7 +56,7 @@ class CardWrappersViewController: UIViewController {
         ])
     }
     
-    private func createCard() -> BPKCard {
+    private func createCard() -> BPKObjcUIKitCard {
         let label1 = BPKLabel(fontStyle: .textHeading5)
         label1.text = "Let's explore"
         label1.numberOfLines = 0
@@ -89,7 +89,7 @@ class CardWrappersViewController: UIViewController {
         cardContent.addArrangedSubview(label1)
         cardContent.addArrangedSubview(label2)
         
-        let card = BPKCard(padded: true)
+        let card = BPKObjcUIKitCard(padded: true)
         card.subview = cardContent
         card.isElevated = false
         card.isPadded = isPadded

@@ -19,17 +19,19 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "BPKCard.h"
+#import "BPKObjcUIKitCard.h"
 #import "BPKCardDivider.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * `BPKDividedCard` is a subclass of `BPKCard` which contains the Skyscanner divided card style.
+ * `BPKDividedCard` is a subclass of `BPKObjcUIKitCard` which contains the Skyscanner divided card style.
  * Divided cards are a lightweight containers with a subtle shadow and two subviews.
  * Divided cards, like Cards, can be configured to have padding or not.
  */
-IB_DESIGNABLE @interface BPKDividedCard : BPKCard
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+IB_DESIGNABLE @interface BPKDividedCard : BPKObjcUIKitCard
 
 /**
  * The orientation of the divided card.
@@ -139,8 +141,10 @@ IB_DESIGNABLE @interface BPKDividedCard : BPKCard
 - (void)setDistribution:(UIStackViewDistribution)distribution;
 
 /// :nodoc:
-- (void)addSubview:(UIView *)view __attribute__((unavailable("To add subviews to a divided BPKCard, use `setPrimarySubview:secondarySubview:` or "
+- (void)addSubview:(UIView *)view __attribute__((unavailable("To add subviews to a divided BPKObjcUIKitCard, use `setPrimarySubview:secondarySubview:` or "
                                                              "`initWithPrimarySubview:secondarySubview:padded:`")));
 
 @end
+
+#pragma clang diagnostic pop
 NS_ASSUME_NONNULL_END

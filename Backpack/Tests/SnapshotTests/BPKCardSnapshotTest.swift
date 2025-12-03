@@ -35,7 +35,7 @@ final class BPKCardSnapshotTest: XCTestCase {
     
     func testViewSnapshotWithoutPadded() {
         // Given
-        let sut = BPKCard(padded: false)
+        let sut = BPKObjcUIKitCard(padded: false)
         
         // When
         configure(card: sut, withInnerView: innerView)
@@ -47,7 +47,7 @@ final class BPKCardSnapshotTest: XCTestCase {
     
     func testViewSnapshotWithoutPaddedAndLargeCornerStyle() {
         // Given
-        let sut = BPKCard(padded: false, cornerStyle: .large)
+        let sut = BPKObjcUIKitCard(padded: false, cornerStyle: .large)
         
         // When
         configure(card: sut, withInnerView: innerView)
@@ -59,7 +59,7 @@ final class BPKCardSnapshotTest: XCTestCase {
     
     func testViewSnapshotWithoutElevation() {
         // Given
-        let sut = BPKCard(padded: false, cornerStyle: .large)
+        let sut = BPKObjcUIKitCard(padded: false, cornerStyle: .large)
         sut.isElevated = false
         
         // When
@@ -72,7 +72,7 @@ final class BPKCardSnapshotTest: XCTestCase {
     
     func testViewSnapshotWithPadded() {
         // Given
-        let sut = BPKCard(padded: true)
+        let sut = BPKObjcUIKitCard(padded: true)
         
         // When
         configure(card: sut, withInnerView: innerView)
@@ -84,7 +84,7 @@ final class BPKCardSnapshotTest: XCTestCase {
     
     func testViewSnapshotWithPaddedAndBackgroundColor() {
         // Given
-        let sut = BPKCard(padded: true)
+        let sut = BPKObjcUIKitCard(padded: true)
         sut.backgroundColor = BPKColor.statusWarningFillColor
         
         // When
@@ -97,7 +97,7 @@ final class BPKCardSnapshotTest: XCTestCase {
     
     func testViewSnapshotWithPaddedAndLargeCornerStyle() {
         // Given
-        let sut = BPKCard(padded: true, cornerStyle: .large)
+        let sut = BPKObjcUIKitCard(padded: true, cornerStyle: .large)
         
         // When
         configure(card: sut, withInnerView: innerView)
@@ -108,7 +108,7 @@ final class BPKCardSnapshotTest: XCTestCase {
     }
     
     // MARK: Helpers
-    private func configure(card: BPKCard, withInnerView innerView: UIView) {
+    private func configure(card: BPKObjcUIKitCard, withInnerView innerView: UIView) {
         [innerView, card].forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
         card.subview = innerView
         
@@ -118,7 +118,7 @@ final class BPKCardSnapshotTest: XCTestCase {
         ])
     }
     
-    private func embed(card: BPKCard) -> UIView {
+    private func embed(card: BPKObjcUIKitCard) -> UIView {
         let parentView = UIView()
         parentView.backgroundColor = BPKColor.canvasColor
         parentView.translatesAutoresizingMaskIntoConstraints = false

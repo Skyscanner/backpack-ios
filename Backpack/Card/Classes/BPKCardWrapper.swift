@@ -25,7 +25,7 @@ public class BPKCardWrapper: UIView {
 
     private let header: UIView
 
-    private let card: BPKCard
+    private let card: BPKObjcUIKitCard
     
     private var color: UIColor {
         didSet {
@@ -76,7 +76,7 @@ public class BPKCardWrapper: UIView {
     
     public init(
         header: UIView,
-        card: BPKCard,
+        card: BPKObjcUIKitCard,
         backgroundColor: UIColor
     ) {
         self.header = header

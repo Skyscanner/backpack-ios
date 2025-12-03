@@ -30,7 +30,7 @@ final class BPKCardWrapperSnapshotTests: XCTestCase {
     func testViewSnapshotWithCard() {
         // Given
         let sut = BPKCardWrapper(
-            header: createHeader(title: "BPKCard"),
+            header: createHeader(title: "BPKObjcUIKitCard"),
             card: createCard(
                 isDivided: false,
                 cornerStyle: .small,
@@ -143,7 +143,7 @@ extension BPKCardWrapperSnapshotTests {
         isDivided: Bool,
         cornerStyle: BPKCardCornerStyle,
         isPadded: Bool
-    ) -> BPKCard {
+    ) -> BPKObjcUIKitCard {
         let label1 = createContectLabel(text: """
             Lorem ipsum dolor sit amet,
             consectetuer adipiscing elit.
@@ -163,7 +163,7 @@ extension BPKCardWrapperSnapshotTests {
             return card
         }
         
-        let card = BPKCard(padded: true)
+        let card = BPKObjcUIKitCard(padded: true)
         card.subview = label1
         card.isElevated = false
         card.cornerStyle = cornerStyle

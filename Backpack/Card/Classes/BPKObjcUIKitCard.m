@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#import "BPKCard.h"
+#import "BPKObjcUIKitCard.h"
 
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
@@ -28,14 +28,14 @@
 NS_ASSUME_NONNULL_BEGIN
 const BOOL BPKCardDefaultPaddedValue = YES;
 
-@interface BPKCard ()
+@interface BPKObjcUIKitCard ()
 
 - (void)setupWithPadded:(BOOL)padded cornerStyle:(BPKCardCornerStyle)cornerStyle;
 @property(nonatomic, strong) UIView *innerView;
 @property(nonatomic, strong) CALayer *tintLayer;
 @end
 
-@implementation BPKCard
+@implementation BPKObjcUIKitCard
 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
     BPKAssertMainThread();
