@@ -13,7 +13,7 @@ defaults:
 jobs:
   Setup:
     name: Install Dependencies
-    runs-on: macos-14
+    runs-on: macos-15
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v6
@@ -23,7 +23,7 @@ jobs:
 
   Lint:
     name: Lint Project
-    runs-on: macos-14
+    runs-on: macos-15
     needs: [Setup]
     timeout-minutes: 20
     steps:
@@ -105,7 +105,7 @@ jobs:
 
   AnalyzePods:
     name: Analyzing pods
-    runs-on: macos-14
+    runs-on: macos-15
     needs: [Setup]
     timeout-minutes: 20
     strategy:

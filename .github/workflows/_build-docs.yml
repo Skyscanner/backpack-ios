@@ -10,7 +10,7 @@ defaults:
 jobs:
   BuildDocs:
     name: Build Docs
-    runs-on: macos-14
+    runs-on: macos-15
     timeout-minutes: 20
     permissions:
       statuses: write
