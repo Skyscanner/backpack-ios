@@ -18,7 +18,7 @@ defaults:
 jobs:
   TestPods:
     name: Testing Pods
-    runs-on: macos-14
+    runs-on: macos-15
     timeout-minutes: 35
     outputs:
       changed-files: ${{ steps.checkSnapshotChanges.outputs.didChangeFiles }}
@@ -62,6 +62,9 @@ jobs:
 
       - name: Select Xcode 16
         run: sudo xcode-select --switch /Applications/Xcode_16.2.app
+
+      - name: Install iOS Simulator
+        run: ./scripts/install-sim
 
       - name: Remove snapshots
         if: ${{inputs.retake_snapshots}}
