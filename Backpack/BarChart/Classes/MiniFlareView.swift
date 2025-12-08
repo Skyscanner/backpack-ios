@@ -20,7 +20,7 @@ import UIKit
 
 @objcMembers
 @objc(BPKMiniFlareView)
-internal final class BPKMiniFlareView: BPKFlareView {
+internal final class BPKMiniFlareView: BPKObjcUIKitFlareView {
 
     /// The text to display within the the mini flare
     public var text: String? {

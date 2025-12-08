@@ -36,7 +36,7 @@ final class BPKFlareViewSnapshotTest: XCTestCase {
     
     func testFlareViewBottomSnapshot() {
         // Given
-        let sut = BPKFlareView()
+        let sut = BPKObjcUIKitFlareView()
         
         // When
         configure(flareView: sut, withInnerView: innerView)
@@ -48,7 +48,7 @@ final class BPKFlareViewSnapshotTest: XCTestCase {
     
     func testFlareViewTopSnapshot() {
         // Given
-        let sut = BPKFlareView()
+        let sut = BPKObjcUIKitFlareView()
         sut.flarePosition = .top
         
         // When
@@ -61,7 +61,7 @@ final class BPKFlareViewSnapshotTest: XCTestCase {
     
     func testFlareViewBottomRoundedSnapshot() {
         // Given
-        let sut = BPKFlareView()
+        let sut = BPKObjcUIKitFlareView()
         sut.cornerRadius = BPKCornerRadiusLg
         
         // When
@@ -74,7 +74,7 @@ final class BPKFlareViewSnapshotTest: XCTestCase {
     
     func testFlareViewTopRoundedSnapshot() {
         // Given
-        let sut = BPKFlareView()
+        let sut = BPKObjcUIKitFlareView()
         sut.flarePosition = .top
         sut.cornerRadius = BPKCornerRadiusLg
         
@@ -87,7 +87,7 @@ final class BPKFlareViewSnapshotTest: XCTestCase {
     }
 
     // MARK: Helpers
-    private func configure(flareView: BPKFlareView, withInnerView innerView: UIView) {
+    private func configure(flareView: BPKObjcUIKitFlareView, withInnerView innerView: UIView) {
         [flareView, innerView].forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
         
         flareView.backgroundColor = BPKColor.coreAccentColor

@@ -41,6 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
  * The controller is exclusively intended to be used with `presentViewController:`.
 
  */
+DEPRECATED_MSG_ATTRIBUTE("BPKDialogController is deprecated. Use the SwiftUI BPKDialog instead.")
 @interface BPKDialogController : UIViewController <BPKDialogViewDelegate, UIViewControllerTransitioningDelegate>
 
 /**
@@ -96,12 +97,12 @@ NS_ASSUME_NONNULL_BEGIN
  * @param title The tile to display in the dialog.
  * @param message The message to display in the body of the dialog.
  * @param iconDefinition the icon specification to show at the top of the dialog.
- * @param flareView the BPKFlareView to show at the top of the dialog.
+ * @param flareView the BPKObjcUIKitFlareView to show at the top of the dialog.
  */
 + (instancetype)dialogControllerWithTitle:(NSString *_Nullable)title
                                   message:(NSString *)message
                            iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition
-                                flareView:(BPKFlareView *_Nullable)flareView;
+                                flareView:(BPKObjcUIKitFlareView *_Nullable)flareView;
 
 /**
  * Create an instance of the controller with an image at the top

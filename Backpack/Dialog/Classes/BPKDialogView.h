@@ -29,6 +29,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 /**
  * A `UIView` subclass that renders the Backpack Dialog. Used by
  * `BPKDialogController`, but can also be used directly in rare cases.
@@ -75,7 +77,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param title The title to use.
  * @param message The message to use.
  * @param iconDefinition the icon to show at the top of the dialog.
- * @param graphicView the BPKFlareView to show at the top of the dialog.
+ * @param graphicView the BPKObjcUIKitFlareView to show at the top of the dialog.
  */
 - (instancetype)initWithTitle:(NSString *_Nullable)title
                       message:(NSString *)message
@@ -100,4 +102,5 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addButtonAction:(BPKDialogButtonAction *)action NS_SWIFT_NAME(addButtonAction(_:));
 
 @end
+#pragma clang diagnostic pop
 NS_ASSUME_NONNULL_END

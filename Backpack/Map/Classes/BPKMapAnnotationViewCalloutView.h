@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class BPKMapAnnotationView;
 
 /**
- * `BPKMapAnnotationViewCalloutView` displays a subclass of `BPKFlareView`. It defines the Skyscanner map callout style.
+ * `BPKMapAnnotationViewCalloutView` displays a subclass of `BPKObjcUIKitFlareView`. It defines the Skyscanner map callout style.
  */
 IB_DESIGNABLE @interface BPKMapAnnotationViewCalloutView : UIView
 

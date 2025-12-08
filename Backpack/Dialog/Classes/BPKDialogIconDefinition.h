@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * An object that represents the icon displayed atop a dialog.
  */
+DEPRECATED_MSG_ATTRIBUTE("BPKDialogIconDefinition is deprecated. Use the SwiftUI BPKDialog instead.")
 @interface BPKDialogIconDefinition : NSObject
 
 /**

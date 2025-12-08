@@ -23,6 +23,7 @@ enum DialogType {
     case success, warning, destructive, flare, image, longTitle
 }
 
+@available(*, deprecated, message: "We intentionally use this deprecated API.")
 class DialogViewController: UIViewController {
     var type: DialogType = .success
     
@@ -48,7 +49,7 @@ class DialogViewController: UIViewController {
         var dialogController: BPKDialogController
         
         if type == .flare {
-            let flareView = BPKFlareView(frame: .zero)
+            let flareView = BPKObjcUIKitFlareView(frame: .zero)
             let image = UIImage(named: "dialog_flare")
             let imageView = UIImageView.init(image: image)
             imageView.contentMode = .scaleAspectFill
