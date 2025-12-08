@@ -18,7 +18,7 @@
 
 #import "BPKStar.h"
 
-#import <Backpack/BPKRTLSupport.h>
+#import "BPKRTLSupport.h"
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 #import <Backpack/Icon.h>

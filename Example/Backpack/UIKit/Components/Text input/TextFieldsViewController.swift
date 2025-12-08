@@ -17,8 +17,7 @@
  */
 
 import UIKit
-import Backpack.TextField
-import Backpack.Color
+import Backpack
 
 class TextFieldsViewController: UIViewController {
     @IBOutlet weak var textField: BPKTextField!

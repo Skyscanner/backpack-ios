@@ -2,6 +2,8 @@
 set -e
 
 EXAMPLE_WORKSPACE="Example/Backpack.xcworkspace"
+SPM_EXAMPLE_WORKSPACE="Example/Backpack-SPM.xcworkspace"
+SPM_EXAMPLE_SCHEME=${SPM_EXAMPLE_SCHEME:-'Backpack Native'}
 SWIFT=${SWIFT:-'5.0'}
 BUILD_SDK=${BUILD_SDK:-'iphonesimulator'}
 DESTINATION=${DESTINATION:-"platform=iOS Simulator,name=iPhone SE (3rd generation),OS=17.5"}
@@ -29,6 +31,18 @@ function runTests() {
         -destination "$(echo $DESTINATION)" \
         ONLY_ACTIVE_ARCH=YES \
         "$@" 2>&1
+}
+
+function buildSpmExample() {
+    echo "Building SPM Example app ($SPM_EXAMPLE_SCHEME)"
+
+    xcodebuild build \
+        -workspace $SPM_EXAMPLE_WORKSPACE \
+        -scheme "$SPM_EXAMPLE_SCHEME" \
+        SWIFT_VERSION=$SWIFT \
+        -sdk $BUILD_SDK \
+        -destination "$(echo $DESTINATION)" \
+        ONLY_ACTIVE_ARCH=YES 2>&1
 }
 
 function check_modules() {
@@ -65,6 +79,7 @@ if [ $# -lt 2 ]; then
     check_modules "swiftui" "test"
     check_modules "common" "test"
     check_modules "uitests" "test"
+    buildSpmExample
 else
     check_modules $1 $2
 fi
