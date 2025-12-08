@@ -18,7 +18,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import <Backpack/FlareView.h>
+#import "../../FlareView/Classes/FlareView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

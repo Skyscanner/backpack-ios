@@ -18,7 +18,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <Backpack/Font.h>
+#import "../../Font/Classes/Font.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

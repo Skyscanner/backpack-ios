@@ -42,7 +42,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.swift_versions = ['5.0', '4.2', '4.0']
   s.pod_target_xcconfig = {
-    'HEADER_SEARCH_PATHS' => '$(inherited) "${PODS_TARGET_SRCROOT}/Backpack" "${BUILT_PRODUCTS_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}"'
+    'HEADER_SEARCH_PATHS' => '$(inherited) "${PODS_TARGET_SRCROOT}/Backpack" "${BUILT_PRODUCTS_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}" "${PODS_TARGET_SRCROOT}/Backpack/Button/Classes" "${PODS_TARGET_SRCROOT}/Backpack/Label/Classes" "${PODS_TARGET_SRCROOT}/Backpack/Icon/Classes" "${PODS_TARGET_SRCROOT}/Backpack/Icon/Classes/Generated" "${PODS_TARGET_SRCROOT}/Backpack/Font/Classes" "${PODS_TARGET_SRCROOT}/Backpack/FlareView/Classes" "${PODS_TARGET_SRCROOT}/Backpack/Dialog/Classes" "${PODS_TARGET_SRCROOT}/Backpack/NavigationBar/Classes" "${PODS_TARGET_SRCROOT}/Backpack/Map/Classes" "${PODS_TARGET_SRCROOT}/Backpack/ProgressBar/Classes" "${PODS_TARGET_SRCROOT}/Backpack/TappableLinkLabel/Classes"'
   }
   s.script_phases = [{
     :name => 'Backpack Generated Headers',

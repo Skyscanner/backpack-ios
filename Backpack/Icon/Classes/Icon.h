@@ -22,8 +22,8 @@
 #import "BPKIconView.h" // DEPRECATED: Consumers should use BPK<SIZE>IconView instead
 #import "BPKLargeIconView.h"
 #import "BPKSmallIconView.h"
-#import <Backpack/BPKIconNames.h> // DEPRECATED: Consumers should use BPK<SIZE>IconNames instead
-#import <Backpack/BPKLargeIconNames.h>
-#import <Backpack/BPKSmallIconNames.h>
+#import "Generated/BPKIconNames.h" // DEPRECATED: Consumers should use BPK<SIZE>IconNames instead
+#import "Generated/BPKLargeIconNames.h"
+#import "Generated/BPKSmallIconNames.h"
 
 #endif

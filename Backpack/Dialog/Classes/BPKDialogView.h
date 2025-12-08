@@ -18,7 +18,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import <Backpack/FlareView.h>
+#import "../../FlareView/Classes/FlareView.h"
 
 #import "BPKDialogButtonAction.h"
 #import "BPKDialogCornerStyle.h"

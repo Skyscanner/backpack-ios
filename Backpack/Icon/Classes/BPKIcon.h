@@ -18,9 +18,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import <Backpack/BPKIconNames.h>
-#import <Backpack/BPKLargeIconNames.h>
-#import <Backpack/BPKSmallIconNames.h>
+#import "Generated/BPKIconNames.h"
+#import "Generated/BPKLargeIconNames.h"
+#import "Generated/BPKSmallIconNames.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

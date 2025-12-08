@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-#import <Backpack/Icon.h>
+#import "../../Icon/Classes/Icon.h"
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 #import <UIKit/UIKit.h>
