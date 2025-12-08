@@ -34,7 +34,10 @@ public struct BPKText: View {
     private var strikethrough: Bool = false
 
     public init(_ text: String, style: BPKFontStyle = .bodyDefault) {
-        self.text = Text(LocalizedStringKey(text))
+        
+        let isEmailText = text.contains("@")
+        
+        self.text = isEmailText ? Text(verbatim: text): Text(LocalizedStringKey(text))
         self.style = style
     }
     

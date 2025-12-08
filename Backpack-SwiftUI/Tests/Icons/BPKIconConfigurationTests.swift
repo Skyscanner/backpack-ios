@@ -1,4 +1,3 @@
-// clang-format off
 /*
  * Backpack - Skyscanner's Design System
  *
@@ -17,24 +16,27 @@
  * limitations under the License.
  */
 
-#import "BPKColor.h"
+import XCTest
+import SwiftUI
+@testable import Backpack_SwiftUI
+@testable import Backpack_Common
 
-NS_ASSUME_NONNULL_BEGIN
-/// Backpack Internal Colors
-/// These colors are internal on purpose and can only be used by Backpack components.
-/// Do not use these colors in your own designs.
-@interface BPKColor (BPKInternalColors)
-
-///-----------------------
-/// @name Colors
-///-----------------------
-{% for c in internalColor %}
-/**
- * The `{{c.name}}` internal color.
- */
-@property(nonatomic, class, readonly) UIColor * {{c.objcName}}{{" __deprecated" if c.deprecated}};
-{% endfor %}
-
-@end
-NS_ASSUME_NONNULL_END
-// clang-format on
+final class BPKIconConfigurationTests: XCTestCase {
+    
+    override func setUp() {
+        super.setUp()
+        
+        let config = BpkConfiguration.shared
+        do {
+            try config.set(configs: [.icon])
+        } catch {
+            XCTFail("Failed to set button config")
+        }
+    }
+    
+    override func tearDown() {
+        super.tearDown()
+        
+        BpkConfiguration.shared.reset()
+    }
+}

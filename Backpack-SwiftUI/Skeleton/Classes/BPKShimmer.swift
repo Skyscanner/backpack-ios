@@ -36,7 +36,9 @@ public struct BPKShimmer: ViewModifier {
             .mask(linearGradient)
             .animation(size == .default ? linearAnimation : easeInOuAnimation, value: offset)
             .clipped()
-            .drawingGroup(opaque: false)
+            .if(size == .small) { view in
+                view.drawingGroup(opaque: false)
+            }
             .onAppear {
                 offset = 1.0 + bandSize
             }

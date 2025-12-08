@@ -29,6 +29,8 @@
 #import "BPKButtonAppearance.h"
 #import "BPKButtonAppearanceSet.h"
 #import "UIColor+BPKButton.h"
+
+#import <Backpack/Backpack-Swift.h>
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 #import <Backpack/DarkMode.h>
@@ -40,8 +42,6 @@
 #import <Backpack/UIView+BPKRTL.h>
 
 NS_ASSUME_NONNULL_BEGIN
-// WARNING: BPKButton is kept for maintenance only; new consumers should adopt
-// the SwiftUI alternative.
 @interface BPKButton ()
 
 @property(nonatomic) BPKGradientLayer *gradientLayer;
@@ -304,7 +304,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (BPKButtonAppearance *)currentAppearance {
-    BPKButtonAppearanceSet *appearanceSet = BPKButtonAppearanceSetForStyle(self.style);
+    BPKButtonAppearanceSet *appearanceSet = [BPKButtonAppearanceSets appearanceFromStyle:self.style];
     if (self.isLoading)
         return appearanceSet.loadingAppearance;
     if (!self.isEnabled)

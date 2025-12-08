@@ -16,7 +16,6 @@
  * limitations under the License.
  */
 
-#import "BPKButton.h"
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
@@ -56,8 +55,6 @@ NS_ASSUME_NONNULL_BEGIN
                         loadingAppearance:(BPKButtonAppearance *)loadingAppearance
                        disabledAppearance:(BPKButtonAppearance *)disabledAppearance
                     highlightedAppearance:(BPKButtonAppearance *)highlightedAppearance;
-
-FOUNDATION_EXPORT BPKButtonAppearanceSet *BPKButtonAppearanceSetForStyle(BPKButtonStyle style);
 
 /*
  * Creates an new instance of `BPKButtonAppearanceSet` with cloned appearances that match the current instance.
