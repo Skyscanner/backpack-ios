@@ -57,6 +57,7 @@ jobs:
           set -eo pipefail
           # BUILD_LIBRARY_FOR_DISTRIBUTION=YES enables stricter checking for framework distribution
           # This catches non-modular header includes that would break consumers
+          # Note: We keep ENABLE_TESTABILITY=YES (default) to allow @testable imports in test targets
           xcodebuild \
             -workspace Example/Backpack.xcworkspace \
             -scheme "${{ matrix.scheme }}" \
@@ -64,7 +65,6 @@ jobs:
             -derivedDataPath .derivedData \
             BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
             SWIFT_EMIT_MODULE_INTERFACE=NO \
-            ENABLE_TESTABILITY=NO \
             ONLY_ACTIVE_ARCH=YES \
             build 2>&1 | tee build.log
 
