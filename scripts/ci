@@ -7,26 +7,28 @@ BUILD_SDK=${BUILD_SDK:-'iphonesimulator'}
 DESTINATION=${DESTINATION:-"platform=iOS Simulator,name=iPhone SE (3rd generation),OS=18.4"}
 
 # --------------------------------------------------------------------
-# CI: Pick the preinstalled iPhone SE (3rd generation) 18.4 simulator
-# and use its UDID as the destination.
+# CI: Pick the iOS 18.4 "iPhone SE (3rd generation)" simulator
+# using simctl's runtime filter and use its UDID as destination.
 # --------------------------------------------------------------------
 
 if [[ -n "$CI" && "$DESTINATION" == "platform=iOS Simulator,name=iPhone SE (3rd generation),OS=18.4" ]]; then
-  echo "CI detected. Selecting preinstalled iPhone SE (3rd generation) iOS 18.4 simulator..."
+  echo "CI detected. Selecting iOS 18.4 'iPhone SE (3rd generation)' simulator via simctl..."
 
-  # Example line from `xcrun simctl list devices` (Xcode 16+):
-  #   iPhone SE (3rd generation) (18.4) (3C9E12DE-7D19-45CA-ABB1-8231FE4C2811) (Shutdown)
+  # Ask simctl only for devices in the iOS 18.4 runtime.
+  # On Xcode 16.x this is usually "iOS 18.4" or the runtime identifier
+  # com.apple.CoreSimulator.SimRuntime.iOS-18-4. The plain "iOS 18.4"
+  # form is nicer and supported.
   DEVICE_UDID=$(
-    xcrun simctl list devices | \
-      grep "iPhone SE (3rd generation) (18\.4)" | \
+    xcrun simctl list devices "iOS 18.4" | \
+      grep "iPhone SE (3rd generation)" | \
       head -n 1 | \
       sed -E 's/.*\(([0-9A-Fa-f-]+)\).*/\1/'
   )
 
   if [[ -z "$DEVICE_UDID" ]]; then
-    echo "Error: Could not find a preinstalled 'iPhone SE (3rd generation) (18.4)' simulator."
-    echo "Devices for 18.4 were:"
-    xcrun simctl list devices | grep "(18\.4)" || true
+    echo "Error: Could not find an 'iPhone SE (3rd generation)' simulator for iOS 18.4."
+    echo "Debug: simctl list devices 'iOS 18.4' output:"
+    xcrun simctl list devices "iOS 18.4" || true
     exit 1
   fi
 
