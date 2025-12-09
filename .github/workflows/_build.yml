@@ -146,6 +146,9 @@ jobs:
       - name: Select Xcode 16
         run: sudo xcode-select --switch /Applications/Xcode_16.4.app
 
+      - name: Install Simulator
+        run: ./scripts/install-sim
+
       - name: List Runtimes
         run: xcrun simctl list runtimes
 
