@@ -50,6 +50,7 @@ typedef NS_ENUM(NSUInteger, BPKIconSize) {
  * times. Further the use of `NSCache` means that in low memory scenarios the cache will be cleared
  * to allow more important memory use.
  */
+DEPRECATED_MSG_ATTRIBUTE("BPKIcon is deprecated. Use the SwiftUI BPKIcon instead.")
 @interface BPKIcon : NSObject
 
 /**

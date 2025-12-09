@@ -23,6 +23,7 @@
 /**
  * `BPKLegacyLinkButton` is a subclass of `UIButton`. It's Deprecated and it should not be used. Please refer to `BPKObjcUIKitButton` instead.
  */
+DEPRECATED_MSG_ATTRIBUTE("BPKLegacyLinkButton is deprecated. Use the SwiftUI BPKLink or BPKButton Swift wrapper instead.")
 IB_DESIGNABLE @interface BPKLegacyLinkButton : UIButton
 /**
  * @deprecated use `BPKObjcUIKitButton` instead

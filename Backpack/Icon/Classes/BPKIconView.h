@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
  * where a single icon is used and colour is controlled via `tintColor`. The icon is
  * always rendered using template rendering.
  */
+DEPRECATED_MSG_ATTRIBUTE("BPKIconView is deprecated. Use the SwiftUI BPKIconView instead.")
 @interface BPKIconView : UIImageView
 
 /**

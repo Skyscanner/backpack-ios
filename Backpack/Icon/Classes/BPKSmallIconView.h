@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
  * Convenient for setting the icon `tintColor` as the icon is
  * always rendered using template rendering.
  */
+DEPRECATED_MSG_ATTRIBUTE("BPKSmallIconView is deprecated. Use the SwiftUI BPKIconView instead.")
 @interface BPKSmallIconView : BPKIconView
 
 /// :nodoc:
