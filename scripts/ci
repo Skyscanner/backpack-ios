@@ -7,38 +7,29 @@ BUILD_SDK=${BUILD_SDK:-'iphonesimulator'}
 DESTINATION=${DESTINATION:-"platform=iOS Simulator,name=iPhone SE (3rd generation),OS=18.4"}
 
 # --------------------------------------------------------------------
-# UPDATED SIMULATOR-CREATION BLOCK (UDID-BASED)
-# Ensures CI uses exactly one simulator by UDID, avoiding Xcode's
-# "multiple devices matched" fatal error.
+# CI: Pick the preinstalled iPhone SE (3rd generation) 18.4 simulator
+# and use its UDID as the destination.
 # --------------------------------------------------------------------
 
 if [[ -n "$CI" && "$DESTINATION" == "platform=iOS Simulator,name=iPhone SE (3rd generation),OS=18.4" ]]; then
-  RUNTIME_ID="com.apple.CoreSimulator.SimRuntime.iOS-18-4"
-  DEVICE_TYPE_ID="com.apple.CoreSimulator.SimDeviceType.iPhone-SE-3rd-generation"
-  DEVICE_NAME="CI iPhone SE (3rd generation) 18.4"
+  echo "CI detected. Selecting preinstalled iPhone SE (3rd generation) iOS 18.4 simulator..."
 
-  echo "Ensuring CI simulator exists for: $DEVICE_NAME"
+  # Example line from `xcrun simctl list devices` (Xcode 16+):
+  #   iPhone SE (3rd generation) (18.4) (3C9E12DE-7D19-45CA-ABB1-8231FE4C2811) (Shutdown)
+  DEVICE_UDID=$(
+    xcrun simctl list devices | \
+      grep "iPhone SE (3rd generation) (18\.4)" | \
+      head -n 1 | \
+      sed -E 's/.*\(([0-9A-Fa-f-]+)\).*/\1/'
+  )
 
-  # Try to find an existing device with this name & runtime
-  EXISTING_UDID=$(xcrun simctl list devices "$RUNTIME_ID" | \
-    awk -v name="$DEVICE_NAME" '
-      index($0, name) {
-        # Extract UDID from "(xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)"
-        match($0, /\(([0-9A-Fa-f-]{36})\)/, m);
-        if (m[1] != "") { print m[1]; exit }
-      }
-    ')
-
-  if [[ -n "$EXISTING_UDID" ]]; then
-    echo "Found existing simulator: $DEVICE_NAME (UDID: $EXISTING_UDID)"
-    DEVICE_UDID="$EXISTING_UDID"
-  else
-    echo "Creating simulator: $DEVICE_NAME"
-    DEVICE_UDID=$(xcrun simctl create "$DEVICE_NAME" "$DEVICE_TYPE_ID" "$RUNTIME_ID")
-    echo "Created simulator with UDID: $DEVICE_UDID"
+  if [[ -z "$DEVICE_UDID" ]]; then
+    echo "Error: Could not find a preinstalled 'iPhone SE (3rd generation) (18.4)' simulator."
+    echo "Devices for 18.4 were:"
+    xcrun simctl list devices | grep "(18\.4)" || true
+    exit 1
   fi
 
-  # Use the UDID directly → avoids ambiguous simulator name/OS failures
   DESTINATION="id=$DEVICE_UDID"
   echo "Using DESTINATION=\"$DESTINATION\""
 fi
