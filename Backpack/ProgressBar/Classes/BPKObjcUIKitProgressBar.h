@@ -24,9 +24,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * `BPKProgressBar` is a lightweight subclass of `UIProgressView` with Skyscanner styling applied.
+ * `BPKObjcUIKitProgressBar` is a lightweight subclass of `UIProgressView` with Skyscanner styling applied.
  */
-IB_DESIGNABLE @interface BPKProgressBar : UIProgressView
+DEPRECATED_MSG_ATTRIBUTE("BPKObjcUIKitProgressBar is deprecated. Use the SwiftUI BPKProgressBar instead.")
+IB_DESIGNABLE @interface BPKObjcUIKitProgressBar : UIProgressView
 
 /**
  * The colour to use in the progress track.

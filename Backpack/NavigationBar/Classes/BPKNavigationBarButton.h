@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
+DEPRECATED_MSG_ATTRIBUTE("BPKNavigationBar is deprecated. Use the SwiftUI BPKNavigationBarItem instead.")
 @interface BPKNavigationBarButton : BPKObjcUIKitButton
 
 @property(nonatomic, strong) UIColor *contentColor;

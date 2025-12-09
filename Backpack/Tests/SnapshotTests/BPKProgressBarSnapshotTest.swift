@@ -28,7 +28,7 @@ class BPKProgressBarSnapshotTest: XCTestCase {
     
     func testSettingValue() {
         // Given
-        let sut = BPKProgressBar()
+        let sut = BPKObjcUIKitProgressBar()
         sut.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
@@ -44,7 +44,7 @@ class BPKProgressBarSnapshotTest: XCTestCase {
     
     func testOverridingBackgroundColor() {
         // Given
-        let sut = BPKProgressBar()
+        let sut = BPKObjcUIKitProgressBar()
         sut.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
@@ -61,7 +61,7 @@ class BPKProgressBarSnapshotTest: XCTestCase {
     
     func testTheme() {
         // Given
-        let sut = BPKProgressBar()
+        let sut = BPKObjcUIKitProgressBar()
         sut.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([

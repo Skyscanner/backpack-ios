@@ -79,7 +79,7 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) { BPKGrayColor50, BPKGrayColor100, BPKG
     BPKStar *starAppearance = [BPKStar appearanceWhenContainedInInstancesOfClasses:@[class]];
     starAppearance.starFilledColor = theme.starFilledColor;
 
-    BPKProgressBar *progressBarAppearance = [BPKProgressBar appearanceWhenContainedInInstancesOfClasses:@[class]];
+    BPKObjcUIKitProgressBar *progressBarAppearance = [BPKObjcUIKitProgressBar appearanceWhenContainedInInstancesOfClasses:@[class]];
     progressBarAppearance.fillColor = theme.progressBarPrimaryColor;
 
     BPKHorizontalNavigationObjc *horizontalNavAppearance = [BPKHorizontalNavigationObjc appearanceWhenContainedInInstancesOfClasses:@[class]];

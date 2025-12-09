@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * `BPKMapAnnotation` is a subclass of `MKPointAnnotation` which which can be used to represent a `BPKMapAnnotationView`.
  */
-DEPRECATED_MSG_ATTRIBUTE("BPKMapAnnotation is deprecated. Use the SwiftUI BPKLink or BPKButton Swift wrapper instead.")
+DEPRECATED_MSG_ATTRIBUTE("BPKMapAnnotation is deprecated. Use the SwiftUI MapMarker instead.")
 @interface BPKMapAnnotation : MKPointAnnotation
 
 /**

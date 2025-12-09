@@ -20,6 +20,7 @@
 import UIKit
 import Backpack
 
+@available(*, deprecated, message: "We intentionally use this deprecated API.")
 class NavigationBarViewController: UIViewController {
     var showBackbutton: Bool = true
     var showRightButton: Bool = true

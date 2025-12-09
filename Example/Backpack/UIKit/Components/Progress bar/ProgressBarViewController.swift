@@ -19,8 +19,9 @@
 import UIKit
 import Backpack
 
+@available(*, deprecated, message: "We intentionally use this deprecated API.")
 class ProgressBarViewController: UIViewController {
-    @IBOutlet weak var progressBar: BPKProgressBar!
+    @IBOutlet weak var progressBar: BPKObjcUIKitProgressBar!
     @IBOutlet weak var increaseButton: UIButton!
     @IBOutlet weak var resetButton: UIButton!
 
