@@ -25,7 +25,7 @@ sudo xcodebuild -downloadPlatform iOS
 
 # Parameterize device type and runtime, with defaults
 SIM_DEVICE_TYPE="${SIM_DEVICE_TYPE:-com.apple.CoreSimulator.SimDeviceType.iPhone-SE-3rd-generation}"
-SIM_RUNTIME="${SIM_RUNTIME:-com.apple.CoreSimulator.SimRuntime.iOS-17-5}"
+SIM_RUNTIME="${SIM_RUNTIME:-com.apple.CoreSimulator.SimRuntime.iOS-18-0}"
 SIM_DEVICE_NAME="${SIM_DEVICE_NAME:-iPhone SE (3rd generation)}"
 echo "Using SIM_DEVICE_TYPE: $SIM_DEVICE_TYPE"
 echo "Using SIM_RUNTIME: $SIM_RUNTIME"
