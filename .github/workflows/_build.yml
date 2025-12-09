@@ -21,6 +21,9 @@ jobs:
       - name: Set up node and ruby
         uses: asdf-vm/actions/install@v4 # Sets ruby and node version via `.tool-versions`
 
+      - name: Install Simulator
+        run: ./scripts/install-sim
+
   Lint:
     name: Lint Project
     runs-on: macos-15
@@ -74,9 +77,6 @@ jobs:
 
       - name: Select Xcode 16
         run: sudo xcode-select --switch /Applications/Xcode_16.4.app
-
-      - name: Install Simulator
-        run: ./scripts/install-sim
 
       - name: Install clang-format
         run: brew install clang-format
@@ -145,9 +145,6 @@ jobs:
 
       - name: Select Xcode 16
         run: sudo xcode-select --switch /Applications/Xcode_16.4.app
-
-      - name: Install Simulator
-        run: ./scripts/install-sim
 
       - name: List Runtimes
         run: xcrun simctl list runtimes
