@@ -29,6 +29,7 @@ enum LinkType {
     case print
 }
 
+@available(*, deprecated, message: "We intentionally use this deprecated API.")
 class TappableLinkLabelsViewController: UIViewController, BPKTappableLinkLabelDelegate {
     var linkType: LinkType = .web
     var linkCount: LinkCount = .single

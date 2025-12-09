@@ -20,8 +20,9 @@ import UIKit
 import Backpack.TextField
 import Backpack.Color
 
+@available(*, deprecated, message: "We intentionally use this deprecated API.")
 class TextFieldsViewController: UIViewController {
-    @IBOutlet weak var textField: BPKTextField!
+    @IBOutlet weak var textField: BPKObjcUIKitTextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()

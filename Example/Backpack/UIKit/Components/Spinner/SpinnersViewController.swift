@@ -110,7 +110,7 @@ class SpinnersViewController: UIViewController {
             label.text = "Deprecated"
         }
         
-        let spinner = BPKSpinner(style: style, size: size)
+        let spinner = BPKObjcUIKitSpinner(style: style, size: size)
         spinner.startAnimating()
         
         let stackView = UIStackView()

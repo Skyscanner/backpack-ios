@@ -39,7 +39,7 @@ extension Components.Tab {
         Components.Tab(
             title: "UIKit",
             viewController: presentable.makeViewController,
-            image: BPKIcon.makeLargeTemplateIcon(name: .window)
+            image: BPKObjcUIKitIcon.makeLargeTemplateIcon(name: .window)
         )
     }
 
@@ -48,7 +48,7 @@ extension Components.Tab {
         Components.Tab(
             title: "SwiftUI",
             viewController: presentable.makeViewController,
-            image: BPKIcon.makeLargeTemplateIcon(name: .flightTakeoff)
+            image: BPKObjcUIKitIcon.makeLargeTemplateIcon(name: .flightTakeoff)
         )
     }
 }

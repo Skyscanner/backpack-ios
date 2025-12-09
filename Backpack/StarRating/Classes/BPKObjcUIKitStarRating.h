@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
  * it's advisable to display a text string adjecent to the star rating with the exact
  * rating value.
  */
-DEPRECATED_MSG_ATTRIBUTE("BPKObjcUIKitStarRating is deprecated. Use the SwiftUI BPKObjcUIKitSpinner instead.")
+DEPRECATED_MSG_ATTRIBUTE("BPKObjcUIKitStarRating is deprecated. Use the SwiftUI BPKSpinner instead.")
 IB_DESIGNABLE @interface BPKObjcUIKitStarRating : UIView
 
 /**

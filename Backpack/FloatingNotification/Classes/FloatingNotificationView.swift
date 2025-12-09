@@ -40,8 +40,8 @@ final class FloatingNotificationView: UIView {
         return stackView
     }()
     
-    private let iconView: BPKIconView = {
-        let iconView = BPKIconView(iconName: .none, size: .small)
+    private let iconView: BPKObjcUIKitIconView = {
+        let iconView = BPKObjcUIKitIconView(iconName: .none, size: .small)
         iconView.tintColor = BPKColor.textOnDarkColor
         iconView.isAccessibilityElement = false
         iconView.translatesAutoresizingMaskIntoConstraints = false

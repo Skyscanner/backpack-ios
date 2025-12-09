@@ -67,7 +67,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setupButtons {
     UIImage *smallLongArrowIcon =
-        self.isRTL ? [BPKIcon smallTemplateIconNamed:BPKSmallIconNameLongArrowLeft] : [BPKIcon smallTemplateIconNamed:BPKSmallIconNameLongArrowRight];
+        self.isRTL ? [BPKObjcUIKitIcon smallTemplateIconNamed:BPKSmallIconNameLongArrowLeft] : [BPKObjcUIKitIcon smallTemplateIconNamed:BPKSmallIconNameLongArrowRight];
     [self setupButton:self.defaultTextButton image:nil title:@"Search Flights"];
     [self setupButton:self.defaultLoadingButton image:smallLongArrowIcon title:@"Load"];
     [self setupButton:self.defaultLoadingTitleOnlyButton image:nil title:@"Load"];
@@ -77,7 +77,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self setupButton:self.defaultIconOnlyButton image:smallLongArrowIcon title:nil];
     [self setupButton:self.defaultLoadingIconOnlyButton image:smallLongArrowIcon title:nil];
 
-    UIImage *largeLongArrowIcon = [BPKIcon largeTemplateIconNamed:BPKLargeIconNameLongArrowRight];
+    UIImage *largeLongArrowIcon = [BPKObjcUIKitIcon largeTemplateIconNamed:BPKLargeIconNameLongArrowRight];
 
     [self setupButton:self.largeTextButton image:nil title:@"Button"];
     [self setupButton:self.largeTrailingIconButton image:largeLongArrowIcon title:@"With icon"];

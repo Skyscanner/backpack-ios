@@ -28,7 +28,7 @@ class BPKTextFieldSnapshotTest: XCTestCase {
     
     private func createView(withStyles styles: [BPKFontStyle], textColor: UIColor? = nil) -> UIView {
         viewsInStack(withStyles: styles) { style in
-            let textField = BPKTextField(fontStyle: style)
+            let textField = BPKObjcUIKitTextField(fontStyle: style)
             textField.text = "Backpack Rocks"
             if let color = textColor { textField.textColor = color }
             return textField

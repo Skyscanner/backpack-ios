@@ -28,13 +28,13 @@ class BPKSwitchSnapshotTest: XCTestCase {
         isRecording = false
     }
 
-    private func makeSwitch(withPrimaryColor color: UIColor? = nil, state: Bool = false) -> BPKSwitch {
-        let bpkSwitch = BPKSwitch()
+    private func makeSwitch(withPrimaryColor color: UIColor? = nil, state: Bool = false) -> BPKObjcUIKitSwitch {
+        let BPKObjcUIKitSwitch = BPKObjcUIKitSwitch()
         if let color = color {
-            bpkSwitch.primaryColor = color
+            BPKObjcUIKitSwitch.primaryColor = color
         }
-        bpkSwitch.setOn(state, animated: false)
-        return bpkSwitch
+        BPKObjcUIKitSwitch.setOn(state, animated: false)
+        return BPKObjcUIKitSwitch
     }
     
     func testSwitchWhenOff() {

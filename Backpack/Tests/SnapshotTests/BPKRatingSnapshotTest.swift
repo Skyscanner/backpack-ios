@@ -71,7 +71,7 @@ class BPKRatingSnapshotTest: XCTestCase {
 
     private func createRating(_ parameter: BPKRatingParameter) -> BPKRating {
         if parameter.showCustomTitleView {
-            let starRating = BPKStarRating()
+            let starRating = BPKObjcUIKitStarRating()
             starRating.rating = 4.5
             return BPKRating(
                 accessibilityLabel: "",
@@ -108,7 +108,7 @@ class BPKRatingSnapshotTest: XCTestCase {
         rating.backgroundColor = BPKColor.canvasColor
 
         // When
-        let starRating = BPKStarRating()
+        let starRating = BPKObjcUIKitStarRating()
         starRating.rating = 3.99
         rating.titleView = starRating
 
@@ -118,7 +118,7 @@ class BPKRatingSnapshotTest: XCTestCase {
 
     func testBPKRatingTitleConstraintUpdateAfterSetTitle() {
         // Given
-        let starRating = BPKStarRating()
+        let starRating = BPKObjcUIKitStarRating()
         starRating.rating = 2.101
         let rating = BPKRating(
             accessibilityLabel: "",
@@ -138,7 +138,7 @@ class BPKRatingSnapshotTest: XCTestCase {
 
     func testBPKRatingTitleConstraintUpdateAfterSetASecondTitleView() {
         // Given
-        let starRating = BPKStarRating()
+        let starRating = BPKObjcUIKitStarRating()
         starRating.rating = 2.101
         let rating = BPKRating(
             accessibilityLabel: "",
@@ -150,7 +150,7 @@ class BPKRatingSnapshotTest: XCTestCase {
         rating.backgroundColor = BPKColor.canvasColor
 
         // When
-        let secondStarRating = BPKStarRating()
+        let secondStarRating = BPKObjcUIKitStarRating()
         secondStarRating.rating = 3
         rating.titleView = secondStarRating
 

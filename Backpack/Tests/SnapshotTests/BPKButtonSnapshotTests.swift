@@ -51,8 +51,8 @@ class BPKButtonSnapshotTest: XCTestCase {
     }
     
     private func icon(forSize size: BPKButtonSize) -> UIImage {
-        let small = BPKIcon.makeSmallTemplateIcon(name:)
-        let large = BPKIcon.makeLargeTemplateIcon(name:)
+        let small = BPKObjcUIKitIcon.makeSmallTemplateIcon(name:)
+        let large = BPKObjcUIKitIcon.makeLargeTemplateIcon(name:)
         return size == .large ? large(.longArrowRight) : small(.longArrowRight)
     }
     

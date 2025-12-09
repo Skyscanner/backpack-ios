@@ -207,7 +207,7 @@ private extension BPKDialogIconDefinition {
     
     private static func large(named: BPKLargeIconName, color: UIColor) -> BPKDialogIconDefinition {
         BPKDialogIconDefinition(
-            icon: BPKIcon.makeLargeTemplateIcon(name: named),
+            icon: BPKObjcUIKitIcon.makeLargeTemplateIcon(name: named),
             iconBackgroundColor: color
         )
     }

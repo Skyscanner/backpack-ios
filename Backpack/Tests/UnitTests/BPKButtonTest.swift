@@ -55,7 +55,7 @@ final class BPKButtonTest: XCTestCase {
         let expectedLabel = "Accessibility Label"
         
         // When
-        sut.setImage(BPKIcon.makeSmallTemplateIcon(name: .accessibility))
+        sut.setImage(BPKObjcUIKitIcon.makeSmallTemplateIcon(name: .accessibility))
         sut.accessibilityLabel = expectedLabel
         sut.isEnabled = true
         

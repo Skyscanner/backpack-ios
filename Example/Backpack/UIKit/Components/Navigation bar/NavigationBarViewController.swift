@@ -59,12 +59,12 @@ class NavigationBarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationBar.leftButton.setImage(BPKIcon.makeLargeTemplateIcon(name: .chevronLeft))
+        navigationBar.leftButton.setImage(BPKObjcUIKitIcon.makeLargeTemplateIcon(name: .chevronLeft))
         navigationBar.leftButton.accessibilityLabel = "Back"
         navigationBar.leftButton.addTarget(self, action: #selector(backPressed), for: .touchUpInside)
         navigationBar.leftButton.isHidden = !showBackbutton
 
-        navigationBar.rightButton.setImage(BPKIcon.makeLargeTemplateIcon(name: .settings))
+        navigationBar.rightButton.setImage(BPKObjcUIKitIcon.makeLargeTemplateIcon(name: .settings))
         navigationBar.rightButton.addTarget(self, action: #selector(rightButtonPressed), for: .touchUpInside)
         navigationBar.rightButton.isHidden = !showRightButton
         

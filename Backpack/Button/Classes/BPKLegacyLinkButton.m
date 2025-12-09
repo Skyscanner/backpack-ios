@@ -488,7 +488,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     dispatch_once(&onceToken, ^{
       BPKAssertMainThread();
-      CGSize size = [BPKIcon concreteSizeForIconSize:BPKIconSizeSmall];
+      CGSize size = [BPKObjcUIKitIcon concreteSizeForIconSize:BPKIconSizeSmall];
 
       UIGraphicsBeginImageContextWithOptions(size, YES, 0);
       [UIColor.blackColor setFill];
@@ -506,7 +506,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     dispatch_once(&onceToken, ^{
       BPKAssertMainThread();
-      CGSize size = [BPKIcon concreteSizeForIconSize:BPKIconSizeLarge];
+      CGSize size = [BPKObjcUIKitIcon concreteSizeForIconSize:BPKIconSizeLarge];
 
       UIGraphicsBeginImageContextWithOptions(size, YES, 0);
       [UIColor.blackColor setFill];

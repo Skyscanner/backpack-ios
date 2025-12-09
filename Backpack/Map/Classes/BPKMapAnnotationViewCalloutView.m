@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKMapAnnotationViewCalloutView ()
 @property(nonatomic, strong) UIStackView *stackView;
-@property(nonatomic, strong) BPKIconView *iconView;
+@property(nonatomic, strong) BPKObjcUIKitIconView *iconView;
 @property(nonatomic, strong) BPKLabel *label;
 @property(nonatomic, strong) UIColor *contentColor;
 @property(nonatomic, strong) BPKMapAnnotationViewCalloutFlareView *flareView;
@@ -176,7 +176,7 @@ NS_ASSUME_NONNULL_BEGIN
     stackView.spacing = BPKSpacingIconText;
     stackView.alignment = UIStackViewAlignmentCenter;
 
-    BPKIconView *iconView = [[BPKIconView alloc] initWithIconName:nil size:BPKIconSizeSmall];
+    BPKObjcUIKitIconView *iconView = [[BPKObjcUIKitIconView alloc] initWithIconName:nil size:BPKIconSizeSmall];
 
     BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextHeading5];
 

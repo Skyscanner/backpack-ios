@@ -111,13 +111,13 @@ extension DialogViewController {
     private var icon: BPKDialogIconDefinition? {
         switch type {
         case .success, .longTitle:
-            let iconTemplate = BPKIcon.makeLargeTemplateIcon(name: .tick)
+            let iconTemplate = BPKObjcUIKitIcon.makeLargeTemplateIcon(name: .tick)
             return BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.coreAccentColor)
         case .warning:
-            let iconTemplate = BPKIcon.makeLargeTemplateIcon(name: .alertAdd)
+            let iconTemplate = BPKObjcUIKitIcon.makeLargeTemplateIcon(name: .alertAdd)
             return BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.statusWarningSpotColor)
         case .destructive:
-            let iconTemplate = BPKIcon.makeLargeTemplateIcon(name: .trash)
+            let iconTemplate = BPKObjcUIKitIcon.makeLargeTemplateIcon(name: .trash)
             return BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.statusDangerSpotColor)
         default:
             return nil
