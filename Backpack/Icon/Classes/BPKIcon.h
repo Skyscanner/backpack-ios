@@ -18,9 +18,15 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#if __has_include("Generated/BPKIconNames.h")
 #import "Generated/BPKIconNames.h"
 #import "Generated/BPKLargeIconNames.h"
 #import "Generated/BPKSmallIconNames.h"
+#else
+#import "BPKIconNames.h"
+#import "BPKLargeIconNames.h"
+#import "BPKSmallIconNames.h"
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -21,7 +21,11 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#if __has_include("../../Font/Classes/Font.h")
 #import "../../Font/Classes/Font.h"
+#else
+#import "Font.h"
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 

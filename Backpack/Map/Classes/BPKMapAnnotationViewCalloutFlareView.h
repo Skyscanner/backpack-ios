@@ -18,7 +18,11 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#if __has_include("../../FlareView/Classes/FlareView.h")
 #import "../../FlareView/Classes/FlareView.h"
+#else
+#import "FlareView.h"
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 

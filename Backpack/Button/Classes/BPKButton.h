@@ -16,7 +16,11 @@
  * limitations under the License.
  */
 
+#if __has_include("../../Label/Classes/BPKLabel.h")
 #import "../../Label/Classes/BPKLabel.h"
+#else
+#import "BPKLabel.h"
+#endif
 
 // WARNING: BPKButton remains for maintenance only; prefer the SwiftUI Backpack
 // button for new features.

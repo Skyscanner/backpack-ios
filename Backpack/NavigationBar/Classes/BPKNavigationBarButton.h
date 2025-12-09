@@ -16,7 +16,11 @@
  * limitations under the License.
  */
 
+#if __has_include("../../Button/Classes/Button.h")
 #import "../../Button/Classes/Button.h"
+#else
+#import "Button.h"
+#endif
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN

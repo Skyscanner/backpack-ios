@@ -16,7 +16,11 @@
  * limitations under the License.
  */
 
+#if __has_include("../../Icon/Classes/Icon.h")
 #import "../../Icon/Classes/Icon.h"
+#else
+#import "Icon.h"
+#endif
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 #import <UIKit/UIKit.h>

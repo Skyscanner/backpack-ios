@@ -18,7 +18,11 @@
 #import <UIKit/UIKit.h>
 
 #import "BPKIcon.h"
+#if __has_include("Generated/BPKIconNames.h")
 #import "Generated/BPKIconNames.h"
+#else
+#import "BPKIconNames.h"
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 

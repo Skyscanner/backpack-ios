@@ -22,8 +22,14 @@
 #import "BPKIconView.h" // DEPRECATED: Consumers should use BPK<SIZE>IconView instead
 #import "BPKLargeIconView.h"
 #import "BPKSmallIconView.h"
+#if __has_include("Generated/BPKIconNames.h")
 #import "Generated/BPKIconNames.h" // DEPRECATED: Consumers should use BPK<SIZE>IconNames instead
 #import "Generated/BPKLargeIconNames.h"
 #import "Generated/BPKSmallIconNames.h"
+#else
+#import "BPKIconNames.h" // DEPRECATED: Consumers should use BPK<SIZE>IconNames instead
+#import "BPKLargeIconNames.h"
+#import "BPKSmallIconNames.h"
+#endif
 
 #endif
