@@ -41,10 +41,11 @@ jobs:
             ENABLE_TESTABILITY=NO \
             build 2>&1 | tee build.log
 
-          # Check for non-modular header warnings/errors
-          if grep -q "non-modular-include-in-framework-module" build.log; then
+          # Check for non-modular header warnings/errors (actual errors, not compiler flags)
+          # Pattern matches "error: include of non-modular" or "warning: include of non-modular"
+          # but NOT "-Wnon-modular-include-in-framework-module" compiler flags
+          if grep -E "(error|warning):.*include of non-modular" build.log; then
             echo "::error::Non-modular header includes detected!"
-            grep "non-modular-include-in-framework-module" build.log
             exit 1
           fi
 
