@@ -18,10 +18,10 @@
 #import <UIKit/UIKit.h>
 
 #import "BPKIcon.h"
-#if __has_include("Generated/BPKIconNames.h")
+#ifdef SWIFT_PACKAGE
 #import "Generated/BPKIconNames.h"
 #else
-#import "BPKIconNames.h"
+#import <Backpack/BPKIconNames.h>
 #endif
 
 NS_ASSUME_NONNULL_BEGIN

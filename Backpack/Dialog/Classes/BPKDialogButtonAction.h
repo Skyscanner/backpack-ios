@@ -18,10 +18,10 @@
 
 #import <Foundation/Foundation.h>
 
-#if __has_include("../../Button/Classes/Button.h")
+#ifdef SWIFT_PACKAGE
 #import "../../Button/Classes/Button.h"
 #else
-#import "Button.h"
+#import <Backpack/Button.h>
 #endif
 
 NS_ASSUME_NONNULL_BEGIN

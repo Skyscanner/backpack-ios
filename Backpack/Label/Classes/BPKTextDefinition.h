@@ -18,10 +18,10 @@
 
 #import <Foundation/Foundation.h>
 
-#if __has_include("../../Font/Classes/Font.h")
+#ifdef SWIFT_PACKAGE
 #import "../../Font/Classes/Font.h"
 #else
-#import "Font.h"
+#import <Backpack/Font.h>
 #endif
 
 NS_ASSUME_NONNULL_BEGIN

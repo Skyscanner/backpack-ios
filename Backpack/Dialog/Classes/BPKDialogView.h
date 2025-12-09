@@ -18,10 +18,10 @@
 
 #import <UIKit/UIKit.h>
 
-#if __has_include("../../FlareView/Classes/FlareView.h")
+#ifdef SWIFT_PACKAGE
 #import "../../FlareView/Classes/FlareView.h"
 #else
-#import "FlareView.h"
+#import <Backpack/FlareView.h>
 #endif
 
 #import "BPKDialogButtonAction.h"

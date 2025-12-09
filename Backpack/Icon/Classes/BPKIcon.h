@@ -18,14 +18,14 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#if __has_include("Generated/BPKIconNames.h")
+#ifdef SWIFT_PACKAGE
 #import "Generated/BPKIconNames.h"
 #import "Generated/BPKLargeIconNames.h"
 #import "Generated/BPKSmallIconNames.h"
 #else
-#import "BPKIconNames.h"
-#import "BPKLargeIconNames.h"
-#import "BPKSmallIconNames.h"
+#import <Backpack/BPKIconNames.h>
+#import <Backpack/BPKLargeIconNames.h>
+#import <Backpack/BPKSmallIconNames.h>
 #endif
 
 NS_ASSUME_NONNULL_BEGIN
