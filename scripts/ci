@@ -6,26 +6,44 @@ SWIFT=${SWIFT:-'5.0'}
 BUILD_SDK=${BUILD_SDK:-'iphonesimulator'}
 DESTINATION=${DESTINATION:-"platform=iOS Simulator,name=iPhone SE (3rd generation),OS=18.4"}
 
-# Insert the simulator-creation block *here*, right after DESTINATION is set
-# ---------------------------------------------------------------
+# --------------------------------------------------------------------
+# UPDATED SIMULATOR-CREATION BLOCK (UDID-BASED)
+# Ensures CI uses exactly one simulator by UDID, avoiding Xcode's
+# "multiple devices matched" fatal error.
+# --------------------------------------------------------------------
 
-# If we're running in CI and using the default DESTINATION, ensure the simulator exists
 if [[ -n "$CI" && "$DESTINATION" == "platform=iOS Simulator,name=iPhone SE (3rd generation),OS=18.4" ]]; then
   RUNTIME_ID="com.apple.CoreSimulator.SimRuntime.iOS-18-4"
   DEVICE_TYPE_ID="com.apple.CoreSimulator.SimDeviceType.iPhone-SE-3rd-generation"
   DEVICE_NAME="CI iPhone SE (3rd generation) 18.4"
 
-  # Check if a device already exists for this runtime
-  if ! xcrun simctl list devices "$RUNTIME_ID" | grep -q "$DEVICE_NAME"; then
-    echo "Creating simulator: $DEVICE_NAME ($RUNTIME_ID)"
-    xcrun simctl create "$DEVICE_NAME" "$DEVICE_TYPE_ID" "$RUNTIME_ID"
+  echo "Ensuring CI simulator exists for: $DEVICE_NAME"
+
+  # Try to find an existing device with this name & runtime
+  EXISTING_UDID=$(xcrun simctl list devices "$RUNTIME_ID" | \
+    awk -v name="$DEVICE_NAME" '
+      index($0, name) {
+        # Extract UDID from "(xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)"
+        match($0, /\(([0-9A-Fa-f-]{36})\)/, m);
+        if (m[1] != "") { print m[1]; exit }
+      }
+    ')
+
+  if [[ -n "$EXISTING_UDID" ]]; then
+    echo "Found existing simulator: $DEVICE_NAME (UDID: $EXISTING_UDID)"
+    DEVICE_UDID="$EXISTING_UDID"
+  else
+    echo "Creating simulator: $DEVICE_NAME"
+    DEVICE_UDID=$(xcrun simctl create "$DEVICE_NAME" "$DEVICE_TYPE_ID" "$RUNTIME_ID")
+    echo "Created simulator with UDID: $DEVICE_UDID"
   fi
 
-  # Override DESTINATION to point to the device we ensured exists
-  DESTINATION="platform=iOS Simulator,name=$DEVICE_NAME,OS=18.4"
+  # Use the UDID directly → avoids ambiguous simulator name/OS failures
+  DESTINATION="id=$DEVICE_UDID"
+  echo "Using DESTINATION=\"$DESTINATION\""
 fi
 
-# ---------------------------------------------------------------
+# --------------------------------------------------------------------
 
 function analyze() {
     xcodebuild analyze \
