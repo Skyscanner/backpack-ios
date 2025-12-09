@@ -6,6 +6,27 @@ SWIFT=${SWIFT:-'5.0'}
 BUILD_SDK=${BUILD_SDK:-'iphonesimulator'}
 DESTINATION=${DESTINATION:-"platform=iOS Simulator,name=iPhone SE (3rd generation),OS=18.4"}
 
+# Insert the simulator-creation block *here*, right after DESTINATION is set
+# ---------------------------------------------------------------
+
+# If we're running in CI and using the default DESTINATION, ensure the simulator exists
+if [[ -n "$CI" && "$DESTINATION" == "platform=iOS Simulator,name=iPhone SE (3rd generation),OS=18.4" ]]; then
+  RUNTIME_ID="com.apple.CoreSimulator.SimRuntime.iOS-18-4"
+  DEVICE_TYPE_ID="com.apple.CoreSimulator.SimDeviceType.iPhone-SE-3rd-generation"
+  DEVICE_NAME="CI iPhone SE (3rd generation) 18.4"
+
+  # Check if a device already exists for this runtime
+  if ! xcrun simctl list devices "$RUNTIME_ID" | grep -q "$DEVICE_NAME"; then
+    echo "Creating simulator: $DEVICE_NAME ($RUNTIME_ID)"
+    xcrun simctl create "$DEVICE_NAME" "$DEVICE_TYPE_ID" "$RUNTIME_ID"
+  fi
+
+  # Override DESTINATION to point to the device we ensured exists
+  DESTINATION="platform=iOS Simulator,name=$DEVICE_NAME,OS=18.4"
+fi
+
+# ---------------------------------------------------------------
+
 function analyze() {
     xcodebuild analyze \
         -workspace $EXAMPLE_WORKSPACE \
