@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "engines": {
-    "node": "^18.16.0",
-    "npm": "^9.5.1"
+    "node": "^22.8.0",
+    "npm": ">=10.0.0"
   },
   "scripts": {
     "test": "eslint . --ext .js,.jsx",
