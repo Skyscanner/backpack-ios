@@ -1,0 +1,62 @@
+#!/bin/bash
+# validate-headers - Check for non-modular header includes
+#
+# This script builds the Backpack Swift Package with BUILD_LIBRARY_FOR_DISTRIBUTION=YES
+# to detect non-modular header includes that would cause issues for consumers.
+#
+# Usage: ./scripts/validate-headers
+
+set -eo pipefail
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+echo -e "${YELLOW}Validating headers for non-modular includes...${NC}"
+
+# Determine simulator destination
+if xcrun simctl list devices available | grep -q "iPhone SE (3rd generation)"; then
+    DESTINATION="platform=iOS Simulator,name=iPhone SE (3rd generation)"
+else
+    # Fallback to any available iPhone
+    DESTINATION="platform=iOS Simulator,name=iPhone 15"
+fi
+
+# Create temp directory for build logs
+BUILD_LOG=$(mktemp)
+trap "rm -f $BUILD_LOG" EXIT
+
+echo "Building with BUILD_LIBRARY_FOR_DISTRIBUTION=YES..."
+echo "Destination: $DESTINATION"
+
+# Run build with distribution settings
+if xcodebuild \
+    -workspace .swiftpm/xcode/package.xcworkspace \
+    -scheme Backpack-Package \
+    -destination "$DESTINATION" \
+    -derivedDataPath .derivedData \
+    -skipPackagePluginValidation \
+    -skipMacroValidation \
+    BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
+    SWIFT_EMIT_MODULE_INTERFACE=NO \
+    ENABLE_TESTABILITY=NO \
+    build 2>&1 | tee "$BUILD_LOG" | grep -E "(error:|BUILD|Compiling)" ; then
+
+    # Check for non-modular header warnings/errors (actual errors, not compiler flags)
+    if grep -E "(error|warning):.*include of non-modular" "$BUILD_LOG"; then
+        echo -e "\n${RED}ERROR: Non-modular header includes detected!${NC}"
+        echo -e "${YELLOW}Fix: Convert <Backpack/...> imports to relative \"...\" imports in headers.${NC}"
+        rm -rf .derivedData
+        exit 1
+    fi
+
+    echo -e "\n${GREEN}SUCCESS: No non-modular header issues detected!${NC}"
+    rm -rf .derivedData
+    exit 0
+else
+    echo -e "\n${RED}ERROR: Build failed!${NC}"
+    rm -rf .derivedData
+    exit 1
+fi
