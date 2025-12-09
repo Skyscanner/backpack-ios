@@ -18,6 +18,7 @@ xcrun simctl shutdown all || true
 
 # https://github.com/actions/runner-images/blob/main/images/macos/macos-15-arm64-Readme.md#installed-sdks
 echo "Downloading iOS platform SDK if needed..."
+xcrun simctl list > /dev/null
 sudo xcodebuild -downloadPlatform iOS
 
 
