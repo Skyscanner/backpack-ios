@@ -213,7 +213,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateSize {
     BPKButtonSize size = self.size;
-    self.titleLabel.fontStyle = BPKFontStyleTextLabel1;
+    self.titleLabel.fontStyle = BPKFontStyleTextHeading4;
     self.heightConstraint.constant = [self heightForSize:size];
 
     self.spinner.transform = [self spinnerTransformForSize:size];

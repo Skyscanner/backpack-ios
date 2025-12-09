@@ -222,7 +222,7 @@ private struct ButtonContentView: View {
 
     private func content(withTitle title: String) -> some View {
         Text(title)
-            .font(style: config?.buttonConfig?.setFontLabel2 ?? false && size == .default ? .label2 : .label1)
+            .font(style: .bodyLongform)
             .lineLimit(lineLimit())
             .underline(shouldUnderline)
             .if(!BPKFont.enableDynamicType, transform: {
