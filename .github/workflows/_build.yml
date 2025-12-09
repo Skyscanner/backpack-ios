@@ -21,8 +21,8 @@ jobs:
       - name: Set up node and ruby
         uses: asdf-vm/actions/install@v4 # Sets ruby and node version via `.tool-versions`
 
-      - name: Install Simulator
-        run: ./scripts/install-sim
+     # - name: Install Simulator
+     #   run: ./scripts/install-sim
 
   Lint:
     name: Lint Project
