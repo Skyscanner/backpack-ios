@@ -19,7 +19,7 @@ jobs:
   TestPods:
     name: Testing Pods
     runs-on: macos-15
-    timeout-minutes: 70
+    timeout-minutes: 40
     outputs:
       changed-files: ${{ steps.checkSnapshotChanges.outputs.didChangeFiles }}
     steps:
