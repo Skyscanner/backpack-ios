@@ -5,7 +5,7 @@ inputs:
   xcode-path:
     description: Path to the Xcode app to select
     required: false
-    default: /Applications/Xcode_16.2.app
+    default: /Applications/Xcode_16.4.app
   workspace-file:
     description: Relative path to the workspace data file
     required: false
