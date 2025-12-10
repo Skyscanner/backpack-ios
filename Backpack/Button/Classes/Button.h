@@ -18,6 +18,6 @@
 
 #ifndef __BACKPACK_BUTTON__
 #define __BACKPACK_BUTTON__
-#import "BPKObjcUIKitButton.h"
 #import "BPKLegacyLinkButton.h"
+#import "BPKObjcUIKitButton.h"
 #endif

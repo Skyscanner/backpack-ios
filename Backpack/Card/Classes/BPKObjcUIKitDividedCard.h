@@ -19,8 +19,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "BPKObjcUIKitCard.h"
 #import "BPKCardDivider.h"
+#import "BPKObjcUIKitCard.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -143,8 +143,9 @@ IB_DESIGNABLE @interface BPKObjcUIKitDividedCard : BPKObjcUIKitCard
 - (void)setDistribution:(UIStackViewDistribution)distribution;
 
 /// :nodoc:
-- (void)addSubview:(UIView *)view __attribute__((unavailable("To add subviews to a divided BPKObjcUIKitCard, use `setPrimarySubview:secondarySubview:` or "
-                                                             "`initWithPrimarySubview:secondarySubview:padded:`")));
+- (void)addSubview:(UIView *)view
+    __attribute__((unavailable("To add subviews to a divided BPKObjcUIKitCard, use `setPrimarySubview:secondarySubview:` or "
+                               "`initWithPrimarySubview:secondarySubview:padded:`")));
 
 @end
 

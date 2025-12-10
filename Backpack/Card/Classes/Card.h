@@ -18,10 +18,10 @@
 #ifndef __BACKPACK_CARD__
 #define __BACKPACK_CARD__
 
-#import "BPKObjcUIKitCard.h"
 #import "BPKCardConfiguration.h"
 #import "BPKCardConfigurationButton.h"
 #import "BPKCardConfigurationContainer.h"
 #import "BPKCardConfigurationLink.h"
+#import "BPKObjcUIKitCard.h"
 #import "BPKObjcUIKitDividedCard.h"
 #endif

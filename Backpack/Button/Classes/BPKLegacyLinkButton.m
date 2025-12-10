@@ -17,9 +17,9 @@
  */
 
 #import "BPKLegacyLinkButton.h"
-#import "BPKObjcUIKitButton.h"
 #import "BPKButtonAppearance.h"
 #import "BPKButtonAppearanceSet.h"
+#import "BPKObjcUIKitButton.h"
 #import "UIColor+BPKButton.h"
 #import <Backpack/Backpack-Swift.h>
 

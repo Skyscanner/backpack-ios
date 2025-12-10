@@ -18,11 +18,11 @@
 #ifndef __BACKPACK_ICON__
 #define __BACKPACK_ICON__
 
-#import "BPKObjcUIKitIcon.h"
 #import "BPKIconNames.h" // DEPRECATED: Consumers should use BPK<SIZE>IconNames instead
-#import "BPKObjcUIKitIconView.h"  // DEPRECATED: Consumers should use BPK<SIZE>IconView instead
 #import "BPKLargeIconNames.h"
 #import "BPKLargeIconView.h"
+#import "BPKObjcUIKitIcon.h"
+#import "BPKObjcUIKitIconView.h" // DEPRECATED: Consumers should use BPK<SIZE>IconView instead
 #import "BPKSmallIconNames.h"
 #import "BPKSmallIconView.h"
 

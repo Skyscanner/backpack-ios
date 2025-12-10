@@ -19,8 +19,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "BPKObjcUIKitCard.h"
 #import "BPKCardDividerLineStyleValues.h"
+#import "BPKObjcUIKitCard.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
