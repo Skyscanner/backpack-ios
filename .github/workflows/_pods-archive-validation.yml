@@ -50,6 +50,23 @@ jobs:
       - name: Select Xcode 16
         run: sudo xcode-select --switch /Applications/Xcode_16.2.app
 
+      - name: pod lib lint (Generated header regression guard)
+        if: matrix.scheme == 'Backpack Native'
+        env:
+          LINT_LOG: pods-non-modular-lint.log
+        run: |
+          set -eo pipefail
+          export BUILD_LIBRARY_FOR_DISTRIBUTION=YES
+          # Verify previously-problematic headers (e.g. BPKColor/BPKFont) still build under strict modular settings.
+          bundle exec pod lib lint Backpack.podspec --allow-warnings --skip-tests --configuration=Release --verbose 2>&1 | tee "$LINT_LOG"
+
+          if grep -E "(error|warning):.*include of non-modular" "$LINT_LOG"; then
+            echo "::error::Non-modular header includes detected during pod lib lint!"
+            exit 1
+          fi
+
+          rm -f "$LINT_LOG"
+
       - name: Build with Distribution Settings
         env:
           PODS_DESTINATION: platform=iOS Simulator,name=iPhone SE (3rd generation),OS=18.2
