@@ -173,7 +173,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param fontStyle The desired fontStyle.
  * @return A dictionary of attributes describing the specified style.
  *
- * @warning Prefer using `BPKLabel`, `BPKObjcUIKitTextField`, or `BPKTextView` for rendering text when possible.
+ * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible.
  */
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle NS_SWIFT_NAME(makeAttributes(fontStyle:));
 
@@ -185,7 +185,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param fontManager The fontManager instance to use. By default this is `[BPKFontManager sharedInstance]`.
  * @return A dictionary of attributes describing the specified style.
  *
- * @warning Prefer using `BPKLabel`, `BPKObjcUIKitTextField`, or `BPKTextView` for rendering text when possible.
+ * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible.
  */
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle fontManager:(BPKFontManager *)fontManager NS_SWIFT_NAME(makeAttributes(fontStyle:fontManager:));
 
@@ -198,7 +198,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  rendering are ignored.
  * @return A dictionary of attributes describing the specified style and custom attributes.
  *
- * @warning Prefer using `BPKLabel`, `BPKObjcUIKitTextField`, or `BPKTextView` for rendering text when possible.
+ * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible.
  */
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle
                                                withCustomAttributes:(NSDictionary<NSAttributedStringKey, id> *)customAttributes NS_SWIFT_NAME(makeAttributes(fontStyle:customAttributes:));
@@ -211,7 +211,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param content The content of the attributedString.
  * @return An attributed string with the specified styles.
  *
- * @warning Prefer using `BPKLabel`, `BPKObjcUIKitTextField`, or `BPKTextView` for rendering text when possible.
+ * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible.
  */
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle content:(NSString *)content NS_SWIFT_NAME(makeAttributedString(fontStyle:content:));
 
@@ -223,7 +223,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param textColor The text color to use.
  * @return An attributed string with the specified styles.
  *
- * @warning Prefer using `BPKLabel`, `BPKObjcUIKitTextField`, or `BPKTextView` for rendering text when possible.
+ * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible.
  */
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle content:(NSString *)content textColor:(UIColor *)textColor NS_SWIFT_NAME(makeAttributedString(fontStyle:content:textColor:));
 
@@ -235,7 +235,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param attributedText The onAttributedString to get preexisting Paragraph Styles from.
  * @return An attributed string with the specified styles.
  *
- * @warning Prefer using `BPKLabel`, `BPKObjcUIKitTextField`, or `BPKTextView` for rendering text when possible.
+ * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible.
  */
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle andColor:(UIColor *)textColor onAttributedString:(NSAttributedString *)attributedText;
 
@@ -260,7 +260,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param fontStyle The desired fontStyle.
  * @return An instance of `UIFont` for the specificed style.
  *
- * @warning Prefer using `BPKLabel`, `BPKObjcUIKitTextField`, or `BPKTextView` for rendering text when possible.
+ * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible.
  */
 + (UIFont *)fontForFontStyle:(BPKFontStyle)fontStyle NS_SWIFT_NAME(makeFont(fontStyle:));
 
@@ -271,7 +271,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param style The desired fontStyle.
  * @return An instance of `NSNumber` for Letter Spacing for the specificed style.
  *
- * @warning Prefer using `BPKLabel`, `BPKObjcUIKitTextField`, or `BPKTextView` for rendering text when possible.
+ * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible.
  */
 + (NSNumber *)letterSpacingForStyle:(BPKFontStyle)style;
 
@@ -282,7 +282,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param style The desired fontStyle.
  * @return An instance of `CGFloat` for Line Height for the specificed style.
  *
- * @warning Prefer using `BPKLabel`, `BPKObjcUIKitTextField`, or `BPKTextView` for rendering text when possible.
+ * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible.
  */
 + (CGFloat)lineHeightForStyle:(BPKFontStyle)style;
 
