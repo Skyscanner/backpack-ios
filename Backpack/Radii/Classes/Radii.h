@@ -19,6 +19,6 @@
 #ifndef __BACKPACK_RADII__
 #define __BACKPACK_RADII__
 
-#import "BPKRadii.h"
+#import "Generated/BPKRadii.h"
 
 #endif
