@@ -8,7 +8,7 @@ defaults:
     shell: bash -l {0}
 
 env:
-  DESTINATION: ${DESTINATION:-"platform=iOS Simulator,name=iPhone SE (3rd generation),OS=17.5"}
+  DESTINATION: "platform=iOS Simulator,name=iPhone SE (3rd generation),OS=17.5"
 
 jobs:
   archive-validation:
