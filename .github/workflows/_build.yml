@@ -107,6 +107,10 @@ jobs:
     needs: [Setup]
     uses: ./.github/workflows/_archive-validation.yml
 
+  PodsArchiveValidation:
+    needs: [Setup]
+    uses: ./.github/workflows/_pods-archive-validation.yml
+
   AnalyzePods:
     name: Analyzing pods
     runs-on: macos-14

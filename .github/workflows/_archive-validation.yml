@@ -7,6 +7,9 @@ defaults:
   run:
     shell: bash -l {0}
 
+env:
+  DESTINATION: ${DESTINATION:-"platform=iOS Simulator,name=iPhone SE (3rd generation),OS=17.5"}
+
 jobs:
   archive-validation:
     name: Archive Validation (Non-modular Headers Check)
@@ -22,8 +25,6 @@ jobs:
         run: sudo xcode-select --switch /Applications/Xcode_16.2.app
 
       - name: Build with Distribution Settings
-        env:
-          SPM_DESTINATION: platform=iOS Simulator,name=iPhone SE (3rd generation),OS=18.2
         run: |
           set -eo pipefail
           # BUILD_LIBRARY_FOR_DISTRIBUTION=YES enables stricter checking for framework distribution
@@ -32,7 +33,7 @@ jobs:
           xcodebuild \
             -workspace .swiftpm/xcode/package.xcworkspace \
             -scheme Backpack-Package \
-            -destination "$SPM_DESTINATION" \
+            -destination "$DESTINATION" \
             -derivedDataPath .derivedData \
             -skipPackagePluginValidation \
             -skipMacroValidation \
