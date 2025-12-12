@@ -1,0 +1,101 @@
+name: _pods-archive-validation
+
+on:
+  workflow_call:
+
+defaults:
+  run:
+    shell: bash -l {0}
+
+env:
+  DESTINATION: "platform=iOS Simulator,name=iPhone SE (3rd generation),OS=17.5"
+
+jobs:
+  pods-archive-validation:
+    name: CocoaPods Archive Validation (Non-modular Headers Check)
+    runs-on: macos-14
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        scheme: [Backpack Native, Backpack SwiftUI, Backpack-Common]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up node and ruby
+        uses: asdf-vm/actions/install@v4
+
+      - name: Cache Bundler install Gems
+        uses: actions/cache@v4
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ env.ImageVersion }}-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-${{ env.ImageVersion }}
+
+      - name: Cache Pods
+        uses: actions/cache@v4
+        with:
+          path: Example/Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+
+      - name: Bundle Install
+        run: bundle install --jobs 4 --retry 3
+
+      - name: Pod Install
+        run: bundle exec pod install
+        working-directory: Example
+
+      - name: Select Xcode 16
+        run: sudo xcode-select --switch /Applications/Xcode_16.2.app
+
+      - name: pod lib lint (Generated header regression guard)
+        if: matrix.scheme == 'Backpack Native'
+        env:
+          LINT_LOG: pods-non-modular-lint.log
+        run: |
+          set -eo pipefail
+          export BUILD_LIBRARY_FOR_DISTRIBUTION=YES
+          # Verify previously-problematic headers (e.g. BPKColor/BPKFont) still build under strict modular settings.
+          bundle exec pod lib lint Backpack.podspec --allow-warnings --skip-tests --configuration=Release --verbose 2>&1 | tee "$LINT_LOG"
+
+          if grep -E "(error|warning):.*include of non-modular" "$LINT_LOG"; then
+            echo "::error::Non-modular header includes detected during pod lib lint!"
+            exit 1
+          fi
+
+          rm -f "$LINT_LOG"
+
+      - name: Build with Distribution Settings
+        run: |
+          set -eo pipefail
+          # BUILD_LIBRARY_FOR_DISTRIBUTION=YES enables stricter checking for framework distribution
+          # This catches non-modular header includes that would break consumers
+          # Note: We keep ENABLE_TESTABILITY=YES (default) to allow @testable imports in test targets
+          xcodebuild \
+            -workspace Example/Backpack.xcworkspace \
+            -scheme "${{ matrix.scheme }}" \
+            -destination "$DESTINATION" \
+            -derivedDataPath .derivedData \
+            BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
+            SWIFT_EMIT_MODULE_INTERFACE=NO \
+            ONLY_ACTIVE_ARCH=YES \
+            build 2>&1 | tee build.log
+
+          # Check for non-modular header warnings/errors (actual errors, not compiler flags)
+          # Pattern matches "error: include of non-modular" or "warning: include of non-modular"
+          # but NOT "-Wnon-modular-include-in-framework-module" compiler flags
+          if grep -E "(error|warning):.*include of non-modular" build.log; then
+            echo "::error::Non-modular header includes detected in ${{ matrix.scheme }}!"
+            exit 1
+          fi
+
+          echo "No non-modular header issues detected in ${{ matrix.scheme }}"
+
+      - name: Clean derived data
+        if: always()
+        run: rm -rf .derivedData build.log

@@ -33,15 +33,28 @@ Pod::Spec.new do |s|
   }
   s.ios.deployment_target = '16.0'
   s.source_files = 'Backpack/Backpack.h', 'Backpack/Common.h', 'Backpack/*/Classes/**/*.{h,m,swift}'
-  s.exclude_files = 'Backpack/Tests/**'
+  # Exclude test files and bridge headers that just re-export Generated content
+  # The bridge headers (BPK*.h at Classes level) have same basename as Generated/*.h and cause conflicts
+  s.exclude_files = [
+    'Backpack/Tests/**',
+    'Backpack/BorderWidth/Classes/BPKBorderWidth.h',
+    'Backpack/Color/Classes/BPKColor.h',
+    'Backpack/Color/Classes/UIColor+Backpack.h',
+    'Backpack/Duration/Classes/BPKDuration.h',
+    'Backpack/Font/Classes/BPKFont.h',
+    'Backpack/Radii/Classes/BPKRadii.h',
+    'Backpack/Shadow/Classes/BPKShadow.h',
+    'Backpack/Spacing/Classes/BPKSpacing.h'
+  ]
   s.public_header_files = 'Backpack/Backpack.h', 'Backpack/*/Classes/**/*.h'
-
   s.dependency 'FloatingPanel', '2.8.6'
   s.dependency 'Backpack-Common'
   s.frameworks = 'UIKit', 'Foundation', 'CoreText'
   s.requires_arc = true
   s.swift_versions = ['5.0', '4.2', '4.0']
-
+  s.pod_target_xcconfig = {
+    'HEADER_SEARCH_PATHS' => '$(inherited) "${PODS_TARGET_SRCROOT}/Backpack" "${PODS_TARGET_SRCROOT}/Backpack/BorderWidth/Classes" "${PODS_TARGET_SRCROOT}/Backpack/Color/Classes" "${PODS_TARGET_SRCROOT}/Backpack/Duration/Classes" "${PODS_TARGET_SRCROOT}/Backpack/Font/Classes" "${PODS_TARGET_SRCROOT}/Backpack/Radii/Classes" "${PODS_TARGET_SRCROOT}/Backpack/Shadow/Classes" "${PODS_TARGET_SRCROOT}/Backpack/Spacing/Classes"'
+  }
   s.test_spec 'SnapshotTests' do |test_spec|
     test_spec.dependency 'SnapshotTesting', '~> 1.9.0'
     test_spec.source_files = 'Backpack/Tests/SnapshotTests/**/*.{swift,h,m}'

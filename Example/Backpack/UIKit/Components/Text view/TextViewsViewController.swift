@@ -17,7 +17,7 @@
  */
 
 import UIKit
-import Backpack.TextView
+import Backpack
 
 class TextViewsViewController: UIViewController {
     @IBOutlet weak var textView: BPKTextView!
