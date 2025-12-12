@@ -7,6 +7,9 @@ defaults:
   run:
     shell: bash -l {0}
 
+env:
+  DESTINATION: "platform=iOS Simulator,name=iPhone SE (3rd generation),OS=17.5"
+
 jobs:
   pods-archive-validation:
     name: CocoaPods Archive Validation (Non-modular Headers Check)
@@ -68,8 +71,6 @@ jobs:
           rm -f "$LINT_LOG"
 
       - name: Build with Distribution Settings
-        env:
-          PODS_DESTINATION: platform=iOS Simulator,name=iPhone SE (3rd generation),OS=18.2
         run: |
           set -eo pipefail
           # BUILD_LIBRARY_FOR_DISTRIBUTION=YES enables stricter checking for framework distribution
@@ -78,7 +79,7 @@ jobs:
           xcodebuild \
             -workspace Example/Backpack.xcworkspace \
             -scheme "${{ matrix.scheme }}" \
-            -destination "$PODS_DESTINATION" \
+            -destination "$DESTINATION" \
             -derivedDataPath .derivedData \
             BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
             SWIFT_EMIT_MODULE_INTERFACE=NO \
