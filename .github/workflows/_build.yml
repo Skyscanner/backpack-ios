@@ -78,11 +78,8 @@ jobs:
       - name: Install clang-format
         run: brew install clang-format
 
-      - name: Discard changes to generated files
-        run: |
-          git checkout -- Gemfile.lock
-          # Discard project.pbxproj changes from pod install (may vary between CocoaPods versions)
-          git checkout -- Example/Backpack.xcodeproj/project.pbxproj 2>/dev/null || true
+      - name: Discard changes to Gemfile.lock
+        run: git checkout -- Gemfile.lock
 
       - name: Check pristine
         run: ./scripts/lint
@@ -109,6 +106,10 @@ jobs:
   ArchiveValidation:
     needs: [Setup]
     uses: ./.github/workflows/_archive-validation.yml
+
+  PodsArchiveValidation:
+    needs: [Setup]
+    uses: ./.github/workflows/_pods-archive-validation.yml
 
   AnalyzePods:
     name: Analyzing pods

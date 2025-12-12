@@ -32,7 +32,7 @@ echo "Building with BUILD_LIBRARY_FOR_DISTRIBUTION=YES..."
 echo "Destination: $DESTINATION"
 
 # Run build with distribution settings
-if xcodebuild \
+xcodebuild \
     -workspace .swiftpm/xcode/package.xcworkspace \
     -scheme Backpack-Package \
     -destination "$DESTINATION" \
@@ -40,24 +40,26 @@ if xcodebuild \
     -skipPackagePluginValidation \
     -skipMacroValidation \
     BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
+    SWIFT_EMIT_MODULE_INTERFACE=NO \
     ENABLE_TESTABILITY=NO \
-    build 2>&1 | tee "$BUILD_LOG" | grep -E "(error:|BUILD|Compiling)" ; then
+    build 2>&1 | tee "$BUILD_LOG"
 
-    # Check for non-modular header warnings/errors
-    if grep -q "non-modular-include-in-framework-module" "$BUILD_LOG"; then
-        echo -e "\n${RED}ERROR: Non-modular header includes detected!${NC}"
-        echo -e "${RED}The following headers use non-modular imports:${NC}\n"
-        grep "non-modular-include-in-framework-module" "$BUILD_LOG"
-        echo -e "\n${YELLOW}Fix: Convert <Backpack/...> imports to relative \"...\" imports in headers.${NC}"
-        rm -rf .derivedData
-        exit 1
-    fi
+BUILD_EXIT_STATUS=${PIPESTATUS[0]}
 
-    echo -e "\n${GREEN}SUCCESS: No non-modular header issues detected!${NC}"
-    rm -rf .derivedData
-    exit 0
-else
+if [ $BUILD_EXIT_STATUS -ne 0 ]; then
     echo -e "\n${RED}ERROR: Build failed!${NC}"
     rm -rf .derivedData
     exit 1
 fi
+
+# Check for non-modular header warnings/errors (actual errors, not compiler flags)
+if grep -E "(error|warning):.*include of non-modular" "$BUILD_LOG"; then
+    echo -e "\n${RED}ERROR: Non-modular header includes detected!${NC}"
+    echo -e "${YELLOW}Fix: Convert <Backpack/...> imports to relative \"...\" imports in headers.${NC}"
+    rm -rf .derivedData
+    exit 1
+fi
+
+echo -e "\n${GREEN}SUCCESS: No non-modular header issues detected!${NC}"
+rm -rf .derivedData
+exit 0
