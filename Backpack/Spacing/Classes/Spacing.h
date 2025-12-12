@@ -19,5 +19,5 @@
 #ifndef __BACKPACK_SPACING__
 #define __BACKPACK_SPACING__
 
-#import "BPKSpacing.h"
+#import "Generated/BPKSpacing.h"
 #endif

@@ -19,6 +19,6 @@
 #ifndef __BACKPACK_BORDER_SIZE__
 #define __BACKPACK_BORDER_SIZE__
 
-#import "BPKBorderWidth.h"
+#import "Generated/BPKBorderWidth.h"
 
 #endif

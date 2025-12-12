@@ -19,5 +19,5 @@
 #ifndef __BACKPACK_DURATION__
 #define __BACKPACK_DURATION__
 
-#import "BPKDuration.h"
+#import "Generated/BPKDuration.h"
 #endif

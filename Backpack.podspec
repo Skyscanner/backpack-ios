@@ -33,9 +33,20 @@ Pod::Spec.new do |s|
   }
   s.ios.deployment_target = '16.0'
   s.source_files = 'Backpack/Backpack.h', 'Backpack/Common.h', 'Backpack/*/Classes/**/*.{h,m,swift}'
-  s.exclude_files = 'Backpack/Tests/**'
+  # Exclude test files and bridge headers that just re-export Generated content
+  # The bridge headers (BPK*.h at Classes level) have same basename as Generated/*.h and cause conflicts
+  s.exclude_files = [
+    'Backpack/Tests/**',
+    'Backpack/BorderWidth/Classes/BPKBorderWidth.h',
+    'Backpack/Color/Classes/BPKColor.h',
+    'Backpack/Color/Classes/UIColor+Backpack.h',
+    'Backpack/Duration/Classes/BPKDuration.h',
+    'Backpack/Font/Classes/BPKFont.h',
+    'Backpack/Radii/Classes/BPKRadii.h',
+    'Backpack/Shadow/Classes/BPKShadow.h',
+    'Backpack/Spacing/Classes/BPKSpacing.h'
+  ]
   s.public_header_files = 'Backpack/Backpack.h', 'Backpack/*/Classes/**/*.h'
-  s.private_header_files = 'Backpack/{BorderWidth,Color,Duration,Font,Radii,Shadow,Spacing}/Classes/Generated/**/*.h'
   s.dependency 'FloatingPanel', '2.8.6'
   s.dependency 'Backpack-Common'
   s.frameworks = 'UIKit', 'Foundation', 'CoreText'
@@ -44,42 +55,6 @@ Pod::Spec.new do |s|
   s.pod_target_xcconfig = {
     'HEADER_SEARCH_PATHS' => '$(inherited) "${PODS_TARGET_SRCROOT}/Backpack" "${BUILT_PRODUCTS_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}" "${PODS_TARGET_SRCROOT}/Backpack/Button/Classes" "${PODS_TARGET_SRCROOT}/Backpack/Label/Classes" "${PODS_TARGET_SRCROOT}/Backpack/Icon/Classes" "${PODS_TARGET_SRCROOT}/Backpack/Icon/Classes/Generated" "${PODS_TARGET_SRCROOT}/Backpack/Font/Classes" "${PODS_TARGET_SRCROOT}/Backpack/FlareView/Classes" "${PODS_TARGET_SRCROOT}/Backpack/Dialog/Classes" "${PODS_TARGET_SRCROOT}/Backpack/NavigationBar/Classes" "${PODS_TARGET_SRCROOT}/Backpack/Map/Classes" "${PODS_TARGET_SRCROOT}/Backpack/ProgressBar/Classes" "${PODS_TARGET_SRCROOT}/Backpack/TappableLinkLabel/Classes"'
   }
-  s.script_phases = [{
-    :name => 'Backpack Generated Headers',
-    :execution_position => :before_compile,
-    :shell_path => '/bin/sh',
-    :script => <<-SCRIPT
-set -euo pipefail
-
-# Only run when building the Backpack pod itself.
-TARGET_ENV="${TARGET_NAME:-${TARGETNAME:-}}"
-case "$TARGET_ENV" in
-  "Backpack"|"Pods-Backpack")
-    ;;
-  *)
-    exit 0
-    ;;
-esac
-
-if [ -z "${PUBLIC_HEADERS_FOLDER_PATH:-}" ]; then
-  exit 0
-fi
-
-DEST="${BUILT_PRODUCTS_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/Generated"
-mkdir -p "$DEST"
-rm -f "$DEST"/*.h
-
-find "${PODS_TARGET_SRCROOT}/Backpack" -path '*/Classes/Generated/*.h' -print0 | \
-while IFS= read -r -d '' HEADER; do
-  case "$HEADER" in
-    *"/Icon/"*)
-      continue
-      ;;
-  esac
-  cp -f "$HEADER" "$DEST/$(basename "$HEADER")"
-done
-SCRIPT
-  }]
   s.test_spec 'SnapshotTests' do |test_spec|
     test_spec.dependency 'SnapshotTesting', '~> 1.9.0'
     test_spec.source_files = 'Backpack/Tests/SnapshotTests/**/*.{swift,h,m}'
