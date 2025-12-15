@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "vdl-hotels-sm.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

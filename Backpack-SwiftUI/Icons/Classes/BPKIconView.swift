@@ -53,6 +53,7 @@ public struct BPKIconView: View {
 
     public var body: some View {
         let enableAccessibility = accessibilityLabel?.isEmpty == false
+
         Image(icon: icon, size: size, shouldEnableAccessibility: enableAccessibility)
             .resizable()
             .renderingMode(.template)
@@ -61,7 +62,6 @@ public struct BPKIconView: View {
             .if(enableAccessibility, transform: { view in
                 view.accessibilityLabel(accessibilityLabel ?? "")
             })
-
     }
     
     private var shouldAutoMirror: Bool {

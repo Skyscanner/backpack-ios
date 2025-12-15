@@ -64,7 +64,15 @@ struct PriceExampleView: View {
                     trailingText: trailingText,
                     size: size
                 )
-                
+
+                buildPriceWithClickAction(
+                    price: price,
+                    leadingText: leadingText,
+                    previousPrice: previousPrice,
+                    trailingText: trailingText,
+                    size: size
+                )
+
                 if size != .large {
                     BPKPrice(
                         price: price,
@@ -119,6 +127,36 @@ struct PriceExampleView: View {
                 leadingText: leadingText,
                 previousPrice: previousPrice,
                 trailingText: trailingText,
+                alignment: .trailing,
+                size: size
+            )
+        }
+    }
+
+    private func buildPriceWithClickAction(
+        price: String,
+        leadingText: String? = nil,
+        previousPrice: String? = nil,
+        trailingText: String? = nil,
+        size: Backpack_SwiftUI.BPKPrice.Size
+    ) -> some View {
+        HStack {
+            BPKPrice(
+                price: price,
+                leadingText: leadingText,
+                previousPrice: previousPrice,
+                trailingText: trailingText,
+                onPriceClicked: {},
+                alignment: .leading,
+                size: size
+            )
+            Spacer()
+            BPKPrice(
+                price: price,
+                leadingText: leadingText,
+                previousPrice: previousPrice,
+                trailingText: trailingText,
+                onPriceClicked: {},
                 alignment: .trailing,
                 size: size
             )

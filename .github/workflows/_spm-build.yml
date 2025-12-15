@@ -1,0 +1,37 @@
+name: _spm-build
+
+on:
+  workflow_call:
+
+defaults:
+  run:
+    shell: bash -l {0}
+
+jobs:
+  spm-build:
+    name: SwiftPM Build
+    runs-on: macos-14
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup SwiftPM workspace
+        uses: ./.github/actions/spm-setup
+
+      - name: Build Backpack Swift Package
+        env:
+          SPM_DESTINATION: platform=iOS Simulator,name=iPhone SE (3rd generation),OS=17.5
+        run: |
+          set -eo pipefail
+          xcodebuild \
+            -workspace .swiftpm/xcode/package.xcworkspace \
+            -scheme Backpack-Package \
+            -destination "$SPM_DESTINATION" \
+            -derivedDataPath .derivedData \
+            -skipPackagePluginValidation \
+            -skipMacroValidation \
+            build
+
+      - name: Clean derived data
+        if: always()
+        run: rm -rf .derivedData

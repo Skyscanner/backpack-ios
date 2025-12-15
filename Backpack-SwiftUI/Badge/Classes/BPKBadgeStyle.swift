@@ -18,6 +18,6 @@
 
 extension BPKBadge {
     public enum Style {
-        case normal, strong, success, warning, destructive, inverse, outline, brand
+        case normal, strong, success, warning, destructive, inverse, outline, brand, subtle
     }
 }

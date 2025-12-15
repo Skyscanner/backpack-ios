@@ -60,4 +60,11 @@ class BPKCardViewTests: XCTestCase {
                 .padding()
         )
     }
+    
+    func testCardOnDefault() {
+        assertSnapshot(
+            BPKCard(cardStyle: .onDefault) { content("On Default") }
+                .padding()
+        )
+    }
 }

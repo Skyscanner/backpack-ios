@@ -47,10 +47,16 @@ public extension BPKIcon {
     static let baggageAdd = BPKIcon(name: "baggage--add")
     static let baggageRemove = BPKIcon(name: "baggage--remove")
     static let baggageCabinAdd = BPKIcon(name: "baggage-cabin-add")
+    static let baggageCabinIncludedTick = BPKIcon(name: "baggage-cabin-included-tick")
+    static let baggageCabinNotIncludedCross = BPKIcon(name: "baggage-cabin-not-included-cross")
     static let baggageCabinNotIncluded = BPKIcon(name: "baggage-cabin-not-included")
+    static let baggageCabinUncertain = BPKIcon(name: "baggage-cabin-uncertain")
     static let baggageCabin = BPKIcon(name: "baggage-cabin")
     static let baggageCheckedAdd = BPKIcon(name: "baggage-checked-add")
+    static let baggageCheckedIncludedTick = BPKIcon(name: "baggage-checked-included-tick")
+    static let baggageCheckedNotIncludedCross = BPKIcon(name: "baggage-checked-not-included-cross")
     static let baggageCheckedNotIncluded = BPKIcon(name: "baggage-checked-not-included")
+    static let baggageCheckedUncertain = BPKIcon(name: "baggage-checked-uncertain")
     static let baggageChecked = BPKIcon(name: "baggage-checked")
     static let baggageCross = BPKIcon(name: "baggage-cross")
     static let baggageGeneric = BPKIcon(name: "baggage-generic")
@@ -279,8 +285,24 @@ public extension BPKIcon {
     static let upgrade = BPKIcon(name: "upgrade")
     static let upload = BPKIcon(name: "upload")
     static let useLocation = BPKIcon(name: "use-location")
+    static let vdlCars = BPKIcon(name: "vdl-cars")
+    static let vdlFlight = BPKIcon(name: "vdl-flight")
+    static let vdlHomeBeach = BPKIcon(name: "vdl-home-beach")
+    static let vdlHomeCars = BPKIcon(name: "vdl-home-cars")
+    static let vdlHomeFlight = BPKIcon(name: "vdl-home-flight")
+    static let vdlHomeHotels = BPKIcon(name: "vdl-home-hotels")
+    static let vdlHotels = BPKIcon(name: "vdl-hotels")
+    static let vdlTabDropsSelected = BPKIcon(name: "vdl-tab-drops-selected")
+    static let vdlTabDrops = BPKIcon(name: "vdl-tab-drops")
+    static let vdlTabProfileSelected = BPKIcon(name: "vdl-tab-profile-selected")
+    static let vdlTabProfile = BPKIcon(name: "vdl-tab-profile")
+    static let vdlTabSavedSelected = BPKIcon(name: "vdl-tab-saved-selected")
+    static let vdlTabSaved = BPKIcon(name: "vdl-tab-saved")
+    static let vdlTabSearchSelected = BPKIcon(name: "vdl-tab-search-selected")
+    static let vdlTabSearch = BPKIcon(name: "vdl_tab-search")
     static let view = BPKIcon(name: "view")
     static let virus = BPKIcon(name: "virus")
+    static let walk = BPKIcon(name: "walk")
     static let wallet = BPKIcon(name: "wallet")
     static let weatherClear = BPKIcon(name: "weather--clear")
     static let weatherCloudy = BPKIcon(name: "weather--cloudy")
@@ -338,10 +360,16 @@ public extension BPKIcon {
         case "baggage--add": return .baggageAdd
         case "baggage--remove": return .baggageRemove
         case "baggage-cabin-add": return .baggageCabinAdd
+        case "baggage-cabin-included-tick": return .baggageCabinIncludedTick
+        case "baggage-cabin-not-included-cross": return .baggageCabinNotIncludedCross
         case "baggage-cabin-not-included": return .baggageCabinNotIncluded
+        case "baggage-cabin-uncertain": return .baggageCabinUncertain
         case "baggage-cabin": return .baggageCabin
         case "baggage-checked-add": return .baggageCheckedAdd
+        case "baggage-checked-included-tick": return .baggageCheckedIncludedTick
+        case "baggage-checked-not-included-cross": return .baggageCheckedNotIncludedCross
         case "baggage-checked-not-included": return .baggageCheckedNotIncluded
+        case "baggage-checked-uncertain": return .baggageCheckedUncertain
         case "baggage-checked": return .baggageChecked
         case "baggage-cross": return .baggageCross
         case "baggage-generic": return .baggageGeneric
@@ -570,8 +598,24 @@ public extension BPKIcon {
         case "upgrade": return .upgrade
         case "upload": return .upload
         case "use-location": return .useLocation
+        case "vdl-cars": return .vdlCars
+        case "vdl-flight": return .vdlFlight
+        case "vdl-home-beach": return .vdlHomeBeach
+        case "vdl-home-cars": return .vdlHomeCars
+        case "vdl-home-flight": return .vdlHomeFlight
+        case "vdl-home-hotels": return .vdlHomeHotels
+        case "vdl-hotels": return .vdlHotels
+        case "vdl-tab-drops-selected": return .vdlTabDropsSelected
+        case "vdl-tab-drops": return .vdlTabDrops
+        case "vdl-tab-profile-selected": return .vdlTabProfileSelected
+        case "vdl-tab-profile": return .vdlTabProfile
+        case "vdl-tab-saved-selected": return .vdlTabSavedSelected
+        case "vdl-tab-saved": return .vdlTabSaved
+        case "vdl-tab-search-selected": return .vdlTabSearchSelected
+        case "vdl_tab-search": return .vdlTabSearch
         case "view": return .view
         case "virus": return .virus
+        case "walk": return .walk
         case "wallet": return .wallet
         case "weather--clear": return .weatherClear
         case "weather--cloudy": return .weatherCloudy

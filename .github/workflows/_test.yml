@@ -30,7 +30,7 @@ jobs:
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
 
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           token: ${{ steps.app-token.outputs.token }}
 
@@ -75,6 +75,10 @@ jobs:
         run: ./scripts/ci swiftui test
         continue-on-error: ${{inputs.retake_snapshots}}
 
+      - name: Run Common tests
+        run: ./scripts/ci common test
+        continue-on-error: ${{inputs.retake_snapshots}}
+
       - name: Check snapshot changes
         id: checkSnapshotChanges
         run: changedFiles=`git status --porcelain` && echo "didChangeFiles=${changedFiles//$'\n'/'%0A'}" >> $GITHUB_OUTPUT
@@ -89,6 +93,11 @@ jobs:
           git add --ignore-removal */**/__Snapshots__/*.png
           git diff-index --quiet HEAD || git commit -m "Updated snapshots"
           git push
+
+  TestSwiftPM:
+    name: SwiftPM Tests
+    uses: ./.github/workflows/_spm-test.yml
+    secrets: inherit
 
   NotifyChanges:
     name: "Notify about changes made"

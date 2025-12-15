@@ -22,43 +22,47 @@ public enum BPKNavigationBarStyle {
     case `default`(TitleDisplayMode)
     case transparent(TitleDisplayMode)
     case surfaceContrast
-    
+    case canvasContrast(TitleDisplayMode)
+
     public static let `default` = BPKNavigationBarStyle.default(.large)
     public static let transparent = BPKNavigationBarStyle.transparent(.large)
-    
+    public static let canvasContrast = BPKNavigationBarStyle.canvasContrast(.large)
+
     func foregroundColor(expanded: Bool) -> BPKColor {
         switch self {
         case .default: return .textPrimaryColor
         case .transparent: return expanded ? .textOnDarkColor : .textPrimaryColor
         case .surfaceContrast: return .textOnDarkColor
+        case .canvasContrast: return .textPrimaryColor
         }
     }
-    
+
     var navigationBarHeight: CGFloat {
         collapsedHeight + expandedNavigationBarHeight
     }
-    
+
     var collapsedHeight: CGFloat {
         44
     }
-    
+
     var expandedNavigationBarHeight: CGFloat {
         switch self {
-        case .default, .transparent: return 52
+        case .default, .transparent, .canvasContrast : return 52
         case .surfaceContrast: return 0
         }
     }
-    
+
     var bottomSafeAreaInsetHeight: CGFloat {
         switch self {
-        case .default, .surfaceContrast: return expandedNavigationBarHeight
+        case .default, .surfaceContrast, .canvasContrast : return expandedNavigationBarHeight
         case .transparent: return 0
         }
     }
-    
+
     var verticalOffset: CGFloat {
         switch self {
-        case .default(let titleDisplayMode):
+        case .default(let titleDisplayMode),
+            .canvasContrast(let titleDisplayMode):
             return titleDisplayMode == .large ? navigationBarHeight : collapsedHeight
         case .transparent(let titleDisplayMode):
             return titleDisplayMode == .large ? 0 : collapsedHeight
@@ -66,11 +70,11 @@ public enum BPKNavigationBarStyle {
             return navigationBarHeight
         }
     }
-    
+
     var largeTitlePadding: CGFloat {
         BPKSpacing.md.value
     }
-    
+
     var safeAreasToIgnore: Edge.Set {
         switch self {
         case .transparent(let titleDisplayMode):
@@ -78,26 +82,30 @@ public enum BPKNavigationBarStyle {
         default: return []
         }
     }
-    
+
     func backgroundColor(expanded: Bool) -> BPKColor {
         switch self {
         case .default: return .canvasColor
         case .transparent: return expanded ? .clear : .canvasColor
         case .surfaceContrast: return .surfaceContrastColor
+        case .canvasContrast: return .canvasContrastColor
         }
     }
-    
+
     var lineColor: BPKColor? {
         switch self {
         case .default: return .lineColor
         case .transparent: return nil
         case .surfaceContrast: return .lineOnDarkColor
+        case .canvasContrast: return .lineColor
         }
     }
-    
+
     var supportsLargeTitle: Bool {
         switch self {
-        case .default(let titleDisplayMode), .transparent(let titleDisplayMode):
+        case .default(let titleDisplayMode),
+            .transparent(let titleDisplayMode),
+            .canvasContrast(let titleDisplayMode):
             return titleDisplayMode == .large
         case .surfaceContrast:
             return false

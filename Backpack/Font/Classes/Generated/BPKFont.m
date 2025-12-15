@@ -22,7 +22,7 @@
 #import <Backpack/Theme.h>
 
 #import "../BPKFontManager.h"
-#import "../BPKFontDefinitionProtocol.h"
+#import <Backpack_Common/Backpack_Common-Swift.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -125,97 +125,148 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (UIFont *)fontForStyle:(BPKFontStyle)style fontManager:(BPKFontManager *)fontManager {
+    BpkConfiguration *config = [BpkConfiguration shared];
+
     switch (style) {
-       
-           case BPKFontStyleTextBaseLarken:
-             return [fontManager semiboldFontWithSize:16 textStyle:UIFontTextStyleBody];
-             
-           case BPKFontStyleTextBodyDefault:
-             return [fontManager regularFontWithSize:16 textStyle:UIFontTextStyleBody];
-             
-           case BPKFontStyleTextBodyLongform:
-             return [fontManager regularFontWithSize:20 textStyle:UIFontTextStyleBody];
-             
-           case BPKFontStyleTextCaption:
-             return [fontManager regularFontWithSize:12 textStyle:UIFontTextStyleCaption1];
-             
-           case BPKFontStyleTextFootnote:
-             return [fontManager regularFontWithSize:14 textStyle:UIFontTextStyleFootnote];
-             
-           case BPKFontStyleTextHeading1:
-             return [fontManager semiboldFontWithSize:40 textStyle:UIFontTextStyleTitle1];
-             
-           case BPKFontStyleTextHeading2:
-             return [fontManager semiboldFontWithSize:32 textStyle:UIFontTextStyleTitle2];
-             
-           case BPKFontStyleTextHeading3:
-             return [fontManager semiboldFontWithSize:24 textStyle:UIFontTextStyleTitle3];
-             
-           case BPKFontStyleTextHeading4:
-             return [fontManager semiboldFontWithSize:20 textStyle:UIFontTextStyleTitle3];
-             
-           case BPKFontStyleTextHeading5:
-             return [fontManager semiboldFontWithSize:16 textStyle:UIFontTextStyleTitle3];
-             
-           case BPKFontStyleTextHero1:
-             return [fontManager semiboldFontWithSize:120 textStyle:UIFontTextStyleLargeTitle];
-             
-           case BPKFontStyleTextHero2:
-             return [fontManager semiboldFontWithSize:96 textStyle:UIFontTextStyleLargeTitle];
-             
-           case BPKFontStyleTextHero3:
-             return [fontManager semiboldFontWithSize:76 textStyle:UIFontTextStyleLargeTitle];
-             
-           case BPKFontStyleTextHero4:
-             return [fontManager semiboldFontWithSize:64 textStyle:UIFontTextStyleLargeTitle];
-             
-           case BPKFontStyleTextHero5:
-             return [fontManager heavyFontWithSize:48 textStyle:UIFontTextStyleLargeTitle];
-             
-           case BPKFontStyleTextLabel1:
-             return [fontManager semiboldFontWithSize:16 textStyle:UIFontTextStyleBody];
-             
-           case BPKFontStyleTextLabel2:
-             return [fontManager semiboldFontWithSize:14 textStyle:UIFontTextStyleBody];
-             
-           case BPKFontStyleTextLabel3:
-             return [fontManager semiboldFontWithSize:12 textStyle:UIFontTextStyleBody];
-             
-           case BPKFontStyleTextSmLarken:
-             return [fontManager semiboldFontWithSize:14 textStyle:UIFontTextStyleFootnote];
-             
-           case BPKFontStyleTextSubheading:
-             return [fontManager regularFontWithSize:24 textStyle:UIFontTextStyleSubheadline];
-             
-           case BPKFontStyleTextXsLarken:
-             return [fontManager semiboldFontWithSize:12 textStyle:UIFontTextStyleCaption1];
-             
-            default:
-              NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);
+    
+        case BPKFontStyleTextBaseLarken:
+            return [fontManager semiboldFontWithSize:16 textStyle:UIFontTextStyleBody];
+                
+        case BPKFontStyleTextBodyDefault:
+            return [fontManager regularFontWithSize:16 textStyle:UIFontTextStyleBody];
+            
+        case BPKFontStyleTextBodyLongform:
+            return [fontManager regularFontWithSize:20 textStyle:UIFontTextStyleBody];
+            
+        case BPKFontStyleTextCaption:
+            return [fontManager regularFontWithSize:12 textStyle:UIFontTextStyleCaption1];
+            
+        case BPKFontStyleTextDisplay7:
+            return [fontManager heavyFontWithSize:32 textStyle:UIFontTextStyleLargeTitle];
+            
+        case BPKFontStyleTextEditorial4:
+            return [fontManager regularFontWithSize:16 textStyle:UIFontTextStyleBody];
+            
+        case BPKFontStyleTextEditorial5:
+            return [fontManager regularFontWithSize:14 textStyle:UIFontTextStyleBody];
+            
+        case BPKFontStyleTextEditorial6:
+            return [fontManager regularFontWithSize:12 textStyle:UIFontTextStyleBody];
+            
+        case BPKFontStyleTextFootnote:
+            return [fontManager regularFontWithSize:14 textStyle:UIFontTextStyleFootnote];
+            
+        case BPKFontStyleTextHeading1:
+            return config.heading1Config
+                    ? config.heading1Config.font
+                    : [fontManager semiboldFontWithSize:40 textStyle:UIFontTextStyleTitle1];
+                
+        case BPKFontStyleTextHeading2:
+            return config.heading2Config
+                    ? config.heading2Config.font
+                    : [fontManager semiboldFontWithSize:32 textStyle:UIFontTextStyleTitle2];
+                
+        case BPKFontStyleTextHeading3:
+            return config.heading3Config
+                    ? config.heading3Config.font
+                    : [fontManager semiboldFontWithSize:24 textStyle:UIFontTextStyleTitle3];
+                
+        case BPKFontStyleTextHeading4:
+            return config.heading4Config
+                    ? config.heading4Config.font
+                    : [fontManager semiboldFontWithSize:20 textStyle:UIFontTextStyleTitle3];
+                
+        case BPKFontStyleTextHeading5:
+            return config.heading5Config
+                    ? config.heading5Config.font
+                    : [fontManager semiboldFontWithSize:16 textStyle:UIFontTextStyleTitle3];
+                
+        case BPKFontStyleTextHero1:
+            return [fontManager semiboldFontWithSize:120 textStyle:UIFontTextStyleLargeTitle];
+                
+        case BPKFontStyleTextHero2:
+            return [fontManager semiboldFontWithSize:96 textStyle:UIFontTextStyleLargeTitle];
+                
+        case BPKFontStyleTextHero3:
+            return [fontManager semiboldFontWithSize:76 textStyle:UIFontTextStyleLargeTitle];
+                
+        case BPKFontStyleTextHero4:
+            return [fontManager semiboldFontWithSize:64 textStyle:UIFontTextStyleLargeTitle];
+                
+        case BPKFontStyleTextHero5:
+            return [fontManager heavyFontWithSize:48 textStyle:UIFontTextStyleLargeTitle];
+            
+        case BPKFontStyleTextHero6:
+            return [fontManager heavyFontWithSize:40 textStyle:UIFontTextStyleLargeTitle];
+            
+        case BPKFontStyleTextLabel1:
+            return [fontManager semiboldFontWithSize:16 textStyle:UIFontTextStyleBody];
+                
+        case BPKFontStyleTextLabel2:
+            return [fontManager semiboldFontWithSize:14 textStyle:UIFontTextStyleBody];
+                
+        case BPKFontStyleTextLabel3:
+            return [fontManager semiboldFontWithSize:12 textStyle:UIFontTextStyleBody];
+                
+        case BPKFontStyleTextSmLarken:
+            return [fontManager semiboldFontWithSize:14 textStyle:UIFontTextStyleFootnote];
+                
+        case BPKFontStyleTextSubheading:
+            return [fontManager regularFontWithSize:24 textStyle:UIFontTextStyleSubheadline];
+            
+        case BPKFontStyleTextXsLarken:
+            return [fontManager semiboldFontWithSize:12 textStyle:UIFontTextStyleCaption1];
+                
+        default:
+            NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);
     }
 }
 
 + (NSNumber *)letterSpacingForStyle:(BPKFontStyle)style {
+    
+    BpkConfiguration *config = [BpkConfiguration shared];
+
     switch (style) {
-        case BPKFontStyleTextHero1: 
+        case BPKFontStyleTextDisplay7:
+            // Corresponding to Letter Spacing VDL2_SM
+            return @(-1.6);
+        case BPKFontStyleTextHeading1:
+            // Corresponding to Letter Spacing XS
+            return @(config.heading1Config ? config.heading1Config.letterSpacing : 0);
+        case BPKFontStyleTextHeading2:
+            // Corresponding to Letter Spacing XS
+            return @(config.heading2Config ? config.heading2Config.letterSpacing : 0);
+        case BPKFontStyleTextHeading3:
+            // Corresponding to Letter Spacing XS
+            return @(config.heading3Config ? config.heading3Config.letterSpacing : 0);
+        case BPKFontStyleTextHeading4:
+            // Corresponding to Letter Spacing XS
+            return @(config.heading4Config ? config.heading4Config.letterSpacing : 0);
+        case BPKFontStyleTextHeading5:
+            // Corresponding to Letter Spacing XS
+            return @(config.heading5Config ? config.heading5Config.letterSpacing : 0);
+        case BPKFontStyleTextHero1:
             // Corresponding to Letter Spacing TIGHT
             return @(-2);
-        case BPKFontStyleTextHero2: 
+        case BPKFontStyleTextHero2:
             // Corresponding to Letter Spacing TIGHT
             return @(-2);
-        case BPKFontStyleTextHero3: 
+        case BPKFontStyleTextHero3:
             // Corresponding to Letter Spacing TIGHT
             return @(-2);
-        case BPKFontStyleTextHero4: 
+        case BPKFontStyleTextHero4:
             // Corresponding to Letter Spacing TIGHT
             return @(-2);
-        case BPKFontStyleTextHero5: 
+        case BPKFontStyleTextHero5:
             // Corresponding to Letter Spacing TIGHT
-            return @(-2);
-        
+            return @(config.hero5Config ? config.hero5Config.letterSpacing : -2);
+        case BPKFontStyleTextHero6:
+            // Corresponding to Letter Spacing VDL2_MD
+            return @(-1.2);
         default:
             return @(0); // No Defined Letter Spacing
     }
+
 }
 
 + (CGFloat)lineHeightForStyle:(BPKFontStyle)style {
@@ -230,6 +281,18 @@ NS_ASSUME_NONNULL_BEGIN
             // Corresponding to Line Height LG
             return 28;
         case BPKFontStyleTextCaption: 
+            // Corresponding to Line Height XS
+            return 16;
+        case BPKFontStyleTextDisplay7: 
+            // Corresponding to Line Height LG
+            return 28;
+        case BPKFontStyleTextEditorial4: 
+            // Corresponding to Line Height XS
+            return 16;
+        case BPKFontStyleTextEditorial5: 
+            // Corresponding to Line Height XS
+            return 16;
+        case BPKFontStyleTextEditorial6: 
             // Corresponding to Line Height XS
             return 16;
         case BPKFontStyleTextFootnote: 
@@ -263,6 +326,9 @@ NS_ASSUME_NONNULL_BEGIN
             // Corresponding to Line Height 5XL
             return 72;
         case BPKFontStyleTextHero5: 
+            // Corresponding to Line Height XXXXL
+            return 56;
+        case BPKFontStyleTextHero6: 
             // Corresponding to Line Height XXXXL
             return 56;
         case BPKFontStyleTextLabel1: 

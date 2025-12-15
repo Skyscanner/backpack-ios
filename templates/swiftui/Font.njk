@@ -18,22 +18,47 @@
  
 import UIKit
 import SwiftUI
+import Backpack_Common
 
 public struct BPKFontStyle {
     public let font: Font
     public let fontFixed: Font
     public let letterSpacing: CGFloat
     public let lineHeight: CGFloat
+
+    static let config = BpkConfiguration.shared
 }
 
 public extension BPKFontStyle {
-    {% for f in font %}
-    /// Represents font size {{f.size}} with weight {{f.weight}}.
-    static let {{f.name}} = BPKFontStyle(
-        font: .{{f.weight}}(size: {{f.size}}, textStyle: {{f.textStyle}}),
-        fontFixed: .{{f.weight}}Fixed(size: {{f.size}}),
-        letterSpacing: {% if f.letterSpacing != null -%}{{f.letterSpacing.value}}{% else -%}0{% endif %},
-        lineHeight: {% if f.lineHeight != null -%}{{f.lineHeight.value}}{% else -%}0{% endif %}
-    )
+{%- set letterSpacingOverrides = {
+"hero5": "config.hero5Config?.letterSpacing ?? -2",
+"heading1": "config.heading1Config?.letterSpacing ?? 0",
+"heading2": "config.heading2Config?.letterSpacing ?? 0",
+"heading3": "config.heading3Config?.letterSpacing ?? 0",
+"heading4": "config.heading4Config?.letterSpacing ?? 0",
+"heading5": "config.heading5Config?.letterSpacing ?? 0"} -%}
+
+{%- set letterFontOverrides = {
+"heading1": "config.font(.heading1Config, defaultFont: .semibold(size: 40, textStyle: .title), fixed: false)",
+"heading2": "config.font(.heading2Config, defaultFont: .semibold(size: 32, textStyle: .title2), fixed: false)",
+"heading3": "config.font(.heading3Config, defaultFont: .semibold(size: 24, textStyle: .title3), fixed: false)",
+"heading4": "config.font(.heading4Config, defaultFont: .semibold(size: 20, textStyle: .title3), fixed: false)",
+"heading5": "config.font(.heading5Config, defaultFont: .semibold(size: 16, textStyle: .title3), fixed: false)"} -%}
+
+{%- set letterFontFixedOverrides = {
+"heading1": "config.font(.heading1Config, defaultFont: .semiboldFixed(size: 40), fixed: true)",
+"heading2": "config.font(.heading2Config, defaultFont: .semiboldFixed(size: 32), fixed: true)",
+"heading3": "config.font(.heading3Config, defaultFont: .semiboldFixed(size: 24), fixed: true)",
+"heading4": "config.font(.heading4Config, defaultFont: .semiboldFixed(size: 20), fixed: true)",
+"heading5": "config.font(.heading5Config, defaultFont: .semiboldFixed(size: 16), fixed: true)"} -%}
+
+{% for f in font %}
+/// Represents font size {{f.size}} with weight {{f.weight}}.
+static let {{f.name}} = BPKFontStyle(
+    font: {% if letterFontOverrides[f.name] is defined -%}{{ letterFontOverrides[f.name] }}{% elseif f.font != null -%}.{{f.weight}}(size: {{f.size}}, textStyle: {{f.textStyle}}){% else -%}.{{f.weight}}(size: {{f.size}}, textStyle: {{f.textStyle}}){% endif %},
+    fontFixed: {% if letterFontFixedOverrides[f.name] is defined -%}{{ letterFontFixedOverrides[f.name] }}{% elseif f.fontFixed != null -%}.{{f.weight}}Fixed(size: {{f.size}}){% else -%}.{{f.weight}}Fixed(size: {{f.size}}){% endif %},
+    letterSpacing: {% if letterSpacingOverrides[f.name] is defined -%}{{ letterSpacingOverrides[f.name] }}{% elseif f.letterSpacing != null -%}{{ f.letterSpacing.value }}{% else -%}0{% endif %},
+    lineHeight: {% if f.lineHeight != null -%}{{f.lineHeight.value}}{% else -%}0{% endif %}
+)
 {% endfor %}
 }

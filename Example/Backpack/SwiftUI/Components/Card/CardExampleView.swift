@@ -39,6 +39,9 @@ struct CardExampleView: View {
                 BPKCard(cornerStyle: .large) {
                     content(title: "Large Corner")
                 }
+                BPKCard(cardStyle: .onDefault) {
+                    content(title: "On Default Style")
+                }
             }
             .padding()
         }

@@ -83,13 +83,25 @@ FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameBaggageRemove;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameBaggageCabinAdd;
 /// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameBaggageCabinIncludedTick;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameBaggageCabinNotIncludedCross;
+/// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameBaggageCabinNotIncluded;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameBaggageCabinUncertain;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameBaggageCabin;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameBaggageCheckedAdd;
 /// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameBaggageCheckedIncludedTick;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameBaggageCheckedNotIncludedCross;
+/// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameBaggageCheckedNotIncluded;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameBaggageCheckedUncertain;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameBaggageChecked;
 /// :nodoc:
@@ -547,9 +559,41 @@ FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameUpload;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameUseLocation;
 /// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVdlCars;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVdlFlight;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVdlHomeBeach;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVdlHomeCars;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVdlHomeFlight;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVdlHomeHotels;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVdlHotels;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVdlTabDropsSelected;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVdlTabDrops;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVdlTabProfileSelected;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVdlTabProfile;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVdlTabSavedSelected;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVdlTabSaved;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVdlTabSearchSelected;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVdlTabSearch;
+/// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameView;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameVirus;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameWalk;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameWallet;
 /// :nodoc:

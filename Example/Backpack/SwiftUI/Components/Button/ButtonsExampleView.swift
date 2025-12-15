@@ -43,7 +43,7 @@ struct ButtonsExampleView: View {
     private var backgroundColor: Backpack_SwiftUI.BPKColor {
         switch style {
         case .secondaryOnDark, .linkOnDark, .primaryOnDark:
-            return .canvasContrastColor
+            return .surfaceContrastColor
         default:
             return .canvasColor
         }
@@ -63,6 +63,7 @@ struct ButtonsExampleView: View {
             loadingButtons(size: size)
             basicButtons(size: size)
             iconButtons(size: size)
+            imageButton(size: size)
         }
     }
     
@@ -132,6 +133,17 @@ struct ButtonsExampleView: View {
                 size: size
             ) { }
             .buttonStyle(style)
+        }
+    }
+    
+    private func imageButton(size: Backpack_SwiftUI.BPKButton.Size) -> some View {
+        HStack {
+            BPKButton(
+                "Login button",
+                image: Image("small_app_icon"),
+                size: size
+            ) { }
+                .buttonStyle(style)
         }
     }
 }

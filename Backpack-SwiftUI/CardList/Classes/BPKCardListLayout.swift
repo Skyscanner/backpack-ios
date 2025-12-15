@@ -19,6 +19,6 @@
 import SwiftUI
 
 public enum BPKCardListLayout {
-    case rail(sectionHeaderAction: SectionHeaderAction? = nil)
+    case rail(sectionHeaderAction: SectionHeaderAction? = nil, cardWidth: CGFloat? = nil)
     case stack(accessory: Accessory? = nil)
 }

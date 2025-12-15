@@ -83,13 +83,25 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameBaggageRemove;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameBaggageCabinAdd;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameBaggageCabinIncludedTick;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameBaggageCabinNotIncludedCross;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameBaggageCabinNotIncluded;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameBaggageCabinUncertain;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameBaggageCabin;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameBaggageCheckedAdd;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameBaggageCheckedIncludedTick;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameBaggageCheckedNotIncludedCross;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameBaggageCheckedNotIncluded;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameBaggageCheckedUncertain;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameBaggageChecked;
 /// :nodoc:
@@ -547,9 +559,41 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameUpload;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameUseLocation;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameVdlCars;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameVdlFlight;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameVdlHomeBeach;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameVdlHomeCars;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameVdlHomeFlight;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameVdlHomeHotels;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameVdlHotels;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameVdlTabDropsSelected;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameVdlTabDrops;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameVdlTabProfileSelected;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameVdlTabProfile;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameVdlTabSavedSelected;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameVdlTabSaved;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameVdlTabSearchSelected;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameVdlTabSearch;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameView;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameVirus;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameWalk;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameWallet;
 /// :nodoc:

@@ -61,7 +61,7 @@ struct ImageGalleryImageCategoryView<ImageView: View>: View {
                     .accessibilityAddTraits(.isButton)
                 }
             }
-            .padding(.leading, .lg)
+            .padding(.horizontal, .lg)
         }
         .padding(.bottom, .base)
     }

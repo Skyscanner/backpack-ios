@@ -17,76 +17,94 @@
  */
 
 const path = require('path');
-const data = require('gulp-data');
 const gulp = require('gulp');
-const nunjucks = require('gulp-nunjucks');
+const data = require('gulp-data');
 const rename = require('gulp-rename');
 const { iconsUIKit, iconsSwiftUI } = require('../../iconNames');
 
-const iconsForExamples = Object.keys(require('@skyscanner/bpk-svgs/dist/iconMapping.json'))
-  .filter(iconName => !iconName.endsWith('-xl') && !iconName.endsWith('-xxxl'))
+// Load the ESM-only gulp-nunjucks from CJS via dynamic import
+const getNunjucksCompile = async () => (await import('gulp-nunjucks')).nunjucksCompile;
 
-const generateFromTemplate = (template, templateData, renameTo, destination) => {
-  gulp
+// Helper to wait for a stream to finish when we need to coordinate multiple streams
+const waitForStream = (stream) =>
+  new Promise((resolve, reject) => {
+    stream.on('error', reject);
+    stream.on('finish', resolve);
+    stream.on('end', resolve);
+  });
+
+// Filtered list for the examples screen (unchanged)
+const iconsForExamples = Object.keys(
+  require('@skyscanner/bpk-svgs/dist/iconMapping.json')
+).filter((iconName) => !iconName.endsWith('-xl') && !iconName.endsWith('-xxxl'));
+
+// Generic generator (now async) that returns the stream.
+// It compiles using gulp-nunjucks v6's nunjucksCompile() named export.
+const generateFromTemplate = async (template, templateData, renameTo, destination) => {
+  const nunjucksCompile = await getNunjucksCompile();
+  return gulp
     .src(template)
     .pipe(data(templateData))
-    .pipe(nunjucks.compile())
+    .pipe(nunjucksCompile())
     .pipe(rename(renameTo))
-    .pipe(gulp.dest(destination))
-}
+    .pipe(gulp.dest(destination));
+};
 
-const generateIconNamesUIKit = (output, templatesFolder) => (done) => {
+// Generate UIKit icon name files
+const generateIconNamesUIKit = (output, templatesFolder) => async () => {
   const renameTo = (file) => {
     // eslint-disable-next-line no-param-reassign
     file.extname = '';
   };
+
   const allTemplates = path.join(
     templatesFolder,
-    `{BPKIconNames.h.njk,BPKIcons.swift.njk,BPKIconNames.m.njk,BPKSmallIconNames.h.njk,BPKSmallIconNames.m.njk,BPKLargeIconNames.h.njk,BPKLargeIconNames.m.njk}`
+    '{BPKIconNames.h.njk,BPKIcons.swift.njk,BPKIconNames.m.njk,BPKSmallIconNames.h.njk,BPKSmallIconNames.m.njk,BPKLargeIconNames.h.njk,BPKLargeIconNames.m.njk}'
   );
-  generateFromTemplate(
+
+  return generateFromTemplate(
     allTemplates,
     iconsUIKit(),
     renameTo,
     path.join(output, 'Icon', 'Classes', 'Generated')
-  )
-  done();
+  );
 };
 
 // Create helper for icons example screen
-const generateIconExampleUtil = (templatesFolder) => (done) => {
-  generateFromTemplate(
+const generateIconExampleUtil = (templatesFolder) => async () => {
+  return generateFromTemplate(
     path.join(templatesFolder, 'icons/BPKIconsExampleUtil.njk'),
     {
       icons: iconsForExamples,
-      iconNames: iconsSwiftUI().icons.map(i => i.name)
-     },
+      iconNames: iconsSwiftUI().icons.map((i) => i.name),
+    },
     'BPKIconsExampleUtil.swift',
     'Example/Backpack/SwiftUI/Components/Icons/Generated'
-  )
-  done()
+  );
 };
 
-// Create helper for icons tests
-const generateIconExampleTestsUtil = (uikitTemplatesFolder, swiftuiTemplatesFolder) => (done) => {
-  generateFromTemplate(
+// Create helpers for icons tests (UIKit + SwiftUI)
+// We return a Promise that resolves once both output streams have finished.
+const generateIconExampleTestsUtil = (uikitTemplatesFolder, swiftuiTemplatesFolder) => async () => {
+  const s1 = await generateFromTemplate(
     path.join(uikitTemplatesFolder, 'icons/BPKIconsExampleTestsUtil.njk'),
     { icons: iconsForExamples },
     'BPKIconsTestsUtils.swift',
     'Backpack/Tests/SnapshotTests/Utils'
-  )
+  );
 
-  generateFromTemplate(
+  const s2 = await generateFromTemplate(
     path.join(swiftuiTemplatesFolder, 'IconsTestsUtils.njk'),
-    { iconNames: iconsSwiftUI().icons.map(i => i.name) },
+    { iconNames: iconsSwiftUI().icons.map((i) => i.name) },
     'IconsTestsUtils.swift',
     'Backpack-SwiftUI/Tests/Icons/Generated'
-  )
-  done()
+  );
+
+  await Promise.all([waitForStream(s1), waitForStream(s2)]);
 };
 
 module.exports = {
   generateIconNamesUIKit,
   generateIconExampleUtil,
-  generateIconExampleTestsUtil
-}
+  generateIconExampleTestsUtil,
+};

@@ -16,6 +16,7 @@
  * limitations under the License.
  */
 
+import UIKit
 import FloatingPanel
 
 public struct BottomSheetInsets {

@@ -50,23 +50,36 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
 
     public var body: some View {
         switch layout {
-        case .rail(let sectionHeaderAction):
-            railLayout(with: sectionHeaderAction)
+        case .rail(let sectionHeaderAction, let cardWidth):
+            railLayout(with: sectionHeaderAction, cardWidth: cardWidth)
         case .stack(let accessory):
             stackLayout(with: accessory)
         }
     }
 
-    private func railLayout(with sectionHeaderAction: BPKCardListLayout.SectionHeaderAction?) -> some View {
+    private func railLayout(
+        with sectionHeaderAction: BPKCardListLayout.SectionHeaderAction?,
+        cardWidth: CGFloat?
+    ) -> some View {
         cardListSkeleton(with: sectionHeaderAction) {
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .top, spacing: .base) {
-                    ForEach(elements) { index in
-                        cardForElement(index)
-                    }
+            if elements.count == 1, let only = elements.first {
+                VStack {
+                    cardForElement(only)
+                        .frame(maxWidth: .infinity)
                 }
                 .padding(.horizontal, .base)
                 .padding(.vertical, .sm)
+            } else {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(alignment: .top, spacing: .base) {
+                        ForEach(elements) { element in
+                            cardForElement(element)
+                                .applyCardWidth(cardWidth)
+                        }
+                    }
+                    .padding(.horizontal, .base)
+                    .padding(.vertical, .sm)
+                }
             }
         }
     }
@@ -140,6 +153,17 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
             .buttonStyle(.link)
             .stretchable()
             .accessibilityIdentifier("BPKCardListExpandButton")
+        }
+    }
+}
+
+private extension View {
+    @ViewBuilder
+    func applyCardWidth(_ width: CGFloat?) -> some View {
+        if let width {
+            self.frame(width: width)
+        } else {
+            self
         }
     }
 }

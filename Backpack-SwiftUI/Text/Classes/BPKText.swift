@@ -17,6 +17,7 @@
  */
 
 import SwiftUI
+import Backpack_Common
 
 /// A view that displays one or more lines of text
 /// By default the color of BPKText is set to `BPKColor.textPrimary` with a lineLimit of 1
@@ -31,9 +32,12 @@ public struct BPKText: View {
     private var textColor = Color(BPKColor.textPrimaryColor)
     private var lineLimit: Int? = 1
     private var strikethrough: Bool = false
-    
+
     public init(_ text: String, style: BPKFontStyle = .bodyDefault) {
-        self.text = Text(LocalizedStringKey(text))
+        
+        let isEmailText = text.contains("@")
+        
+        self.text = isEmailText ? Text(verbatim: text): Text(LocalizedStringKey(text))
         self.style = style
     }
     

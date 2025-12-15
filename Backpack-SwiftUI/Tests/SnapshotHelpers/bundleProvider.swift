@@ -20,9 +20,15 @@ import Foundation
 
 class TestsBundle {
     static var bundle: Bundle? {
+        // For SPM builds, use Bundle.module if available
+        #if SWIFT_PACKAGE
+        return Bundle.module
+        #else
+        // For CocoaPods builds, use the traditional bundle lookup
         guard
             let path = Bundle(for: Self.self).path(forResource: "UnitTestsImages", ofType: "bundle")
         else { return nil }
         return Bundle(path: path)
+        #endif
     }
 }

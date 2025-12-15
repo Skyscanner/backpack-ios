@@ -17,6 +17,7 @@
  */
 
 import Foundation
+import Backpack_Common
 
 // swiftlint:disable file_length
 @MainActor
@@ -45,7 +46,6 @@ struct ComponentCellsProvider {
             barChart(),
             bottomSheet(),
             button(),
-            calendar(),
             card(),
             cardButton(),
             cardList(),
@@ -54,6 +54,7 @@ struct ComponentCellsProvider {
             cardCarousel(),
             chips(),
             chipGroup(),
+            configuration(),
             dynamicLayout(),
             fieldSet(),
             flightLeg(),
@@ -68,6 +69,7 @@ struct ComponentCellsProvider {
             imageGallerySlideshow(),
             insetBanner(),
             label(),
+            links(),
             navBar(),
             navigationTabsGroup(),
             nudger(),
@@ -85,16 +87,15 @@ struct ComponentCellsProvider {
             sectionHeader(),
             segmentPicker(),
             select(),
-            snackbar(),
             skeleton(),
             sliders(),
             snippets(),
             spinners(),
+            sponsoredInsetBanner(),
             starRatings(),
             switches(),
             tabBarControllers(),
             tappableContainer(),
-            tappableLinkLabels(),
             textArea(),
             textField(),
             textViews(),
@@ -162,16 +163,6 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Labels", tabs: $0) }
         )
     }
-    private func calendar() -> CellDataSource {
-        ComponentCellDataSource(
-            title: "Calendar",
-            tabs: [
-                .uikit(groups: CalendarGroupsProvider(showPresentable: show(presentable:)).groups()),
-                .swiftui(groups: CalendarGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
-            ],
-            showChildren: { showComponent(title: "Calendar", tabs: $0) }
-        )
-    }
     private func card() -> CellDataSource {
         ComponentCellDataSource(
             title: "Cards",
@@ -217,6 +208,18 @@ extension ComponentCellsProvider {
                 .swiftui(groups: ChipGroupProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "Chip Group", tabs: $0) }
+        )
+    }
+    
+    private func configuration() -> CellDataSource {
+        return ComponentCellDataSource(
+            title: "Configuration",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(ConfigurationExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Configuration", tabs: $0) }
         )
     }
     private func flare() -> CellDataSource {
@@ -301,21 +304,6 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Navigation bars", tabs: $0) }
         )
     }
-    private func nudger() -> CellDataSource {
-        ComponentCellDataSource(
-            title: "Nudger",
-            tabs: [
-                .uikit(presentable: CustomPresentable(
-                    generateViewController: {
-                        NudgerViewController()
-                    })),
-                .swiftui(presentable: CustomPresentable(generateViewController: {
-                    ContentUIHostingController(NudgerExampleView())
-                }))
-            ],
-            showChildren: { showComponent(title: "Nudger", tabs: $0) }
-        )
-    }
     private func overlayViews() -> CellDataSource {
         ComponentCellDataSource(
             title: "Overlay",
@@ -349,14 +337,21 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Navigation Tabs Group", tabs: $0) }
         )
     }
+    private func nudger() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Nudger",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(NudgerExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Nudger", tabs: $0) }
+        )
+    }
     private func panels() -> CellDataSource {
         ComponentCellDataSource(
             title: "Panels",
             tabs: [
-                .uikit(presentable: loadStoryboard(
-                    name: "Panel",
-                    identifier: "PanelsViewController"
-                )),
                 .swiftui(presentable: CustomPresentable(generateViewController: {
                     ContentUIHostingController(PanelExampleView())
                 }))
@@ -444,13 +439,6 @@ extension ComponentCellsProvider {
                 }))
             ],
             showChildren: { showComponent(title: "Select Pickers", tabs: $0) }
-        )
-    }
-    private func snackbar() -> CellDataSource {
-        PresentableCellDataSource(
-            title: "Snackbar",
-            storyboard: .named("Snackbar", on: "SnackbarViewController"),
-            showPresentable: show(presentable:)
         )
     }
     private func sliders() -> CellDataSource {
@@ -548,11 +536,23 @@ extension ComponentCellsProvider {
         )
     }
     
-    private func tappableLinkLabels() -> CellDataSource {
-        PresentableCellDataSource(
-            title: "Tappable link labels",
-            storyboard: .named("TappableLinkLabels", on: "TappableLinkLabelsViewController"),
-            showPresentable: show(presentable:)
+    private func links() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Links",
+            tabs: [
+                .uikit(
+                    presentable: loadStoryboard(
+                        name: "TappableLinkLabels",
+                        identifier: "TappableLinkLabelsViewController"
+                    )
+                ),
+                .swiftui(
+                    presentable: CustomPresentable(generateViewController: {
+                        ContentUIHostingController(LinkExampleView())
+                    })
+                )
+            ],
+            showChildren: { showComponent(title: "Links", tabs: $0) }
         )
     }
     private func textArea() -> CellDataSource {
@@ -778,7 +778,17 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Inset Banner", tabs: $0) }
         )
     }
-    
+    private func sponsoredInsetBanner() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Sponsored Inset Banner",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(SponsoredInsetBannerExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Sponsored Inset Banner", tabs: $0) }
+        )
+    }
     private func appSearchModal() -> CellDataSource {
         ComponentCellDataSource(
             title: "App Search Modal",

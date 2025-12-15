@@ -126,6 +126,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor * surfaceHeroColor;
 
 /**
+ * The `surfaceTintColor` dynamic color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background-color: #ffffff1a; background: linear-gradient(0.375turn, #ffffff1a 49%, #ffffff1a 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * surfaceTintColor;
+
+/**
  * The `surfaceDefaultColor` dynamic color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background-color: #ffffffff; background: linear-gradient(0.375turn, #ffffffff 49%, #131d2bff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>

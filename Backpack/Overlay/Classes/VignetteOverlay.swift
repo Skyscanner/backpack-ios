@@ -16,6 +16,7 @@
  * limitations under the License.
  */
 
+import UIKit
 import QuartzCore
 
 final class VignetteOverlay: CAShapeLayer {

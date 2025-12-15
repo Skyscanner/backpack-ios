@@ -10,7 +10,7 @@ if ENV["BPK_USE_RELATIVE"] == "1"
   FileUtils.mkdir_p 'bpk-fonts-tmp'
   Dir.chdir("bpk-fonts-tmp") do
     system "git init > /dev/null"
-    system "git remote add origin git@github.skyscannertools.net:backpack/bpk-fonts.git > /dev/null"
+    system "git remote add origin git@github.com:Skyscanner/bpk-fonts.git > /dev/null"
     system "git config core.sparsecheckout true > /dev/null"
     system "echo \"iOS\" >> .git/info/sparse-checkout"
     font_success = system "git pull --depth=2 origin main > /dev/null"
