@@ -10,7 +10,11 @@
     "test": "eslint . --ext .js,.jsx",
     "build": "npm run test && gulp",
     "danger": "danger ci",
-    "gulp": "gulp"
+    "gulp": "gulp",
+    "figma:parse": "figma connect parse Example/Backpack/SwiftUI/Figma --verbose",
+    "figma:validate": "npx figma connect publish --dry-run --token ${FIGMA_ACCESS_TOKEN}",
+    "figma:publish": "npx figma connect publish --token ${FIGMA_ACCESS_TOKEN}",
+    "figma:parse-one": "figma connect parse"
   },
   "repository.url": "git+https://github.com/Skyscanner/backpack-ios.git",
   "author": "Backpack Design System <backpack@skyscanner.net>",
