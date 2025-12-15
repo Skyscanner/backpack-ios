@@ -163,7 +163,7 @@ jobs:
     timeout-minutes: 20
     steps:
       - name: Save assets
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         if: ${{ failure() }}
         with:
           name: FailureDiffs
