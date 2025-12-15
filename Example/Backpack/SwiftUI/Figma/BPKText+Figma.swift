@@ -5,7 +5,7 @@ import Backpack_SwiftUI
 /// Figma Code Connect implementation for BPKText
 struct BPKTextFigmaConnect: FigmaConnect {
     let component = BPKText.self
-    let figmaNodeUrl = "https://www.figma.com/design/irZ3YBx8vOm16ICkAr7mB3/Backpack-Components?node-id=22608-25390"
+    let figmaNodeUrl = "https://www.figma.com/design/KXf2gHNLDe2cXWUoHl4cTX/Backpack%E2%80%A8Foundations---Components?node-id=10911-51565"
 
     /// Text content property
     @FigmaString("Text Prop")

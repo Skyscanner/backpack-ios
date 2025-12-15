@@ -5,7 +5,7 @@ import Backpack_SwiftUI
 // MARK: - Icon = Left
 struct BpkButton_IconLeft_CodeConnect: FigmaConnect {
     let component = Backpack_SwiftUI.BPKButton.self
-    let figmaNodeUrl = "https://www.figma.com/design/irZ3YBx8vOm16ICkAr7mB3/Backpack-Components?node-id=2965-0"
+    let figmaNodeUrl = "https://www.figma.com/design/KXf2gHNLDe2cXWUoHl4cTX/Backpack%E2%80%A8Foundations---Components?node-id=10858-8677"
     let variant = ["Icon" : "Left"]
 
     private var title: String = "Label"
@@ -82,7 +82,7 @@ struct BpkButton_IconLeft_CodeConnect: FigmaConnect {
 // MARK: - Icon = Right
 struct BpkButton_IconRight_CodeConnect: FigmaConnect {
     let component = Backpack_SwiftUI.BPKButton.self
-    let figmaNodeUrl = "https://www.figma.com/design/irZ3YBx8vOm16ICkAr7mB3/Backpack-Components?node-id=2965-0"
+    let figmaNodeUrl = "https://www.figma.com/design/KXf2gHNLDe2cXWUoHl4cTX/Backpack%E2%80%A8Foundations---Components?node-id=10858-8677"
     let variant = ["Icon" : "Right"]
 
     private var title: String = "Label"
@@ -158,7 +158,7 @@ struct BpkButton_IconRight_CodeConnect: FigmaConnect {
 // MARK: - Icon = None
 struct BpkButton_IconNone_CodeConnect: FigmaConnect {
     let component = Backpack_SwiftUI.BPKButton.self
-    let figmaNodeUrl = "https://www.figma.com/design/irZ3YBx8vOm16ICkAr7mB3/Backpack-Components?node-id=2965-0"
+    let figmaNodeUrl = "https://www.figma.com/design/KXf2gHNLDe2cXWUoHl4cTX/Backpack%E2%80%A8Foundations---Components?node-id=10858-8677"
     let variant = ["Icon" : "None"]
 
     private var title: String = "Label"
@@ -234,7 +234,7 @@ struct BpkButton_IconNone_CodeConnect: FigmaConnect {
 // MARK: - Icon = Icon only
 struct BpkButton_IconOnly_CodeConnect: FigmaConnect {
     let component = Backpack_SwiftUI.BPKButton.self
-    let figmaNodeUrl = "https://www.figma.com/design/irZ3YBx8vOm16ICkAr7mB3/Backpack-Components?node-id=2965-0"
+    let figmaNodeUrl = "https://www.figma.com/design/KXf2gHNLDe2cXWUoHl4cTX/Backpack%E2%80%A8Foundations---Components?node-id=10858-8677"
     let variant = ["Icon" : "Icon only"]
 
     private var title: String = "Label"
