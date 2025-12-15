@@ -18,6 +18,6 @@
 #ifndef __BACKPACK_TEXTFIELD__
 #define __BACKPACK_TEXTFIELD__
 
-#import "BPKTextField.h"
+#import "BPKObjcUIKitTextField.h"
 
 #endif

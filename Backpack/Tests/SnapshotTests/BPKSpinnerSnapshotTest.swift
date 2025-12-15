@@ -41,7 +41,7 @@ class BPKSpinnerSnapshotTest: XCTestCase {
     private func createView(themed: Bool = false) -> UIView {
         viewsInStack(withStyles: allStyles) { style in
             viewsInStack(withStyles: allSizes) { size in
-                let spinner = BPKSpinner(style: style, size: size)
+                let spinner = BPKObjcUIKitSpinner(style: style, size: size)
                 if themed {
                     spinner.primaryColor = BPKColor.coreEcoColor
                 }

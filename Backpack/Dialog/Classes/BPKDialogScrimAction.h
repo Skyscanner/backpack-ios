@@ -29,6 +29,7 @@ typedef void (^BPKDialogScrimActionHandler)(BOOL didDismiss);
  * An object describing the action to take when the scrim
  * of a `BPKDialogController` is tapped by the user.
  */
+DEPRECATED_MSG_ATTRIBUTE("BPKDialogScrimAction is deprecated. Use the SwiftUI BPKDialogButton instead.")
 @interface BPKDialogScrimAction : NSObject
 
 /**

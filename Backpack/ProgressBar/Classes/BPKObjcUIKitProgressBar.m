@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-#import "BPKProgressBar.h"
+#import "BPKObjcUIKitProgressBar.h"
 
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
@@ -24,7 +24,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@implementation BPKProgressBar
+@implementation BPKObjcUIKitProgressBar
 
 - (instancetype _Nullable)initWithCoder:(NSCoder *)aDecoder {
     BPKAssertMainThread();

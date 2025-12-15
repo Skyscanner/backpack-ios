@@ -34,7 +34,7 @@ class BPKStarRatingSnapshotTest: XCTestCase {
         viewsInStack(withStyles: ratings) { rating in
             viewsInStack(withStyles: roundings, axis: .horizontal) { rounding in
                 viewsInStack(withStyles: sizes, axis: .horizontal) { size in
-                    let starRating = BPKStarRating(size: size)
+                    let starRating = BPKObjcUIKitStarRating(size: size)
                     starRating.rounding = rounding
                     starRating.rating = rating
                     return starRating

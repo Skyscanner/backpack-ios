@@ -36,23 +36,24 @@ typedef NS_ENUM(NSInteger, BPKSwitchStyle) {
 };
 
 /**
- * `BPKSwitch` is a subclass of `UISwitch` configured with Skyscanner style properties.
+ * `BPKObjcUIKitSwitch` is a subclass of `UISwitch` configured with Skyscanner style properties.
  */
-IB_DESIGNABLE @interface BPKSwitch : UISwitch
+DEPRECATED_MSG_ATTRIBUTE("BPKObjcUIKitSwitch is deprecated. Use the SwiftUI BPKSwitch instead.")
+IB_DESIGNABLE @interface BPKObjcUIKitSwitch : UISwitch
 
 /**
- * Creates a `BPKSwitch` with a decoder (typically when creating from storyboards)
+ * Creates a `BPKObjcUIKitSwitch` with a decoder (typically when creating from storyboards)
  *
  * @param coder Decoder object to extract parameters from
- * @return `BPKSwitch` instance.
+ * @return `BPKObjcUIKitSwitch` instance.
  */
 - (instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
 
 /**
- * Create a `BPKSwitch` with a given frame.
+ * Create a `BPKObjcUIKitSwitch` with a given frame.
  *
  * @param frame The initial frame of the switch.
- * @return `BPKSwitch` instance.
+ * @return `BPKObjcUIKitSwitch` instance.
  */
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 
@@ -65,10 +66,10 @@ IB_DESIGNABLE @interface BPKSwitch : UISwitch
 @property(nullable, nonatomic, strong) UIColor *primaryColor UI_APPEARANCE_SELECTOR;
 
 /**
- * Create a `BPKSwitch` with a given style.
+ * Create a `BPKObjcUIKitSwitch` with a given style.
  *
  * @param style The style of the switch.
- * @return `BPKSwitch` instance.
+ * @return `BPKObjcUIKitSwitch` instance.
  */
 - (instancetype)initWithStyle:(BPKSwitchStyle)style;
 

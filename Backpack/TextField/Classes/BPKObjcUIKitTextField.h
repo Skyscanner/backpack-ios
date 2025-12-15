@@ -15,38 +15,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+
+#import "Font.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class BPKMapAnnotationView;
+/**
+ * `BPKObjcUIKitTextField` is a subclass of `UITextField` which uses the Skyscanner style.
+ */
+DEPRECATED_MSG_ATTRIBUTE("BPKObjcUIKitTextField is deprecated. Use the SwiftUI BPKTextField instead.")
+IB_DESIGNABLE @interface BPKObjcUIKitTextField : UITextField
 
 /**
- * `BPKMapAnnotationViewCalloutView` displays a subclass of `BPKObjcUIKitFlareView`. It defines the Skyscanner map callout style.
+ * Create a `BPKObjcUIKitTextField` with a specific BPKFont style.
+ *
+ * @param style Font style to be used by the TextField.
+ * @see BPKFontStyle
  */
-IB_DESIGNABLE @interface BPKMapAnnotationViewCalloutView : UIView
-
-/**
- * The `BPKMapAnnotationView` that created the callout.
- */
-@property(nonatomic, weak, nullable) BPKMapAnnotationView *annotationView;
-
-/// :nodoc:
+- (instancetype)initWithFontStyle:(BPKFontStyle)style NS_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 
-/// :nodoc:
-- (instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
-
 /**
- * Create a `BPKMapAnnotationViewCalloutView` with the given text.
- *
- * @param annotationView The annotation view of the callout.
+ The font style used for the TextField.
+
+ @see BPKFontStyle for the integer values to use when setting from Interface Builder.
  */
-- (instancetype)initWithAnnotationView:(BPKMapAnnotationView *)annotationView NS_DESIGNATED_INITIALIZER;
-
-- (void)update;
-
+@property(nonatomic) BPKFontStyle fontStyle;
 @end
 NS_ASSUME_NONNULL_END

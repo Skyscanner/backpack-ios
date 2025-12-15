@@ -31,6 +31,7 @@ typedef NS_ENUM(NSInteger, BPKToastMode) {
 /**
  * `BPKToast` is a subclass of `UIView` configured with Skyscanner style properties.
  */
+DEPRECATED_MSG_ATTRIBUTE("BPKToast is deprecated.")
 IB_DESIGNABLE @interface BPKToast : UIView
 
 /**

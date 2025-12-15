@@ -20,11 +20,12 @@
 import Foundation
 import Backpack
 
+@available(*, deprecated, message: "We intentionally use this deprecated API.")
 class StarRatingsDocViewController: UIViewController {
     @IBOutlet weak var smallRatingTitle: BPKLabel!
-    @IBOutlet weak var smallRating: BPKStarRating!
+    @IBOutlet weak var smallRating: BPKObjcUIKitStarRating!
     @IBOutlet weak var largeRatingTitle: BPKLabel!
-    @IBOutlet weak var largeRating: BPKStarRating!
+    @IBOutlet weak var largeRating: BPKObjcUIKitStarRating!
     
     @IBOutlet weak var smallHotelStarRating: BPKHotelStarRating!
     @IBOutlet weak var largeHotelStarRating: BPKHotelStarRating!

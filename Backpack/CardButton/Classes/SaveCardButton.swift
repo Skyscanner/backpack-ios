@@ -82,25 +82,25 @@ public class BPKSaveCardButton: UIButton {
 
         switch size {
         case .large:
-            let largeIconNormal = BPKIcon.makeLargeIcon(
+            let largeIconNormal = BPKObjcUIKitIcon.makeLargeIcon(
                 name: icons.defaultIcon,
                 color: normalIconColor(style: style, checked: checked)
             )
             setImage(largeIconNormal, for: .normal)
 
-            let largeIconHighlighted = BPKIcon.makeLargeIcon(
+            let largeIconHighlighted = BPKObjcUIKitIcon.makeLargeIcon(
                 name: icons.defaultIconHighlighted,
                 color: highlightedIconColor(style: style, checked: checked)
             )
             setImage(largeIconHighlighted, for: .highlighted)
         case .default:
-            let smallIconNormal = BPKIcon.makeSmallIcon(
+            let smallIconNormal = BPKObjcUIKitIcon.makeSmallIcon(
                 name: icons.smallIcon,
                 color: normalIconColor(style: style, checked: checked)
             )
             setImage(smallIconNormal, for: .normal)
 
-            let smallIconHighlighted = BPKIcon.makeSmallIcon(
+            let smallIconHighlighted = BPKObjcUIKitIcon.makeSmallIcon(
                 name: icons.smallIconHighlighted,
                 color: highlightedIconColor(style: style, checked: checked)
             )

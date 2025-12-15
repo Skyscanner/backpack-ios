@@ -16,19 +16,20 @@
  * limitations under the License.
  */
 
-#import "BPKButton.h"
+#import "BPKObjcUIKitButton.h"
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
 /**
- * `BPKLegacyLinkButton` is a subclass of `UIButton`. It's Deprecated and it should not be used. Please refer to `BPKButton` instead.
+ * `BPKLegacyLinkButton` is a subclass of `UIButton`. It's Deprecated and it should not be used. Please refer to `BPKObjcUIKitButton` instead.
  */
+DEPRECATED_MSG_ATTRIBUTE("BPKLegacyLinkButton is deprecated. Use the SwiftUI BPKLink or BPKButton Swift wrapper instead.")
 IB_DESIGNABLE @interface BPKLegacyLinkButton : UIButton
 /**
- * @deprecated use `BPKButton` instead
+ * @deprecated use `BPKObjcUIKitButton` instead
  * @see BPKButtonSize
  */
-- (instancetype _Nonnull)initWithSize:(BPKButtonSize)size __deprecated_msg("Use BPKButton instead.");
+- (instancetype _Nonnull)initWithSize:(BPKButtonSize)size __deprecated_msg("Use BPKObjcUIKitButton instead.");
 
 @property(nonatomic, copy, nullable) NSString *title;
 

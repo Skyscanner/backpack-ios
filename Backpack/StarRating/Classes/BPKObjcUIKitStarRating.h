@@ -51,7 +51,8 @@ NS_ASSUME_NONNULL_BEGIN
  * it's advisable to display a text string adjecent to the star rating with the exact
  * rating value.
  */
-IB_DESIGNABLE @interface BPKStarRating : UIView
+DEPRECATED_MSG_ATTRIBUTE("BPKObjcUIKitStarRating is deprecated. Use the SwiftUI BPKSpinner instead.")
+IB_DESIGNABLE @interface BPKObjcUIKitStarRating : UIView
 
 /**
  * Rating value the star rating view will displaying by rounding the value to full and half stars between 0.0 and 5.0.
@@ -83,18 +84,18 @@ IB_DESIGNABLE @interface BPKStarRating : UIView
 - (instancetype)initWithSize:(BPKStarSize)size NS_DESIGNATED_INITIALIZER;
 
 /**
- * Creates a `BPKStarRating` with a decoder (typically when creating from Storyboards)
+ * Creates a `BPKObjcUIKitStarRating` with a decoder (typically when creating from Storyboards)
  *
  * @param aDecoder Decoder object to extract parameters from
- * @return `BPKStarRating` instance.
+ * @return `BPKObjcUIKitStarRating` instance.
  */
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
 
 /**
- * Create a `BPKStarRating` with a given frame.
+ * Create a `BPKObjcUIKitStarRating` with a given frame.
  *
  * @param frame The initial frame of the star rating.
- * @return `BPKStarRating` instance.
+ * @return `BPKObjcUIKitStarRating` instance.
  */
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 

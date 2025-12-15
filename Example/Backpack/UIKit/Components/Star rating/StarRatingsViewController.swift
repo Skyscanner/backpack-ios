@@ -20,11 +20,12 @@
 import Foundation
 import Backpack
 
+@available(*, deprecated, message: "We intentionally use this deprecated API.")
 class StarRatingsViewController: UIViewController {
     @IBOutlet weak var defaultSizeTitleLabel: BPKLabel!
     @IBOutlet weak var largeSizeTitleLabel: BPKLabel!
-    @IBOutlet weak var starRatingView: BPKStarRating!
-    @IBOutlet weak var largeStarRatingView: BPKStarRating!
+    @IBOutlet weak var starRatingView: BPKObjcUIKitStarRating!
+    @IBOutlet weak var largeStarRatingView: BPKObjcUIKitStarRating!
     @IBOutlet weak var ratingSlider: UISlider!
     override func viewDidLoad() {
         starRatingView.rating = ratingSlider.value

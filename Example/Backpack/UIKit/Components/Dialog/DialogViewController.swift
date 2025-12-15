@@ -23,11 +23,12 @@ enum DialogType {
     case success, warning, destructive, flare, image, longTitle
 }
 
+@available(*, deprecated, message: "We intentionally use this deprecated API.")
 class DialogViewController: UIViewController {
     var type: DialogType = .success
     
-    private lazy var showButton: BPKButton = {
-        let button = BPKButton(size: .large, style: .primary)
+    private lazy var showButton: BPKObjcUIKitButton = {
+        let button = BPKObjcUIKitButton(size: .large, style: .primary)
         button.title = "Show dialog"
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(showDialog), for: .touchUpInside)
@@ -48,7 +49,7 @@ class DialogViewController: UIViewController {
         var dialogController: BPKDialogController
         
         if type == .flare {
-            let flareView = BPKFlareView(frame: .zero)
+            let flareView = BPKObjcUIKitFlareView(frame: .zero)
             let image = UIImage(named: "dialog_flare")
             let imageView = UIImageView.init(image: image)
             imageView.contentMode = .scaleAspectFill
@@ -110,13 +111,13 @@ extension DialogViewController {
     private var icon: BPKDialogIconDefinition? {
         switch type {
         case .success, .longTitle:
-            let iconTemplate = BPKIcon.makeLargeTemplateIcon(name: .tick)
+            let iconTemplate = BPKObjcUIKitIcon.makeLargeTemplateIcon(name: .tick)
             return BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.coreAccentColor)
         case .warning:
-            let iconTemplate = BPKIcon.makeLargeTemplateIcon(name: .alertAdd)
+            let iconTemplate = BPKObjcUIKitIcon.makeLargeTemplateIcon(name: .alertAdd)
             return BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.statusWarningSpotColor)
         case .destructive:
-            let iconTemplate = BPKIcon.makeLargeTemplateIcon(name: .trash)
+            let iconTemplate = BPKObjcUIKitIcon.makeLargeTemplateIcon(name: .trash)
             return BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.statusDangerSpotColor)
         default:
             return nil

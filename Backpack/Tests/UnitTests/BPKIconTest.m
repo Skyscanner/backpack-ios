@@ -28,19 +28,19 @@
 @implementation BPKIconTest
 
 - (void)testCreateWithEnum {
-    UIImage *rendered = [BPKIcon largeIconNamed:BPKIconNameFlag color:BPKColor.corePrimaryColor];
+    UIImage *rendered = [BPKObjcUIKitIcon largeIconNamed:BPKIconNameFlag color:BPKColor.corePrimaryColor];
 
     XCTAssertNotNil(rendered);
 }
 
 - (void)testCreateSmallWithEnum {
-    UIImage *rendered = [BPKIcon smallIconNamed:BPKSmallIconNameFlag color:BPKColor.corePrimaryColor];
+    UIImage *rendered = [BPKObjcUIKitIcon smallIconNamed:BPKSmallIconNameFlag color:BPKColor.corePrimaryColor];
 
     XCTAssertNotNil(rendered);
 }
 
 - (void)testCreateLargeWithEnum {
-    UIImage *rendered = [BPKIcon largeIconNamed:BPKLargeIconNameFlag color:BPKColor.corePrimaryColor];
+    UIImage *rendered = [BPKObjcUIKitIcon largeIconNamed:BPKLargeIconNameFlag color:BPKColor.corePrimaryColor];
 
     XCTAssertNotNil(rendered);
 }

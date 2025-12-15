@@ -19,7 +19,8 @@
 import Backpack
 
 class DividedCardsViewController: CardsViewController {
-    @IBOutlet weak var dividedCard: BPKDividedCard!
+    @available(*, deprecated, message: "We intentionally use this deprecated API.")
+    @IBOutlet weak var dividedCard: BPKObjcUIKitDividedCard!
     #if swift(>=4.2)
     var divisionDirection: NSLayoutConstraint.Axis = .horizontal
     #else

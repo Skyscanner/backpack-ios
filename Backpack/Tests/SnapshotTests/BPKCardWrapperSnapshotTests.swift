@@ -30,7 +30,7 @@ final class BPKCardWrapperSnapshotTests: XCTestCase {
     func testViewSnapshotWithCard() {
         // Given
         let sut = BPKCardWrapper(
-            header: createHeader(title: "BPKCard"),
+            header: createHeader(title: "BPKObjcUIKitCard"),
             card: createCard(
                 isDivided: false,
                 cornerStyle: .small,
@@ -103,7 +103,7 @@ final class BPKCardWrapperSnapshotTests: XCTestCase {
     func testViewSnapshotWithDividedCard() {
         // Given
         let sut = BPKCardWrapper(
-            header: createHeader(title: "BPKDividedCard"),
+            header: createHeader(title: "BPKObjcUIKitDividedCard"),
             card: createCard(
                 isDivided: true,
                 cornerStyle: .small,
@@ -121,7 +121,7 @@ final class BPKCardWrapperSnapshotTests: XCTestCase {
     func testViewSnapshotWithDividedCardAndNotPadded() {
         // Given
         let sut = BPKCardWrapper(
-            header: createHeader(title: "BPKDividedCard not padded"),
+            header: createHeader(title: "BPKObjcUIKitDividedCard not padded"),
             card: createCard(
                 isDivided: true,
                 cornerStyle: .small,
@@ -143,7 +143,7 @@ extension BPKCardWrapperSnapshotTests {
         isDivided: Bool,
         cornerStyle: BPKCardCornerStyle,
         isPadded: Bool
-    ) -> BPKCard {
+    ) -> BPKObjcUIKitCard {
         let label1 = createContectLabel(text: """
             Lorem ipsum dolor sit amet,
             consectetuer adipiscing elit.
@@ -153,7 +153,7 @@ extension BPKCardWrapperSnapshotTests {
         let label2 = createContectLabel(text: "Lorem ipsum dolor sit amet")
         
         if isDivided {
-            let card = BPKDividedCard()
+            let card = BPKObjcUIKitDividedCard()
             card.setSubviews(primarySubview: label1, secondarySubview: label2)
             card.lineStyle = .solid
             card.orientation = .vertical
@@ -163,7 +163,7 @@ extension BPKCardWrapperSnapshotTests {
             return card
         }
         
-        let card = BPKCard(padded: true)
+        let card = BPKObjcUIKitCard(padded: true)
         card.subview = label1
         card.isElevated = false
         card.cornerStyle = cornerStyle

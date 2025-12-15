@@ -97,7 +97,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)dialogControllerWithTitle:(NSString *_Nullable)title
                                   message:(NSString *)message
                            iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition
-                                flareView:(BPKFlareView *_Nullable)flareView {
+                                flareView:(BPKObjcUIKitFlareView *_Nullable)flareView {
     return [[self alloc] initWithTitle:title message:message iconDefinition:iconDefinition graphicView:flareView textAlignment:NSTextAlignmentCenter];
 }
 

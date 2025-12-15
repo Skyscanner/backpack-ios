@@ -16,22 +16,22 @@
  * limitations under the License.
  */
 
-#import "BPKStarRating.h"
+#import "BPKObjcUIKitStarRating.h"
 
 #import <Backpack/Common.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-static NSString *const STARRATING_SUBVIEW_ASSERTION_MESSAGE = @"Expected all arrangedSubviews in `BPKStarRating` to be of type `BPKStar`";
+static NSString *const STARRATING_SUBVIEW_ASSERTION_MESSAGE = @"Expected all arrangedSubviews in `BPKObjcUIKitStarRating` to be of type `BPKStar`";
 static NSUInteger const MAX_RATING = 5;
 
-@interface BPKStarRating ()
+@interface BPKObjcUIKitStarRating ()
 
 @property(nonatomic) UIStackView *stackView;
 
 @end
 
-@implementation BPKStarRating
+@implementation BPKObjcUIKitStarRating
 
 - (instancetype)initWithSize:(BPKStarSize)size {
     BPKAssertMainThread();

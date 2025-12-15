@@ -41,8 +41,8 @@ class BPKTextFieldTest: XCTestCase {
             .textFootnote,
             .textCaption
         ]
-        try styles.map { style -> BPKTextField in
-            let textField = BPKTextField(fontStyle: style)
+        try styles.map { style -> BPKObjcUIKitTextField in
+            let textField = BPKObjcUIKitTextField(fontStyle: style)
             textField.text = "Hello world"
             return textField
         }.forEach { fiel in

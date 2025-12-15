@@ -29,7 +29,7 @@ final class BPKIconSnapshotTest: XCTestCase {
     
     func testSmallIcon() {
         // Given
-        let sut = BPKIcon.makeSmallIcon(name: .flight, color: BPKColor.coreAccentColor)
+        let sut = BPKObjcUIKitIcon.makeSmallIcon(name: .flight, color: BPKColor.coreAccentColor)
         let parentView = UIImageView(
             frame: CGRect(
                 x: 0,
@@ -45,7 +45,7 @@ final class BPKIconSnapshotTest: XCTestCase {
     
     func testLargeIcon() {
         // Given
-        let sut = BPKIcon.makeLargeIcon(name: .hotels, color: BPKColor.coreAccentColor)
+        let sut = BPKObjcUIKitIcon.makeLargeIcon(name: .hotels, color: BPKColor.coreAccentColor)
         let parentView = UIImageView(
             frame: CGRect(
                 x: 0,
@@ -63,7 +63,7 @@ final class BPKIconSnapshotTest: XCTestCase {
         // Given
         let views: [() -> UIView] = BPKIconsTestsUtils.allSmallIcons.map { icon in
             func makeView() -> UIView {
-                let sut = BPKIcon.makeSmallIcon(name: icon, color: BPKColor.coreAccentColor)
+                let sut = BPKObjcUIKitIcon.makeSmallIcon(name: icon, color: BPKColor.coreAccentColor)
                 let parentView = UIImageView(
                     frame: CGRect(
                         x: 0,
@@ -81,14 +81,14 @@ final class BPKIconSnapshotTest: XCTestCase {
         }
         
         // Then
-        assertSnapshot(generateGrid(iconSize: BPKIcon.concreteSizeForSmallIcon, makeIconView: views))
+        assertSnapshot(generateGrid(iconSize: BPKObjcUIKitIcon.concreteSizeForSmallIcon, makeIconView: views))
     }
     
     func testAllLargeIcons() {
         // Given
         let views: [() -> UIView] = BPKIconsTestsUtils.allLargeIcons.map { icon in
             func makeView() -> UIView {
-                let sut = BPKIcon.makeLargeIcon(name: icon, color: BPKColor.coreAccentColor)
+                let sut = BPKObjcUIKitIcon.makeLargeIcon(name: icon, color: BPKColor.coreAccentColor)
                 let parentView = UIImageView(
                     frame: CGRect(
                         x: 0,
@@ -106,7 +106,7 @@ final class BPKIconSnapshotTest: XCTestCase {
         }
         
         // Then
-        assertSnapshot(generateGrid(iconSize: BPKIcon.concreteSizeForLargeIcon, makeIconView: views))
+        assertSnapshot(generateGrid(iconSize: BPKObjcUIKitIcon.concreteSizeForLargeIcon, makeIconView: views))
     }
 
     private func generateGrid(iconSize: CGSize, makeIconView: [() -> UIView]) -> UIView {

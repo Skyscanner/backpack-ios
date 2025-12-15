@@ -25,11 +25,12 @@ NS_ASSUME_NONNULL_BEGIN
 @class BPKCardConfiguration;
 
 /**
- * `BPKCard` is a subclass of `UIControl` which contains the Skyscanner card style.
+ * `BPKObjcUIKitCard` is a subclass of `UIControl` which contains the Skyscanner card style.
  * Cards are a lightweight control with a shadow.
  * Cards can be configured to have padding or not.
  */
-IB_DESIGNABLE @interface BPKCard : UIControl
+DEPRECATED_MSG_ATTRIBUTE("BPKObjcUIKitCard is deprecated. Use the SwiftUI BPKCard or Swift wrapper instead.")
+IB_DESIGNABLE @interface BPKObjcUIKitCard : UIControl
 
 /**
  * Whether the card should provide padding or not.
@@ -59,14 +60,14 @@ IB_DESIGNABLE @interface BPKCard : UIControl
 @property(nonatomic, assign, nullable) UIView *subview;
 
 /**
- * Create a `BPKCard` with padded initially set.
+ * Create a `BPKObjcUIKitCard` with padded initially set.
  *
  * @param padded Whether the card should have padding or not.
  */
 - (instancetype)initWithPadded:(BOOL)padded;
 
 /**
- * Create a `BPKCard` with padded and cornerStyle initially set.
+ * Create a `BPKObjcUIKitCard` with padded and cornerStyle initially set.
  *
  * @param padded Whether the card should have padding or not.
  * @param cornerStyle The corner style that the card should have.
@@ -74,22 +75,22 @@ IB_DESIGNABLE @interface BPKCard : UIControl
 - (instancetype)initWithPadded:(BOOL)padded cornerStyle:(BPKCardCornerStyle)cornerStyle NS_DESIGNATED_INITIALIZER;
 
 /**
- * Create a `BPKCard` with a given frame.
+ * Create a `BPKObjcUIKitCard` with a given frame.
  *
  * @param frame The initial frame of the card.
- * @return `BPKCard` instance.
+ * @return `BPKObjcUIKitCard` instance.
  */
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 
 /// :nodoc:
 - (void)addSubview:(UIView *)view
-    __attribute__((unavailable("`addSubview` cannot be used on BPKCard. Use the `subview` property to set content instead")));
+    __attribute__((unavailable("`addSubview` cannot be used on BPKObjcUIKitCard. Use the `subview` property to set content instead")));
 
 /**
- * Creates a `BPKCard` with a decoder (typically when creating from Storyboards)
+ * Creates a `BPKObjcUIKitCard` with a decoder (typically when creating from Storyboards)
  *
  * @param aDecoder Decoder object to extract parameters from
- * @return `BPKCard` instance.
+ * @return `BPKObjcUIKitCard` instance.
  */
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
 @end

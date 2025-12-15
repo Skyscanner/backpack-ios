@@ -22,7 +22,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * `BPKCardConfiguration` is a subclass of `NSObject` with properties to determine how assistive technology should interact with a BPKCard.
+ * `BPKCardConfiguration` is a subclass of `NSObject` with properties to determine how assistive technology should interact with a BPKObjcUIKitCard.
  */
 @interface BPKCardConfiguration : NSObject
 

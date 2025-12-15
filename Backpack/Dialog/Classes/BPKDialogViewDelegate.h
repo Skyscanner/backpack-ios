@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 /**
  * Delegate for dialog for managing dialog actions.
  */
@@ -28,3 +30,4 @@
  */
 - (void)didInvokeButtonAction:(BPKDialogButtonAction *)action;
 @end
+#pragma clang diagnostic pop

@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#import "BPKTextField.h"
+#import "BPKObjcUIKitTextField.h"
 
 #import <Backpack/BorderWidth.h>
 #import <Backpack/Color.h>
@@ -23,11 +23,11 @@
 #import <Backpack/Radii.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@interface BPKTextField ()
+@interface BPKObjcUIKitTextField ()
 - (void)setupWithStyle:(BPKFontStyle)style;
 @end
 
-@implementation BPKTextField
+@implementation BPKObjcUIKitTextField
 
 - (instancetype)initWithFontStyle:(BPKFontStyle)style {
     BPKAssertMainThread();

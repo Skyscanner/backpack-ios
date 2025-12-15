@@ -24,9 +24,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * A `BPKFlareView` is a subclass of UIView
+ * A `BPKObjcUIKitFlareView` is a subclass of UIView
  */
-IB_DESIGNABLE @interface BPKFlareView : UIView
+DEPRECATED_MSG_ATTRIBUTE("BPKObjcUIKitFlareView is deprecated. Use the SwiftUI BPKFlareView instead.")
+IB_DESIGNABLE @interface BPKObjcUIKitFlareView : UIView
 
 /**
  * Determines where the flare pointer will be displayed. By default it will point downwards at the bottom of the
@@ -56,18 +57,18 @@ IB_DESIGNABLE @interface BPKFlareView : UIView
 @property(readonly, nonatomic) CGFloat flareHeight;
 
 /**
- * Creates a `BPKFlareView` with a decoder (typically when creating from Storyboards)
+ * Creates a `BPKObjcUIKitFlareView` with a decoder (typically when creating from Storyboards)
  *
  * @param aDecoder Decoder object to extract parameters from
- * @return `BPKFlareView` instance.
+ * @return `BPKObjcUIKitFlareView` instance.
  */
 - (instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
 
 /**
- * Create a `BPKFlareView` with a given frame.
+ * Create a `BPKObjcUIKitFlareView` with a given frame.
  *
  * @param frame The initial frame of the flareView.
- * @return `BPKFlareView` instance.
+ * @return `BPKObjcUIKitFlareView` instance.
  */
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 
