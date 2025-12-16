@@ -176,6 +176,6 @@ struct BPKSearchInputSummary_Previews: PreviewProvider {
             BPKSearchInputSummary(clearAction: .init(accessibilityLabel: "clear", action: {}), .constant("Value"))
         }
         .padding()
-        .background(.coreEcoColor)
+        .background(.corePrimaryColor)
     }
 }

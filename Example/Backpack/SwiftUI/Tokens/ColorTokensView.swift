@@ -50,8 +50,7 @@ struct ColorTokens {
         ]),
         .init(name: "Core", colors: [
             .init(color: .corePrimaryColor, name: ".corePrimaryColor"),
-            .init(color: .coreAccentColor, name: ".coreAccentColor"),
-            .init(color: .coreEcoColor, name: ".coreEcoColor")
+            .init(color: .coreAccentColor, name: ".coreAccentColor")
         ]),
         .init(name: "Status", colors: [
             .init(color: .statusSuccessSpotColor, name: ".statusSuccessSpotColor"),
