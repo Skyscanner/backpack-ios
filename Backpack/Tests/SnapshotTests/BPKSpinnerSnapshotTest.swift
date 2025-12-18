@@ -43,7 +43,7 @@ class BPKSpinnerSnapshotTest: XCTestCase {
             viewsInStack(withStyles: allSizes) { size in
                 let spinner = BPKObjcUIKitSpinner(style: style, size: size)
                 if themed {
-                    spinner.primaryColor = BPKColor.coreEcoColor
+                    spinner.primaryColor = BPKColor.corePrimaryColor
                 }
                 spinner.hidesWhenStopped = false
                 return spinner

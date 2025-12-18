@@ -119,6 +119,6 @@ struct BPKTextField_Previews: PreviewProvider {
                 .inputState(.valid)
         }
         .padding()
-        .background(.coreEcoColor)
+        .background(.corePrimaryColor)
     }
 }

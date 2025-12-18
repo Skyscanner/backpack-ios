@@ -27,7 +27,7 @@ class BPKAttributedTextTests: XCTestCase {
             .init("have an "),
             .init("Amazing day! ", style: .heading3, color: .coreAccentColor),
             .init("Working with multiple "),
-            .init("Font styles is pretty neat!", style: .heading3, color: .coreEcoColor)
+            .init("Font styles is pretty neat!", style: .heading3, color: .corePrimaryColor)
         ]
         
         assertSnapshot(BPKAttributedText(items: items).frame(width: 300))

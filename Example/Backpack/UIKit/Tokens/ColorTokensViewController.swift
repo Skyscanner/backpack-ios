@@ -34,8 +34,7 @@ class ColorTokensViewController: UIViewController {
         ]),
         .init(name: "Core", colors: [
             .init(color: BPKColor.corePrimaryColor, name: ".corePrimaryColor"),
-            .init(color: BPKColor.coreAccentColor, name: ".coreAccentColor"),
-            .init(color: BPKColor.coreEcoColor, name: ".coreEcoColor")
+            .init(color: BPKColor.coreAccentColor, name: ".coreAccentColor")
         ]),
         .init(name: "Status", colors: [
             .init(color: BPKColor.statusSuccessSpotColor, name: ".statusSuccessSpotColor"),

@@ -53,7 +53,7 @@ class BPKProgressBarSnapshotTest: XCTestCase {
         
         // When
         sut.progress = 0.75
-        sut.trackTintColor = BPKColor.coreEcoColor
+        sut.trackTintColor = BPKColor.corePrimaryColor
         
         // Then
         assertSnapshot(sut)
