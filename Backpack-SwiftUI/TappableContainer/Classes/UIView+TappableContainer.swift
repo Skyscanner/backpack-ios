@@ -80,3 +80,88 @@ public extension UIView {
         hostingController.rootView = updatedRoot
     }
 }
+
+public final class SwiftUITappableContainerViewModel<Content: View>: ObservableObject {
+    @Published public var accessibilityLabel: String
+    @Published public var accessibilityValue: String?
+    @Published public var noTapAnimation: Bool
+    public var accessibilityIdentifier: String?
+    public var action: () -> Void
+    @Published public var contentView: () -> Content
+
+    public init(
+        accessibilityLabel: String,
+        accessibilityValue: String? = nil,
+        accessibilityIdentifier: String? = nil,
+        action: @escaping () -> Void,
+        noTapAnimation: Bool = false,
+        @ViewBuilder contentView: @escaping () -> Content
+    ) {
+        self.accessibilityLabel = accessibilityLabel
+        self.accessibilityValue = accessibilityValue
+        self.accessibilityIdentifier = accessibilityIdentifier
+        self.action = action
+        self.noTapAnimation = noTapAnimation
+        self.contentView = contentView
+    }
+}
+
+public struct ReactiveSwiftUITappableContainerWrapper<Content: View>: View {
+    @ObservedObject var viewModel: SwiftUITappableContainerViewModel<Content>
+
+    public var body: some View {
+        BPKTappableContainer(
+            accessibilityLabel: viewModel.accessibilityLabel,
+            accessibilityIdentifier: viewModel.accessibilityIdentifier,
+            accessibilityValue: viewModel.accessibilityValue,
+            action: viewModel.action,
+            buttonStyleType: viewModel.noTapAnimation ? .noTapAnimation : .plain
+        ) {
+            viewModel.contentView()
+        }
+    }
+}
+
+public extension UIView {
+
+    /// Creates a SwiftUI BPKTappableContainer wrapped in a UIHostingController returns both the view and its ViewModel
+    static func makeReactiveSwiftUITappableContainerTWO<Content: View>(
+        button: UIView,
+        accessibilityLabel: String,
+        accessibilityValue: String? = nil,
+        accessibilityIdentifier: String? = nil,
+        action: @escaping () -> Void,
+        noTapAnimation: Bool = false,
+        @ViewBuilder contentView: @escaping () -> Content
+    ) -> (UIView, SwiftUITappableContainerViewModel<Content>) {
+        let viewModel = SwiftUITappableContainerViewModel(
+            accessibilityLabel: accessibilityLabel,
+            accessibilityValue: accessibilityValue,
+            accessibilityIdentifier: accessibilityIdentifier,
+            action: action,
+            noTapAnimation: noTapAnimation,
+            contentView: contentView
+        )
+
+        let wrapperView = ReactiveSwiftUITappableContainerWrapper(viewModel: viewModel)
+
+        let hostingController = UIHostingController(rootView: wrapperView)
+
+        let hostingView = hostingController.view!
+        hostingView.backgroundColor = .clear
+        hostingView.translatesAutoresizingMaskIntoConstraints = false
+
+        button.addSubview(hostingView)
+        NSLayoutConstraint.activate([
+            hostingView.leadingAnchor.constraint(equalTo: button.leadingAnchor),
+            hostingView.trailingAnchor.constraint(equalTo: button.trailingAnchor),
+            hostingView.topAnchor.constraint(equalTo: button.topAnchor),
+            hostingView.bottomAnchor.constraint(equalTo: button.bottomAnchor)
+        ])
+
+        hostingController.sizingOptions = .intrinsicContentSize
+
+        return (hostingView, viewModel)
+    }
+}
+
