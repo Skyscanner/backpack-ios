@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-#import "BPKButton.h"
+#import "BPKObjcUIKitButton.h"
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 

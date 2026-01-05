@@ -17,7 +17,7 @@
  */
 
 #import "BPKButtonAppearanceSet.h"
-#import "BPKButton.h"
+#import "BPKObjcUIKitButton.h"
 #import "BPKButtonAppearance.h"
 #import <Backpack/BPKColor+Internal.h>
 #import <Backpack/Color.h>

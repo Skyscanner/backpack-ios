@@ -32,7 +32,7 @@
 #import "UIView+BPKThemeContainer.h"
 
 #if !defined(SWIFT_PACKAGE)
-#import "BPKProgressBar.h"
+#import "BPKObjcUIKitProgressBar.h"
 #import <Backpack/Backpack-Swift.h>
 @class BPKHorizontalNavigationObjc;
 #endif
