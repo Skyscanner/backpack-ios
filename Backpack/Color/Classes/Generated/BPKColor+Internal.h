@@ -67,9 +67,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor * internalInfoBannerWarningColor;
 
 /**
- * The `chipOnDarkPressedStrokeColor` internal color.
+ * The `chipOnDarkOnFillColor` internal color.
  */
-@property(nonatomic, class, readonly) UIColor * internalChipOnDarkPressedStrokeColor;
+@property(nonatomic, class, readonly) UIColor * internalChipOnDarkOnFillColor;
+
+/**
+ * The `chipOnDarkOnDismissIconColor` internal color.
+ */
+@property(nonatomic, class, readonly) UIColor * internalChipOnDarkOnDismissIconColor;
 
 /**
  * The `chipOnDarkOnBackgroundColor` internal color.
@@ -77,14 +82,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor * internalChipOnDarkOnBackgroundColor;
 
 /**
+ * The `chipOnDarkPressedStrokeColor` internal color.
+ */
+@property(nonatomic, class, readonly) UIColor * internalChipOnDarkPressedStrokeColor;
+
+/**
  * The `chipDisabledBackgroundColor` internal color.
  */
 @property(nonatomic, class, readonly) UIColor * internalChipDisabledBackgroundColor;
-
-/**
- * The `chipOnDarkOnDismissIconColor` internal color.
- */
-@property(nonatomic, class, readonly) UIColor * internalChipOnDarkOnDismissIconColor;
 
 /**
  * The `mapPreviousSelectionColor` internal color.

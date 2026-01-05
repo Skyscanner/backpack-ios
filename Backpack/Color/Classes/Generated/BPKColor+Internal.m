@@ -68,9 +68,15 @@
 }
 
 
-+ (UIColor *)internalChipOnDarkPressedStrokeColor {
-    return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1]
-                                          darkVariant:[UIColor colorWithRed:0.020 green:0.255 blue:0.518 alpha:1]];
++ (UIColor *)internalChipOnDarkOnFillColor {
+    return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:0.082 green:0.275 blue:0.475 alpha:1]
+                                          darkVariant:[UIColor colorWithRed:0.008 green:0.302 blue:0.686 alpha:1]];
+}
+
+
++ (UIColor *)internalChipOnDarkOnDismissIconColor {
+    return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:0.384 green:0.412 blue:0.443 alpha:1]
+                                          darkVariant:[UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:0.5019607843137255]];
 }
 
 
@@ -80,15 +86,15 @@
 }
 
 
-+ (UIColor *)internalChipDisabledBackgroundColor {
-    return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:0.878 green:0.894 blue:0.914 alpha:1]
-                                          darkVariant:[UIColor colorWithRed:0.043 green:0.071 blue:0.114 alpha:1]];
++ (UIColor *)internalChipOnDarkPressedStrokeColor {
+    return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1]
+                                          darkVariant:[UIColor colorWithRed:0.020 green:0.255 blue:0.518 alpha:1]];
 }
 
 
-+ (UIColor *)internalChipOnDarkOnDismissIconColor {
-    return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:0.384 green:0.412 blue:0.443 alpha:1]
-                                          darkVariant:[UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:0.5019607843137255]];
++ (UIColor *)internalChipDisabledBackgroundColor {
+    return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:0.878 green:0.894 blue:0.914 alpha:1]
+                                          darkVariant:[UIColor colorWithRed:0.043 green:0.071 blue:0.114 alpha:1]];
 }
 
 
@@ -201,8 +207,8 @@
 
 
 + (UIColor *)internalButtonSecondaryOnDarkPressedBackgroundColor {
-    return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:0.004 green:0.035 blue:0.075 alpha:1]
-                                          darkVariant:[UIColor colorWithRed:0.004 green:0.035 blue:0.075 alpha:1]];
+    return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:0.016 green:0.094 blue:0.176 alpha:1]
+                                          darkVariant:[UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:0.2]];
 }
 
 
