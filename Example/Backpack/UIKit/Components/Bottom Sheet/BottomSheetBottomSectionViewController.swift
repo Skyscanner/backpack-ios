@@ -29,7 +29,7 @@ final class BottomSheetBottomSectionViewController: UIViewController {
 
     var buttonClickedClosure: (() -> Void)?
 
-    @IBOutlet private var button: BPKButton? {
+    @IBOutlet private var button: BPKObjcUIKitButton? {
         didSet {
             updateButtonText()
         }

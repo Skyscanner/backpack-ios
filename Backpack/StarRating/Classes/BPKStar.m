@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKStar ()
 
-@property(nonatomic) BPKIconView *starView;
+@property(nonatomic) BPKObjcUIKitIconView *starView;
 
 /**
  * Base color of the star when it's empty, its default value is BPKColor.skyGrayTint06. Setting updates
@@ -74,7 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setupWithSize:(BPKStarSize)size {
 
-    self.starView = [[BPKIconView alloc] initWithIconName:BPKIconNameStarOutline size:BPKIconSizeSmall];
+    self.starView = [[BPKObjcUIKitIconView alloc] initWithIconName:BPKIconNameStarOutline size:BPKIconSizeSmall];
     self.starView.translatesAutoresizingMaskIntoConstraints = NO;
     self.starView.flipsForRightToLeft = YES;
     [self addSubview:self.starView];
@@ -94,7 +94,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Layout
 
 - (CGSize)intrinsicContentSize {
-    return [BPKIcon concreteSizeForIconSize:[self iconSizeForStarSize:self.size]];
+    return [BPKObjcUIKitIcon concreteSizeForIconSize:[self iconSizeForStarSize:self.size]];
 }
 
 #pragma mark - Setters

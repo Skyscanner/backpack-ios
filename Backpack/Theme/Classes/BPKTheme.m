@@ -68,10 +68,10 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) { BPKGrayColor50, BPKGrayColor100, BPKG
 }
 
 + (void)applyTheme:(id<BPKThemeDefinition>)theme withContainer:(Class)class {
-    [[BPKSwitch appearanceWhenContainedInInstancesOfClasses:@[class]] setPrimaryColor:theme.switchPrimaryColor];
-    [[BPKSpinner appearanceWhenContainedInInstancesOfClasses:@[class]] setPrimaryColor:theme.spinnerPrimaryColor];
+    [[BPKObjcUIKitSwitch appearanceWhenContainedInInstancesOfClasses:@[class]] setPrimaryColor:theme.switchPrimaryColor];
+    [[BPKObjcUIKitSpinner appearanceWhenContainedInInstancesOfClasses:@[class]] setPrimaryColor:theme.spinnerPrimaryColor];
 
-    BPKButton *buttonAppearance = [BPKButton appearanceWhenContainedInInstancesOfClasses:@[class]];
+    BPKObjcUIKitButton *buttonAppearance = [BPKObjcUIKitButton appearanceWhenContainedInInstancesOfClasses:@[class]];
     buttonAppearance.linkContentColor = theme.buttonLinkContentColor;
     buttonAppearance.primaryContentColor = theme.buttonPrimaryContentColor;
     buttonAppearance.primaryGradientStartColor = theme.buttonPrimaryGradientStartColor;
@@ -96,7 +96,7 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) { BPKGrayColor50, BPKGrayColor100, BPKG
     starAppearance.starFilledColor = theme.starFilledColor;
 
 #if !defined(SWIFT_PACKAGE)
-    BPKProgressBar *progressBarAppearance = [BPKProgressBar appearanceWhenContainedInInstancesOfClasses:@[class]];
+    BPKObjcUIKitProgressBar *progressBarAppearance = [BPKObjcUIKitProgressBar appearanceWhenContainedInInstancesOfClasses:@[class]];
     progressBarAppearance.fillColor = theme.progressBarPrimaryColor;
 
     BPKHorizontalNavigationObjc *horizontalNavAppearance = [BPKHorizontalNavigationObjc appearanceWhenContainedInInstancesOfClasses:@[class]];

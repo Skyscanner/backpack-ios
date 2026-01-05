@@ -57,7 +57,7 @@ class SwitchesViewController: UIViewController {
         style: BPKSwitchStyle,
         backgroundColor: UIColor = BPKColor.surfaceDefaultColor
     ) -> UIView {
-        let bpkSwitch = BPKSwitch(style: style)
+        let bpkSwitch = BPKObjcUIKitSwitch(style: style)
         bpkSwitch.translatesAutoresizingMaskIntoConstraints = false
         
         let containerView = UIView()

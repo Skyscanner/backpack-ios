@@ -22,6 +22,8 @@
 #import "BPKDialogViewDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
 /**
  * A `UIView` subclass that renders the content of a Backpack Dialog. Used by
@@ -80,4 +82,5 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addButtonAction:(BPKDialogButtonAction *)action NS_SWIFT_NAME(addButtonAction(_:));
 
 @end
+#pragma clang diagnostic pop
 NS_ASSUME_NONNULL_END

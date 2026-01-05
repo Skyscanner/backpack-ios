@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-#import "BPKDividedCard.h"
+#import "BPKObjcUIKitDividedCard.h"
 
 #import <Backpack/Color.h>
 #import <Backpack/Radii.h>
@@ -26,12 +26,12 @@
 #import "BPKCardDivider.h"
 
 NS_ASSUME_NONNULL_BEGIN
-@interface BPKDividedCard ()
+@interface BPKObjcUIKitDividedCard ()
 @property(strong, nonatomic) UIStackView *contentView;
 @property(strong, nonatomic) BPKCardDivider *lineView;
 @end
 
-@implementation BPKDividedCard
+@implementation BPKObjcUIKitDividedCard
 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];

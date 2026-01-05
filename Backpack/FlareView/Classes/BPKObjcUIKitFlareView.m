@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-#import "BPKFlareView.h"
+#import "BPKObjcUIKitFlareView.h"
 
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
@@ -26,11 +26,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKFlareView ()
+@interface BPKObjcUIKitFlareView ()
 @property(nonatomic, strong, nullable) NSArray<NSLayoutConstraint *> *contentViewConstraints;
 @end
 
-@implementation BPKFlareView
+@implementation BPKObjcUIKitFlareView
 
 CGFloat const BPKFlareHeight = 20.0;
 

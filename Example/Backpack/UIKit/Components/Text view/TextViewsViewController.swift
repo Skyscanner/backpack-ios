@@ -19,6 +19,7 @@
 import UIKit
 import Backpack
 
+@available(*, deprecated, message: "We intentionally use this deprecated API.")
 class TextViewsViewController: UIViewController {
     @IBOutlet weak var textView: BPKTextView!
 

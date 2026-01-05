@@ -112,9 +112,10 @@ typedef NS_ENUM(NSUInteger, BPKButtonImagePosition) {
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * `BPKButton` is a subclass of `UIButton` configured with Skyscanner style properties.
+ * `BPKObjcUIKitButton` is a subclass of `UIButton` configured with Skyscanner style properties.
  */
-IB_DESIGNABLE @interface BPKButton : UIControl
+DEPRECATED_MSG_ATTRIBUTE("BPKObjcUIKitButton is deprecated. Use the SwiftUI BPKButton or Swift wrapper instead.")
+IB_DESIGNABLE @interface BPKObjcUIKitButton : UIControl
 
 /// :nodoc:
 @property(nullable, nonatomic, strong) UIColor *featuredContentColor UI_APPEARANCE_SELECTOR;
@@ -180,29 +181,29 @@ IB_DESIGNABLE @interface BPKButton : UIControl
 @property(nullable, nonatomic, strong) BPKLabel *titleLabel;
 
 /**
- * Creates a `BPKButton` with a specific size and style.
+ * Creates a `BPKObjcUIKitButton` with a specific size and style.
  *
  * @param size Size to be used by the button.
  * @param style Style of the button.
- * @return `BPKButton` instance.
+ * @return `BPKObjcUIKitButton` instance.
  * @see BPKButtonSize
  * @see BPKButtonStyle
  */
 - (instancetype)initWithSize:(BPKButtonSize)size style:(BPKButtonStyle)style NS_DESIGNATED_INITIALIZER;
 
 /**
- * Creates a `BPKButton` with a decoder (typically when creating from Storyboards)
+ * Creates a `BPKObjcUIKitButton` with a decoder (typically when creating from Storyboards)
  *
  * @param aDecoder Decoder object to extract parameters from
- * @return `BPKButton` instance.
+ * @return `BPKObjcUIKitButton` instance.
  */
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
 
 /**
- * Create a `BPKButton` with a given frame.
+ * Create a `BPKObjcUIKitButton` with a given frame.
  *
  * @param frame The initial frame of the button.
- * @return `BPKButton` instance.
+ * @return `BPKObjcUIKitButton` instance.
  */
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 

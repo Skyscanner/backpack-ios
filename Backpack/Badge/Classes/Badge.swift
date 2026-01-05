@@ -193,6 +193,6 @@ fileprivate extension BPKBadgeType {
 fileprivate extension Optional where Wrapped == BPKBadge.Icon {
     func orNil(forType type: BPKBadgeType) -> UIImage? {
         guard let icon = self else { return nil }
-        return BPKIcon.makeSmallIcon(name: icon.iconName, color: type.iconColor)
+        return BPKObjcUIKitIcon.makeSmallIcon(name: icon.iconName, color: type.iconColor)
     }
 }

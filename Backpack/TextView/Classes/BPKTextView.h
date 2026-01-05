@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * `BPKTextView` is a subclass of `UITextView` which uses the Skyscanner style.
  */
+DEPRECATED_MSG_ATTRIBUTE("BPKTextView is deprecated. Use the SwiftUI BPKTextArea instead.")
 IB_DESIGNABLE @interface BPKTextView : UITextView
 
 /**

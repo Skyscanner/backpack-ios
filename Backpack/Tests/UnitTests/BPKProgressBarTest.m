@@ -29,12 +29,12 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation BPKProgressBarTest
 
 - (void)testInitWithFrame {
-    BPKProgressBar *pb1 = [[BPKProgressBar alloc] initWithFrame:CGRectZero];
+    BPKObjcUIKitProgressBar *pb1 = [[BPKObjcUIKitProgressBar alloc] initWithFrame:CGRectZero];
     XCTAssertEqualWithAccuracy(pb1.progress, 0.0, 0.001);
 }
 
 - (void)testSetValue {
-    BPKProgressBar *pb1 = [[BPKProgressBar alloc] initWithFrame:CGRectZero];
+    BPKObjcUIKitProgressBar *pb1 = [[BPKObjcUIKitProgressBar alloc] initWithFrame:CGRectZero];
     pb1.progress = 0.76;
     XCTAssertEqualWithAccuracy(pb1.progress, 0.76, 0.001);
 }

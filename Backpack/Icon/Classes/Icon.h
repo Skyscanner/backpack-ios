@@ -18,8 +18,8 @@
 #ifndef __BACKPACK_ICON__
 #define __BACKPACK_ICON__
 
-#import "BPKIcon.h"
-#import "BPKIconView.h" // DEPRECATED: Consumers should use BPK<SIZE>IconView instead
+#import "BPKObjcUIKitIcon.h"
+#import "BPKObjcUIKitIconView.h" // DEPRECATED: Consumers should use BPK<SIZE>IconView instead
 #import "BPKLargeIconView.h"
 #import "BPKSmallIconView.h"
 #ifdef SWIFT_PACKAGE

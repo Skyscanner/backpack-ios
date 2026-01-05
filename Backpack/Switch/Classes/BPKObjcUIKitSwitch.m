@@ -16,20 +16,20 @@
  * limitations under the License.
  */
 
-#import "BPKSwitch.h"
+#import "BPKObjcUIKitSwitch.h"
 
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKSwitch ()
+@interface BPKObjcUIKitSwitch ()
 
 @property(nonatomic, assign) BPKSwitchStyle switchStyle;
 
 @end
 
-@implementation BPKSwitch
+@implementation BPKObjcUIKitSwitch
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
     BPKAssertMainThread();

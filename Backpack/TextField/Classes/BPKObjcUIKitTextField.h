@@ -22,12 +22,13 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * `BPKTextField` is a subclass of `UITextField` which uses the Skyscanner style.
+ * `BPKObjcUIKitTextField` is a subclass of `UITextField` which uses the Skyscanner style.
  */
-IB_DESIGNABLE @interface BPKTextField : UITextField
+DEPRECATED_MSG_ATTRIBUTE("BPKObjcUIKitTextField is deprecated. Use the SwiftUI BPKTextField instead.")
+IB_DESIGNABLE @interface BPKObjcUIKitTextField : UITextField
 
 /**
- * Create a `BPKTextField` with a specific BPKFont style.
+ * Create a `BPKObjcUIKitTextField` with a specific BPKFont style.
  *
  * @param style Font style to be used by the TextField.
  * @see BPKFontStyle

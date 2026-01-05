@@ -103,12 +103,12 @@ fileprivate extension BPKCardButtonSize {
     func normalIcon(_ color: UIColor) -> UIImage {
         switch self {
         case .large:
-            return BPKIcon.makeLargeIcon(
+            return BPKObjcUIKitIcon.makeLargeIcon(
                 name: .shareiOS,
                 color: color
             )
         case .default:
-            return BPKIcon.makeSmallIcon(
+            return BPKObjcUIKitIcon.makeSmallIcon(
                 name: .shareiOS,
                 color: color
             )
@@ -118,12 +118,12 @@ fileprivate extension BPKCardButtonSize {
     func highlightedIcon(_ color: UIColor) -> UIImage {
         switch self {
         case .large:
-            return BPKIcon.makeLargeIcon(
+            return BPKObjcUIKitIcon.makeLargeIcon(
                 name: .shareiOS,
                 color: color
             )
         case .default:
-            return BPKIcon.makeSmallIcon(
+            return BPKObjcUIKitIcon.makeSmallIcon(
                 name: .shareiOS,
                 color: color
             )

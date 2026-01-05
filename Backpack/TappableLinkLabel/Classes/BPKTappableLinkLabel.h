@@ -48,6 +48,7 @@ typedef NS_ENUM(NSUInteger, BPKTappableLinkLabelStyle) {
 /**
  * `BPKTappableLinkLabel` is a subclass of `UIView` which uses the Skyscanner style for labels containing tappable text.
  */
+DEPRECATED_MSG_ATTRIBUTE("BPKTappableLinkLabel is deprecated. Use the SwiftUI BPKLink instead.")
 IB_DESIGNABLE @interface BPKTappableLinkLabel : UIView
 
 @property(nullable, nonatomic, strong) UIColor *linkColor UI_APPEARANCE_SELECTOR;

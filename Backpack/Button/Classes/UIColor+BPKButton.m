@@ -20,7 +20,7 @@
 
 #import "Backpack/Color.h"
 
-@implementation UIColor(BPKButton)
+@implementation UIColor(BPKObjcUIKitButton)
 
 + (UIColor *)dimColor:(UIColor *)color {
     return [BPKColor blend:color with:BPKColor.corePrimaryColor weight:0.85f];

@@ -19,8 +19,9 @@
 import UIKit
 import Backpack
 
+@available(*, deprecated, message: "We intentionally use this deprecated API.")
 class TextFieldsViewController: UIViewController {
-    @IBOutlet weak var textField: BPKTextField!
+    @IBOutlet weak var textField: BPKObjcUIKitTextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()

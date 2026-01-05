@@ -24,10 +24,10 @@ import MapKit
 final class BottomSheetPersistentViewController: UIViewController {
     var bottomSheet: BPKBottomSheet?
     
-    private let closeButton: BPKButton = {
-        let closeButton = BPKButton(size: .default, style: .secondary)
+    private let closeButton: BPKObjcUIKitButton = {
+        let closeButton = BPKObjcUIKitButton(size: .default, style: .secondary)
         closeButton.translatesAutoresizingMaskIntoConstraints = false
-        closeButton.setImage(BPKIcon.makeLargeTemplateIcon(name: .close))
+        closeButton.setImage(BPKObjcUIKitIcon.makeLargeTemplateIcon(name: .close))
         closeButton.secondaryBackgroundColor = BPKColor.canvasColor
         closeButton.secondaryContentColor = BPKColor.corePrimaryColor
         closeButton.secondaryBorderColor = BPKColor.clear

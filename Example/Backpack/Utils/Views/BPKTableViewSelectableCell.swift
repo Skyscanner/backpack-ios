@@ -27,7 +27,7 @@ class BPKTableViewSelectableCell: UITableViewCell {
         }
     }
 
-    let tickIcon: BPKIconView = BPKIconView(iconName: .tick, size: BPKIconSize.small)
+    let tickIcon: BPKObjcUIKitIconView = BPKObjcUIKitIconView(iconName: .tick, size: BPKIconSize.small)
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

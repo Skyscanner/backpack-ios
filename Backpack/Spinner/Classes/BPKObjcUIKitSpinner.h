@@ -46,9 +46,10 @@ typedef NS_ENUM(NSUInteger, BPKSpinnerStyle) {
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * `BPKSpinner` is a subclass of `UIActivityIndicatorView` configured with Skyscanner style properties.
+ * `BPKObjcUIKitSpinner` is a subclass of `UIActivityIndicatorView` configured with Skyscanner style properties.
  */
-IB_DESIGNABLE @interface BPKSpinner : UIActivityIndicatorView
+DEPRECATED_MSG_ATTRIBUTE("BPKObjcUIKitSpinner is deprecated. Use the SwiftUI BPKSpinner instead.")
+IB_DESIGNABLE @interface BPKObjcUIKitSpinner : UIActivityIndicatorView
 
 /**
  * Style of the spinner
@@ -65,28 +66,28 @@ IB_DESIGNABLE @interface BPKSpinner : UIActivityIndicatorView
 @property(nonatomic) BPKSpinnerSize size;
 
 /**
- * Creates a `BPKSpinner` with a specific style and size.
+ * Creates a `BPKObjcUIKitSpinner` with a specific style and size.
  *
  * @param style Style to be used by the button.
  * @param size Size to be used by the button.
- * @return `BPKSpinner` instance.
+ * @return `BPKObjcUIKitSpinner` instance.
  * @see BPKSpinnerSize
  */
 - (instancetype)initWithStyle:(BPKSpinnerStyle)style size:(BPKSpinnerSize)size NS_DESIGNATED_INITIALIZER;
 
 /**
- * Creates a `BPKSpinner` with a decoder (typically when creating from Storyboards)
+ * Creates a `BPKObjcUIKitSpinner` with a decoder (typically when creating from Storyboards)
  *
  * @param coder Decoder object to extract parameters from
- * @return `BPKSpinner` instance.
+ * @return `BPKObjcUIKitSpinner` instance.
  */
 - (instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
 
 /**
- * Create a `BPKSpinner` with a given frame.
+ * Create a `BPKObjcUIKitSpinner` with a given frame.
  *
  * @param frame The initial frame of the spinner.
- * @return `BPKSpinner` instance.
+ * @return `BPKObjcUIKitSpinner` instance.
  */
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 

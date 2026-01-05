@@ -102,11 +102,11 @@ extension BPKSmallIconName: BPKHorizontalNavigationOptionIcon {
     public typealias Size = BPKHorizontalNavigationSizeSmall
 
     public func makeImage() -> UIImage {
-        BPKIcon.makeSmallTemplateIcon(name: self)
+        BPKObjcUIKitIcon.makeSmallTemplateIcon(name: self)
     }
 
     public static var size: CGSize {
-        BPKIcon.concreteSizeForSmallIcon
+        BPKObjcUIKitIcon.concreteSizeForSmallIcon
     }
 }
 
@@ -114,10 +114,10 @@ extension BPKLargeIconName: BPKHorizontalNavigationOptionIcon {
     public typealias Size = BPKHorizontalNavigationSizeDefault
 
     public func makeImage() -> UIImage {
-        BPKIcon.makeLargeTemplateIcon(name: self)
+        BPKObjcUIKitIcon.makeLargeTemplateIcon(name: self)
     }
 
     public static var size: CGSize {
-        BPKIcon.concreteSizeForLargeIcon
+        BPKObjcUIKitIcon.concreteSizeForLargeIcon
     }
 }

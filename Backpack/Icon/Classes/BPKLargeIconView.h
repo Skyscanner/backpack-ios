@@ -17,7 +17,7 @@
  */
 #import <UIKit/UIKit.h>
 
-#import "BPKIconView.h"
+#import "BPKObjcUIKitIconView.h"
 #ifdef SWIFT_PACKAGE
 #import "Generated/BPKLargeIconNames.h"
 #else
@@ -31,7 +31,8 @@ NS_ASSUME_NONNULL_BEGIN
  * Convenient for setting the icon `tintColor` as the icon is
  * always rendered using template rendering.
  */
-@interface BPKLargeIconView : BPKIconView
+DEPRECATED_MSG_ATTRIBUTE("BPKLargeIconView is deprecated. Use the SwiftUI BPKObjcUIKitIconView instead.")
+@interface BPKLargeIconView : BPKObjcUIKitIconView
 
 /// :nodoc:
 - (instancetype)initWithCoder:(NSCoder *)coder NS_UNAVAILABLE;

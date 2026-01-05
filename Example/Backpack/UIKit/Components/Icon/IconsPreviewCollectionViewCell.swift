@@ -20,14 +20,14 @@ import UIKit
 import Backpack
 
 protocol IconDetails {
-    associatedtype ViewClass: BPKIconView
+    associatedtype ViewClass: BPKObjcUIKitIconView
     associatedtype IconNameType: Any
     static var size: CGSize { get }
     static func setIconName(view: Self.ViewClass, name: Self.IconNameType)
 }
 
 extension BPKSmallIconName: IconDetails {
-    static var size: CGSize = BPKIcon.concreteSizeForSmallIcon
+    static var size: CGSize = BPKObjcUIKitIcon.concreteSizeForSmallIcon
 
     typealias ViewClass = BPKSmallIconView
     typealias IconNameType = BPKSmallIconName
@@ -38,7 +38,7 @@ extension BPKSmallIconName: IconDetails {
 }
 
 extension BPKLargeIconName: IconDetails {
-    static var size: CGSize = BPKIcon.concreteSizeForLargeIcon
+    static var size: CGSize = BPKObjcUIKitIcon.concreteSizeForLargeIcon
 
     typealias ViewClass = BPKLargeIconView
     typealias IconNameType = BPKLargeIconName

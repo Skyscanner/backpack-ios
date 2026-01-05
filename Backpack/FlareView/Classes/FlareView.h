@@ -19,6 +19,6 @@
 #define __BACKPACK_MASK_LAYER__
 
 #import "BPKFlarePath.h"
-#import "BPKFlareView.h"
+#import "BPKObjcUIKitFlareView.h"
 
 #endif

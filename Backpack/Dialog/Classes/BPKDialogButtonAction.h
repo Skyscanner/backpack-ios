@@ -38,6 +38,8 @@ typedef void (^BPKDialogButtonActionHandler)(BPKDialogButtonAction *);
  * has an associated handler to invoke when the button is
  * tapped or otherwise triggered.
  */
+
+DEPRECATED_MSG_ATTRIBUTE("BPKDialogButtonAction is deprecated. Use the SwiftUI BPKDialogButton instead.")
 @interface BPKDialogButtonAction : NSObject
 
 /**
@@ -61,7 +63,7 @@ typedef void (^BPKDialogButtonActionHandler)(BPKDialogButtonAction *);
  * Create an instance of the class.
  *
  * @param title The title to use.
- * @param style The style of the `BPKButton` to use.
+ * @param style The style of the `BPKObjcUIKitButton` to use.
  * @param handler The handler to invoke when the button is tapped.
  */
 + (instancetype _Nonnull)actionWithTitle:(NSString *)title style:(BPKButtonStyle)style handler:(BPKDialogButtonActionHandler)handler;

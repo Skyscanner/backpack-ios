@@ -379,6 +379,6 @@ extension BPKChip {
 fileprivate extension Optional where Wrapped == BPKSmallIconName {
     func orNil(withColor color: UIColor) -> UIImage? {
         guard let icon = self else { return nil }
-        return BPKIcon.makeSmallIcon(name: icon, color: color)
+        return BPKObjcUIKitIcon.makeSmallIcon(name: icon, color: color)
     }
 }

@@ -17,7 +17,7 @@
  */
 #import <UIKit/UIKit.h>
 
-#import "BPKIcon.h"
+#import "BPKObjcUIKitIcon.h"
 #ifdef SWIFT_PACKAGE
 #import "Generated/BPKIconNames.h"
 #else
@@ -31,7 +31,8 @@ NS_ASSUME_NONNULL_BEGIN
  * where a single icon is used and colour is controlled via `tintColor`. The icon is
  * always rendered using template rendering.
  */
-@interface BPKIconView : UIImageView
+DEPRECATED_MSG_ATTRIBUTE("BPKObjcUIKitIconView is deprecated. Use the SwiftUI BPKIconView instead.")
+@interface BPKObjcUIKitIconView : UIImageView
 
 /**
  * Initializes and returns a Backpack Icon View with the specific icon name and size.
@@ -66,7 +67,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setSize:(BPKIconSize)size __deprecated_msg("Setting size during the component lifecycle will soon be unsupported.");
 
 /**
- * If flipsForRightToLeft is set to YES then BPKIconView will render its icon
+ * If flipsForRightToLeft is set to YES then BPKObjcUIKitIconView will render its icon
  * horizontally flipped when its UIUserInterfaceLayoutDirection is right to left.
  * Default value is NO.
  */
@@ -78,7 +79,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// :nodoc:
 - (instancetype)initWithImage:(nullable UIImage *)image
              highlightedImage:(nullable UIImage *)highlightedImage
-    __attribute__((unavailable("use a `UIImageView` and `BPKIcon`s `iconNamed:color:size:` instead.")));
+    __attribute__((unavailable("use a `UIImageView` and `BPKObjcUIKitIcon`s `iconNamed:color:size:` instead.")));
 
 /// :nodoc:
 - (void)setImage:(nullable UIImage *)image
