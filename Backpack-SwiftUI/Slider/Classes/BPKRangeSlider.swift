@@ -160,14 +160,15 @@ public struct BPKRangeSlider: View {
                 @unknown default: break
                 }
             }
-        }
-        if let thumbnailLabels = thumbnailLabels, isDraggingTrailingThumb {
-            thumbLabel(thumbnailLabels.upperThumbnail)
-                .offset(x: trailingThumbOffset(sliderSize: sliderSize))
-        }
-        if let thumbnailLabels = thumbnailLabels, isDraggingLeadingThumb {
-            thumbLabel(thumbnailLabels.lowerThumbnail)
-                .offset(x: leadingThumbOffset(sliderSize: sliderSize))
+            
+            if let thumbnailLabels = thumbnailLabels, isDraggingTrailingThumb {
+                thumbLabel(thumbnailLabels.upperThumbnail)
+                    .offset(x: trailingThumbOffset(sliderSize: sliderSize))
+            }
+            if let thumbnailLabels = thumbnailLabels, isDraggingLeadingThumb {
+                thumbLabel(thumbnailLabels.lowerThumbnail)
+                    .offset(x: leadingThumbOffset(sliderSize: sliderSize))
+            }
         }
     }
 
