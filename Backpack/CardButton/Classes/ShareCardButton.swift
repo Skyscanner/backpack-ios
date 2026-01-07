@@ -92,9 +92,9 @@ fileprivate extension BPKCardButtonStyle {
         case .onDark:
             return BPKColor.textDisabledOnDarkColor
         case .contained:
-            return BPKColor.textLinkColor
+            return BPKColor.coreAccentColor
         case .default:
-            return BPKColor.textLinkColor
+            return BPKColor.coreAccentColor
         }
     }
 }

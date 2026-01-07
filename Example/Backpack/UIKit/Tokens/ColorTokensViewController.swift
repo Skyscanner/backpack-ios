@@ -26,7 +26,6 @@ class ColorTokensViewController: UIViewController {
             .init(color: BPKColor.textPrimaryColor, name: ".textPrimaryColor"),
             .init(color: BPKColor.textSecondaryColor, name: ".textSecondaryColor"),
             .init(color: BPKColor.textDisabledColor, name: ".textDisabledColor"),
-            .init(color: BPKColor.textLinkColor, name: ".textLinkColor"),
             .init(color: BPKColor.textErrorColor, name: ".textErrorColor"),
             .init(color: BPKColor.textPrimaryInverseColor, name: ".textPrimaryInverseColor"),
             .init(color: BPKColor.textOnDarkColor, name: ".textOnDarkColor"),
