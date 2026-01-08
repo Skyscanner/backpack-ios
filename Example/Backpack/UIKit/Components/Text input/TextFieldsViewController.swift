@@ -17,8 +17,7 @@
  */
 
 import UIKit
-import Backpack.TextField
-import Backpack.Color
+import Backpack
 
 @available(*, deprecated, message: "We intentionally use this deprecated API.")
 class TextFieldsViewController: UIViewController {

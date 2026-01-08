@@ -16,6 +16,9 @@
  * limitations under the License.
  */
 
+import UIKit
+import Backpack
+
 @available(*, deprecated, message: "We intentionally use this deprecated API.")
 final class RatingsViewController: UIViewController {
 

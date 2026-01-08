@@ -17,6 +17,7 @@
  * limitations under the License.
  */
 
+import Backpack_Common
 import Backpack_SwiftUI
 import SwiftUI
 

@@ -21,7 +21,11 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#ifdef SWIFT_PACKAGE
+#import "../../Font/Classes/Font.h"
+#else
 #import <Backpack/Font.h>
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 

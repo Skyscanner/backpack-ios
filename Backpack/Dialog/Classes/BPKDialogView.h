@@ -18,7 +18,11 @@
 
 #import <UIKit/UIKit.h>
 
+#ifdef SWIFT_PACKAGE
+#import "../../FlareView/Classes/FlareView.h"
+#else
 #import <Backpack/FlareView.h>
+#endif
 
 #import "BPKDialogButtonAction.h"
 #import "BPKDialogCornerStyle.h"
