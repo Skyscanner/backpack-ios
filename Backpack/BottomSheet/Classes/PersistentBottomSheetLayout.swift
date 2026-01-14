@@ -17,6 +17,7 @@
  */
 
 import FloatingPanel
+import UIKit
 
 /// Layout implementation where the BPKBottomSheet will remain persistent in the parent
 /// ViewController. There is no overlay and the parent ViewController remains interactable

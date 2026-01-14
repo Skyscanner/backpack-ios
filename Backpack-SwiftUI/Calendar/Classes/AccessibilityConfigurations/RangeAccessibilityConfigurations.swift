@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
+import Foundation
+
 /// Create a multi-selection configuration with given accessibility strings.
 /// - Parameters:
 ///   - rangeAccessibilityLabels: The eunmaration with a hint and a state selection accessibility labels

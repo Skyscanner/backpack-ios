@@ -18,6 +18,9 @@
 
 import UIKit
 import FloatingPanel
+#if SWIFT_PACKAGE
+import BackpackTokens
+#endif
 
 @objc(BPKBottomSheetDelegate)
 public protocol BPKBottomSheetDelegate: AnyObject {

@@ -17,6 +17,7 @@
  */
 
 import FloatingPanel
+import UIKit
 
 final class BPKFloatingPanelController: FloatingPanelController {
     var bottomSheet: BPKBottomSheet?

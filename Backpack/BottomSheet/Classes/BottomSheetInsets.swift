@@ -18,6 +18,9 @@
 
 import UIKit
 import FloatingPanel
+#if SWIFT_PACKAGE
+import BackpackTokens
+#endif
 
 public struct BottomSheetInsets {
     public let full: CGFloat?

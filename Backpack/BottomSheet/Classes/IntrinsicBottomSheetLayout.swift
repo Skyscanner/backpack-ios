@@ -17,6 +17,7 @@
  */
 
 import FloatingPanel
+import UIKit
 
 class IntrinsicBottomSheetLayout: FloatingPanelLayout {
     let position: FloatingPanelPosition = .bottom

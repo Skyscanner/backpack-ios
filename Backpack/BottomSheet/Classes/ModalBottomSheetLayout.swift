@@ -17,6 +17,7 @@
  */
 
 import FloatingPanel
+import UIKit
 
 /// Layout implementation where the BPKBottomSheet will be presented modaly. The parent ViewController
 /// will not be interactable, there will be an overlay in the Parent ViewController,

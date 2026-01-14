@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
+import Foundation
+
 public enum RangeAccessibilityLabelsConfigurations {
     case dynamic(accessibilityLabelCallback: ((Date) -> (label: String, hint: String)))
     case predefined(start: AccessibilityLabels, end: AccessibilityLabels)

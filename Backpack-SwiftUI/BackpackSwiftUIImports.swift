@@ -16,6 +16,6 @@
  * limitations under the License.
  */
 
-@_exported import Foundation
-@_exported import SwiftUI
-@_exported import UIKit
+import Foundation
+import SwiftUI
+import UIKit

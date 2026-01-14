@@ -17,7 +17,11 @@
  */
 
 // swiftlint:disable indentation_width
+import UIKit
 import Backpack_Common
+#if SWIFT_PACKAGE
+import BackpackTokens
+#endif
 
 protocol BPKButtonColorSet {
     var regular: BPKButtonColors { get }

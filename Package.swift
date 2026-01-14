@@ -65,7 +65,10 @@ let targets: [Target] = [
     // MARK: - BackpackSwiftUI (depends on BackpackCommon)
     .target(
       name: "Backpack_SwiftUI",
-      dependencies: ["Backpack_Common"],
+      dependencies: [
+        "Backpack_Common",
+        "BackpackTokens"
+      ],
       path: "Backpack-SwiftUI",
       exclude: [
         "Tests",
