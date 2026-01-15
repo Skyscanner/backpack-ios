@@ -115,10 +115,12 @@ jobs:
 
       - name: Notify PR of screenshots changes
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        env:
+          CHANGED_FILES: ${{ needs.TestPods.outputs.changed-files }}
         with:
           github-token: ${{ steps.app-token.outputs.token }}
           script: |
-            var body = `### Snapshots were updated. Please verify the changes match the expected layout. \n\n>'${{ needs.TestPods.outputs.changed-files }}'`;
+            var body = `### Snapshots were updated. Please verify the changes match the expected layout. \n\n>'${process.env.CHANGED_FILES}'`;
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
