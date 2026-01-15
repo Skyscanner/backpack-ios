@@ -12,6 +12,7 @@ jobs:
     name: SwiftPM Build
     runs-on: macos-14
     steps:
+      - uses: GitHubSecurityLab/actions-permissions/monitor@b25f731bf2f9eb9748c2e9757d366c3e72fa2109 # v1.0.2-beta8
       - name: Checkout code
         uses: actions/checkout@v6
 
