@@ -16,7 +16,6 @@
  * limitations under the License.
  */
 
-// swiftlint:disable indentation_width
 import SwiftUI
 import Combine
 
@@ -27,14 +26,15 @@ public final class SwiftUILinkViewModel: ObservableObject {
     public var onCustomLink: (URL) -> Void
     public var accessibilityIdentifier: String?
     public var accessibilityLabel: String?
-
-    public init(markdown: String,
-                style: BPKLinkStyle = .default,
-                fontStyle: BPKFontStyle = .bodyDefault,
-                onCustomLink: @escaping (URL) -> Void = { _ in },
-                accessibilityIdentifier: String? = nil,
-                accessibilityLabel: String? = nil) {
-
+    
+    public init(
+        markdown: String,
+        style: BPKLinkStyle = .default,
+        fontStyle: BPKFontStyle = .bodyDefault,
+        onCustomLink: @escaping (URL) -> Void = { _ in },
+        accessibilityIdentifier: String? = nil,
+        accessibilityLabel: String? = nil) {
+        
         self.markdown = markdown
         self.style = style
         self.fontStyle = fontStyle
@@ -46,12 +46,13 @@ public final class SwiftUILinkViewModel: ObservableObject {
 
 public struct ReactiveSwiftUIBPKLinkWrapper: View {
     @ObservedObject var viewModel: SwiftUILinkViewModel
-
+    
     public var body: some View {
-        BPKLink(markdown: viewModel.markdown,
-                style: viewModel.style,
-                fontStyle: viewModel.fontStyle,
-                onCustomLink: viewModel.onCustomLink)
+        BPKLink(
+            markdown: viewModel.markdown,
+            style: viewModel.style,
+            fontStyle: viewModel.fontStyle,
+            onCustomLink: viewModel.onCustomLink)
         .if((viewModel.accessibilityLabel?.isEmpty == false)) { link in
             link.accessibilityLabel(viewModel.accessibilityLabel!)
         }
@@ -62,10 +63,8 @@ public struct ReactiveSwiftUIBPKLinkWrapper: View {
 }
 
 public extension UIView {
-
+    
     /// Creates a SwiftUI BPKLink wrapped in a UIHostingController and returns both the view and its ViewModel
-    /// This method is valid to use however be cautious with some usage in UIKit
-    /// Current known issue in StackViews with a horizontal setting, more issues could occur.
     static func makeReactiveSwiftUIBPKLink(
         markdown: String,
         style: BPKLinkStyle = .default,
@@ -74,21 +73,22 @@ public extension UIView {
         accessibilityIdentifier: String? = nil,
         accessibilityLabel: String? = nil
     ) -> (UIView, SwiftUILinkViewModel) {
-        let viewModel = SwiftUILinkViewModel(markdown: markdown,
-                                             style: style,
-                                             fontStyle: fontStyle,
-                                             onCustomLink: onCustomLink,
-                                             accessibilityIdentifier: accessibilityIdentifier,
-                                             accessibilityLabel: accessibilityLabel)
-
+        let viewModel = SwiftUILinkViewModel(
+            markdown: markdown,
+            style: style,
+            fontStyle: fontStyle,
+            onCustomLink: onCustomLink,
+            accessibilityIdentifier: accessibilityIdentifier,
+            accessibilityLabel: accessibilityLabel)
+        
         let wrapperView = ReactiveSwiftUIBPKLinkWrapper(
             viewModel: viewModel
         )
-
+        
         let hostingController = UIHostingController(rootView: wrapperView)
         hostingController.view.backgroundColor = .clear
         hostingController.view.translatesAutoresizingMaskIntoConstraints = false
-
+        
         return (hostingController.view, viewModel)
     }
 }
