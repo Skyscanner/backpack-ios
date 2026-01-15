@@ -8,6 +8,8 @@ defaults:
   run:
     shell: bash -l {0}
 
+permissions: {}
+
 jobs:
   Build:
       name: Build
