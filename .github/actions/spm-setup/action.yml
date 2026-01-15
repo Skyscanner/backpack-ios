@@ -16,13 +16,15 @@ runs:
   steps:
     - name: Select Xcode
       shell: bash
-      run: sudo xcode-select --switch "${{ inputs.xcode-path }}"
+      run: sudo xcode-select --switch "${INPUTS_XCODE_PATH}"
+      env:
+        INPUTS_XCODE_PATH: ${{ inputs.xcode-path }}
 
     - name: Prepare SwiftPM Xcode workspace
       shell: bash
       run: |
         set -eo pipefail
-        workspace_file="${{ inputs.workspace-file }}"
+        workspace_file="${INPUTS_WORKSPACE_FILE}"
         mkdir -p "$(dirname "$workspace_file")"
         cat <<'EOF' > "$workspace_file"
         <?xml version="1.0" encoding="UTF-8"?>
@@ -33,3 +35,5 @@ runs:
            </FileRef>
         </Workspace>
         EOF
+      env:
+        INPUTS_WORKSPACE_FILE: ${{ inputs.workspace-file }}
