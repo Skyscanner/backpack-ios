@@ -72,7 +72,7 @@ public struct BPKSaveCardButton: View {
         case .onDark:
             return .textOnDarkColor
         case .default, .contained:
-            return checked ? .textLinkColor: .textPrimaryColor
+            return checked ? .coreAccentColor: .textPrimaryColor
         }
     }
     

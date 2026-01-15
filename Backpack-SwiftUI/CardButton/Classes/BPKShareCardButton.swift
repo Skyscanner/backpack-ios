@@ -68,7 +68,7 @@ private struct InternalShareCardButtonStyle: ButtonStyle {
         if case .onDark = style {
             return .textDisabledOnDarkColor
         }
-        return .textLinkColor
+        return .coreAccentColor
     }
 }
 

@@ -161,16 +161,20 @@ public struct BPKRangeSlider: View {
                 }
             }
         }
-        if let thumbnailLabels = thumbnailLabels, isDraggingTrailingThumb {
-            thumbLabel(thumbnailLabels.upperThumbnail)
-                .offset(x: trailingThumbOffset(sliderSize: sliderSize))
-        }
-        if let thumbnailLabels = thumbnailLabels, isDraggingLeadingThumb {
-            thumbLabel(thumbnailLabels.lowerThumbnail)
-                .offset(x: leadingThumbOffset(sliderSize: sliderSize))
+        .overlay(alignment: .center) {
+            if let thumbnailLabels = thumbnailLabels, isDraggingTrailingThumb {
+                thumbLabel(thumbnailLabels.upperThumbnail)
+                    .offset(x: trailingThumbOffset(sliderSize: sliderSize))
+                    .allowsHitTesting(false)
+            }
+            if let thumbnailLabels = thumbnailLabels, isDraggingLeadingThumb {
+                thumbLabel(thumbnailLabels.lowerThumbnail)
+                    .offset(x: leadingThumbOffset(sliderSize: sliderSize))
+                    .allowsHitTesting(false)
+            }
         }
     }
-
+    
     private func thumbLabel(_ text: String) -> some View {
         BPKText(text, style: .label2)
             .foregroundColor(.textPrimaryInverseColor)
