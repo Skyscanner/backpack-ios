@@ -28,6 +28,8 @@
 #import "Shadow.h"
 #import "Spacing.h"
 
+#import "Generated/BPKColor+Internal.h"
+
 #import "Appearance.h"
 #import "Button.h"
 #import "Card.h"
