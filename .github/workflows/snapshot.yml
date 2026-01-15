@@ -15,6 +15,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
       - name: Print head git commit message
         id: get_head_commit_message
         run: echo "headCommitMsg=$(git show -s --format=%s)" >> $GITHUB_OUTPUT
