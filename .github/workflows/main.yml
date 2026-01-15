@@ -31,6 +31,7 @@ jobs:
       contents: write
       pull-requests: read
     steps:
+      - uses: GitHubSecurityLab/actions-permissions/monitor@b25f731bf2f9eb9748c2e9757d366c3e72fa2109 # v1.0.2-beta8
       - uses: actions/create-github-app-token@v2
         id: app-token
         with:
