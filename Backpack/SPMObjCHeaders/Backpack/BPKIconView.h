@@ -19,6 +19,6 @@
 #ifndef __BACKPACK_SPM_SHIM_BPKICONVIEW_H__
 #define __BACKPACK_SPM_SHIM_BPKICONVIEW_H__
 
-#import "../Icon/Classes/BPKIconView.h"
+#import "../Icon/Classes/BPKObjcUIKitIconView.h"
 
 #endif

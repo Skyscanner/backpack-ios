@@ -19,6 +19,6 @@
 #ifndef __BACKPACK_SPM_SHIM_BPKFLAREVIEW_H__
 #define __BACKPACK_SPM_SHIM_BPKFLAREVIEW_H__
 
-#import "../FlareView/Classes/BPKFlareView.h"
+#import "../FlareView/Classes/BPKObjcUIKitFlareView.h"
 
 #endif

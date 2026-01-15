@@ -19,6 +19,6 @@
 #ifndef __BACKPACK_SPM_SHIM_BPKPROGRESSBAR_H__
 #define __BACKPACK_SPM_SHIM_BPKPROGRESSBAR_H__
 
-#import "../ProgressBar/Classes/BPKProgressBar.h"
+#import "../ProgressBar/Classes/BPKObjcUIKitProgressBar.h"
 
 #endif

@@ -19,6 +19,6 @@
 #ifndef __BACKPACK_SPM_BPKSWITCH__
 #define __BACKPACK_SPM_BPKSWITCH__
 
-#import "../Switch/Classes/BPKSwitch.h"
+#import "../Switch/Classes/BPKObjcUIKitSwitch.h"
 
 #endif

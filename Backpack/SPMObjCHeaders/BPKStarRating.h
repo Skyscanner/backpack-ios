@@ -19,6 +19,6 @@
 #ifndef __BACKPACK_SPM_BPKSTARRATING_H__
 #define __BACKPACK_SPM_BPKSTARRATING_H__
 
-#import "../StarRating/Classes/BPKStarRating.h"
+#import "../StarRating/Classes/BPKObjcUIKitStarRating.h"
 
 #endif

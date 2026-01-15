@@ -19,6 +19,6 @@
 #ifndef __BACKPACK_SPM_BPKDIVIDEDCARD_H__
 #define __BACKPACK_SPM_BPKDIVIDEDCARD_H__
 
-#import "../Card/Classes/BPKDividedCard.h"
+#import "../Card/Classes/BPKObjcUIKitDividedCard.h"
 
 #endif

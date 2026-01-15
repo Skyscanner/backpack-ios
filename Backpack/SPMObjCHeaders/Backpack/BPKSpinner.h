@@ -19,6 +19,6 @@
 #ifndef __BACKPACK_SPM_SHIM_BPKSPINNER_H__
 #define __BACKPACK_SPM_SHIM_BPKSPINNER_H__
 
-#import "../Spinner/Classes/BPKSpinner.h"
+#import "../Spinner/Classes/BPKObjcUIKitSpinner.h"
 
 #endif

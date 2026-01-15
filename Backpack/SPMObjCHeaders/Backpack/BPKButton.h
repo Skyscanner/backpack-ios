@@ -19,6 +19,6 @@
 #ifndef __BACKPACK_SPM_SHIM_BPKButton_H__
 #define __BACKPACK_SPM_SHIM_BPKButton_H__
 
-#import "../Button/Classes/BPKButton.h"
+#import "../Button/Classes/BPKObjcUIKitButton.h"
 
 #endif
