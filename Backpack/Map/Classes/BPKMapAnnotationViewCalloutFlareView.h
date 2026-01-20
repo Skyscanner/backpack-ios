@@ -22,10 +22,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 /**
- * `BPKMapAnnotationViewCalloutFlareView` is a subclass of `BPKFlareView` which contains the Skyscanner map callout style.
+ * `BPKMapAnnotationViewCalloutFlareView` is a subclass of `BPKObjcUIKitFlareView` which contains the Skyscanner map callout style.
  */
-IB_DESIGNABLE @interface BPKMapAnnotationViewCalloutFlareView : BPKFlareView
+IB_DESIGNABLE @interface BPKMapAnnotationViewCalloutFlareView : BPKObjcUIKitFlareView
 
 @end
+#pragma clang diagnostic pop
 NS_ASSUME_NONNULL_END

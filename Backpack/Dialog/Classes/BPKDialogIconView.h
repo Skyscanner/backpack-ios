@@ -20,6 +20,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 @interface BPKDialogIconView : UIView
 @property(nonatomic, strong) BPKDialogIconDefinition *iconDefinition;
 
@@ -31,4 +33,5 @@ NS_ASSUME_NONNULL_BEGIN
 + (CGSize)viewSize;
 @end
 
+#pragma clang diagnostic pop
 NS_ASSUME_NONNULL_END

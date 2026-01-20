@@ -17,9 +17,9 @@
  */
 
 #import "BPKLegacyLinkButton.h"
-#import "BPKButton.h"
 #import "BPKButtonAppearance.h"
 #import "BPKButtonAppearanceSet.h"
+#import "BPKObjcUIKitButton.h"
 #import "UIColor+BPKButton.h"
 #import <Backpack/Backpack-Swift.h>
 
@@ -488,7 +488,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     dispatch_once(&onceToken, ^{
       BPKAssertMainThread();
-      CGSize size = [BPKIcon concreteSizeForIconSize:BPKIconSizeSmall];
+      CGSize size = [BPKObjcUIKitIcon concreteSizeForIconSize:BPKIconSizeSmall];
 
       UIGraphicsBeginImageContextWithOptions(size, YES, 0);
       [UIColor.blackColor setFill];
@@ -506,7 +506,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     dispatch_once(&onceToken, ^{
       BPKAssertMainThread();
-      CGSize size = [BPKIcon concreteSizeForIconSize:BPKIconSizeLarge];
+      CGSize size = [BPKObjcUIKitIcon concreteSizeForIconSize:BPKIconSizeLarge];
 
       UIGraphicsBeginImageContextWithOptions(size, YES, 0);
       [UIColor.blackColor setFill];

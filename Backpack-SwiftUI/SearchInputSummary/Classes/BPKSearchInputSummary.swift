@@ -95,7 +95,7 @@ public struct BPKSearchInputSummary: View {
         .background(.surfaceDefaultColor)
         .clipShape(RoundedRectangle(cornerRadius: .md))
         .outline(
-            isBorderHighlighted ? .textLinkColor : .lineColor,
+            isBorderHighlighted ? .coreAccentColor : .lineColor,
             cornerRadius: .md,
             lineWidth: isBorderHighlighted ? 2.0 : 1.0
         )
@@ -176,6 +176,6 @@ struct BPKSearchInputSummary_Previews: PreviewProvider {
             BPKSearchInputSummary(clearAction: .init(accessibilityLabel: "clear", action: {}), .constant("Value"))
         }
         .padding()
-        .background(.coreEcoColor)
+        .background(.corePrimaryColor)
     }
 }

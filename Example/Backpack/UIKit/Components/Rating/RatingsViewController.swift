@@ -16,6 +16,7 @@
  * limitations under the License.
  */
 
+@available(*, deprecated, message: "We intentionally use this deprecated API.")
 final class RatingsViewController: UIViewController {
 
     enum TitleType {
@@ -122,7 +123,7 @@ final class RatingsViewController: UIViewController {
             }
             return view
         case .starRating:
-            let starRating = BPKStarRating()
+            let starRating = BPKObjcUIKitStarRating()
             starRating.rating = 4.5
             return BPKRating(
                 accessibilityLabel: accessibilityLabel,
@@ -150,7 +151,7 @@ final class RatingsViewController: UIViewController {
         let imageView = UIImageView(image: UIImage(named: "backpack-logo-horizontal"))
         imageView.contentMode = .scaleAspectFit
         NSLayoutConstraint.activate([
-            imageView.heightAnchor.constraint(equalToConstant: BPKIcon.concreteSizeForLargeIcon.height),
+            imageView.heightAnchor.constraint(equalToConstant: BPKObjcUIKitIcon.concreteSizeForLargeIcon.height),
             imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 60/13)
         ])
         return imageView

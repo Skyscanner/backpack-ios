@@ -62,8 +62,11 @@ class BPKTabBarControllerSnapshotTest: XCTestCase {
         
         // Tab 1
         let tabOne = UIViewController()
-        tabOne.tabBarItem = UITabBarItem(title: "Tab 1", image: BPKIcon.makeLargeTemplateIcon(name: .key), tag: 1)
-        
+        tabOne.tabBarItem = UITabBarItem(
+            title: "Tab 1",
+            image: BPKObjcUIKitIcon.makeLargeTemplateIcon(name: .key),
+            tag: 1)
+
         let dotImageDefinition = BPKTabBarDotImageDefinition(
             lightImage: image(named: "tab_explore_with_dot_lm")!,
             darkImage: image(named: "tab_explore_with_dot_dm")!
@@ -73,7 +76,7 @@ class BPKTabBarControllerSnapshotTest: XCTestCase {
         let tabTwo = UIViewController()
         let tabTwoItem = BPKTabBarItem(
             title: "Tab 2",
-            image: BPKIcon.makeLargeTemplateIcon(name: .explore),
+            image: BPKObjcUIKitIcon.makeLargeTemplateIcon(name: .explore),
             dotImage: dotImageDefinition,
             selectedDotImage: image(named: "tab_explore_with_dot_lm")
         )
@@ -83,7 +86,10 @@ class BPKTabBarControllerSnapshotTest: XCTestCase {
 
         // Tab 3
         let tabThree = UIViewController()
-        tabThree.tabBarItem = UITabBarItem(title: "Tab 3", image: BPKIcon.makeLargeTemplateIcon(name: .key), tag: 3)
+        tabThree.tabBarItem = UITabBarItem(
+            title: "Tab 3",
+            image: BPKObjcUIKitIcon.makeLargeTemplateIcon(name: .key),
+            tag: 3)
         tabThree.tabBarItem.badgeColor = BPKColor.statusDangerSpotColor
         tabThree.tabBarItem.badgeValue = "42"
         

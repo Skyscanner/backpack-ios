@@ -26,7 +26,6 @@ class ColorTokensViewController: UIViewController {
             .init(color: BPKColor.textPrimaryColor, name: ".textPrimaryColor"),
             .init(color: BPKColor.textSecondaryColor, name: ".textSecondaryColor"),
             .init(color: BPKColor.textDisabledColor, name: ".textDisabledColor"),
-            .init(color: BPKColor.textLinkColor, name: ".textLinkColor"),
             .init(color: BPKColor.textErrorColor, name: ".textErrorColor"),
             .init(color: BPKColor.textPrimaryInverseColor, name: ".textPrimaryInverseColor"),
             .init(color: BPKColor.textOnDarkColor, name: ".textOnDarkColor"),
@@ -34,8 +33,7 @@ class ColorTokensViewController: UIViewController {
         ]),
         .init(name: "Core", colors: [
             .init(color: BPKColor.corePrimaryColor, name: ".corePrimaryColor"),
-            .init(color: BPKColor.coreAccentColor, name: ".coreAccentColor"),
-            .init(color: BPKColor.coreEcoColor, name: ".coreEcoColor")
+            .init(color: BPKColor.coreAccentColor, name: ".coreAccentColor")
         ]),
         .init(name: "Status", colors: [
             .init(color: BPKColor.statusSuccessSpotColor, name: ".statusSuccessSpotColor"),
@@ -159,7 +157,7 @@ class ColorTokensViewController: UIViewController {
             container.trailingAnchor.constraint(equalTo: colorLabel.trailingAnchor, constant: BPKSpacingMd)
         ])
         
-        let card = BPKCard(padded: false)
+        let card = BPKObjcUIKitCard(padded: false)
         card.subview = container
         return card
     }

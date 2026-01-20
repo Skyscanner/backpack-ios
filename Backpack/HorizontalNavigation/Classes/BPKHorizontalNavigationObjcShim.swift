@@ -94,8 +94,8 @@ public class BPKHorizontalNavigationOptionObjc: NSObject, BPKHorizontalNavigatio
     public func makeItem() -> BPKHorizontalNavigationItemObjc {
         let iconDefinition = iconName.map {
             BPKHorizontalNavigationItemDefault<BPKHorizontalNavigationSizeDefault>.IconDefinition(
-                image: BPKIcon.makeLargeTemplateIcon(name: $0),
-                size: BPKIcon.concreteSizeForLargeIcon
+                image: BPKObjcUIKitIcon.makeLargeTemplateIcon(name: $0),
+                size: BPKObjcUIKitIcon.concreteSizeForLargeIcon
             )
         }
 

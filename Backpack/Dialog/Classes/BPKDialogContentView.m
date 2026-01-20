@@ -27,7 +27,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKActionButtonPair : NSObject
 @property(nonatomic, strong) BPKDialogButtonAction *action;
-@property(nonatomic, weak) BPKButton *button;
+@property(nonatomic, weak) BPKObjcUIKitButton *button;
 @property(readonly, nonatomic) BOOL hasIcon;
 @property(readonly, nonatomic) BOOL hasFlareView;
 @end
@@ -130,14 +130,14 @@ NS_ASSUME_NONNULL_BEGIN
     ]];
 }
 
-- (void)buttonTapped:(BPKButton *)button {
+- (void)buttonTapped:(BPKObjcUIKitButton *)button {
     BPKDialogButtonAction *action = [self actionForButton:button];
     if (action) {
         [self.delegate didInvokeButtonAction:action];
     }
 }
 
-- (BPKDialogButtonAction *_Nullable)actionForButton:(BPKButton *)button {
+- (BPKDialogButtonAction *_Nullable)actionForButton:(BPKObjcUIKitButton *)button {
     for (BPKActionButtonPair *pair in self.registeredActions) {
         if (pair.button == button) {
             return pair.action;
@@ -193,7 +193,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)addButtonAction:(BPKDialogButtonAction *)action {
     BPKAssertMainThread();
-    BPKButton *button = [[BPKButton alloc] initWithSize:self.buttonSize style:action.style];
+    BPKObjcUIKitButton *button = [[BPKObjcUIKitButton alloc] initWithSize:self.buttonSize style:action.style];
     [button setTitle:action.title];
     [button addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
     [self.buttonStackView addArrangedSubview:button];

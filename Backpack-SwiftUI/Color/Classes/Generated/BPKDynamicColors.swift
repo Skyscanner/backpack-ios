@@ -46,7 +46,7 @@ public extension BPKColor {
         .darkVariant(BPKColor(red: 0.004, green: 0.035, blue: 0.075, alpha: 1))
 
     /// The `coreEcoColor` dynamic color from the Backpack palette.
-    
+    @available(*, deprecated, message: "This colour will be removed in the next major version")
     static let coreEcoColor = BPKColor(red: 0.059, green: 0.631, blue: 0.663, alpha: 1)
         .darkVariant(BPKColor(red: 0.059, green: 0.631, blue: 0.663, alpha: 1))
 
@@ -146,7 +146,7 @@ public extension BPKColor {
         .darkVariant(BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.5019607843137255))
 
     /// The `textLinkColor` dynamic color from the Backpack palette.
-    
+    @available(*, deprecated, message: "This colour will be removed in the next major version")
     static let textLinkColor = BPKColor(red: 0.000, green: 0.384, blue: 0.890, alpha: 1)
         .darkVariant(BPKColor(red: 0.518, green: 0.914, blue: 1.000, alpha: 1))
 

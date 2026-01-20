@@ -19,17 +19,21 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "BPKCard.h"
 #import "BPKCardDivider.h"
+#import "BPKObjcUIKitCard.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * `BPKDividedCard` is a subclass of `BPKCard` which contains the Skyscanner divided card style.
+ * `BPKObjcUIKitDividedCard` is a subclass of `BPKObjcUIKitCard` which contains the Skyscanner divided card style.
  * Divided cards are a lightweight containers with a subtle shadow and two subviews.
  * Divided cards, like Cards, can be configured to have padding or not.
  */
-IB_DESIGNABLE @interface BPKDividedCard : BPKCard
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
+DEPRECATED_MSG_ATTRIBUTE("BPKObjcUIKitDividedCard is deprecated. Use the SwiftUI BPKCard or Swift wrapper instead.")
+IB_DESIGNABLE @interface BPKObjcUIKitDividedCard : BPKObjcUIKitCard
 
 /**
  * The orientation of the divided card.
@@ -56,14 +60,14 @@ IB_DESIGNABLE @interface BPKDividedCard : BPKCard
 @property(nonatomic, assign) IBInspectable BPKCardDividerLineStyle lineStyle;
 
 /**
- * Create a `BPKDividedCard` with padded initially set.
+ * Create a `BPKObjcUIKitDividedCard` with padded initially set.
  *
  * @param padded Whether the card should have padding or not.
  */
 - (instancetype)initWithPadded:(BOOL)padded;
 
 /**
- * Create a `BPKDividedCard` with two subviews.
+ * Create a `BPKObjcUIKitDividedCard` with two subviews.
  *
  * @param primarySubview The primary subview for the divided card.
  * @param secondarySubview The secondary subview for the divided card.
@@ -72,7 +76,7 @@ IB_DESIGNABLE @interface BPKDividedCard : BPKCard
 - (instancetype)initWithPrimarySubview:(UIView *_Nullable)primarySubview secondarySubview:(UIView *_Nullable)secondarySubview padded:(BOOL)padded;
 
 /**
- * Create a `BPKDividedCard` with two subviews.
+ * Create a `BPKObjcUIKitDividedCard` with two subviews.
  *
  * @param primarySubview The primary subview for the divided card.
  * @param secondarySubview The secondary subview for the divided card.
@@ -85,7 +89,7 @@ IB_DESIGNABLE @interface BPKDividedCard : BPKCard
                            cornerStyle:(BPKCardCornerStyle)cornerStyle;
 
 /**
- * Create a `BPKDividedCard` with two subviews.
+ * Create a `BPKObjcUIKitDividedCard` with two subviews.
  *
  * @param primarySubview The primary subview for the divided card.
  * @param secondarySubview The secondary subview for the divided card.
@@ -100,18 +104,18 @@ IB_DESIGNABLE @interface BPKDividedCard : BPKCard
                              lineStyle:(BPKCardDividerLineStyle)lineStyle NS_DESIGNATED_INITIALIZER;
 
 /**
- * Create a `BPKDividedCard` with a given frame.
+ * Create a `BPKObjcUIKitDividedCard` with a given frame.
  *
  * @param frame The initial frame of the card.
- * @return `BPKDividedCard` instance.
+ * @return `BPKObjcUIKitDividedCard` instance.
  */
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 
 /**
- * Creates a `BPKDividedCard` with a decoder (typically when creating from Storyboards)
+ * Creates a `BPKObjcUIKitDividedCard` with a decoder (typically when creating from Storyboards)
  *
  * @param aDecoder Decoder object to extract parameters from
- * @return `BPKDividedCard` instance.
+ * @return `BPKObjcUIKitDividedCard` instance.
  */
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
 
@@ -139,8 +143,11 @@ IB_DESIGNABLE @interface BPKDividedCard : BPKCard
 - (void)setDistribution:(UIStackViewDistribution)distribution;
 
 /// :nodoc:
-- (void)addSubview:(UIView *)view __attribute__((unavailable("To add subviews to a divided BPKCard, use `setPrimarySubview:secondarySubview:` or "
-                                                             "`initWithPrimarySubview:secondarySubview:padded:`")));
+- (void)addSubview:(UIView *)view
+    __attribute__((unavailable("To add subviews to a divided BPKObjcUIKitCard, use `setPrimarySubview:secondarySubview:` or "
+                               "`initWithPrimarySubview:secondarySubview:padded:`")));
 
 @end
+
+#pragma clang diagnostic pop
 NS_ASSUME_NONNULL_END

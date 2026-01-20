@@ -15,32 +15,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#import <Foundation/Foundation.h>
 
-#import "Font.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+#import <Backpack/Font.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * `BPKTextField` is a subclass of `UITextField` which uses the Skyscanner style.
+ * `BPKObjcUIKitProgressBar` is a lightweight subclass of `UIProgressView` with Skyscanner styling applied.
  */
-IB_DESIGNABLE @interface BPKTextField : UITextField
+DEPRECATED_MSG_ATTRIBUTE("BPKObjcUIKitProgressBar is deprecated. Use the SwiftUI BPKProgressBar instead.")
+IB_DESIGNABLE @interface BPKObjcUIKitProgressBar : UIProgressView
 
 /**
- * Create a `BPKTextField` with a specific BPKFont style.
- *
- * @param style Font style to be used by the TextField.
- * @see BPKFontStyle
+ * The colour to use in the progress track.
  */
-- (instancetype)initWithFontStyle:(BPKFontStyle)style NS_DESIGNATED_INITIALIZER;
-- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
-- (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
+@property(nullable, nonatomic, strong) UIColor *fillColor UI_APPEARANCE_SELECTOR;
 
-/**
- The font style used for the TextField.
-
- @see BPKFontStyle for the integer values to use when setting from Interface Builder.
- */
-@property(nonatomic) BPKFontStyle fontStyle;
 @end
 NS_ASSUME_NONNULL_END

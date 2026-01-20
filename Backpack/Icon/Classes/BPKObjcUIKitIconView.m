@@ -15,23 +15,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#import "BPKIconView.h"
+#import "BPKObjcUIKitIconView.h"
 
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKIconView ()
+@interface BPKObjcUIKitIconView ()
 
 - (void)setUp;
 @end
 
-@implementation BPKIconView
+@implementation BPKObjcUIKitIconView
 
 - (instancetype)initWithIconName:(nullable BPKIconName)iconName size:(BPKIconSize)size {
     BPKAssertMainThread();
-    CGSize displaySize = [BPKIcon concreteSizeForIconSize:size];
+    CGSize displaySize = [BPKObjcUIKitIcon concreteSizeForIconSize:size];
 
     self = [super initWithFrame:CGRectMake(0, 0, displaySize.width, displaySize.height)];
 
@@ -49,10 +49,10 @@ NS_ASSUME_NONNULL_BEGIN
     if (self.iconName) {
         switch (self.size) {
         case BPKIconSizeSmall:
-            super.image = [BPKIcon smallTemplateIconNamed:self.iconName];
+            super.image = [BPKObjcUIKitIcon smallTemplateIconNamed:self.iconName];
             break;
         case BPKIconSizeLarge:
-            super.image = [BPKIcon largeTemplateIconNamed:self.iconName];
+            super.image = [BPKObjcUIKitIcon largeTemplateIconNamed:self.iconName];
             break;
         }
     }
@@ -105,7 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIImage *)imageWithIconName:(BPKIconName)iconName size:(BPKIconSize)size flipsForRightToLeft:(BOOL)flipsForRightToLeft {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-    UIImage *image = [BPKIcon templateIconNamed:iconName size:size];
+    UIImage *image = [BPKObjcUIKitIcon templateIconNamed:iconName size:size];
 #pragma GCC diagnostic pop
 
     if (flipsForRightToLeft) {
@@ -118,7 +118,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (CGSize)intrinsicContentSize {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-    return [BPKIcon concreteSizeForIconSize:self.size];
+    return [BPKObjcUIKitIcon concreteSizeForIconSize:self.size];
 #pragma GCC diagnostic pop
 }
 

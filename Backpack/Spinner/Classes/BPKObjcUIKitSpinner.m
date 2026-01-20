@@ -16,17 +16,17 @@
  * limitations under the License.
  */
 
-#import "BPKSpinner.h"
+#import "BPKObjcUIKitSpinner.h"
 
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKSpinner ()
+@interface BPKObjcUIKitSpinner ()
 @end
 
-@implementation BPKSpinner
+@implementation BPKObjcUIKitSpinner
 
 - (instancetype)initWithStyle:(BPKSpinnerStyle)style size:(BPKSpinnerSize)size {
     BPKAssertMainThread();

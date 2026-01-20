@@ -19,7 +19,8 @@
 import Backpack
 
 class CardsViewController: UIViewController {
-    @IBOutlet weak var card: BPKCard!
+    @available(*, deprecated, message: "We intentionally use this deprecated API.")
+    @IBOutlet weak var card: BPKObjcUIKitCard!
     var padded = true
     var selected = false
     var configuration: BPKCardConfiguration = BPKCardConfigurationContainer()

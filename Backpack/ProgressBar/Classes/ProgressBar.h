@@ -18,6 +18,6 @@
 #ifndef __BACKPACK_PROGRESS_BAR__
 #define __BACKPACK_PROGRESS_BAR__
 
-#import "BPKProgressBar.h"
+#import "BPKObjcUIKitProgressBar.h"
 
 #endif

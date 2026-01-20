@@ -103,7 +103,7 @@ class BPKFlightLegViewController: UIViewController {
             flightDescription: defaultDescription,
             stopsInfo: "Direct",
             duration: "7h 55m",
-            carrierLogo: BPKIcon.makeLargeIcon(name: .airline, color: BPKColor.textOnLightColor)
+            carrierLogo: BPKObjcUIKitIcon.makeLargeIcon(name: .airline, color: BPKColor.textOnLightColor)
         )
     }
     
@@ -117,7 +117,7 @@ class BPKFlightLegViewController: UIViewController {
             duration: "7h 55m",
             operatedBy: "Operated by WestJet",
             warning: "Change airports in London",
-            carrierLogo: BPKIcon.makeLargeIcon(name: .airlineMultiple, color: BPKColor.textOnLightColor)
+            carrierLogo: BPKObjcUIKitIcon.makeLargeIcon(name: .airlineMultiple, color: BPKColor.textOnLightColor)
         )
     }
     
@@ -132,7 +132,7 @@ class BPKFlightLegViewController: UIViewController {
             operatedBy: "Operated by WestJet Operated by WestJet Operated" +
             "by WestJet Operated by WestJet Operated by WestJet",
             warning: "Change airports in London",
-            carrierLogo: BPKIcon.makeLargeIcon(name: .airlineMultiple, color: BPKColor.textOnLightColor)
+            carrierLogo: BPKObjcUIKitIcon.makeLargeIcon(name: .airlineMultiple, color: BPKColor.textOnLightColor)
         )
     }
     
@@ -146,7 +146,7 @@ class BPKFlightLegViewController: UIViewController {
             duration: "7h 55m",
             operatedBy: "Operated by WestJet",
             warning: "Change airports in London",
-            carrierLogo: BPKIcon.makeLargeIcon(name: .airlineMultiple, color: BPKColor.textOnLightColor)
+            carrierLogo: BPKObjcUIKitIcon.makeLargeIcon(name: .airlineMultiple, color: BPKColor.textOnLightColor)
         )
     }
     

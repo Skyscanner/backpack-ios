@@ -31,7 +31,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Cache Node modules
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         id: cache_node_modules
         with:
           path: node_modules
@@ -47,7 +47,7 @@ jobs:
         run: npm run build
 
       - name: Cache Bundler install Gems
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         id: cache_bundler_install_gems
         with:
           path: vendor/bundle
@@ -56,7 +56,7 @@ jobs:
             ${{ runner.os }}-gems-${{ env.ImageVersion }}
 
       - name: Cache Pods
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         id: cache_pods
         with:
           path: Example/Pods
@@ -118,7 +118,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Cache Bundler install Gems
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-gems-${{ env.ImageVersion }}-${{ hashFiles('**/Gemfile.lock') }}
@@ -126,7 +126,7 @@ jobs:
             ${{ runner.os }}-gems-${{ env.ImageVersion }}
 
       - name: Cache Pods
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: Example/Pods
           key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
@@ -163,7 +163,7 @@ jobs:
     timeout-minutes: 20
     steps:
       - name: Save assets
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         if: ${{ failure() }}
         with:
           name: FailureDiffs

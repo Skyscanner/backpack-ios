@@ -31,7 +31,7 @@ final class BottomSheetResizableContentViewController: UIViewController {
     }
 
     @IBOutlet private var heightConstraint: NSLayoutConstraint!
-    @IBOutlet private var button: BPKButton!
+    @IBOutlet private var button: BPKObjcUIKitButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()

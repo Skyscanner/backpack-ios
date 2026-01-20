@@ -34,6 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
  * A navigation bar component similar to `UINavigationBar` from UIKit implementing
  * the iOS 11 style large title pattern.
  */
+DEPRECATED_MSG_ATTRIBUTE("BPKNavigationBar is deprecated. Use the SwiftUI BPKNavigationView instead.")
 @interface BPKNavigationBar : UIView
 /**
  * A `BPKNavigationBarButton` to show on the left side inside the navigation

@@ -118,6 +118,6 @@ struct BPKSearchControlInput_Previews: PreviewProvider {
             BPKSearchControlInput(placeholder: "Field", value: nil, icon: .calendar, accessibilityLabel: "Input") {}
         }
         .padding()
-        .background(.coreEcoColor)
+        .background(.corePrimaryColor)
     }
 }

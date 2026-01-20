@@ -89,7 +89,7 @@ class BPKDialogViewSnapshotTest: XCTestCase {
     }
     
     func testDialogViewWithLargeCornerStyleAndFlareViewAndButtons() {
-        let flare = BPKFlareView(frame: .zero)
+        let flare = BPKObjcUIKitFlareView(frame: .zero)
         let dialog = dialog(
             title: title,
             message: message,
@@ -103,7 +103,7 @@ class BPKDialogViewSnapshotTest: XCTestCase {
     }
     
     func testDialogViewWithLargeCornerStyleAndFlareViewAndSmallButtons() {
-        let flare = BPKFlareView(frame: .zero)
+        let flare = BPKObjcUIKitFlareView(frame: .zero)
         let dialog = dialog(
             title: title,
             message: message,
@@ -118,7 +118,7 @@ class BPKDialogViewSnapshotTest: XCTestCase {
     }
     
     func testDialogViewWithLargeCornerStyleAndTallFlareViewAndButtons() {
-        let flare = BPKFlareView(frame: .zero)
+        let flare = BPKObjcUIKitFlareView(frame: .zero)
         let dialog = dialog(
             title: title,
             message: message,
@@ -207,7 +207,7 @@ private extension BPKDialogIconDefinition {
     
     private static func large(named: BPKLargeIconName, color: UIColor) -> BPKDialogIconDefinition {
         BPKDialogIconDefinition(
-            icon: BPKIcon.makeLargeTemplateIcon(name: named),
+            icon: BPKObjcUIKitIcon.makeLargeTemplateIcon(name: named),
             iconBackgroundColor: color
         )
     }

@@ -49,7 +49,7 @@ class BPKChipConfigurationTests: XCTestCase {
                     .background(.surfaceContrastColor)
                 BPKChip("Option", style: .onImage) {}
                     .padding()
-                    .background(.coreEcoColor)
+                    .background(.coreAccentColor)
             }.padding()
         )
     }
@@ -63,7 +63,7 @@ class BPKChipConfigurationTests: XCTestCase {
                     .background(.surfaceContrastColor)
                 BPKChip("Option", icon: .account, style: .onImage) {}
                     .padding()
-                    .background(.coreEcoColor)
+                    .background(.coreAccentColor)
             }.padding()
         )
     }
@@ -77,7 +77,7 @@ class BPKChipConfigurationTests: XCTestCase {
                     .background(.surfaceContrastColor)
                 BPKChip("Selected", icon: .account, selected: true, style: .onImage) {}
                     .padding()
-                    .background(.coreEcoColor)
+                    .background(.coreAccentColor)
             }.padding()
         )
     }
@@ -96,7 +96,7 @@ class BPKChipConfigurationTests: XCTestCase {
                     BPKDropdownChip("Options", icon: .account, style: .onImage) {}
                         .padding()
                 }
-                .background(.coreEcoColor)
+                .background(.coreAccentColor)
             }.padding()
         )
     }
@@ -111,8 +111,8 @@ class BPKChipConfigurationTests: XCTestCase {
                     .background(.surfaceContrastColor)
                 BPKDismissableChip("Dismiss", icon: .account, style: .onImage) {}
                     .padding()
-                    .background(.coreEcoColor)
-                
+                    .background(.coreAccentColor)
+
             }.padding()
         )
     }

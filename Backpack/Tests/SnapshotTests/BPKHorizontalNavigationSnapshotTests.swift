@@ -123,17 +123,17 @@ struct StoryIcon<Size: BPKHorizontalNavigationSize>: BPKHorizontalNavigationOpti
     
     func makeImage() -> UIImage {
         if Self.isSmall {
-            return BPKIcon.makeSmallTemplateIcon(name: smallIconName)
+            return BPKObjcUIKitIcon.makeSmallTemplateIcon(name: smallIconName)
         } else {
-            return BPKIcon.makeLargeTemplateIcon(name: largeIconName)
+            return BPKObjcUIKitIcon.makeLargeTemplateIcon(name: largeIconName)
         }
     }
 
     static var size: CGSize {
         if isSmall {
-            return BPKIcon.concreteSizeForSmallIcon
+            return BPKObjcUIKitIcon.concreteSizeForSmallIcon
         } else {
-            return BPKIcon.concreteSizeForLargeIcon
+            return BPKObjcUIKitIcon.concreteSizeForLargeIcon
         }
     }
 }

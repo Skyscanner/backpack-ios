@@ -58,7 +58,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * <div style="width: 100px; height: 100px; background-color: #0fa1a9ff; background: linear-gradient(0.375turn, #0fa1a9ff 49%, #0fa1a9ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * bpk_coreEcoColor;
+@property(nonatomic, class, readonly) UIColor * bpk_coreEcoColor __deprecated;
 
 /**
  * The `coreAccentColor` dynamic color from the Backpack palette.
@@ -198,7 +198,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * <div style="width: 100px; height: 100px; background-color: #0062e3ff; background: linear-gradient(0.375turn, #0062e3ff 49%, #84e9ffff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * bpk_textLinkColor;
+@property(nonatomic, class, readonly) UIColor * bpk_textLinkColor __deprecated;
 
 /**
  * The `textHeroColor` dynamic color from the Backpack palette.

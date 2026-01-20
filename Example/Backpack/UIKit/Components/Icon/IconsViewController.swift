@@ -57,7 +57,7 @@ class IconsViewController: UICollectionViewController {
         collectionView?.contentInset = UIEdgeInsets(
             top: BPKSpacingBase, left: BPKSpacingBase, bottom: BPKSpacingBase, right: BPKSpacingBase
         )
-        layout.estimatedItemSize = BPKIcon.concreteSizeForLargeIcon
+        layout.estimatedItemSize = BPKObjcUIKitIcon.concreteSizeForLargeIcon
     }
 }
 

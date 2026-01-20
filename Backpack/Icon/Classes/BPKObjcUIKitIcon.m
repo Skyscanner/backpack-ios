@@ -15,20 +15,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#import "BPKIcon.h"
+#import "BPKObjcUIKitIcon.h"
 
 #import <Backpack_Common/Backpack_Common-Swift.h>
 #import <CoreText/CoreText.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKIcon ()
+@interface BPKObjcUIKitIcon ()
 @property(class, nonatomic, readonly) NSCache<NSString *, UIImage *> *imageCache;
 
 + (NSString *)cacheKeyForIconNamed:(NSString *)name withColor:(UIColor *)color size:(BPKIconSize)size;
 @end
 
-@implementation BPKIcon
+@implementation BPKObjcUIKitIcon
 @dynamic imageCache;
 
 + (UIImage *)templateIconNamed:(NSString *)name size:(BPKIconSize)size {
@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
         return icon;
     }
 
-    NSString *iconName = [BPKIcon iconName:name forSize:size];
+    NSString *iconName = [BPKObjcUIKitIcon iconName:name forSize:size];
     NSBundle *iconsBundle = BPKCommonBundle.iconsBundle;
     icon = [UIImage imageNamed:iconName inBundle:iconsBundle withConfiguration:nil];
     if (icon == nil) {

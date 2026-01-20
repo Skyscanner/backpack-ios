@@ -106,8 +106,8 @@ final class FloatingNotificationViewController: UIViewController {
             ))
     }
     
-    private static func makeButton(with title: String) -> BPKButton {
-        let button = BPKButton(size: .default, style: .primary)
+    private static func makeButton(with title: String) -> BPKObjcUIKitButton {
+        let button = BPKObjcUIKitButton(size: .default, style: .primary)
         button.title = title
         button.translatesAutoresizingMaskIntoConstraints = false
         return button

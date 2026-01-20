@@ -19,8 +19,9 @@
 import UIKit
 import Backpack
 
+@available(*, deprecated, message: "We intentionally use this deprecated API.")
 class FlareViewViewController: UIViewController {
-    @IBOutlet weak var flareView: BPKFlareView!
+    @IBOutlet weak var flareView: BPKObjcUIKitFlareView!
 
     var backgroundImage: Bool = false
     var rounded: Bool = false

@@ -42,7 +42,6 @@ struct ColorTokens {
             .init(color: .textPrimaryColor, name: ".textPrimaryColor"),
             .init(color: .textSecondaryColor, name: ".textSecondaryColor"),
             .init(color: .textDisabledColor, name: ".textDisabledColor"),
-            .init(color: .textLinkColor, name: ".textLinkColor"),
             .init(color: .textErrorColor, name: ".textErrorColor"),
             .init(color: .textPrimaryInverseColor, name: ".textPrimaryInverseColor"),
             .init(color: .textOnDarkColor, name: ".textOnDarkColor"),
@@ -50,8 +49,7 @@ struct ColorTokens {
         ]),
         .init(name: "Core", colors: [
             .init(color: .corePrimaryColor, name: ".corePrimaryColor"),
-            .init(color: .coreAccentColor, name: ".coreAccentColor"),
-            .init(color: .coreEcoColor, name: ".coreEcoColor")
+            .init(color: .coreAccentColor, name: ".coreAccentColor")
         ]),
         .init(name: "Status", colors: [
             .init(color: .statusSuccessSpotColor, name: ".statusSuccessSpotColor"),
