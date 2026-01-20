@@ -4,31 +4,31 @@ set -e
 EXAMPLE_WORKSPACE="Example/Backpack.xcworkspace"
 SWIFT=${SWIFT:-'5.0'}
 BUILD_SDK=${BUILD_SDK:-'iphonesimulator'}
-DESTINATION=${DESTINATION:-"platform=iOS Simulator,name=iPhone SE (3rd generation),OS=18.4"}
+DESTINATION=${DESTINATION:-"platform=iOS Simulator,name=iPhone SE (3rd generation),OS=18.5"}
 
 # --------------------------------------------------------------------
-# CI: Pick the iOS 18.4 "iPhone SE (3rd generation)" simulator
+# CI: Pick the iOS 18.5 "iPhone SE (3rd generation)" simulator
 # using simctl's runtime filter and use its UDID as destination.
 # --------------------------------------------------------------------
 
-if [[ -n "$CI" && "$DESTINATION" == "platform=iOS Simulator,name=iPhone SE (3rd generation),OS=18.4" ]]; then
-  echo "CI detected. Selecting iOS 18.4 'iPhone SE (3rd generation)' simulator via simctl..."
+if [[ -n "$CI" && "$DESTINATION" == "platform=iOS Simulator,name=iPhone SE (3rd generation),OS=18.5" ]]; then
+  echo "CI detected. Selecting iOS 18.5 'iPhone SE (3rd generation)' simulator via simctl..."
 
-  # Ask simctl only for devices in the iOS 18.4 runtime.
-  # On Xcode 16.x this is usually "iOS 18.4" or the runtime identifier
-  # com.apple.CoreSimulator.SimRuntime.iOS-18-4. The plain "iOS 18.4"
+  # Ask simctl only for devices in the iOS 18.5 runtime.
+  # On Xcode 16.x this is usually "iOS 18.5" or the runtime identifier
+  # com.apple.CoreSimulator.SimRuntime.iOS-18-4. The plain "iOS 18.5"
   # form is nicer and supported.
   DEVICE_UDID=$(
-    xcrun simctl list devices "iOS 18.4" | \
+    xcrun simctl list devices "iOS 18.5" | \
       grep "iPhone SE (3rd generation)" | \
       head -n 1 | \
       sed -E 's/.*\(([0-9A-Fa-f-]+)\).*/\1/'
   )
 
   if [[ -z "$DEVICE_UDID" ]]; then
-    echo "Error: Could not find an 'iPhone SE (3rd generation)' simulator for iOS 18.4."
-    echo "Debug: simctl list devices 'iOS 18.4' output:"
-    xcrun simctl list devices "iOS 18.4" || true
+    echo "Error: Could not find an 'iPhone SE (3rd generation)' simulator for iOS 18.5."
+    echo "Debug: simctl list devices 'iOS 18.5' output:"
+    xcrun simctl list devices "iOS 18.5" || true
     exit 1
   fi
 
