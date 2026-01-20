@@ -28,6 +28,7 @@ public enum ConfigType: String {
     case card = "backpack_card"
     case icon = "backpack_icon"
     case all = "backpack_all"
+    case variantC = "backpack_variant_c"
 }
 
 @objcMembers
@@ -304,6 +305,8 @@ public final class BpkConfiguration: NSObject {
                 setCardExperiment()
             case .icon:
                 setIconExperiment()
+            case .variantC:
+                setVariantC()
             }
         }
     }
@@ -315,6 +318,14 @@ public final class BpkConfiguration: NSObject {
         setButtonExperiment()
         setCardExperiment()
         setIconExperiment()
+    }
+    
+    func setVariantC() {
+        setChipExperiment()
+        setTypographyExperiment()
+        setBadgeExperiment()
+        setButtonExperiment()
+        setCardExperiment()
     }
 }
 
