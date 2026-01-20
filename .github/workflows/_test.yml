@@ -88,9 +88,13 @@ jobs:
 
       - name: Save snapshots
         if: ${{inputs.retake_snapshots}}
+        env:
+          TOKEN: ${{ steps.app-token.outputs.token }}
+          REPOSITORY: ${{ github.repository }}
         run: |
           git config --local user.email "197108191+skyscanner-backpack-bot[bot]@users.noreply.github.com"
           git config --local user.name "skyscanner-backpack-bot[bot]"
+          git remote set-url origin https://x-access-token:${TOKEN}@github.com/${REPOSITORY}.git
           git fetch origin $GITHUB_HEAD_REF
           git checkout $GITHUB_HEAD_REF
           git add --ignore-removal */**/__Snapshots__/*.png
