@@ -26,6 +26,7 @@ public final class SwiftUILinkViewModel: ObservableObject {
     public var onCustomLink: (URL) -> Void
     public var accessibilityIdentifier: String?
     public var accessibilityLabel: String?
+    public var accessibilityTraits: AccessibilityTraits?
     
     public init(
         markdown: String,
@@ -58,6 +59,9 @@ public struct ReactiveSwiftUIBPKLinkWrapper: View {
         }
         .if((viewModel.accessibilityIdentifier?.isEmpty == false)) { link in
             link.accessibilityIdentifier(viewModel.accessibilityIdentifier!)
+        }
+        .if(viewModel.accessibilityTraits != nil) { link in
+            link.accessibilityAddTraits(viewModel.accessibilityTraits!)
         }
     }
 }
