@@ -18,6 +18,9 @@
 
 import Foundation
 import UIKit
+#if SWIFT_PACKAGE
+import BackpackTokens
+#endif
 
 public enum BPKSkeletonSize: Equatable {
     case small, `default`, large, custom(size: CGSize)

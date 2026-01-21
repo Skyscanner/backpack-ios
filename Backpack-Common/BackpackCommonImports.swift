@@ -16,5 +16,5 @@
  * limitations under the License.
  */
 
-@_exported import Foundation
-@_exported import UIKit
+import Foundation
+import UIKit

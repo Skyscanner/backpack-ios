@@ -18,6 +18,9 @@
 
 import UIKit
 import QuartzCore
+#if SWIFT_PACKAGE
+import BackpackTokens
+#endif
 
 final class VignetteOverlay: CAShapeLayer {
     override init() {
