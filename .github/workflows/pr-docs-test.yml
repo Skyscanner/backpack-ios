@@ -1,0 +1,124 @@
+name: PR Documentation Test
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'Backpack/**/README.md'
+      - 'Backpack-SwiftUI/**/README.md'
+      - 'screenshots/**'
+      - 'scripts/prepare-docs'
+      - 'ARCHITECTURE.md'
+      - '.github/workflows/pr-docs-test.yml'
+      - '.github/workflows/release.yml'
+
+defaults:
+  run:
+    shell: bash -l {0}
+
+jobs:
+  test-documentation-publishing:
+    name: Test Documentation Publishing
+    runs-on: macos-14
+    environment: Publishing
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      packages: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Prepare component documentation
+        run: ./scripts/prepare-docs pr-${{ github.event.pull_request.number }}
+
+      - name: Verify documentation structure
+        run: |
+          echo "📁 Checking documentation structure..."
+
+          # Check required directories exist
+          for dir in "docs" "docs/docs" "docs/docs/uikit" "docs/docs/swiftui" "docs/docs/screenshots"; do
+            if [[ ! -d "$dir" ]]; then
+              echo "❌ Missing directory: $dir"
+              exit 1
+            else
+              echo "✅ Found directory: $dir"
+            fi
+          done
+
+          # Check index.html exists
+          if [[ ! -f "docs/index.html" ]]; then
+            echo "❌ Missing docs/index.html"
+            exit 1
+          else
+            echo "✅ Found docs/index.html"
+          fi
+
+          # Count components
+          uikit_count=$(find docs/docs/uikit -name "README.md" | wc -l)
+          swiftui_count=$(find docs/docs/swiftui -name "README.md" | wc -l)
+          screenshot_count=$(find docs/docs/screenshots -type f | wc -l)
+
+          echo "📊 Documentation summary:"
+          echo "  • UIKit components: $uikit_count"
+          echo "  • SwiftUI components: $swiftui_count"
+          echo "  • Screenshots: $screenshot_count"
+
+          # Verify minimum component counts (adjust as needed)
+          if [[ $uikit_count -lt 40 ]]; then
+            echo "⚠️ Warning: Only $uikit_count UIKit components found (expected ~47)"
+          fi
+
+          if [[ $swiftui_count -lt 40 ]]; then
+            echo "⚠️ Warning: Only $swiftui_count SwiftUI components found (expected ~55)"
+          fi
+
+      - name: Validate URL replacements
+        run: |
+          echo "🔗 Checking URL replacements..."
+
+          # Check if any old URLs remain
+          old_urls=$(grep -r "Skyscanner/backpack-ios" docs/ || true)
+          if [[ -n "$old_urls" ]]; then
+            echo "❌ Found unreplaced URLs:"
+            echo "$old_urls"
+            exit 1
+          else
+            echo "✅ All URLs correctly updated to backpack/ios"
+          fi
+
+          # Count new URLs
+          new_url_count=$(grep -r "backpack/ios" docs/ | wc -l)
+          echo "📈 Found $new_url_count references to backpack/ios"
+
+      - name: Test index.html validity
+        run: |
+          echo "🔍 Validating index.html..."
+
+          # Basic HTML validation
+          if grep -q "<!DOCTYPE html>" docs/index.html; then
+            echo "✅ Valid HTML DOCTYPE found"
+          else
+            echo "❌ Missing or invalid DOCTYPE"
+            exit 1
+          fi
+
+          echo "✅ index.html validation complete"
+
+      - name: Deploy test documentation to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ secrets.DEPLOY_TOKEN }}
+          publish_dir: docs/
+          keep_files: true
+          external_repository: backpack/ios
+          publish_branch: pr-docs-test
+
+      - name: Output documentation URL
+        run: |
+          echo "📚 Test documentation deployed!"
+          echo "🔗 Preview URL: https://backpack.github.io/ios/"
+          echo ""
+          echo "Note: This is a test deployment on the pr-docs-test branch."
+          echo "The documentation will be available at the preview URL shortly."
