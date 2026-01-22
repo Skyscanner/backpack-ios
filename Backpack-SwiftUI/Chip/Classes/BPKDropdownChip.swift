@@ -52,6 +52,7 @@ public struct BPKDropdownChip: View {
                 }
                 Text(text)
                     .font(style: .footnote)
+                    .fixedSize(horizontal: true, vertical: false)
                 BPKIconView(.chevronDown)
             }
             .padding(.trailing, .md)
