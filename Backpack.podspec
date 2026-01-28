@@ -33,7 +33,7 @@ Pod::Spec.new do |s|
   }
   s.ios.deployment_target = '16.0'
   s.source_files = 'Backpack/Backpack.h', 'Backpack/Common.h', 'Backpack/*/Classes/**/*.{h,m,swift}'
-  s.exclude_files = 'Backpack/Tests/**'
+  s.exclude_files = 'Backpack/Tests/**', 'Backpack/BorderWidth/Classes/BPKBorderWidth.h', 'Backpack/Color/Classes/BPKColor.h', 'Backpack/Color/Classes/UIColor+Backpack.h', 'Backpack/Duration/Classes/BPKDuration.h', 'Backpack/Font/Classes/BPKFont.h', 'Backpack/Radii/Classes/BPKRadii.h', 'Backpack/Shadow/Classes/BPKShadow.h', 'Backpack/Spacing/Classes/BPKSpacing.h'
   s.public_header_files = 'Backpack/Backpack.h', 'Backpack/*/Classes/**/*.h'
   s.private_header_files = 'Backpack/{BorderWidth,Color,Duration,Font,Radii,Shadow,Spacing}/Classes/Generated/**/*.h'
   s.dependency 'FloatingPanel', '2.8.6'
