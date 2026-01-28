@@ -19,6 +19,10 @@
 #ifndef __BACKPACK_RADII_GENERATED_BRIDGE__
 #define __BACKPACK_RADII_GENERATED_BRIDGE__
 
+#ifdef SWIFT_PACKAGE
 #import "Generated/BPKRadii.h"
+#else
+#import <Backpack/Generated/BPKRadii.h>
+#endif
 
 #endif

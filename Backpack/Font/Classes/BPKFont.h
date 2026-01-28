@@ -19,6 +19,10 @@
 #ifndef __BACKPACK_FONT_GENERATED_BRIDGE__
 #define __BACKPACK_FONT_GENERATED_BRIDGE__
 
+#ifdef SWIFT_PACKAGE
 #import "Generated/BPKFont.h"
+#else
+#import <Backpack/Generated/BPKFont.h>
+#endif
 
 #endif

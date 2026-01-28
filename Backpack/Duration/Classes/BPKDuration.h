@@ -19,6 +19,10 @@
 #ifndef __BACKPACK_DURATION_GENERATED_BRIDGE__
 #define __BACKPACK_DURATION_GENERATED_BRIDGE__
 
+#ifdef SWIFT_PACKAGE
 #import "Generated/BPKDuration.h"
+#else
+#import <Backpack/Generated/BPKDuration.h>
+#endif
 
 #endif

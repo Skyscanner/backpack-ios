@@ -19,6 +19,10 @@
 #ifndef __BACKPACK_COLOR_GENERATED_BRIDGE__
 #define __BACKPACK_COLOR_GENERATED_BRIDGE__
 
+#ifdef SWIFT_PACKAGE
 #import "Generated/BPKColor.h"
+#else
+#import <Backpack/Generated/BPKColor.h>
+#endif
 
 #endif

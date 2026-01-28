@@ -19,6 +19,10 @@
 #ifndef __BACKPACK_COLOR_CATEGORY_BRIDGE__
 #define __BACKPACK_COLOR_CATEGORY_BRIDGE__
 
+#ifdef SWIFT_PACKAGE
 #import "Generated/UIColor+Backpack.h"
+#else
+#import <Backpack/Generated/UIColor+Backpack.h>
+#endif
 
 #endif

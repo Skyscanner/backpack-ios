@@ -19,6 +19,10 @@
 #ifndef __BACKPACK_SHADOW_GENERATED_BRIDGE__
 #define __BACKPACK_SHADOW_GENERATED_BRIDGE__
 
+#ifdef SWIFT_PACKAGE
 #import "Generated/BPKShadow.h"
+#else
+#import <Backpack/Generated/BPKShadow.h>
+#endif
 
 #endif

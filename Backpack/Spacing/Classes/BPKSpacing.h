@@ -19,6 +19,10 @@
 #ifndef __BACKPACK_SPACING_GENERATED_BRIDGE__
 #define __BACKPACK_SPACING_GENERATED_BRIDGE__
 
+#ifdef SWIFT_PACKAGE
 #import "Generated/BPKSpacing.h"
+#else
+#import <Backpack/Generated/BPKSpacing.h>
+#endif
 
 #endif

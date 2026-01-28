@@ -19,6 +19,10 @@
 #ifndef __BACKPACK_BORDERWIDTH_GENERATED_BRIDGE__
 #define __BACKPACK_BORDERWIDTH_GENERATED_BRIDGE__
 
+#ifdef SWIFT_PACKAGE
 #import "Generated/BPKBorderWidth.h"
+#else
+#import <Backpack/Generated/BPKBorderWidth.h>
+#endif
 
 #endif
