@@ -397,7 +397,7 @@ To use our `Skyscanner Relative` font-face in the example app do the following:
 - Set the environment variable using `export BPK_USE_RELATIVE=1`. (Put this in your `.bashrc`/`.zshrc` for convenience.)
 - Setup the project as [above](#setup).
 
-During pod install, fonts will be downloaded and made available to the project automatically.
+During pod install, fonts will be downloaded and made available to the project automatically. When working purely with the Swift Package Manager workspace, run `BPK_USE_RELATIVE=1 ./Scripts/download-relative-fonts.rb` from `Backpack-Fonts/` before building so that the `Backpack-Fonts` package has the font assets to bundle.
 </details>
 
 <details>
@@ -495,4 +495,3 @@ To issue a new release:
 The release workflow will also trigger our design docs publish. If successful, you should see your component changes at [skyscanner.design](https://skyscanner.design).
 
  > Note: Don't forget that new components need to be added manually!
-
