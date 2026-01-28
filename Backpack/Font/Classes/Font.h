@@ -19,7 +19,11 @@
 #ifndef __BACKPACK_FONT__
 #define __BACKPACK_FONT__
 
+#ifdef SWIFT_PACKAGE
 #import "BPKFont.h"
+#else
+#import "Generated/BPKFont.h"
+#endif
 #if __has_include(<Backpack_Common/Backpack_Common-Swift.h>)
 #import <Backpack_Common/Backpack_Common-Swift.h>
 #elif __has_include("Backpack_Common-Swift.h")

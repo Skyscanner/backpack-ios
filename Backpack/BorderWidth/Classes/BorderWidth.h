@@ -19,6 +19,10 @@
 #ifndef __BACKPACK_BORDER_SIZE__
 #define __BACKPACK_BORDER_SIZE__
 
+#ifdef SWIFT_PACKAGE
 #import "BPKBorderWidth.h"
+#else
+#import "Generated/BPKBorderWidth.h"
+#endif
 
 #endif
