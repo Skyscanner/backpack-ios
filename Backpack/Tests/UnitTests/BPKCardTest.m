@@ -19,7 +19,11 @@
 #import <XCTest/XCTest.h>
 
 #import <Backpack/Card.h>
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Color.h>
+#else
+#import "Generated/BPKColor.h"
+#endif
 #import <Backpack/Label.h>
 
 @interface BPKCardTest : XCTestCase

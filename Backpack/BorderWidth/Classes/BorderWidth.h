@@ -21,8 +21,6 @@
 
 #ifdef SWIFT_PACKAGE
 #import "BPKBorderWidth.h"
-#else
-#import "Generated/BPKBorderWidth.h"
 #endif
 
 #endif

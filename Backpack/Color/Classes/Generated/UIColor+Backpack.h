@@ -17,6 +17,9 @@
  * limitations under the License.
  */
 
+#ifndef __UICOLOR_BACKPACK_H__
+#define __UICOLOR_BACKPACK_H__
+
 #import <UIKit/UIKit.h>
 
 
@@ -287,4 +290,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 NS_ASSUME_NONNULL_END
+
+#endif /* __UICOLOR_BACKPACK_H__ */
 // clang-format on

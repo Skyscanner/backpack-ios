@@ -19,10 +19,23 @@
 #import "BPKDialogContentView.h"
 
 #import <Backpack/Button.h>
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Color.h>
+#else
+#import "Generated/BPKColor.h"
+#endif
+#ifdef SWIFT_PACKAGE
+#import <Backpack/Font.h>
+#else
+#import "Generated/BPKFont.h"
+#endif
 #import <Backpack/Common.h>
 #import <Backpack/Label.h>
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Spacing.h>
+#else
+#import "Generated/BPKSpacing.h"
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKActionButtonPair : NSObject

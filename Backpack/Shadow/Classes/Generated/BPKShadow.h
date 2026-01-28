@@ -17,6 +17,9 @@
  * limitations under the License.
  */
 #import <Foundation/Foundation.h>
+#ifndef __BPKSHADOW_H__
+#define __BPKSHADOW_H__
+
 
 NS_ASSUME_NONNULL_BEGIN
 @class UIColor, CALayer;
@@ -72,4 +75,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 NS_ASSUME_NONNULL_END
+
+#endif /* __BPKSHADOW_H__ */
 // clang-format on

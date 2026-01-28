@@ -19,9 +19,17 @@
 
 #import "TTTAttributedLabel.h"
 
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Color.h>
+#else
+#import "Generated/BPKColor.h"
+#endif
 #import <Backpack/Common.h>
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Font.h>
+#else
+#import "Generated/BPKFont.h"
+#endif
 
 #import "BPKTappableLinkDefinition.h"
 

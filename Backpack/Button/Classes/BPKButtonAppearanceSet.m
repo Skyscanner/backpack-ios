@@ -20,7 +20,11 @@
 #import "BPKButtonAppearance.h"
 #import "BPKObjcUIKitButton.h"
 #import <Backpack/BPKColor+Internal.h>
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Color.h>
+#else
+#import "Generated/BPKColor.h"
+#endif
 
 static BPKButtonAppearance *BPKAppearance(UIColor *background, UIColor *foreground) {
     BPKButtonAppearance *appearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil

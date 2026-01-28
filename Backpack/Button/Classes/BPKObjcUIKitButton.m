@@ -29,14 +29,30 @@
 #import "BPKButtonAppearance.h"
 #import "BPKButtonAppearanceSet.h"
 #import "UIColor+BPKButton.h"
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Color.h>
+#else
+#import "Generated/BPKColor.h"
+#endif
 #import <Backpack/Common.h>
 #import <Backpack/DarkMode.h>
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Font.h>
+#else
+#import "Generated/BPKFont.h"
+#endif
 #import <Backpack/Gradient.h>
 #import <Backpack/Icon.h>
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Radii.h>
+#else
+#import "Generated/BPKRadii.h"
+#endif
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Spacing.h>
+#else
+#import "Generated/BPKSpacing.h"
+#endif
 #import <Backpack/UIView+BPKRTL.h>
 
 NS_ASSUME_NONNULL_BEGIN

@@ -23,7 +23,11 @@
 #import "BPKThemeContainer.h"
 #import "BPKThemeDefinition.h"
 #import "Button.h"
+#ifdef SWIFT_PACKAGE
 #import "Color.h"
+#else
+#import "Generated/BPKColor.h"
+#endif
 #import "Gradient.h"
 #import "Spinner.h"
 #import "StarRating.h"

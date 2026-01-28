@@ -21,7 +21,5 @@
 
 #ifdef SWIFT_PACKAGE
 #import "BPKDuration.h"
-#else
-#import "Generated/BPKDuration.h"
 #endif
 #endif

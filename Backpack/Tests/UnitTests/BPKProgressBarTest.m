@@ -18,7 +18,11 @@
 
 #import <XCTest/XCTest.h>
 
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Color.h>
+#else
+#import "Generated/BPKColor.h"
+#endif
 #import <Backpack/ProgressBar.h>
 
 @interface BPKProgressBarTest : XCTestCase

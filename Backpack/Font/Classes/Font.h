@@ -21,8 +21,6 @@
 
 #ifdef SWIFT_PACKAGE
 #import "BPKFont.h"
-#else
-#import "Generated/BPKFont.h"
 #endif
 #if __has_include(<Backpack_Common/Backpack_Common-Swift.h>)
 #import <Backpack_Common/Backpack_Common-Swift.h>

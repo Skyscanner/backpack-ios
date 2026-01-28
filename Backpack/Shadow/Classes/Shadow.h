@@ -21,8 +21,6 @@
 
 #ifdef SWIFT_PACKAGE
 #import "BPKShadow.h"
-#else
-#import "Generated/BPKShadow.h"
 #endif
 
 #endif

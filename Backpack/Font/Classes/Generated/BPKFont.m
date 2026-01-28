@@ -18,7 +18,11 @@
  */
 #import "BPKFont.h"
 
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Color.h>
+#else
+#import "BPKColor.h"
+#endif
 
 #import "../BPKFontManager.h"
 #if __has_include(<Backpack_Common/Backpack_Common-Swift.h>)

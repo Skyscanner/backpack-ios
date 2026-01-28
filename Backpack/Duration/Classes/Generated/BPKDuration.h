@@ -17,6 +17,9 @@
  * limitations under the License.
  */
 
+#ifndef __BPKDURATION_H__
+#define __BPKDURATION_H__
+
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -47,4 +50,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 NS_ASSUME_NONNULL_END
+
+#endif /* __BPKDURATION_H__ */
 // clang-format on

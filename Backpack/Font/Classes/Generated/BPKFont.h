@@ -16,6 +16,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#ifndef __BPKFONT_H__
+#define __BPKFONT_H__
+
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
@@ -290,4 +293,6 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+#endif /* __BPKFONT_H__ */
 // clang-format on

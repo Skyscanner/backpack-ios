@@ -16,7 +16,11 @@
  * limitations under the License.
  */
 
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Color.h>
+#else
+#import "Generated/BPKColor.h"
+#endif
 #import <Backpack/Gradient.h>
 #import <XCTest/XCTest.h>
 

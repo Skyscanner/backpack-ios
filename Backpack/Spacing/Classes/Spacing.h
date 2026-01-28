@@ -21,7 +21,5 @@
 
 #ifdef SWIFT_PACKAGE
 #import "BPKSpacing.h"
-#else
-#import "Generated/BPKSpacing.h"
 #endif
 #endif
