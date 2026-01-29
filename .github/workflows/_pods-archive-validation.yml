@@ -22,13 +22,13 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
 
       - name: Set up node and ruby
-        uses: asdf-vm/actions/install@v4
+        uses: asdf-vm/actions/install@b7bcd026f18772e44fe1026d729e1611cc435d47 # v4.0.1
 
       - name: Cache Bundler install Gems
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-gems-${{ env.ImageVersion }}-${{ hashFiles('**/Gemfile.lock') }}
@@ -36,7 +36,7 @@ jobs:
             ${{ runner.os }}-gems-${{ env.ImageVersion }}
 
       - name: Cache Pods
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: Example/Pods
           key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
