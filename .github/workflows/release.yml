@@ -8,8 +8,6 @@ defaults:
   run:
     shell: bash -l {0}
 
-permissions: {}
-
 jobs:
   Build:
       name: Build
@@ -25,6 +23,7 @@ jobs:
     environment: Publishing
     needs: [Build]
     steps:
+    - uses: GitHubSecurityLab/actions-permissions/monitor@b25f731bf2f9eb9748c2e9757d366c3e72fa2109 # v1.0.2-beta8
     - name: Checkout source code
       uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       with:
@@ -55,6 +54,7 @@ jobs:
     environment: Publishing
     needs: [Build]
     steps:
+    - uses: GitHubSecurityLab/actions-permissions/monitor@b25f731bf2f9eb9748c2e9757d366c3e72fa2109 # v1.0.2-beta8
     - name: Checkout source code
       uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       with:
@@ -85,6 +85,7 @@ jobs:
     environment: Publishing
     needs: [Build]
     steps:
+    - uses: GitHubSecurityLab/actions-permissions/monitor@b25f731bf2f9eb9748c2e9757d366c3e72fa2109 # v1.0.2-beta8
     - name: Checkout source code
       uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       with:
@@ -115,6 +116,7 @@ jobs:
     environment: Publishing
     needs: [Deploy-SwiftUI, Deploy-UIKit, Deploy-Common]
     steps:
+    - uses: GitHubSecurityLab/actions-permissions/monitor@b25f731bf2f9eb9748c2e9757d366c3e72fa2109 # v1.0.2-beta8
     - name: Checkout source code
       uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       with:
@@ -153,5 +155,6 @@ jobs:
     runs-on: ubuntu-22.04
     environment: Publishing
     steps:
+      - uses: GitHubSecurityLab/actions-permissions/monitor@b25f731bf2f9eb9748c2e9757d366c3e72fa2109 # v1.0.2-beta8
       - name: Update Supernova docs
         run: npx @supernovaio/cli publish-documentation --apiKey=${{ secrets.SUPERNOVA_API_KEY }} --designSystemId=${{ secrets.SUPERNOVA_DESIGN_SYSTEM_ID }}
