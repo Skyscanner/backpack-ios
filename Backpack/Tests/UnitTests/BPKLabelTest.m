@@ -15,11 +15,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifdef SWIFT_PACKAGE
-#import <Backpack/Color.h>
-#else
-#import "Generated/BPKColor.h"
-#endif
+@import Backpack;
+
 #import <Backpack/Label.h>
 #import <Backpack/Theme.h>
 #import <XCTest/XCTest.h>
