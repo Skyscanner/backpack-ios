@@ -20,8 +20,8 @@ permissions: {}
 jobs:
   TestPods:
     name: Testing Pods
-    runs-on: macos-14
-    timeout-minutes: 35
+    runs-on: macos-15
+    timeout-minutes: 40
     outputs:
       changed-files: ${{ steps.checkSnapshotChanges.outputs.didChangeFiles }}
     steps:
@@ -64,7 +64,7 @@ jobs:
         working-directory: Example
 
       - name: Select Xcode 16
-        run: sudo xcode-select --switch /Applications/Xcode_16.2.app
+        run: sudo xcode-select --switch /Applications/Xcode_16.4.app
 
       - name: Remove snapshots
         if: ${{inputs.retake_snapshots}}
