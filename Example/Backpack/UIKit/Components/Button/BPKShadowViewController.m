@@ -18,11 +18,7 @@
 
 #import "BPKShadowViewController.h"
 
-#import <Backpack/Color.h>
-#import <Backpack/Font.h>
-#import <Backpack/Label.h>
-#import <Backpack/Radii.h>
-#import <Backpack/Shadow.h>
+@import Backpack;
 
 const static NSInteger LabelTag = 72817;
 

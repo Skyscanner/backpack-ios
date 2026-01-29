@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#import <Foundation/Foundation.h>
 #ifndef __BPKBORDERWIDTH_H__
 #define __BPKBORDERWIDTH_H__
 
+#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -40,6 +40,6 @@ extern CGFloat const BPKBorderWidthSm;
 extern CGFloat const BPKBorderWidthLg;
 
 NS_ASSUME_NONNULL_END
-
 #endif /* __BPKBORDERWIDTH_H__ */
+
 // clang-format on

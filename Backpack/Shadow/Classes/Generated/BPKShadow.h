@@ -16,10 +16,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#import <Foundation/Foundation.h>
 #ifndef __BPKSHADOW_H__
 #define __BPKSHADOW_H__
 
+#import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @class UIColor, CALayer;
