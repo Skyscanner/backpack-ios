@@ -19,9 +19,21 @@
 #import "BPKDialogController.h"
 
 #import <Backpack/Button.h>
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Color.h>
+#else
+#import "Generated/BPKColor.h"
+#endif
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Radii.h>
+#else
+#import "Generated/BPKRadii.h"
+#endif
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Spacing.h>
+#else
+#import "Generated/BPKSpacing.h"
+#endif
 
 #import "BPKDialogButtonAction.h"
 #import "BPKDialogControllerAnimator.h"

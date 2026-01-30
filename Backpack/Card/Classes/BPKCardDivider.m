@@ -18,11 +18,27 @@
 
 #import "BPKCardDivider.h"
 
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Color.h>
+#else
+#import "Generated/BPKColor.h"
+#endif
 #import <Backpack/DarkMode.h>
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Radii.h>
+#else
+#import "Generated/BPKRadii.h"
+#endif
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Shadow.h>
+#else
+#import "Generated/BPKShadow.h"
+#endif
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Spacing.h>
+#else
+#import "Generated/BPKSpacing.h"
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKCardDivider ()

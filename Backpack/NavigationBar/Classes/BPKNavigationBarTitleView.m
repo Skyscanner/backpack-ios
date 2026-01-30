@@ -18,6 +18,11 @@
 #import "BPKNavigationBarTitleView.h"
 
 #import <Backpack/Common.h>
+#ifdef SWIFT_PACKAGE
+#import <Backpack/Font.h>
+#else
+#import "Generated/BPKFont.h"
+#endif
 #import <Backpack/Label.h>
 
 const CGFloat BPKNavigationBarTitleHeight = 44;

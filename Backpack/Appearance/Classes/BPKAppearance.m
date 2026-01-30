@@ -18,7 +18,11 @@
 
 #import "BPKAppearance.h"
 
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Color.h>
+#else
+#import "Generated/BPKColor.h"
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 

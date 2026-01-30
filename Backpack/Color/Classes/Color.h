@@ -19,6 +19,8 @@
 #ifndef __BACKPACK_COLOR__
 #define __BACKPACK_COLOR__
 
+#ifdef SWIFT_PACKAGE
 #import "BPKColor.h"
 #import "UIColor+Backpack.h"
+#endif
 #endif

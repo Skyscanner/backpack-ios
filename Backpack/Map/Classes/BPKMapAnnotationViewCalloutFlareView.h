@@ -18,7 +18,11 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#ifdef SWIFT_PACKAGE
+#import "../../FlareView/Classes/FlareView.h"
+#else
 #import <Backpack/FlareView.h>
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 

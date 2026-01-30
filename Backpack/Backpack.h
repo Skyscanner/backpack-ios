@@ -19,6 +19,7 @@
 #ifndef __BACKPACK__
 #define __BACKPACK__
 
+#ifdef SWIFT_PACKAGE
 #import "BorderWidth.h"
 #import "Color.h"
 #import "Duration.h"
@@ -27,6 +28,7 @@
 #import "Radii.h"
 #import "Shadow.h"
 #import "Spacing.h"
+#endif
 
 #import "Appearance.h"
 #import "Button.h"

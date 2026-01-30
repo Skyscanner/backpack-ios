@@ -19,7 +19,7 @@
 #import <XCTest/XCTest.h>
 
 #import <Backpack/BPKFontManager.h>
-#import <Backpack/Font.h>
+@import Backpack;
 
 static NSString *BPKFontManagerStubKey(CGFloat size, UIFontTextStyle style) { return [NSString stringWithFormat:@"%.2f|%@", size, style]; }
 

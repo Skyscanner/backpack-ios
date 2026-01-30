@@ -18,7 +18,12 @@
 
 #import <Foundation/Foundation.h>
 
+#ifdef SWIFT_PACKAGE
 #import "Font.h"
+#else
+// BPKFontStyle is defined in Generated/BPKFont.h which is included by the umbrella header
+typedef NS_ENUM(NSUInteger, BPKFontStyle);
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 

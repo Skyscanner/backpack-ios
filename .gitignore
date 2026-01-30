@@ -59,3 +59,4 @@ yarn.lock
 exportOptions.plist
 Gemfile.lock
 .derivedData
+.claude/settings.local.json

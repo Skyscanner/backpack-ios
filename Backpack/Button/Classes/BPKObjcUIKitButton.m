@@ -29,19 +29,35 @@
 #import "BPKButtonAppearance.h"
 #import "BPKButtonAppearanceSet.h"
 #import "UIColor+BPKButton.h"
-
-#import <Backpack/Backpack-Swift.h>
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Color.h>
+#else
+#import "Generated/BPKColor.h"
+#endif
 #import <Backpack/Common.h>
 #import <Backpack/DarkMode.h>
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Font.h>
+#else
+#import "Generated/BPKFont.h"
+#endif
 #import <Backpack/Gradient.h>
 #import <Backpack/Icon.h>
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Radii.h>
+#else
+#import "Generated/BPKRadii.h"
+#endif
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Spacing.h>
+#else
+#import "Generated/BPKSpacing.h"
+#endif
 #import <Backpack/UIView+BPKRTL.h>
 
 NS_ASSUME_NONNULL_BEGIN
+// WARNING: BPKButton is kept for maintenance only; new consumers should adopt
+// the SwiftUI alternative.
 @interface BPKObjcUIKitButton ()
 
 @property(nonatomic) BPKGradientLayer *gradientLayer;
@@ -304,7 +320,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (BPKButtonAppearance *)currentAppearance {
-    BPKButtonAppearanceSet *appearanceSet = [BPKButtonAppearanceSets appearanceFromStyle:self.style];
+    BPKButtonAppearanceSet *appearanceSet = BPKButtonAppearanceSetForStyle(self.style);
     if (self.isLoading)
         return appearanceSet.loadingAppearance;
     if (!self.isEnabled)

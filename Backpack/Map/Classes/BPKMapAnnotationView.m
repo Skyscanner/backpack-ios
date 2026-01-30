@@ -18,8 +18,16 @@
 
 #import "BPKMapAnnotationView.h"
 
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Color.h>
+#else
+#import "Generated/BPKColor.h"
+#endif
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Spacing.h>
+#else
+#import "Generated/BPKSpacing.h"
+#endif
 
 #import "BPKMapAnnotation.h"
 #import "BPKMapAnnotationViewCalloutView.h"

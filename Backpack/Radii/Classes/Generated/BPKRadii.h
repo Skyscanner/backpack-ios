@@ -16,6 +16,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#ifndef __BPKRADII_H__
+#define __BPKRADII_H__
+
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
@@ -42,4 +45,6 @@ extern CGFloat const BPKCornerRadiusXs;
 extern CGFloat const BPKCornerRadiusLg;
 
 NS_ASSUME_NONNULL_END
+#endif /* __BPKRADII_H__ */
+
 // clang-format on

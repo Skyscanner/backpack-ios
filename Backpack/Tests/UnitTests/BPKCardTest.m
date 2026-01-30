@@ -19,7 +19,7 @@
 #import <XCTest/XCTest.h>
 
 #import <Backpack/Card.h>
-#import <Backpack/Color.h>
+@import Backpack;
 #import <Backpack/Label.h>
 
 @interface BPKCardTest : XCTestCase

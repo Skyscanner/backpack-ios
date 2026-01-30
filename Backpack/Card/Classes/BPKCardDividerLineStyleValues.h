@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
+#import <Foundation/Foundation.h>
+
 /**
  * Enum values for specifying line style
  */

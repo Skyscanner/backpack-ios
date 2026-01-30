@@ -16,6 +16,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#ifndef __BPKSPACING_H__
+#define __BPKSPACING_H__
+
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -71,4 +74,6 @@ extern CGFloat const BPKSpacingXxxl;
 extern CGFloat const BPKSpacingXxxxl;
 
 NS_ASSUME_NONNULL_END
+#endif /* __BPKSPACING_H__ */
+
 // clang-format on
