@@ -15,6 +15,8 @@ defaults:
   run:
     shell: bash -l {0}
 
+permissions: {}
+
 jobs:
   TestPods:
     name: Testing Pods
@@ -23,22 +25,23 @@ jobs:
     outputs:
       changed-files: ${{ steps.checkSnapshotChanges.outputs.didChangeFiles }}
     steps:
-      - uses: actions/create-github-app-token@v2
+      - uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
         id: app-token
         with:
           app-id: ${{ vars.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
 
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           token: ${{ steps.app-token.outputs.token }}
+          persist-credentials: false
 
       - name: Set up node and ruby
-        uses: asdf-vm/actions/install@v4 # Sets ruby and node version via `.tool-versions`
+        uses: asdf-vm/actions/install@b7bcd026f18772e44fe1026d729e1611cc435d47 # v4.0.1
 
       - name: Cache Bundler install Gems
-        uses: actions/cache@v5
+        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-gems-${{ env.ImageVersion }}-${{ hashFiles('**/Gemfile.lock') }}
@@ -46,7 +49,7 @@ jobs:
             ${{ runner.os }}-gems-${{ env.ImageVersion }}
 
       - name: Cache Pods
-        uses: actions/cache@v5
+        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
         with:
           path: Example/Pods
           key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
@@ -85,9 +88,13 @@ jobs:
 
       - name: Save snapshots
         if: ${{inputs.retake_snapshots}}
+        env:
+          TOKEN: ${{ steps.app-token.outputs.token }}
+          REPOSITORY: ${{ github.repository }}
         run: |
           git config --local user.email "197108191+skyscanner-backpack-bot[bot]@users.noreply.github.com"
           git config --local user.name "skyscanner-backpack-bot[bot]"
+          git remote set-url origin https://x-access-token:${TOKEN}@github.com/${REPOSITORY}.git
           git fetch origin $GITHUB_HEAD_REF
           git checkout $GITHUB_HEAD_REF
           git add --ignore-removal */**/__Snapshots__/*.png
@@ -97,7 +104,6 @@ jobs:
   TestSwiftPM:
     name: SwiftPM Tests
     uses: ./.github/workflows/_spm-test.yml
-    secrets: inherit
 
   NotifyChanges:
     name: "Notify about changes made"
@@ -105,18 +111,20 @@ jobs:
     needs: [TestPods]
     if: ${{ needs.TestPods.outputs.changed-files != '' &&  inputs.retake_snapshots}}
     steps:
-      - uses: actions/create-github-app-token@v2
+      - uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
         id: app-token
         with:
           app-id: ${{ vars.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
 
       - name: Notify PR of screenshots changes
-        uses: actions/github-script@v8
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        env:
+          CHANGED_FILES: ${{ needs.TestPods.outputs.changed-files }}
         with:
           github-token: ${{ steps.app-token.outputs.token }}
           script: |
-            var body = `### Snapshots were updated. Please verify the changes match the expected layout. \n\n>'${{ needs.TestPods.outputs.changed-files }}'`;
+            var body = `### Snapshots were updated. Please verify the changes match the expected layout. \n\n>'${process.env.CHANGED_FILES}'`;
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,

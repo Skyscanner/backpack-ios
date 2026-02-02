@@ -1,0 +1,38 @@
+name: GitHub Actions Security Analysis with zizmor 🌈
+
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+    branches:
+      - "**"
+
+permissions: {}
+
+jobs:
+  zizmor:
+    runs-on: ubuntu-24.04-2cores-tools-public
+    permissions:
+      security-events: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+
+      - name: Run zizmor 🌈
+        uses: zizmorcore/zizmor-action@135698455da5c3b3e55f73f4419e481ab68cdd95 # v0.4.1
+        with: # Not including release.yml for the time being.
+          inputs: |
+            .github/workflows/_archive-validation.yml
+            .github/workflows/_build.yml
+            .github/workflows/_build-docs.yml
+            .github/workflows/_pods-archive-validation.yml
+            .github/workflows/_spm-build.yml
+            .github/workflows/_spm-test.yml
+            .github/workflows/_test.yml
+            .github/workflows/label-check.yml
+            .github/workflows/main.yml
+            .github/workflows/pr.yml
+            .github/workflows/snapshot.yml
