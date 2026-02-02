@@ -4,6 +4,8 @@ on:
   pull_request:
     branches: [main]
 
+permissions: {}
+
 jobs:
   CheckCommitMessage:
     name: Check commit message
@@ -12,9 +14,10 @@ jobs:
       head-commit-message: ${{ steps.get_head_commit_message.outputs.headCommitMsg }}
     steps:
       - name: Get repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
       - name: Print head git commit message
         id: get_head_commit_message
         run: echo "headCommitMsg=$(git show -s --format=%s)" >> $GITHUB_OUTPUT
