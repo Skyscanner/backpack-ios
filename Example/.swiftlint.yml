@@ -40,14 +40,32 @@ included:
   - ./
 
 custom_rules:
-  # These custom rules came from ttps://github.com/Skyscanner/backpack-swiftlint-rules/blob/main/src/BackpackSwiftLintRules.yml
+  # These custom rules came from https://github.com/Skyscanner/backpack-swiftlint-rules/blob/main/src/BackpackSwiftLintRules.yml
   # They will need to be updated manually when changes are made.
 
   # Component rules
 
+  bpk_text:
+    name: "Use BPKText instead of Text"
+    regex: "(?<!BPK)Text\\("
+    message: "Use BPKText instead of Text. Example: BPKText(\"text\", style: .bodyDefault)"
+    severity: error
+
+  backpack_text_uikit:
+    name: "Prefer Backpack Text over UIKit"
+    regex: "\\bUILabel\\b"
+    message: "Use BPKText from Backpack-SwiftUI instead of UILabel"
+    severity: warning
+
   bpk_button:
+    name: "Use BPKButton instead of Button"
+    regex: "(?<!BPK)Button\\("
+    message: "Use BPKButton instead of Button. Example: BPKButton(\"Action\", style: .primary) { }"
+    severity: error
+
+  bpk_button_uikit:
     name: "Prefer BPKButton to UIButton"
-    regex: "(UIButton)\\("
+    regex: "\\bUIButton\\b"
     message: "Use BPKButton instead of UIButton."
     severity: warning # default is warning
     # Try it out at https://regex101.com/r/ZPASYH/2
@@ -71,6 +89,12 @@ custom_rules:
     severity: warning # default is warning
 
   bpk_switch:
+    name: "Use BPKSwitch instead of Toggle"
+    regex: "\\bToggle\\("
+    message: "Use BPKSwitch instead of Toggle. Example: BPKSwitch(isOn: $value)"
+    severity: error
+
+  bpk_switch_uikit:
     name: "Prefer BPKSwitch to UISwitch"
     regex: "(UISwitch)\\("
     message: "Use BPKSwitch instead of UISwitch."
@@ -106,3 +130,30 @@ custom_rules:
     message: "Use a colour token from Backpack instead of a UIColor."
     severity: warning # default is warning
     # Try it out at https://regex101.com/r/3NOwYr/13
+
+  system_colors:
+    name: "Use Backpack color tokens"
+    regex: "Color\\.(red|blue|green|yellow|orange|purple|black|white|gray)\\b"
+    message: "Use Backpack color token instead of system colors. Example: .textPrimaryColor, .canvasColor"
+    severity: error
+
+  uicolor_usage:
+    name: "Use Backpack color tokens instead of UIColor"
+    regex: "\\bUIColor\\.(red|blue|green|yellow|orange|purple|black|white|gray|clear|systemBackground)\\b"
+    message: "Use Backpack color tokens (Color extension). Example: .canvasColor, .textPrimaryColor"
+    severity: error
+
+  # SF Symbol replacements
+  sf_symbol_star:
+    name: "Use BPKHotelStarRating instead of SF Symbols"
+    regex: "Image\\(systemName:\\s*\"star"
+    message: "Use BPKHotelStarRating or BPKStarRating instead of SF Symbols stars"
+    severity: error
+
+  sf_symbol_heart:
+    name: "Use BPKSaveCardButton instead of SF Symbols"
+    regex: "Image\\(systemName:\\s*\"heart"
+    message: "Use BPKSaveCardButton instead of SF Symbols heart"
+    severity: error
+
+reporter: "xcode"
