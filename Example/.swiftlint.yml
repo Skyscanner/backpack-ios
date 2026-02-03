@@ -113,6 +113,12 @@ custom_rules:
     severity: warning # default is warning
     # Try it out at https://regex101.com/r/F8sAgX/1
 
+  bpk_spacing:                                                                                                                                 
+    name: "Prefer BPKSpacing to hard-coded numbers"                                                                                            
+    regex: '(?:padding|spacing|minLength|frame\s*\([^)]*(?:width|height))\s*:\s*(?!BPKSpacing)([0-9]+(?:\.[0-9]+)?)'                           
+    message: "Use BPKSpacing tokens instead of hard-coded numbers. Available: .none, .sm (4), .md (8), .base (16), .lg (24), .xl (32), .xxl (40), .xxxl (64), .xxxxl (96)"                                                                                                               
+    severity: warning     
+
   # Size token rules
 
   bpk_use_size_token:
