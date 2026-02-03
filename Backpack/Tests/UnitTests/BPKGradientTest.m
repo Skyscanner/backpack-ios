@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-#import <Backpack/Color.h>
+@import Backpack;
 #import <Backpack/Gradient.h>
 #import <XCTest/XCTest.h>
 

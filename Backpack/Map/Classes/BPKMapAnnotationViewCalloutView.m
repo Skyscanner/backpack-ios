@@ -18,14 +18,35 @@
 
 #import "BPKMapAnnotationViewCalloutView.h"
 
+#ifdef SWIFT_PACKAGE
 #import <Backpack/BorderWidth.h>
+#else
+#import "Generated/BPKBorderWidth.h"
+#endif
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Color.h>
+#else
+#import "Generated/BPKColor.h"
+#endif
+#ifdef SWIFT_PACKAGE
+#import <Backpack/Font.h>
+#else
+#import "Generated/BPKFont.h"
+#endif
 #import <Backpack/Common.h>
 #import <Backpack/FlareView.h>
 #import <Backpack/Icon.h>
 #import <Backpack/Label.h>
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Shadow.h>
+#else
+#import "Generated/BPKShadow.h"
+#endif
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Spacing.h>
+#else
+#import "Generated/BPKSpacing.h"
+#endif
 
 #import "BPKMapAnnotation.h"
 #import "BPKMapAnnotationView.h"

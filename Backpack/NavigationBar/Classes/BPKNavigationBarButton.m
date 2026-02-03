@@ -18,8 +18,16 @@
 
 #import "BPKNavigationBarButton.h"
 
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Font.h>
+#else
+#import "Generated/BPKFont.h"
+#endif
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Spacing.h>
+#else
+#import "Generated/BPKSpacing.h"
+#endif
 
 @implementation BPKNavigationBarButton
 

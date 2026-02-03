@@ -16,14 +16,18 @@
  * limitations under the License.
  */
 
+#ifdef SWIFT_PACKAGE
+#import "../../Button/Classes/Button.h"
+#else
 #import <Backpack/Button.h>
+#endif
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
-DEPRECATED_MSG_ATTRIBUTE("BPKNavigationBar is deprecated. Use the SwiftUI BPKNavigationBarItem instead.")
+DEPRECATED_MSG_ATTRIBUTE("BPKNavigationBarButton is deprecated. Use the SwiftUI BPKNavigationBarItem instead.")
 @interface BPKNavigationBarButton : BPKObjcUIKitButton
 
 @property(nonatomic, strong) UIColor *contentColor;

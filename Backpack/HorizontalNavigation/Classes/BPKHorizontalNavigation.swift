@@ -25,9 +25,11 @@ import UIKit
  * It's typically used like a ``UISegementedControl`` e.g. to control which out of many potential
  * views are being displayed in a given view.
  */
+// swiftlint:disable nesting
 // swiftlint:disable:next type_body_length
 public class BPKHorizontalNavigation<Size: BPKHorizontalNavigationSize>: UIControl {
-    struct TextOption<Size: BPKHorizontalNavigationSize>: BPKHorizontalNavigationOption {
+    struct TextOption<OptionSize: BPKHorizontalNavigationSize>: BPKHorizontalNavigationOption {
+        typealias Size = OptionSize
         let name: String
         let tag: Int
 
@@ -37,7 +39,7 @@ public class BPKHorizontalNavigation<Size: BPKHorizontalNavigationSize>: UIContr
         }
 
         func makeItem() -> BPKHorizontalNavigationItem {
-            let item = BPKHorizontalNavigationItemDefault<Size>(name: name)
+            let item = BPKHorizontalNavigationItemDefault<OptionSize>(name: name)
             item.tag = tag
 
             return item
@@ -45,8 +47,9 @@ public class BPKHorizontalNavigation<Size: BPKHorizontalNavigationSize>: UIContr
     }
 
     struct TextWithIconOption<
-        Size: BPKHorizontalNavigationSize, Icon: BPKHorizontalNavigationOptionIcon
+        OptionSize: BPKHorizontalNavigationSize, Icon: BPKHorizontalNavigationOptionIcon
     >: BPKHorizontalNavigationOption {
+        typealias Size = OptionSize
         let name: String
         let icon: Icon
         let tag: Int
@@ -58,7 +61,7 @@ public class BPKHorizontalNavigation<Size: BPKHorizontalNavigationSize>: UIContr
         }
 
         func makeItem() -> BPKHorizontalNavigationItem {
-            BPKHorizontalNavigationItemDefault<Size>(
+            BPKHorizontalNavigationItemDefault<OptionSize>(
                 name: name,
                 iconDefinition: .init(image: icon.makeImage(), size: Icon.size)
             )
@@ -66,8 +69,8 @@ public class BPKHorizontalNavigation<Size: BPKHorizontalNavigationSize>: UIContr
 
         // MARK: Equatable
         static func == (
-            lhs: BPKHorizontalNavigation<Size>.TextWithIconOption<Size, Icon>,
-            rhs: BPKHorizontalNavigation<Size>.TextWithIconOption<Size, Icon>
+            lhs: BPKHorizontalNavigation<OptionSize>.TextWithIconOption<OptionSize, Icon>,
+            rhs: BPKHorizontalNavigation<OptionSize>.TextWithIconOption<OptionSize, Icon>
         ) -> Bool {
             return lhs.name == rhs.name &&
                 lhs.tag == rhs.tag &&
@@ -76,7 +79,7 @@ public class BPKHorizontalNavigation<Size: BPKHorizontalNavigationSize>: UIContr
     }
 
     /// Type erased option representing a single item in a BPKHorizontalNavigation
-    public struct AnyOption<Size>: Equatable {
+    public struct AnyOption<OptionSize>: Equatable {
         private let _makeItem: () -> BPKHorizontalNavigationItem
         private let getTag: () -> Int
 
@@ -84,7 +87,7 @@ public class BPKHorizontalNavigation<Size: BPKHorizontalNavigationSize>: UIContr
         /// `BPKHorizontalNavigationOption`.
         ///
         /// - Parameter wrapped: The option to type erase
-        public init<O: BPKHorizontalNavigationOption>(wrapped: O) where O.Size == Size {
+        public init<O: BPKHorizontalNavigationOption>(wrapped: O) where O.Size == OptionSize {
             _makeItem = wrapped.makeItem
             getTag = { wrapped.tag }
         }

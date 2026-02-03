@@ -18,11 +18,41 @@
  */
 #import "BPKFont.h"
 
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Color.h>
-#import <Backpack/Theme.h>
+#else
+#import "BPKColor.h"
+#endif
 
 #import "../BPKFontManager.h"
+#if __has_include(<Backpack_Common/Backpack_Common-Swift.h>)
 #import <Backpack_Common/Backpack_Common-Swift.h>
+#elif __has_include("Backpack_Common-Swift.h")
+#import "Backpack_Common-Swift.h"
+#else
+#ifndef SWIFT_CLASS
+#define SWIFT_CLASS(_name) __attribute__((objc_runtime_name(_name)))
+#endif
+@class TypographyConfig;
+
+SWIFT_CLASS("_TtC15Backpack_Common16BpkConfiguration")
+@interface BpkConfiguration : NSObject
++ (instancetype)shared;
+@property(nonatomic, strong, readonly, nullable) TypographyConfig *heading1Config;
+@property(nonatomic, strong, readonly, nullable) TypographyConfig *heading2Config;
+@property(nonatomic, strong, readonly, nullable) TypographyConfig *heading3Config;
+@property(nonatomic, strong, readonly, nullable) TypographyConfig *heading4Config;
+@property(nonatomic, strong, readonly, nullable) TypographyConfig *heading5Config;
+@property(nonatomic, strong, readonly, nullable) TypographyConfig *hero5Config;
+@end
+
+SWIFT_CLASS("_TtC15Backpack_Common16TypographyConfig")
+@interface TypographyConfig : NSObject
+@property(nonatomic, strong, readonly, nullable) UIFont *font;
+@property(nonatomic, strong, readonly, nullable) UIFont *fontFixed;
+@property(nonatomic, assign, readonly) CGFloat letterSpacing;
+@end
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 

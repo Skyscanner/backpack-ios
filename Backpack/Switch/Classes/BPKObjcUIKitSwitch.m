@@ -18,7 +18,11 @@
 
 #import "BPKObjcUIKitSwitch.h"
 
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Color.h>
+#else
+#import "Generated/BPKColor.h"
+#endif
 #import <Backpack/Common.h>
 
 NS_ASSUME_NONNULL_BEGIN

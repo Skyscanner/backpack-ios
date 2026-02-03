@@ -17,7 +17,7 @@
  */
 
 import UIKit
-import Backpack.TextView
+import Backpack
 
 @available(*, deprecated, message: "We intentionally use this deprecated API.")
 class TextViewsViewController: UIViewController {

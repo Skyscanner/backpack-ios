@@ -17,6 +17,12 @@
  */
 #import "BPKTextDefinition.h"
 
+#ifdef SWIFT_PACKAGE
+#import <Backpack/Font.h>
+#else
+#import "Generated/BPKFont.h"
+#endif
+
 NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKTextDefinition

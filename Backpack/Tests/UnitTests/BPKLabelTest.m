@@ -15,7 +15,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#import <Backpack/Color.h>
+@import Backpack;
+
 #import <Backpack/Label.h>
 #import <Backpack/Theme.h>
 #import <XCTest/XCTest.h>
