@@ -33,6 +33,11 @@ identifier_name:
 excluded:
   - Pods
   - "Backpack\ Screenshot/"
+  - ../Backpack-SwiftUI/Button/Classes/BPKButton.swift
+  - ../Backpack-SwiftUI/Text/Classes/BPKText.swift
+  - ../Backpack-SwiftUI/Switch/Classes/BPKSwitch.swift
+  - ../Backpack-SwiftUI/StarRating/Classes/BPKHotelStarRating.swift
+  - ../Backpack-SwiftUI/CardButton/Classes/BPKSaveCardButton.swift
 included:
   - ../Backpack
   - ../Backpack-SwiftUI
@@ -57,14 +62,14 @@ custom_rules:
     message: "Use BPKText from Backpack-SwiftUI instead of UILabel"
     severity: warning
 
-  bpk_button:
-    name: "Use BPKButton instead of Button"
-    regex: "(?<!BPK)Button\\("
-    message: "Use BPKButton instead of Button. Example: BPKButton(\"Action\", style: .primary) { }"
-    severity: error
+  bpk_button:                                                                                                                                  
+    name: "Use BPKButton instead of Button"                                                                                                    
+    regex: "(?<![A-Za-z])Button\\("                                                                                                            
+    message: "Use BPKButton instead of Button. Example: BPKButton(\"Action\", style: .primary) { }"                                            
+    severity: error    
 
   bpk_button_uikit:
-    name: "Prefer BPKButton to UIButton"
+    name: "Prefer BPKObjcUIKitButton to UIButton"
     regex: "\\bUIButton\\b"
     message: "Use BPKButton instead of UIButton."
     severity: warning # default is warning
