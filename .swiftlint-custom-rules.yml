@@ -10,12 +10,6 @@ custom_rules:
     message: "Use BPKText instead of Text. Example: BPKText(\"text\", style: .bodyDefault)"
     severity: warning
 
-  backpack_text_uikit:
-    name: "Prefer Backpack Text over UIKit"
-    regex: "\\bUILabel\\b"
-    message: "Use BPKText from Backpack-SwiftUI instead of UILabel"
-    severity: warning
-
   bpk_button:
     name: "Use BPKButton instead of Button"
     regex: "(?<![A-Za-z])Button\\("
