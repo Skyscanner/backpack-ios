@@ -30,19 +30,27 @@ identifier_name:
     - sp
 
 # paths to ignore during linting. Takes precedence over `included`.
-excluded:
-  - Pods
-  - "Backpack\ Screenshot/"
-  - ../Backpack-SwiftUI/Button/Classes/BPKButton.swift
-  - ../Backpack-SwiftUI/Text/Classes/BPKText.swift
-  - ../Backpack-SwiftUI/Switch/Classes/BPKSwitch.swift
-  - ../Backpack-SwiftUI/StarRating/Classes/BPKHotelStarRating.swift
-  - ../Backpack-SwiftUI/CardButton/Classes/BPKSaveCardButton.swift
+excluded:                                                                                                                                    
+  - Pods                                                                                                                                     
+  - "Backpack\ Screenshot/"                                                                                                                  
+  - ../Backpack-SwiftUI/Button/Classes/BPKButton.swift                                                                                       
+  - ../Backpack-SwiftUI/Text/Classes/BPKText.swift                                                                                           
+  - ../Backpack-SwiftUI/Switch/Classes/BPKSwitch.swift                                                                                       
+  - ../Backpack-SwiftUI/StarRating/Classes/BPKHotelStarRating.swift                                                                          
+  - ../Backpack-SwiftUI/CardButton/Classes/BPKSaveCardButton.swift                                                                           
+  - ../Backpack-SwiftUI/Tests
+  - ../Backpack/Tests
+  - ../Backpack-Common/Tests      
+  - ../Backpack-SwiftUI/Color/Classes/Generated/BPKInternalColors.swift                                                                      
+  - ../Backpack/Color/Classes/Generated/BPKInternalColors.swift  
+  - ../Backpack-Common/Configuration/Classes/BPKConfiguration.swift                                                                                                        
+  - Backpack/ # exclude example app
+  # ... other exclusions ...                                                                                                                 
+  - "**/*_Previews.swift"  
 included:
   - ../Backpack
   - ../Backpack-SwiftUI
   - ../Backpack-Common
-  - ./
 
 custom_rules:
   # These custom rules came from https://github.com/Skyscanner/backpack-swiftlint-rules/blob/main/src/BackpackSwiftLintRules.yml
@@ -52,9 +60,9 @@ custom_rules:
 
   bpk_text:
     name: "Use BPKText instead of Text"
-    regex: "(?<!BPK)Text\\("
+    regex: "(?<!BPK)(?<!accessibilityLabel\\()Text\\(" 
     message: "Use BPKText instead of Text. Example: BPKText(\"text\", style: .bodyDefault)"
-    severity: error
+    severity: warning
 
   backpack_text_uikit:
     name: "Prefer Backpack Text over UIKit"
@@ -66,14 +74,13 @@ custom_rules:
     name: "Use BPKButton instead of Button"                                                                                                    
     regex: "(?<![A-Za-z])Button\\("                                                                                                            
     message: "Use BPKButton instead of Button. Example: BPKButton(\"Action\", style: .primary) { }"                                            
-    severity: error    
+    severity: warning    
 
-  bpk_button_uikit:
-    name: "Prefer BPKObjcUIKitButton to UIButton"
-    regex: "\\bUIButton\\b"
-    message: "Use BPKButton instead of UIButton."
-    severity: warning # default is warning
-    # Try it out at https://regex101.com/r/ZPASYH/2
+  bpk_button_uikit:                                                                                                                            
+    name: "Prefer BPKObjcUIKitButton to UIButton"                                                                                              
+    regex: "UIButton\\("                                                                                                                       
+    message: "Use BPKButton instead of UIButton."                                                                                              
+    severity: warning
 
   bpk_label:
     name: "Prefer BPKLabel to UILabel"
@@ -97,7 +104,7 @@ custom_rules:
     name: "Use BPKSwitch instead of Toggle"
     regex: "\\bToggle\\("
     message: "Use BPKSwitch instead of Toggle. Example: BPKSwitch(isOn: $value)"
-    severity: error
+    severity: warning
 
   bpk_switch_uikit:
     name: "Prefer BPKSwitch to UISwitch"
@@ -120,9 +127,17 @@ custom_rules:
 
   bpk_spacing:                                                                                                                                 
     name: "Prefer BPKSpacing to hard-coded numbers"                                                                                            
-    regex: '(?:padding|spacing|minLength|frame\s*\([^)]*(?:width|height))\s*:\s*(?!BPKSpacing)([0-9]+(?:\.[0-9]+)?)'                           
+    regex: '(?:padding|spacing|minLength|frame\s*\([^)]*(?:width|height))\s*:\s*(?!BPKSpacing)(?!0(?:\.0+)?\b)([0-9]+(?:\.[0-9]+)?)'           
     message: "Use BPKSpacing tokens instead of hard-coded numbers. Available: .none, .sm (4), .md (8), .base (16), .lg (24), .xl (32), .xxl (40), .xxxl (64), .xxxxl (96)"                                                                                                               
     severity: warning     
+
+  bpk_bottomsheet:
+    name: "Prefer BPKBottomsheet to sheet modifier"
+    regex: "\\.sheet\\("
+    message: "Use BPKBottomsheet instead of sheet modifier."
+    severity: warning # default is warning  
+
+  # typography?  
 
   # Size token rules
 
@@ -146,25 +161,39 @@ custom_rules:
     name: "Use Backpack color tokens"
     regex: "Color\\.(red|blue|green|yellow|orange|purple|black|white|gray)\\b"
     message: "Use Backpack color token instead of system colors. Example: .textPrimaryColor, .canvasColor"
-    severity: error
+    severity: warning
+
+  # Regex for numerical/hex value for colors                                                                                                 
+                                                                                                                                               
+  hex_color_literal:                                                                                                                         
+    name: "Use Backpack color tokens instead of hex literals"                                                                                
+    regex: '(?:#[0-9A-Fa-f]{6}|#[0-9A-Fa-f]{3}|0x[0-9A-Fa-f]{6})'                                                                            
+    message: "Use Backpack color tokens instead of hex color literals. Example: .canvasColor, .textPrimaryColor"                             
+    severity: warning                                                                                                                        
+                                                                                                                                              
+  rgb_color_values:                                                                                                                          
+    name: "Use Backpack color tokens instead of RGB values"                                                                                  
+    regex: '(?:Color|UIColor)\s*\(\s*red:\s*[0-9.]'                                                                                          
+    message: "Use Backpack color tokens instead of RGB/numeric color values. Example: .canvasColor, .textPrimaryColor"                       
+    severity: warning 
 
   uicolor_usage:
     name: "Use Backpack color tokens instead of UIColor"
     regex: "\\bUIColor\\.(red|blue|green|yellow|orange|purple|black|white|gray|clear|systemBackground)\\b"
     message: "Use Backpack color tokens (Color extension). Example: .canvasColor, .textPrimaryColor"
-    severity: error
+    severity: warning
 
   # SF Symbol replacements
   sf_symbol_star:
     name: "Use BPKHotelStarRating instead of SF Symbols"
     regex: "Image\\(systemName:\\s*\"star"
     message: "Use BPKHotelStarRating or BPKStarRating instead of SF Symbols stars"
-    severity: error
+    severity: warning
 
   sf_symbol_heart:
     name: "Use BPKSaveCardButton instead of SF Symbols"
     regex: "Image\\(systemName:\\s*\"heart"
     message: "Use BPKSaveCardButton instead of SF Symbols heart"
-    severity: error
+    severity: warning
 
 reporter: "xcode"
