@@ -1,4 +1,4 @@
-parent_config: ../.swiftlint-custom-rules.yml
+parent_config: ../.backpack-ios-rules.yml
 
 opt_in_rules:
   - anyobject_protocol
@@ -33,27 +33,21 @@ identifier_name:
 
 # paths to ignore during linting. Takes precedence over `included`.
 excluded:                                                                                                                                    
-  - Pods                                                                                                                                     
-  - "Backpack\ Screenshot/"                                                                                                                  
-  - ../Backpack-SwiftUI/Button/Classes/BPKButton.swift                                                                                       
-  - ../Backpack-SwiftUI/Text/Classes/BPKText.swift                                                                                           
-  - ../Backpack-SwiftUI/Switch/Classes/BPKSwitch.swift                                                                                       
-  - ../Backpack-SwiftUI/StarRating/Classes/BPKHotelStarRating.swift                                                                          
-  - ../Backpack-SwiftUI/CardButton/Classes/BPKSaveCardButton.swift
-  # exclude tests                                                                           
-  - ../Backpack-SwiftUI/Tests
-  - ../Backpack/Tests
-  - ../Backpack-Common/Tests
-  # exclude colours      
-  - ../Backpack-SwiftUI/Color/Classes/Generated/BPKInternalColors.swift                                                                      
-  - ../Backpack/Color/Classes/Generated/BPKInternalColors.swift
-  - ../Backpack-SwiftUI/Color/Classes/Generated/BPKDynamicColors.swift
-  - ../Backpack-SwiftUI/Button/Classes/BPKButtonColorSet.swift
-  - ../Backpack-Common/Configuration/Classes/BPKConfiguration.swift
-  # exclude example app                                                                                                        
-  - Backpack/
-  # ... other exclusions ...                                                                                                                 
-  - "**/*_Previews.swift"  
+    - Pods                                                                                                                                     
+    - "Backpack\ Screenshot/"                                                                                                                  
+    # Exclude all BPK component implementations                                                                                                
+    - ../Backpack-SwiftUI/*/Classes                                                                                                            
+    - ../Backpack/*/Classes                                                                                                                    
+    # Exclude tests                                                                                                                            
+    - ../Backpack-SwiftUI/Tests                                                                                                                
+    - ../Backpack/Tests                                                                                                                        
+    - ../Backpack-Common/Tests                                                                                                                 
+    # Exclude colors                                                                                                                           
+    - ../Backpack-SwiftUI/Color/Classes/Generated                                                                                              
+    - ../Backpack/Color/Classes/Generated                                                                                                      
+    - ../Backpack-Common/Configuration/Classes/BPKConfiguration.swift                                                                          
+    # Exclude example app                                                                                                                      
+    - Backpack/  
 included:
   - ../Backpack
   - ../Backpack-SwiftUI
