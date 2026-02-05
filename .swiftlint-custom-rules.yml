@@ -76,6 +76,36 @@ custom_rules:
     message: "Use BPKBottomsheet instead of sheet modifier."
     severity: warning
 
+  bpk_slider:                                                                                                                                
+    name: "Prefer BPKSlider to Slider"                                                                                                       
+    regex: "(?<![A-Za-z])Slider\\("                                                                                                          
+    message: "Use BPKSlider instead of Slider."                                                                                              
+    severity: warning                                                                                                                        
+                                                                                                                                               
+  bpk_textField:                                                                                                                             
+    name: "Prefer BPKTextField to TextField"                                                                                                 
+    regex: "(?<![A-Za-z])TextField\\("                                                                                                       
+    message: "Use BPKTextField instead of TextField."                                                                                        
+    severity: warning
+
+  bpk_calendar:                                                                                                                              
+    name: "Prefer BPKCalendar to UIDatePicker"                                                                                               
+    regex: "UIDatePicker\\("                                                                                                                 
+    message: "Use BPKCalendar instead of UIDatePicker."                                                                                      
+    severity: warning
+
+  bpk_select:                                                                                                                                
+    name: "Prefer BPKSelect to Picker"                                                                                                       
+    regex: "(?<![A-Za-z])Picker\\("                                                                                                          
+    message: "Use BPKSelect instead of Picker."                                                                                              
+    severity: warning                                                                                                                        
+                                                                                                                                               
+  bpk_nudger:                                                                                                                                
+    name: "Prefer BPKNudger to Stepper"                                                                                                      
+    regex: "(?<![A-Za-z])Stepper\\("                                                                                                         
+    message: "Use BPKNudger instead of Stepper."                                                                                             
+    severity: warning  
+
   # Size token rules
 
   bpk_use_size_token:
@@ -129,3 +159,10 @@ custom_rules:
     regex: "Image\\(systemName:\\s*\"heart"
     message: "Use BPKSaveCardButton instead of SF Symbols heart"
     severity: warning
+
+  bpk_icon:                                                                                                                                  
+    name: "Use BPKIcon instead of SF Symbols"                                                                                                
+    regex: "Image\\(systemName:"                                                                                                             
+    message: "Use BPKIcon instead of SF Symbols"                                                                                             
+    severity: warning 
+
