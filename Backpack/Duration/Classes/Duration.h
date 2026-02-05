@@ -19,5 +19,7 @@
 #ifndef __BACKPACK_DURATION__
 #define __BACKPACK_DURATION__
 
+#ifdef SWIFT_PACKAGE
 #import "BPKDuration.h"
+#endif
 #endif

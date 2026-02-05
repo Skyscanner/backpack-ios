@@ -18,7 +18,11 @@
 
 #import <Foundation/Foundation.h>
 
+#ifdef SWIFT_PACKAGE
+#import "../../Button/Classes/Button.h"
+#else
 #import <Backpack/Button.h>
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 @class BPKDialogButtonAction;

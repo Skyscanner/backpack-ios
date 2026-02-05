@@ -18,7 +18,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import <Backpack/Shadow.h>
+@import Backpack;
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKShadowTest : XCTestCase

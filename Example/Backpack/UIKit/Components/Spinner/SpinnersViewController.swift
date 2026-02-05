@@ -17,8 +17,7 @@
  */
 
 import UIKit
-import Backpack.Spinner
-import Backpack.BPKColor
+import Backpack
 
 class SpinnersViewController: UIViewController {
     override func viewDidLoad() {

@@ -18,7 +18,16 @@
 #import "BPKNavigationBarLargeTitleView.h"
 
 #import <Backpack/Label.h>
+#ifdef SWIFT_PACKAGE
+#import <Backpack/Font.h>
+#else
+#import "Generated/BPKFont.h"
+#endif
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Spacing.h>
+#else
+#import "Generated/BPKSpacing.h"
+#endif
 
 const CGFloat BPKNavigationBarLargeTitleViewHeight = 52;
 

@@ -18,7 +18,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import <Backpack/Color.h>
+@import Backpack;
 #import <Backpack/ProgressBar.h>
 
 @interface BPKProgressBarTest : XCTestCase
