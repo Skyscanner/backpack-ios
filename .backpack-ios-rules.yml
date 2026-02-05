@@ -1,0 +1,182 @@
+custom_rules:
+  # These custom rules came from https://github.com/Skyscanner/backpack-swiftlint-rules/blob/main/src/BackpackSwiftLintRules.yml
+  # They will need to be updated manually when changes are made.
+
+  # Component rules
+
+  bpk_text:
+    name: "Use BPKText instead of Text"
+    regex: "(?<!BPK)(?<!accessibilityLabel\\()Text\\("
+    message: "Use BPKText instead of Text. Example: BPKText(\"text\", style: .bodyDefault)"
+    severity: warning
+
+  bpk_button:
+    name: "Use BPKButton instead of Button"
+    regex: "(?<![A-Za-z])Button\\("
+    message: "Use BPKButton instead of Button. Example: BPKButton(\"Action\", style: .primary) { }"
+    severity: warning
+
+  bpk_button_uikit:
+    name: "Prefer BPKObjcUIKitButton to UIButton"
+    regex: "UIButton\\("
+    message: "Use BPKButton instead of UIButton."
+    severity: warning
+
+  bpk_label:
+    name: "Prefer BPKLabel to UILabel"
+    regex: "(UILabel)\\("
+    message: "Use BPKLabel instead of UILabel."
+    severity: warning
+
+  bpk_progress:
+    name: "Prefer BPKProgressBar to UIProgressView"
+    regex: "(UIProgressView)\\("
+    message: "Use BPKProgressBar instead of UIProgressView."
+    severity: warning
+
+  bpk_spinner:
+    name: "Prefer BPKSpinner to UIActivityIndicatorView"
+    regex: "(UIActivityIndicatorView)\\("
+    message: "Use BPKSpinner instead of UIActivityIndicatorView."
+    severity: warning
+
+  bpk_switch:
+    name: "Use BPKSwitch instead of Toggle"
+    regex: "\\bToggle\\("
+    message: "Use BPKSwitch instead of Toggle. Example: BPKSwitch(isOn: $value)"
+    severity: warning
+
+  bpk_switch_uikit:
+    name: "Prefer BPKSwitch to UISwitch"
+    regex: "(UISwitch)\\("
+    message: "Use BPKSwitch instead of UISwitch."
+    severity: warning
+
+  bpk_text_field:
+    name: "Prefer BPKTextField to UITextField"
+    regex: "(UITextField)\\("
+    message: "Use BPKTextField instead of UITextField."
+    severity: warning
+
+  bpk_text_view:
+    name: "Prefer BPKTextView to UITextView"
+    regex: "(UITextView)\\("
+    message: "Use BPKTextView instead of UITextView."
+    severity: warning
+
+  bpk_bottomsheet:
+    name: "Prefer BPKBottomsheet to sheet modifier"
+    regex: "\\.sheet\\("
+    message: "Use BPKBottomsheet instead of sheet modifier."
+    severity: warning
+
+  bpk_slider:                                                                                                                                
+    name: "Prefer BPKSlider to Slider"                                                                                                       
+    regex: "(?<![A-Za-z])Slider\\("                                                                                                          
+    message: "Use BPKSlider instead of Slider."                                                                                              
+    severity: warning                                                                                                                        
+                                                                                                                                               
+  bpk_textField:                                                                                                                             
+    name: "Prefer BPKTextField to TextField"                                                                                                 
+    regex: "(?<![A-Za-z])TextField\\("                                                                                                       
+    message: "Use BPKTextField instead of TextField."                                                                                        
+    severity: warning
+
+  bpk_calendar:                                                                                                                              
+    name: "Prefer BPKCalendar to UIDatePicker"                                                                                               
+    regex: "UIDatePicker\\("                                                                                                                 
+    message: "Use BPKCalendar instead of UIDatePicker."                                                                                      
+    severity: warning
+
+  bpk_select:                                                                                                                                
+    name: "Prefer BPKSelect to Picker"                                                                                                       
+    regex: "(?<![A-Za-z])Picker\\("                                                                                                          
+    message: "Use BPKSelect instead of Picker."                                                                                              
+    severity: warning                                                                                                                        
+                                                                                                                                               
+  bpk_nudger:                                                                                                                                
+    name: "Prefer BPKNudger to Stepper"                                                                                                      
+    regex: "(?<![A-Za-z])Stepper\\("                                                                                                         
+    message: "Use BPKNudger instead of Stepper."                                                                                             
+    severity: warning  
+
+  # Size token rules
+
+  bpk_use_size_token:
+    name: "Prefer Backpack tokens to hard-coded numbers"
+    regex: "(?:(?:cornerRadius|spacing)\\s*=\\s*(?:[0-9\\.]+\\s*\\*\\s*)*([1-9]+(?:\\.[0-9]+)?)$|constrain.*?constant\\s*:\\s*(?:[0-9\\.]+\\s*\\*\\s*)*([1-9]+(?:\\.[0-9]+)?)\\s*\\))"
+    message: "Use a size or radius token from Backpack instead of a hard-coded number."
+    severity: warning
+
+  # Colour token rules
+
+  bpk_use_colour_token:
+    name: "Prefer Backpack colour tokens to UIColors"
+    regex: "(?:(?:Color|color)\\s+=\\s+(UIColor)|Variant\\s*\\:\\s*(UIColor))"
+    message: "Use a colour token from Backpack instead of a UIColor."
+    severity: warning
+
+  system_colors:
+    name: "Use Backpack color tokens"
+    regex: "Color\\.(red|blue|green|yellow|orange|purple|black|white|gray)\\b"
+    message: "Use Backpack color token instead of system colors. Example: .textPrimaryColor, .canvasColor"
+    severity: warning
+
+  hex_color_literal:
+    name: "Use Backpack color tokens instead of hex literals"
+    regex: '(?:#[0-9A-Fa-f]{6}|#[0-9A-Fa-f]{3}|0x[0-9A-Fa-f]{6})'
+    message: "Use Backpack color tokens instead of hex color literals. Example: .canvasColor, .textPrimaryColor"
+    severity: warning
+
+  rgb_color_values:
+    name: "Use Backpack color tokens instead of RGB values"
+    regex: '(?:Color|UIColor)\s*\(\s*red:\s*[0-9.]'
+    message: "Use Backpack color tokens instead of RGB/numeric color values. Example: .canvasColor, .textPrimaryColor"
+    severity: warning
+
+  uicolor_usage:
+    name: "Use Backpack color tokens instead of UIColor"
+    regex: "\\bUIColor\\.(red|blue|green|yellow|orange|purple|black|white|gray|clear|systemBackground)\\b"
+    message: "Use Backpack color tokens (Color extension). Example: .canvasColor, .textPrimaryColor"
+    severity: warning
+
+  # Spacings
+
+  bpk_spacing_param:
+    name: "Prefer BPKSpacing for spacing parameters"
+    regex: 'spacing:\s*(?!BPKSpacing)(?!\.)\s*(\d+(?:\.\d+)?)'
+    message: "Use BPKSpacing tokens instead of hard-coded spacing values."
+    severity: warning
+
+  bpk_padding:
+    name: "Prefer BPKSpacing for padding"
+    regex: '\.padding\(\s*(?!BPKSpacing)(?!\.)\s*(\d+(?:\.\d+)?)'
+    message: "Use BPKSpacing tokens for padding."
+    severity: warning
+
+  bpk_frame:
+    name: "Prefer BPKSpacing for frame dimensions"
+    regex: '\.frame\([^)]*(?:width|height)\s*:\s*(?!BPKSpacing)(?!0(?:\.0+)?\b)(\d+(?:\.\d+)?)'
+    message: "Use BPKSpacing tokens for frame width/height instead of raw numbers."
+    severity: warning
+
+  # SF Symbol replacements
+
+  sf_symbol_star:
+    name: "Use BPKHotelStarRating instead of SF Symbols"
+    regex: "Image\\(systemName:\\s*\"star"
+    message: "Use BPKHotelStarRating or BPKStarRating instead of SF Symbols stars"
+    severity: warning
+
+  sf_symbol_heart:
+    name: "Use BPKSaveCardButton instead of SF Symbols"
+    regex: "Image\\(systemName:\\s*\"heart"
+    message: "Use BPKSaveCardButton instead of SF Symbols heart"
+    severity: warning
+
+  bpk_icon:                                                                                                                                  
+    name: "Use BPKIcon instead of SF Symbols"                                                                                                
+    regex: "Image\\(systemName:"                                                                                                             
+    message: "Use BPKIcon instead of SF Symbols"                                                                                             
+    severity: warning 
+
