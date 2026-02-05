@@ -64,12 +64,6 @@ custom_rules:
     message: "Use BPKTextView instead of UITextView."
     severity: warning
 
-  bpk_spacing:
-    name: "Prefer BPKSpacing to hard-coded numbers"
-    regex: '(?:padding|spacing|minLength|frame\s*\([^)]*(?:width|height))\s*:\s*(?!BPKSpacing)(?!0(?:\.0+)?\b)([0-9]+(?:\.[0-9]+)?)'
-    message: "Use BPKSpacing tokens instead of hard-coded numbers. Available: .none, .sm (4), .md (8), .base (16), .lg (24), .xl (32), .xxl (40), .xxxl (64), .xxxxl (96)"
-    severity: warning
-
   bpk_bottomsheet:
     name: "Prefer BPKBottomsheet to sheet modifier"
     regex: "\\.sheet\\("
@@ -144,6 +138,26 @@ custom_rules:
     name: "Use Backpack color tokens instead of UIColor"
     regex: "\\bUIColor\\.(red|blue|green|yellow|orange|purple|black|white|gray|clear|systemBackground)\\b"
     message: "Use Backpack color tokens (Color extension). Example: .canvasColor, .textPrimaryColor"
+    severity: warning
+
+  # Spacings
+
+  bpk_spacing_param:
+    name: "Prefer BPKSpacing for spacing parameters"
+    regex: 'spacing:\s*(?!BPKSpacing)(?!\.)\s*(\d+(?:\.\d+)?)'
+    message: "Use BPKSpacing tokens instead of hard-coded spacing values."
+    severity: warning
+
+  bpk_padding:
+    name: "Prefer BPKSpacing for padding"
+    regex: '\.padding\(\s*(?!BPKSpacing)(?!\.)\s*(\d+(?:\.\d+)?)'
+    message: "Use BPKSpacing tokens for padding."
+    severity: warning
+
+  bpk_frame:
+    name: "Prefer BPKSpacing for frame dimensions"
+    regex: '\.frame\([^)]*(?:width|height)\s*:\s*(?!BPKSpacing)(?!0(?:\.0+)?\b)(\d+(?:\.\d+)?)'
+    message: "Use BPKSpacing tokens for frame width/height instead of raw numbers."
     severity: warning
 
   # SF Symbol replacements
