@@ -41,13 +41,13 @@ public struct BPKCardWrapper<HeaderContent: View, WrappedContent: CardWrappable>
             header
             card
                 .overlay(
-                    RoundedRectangle(cornerRadius: .sm)
+                    RoundedRectangle(cornerRadius: .md)
                         .stroke(Color(backgroundColor), lineWidth: lineWidth))
         }
         .background(backgroundColor)
-        .cornerRadius(BPKCornerRadius.sm.value)
+        .cornerRadius(BPKCornerRadius.md.value)
         .overlay(
-            RoundedRectangle(cornerRadius: .sm)
+            RoundedRectangle(cornerRadius: .md)
                 .stroke(Color(backgroundColor), lineWidth: lineWidth))
     }
 }
