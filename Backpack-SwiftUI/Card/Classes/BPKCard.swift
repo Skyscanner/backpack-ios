@@ -56,7 +56,7 @@ public struct BPKCard<Content: View>: View {
     }
 
     private var cornerRadius: BPKCornerRadius {
-        cornerStyle == .small ? .sm : .lg
+        cornerStyle == .small ? .md : .lg
     }
 
     public var body: some View {
