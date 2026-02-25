@@ -22,6 +22,7 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
     let peekHeight: CGFloat?
     let header: Header
     let bottomSheetContent: Content
+    let backgroundColor: BPKColor
     
     @State var headerHeight: CGFloat = 0.0
     @State private var detentHeight: CGFloat = 0
@@ -50,7 +51,6 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
                 .frame(maxHeight: maximumDetentHeight - headerHeight)
                 .fixedSize(horizontal: false, vertical: true)
             }
-            .background(.surfaceElevatedColor)
             .onGeometryChange(for: CGFloat.self) { geometry in
                 if detentHeight != initialDetentHeight && geometry.size.height > maximumDetentHeight {
                     return detentHeight
@@ -65,6 +65,7 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
             .presentationDetents(detents)
             .presentationDragIndicator(.visible)
         }
+        .background(backgroundColor)
         .ignoresSafeArea(.keyboard)
     }
 }

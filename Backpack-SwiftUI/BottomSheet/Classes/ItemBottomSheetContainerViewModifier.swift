@@ -62,7 +62,8 @@ struct ItemBottomSheetContainerViewModifier<
                     ContentFitBottomSheet(
                         peekHeight: peekHeight,
                         header: header(),
-                        bottomSheetContent: bottomSheetContent(item)
+                        bottomSheetContent: bottomSheetContent(item),
+                        backgroundColor: backgroundColor
                     )
                 }
             }
