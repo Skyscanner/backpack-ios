@@ -136,10 +136,8 @@ public struct BPKCellItem: View {
                 .foregroundColor(.textPrimaryColor)
 
         case .switch(let isOn):
-            BPKSwitch(isOn: isOn) {
-                EmptyView()
-            }
-            .labelsHidden()
+            BPKSwitch(isOn: isOn, text: "")
+                .labelsHidden()
 
         case .text(let text):
             BPKText(text, style: .footnote)
