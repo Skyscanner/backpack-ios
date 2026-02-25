@@ -22,7 +22,7 @@ import SwiftUI
 
 class BPKCellItemTests: XCTestCase {
 
-    // MARK: - US1: Basic Cell Item Display
+    // MARK: - Basic Cell Item Display
 
     func test_titleOnly() {
         assertSnapshot(
@@ -66,7 +66,7 @@ class BPKCellItemTests: XCTestCase {
         )
     }
 
-    // MARK: - US2: Styling Variants
+    // MARK: - Styling Variants
 
     func test_surfaceLowContrast() {
         assertSnapshot(
@@ -90,7 +90,7 @@ class BPKCellItemTests: XCTestCase {
         )
     }
 
-    // MARK: - US4: Slot Content - Chevron
+    // MARK: - Slot Content: Chevron
 
     func test_slotChevron() {
         assertSnapshot(
@@ -103,7 +103,7 @@ class BPKCellItemTests: XCTestCase {
         )
     }
 
-    // MARK: - US5: Slot Content - Switch
+    // MARK: - Slot Content: Switch
 
     func test_slotSwitchOn() {
         assertSnapshot(
@@ -127,7 +127,7 @@ class BPKCellItemTests: XCTestCase {
         )
     }
 
-    // MARK: - US6: Slot Content - Text
+    // MARK: - Slot Content: Text
 
     func test_slotText() {
         assertSnapshot(
@@ -140,7 +140,7 @@ class BPKCellItemTests: XCTestCase {
         )
     }
 
-    // MARK: - US7: Slot Content - Link
+    // MARK: - Slot Content: Link
 
     func test_slotLink() {
         assertSnapshot(
@@ -153,7 +153,7 @@ class BPKCellItemTests: XCTestCase {
         )
     }
 
-    // MARK: - US8: Slot Content - Image
+    // MARK: - Slot Content: Image
 
     func test_slotImage() {
         let testImage = Image(systemName: "star.fill")
@@ -164,6 +164,20 @@ class BPKCellItemTests: XCTestCase {
             )
             .frame(width: 375)
             .padding(.sm)
+        )
+    }
+
+    // MARK: - Dynamic Type / Accessibility
+
+    func test_dynamicType() {
+        assertA11ySnapshot(
+            BPKCellItem(
+                title: "Flight updates",
+                body: "Get notified about your flight status",
+                icon: .alertActive,
+                slot: .chevron
+            )
+            .frame(width: 375)
         )
     }
 
