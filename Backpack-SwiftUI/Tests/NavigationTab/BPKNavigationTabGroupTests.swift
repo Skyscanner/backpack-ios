@@ -58,4 +58,52 @@ class BPKNavigationTabGroupTests: XCTestCase {
                 .frame(width: 300)
         )
     }
+
+    func test_darkAlternate() {
+        assertSnapshot(
+            VStack {
+                BPKNavigationTabGroup(
+                    tabs: tabs,
+                    style: .onDarkAlternate,
+                    selectedIndex: .constant(0),
+                    onItemClick: { _ in }
+                )
+                .padding()
+                .background(.surfaceContrastColor)
+            }
+                .frame(width: 300)
+        )
+    }
+
+    func test_vertical() {
+        assertSnapshot(
+            VStack {
+                BPKNavigationTabGroup(
+                    tabs: tabs,
+                    itemAlignment: .vertical,
+                    selectedIndex: .constant(0),
+                    onItemClick: { _ in }
+                )
+                .padding()
+            }
+                .frame(width: 350)
+        )
+    }
+
+    func test_verticalOnDark() {
+        assertSnapshot(
+            VStack {
+                BPKNavigationTabGroup(
+                    tabs: tabs,
+                    style: .onDark,
+                    itemAlignment: .vertical,
+                    selectedIndex: .constant(0),
+                    onItemClick: { _ in }
+                )
+                .padding()
+                .background(.surfaceContrastColor)
+            }
+                .frame(width: 350)
+        )
+    }
 }
