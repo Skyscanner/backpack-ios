@@ -136,7 +136,7 @@ public struct BPKCellItem: View {
                 .foregroundColor(.textPrimaryColor)
 
         case .switch(let isOn):
-            BPKSwitch(isOn: isOn, text: "")
+            BPKSwitch(isOn: isOn) {}
                 .labelsHidden()
 
         case .text(let text):
@@ -150,9 +150,6 @@ public struct BPKCellItem: View {
 
         case .image(let image):
             image
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 24, height: 24)
         }
     }
 
@@ -168,9 +165,9 @@ public struct BPKCellItem: View {
     private var cornerRadius: CGFloat {
         switch corner {
         case .default:
-            return 0
+            return .zero
         case .rounded:
-            return BPKCornerRadius.sm.value // 8pt
+            return BPKCornerRadius.sm.value
         }
     }
 
@@ -178,7 +175,7 @@ public struct BPKCellItem: View {
     private var hasAccessibleSlot: Bool {
         guard let slot = slot else { return false }
         switch slot {
-        case .switch:
+        case .switch, .link:
             return true
         default:
             return false
