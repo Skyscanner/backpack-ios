@@ -21,7 +21,6 @@ import Backpack_SwiftUI
 
 struct CellItemExampleView: View {
     @State private var notificationsEnabled = true
-    @State private var darkModeEnabled = false
 
     var body: some View {
         ScrollView {
