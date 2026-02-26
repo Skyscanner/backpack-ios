@@ -42,10 +42,12 @@ If you want to add a new component, we will need the following:
 - Accessibility
 - Stories
 - Tests (unit & snapshot)
-- Documentation (Including main `REAMDE.md`)
+- Documentation (Including main `README.md`)
 
-Additionally, to avoid SPM complication issues, the component type will need to be added to Package.swift:
+Additionally, to avoid SPM compliation issues, the component type will need to be added to Package.swift:
 i.e. "CellItem"
+
+For example, add a SwiftUI component’s folder name to the `backpackSwiftUISourceDirs` array (or a UIKit component to `backpackUIKitSourceDirs`), ensuring the entry exactly matches the folder name and is inserted in alphabetical order — e.g. `"CellItem"` would go between `"Carousel"` and `"ChipGroup"` in `backpackSwiftUISourceDirs`.
 
 ### Design
 
