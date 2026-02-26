@@ -44,6 +44,9 @@ If you want to add a new component, we will need the following:
 - Tests (unit & snapshot)
 - Documentation (Including main `REAMDE.md`)
 
+Additionally, to avoid SPM complication issues, the component type will need to be added to Package.swift:
+i.e. "CellItem"
+
 ### Design
 
 Figma is the preferred format for non-technical folks. We’d appreciate if you could provide an exact match of your component in Figma format together with examples for each state e.g. disabled, expanded etc.
