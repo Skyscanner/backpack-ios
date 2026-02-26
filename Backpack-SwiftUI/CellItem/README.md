@@ -99,7 +99,7 @@ BPKCellItem(
     slot: .link(
         text: "View",
         url: "https://skyscanner.net/privacy",
-        action: { url in
+        onCustomLink: { url in
             // Open URL
         }
     )

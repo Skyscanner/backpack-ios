@@ -27,8 +27,8 @@ public enum BPKCellItemSlot {
     case `switch`(isOn: Binding<Bool>)
     /// Secondary text value displayed on trailing edge.
     case text(String)
-    /// Tappable link with text, URL, and action callback.
-    case link(text: String, url: String, action: (String) -> Void)
+    /// Tappable link with text, URL, and custom link handler callback.
+    case link(text: String, url: String, onCustomLink: (String) -> Void)
     /// Trailing image for partner logos or branding.
     case image(Image)
 }

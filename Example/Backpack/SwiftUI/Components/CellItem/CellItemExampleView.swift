@@ -57,7 +57,7 @@ struct CellItemExampleView: View {
                 )
                 BPKCellItem(
                     title: "Privacy Policy",
-                    slot: .link(text: "View", url: "https://skyscanner.net/privacy") { _ in }
+                    slot: .link(text: "View", url: "https://skyscanner.net/privacy", onCustomLink: { _ in })
                 )
                 BPKCellItem(
                     title: "Partner Airlines",

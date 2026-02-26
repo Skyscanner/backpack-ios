@@ -146,7 +146,7 @@ class BPKCellItemTests: XCTestCase {
         assertSnapshot(
             BPKCellItem(
                 title: "Terms and conditions",
-                slot: .link(text: "View", url: "https://example.com", action: { _ in })
+                slot: .link(text: "View", url: "https://example.com", onCustomLink: { _ in })
             )
             .frame(width: 375)
             .padding(.sm)

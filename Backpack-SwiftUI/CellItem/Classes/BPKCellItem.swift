@@ -143,9 +143,9 @@ public struct BPKCellItem: View {
             BPKText(text, style: .footnote)
                 .foregroundColor(.textPrimaryColor)
 
-        case .link(let text, let url, let action):
+        case .link(let text, let url, let onCustomLink):
             BPKLink(markdown: "[\(text)](\(url))") { _ in
-                action(url)
+                onCustomLink(url)
             }
 
         case .image(let image):
