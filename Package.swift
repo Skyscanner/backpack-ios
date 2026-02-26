@@ -83,6 +83,7 @@ let backpackSwiftUISourceDirs = [
   "CardList",
   "Carousel",
   "CarouselCard",
+  "CellItem",
   "Chip",
   "ChipGroup",
   "Color",
