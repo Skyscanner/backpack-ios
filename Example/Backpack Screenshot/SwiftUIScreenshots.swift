@@ -860,5 +860,10 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "segmented-control", scenario: "default", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
+
+        await navigate(title: "Cell Item") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "cell-item", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
     }
 }

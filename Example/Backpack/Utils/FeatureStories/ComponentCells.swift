@@ -48,6 +48,7 @@ struct ComponentCellsProvider {
             button(),
             card(),
             cardButton(),
+            cellItem(),
             cardList(),
             carousel(),
             carouselCard(),
@@ -189,6 +190,17 @@ extension ComponentCellsProvider {
                 ))
             ],
             showChildren: { showComponent(title: "Card Button", tabs: $0) }
+        )
+    }
+    private func cellItem() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Cell Item",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(CellItemExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Cell Item", tabs: $0) }
         )
     }
     private func chips() -> CellDataSource {

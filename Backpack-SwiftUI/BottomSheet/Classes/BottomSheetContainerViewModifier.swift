@@ -58,9 +58,9 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
                     ContentFitBottomSheet(
                         peekHeight: peekHeight,
                         header: header(),
-                        bottomSheetContent: bottomSheetContent()
+                        bottomSheetContent: bottomSheetContent(),
+                        backgroundColor: backgroundColor
                     )
-                    .background(backgroundColor)
                     .frame(maxHeight: .infinity, alignment: .top)
                     .ignoresSafeArea(.container, edges: .bottom)
                 }
