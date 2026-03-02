@@ -294,6 +294,14 @@ let targets: [Target] = [
       dependencies: ["Backpack_Common"],
       path: "Backpack-Common/Tests"
     ),
+    // Adding target here, go find the other missing ones, snapshot wasn't being found look into that tooo
+//    .testTarget(
+//      name: "BackpackSnapshotTests",
+//      dependencies: ["Backpack",
+//                     "Backpack_Tokens",
+//                     .product(name: "SnapshotTesting", package: "swift-snapshot-testing")],
+//      path: "Backpack/Tests/SnapshotTests"
+//    ),
     .testTarget(
       name: "BackpackTests",
       dependencies: [
