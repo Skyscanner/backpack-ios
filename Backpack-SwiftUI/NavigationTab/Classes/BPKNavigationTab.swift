@@ -75,7 +75,7 @@ struct BPKNavigationTab: View {
             }
             .padding(.horizontal, .base)
         case .vertical:
-            VStack(spacing: .md) {
+            VStack(spacing: BPKSpacing.none) {
                 if let icon {
                     BPKIconView(icon)
                 }
