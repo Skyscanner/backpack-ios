@@ -94,6 +94,7 @@ struct ComponentCellsProvider {
             spinners(),
             sponsoredInsetBanner(),
             starRatings(),
+            swap(),
             switches(),
             tabBarControllers(),
             tappableContainer(),
@@ -510,6 +511,17 @@ extension ComponentCellsProvider {
                 .swiftui(groups: StarRatingGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "Star ratings", tabs: $0) }
+        )
+    }
+    private func swap() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Swap",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(SwapExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Swap", tabs: $0) }
         )
     }
     private func switches() -> CellDataSource {

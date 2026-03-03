@@ -126,6 +126,7 @@ let backpackSwiftUISourceDirs = [
   "Spacing",
   "Spinner",
   "StarRating",
+  "Swap",
   "Switch",
   "TappableContainer",
   "Text",
