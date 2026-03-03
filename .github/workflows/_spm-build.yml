@@ -22,7 +22,7 @@ jobs:
 
       - name: Build Backpack Swift Package
         env:
-          SPM_DESTINATION: platform=iOS Simulator,name=iPhone SE (3rd generation),OS=18.5
+          SPM_DESTINATION: platform=iOS Simulator,name=iPhone 12 mini,OS=18.5
         run: |
           set -eo pipefail
           xcodebuild \
