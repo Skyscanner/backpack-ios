@@ -65,6 +65,7 @@ public struct BPKSwap: View {
             action()
         } label: {
             BPKIconView(.swapVertical, size: .small)
+                .dynamicTypeSize(...DynamicTypeSize.large)
                 .foregroundColor(style.iconColor)
                 .rotationEffect(.degrees(rotationAngle))
         }

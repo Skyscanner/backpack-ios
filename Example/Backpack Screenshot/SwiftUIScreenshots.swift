@@ -117,6 +117,11 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "switch", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
+        
+        await navigate(title: "Swap") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "swap", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
 
         await navigate(title: "Cards") {
             switchTab(title: "SwiftUI")
