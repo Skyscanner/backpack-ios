@@ -101,43 +101,42 @@ public extension BPKSwap {
         /// Use on canvas default backgrounds.
         /// Gray background with white border.
         case canvasDefault
-
+        
         /// Use on canvas contrast backgrounds.
         /// White background with gray border.
         case canvasContrast
-
+        
         /// Use on surface contrast (dark) backgrounds.
         /// White background with dark primary border.
         case surfaceContrast
+    }
+}
 
-        var backgroundColor: BPKColor {
-            switch self {
-            case .canvasDefault:
-                return .canvasContrastColor
-            case .canvasContrast, .surfaceContrast:
-                return .surfaceDefaultColor
-            }
+extension BPKSwap.Style {
+    var backgroundColor: BPKColor {
+        switch self {
+        case .canvasDefault:
+            return .surfaceDefaultColor
+        case .canvasContrast:
+            return .canvasContrastColor
+        case .surfaceContrast:
+            return .surfaceDefaultColor
         }
-
-        var borderColor: BPKColor {
-            switch self {
-            case .canvasDefault:
-                return .canvasColor
-            case .canvasContrast:
-                return .canvasContrastColor
-            case .surfaceContrast:
-                return .corePrimaryColor
-            }
+    }
+    
+    var borderColor: BPKColor {
+        switch self {
+        case .canvasDefault:
+            return .canvasContrastColor
+        case .canvasContrast:
+            return .canvasColor
+        case .surfaceContrast:
+            return .textPrimaryColor
         }
-
-        var iconColor: BPKColor {
-            switch self {
-            case .canvasDefault, .canvasContrast:
-                return .textPrimaryColor
-            case .surfaceContrast:
-                return .corePrimaryColor
-            }
-        }
+    }
+    
+    var iconColor: BPKColor {
+        return .textPrimaryColor
     }
 }
 

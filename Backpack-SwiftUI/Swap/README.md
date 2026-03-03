@@ -3,17 +3,21 @@
 [![Cocoapods](https://img.shields.io/cocoapods/v/Backpack-SwiftUI.svg?style=flat)](https://cocoapods.org/pods/Backpack-SwiftUI)
 [![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack-SwiftUI/Swap)
 
+| Day | Night |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_star-rating___all_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_star-rating___all_dm.png" alt="" width="375" /> |
+
 ## Overview
 
 `BPKSwap` is a circular button with a swap icon that rotates 180 degrees when tapped. It's typically used to swap values, such as origin and destination in search controls.
 
 ## Styles
 
-| Style | Background | Border | Use Case |
-| --- | --- | --- | --- |
-| `canvasDefault` | Canvas Contrast | Canvas | On canvas default backgrounds |
-| `canvasContrast` | Surface Default | Canvas Contrast | On canvas contrast backgrounds |
-| `surfaceContrast` | Surface Default | Core Primary | On surface contrast (dark) backgrounds |
+| Style | Use Case |
+| --- | --- |
+| `canvasDefault` | On canvas default backgrounds |
+| `canvasContrast` | On canvas contrast backgrounds |
+| `surfaceContrast` | On surface contrast (dark) backgrounds |
 
 ## Usage
 
@@ -38,30 +42,6 @@ BPKSwap(
     accessibilityLabel: "Swap origin and destination"
 ) {
     swapOriginAndDestination()
-}
-```
-
-### In Search Controls
-
-```swift
-VStack(spacing: 0) {
-    // Origin input
-    BPKSearchInputSummary(...)
-        .docking(.top)
-
-    // Destination input with swap button overlay
-    ZStack(alignment: .trailing) {
-        BPKSearchInputSummary(...)
-            .docking(.bottom)
-
-        BPKSwap(
-            style: .surfaceContrast,
-            accessibilityLabel: "Swap"
-        ) {
-            // Swap logic
-        }
-        .offset(y: -24)
-    }
 }
 ```
 
