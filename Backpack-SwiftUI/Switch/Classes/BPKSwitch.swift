@@ -77,43 +77,10 @@ public struct BPKSwitch<Content: View>: View {
                     $0.sizeCategory(.large)
                 })
         }
-        .toggleStyle(BPKSwitchToggleStyle(style: style))
-    }
-}
-
-// MARK: - Custom Toggle Style
-
-private struct BPKSwitchToggleStyle: ToggleStyle {
-    let style: BPKSwitchStyle
-
-    func makeBody(configuration: Configuration) -> some View {
-        HStack {
-            configuration.label
-            Spacer()
-            switchView(isOn: configuration.isOn)
-                .onTapGesture {
-                    withAnimation(.easeInOut(duration: 0.2)) {
-                        configuration.isOn.toggle()
-                    }
-                }
-        }
-    }
-
-    @ViewBuilder
-    private func switchView(isOn: Bool) -> some View {
-        ZStack {
-            // Track
-            Capsule()
-                .fill(isOn ? Color(style.onTintColor) : Color(style.offTrackColor).opacity(style.offTrackOpacity))
-                .frame(width: 51, height: 31)
-
-            // Thumb
-            Circle()
-                .fill(Color(.textOnDarkColor))
-                .frame(width: 27, height: 27)
-                .shadow(color: .black.opacity(0.15), radius: 2, x: 0, y: 2)
-                .offset(x: isOn ? 10 : -10)
-        }
+        // Using the ToggleStyle modifier, we cannot change the off (non-selected) track color.
+        .labelsHidden()
+        .tint(Color(style.onTintColor))
+        .background(Color(style.offTrackColor), in: .capsule)
     }
 }
 
@@ -125,7 +92,10 @@ public enum BPKSwitchStyle {
     case `default`
     /// Use on contrast/dark backgrounds.
     case onContrast
+    
+}
 
+extension BPKSwitchStyle {
     /// The tint color for the "on" state track.
     var onTintColor: BPKColor {
         switch self {
@@ -138,19 +108,9 @@ public enum BPKSwitchStyle {
     var offTrackColor: BPKColor {
         switch self {
         case .default:
-            return .surfaceHighlightColor
+            return .textDisabledColor
         case .onContrast:
-            return .textOnDarkColor
-        }
-    }
-
-    /// The opacity for the "off" state track.
-    var offTrackOpacity: Double {
-        switch self {
-        case .default:
-            return 1.0
-        case .onContrast:
-            return 0.2
+            return .textOnDarkColor.withAlphaComponent(0.4)
         }
     }
 }
