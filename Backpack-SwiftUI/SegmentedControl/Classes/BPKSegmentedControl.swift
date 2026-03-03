@@ -67,7 +67,6 @@ public struct BPKSegmentedControl: View {
             .background(Color(style.bgColor))
             .animation(.spring(duration: 0.25), value: selectedIndex)
             .cornerRadius(8)
-            .padding()
             .accessibilityIdentifier(accessibilityLabel)
             .frame(height: segmentHeight)
         }
@@ -125,6 +124,13 @@ public extension BPKSegmentedControl.Style {
         bgColor: .canvasContrastColor,
         textColor: .textPrimaryColor,
         selectedBgColor: .corePrimaryColor,
+        selectedTextColor: .textOnDarkColor
+    )
+    
+    static let surfaceContrast = Self(
+        bgColor: .segmentedControlSurfaceContrastColor,
+        textColor: .textOnDarkColor,
+        selectedBgColor: .segmentedControlSurfaceContrastOnColor,
         selectedTextColor: .textOnDarkColor
     )
 }
