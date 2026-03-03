@@ -183,9 +183,8 @@ public struct BPKSearchInputSummary: View {
 
     private var dockingBorder: some View {
         let lineWidth = isBorderHighlighted ? 2.0 : 1.0
-        let color = isBorderHighlighted ? BPKColor.coreAccentColor : BPKColor.lineColor
         return dockingShape
-            .stroke(Color(color), lineWidth: lineWidth)
+            .stroke(.clear, lineWidth: lineWidth)
     }
 }
 
