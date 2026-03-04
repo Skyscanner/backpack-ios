@@ -82,7 +82,7 @@ public struct BPKSnippet: View {
                 .resizable()
                 .scaledToFill()
                 .background(.surfaceHighlightColor)
-                .frame(width: geo.size.width)
+                .frame(width: geo.size.width, height: geo.size.height)
         }
         .aspectRatio(aspectRatio(for: imageOrientation), contentMode: .fit)
         .clipShape(RoundedRectangle(cornerRadius: .md, style: .continuous))
