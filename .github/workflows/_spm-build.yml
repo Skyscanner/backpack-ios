@@ -20,6 +20,17 @@ jobs:
       - name: Setup SwiftPM workspace
         uses: ./.github/actions/spm-setup
 
+      - name: Cache iOS Simulator Runtime
+        uses: actions/cache@v4
+        with:
+          path: ~/Library/Developer/CoreSimulator/Caches/dyld
+          key: ios-simulator-18.0-${{ runner.os }}-${{ runner.arch }}
+
+      - name: Setup iOS Simulator
+        run: |
+          xcodebuild -downloadPlatform iOS -exportPath ~/Downloads -buildVersion 18.0
+          xcrun simctl create 'iPhone 12 mini' 'iPhone 12 mini' iOS18.0
+
       - name: Build Backpack Swift Package
         env:
           SPM_DESTINATION: platform=iOS Simulator,name=iPhone 12 mini,OS=18.0

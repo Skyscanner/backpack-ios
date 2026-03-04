@@ -151,6 +151,12 @@ jobs:
       - name: Select Xcode 16
         run: sudo xcode-select --switch /Applications/Xcode_16.4.app
 
+      - name: Cache iOS Simulator Runtime
+        uses: actions/cache@v4
+        with:
+          path: ~/Library/Developer/CoreSimulator/Caches/dyld
+          key: ios-simulator-18.0-${{ runner.os }}-${{ runner.arch }}
+
       - name: Setup iOS Simulator
         run: |
           xcodebuild -downloadPlatform iOS -exportPath ~/Downloads -buildVersion 18.0
