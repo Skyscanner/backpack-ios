@@ -52,6 +52,18 @@ struct HorizontalNavigationExampleView: View {
                 size: size,
                 selectedTab: selectedTab
             )
+            
+            BPKHorizontalNavigation(
+                tabs: [
+                    .init(title: "OneSecondary", onClick: { selectedTab = 0 }),
+                    .init(title: "TwoSecondary", onClick: { selectedTab = 1 }),
+                    .init(title: "ThreeSecondary", onClick: { selectedTab = 2 })
+                ],
+                size: size,
+                style: .secondary,
+                selectedTab: selectedTab
+            )
+
         }
     }
 }
