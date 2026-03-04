@@ -38,6 +38,18 @@ public extension BPKHorizontalNavigation {
         }
     }
     
+    enum Style {
+        case `default`
+        case secondary
+        
+        var backgroundColour: BPKColor {
+            switch self {
+            case .default: return .surfaceDefaultColor
+            case .secondary: return .canvasContrastColor
+            }
+        }
+    }
+    
     struct Tab {
         let title: String
         let icon: BPKIcon?
@@ -59,15 +71,18 @@ public struct BPKHorizontalNavigation: View {
     let tabs: [Tab]
     let size: Size
     let selectedTab: Int
+    let style: Style
     
     public init(
         tabs: [Tab],
         size: Size = .default,
+        style: Style = .default,
         selectedTab: Int
     ) {
         self.tabs = tabs
         self.size = size
         self.selectedTab = selectedTab
+        self.style = style
     }
     
     public var body: some View {
@@ -95,7 +110,7 @@ public struct BPKHorizontalNavigation: View {
             }
             .frame(height: 2)
         }
-        .background(.surfaceDefaultColor)
+        .background(style.backgroundColour)
     }
 
     private func tabsWidth(for proxy: GeometryProxy) -> CGFloat {

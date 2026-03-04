@@ -31,11 +31,34 @@ class BPKHorizontalNavigationTests: XCTestCase {
         )
     }
     
+    func test_allTabsWithoutIcon_defaultSize_secondaryStyle() {
+        assertSnapshot(
+            BPKHorizontalNavigation(
+                tabs: [.init(title: "One"), .init(title: "Two"), .init(title: "Three")],
+                style: .secondary,
+                selectedTab: 1
+            )
+            .frame(width: 400)
+        )
+    }
+    
     func test_allTabsWithoutIcon_smallSize() {
         assertSnapshot(
             BPKHorizontalNavigation(
                 tabs: [.init(title: "One"), .init(title: "Two"), .init(title: "Three")],
                 size: .small,
+                selectedTab: 1
+            )
+            .frame(width: 400)
+        )
+    }
+    
+    func test_allTabsWithoutIcon_smallSize_secondaryStyle() {
+        assertSnapshot(
+            BPKHorizontalNavigation(
+                tabs: [.init(title: "One"), .init(title: "Two"), .init(title: "Three")],
+                size: .small,
+                style: .secondary,
                 selectedTab: 1
             )
             .frame(width: 400)
@@ -55,6 +78,21 @@ class BPKHorizontalNavigationTests: XCTestCase {
             .frame(width: 400)
         )
     }
+    
+    func test_allTabsWithIcon_defaultSize_secondaryStyle() {
+        assertSnapshot(
+            BPKHorizontalNavigation(
+                tabs: [
+                    .init(title: "One", icon: .flight),
+                    .init(title: "Two", icon: .flight),
+                    .init(title: "Three", icon: .flight)
+                ],
+                style: .secondary,
+                selectedTab: 1
+            )
+            .frame(width: 400)
+        )
+    }
 
     func test_allTabsWithIcon_smallSize() {
         assertSnapshot(
@@ -65,6 +103,22 @@ class BPKHorizontalNavigationTests: XCTestCase {
                     .init(title: "Three", icon: .flight)
                 ],
                 size: .small,
+                selectedTab: 1
+            )
+            .frame(width: 400)
+        )
+    }
+    
+    func test_allTabsWithIcon_smallSize_secondaryStyle() {
+        assertSnapshot(
+            BPKHorizontalNavigation(
+                tabs: [
+                    .init(title: "One", icon: .flight),
+                    .init(title: "Two", icon: .flight),
+                    .init(title: "Three", icon: .flight)
+                ],
+                size: .small,
+                style: .secondary,
                 selectedTab: 1
             )
             .frame(width: 400)

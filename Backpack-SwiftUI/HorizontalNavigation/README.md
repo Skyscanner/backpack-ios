@@ -24,9 +24,11 @@ BPKHorizontalNavigation(
 )
 ```
 
-### Setting the Size
+### Setting the Size and Style
 
 BPkHorizontalNavigation supports both a `default` and a `small` size.
+
+BPkHorizontalNavigation supports both a `default` and a `secondary` style.
 
 ```swift
 @State var selectedTab: Int = 0
@@ -37,11 +39,12 @@ BPKHorizontalNavigation(
         .init(title: "Cars", icon: .car, onClick: { selectedTab = 2 }),
     ],
     size: .small,
+    style: .secondary,
     selectedTab: selectedTab
 )
 ```
 
-### Tabs withou icons
+### Tabs without icons
 
 ```swift
 @State var selectedTab: Int = 0
@@ -54,3 +57,4 @@ BPKHorizontalNavigation(
     selectedTab: selectedTab
 )
 ```
+

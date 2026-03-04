@@ -25,10 +25,8 @@ jobs:
         uses: zizmorcore/zizmor-action@0dce2577a4760a2749d8cfb7a84b7d5585ebcb7d # v0.5.0
         with: # Not including release.yml for the time being.
           inputs: |
-            .github/workflows/_archive-validation.yml
             .github/workflows/_build.yml
             .github/workflows/_build-docs.yml
-            .github/workflows/_pods-archive-validation.yml
             .github/workflows/_spm-build.yml
             .github/workflows/_spm-test.yml
             .github/workflows/_test.yml
