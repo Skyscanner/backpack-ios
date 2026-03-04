@@ -40,13 +40,26 @@ jobs:
     - name: Cache iOS Simulator Runtime
       uses: actions/cache@v4
       with:
-          path: ~/Library/Developer/CoreSimulator/Caches/dyld
+          path: |
+            ~/Library/Developer/CoreSimulator/Profiles/Runtimes
+            ~/Library/Caches/com.apple.dt.Xcode/Downloads
           key: ios-simulator-18.0-${{ runner.os }}-${{ runner.arch }}
 
     - name: Setup iOS Simulator
       run: |
-          xcodebuild -downloadPlatform iOS -exportPath ~/Downloads -buildVersion 18.0
-          xcrun simctl create 'iPhone 12 mini' 'iPhone 12 mini' iOS18.0
+          # Check if runtime already exists
+          if ! xcrun simctl list runtimes | grep -q "iOS 18.0"; then
+            xcodebuild -downloadPlatform iOS -exportPath ~/Downloads -buildVersion 18.0
+          else
+            echo "iOS 18.0 runtime already available"
+          fi
+
+          # Create simulator if it doesn't exist
+          if ! xcrun simctl list devices | grep -q "iPhone 12 mini"; then
+            xcrun simctl create 'iPhone 12 mini' 'iPhone 12 mini' iOS18.0
+          else
+            echo "iPhone 12 mini simulator already exists"
+          fi
 
     - name: Publish Pods - Backpack Common
       run: |
