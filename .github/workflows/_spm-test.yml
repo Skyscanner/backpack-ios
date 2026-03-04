@@ -10,7 +10,7 @@ defaults:
 jobs:
   spm-test-build:
     name: SwiftPM Test Build
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
       - name: Checkout code
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
@@ -22,7 +22,7 @@ jobs:
 
       - name: Run Backpack Swift Package tests
         env:
-          SPM_DESTINATION: platform=iOS Simulator,name=iPhone SE (3rd generation),OS=17.5
+          SPM_DESTINATION: platform=iOS Simulator,name=iPhone SE (3rd generation),OS=18.5
         run: |
           set -eo pipefail
           xcodebuild \
