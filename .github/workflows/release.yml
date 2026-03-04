@@ -37,6 +37,11 @@ jobs:
     - name: Select Xcode 16
       run: sudo xcode-select --switch /Applications/Xcode_16.4.app
 
+    - name: Setup iOS Simulator
+      run: |
+          xcodebuild -downloadPlatform iOS -exportPath ~/Downloads -buildVersion 18.0
+          xcrun simctl create 'iPhone 12 mini' 'iPhone 12 mini' iOS18.0
+
     - name: Publish Pods - Backpack Common
       run: |
         set -eo pipefail
