@@ -64,40 +64,6 @@ jobs:
       - name: Select Xcode 16
         run: sudo xcode-select --switch /Applications/Xcode_16.4.app
 
-      - name: Cache iOS Simulator Runtime
-        id: cache-simulator
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/Library/Developer/CoreSimulator/Profiles/Runtimes
-            ~/Library/Caches/com.apple.dt.Xcode/Downloads
-          key: ios-simulator-18.0-${{ runner.os }}-${{ runner.arch }}
-
-      - name: Verify cache status
-        run: |
-          if [ "${{ steps.cache-simulator.outputs.cache-hit }}" == "true" ]; then
-            echo "✅ Cache HIT - Simulator runtime restored from cache"
-          else
-            echo "❌ Cache MISS - Simulator runtime will be downloaded"
-          fi
-          xcrun simctl list runtimes || echo "No runtimes found yet"
-
-      - name: Setup iOS Simulator
-        run: |
-          # Check if runtime already exists
-          if ! xcrun simctl list runtimes | grep -q "iOS 18.0"; then
-            xcodebuild -downloadPlatform iOS -exportPath ~/Downloads -buildVersion 18.0
-          else
-            echo "iOS 18.0 runtime already available"
-          fi
-
-          # Create simulator if it doesn't exist
-          if ! xcrun simctl list devices | grep -q "iPhone 12 mini"; then
-            xcrun simctl create 'iPhone 12 mini' 'iPhone 12 mini' iOS18.0
-          else
-            echo "iPhone 12 mini simulator already exists"
-          fi
-
       - name: Install sourcekitten
         run: brew install sourcekitten
 
