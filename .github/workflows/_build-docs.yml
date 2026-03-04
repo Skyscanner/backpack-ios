@@ -65,12 +65,22 @@ jobs:
         run: sudo xcode-select --switch /Applications/Xcode_16.4.app
 
       - name: Cache iOS Simulator Runtime
+        id: cache-simulator
         uses: actions/cache@v4
         with:
           path: |
             ~/Library/Developer/CoreSimulator/Profiles/Runtimes
             ~/Library/Caches/com.apple.dt.Xcode/Downloads
           key: ios-simulator-18.0-${{ runner.os }}-${{ runner.arch }}
+
+      - name: Verify cache status
+        run: |
+          if [ "${{ steps.cache-simulator.outputs.cache-hit }}" == "true" ]; then
+            echo "✅ Cache HIT - Simulator runtime restored from cache"
+          else
+            echo "❌ Cache MISS - Simulator runtime will be downloaded"
+          fi
+          xcrun simctl list runtimes || echo "No runtimes found yet"
 
       - name: Setup iOS Simulator
         run: |
