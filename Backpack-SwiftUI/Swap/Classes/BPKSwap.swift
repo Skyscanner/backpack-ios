@@ -100,11 +100,11 @@ public extension BPKSwap {
     /// The visual style for `BPKSwap`.
     enum Style {
         /// Use on canvas default backgrounds.
-        /// Gray background with white border.
-        case canvasDefault
-        
-        /// Use on canvas contrast backgrounds.
         /// White background with gray border.
+        case canvasDefault
+
+        /// Use on canvas contrast backgrounds.
+        /// Gray background with white border.
         case canvasContrast
         
         /// Use on surface contrast (dark) backgrounds.
