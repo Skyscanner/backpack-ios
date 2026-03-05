@@ -30,7 +30,7 @@ import Backpack_Common
 ///       - modes: An array of snapshot modes, by default we cover light, dark and right to left
 ///       - file: Reference to the calling file
 ///       - testName: Reference the calling function
-///       - line: Reference the calling line test test
+///       - line: Reference the calling line
 func assertSnapshot<V: View>(
     _ view: V,
     modes: [SnapshotModes] = [.light, .dark, .rtl],
