@@ -81,11 +81,15 @@ internal struct InternalCardCarousel<Content: View>: View {
         self.size = size
         self._currentIndex = currentIndex
         self.cardCount = content.count
-        self._currentInternalIndex = State(initialValue: cardCount + 1 + currentIndex.wrappedValue)
         
         // This is to ensure enough cards to create illusion of
         // infinite scroll
         self.content = content + content
+        
+        let initialIndex = cardCount + 1 + currentIndex.wrappedValue
+        self._currentInternalIndex = State(
+            initialValue: initialIndex == self.content.count ? cardCount : initialIndex
+        )
         
         focusOnCard = .init(currentInternalIndex)
     }
@@ -186,7 +190,7 @@ internal struct InternalCardCarousel<Content: View>: View {
     }
     
     private func handleLeftSwipe() {
-        if currentInternalIndex >= content.count - 1 {
+        if currentInternalIndex == content.count - 1 {
             withAnimation(.none) {
                 currentInternalIndex = currentInternalIndex % cardCount
             }
