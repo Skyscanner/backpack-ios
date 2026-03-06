@@ -1558,8 +1558,8 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
                 }
                 break;
             case NSTextCheckingTypeDate:
-                if (result.timeZone && [self.delegate respondsToSelector:@selector(attributedLabel:
-                                                                             didLongPressLinkWithDate:timeZone:duration:atPoint:)]) {
+                if (result.timeZone &&
+                    [self.delegate respondsToSelector:@selector(attributedLabel:didLongPressLinkWithDate:timeZone:duration:atPoint:)]) {
                     [self.delegate attributedLabel:self
                           didLongPressLinkWithDate:result.date
                                           timeZone:result.timeZone
