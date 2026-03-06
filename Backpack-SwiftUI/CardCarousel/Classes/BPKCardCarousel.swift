@@ -186,7 +186,7 @@ internal struct InternalCardCarousel<Content: View>: View {
     }
     
     private func handleLeftSwipe() {
-        if currentInternalIndex == content.count - 1 {
+        if currentInternalIndex >= content.count - 1 {
             withAnimation(.none) {
                 currentInternalIndex = currentInternalIndex % cardCount
             }
