@@ -29,6 +29,16 @@ NS_ASSUME_NONNULL_BEGIN
 extern CGFloat const BPKSpacingNone;
 
 /**
+ * The Skyscanner extra extra small spacing(1pt).
+ */
+extern CGFloat const BPKSpacingXxs;
+
+/**
+ * The Skyscanner extra small spacing(2pt).
+ */
+extern CGFloat const BPKSpacingXs;
+
+/**
  * The Skyscanner small spacing(4pt).
  */
 extern CGFloat const BPKSpacingSm;

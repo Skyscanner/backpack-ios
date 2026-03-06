@@ -21,6 +21,12 @@ public extension BPKSpacing {
     /// The Skyscanner none spacing (0pt).
     static var none: BPKSpacing { BPKSpacing(value: 0) }
 
+    /// The Skyscanner extra extra small spacing (1pt).
+    static var xxs: BPKSpacing { BPKSpacing(value: 1) }
+
+    /// The Skyscanner extra small spacing (2pt).
+    static var xs: BPKSpacing { BPKSpacing(value: 2) }
+
     /// The Skyscanner small spacing (4pt).
     static var sm: BPKSpacing { BPKSpacing(value: 4) }
 
