@@ -354,6 +354,12 @@ internal extension BPKColor {
         lightVariant: UIColor(red: 0.757, green: 0.780, blue: 0.812, alpha: 1),
         darkVariant: UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1))
 
+    /// The `navigationTabSelectedColor` internal color.
+    
+    static let navigationTabSelectedColor = BPKColor.dynamicColor(
+        lightVariant: UIColor(red: 0.008, green: 0.302, blue: 0.686, alpha: 1),
+        darkVariant: UIColor(red: 0.020, green: 0.255, blue: 0.518, alpha: 1))
+
     /// The `cardButtonContainedFillColor` internal color.
     
     static let cardButtonContainedFillColor = BPKColor.dynamicColor(
