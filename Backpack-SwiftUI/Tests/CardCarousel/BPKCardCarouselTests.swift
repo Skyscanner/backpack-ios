@@ -22,6 +22,7 @@ import SwiftUI
 
 class BPKCardCarouselTests: XCTestCase {
     func testCardCarousel() {
+        // Initial index 0
         assertSnapshot(
             BPKCardCarousel(
                 cards: [
@@ -30,7 +31,34 @@ class BPKCardCarouselTests: XCTestCase {
                     createCard()
                 ],
                 currentIndex: .constant(0)
-            ).frame(width: 300, height: 530)
+            ).frame(width: 300, height: 530),
+            testName: "iphone_initial_index_0"
+        )
+        
+        // Initial index 1
+        assertSnapshot(
+            BPKCardCarousel(
+                cards: [
+                    createCard(),
+                    createCard(),
+                    createCard()
+                ],
+                currentIndex: .constant(1)
+            ).frame(width: 300, height: 530),
+            testName: "iphone_initial_index_1"
+        )
+        
+        // Initial index 2
+        assertSnapshot(
+            BPKCardCarousel(
+                cards: [
+                    createCard(),
+                    createCard(),
+                    createCard()
+                ],
+                currentIndex: .constant(2)
+            ).frame(width: 300, height: 530),
+            testName: "iphone_initial_index_2"
         )
     }
     
