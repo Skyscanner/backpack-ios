@@ -20,6 +20,10 @@
 
 CGFloat const BPKSpacingNone = 0;
 
+CGFloat const BPKSpacingXxs = 1;
+
+CGFloat const BPKSpacingXs = 2;
+
 CGFloat const BPKSpacingSm = 4;
 
 CGFloat const BPKSpacingMd = 8;

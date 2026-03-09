@@ -32,6 +32,8 @@ class SpacingTokensViewController: UIViewController {
     
     private let spacingValues = [
         ("BPKSpacingNone", BPKSpacingNone),
+        ("BPKSpacingXxs", BPKSpacingXxs),
+        ("BPKSpacingXs", BPKSpacingXs),
         ("BPKSpacingSm", BPKSpacingSm),
         ("BPKSpacingMd", BPKSpacingMd),
         ("BPKSpacingIconText", BPKSpacingIconText),

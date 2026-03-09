@@ -17,6 +17,7 @@
  */
 
 const LEGIBLE_NAMES = [
+  { identifier: 'Xxs', legibleName: 'extra extra small' },
   { identifier: 'Xs', legibleName: 'extra small' },
   { identifier: 'Sm', legibleName: 'small' },
   { identifier: 'Md', legibleName: 'medium' },

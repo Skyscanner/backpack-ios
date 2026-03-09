@@ -290,6 +290,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor * internalNavigationTabOutlineColor;
 
 /**
+ * The `navigationTabSelectedColor` internal color.
+ */
+@property(nonatomic, class, readonly) UIColor * internalNavigationTabSelectedColor;
+
+/**
  * The `cardButtonContainedFillColor` internal color.
  */
 @property(nonatomic, class, readonly) UIColor * internalCardButtonContainedFillColor;

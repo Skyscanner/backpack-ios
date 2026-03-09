@@ -22,6 +22,8 @@ import Backpack_SwiftUI
 struct SpacingTokensView: View {
     let spacingTokens: [(String, BPKSpacing)] = [
         ("BPKSpacingNone", .none),
+        ("BPKSpacingXxs", .xxs),
+        ("BPKSpacingXs", .xs),
         ("BPKSpacingSm", .sm),
         ("BPKSpacingMd", .md),
         ("BPKSpacingIconText", .iconText),
