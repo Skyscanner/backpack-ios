@@ -22,8 +22,8 @@ const getLegibleName = require('./utils/legibleName');
 
 const VALID_SPACINGS = new Set([
   'none',
-  'xs',
   'xxs',
+  'xs',
   'sm',
   'md',
   'base',
