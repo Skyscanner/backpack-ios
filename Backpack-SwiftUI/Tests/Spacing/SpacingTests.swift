@@ -22,6 +22,8 @@ import XCTest
 class SpacingTests: XCTestCase {
     func testSpacingsHaveCorrectValues() {
         XCTAssertEqual(BPKSpacing.none.value, 0)
+        XCTAssertEqual(BPKSpacing.xxs.value, 1)
+        XCTAssertEqual(BPKSpacing.xs.value, 2)
         XCTAssertEqual(BPKSpacing.sm.value, 4)
         XCTAssertEqual(BPKSpacing.md.value, 8)
         XCTAssertEqual(BPKSpacing.iconText.value, 8)
