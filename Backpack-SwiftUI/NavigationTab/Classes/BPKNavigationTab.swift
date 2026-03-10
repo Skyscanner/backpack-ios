@@ -75,7 +75,6 @@ struct BPKNavigationTab: View {
 struct BPKNavigationTab_Previews: PreviewProvider {
     static var previews: some View {
         VStack(spacing: .lg) {
-            // Vertical alignment
             VStack(alignment: .leading) {
                 BPKText("Vertical", style: .caption)
                 HStack {
@@ -84,7 +83,6 @@ struct BPKNavigationTab_Previews: PreviewProvider {
                 }
             }
 
-            // Vertical on dark
             VStack(alignment: .leading) {
                 BPKText("Vertical on dark", style: .caption)
                     .foregroundColor(.textOnDarkColor)
