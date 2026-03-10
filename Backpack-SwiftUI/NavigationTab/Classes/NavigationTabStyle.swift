@@ -35,7 +35,7 @@ struct NavigationTabStyle: ButtonStyle {
         configuration.label
             .frame(minHeight: .xxl)
             .fixedSize(horizontal: true, vertical: false)
-            .background(backgroundColor(configuration.isPressed))
+            .background(backgroundColor())
             .foregroundColor(foregroundColor(configuration.isPressed))
             .clipShape(RoundedRectangle(cornerRadius: .lg))
             .if(!BPKFont.enableDynamicType, transform: {
@@ -43,7 +43,7 @@ struct NavigationTabStyle: ButtonStyle {
             })
     }
     
-    private func backgroundColor(_ isPressed: Bool) -> BPKColor {
+    private func backgroundColor() -> BPKColor {
         guard selected else { return .clear }
         switch style {
         case .default, .onDark:

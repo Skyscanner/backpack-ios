@@ -45,7 +45,6 @@ public struct BPKNavigationTabGroup: View {
                     tab(for: item, index: index)
                 }
             }
-            .padding(1) // to account for chip outlines
         }
     }
 
