@@ -35,6 +35,18 @@ struct SegmentedControlExampleView: View {
                 accessibilityLabel: accessibilityLabel,
                 style: .defaultStyle
             )
+            .padding()
+            
+            Text("SurfaceContrastStyle")
+            
+            BPKSegmentedControl(
+                items: longerItems,
+                selectedIndex: $selectedIndex,
+                accessibilityLabel: accessibilityLabel,
+                style: .surfaceContrastStyle
+            )
+            .background(.surfaceContrastColor)
+            .padding()
             
             Text("Custom style")
             BPKSegmentedControl(
@@ -48,6 +60,7 @@ struct SegmentedControlExampleView: View {
                     selectedTextColor: .surfaceContrastColor
                     )
             )
+            .padding()
 
             Text("Selected index: \(selectedIndex)")
         }

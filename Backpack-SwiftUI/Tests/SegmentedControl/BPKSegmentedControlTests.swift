@@ -32,6 +32,18 @@ class BPKSegmentedControlTests: XCTestCase {
         )
     }
     
+    func test_firstSegmentSelectedSurfaceContrastStyle() {
+        assertSnapshot(
+            BPKSegmentedControl(
+                items: ["One", "Two", "Three"],
+                selectedIndex: .constant(0),
+                accessibilityLabel: "bpk_segmented_control_example",
+                style: .surfaceContrastStyle)
+            .background(.surfaceContrastColor)
+            .frame(width: 200)
+        )
+    }
+    
     func test_accessibility() {
         let segmentedControl = BPKSegmentedControl(
             items: ["One", "Two", "Three"],
