@@ -8,13 +8,13 @@
 
 | Day | Night |
 | --- | --- |
-| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_navigationTab___default_lm" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_navigationTab___default_dm" alt="" width="375" /> |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_navigationTab___default_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_navigationTab___default_dm.png" alt="" width="375" /> |
 
 ## Default Vertical On Dark
 
 | Day | Night |
 | --- | --- |
-| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_navigationTab___onDark_lm" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_navigationTab___onDark_dm" alt="" width="375" /> |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_navigationTab___onDark_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_navigationTab___onDark_dm.png" alt="" width="375" /> |
 
 ## Usage
 
