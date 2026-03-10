@@ -34,3 +34,16 @@ BPKSwitch(isOn: $isEnabled) {
         .paddding()
 }
 ```
+
+### Styles
+
+BPKSwitch supports different styles for use on different backgrounds:
+
+```swift
+// Default style - for light/default backgrounds
+BPKSwitch(isOn: $isEnabled, text: "Enable", style: .default)
+
+// On contrast style - for dark/contrast backgrounds
+BPKSwitch(isOn: $isEnabled, text: "Enable", style: .onContrast)
+    .foregroundColor(.textOnDarkColor)
+```
