@@ -22,14 +22,5 @@ public extension BPKNavigationTabGroup {
     enum Style {
         case `default`
         case onDark
-        /// Use on dark backgrounds with alternate selection color (darker blue)
-        case onDarkAlternate
-    }
-
-    enum ItemAlignment {
-        /// Icon and text are laid out horizontally (side by side)
-        case horizontal
-        /// Icon is above the text (stacked vertically)
-        case vertical
     }
 }

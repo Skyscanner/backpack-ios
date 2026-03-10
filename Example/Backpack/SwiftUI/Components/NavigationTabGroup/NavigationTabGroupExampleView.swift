@@ -34,7 +34,6 @@ struct NavigationTabGroupExampleView: View {
         VStack {
             defaultGroup
             onDarkGroup
-            newGroup
         }
         .padding()
     }
@@ -51,16 +50,6 @@ struct NavigationTabGroupExampleView: View {
         BPKNavigationTabGroup(
             tabs: tabs,
             style: .onDark,
-            selectedIndex: $selectedNavigationTab) { _ in }
-            .padding()
-            .background(.surfaceContrastColor)
-    }
-    
-    var newGroup: some View {
-        BPKNavigationTabGroup(
-            tabs: tabs,
-            style: .onDarkAlternate,
-            itemAlignment: .vertical,
             selectedIndex: $selectedNavigationTab) { _ in }
             .padding()
             .background(.surfaceContrastColor)

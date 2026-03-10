@@ -22,7 +22,6 @@ import SwiftUI
 public struct BPKNavigationTabGroup: View {
     private let tabs: [Item]
     private let style: BPKNavigationTabGroup.Style
-    private let itemAlignment: BPKNavigationTabGroup.ItemAlignment
     private let onItemClick: (_ index: Int) -> Void
 
     @Binding private var selectedIndex: Int
@@ -30,30 +29,24 @@ public struct BPKNavigationTabGroup: View {
     public init(
         tabs: [Item],
         style: BPKNavigationTabGroup.Style = .default,
-        itemAlignment: BPKNavigationTabGroup.ItemAlignment = .horizontal,
         selectedIndex: Binding<Int>,
         onItemClick: @escaping (_ index: Int) -> Void
     ) {
         self.tabs = tabs
         self.style = style
-        self.itemAlignment = itemAlignment
         self._selectedIndex = selectedIndex
         self.onItemClick = onItemClick
     }
 
     public var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: spacing) {
+            HStack(spacing: .zero) {
                 ForEach(Array(tabs.enumerated()), id: \.element) { index, item in
                     tab(for: item, index: index)
                 }
             }
             .padding(1) // to account for chip outlines
         }
-    }
-
-    private var spacing: BPKSpacing {
-        itemAlignment == .vertical ? .none : .md
     }
 
     @ViewBuilder
@@ -63,7 +56,6 @@ public struct BPKNavigationTabGroup: View {
             icon: tab.icon,
             selected: selectedIndex == index,
             style: style,
-            itemAlignment: itemAlignment
         ) {
             onItemClick(index)
         }
@@ -108,35 +100,11 @@ struct BPKNavigationTabGroup_Previews: PreviewProvider {
 
     static var previews: some View {
         VStack(spacing: .lg) {
-            // Horizontal (default)
-            VStack(alignment: .leading) {
-                BPKText("Horizontal (default)", style: .caption)
-                BPKNavigationTabGroup(
-                    tabs: tabs,
-                    selectedIndex: .constant(0)
-                ) { _ in }
-            }
-            .padding()
-
-            // Horizontal on dark
-            VStack(alignment: .leading) {
-                BPKText("Horizontal on dark", style: .caption)
-                    .foregroundColor(.textOnDarkColor)
-                BPKNavigationTabGroup(
-                    tabs: tabs,
-                    style: .onDark,
-                    selectedIndex: .constant(0)
-                ) { _ in }
-            }
-            .padding()
-            .background(.surfaceContrastColor)
-
             // Vertical
             VStack(alignment: .leading) {
                 BPKText("Vertical", style: .caption)
                 BPKNavigationTabGroup(
                     tabs: tabs,
-                    itemAlignment: .vertical,
                     selectedIndex: .constant(0)
                 ) { _ in }
             }
@@ -149,7 +117,6 @@ struct BPKNavigationTabGroup_Previews: PreviewProvider {
                 BPKNavigationTabGroup(
                     tabs: tabs,
                     style: .onDark,
-                    itemAlignment: .vertical,
                     selectedIndex: .constant(0)
                 ) { _ in }
             }
