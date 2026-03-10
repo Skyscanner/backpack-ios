@@ -37,7 +37,7 @@ struct SegmentedControlExampleView: View {
             )
             .padding()
             
-            Text("SurfaceContrastStyle")
+            Text("Surface Contrast Style")
             
             BPKSegmentedControl(
                 items: longerItems,
