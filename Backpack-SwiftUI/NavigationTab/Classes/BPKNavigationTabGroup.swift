@@ -22,25 +22,28 @@ import SwiftUI
 public struct BPKNavigationTabGroup: View {
     private let tabs: [Item]
     private let style: BPKNavigationTabGroup.Style
+    private let itemAlignment: BPKNavigationTabGroup.ItemAlignment
     private let onItemClick: (_ index: Int) -> Void
-    
+
     @Binding private var selectedIndex: Int
-    
+
     public init(
         tabs: [Item],
         style: BPKNavigationTabGroup.Style = .default,
+        itemAlignment: BPKNavigationTabGroup.ItemAlignment = .horizontal,
         selectedIndex: Binding<Int>,
         onItemClick: @escaping (_ index: Int) -> Void
     ) {
         self.tabs = tabs
         self.style = style
+        self.itemAlignment = itemAlignment
         self._selectedIndex = selectedIndex
         self.onItemClick = onItemClick
     }
-    
+
     public var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: .md) {
+            HStack(spacing: spacing) {
                 ForEach(Array(tabs.enumerated()), id: \.element) { index, item in
                     tab(for: item, index: index)
                 }
@@ -48,14 +51,19 @@ public struct BPKNavigationTabGroup: View {
             .padding(1) // to account for chip outlines
         }
     }
-    
+
+    private var spacing: BPKSpacing {
+        itemAlignment == .vertical ? .none : .md
+    }
+
     @ViewBuilder
     private func tab(for tab: Item, index: Int) -> some View {
         BPKNavigationTab(
             tab.text,
             icon: tab.icon,
             selected: selectedIndex == index,
-            style: style
+            style: style,
+            itemAlignment: itemAlignment
         ) {
             onItemClick(index)
         }
@@ -90,29 +98,63 @@ public extension BPKNavigationTabGroup {
 }
 
 struct BPKNavigationTabGroup_Previews: PreviewProvider {
-    
+
     static let tabs: [BPKNavigationTabGroup.Item] = [
         .init(text: "Explore", icon: .explore),
         .init(text: "Flights", icon: .flight),
         .init(text: "Hotels", icon: .hotels),
         .init(text: "Car Hire", icon: .cars)
     ]
-    
+
     static var previews: some View {
-        VStack {
-            BPKNavigationTabGroup(
-                tabs: tabs,
-                selectedIndex: .constant(0)
-            ) { _ in }
-                .padding()
-            
-            BPKNavigationTabGroup(
-                tabs: tabs,
-                style: .onDark,
-                selectedIndex: .constant(0)
-            ) { _ in }
-                .padding()
-                .background(.surfaceContrastColor)
+        VStack(spacing: .lg) {
+            // Horizontal (default)
+            VStack(alignment: .leading) {
+                BPKText("Horizontal (default)", style: .caption)
+                BPKNavigationTabGroup(
+                    tabs: tabs,
+                    selectedIndex: .constant(0)
+                ) { _ in }
+            }
+            .padding()
+
+            // Horizontal on dark
+            VStack(alignment: .leading) {
+                BPKText("Horizontal on dark", style: .caption)
+                    .foregroundColor(.textOnDarkColor)
+                BPKNavigationTabGroup(
+                    tabs: tabs,
+                    style: .onDark,
+                    selectedIndex: .constant(0)
+                ) { _ in }
+            }
+            .padding()
+            .background(.surfaceContrastColor)
+
+            // Vertical
+            VStack(alignment: .leading) {
+                BPKText("Vertical", style: .caption)
+                BPKNavigationTabGroup(
+                    tabs: tabs,
+                    itemAlignment: .vertical,
+                    selectedIndex: .constant(0)
+                ) { _ in }
+            }
+            .padding()
+
+            // Vertical on dark
+            VStack(alignment: .leading) {
+                BPKText("Vertical on dark", style: .caption)
+                    .foregroundColor(.textOnDarkColor)
+                BPKNavigationTabGroup(
+                    tabs: tabs,
+                    style: .onDark,
+                    itemAlignment: .vertical,
+                    selectedIndex: .constant(0)
+                ) { _ in }
+            }
+            .padding()
+            .background(.surfaceContrastColor)
         }
     }
 }

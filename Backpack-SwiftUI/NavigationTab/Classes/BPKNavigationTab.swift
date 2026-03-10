@@ -25,6 +25,7 @@ struct BPKNavigationTab: View {
     let icon: BPKIcon?
     let selected: Bool
     let style: BPKNavigationTabGroup.Style
+    let itemAlignment: BPKNavigationTabGroup.ItemAlignment
     let onClick: () -> Void
     
     init(
@@ -32,18 +33,38 @@ struct BPKNavigationTab: View {
         icon: BPKIcon? = nil,
         selected: Bool = false,
         style: BPKNavigationTabGroup.Style = .default,
+        itemAlignment: BPKNavigationTabGroup.ItemAlignment = .horizontal,
         onClick: @escaping () -> Void
     ) {
         self.text = text
         self.icon = icon
         self.selected = selected
         self.style = style
+        self.itemAlignment = itemAlignment
         self.onClick = onClick
     }
     
     var body: some View {
         
         Button(action: onClick) {
+            content
+        }
+        .buttonStyle(
+            NavigationTabStyle(
+                style: style,
+                selected: selected,
+            )
+        )
+        .accessibilityAddTraits(selected ? [.isSelected] : [])
+        .if(!BPKFont.enableDynamicType, transform: {
+            $0.sizeCategory(.large)
+        })
+    }
+    
+    @ViewBuilder
+    private var content: some View {
+        switch itemAlignment {
+        case .horizontal:
             HStack(spacing: .md) {
                 if let icon {
                     BPKIconView(icon)
@@ -53,33 +74,66 @@ struct BPKNavigationTab: View {
                     .lineLimit(1)
             }
             .padding(.horizontal, .base)
+        case .vertical:
+            VStack(spacing: BPKSpacing.none) {
+                if let icon {
+                    BPKIconView(icon)
+                }
+                Text(text)
+                    .font(BPKFontStyle.label3.font)
+                    .lineLimit(1)
+            }
+            .padding(.horizontal, .base)
+            .padding(.vertical, .md)
         }
-        .buttonStyle(
-            NavigationTabStyle(
-                style: style,
-                selected: selected
-            )
-        )
-        .accessibilityAddTraits(selected ? [.isSelected] : [])
-        .if(!BPKFont.enableDynamicType, transform: {
-            $0.sizeCategory(.large)
-        })
     }
 }
 
 struct BPKNavigationTab_Previews: PreviewProvider {
     static var previews: some View {
-        VStack {
-            HStack {
-                BPKNavigationTab("Explore", icon: .explore, selected: true) {}
-                BPKNavigationTab("Flights", icon: .flight) {}
+        VStack(spacing: .lg) {
+            // Horizontal alignment (default)
+            VStack(alignment: .leading) {
+                BPKText("Horizontal (default)", style: .caption)
+                HStack {
+                    BPKNavigationTab("Explore", icon: .explore, selected: true) {}
+                    BPKNavigationTab("Flights", icon: .flight) {}
+                }
             }
-            HStack {
-                BPKNavigationTab("Explore", icon: .explore, selected: true, style: .onDark) {}
-                BPKNavigationTab("Flights", icon: .flight, style: .onDark) {}
+
+            // Horizontal on dark
+            VStack(alignment: .leading) {
+                BPKText("Horizontal on dark", style: .caption)
+                    .foregroundColor(.textOnDarkColor)
+                HStack {
+                    BPKNavigationTab("Explore", icon: .explore, selected: true, style: .onDark) {}
+                    BPKNavigationTab("Flights", icon: .flight, style: .onDark) {}
+                }
+            }
+            .padding()
+            .background(.surfaceContrastColor)
+
+            // Vertical alignment
+            VStack(alignment: .leading) {
+                BPKText("Vertical", style: .caption)
+                HStack {
+                    BPKNavigationTab("Explore", icon: .explore, selected: true, itemAlignment: .vertical) {}
+                    BPKNavigationTab("Flights", icon: .flight, itemAlignment: .vertical) {}
+                }
+            }
+
+            // Vertical on dark
+            VStack(alignment: .leading) {
+                BPKText("Vertical on dark", style: .caption)
+                    .foregroundColor(.textOnDarkColor)
+                HStack {
+                    BPKNavigationTab("Explore", icon: .explore, selected: true, style: .onDark, itemAlignment: .vertical) {}
+                    BPKNavigationTab("Flights", icon: .flight, style: .onDark, itemAlignment: .vertical) {}
+                }
             }
             .padding()
             .background(.surfaceContrastColor)
         }
+        .padding()
     }
 }
