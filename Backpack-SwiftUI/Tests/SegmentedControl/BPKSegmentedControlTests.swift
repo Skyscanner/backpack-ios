@@ -52,5 +52,6 @@ class BPKSegmentedControlTests: XCTestCase {
         )
         .frame(width: 200)
         assertA11ySnapshot(segmentedControl)
+
     }
 }

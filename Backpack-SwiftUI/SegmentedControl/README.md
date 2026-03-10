@@ -31,7 +31,7 @@ The colours can be customised using the`style` parameter.
             )
 ```
 
-### SurfaceContrast style
+### Surface Contrast style
 
 ```swift
     import Backpack_SwiftUI
@@ -45,6 +45,7 @@ The colours can be customised using the`style` parameter.
                 accessibilityLabel: accessibilityLabel,
                 style: .surfaceContrastStyle
             )
+            .background(.surfaceContrastColor)
 ```
 
 ### Custom style
