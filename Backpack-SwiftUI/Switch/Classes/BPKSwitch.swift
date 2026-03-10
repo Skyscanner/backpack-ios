@@ -71,16 +71,28 @@ public struct BPKSwitch<Content: View>: View {
     }
     
     public var body: some View {
-        Toggle(isOn: $isOn) {
-            content
-                .if(!BPKFont.enableDynamicType, transform: {
-                    $0.sizeCategory(.large)
-                })
+        switch style {
+            case .default:
+            Toggle(isOn: $isOn) {
+                content
+                    .if(!BPKFont.enableDynamicType, transform: {
+                        $0.sizeCategory(.large)
+                    })
+            }
+            .tint(Color(style.onTintColor))
+            
+            case .onContrast:
+            Toggle(isOn: $isOn) {
+                content
+                    .if(!BPKFont.enableDynamicType, transform: {
+                        $0.sizeCategory(.large)
+                    })
+            }
+            // Using the ToggleStyle modifier, we cannot change the off (non-selected) track color.
+            .labelsHidden()
+            .tint(Color(style.onTintColor))
+            .background(Color(style.offTrackColor), in: .capsule)
         }
-        // Using the ToggleStyle modifier, we cannot change the off (non-selected) track color.
-        .labelsHidden()
-        .tint(Color(style.onTintColor))
-        .background(Color(style.offTrackColor), in: .capsule)
     }
 }
 
