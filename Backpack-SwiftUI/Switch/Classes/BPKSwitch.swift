@@ -79,8 +79,8 @@ public struct BPKSwitch<Content: View>: View {
                         $0.sizeCategory(.large)
                     })
             }
-            .tint(Color(style.onTintColor))
-            
+            .toggleStyle(SwitchToggleStyle(tint: Color(.coreAccentColor)))
+
             case .onContrast:
             Toggle(isOn: $isOn) {
                 content
@@ -102,9 +102,9 @@ public struct BPKSwitch<Content: View>: View {
 public enum BPKSwitchStyle {
     /// Use on default/light backgrounds.
     case `default`
+    
     /// Use on contrast/dark backgrounds.
     case onContrast
-    
 }
 
 extension BPKSwitchStyle {
