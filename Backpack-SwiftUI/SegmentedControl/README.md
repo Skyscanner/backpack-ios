@@ -31,6 +31,23 @@ The colours can be customised using the`style` parameter.
             )
 ```
 
+### Surface Contrast style
+
+```swift
+    import Backpack_SwiftUI
+    @State var selectedIndex = 0
+    private let accessibilityLabel = "bpk_segmented_control_example"
+    private let items: [String] = ["1", "2", "3"]
+
+            BPKSegmentedControl(
+                items: items,
+                selectedIndex: $selectedIndex,
+                accessibilityLabel: accessibilityLabel,
+                style: .surfaceContrastStyle
+            )
+            .background(.surfaceContrastColor)
+```
+
 ### Custom style
 
 ```swift
