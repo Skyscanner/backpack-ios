@@ -67,17 +67,21 @@ class BPKGraphicPromoTests: XCTestCase {
                 image: Image("dialog_image", bundle: TestsBundle.bundle),
                 sponsorTitle: "Sponsored",
                 partnerLogo: Image(decorative: "skyland", bundle: TestsBundle.bundle),
-                sponsoredAccessibilityLabel: "Sponsored by: Skyland"
+                sponsoredAccessibilityLabel: "Sponsored by: Skyland",
+                callToAction: .init(
+                    accessibilityLabel: "Learn more about our sponsor",
+                    onClick: {}
+                )
             )
             .fallbackColor(Color(.statusDangerFillColor))
         }
             .frame(width: 375, height: 800)
             .padding()
-        
+
         // When
         assertSnapshot(sut)
     }
-    
+
     func test_sponsored_tabletLayout() {
         // Given
         let sut = VStack {
@@ -87,17 +91,21 @@ class BPKGraphicPromoTests: XCTestCase {
                 layoutType: .tablet,
                 sponsorTitle: "Sponsored",
                 partnerLogo: Image(decorative: "skyland", bundle: TestsBundle.bundle),
-                sponsoredAccessibilityLabel: "Sponsored by: Skyland"
+                sponsoredAccessibilityLabel: "Sponsored by: Skyland",
+                callToAction: .init(
+                    accessibilityLabel: "Learn more about our sponsor",
+                    onClick: {}
+                )
             )
             .fallbackColor(Color(.statusDangerFillColor))
         }
             .frame(width: 800)
             .padding()
-        
+
         // When
         assertSnapshot(sut)
     }
-    
+
     func test_sponsored_desktopLayout() {
         // Given
         let sut = VStack {
@@ -107,17 +115,21 @@ class BPKGraphicPromoTests: XCTestCase {
                 layoutType: .desktop,
                 sponsorTitle: "Sponsored",
                 partnerLogo: Image(decorative: "skyland", bundle: TestsBundle.bundle),
-                sponsoredAccessibilityLabel: "Sponsored by: Skyland"
+                sponsoredAccessibilityLabel: "Sponsored by: Skyland",
+                callToAction: .init(
+                    accessibilityLabel: "Learn more about our sponsor",
+                    onClick: {}
+                )
             )
             .fallbackColor(Color(.statusDangerFillColor))
         }
             .frame(width: 1024)
             .padding()
-        
+
         // When
         assertSnapshot(sut)
     }
-    
+
     func test_sponsored_longText() {
         // Given
         let sut = VStack {
@@ -126,17 +138,21 @@ class BPKGraphicPromoTests: XCTestCase {
                 image: Image("dialog_image", bundle: TestsBundle.bundle),
                 sponsorTitle: "This will be a longer string that should change the layout to vertical",
                 partnerLogo: Image(decorative: "skyland", bundle: TestsBundle.bundle),
-                sponsoredAccessibilityLabel: "Sponsored by: Skyland"
+                sponsoredAccessibilityLabel: "Sponsored by: Skyland",
+                callToAction: .init(
+                    accessibilityLabel: "Learn more about our sponsor",
+                    onClick: {}
+                )
             )
             .fallbackColor(Color(.statusDangerFillColor))
         }
         .frame(width: 375, height: 800)
         .padding()
-        
+
         // When
         assertSnapshot(sut)
     }
-    
+
     func test_sponsored_a11y() {
         // Given
         BPKFont.setDynamicType(enabled: true)
@@ -146,18 +162,22 @@ class BPKGraphicPromoTests: XCTestCase {
                 image: Image("dialog_image", bundle: TestsBundle.bundle),
                 sponsorTitle: "This will be a longer string that should change the layout to vertical",
                 partnerLogo: Image(decorative: "skyland", bundle: TestsBundle.bundle),
-                sponsoredAccessibilityLabel: "Sponsored by: Skyland"
+                sponsoredAccessibilityLabel: "Sponsored by: Skyland",
+                callToAction: .init(
+                    accessibilityLabel: "Learn more about our sponsor",
+                    onClick: {}
+                )
             )
             .fallbackColor(Color(.statusDangerFillColor))
         }
         .frame(width: 375, height: 1000)
         .padding()
         .environment(\.sizeCategory, .accessibilityExtraExtraExtraLarge)
-        
+
         // When
         assertSnapshot(sut)
     }
-    
+
     func test_sponsored_noLogo() {
         // Given
         let sut = VStack {
@@ -166,13 +186,17 @@ class BPKGraphicPromoTests: XCTestCase {
                 image: Image("dialog_image", bundle: TestsBundle.bundle),
                 sponsorTitle: "Sponsored",
                 partnerLogo: nil,
-                sponsoredAccessibilityLabel: "Sponsored by: Skyland"
+                sponsoredAccessibilityLabel: "Sponsored by: Skyland",
+                callToAction: .init(
+                    accessibilityLabel: "Learn more about our sponsor",
+                    onClick: {}
+                )
             )
             .fallbackColor(Color(.statusDangerFillColor))
         }
             .frame(width: 375, height: 800)
             .padding()
-        
+
         // When
         assertSnapshot(sut)
     }
