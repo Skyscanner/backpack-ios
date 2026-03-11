@@ -81,3 +81,4 @@ There is a built-in announcement of a current value. However, if it's necessary,
 ```swift
 BPKSearchInputSummary(placeholder: "Date", clearAction: .init(accessibilityLabel: "Clear", action: {}), customAccessibilityValue: , .constant("Mon 01 Jan"))
 ```
+Accessibility Label is always a value from `placeholder` parameter.
