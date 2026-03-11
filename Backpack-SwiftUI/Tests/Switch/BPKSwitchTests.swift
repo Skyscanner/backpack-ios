@@ -32,6 +32,14 @@ class BPKSwitchTests: XCTestCase {
     func testSwitchTruncatedByDefault() {
         assertSnapshot(BPKSwitch(isOn: .constant(false), text: "line 1\n line 2").padding(.sm))
     }
+    
+    func testSwitchOnContrastStyleOn() {
+        assertSnapshot(BPKSwitch(isOn: .constant(true), text: "Test", style: .onContrast))
+    }
+    
+    func testSwitchOnContrastStyleOff() {
+        assertSnapshot(BPKSwitch(isOn: .constant(false), text: "Test", style: .onContrast))
+    }
 
     func testSwitchTruncatedFalse() {
         assertSnapshot(
