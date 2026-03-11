@@ -11,7 +11,7 @@
 # Docking
 | Day | Night |
 | --- | --- |
-| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_docking-input-summary___default_lm" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_docking-input-summary___default_dm" alt="" width="375" /> |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_docking-input-summary___default_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_docking-input-summary___default_dm.png" alt="" width="375" /> |
 
 # Basic Usage
 
@@ -42,10 +42,7 @@ BPKSearchInputSummary(inputPrefix: .customText("From"), clearAction: .init(acces
 
 ### Setting a docking style
 ```swift
-BPKSearchInputSummary(placeholder: "Top", 
-                      inputPrefix: .icon(.name), 
-                      clearAction: .init(accessibilityLabel: "Clear", 
-                      action: { text = "" }), $text)
+BPKSearchInputSummary(placeholder: "Top", inputPrefix: .icon(.flight), $text)
                      .docking(.top)
 ```
 
