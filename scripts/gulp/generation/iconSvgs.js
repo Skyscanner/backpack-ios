@@ -46,7 +46,7 @@ const generateSvgIcons = (template) => (done) => {
 
   const getSizedSvgName = (svg, size) => ({
     originalName: svg,
-    sizedName: size === 'lg' ? `${svg}-lg` : `${svg}-sm`
+    sizedName: size === 'lg' ? `${svg}-lg` : size === 'xxxl' ? `${svg}-xxxl` : `${svg}-sm`
   })
 
   const allSvgsForSize = size => fs
@@ -65,7 +65,7 @@ const generateSvgIcons = (template) => (done) => {
     createContentsFile(contentJsonForSVG(svg.sizedName), imagesetFolder(svg.sizedName))
   }
 
-  ['lg', 'sm']
+  ['lg', 'sm', 'xxxl']
     .forEach(size => {
       allSvgsForSize(size)
         .forEach(svg => { processSvg(svg, size) })

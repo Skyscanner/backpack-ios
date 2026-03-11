@@ -28,6 +28,6 @@ public struct BPKIcon {
     }
     
     public enum Size {
-        case large, small
+        case large, small, extraLarge
     }
 }

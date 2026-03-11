@@ -75,6 +75,7 @@ struct StarRatingPlayground: View {
                 Picker("Size", selection: $size) {
                     Text("Small").tag(BPKStarRatingSize.small)
                     Text("Large").tag(BPKStarRatingSize.large)
+                    Text("Extra Large").tag(BPKStarRatingSize.extraLarge)
                 }
                 .pickerStyle(SegmentedPickerStyle())
             }

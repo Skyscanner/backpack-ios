@@ -38,16 +38,20 @@ public struct BPKIconView: View {
     
     @ScaledMetric private var scaledSmallSize: CGFloat = 16
     @ScaledMetric private var scaledLargeSize: CGFloat = 24
-    
+    @ScaledMetric private var scaledExtraLargeSize: CGFloat = 40
+
     private var smallSize: CGFloat = 16
     private var largeSize: CGFloat = 24
-    
+    private var extraLargeSize: CGFloat = 40
+
     private var dimension: CGFloat {
         switch size {
         case .small:
             return BPKFont.enableDynamicType ? scaledSmallSize : smallSize
         case .large:
             return BPKFont.enableDynamicType ? scaledLargeSize : largeSize
+        case .extraLarge:
+            return BPKFont.enableDynamicType ? scaledExtraLargeSize : extraLargeSize
         }
     }
 
@@ -76,6 +80,8 @@ private extension BPKIcon.Size {
             return "lg"
         case .small:
             return "sm"
+        case .extraLarge:
+            return "xxxl"
         }
     }
 }

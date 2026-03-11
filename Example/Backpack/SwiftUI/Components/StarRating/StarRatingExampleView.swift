@@ -46,6 +46,12 @@ struct StarRatingExampleView: View {
                 size: .large
             )
             .accessibilityLabel("Stars")
+            BPKStarRating(
+                rating: $rating,
+                maxRating: 5,
+                size: .extraLarge
+            )
+            .accessibilityLabel("Stars")
         }
     }
 
@@ -67,6 +73,14 @@ struct StarRatingExampleView: View {
                 rating = selectedRating
             }
             .accessibilityLabel("Stars")
+            BPKStarRating(
+                rating: $rating,
+                maxRating: 5,
+                size: .extraLarge
+            ) { selectedRating in
+                rating = selectedRating
+            }
+            .accessibilityLabel("Stars")
         }
     }
 
@@ -76,6 +90,8 @@ struct StarRatingExampleView: View {
             BPKHotelStarRating(rating: $hotelRating)
                 .accessibilityLabel("Stars")
             BPKHotelStarRating(rating: $hotelRating, size: .large)
+                .accessibilityLabel("Stars")
+            BPKHotelStarRating(rating: $hotelRating, size: .extraLarge)
                 .accessibilityLabel("Stars")
         }
     }

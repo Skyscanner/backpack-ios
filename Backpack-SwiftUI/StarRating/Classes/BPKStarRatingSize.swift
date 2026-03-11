@@ -18,12 +18,13 @@
 
 /// An enum representing the size of the star rating.
 public enum BPKStarRatingSize {
-    case small, large
-    
+    case small, large, extraLarge
+
     var starSize: BPKIcon.Size {
         switch self {
         case .small: return .small
         case .large: return .large
+        case .extraLarge: return .extraLarge
         }
     }
 }

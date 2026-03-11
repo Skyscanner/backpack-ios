@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "star-half-xxxl.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
