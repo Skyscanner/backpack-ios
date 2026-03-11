@@ -27,7 +27,7 @@
 A component that allows for setting a kicker, headline and subheadline. Optionally, add the `.sponsored` ViewModifier to setup the sponsor logo and text. Set a `.fallbackColor` for when the image is still loading, this can be any `Color` and does not need to use `BPKColor`
 
 ```swift
-struct GraphicPromoExampleView: View {    
+struct GraphicPromoExampleView: View {
     var body: some View {
         ScrollView {
             BPKGraphicPromo(
@@ -50,4 +50,25 @@ struct GraphicPromoExampleView: View {
         }
     }
 }
+```
+
+### Sponsored with DSA disclosure
+
+The sponsored variant requires a `callToAction` parameter for DSA (Digital Services Act) compliance. This renders an info icon next to the sponsor title that users can tap for more information:
+
+```swift
+BPKGraphicPromo(
+    headline: "Three peaks challenge",
+    image: Image(decorative: "canadian_rockies_canada"),
+    sponsorTitle: "Sponsored",
+    partnerLogo: Image(decorative: "skyland"),
+    sponsoredAccessibilityLabel: "Sponsored by Skyland",
+    callToAction: .init(
+        accessibilityLabel: "Learn more about our sponsor",
+        onClick: {
+            // Open sponsor info modal
+        }
+    )
+)
+.fallbackColor(Color(.surfaceHighlightColor))
 ```

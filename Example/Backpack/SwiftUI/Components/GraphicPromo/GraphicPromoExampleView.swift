@@ -28,7 +28,7 @@ struct GraphicPromoExampleView: View {
         self.verticalAlignment = verticalAlignment
         self.sponsored = sponsored
     }
-    
+
     var body: some View {
         ScrollView {
             Group {
@@ -42,7 +42,7 @@ struct GraphicPromoExampleView: View {
                 print("Graphic promo tap")
             }
             .padding(.horizontal, .md)
-            
+
         }
     }
     
@@ -64,7 +64,11 @@ struct GraphicPromoExampleView: View {
             image: Image(decorative: "graphic_promo"),
             sponsorTitle: "Sponsored by Skyland",
             partnerLogo: Image(decorative: "skyland"),
-            sponsoredAccessibilityLabel: "Sponsored by Skyland"
+            sponsoredAccessibilityLabel: "Sponsored by Skyland",
+            callToAction: .init(
+                accessibilityLabel: "Learn more about our sponsor",
+                onClick: { print("DSA info tapped") }
+            )
         )
         .fallbackColor(Color(.surfaceHighlightColor))
     }

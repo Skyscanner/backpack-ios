@@ -25,6 +25,7 @@ public struct BPKGraphicPromo: View {
         let title: String
         let logo: Image?
         let accessibilityLabel: String
+        let callToAction: CallToAction
     }
 
     private struct Constants {
@@ -93,7 +94,8 @@ public struct BPKGraphicPromo: View {
         variant: Variant = .onDark,
         sponsorTitle: String,
         partnerLogo: Image?,
-        sponsoredAccessibilityLabel: String
+        sponsoredAccessibilityLabel: String,
+        callToAction: CallToAction
     ) {
         self.verticalAlignment = .bottom
         self.headline = headline
@@ -104,11 +106,12 @@ public struct BPKGraphicPromo: View {
         self.layoutType = layoutType
         self.overlay = overlay
         self.variant = variant
-        
+
         self.sponsor = .init(
             title: sponsorTitle,
             logo: partnerLogo,
-            accessibilityLabel: sponsoredAccessibilityLabel)
+            accessibilityLabel: sponsoredAccessibilityLabel,
+            callToAction: callToAction)
     }
     
     public var body: some View {
@@ -129,6 +132,11 @@ public struct BPKGraphicPromo: View {
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(contentAccessibilityLabel)
         .accessibilityAddTraits(type.accessibilityTraits)
+        .if(sponsor != nil) { view in
+            view.accessibilityAction(named: sponsor!.callToAction.accessibilityLabel) {
+                sponsor!.callToAction.onClick()
+            }
+        }
     }
     
     // swiftlint:disable closure_body_length
@@ -211,9 +219,16 @@ public struct BPKGraphicPromo: View {
     @ViewBuilder
     private var sponsoredText: some View {
         if let sponsor {
-            BPKText(sponsor.title, style: .caption)
-                .foregroundColor(variant.foregroundColor)
-                .foregroundStyle(Color(variant.foregroundColor.value))
+            HStack(spacing: .sm) {
+                BPKText(sponsor.title, style: .caption)
+                    .foregroundColor(variant.foregroundColor)
+                Button(action: sponsor.callToAction.onClick) {
+                    BPKIconView(.informationCircle)
+                        .foregroundColor(variant.foregroundColor)
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel(sponsor.callToAction.accessibilityLabel)
+            }
         }
     }
     
@@ -249,6 +264,18 @@ public struct BPKGraphicPromo: View {
             return Constants.aspectRatioTablet
         case .desktop:
             return Constants.aspectRatioDesktop
+        }
+    }
+}
+
+public extension BPKGraphicPromo {
+    struct CallToAction {
+        public let accessibilityLabel: String
+        public let onClick: () -> Void
+
+        public init(accessibilityLabel: String, onClick: @escaping () -> Void) {
+            self.accessibilityLabel = accessibilityLabel
+            self.onClick = onClick
         }
     }
 }
@@ -324,19 +351,27 @@ struct BPKGraphicPromo_Previews: PreviewProvider {
                     layoutType: .desktop,
                     sponsorTitle: "In partnership with Skyland",
                     partnerLogo: Image(systemName: "heart.fill"),
-                    sponsoredAccessibilityLabel: "Sponsored by: Skyland"
+                    sponsoredAccessibilityLabel: "Sponsored by: Skyland",
+                    callToAction: .init(
+                        accessibilityLabel: "Learn more about our sponsor",
+                        onClick: {}
+                    )
                 )
                 .fallbackColor(Color(.coreAccentColor))
             }
             .previewDisplayName("Sponsored")
-            
+
             ScrollView {
                 BPKGraphicPromo(
                     headline: "There's always more to explore in Britain",
                     image: Image(systemName: "heart"),
                     sponsorTitle: "In partnership with Skyland",
                     partnerLogo: Image(systemName: "heart.fill"),
-                    sponsoredAccessibilityLabel: "Sponsored by: Skyland"
+                    sponsoredAccessibilityLabel: "Sponsored by: Skyland",
+                    callToAction: .init(
+                        accessibilityLabel: "Learn more about our sponsor",
+                        onClick: {}
+                    )
                 )
                 .fallbackColor(Color(.coreAccentColor))
             }
