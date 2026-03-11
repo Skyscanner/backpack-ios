@@ -39,25 +39,27 @@ public struct BPKSearchInputSummary: View {
     private let placeholder: String
     private let inputPrefix: InputPrefix?
     private var style: Style = .default
+    private var docking: Docking = .float
+    private var minHeight: CGFloat = 48.0
     private let accessibilityIdentifier: String
     private var customAccessibilityValue: String?
     private let readOnly: Bool
-    private let clearAction: ClearAction
-    
+    private let clearAction: ClearAction?
+
     public struct ClearAction {
         public let accessibilityLabel: String
         public let action: () -> Void
-        
+
         public init(accessibilityLabel: String, action: @escaping () -> Void) {
             self.accessibilityLabel = accessibilityLabel
             self.action = action
         }
     }
-    
+
     public init(
         placeholder: String = "",
         inputPrefix: InputPrefix? = nil,
-        clearAction: ClearAction,
+        clearAction: ClearAction? = nil,
         readOnly: Bool = false,
         accessibilityIdentifier: String = "search_field",
         customAccessibilityValue: String? = nil,
@@ -90,15 +92,11 @@ public struct BPKSearchInputSummary: View {
                 .focused($focused)
             accessory
         }
-        .frame(maxWidth: .infinity, minHeight: 48.0)
+        .frame(maxWidth: .infinity, minHeight: minHeight)
         .padding(.horizontal, BPKSpacing.base)
         .background(.surfaceDefaultColor)
-        .clipShape(RoundedRectangle(cornerRadius: .md))
-        .outline(
-            isBorderHighlighted ? .coreAccentColor : .lineColor,
-            cornerRadius: .md,
-            lineWidth: isBorderHighlighted ? 2.0 : 1.0
-        )
+        .clipShape(dockingShape)
+        .overlay(dockingBorder)
         
         .if(!BPKFont.enableDynamicType, transform: {
             $0.sizeCategory(.large)
@@ -114,14 +112,16 @@ public struct BPKSearchInputSummary: View {
 
     @ViewBuilder
     private var accessory: some View {
-        Button(action: clearAction.action) {
-            BPKIconView(.closeCircle)
-                .foregroundColor(.textSecondaryColor)
+        if let clearAction {
+            Button(action: clearAction.action) {
+                BPKIconView(.closeCircle)
+                    .foregroundColor(.textSecondaryColor)
+            }
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(clearAction.accessibilityLabel)
+            .accessibilityAddTraits(.isButton)
+            .opacity(text.isEmpty ? 0.0 : 1.0)
         }
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(clearAction.accessibilityLabel)
-        .accessibilityAddTraits(.isButton)
-        .opacity(text.isEmpty ? 0.0 : 1.0)
     }
     
     @ViewBuilder
@@ -149,9 +149,42 @@ public struct BPKSearchInputSummary: View {
         result.style = style
         return result
     }
-    
+
+    /// Sets the docking position for stacked search inputs.
+    /// - Parameter docking: The docking position (.float, .top, .middle, .bottom)
+    /// - Returns: A modified search input summary with the specified docking
+    public func docking(_ docking: Docking) -> BPKSearchInputSummary {
+        var result = self
+        result.docking = docking
+        return result
+    }
+
+    /// Sets the minimum height for the search input.
+    /// - Parameter height: The minimum height in points. Default is 48.
+    /// - Returns: A modified search input summary with the specified minimum height
+    public func inputMinHeight(_ height: CGFloat) -> BPKSearchInputSummary {
+        var result = self
+        result.minHeight = height
+        return result
+    }
+
     private var isBorderHighlighted: Bool {
         focused || style == .focused
+    }
+
+    private var dockingShape: UnevenRoundedRectangle {
+        UnevenRoundedRectangle(
+            topLeadingRadius: docking.topCornerRadius,
+            bottomLeadingRadius: docking.bottomCornerRadius,
+            bottomTrailingRadius: docking.bottomCornerRadius,
+            topTrailingRadius: docking.topCornerRadius
+        )
+    }
+
+    private var dockingBorder: some View {
+        let lineWidth = isBorderHighlighted ? 2.0 : 1.0
+        return dockingShape
+            .stroke(.clear, lineWidth: lineWidth)
     }
 }
 
@@ -164,18 +197,93 @@ fileprivate extension TextField {
 struct BPKSearchInputSummary_Previews: PreviewProvider {
     static var previews: some View {
         // swiftlint:disable line_length
-        VStack {
-            BPKSearchInputSummary(clearAction: .init(accessibilityLabel: "Clear", action: {}), .constant(""))
-            BPKSearchInputSummary(placeholder: "Enter", clearAction: .init(accessibilityLabel: "Clear", action: {}), .constant(""))
-            BPKSearchInputSummary(clearAction: .init(accessibilityLabel: "Clear", action: {}), .constant("Value"))
-            BPKSearchInputSummary(inputPrefix: .text("From"), clearAction: .init(accessibilityLabel: "Clear", action: {}), .constant("Value"))
-            BPKSearchInputSummary(clearAction: .init(accessibilityLabel: "Clear", action: {}), readOnly: true, .constant("Read Only"))
-            BPKSearchInputSummary(clearAction: .init(accessibilityLabel: "Clear", action: {}), .constant("Manually highlighted"))
-                .customStyle(.focused)
-            BPKSearchInputSummary(clearAction: .init(accessibilityLabel: "Clear", action: {}), .constant("Value"))
-            BPKSearchInputSummary(clearAction: .init(accessibilityLabel: "clear", action: {}), .constant("Value"))
+        ScrollView {
+            VStack(spacing: .lg) {
+                // Float (default - standalone) with clear action
+                VStack(alignment: .leading, spacing: .sm) {
+                    BPKText("With clear action", style: .caption)
+                        .foregroundColor(.textOnDarkColor)
+                    BPKSearchInputSummary(
+                        placeholder: "Standalone input",
+                        inputPrefix: .icon(.search),
+                        clearAction: .init(accessibilityLabel: "Clear", action: {}),
+                        .constant("Some value")
+                    )
+                }
+
+                // Docked stack example (no clear action)
+                VStack(alignment: .leading, spacing: .sm) {
+                    BPKText("Docked stack (no clear action)", style: .caption)
+                        .foregroundColor(.textOnDarkColor)
+                    VStack(spacing: 0) {
+                        BPKSearchInputSummary(
+                            placeholder: "Where from?",
+                            inputPrefix: .icon(.flightTakeoff),
+                            .constant("")
+                        )
+                        .docking(.top)
+
+                        BPKSearchInputSummary(
+                            placeholder: "Where to?",
+                            inputPrefix: .icon(.flightLanding),
+                            .constant("")
+                        )
+                        .docking(.middle)
+
+                        BPKSearchInputSummary(
+                            placeholder: "Select dates",
+                            inputPrefix: .icon(.calendar),
+                            .constant("")
+                        )
+                        .docking(.bottom)
+                    }
+                }
+
+                // Two docked inputs with values
+                VStack(alignment: .leading, spacing: .sm) {
+                    BPKText("With values", style: .caption)
+                        .foregroundColor(.textOnDarkColor)
+                    VStack(spacing: 0) {
+                        BPKSearchInputSummary(
+                            placeholder: "Origin",
+                            inputPrefix: .icon(.flightTakeoff),
+                            .constant("London")
+                        )
+                        .docking(.top)
+
+                        BPKSearchInputSummary(
+                            placeholder: "Destination",
+                            inputPrefix: .icon(.flightLanding),
+                            .constant("Paris")
+                        )
+                        .docking(.bottom)
+                    }
+                }
+
+                // With focus state
+                VStack(alignment: .leading, spacing: .sm) {
+                    BPKText("With focus highlight", style: .caption)
+                        .foregroundColor(.textOnDarkColor)
+                    VStack(spacing: 0) {
+                        BPKSearchInputSummary(
+                            placeholder: "Where from?",
+                            inputPrefix: .icon(.flightTakeoff),
+                            .constant("Edinburgh")
+                        )
+                        .docking(.top)
+                        .customStyle(.focused)
+
+                        BPKSearchInputSummary(
+                            placeholder: "Where to?",
+                            inputPrefix: .icon(.flightLanding),
+                            .constant("")
+                        )
+                        .docking(.bottom)
+                    }
+                }
+            }
+            .padding()
         }
-        .padding()
         .background(.corePrimaryColor)
     }
 }

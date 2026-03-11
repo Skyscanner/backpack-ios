@@ -88,6 +88,56 @@ class BPKSearchInputSummaryTests: XCTestCase {
         )
     }
     
+    func test_docking_emptyField_withPrefixIcon_andPlaceholderText() {
+        assertSnapshot(
+            VStack(spacing: .base) {
+                BPKSearchInputSummary(
+                    placeholder: "Top",
+                    inputPrefix: .icon(.search),
+                    clearAction: .init(accessibilityLabel: "Clear", action: {}),
+                    .constant("")
+                )
+                .docking(.top)
+                .padding([.top, .horizontal])
+                
+                BPKSearchInputSummary(
+                    placeholder: "Middle",
+                    inputPrefix: .icon(.search),
+                    clearAction: .init(accessibilityLabel: "Clear", action: {}),
+                    .constant("")
+                )
+                .docking(.middle)
+                .padding(.horizontal)
+                
+                BPKSearchInputSummary(
+                    placeholder: "Bottom",
+                    inputPrefix: .icon(.search),
+                    clearAction: .init(accessibilityLabel: "Clear", action: {}),
+                    .constant("")
+                )
+                .docking(.bottom)
+                .padding([.bottom, .horizontal])
+            }
+            .background(.surfaceContrastColor)
+            .frame(width: 300)
+        )
+    }
+    
+    func test_floating_emptyField_withPrefixIcon_andPlaceholderText() {
+        assertSnapshot(
+            BPKSearchInputSummary(
+                placeholder: "Floating",
+                inputPrefix: .icon(.search),
+                clearAction: .init(accessibilityLabel: "Clear", action: {}),
+                .constant("")
+            )
+            .docking(.float)
+            .padding([.all])
+            .background(.surfaceContrastColor)
+            .frame(width: 300)
+        )
+    }
+    
     func test_accessibility() {
         let searchInput = BPKSearchInputSummary(
             inputPrefix: .icon(.search),

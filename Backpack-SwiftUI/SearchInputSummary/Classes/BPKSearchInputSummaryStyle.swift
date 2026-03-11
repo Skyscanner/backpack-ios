@@ -26,4 +26,35 @@ extension BPKSearchInputSummary {
         /// Highlight borders as it's in a focus state
         case focused
     }
+
+    /// The docking position for stacked search inputs.
+    /// Controls which corners are rounded when inputs are grouped together.
+    public enum Docking {
+        /// All corners rounded (standalone input, not docked to others)
+        case float
+        /// Only top corners rounded (first input in a vertical stack)
+        case top
+        /// No corners rounded (middle input in a vertical stack)
+        case middle
+        /// Only bottom corners rounded (last input in a vertical stack)
+        case bottom
+
+        var topCornerRadius: CGFloat {
+            switch self {
+            case .float, .top:
+                return BPKCornerRadius.md.value
+            case .middle, .bottom:
+                return 0
+            }
+        }
+
+        var bottomCornerRadius: CGFloat {
+            switch self {
+            case .float, .bottom:
+                return BPKCornerRadius.md.value
+            case .middle, .top:
+                return 0
+            }
+        }
+    }
 }
