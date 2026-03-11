@@ -44,6 +44,7 @@ public struct BPKSearchInputSummary: View {
     private let accessibilityIdentifier: String
     private var customAccessibilityValue: String?
     private let readOnly: Bool
+    private let withBorder: Bool
     private let clearAction: ClearAction?
 
     public struct ClearAction {
@@ -63,6 +64,7 @@ public struct BPKSearchInputSummary: View {
         readOnly: Bool = false,
         accessibilityIdentifier: String = "search_field",
         customAccessibilityValue: String? = nil,
+        withBorder: Bool = true,
         _ text: Binding<String>
     ) {
         self.placeholder = placeholder
@@ -71,6 +73,7 @@ public struct BPKSearchInputSummary: View {
         self.readOnly = readOnly
         self.accessibilityIdentifier = accessibilityIdentifier
         self.customAccessibilityValue = customAccessibilityValue
+        self.withBorder = withBorder
         self._text = text
     }
     
@@ -183,8 +186,9 @@ public struct BPKSearchInputSummary: View {
 
     private var dockingBorder: some View {
         let lineWidth = isBorderHighlighted ? 2.0 : 1.0
+        let borderColour: Color = withBorder ? (isBorderHighlighted ? Color(.coreAccentColor) : Color(.lineColor)) : .clear
         return dockingShape
-            .stroke(.clear, lineWidth: lineWidth)
+            .stroke(borderColour, lineWidth: lineWidth)
     }
 }
 
