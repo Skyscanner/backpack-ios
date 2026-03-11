@@ -88,7 +88,10 @@ private extension BPKIcon.Size {
 
 private extension Image {
     init(icon: BPKIcon, size: BPKIcon.Size = .small, shouldEnableAccessibility: Bool) {
-        let iconName = "\(icon.name)-\(size.suffix)"
+        var iconName = "\(icon.name)-\(size.suffix)"
+        if size == .extraLarge, UIImage(named: iconName, in: icon.bundle, compatibleWith: nil) == nil {
+            iconName = "\(icon.name)-\(BPKIcon.Size.large.suffix)"
+        }
         if shouldEnableAccessibility {
             self.init(iconName, bundle: icon.bundle)
         } else {
