@@ -42,6 +42,15 @@ BPKHotelStarRating(rating: $hotelRating)
 BPKStarRating(rating: $rating, maxRating: 5, size: .large)
 ```
 
+### Star rating with Extra Large size
+
+Uses dedicated xxxl star icon assets optimised for larger rendering (40pt).
+
+```swift
+@State var rating: Float = 3.5
+BPKStarRating(rating: $rating, maxRating: 5, size: .extraLarge)
+```
+
 ### Customise Rating Rounding
 
 Rounding can be customised by setting the `rounding` property. The default is `.down`.

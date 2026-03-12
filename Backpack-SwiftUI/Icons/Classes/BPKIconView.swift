@@ -38,16 +38,20 @@ public struct BPKIconView: View {
     
     @ScaledMetric private var scaledSmallSize: CGFloat = 16
     @ScaledMetric private var scaledLargeSize: CGFloat = 24
-    
+    @ScaledMetric private var scaledExtraLargeSize: CGFloat = 40
+
     private var smallSize: CGFloat = 16
     private var largeSize: CGFloat = 24
-    
+    private var extraLargeSize: CGFloat = 40
+
     private var dimension: CGFloat {
         switch size {
         case .small:
             return BPKFont.enableDynamicType ? scaledSmallSize : smallSize
         case .large:
             return BPKFont.enableDynamicType ? scaledLargeSize : largeSize
+        case .extraLarge:
+            return BPKFont.enableDynamicType ? scaledExtraLargeSize : extraLargeSize
         }
     }
 
@@ -76,13 +80,18 @@ private extension BPKIcon.Size {
             return "lg"
         case .small:
             return "sm"
+        case .extraLarge:
+            return "xxxl"
         }
     }
 }
 
 private extension Image {
     init(icon: BPKIcon, size: BPKIcon.Size = .small, shouldEnableAccessibility: Bool) {
-        let iconName = "\(icon.name)-\(size.suffix)"
+        var iconName = "\(icon.name)-\(size.suffix)"
+        if size == .extraLarge, UIImage(named: iconName, in: icon.bundle, compatibleWith: nil) == nil {
+            iconName = "\(icon.name)-\(BPKIcon.Size.large.suffix)"
+        }
         if shouldEnableAccessibility {
             self.init(iconName, bundle: icon.bundle)
         } else {

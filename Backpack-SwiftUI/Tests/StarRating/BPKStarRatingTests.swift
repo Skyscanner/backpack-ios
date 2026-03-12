@@ -45,6 +45,10 @@ class BPKStarRatingTests: XCTestCase {
         assertSnapshot(BPKStarRating(rating: .constant(3), maxRating: 5, size: .large))
     }
 
+    func test_extraLargeSize() {
+        assertSnapshot(BPKStarRating(rating: .constant(3), maxRating: 5, size: .extraLarge))
+    }
+
     func test_upRounding() {
         assertSnapshot(
             VStack {
