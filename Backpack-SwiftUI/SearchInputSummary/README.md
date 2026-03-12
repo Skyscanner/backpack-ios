@@ -8,6 +8,11 @@
 | --- | --- |
 | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_search-input-summary___default_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_search-input-summary___default_dm.png" alt="" width="375" /> |
 
+# Docking
+| Day | Night |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_docking-input-summary___default_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_docking-input-summary___default_dm.png" alt="" width="375" /> |
+
 # Basic Usage
 
 Create a `BPKSearchInputSummary` and bind the `text` property to a `Binding<String>`. Another mandatory property is `clearAction` which is a struct with an accessibility label for the action, where you can explain what happens when a user clicks on the button, also you need provide an action as a closure.
@@ -33,6 +38,14 @@ BPKSearchInputSummary(inputPrefix: .icon, clearAction: .init(accessibilityLabel:
 
 ```swift
 BPKSearchInputSummary(inputPrefix: .customText("From"), clearAction: .init(accessibilityLabel: "Clear", action: {}), text: $text)
+```
+
+### Setting a docking style
+Default value is `.float`
+
+```swift
+BPKSearchInputSummary(placeholder: "Top", inputPrefix: .icon(.flight), $text)
+                     .docking(.top)
 ```
 
 ### Making the field in focused style
@@ -67,5 +80,4 @@ There is a built-in announcement of a current value. However, if it's necessary,
 ```swift
 BPKSearchInputSummary(placeholder: "Date", clearAction: .init(accessibilityLabel: "Clear", action: {}), customAccessibilityValue: , .constant("Mon 01 Jan"))
 ```
-
 Accessibility Label is always a value from `placeholder` parameter.

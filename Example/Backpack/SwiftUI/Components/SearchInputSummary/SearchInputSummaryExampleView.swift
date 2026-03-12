@@ -49,6 +49,23 @@ struct SearchInputSummaryExampleView: View {
                     .font(.caption)
                 BPKSearchInputSummary(clearAction: .init(accessibilityLabel: "Clear", action: { text = "" }), readOnly: readOnly, $text)
                     .customStyle($enableHighlihting.wrappedValue ? .focused : .default)
+                Text("Docking Inputs")
+                    .font(.caption)
+                VStack(spacing: .base) {
+                    BPKSearchInputSummary(placeholder: "Top", inputPrefix: .icon(.flight), clearAction: .init(accessibilityLabel: "Clear", action: { text = "" }), $text)
+                        .docking(.top)
+                        .padding([.top, .horizontal])
+
+                    BPKSearchInputSummary(placeholder: "Middle", inputPrefix: .icon(.flight), clearAction: .init(accessibilityLabel: "Clear", action: { text = "" }), $text)
+                        .docking(.middle)
+                        .padding(.horizontal)
+                    
+                    BPKSearchInputSummary(placeholder: "Bottom", inputPrefix: .icon(.flight), clearAction: .init(accessibilityLabel: "Clear", action: { text = "" }), $text)
+                        .docking(.bottom)
+                        .padding([.bottom, .horizontal])
+                }
+                .background(.surfaceContrastColor)
+
                 HStack {
                     Toggle("Enable highlighting", isOn: $enableHighlihting)
                     Toggle("Read only", isOn: $readOnly)
