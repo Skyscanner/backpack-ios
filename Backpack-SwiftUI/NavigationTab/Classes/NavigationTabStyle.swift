@@ -22,46 +22,38 @@ import Backpack_Common
 struct NavigationTabStyle: ButtonStyle {
     let style: BPKNavigationTabGroup.Style
     let selected: Bool
-    
+
+    init(
+        style: BPKNavigationTabGroup.Style,
+        selected: Bool,
+    ) {
+        self.style = style
+        self.selected = selected
+    }
+
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .frame(minHeight: .xl)
+            .frame(minHeight: .xxl)
             .fixedSize(horizontal: true, vertical: false)
-            .background(backgroundColor(configuration.isPressed))
+            .background(backgroundColor())
             .foregroundColor(foregroundColor(configuration.isPressed))
-            .outline(outlineColor(configuration.isPressed), cornerRadius: .lg)
             .clipShape(RoundedRectangle(cornerRadius: .lg))
             .if(!BPKFont.enableDynamicType, transform: {
                 $0.sizeCategory(.large)
             })
     }
     
-    private func outlineColor(_ isPressed: Bool) -> BPKColor {
+    private func backgroundColor() -> BPKColor {
+        guard selected else { return .clear }
         switch style {
-        case .`default`:
-            if selected || isPressed {
-                return .coreAccentColor
-            }
-            
-            return .lineColor
-        case .onDark:
-            if selected {
-                return .coreAccentColor
-            } else if isPressed {
-                return .chipOnDarkPressedStrokeColor
-            } else {
-                return .lineOnDarkColor
-            }
+        case .default, .onDark:
+            return .segmentedControlSurfaceContrastOnColor
         }
-    }
-    
-    private func backgroundColor(_ isPressed: Bool) -> BPKColor {
-        return selected ? .coreAccentColor : .clear
     }
     
     private func foregroundColor(_ isPressed: Bool) -> BPKColor {
         if selected {
-            return .textPrimaryInverseColor
+            return .textOnDarkColor
         } else if isPressed {
             return style == .default ? .buttonLinkPressedForegroundColor : .buttonLinkOnDarkPressedForegroundColor
         } else {
