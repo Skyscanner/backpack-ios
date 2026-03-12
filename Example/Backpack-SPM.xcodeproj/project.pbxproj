@@ -89,7 +89,7 @@
 		53C6622929EA0DAB00BF1A62 /* AttributedTextExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C6620F29EA0DAB00BF1A62 /* AttributedTextExampleView.swift */; };
 		53C7F0B92A4C615D003A8740 /* ChipGroupSingleSelectRailExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7F0B52A4C615D003A8740 /* ChipGroupSingleSelectRailExampleView.swift */; };
 		53C7F0BA2A4C615D003A8740 /* ChipGroupSingleSelectWrapExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7F0B62A4C615D003A8740 /* ChipGroupSingleSelectWrapExampleView.swift */; };
-		53D4614E29E574EB0061C222 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		53D4614E29E574EB0061C222 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		53D6396F2A7D46ED007EF376 /* MapMarkerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D6396E2A7D46ED007EF376 /* MapMarkerExampleView.swift */; };
 		53D7FBB527F715AF00DEE588 /* UIWindowFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D7FBB427F715AF00DEE588 /* UIWindowFactory.swift */; };
 		53E075A527FC780C0033147C /* NavBarGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E075A427FC780C0033147C /* NavBarGroups.swift */; };
@@ -144,6 +144,7 @@
 		79F63C0429B078D600FB19A9 /* OverlayGroupsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F63C0329B078D600FB19A9 /* OverlayGroupsProvider.swift */; };
 		8071379C25AF7974009869D1 /* BottomSheetPersistentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8071379B25AF7974009869D1 /* BottomSheetPersistentViewController.swift */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		9D0696C9E4BEAA07E4C3CCEF /* SwapExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F964404BAE3E624195647AB /* SwapExampleView.swift */; };
 		A12269752A68C09B00C7C0CD /* BottomSheetExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12269742A68C09B00C7C0CD /* BottomSheetExampleView.swift */; };
 		A12A09DE2A49471F0047DD16 /* ChipGroupProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12A09DD2A49471F0047DD16 /* ChipGroupProvider.swift */; };
 		AA7CFD8C29965EE20023C12B /* PriceExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7CFD8B29965EE20023C12B /* PriceExampleViewController.swift */; };
@@ -248,6 +249,7 @@
 		02D34C492A712A2200F99085 /* SnippetGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetGroups.swift; sourceTree = "<group>"; };
 		090E9C65F965012C0DF5C1E3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		0E844AF6289141C2004C5865 /* SkeletonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonViewController.swift; sourceTree = "<group>"; };
+		0F964404BAE3E624195647AB /* SwapExampleView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwapExampleView.swift; sourceTree = "<group>"; };
 		1318F74A2C7772C400D42847 /* FieldSetExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldSetExampleView.swift; sourceTree = "<group>"; };
 		1318F74C2C7772F000D42847 /* TextFieldExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExampleView.swift; sourceTree = "<group>"; };
 		1318F74F2C777D1800D42847 /* FieldSetGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldSetGroups.swift; sourceTree = "<group>"; };
@@ -608,6 +610,15 @@
 				2A62FDDC2AB89F4500D545E5 /* TextAreaExampleView.swift */,
 			);
 			path = TextArea;
+			sourceTree = "<group>";
+		};
+		51B9706D6ACAFF5D7772D95F /* Swap */ = {
+			isa = PBXGroup;
+			children = (
+				0F964404BAE3E624195647AB /* SwapExampleView.swift */,
+			);
+			name = Swap;
+			path = Swap;
 			sourceTree = "<group>";
 		};
 		530459F32A961F8F00244EA8 /* Carousel */ = {
@@ -1097,6 +1108,7 @@
 				53C6620D29EA0DAB00BF1A62 /* Text */,
 				1318F7492C7772C400D42847 /* FieldSet */,
 				53C661FE29EA0DAB00BF1A62 /* TextField */,
+				51B9706D6ACAFF5D7772D95F /* Swap */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1713,7 +1725,8 @@
 			);
 			mainGroup = 6003F581195388D10070C39A;
 			packageReferences = (
-				289894AE2ED70CDD00DDC932 /* XCLocalSwiftPackageReference "../../backpack-ios" */,
+				289894AE2ED70CDD00DDC932 /* XCLocalSwiftPackageReference "backpack-ios" */,
+				DAF3486000BCF59DA6EE99AB /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 			);
 			productRefGroup = 6003F58B195388D20070C39A /* Products */;
 			projectDirPath = "";
@@ -1905,7 +1918,7 @@
 				5390DB612909940700F0F790 /* ColorTokensViewController.swift in Sources */,
 				794E1FF8280CF63100B965FF /* RadiusTokensView.swift in Sources */,
 				53B6DB6A27FC73A90042B7C0 /* LabelGroups.swift in Sources */,
-				53D4614E29E574EB0061C222 /* (null) in Sources */,
+				53D4614E29E574EB0061C222 /* BuildFile in Sources */,
 				53C6621329EA0DAB00BF1A62 /* SpinnerExampleView.swift in Sources */,
 				53BAC3F12A71415800236CC9 /* SectionHeaderGroups.swift in Sources */,
 				53C6622429EA0DAB00BF1A62 /* ButtonsPlaygroundView.swift in Sources */,
@@ -1984,6 +1997,7 @@
 				BAD421BC299CBCEB00B45668 /* CardWrappersViewController.swift in Sources */,
 				794E1FF0280A829D00B965FF /* SpacingTokensView.swift in Sources */,
 				53E075B127FC9B290033147C /* PresentableCellDataSource.swift in Sources */,
+				9D0696C9E4BEAA07E4C3CCEF /* SwapExampleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2410,11 +2424,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		289894AE2ED70CDD00DDC932 /* XCLocalSwiftPackageReference "../../backpack-ios" */ = {
+		289894AE2ED70CDD00DDC932 /* XCLocalSwiftPackageReference "backpack-ios" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = "../../backpack-ios";
 		};
 /* End XCLocalSwiftPackageReference section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DAF3486000BCF59DA6EE99AB /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.9.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		289894AF2ED70CDD00DDC932 /* Backpack */ = {

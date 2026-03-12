@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4556AC4E6F873E02EE6D7C9BCC1A88C2"
-               BuildableName = "Backpack-Common-Unit-Tests.xctest"
-               BlueprintName = "Backpack-Common-Unit-Tests"
-               ReferencedContainer = "container:Pods/Pods.xcodeproj">
+               BlueprintIdentifier = "BackpackCommonTests"
+               BuildableName = "BackpackCommonTests"
+               BlueprintName = "BackpackCommonTests"
+               ReferencedContainer = "container:Backpack-SPM.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,10 +34,10 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4556AC4E6F873E02EE6D7C9BCC1A88C2"
-               BuildableName = "Backpack-Common-Unit-Tests.xctest"
-               BlueprintName = "Backpack-Common-Unit-Tests"
-               ReferencedContainer = "container:Pods/Pods.xcodeproj">
+               BlueprintIdentifier = "BackpackCommonTests"
+               BuildableName = "BackpackCommonTests"
+               BlueprintName = "BackpackCommonTests"
+               ReferencedContainer = "container:Backpack-SPM.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -62,10 +62,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4556AC4E6F873E02EE6D7C9BCC1A88C2"
-            BuildableName = "Backpack-Common-Unit-Tests.xctest"
-            BlueprintName = "Backpack-Common-Unit-Tests"
-            ReferencedContainer = "container:Pods/Pods.xcodeproj">
+            BlueprintIdentifier = "BackpackCommonTests"
+            BuildableName = "BackpackCommonTests"
+            BlueprintName = "BackpackCommonTests"
+            ReferencedContainer = "container:Backpack-SPM.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
