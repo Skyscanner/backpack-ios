@@ -49,16 +49,12 @@ struct SearchInputSummaryExampleView: View {
                     .font(.caption)
                 BPKSearchInputSummary(clearAction: .init(accessibilityLabel: "Clear", action: { text = "" }), readOnly: readOnly, $text)
                     .customStyle($enableHighlihting.wrappedValue ? .focused : .default)
-                Text("Float + Docking Inputs")
+                Text("Docking Inputs")
                     .font(.caption)
                 VStack(spacing: .base) {
-                    BPKSearchInputSummary(placeholder: "Floating", inputPrefix: .icon(.flight), clearAction: .init(accessibilityLabel: "Clear", action: { text = "" }), $text)
-                        .docking(.float)
-                        .padding([.top, .horizontal])
-                    
                     BPKSearchInputSummary(placeholder: "Top", inputPrefix: .icon(.flight), clearAction: .init(accessibilityLabel: "Clear", action: { text = "" }), $text)
                         .docking(.top)
-                        .padding(.horizontal)
+                        .padding([.top, .horizontal])
 
                     BPKSearchInputSummary(placeholder: "Middle", inputPrefix: .icon(.flight), clearAction: .init(accessibilityLabel: "Clear", action: { text = "" }), $text)
                         .docking(.middle)

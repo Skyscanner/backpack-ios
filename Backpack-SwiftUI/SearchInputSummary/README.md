@@ -41,6 +41,8 @@ BPKSearchInputSummary(inputPrefix: .customText("From"), clearAction: .init(acces
 ```
 
 ### Setting a docking style
+Default value is `.float`
+
 ```swift
 BPKSearchInputSummary(placeholder: "Top", inputPrefix: .icon(.flight), $text)
                      .docking(.top)
