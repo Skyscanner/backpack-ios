@@ -20,10 +20,10 @@ import XCTest
 import SwiftUI
 @testable import Backpack_SwiftUI
 
-class BPKSearchControlInputTests: XCTestCase {
-    func test_defaultSearchControlInput() {
+class BPKSearchInputControlTests: XCTestCase {
+    func test_defaultSearchInputControl() {
         assertSnapshot(
-            BPKSearchControlInput(
+            BPKSearchInputControl(
                 placeholder: "Placeholder",
                 value: nil,
                 icon: .calendar,
@@ -34,9 +34,9 @@ class BPKSearchControlInputTests: XCTestCase {
         )
     }
     
-    func test_defaultSearchControlInput_withValue() {
+    func test_defaultSearchInputControl_withValue() {
         assertSnapshot(
-            BPKSearchControlInput(
+            BPKSearchInputControl(
                 placeholder: "Placeholder",
                 value: "Value",
                 icon: .calendar,
@@ -47,9 +47,9 @@ class BPKSearchControlInputTests: XCTestCase {
         )
     }
     
-    func test_defaultSearchControlInput_withLongText() {
+    func test_defaultSearchInputControl_withLongText() {
         assertSnapshot(
-            BPKSearchControlInput(
+            BPKSearchInputControl(
                 placeholder: "Placeholder",
                 value: "Long value text to fit",
                 icon: .calendar,
@@ -61,7 +61,7 @@ class BPKSearchControlInputTests: XCTestCase {
     }
     
     func test_accessibility() {
-        let searchInput = BPKSearchControlInput(
+        let searchInput = BPKSearchInputControl(
             placeholder: "Placeholder",
             value: nil,
             icon: .calendar,
@@ -73,7 +73,7 @@ class BPKSearchControlInputTests: XCTestCase {
     }
     
     func test_accessibility_withLongText() {
-        let searchInput = BPKSearchControlInput(
+        let searchInput = BPKSearchInputControl(
             placeholder: "Placeholder",
             value: "Long value text to fit",
             icon: .calendar,
