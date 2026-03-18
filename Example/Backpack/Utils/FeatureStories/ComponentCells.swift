@@ -83,7 +83,7 @@ struct ComponentCellsProvider {
             progressBar(),
             ratings(),
             ratingBar(),
-            searchControlInput(),
+            searchInputControl(),
             searchInputSummary(),
             sectionHeader(),
             segmentPicker(),
@@ -408,15 +408,15 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Rating Bar", tabs: $0) }
         )
     }
-    private func searchControlInput() -> CellDataSource {
+    private func searchInputControl() -> CellDataSource {
         ComponentCellDataSource(
-            title: "Search Control Input",
+            title: "Search Input Control",
             tabs: [
                 .swiftui(presentable: CustomPresentable(generateViewController: {
-                    ContentUIHostingController(SearchControlInputExampleView())
+                    ContentUIHostingController(SearchInputControlExampleView())
                 }))
             ],
-            showChildren: { showComponent(title: "Search Control Input", tabs: $0) }
+            showChildren: { showComponent(title: "Search Input Control", tabs: $0) }
         )
     }
     private func searchInputSummary() -> CellDataSource {

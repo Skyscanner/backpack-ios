@@ -19,25 +19,25 @@
 
 import XCTest
 
-class SearchControlInputUITest: BackpackUITestCase {
+class SearchInputControlUITest: BackpackUITestCase {
 
     @MainActor func navigateAndShow() {
-        app.tables.staticTexts["Search Control Input"].tap()
+        app.tables.staticTexts["Search Input Control"].tap()
     }
 
-    @MainActor func testWhenSerchControlInputIsClicked() {
+    @MainActor func testWhenSearchInputControlIsClicked() {
         XCTContext.runActivity(named: "Navigate") { _ in
             navigateAndShow()
         }
-        
-        let searchControlInput = app.buttons["search_control_input_origin"]
-        
-        XCTAssertTrue(searchControlInput.exists, "The search control input should have been shown")
-        
-        XCTAssertEqual(searchControlInput.value as? String, "")
-        
-        searchControlInput.tap()
-        
-        XCTAssertEqual(searchControlInput.value as? String, "Paris")
+
+        let searchInputControl = app.buttons["search_input_control_origin"]
+
+        XCTAssertTrue(searchInputControl.exists, "The search input control should have been shown")
+
+        XCTAssertEqual(searchInputControl.value as? String, "")
+
+        searchInputControl.tap()
+
+        XCTAssertEqual(searchInputControl.value as? String, "Paris")
     }
 }

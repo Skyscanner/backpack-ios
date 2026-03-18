@@ -24,9 +24,9 @@
 		1AF3D2CA2BB18924001623A4 /* ImageGalleryGridExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF3D2C92BB18924001623A4 /* ImageGalleryGridExampleView.swift */; };
 		24BB6A002EAF733F00E982A4 /* ConfigurationChipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BB69FF2EAF733F00E982A4 /* ConfigurationChipsView.swift */; };
 		24BB6A022EAF73CD00E982A4 /* ConfigurationTypographyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BB6A012EAF73C500E982A4 /* ConfigurationTypographyView.swift */; };
-		25006AB02C60B1740038D7CA /* SearchControlInputExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25006AAF2C60B1740038D7CA /* SearchControlInputExampleView.swift */; };
+		25006AB02C60B1740038D7CA /* SearchInputControlExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25006AAF2C60B1740038D7CA /* SearchInputControlExampleView.swift */; };
 		256F76152BB479850047AD1C /* SearchInputSummaryExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256F76142BB479850047AD1C /* SearchInputSummaryExampleView.swift */; };
-		25D1337D2C73EFD7002C9562 /* SearchControlInputUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1337C2C73EFD7002C9562 /* SearchControlInputUITest.swift */; };
+		25D1337D2C73EFD7002C9562 /* SearchInputControlUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D1337C2C73EFD7002C9562 /* SearchInputControlUITest.swift */; };
 		285309EE2DAD6B7800BB6D24 /* DynamicLayoutGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285309ED2DAD6B7800BB6D24 /* DynamicLayoutGroups.swift */; };
 		289894B02ED70CDD00DDC932 /* Backpack in Frameworks */ = {isa = PBXBuildFile; productRef = 289894AF2ED70CDD00DDC932 /* Backpack */; };
 		289894B22ED70CDD00DDC932 /* Backpack-Common in Frameworks */ = {isa = PBXBuildFile; productRef = 289894B12ED70CDD00DDC932 /* Backpack-Common */; };
@@ -259,9 +259,9 @@
 		1AF3D2C92BB18924001623A4 /* ImageGalleryGridExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryGridExampleView.swift; sourceTree = "<group>"; };
 		24BB69FF2EAF733F00E982A4 /* ConfigurationChipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationChipsView.swift; sourceTree = "<group>"; };
 		24BB6A012EAF73C500E982A4 /* ConfigurationTypographyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationTypographyView.swift; sourceTree = "<group>"; };
-		25006AAF2C60B1740038D7CA /* SearchControlInputExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchControlInputExampleView.swift; sourceTree = "<group>"; };
+		25006AAF2C60B1740038D7CA /* SearchInputControlExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInputControlExampleView.swift; sourceTree = "<group>"; };
 		256F76142BB479850047AD1C /* SearchInputSummaryExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInputSummaryExampleView.swift; sourceTree = "<group>"; };
-		25D1337C2C73EFD7002C9562 /* SearchControlInputUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchControlInputUITest.swift; sourceTree = "<group>"; };
+		25D1337C2C73EFD7002C9562 /* SearchInputControlUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInputControlUITest.swift; sourceTree = "<group>"; };
 		285309ED2DAD6B7800BB6D24 /* DynamicLayoutGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLayoutGroups.swift; sourceTree = "<group>"; };
 		289894B72ED70E2900DDC932 /* ConfigurationCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationCardView.swift; sourceTree = "<group>"; };
 		28CF336F2E39273C00A9DF34 /* ConfigurationExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationExampleView.swift; sourceTree = "<group>"; };
@@ -573,12 +573,12 @@
 			path = ImageGalleryGridView;
 			sourceTree = "<group>";
 		};
-		25006AAE2C60B15D0038D7CA /* SearchControlInput */ = {
+		25006AAE2C60B15D0038D7CA /* SearchInputControl */ = {
 			isa = PBXGroup;
 			children = (
-				25006AAF2C60B1740038D7CA /* SearchControlInputExampleView.swift */,
+				25006AAF2C60B1740038D7CA /* SearchInputControlExampleView.swift */,
 			);
-			path = SearchControlInput;
+			path = SearchInputControl;
 			sourceTree = "<group>";
 		};
 		256F76132BB479610047AD1C /* SearchInputSummary */ = {
@@ -1049,7 +1049,7 @@
 				BA4EE38C2E5D9E0800D9B42D /* PriceRange */,
 				EEF89AC12E2EAE4E00BF1C83 /* TappableContainer */,
 				EED519BE2D3EBD8300F898D7 /* SegmentedControl */,
-				25006AAE2C60B15D0038D7CA /* SearchControlInput */,
+				25006AAE2C60B15D0038D7CA /* SearchInputControl */,
 				DB0A8DA62C57F507003DC186 /* CardCarousel */,
 				13E8849B2C53A0A400A3138D /* BannerAlert */,
 				DB08530A2C45565900314EE8 /* CarouselCard */,
@@ -1528,7 +1528,7 @@
 				D257C768236AE3FB006683F5 /* TextFieldUITest.swift */,
 				D257C767236AE3FB006683F5 /* TextViewUITest.swift */,
 				760E41E4232BD50700A0CE8D /* ToastUITest.swift */,
-				25D1337C2C73EFD7002C9562 /* SearchControlInputUITest.swift */,
+				25D1337C2C73EFD7002C9562 /* SearchInputControlUITest.swift */,
 			);
 			path = "Backpack NativeUITests";
 			sourceTree = "<group>";
@@ -1844,7 +1844,7 @@
 				D270C066243B61C60036A040 /* TabBarControllerStoryViewController.swift in Sources */,
 				022519872A7011CD00D7A06D /* SnippetExampleView.swift in Sources */,
 				7940D38D29EEB63500330480 /* StarRatingGroupsProvider.swift in Sources */,
-				25006AB02C60B1740038D7CA /* SearchControlInputExampleView.swift in Sources */,
+				25006AB02C60B1740038D7CA /* SearchInputControlExampleView.swift in Sources */,
 				D6391600202CAAC8006E8329 /* BPKShadowViewController.m in Sources */,
 				E397BEA222F5F59000C8EC04 /* BottomSheetScrollableContentViewController.swift in Sources */,
 				539897C82BA8A8FF00C8D939 /* ImageGallerySlideshowExampleView.swift in Sources */,
@@ -2002,7 +2002,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25D1337D2C73EFD7002C9562 /* SearchControlInputUITest.swift in Sources */,
+				25D1337D2C73EFD7002C9562 /* SearchInputControlUITest.swift in Sources */,
 				D6517B4B216DF63700D85FF9 /* DialogUITest.swift in Sources */,
 				E359366C240FFE680046FD4C /* BottomSheetUITest.swift in Sources */,
 				760E41E5232BD50700A0CE8D /* ToastUITest.swift in Sources */,
