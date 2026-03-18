@@ -46,7 +46,7 @@ struct SearchControlInputExampleView: View {
     var body: some View {
         // swiftlint:disable closure_body_length
         VStack(spacing: 2) {
-            BPKSearchControlInput(
+            BPKSearchInputControl(
                 placeholder: "Choose origin",
                 value: origin,
                 icon: .origin,
@@ -55,7 +55,7 @@ struct SearchControlInputExampleView: View {
                 action: { origin = "Paris" }
             )
             .accessibilityIdentifier("search_control_input_origin")
-            BPKSearchControlInput(
+            BPKSearchInputControl(
                 placeholder: "Choose destination",
                 value: destination,
                 icon: .cityCenter,
@@ -65,7 +65,7 @@ struct SearchControlInputExampleView: View {
             )
             .accessibilityIdentifier("search_control_input_destination")
             HStack(spacing: 2) {
-                BPKSearchControlInput(
+                BPKSearchInputControl(
                     placeholder: "Choose dates",
                     value: date,
                     icon: .calendar,
@@ -78,7 +78,7 @@ struct SearchControlInputExampleView: View {
                     action: { date = dates.randomElement() }
                 )
                 .accessibilityIdentifier("search_control_input_dates")
-                BPKSearchControlInput(
+                BPKSearchInputControl(
                     placeholder: "Choose travellers",
                     value: traveller,
                     icon: .account,
