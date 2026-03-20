@@ -19,10 +19,13 @@
 import SwiftUI
 
 struct BottomSheetDragIndicator: View {
+    private let indicatorWidth: CGFloat = 36
+    private let indicatorHeight: CGFloat = 6
+
     var body: some View {
         Capsule()
             .fill(Color(.lineColor))
-            .frame(width: 36, height: 6)
+            .frame(width: indicatorWidth, height: indicatorHeight)
             .padding(.top, .sm)
             .accessibilityHidden(true)
     }
