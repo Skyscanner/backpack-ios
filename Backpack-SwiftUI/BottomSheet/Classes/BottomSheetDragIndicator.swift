@@ -23,7 +23,7 @@ struct BottomSheetDragIndicator: View {
         Capsule()
             .fill(Color(.lineColor))
             .frame(width: 36, height: 6)
-            .padding(.top, BPKSpacing.sm.value)
+            .padding(.top, .sm)
             .accessibilityHidden(true)
     }
 }
