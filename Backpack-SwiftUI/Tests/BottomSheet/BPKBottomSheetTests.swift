@@ -52,4 +52,19 @@ class BPKBottomSheetTests: XCTestCase {
             .frame(width: 300)
         )
     }
+
+    func test_contentFitBottomSheet_dragIndicatorWithHeader() {
+        assertSnapshot(
+            VStack(spacing: BPKSpacing.none) {
+                BottomSheetDragIndicator()
+                BottomSheetHeader(
+                    closeAction: .init(title: "Close", action: {}),
+                    title: "Title Here",
+                    action: nil
+                )
+            }
+            .frame(width: 300)
+            .background(.surfaceElevatedColor)
+        )
+    }
 }
