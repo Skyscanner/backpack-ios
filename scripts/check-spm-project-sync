@@ -1,0 +1,42 @@
+#!/bin/bash
+# Checks that every .swift file included in Backpack.xcodeproj is also
+# included in Backpack-SPM.xcodeproj (and vice-versa).
+#
+# Run manually:  ./scripts/check-spm-project-sync
+# Or add to CI before building the SPM workspace.
+
+set -euo pipefail
+
+PROJ="Example/Backpack.xcodeproj/project.pbxproj"
+SPM_PROJ="Example/Backpack-SPM.xcodeproj/project.pbxproj"
+
+# Extract bare filenames of all .swift files listed as build sources in each project.
+swift_sources() {
+  grep "\.swift in Sources" "$1" | sed -E 's|.*\/\* (.+\.swift) in Sources \*\/.*|\1|' | sort -u
+}
+
+SOURCES=$(swift_sources "$PROJ")
+SPM_SOURCES=$(swift_sources "$SPM_PROJ")
+
+ONLY_IN_MAIN=$(comm -23 <(echo "$SOURCES") <(echo "$SPM_SOURCES"))
+ONLY_IN_SPM=$(comm -13 <(echo "$SOURCES") <(echo "$SPM_SOURCES"))
+
+FAIL=0
+
+if [ -n "$ONLY_IN_MAIN" ]; then
+  echo "❌ Files in Backpack.xcodeproj but NOT in Backpack-SPM.xcodeproj:"
+  echo "$ONLY_IN_MAIN" | sed 's/^/   /'
+  FAIL=1
+fi
+
+if [ -n "$ONLY_IN_SPM" ]; then
+  echo "❌ Files in Backpack-SPM.xcodeproj but NOT in Backpack.xcodeproj:"
+  echo "$ONLY_IN_SPM" | sed 's/^/   /'
+  FAIL=1
+fi
+
+if [ $FAIL -eq 0 ]; then
+  echo "✅ Both project files contain the same Swift sources."
+fi
+
+exit $FAIL

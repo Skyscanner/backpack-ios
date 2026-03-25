@@ -67,6 +67,9 @@ function runTests() {
 }
 
 function buildSpmExample() {
+    echo "Checking SPM and CocoaPods projects are in sync"
+    ./scripts/check-spm-project-sync
+
     echo "Building SPM Example app ($SPM_EXAMPLE_SCHEME)"
 
     xcodebuild build \
