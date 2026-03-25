@@ -29,6 +29,9 @@ bundle install
 npm install --registry=https://registry.npmjs.org/
 npm run build # generating SVG resources 
 
+# Install git hooks
+./scripts/install-hooks
+
 # navigate to Example app
 cd Example
 bundle exec pod install
