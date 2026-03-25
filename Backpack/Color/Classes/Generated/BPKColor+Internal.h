@@ -290,6 +290,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor * internalNavigationTabOutlineColor;
 
 /**
+ * The `navigationTabOnDarkOutlineColor` internal color.
+ */
+@property(nonatomic, class, readonly) UIColor * internalNavigationTabOnDarkOutlineColor;
+
+/**
  * The `navigationTabSelectedColor` internal color.
  */
 @property(nonatomic, class, readonly) UIColor * internalNavigationTabSelectedColor;
