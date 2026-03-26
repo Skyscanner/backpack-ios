@@ -40,6 +40,7 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
     var body: some View {
         GeometryReader { _ in
             VStack(spacing: BPKSpacing.none) {
+                BottomSheetDragIndicator()
                 header
                     .onGeometryChange(for: CGFloat.self, of: { $0.size.height }, action: { newValue in
                         headerHeight = newValue
@@ -63,7 +64,7 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
                 detentHeight = newValue
             }
             .presentationDetents(detents)
-            .presentationDragIndicator(.visible)
+            .presentationDragIndicator(.hidden)
         }
         .background(backgroundColor)
         .ignoresSafeArea(.keyboard)

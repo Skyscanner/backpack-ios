@@ -19,7 +19,7 @@
 import SwiftUI
 import Backpack_Common
 
-public extension BPKSearchControlInput {
+public extension BPKSearchInputControl {
     
     /// Style configuration for a background colour
     enum Style {
@@ -38,7 +38,7 @@ public extension BPKSearchControlInput {
 }
 
 /// An actionable control field that displays an text and an icon.
-public struct BPKSearchControlInput: View {
+public struct BPKSearchInputControl: View {
     
     private let accessibilityLabel: String
     private let placeholder: String
@@ -49,7 +49,7 @@ public struct BPKSearchControlInput: View {
     private let accessibilityValueHandler: (() -> String)?
     @Environment(\.sizeCategory) var sizeCategory
     
-    /// Creates a `BPKSearchControlInput`.
+    /// Creates a `BPKSearchInputControl`.
     ///
     /// - Parameters:
     ///   - placeholder: Placeholder text when `value` is nil.
@@ -112,10 +112,10 @@ public struct BPKSearchControlInput: View {
     }
 }
 
-struct BPKSearchControlInput_Previews: PreviewProvider {
+struct BPKSearchInputControl_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            BPKSearchControlInput(placeholder: "Field", value: nil, icon: .calendar, accessibilityLabel: "Input") {}
+            BPKSearchInputControl(placeholder: "Field", value: nil, icon: .calendar, accessibilityLabel: "Input") {}
         }
         .padding()
         .background(.corePrimaryColor)

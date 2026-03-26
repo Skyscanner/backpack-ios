@@ -114,7 +114,7 @@ let backpackSwiftUISourceDirs = [
   "Radii",
   "Rating",
   "RatingBar",
-  "SearchControlInput",
+  "SearchInputControl",
   "SearchInputSummary",
   "SectionHeader",
   "SegmentedControl",

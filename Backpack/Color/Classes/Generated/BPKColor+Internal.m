@@ -332,6 +332,12 @@
 }
 
 
++ (UIColor *)internalNavigationTabOnDarkOutlineColor {
+    return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:0.2]
+                                          darkVariant:[UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:0.2]];
+}
+
+
 + (UIColor *)internalNavigationTabSelectedColor {
     return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:0.008 green:0.302 blue:0.686 alpha:1]
                                           darkVariant:[UIColor colorWithRed:0.020 green:0.255 blue:0.518 alpha:1]];

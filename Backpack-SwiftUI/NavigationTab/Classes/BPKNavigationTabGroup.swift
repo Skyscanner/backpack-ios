@@ -23,9 +23,9 @@ public struct BPKNavigationTabGroup: View {
     private let tabs: [Item]
     private let style: BPKNavigationTabGroup.Style
     private let onItemClick: (_ index: Int) -> Void
-    
+
     @Binding private var selectedIndex: Int
-    
+
     public init(
         tabs: [Item],
         style: BPKNavigationTabGroup.Style = .default,
@@ -37,25 +37,24 @@ public struct BPKNavigationTabGroup: View {
         self._selectedIndex = selectedIndex
         self.onItemClick = onItemClick
     }
-    
+
     public var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: .md) {
+            HStack(spacing: .zero) {
                 ForEach(Array(tabs.enumerated()), id: \.element) { index, item in
                     tab(for: item, index: index)
                 }
             }
-            .padding(1) // to account for chip outlines
         }
     }
-    
+
     @ViewBuilder
     private func tab(for tab: Item, index: Int) -> some View {
         BPKNavigationTab(
             tab.text,
             icon: tab.icon,
             selected: selectedIndex == index,
-            style: style
+            style: style,
         ) {
             onItemClick(index)
         }
@@ -90,29 +89,36 @@ public extension BPKNavigationTabGroup {
 }
 
 struct BPKNavigationTabGroup_Previews: PreviewProvider {
-    
+
     static let tabs: [BPKNavigationTabGroup.Item] = [
         .init(text: "Explore", icon: .explore),
         .init(text: "Flights", icon: .flight),
         .init(text: "Hotels", icon: .hotels),
         .init(text: "Car Hire", icon: .cars)
     ]
-    
+
     static var previews: some View {
-        VStack {
-            BPKNavigationTabGroup(
-                tabs: tabs,
-                selectedIndex: .constant(0)
-            ) { _ in }
-                .padding()
-            
-            BPKNavigationTabGroup(
-                tabs: tabs,
-                style: .onDark,
-                selectedIndex: .constant(0)
-            ) { _ in }
-                .padding()
-                .background(.surfaceContrastColor)
+        VStack(spacing: .lg) {
+            VStack(alignment: .leading) {
+                BPKText("Vertical", style: .caption)
+                BPKNavigationTabGroup(
+                    tabs: tabs,
+                    selectedIndex: .constant(0)
+                ) { _ in }
+            }
+            .padding()
+
+            VStack(alignment: .leading) {
+                BPKText("Vertical on dark", style: .caption)
+                    .foregroundColor(.textOnDarkColor)
+                BPKNavigationTabGroup(
+                    tabs: tabs,
+                    style: .onDark,
+                    selectedIndex: .constant(0)
+                ) { _ in }
+            }
+            .padding()
+            .background(.surfaceContrastColor)
         }
     }
 }

@@ -1,0 +1,7 @@
+#!/bin/bash
+# Installs git hooks into .git/hooks/
+
+set -e
+
+ln -sf "../../scripts/check-spm-project-sync" ".git/hooks/pre-commit"
+echo "✅ Git hooks installed."

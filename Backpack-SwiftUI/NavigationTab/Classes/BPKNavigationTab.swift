@@ -42,17 +42,8 @@ struct BPKNavigationTab: View {
     }
     
     var body: some View {
-        
         Button(action: onClick) {
-            HStack(spacing: .md) {
-                if let icon {
-                    BPKIconView(icon)
-                }
-                Text(text)
-                    .font(BPKFontStyle.label2.font)
-                    .lineLimit(1)
-            }
-            .padding(.horizontal, .base)
+            content
         }
         .buttonStyle(
             NavigationTabStyle(
@@ -65,21 +56,44 @@ struct BPKNavigationTab: View {
             $0.sizeCategory(.large)
         })
     }
+    
+    @ViewBuilder
+    private var content: some View {
+        VStack(spacing: BPKSpacing.none) {
+            if let icon {
+                BPKIconView(icon)
+            }
+            Text(text)
+                .font(BPKFontStyle.label3.font)
+                .lineLimit(1)
+        }
+        .padding(.horizontal, .base)
+        .padding(.vertical, .md)
+    }
 }
 
 struct BPKNavigationTab_Previews: PreviewProvider {
     static var previews: some View {
-        VStack {
-            HStack {
-                BPKNavigationTab("Explore", icon: .explore, selected: true) {}
-                BPKNavigationTab("Flights", icon: .flight) {}
+        VStack(spacing: .lg) {
+            VStack(alignment: .leading) {
+                BPKText("Vertical", style: .caption)
+                HStack {
+                    BPKNavigationTab("Explore", icon: .explore, selected: true) {}
+                    BPKNavigationTab("Flights", icon: .flight) {}
+                }
             }
-            HStack {
-                BPKNavigationTab("Explore", icon: .explore, selected: true, style: .onDark) {}
-                BPKNavigationTab("Flights", icon: .flight, style: .onDark) {}
+
+            VStack(alignment: .leading) {
+                BPKText("Vertical on dark", style: .caption)
+                    .foregroundColor(.textOnDarkColor)
+                HStack {
+                    BPKNavigationTab("Explore", icon: .explore, selected: true, style: .onDark) {}
+                    BPKNavigationTab("Flights", icon: .flight, style: .onDark) {}
+                }
             }
             .padding()
             .background(.surfaceContrastColor)
         }
+        .padding()
     }
 }

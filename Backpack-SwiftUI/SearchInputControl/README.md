@@ -1,8 +1,8 @@
-#  Backpack-SwiftUI/SearchControlInput
+#  Backpack-SwiftUI/SearchInputControl
 
 [![Cocoapods](https://img.shields.io/cocoapods/v/Backpack-SwiftUI.svg?style=flat)](hhttps://cocoapods.org/pods/Backpack-SwiftUI)
-[![class reference](https://img.shields.io/badge/Class%20reference-iOS-blue)](https://backpack.github.io/ios/versions/latest/swiftui/Structs/BPKSearchControlInput.html)
-[![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack-SwiftUI/SearchControlInput)
+[![class reference](https://img.shields.io/badge/Class%20reference-iOS-blue)](https://backpack.github.io/ios/versions/latest/swiftui/Structs/BPKSearchInputControl.html)
+[![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack-SwiftUI/SearchInputControl)
 
 | Day | Night |
 | --- | --- |
@@ -10,7 +10,7 @@
 
 # Usage
 
-Create a `BPKSearchControlInput` and set properties: `placeholder`, `label`, `value`, `icon`, `style` (default value: `.regular`), `accessibilityLabel`, `action`, and `accessibilityValueHandler` (optional property).
+Create a `BPKSearchInputControl` and set properties: `placeholder`, `label`, `value`, `icon`, `style` (default value: `.regular`), `accessibilityLabel`, `action`, and `accessibilityValueHandler` (optional property).
 
 ```swift
 @State var value: String?
@@ -19,7 +19,7 @@ let clickAction = {
     // Place action handler here
 }
 
-BPKSearchControlInput(placeholder: "Placeholder", value: value, icon: .calendar, accessibilityLabel: "Input Field", action: clickAction)
+BPKSearchInputControl(placeholder: "Placeholder", value: value, icon: .calendar, accessibilityLabel: "Input Field", action: clickAction)
 ```
 
 ### Usage in a composition
@@ -28,7 +28,7 @@ See a screenshot to check how it could look like altogether.
 
 ```swift
 VStack(spacing: 2) {
-    BPKSearchControlInput(
+    BPKSearchInputControl(
         placeholder: "Choose origin",
         value: origin,
         icon: .origin,
@@ -36,7 +36,7 @@ VStack(spacing: 2) {
         accessibilityLabel: "From",
         action: { }
     )
-    BPKSearchControlInput(
+    BPKSearchInputControl(
         placeholder: "Choose destination",
         value: destination,
         icon: .cityCenter,
@@ -45,7 +45,7 @@ VStack(spacing: 2) {
         action: { }
     )
     HStack(spacing: 2) {
-        BPKSearchControlInput(
+        BPKSearchInputControl(
             placeholder: "Choose dates",
             value: date,
             icon: .calendar,
@@ -53,7 +53,7 @@ VStack(spacing: 2) {
             accessibilityLabel: "Dates",
             action: { }
         )
-        BPKSearchControlInput(
+        BPKSearchInputControl(
             placeholder: "Choose travellers",
             value: traveller,
             icon: .account,
@@ -70,11 +70,11 @@ VStack(spacing: 2) {
 Default value is `regular`.
 
 ```swift
-BPKSearchControlInput(placeholder: "Placeholder", value: value, icon: .regular, accessibilityLabel: "Input Field", action: clickAction)
+BPKSearchInputControl(placeholder: "Placeholder", value: value, icon: .regular, accessibilityLabel: "Input Field", action: clickAction)
 ```
 
 ```swift
-BPKSearchControlInput(placeholder: "Placeholder", value: value, icon: .onContrast, accessibilityLabel: "Input Field", action: clickAction)
+BPKSearchInputControl(placeholder: "Placeholder", value: value, icon: .onContrast, accessibilityLabel: "Input Field", action: clickAction)
 ```
 
 ### Using accessibilityValueHandler
@@ -83,7 +83,7 @@ When a value is not suitable for Accessibility announcments, this optional handl
 For example, when a displayed value is "13 - 20 Sep", it's better to adapt for accessibility users, so it would be like "From September 13 to September 20"
     
 ```swift
-BPKSearchControlInput(
+BPKSearchInputControl(
     placeholder: "Placeholder", 
     value: value, 
     icon: .onContrast, 
@@ -101,11 +101,11 @@ BPKSearchControlInput(
 In purpose of using the component in UI or smoke tests the accessibility identifier should be set in the place where the component is used.
 
 ```swift
-BPKSearchControlInput(placeholder: "Placeholder", value: value, icon: .regular, accessibilityLabel: "Input Field", action: clickAction)
+BPKSearchInputControl(placeholder: "Placeholder", value: value, icon: .regular, accessibilityLabel: "Input Field", action: clickAction)
     .accessibilityIdentifier("search_control_input_custom_field")
 ```
 
 This element could be found in UI test as a button.
 ```swift
-let searchControlInput = app.buttons["search_control_input_custom_field"]
+let searchInputControl = app.buttons["search_control_input_custom_field"]
 ```

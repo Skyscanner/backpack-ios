@@ -20,7 +20,7 @@
 import SwiftUI
 import Backpack_SwiftUI
 
-struct SearchControlInputExampleView: View {
+struct SearchInputControlExampleView: View {
     
     let places = ["London (any)", "Barcelona", "Everywhere", "Spain", "Paris"]
     let dates = ["Aug 10", "14 - 18 Sep", "Sep", "Oct - Nov"]
@@ -46,7 +46,7 @@ struct SearchControlInputExampleView: View {
     var body: some View {
         // swiftlint:disable closure_body_length
         VStack(spacing: 2) {
-            BPKSearchControlInput(
+            BPKSearchInputControl(
                 placeholder: "Choose origin",
                 value: origin,
                 icon: .origin,
@@ -54,8 +54,8 @@ struct SearchControlInputExampleView: View {
                 accessibilityLabel: "From",
                 action: { origin = "Paris" }
             )
-            .accessibilityIdentifier("search_control_input_origin")
-            BPKSearchControlInput(
+            .accessibilityIdentifier("search_input_control_origin")
+            BPKSearchInputControl(
                 placeholder: "Choose destination",
                 value: destination,
                 icon: .cityCenter,
@@ -63,9 +63,9 @@ struct SearchControlInputExampleView: View {
                 accessibilityLabel: "To",
                 action: { destination = places.randomElement() }
             )
-            .accessibilityIdentifier("search_control_input_destination")
+            .accessibilityIdentifier("search_input_control_destination")
             HStack(spacing: 2) {
-                BPKSearchControlInput(
+                BPKSearchInputControl(
                     placeholder: "Choose dates",
                     value: date,
                     icon: .calendar,
@@ -77,8 +77,8 @@ struct SearchControlInputExampleView: View {
                     },
                     action: { date = dates.randomElement() }
                 )
-                .accessibilityIdentifier("search_control_input_dates")
-                BPKSearchControlInput(
+                .accessibilityIdentifier("search_input_control_dates")
+                BPKSearchInputControl(
                     placeholder: "Choose travellers",
                     value: traveller,
                     icon: .account,
@@ -86,7 +86,7 @@ struct SearchControlInputExampleView: View {
                     accessibilityLabel: "Travellers",
                     action: { traveller = travellers.randomElement() }
                 )
-                .accessibilityIdentifier("search_control_input_travellers")
+                .accessibilityIdentifier("search_input_control_travellers")
             }
         }
         .clipShape(RoundedRectangle(cornerRadius: 8))
@@ -95,8 +95,8 @@ struct SearchControlInputExampleView: View {
     }
 }
 
-struct SearchControlInputExampleView_Previews: PreviewProvider {
+struct SearchInputControlExampleView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchControlInputExampleView()
+        SearchInputControlExampleView()
     }
 }

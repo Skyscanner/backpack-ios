@@ -96,7 +96,7 @@ internal struct InternalCardCarousel<Content: View>: View {
     
     var body: some View {
         VStack(spacing: .md) {
-            LazyHStack(alignment: .center, spacing: 0) {
+            HStack(alignment: .center, spacing: 0) {
                 ForEach(Array(content.enumerated()), id: \.offset) { index, card in
                     card
                         .frame(width: cardWidth)

@@ -20,6 +20,7 @@ import SwiftUI
 
 public extension BPKNavigationTabGroup {
     enum Style {
-        case `default`, onDark
+        case `default`
+        case onDark
     }
 }
