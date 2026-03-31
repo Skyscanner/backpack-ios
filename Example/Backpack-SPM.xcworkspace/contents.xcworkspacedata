@@ -4,4 +4,7 @@
    <FileRef
       location = "group:Backpack-SPM.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:..">
+   </FileRef>
 </Workspace>
