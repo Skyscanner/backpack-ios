@@ -15,16 +15,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef __BACKPACK_LABEL__
-#define __BACKPACK_LABEL__
 
-#ifdef SWIFT_PACKAGE
-// SPM: ObjC .h/.m still used in the Backpack_ObjC target
-#import "BPKLabel.h"
-#else
-// CocoaPods: BPKLabel is Swift, accessed via Backpack-Swift.h
-@class BPKLabel;
-@class BPKTextDefinition;
-#endif
+import Foundation
 
-#endif
+@available(*, deprecated, message: "BPKTextDefinition is deprecated. Use the SwiftUI BPKText instead.")
+@objcMembers
+public final class BPKTextDefinition: NSObject {
+    public let fontStyle: BPKFontStyle
+    public let range: NSRange
+
+    public init(fontStyle: BPKFontStyle, range: NSRange) {
+        self.fontStyle = fontStyle
+        self.range = range
+        super.init()
+    }
+}

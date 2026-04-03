@@ -26,6 +26,11 @@
  */
 
 #import "BPKObjcUIKitButton.h"
+#if __has_include(<Backpack/Backpack-Swift.h>)
+#import <Backpack/Backpack-Swift.h>
+#elif __has_include("Backpack-Swift.h")
+#import "Backpack-Swift.h"
+#endif
 #import "BPKButtonAppearance.h"
 #import "BPKButtonAppearanceSet.h"
 #import "UIColor+BPKButton.h"

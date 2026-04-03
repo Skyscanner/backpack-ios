@@ -24,6 +24,14 @@
 #import "Generated/BPKFont.h"
 #endif
 #import <Backpack/Label.h>
+#ifdef SWIFT_PACKAGE
+// BPKLabel accessed via Label.h (SPM) or Backpack-Swift.h (CocoaPods)
+#endif
+#if __has_include(<Backpack/Backpack-Swift.h>)
+#import <Backpack/Backpack-Swift.h>
+#elif __has_include("Backpack-Swift.h")
+#import "Backpack-Swift.h"
+#endif
 
 const CGFloat BPKNavigationBarTitleHeight = 44;
 

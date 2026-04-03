@@ -221,7 +221,9 @@ let targets: [Target] = [
         "Button/Classes/BPKLegacyLinkButton.m",
         "StarRating/Classes/BPKHotelStarRating.swift",
         "Card/Classes/BPKCardElevation.swift",
-        "Card/Classes/BPKCardWrapper.swift"
+        "Card/Classes/BPKCardWrapper.swift",
+        "Label/Classes/BPKLabel.swift",
+        "Label/Classes/BPKTextDefinition.swift"
       ] + backpackExcludedReadmes,
       sources: backpackObjCSourceDirs,
       publicHeadersPath: "SPMObjCHeaders",

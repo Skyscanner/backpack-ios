@@ -26,6 +26,14 @@
 #import <Backpack/DarkMode.h>
 #import <Backpack/Label.h>
 #ifdef SWIFT_PACKAGE
+// BPKLabel accessed via Label.h (SPM) or Backpack-Swift.h (CocoaPods)
+#endif
+#if __has_include(<Backpack/Backpack-Swift.h>)
+#import <Backpack/Backpack-Swift.h>
+#elif __has_include("Backpack-Swift.h")
+#import "Backpack-Swift.h"
+#endif
+#ifdef SWIFT_PACKAGE
 #import <Backpack/Spacing.h>
 #else
 #import "Generated/BPKSpacing.h"
