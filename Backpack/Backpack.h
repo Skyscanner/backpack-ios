@@ -37,7 +37,6 @@
 #import "Dialog.h"
 #import "FlareView.h"
 #import "Icon.h"
-#import "Label.h"
 #import "Map.h"
 #import "NavigationBar.h"
 #import "ProgressBar.h"
