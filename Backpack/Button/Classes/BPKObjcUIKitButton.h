@@ -16,12 +16,7 @@
  * limitations under the License.
  */
 
-#ifdef SWIFT_PACKAGE
-#import <Backpack/BPKLabel.h>
-#else
-// BPKLabel is defined in Swift. CocoaPods accesses it via Backpack-Swift.h
 @class BPKLabel;
-#endif
 
 // WARNING: BPKButton remains for maintenance only; prefer the SwiftUI Backpack
 // button for new features.

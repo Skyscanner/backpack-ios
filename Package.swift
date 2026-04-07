@@ -34,7 +34,9 @@ let backpackUIKitSourceDirs = [
   "BackpackUIKitImports.swift",
   "Color/Classes/Generated/BPKInternalColors.swift",
   "Card/Classes/BPKCardElevation.swift",
-  "Card/Classes/BPKCardWrapper.swift"
+  "Card/Classes/BPKCardWrapper.swift",
+  "Label/Classes/BPKLabel.swift",
+  "Label/Classes/BPKTextDefinition.swift"
 ]
 let backpackObjCSourceDirs = [
   "Switch/Classes",
@@ -46,7 +48,6 @@ let backpackObjCSourceDirs = [
   "Button/Classes",
   "Dialog/Classes",
   "Icon/Classes",
-  "Label/Classes",
   "Color/Classes/Generated/UIColor+Backpack.m",
   "Card/Classes",
   "Map/Classes",
@@ -221,9 +222,7 @@ let targets: [Target] = [
         "Button/Classes/BPKLegacyLinkButton.m",
         "StarRating/Classes/BPKHotelStarRating.swift",
         "Card/Classes/BPKCardElevation.swift",
-        "Card/Classes/BPKCardWrapper.swift",
-        "Label/Classes/BPKLabel.swift",
-        "Label/Classes/BPKTextDefinition.swift"
+        "Card/Classes/BPKCardWrapper.swift"
       ] + backpackExcludedReadmes,
       sources: backpackObjCSourceDirs,
       publicHeadersPath: "SPMObjCHeaders",

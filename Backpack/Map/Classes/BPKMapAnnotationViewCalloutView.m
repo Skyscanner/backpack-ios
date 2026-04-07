@@ -36,14 +36,14 @@
 #import <Backpack/Common.h>
 #import <Backpack/FlareView.h>
 #import <Backpack/Icon.h>
-#import <Backpack/Label.h>
 #ifdef SWIFT_PACKAGE
-// BPKLabel accessed via Label.h (SPM) or Backpack-Swift.h (CocoaPods)
-#endif
+#import "BPKLabel.h"
+#else
 #if __has_include(<Backpack/Backpack-Swift.h>)
 #import <Backpack/Backpack-Swift.h>
 #elif __has_include("Backpack-Swift.h")
 #import "Backpack-Swift.h"
+#endif
 #endif
 #ifdef SWIFT_PACKAGE
 #import <Backpack/Shadow.h>
