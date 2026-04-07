@@ -18,6 +18,7 @@
 #ifndef __BACKPACK_TEXTVIEW__
 #define __BACKPACK_TEXTVIEW__
 
-#import "BPKTextView.h"
+// BPKTextView is now defined in Swift.
+@class BPKTextView;
 
 #endif

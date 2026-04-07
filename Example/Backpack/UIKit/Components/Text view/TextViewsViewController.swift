@@ -21,11 +21,24 @@ import Backpack
 
 @available(*, deprecated, message: "We intentionally use this deprecated API.")
 class TextViewsViewController: UIViewController {
-    @IBOutlet weak var textView: BPKTextView!
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
 
+        let textView = BPKTextView(fontStyle: .textBodyDefault)
+        textView.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, "
+            + "consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore "
+            + "et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco "
+            + "laboris nisi ut aliquip ex ea commodo consequat."
         textView.accessibilityIdentifier = "textView"
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(textView)
+
+        NSLayoutConstraint.activate([
+            textView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            textView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            textView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            textView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
 }

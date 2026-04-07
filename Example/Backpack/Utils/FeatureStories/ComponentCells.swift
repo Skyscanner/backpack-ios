@@ -603,9 +603,9 @@ extension ComponentCellsProvider {
         )
     }
     private func textViews() -> CellDataSource {
-        PresentableCellDataSource(
+        PresentableCellDataSource.custom(
             title: "Text views",
-            storyboard: .named("Main", on: "TextViewsViewController"),
+            customController: { TextViewsViewController() },
             showPresentable: show(presentable:)
         )
     }
