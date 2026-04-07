@@ -17,7 +17,6 @@
  */
 @import Backpack;
 
-#import <Backpack/Label.h>
 #import <Backpack/Theme.h>
 #import <XCTest/XCTest.h>
 

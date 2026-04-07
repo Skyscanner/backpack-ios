@@ -27,6 +27,8 @@ const static NSInteger LabelTag = 72817;
 - (void)setupViews;
 @end
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 @implementation BPKShadowViewController
 
 - (void)viewDidLoad {
@@ -56,3 +58,4 @@ const static NSInteger LabelTag = 72817;
 }
 
 @end
+#pragma clang diagnostic pop

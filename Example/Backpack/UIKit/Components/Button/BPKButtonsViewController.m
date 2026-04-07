@@ -22,7 +22,6 @@
 #import <Backpack/Color.h>
 #import <Backpack/DarkMode.h>
 #import <Backpack/Icon.h>
-#import <Backpack/Label.h>
 
 NS_ASSUME_NONNULL_BEGIN
 #pragma clang diagnostic push

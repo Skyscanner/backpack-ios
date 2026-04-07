@@ -20,7 +20,6 @@
 
 #import <Backpack/Card.h>
 @import Backpack;
-#import <Backpack/Label.h>
 
 @interface BPKCardTest : XCTestCase
 
