@@ -34,7 +34,8 @@ let backpackUIKitSourceDirs = [
   "BackpackUIKitImports.swift",
   "Color/Classes/Generated/BPKInternalColors.swift",
   "Card/Classes/BPKCardElevation.swift",
-  "Card/Classes/BPKCardWrapper.swift"
+  "Card/Classes/BPKCardWrapper.swift",
+  "Label/Classes"
 ]
 let backpackObjCSourceDirs = [
   "Switch/Classes",
@@ -59,7 +60,6 @@ let backpackObjCSourceDirs = [
   "Shadow/Classes",
   "Spinner/Classes",
   "Appearance/Classes",
-  "Label/Classes"
 ]
 let backpackCommonSourceDirs = [
   "BackpackCommonImports.swift",
@@ -234,7 +234,6 @@ let targets: [Target] = [
         .headerSearchPath("Icon/Classes"),
         .headerSearchPath("Icon/Classes/Generated"),
         .headerSearchPath("NavigationBar/Classes"),
-        .headerSearchPath("Label/Classes"),
         .headerSearchPath("Dialog/Classes"),
         .headerSearchPath("Theme/Classes"),
         .headerSearchPath("ProgressBar/Classes"),
