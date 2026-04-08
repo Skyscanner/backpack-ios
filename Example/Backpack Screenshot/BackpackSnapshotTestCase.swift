@@ -40,7 +40,20 @@ class BackpackSnapshotTestCase: XCTestCase {
             return
         }
 
-        app.tables.staticTexts[title].tap()
+        let element = app.tables.staticTexts[title]
+
+        // Wait for element to exist
+        _ = element.waitForExistence(timeout: 2)
+
+        // Scroll to make the element visible if it's not hittable
+        var attempts = 0
+        while !element.isHittable && attempts < 10 {
+            app.swipeUp()
+            attempts += 1
+            sleep(UInt32(0.3))
+        }
+
+        element.tap()
         await closure()
         tapBackButton()
     }

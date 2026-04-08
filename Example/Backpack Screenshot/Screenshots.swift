@@ -343,8 +343,7 @@ class Screenshots: BackpackSnapshotTestCase {
         await navigate(title: "Map") {
             app.tables.staticTexts["Default"].tap()
             app.otherElements["Manchester airport"].tap()
-            app.otherElements["London"].tap()
-            app.maps.otherElements["London"].tap()
+            app.maps.otherElements["London"].firstMatch.tap()
             saveScreenshot(component: "map", scenario: "default", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }

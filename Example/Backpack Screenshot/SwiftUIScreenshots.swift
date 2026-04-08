@@ -45,6 +45,9 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         app.launchArguments.append("FORCE_LIGHT_MODE")
         setupSnapshot(app)
         app.launch()
+        
+        _ = app.wait(for: .runningForeground, timeout: 5)
+        
         await captureAllScreenshots()
     }
 
@@ -54,6 +57,9 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         app.launchArguments.append("FORCE_DARK_MODE")
         setupSnapshot(app)
         app.launch()
+        
+        _ = app.wait(for: .runningForeground, timeout: 5)
+        
         await captureAllScreenshots(userInterfaceStyle: .dark)
     }
     
@@ -450,7 +456,6 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
 
-
         await navigate(title: "Navigation bars") {
             switchTab(title: "SwiftUI")
             _ = app.buttons["Default"].waitForExistence(timeout: 1)
@@ -468,59 +473,6 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "navbar", scenario: "surfaceContrast", userInterfaceStyle: userInterfaceStyle)
             app.buttons["Close"].tap()
             //tapBackButton()
-        }
-        
-        await navigate(title: "Buttons") {
-            switchTab(title: "SwiftUI")
-            app.tables.staticTexts["Primary"].tap()
-            saveScreenshot(component: "button", scenario: "primary", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-            app.tables.staticTexts["Secondary"].tap()
-            saveScreenshot(component: "button", scenario: "secondary", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-            app.tables.staticTexts["Destructive"].tap()
-            saveScreenshot(component: "button", scenario: "destructive", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-            app.tables.staticTexts["Featured"].tap()
-            saveScreenshot(component: "button", scenario: "featured", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-            app.tables.staticTexts["Link"].tap()
-            saveScreenshot(component: "button", scenario: "link", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-            app.tables.staticTexts["Primary On Dark"].tap()
-            saveScreenshot(component: "button", scenario: "primaryOnDark", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-            app.tables.staticTexts["Primary On Light"].tap()
-            saveScreenshot(component: "button", scenario: "primaryOnLight", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-        }
-
-        await navigate(title: "Rating") {
-            switchTab(title: "SwiftUI")
-            app.tables.staticTexts["BPKRating: title text"].tap()
-            saveScreenshot(component: "rating", scenario: "with-title-text", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-            app.tables.staticTexts["BPKRating: titleView image"].tap()
-            saveScreenshot(component: "rating", scenario: "with-custom-title-view-image", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-        }
-        
-        await navigate(title: "Switches") {
-            switchTab(title: "SwiftUI")
-            saveScreenshot(component: "switch", scenario: "default", userInterfaceStyle: userInterfaceStyle)
-        }
-
-        await navigate(title: "Cards") {
-            switchTab(title: "SwiftUI")
-            app.tables.staticTexts["Card"].tap()
-            saveScreenshot(component: "card", scenario: "default", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-            app.tables.staticTexts["DividedCard"].tap()
-            saveScreenshot(component: "divided-card", scenario: "default", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-            app.tables.staticTexts["CardWrapper"].tap()
-            saveScreenshot(component: "card-wrapper", scenario: "default", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
         }
         
         await navigate(title: "Overlay") {
@@ -585,108 +537,15 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "search-input-control", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
-        // KYnan
-
-        await navigate(title: "Bottom sheet") {
-            switchTab(title: "SwiftUI")
-            app.buttons["Show closable bottom sheet"].tap()
-            saveScreenshot(component: "bottom-sheet", scenario: "closable", userInterfaceStyle: userInterfaceStyle)
-            app.buttons["Action"].tap()
-            
-            app.buttons["Show large bottom sheet"].tap()
-            saveScreenshot(component: "bottom-sheet", scenario: "large", userInterfaceStyle: userInterfaceStyle)
-            app.buttons["Action"].tap()
-
-            app.buttons["Show medium bottom sheet"].tap()
-            saveScreenshot(component: "bottom-sheet", scenario: "medium", userInterfaceStyle: userInterfaceStyle)
-            app.buttons["Action"].tap()
-            
-            app.buttons["Show fit content bottom sheet"].tap()
-            saveScreenshot(component: "bottom-sheet", scenario: "content-fit", userInterfaceStyle: userInterfaceStyle)
-            app.buttons["Action"].tap()
-        }
-        
-        await navigate(title: "Price") {
-            switchTab(title: "SwiftUI")
-            
-            app.tables.staticTexts["ExtraSmall"].tap()
-            saveScreenshot(component: "price", scenario: "extraSmall", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-            
-            app.tables.staticTexts["Small"].tap()
-            saveScreenshot(component: "price", scenario: "small", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-            
-            app.tables.staticTexts["Large"].tap()
-            saveScreenshot(component: "price", scenario: "large", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-        }
-        
-        await navigate(title: "Chips") {
-            switchTab(title: "SwiftUI")
-            app.tables.staticTexts["Default"].tap()
-            saveScreenshot(component: "chip", scenario: "default", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-            app.tables.staticTexts["On Dark"].tap()
-            saveScreenshot(component: "chip", scenario: "on-dark", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-            
-            app.tables.staticTexts["On Image"].tap()
-            saveScreenshot(component: "chip", scenario: "on-image", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-        }
-        
-        await navigate(title: "Chip Group") {
-            switchTab(title: "SwiftUI")
-            app.tables.staticTexts["Rail - Single Select"].tap()
-            saveScreenshot(component: "chip-group-single", scenario: "rail", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-            app.tables.staticTexts["Wrap - Single Select"].tap()
-            saveScreenshot(component: "chip-group-single", scenario: "wrap", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-            app.tables.staticTexts["Rail - Multi Select"].tap()
-            saveScreenshot(component: "chip-group-multi", scenario: "rail", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-            app.tables.staticTexts["Wrap - Multi Select"].tap()
-            saveScreenshot(component: "chip-group-multi", scenario: "wrap", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-        }
-        
-        await navigate(title: "Dialogs") {
-            switchTab(title: "SwiftUI")
-            app.buttons["Modal Success"].tap()
-            saveScreenshot(component: "dialog", scenario: "success", userInterfaceStyle: userInterfaceStyle)
-            app.buttons["Confirmation"].tap()
-            
-            _ = app.buttons["Modal Warning"].waitForExistence(timeout: 1)
-            app.buttons["Modal Warning"].tap()
-            saveScreenshot(component: "dialog", scenario: "warning", userInterfaceStyle: userInterfaceStyle)
-            app.buttons["Confirmation"].tap()
-            
-            _ = app.buttons["Modal Destructive"].waitForExistence(timeout: 1)
-            app.buttons["Modal Destructive"].tap()
-            saveScreenshot(component: "dialog", scenario: "destructive", userInterfaceStyle: userInterfaceStyle)
-            app.buttons["Delete"].tap()
-            
-            _ = app.buttons["Modal Flare"].waitForExistence(timeout: 1)
-            app.buttons["Modal Flare"].tap()
-            saveScreenshot(component: "dialog", scenario: "flare", userInterfaceStyle: userInterfaceStyle)
-            app.buttons["Confirmation"].tap()
-            
-            _ = app.buttons["Modal Image"].waitForExistence(timeout: 1)
-            app.buttons["Modal Image"].tap()
-            saveScreenshot(component: "dialog", scenario: "image", userInterfaceStyle: userInterfaceStyle)
-            app.buttons["Confirmation"].tap()
-            _ = app.buttons["Modal Image"].waitForExistence(timeout: 1)
-        }
-        
         await navigate(title: "Field Set") {
             app.tables.staticTexts["Default State"].tap()
             saveScreenshot(component: "field-set", scenario: "default", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
 
+            _ = app.tables.staticTexts["Error State"].waitForExistence(timeout: 2)
             app.tables.staticTexts["Error State"].tap()
             saveScreenshot(component: "field-set", scenario: "error", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
         }
         
         await navigate(title: "Rating Bar") {
@@ -714,19 +573,19 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         await navigate(title: "Horizontal navigation") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "horizontal-navigation", scenario: "default", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
+            //tapBackButton()
         }
         
         await navigate(title: "Card Button") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "card-button", scenario: "all", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
+            //tapBackButton()
         }
 
         await navigate(title: "Segmented Control") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "segmented-control", scenario: "default", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
+            //tapBackButton()
         }
 
         await navigate(title: "Cell Item") {
