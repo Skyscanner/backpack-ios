@@ -34,11 +34,11 @@ let backpackUIKitSourceDirs = [
   "BackpackUIKitImports.swift",
   "Color/Classes/Generated/BPKInternalColors.swift",
   "Card/Classes/BPKCardElevation.swift",
-  "Card/Classes/BPKCardWrapper.swift"
+  "Card/Classes/BPKCardWrapper.swift",
+  "TextView/Classes/BPKTextView.swift"
 ]
 let backpackObjCSourceDirs = [
   "Switch/Classes",
-  "TextView/Classes",
   "TextField/Classes",
   "TappableLinkLabel/Classes",
   "Font/Classes",
