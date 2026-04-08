@@ -272,14 +272,7 @@ let targets: [Target] = [
       exclude: [
         "Tests"
       ] + backpackExcludedReadmes,
-      sources: backpackUIKitSourceDirs,
-      linkerSettings: [
-        // Force-load all ObjC class symbols from this archive. Needed because
-        // Swift-implemented ObjC classes (e.g. BPKLabel) are referenced by
-        // Backpack_ObjC at link time, and static library link order would
-        // otherwise not extract them from this archive.
-        .unsafeFlags(["-ObjC"])
-      ]
+      sources: backpackUIKitSourceDirs
     ),
 
     // MARK: - Backpack Fonts (resource-only target)

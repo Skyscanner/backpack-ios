@@ -30,15 +30,7 @@
 #import "Generated/BPKFont.h"
 #endif
 #import <Backpack/Common.h>
-#ifdef SWIFT_PACKAGE
-#import "BPKLabel.h"
-#else
-#if __has_include(<Backpack/Backpack-Swift.h>)
-#import <Backpack/Backpack-Swift.h>
-#elif __has_include("Backpack-Swift.h")
-#import "Backpack-Swift.h"
-#endif
-#endif
+#import "BPKLabelBridge.h"
 #ifdef SWIFT_PACKAGE
 #import <Backpack/Spacing.h>
 #else
@@ -106,13 +98,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setupViews {
     self.backgroundColor = self.dialogContentViewBackgroundColor;
 
-    self.titleLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextHeading3];
+    self.titleLabel = BPKLabelMake(BPKFontStyleTextHeading3);
     self.titleLabel.numberOfLines = 2;
     self.titleLabel.textColor = BPKColor.textPrimaryColor;
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.accessibilityTraits = UIAccessibilityTraitHeader;
 
-    self.descriptionLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBodyDefault];
+    self.descriptionLabel = BPKLabelMake(BPKFontStyleTextBodyDefault);
     self.descriptionLabel.numberOfLines = 0;
     self.descriptionLabel.minimumScaleFactor = 0.7;
     self.descriptionLabel.textAlignment = NSTextAlignmentCenter;

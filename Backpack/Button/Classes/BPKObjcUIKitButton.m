@@ -26,15 +26,7 @@
  */
 
 #import "BPKObjcUIKitButton.h"
-#ifdef SWIFT_PACKAGE
-#import "BPKLabel.h"
-#else
-#if __has_include(<Backpack/Backpack-Swift.h>)
-#import <Backpack/Backpack-Swift.h>
-#elif __has_include("Backpack-Swift.h")
-#import "Backpack-Swift.h"
-#endif
-#endif
+#import "BPKLabelBridge.h"
 #import "BPKButtonAppearance.h"
 #import "BPKButtonAppearanceSet.h"
 #import "UIColor+BPKButton.h"
@@ -136,7 +128,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (BPKLabel *)createTitleLabel {
-    BPKLabel *titleLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextLabel1];
+    BPKLabel *titleLabel = BPKLabelMake(BPKFontStyleTextLabel1);
     titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [titleLabel setUserInteractionEnabled:NO];
     return titleLabel;

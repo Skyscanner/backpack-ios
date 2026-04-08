@@ -24,15 +24,7 @@
 #endif
 #import <Backpack/Common.h>
 #import <Backpack/DarkMode.h>
-#ifdef SWIFT_PACKAGE
-#import "BPKLabel.h"
-#else
-#if __has_include(<Backpack/Backpack-Swift.h>)
-#import <Backpack/Backpack-Swift.h>
-#elif __has_include("Backpack-Swift.h")
-#import "Backpack-Swift.h"
-#endif
-#endif
+#import "BPKLabelBridge.h"
 #ifdef SWIFT_PACKAGE
 #import <Backpack/Spacing.h>
 #else
