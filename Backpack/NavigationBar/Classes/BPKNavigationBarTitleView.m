@@ -23,7 +23,15 @@
 #else
 #import "Generated/BPKFont.h"
 #endif
-#import "BPKLabelBridge.h"
+#ifdef SWIFT_PACKAGE
+#import "Backpack_ObjC-Swift.h"
+#else
+#if __has_include(<Backpack/Backpack-Swift.h>)
+#import <Backpack/Backpack-Swift.h>
+#elif __has_include("Backpack-Swift.h")
+#import "Backpack-Swift.h"
+#endif
+#endif
 
 const CGFloat BPKNavigationBarTitleHeight = 44;
 
@@ -60,7 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BPKLabel *)titleLabel {
     if (!_titleLabel) {
-        _titleLabel = BPKLabelMake(BPKFontStyleTextHeading5);
+        _titleLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextHeading5];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         self.titleLabel.accessibilityTraits = UIAccessibilityTraitHeader;

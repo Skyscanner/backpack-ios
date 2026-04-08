@@ -36,7 +36,15 @@
 #import <Backpack/Common.h>
 #import <Backpack/FlareView.h>
 #import <Backpack/Icon.h>
-#import "BPKLabelBridge.h"
+#ifdef SWIFT_PACKAGE
+#import "Backpack_ObjC-Swift.h"
+#else
+#if __has_include(<Backpack/Backpack-Swift.h>)
+#import <Backpack/Backpack-Swift.h>
+#elif __has_include("Backpack-Swift.h")
+#import "Backpack-Swift.h"
+#endif
+#endif
 #ifdef SWIFT_PACKAGE
 #import <Backpack/Shadow.h>
 #else
@@ -199,7 +207,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     BPKObjcUIKitIconView *iconView = [[BPKObjcUIKitIconView alloc] initWithIconName:nil size:BPKIconSizeSmall];
 
-    BPKLabel *label = BPKLabelMake(BPKFontStyleTextHeading5);
+    BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextHeading5];
 
     // Ensures that the icon will remain visible even if the label has to shrink
     [label setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
