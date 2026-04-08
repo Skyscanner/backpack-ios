@@ -25,6 +25,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
+ * The Skyscanner full radius.
+ */
+extern CGFloat const BPKCornerRadiusFull;
+
+/**
  * The Skyscanner medium radius.
  */
 extern CGFloat const BPKCornerRadiusMd;
