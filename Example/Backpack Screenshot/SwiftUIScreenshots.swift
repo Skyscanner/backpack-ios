@@ -300,7 +300,6 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         await navigate(title: "Flare views") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "flare-view", scenario: "all", userInterfaceStyle: userInterfaceStyle)
-            //tapBackButton()
         }
         
         await navigate(title: "Panels") {
@@ -411,6 +410,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
 
+        // TODO: Add BPK Calendar to the examples list.
 //        await navigate(title: "Calendar") {
 //            switchTab(title: "SwiftUI")
 //            app.tables.staticTexts["Range Selection"].tap()
@@ -479,7 +479,6 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             app.buttons["Surface Contrast"].tap()
             saveScreenshot(component: "navbar", scenario: "surfaceContrast", userInterfaceStyle: userInterfaceStyle)
             app.buttons["Close"].tap()
-            //tapBackButton()
         }
         
         await navigate(title: "Overlay") {
@@ -580,19 +579,16 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         await navigate(title: "Horizontal navigation") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "horizontal-navigation", scenario: "default", userInterfaceStyle: userInterfaceStyle)
-            //tapBackButton()
         }
         
         await navigate(title: "Card Button") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "card-button", scenario: "all", userInterfaceStyle: userInterfaceStyle)
-            //tapBackButton()
         }
 
         await navigate(title: "Segmented Control") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "segmented-control", scenario: "default", userInterfaceStyle: userInterfaceStyle)
-            //tapBackButton()
         }
 
         await navigate(title: "Cell Item") {

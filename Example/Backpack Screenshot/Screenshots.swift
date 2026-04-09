@@ -116,42 +116,6 @@ class Screenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
 
-         // Calendar may be removed
-//        await navigate(title: "Calendar") {
-//            // Calendar might need tab switch
-//            switchTab(title: "UIKit")
-//            sleep(1)
-//
-//            let defaultCell = app.tables.staticTexts["Default"]
-//            _ = defaultCell.waitForExistence(timeout: 5)
-//            defaultCell.tap()
-//            app.swipeUp()
-//            app.cells.element(boundBy: 25).tap()
-//            saveScreenshot(component: "calendar", scenario: "single", userInterfaceStyle: userInterfaceStyle)
-//            app.buttons["Range"].tap()
-//            app.cells.element(boundBy: 25).tap()
-//            app.cells.element(boundBy: 30).tap()
-//            saveScreenshot(component: "calendar", scenario: "range", userInterfaceStyle: userInterfaceStyle)
-//            app.buttons["Multiple"].tap()
-//            app.cells.element(boundBy: 25).tap()
-//            app.cells.element(boundBy: 27).tap()
-//            app.cells.element(boundBy: 32).tap()
-//            saveScreenshot(component: "calendar", scenario: "multiple", userInterfaceStyle: userInterfaceStyle)
-//            app.swipeUp()
-//            app.swipeUp()
-//            app.swipeUp()
-//            app.swipeUp()
-//            app.swipeUp()
-//            saveScreenshot(component: "calendar", scenario: "pill", userInterfaceStyle: userInterfaceStyle)
-//            tapBackButton()
-//            app.tables.staticTexts["Custom styles for specific dates"].tap()
-//            saveScreenshot(component: "calendar", scenario: "custom-style", userInterfaceStyle: userInterfaceStyle)
-//            tapBackButton()
-//            app.tables.staticTexts["With prices"].tap()
-//            saveScreenshot(component: "calendar", scenario: "with-prices", userInterfaceStyle: userInterfaceStyle)
-//            tapBackButton()
-//        }
-
         await navigate(title: "Cards") {
             switchTab(title: "UIKit")
             app.tables.staticTexts["Default"].tap()
@@ -214,44 +178,48 @@ class Screenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
         
-        // Keeps failing due to can't tap "Show Dialog". Works in SwiftUI.
+        // MARK: Gets stuck after dismissing the dialog, adding extra tap back.
+        await navigate(title: "Dialogs") {
+            switchTab(title: "UIKit")
 
-//        await navigate(title: "Dialogs") {
-//            switchTab(title: "UIKit")
-//
-//            let showButtonText = "Show dialog"
-//
-//            app.tables.staticTexts["Success"].tap()
-//            app.buttons[showButtonText].tap()
-//            saveScreenshot(component: "dialog", scenario: "success", userInterfaceStyle: userInterfaceStyle)
-//            tapDialogScrimView()
-//            tapBackButton()
-//
-//            app.tables.staticTexts["Warning"].tap()
-//            app.buttons[showButtonText].tap()
-//            saveScreenshot(component: "dialog", scenario: "warning", userInterfaceStyle: userInterfaceStyle)
-//            tapDialogScrimView()
-//            tapBackButton()
-//
-//            app.tables.staticTexts["Destructive"].tap()
-//            app.buttons[showButtonText].tap()
-//            saveScreenshot(component: "dialog", scenario: "destructive", userInterfaceStyle: userInterfaceStyle)
-//            app.buttons["Delete"].tap()
-//            tapBackButton()
-//
-//            app.tables.staticTexts["Flare"].tap()
-//            app.buttons[showButtonText].tap()
-//            saveScreenshot(component: "dialog", scenario: "flare", userInterfaceStyle: userInterfaceStyle)
-//            tapDialogScrimView()
-//            tapBackButton()
-//
-//            app.tables.staticTexts["Image"].tap()
-//            app.buttons[showButtonText].tap()
-//            saveScreenshot(component: "dialog", scenario: "image", userInterfaceStyle: userInterfaceStyle)
-//            tapDialogScrimView()
-//            tapBackButton()
-//        }
-//
+            let showButtonText = "Show dialog"
+
+            app.tables.staticTexts["Success"].tap()
+            app.buttons[showButtonText].tap()
+            saveScreenshot(component: "dialog", scenario: "success", userInterfaceStyle: userInterfaceStyle)
+            tapDialogScrimView()
+            tapBackButton()
+            tapBackButton()
+
+            app.tables.staticTexts["Warning"].tap()
+            app.buttons[showButtonText].tap()
+            saveScreenshot(component: "dialog", scenario: "warning", userInterfaceStyle: userInterfaceStyle)
+            tapDialogScrimView()
+            tapBackButton()
+            tapBackButton()
+
+            app.tables.staticTexts["Destructive"].tap()
+            app.buttons[showButtonText].tap()
+            saveScreenshot(component: "dialog", scenario: "destructive", userInterfaceStyle: userInterfaceStyle)
+            app.buttons["Delete"].tap()
+            tapBackButton()
+
+            app.tables.staticTexts["Flare"].tap()
+            app.buttons[showButtonText].tap()
+            saveScreenshot(component: "dialog", scenario: "flare", userInterfaceStyle: userInterfaceStyle)
+            tapDialogScrimView()
+            tapBackButton()
+            tapBackButton()
+
+            app.tables.staticTexts["Image"].tap()
+            app.buttons[showButtonText].tap()
+            saveScreenshot(component: "dialog", scenario: "image", userInterfaceStyle: userInterfaceStyle)
+            tapDialogScrimView()
+            tapBackButton()
+            tapBackButton()
+        }
+
+        // MARK: UIKit tests crash the app
 //        await navigate(title: "Flare views") {
 //            app.tables.staticTexts["Default"].tap()
 //            saveScreenshot(component: "flare-view", scenario: "default", userInterfaceStyle: userInterfaceStyle)
@@ -427,6 +395,7 @@ class Screenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "spinner", scenario: "all", userInterfaceStyle: userInterfaceStyle)
         }
         
+        // MARK: Crashes the app
 //        await navigate(title: "Star ratings") {
 //            app.tables.staticTexts["Docs"].tap()
 //            saveScreenshot(component: "star-rating", scenario: "docs", userInterfaceStyle: userInterfaceStyle)
