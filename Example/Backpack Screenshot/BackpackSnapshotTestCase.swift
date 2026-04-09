@@ -51,8 +51,8 @@ class BackpackSnapshotTestCase: XCTestCase {
             let elementY = element.frame.origin.y
 
             if elementY < 0 {
-                // Element is above viewport, scroll down to reveal it
-                for _ in 0..<3 {
+                // Element is above viewport, scroll down to reveal it (scroll content upward)
+                for _ in 0..<10 {
                     app.swipeDown()
                     sleep(UInt32(0.2))
                     if element.isHittable { break }

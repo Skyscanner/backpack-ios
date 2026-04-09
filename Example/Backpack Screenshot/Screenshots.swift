@@ -55,6 +55,10 @@ class Screenshots: BackpackSnapshotTestCase {
        app.launchArguments.append("FORCE_DARK_MODE")
        setupSnapshot(app)
        app.launch()
+
+       _ = app.wait(for: .runningForeground, timeout: 5)
+       sleep(3) // Extra wait for dark mode rendering to settle
+
        await captureAllScreenshots(userInterfaceStyle: .dark)
     }
 
@@ -181,6 +185,8 @@ class Screenshots: BackpackSnapshotTestCase {
         // MARK: Gets stuck after dismissing the dialog, adding extra tap back.
         await navigate(title: "Dialogs") {
             switchTab(title: "UIKit")
+            // Wait for the table to be visible after tab switch
+            _ = app.tables.firstMatch.waitForExistence(timeout: 2)
 
             let showButtonText = "Show dialog"
 
@@ -189,16 +195,42 @@ class Screenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "dialog", scenario: "success", userInterfaceStyle: userInterfaceStyle)
             tapDialogScrimView()
             tapBackButton()
-            tapBackButton()
 
-            app.tables.staticTexts["Warning"].tap()
+            // Check if we need another back tap to get to the list
+            // In Xcode we need double tap, in fastlane script single tap is enough
+            Thread.sleep(forTimeInterval: 0.3)
+            let warningElement = app.tables.staticTexts["Warning"]
+            if !warningElement.exists {
+                // Not on the list yet, tap back again
+                tapBackButton()
+                _ = warningElement.waitForExistence(timeout: 2)
+            }
+
+            // Scroll to Warning if needed
+            if !warningElement.isHittable {
+                app.swipeUp()
+                Thread.sleep(forTimeInterval: 0.2)
+            }
+            warningElement.tap()
             app.buttons[showButtonText].tap()
             saveScreenshot(component: "dialog", scenario: "warning", userInterfaceStyle: userInterfaceStyle)
             tapDialogScrimView()
             tapBackButton()
-            tapBackButton()
 
-            app.tables.staticTexts["Destructive"].tap()
+            // Check if we need another back tap to get to the list
+            Thread.sleep(forTimeInterval: 0.3)
+            let destructiveElement = app.tables.staticTexts["Destructive"]
+            if !destructiveElement.exists {
+                tapBackButton()
+                _ = destructiveElement.waitForExistence(timeout: 2)
+            }
+
+            // Scroll to Destructive if needed
+            if !destructiveElement.isHittable {
+                app.swipeUp()
+                Thread.sleep(forTimeInterval: 0.2)
+            }
+            destructiveElement.tap()
             app.buttons[showButtonText].tap()
             saveScreenshot(component: "dialog", scenario: "destructive", userInterfaceStyle: userInterfaceStyle)
             app.buttons["Delete"].tap()
@@ -209,14 +241,28 @@ class Screenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "dialog", scenario: "flare", userInterfaceStyle: userInterfaceStyle)
             tapDialogScrimView()
             tapBackButton()
-            tapBackButton()
 
-            app.tables.staticTexts["Image"].tap()
+            // Check if we need another back tap to get to the list
+            Thread.sleep(forTimeInterval: 0.3)
+            let imageElement = app.tables.staticTexts["Image"]
+            if !imageElement.exists {
+                tapBackButton()
+                _ = imageElement.waitForExistence(timeout: 2)
+            }
+
+            // Scroll to Image if needed
+            if !imageElement.isHittable {
+                app.swipeUp()
+                Thread.sleep(forTimeInterval: 0.2)
+            }
+            imageElement.tap()
             app.buttons[showButtonText].tap()
             saveScreenshot(component: "dialog", scenario: "image", userInterfaceStyle: userInterfaceStyle)
             tapDialogScrimView()
             tapBackButton()
-            tapBackButton()
+            // Intentionally NOT calling tapBackButton() again here
+            // The navigate() function will call it once more at the end to get back to main list
+            Thread.sleep(forTimeInterval: 0.5)
         }
 
         // MARK: UIKit tests crash the app

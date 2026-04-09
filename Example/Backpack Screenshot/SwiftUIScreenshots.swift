@@ -57,9 +57,10 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         app.launchArguments.append("FORCE_DARK_MODE")
         setupSnapshot(app)
         app.launch()
-        
+
         _ = app.wait(for: .runningForeground, timeout: 5)
-        
+        sleep(5) // Extra wait for dark mode rendering to settle
+
         await captureAllScreenshots(userInterfaceStyle: .dark)
     }
     
@@ -121,11 +122,13 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         
         await navigate(title: "Switches") {
             switchTab(title: "SwiftUI")
+            Thread.sleep(forTimeInterval: 0.3)
             saveScreenshot(component: "switch", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
-        
+
         await navigate(title: "Swap") {
             switchTab(title: "SwiftUI")
+            Thread.sleep(forTimeInterval: 0.3)
             saveScreenshot(component: "swap", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
 
@@ -172,11 +175,6 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         await navigate(title: "Badges") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "badge", scenario: "default", userInterfaceStyle: userInterfaceStyle)
-        }
-        
-        await navigate(title: "Spinners") {
-            switchTab(title: "SwiftUI")
-            saveScreenshot(component: "spinner", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
         await navigate(title: "Banner Alert") {
@@ -510,11 +508,13 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         
         await navigate(title: "Badges") {
             switchTab(title: "SwiftUI")
+            Thread.sleep(forTimeInterval: 0.3)
             saveScreenshot(component: "badge", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
-        
+
         await navigate(title: "Spinners") {
             switchTab(title: "SwiftUI")
+            Thread.sleep(forTimeInterval: 0.3)
             saveScreenshot(component: "spinner", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
