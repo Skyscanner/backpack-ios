@@ -46,11 +46,25 @@ class BackpackSnapshotTestCase: XCTestCase {
         _ = element.waitForExistence(timeout: 2)
 
         // Scroll to make the element visible if it's not hittable
-        var attempts = 0
-        while !element.isHittable && attempts < 10 {
-            app.swipeUp()
-            attempts += 1
-            sleep(UInt32(0.3))
+        if !element.isHittable {
+            // First try to determine if we need to scroll up or down
+            let elementY = element.frame.origin.y
+
+            if elementY < 0 {
+                // Element is above viewport, scroll down to reveal it
+                for _ in 0..<3 {
+                    app.swipeDown()
+                    sleep(UInt32(0.2))
+                    if element.isHittable { break }
+                }
+            } else {
+                // Element is below viewport or not visible, scroll up
+                for _ in 0..<5 {
+                    app.swipeUp()
+                    sleep(UInt32(0.2))
+                    if element.isHittable { break }
+                }
+            }
         }
 
         element.tap()

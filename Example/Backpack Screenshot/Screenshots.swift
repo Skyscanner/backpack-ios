@@ -451,6 +451,8 @@ class Screenshots: BackpackSnapshotTestCase {
             app.tables.staticTexts["Docs"].tap()
             app.buttons["Show Toast"].tap()
             saveScreenshot(component: "toast", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            // Wait for toast to disappear before trying to tap back
+            sleep(3)
             tapBackButton()
         }
         

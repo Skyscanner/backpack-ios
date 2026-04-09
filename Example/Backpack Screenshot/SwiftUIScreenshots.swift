@@ -317,15 +317,19 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             app.tables.staticTexts["Sliders"].tap()
             saveScreenshot(component: "slider", scenario: "all", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
+            // Wait for the list to be visible again after going back
+            _ = app.tables.firstMatch.waitForExistence(timeout: 2)
         }
-        
+
         //////////////////////// Kynan
-        
+
         await navigate(title: "Star ratings") {
             switchTab(title: "SwiftUI")
             app.tables.staticTexts["Star rating"].tap()
             saveScreenshot(component: "star-rating", scenario: "all", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
+            // Wait for the list to be visible again after going back
+            _ = app.tables.firstMatch.waitForExistence(timeout: 2)
         }
 
         await navigate(title: "Map") {
@@ -441,18 +445,21 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             app.tables.staticTexts["Loading"].tap()
             saveScreenshot(component: "app-search-modal", scenario: "loading", userInterfaceStyle: userInterfaceStyle)
             app.swipeDown()
+            _ = app.tables.firstMatch.waitForExistence(timeout: 2) // Wait for modal to dismiss
             tapBackButton()
 
             app.tables.staticTexts["Content"].tap()
             saveScreenshot(component: "app-search-modal", scenario: "content",
                             userInterfaceStyle: userInterfaceStyle)
             app.swipeDown()
+            _ = app.tables.firstMatch.waitForExistence(timeout: 2) // Wait for modal to dismiss
             tapBackButton()
 
             app.tables.staticTexts["Error"].tap()
             saveScreenshot(component: "app-search-modal", scenario: "error",
                             userInterfaceStyle: userInterfaceStyle)
             app.swipeDown()
+            _ = app.tables.firstMatch.waitForExistence(timeout: 2) // Wait for modal to dismiss
             tapBackButton()
         }
 
