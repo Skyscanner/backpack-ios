@@ -46,6 +46,11 @@ class Screenshots: BackpackSnapshotTestCase {
         app.launchArguments.append("FORCE_LIGHT_MODE")
        setupSnapshot(app)
        app.launch()
+
+       // Wait for app to be fully ready
+       _ = app.wait(for: .runningForeground, timeout: 5)
+       sleep(2) // Extra wait for UI to settle
+
        await captureAllScreenshots()
     }
 
@@ -438,6 +443,8 @@ class Screenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
         await navigate(title: "Spinners") {
+            // Wait for the view to load
+            sleep(1)
             saveScreenshot(component: "spinner", scenario: "all", userInterfaceStyle: userInterfaceStyle)
         }
         
@@ -450,15 +457,23 @@ class Screenshots: BackpackSnapshotTestCase {
         
         await navigate(title: "Skeleton") {
             switchTab(title: "UIKit")
+            // Wait for tab content to load
+            _ = app.tables.firstMatch.waitForExistence(timeout: 2)
+            sleep(1)
             saveScreenshot(component: "skeleton", scenario: "all", userInterfaceStyle: userInterfaceStyle)
         }
 
         await navigate(title: "Switches") {
             switchTab(title: "UIKit")
+            // Wait for tab content to load
+            _ = app.tables.firstMatch.waitForExistence(timeout: 2)
+            sleep(1)
             saveScreenshot(component: "switch", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
 
         await navigate(title: "Tab bar controller") {
+            // Wait for the view to load
+            sleep(1)
             saveScreenshot(component: "tab-bar-controller", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
 

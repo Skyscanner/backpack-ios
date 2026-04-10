@@ -73,7 +73,10 @@ class BackpackSnapshotTestCase: XCTestCase {
     }
     
     func switchTab(title: String) {
-        app.tabBars.buttons[title].tap()
+        let tabButton = app.tabBars.buttons[title]
+        _ = tabButton.waitForExistence(timeout: 3)
+        tabButton.tap()
+        sleep(1) // Wait for tab content to load
     }
     
     func tapBackButton() {
