@@ -21,6 +21,7 @@ import XCTest
 // swiftlint:disable type_body_length
 // swiftlint:disable function_body_length
 // swiftlint:disable file_length
+@MainActor
 class SwiftUIScreenshots: BackpackSnapshotTestCase {
     func createApp() -> XCUIApplication {
         let app = XCUIApplication()
@@ -45,9 +46,9 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         app.launchArguments.append("FORCE_LIGHT_MODE")
         setupSnapshot(app)
         app.launch()
-        
+
         _ = app.wait(for: .runningForeground, timeout: 5)
-        
+
         await captureAllScreenshots()
     }
 
@@ -59,7 +60,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         app.launch()
 
         _ = app.wait(for: .runningForeground, timeout: 5)
-        sleep(5) // Extra wait for dark mode rendering to settle
+        await waitForStability(duration: TestTiming.darkModeWait)
 
         await captureAllScreenshots(userInterfaceStyle: .dark)
     }
@@ -67,7 +68,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
     @MainActor
     func captureAllScreenshots(userInterfaceStyle: UIUserInterfaceStyle = .light) async {
         await navigate(title: "Labels") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             app.tables.staticTexts["Body"].tap()
             saveScreenshot(component: "text", scenario: "body", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
@@ -86,7 +87,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         }
         
         await navigate(title: "Buttons") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             app.tables.staticTexts["Primary"].tap()
             saveScreenshot(component: "button", scenario: "primary", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
@@ -111,7 +112,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         }
 
         await navigate(title: "Rating") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             app.tables.staticTexts["BPKRating: title text"].tap()
             saveScreenshot(component: "rating", scenario: "with-title-text", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
@@ -121,19 +122,17 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         }
         
         await navigate(title: "Switches") {
-            switchTab(title: "SwiftUI")
-            Thread.sleep(forTimeInterval: 0.3)
+            await switchTab(title: "SwiftUI")
             saveScreenshot(component: "switch", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
 
         await navigate(title: "Swap") {
-            switchTab(title: "SwiftUI")
-            Thread.sleep(forTimeInterval: 0.3)
+            await switchTab(title: "SwiftUI")
             saveScreenshot(component: "swap", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
 
         await navigate(title: "Cards") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             app.tables.staticTexts["Card"].tap()
             saveScreenshot(component: "card", scenario: "default", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
@@ -146,7 +145,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         }
         
         await navigate(title: "Overlay") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             app.tables.staticTexts["Solid"].tap()
             saveScreenshot(component: "overlay", scenario: "solid", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
@@ -173,32 +172,32 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         }
         
         await navigate(title: "Badges") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             saveScreenshot(component: "badge", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
         await navigate(title: "Banner Alert") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             saveScreenshot(component: "banner-alert", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
         await navigate(title: "Skeleton") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             saveScreenshot(component: "skeleton", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
 
         await navigate(title: "Text area") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             saveScreenshot(component: "text-area", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
         await navigate(title: "Text fields") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             saveScreenshot(component: "text-field", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
 
         await navigate(title: "Bottom sheet") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             app.buttons["Show closable bottom sheet"].tap()
             saveScreenshot(component: "bottom-sheet", scenario: "closable", userInterfaceStyle: userInterfaceStyle)
             app.buttons["Action"].tap()
@@ -217,7 +216,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         }
         
         await navigate(title: "Price") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             
             app.tables.staticTexts["ExtraSmall"].tap()
             saveScreenshot(component: "price", scenario: "extraSmall", userInterfaceStyle: userInterfaceStyle)
@@ -233,12 +232,12 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         }
         
         await navigate(title: "Price Range") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             saveScreenshot(component: "price-range", scenario: "all", userInterfaceStyle: userInterfaceStyle)
         }
         
         await navigate(title: "Chips") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             app.tables.staticTexts["Default"].tap()
             saveScreenshot(component: "chip", scenario: "default", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
@@ -252,7 +251,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         }
         
         await navigate(title: "Chip Group") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             app.tables.staticTexts["Rail - Single Select"].tap()
             saveScreenshot(component: "chip-group-single", scenario: "rail", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
@@ -268,35 +267,22 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         }
 
         await navigate(title: "Dialogs") {
-            switchTab(title: "SwiftUI")
-            app.buttons["Modal Success"].tap()
-            saveScreenshot(component: "dialog", scenario: "success", userInterfaceStyle: userInterfaceStyle)
-            app.buttons["Confirmation"].tap()
-            
-            _ = app.buttons["Modal Warning"].waitForExistence(timeout: 1)
-            app.buttons["Modal Warning"].tap()
-            saveScreenshot(component: "dialog", scenario: "warning", userInterfaceStyle: userInterfaceStyle)
-            app.buttons["Confirmation"].tap()
-            
-            _ = app.buttons["Modal Destructive"].waitForExistence(timeout: 1)
-            app.buttons["Modal Destructive"].tap()
-            saveScreenshot(component: "dialog", scenario: "destructive", userInterfaceStyle: userInterfaceStyle)
-            app.buttons["Delete"].tap()
-            
-            _ = app.buttons["Modal Flare"].waitForExistence(timeout: 1)
-            app.buttons["Modal Flare"].tap()
-            saveScreenshot(component: "dialog", scenario: "flare", userInterfaceStyle: userInterfaceStyle)
-            app.buttons["Confirmation"].tap()
-            
-            _ = app.buttons["Modal Image"].waitForExistence(timeout: 1)
-            app.buttons["Modal Image"].tap()
-            saveScreenshot(component: "dialog", scenario: "image", userInterfaceStyle: userInterfaceStyle)
-            app.buttons["Confirmation"].tap()
-            _ = app.buttons["Modal Image"].waitForExistence(timeout: 1)
+            await switchTab(title: "SwiftUI")
+
+            await captureSwiftUIDialog(name: "Modal Success", button: "Confirmation",
+                                      scenario: "success", userInterfaceStyle: userInterfaceStyle)
+            await captureSwiftUIDialog(name: "Modal Warning", button: "Confirmation",
+                                      scenario: "warning", userInterfaceStyle: userInterfaceStyle)
+            await captureSwiftUIDialog(name: "Modal Destructive", button: "Delete",
+                                      scenario: "destructive", userInterfaceStyle: userInterfaceStyle)
+            await captureSwiftUIDialog(name: "Modal Flare", button: "Confirmation",
+                                      scenario: "flare", userInterfaceStyle: userInterfaceStyle)
+            await captureSwiftUIDialog(name: "Modal Image", button: "Confirmation",
+                                      scenario: "image", userInterfaceStyle: userInterfaceStyle)
         }
-        
+
         await navigate(title: "Flare views") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             saveScreenshot(component: "flare-view", scenario: "all", userInterfaceStyle: userInterfaceStyle)
         }
         
@@ -308,54 +294,69 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "nudger", scenario: "default",
                            userInterfaceStyle: userInterfaceStyle)
         }
-        
+
         await navigate(title: "Slider") {
-            switchTab(title: "SwiftUI")
-            app.tables.staticTexts["Sliders"].tap()
+            await switchTab(title: "SwiftUI")
+            await waitForStability(duration: TestTiming.tabSwitchWait)
+
+            let slidersElement = app.tables.staticTexts["Sliders"]
+            guard slidersElement.waitForExistence(timeout: TestTimeout.standard) else {
+                XCTFail("Sliders element not found")
+                return
+            }
+
+            if !slidersElement.isHittable {
+                for _ in 0..<5 {
+                    app.swipeUp()
+                    await waitForStability(duration: TestTiming.scrollDelay)
+                    if slidersElement.isHittable { break }
+                }
+            }
+
+            slidersElement.tap()
+            await waitForStability()
             saveScreenshot(component: "slider", scenario: "all", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
-            // Wait for the list to be visible again after going back
-            _ = app.tables.firstMatch.waitForExistence(timeout: 2)
+            _ = app.tables.firstMatch.waitForExistence(timeout: TestTimeout.standard)
         }
 
         //////////////////////// Kynan
 
         await navigate(title: "Star ratings") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             app.tables.staticTexts["Star rating"].tap()
             saveScreenshot(component: "star-rating", scenario: "all", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
-            // Wait for the list to be visible again after going back
-            _ = app.tables.firstMatch.waitForExistence(timeout: 2)
+            _ = app.tables.firstMatch.waitForExistence(timeout: TestTimeout.standard)
         }
 
         await navigate(title: "Map") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             saveScreenshot(component: "map-markers", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
         await navigate(title: "Progress bar") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             saveScreenshot(component: "progress-bar", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
 
         await navigate(title: "Carousel") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             saveScreenshot(component: "carousel", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
         await navigate(title: "Carousel Card") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             saveScreenshot(component: "carousel-card", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
         await navigate(title: "Card Carousel") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             saveScreenshot(component: "card-carousel", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
         await navigate(title: "Section header") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             app.tables.staticTexts["Default"].tap()
             saveScreenshot(component: "section-header", scenario: "default", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
@@ -365,7 +366,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         }
 
         await navigate(title: "Card list") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             app.tables.staticTexts["Rail - 3 total elements"].tap()
             saveScreenshot(component: "card-list", scenario: "rail-3-elements", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
@@ -390,7 +391,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         }
         
         await navigate(title: "Graphic promo") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             app.tables.staticTexts["Top aligned"].tap()
             saveScreenshot(component: "graphic-promo", scenario: "top-aligned", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
@@ -410,7 +411,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
 
         // TODO: Add BPK Calendar to the examples list.
 //        await navigate(title: "Calendar") {
-//            switchTab(title: "SwiftUI")
+//            await switchTab(title: "SwiftUI")
 //            app.tables.staticTexts["Range Selection"].tap()
 //            saveScreenshot(component: "calendar", scenario: "range", userInterfaceStyle: userInterfaceStyle)
 //            tapBackButton()
@@ -438,49 +439,29 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             //tapBackButton()
         }
         
-        //TODO: Close button on the modal can't be tapped, swiping down to dismiss for now
+        // TODO: Close button on modal can't be tapped, swiping down to dismiss for now
         await navigate(title: "App Search Modal") {
-            app.tables.staticTexts["Loading"].tap()
-            saveScreenshot(component: "app-search-modal", scenario: "loading", userInterfaceStyle: userInterfaceStyle)
-            app.swipeDown()
-            _ = app.tables.firstMatch.waitForExistence(timeout: 2) // Wait for modal to dismiss
-            tapBackButton()
-
-            app.tables.staticTexts["Content"].tap()
-            saveScreenshot(component: "app-search-modal", scenario: "content",
-                            userInterfaceStyle: userInterfaceStyle)
-            app.swipeDown()
-            _ = app.tables.firstMatch.waitForExistence(timeout: 2) // Wait for modal to dismiss
-            tapBackButton()
-
-            app.tables.staticTexts["Error"].tap()
-            saveScreenshot(component: "app-search-modal", scenario: "error",
-                            userInterfaceStyle: userInterfaceStyle)
-            app.swipeDown()
-            _ = app.tables.firstMatch.waitForExistence(timeout: 2) // Wait for modal to dismiss
-            tapBackButton()
+            await captureModalWithSwipeDismiss(name: "Loading", scenario: "loading",
+                                              userInterfaceStyle: userInterfaceStyle)
+            await captureModalWithSwipeDismiss(name: "Content", scenario: "content",
+                                              userInterfaceStyle: userInterfaceStyle)
+            await captureModalWithSwipeDismiss(name: "Error", scenario: "error",
+                                              userInterfaceStyle: userInterfaceStyle)
         }
 
         await navigate(title: "Navigation bars") {
-            switchTab(title: "SwiftUI")
-            _ = app.buttons["Default"].waitForExistence(timeout: 1)
-            app.buttons["Default"].tap()
-            saveScreenshot(component: "navbar", scenario: "default", userInterfaceStyle: userInterfaceStyle)
-            app.buttons["Back"].tap()
-            
-            _ = app.buttons["Transparent"].waitForExistence(timeout: 1)
-            app.buttons["Transparent"].tap()
-            saveScreenshot(component: "navbar", scenario: "transparent", userInterfaceStyle: userInterfaceStyle)
-            app.buttons["Back"].tap()
-            
-            _ = app.buttons["Surface Contrast"].waitForExistence(timeout: 1)
-            app.buttons["Surface Contrast"].tap()
-            saveScreenshot(component: "navbar", scenario: "surfaceContrast", userInterfaceStyle: userInterfaceStyle)
-            app.buttons["Close"].tap()
+            await switchTab(title: "SwiftUI")
+
+            await captureNavBarVariant(name: "Default", backButton: "Back",
+                                      scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            await captureNavBarVariant(name: "Transparent", backButton: "Back",
+                                      scenario: "transparent", userInterfaceStyle: userInterfaceStyle)
+            await captureNavBarVariant(name: "Surface Contrast", backButton: "Close",
+                                      scenario: "surfaceContrast", userInterfaceStyle: userInterfaceStyle)
         }
-        
+
         await navigate(title: "Overlay") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             app.tables.staticTexts["Solid"].tap()
             saveScreenshot(component: "overlay", scenario: "solid", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
@@ -507,39 +488,37 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         }
         
         await navigate(title: "Badges") {
-            switchTab(title: "SwiftUI")
-            Thread.sleep(forTimeInterval: 0.3)
+            await switchTab(title: "SwiftUI")
             saveScreenshot(component: "badge", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
 
         await navigate(title: "Spinners") {
-            switchTab(title: "SwiftUI")
-            Thread.sleep(forTimeInterval: 0.3)
+            await switchTab(title: "SwiftUI")
             saveScreenshot(component: "spinner", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
         await navigate(title: "Skeleton") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             saveScreenshot(component: "skeleton", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
 
         await navigate(title: "Text area") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             saveScreenshot(component: "text-area", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
         await navigate(title: "Text fields") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             saveScreenshot(component: "text-field", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
         await navigate(title: "Search Input Summary") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             saveScreenshot(component: "search-input-summary", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
         await navigate(title: "Search Input Control") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             saveScreenshot(component: "search-input-control", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
@@ -577,23 +556,50 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         }
         
         await navigate(title: "Horizontal navigation") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             saveScreenshot(component: "horizontal-navigation", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
         await navigate(title: "Card Button") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             saveScreenshot(component: "card-button", scenario: "all", userInterfaceStyle: userInterfaceStyle)
         }
 
         await navigate(title: "Segmented Control") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             saveScreenshot(component: "segmented-control", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
 
         await navigate(title: "Cell Item") {
-            switchTab(title: "SwiftUI")
+            await switchTab(title: "SwiftUI")
             saveScreenshot(component: "cell-item", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
+    }
+
+    // MARK: - Helper Methods
+
+    private func captureSwiftUIDialog(name: String, button: String, scenario: String,
+                                       userInterfaceStyle: UIUserInterfaceStyle) async {
+        _ = app.buttons[name].waitForExistence(timeout: 1)
+        app.buttons[name].tap()
+        saveScreenshot(component: "dialog", scenario: scenario, userInterfaceStyle: userInterfaceStyle)
+        app.buttons[button].tap()
+    }
+
+    private func captureModalWithSwipeDismiss(name: String, scenario: String,
+                                               userInterfaceStyle: UIUserInterfaceStyle) async {
+        app.tables.staticTexts[name].tap()
+        saveScreenshot(component: "app-search-modal", scenario: scenario, userInterfaceStyle: userInterfaceStyle)
+        app.swipeDown()
+        _ = app.tables.firstMatch.waitForExistence(timeout: TestTimeout.standard)
+        tapBackButton()
+    }
+
+    private func captureNavBarVariant(name: String, backButton: String, scenario: String,
+                                       userInterfaceStyle: UIUserInterfaceStyle) async {
+        _ = app.buttons[name].waitForExistence(timeout: 1)
+        app.buttons[name].tap()
+        saveScreenshot(component: "navbar", scenario: scenario, userInterfaceStyle: userInterfaceStyle)
+        app.buttons[backButton].tap()
     }
 }

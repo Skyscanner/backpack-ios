@@ -21,6 +21,7 @@ import XCTest
 // swiftlint:disable type_body_length
 // swiftlint:disable function_body_length
 // swiftlint:disable file_length
+@MainActor
 class Screenshots: BackpackSnapshotTestCase {
     func createApp() -> XCUIApplication {
         let app = XCUIApplication()
@@ -47,9 +48,8 @@ class Screenshots: BackpackSnapshotTestCase {
        setupSnapshot(app)
        app.launch()
 
-       // Wait for app to be fully ready
        _ = app.wait(for: .runningForeground, timeout: 5)
-       sleep(2) // Extra wait for UI to settle
+       await waitForStability(duration: TestTiming.viewLoadWait)
 
        await captureAllScreenshots()
     }
@@ -62,7 +62,7 @@ class Screenshots: BackpackSnapshotTestCase {
        app.launch()
 
        _ = app.wait(for: .runningForeground, timeout: 5)
-       sleep(3) // Extra wait for dark mode rendering to settle
+       await waitForStability(duration: TestTiming.darkModeWait)
 
        await captureAllScreenshots(userInterfaceStyle: .dark)
     }
@@ -80,10 +80,8 @@ class Screenshots: BackpackSnapshotTestCase {
 
 
         await navigate(title: "Bottom sheet") {
-            switchTab(title: "UIKit")
-            sleep(1)
+            await switchTab(title: "UIKit")
 
-            // Tap the "Bottom Sheet with a bottom section" cell (index 1)
             app.tables.cells.element(boundBy: 1).tap()
 
             let dismissButton = app.buttons["Dismiss"]
@@ -95,7 +93,7 @@ class Screenshots: BackpackSnapshotTestCase {
 
 
         await navigate(title: "Buttons") {
-            switchTab(title: "UIKit")
+            await switchTab(title: "UIKit")
             app.tables.staticTexts["Primary"].tap()
             saveScreenshot(component: "button", scenario: "primary", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
@@ -126,7 +124,7 @@ class Screenshots: BackpackSnapshotTestCase {
         }
 
         await navigate(title: "Cards") {
-            switchTab(title: "UIKit")
+            await switchTab(title: "UIKit")
             app.tables.staticTexts["Default"].tap()
             saveScreenshot(component: "card", scenario: "default", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
@@ -175,7 +173,7 @@ class Screenshots: BackpackSnapshotTestCase {
         }
 
         await navigate(title: "Chips") {
-            switchTab(title: "UIKit")
+            await switchTab(title: "UIKit")
             app.tables.staticTexts["Default"].tap()
             saveScreenshot(component: "chip", scenario: "default", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
@@ -187,90 +185,29 @@ class Screenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
         
-        // MARK: Gets stuck after dismissing the dialog, adding extra tap back.
+        // MARK: Dialog navigation requires extra back tap handling
         await navigate(title: "Dialogs") {
-            switchTab(title: "UIKit")
-            // Wait for the table to be visible after tab switch
-            _ = app.tables.firstMatch.waitForExistence(timeout: 2)
+            await switchTab(title: "UIKit")
+            _ = app.tables.firstMatch.waitForExistence(timeout: TestTimeout.standard)
 
-            let showButtonText = "Show dialog"
+            await captureDialogScreenshot(name: "Success", button: "Confirmation", userInterfaceStyle: userInterfaceStyle)
+            await ensureBackAtDialogList()
 
-            app.tables.staticTexts["Success"].tap()
-            app.buttons[showButtonText].tap()
-            saveScreenshot(component: "dialog", scenario: "success", userInterfaceStyle: userInterfaceStyle)
-            tapDialogScrimView()
-            tapBackButton()
+            await captureDialogScreenshot(name: "Warning", button: "Confirmation", userInterfaceStyle: userInterfaceStyle)
+            await ensureBackAtDialogList()
 
-            // Check if we need another back tap to get to the list
-            // In Xcode we need double tap, in fastlane script single tap is enough
-            Thread.sleep(forTimeInterval: 0.3)
-            let warningElement = app.tables.staticTexts["Warning"]
-            if !warningElement.exists {
-                // Not on the list yet, tap back again
-                tapBackButton()
-                _ = warningElement.waitForExistence(timeout: 2)
-            }
+            await captureDialogScreenshot(name: "Destructive", button: "Delete", userInterfaceStyle: userInterfaceStyle)
+            await ensureBackAtDialogList()
 
-            // Scroll to Warning if needed
-            if !warningElement.isHittable {
-                app.swipeUp()
-                Thread.sleep(forTimeInterval: 0.2)
-            }
-            warningElement.tap()
-            app.buttons[showButtonText].tap()
-            saveScreenshot(component: "dialog", scenario: "warning", userInterfaceStyle: userInterfaceStyle)
-            tapDialogScrimView()
-            tapBackButton()
+            await captureDialogScreenshot(name: "Flare", button: "Confirmation", userInterfaceStyle: userInterfaceStyle)
+            await ensureBackAtDialogList()
 
-            // Check if we need another back tap to get to the list
-            Thread.sleep(forTimeInterval: 0.3)
-            let destructiveElement = app.tables.staticTexts["Destructive"]
-            if !destructiveElement.exists {
-                tapBackButton()
-                _ = destructiveElement.waitForExistence(timeout: 2)
-            }
+            await captureDialogScreenshot(name: "Image", button: "Confirmation", userInterfaceStyle: userInterfaceStyle)
 
-            // Scroll to Destructive if needed
-            if !destructiveElement.isHittable {
-                app.swipeUp()
-                Thread.sleep(forTimeInterval: 0.2)
-            }
-            destructiveElement.tap()
-            app.buttons[showButtonText].tap()
-            saveScreenshot(component: "dialog", scenario: "destructive", userInterfaceStyle: userInterfaceStyle)
-            app.buttons["Delete"].tap()
-            tapBackButton()
-
-            app.tables.staticTexts["Flare"].tap()
-            app.buttons[showButtonText].tap()
-            saveScreenshot(component: "dialog", scenario: "flare", userInterfaceStyle: userInterfaceStyle)
-            tapDialogScrimView()
-            tapBackButton()
-
-            // Check if we need another back tap to get to the list
-            Thread.sleep(forTimeInterval: 0.3)
-            let imageElement = app.tables.staticTexts["Image"]
-            if !imageElement.exists {
-                tapBackButton()
-                _ = imageElement.waitForExistence(timeout: 2)
-            }
-
-            // Scroll to Image if needed
-            if !imageElement.isHittable {
-                app.swipeUp()
-                Thread.sleep(forTimeInterval: 0.2)
-            }
-            imageElement.tap()
-            app.buttons[showButtonText].tap()
-            saveScreenshot(component: "dialog", scenario: "image", userInterfaceStyle: userInterfaceStyle)
-            tapDialogScrimView()
-            tapBackButton()
-            // Intentionally NOT calling tapBackButton() again here
-            // The navigate() function will call it once more at the end to get back to main list
-            Thread.sleep(forTimeInterval: 0.5)
+            await waitForStability()
         }
 
-        // MARK: UIKit tests crash the app
+        // MARK: UIKit tests crash the app, as does interaction in the Example app.
 //        await navigate(title: "Flare views") {
 //            app.tables.staticTexts["Default"].tap()
 //            saveScreenshot(component: "flare-view", scenario: "default", userInterfaceStyle: userInterfaceStyle)
@@ -316,12 +253,12 @@ class Screenshots: BackpackSnapshotTestCase {
         }
 
         await navigate(title: "Icons") {
-            switchTab(title: "UIKit")
+            await switchTab(title: "UIKit")
             saveScreenshot(component: "icon", scenario: "all", userInterfaceStyle: userInterfaceStyle)
         }
 
         await navigate(title: "Labels") {
-            switchTab(title: "UIKit")
+            await switchTab(title: "UIKit")
             app.tables.staticTexts["Body"].tap()
             saveScreenshot(component: "label", scenario: "body", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
@@ -334,7 +271,7 @@ class Screenshots: BackpackSnapshotTestCase {
         }
         
         await navigate(title: "Links") {
-            switchTab(title: "UIKit")
+            await switchTab(title: "UIKit")
             app.tables.staticTexts["Text with single link"].tap()
             saveScreenshot(component: "tappable-link-label", scenario: "single", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
@@ -400,7 +337,7 @@ class Screenshots: BackpackSnapshotTestCase {
         }
 
         await navigate(title: "Overlay") {
-            switchTab(title: "UIKit")
+            await switchTab(title: "UIKit")
             app.tables.staticTexts["Solid"].tap()
             saveScreenshot(component: "overlay", scenario: "solid", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
@@ -443,12 +380,11 @@ class Screenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
         await navigate(title: "Spinners") {
-            // Wait for the view to load
-            sleep(1)
+            await waitForStability(duration: TestTiming.tabSwitchWait)
             saveScreenshot(component: "spinner", scenario: "all", userInterfaceStyle: userInterfaceStyle)
         }
         
-        // MARK: Crashes the app
+        // MARK: Crashes the app when interacted with.
 //        await navigate(title: "Star ratings") {
 //            app.tables.staticTexts["Docs"].tap()
 //            saveScreenshot(component: "star-rating", scenario: "docs", userInterfaceStyle: userInterfaceStyle)
@@ -456,24 +392,21 @@ class Screenshots: BackpackSnapshotTestCase {
 //        }
         
         await navigate(title: "Skeleton") {
-            switchTab(title: "UIKit")
-            // Wait for tab content to load
-            _ = app.tables.firstMatch.waitForExistence(timeout: 2)
-            sleep(1)
+            await switchTab(title: "UIKit")
+            _ = app.tables.firstMatch.waitForExistence(timeout: TestTimeout.standard)
+            await waitForStability(duration: TestTiming.tabSwitchWait)
             saveScreenshot(component: "skeleton", scenario: "all", userInterfaceStyle: userInterfaceStyle)
         }
 
         await navigate(title: "Switches") {
-            switchTab(title: "UIKit")
-            // Wait for tab content to load
-            _ = app.tables.firstMatch.waitForExistence(timeout: 2)
-            sleep(1)
+            await switchTab(title: "UIKit")
+            _ = app.tables.firstMatch.waitForExistence(timeout: TestTimeout.standard)
+            await waitForStability(duration: TestTiming.tabSwitchWait)
             saveScreenshot(component: "switch", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
 
         await navigate(title: "Tab bar controller") {
-            // Wait for the view to load
-            sleep(1)
+            await waitForStability(duration: TestTiming.tabSwitchWait)
             saveScreenshot(component: "tab-bar-controller", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
 
@@ -481,8 +414,7 @@ class Screenshots: BackpackSnapshotTestCase {
             app.tables.staticTexts["Docs"].tap()
             app.buttons["Show Toast"].tap()
             saveScreenshot(component: "toast", scenario: "default", userInterfaceStyle: userInterfaceStyle)
-            // Wait for toast to disappear before trying to tap back
-            sleep(3)
+            await waitForStability(duration: TestTiming.darkModeWait) // Wait for toast to disappear
             tapBackButton()
         }
         
@@ -523,6 +455,38 @@ class Screenshots: BackpackSnapshotTestCase {
         
         await navigate(title: "Card Carousel") {
             saveScreenshot(component: "card-carousel", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
+    }
+
+    // MARK: - Helper Methods
+
+    private func captureDialogScreenshot(name: String, button: String, userInterfaceStyle: UIUserInterfaceStyle) async {
+        let element = app.tables.staticTexts[name]
+
+        if !element.isHittable {
+            app.swipeUp()
+            await waitForStability(duration: TestTiming.scrollDelay)
+        }
+
+        element.tap()
+        app.buttons["Show dialog"].tap()
+        saveScreenshot(component: "dialog", scenario: name.lowercased(), userInterfaceStyle: userInterfaceStyle)
+
+        if button == "Confirmation" {
+            tapDialogScrimView()
+        } else {
+            app.buttons[button].tap()
+        }
+        tapBackButton()
+    }
+
+    private func ensureBackAtDialogList() async {
+        await waitForStability(duration: TestTiming.shortWait)
+
+        // Check if we need another back tap (Xcode vs fastlane difference)
+        if !app.tables.firstMatch.exists || app.tables.cells.count == 0 {
+            tapBackButton()
+            _ = app.tables.firstMatch.waitForExistence(timeout: TestTimeout.standard)
         }
     }
 }
