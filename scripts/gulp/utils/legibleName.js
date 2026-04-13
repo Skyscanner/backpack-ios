@@ -30,6 +30,7 @@ const LEGIBLE_NAMES = [
   { identifier: 'Pill', legibleName: 'pill' },
   { identifier: 'None', legibleName: 'none' },
   { identifier: 'IconText', legibleName: 'icon text' },
+  { identifier: 'Full', legibleName: 'full' },
 ];
 
 const getLegibleName = (name) => {
