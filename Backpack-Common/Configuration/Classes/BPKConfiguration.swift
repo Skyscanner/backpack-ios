@@ -162,12 +162,12 @@ public final class BpkConfiguration: NSObject {
     
     private func getConfig<T>(getter: () -> T) -> T {
         emitSignalIfNeeded()
-        return configurationAccessQueue.sync {
-            getter()
-        }
+        return getter()
     }
-    
+
     private func emitSignalIfNeeded() {
+        guard !configIsAccessed else { return }
+
         configurationAccessQueue.async(flags: .barrier) {
             if !self.configIsAccessed {
                 self.configIsAccessed = true
