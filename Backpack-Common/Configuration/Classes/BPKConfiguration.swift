@@ -162,12 +162,12 @@ public final class BpkConfiguration: NSObject {
     
     private func getConfig<T>(getter: () -> T) -> T {
         emitSignalIfNeeded()
-        return configurationAccessQueue.sync {
-            getter()
-        }
+        return getter()
     }
-    
+
     private func emitSignalIfNeeded() {
+        // Use async with barrier - this doesn't block the calling thread
+        // The barrier ensures thread-safe access to configIsAccessed
         configurationAccessQueue.async(flags: .barrier) {
             if !self.configIsAccessed {
                 self.configIsAccessed = true

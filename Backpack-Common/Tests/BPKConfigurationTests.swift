@@ -101,4 +101,39 @@ final class BpkConfigurationTests: XCTestCase {
         // Then
         XCTAssertNil(config.badgeConfig)
     }
+
+    func testOnConfigurationAccessedCallbackFiresExactlyOnceUnderConcurrentAccess() {
+        // Given
+        let config = BpkConfiguration.shared
+        var callCount = 0
+        let callCountLock = NSLock()
+        let expectation = self.expectation(description: "Callback fires")
+
+        config.onConfigurationAccessed = {
+            callCountLock.lock()
+            callCount += 1
+            callCountLock.unlock()
+            expectation.fulfill()
+        }
+
+        // When - Access config from multiple threads simultaneously
+        let group = DispatchGroup()
+        for _ in 0..<20 {
+            group.enter()
+            DispatchQueue.global().async {
+                _ = config.chipConfig
+                _ = config.iconConfig
+                group.leave()
+            }
+        }
+
+        // Then - Callback should fire exactly once
+        waitForExpectations(timeout: 2)
+        group.wait()
+
+        // Small delay to catch any late duplicate callbacks
+        usleep(100000) // 100ms
+
+        XCTAssertEqual(callCount, 1, "Callback fired \(callCount) times, expected exactly 1")
+    }
 }
