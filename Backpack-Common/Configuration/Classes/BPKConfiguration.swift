@@ -166,8 +166,8 @@ public final class BpkConfiguration: NSObject {
     }
 
     private func emitSignalIfNeeded() {
-        guard !configIsAccessed else { return }
-
+        // Use async with barrier - this doesn't block the calling thread
+        // The barrier ensures thread-safe access to configIsAccessed
         configurationAccessQueue.async(flags: .barrier) {
             if !self.configIsAccessed {
                 self.configIsAccessed = true
