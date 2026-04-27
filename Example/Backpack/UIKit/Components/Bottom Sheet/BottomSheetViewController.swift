@@ -37,9 +37,7 @@ extension BottomSheetViewController {
     
     // swiftlint:disable:next function_body_length cyclomatic_complexity
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let rootViewController = rootWindow?.rootViewController as? BPKThemeContainerController else {
-            return
-        }
+        let rootViewController = rootWindow?.rootViewController as? BPKThemeContainerController
 
         tableView.deselectRow(at: indexPath, animated: true)
 
@@ -47,8 +45,8 @@ extension BottomSheetViewController {
         switch cell {
         case scrollViewBottomSheet:
             guard let content = BottomSheetScrollableContentViewController.make() else { return }
-            
-            let wrappedContent = rootViewController.createIdenticalContainerController(forRootController: content)
+
+            let wrappedContent = rootViewController?.createIdenticalContainerController(forRootController: content) ?? content
             let sheet = BPKBottomSheet(
                 contentViewController: wrappedContent,
                 scrollViewToTrack: content.tableView
@@ -58,10 +56,10 @@ extension BottomSheetViewController {
             guard let content = BottomSheetScrollableContentViewController.make(),
                 let bottomSection = BottomSheetBottomSectionViewController.make() else { return }
 
-            let wrappedContent = rootViewController.createIdenticalContainerController(forRootController: content)
-            let wrappedBottomSection = rootViewController.createIdenticalContainerController(
+            let wrappedContent = rootViewController?.createIdenticalContainerController(forRootController: content) ?? content
+            let wrappedBottomSection = rootViewController?.createIdenticalContainerController(
                 forRootController: bottomSection
-            )
+            ) ?? bottomSection
 
             bottomSection.view.backgroundColor = BPKColor.canvasColor
             wrappedBottomSection.view.backgroundColor = bottomSection.view.backgroundColor
@@ -83,10 +81,10 @@ extension BottomSheetViewController {
             guard let content = BottomSheetScrollableContentViewController.make(),
                 let bottomSection = BottomSheetBottomSectionViewController.make() else { return }
 
-            let wrappedContent = rootViewController.createIdenticalContainerController(forRootController: content)
-            let wrappedBottomSection = rootViewController.createIdenticalContainerController(
+            let wrappedContent = rootViewController?.createIdenticalContainerController(forRootController: content) ?? content
+            let wrappedBottomSection = rootViewController?.createIdenticalContainerController(
                 forRootController: bottomSection
-            )
+            ) ?? bottomSection
 
             bottomSection.view.backgroundColor = BPKColor.canvasColor
             wrappedBottomSection.view.backgroundColor = bottomSection.view.backgroundColor
@@ -103,7 +101,7 @@ extension BottomSheetViewController {
                 guard let content = BottomSheetContentViewController.make() else { return }
                 content.view.accessibilityIdentifier = "SheetPresentingSheet.SecondSheet.view"
 
-                let wrappedContent = rootViewController.createIdenticalContainerController(forRootController: content)
+                let wrappedContent = rootViewController?.createIdenticalContainerController(forRootController: content) ?? content
                 let nextSheet = BPKBottomSheet(contentViewController: wrappedContent)
                 sheet.present(nextSheet, animated: true)
             }
@@ -111,13 +109,13 @@ extension BottomSheetViewController {
             sheet.present(in: self, animated: true, completion: nil)
         case nonScrollableContentBottomSheet:
             guard let content = BottomSheetContentViewController.make() else { return }
-            let wrappedContent = rootViewController.createIdenticalContainerController(forRootController: content)
+            let wrappedContent = rootViewController?.createIdenticalContainerController(forRootController: content) ?? content
 
             let sheet = BPKBottomSheet(contentViewController: wrappedContent)
             sheet.present(in: self, animated: true)
         case resizableContentBottomSheet:
             guard let content = BottomSheetResizableContentViewController.make() else { return }
-            let wrappedContent = rootViewController.createIdenticalContainerController(forRootController: content)
+            let wrappedContent = rootViewController?.createIdenticalContainerController(forRootController: content) ?? content
 
             let sheet = BPKBottomSheet(contentViewController: wrappedContent)
 
