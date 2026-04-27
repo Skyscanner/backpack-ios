@@ -6,3 +6,10 @@ rm -rf screenshots
 cd Example && bundle exec fastlane snapshot
 cd ..
 mv screenshots/en-US/* screenshots/
+
+# Rename screenshots to use simplified "iPhone-" prefix
+cd screenshots
+for file in "iPhone SE (3rd generation)-"*.png; do
+  [ -f "$file" ] && mv "$file" "${file//iPhone SE (3rd generation)-/iPhone-}"
+done
+cd ..
