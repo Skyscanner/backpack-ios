@@ -33,6 +33,8 @@ final class FloatingNotificationAnimator {
             notification.alpha = 1
             notification.bottomConstraint.constant = displayedBottomConstraintConstant
             notification.superview?.layoutIfNeeded()
+        }
+        upAnimator.addCompletion { position in
             UIAccessibility.post(notification: .layoutChanged, argument: notification.messageLabel)
         }
         upAnimator.startAnimation()
