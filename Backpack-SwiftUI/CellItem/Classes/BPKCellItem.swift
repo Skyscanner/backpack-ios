@@ -42,8 +42,6 @@ public struct BPKCellItem: View {
     private let slot: BPKCellItemSlot?
     private let onClick: (() -> Void)?
 
-    @State private var isPressed: Bool = false
-
     /// Creates a cell item with the specified content and configuration.
     /// - Parameters:
     ///   - title: The primary text displayed in the cell (required).
@@ -72,28 +70,23 @@ public struct BPKCellItem: View {
     }
 
     public var body: some View {
-        contentView
-            .padding(.base)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(backgroundColor)
-            .cornerRadius(cornerRadius)
-            .opacity(isPressed ? 0.7 : 1.0)
-            .contentShape(Rectangle())
-            .if(onClick != nil) { view in
-                view
-                    .onTapGesture {
-                        onClick?()
-                    }
-                    .simultaneousGesture(
-                        DragGesture(minimumDistance: 0)
-                            .onChanged { _ in isPressed = true }
-                            .onEnded { _ in isPressed = false }
-                    )
+        if let onClick = onClick {
+            Button(action: onClick) {
+                contentView
             }
+            .buttonStyle(CellItemButtonStyle(
+                backgroundColor: backgroundColor,
+                cornerRadius: cornerRadius
+            ))
             .accessibilityElement(children: hasAccessibleSlot ? .contain : .combine)
-            .if(onClick != nil) { view in
-                view.accessibilityAddTraits(.isButton)
-            }
+            .accessibilityAddTraits(.isButton)
+        } else {
+            // Render without Button so non-clickable cells aren't focusable or exposed as buttons to a11y.
+            contentView
+                .background(backgroundColor)
+                .cornerRadius(cornerRadius)
+                .accessibilityElement(children: hasAccessibleSlot ? .contain : .combine)
+        }
     }
 
     @ViewBuilder
@@ -112,6 +105,8 @@ public struct BPKCellItem: View {
                 slotView(for: slot)
             }
         }
+        .padding(.base)
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     @ViewBuilder
@@ -180,6 +175,19 @@ public struct BPKCellItem: View {
         default:
             return false
         }
+    }
+}
+
+private struct CellItemButtonStyle: ButtonStyle {
+    let backgroundColor: BPKColor
+    let cornerRadius: CGFloat
+
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .background(backgroundColor)
+            .cornerRadius(cornerRadius)
+            .opacity(configuration.isPressed ? 0.7 : 1.0)
+            .contentShape(Rectangle())
     }
 }
 
