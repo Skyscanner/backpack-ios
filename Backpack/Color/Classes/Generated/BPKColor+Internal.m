@@ -367,5 +367,17 @@
                                           darkVariant:[UIColor colorWithRed:0.020 green:0.255 blue:0.518 alpha:1]];
 }
 
+
++ (UIColor *)internalPageIndicatorButtonCarouselNormalBackgroundColor {
+    return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:0.5019607843137255]
+                                          darkVariant:[UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:0.5019607843137255]];
+}
+
+
++ (UIColor *)internalPageIndicatorButtonCarouselPressedBackgroundColor {
+    return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:0.8]
+                                          darkVariant:[UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:0.8]];
+}
+
 @end
 // clang-format on

@@ -389,6 +389,18 @@ internal extension BPKColor {
     static let segmentedControlSurfaceContrastOnColor = BPKColor.dynamicColor(
         lightVariant: UIColor(red: 0.008, green: 0.302, blue: 0.686, alpha: 1),
         darkVariant: UIColor(red: 0.020, green: 0.255, blue: 0.518, alpha: 1))
+
+    /// The `pageIndicatorButtonCarouselNormalBackgroundColor` internal color.
+    
+    static let pageIndicatorButtonCarouselNormalBackgroundColor = BPKColor.dynamicColor(
+        lightVariant: UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.5019607843137255),
+        darkVariant: UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.5019607843137255))
+
+    /// The `pageIndicatorButtonCarouselPressedBackgroundColor` internal color.
+    
+    static let pageIndicatorButtonCarouselPressedBackgroundColor = BPKColor.dynamicColor(
+        lightVariant: UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.8),
+        darkVariant: UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.8))
 }
 
 private extension UIColor {
