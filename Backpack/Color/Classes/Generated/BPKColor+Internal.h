@@ -319,6 +319,16 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic, class, readonly) UIColor * internalSegmentedControlSurfaceContrastOnColor;
 
+/**
+ * The `pageIndicatorButtonCarouselNormalBackgroundColor` internal color.
+ */
+@property(nonatomic, class, readonly) UIColor * internalPageIndicatorButtonCarouselNormalBackgroundColor;
+
+/**
+ * The `pageIndicatorButtonCarouselPressedBackgroundColor` internal color.
+ */
+@property(nonatomic, class, readonly) UIColor * internalPageIndicatorButtonCarouselPressedBackgroundColor;
+
 
 @end
 
