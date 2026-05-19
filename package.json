@@ -39,7 +39,7 @@
     "lodash": "^4.17.21",
     "merge2": "^1.4.1",
     "prettier": "^3.0.0",
-    "through2": "^4.0.2",
+    "through2": "^5.0.0",
     "tinycolor2": "^1.4.2"
   }
 }
