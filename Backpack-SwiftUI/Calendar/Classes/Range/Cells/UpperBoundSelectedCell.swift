@@ -24,19 +24,21 @@ struct UpperBoundSelectedCell: View {
     let highlighted: Bool
 
     var body: some View {
-        ZStack {
-            GeometryReader { proxy in
-                Color(.surfaceSubtleColor)
-                    .frame(width: proxy.size.width / 2)
-            }
-            BPKText("\(calendar.component(.day, from: date))", style: .label1)
-                .foregroundColor(textColor)
-                .lineLimit(1)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, .md)
-                .background(circleColor)
-                .clipShape(Circle())
-        }
+        BPKText("\(calendar.component(.day, from: date))", style: .label1)
+                 .foregroundColor(textColor)
+                 .lineLimit(1)
+                 .frame(maxWidth: .infinity)
+                 .padding(.vertical, .md)
+                 .background(
+                     ZStack {
+                         HStack(spacing: 0) {
+                             Color(.surfaceSubtleColor)  // left half connects to range
+                             Color.clear
+                         }
+                         Circle()
+                             .foregroundColor(circleColor)
+                     }
+                 )
     }
 
     private var circleColor: BPKColor {
