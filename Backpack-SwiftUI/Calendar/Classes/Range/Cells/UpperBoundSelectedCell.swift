@@ -32,7 +32,7 @@ struct UpperBoundSelectedCell: View {
                  .background(
                      ZStack {
                          HStack(spacing: 0) {
-                             Color(.surfaceSubtleColor)  // left half connects to range
+                             Color(.surfaceSubtleColor)
                              Color.clear
                          }
                          Circle()
