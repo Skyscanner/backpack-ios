@@ -72,3 +72,32 @@ BPKGraphicPromo(
 )
 .fallbackColor(Color(.surfaceHighlightColor))
 ```
+
+### Sponsored with a custom background
+
+The sponsored variant accepts any SwiftUI view as its background via the `@ViewBuilder background` parameter. This allows using remote image loaders (e.g. `AsyncImage`, `KFImage`) or any other view in place of a local `Image`:
+
+```swift
+BPKGraphicPromo(
+    headline: "Three peaks challenge",
+    background: {
+        AsyncImage(url: URL(string: "https://example.com/image.jpg")) { image in
+            image.resizable().scaledToFill()
+        } placeholder: {
+            Color(.surfaceContrastColor)
+        }
+    },
+    sponsorTitle: "Sponsored",
+    partnerLogo: Image(decorative: "skyland"),
+    sponsoredAccessibilityLabel: "Sponsored by Skyland",
+    callToAction: .init(
+        accessibilityLabel: "Learn more about our sponsor",
+        onClick: {
+            // Open sponsor info modal
+        }
+    )
+)
+.fallbackColor(Color(.surfaceHighlightColor))
+```
+
+> The background view is responsible for its own sizing modifiers (e.g. `.resizable().scaledToFill()`). The component clips and applies the overlay on top of whatever view is provided.
