@@ -62,6 +62,28 @@ public struct BPKGraphicPromo<Background: View>: View {
     }
     
     public init(
+        kicker: String? = nil,
+        headline: String,
+        subheadline: String? = nil,
+        @ViewBuilder background: () -> Background,
+        type: `Type` = .button,
+        layoutType: LayoutType = .mobile,
+        overlay: BPKOverlayType = .solid(.off),
+        variant: Variant = .onDark,
+        verticalAlignment: VerticalAlignment = .top
+    ) {
+        self.kicker = kicker
+        self.headline = headline
+        self.subheadline = subheadline
+        self.backgroundContent = background()
+        self.type = type
+        self.layoutType = layoutType
+        self.overlay = overlay
+        self.variant = variant
+        self.verticalAlignment = verticalAlignment
+    }
+
+    public init(
         headline: String,
         @ViewBuilder background: () -> Background,
         type: `Type` = .button,
