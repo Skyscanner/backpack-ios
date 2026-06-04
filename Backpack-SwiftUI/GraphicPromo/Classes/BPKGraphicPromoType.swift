@@ -17,12 +17,14 @@
  */
 import SwiftUI
 
-public extension BPKGraphicPromo {
-    enum `Type` {
-        case button, link
-        
-        var accessibilityTraits: AccessibilityTraits {
-            self == .button ? .isButton : .isLink
-        }
+public enum BPKGraphicPromoType {
+    case button, link
+
+    var accessibilityTraits: AccessibilityTraits {
+        self == .button ? .isButton : .isLink
     }
+}
+
+public extension BPKGraphicPromo {
+    typealias `Type` = BPKGraphicPromoType
 }

@@ -24,6 +24,22 @@ private enum BPKGraphicPromoConstants {
     static let aspectRatioDesktop: CGFloat = 2.66
 }
 
+public enum BPKGraphicPromoLayoutType {
+    case mobile
+    case tablet
+    case desktop
+}
+
+public struct BPKGraphicPromoCallToAction {
+    public let accessibilityLabel: String
+    public let onClick: () -> Void
+
+    public init(accessibilityLabel: String, onClick: @escaping () -> Void) {
+        self.accessibilityLabel = accessibilityLabel
+        self.onClick = onClick
+    }
+}
+
 public struct BPKGraphicPromo<Background: View>: View {
     @Environment(\.sizeCategory) var sizeCategory
     
@@ -55,12 +71,8 @@ public struct BPKGraphicPromo<Background: View>: View {
     private let padding = BPKSpacing.lg
     private let cornerRadius = BPKCornerRadius.md
     
-    public enum LayoutType {
-        case mobile
-        case tablet
-        case desktop
-    }
-    
+    public typealias LayoutType = BPKGraphicPromoLayoutType
+
     public init(
         kicker: String? = nil,
         headline: String,
@@ -321,15 +333,7 @@ public extension BPKGraphicPromo where Background == AnyView {
 }
 
 public extension BPKGraphicPromo {
-    struct CallToAction {
-        public let accessibilityLabel: String
-        public let onClick: () -> Void
-
-        public init(accessibilityLabel: String, onClick: @escaping () -> Void) {
-            self.accessibilityLabel = accessibilityLabel
-            self.onClick = onClick
-        }
-    }
+    typealias CallToAction = BPKGraphicPromoCallToAction
 }
 
 private struct GraphicPromoButtonStyle<Background: View>: ButtonStyle {

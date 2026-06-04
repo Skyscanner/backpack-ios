@@ -17,12 +17,14 @@
  */
 import SwiftUI
 
-public extension BPKGraphicPromo {
-    enum Variant {
-        case onDark, onLight
-        
-        var foregroundColor: BPKColor {
-            self == .onDark ? .textOnDarkColor : .textOnLightColor
-        }
+public enum BPKGraphicPromoVariant {
+    case onDark, onLight
+
+    var foregroundColor: BPKColor {
+        self == .onDark ? .textOnDarkColor : .textOnLightColor
     }
+}
+
+public extension BPKGraphicPromo {
+    typealias Variant = BPKGraphicPromoVariant
 }

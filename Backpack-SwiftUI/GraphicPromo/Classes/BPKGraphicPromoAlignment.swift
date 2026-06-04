@@ -17,16 +17,18 @@
  */
 import SwiftUI
 
-public extension BPKGraphicPromo {
-    enum VerticalAlignment {
-        case top, bottom
-        
-        var contentAlignment: Alignment {
-            self == .top ? .topLeading : .bottomLeading
-        }
-        
-        var sponsorAlignment: Alignment {
-            self == .top ? .bottomLeading : .topLeading
-        }
+public enum BPKGraphicPromoVerticalAlignment {
+    case top, bottom
+
+    var contentAlignment: Alignment {
+        self == .top ? .topLeading : .bottomLeading
     }
+
+    var sponsorAlignment: Alignment {
+        self == .top ? .bottomLeading : .topLeading
+    }
+}
+
+public extension BPKGraphicPromo {
+    typealias VerticalAlignment = BPKGraphicPromoVerticalAlignment
 }
