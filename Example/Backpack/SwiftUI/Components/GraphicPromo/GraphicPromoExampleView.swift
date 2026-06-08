@@ -21,10 +21,10 @@ import SwiftUI
 import Backpack_SwiftUI
 
 struct GraphicPromoExampleView: View {
-    let verticalAlignment: BPKGraphicPromo.VerticalAlignment
+    let verticalAlignment: BPKGraphicPromo<AnyView>.VerticalAlignment
     let sponsored: Bool
 
-    init(verticalAlignment: BPKGraphicPromo.VerticalAlignment = .top, sponsored: Bool = false) {
+    init(verticalAlignment: BPKGraphicPromo<AnyView>.VerticalAlignment = .top, sponsored: Bool = false) {
         self.verticalAlignment = verticalAlignment
         self.sponsored = sponsored
     }

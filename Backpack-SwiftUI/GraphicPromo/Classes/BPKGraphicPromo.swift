@@ -18,7 +18,29 @@
 
 import SwiftUI
 
-public struct BPKGraphicPromo: View {
+private enum BPKGraphicPromoConstants {
+    static let aspectRatioMobile: CGFloat = 3/4
+    static let aspectRatioTablet: CGFloat = 1.96
+    static let aspectRatioDesktop: CGFloat = 2.66
+}
+
+public enum BPKGraphicPromoLayoutType {
+    case mobile
+    case tablet
+    case desktop
+}
+
+public struct BPKGraphicPromoCallToAction {
+    public let accessibilityLabel: String
+    public let onClick: () -> Void
+
+    public init(accessibilityLabel: String, onClick: @escaping () -> Void) {
+        self.accessibilityLabel = accessibilityLabel
+        self.onClick = onClick
+    }
+}
+
+public struct BPKGraphicPromo<Background: View>: View {
     @Environment(\.sizeCategory) var sizeCategory
     
     private struct Sponsor {
@@ -28,16 +50,10 @@ public struct BPKGraphicPromo: View {
         let callToAction: CallToAction
     }
 
-    private struct Constants {
-        static let aspectRatioMobile: CGFloat = 3/4
-        static let aspectRatioTablet: CGFloat = 1.96
-        static let aspectRatioDesktop: CGFloat = 2.66
-    }
-    
     private let kicker: String?
     private let headline: String
     private let subheadline: String?
-    private let image: Image
+    private let backgroundContent: Background
     
     private let type: `Type`
     private let layoutType: LayoutType
@@ -55,39 +71,33 @@ public struct BPKGraphicPromo: View {
     private let padding = BPKSpacing.lg
     private let cornerRadius = BPKCornerRadius.md
     
-    public enum LayoutType {
-        case mobile
-        case tablet
-        case desktop
-    }
-    
+    public typealias LayoutType = BPKGraphicPromoLayoutType
+
     public init(
         kicker: String? = nil,
         headline: String,
         subheadline: String? = nil,
-        image: Image,
+        @ViewBuilder background: () -> Background,
         type: `Type` = .button,
         layoutType: LayoutType = .mobile,
         overlay: BPKOverlayType = .solid(.off),
         variant: Variant = .onDark,
-        verticalAlignment: BPKGraphicPromo.VerticalAlignment = .top
+        verticalAlignment: VerticalAlignment = .top
     ) {
         self.kicker = kicker
         self.headline = headline
         self.subheadline = subheadline
-        self.image = image
-            
+        self.backgroundContent = background()
         self.type = type
         self.layoutType = layoutType
         self.overlay = overlay
         self.variant = variant
-            
         self.verticalAlignment = verticalAlignment
     }
-    
+
     public init(
         headline: String,
-        image: Image,
+        @ViewBuilder background: () -> Background,
         type: `Type` = .button,
         layoutType: LayoutType = .mobile,
         overlay: BPKOverlayType = .linear(.high, .bottom),
@@ -101,7 +111,7 @@ public struct BPKGraphicPromo: View {
         self.headline = headline
         self.kicker = nil
         self.subheadline = nil
-        self.image = image
+        self.backgroundContent = background()
         self.type = type
         self.layoutType = layoutType
         self.overlay = overlay
@@ -121,7 +131,7 @@ public struct BPKGraphicPromo: View {
                 .padding(padding)
         }
         .buttonStyle(GraphicPromoButtonStyle(
-            image: image,
+            backgroundContent: backgroundContent,
             overlay: overlay,
             backgroundColor: backgroundColor,
             cornerRadius: cornerRadius
@@ -240,13 +250,13 @@ public struct BPKGraphicPromo: View {
     }
     
     // MARK: - Public modifiers
-    public func fallbackColor(_ color: Color) -> BPKGraphicPromo {
+    public func fallbackColor(_ color: Color) -> BPKGraphicPromo<Background> {
         var view = self
         view.backgroundColor = color
         return view
     }
     
-    public func onTapGesture(perform: @escaping () -> Void) -> BPKGraphicPromo {
+    public func onTapGesture(perform: @escaping () -> Void) -> BPKGraphicPromo<Background> {
         var result = self
         result.tapAction = {
             let hapticFeedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
@@ -259,31 +269,77 @@ public struct BPKGraphicPromo: View {
     private func aspectRatio() -> CGFloat {
         switch layoutType {
         case .mobile:
-            return Constants.aspectRatioMobile
+            return BPKGraphicPromoConstants.aspectRatioMobile
         case .tablet:
-            return Constants.aspectRatioTablet
+            return BPKGraphicPromoConstants.aspectRatioTablet
         case .desktop:
-            return Constants.aspectRatioDesktop
+            return BPKGraphicPromoConstants.aspectRatioDesktop
         }
+    }
+}
+
+// MARK: - Image convenience inits (backward compatible)
+public extension BPKGraphicPromo where Background == AnyView {
+    init(
+        kicker: String? = nil,
+        headline: String,
+        subheadline: String? = nil,
+        image: Image,
+        type: `Type` = .button,
+        layoutType: LayoutType = .mobile,
+        overlay: BPKOverlayType = .solid(.off),
+        variant: Variant = .onDark,
+        verticalAlignment: BPKGraphicPromo.VerticalAlignment = .top
+    ) {
+        self.kicker = kicker
+        self.headline = headline
+        self.subheadline = subheadline
+        self.backgroundContent = AnyView(image.resizable().aspectRatio(contentMode: .fill))
+        self.type = type
+        self.layoutType = layoutType
+        self.overlay = overlay
+        self.variant = variant
+        self.verticalAlignment = verticalAlignment
+    }
+
+    init(
+        headline: String,
+        image: Image,
+        type: `Type` = .button,
+        layoutType: LayoutType = .mobile,
+        overlay: BPKOverlayType = .linear(.high, .bottom),
+        variant: Variant = .onDark,
+        sponsorTitle: String,
+        partnerLogo: Image?,
+        sponsoredAccessibilityLabel: String,
+        callToAction: CallToAction
+    ) {
+        self.verticalAlignment = .bottom
+        self.headline = headline
+        self.kicker = nil
+        self.subheadline = nil
+        self.backgroundContent = AnyView(image.resizable().aspectRatio(contentMode: .fill))
+        self.type = type
+        self.layoutType = layoutType
+        self.overlay = overlay
+        self.variant = variant
+
+        self.sponsor = .init(
+            title: sponsorTitle,
+            logo: partnerLogo,
+            accessibilityLabel: sponsoredAccessibilityLabel,
+            callToAction: callToAction)
     }
 }
 
 public extension BPKGraphicPromo {
-    struct CallToAction {
-        public let accessibilityLabel: String
-        public let onClick: () -> Void
-
-        public init(accessibilityLabel: String, onClick: @escaping () -> Void) {
-            self.accessibilityLabel = accessibilityLabel
-            self.onClick = onClick
-        }
-    }
+    typealias CallToAction = BPKGraphicPromoCallToAction
 }
 
-private struct GraphicPromoButtonStyle: ButtonStyle {
+private struct GraphicPromoButtonStyle<Background: View>: ButtonStyle {
     @Environment(\.accessibilityReduceMotion) var reduceMotion
 
-    let image: Image
+    let backgroundContent: Background
     let overlay: BPKOverlayType
     let backgroundColor: Color
     let cornerRadius: BPKCornerRadius
@@ -294,9 +350,7 @@ private struct GraphicPromoButtonStyle: ButtonStyle {
                 .fill(.clear)
                 .background(backgroundColor)
                 .overlay(
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
+                    backgroundContent
                         .clipped()
                         .bpkOverlay(overlay)
                         .overlay(
