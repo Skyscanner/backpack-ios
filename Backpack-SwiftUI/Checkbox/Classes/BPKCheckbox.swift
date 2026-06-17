@@ -102,10 +102,8 @@ struct BPKCheckboxToggleStyle: ToggleStyle {
 
     private func setCheckIcon() -> BPKIconView {
         switch status {
-        case .regular:
+        case .regular, .error:
             return BPKIconView(.tick, size: .small)
-        case .error:
-            return BPKIconView(.baggageCross, size: .small)
         case .intermediate:
             return BPKIconView(.minus, size: .small)
         }
@@ -116,20 +114,25 @@ struct BPKCheckboxToggleStyle: ToggleStyle {
 
         switch style {
         case .default, .onContrast:
-            return .surfaceHeroColor
+            return .coreAccentColor
         }
     }
 
     private var iconColor: BPKColor {
         switch style {
         case .default, .onContrast:
-            return .textPrimaryInverseColor
+            return .textOnDarkColor
         }
     }
 
     private func outlineColor(_ isOn: Bool) -> BPKColor {
         if disabled {
-            return .lineColor
+            switch style {
+            case .default:
+                return .lineColor
+            case .onContrast:
+                return .textOnDarkColor.withAlphaComponent(0.2)
+            }
         }
 
         switch style {
@@ -143,7 +146,7 @@ struct BPKCheckboxToggleStyle: ToggleStyle {
         case .onContrast:
             switch status {
             case .regular, .intermediate:
-                return .textOnDarkColor
+                return .textOnDarkColor.withAlphaComponent(0.55)
             case .error:
                 return .textErrorColor
             }
