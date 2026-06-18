@@ -22,22 +22,28 @@ import SwiftUI
 import Backpack_SwiftUI
 
 struct CheckboxExampleView: View {
+    @State private var regular = true
+    @State private var unchecked = false
+    @State private var error = false
+    @State private var intermediate = true
+    @State private var disabled = false
+
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 10) {
-                BPKCheckbox("Regular", selected: true, onTap: {})
-                BPKCheckbox("Unchecked", onTap: {})
-                BPKCheckbox("Error", status: .error, onTap: {})
-                BPKCheckbox("Intermediate", selected: true, status: .intermediate, onTap: {})
-                BPKCheckbox("Disabled", onTap: {}).disabled(true)
+                BPKCheckbox("Regular", checked: $regular)
+                BPKCheckbox("Unchecked", checked: $unchecked)
+                BPKCheckbox("Error", checked: $error, status: .error)
+                BPKCheckbox("Intermediate", checked: $intermediate, status: .intermediate)
+                BPKCheckbox("Disabled", checked: $disabled).disabled(true)
             }
 
             VStack(alignment: .leading, spacing: 10) {
-                BPKCheckbox("Regular", selected: true, style: .onContrast, onTap: {})
-                BPKCheckbox("Unchecked", style: .onContrast, onTap: {})
-                BPKCheckbox("Error", style: .onContrast, status: .error, onTap: {})
-                BPKCheckbox("Intermediate", selected: true, style: .onContrast, status: .intermediate, onTap: {})
-                BPKCheckbox("Disabled", style: .onContrast, onTap: {}).disabled(true)
+                BPKCheckbox("Regular", checked: $regular, style: .onContrast)
+                BPKCheckbox("Unchecked", checked: $unchecked, style: .onContrast)
+                BPKCheckbox("Error", checked: $error, style: .onContrast, status: .error)
+                BPKCheckbox("Intermediate", checked: $intermediate, style: .onContrast, status: .intermediate)
+                BPKCheckbox("Disabled", checked: $disabled, style: .onContrast).disabled(true)
             }
             .padding()
             .background(Color(.surfaceContrastColor))

@@ -19,45 +19,37 @@
 import SwiftUI
 
 public struct BPKCheckbox: View {
-    @State private var isOn: Bool = false
+    @Binding var checked: Bool
 
     let text: String
-    let selected: Bool
     let style: BPKCheckboxStyle
     let status: BPKCheckboxStatus
-    let onTap: () -> Void
 
     private var disabled = false
 
     public init(
         _ text: String,
-        selected: Bool = false,
+        checked: Binding<Bool>,
         style: BPKCheckboxStyle = .default,
-        status: BPKCheckboxStatus = .regular,
-        onTap: @escaping () -> Void
+        status: BPKCheckboxStatus = .regular
     ) {
         self.text = text
-        self.selected = selected
+        self._checked = checked
         self.style = style
         self.status = status
-        self.isOn = selected
-        self.onTap = onTap
     }
 
     public var body: some View {
-        Toggle(isOn: $isOn) {
+        Toggle(isOn: $checked) {
             Text(text)
                 .foregroundColor(Color(textColor))
         }
         .toggleStyle(BPKCheckboxToggleStyle(
-            selected: selected,
+            selected: checked,
             disabled: disabled,
             style: style,
             status: status))
         .disabled(disabled)
-        .onChange(of: isOn) { _ in
-            onTap()
-        }
     }
 
     public func disabled(_ disabled: Bool) -> BPKCheckbox {
@@ -158,24 +150,36 @@ struct BPKCheckboxToggleStyle: ToggleStyle {
     }
 }
 
-#Preview {
-    HStack {
-        VStack(alignment: .leading, spacing: 10) {
-            BPKCheckbox("Regular", selected: true, onTap: {})
-            BPKCheckbox("Unchecked", onTap: {})
-            BPKCheckbox("Error", status: .error, onTap: {})
-            BPKCheckbox("Intermediate", selected: true, status: .intermediate, onTap: {})
-            BPKCheckbox("Disabled", onTap: {}).disabled(true)
-        }
+struct CheckboxPreviewWrapper: View {
+    @State private var regular = true
+    @State private var unchecked = false
+    @State private var error = false
+    @State private var intermediate = true
+    @State private var disabled = false
 
-        VStack(alignment: .leading, spacing: 10) {
-            BPKCheckbox("Regular", selected: true, style: .onContrast, onTap: {})
-            BPKCheckbox("Unchecked", style: .onContrast, onTap: {})
-            BPKCheckbox("Error", style: .onContrast, status: .error, onTap: {})
-            BPKCheckbox("Intermediate", selected: true, style: .onContrast, status: .intermediate, onTap: {})
-            BPKCheckbox("Disabled", style: .onContrast, onTap: {}).disabled(true)
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 10) {
+                BPKCheckbox("Regular", checked: $regular)
+                BPKCheckbox("Unchecked", checked: $unchecked)
+                BPKCheckbox("Error", checked: $error, status: .error)
+                BPKCheckbox("Intermediate", checked: $intermediate, status: .intermediate)
+                BPKCheckbox("Disabled", checked: $disabled).disabled(true)
+            }
+
+            VStack(alignment: .leading, spacing: 10) {
+                BPKCheckbox("Regular", checked: $regular, style: .onContrast)
+                BPKCheckbox("Unchecked", checked: $unchecked, style: .onContrast)
+                BPKCheckbox("Error", checked: $error, style: .onContrast, status: .error)
+                BPKCheckbox("Intermediate", checked: $intermediate, style: .onContrast, status: .intermediate)
+                BPKCheckbox("Disabled", checked: $disabled, style: .onContrast).disabled(true)
+            }
+            .padding()
+            .background(Color(.surfaceContrastColor))
         }
-        .padding()
-        .background(Color(.surfaceContrastColor))
     }
+}
+
+#Preview {
+    CheckboxPreviewWrapper()
 }
