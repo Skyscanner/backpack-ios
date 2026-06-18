@@ -55,6 +55,9 @@ public struct BPKCheckbox: View {
             style: style,
             status: status))
         .disabled(disabled)
+        .onChange(of: isOn) { _ in
+            onTap()
+        }
     }
 
     public func disabled(_ disabled: Bool) -> BPKCheckbox {
@@ -84,7 +87,7 @@ struct BPKCheckboxToggleStyle: ToggleStyle {
             RoundedRectangle(cornerRadius: 5.0)
                 .stroke(Color(outlineColor(configuration.isOn)),
                         lineWidth: configuration.isOn ? 0 : 6)
-                .background(backgroundColor(configuration.isOn))
+                .background(Color(backgroundColor(configuration.isOn)))
                 .frame(width: 20, height: 20)
                 .cornerRadius(5.0)
                 .overlay {
@@ -122,7 +125,7 @@ struct BPKCheckboxToggleStyle: ToggleStyle {
     private var iconColor: BPKColor {
         switch style {
         case .default, .onContrast:
-            return .textOnDarkColor
+            return .textOnDarkColor.darkVariant(.textOnLightColor)
         }
     }
 
