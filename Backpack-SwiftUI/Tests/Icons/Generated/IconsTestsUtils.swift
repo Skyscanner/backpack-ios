@@ -84,6 +84,8 @@ extension BPKIconViewTests {
         .centerLocation,
         .chart,
         .chauffeur,
+        .checkboxMinus,
+        .checkboxTick,
         .chevronDown,
         .chevronLeft,
         .chevronRight,

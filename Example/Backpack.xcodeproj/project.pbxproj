@@ -212,6 +212,7 @@
 		E397BEA422F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA322F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift */; };
 		E397BEA622F5FFDD00C8EC04 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA522F5FFDD00C8EC04 /* Storyboards.swift */; };
 		E6822E46AF304B16800B6609 /* LinkExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2848C51D99141B190D97447 /* LinkExampleView.swift */; };
+		EAE469A72FE3EDD70024EDA6 /* CheckboxExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE469A62FE3EDD70024EDA6 /* CheckboxExampleView.swift */; };
 		EED38AA42EB37AAE00A77904 /* ConfigurationBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED38AA32EB37AA200A77904 /* ConfigurationBadgeView.swift */; };
 		EED519BF2D3EBD8300F898D7 /* SegmentedControlExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED519BD2D3EBD8300F898D7 /* SegmentedControlExampleView.swift */; };
 		EEF89AC32E2EAE6100BF1C83 /* TappableContainerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF89AC22E2EAE5A00BF1C83 /* TappableContainerExampleView.swift */; };
@@ -463,6 +464,7 @@
 		E397BEA122F5F59000C8EC04 /* BottomSheetScrollableContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetScrollableContentViewController.swift; sourceTree = "<group>"; };
 		E397BEA322F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetBottomSectionVIewController.swift; sourceTree = "<group>"; };
 		E397BEA522F5FFDD00C8EC04 /* Storyboards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
+		EAE469A62FE3EDD70024EDA6 /* CheckboxExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxExampleView.swift; sourceTree = "<group>"; };
 		EDBC7CA36756032862B5D581 /* Pods_Backpack_Native.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Backpack_Native.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EED38AA32EB37AA200A77904 /* ConfigurationBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationBadgeView.swift; sourceTree = "<group>"; };
 		EED519BD2D3EBD8300F898D7 /* SegmentedControlExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlExampleView.swift; sourceTree = "<group>"; };
@@ -1050,6 +1052,7 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				EAE469A52FE3EDC50024EDA6 /* Checkbox */,
 				28CF33702E39273C00A9DF34 /* Configuration */,
 				BA4EE38C2E5D9E0800D9B42D /* PriceRange */,
 				EEF89AC12E2EAE4E00BF1C83 /* TappableContainer */,
@@ -1597,6 +1600,14 @@
 			path = "Bottom Sheet";
 			sourceTree = "<group>";
 		};
+		EAE469A52FE3EDC50024EDA6 /* Checkbox */ = {
+			isa = PBXGroup;
+			children = (
+				EAE469A62FE3EDD70024EDA6 /* CheckboxExampleView.swift */,
+			);
+			path = Checkbox;
+			sourceTree = "<group>";
+		};
 		EED519BE2D3EBD8300F898D7 /* SegmentedControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -2018,6 +2029,7 @@
 				53BA7BC32B99003600F93982 /* NavBarExampleVIew.swift in Sources */,
 				D6DC0AF8216BBB2D0003AC5D /* DialogViewController.swift in Sources */,
 				53C6622829EA0DAB00BF1A62 /* TextExampleView.swift in Sources */,
+				EAE469A72FE3EDD70024EDA6 /* CheckboxExampleView.swift in Sources */,
 				E6822E46AF304B16800B6609 /* LinkExampleView.swift in Sources */,
 				53B6DB6227FC3F170042B7C0 /* ChipGroups.swift in Sources */,
 				24BB6A002EAF733F00E982A4 /* ConfigurationChipsView.swift in Sources */,

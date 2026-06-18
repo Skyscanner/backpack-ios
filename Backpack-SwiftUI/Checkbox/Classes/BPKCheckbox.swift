@@ -90,7 +90,8 @@ struct BPKCheckboxToggleStyle: ToggleStyle {
                 .overlay {
                     if configuration.isOn {
                         setCheckIcon()
-                            .foregroundColor(iconColor)
+                            .foregroundColor(Color(iconColor))
+                            .scaleEffect(0.85)
                     }
                 }
                 .onTapGesture {
@@ -103,9 +104,9 @@ struct BPKCheckboxToggleStyle: ToggleStyle {
     private func setCheckIcon() -> BPKIconView {
         switch status {
         case .regular, .error:
-            return BPKIconView(.tick, size: .small)
+            return BPKIconView(.checkboxTick, size: .large)
         case .intermediate:
-            return BPKIconView(.minus, size: .small)
+            return BPKIconView(.checkboxMinus, size: .large)
         }
     }
 
