@@ -32,18 +32,25 @@ struct CheckboxExampleView: View {
         HStack {
             VStack(alignment: .leading, spacing: 10) {
                 BPKCheckbox("Regular", checked: $regular)
+                BPKCheckbox("Regular", icon: .accountIdCard, checked: $regular)
                 BPKCheckbox("Unchecked", checked: $unchecked)
                 BPKCheckbox("Error", checked: $error, status: .error)
                 BPKCheckbox("Intermediate", checked: $intermediate, status: .intermediate)
                 BPKCheckbox("Disabled", checked: $disabled).disabled(true)
+                BPKCheckbox("Regular", checked: $regular, layout: BPKCheckboxLayout(isRtl: false))
+                BPKCheckbox("Regular", icon: .baggage, checked: $regular, layout: BPKCheckboxLayout(isRtl: false))
             }
+            .padding()
 
             VStack(alignment: .leading, spacing: 10) {
                 BPKCheckbox("Regular", checked: $regular, style: .onContrast)
+                BPKCheckbox("Regular", icon: .accountIdCard, checked: $regular, style: .onContrast)
                 BPKCheckbox("Unchecked", checked: $unchecked, style: .onContrast)
                 BPKCheckbox("Error", checked: $error, style: .onContrast, status: .error)
                 BPKCheckbox("Intermediate", checked: $intermediate, style: .onContrast, status: .intermediate)
                 BPKCheckbox("Disabled", checked: $disabled, style: .onContrast).disabled(true)
+                BPKCheckbox("Regular", checked: $regular, layout: BPKCheckboxLayout(isRtl: false), style: .onContrast)
+                BPKCheckbox("Regular", icon: .baggage, checked: $regular, layout: BPKCheckboxLayout(isRtl: false), style: .onContrast)
             }
             .padding()
             .background(Color(.surfaceContrastColor))
