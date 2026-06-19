@@ -41,6 +41,8 @@ private struct CheckboxStatesTestView: View {
         VStack {
             BPKCheckbox("Option", checked: $unchecked)
                 .padding()
+            BPKCheckbox("Option", icon: .baggage, checked: $unchecked,)
+                .padding()
             BPKCheckbox("Option", checked: $intermediate,
                         status: .intermediate)
                 .padding()
@@ -52,6 +54,15 @@ private struct CheckboxStatesTestView: View {
                 .padding()
             BPKCheckbox("Option", checked: $disabled)
                 .disabled(true)
+                .padding()
+            BPKCheckbox("Option",
+                        checked: $unchecked,
+                        layout: BPKCheckboxLayout(isRtl: false))
+                .padding()
+            BPKCheckbox("Option",
+                        icon: .baggage,
+                        checked: $unchecked,
+                        layout: BPKCheckboxLayout(isRtl: false))
                 .padding()
         }.padding()
     }
@@ -69,27 +80,38 @@ private struct CheckboxStatesOnContrastTestView: View {
             BPKCheckbox("Option", checked: $unchecked,
                         style: .onContrast)
                 .padding()
-                .background(Color(.surfaceContrastColor))
+            BPKCheckbox("Option", icon: .baggage, checked: $unchecked,
+                        style: .onContrast)
+                .padding()
             BPKCheckbox("Option", checked: $intermediate,
                         style: .onContrast,
                         status: .intermediate)
                 .padding()
-                .background(Color(.surfaceContrastColor))
             BPKCheckbox("Option", checked: $error,
                         style: .onContrast,
                         status: .error)
                 .padding()
-                .background(Color(.surfaceContrastColor))
             BPKCheckbox("Option", checked: $regular,
                         style: .onContrast,
                         status: .regular)
                 .padding()
-                .background(Color(.surfaceContrastColor))
             BPKCheckbox("Option", checked: $disabled,
                         style: .onContrast)
                 .disabled(true)
                 .padding()
-                .background(Color(.surfaceContrastColor))
-        }.padding()
+            BPKCheckbox("Option",
+                        checked: $unchecked,
+                        layout: BPKCheckboxLayout(isRtl: false),
+                        style: .onContrast)
+                .padding()
+            BPKCheckbox("Option",
+                        icon: .baggage,
+                        checked: $unchecked,
+                        layout: BPKCheckboxLayout(isRtl: false),
+                        style: .onContrast)
+                .padding()
+        }
+        .padding()
+        .background(Color(.surfaceContrastColor))
     }
 }

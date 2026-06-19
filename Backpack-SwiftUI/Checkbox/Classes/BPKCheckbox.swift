@@ -22,6 +22,8 @@ public struct BPKCheckbox: View {
     @Binding var checked: Bool
 
     let text: String
+    let icon: BPKIcon?
+    let layout: BPKCheckboxLayout
     let style: BPKCheckboxStyle
     let status: BPKCheckboxStatus
 
@@ -29,24 +31,37 @@ public struct BPKCheckbox: View {
 
     public init(
         _ text: String,
+        icon: BPKIcon? = nil,
         checked: Binding<Bool>,
+        layout: BPKCheckboxLayout = BPKCheckboxLayout(),
         style: BPKCheckboxStyle = .default,
         status: BPKCheckboxStatus = .regular
     ) {
         self.text = text
+        self.icon = icon
         self._checked = checked
+        self.layout = layout
         self.style = style
         self.status = status
     }
 
     public var body: some View {
         Toggle(isOn: $checked) {
-            Text(text)
-                .foregroundColor(Color(textColor))
+            HStack() {
+                if let icon {
+                    BPKIconView(icon, size: .small)
+                        .foregroundColor(Color(textColor))
+                }
+                
+                Text(text)
+                    .frame(maxWidth: .infinity, alignment: layout.alignment)
+                    .foregroundColor(Color(textColor))
+            }
         }
         .toggleStyle(BPKCheckboxToggleStyle(
             selected: checked,
             disabled: disabled,
+            layout: layout,
             style: style,
             status: status))
         .disabled(disabled)
@@ -71,11 +86,15 @@ public struct BPKCheckbox: View {
 struct BPKCheckboxToggleStyle: ToggleStyle {
     let selected: Bool
     let disabled: Bool
+    let layout: BPKCheckboxLayout
     let style: BPKCheckboxStyle
     let status: BPKCheckboxStatus
 
     func makeBody(configuration: Configuration) -> some View {
         HStack {
+            if !layout.isRtl {
+                configuration.label
+            }
             RoundedRectangle(cornerRadius: 5.0)
                 .stroke(Color(outlineColor(configuration.isOn)),
                         lineWidth: configuration.isOn ? 0 : 6)
@@ -92,7 +111,9 @@ struct BPKCheckboxToggleStyle: ToggleStyle {
                 .onTapGesture {
                     configuration.isOn.toggle()
                 }
-            configuration.label
+            if layout.isRtl {
+                configuration.label
+            }
         }
     }
 
@@ -161,18 +182,25 @@ struct CheckboxPreviewWrapper: View {
         HStack {
             VStack(alignment: .leading, spacing: 10) {
                 BPKCheckbox("Regular", checked: $regular)
+                BPKCheckbox("Regular", icon: .accountIdCard, checked: $regular)
                 BPKCheckbox("Unchecked", checked: $unchecked)
                 BPKCheckbox("Error", checked: $error, status: .error)
                 BPKCheckbox("Intermediate", checked: $intermediate, status: .intermediate)
                 BPKCheckbox("Disabled", checked: $disabled).disabled(true)
+                BPKCheckbox("Regular", checked: $regular, layout: BPKCheckboxLayout(isRtl: false))
+                BPKCheckbox("Regular", icon: .baggage, checked: $regular, layout: BPKCheckboxLayout(isRtl: false))
             }
+            .padding()
 
             VStack(alignment: .leading, spacing: 10) {
                 BPKCheckbox("Regular", checked: $regular, style: .onContrast)
+                BPKCheckbox("Regular", icon: .accountIdCard, checked: $regular, style: .onContrast)
                 BPKCheckbox("Unchecked", checked: $unchecked, style: .onContrast)
                 BPKCheckbox("Error", checked: $error, style: .onContrast, status: .error)
                 BPKCheckbox("Intermediate", checked: $intermediate, style: .onContrast, status: .intermediate)
                 BPKCheckbox("Disabled", checked: $disabled, style: .onContrast).disabled(true)
+                BPKCheckbox("Regular", checked: $regular, layout: BPKCheckboxLayout(isRtl: false), style: .onContrast)
+                BPKCheckbox("Regular", icon: .baggage, checked: $regular, layout: BPKCheckboxLayout(isRtl: false), style: .onContrast)
             }
             .padding()
             .background(Color(.surfaceContrastColor))

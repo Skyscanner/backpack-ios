@@ -27,3 +27,14 @@ public enum BPKCheckboxStatus: Equatable {
     case error
     case intermediate
 }
+
+public struct BPKCheckboxLayout {
+    let isRtl: Bool
+    let alignment: Alignment
+    
+    public init(isRtl: Bool = true,
+         alignment: Alignment = .leading) {
+        self.isRtl = isRtl
+        self.alignment = alignment
+    }
+}
