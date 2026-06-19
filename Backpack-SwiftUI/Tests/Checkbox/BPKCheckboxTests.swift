@@ -57,12 +57,12 @@ private struct CheckboxStatesTestView: View {
                 .padding()
             BPKCheckbox("Option",
                         checked: $unchecked,
-                        layout: BPKCheckboxLayout(isRtl: false))
+                        layout: BPKCheckboxLayout(labelStyle: .leftSitting))
                 .padding()
             BPKCheckbox("Option",
                         icon: .baggage,
                         checked: $unchecked,
-                        layout: BPKCheckboxLayout(isRtl: false))
+                        layout: BPKCheckboxLayout(labelStyle: .leftSitting))
                 .padding()
         }.padding()
     }
@@ -101,13 +101,13 @@ private struct CheckboxStatesOnContrastTestView: View {
                 .padding()
             BPKCheckbox("Option",
                         checked: $unchecked,
-                        layout: BPKCheckboxLayout(isRtl: false),
+                        layout: BPKCheckboxLayout(labelStyle: .leftSitting),
                         style: .onContrast)
                 .padding()
             BPKCheckbox("Option",
                         icon: .baggage,
                         checked: $unchecked,
-                        layout: BPKCheckboxLayout(isRtl: false),
+                        layout: BPKCheckboxLayout(labelStyle: .leftSitting),
                         style: .onContrast)
                 .padding()
         }

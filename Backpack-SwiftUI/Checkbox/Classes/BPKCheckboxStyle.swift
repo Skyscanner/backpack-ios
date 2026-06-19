@@ -28,13 +28,18 @@ public enum BPKCheckboxStatus: Equatable {
     case intermediate
 }
 
+public enum BPKCheckboxLabelStyle: Equatable {
+    case leftSitting
+    case rightSitting
+}
+
 public struct BPKCheckboxLayout {
-    let isRtl: Bool
+    let labelStyle: BPKCheckboxLabelStyle
     let alignment: Alignment
     
-    public init(isRtl: Bool = true,
+    public init(labelStyle: BPKCheckboxLabelStyle = .rightSitting,
          alignment: Alignment = .leading) {
-        self.isRtl = isRtl
+        self.labelStyle = labelStyle
         self.alignment = alignment
     }
 }

@@ -54,8 +54,8 @@ struct CheckboxExampleView: View {
                     BPKCheckbox("Error", checked: $error, status: .error)
                     BPKCheckbox("Intermediate", checked: $intermediate, status: .intermediate)
                     BPKCheckbox("Disabled", checked: $disabled).disabled(true)
-                    BPKCheckbox("Regular", checked: $regular, layout: BPKCheckboxLayout(isRtl: false))
-                    BPKCheckbox("Regular", icon: .baggage, checked: $regular, layout: BPKCheckboxLayout(isRtl: false))
+                    BPKCheckbox("Regular", checked: $regular, layout: BPKCheckboxLayout(labelStyle: .leftSitting))
+                    BPKCheckbox("Regular", icon: .baggage, checked: $regular, layout: BPKCheckboxLayout(labelStyle: .leftSitting))
                 }
                 .padding()
 
@@ -66,8 +66,8 @@ struct CheckboxExampleView: View {
                     BPKCheckbox("Error", checked: $error, style: .onContrast, status: .error)
                     BPKCheckbox("Intermediate", checked: $intermediate, style: .onContrast, status: .intermediate)
                     BPKCheckbox("Disabled", checked: $disabled, style: .onContrast).disabled(true)
-                    BPKCheckbox("Regular", checked: $regular, layout: BPKCheckboxLayout(isRtl: false), style: .onContrast)
-                    BPKCheckbox("Regular", icon: .baggage, checked: $regular, layout: BPKCheckboxLayout(isRtl: false), style: .onContrast)
+                    BPKCheckbox("Regular", checked: $regular, layout: BPKCheckboxLayout(labelStyle: .leftSitting), style: .onContrast)
+                    BPKCheckbox("Regular", icon: .baggage, checked: $regular, layout: BPKCheckboxLayout(labelStyle: .leftSitting), style: .onContrast)
                 }
                 .padding()
                 .background(Color(.surfaceContrastColor))
