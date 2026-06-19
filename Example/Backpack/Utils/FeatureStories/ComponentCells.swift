@@ -53,6 +53,7 @@ struct ComponentCellsProvider {
             carousel(),
             carouselCard(),
             cardCarousel(),
+            checkboxes(),
             chips(),
             chipGroup(),
             configuration(),
@@ -202,6 +203,17 @@ extension ComponentCellsProvider {
                 }))
             ],
             showChildren: { showComponent(title: "Cell Item", tabs: $0) }
+        )
+    }
+    private func checkboxes() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Checkboxes",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(CheckboxExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Checkboxes", tabs: $0) }
         )
     }
     private func chips() -> CellDataSource {

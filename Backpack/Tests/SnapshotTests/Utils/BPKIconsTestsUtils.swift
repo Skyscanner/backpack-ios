@@ -386,6 +386,8 @@ struct BPKIconsTestsUtils {
         "center-location",
         "chart",
         "chauffeur",
+        "checkbox-minus",
+        "checkbox-tick",
         "chevron-down",
         "chevron-left",
         "chevron-right",

@@ -82,6 +82,8 @@ public extension BPKIcon {
     static let centerLocation = BPKIcon(name: "center-location")
     static let chart = BPKIcon(name: "chart")
     static let chauffeur = BPKIcon(name: "chauffeur")
+    static let checkboxMinus = BPKIcon(name: "checkbox-minus")
+    static let checkboxTick = BPKIcon(name: "checkbox-tick")
     static let chevronDown = BPKIcon(name: "chevron-down")
     static let chevronLeft = BPKIcon(name: "chevron-left")
     static let chevronRight = BPKIcon(name: "chevron-right")
@@ -395,6 +397,8 @@ public extension BPKIcon {
         case "center-location": return .centerLocation
         case "chart": return .chart
         case "chauffeur": return .chauffeur
+        case "checkbox-minus": return .checkboxMinus
+        case "checkbox-tick": return .checkboxTick
         case "chevron-down": return .chevronDown
         case "chevron-left": return .chevronLeft
         case "chevron-right": return .chevronRight

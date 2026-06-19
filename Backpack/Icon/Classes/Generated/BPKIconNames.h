@@ -153,6 +153,10 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameChart;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameChauffeur;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameCheckboxMinus;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameCheckboxTick;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameChevronDown;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameChevronLeft;
