@@ -29,31 +29,49 @@ struct CheckboxExampleView: View {
     @State private var disabled = false
 
     var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 10) {
-                BPKCheckbox("Regular", checked: $regular)
-                BPKCheckbox("Regular", icon: .accountIdCard, checked: $regular)
-                BPKCheckbox("Unchecked", checked: $unchecked)
-                BPKCheckbox("Error", checked: $error, status: .error)
-                BPKCheckbox("Intermediate", checked: $intermediate, status: .intermediate)
-                BPKCheckbox("Disabled", checked: $disabled).disabled(true)
-                BPKCheckbox("Regular", checked: $regular, layout: BPKCheckboxLayout(isRtl: false))
-                BPKCheckbox("Regular", icon: .baggage, checked: $regular, layout: BPKCheckboxLayout(isRtl: false))
-            }
-            .padding()
+        VStack {
+            // Display current checkbox states
+            Text("Checkbox States:")
+                .font(.headline)
+                .padding(.bottom, 4)
 
-            VStack(alignment: .leading, spacing: 10) {
-                BPKCheckbox("Regular", checked: $regular, style: .onContrast)
-                BPKCheckbox("Regular", icon: .accountIdCard, checked: $regular, style: .onContrast)
-                BPKCheckbox("Unchecked", checked: $unchecked, style: .onContrast)
-                BPKCheckbox("Error", checked: $error, style: .onContrast, status: .error)
-                BPKCheckbox("Intermediate", checked: $intermediate, style: .onContrast, status: .intermediate)
-                BPKCheckbox("Disabled", checked: $disabled, style: .onContrast).disabled(true)
-                BPKCheckbox("Regular", checked: $regular, layout: BPKCheckboxLayout(isRtl: false), style: .onContrast)
-                BPKCheckbox("Regular", icon: .baggage, checked: $regular, layout: BPKCheckboxLayout(isRtl: false), style: .onContrast)
+            HStack(spacing: 20) {
+                Text("Regular: \(regular ? "✓" : "✗")")
+                Text("Unchecked: \(unchecked ? "✓" : "✗")")
+                Text("Error: \(error ? "✓" : "✗")")
             }
-            .padding()
-            .background(Color(.surfaceContrastColor))
+            .font(.caption)
+            .padding(.bottom, 8)
+
+            HStack {
+                VStack(alignment: .leading, spacing: 10) {
+                    BPKCheckbox("Regular", checked: $regular)
+                        .onChange(of: regular) { newValue in
+                            print("Regular checkbox changed to: \(newValue)")
+                        }
+                    BPKCheckbox("Regular", icon: .accountIdCard, checked: $regular)
+                    BPKCheckbox("Unchecked", checked: $unchecked)
+                    BPKCheckbox("Error", checked: $error, status: .error)
+                    BPKCheckbox("Intermediate", checked: $intermediate, status: .intermediate)
+                    BPKCheckbox("Disabled", checked: $disabled).disabled(true)
+                    BPKCheckbox("Regular", checked: $regular, layout: BPKCheckboxLayout(isRtl: false))
+                    BPKCheckbox("Regular", icon: .baggage, checked: $regular, layout: BPKCheckboxLayout(isRtl: false))
+                }
+                .padding()
+
+                VStack(alignment: .leading, spacing: 10) {
+                    BPKCheckbox("Regular", checked: $regular, style: .onContrast)
+                    BPKCheckbox("Regular", icon: .accountIdCard, checked: $regular, style: .onContrast)
+                    BPKCheckbox("Unchecked", checked: $unchecked, style: .onContrast)
+                    BPKCheckbox("Error", checked: $error, style: .onContrast, status: .error)
+                    BPKCheckbox("Intermediate", checked: $intermediate, style: .onContrast, status: .intermediate)
+                    BPKCheckbox("Disabled", checked: $disabled, style: .onContrast).disabled(true)
+                    BPKCheckbox("Regular", checked: $regular, layout: BPKCheckboxLayout(isRtl: false), style: .onContrast)
+                    BPKCheckbox("Regular", icon: .baggage, checked: $regular, layout: BPKCheckboxLayout(isRtl: false), style: .onContrast)
+                }
+                .padding()
+                .background(Color(.surfaceContrastColor))
+            }
         }
     }
 }
