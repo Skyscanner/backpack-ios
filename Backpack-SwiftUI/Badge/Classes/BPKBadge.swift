@@ -85,7 +85,7 @@ public struct BPKBadge: View {
             if let badgeIconView = createBadgeIconView(icon: icon) {
                 badgeIconView.foregroundColor(style.iconColor(config))
             }
-            BPKText(title, style: config?.badgeConfig == nil ? .footnote : .caption)
+            BPKText(title, style: .footnote)
                 .foregroundColor(style.foregroundColor(config))
         }
     }
