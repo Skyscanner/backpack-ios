@@ -152,10 +152,10 @@ struct BPKVideoPlayerRenderingSurface: UIViewRepresentable {
     }
 }
 
-// MARK: - PlayerLayerView (internal)
+// MARK: - PlayerLayerView
 
-public final class PlayerLayerView: UIView {
-    override public class var layerClass: AnyClass { AVPlayerLayer.self }
+final class PlayerLayerView: UIView {
+    override class var layerClass: AnyClass { AVPlayerLayer.self }
 
     var playerLayer: AVPlayerLayer { layer as! AVPlayerLayer } // swiftlint:disable:this force_cast
 
@@ -165,7 +165,7 @@ public final class PlayerLayerView: UIView {
     private var readyForDisplayObservation: NSKeyValueObservation?
     private var hasNotifiedFirstFrame = false
 
-    override public init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         playerLayer.videoGravity = .resizeAspectFill
         playerLayer.opacity = 0
@@ -180,11 +180,11 @@ public final class PlayerLayerView: UIView {
         readyForDisplayObservation?.invalidate()
     }
 
-    override public var intrinsicContentSize: CGSize {
+    override var intrinsicContentSize: CGSize {
         CGSize(width: UIView.noIntrinsicMetric, height: UIView.noIntrinsicMetric)
     }
 
-    override public func layoutSubviews() {
+    override func layoutSubviews() {
         super.layoutSubviews()
         // Disable implicit CALayer animation so the frame snaps to fill immediately
         // rather than interpolating from the video's native size (causes letterbox hiccup).
