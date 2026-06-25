@@ -19,9 +19,111 @@
 import AVFoundation
 import SwiftUI
 
-/// Scale-to-fill video surface with no enforced aspect ratio.
-/// Pair with BPKVideoPlayerController for playback control.
-public struct BPKVideoPlayer: UIViewRepresentable {
+// MARK: - BPKVideoPlayer
+
+/// A SwiftUI video player with built-in play/pause controls and a loading spinner.
+///
+/// Pass a `BPKVideoPlayerController` to drive playback and observe events.
+/// The controller is an `ObservableObject` — it can be shared across multiple
+/// views simultaneously, enabling continuous playback across transitions
+/// (e.g. a card expanding into a fullscreen sheet without resetting playback).
+///
+/// ```swift
+/// @StateObject private var controller = BPKVideoPlayerController(
+///     url: videoURL, autoPlay: true, loop: true
+/// )
+///
+/// BPKVideoPlayer(controller: controller)
+/// ```
+///
+/// To suppress the built-in controls (e.g. when embedding inside `BPKGraphicPromo`
+/// with custom overlays), use `BPKVideoPlayerSurface` directly.
+public struct BPKVideoPlayer: View {
+    @StateObject private var controller: BPKVideoPlayerController
+    private let showDefaultControls: Bool
+
+    /// Creates a video player that owns its controller.
+    /// - Parameters:
+    ///   - url: The video URL to play.
+    ///   - autoPlay: Start playback as soon as the video is ready. Default `false`.
+    ///   - loop: Loop the video continuously. Default `false`.
+    ///   - showDefaultControls: Show the built-in play/pause button and loading spinner. Default `true`.
+    public init(
+        url: URL,
+        autoPlay: Bool = false,
+        loop: Bool = false,
+        showDefaultControls: Bool = true
+    ) {
+        _controller = StateObject(wrappedValue: BPKVideoPlayerController(
+            url: url,
+            autoPlay: autoPlay,
+            loop: loop
+        ))
+        self.showDefaultControls = showDefaultControls
+    }
+
+    /// Creates a video player with an externally owned controller.
+    ///
+    /// Use this when you need to share a controller across multiple views
+    /// for continuous playback across transitions. The controller retains
+    /// its own `autoPlay` and `loop` settings.
+    /// - Parameters:
+    ///   - controller: A `BPKVideoPlayerController` instance to drive playback.
+    ///   - showDefaultControls: Show the built-in play/pause button and loading spinner. Default `true`.
+    public init(controller: BPKVideoPlayerController, showDefaultControls: Bool = true) {
+        _controller = StateObject(wrappedValue: controller)
+        self.showDefaultControls = showDefaultControls
+    }
+
+    public var body: some View {
+        ZStack {
+            BPKVideoPlayerSurface(controller: controller)
+
+            if showDefaultControls {
+                if controller.isLoading {
+                    BPKSpinner(.lg, style: .onDarkSurface)
+                        .accessibilityLabel("Loading video")
+                } else {
+                    playPauseButton
+                }
+            }
+        }
+    }
+
+    private var playPauseButton: some View {
+        Button(action: controller.toggle) {
+            BPKIconView(controller.isPlaying ? .pause : .play, size: .large)
+                .foregroundColor(.init(.textOnDarkColor))
+                .padding(.sm)
+                .background(Color(.scrimColor).opacity(0.6))
+                .clipShape(Circle())
+        }
+        .accessibilityLabel(controller.isPlaying ? "Pause video" : "Play video")
+        .accessibilityValue(controller.isPlaying ? "Playing" : "Paused")
+        .accessibilityHint("Toggles video playback")
+    }
+}
+
+// MARK: - BPKVideoPlayerSurface
+
+/// The raw video rendering surface — scale-to-fill, freeform sizing, no built-in controls.
+///
+/// Use this when you need full control over the overlay UI, for example when
+/// embedding video as the background of a `BPKGraphicPromo`. For standard use
+/// with built-in play/pause controls, prefer `BPKVideoPlayer`.
+///
+/// ### Why `UIViewRepresentable`?
+/// `AVPlayerLayer` is a `CALayer` subclass — it must be hosted in a `UIView`
+/// to integrate with Core Animation. The `UIViewRepresentable` bridge is the
+/// standard SwiftUI pattern for this.
+///
+/// ### First-frame handling
+/// The layer starts with `opacity = 0` to prevent the black frame that appears
+/// while HLS loads its first segment. `AVPlayerLayer.isReadyForDisplay` is the
+/// only reliable signal that a decoded frame is ready to show — the layer fades in
+/// at that point, and the controller emits `.firstFrameRendered` so consumers
+/// can hide any poster image without a flash.
+public struct BPKVideoPlayerSurface: UIViewRepresentable {
     private let controller: BPKVideoPlayerController
 
     public init(controller: BPKVideoPlayerController) {
@@ -31,9 +133,6 @@ public struct BPKVideoPlayer: UIViewRepresentable {
     public func makeUIView(context: Context) -> PlayerLayerView {
         let view = PlayerLayerView()
         view.playerLayer.player = controller.player
-        view.playerLayer.videoGravity = .resizeAspectFill
-        view.clipsToBounds = true
-        // Wire isReadyForDisplay → controller so it can emit .firstFrameRendered
         view.onFirstFrameRendered = { [weak controller] in
             controller?.notifyFirstFrameRendered()
         }
@@ -44,6 +143,8 @@ public struct BPKVideoPlayer: UIViewRepresentable {
         uiView.playerLayer.player = controller.player
     }
 }
+
+// MARK: - PlayerLayerView
 
 public final class PlayerLayerView: UIView {
     override public class var layerClass: AnyClass { AVPlayerLayer.self }
@@ -58,10 +159,9 @@ public final class PlayerLayerView: UIView {
 
     override public init(frame: CGRect) {
         super.init(frame: frame)
-        // Start invisible — fade in only once the first frame is decoded.
-        // This prevents black bars caused by AVPlayerLayer having presentationSize = .zero
-        // before the HLS manifest and first segment are loaded.
+        playerLayer.videoGravity = .resizeAspectFill
         playerLayer.opacity = 0
+        clipsToBounds = true
         observeReadyForDisplay()
     }
 
@@ -78,6 +178,8 @@ public final class PlayerLayerView: UIView {
 
     override public func layoutSubviews() {
         super.layoutSubviews()
+        // Disable implicit CALayer animation so the frame snaps to fill immediately
+        // rather than interpolating from the video's native size (causes letterbox hiccup).
         CATransaction.begin()
         CATransaction.setDisableActions(true)
         playerLayer.frame = bounds

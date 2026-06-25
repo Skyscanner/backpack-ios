@@ -45,7 +45,7 @@ struct VideoGraphicPromoExampleView: View {
             BPKGraphicPromo(
                 headline: "There's always more to explore in Britain",
                 background: {
-                    BPKVideoPlayer(controller: controller)
+                    BPKVideoPlayerSurface(controller: controller)
                 },
                 overlay: .linear(.high, .bottom),
                 sponsorTitle: "In partnership with Skyland",
@@ -61,7 +61,7 @@ struct VideoGraphicPromoExampleView: View {
             }
             .overlay(alignment: .topTrailing) {
                 playPauseButton
-                    .padding(.md)
+                    .padding(.lg)
             }
             .overlay {
                 if controller.isLoading {
@@ -76,7 +76,7 @@ struct VideoGraphicPromoExampleView: View {
         Button(action: controller.toggle) {
             BPKIconView(controller.isPlaying ? .pause : .play, size: .large)
                 .foregroundColor(.init(.textOnDarkColor))
-                .padding(.sm)
+                .padding(.md)
                 .background(Color(.scrimColor).opacity(0.6))
                 .clipShape(Circle())
         }
@@ -108,7 +108,7 @@ struct VideoFullscreenExampleView: View {
 
     var body: some View {
         ZStack {
-            BPKVideoPlayer(controller: activeController)
+            BPKVideoPlayerSurface(controller: activeController)
                 .ignoresSafeArea()
 
             // Custom UI — TBD
@@ -139,7 +139,7 @@ struct VideoContinuousPlaybackExampleView: View {
             BPKGraphicPromo(
                 headline: "There's always more to explore in Britain",
                 background: {
-                    BPKVideoPlayer(controller: sharedController)
+                    BPKVideoPlayerSurface(controller: sharedController)
                 },
                 overlay: .linear(.high, .bottom),
                 sponsorTitle: "In partnership with Skyland",
@@ -205,7 +205,7 @@ private struct ReelCell: View {
 
     var body: some View {
         ZStack(alignment: .bottomLeading) {
-            BPKVideoPlayer(controller: controller)
+            BPKVideoPlayer(controller: controller, showDefaultControls: false)
 
             BPKText("Reel \(index + 1)", style: .label1)
                 .foregroundColor(.init(.textOnDarkColor))
