@@ -63,6 +63,7 @@
 		53BAC3F12A71415800236CC9 /* SectionHeaderGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BAC3F02A71415800236CC9 /* SectionHeaderGroups.swift */; };
 		53C6621029EA0DAB00BF1A62 /* RatingExampleViewWithTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C661E329EA0DAA00BF1A62 /* RatingExampleViewWithTitle.swift */; };
 		53C6621129EA0DAB00BF1A62 /* RatingExampleViewWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C661E429EA0DAA00BF1A62 /* RatingExampleViewWithImage.swift */; };
+		F2E2627E2F57004200A9B1B2 /* SwapExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E2627C2F57004200A9B1B2 /* SwapExampleView.swift */; };
 		53C6621229EA0DAB00BF1A62 /* SwitchExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C661E629EA0DAA00BF1A62 /* SwitchExampleView.swift */; };
 		53C6621329EA0DAB00BF1A62 /* SpinnerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C661E829EA0DAA00BF1A62 /* SpinnerExampleView.swift */; };
 		53C6621429EA0DAB00BF1A62 /* FlareExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C661EA29EA0DAA00BF1A62 /* FlareExampleView.swift */; };
@@ -89,7 +90,7 @@
 		53C6622929EA0DAB00BF1A62 /* AttributedTextExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C6620F29EA0DAB00BF1A62 /* AttributedTextExampleView.swift */; };
 		53C7F0B92A4C615D003A8740 /* ChipGroupSingleSelectRailExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7F0B52A4C615D003A8740 /* ChipGroupSingleSelectRailExampleView.swift */; };
 		53C7F0BA2A4C615D003A8740 /* ChipGroupSingleSelectWrapExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7F0B62A4C615D003A8740 /* ChipGroupSingleSelectWrapExampleView.swift */; };
-		53D4614E29E574EB0061C222 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		53D4614E29E574EB0061C222 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		53D6396F2A7D46ED007EF376 /* MapMarkerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D6396E2A7D46ED007EF376 /* MapMarkerExampleView.swift */; };
 		53D7FBB527F715AF00DEE588 /* UIWindowFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D7FBB427F715AF00DEE588 /* UIWindowFactory.swift */; };
 		53E075A527FC780C0033147C /* NavBarGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E075A427FC780C0033147C /* NavBarGroups.swift */; };
@@ -217,13 +218,14 @@
 		E397BEA422F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA322F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift */; };
 		E397BEA622F5FFDD00C8EC04 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA522F5FFDD00C8EC04 /* Storyboards.swift */; };
 		E6822E46AF304B16800B6609 /* LinkExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2848C51D99141B190D97447 /* LinkExampleView.swift */; };
-		EAE469AA2FE3F4820024EDA6 /* CheckboxExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE469A92FE3F4820024EDA6 /* CheckboxExampleView.swift */; };
 		EED38AA42EB37AAE00A77904 /* ConfigurationBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED38AA32EB37AA200A77904 /* ConfigurationBadgeView.swift */; };
 		EED519BF2D3EBD8300F898D7 /* SegmentedControlExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED519BD2D3EBD8300F898D7 /* SegmentedControlExampleView.swift */; };
 		EEF89AC32E2EAE6100BF1C83 /* TappableContainerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF89AC22E2EAE5A00BF1C83 /* TappableContainerExampleView.swift */; };
 		F00CA3D9299D53450027ACE7 /* FloatingNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00CA3D8299D53450027ACE7 /* FloatingNotificationViewController.swift */; };
 		F00F15692993F24700213F0D /* CarouselViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F15682993F24700213F0D /* CarouselViewController.swift */; };
-		F2E2627E2F57004200A9B1B2 /* SwapExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E2627C2F57004200A9B1B2 /* SwapExampleView.swift */; };
+			19BD13EA315D4D8384B06952 /* VideoPlayerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D34A7DD97A4C479E8A754F /* VideoPlayerExampleView.swift */; };
+			5789F583F7544B5ABE879737 /* VideoPlayerGroupsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBED587B34934EE5912B14BC /* VideoPlayerGroupsProvider.swift */; };
+			EAE469A72FE3EDD70024EDA6 /* CheckboxExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE469A62FE3EDD70024EDA6 /* CheckboxExampleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -300,6 +302,7 @@
 		53BAC3F02A71415800236CC9 /* SectionHeaderGroups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderGroups.swift; sourceTree = "<group>"; };
 		53C661E329EA0DAA00BF1A62 /* RatingExampleViewWithTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingExampleViewWithTitle.swift; sourceTree = "<group>"; };
 		53C661E429EA0DAA00BF1A62 /* RatingExampleViewWithImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingExampleViewWithImage.swift; sourceTree = "<group>"; };
+		F2E2627C2F57004200A9B1B2 /* SwapExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapExampleView.swift; sourceTree = "<group>"; };
 		53C661E629EA0DAA00BF1A62 /* SwitchExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchExampleView.swift; sourceTree = "<group>"; };
 		53C661E829EA0DAA00BF1A62 /* SpinnerExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerExampleView.swift; sourceTree = "<group>"; };
 		53C661EA29EA0DAA00BF1A62 /* FlareExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlareExampleView.swift; sourceTree = "<group>"; };
@@ -464,13 +467,14 @@
 		E397BEA122F5F59000C8EC04 /* BottomSheetScrollableContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetScrollableContentViewController.swift; sourceTree = "<group>"; };
 		E397BEA322F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetBottomSectionVIewController.swift; sourceTree = "<group>"; };
 		E397BEA522F5FFDD00C8EC04 /* Storyboards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
-		EAE469A92FE3F4820024EDA6 /* CheckboxExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CheckboxExampleView.swift; path = Backpack/SwiftUI/Components/Checkbox/CheckboxExampleView.swift; sourceTree = "<group>"; };
 		EED38AA32EB37AA200A77904 /* ConfigurationBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationBadgeView.swift; sourceTree = "<group>"; };
 		EED519BD2D3EBD8300F898D7 /* SegmentedControlExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlExampleView.swift; sourceTree = "<group>"; };
 		EEF89AC22E2EAE5A00BF1C83 /* TappableContainerExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableContainerExampleView.swift; sourceTree = "<group>"; };
 		F00CA3D8299D53450027ACE7 /* FloatingNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingNotificationViewController.swift; sourceTree = "<group>"; };
 		F00F15682993F24700213F0D /* CarouselViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarouselViewController.swift; sourceTree = "<group>"; };
-		F2E2627C2F57004200A9B1B2 /* SwapExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapExampleView.swift; sourceTree = "<group>"; };
+		68D34A7DD97A4C479E8A754F /* VideoPlayerExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerExampleView.swift; sourceTree = "<group>"; };
+		FBED587B34934EE5912B14BC /* VideoPlayerGroupsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerGroupsProvider.swift; sourceTree = "<group>"; };
+		EAE469A62FE3EDD70024EDA6 /* CheckboxExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxExampleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -621,6 +625,7 @@
 			children = (
 				0F964404BAE3E624195647AB /* SwapExampleView.swift */,
 			);
+			name = Swap;
 			path = Swap;
 			sourceTree = "<group>";
 		};
@@ -720,6 +725,14 @@
 				53C661E429EA0DAA00BF1A62 /* RatingExampleViewWithImage.swift */,
 			);
 			path = Rating;
+			sourceTree = "<group>";
+		};
+		F2E262762F57004200A9B1B2 /* Swap */ = {
+			isa = PBXGroup;
+			children = (
+				F2E2627C2F57004200A9B1B2 /* SwapExampleView.swift */,
+			);
+			path = Swap;
 			sourceTree = "<group>";
 		};
 		53C661E529EA0DAA00BF1A62 /* Switch */ = {
@@ -924,6 +937,7 @@
 				79F63C0329B078D600FB19A9 /* OverlayGroupsProvider.swift */,
 				79CE553429BEF26400CC89D3 /* PriceGroupsProvider.swift */,
 				A12A09DD2A49471F0047DD16 /* ChipGroupProvider.swift */,
+				FBED587B34934EE5912B14BC /* VideoPlayerGroupsProvider.swift */,
 				79B94C3D2AA5A33E006CB539 /* GraphicPromoGroupsProvider.swift */,
 				BA809EC72B05FC2E0030D1E7 /* AppSearchModalGroups.swift */,
 				285309ED2DAD6B7800BB6D24 /* DynamicLayoutGroups.swift */,
@@ -956,7 +970,6 @@
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
-				EAE469A92FE3F4820024EDA6 /* CheckboxExampleView.swift */,
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				6003F593195388D20070C39A /* Example for Backpack */,
 				D6517B40216DF5F800D85FF9 /* Backpack NativeUITests */,
@@ -1104,6 +1117,7 @@
 				1A2A4BD62A6801AE00C18218 /* Select */,
 				53C661F929EA0DAA00BF1A62 /* Skeleton */,
 				022519852A7011C000D7A06D /* Snippet */,
+				BPK68D34A7DD97A4C47000001 /* VideoPlayer */,
 				79AFEDA72A9C704F001615A2 /* GraphicPromo */,
 				53C661E729EA0DAA00BF1A62 /* Spinner */,
 				53C661FB29EA0DAB00BF1A62 /* StarRating */,
@@ -1377,9 +1391,18 @@
 			path = "Text view";
 			sourceTree = "<group>";
 		};
+		BPK68D34A7DD97A4C47000001 /* VideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				68D34A7DD97A4C479E8A754F /* VideoPlayerExampleView.swift */,
+			);
+			path = VideoPlayer;
+			sourceTree = "<group>";
+		};
 		79AFEDA72A9C704F001615A2 /* GraphicPromo */ = {
 			isa = PBXGroup;
 			children = (
+				EAE469A62FE3EDD70024EDA6 /* CheckboxExampleView.swift */,
 				79AFEDA82A9C7063001615A2 /* GraphicPromoExampleView.swift */,
 			);
 			path = GraphicPromo;
@@ -1628,14 +1651,6 @@
 			path = Carousel;
 			sourceTree = "<group>";
 		};
-		F2E262762F57004200A9B1B2 /* Swap */ = {
-			isa = PBXGroup;
-			children = (
-				F2E2627C2F57004200A9B1B2 /* SwapExampleView.swift */,
-			);
-			path = Swap;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1738,7 +1753,7 @@
 			);
 			mainGroup = 6003F581195388D10070C39A;
 			packageReferences = (
-				289894AE2ED70CDD00DDC932 /* XCLocalSwiftPackageReference "../../backpack-ios" */,
+				289894AE2ED70CDD00DDC932 /* XCLocalSwiftPackageReference "backpack-ios" */,
 				DAF3486000BCF59DA6EE99AB /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 			);
 			productRefGroup = 6003F58B195388D20070C39A /* Products */;
@@ -1832,7 +1847,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAE469AA2FE3F4820024EDA6 /* CheckboxExampleView.swift in Sources */,
 				285309EE2DAD6B7800BB6D24 /* DynamicLayoutGroups.swift in Sources */,
 				D219C1E02163918B00C9968D /* DividedCardsViewController.swift in Sources */,
 				53C6621129EA0DAB00BF1A62 /* RatingExampleViewWithImage.swift in Sources */,
@@ -1841,6 +1855,8 @@
 				D27EE92C2193163900C877EA /* ChipsViewController.swift in Sources */,
 				1AF3D2CA2BB18924001623A4 /* ImageGalleryGridExampleView.swift in Sources */,
 				1318F7502C777D1800D42847 /* FieldSetGroups.swift in Sources */,
+				19BD13EA315D4D8384B06952 /* VideoPlayerExampleView.swift in Sources */,
+				EAE469A72FE3EDD70024EDA6 /* CheckboxExampleView.swift in Sources */,
 				79AFEDA92A9C7063001615A2 /* GraphicPromoExampleView.swift in Sources */,
 				D2BBC1C922560FDD002DA71A /* BPKTableViewSelectableCell.swift in Sources */,
 				79F5129329AEFEB600D0997A /* LabelViewController.swift in Sources */,
@@ -1933,7 +1949,7 @@
 				5390DB612909940700F0F790 /* ColorTokensViewController.swift in Sources */,
 				794E1FF8280CF63100B965FF /* RadiusTokensView.swift in Sources */,
 				53B6DB6A27FC73A90042B7C0 /* LabelGroups.swift in Sources */,
-				53D4614E29E574EB0061C222 /* (null) in Sources */,
+				53D4614E29E574EB0061C222 /* BuildFile in Sources */,
 				53C6621329EA0DAB00BF1A62 /* SpinnerExampleView.swift in Sources */,
 				53BAC3F12A71415800236CC9 /* SectionHeaderGroups.swift in Sources */,
 				53C6622429EA0DAB00BF1A62 /* ButtonsPlaygroundView.swift in Sources */,
@@ -1988,6 +2004,7 @@
 				BA4EE38E2E5D9E4100D9B42D /* PriceRangeExampleView.swift in Sources */,
 				D2297C2B232A7F3F006E00E0 /* RatingsViewController.swift in Sources */,
 				DB08530C2C45567600314EE8 /* CarouselCardExampleView.swift in Sources */,
+				5789F583F7544B5ABE879737 /* VideoPlayerGroupsProvider.swift in Sources */,
 				79B94C3E2AA5A33E006CB539 /* GraphicPromoGroupsProvider.swift in Sources */,
 				BA8F350E2C104AFD0093FA79 /* CardButtonExampleView.swift in Sources */,
 				D6FA3DB4224E220D00CFA094 /* UIWindow+Utility.swift in Sources */,
@@ -2439,7 +2456,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		289894AE2ED70CDD00DDC932 /* XCLocalSwiftPackageReference "../../backpack-ios" */ = {
+		289894AE2ED70CDD00DDC932 /* XCLocalSwiftPackageReference "backpack-ios" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = "../../backpack-ios";
 		};
