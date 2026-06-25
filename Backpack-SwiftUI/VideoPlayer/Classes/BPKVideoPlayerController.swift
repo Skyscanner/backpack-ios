@@ -255,4 +255,10 @@ public final class BPKVideoPlayerController: ObservableObject {
         event = newEvent
         eventHandlers.forEach { $0(newEvent) }
     }
+
+    /// Test-only — forces published state for snapshot testing without AVFoundation.
+    func testOnly_setState(event: BPKVideoPlayerEvent, isPlaying: Bool) {
+        self.event = event
+        self.isPlaying = isPlaying
+    }
 }
