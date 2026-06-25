@@ -47,13 +47,6 @@ struct VideoPlayerGroupsProvider {
                         ContentUIHostingController(VideoContinuousPlaybackExampleView())
                     },
                     showPresentable: showPresentable
-                ),
-                PresentableCellDataSource.custom(
-                    title: "Reels carousel",
-                    customController: {
-                        ContentUIHostingController(VideoReelsCarouselExampleView())
-                    },
-                    showPresentable: showPresentable
                 )
             ]
         ).groups()

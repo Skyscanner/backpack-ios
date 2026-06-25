@@ -25,10 +25,6 @@ private enum SampleVideo {
     // Skyscanner-hosted HLS test stream
     static let url = URL(string: "https://content.skyscnr.com/media/68afbd83-d09a-48e8-9821-90c117b8f842/593d0fe4-5459-4c43-beb9-49f9ce79d365.m3u8")!
 
-    static func reelURL(_ index: Int) -> URL {
-        // All point to the same stream for the test rig; swap in distinct URLs per reel.
-        url
-    }
 }
 
 // MARK: - Use case 1: GraphicPromo with video background + wired play/pause
@@ -161,69 +157,6 @@ struct VideoContinuousPlaybackExampleView: View {
     }
 }
 
-// MARK: - Use case 4: Reels carousel with autoplay
-
-struct VideoReelsCarouselExampleView: View {
-    @State private var visibleIndex: Int = 0
-    private let reelCount = 5
-
-    var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            LazyHStack(spacing: BPKSpacing.md.value) {
-                ForEach(0..<reelCount, id: \.self) { index in
-                    ReelCell(index: index, isVisible: visibleIndex == index)
-                        .frame(width: 200, height: 340)
-                        .clipShape(RoundedRectangle(cornerRadius: BPKCornerRadius.md.value))
-                        .onAppear { visibleIndex = index }
-                        .onDisappear {
-                            if visibleIndex == index {
-                                visibleIndex = -1
-                            }
-                        }
-                }
-            }
-            .padding(.horizontal, .base)
-        }
-    }
-}
-
-private struct ReelCell: View {
-    let index: Int
-    let isVisible: Bool
-
-    @StateObject private var controller: BPKVideoPlayerController
-
-    init(index: Int, isVisible: Bool) {
-        self.index = index
-        self.isVisible = isVisible
-        _controller = StateObject(wrappedValue: BPKVideoPlayerController(
-            url: SampleVideo.reelURL(index),
-            autoPlay: true,
-            loop: true
-        ))
-    }
-
-    var body: some View {
-        ZStack(alignment: .bottomLeading) {
-            BPKVideoPlayer(controller: controller) { _ in EmptyView() }
-
-            BPKText("Reel \(index + 1)", style: .label1)
-                .foregroundColor(.init(.textOnDarkColor))
-                .padding(.sm)
-        }
-        .onChange(of: isVisible) { visible in
-            visible ? controller.play() : controller.pause()
-        }
-        .onAppear {
-            if isVisible { controller.play() }
-        }
-        .onDisappear {
-            controller.pause()
-        }
-        .accessibilityLabel("Reel \(index + 1)")
-        .accessibilityValue(controller.isPlaying ? "Playing" : "Paused")
-    }
-}
 
 // MARK: - Previews
 
@@ -238,9 +171,6 @@ struct VideoPlayerExampleView_Previews: PreviewProvider {
 
             VideoContinuousPlaybackExampleView()
                 .previewDisplayName("3 · Continuous playback")
-
-            VideoReelsCarouselExampleView()
-                .previewDisplayName("4 · Reels carousel")
         }
     }
 }
