@@ -112,7 +112,70 @@ final class BPKVideoPlayerTests: XCTestCase {
         assertSnapshot(sut)
     }
 
+    // MARK: - BPKVideoPlayerController: loading sequence (real .mp4 fixture)
+    //
+    // These tests use the skyscanner_test.mp4 bundled with UnitTestsImages so we
+    // exercise the real AVFoundation pipeline — including the AVQueuePlayer +
+    // AVPlayerLooper setup that caused the original autoplay bug.
+
+    func test_controller_emitsReadyToPlay_fromLocalFile() async throws {
+        let url = try localVideoURL()
+        let controller = BPKVideoPlayerController(url: url, autoPlay: false, loop: false)
+        var events: [BPKVideoPlayerEvent] = []
+        controller.addEventHandler { events.append($0) }
+
+        try await waitForEvent(.readyToPlay, in: &events, timeout: 5)
+        XCTAssertTrue(events.contains(.readyToPlay))
+        XCTAssertFalse(events.contains(.playing), "autoPlay: false — must not start playing")
+    }
+
+    func test_controller_autoPlay_beginsPlayingAfterReady() async throws {
+        let url = try localVideoURL()
+        let controller = BPKVideoPlayerController(url: url, autoPlay: true, loop: false)
+        var events: [BPKVideoPlayerEvent] = []
+        controller.addEventHandler { events.append($0) }
+
+        try await waitForEvent(.playing, in: &events, timeout: 5)
+        XCTAssertTrue(events.contains(.playing))
+    }
+
+    func test_controller_resetToStart_seeksToZero() async throws {
+        let url = try localVideoURL()
+        let controller = BPKVideoPlayerController(url: url, autoPlay: false, loop: false)
+        var events: [BPKVideoPlayerEvent] = []
+        controller.addEventHandler { events.append($0) }
+
+        try await waitForEvent(.readyToPlay, in: &events, timeout: 5)
+        controller.resetToStart()
+
+        XCTAssertFalse(controller.isPlaying)
+        XCTAssertEqual(controller.player.currentTime(), .zero)
+    }
+
     // MARK: - Private
+
+    private func localVideoURL() throws -> URL {
+        guard let bundle = TestsBundle.bundle,
+              let url = bundle.url(forResource: "skyscanner_test", withExtension: "mp4") else {
+            throw XCTSkip("skyscanner_test.mp4 not found in test bundle — run pod install")
+        }
+        return url
+    }
+
+    private func waitForEvent(
+        _ target: BPKVideoPlayerEvent,
+        in events: inout [BPKVideoPlayerEvent],
+        timeout: TimeInterval
+    ) async throws {
+        let deadline = Date().addingTimeInterval(timeout)
+        while !events.contains(target) {
+            if Date() > deadline {
+                XCTFail("Timed out waiting for event: \(target). Received: \(events)")
+                return
+            }
+            try await Task.sleep(nanoseconds: 100_000_000) // 100ms
+        }
+    }
 
     private func videoPlayerView<B: View>(background: B, width: CGFloat, height: CGFloat) -> some View {
         // Wrap in a ZStack to replicate the BPKVideoPlayer body structure:
