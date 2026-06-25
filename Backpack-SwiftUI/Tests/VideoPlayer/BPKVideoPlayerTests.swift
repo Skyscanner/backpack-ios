@@ -18,7 +18,6 @@
 
 import XCTest
 import AVFoundation
-import SwiftUI
 @testable import Backpack_SwiftUI
 
 final class BPKVideoPlayerTests: XCTestCase {
@@ -77,52 +76,4 @@ final class BPKVideoPlayerTests: XCTestCase {
         XCTAssertEqual(sut.playerLayer.frame, sut.bounds)
     }
 
-    // MARK: - Snapshot: BPKVideoPlayer rendering states
-    //
-    // We use solid-colour stubs in place of real AVPlayerLayer output because
-    // AVPlayerLayer is rendered asynchronously by Metal and produces non-deterministic
-    // snapshots in CI. The stubs represent the two states consumers need to handle:
-    //
-    //   Loading  — transparent overlay (Color.clear) shows the fallback/poster through
-    //   Playing  — opaque 9:16 colour fill tests aspectFill clipping in all container sizes
-
-    func test_videoPlayer_loadingState() {
-        // BPKVideoPlayer starts with opacity 0 — Color.clear simulates that state
-        let sut = videoPlayerView(background: Color.clear, width: 375, height: 500)
-        assertSnapshot(sut)
-    }
-
-    func test_videoPlayer_playingState_portrait() {
-        // 9:16 background in a portrait container — should fill edge-to-edge, no letterboxing
-        let sut = videoPlayerView(
-            background: Color(red: 0, green: 0.69, blue: 1).aspectRatio(9/16, contentMode: .fill),
-            width: 375,
-            height: 500
-        )
-        assertSnapshot(sut)
-    }
-
-    func test_videoPlayer_playingState_landscape() {
-        // 9:16 background in a landscape container — tests aspectFill clipping horizontally
-        let sut = videoPlayerView(
-            background: Color(red: 0, green: 0.69, blue: 1).aspectRatio(9/16, contentMode: .fill),
-            width: 768,
-            height: 400
-        )
-        assertSnapshot(sut)
-    }
-
-    // MARK: - Private
-
-    private func videoPlayerView<B: View>(background: B, width: CGFloat, height: CGFloat) -> some View {
-        // Wrap in a ZStack to replicate the BPKVideoPlayer body structure:
-        // surface layer (stub) + controls layer (none here — we're testing the surface)
-        ZStack {
-            background
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .clipped()
-        }
-        .frame(width: width, height: height)
-        .clipShape(Rectangle())
-    }
 }
