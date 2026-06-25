@@ -18,7 +18,7 @@
 
 import Foundation
 
-public enum BPKVideoPlayerEvent: Equatable {
+public enum BPKVideoPlayerEvent {
     case loading
     case readyToPlay
     /// Fired when the first video frame is visible on screen — safe to hide poster/spinner.
@@ -30,7 +30,11 @@ public enum BPKVideoPlayerEvent: Equatable {
     case buffering
     case ended
     case failed(Error)
+}
 
+// Internal equality used by tests. Not public: `.failed` carries an Error which is not
+// meaningfully equatable (different errors with different reasons would compare equal).
+extension BPKVideoPlayerEvent: Equatable {
     public static func == (lhs: BPKVideoPlayerEvent, rhs: BPKVideoPlayerEvent) -> Bool {
         switch (lhs, rhs) {
         case (.loading, .loading),
@@ -42,6 +46,8 @@ public enum BPKVideoPlayerEvent: Equatable {
              (.ended, .ended):
             return true
         case (.failed, .failed):
+            // Treats all failures as equal — fine for state guards (e.g. isLoading checks),
+            // but consumers should not rely on this for distinguishing error types.
             return true
         default:
             return false

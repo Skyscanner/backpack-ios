@@ -41,15 +41,23 @@ import SwiftUI
 /// BPKVideoPlayer(url: videoURL) { _ in EmptyView() }
 /// ```
 public struct BPKVideoPlayer<Overlay: View>: View {
-    @StateObject private var controller: BPKVideoPlayerController
+    // @ObservedObject is correct for both cases:
+    // - URL-based: we hold a strong reference in `_ownedController` to keep it alive
+    // - Shared: the caller owns the controller; we must not copy it into a StateObject
+    //   because StateObject ignores subsequent init parameter changes (SwiftUI identity rule).
+    @ObservedObject private var controller: BPKVideoPlayerController
     private let overlay: (BPKVideoPlayerController) -> Overlay
+    // Retains the controller for URL-based inits where no external owner exists.
+    private let _ownedController: BPKVideoPlayerController?
 
     // MARK: - URL-based inits
 
     /// Creates a video player with built-in controls that owns its own controller.
     public init(url: URL, autoPlay: Bool = false, loop: Bool = false)
     where Overlay == BPKVideoPlayerDefaultControls {
-        _controller = StateObject(wrappedValue: BPKVideoPlayerController(url: url, autoPlay: autoPlay, loop: loop))
+        let c = BPKVideoPlayerController(url: url, autoPlay: autoPlay, loop: loop)
+        _ownedController = c
+        _controller = ObservedObject(wrappedValue: c)
         self.overlay = { BPKVideoPlayerDefaultControls(controller: $0) }
     }
 
@@ -63,7 +71,9 @@ public struct BPKVideoPlayer<Overlay: View>: View {
         loop: Bool = false,
         @ViewBuilder overlay: @escaping (BPKVideoPlayerController) -> Overlay
     ) {
-        _controller = StateObject(wrappedValue: BPKVideoPlayerController(url: url, autoPlay: autoPlay, loop: loop))
+        let c = BPKVideoPlayerController(url: url, autoPlay: autoPlay, loop: loop)
+        _ownedController = c
+        _controller = ObservedObject(wrappedValue: c)
         self.overlay = overlay
     }
 
@@ -74,7 +84,8 @@ public struct BPKVideoPlayer<Overlay: View>: View {
     /// Use this when you need continuous playback across view transitions — pass
     /// the same `BPKVideoPlayerController` instance into multiple `BPKVideoPlayer` views.
     public init(controller: BPKVideoPlayerController) where Overlay == BPKVideoPlayerDefaultControls {
-        _controller = StateObject(wrappedValue: controller)
+        _ownedController = nil
+        _controller = ObservedObject(wrappedValue: controller)
         self.overlay = { BPKVideoPlayerDefaultControls(controller: $0) }
     }
 
@@ -83,7 +94,8 @@ public struct BPKVideoPlayer<Overlay: View>: View {
         controller: BPKVideoPlayerController,
         @ViewBuilder overlay: @escaping (BPKVideoPlayerController) -> Overlay
     ) {
-        _controller = StateObject(wrappedValue: controller)
+        _ownedController = nil
+        _controller = ObservedObject(wrappedValue: controller)
         self.overlay = overlay
     }
 
@@ -195,7 +207,7 @@ final class PlayerLayerView: UIView {
     }
 
     private func observeReadyForDisplay() {
-        readyForDisplayObservation = playerLayer.observe(\.isReadyForDisplay, options: [.new]) { [weak self] layer, _ in
+        readyForDisplayObservation = playerLayer.observe(\.isReadyForDisplay, options: [.new, .initial]) { [weak self] layer, _ in
             guard layer.isReadyForDisplay else { return }
             DispatchQueue.main.async {
                 self?.handleFirstFrameReady()

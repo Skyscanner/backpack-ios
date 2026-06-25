@@ -47,6 +47,11 @@ public final class BPKVideoPlayerController: ObservableObject {
     private var eventHandlers: [(BPKVideoPlayerEvent) -> Void] = []
     private var loadTimeoutTask: DispatchWorkItem?
 
+    // Tracks whether we were playing before backgrounding so foreground resume
+    // works correctly — pause() sets isPlaying = false via timeControlStatus,
+    // which would otherwise prevent the foreground resume guard from firing.
+    private var wasPlayingBeforeBackground = false
+
     // MARK: - Init
 
     public init(url: URL, autoPlay: Bool = true, loop: Bool = true, loadTimeout: TimeInterval = 7) {
@@ -79,7 +84,8 @@ public final class BPKVideoPlayerController: ObservableObject {
         [reduceMotionObserver, foregroundObserver, backgroundObserver]
             .compactMap { $0 }
             .forEach { NotificationCenter.default.removeObserver($0) }
-        try? AVAudioSession.sharedInstance().setActive(false)
+        // Do NOT call setActive(false) here — the audio session is process-wide
+        // and deactivating it would affect other controllers and unrelated audio.
     }
 
     // MARK: - Public controls
@@ -120,7 +126,6 @@ public final class BPKVideoPlayerController: ObservableObject {
     // MARK: - Internal (called by PlayerLayerView)
 
     /// Called by `PlayerLayerView` when `AVPlayerLayer.isReadyForDisplay` first becomes true.
-    /// Emits `.firstFrameRendered` — the safe moment for consumers to hide poster/spinner.
     func notifyFirstFrameRendered() {
         emit(.firstFrameRendered)
     }
@@ -128,7 +133,6 @@ public final class BPKVideoPlayerController: ObservableObject {
     // MARK: - Private setup
 
     private func setupObservations() {
-        // Observe currentItem so we react to whichever item AVPlayerLooper is currently playing
         currentItemObservation = player.observe(\.currentItem, options: [.new, .initial]) { [weak self] player, _ in
             DispatchQueue.main.async {
                 self?.observeCurrentItemStatus(player.currentItem)
@@ -167,18 +171,23 @@ public final class BPKVideoPlayerController: ObservableObject {
 
     private func configureAudioSession() {
         // Use .ambient so the player does not interrupt the user's background music.
+        // We only set the category — we do not call setActive(false) on deinit because
+        // the session is process-wide and deactivating it would affect other audio.
         try? AVAudioSession.sharedInstance().setCategory(.ambient, mode: .default, options: [.mixWithOthers])
         try? AVAudioSession.sharedInstance().setActive(true)
     }
 
     private func setupLifecycleObservers() {
-        // Pause on background — resume on foreground only if we were playing.
         backgroundObserver = NotificationCenter.default.addObserver(
             forName: UIScene.didEnterBackgroundNotification,
             object: nil,
             queue: .main
         ) { [weak self] _ in
-            self?.pause()
+            guard let self else { return }
+            // Snapshot isPlaying before pausing — pause() will set it to false
+            // via timeControlStatus, which would break the foreground resume guard.
+            self.wasPlayingBeforeBackground = self.isPlaying
+            self.pause()
         }
 
         foregroundObserver = NotificationCenter.default.addObserver(
@@ -186,7 +195,8 @@ public final class BPKVideoPlayerController: ObservableObject {
             object: nil,
             queue: .main
         ) { [weak self] _ in
-            guard let self, self.isPlaying else { return }
+            guard let self, self.wasPlayingBeforeBackground else { return }
+            self.wasPlayingBeforeBackground = false
             self.play()
         }
     }
@@ -218,7 +228,6 @@ public final class BPKVideoPlayerController: ObservableObject {
             emit(.playing)
         case .paused:
             isPlaying = false
-            // Suppress .paused during initial load — only emit if we were actively playing
             if event == .playing { emit(.paused) }
         case .waitingToPlayAtSpecifiedRate:
             emit(.buffering)
