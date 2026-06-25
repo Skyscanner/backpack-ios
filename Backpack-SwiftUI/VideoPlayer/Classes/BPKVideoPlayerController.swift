@@ -17,12 +17,16 @@
  */
 
 import AVFoundation
-import Combine
 import UIKit
 
 /// Shareable player controller. Owns one AVPlayer instance and can be injected
 /// into multiple views simultaneously for continuous playback across transitions.
 public final class BPKVideoPlayerController: ObservableObject {
+    /// The underlying AVPlayer instance.
+    ///
+    /// - Warning: Do not call `player.play()` or `player.pause()` directly.
+    ///   Use the `play()`, `pause()`, and `toggle()` methods instead so that
+    ///   lifecycle state (`wasPlayingBeforeBackground`, `isPlaying`) stays consistent.
     public let player: AVPlayer
 
     @Published public private(set) var isPlaying: Bool = false

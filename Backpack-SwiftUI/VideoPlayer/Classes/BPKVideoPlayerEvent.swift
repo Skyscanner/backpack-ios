@@ -32,9 +32,10 @@ public enum BPKVideoPlayerEvent {
     case failed(Error)
 }
 
-// Internal equality used by tests. Not public: `.failed` carries an Error which is not
-// meaningfully equatable (different errors with different reasons would compare equal).
 extension BPKVideoPlayerEvent: Equatable {
+    // Equality semantics for .failed are intentionally coarse — all failures compare equal.
+    // Fine for state guards (e.g. event == .failed(...)), but consumers should not rely
+    // on this for distinguishing error types; inspect the associated Error directly instead.
     public static func == (lhs: BPKVideoPlayerEvent, rhs: BPKVideoPlayerEvent) -> Bool {
         switch (lhs, rhs) {
         case (.loading, .loading),
@@ -46,8 +47,6 @@ extension BPKVideoPlayerEvent: Equatable {
              (.ended, .ended):
             return true
         case (.failed, .failed):
-            // Treats all failures as equal — fine for state guards (e.g. isLoading checks),
-            // but consumers should not rely on this for distinguishing error types.
             return true
         default:
             return false
