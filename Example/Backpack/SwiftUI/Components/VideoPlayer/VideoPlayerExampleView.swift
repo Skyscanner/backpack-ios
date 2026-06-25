@@ -45,7 +45,7 @@ struct VideoGraphicPromoExampleView: View {
             BPKGraphicPromo(
                 headline: "There's always more to explore in Britain",
                 background: {
-                    BPKVideoPlayerSurface(controller: controller)
+                    BPKVideoPlayer(controller: controller) { _ in EmptyView() }
                 },
                 overlay: .linear(.high, .bottom),
                 sponsorTitle: "In partnership with Skyland",
@@ -108,7 +108,7 @@ struct VideoFullscreenExampleView: View {
 
     var body: some View {
         ZStack {
-            BPKVideoPlayerSurface(controller: activeController)
+            BPKVideoPlayer(controller: activeController) { _ in EmptyView() }
                 .ignoresSafeArea()
 
             // Custom UI — TBD
@@ -139,7 +139,7 @@ struct VideoContinuousPlaybackExampleView: View {
             BPKGraphicPromo(
                 headline: "There's always more to explore in Britain",
                 background: {
-                    BPKVideoPlayerSurface(controller: sharedController)
+                    BPKVideoPlayer(controller: sharedController) { _ in EmptyView() }
                 },
                 overlay: .linear(.high, .bottom),
                 sponsorTitle: "In partnership with Skyland",
@@ -205,7 +205,7 @@ private struct ReelCell: View {
 
     var body: some View {
         ZStack(alignment: .bottomLeading) {
-            BPKVideoPlayer(controller: controller, showDefaultControls: false)
+            BPKVideoPlayer(controller: controller) { _ in EmptyView() }
 
             BPKText("Reel \(index + 1)", style: .label1)
                 .foregroundColor(.init(.textOnDarkColor))
