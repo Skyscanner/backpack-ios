@@ -17,6 +17,7 @@ jobs:
       uses: ./.github/workflows/_build.yml
       secrets:
         GH_APP_PRIVATE_KEY: ${{ secrets.GH_APP_PRIVATE_KEY }}
+
   Deploy-Common:
     name: Release Common to Cocoapods
     runs-on: macos-15
@@ -38,34 +39,43 @@ jobs:
       run: sudo xcode-select --switch /Applications/Xcode_16.4.app
 
     - name: Publish Pods - Backpack Common
-      run: |  
-        set -eo pipefail
-        SPEC="Backpack-Common.podspec" # change per job
-        LOG_FILE="$(mktemp)"
-        attempts=0
-        max_attempts=3
+      run: |
+        set -euo pipefail
 
-        while [ $attempts -lt $max_attempts ]; do
-          if bundle exec pod trunk push "$SPEC" --allow-warnings --skip-tests --synchronous 2>&1 | tee "$LOG_FILE"; then
-            break
-          fi
+        push_with_retry() {
+          local spec="$1"
+          local attempts=1
+          local max_attempts=3
+          local log_file
+          log_file="$(mktemp)"
 
-          # Idempotency: if already published, treat as success
-          if grep -Eqi "already exists|unable to accept duplicate entry|version.*exists" "$LOG_FILE"; then
-            echo "Version already published on CocoaPods trunk; treating as success."
-            break
-          fi
+          while true; do
+            echo "Publishing ${spec} (attempt ${attempts}/${max_attempts})"
 
-          attempts=$((attempts+1))
-          echo "trunk push failed (attempt $attempts/$max_attempts), retrying..."
-          sleep $((attempts * 20))
-        done
+            if bundle exec pod trunk push "${spec}" --allow-warnings --skip-tests --synchronous 2>&1 | tee "${log_file}"; then
+              echo "Successfully published ${spec}"
+              return 0
+            fi
 
-        if [ $attempts -ge $max_attempts ]; then
-          echo "trunk push failed after $max_attempts attempts"
-          exit 1
-        fi
+            # Idempotency for manual reruns: consider duplicate version as success.
+            if grep -Eqi "already exists|unable to accept duplicate entry|version .* exists" "${log_file}"; then
+              echo "Version for ${spec} already exists on trunk; treating as success."
+              return 0
+            fi
 
+            if [ "${attempts}" -ge "${max_attempts}" ]; then
+              echo "pod trunk push failed after ${max_attempts} attempts for ${spec}"
+              return 1
+            fi
+
+            sleep_seconds=$((attempts * 20))
+            echo "pod trunk push failed for ${spec}; retrying in ${sleep_seconds}s..."
+            sleep "${sleep_seconds}"
+            attempts=$((attempts + 1))
+          done
+        }
+
+        push_with_retry "Backpack-Common.podspec"
         bundle exec pod repo update
       env:
         COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
@@ -93,33 +103,41 @@ jobs:
 
     - name: Publish Pods - Backpack UIKit
       run: |
-        set -eo pipefail
-        SPEC="Backpack.podspec" # change per job
-        LOG_FILE="$(mktemp)"
-        attempts=0
-        max_attempts=3
+        set -euo pipefail
 
-        while [ $attempts -lt $max_attempts ]; do
-          if bundle exec pod trunk push "$SPEC" --allow-warnings --skip-tests --synchronous 2>&1 | tee "$LOG_FILE"; then
-            break
-          fi
+        push_with_retry() {
+          local spec="$1"
+          local attempts=1
+          local max_attempts=3
+          local log_file
+          log_file="$(mktemp)"
 
-          # Idempotency: if already published, treat as success
-          if grep -Eqi "already exists|unable to accept duplicate entry|version.*exists" "$LOG_FILE"; then
-            echo "Version already published on CocoaPods trunk; treating as success."
-            break
-          fi
+          while true; do
+            echo "Publishing ${spec} (attempt ${attempts}/${max_attempts})"
 
-          attempts=$((attempts+1))
-          echo "trunk push failed (attempt $attempts/$max_attempts), retrying..."
-          sleep $((attempts * 20))
-        done
+            if bundle exec pod trunk push "${spec}" --allow-warnings --skip-tests --synchronous 2>&1 | tee "${log_file}"; then
+              echo "Successfully published ${spec}"
+              return 0
+            fi
 
-        if [ $attempts -ge $max_attempts ]; then
-          echo "trunk push failed after $max_attempts attempts"
-          exit 1
-        fi
+            if grep -Eqi "already exists|unable to accept duplicate entry|version .* exists" "${log_file}"; then
+              echo "Version for ${spec} already exists on trunk; treating as success."
+              return 0
+            fi
 
+            if [ "${attempts}" -ge "${max_attempts}" ]; then
+              echo "pod trunk push failed after ${max_attempts} attempts for ${spec}"
+              return 1
+            fi
+
+            sleep_seconds=$((attempts * 20))
+            echo "pod trunk push failed for ${spec}; retrying in ${sleep_seconds}s..."
+            sleep "${sleep_seconds}"
+            attempts=$((attempts + 1))
+          done
+        }
+
+        push_with_retry "Backpack.podspec"
         bundle exec pod repo update
       env:
         COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
@@ -147,33 +165,41 @@ jobs:
 
     - name: Publish Pods - Backpack SwiftUI
       run: |
-        set -eo pipefail
-        SPEC="Backpack-SwiftUI.podspec" # change per job
-        LOG_FILE="$(mktemp)"
-        attempts=0
-        max_attempts=3
+        set -euo pipefail
 
-        while [ $attempts -lt $max_attempts ]; do
-          if bundle exec pod trunk push "$SPEC" --allow-warnings --skip-tests --synchronous 2>&1 | tee "$LOG_FILE"; then
-            break
-          fi
+        push_with_retry() {
+          local spec="$1"
+          local attempts=1
+          local max_attempts=3
+          local log_file
+          log_file="$(mktemp)"
 
-          # Idempotency: if already published, treat as success
-          if grep -Eqi "already exists|unable to accept duplicate entry|version.*exists" "$LOG_FILE"; then
-            echo "Version already published on CocoaPods trunk; treating as success."
-            break
-          fi
+          while true; do
+            echo "Publishing ${spec} (attempt ${attempts}/${max_attempts})"
 
-          attempts=$((attempts+1))
-          echo "trunk push failed (attempt $attempts/$max_attempts), retrying..."
-          sleep $((attempts * 20))
-        done
+            if bundle exec pod trunk push "${spec}" --allow-warnings --skip-tests --synchronous 2>&1 | tee "${log_file}"; then
+              echo "Successfully published ${spec}"
+              return 0
+            fi
 
-        if [ $attempts -ge $max_attempts ]; then
-          echo "trunk push failed after $max_attempts attempts"
-          exit 1
-        fi
+            if grep -Eqi "already exists|unable to accept duplicate entry|version .* exists" "${log_file}"; then
+              echo "Version for ${spec} already exists on trunk; treating as success."
+              return 0
+            fi
 
+            if [ "${attempts}" -ge "${max_attempts}" ]; then
+              echo "pod trunk push failed after ${max_attempts} attempts for ${spec}"
+              return 1
+            fi
+
+            sleep_seconds=$((attempts * 20))
+            echo "pod trunk push failed for ${spec}; retrying in ${sleep_seconds}s..."
+            sleep "${sleep_seconds}"
+            attempts=$((attempts + 1))
+          done
+        }
+
+        push_with_retry "Backpack-SwiftUI.podspec"
         bundle exec pod repo update
       env:
         COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
