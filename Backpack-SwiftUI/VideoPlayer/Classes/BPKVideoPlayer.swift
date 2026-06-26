@@ -70,17 +70,6 @@ public struct BPKVideoPlayer<Overlay: View>: View {
         self.overlay = overlay
     }
 
-    // MARK: - Shared-controller inits
-
-    /// Creates a video player with built-in controls using a shared controller.
-    ///
-    /// Use this when you need continuous playback across view transitions — pass
-    /// the same `BPKVideoPlayerController` instance into multiple `BPKVideoPlayer` views.
-    public init(controller: BPKVideoPlayerController) where Overlay == BPKVideoPlayerDefaultControls {
-        _controller = ObservedObject(wrappedValue: controller)
-        self.overlay = { BPKVideoPlayerDefaultControls(controller: $0) }
-    }
-
     /// Creates a video player with a custom overlay using a shared controller.
     public init(
         controller: BPKVideoPlayerController,
