@@ -41,23 +41,18 @@ import SwiftUI
 /// BPKVideoPlayer(url: videoURL) { _ in EmptyView() }
 /// ```
 public struct BPKVideoPlayer<Overlay: View>: View {
-    // @ObservedObject is correct for both cases:
-    // - URL-based: we hold a strong reference in `_ownedController` to keep it alive
-    // - Shared: the caller owns the controller; we must not copy it into a StateObject
-    //   because StateObject ignores subsequent init parameter changes (SwiftUI identity rule).
+    // @ObservedObject is correct for both cases.
+    // - URL-based: the controller is created in init and retained by the ObservedObject wrapper
+    // - Shared: the caller owns the controller; StateObject would ignore subsequent init changes
     @ObservedObject private var controller: BPKVideoPlayerController
     private let overlay: (BPKVideoPlayerController) -> Overlay
-    // Retains the controller for URL-based inits where no external owner exists.
-    private let _ownedController: BPKVideoPlayerController?
 
     // MARK: - URL-based inits
 
     /// Creates a video player with built-in controls that owns its own controller.
     public init(url: URL, autoPlay: Bool = false, loop: Bool = false)
     where Overlay == BPKVideoPlayerDefaultControls {
-        let c = BPKVideoPlayerController(url: url, autoPlay: autoPlay, loop: loop)
-        _ownedController = c
-        _controller = ObservedObject(wrappedValue: c)
+        _controller = ObservedObject(wrappedValue: BPKVideoPlayerController(url: url, autoPlay: autoPlay, loop: loop))
         self.overlay = { BPKVideoPlayerDefaultControls(controller: $0) }
     }
 
@@ -71,9 +66,7 @@ public struct BPKVideoPlayer<Overlay: View>: View {
         loop: Bool = false,
         @ViewBuilder overlay: @escaping (BPKVideoPlayerController) -> Overlay
     ) {
-        let c = BPKVideoPlayerController(url: url, autoPlay: autoPlay, loop: loop)
-        _ownedController = c
-        _controller = ObservedObject(wrappedValue: c)
+        _controller = ObservedObject(wrappedValue: BPKVideoPlayerController(url: url, autoPlay: autoPlay, loop: loop))
         self.overlay = overlay
     }
 
@@ -84,7 +77,6 @@ public struct BPKVideoPlayer<Overlay: View>: View {
     /// Use this when you need continuous playback across view transitions — pass
     /// the same `BPKVideoPlayerController` instance into multiple `BPKVideoPlayer` views.
     public init(controller: BPKVideoPlayerController) where Overlay == BPKVideoPlayerDefaultControls {
-        _ownedController = nil
         _controller = ObservedObject(wrappedValue: controller)
         self.overlay = { BPKVideoPlayerDefaultControls(controller: $0) }
     }
@@ -94,7 +86,6 @@ public struct BPKVideoPlayer<Overlay: View>: View {
         controller: BPKVideoPlayerController,
         @ViewBuilder overlay: @escaping (BPKVideoPlayerController) -> Overlay
     ) {
-        _ownedController = nil
         _controller = ObservedObject(wrappedValue: controller)
         self.overlay = overlay
     }
@@ -111,26 +102,32 @@ public struct BPKVideoPlayer<Overlay: View>: View {
 
 // MARK: - Default controls
 
-/// The built-in play/pause button and loading spinner shown by `BPKVideoPlayer`
-/// when no custom overlay is provided.
+/// The built-in play/pause button shown by `BPKVideoPlayer` when no custom overlay
+/// is provided. Matches the Hotels homepage hero video design:
+/// 40×40 rounded-square button, top-right, white icon on 10% white background.
+/// Only visible once the video is ready — hidden while loading.
 public struct BPKVideoPlayerDefaultControls: View {
     @ObservedObject public var controller: BPKVideoPlayerController
 
     public var body: some View {
-        if controller.isLoading {
-            BPKSpinner(.lg, style: .onDarkSurface)
-                .accessibilityLabel("Loading video")
-        } else {
-            Button(action: controller.toggle) {
-                BPKIconView(controller.isPlaying ? .pause : .play, size: .large)
-                    .foregroundColor(.init(.textOnDarkColor))
-                    .padding(.sm)
-                    .background(Color(.scrimColor).opacity(0.6))
-                    .clipShape(Circle())
+        if !controller.isLoading {
+            VStack {
+                HStack {
+                    Spacer()
+                    Button(action: controller.toggle) {
+                        BPKIconView(controller.isPlaying ? .pause : .play, size: .large)
+                            .foregroundColor(.white)
+                            .frame(width: 40, height: 40)
+                            .background(Color.white.opacity(0.1))
+                            .clipShape(RoundedRectangle(cornerRadius: BPKCornerRadius.sm.value))
+                    }
+                    .accessibilityLabel(controller.isPlaying ? "Pause video" : "Play video")
+                    .accessibilityValue(controller.isPlaying ? "Playing" : "Paused")
+                    .accessibilityHint("Toggles video playback")
+                    .padding(.base)
+                }
+                Spacer()
             }
-            .accessibilityLabel(controller.isPlaying ? "Pause video" : "Play video")
-            .accessibilityValue(controller.isPlaying ? "Playing" : "Paused")
-            .accessibilityHint("Toggles video playback")
         }
     }
 }
