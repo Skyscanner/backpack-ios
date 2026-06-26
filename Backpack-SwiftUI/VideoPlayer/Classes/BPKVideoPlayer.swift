@@ -103,9 +103,7 @@ public struct BPKVideoPlayer<Overlay: View>: View {
 // MARK: - Default controls
 
 /// The built-in play/pause button shown by `BPKVideoPlayer` when no custom overlay
-/// is provided. Matches the Hotels homepage hero video design:
-/// 40×40 rounded-square button, top-right, white icon on 10% white background.
-/// Only visible once the video is ready — hidden while loading.
+/// is provided.
 public struct BPKVideoPlayerDefaultControls: View {
     @ObservedObject public var controller: BPKVideoPlayerController
 
