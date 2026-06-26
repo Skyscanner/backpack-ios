@@ -28,6 +28,13 @@ struct VideoPlayerGroupsProvider {
         SingleGroupProvider(
             cellDataSources: [
                 PresentableCellDataSource.custom(
+                    title: "Default controls",
+                    customController: {
+                        ContentUIHostingController(VideoDefaultExampleView())
+                    },
+                    showPresentable: showPresentable
+                ),
+                PresentableCellDataSource.custom(
                     title: "GraphicPromo with video",
                     customController: {
                         ContentUIHostingController(VideoGraphicPromoExampleView())

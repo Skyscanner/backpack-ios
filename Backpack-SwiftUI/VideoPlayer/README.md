@@ -17,7 +17,7 @@
 
 # Usage
 
-A scale-to-fill video player with no enforced aspect ratio. By default it shows a built-in play/pause button and loading spinner. Pass a custom `overlay` closure to replace them with your own UI — the live `BPKVideoPlayerController` is passed in so you can wire controls directly.
+A scale-to-fill video player with no enforced aspect ratio. By default it shows a built-in play/pause button. Pass a custom `overlay` closure to replace it with your own UI — the live `BPKVideoPlayerController` is passed in so you can wire controls directly.
 
 ## Simple — built-in controls
 
@@ -57,7 +57,7 @@ BPKVideoPlayer(url: videoURL, autoPlay: true) { controller in
         HStack {
             Spacer()
             Button(action: controller.toggle) {
-                Image(systemName: controller.isPlaying ? "pause.fill" : "play.fill")
+                Image(systemName: controller.state.isPlaying ? "pause.fill" : "play.fill")
                     .foregroundColor(.white)
             }
             .padding()
@@ -87,43 +87,48 @@ BPKGraphicPromo(
 )
 ```
 
-## Reacting to events
+## Playback state
 
-Subscribe to playback events via `addEventHandler`:
+`BPKVideoPlayerController` exposes a single `@Published state: BPKVideoPlayerState` that drives all UI. No separate flags needed.
 
 ```swift
-controller.addEventHandler { event in
-    switch event {
-    case .firstFrameRendered:
-        // Safe to hide your poster image — first decoded frame is visible
-        showPoster = false
-    case .failed(let error):
-        // Show an error state
-        print("Playback failed:", error)
-    default:
-        break
-    }
+switch controller.state {
+case .loading:
+    ProgressView()
+case .readyToPlay, .paused:
+    playButton
+case .playing:
+    pauseButton
+case .buffering:
+    ProgressView()
+case .failed(let error):
+    ErrorView(error: error)
 }
 ```
 
-### Event reference
+### State reference
 
-| Event | When it fires |
+| State | Meaning |
 | --- | --- |
-| `.loading` | Asset is being fetched / decoded |
-| `.readyToPlay` | Asset metadata ready — not yet visible |
-| `.firstFrameRendered` | First frame decoded **and visible** — safe to hide poster/spinner |
-| `.playing` | Playback started |
+| `.loading` | Asset is being fetched or decoded |
+| `.readyToPlay` | Asset ready — autoPlay will call `play()` if enabled |
+| `.playing` | Playback active |
 | `.paused` | Playback paused |
-| `.buffering` | Rebuffering during playback |
-| `.ended` | Playback reached the end (only when `loop: false`) |
+| `.buffering` | Rebuffering mid-playback |
 | `.failed(Error)` | Load failed or timed out |
+
+Convenience helpers on `BPKVideoPlayerState`:
+
+```swift
+controller.state.isPlaying  // true only when .playing
+controller.state.isLoading  // true for .loading and .buffering
+```
 
 ## Carousel use case — tap to play, reset on scroll
 
 ```swift
 BPKVideoPlayer(url: videoURL, autoPlay: false) { controller in
-    if !controller.isPlaying {
+    if !controller.state.isPlaying {
         Button("Play") { controller.play() }
     }
 }
@@ -138,5 +143,5 @@ The player uses `AVAudioSession.ambient` with `.mixWithOthers` so it never inter
 
 ## Accessibility
 
-- Reduced motion: autoplay is blocked and playback pauses when the user has enabled Reduce Motion in system settings.
+- Reduced motion: autoplay is blocked and playback pauses when the user enables Reduce Motion in system settings.
 - `BPKVideoPlayerDefaultControls` exposes `.accessibilityLabel`, `.accessibilityValue`, and `.accessibilityHint` on the play/pause button.
