@@ -30,7 +30,7 @@ final class BPKVideoPlayerTests: XCTestCase {
     /// Default controls — play button visible once video is ready (paused state).
     func test_defaultControls_paused() {
         let controller = BPKVideoPlayerController.stub()
-        controller.testOnly_setState(event: .readyToPlay, isPlaying: false)
+        controller.testOnly_setState(.readyToPlay)
         assertSnapshot(videoContainer { BPKVideoPlayerDefaultControls(controller: controller) })
     }
 

@@ -34,7 +34,7 @@ import SwiftUI
 ///
 /// // Custom overlay — e.g. as a BPKGraphicPromo background
 /// BPKVideoPlayer(controller: sharedController) { ctrl in
-///     MyPlayPauseButton(isPlaying: ctrl.isPlaying, onTap: ctrl.toggle)
+///     MyPlayPauseButton(isPlaying: ctrl.state.isPlaying, onTap: ctrl.toggle)
 /// }
 ///
 /// // No controls at all
@@ -108,16 +108,16 @@ public struct BPKVideoPlayerDefaultControls: View {
     @ObservedObject public var controller: BPKVideoPlayerController
 
     public var body: some View {
-        if !controller.isLoading {
+        if !controller.state.isLoading {
             Button(action: controller.toggle) {
-                BPKIconView(controller.isPlaying ? .pause : .play, size: .large)
+                BPKIconView(controller.state.isPlaying ? .pause : .play, size: .large)
                     .foregroundColor(.white)
                     .frame(width: 40, height: 40)
                     .background(Color.white.opacity(0.1))
                     .clipShape(RoundedRectangle(cornerRadius: BPKCornerRadius.sm.value))
             }
-            .accessibilityLabel(controller.isPlaying ? "Pause video" : "Play video")
-            .accessibilityValue(controller.isPlaying ? "Playing" : "Paused")
+            .accessibilityLabel(controller.state.isPlaying ? "Pause video" : "Play video")
+            .accessibilityValue(controller.state.isPlaying ? "Playing" : "Paused")
             .accessibilityHint("Toggles video playback")
             .padding(.base)
         }

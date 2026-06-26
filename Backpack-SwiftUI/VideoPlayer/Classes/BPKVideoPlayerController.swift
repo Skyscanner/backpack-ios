@@ -19,233 +19,184 @@
 import AVFoundation
 import UIKit
 
+// MARK: - Playback state
+
+/// The current playback state of a `BPKVideoPlayerController`.
+/// A single published value drives all UI — no separate `isPlaying`/`isLoading` flags needed.
+public enum BPKVideoPlayerState: Equatable {
+    case loading
+    case readyToPlay
+    case playing
+    case paused
+    case buffering
+    case failed(Error)
+
+    public var isLoading: Bool {
+        self == .loading || self == .buffering
+    }
+
+    public var isPlaying: Bool {
+        self == .playing
+    }
+
+    public static func == (lhs: BPKVideoPlayerState, rhs: BPKVideoPlayerState) -> Bool {
+        switch (lhs, rhs) {
+        case (.loading, .loading), (.readyToPlay, .readyToPlay),
+             (.playing, .playing), (.paused, .paused), (.buffering, .buffering):
+            return true
+        case (.failed, .failed):
+            return true
+        default:
+            return false
+        }
+    }
+}
+
+// MARK: - Controller
+
 /// Shareable player controller. Owns one AVPlayer instance and can be injected
 /// into multiple views simultaneously for continuous playback across transitions.
 public final class BPKVideoPlayerController: ObservableObject {
+
     /// The underlying AVPlayer instance.
     ///
-    /// - Warning: Do not call `player.play()` or `player.pause()` directly.
-    ///   Use the `play()`, `pause()`, and `toggle()` methods instead so that
-    ///   lifecycle state (`wasPlayingBeforeBackground`, `isPlaying`) stays consistent.
+    /// - Warning: Use `play()`, `pause()`, and `toggle()` rather than calling
+    ///   `player.play()`/`player.pause()` directly — direct calls bypass state tracking.
     public let player: AVPlayer
 
-    @Published public private(set) var isPlaying: Bool = false
-    @Published public private(set) var event: BPKVideoPlayerEvent = .loading
+    /// The current playback state. Drives all UI — spinner, play/pause icon, error view.
+    @Published public private(set) var state: BPKVideoPlayerState = .loading
 
-    /// True while the video is loading or rebuffering — use to drive a spinner.
-    public var isLoading: Bool {
-        event == .loading || event == .buffering
-    }
-
-    private let shouldAutoPlay: Bool
-    private let shouldLoop: Bool
+    private let autoPlay: Bool
+    private let loop: Bool
     private let loadTimeout: TimeInterval
 
     private var playerLooper: AVPlayerLooper?
-    private var currentItemObservation: NSKeyValueObservation?
-    private var statusObservation: NSKeyValueObservation?
+    private var itemStatusObservation: NSKeyValueObservation?
     private var timeControlObservation: NSKeyValueObservation?
-    private var reduceMotionObserver: NSObjectProtocol?
-    private var foregroundObserver: NSObjectProtocol?
-    private var backgroundObserver: NSObjectProtocol?
-    private var eventHandlers: [(BPKVideoPlayerEvent) -> Void] = []
+    private var currentItemObservation: NSKeyValueObservation?
     private var loadTimeoutTask: DispatchWorkItem?
-
-    // Tracks whether we were playing before backgrounding so foreground resume
-    // works correctly — pause() sets isPlaying = false via timeControlStatus,
-    // which would otherwise prevent the foreground resume guard from firing.
-    private var wasPlayingBeforeBackground = false
+    private var lifecycleTokens: [NSObjectProtocol] = []
 
     // MARK: - Init
 
     public init(url: URL, autoPlay: Bool = true, loop: Bool = true, loadTimeout: TimeInterval = 7) {
-        self.shouldAutoPlay = autoPlay
-        self.shouldLoop = loop
+        self.autoPlay = autoPlay
+        self.loop = loop
         self.loadTimeout = loadTimeout
 
-        let asset = AVAsset(url: url)
-        let templateItem = AVPlayerItem(asset: asset)
-
+        let item = AVPlayerItem(asset: AVAsset(url: url))
         if loop {
             let queuePlayer = AVQueuePlayer()
-            self.player = queuePlayer
-            // AVPlayerLooper manages its own item copies — observe currentItem instead
-            self.playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: templateItem)
+            player = queuePlayer
+            playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: item)
         } else {
-            self.player = AVPlayer(playerItem: templateItem)
+            player = AVPlayer(playerItem: item)
         }
 
-        setupObservations()
-        setupReduceMotionObserver()
+        observePlayer()
         configureAudioSession()
-        setupLifecycleObservers()
+        observeLifecycle()
     }
 
     deinit {
-        currentItemObservation?.invalidate()
-        statusObservation?.invalidate()
+        itemStatusObservation?.invalidate()
         timeControlObservation?.invalidate()
-        [reduceMotionObserver, foregroundObserver, backgroundObserver]
-            .compactMap { $0 }
-            .forEach { NotificationCenter.default.removeObserver($0) }
-        // Do NOT call setActive(false) here — the audio session is process-wide
-        // and deactivating it would affect other controllers and unrelated audio.
+        currentItemObservation?.invalidate()
+        loadTimeoutTask?.cancel()
+        lifecycleTokens.forEach { NotificationCenter.default.removeObserver($0) }
     }
 
     // MARK: - Public controls
 
-    /// Start playback. No-op when reduce motion is enabled.
     public func play() {
         guard !UIAccessibility.isReduceMotionEnabled else { return }
         player.play()
     }
 
-    /// Pause playback.
     public func pause() {
         player.pause()
     }
 
-    /// Toggle between play and pause.
     public func toggle() {
-        isPlaying ? pause() : play()
+        state.isPlaying ? pause() : play()
     }
 
-    /// Seek to a specific time.
     public func seek(to time: CMTime) {
         player.seek(to: time, toleranceBefore: .zero, toleranceAfter: .zero)
     }
 
-    /// Pause and seek back to the beginning. Useful for carousel items that should
-    /// show the first frame when they scroll back into view.
+    /// Pause and seek to the beginning — use for carousel items that reset on scroll-off.
     public func resetToStart() {
         pause()
         seek(to: .zero)
     }
 
-    /// Register a handler called on every event. Multiple handlers are all called.
-    public func addEventHandler(_ handler: @escaping (BPKVideoPlayerEvent) -> Void) {
-        eventHandlers.append(handler)
-    }
+    // MARK: - Private
 
-    // MARK: - Internal (called by PlayerLayerView)
-
-    /// Called by `PlayerLayerView` when `AVPlayerLayer.isReadyForDisplay` first becomes true.
-    func notifyFirstFrameRendered() {
-        emit(.firstFrameRendered)
-    }
-
-    // MARK: - Private setup
-
-    private func setupObservations() {
-        currentItemObservation = player.observe(\.currentItem, options: [.new, .initial]) { [weak self] player, _ in
-            DispatchQueue.main.async {
-                self?.observeCurrentItemStatus(player.currentItem)
-            }
-        }
-
+    private func observePlayer() {
+        // timeControlStatus is the primary playing/paused/buffering signal
         timeControlObservation = player.observe(\.timeControlStatus, options: [.new]) { [weak self] player, _ in
-            DispatchQueue.main.async {
-                self?.handleTimeControlStatus(player.timeControlStatus)
-            }
+            DispatchQueue.main.async { self?.handle(timeControlStatus: player.timeControlStatus) }
+        }
+
+        // currentItem changes when AVPlayerLooper swaps in a new copy — re-observe status
+        currentItemObservation = player.observe(\.currentItem, options: [.new, .initial]) { [weak self] player, _ in
+            DispatchQueue.main.async { self?.observeItemStatus(player.currentItem) }
         }
     }
 
-    private func observeCurrentItemStatus(_ item: AVPlayerItem?) {
-        statusObservation?.invalidate()
+    private func observeItemStatus(_ item: AVPlayerItem?) {
+        itemStatusObservation?.invalidate()
         guard let item else { return }
-
-        statusObservation = item.observe(\.status, options: [.new, .initial]) { [weak self] item, _ in
-            DispatchQueue.main.async {
-                self?.handleItemStatus(item.status)
-            }
+        itemStatusObservation = item.observe(\.status, options: [.new, .initial]) { [weak self] item, _ in
+            DispatchQueue.main.async { self?.handle(itemStatus: item.status) }
         }
     }
 
-    private func setupReduceMotionObserver() {
-        reduceMotionObserver = NotificationCenter.default.addObserver(
-            forName: UIAccessibility.reduceMotionStatusDidChangeNotification,
-            object: nil,
-            queue: .main
-        ) { [weak self] _ in
-            if UIAccessibility.isReduceMotionEnabled {
-                self?.pause()
-            }
-        }
-    }
-
-    private func configureAudioSession() {
-        // Use .ambient so the player does not interrupt the user's background music.
-        // We only set the category — we do not call setActive(false) on deinit because
-        // the session is process-wide and deactivating it would affect other audio.
-        try? AVAudioSession.sharedInstance().setCategory(.ambient, mode: .default, options: [.mixWithOthers])
-        try? AVAudioSession.sharedInstance().setActive(true)
-    }
-
-    private func setupLifecycleObservers() {
-        backgroundObserver = NotificationCenter.default.addObserver(
-            forName: UIScene.didEnterBackgroundNotification,
-            object: nil,
-            queue: .main
-        ) { [weak self] _ in
-            guard let self else { return }
-            // Snapshot isPlaying before pausing — pause() will set it to false
-            // via timeControlStatus, which would break the foreground resume guard.
-            self.wasPlayingBeforeBackground = self.isPlaying
-            self.pause()
-        }
-
-        foregroundObserver = NotificationCenter.default.addObserver(
-            forName: UIScene.willEnterForegroundNotification,
-            object: nil,
-            queue: .main
-        ) { [weak self] _ in
-            guard let self, self.wasPlayingBeforeBackground else { return }
-            self.wasPlayingBeforeBackground = false
-            self.play()
-        }
-    }
-
-    private func handleItemStatus(_ status: AVPlayerItem.Status) {
-        switch status {
+    private func handle(itemStatus: AVPlayerItem.Status) {
+        switch itemStatus {
         case .readyToPlay:
             loadTimeoutTask?.cancel()
-            emit(.readyToPlay)
-            if shouldAutoPlay && !UIAccessibility.isReduceMotionEnabled {
-                play()
-            }
+            transition(to: .readyToPlay)
+            if autoPlay && !UIAccessibility.isReduceMotionEnabled { play() }
         case .failed:
             loadTimeoutTask?.cancel()
             let error = player.currentItem?.error ?? NSError(domain: "BPKVideoPlayer", code: -1)
-            emit(.failed(error))
+            transition(to: .failed(error))
         case .unknown:
-            emit(.loading)
-            scheduleLoadTimeout()
+            transition(to: .loading)
+            scheduleTimeout()
         @unknown default:
             break
         }
     }
 
-    private func handleTimeControlStatus(_ status: AVPlayer.TimeControlStatus) {
-        switch status {
+    private func handle(timeControlStatus: AVPlayer.TimeControlStatus) {
+        switch timeControlStatus {
         case .playing:
-            isPlaying = true
-            emit(.playing)
+            transition(to: .playing)
         case .paused:
-            isPlaying = false
-            if event == .playing { emit(.paused) }
+            // Suppress .paused during initial load — only meaningful after we were playing
+            if state == .playing { transition(to: .paused) }
         case .waitingToPlayAtSpecifiedRate:
-            emit(.buffering)
+            transition(to: .buffering)
         @unknown default:
             break
         }
     }
 
-    private func scheduleLoadTimeout() {
+    private func transition(to newState: BPKVideoPlayerState) {
+        guard state != newState else { return }
+        state = newState
+    }
+
+    private func scheduleTimeout() {
         loadTimeoutTask?.cancel()
         guard loadTimeout > 0 else { return }
         let task = DispatchWorkItem { [weak self] in
-            guard let self, self.event == .loading || self.event == .buffering else { return }
-            self.emit(.failed(NSError(
+            guard let self, self.state.isLoading else { return }
+            self.transition(to: .failed(NSError(
                 domain: "BPKVideoPlayer",
                 code: NSURLErrorTimedOut,
                 userInfo: [NSLocalizedDescriptionKey: "Video load timed out"]
@@ -255,14 +206,36 @@ public final class BPKVideoPlayerController: ObservableObject {
         DispatchQueue.main.asyncAfter(deadline: .now() + loadTimeout, execute: task)
     }
 
-    private func emit(_ newEvent: BPKVideoPlayerEvent) {
-        event = newEvent
-        eventHandlers.forEach { $0(newEvent) }
+    private func configureAudioSession() {
+        try? AVAudioSession.sharedInstance().setCategory(.ambient, mode: .default, options: [.mixWithOthers])
+        try? AVAudioSession.sharedInstance().setActive(true)
     }
 
-    /// Test-only — forces published state for snapshot testing without AVFoundation.
-    func testOnly_setState(event: BPKVideoPlayerEvent, isPlaying: Bool) {
-        self.event = event
-        self.isPlaying = isPlaying
+    private func observeLifecycle() {
+        // Pause on background, resume on foreground — no flag needed, just react
+        lifecycleTokens = [
+            NotificationCenter.default.addObserver(
+                forName: UIScene.didEnterBackgroundNotification,
+                object: nil, queue: .main
+            ) { [weak self] _ in self?.pause() },
+
+            NotificationCenter.default.addObserver(
+                forName: UIScene.didActivateNotification,
+                object: nil, queue: .main
+            ) { [weak self] _ in self?.play() },
+
+            NotificationCenter.default.addObserver(
+                forName: UIAccessibility.reduceMotionStatusDidChangeNotification,
+                object: nil, queue: .main
+            ) { [weak self] _ in
+                if UIAccessibility.isReduceMotionEnabled { self?.pause() }
+            }
+        ]
+    }
+
+    // MARK: - Test support
+
+    func testOnly_setState(_ newState: BPKVideoPlayerState) {
+        state = newState
     }
 }

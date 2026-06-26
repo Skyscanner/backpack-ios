@@ -80,7 +80,7 @@ struct VideoGraphicPromoExampleView: View {
                     .padding(.lg)
             }
             .overlay {
-                if controller.isLoading {
+                if controller.state.isLoading {
                     BPKSpinner(.lg, style: .onDarkSurface)
                 }
             }
@@ -90,14 +90,14 @@ struct VideoGraphicPromoExampleView: View {
 
     private var playPauseButton: some View {
         Button(action: controller.toggle) {
-            BPKIconView(controller.isPlaying ? .pause : .play, size: .large)
+            BPKIconView(controller.state.isPlaying ? .pause : .play, size: .large)
                 .foregroundColor(.init(.textOnDarkColor))
                 .padding(.md)
                 .background(Color(.scrimColor).opacity(0.6))
                 .clipShape(Circle())
         }
-        .accessibilityLabel(controller.isPlaying ? "Pause video" : "Play video")
-        .accessibilityValue(controller.isPlaying ? "Playing" : "Paused")
+        .accessibilityLabel(controller.state.isPlaying ? "Pause video" : "Play video")
+        .accessibilityValue(controller.state.isPlaying ? "Playing" : "Paused")
         .accessibilityHint("Toggles video playback")
     }
 }
