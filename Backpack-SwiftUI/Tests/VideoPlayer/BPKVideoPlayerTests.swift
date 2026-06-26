@@ -17,135 +17,65 @@
  */
 
 import XCTest
-import AVFoundation
 import SwiftUI
 @testable import Backpack_SwiftUI
 
 final class BPKVideoPlayerTests: XCTestCase {
 
-    // MARK: - PlayerLayerView: initial configuration
-
-    func test_playerLayerView_startsInvisible() {
-        let sut = PlayerLayerView()
-        XCTAssertEqual(sut.playerLayer.opacity, 0, "Layer must be invisible until first frame to prevent black flash")
-    }
-
-    func test_playerLayerView_gravityIsAspectFill() {
-        let sut = PlayerLayerView()
-        XCTAssertEqual(sut.playerLayer.videoGravity, .resizeAspectFill, "Scale-to-fill is a hard requirement")
-    }
-
-    func test_playerLayerView_clipsSubviews() {
-        let sut = PlayerLayerView()
-        XCTAssertTrue(sut.clipsToBounds, "Must clip to prevent video bleeding outside its container")
-    }
-
-    func test_playerLayerView_intrinsicSizeIsNoMetric() {
-        let sut = PlayerLayerView()
-        XCTAssertEqual(sut.intrinsicContentSize.width, UIView.noIntrinsicMetric)
-        XCTAssertEqual(sut.intrinsicContentSize.height, UIView.noIntrinsicMetric)
-    }
-
-    // MARK: - PlayerLayerView: first frame callback
-
-    func test_playerLayerView_onFirstFrameRendered_firesOnce() {
-        let sut = PlayerLayerView()
-        var callCount = 0
-        sut.onFirstFrameRendered = { callCount += 1 }
-
-        sut.simulateFirstFrameReady()
-        XCTAssertEqual(callCount, 1)
-
-        // Second call must be a no-op — guard against double-emit
-        sut.simulateFirstFrameReady()
-        XCTAssertEqual(callCount, 1, "onFirstFrameRendered must fire exactly once")
-    }
-
-    func test_playerLayerView_becomesVisibleAfterFirstFrame() {
-        let sut = PlayerLayerView()
-        XCTAssertEqual(sut.playerLayer.opacity, 0)
-        sut.simulateFirstFrameReady()
-        // Opacity is set inside a CATransaction — model value is 1 immediately after commit.
-        XCTAssertEqual(sut.playerLayer.opacity, 1)
-    }
-
-    // MARK: - PlayerLayerView: layout
-
-    func test_playerLayerView_frameMatchesBoundsAfterLayout() {
-        let sut = PlayerLayerView(frame: CGRect(x: 0, y: 0, width: 375, height: 500))
-        sut.layoutIfNeeded()
-        XCTAssertEqual(sut.playerLayer.frame, sut.bounds)
-    }
-
     // MARK: - Snapshot: overlay UI
     //
-    // The video surface is replaced with a solid colour so the overlay controls
-    // are clearly visible against a stable background. These snapshots verify
-    // the layout and appearance of the overlay API, not the video rendering.
+    // Video surface replaced with a solid colour — tests overlay layout and
+    // appearance, not video rendering.
 
-    /// Default controls — built-in centred play button (paused, ready to play).
+    /// Default controls — play button visible once video is ready (paused state).
     func test_defaultControls_paused() {
         let controller = BPKVideoPlayerController.stub()
         controller.testOnly_setState(event: .readyToPlay, isPlaying: false)
-        let sut = videoContainer {
-            BPKVideoPlayerDefaultControls(controller: controller)
-        }
-        assertSnapshot(sut)
+        assertSnapshot(videoContainer { BPKVideoPlayerDefaultControls(controller: controller) })
     }
 
-    /// Default controls — spinner shown while video is loading.
+    /// Default controls — nothing shown while loading (consumer owns poster/spinner).
     func test_defaultControls_loading() {
         let controller = BPKVideoPlayerController.stub()
-        // controller starts with event = .loading by default
-        let sut = videoContainer {
-            BPKVideoPlayerDefaultControls(controller: controller)
-        }
-        assertSnapshot(sut)
+        assertSnapshot(videoContainer { BPKVideoPlayerDefaultControls(controller: controller) })
     }
 
     /// Custom overlay — consumer-provided control in the bottom-trailing corner.
     func test_customOverlay_cornerControl() {
-        let sut = videoContainer {
+        assertSnapshot(videoContainer {
             VStack {
                 Spacer()
                 HStack {
                     Spacer()
                     Button(action: {}) {
                         BPKIconView(.play, size: .large)
-                            .foregroundColor(.init(.textOnDarkColor))
-                            .padding(.sm)
-                            .background(Color(.scrimColor).opacity(0.6))
-                            .clipShape(Circle())
+                            .foregroundColor(.white)
+                            .frame(width: 40, height: 40)
+                            .background(Color.white.opacity(0.1))
+                            .clipShape(RoundedRectangle(cornerRadius: BPKCornerRadius.sm.value))
                     }
                     .accessibilityLabel("Play video")
-                    .padding(.md)
+                    .padding(.base)
                 }
             }
-        }
-        assertSnapshot(sut)
+        })
     }
 
     // MARK: - Private
 
-    private func videoContainer<Overlay: View>(@ViewBuilder overlay: () -> Overlay) -> some View {
+    private func videoContainer<Overlay: View>(@ViewBuilder _ overlay: () -> Overlay) -> some View {
         ZStack {
-            Color(.surfaceHighlightColor) // stands in for the video surface
+            Color(.surfaceHighlightColor)
             overlay()
         }
         .frame(width: 375, height: 500)
     }
-
 }
 
 // MARK: - Test helpers
 
 private extension BPKVideoPlayerController {
-    /// Stub for snapshot tests — uses an invalid URL so AVFoundation stays idle
-    /// and published state can be set freely via testOnly_setState.
     static func stub() -> BPKVideoPlayerController {
-        BPKVideoPlayerController(
-            url: URL(string: "data:video/mp4,stub")!,
-            autoPlay: false, loop: false
-        )
+        BPKVideoPlayerController(url: URL(string: "data:video/mp4,stub")!, autoPlay: false, loop: false)
     }
 }

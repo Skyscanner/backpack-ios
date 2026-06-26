@@ -21,9 +21,9 @@ import SwiftUI
 
 // MARK: - BPKVideoPlayer
 
-/// A SwiftUI video player. By default it shows built-in play/pause controls
-/// and a loading spinner. Pass a custom `overlay` closure to replace them with
-/// your own UI — the controller is passed in so you can wire up your controls.
+/// A SwiftUI video player. By default it shows built-in play/pause controls.
+/// Pass a custom `overlay` closure to replace them with your own UI — the
+/// controller is passed in so you can wire up your controls directly.
 ///
 /// ```swift
 /// // Simple — built-in controls
@@ -94,7 +94,7 @@ public struct BPKVideoPlayer<Overlay: View>: View {
 
     public var body: some View {
         ZStack {
-            BPKVideoPlayerRenderingSurface(controller: controller)
+            BPKVideoPlayerRenderingSurface(player: controller.player)
             overlay(controller)
         }
     }
@@ -103,7 +103,7 @@ public struct BPKVideoPlayer<Overlay: View>: View {
 // MARK: - Default controls
 
 /// The built-in play/pause button shown by `BPKVideoPlayer` when no custom overlay
-/// is provided.
+/// is provided. Hidden while the video is loading — visible once ready.
 public struct BPKVideoPlayerDefaultControls: View {
     @ObservedObject public var controller: BPKVideoPlayerController
 
@@ -126,96 +126,38 @@ public struct BPKVideoPlayerDefaultControls: View {
 
 // MARK: - Rendering surface (internal)
 
-/// Internal UIViewRepresentable that hosts AVPlayerLayer inside SwiftUI.
-///
-/// AVPlayerLayer is a CALayer subclass and must live inside a UIView to participate
-/// in Core Animation. This is the standard bridge pattern for CALayer content.
-///
-/// The layer starts invisible (opacity 0) to prevent the black frame that appears
-/// while HLS loads its first segment. AVPlayerLayer.isReadyForDisplay is the only
-/// reliable signal that a decoded frame is ready — the layer fades in at that point
-/// and the controller emits .firstFrameRendered so consumers can hide poster images
-/// without a visible flash.
+/// Hosts an AVPlayerLayer as a sublayer of a plain UIView — the same approach
+/// used in the Marketing Opt-in and Hotels video implementations in the main app.
+/// AVPlayerLayer is a CALayer and must be embedded in a UIView for Core Animation.
 struct BPKVideoPlayerRenderingSurface: UIViewRepresentable {
-    let controller: BPKVideoPlayerController
+    let player: AVPlayer
 
-    func makeUIView(context: Context) -> PlayerLayerView {
-        let view = PlayerLayerView()
-        view.playerLayer.player = controller.player
-        view.onFirstFrameRendered = { [weak controller] in
-            controller?.notifyFirstFrameRendered()
-        }
-        return view
+    func makeUIView(context: Context) -> VideoSurfaceView {
+        VideoSurfaceView(player: player)
     }
 
-    func updateUIView(_ uiView: PlayerLayerView, context: Context) {
-        uiView.playerLayer.player = controller.player
+    func updateUIView(_ uiView: VideoSurfaceView, context: Context) {
+        uiView.playerLayer.player = player
     }
 }
 
-// MARK: - PlayerLayerView
+/// Plain UIView that keeps its AVPlayerLayer sublayer sized to bounds.
+final class VideoSurfaceView: UIView {
+    let playerLayer: AVPlayerLayer
 
-final class PlayerLayerView: UIView {
-    override class var layerClass: AnyClass { AVPlayerLayer.self }
-
-    var playerLayer: AVPlayerLayer { layer as! AVPlayerLayer } // swiftlint:disable:this force_cast
-
-    /// Called exactly once when the first video frame is visible on screen.
-    var onFirstFrameRendered: (() -> Void)?
-
-    private var readyForDisplayObservation: NSKeyValueObservation?
-    private var hasNotifiedFirstFrame = false
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(player: AVPlayer) {
+        playerLayer = AVPlayerLayer(player: player)
         playerLayer.videoGravity = .resizeAspectFill
-        playerLayer.opacity = 0
+        super.init(frame: .zero)
         clipsToBounds = true
-        observeReadyForDisplay()
+        layer.addSublayer(playerLayer)
     }
 
     @available(*, unavailable)
     required init?(coder: NSCoder) { fatalError() }
 
-    deinit {
-        readyForDisplayObservation?.invalidate()
-    }
-
-    override var intrinsicContentSize: CGSize {
-        CGSize(width: UIView.noIntrinsicMetric, height: UIView.noIntrinsicMetric)
-    }
-
     override func layoutSubviews() {
         super.layoutSubviews()
-        // Disable implicit CALayer animation so the frame snaps to fill immediately
-        // rather than interpolating from the video's native size (causes letterbox hiccup).
-        CATransaction.begin()
-        CATransaction.setDisableActions(true)
         playerLayer.frame = bounds
-        CATransaction.commit()
-    }
-
-    private func observeReadyForDisplay() {
-        readyForDisplayObservation = playerLayer.observe(\.isReadyForDisplay, options: [.new, .initial]) { [weak self] layer, _ in
-            guard layer.isReadyForDisplay else { return }
-            DispatchQueue.main.async {
-                self?.handleFirstFrameReady()
-            }
-        }
-    }
-
-    private func handleFirstFrameReady() {
-        guard !hasNotifiedFirstFrame else { return }
-        hasNotifiedFirstFrame = true
-        CATransaction.begin()
-        CATransaction.setAnimationDuration(0.15)
-        playerLayer.opacity = 1
-        CATransaction.commit()
-        onFirstFrameRendered?()
-    }
-
-    /// Test-only hook — simulates `isReadyForDisplay` becoming true without AVFoundation.
-    func simulateFirstFrameReady() {
-        handleFirstFrameReady()
     }
 }
