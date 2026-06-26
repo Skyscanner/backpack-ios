@@ -27,6 +27,26 @@ private enum SampleVideo {
 
 }
 
+// MARK: - Use case 0: Just video with default play/pause button
+
+struct VideoDefaultExampleView: View {
+    @StateObject private var controller = BPKVideoPlayerController(
+        url: SampleVideo.url,
+        autoPlay: true,
+        loop: true
+    )
+    
+    var body: some View {
+        BPKVideoPlayer(url: SampleVideo.url)
+            .aspectRatio(16/9, contentMode: .fit)
+            .background(
+                Rectangle()
+                    .foregroundColor(.surfaceSubtleColor)
+            )
+            .padding(.md)
+    }
+}
+
 // MARK: - Use case 1: GraphicPromo with video background + wired play/pause
 
 struct VideoGraphicPromoExampleView: View {
@@ -163,6 +183,9 @@ struct VideoContinuousPlaybackExampleView: View {
 struct VideoPlayerExampleView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
+            VideoDefaultExampleView()
+                .previewDisplayName("0 · Default controls")
+            
             VideoGraphicPromoExampleView()
                 .previewDisplayName("1 · GraphicPromo with video")
 

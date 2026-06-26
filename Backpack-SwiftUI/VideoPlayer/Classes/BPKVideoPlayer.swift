@@ -111,23 +111,17 @@ public struct BPKVideoPlayerDefaultControls: View {
 
     public var body: some View {
         if !controller.isLoading {
-            VStack {
-                HStack {
-                    Spacer()
-                    Button(action: controller.toggle) {
-                        BPKIconView(controller.isPlaying ? .pause : .play, size: .large)
-                            .foregroundColor(.white)
-                            .frame(width: 40, height: 40)
-                            .background(Color.white.opacity(0.1))
-                            .clipShape(RoundedRectangle(cornerRadius: BPKCornerRadius.sm.value))
-                    }
-                    .accessibilityLabel(controller.isPlaying ? "Pause video" : "Play video")
-                    .accessibilityValue(controller.isPlaying ? "Playing" : "Paused")
-                    .accessibilityHint("Toggles video playback")
-                    .padding(.base)
-                }
-                Spacer()
+            Button(action: controller.toggle) {
+                BPKIconView(controller.isPlaying ? .pause : .play, size: .large)
+                    .foregroundColor(.white)
+                    .frame(width: 40, height: 40)
+                    .background(Color.white.opacity(0.1))
+                    .clipShape(RoundedRectangle(cornerRadius: BPKCornerRadius.sm.value))
             }
+            .accessibilityLabel(controller.isPlaying ? "Pause video" : "Play video")
+            .accessibilityValue(controller.isPlaying ? "Playing" : "Paused")
+            .accessibilityHint("Toggles video playback")
+            .padding(.base)
         }
     }
 }
