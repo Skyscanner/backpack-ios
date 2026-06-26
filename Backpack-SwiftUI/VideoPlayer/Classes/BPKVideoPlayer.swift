@@ -129,7 +129,7 @@ public struct BPKVideoPlayerDefaultControls: View {
 /// Hosts an AVPlayerLayer as a sublayer of a plain UIView — the same approach
 /// used in the Marketing Opt-in and Hotels video implementations in the main app.
 /// AVPlayerLayer is a CALayer and must be embedded in a UIView for Core Animation.
-struct BPKVideoPlayerRenderingSurface: UIViewRepresentable {
+fileprivate struct BPKVideoPlayerRenderingSurface: UIViewRepresentable {
     let player: AVPlayer
 
     func makeUIView(context: Context) -> VideoSurfaceView {
@@ -142,7 +142,7 @@ struct BPKVideoPlayerRenderingSurface: UIViewRepresentable {
 }
 
 /// Plain UIView that keeps its AVPlayerLayer sublayer sized to bounds.
-final class VideoSurfaceView: UIView {
+fileprivate final class VideoSurfaceView: UIView {
     let playerLayer: AVPlayerLayer
 
     init(player: AVPlayer) {
