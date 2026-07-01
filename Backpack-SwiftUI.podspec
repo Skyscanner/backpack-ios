@@ -46,7 +46,7 @@ Pod::Spec.new do |s|
     test_spec.dependency 'SnapshotTesting', '~> 1.9.0'
     test_spec.source_files = 'Backpack-SwiftUI/Tests/**/*.{swift}'
     test_spec.ios.resource_bundle = {
-      'UnitTestsImages' => 'Backpack-SwiftUI/Tests/Images*'
+      'UnitTestsImages' => ['Backpack-SwiftUI/Tests/Images*', 'Backpack-SwiftUI/Tests/skyscanner_test.mp4']
     }
   end  
 end

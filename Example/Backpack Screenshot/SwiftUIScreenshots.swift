@@ -574,6 +574,20 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             await switchTab(title: "SwiftUI")
             saveScreenshot(component: "cell-item", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
+
+        await navigate(title: "Video player") {
+            await switchTab(title: "SwiftUI")
+
+            app.tables.staticTexts["Default controls"].tap()
+            await waitForStability()
+            saveScreenshot(component: "video-player", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+
+            app.tables.staticTexts["GraphicPromo with video"].tap()
+            await waitForStability()
+            saveScreenshot(component: "video-player", scenario: "graphic-promo", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
     }
 
     // MARK: - Helper Methods

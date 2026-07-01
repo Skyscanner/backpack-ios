@@ -102,7 +102,8 @@ struct ComponentCellsProvider {
             textArea(),
             textField(),
             textViews(),
-            toasts(duration: toastDuration)
+            toasts(duration: toastDuration),
+            videoPlayer()
         ]
         return dataSources.map(\.cell)
     }
@@ -842,6 +843,18 @@ extension ComponentCellsProvider {
                 .swiftui(groups: DynamicLayoutGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "Dynamic Layout", tabs: $0) }
+        )
+    }
+}
+
+extension ComponentCellsProvider {
+    private func videoPlayer() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Video player",
+            tabs: [
+                .swiftui(groups: VideoPlayerGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
+            ],
+            showChildren: { showComponent(title: "Video player", tabs: $0) }
         )
     }
 }
