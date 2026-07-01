@@ -224,6 +224,9 @@
 		F00CA3D9299D53450027ACE7 /* FloatingNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00CA3D8299D53450027ACE7 /* FloatingNotificationViewController.swift */; };
 		F00F15692993F24700213F0D /* CarouselViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F15682993F24700213F0D /* CarouselViewController.swift */; };
 		F2E2627E2F57004200A9B1B2 /* SwapExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E2627C2F57004200A9B1B2 /* SwapExampleView.swift */; };
+			19BD13EA315D4D8384B06952 /* VideoPlayerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D34A7DD97A4C479E8A754F /* VideoPlayerExampleView.swift */; };
+			5789F583F7544B5ABE879737 /* VideoPlayerGroupsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBED587B34934EE5912B14BC /* VideoPlayerGroupsProvider.swift */; };
+			EAE469A72FE3EDD70024EDA6 /* CheckboxExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE469A62FE3EDD70024EDA6 /* CheckboxExampleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -471,6 +474,9 @@
 		F00CA3D8299D53450027ACE7 /* FloatingNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingNotificationViewController.swift; sourceTree = "<group>"; };
 		F00F15682993F24700213F0D /* CarouselViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarouselViewController.swift; sourceTree = "<group>"; };
 		F2E2627C2F57004200A9B1B2 /* SwapExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapExampleView.swift; sourceTree = "<group>"; };
+		68D34A7DD97A4C479E8A754F /* VideoPlayerExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerExampleView.swift; sourceTree = "<group>"; };
+		FBED587B34934EE5912B14BC /* VideoPlayerGroupsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerGroupsProvider.swift; sourceTree = "<group>"; };
+		EAE469A62FE3EDD70024EDA6 /* CheckboxExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxExampleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -924,6 +930,7 @@
 				79F63C0329B078D600FB19A9 /* OverlayGroupsProvider.swift */,
 				79CE553429BEF26400CC89D3 /* PriceGroupsProvider.swift */,
 				A12A09DD2A49471F0047DD16 /* ChipGroupProvider.swift */,
+				FBED587B34934EE5912B14BC /* VideoPlayerGroupsProvider.swift */,
 				79B94C3D2AA5A33E006CB539 /* GraphicPromoGroupsProvider.swift */,
 				BA809EC72B05FC2E0030D1E7 /* AppSearchModalGroups.swift */,
 				285309ED2DAD6B7800BB6D24 /* DynamicLayoutGroups.swift */,
@@ -1104,6 +1111,7 @@
 				1A2A4BD62A6801AE00C18218 /* Select */,
 				53C661F929EA0DAA00BF1A62 /* Skeleton */,
 				022519852A7011C000D7A06D /* Snippet */,
+				BPK68D34A7DD97A4C47000001 /* VideoPlayer */,
 				79AFEDA72A9C704F001615A2 /* GraphicPromo */,
 				53C661E729EA0DAA00BF1A62 /* Spinner */,
 				53C661FB29EA0DAB00BF1A62 /* StarRating */,
@@ -1377,9 +1385,18 @@
 			path = "Text view";
 			sourceTree = "<group>";
 		};
+		BPK68D34A7DD97A4C47000001 /* VideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				68D34A7DD97A4C479E8A754F /* VideoPlayerExampleView.swift */,
+			);
+			path = VideoPlayer;
+			sourceTree = "<group>";
+		};
 		79AFEDA72A9C704F001615A2 /* GraphicPromo */ = {
 			isa = PBXGroup;
 			children = (
+				EAE469A62FE3EDD70024EDA6 /* CheckboxExampleView.swift */,
 				79AFEDA82A9C7063001615A2 /* GraphicPromoExampleView.swift */,
 			);
 			path = GraphicPromo;
@@ -1841,6 +1858,8 @@
 				D27EE92C2193163900C877EA /* ChipsViewController.swift in Sources */,
 				1AF3D2CA2BB18924001623A4 /* ImageGalleryGridExampleView.swift in Sources */,
 				1318F7502C777D1800D42847 /* FieldSetGroups.swift in Sources */,
+				19BD13EA315D4D8384B06952 /* VideoPlayerExampleView.swift in Sources */,
+				EAE469A72FE3EDD70024EDA6 /* CheckboxExampleView.swift in Sources */,
 				79AFEDA92A9C7063001615A2 /* GraphicPromoExampleView.swift in Sources */,
 				D2BBC1C922560FDD002DA71A /* BPKTableViewSelectableCell.swift in Sources */,
 				79F5129329AEFEB600D0997A /* LabelViewController.swift in Sources */,
@@ -1988,6 +2007,7 @@
 				BA4EE38E2E5D9E4100D9B42D /* PriceRangeExampleView.swift in Sources */,
 				D2297C2B232A7F3F006E00E0 /* RatingsViewController.swift in Sources */,
 				DB08530C2C45567600314EE8 /* CarouselCardExampleView.swift in Sources */,
+				5789F583F7544B5ABE879737 /* VideoPlayerGroupsProvider.swift in Sources */,
 				79B94C3E2AA5A33E006CB539 /* GraphicPromoGroupsProvider.swift in Sources */,
 				BA8F350E2C104AFD0093FA79 /* CardButtonExampleView.swift in Sources */,
 				D6FA3DB4224E220D00CFA094 /* UIWindow+Utility.swift in Sources */,

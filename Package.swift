@@ -134,6 +134,7 @@ let backpackSwiftUISourceDirs = [
   "TextArea",
   "TextField",
   "Utils",
+  "VideoPlayer",
 
   "BackpackSwiftUIImports.swift",
 ]
