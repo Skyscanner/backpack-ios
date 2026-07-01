@@ -1675,6 +1675,7 @@
 				6003F588195388D20070C39A /* Resources */,
 				84EFE62BE1534CD46CAFBDBF /* [CP] Embed Pods Frameworks */,
 				D68AF8FA2174CB9C00BA743D /* Run Script */,
+				B105EAD3C4F31F75CAFDF91D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1841,6 +1842,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Backpack-Native/Pods-Backpack-Native-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B105EAD3C4F31F75CAFDF91D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Backpack-Native/Pods-Backpack-Native-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D68AF8FA2174CB9C00BA743D /* Run Script */ = {
