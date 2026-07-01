@@ -24,7 +24,7 @@
     "@babel/preset-env": "^7.15.6",
     "@skyscanner/bpk-foundations-ios": "^24.2.0",
     "@skyscanner/bpk-svgs": "^20.13.0",
-    "@babel/eslint-parser": "^7.22.9",
+    "@babel/eslint-parser": "^8.0.1",
     "danger": "^13.0.10",
     "eslint_d": "^15.0.0",
     "eslint-config-airbnb": "^19.0.1",
