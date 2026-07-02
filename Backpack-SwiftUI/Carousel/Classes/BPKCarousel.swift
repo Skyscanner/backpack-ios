@@ -63,7 +63,6 @@ struct InternalCarouselWrapper<Content: View>: UIViewRepresentable {
         }
         carousel.set(images: uiImages)
         carousel.setCurrentImage(index: currentIndex)
-        DispatchQueue.main.async { carousel.becomeFirstResponder() }
         return carousel
     }
     

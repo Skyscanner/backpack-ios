@@ -22,11 +22,11 @@ public struct BPKPageIndicator: UIViewRepresentable {
     public enum Variant {
         case `default`, overImage
     }
-    
+
     public let variant: Variant
     @Binding public var currentIndex: Int
     @Binding public var totalIndicators: Int
-    
+
     public init(
         variant: Variant = .default,
         currentIndex: Binding<Int>,
@@ -36,18 +36,20 @@ public struct BPKPageIndicator: UIViewRepresentable {
         _currentIndex = currentIndex
         _totalIndicators = totalIndicators
     }
-    
-    public func makeUIView(context: Context) -> UIPageControl {
-        UIPageControl()
+
+    public func makeUIView(context: Context) -> KeyboardPageControl {
+        let pageControl = KeyboardPageControl()
+        pageControl.onPageChange = context.coordinator.onPageChange
+        return pageControl
     }
-    
-    public func updateUIView(_ uiView: UIPageControl, context: Context) {
+
+    public func updateUIView(_ uiView: KeyboardPageControl, context: Context) {
         uiView.isUserInteractionEnabled = false
-        uiView.isAccessibilityElement = false
         uiView.hidesForSinglePage = true
         uiView.numberOfPages = totalIndicators
         uiView.currentPage = currentIndex
-        
+        uiView.onPageChange = context.coordinator.onPageChange
+
         switch variant {
         case .`default`:
             uiView.currentPageIndicatorTintColor = BPKColor.textSecondaryColor.value
@@ -55,6 +57,49 @@ public struct BPKPageIndicator: UIViewRepresentable {
         case .overImage:
             uiView.currentPageIndicatorTintColor = BPKColor.textOnDarkColor.value
             uiView.pageIndicatorTintColor = BPKColor.lineOnDarkColor.value
+        }
+    }
+
+    public func makeCoordinator() -> Coordinator {
+        Coordinator(currentIndex: $currentIndex, totalIndicators: $totalIndicators)
+    }
+
+    public class Coordinator {
+        var currentIndex: Binding<Int>
+        var totalIndicators: Binding<Int>
+
+        init(currentIndex: Binding<Int>, totalIndicators: Binding<Int>) {
+            self.currentIndex = currentIndex
+            self.totalIndicators = totalIndicators
+        }
+
+        func onPageChange(_ direction: KeyboardPageControl.Direction) {
+            let count = totalIndicators.wrappedValue
+            let current = currentIndex.wrappedValue
+            switch direction {
+            case .next:
+                currentIndex.wrappedValue = current == count - 1 ? 0 : current + 1
+            case .previous:
+                currentIndex.wrappedValue = current == 0 ? count - 1 : current - 1
+            }
+        }
+    }
+}
+
+public final class KeyboardPageControl: UIPageControl {
+    public enum Direction { case next, previous }
+    var onPageChange: ((Direction) -> Void)?
+
+    override public var canBecomeFirstResponder: Bool { true }
+
+    override public func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+        guard let keyCode = presses.first?.key?.keyCode else {
+            return super.pressesBegan(presses, with: event)
+        }
+        switch keyCode {
+        case .keyboardRightArrow: onPageChange?(.next)
+        case .keyboardLeftArrow: onPageChange?(.previous)
+        default: super.pressesBegan(presses, with: event)
         }
     }
 }
