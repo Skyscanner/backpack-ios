@@ -20,7 +20,7 @@ import Foundation
 
 final class CarouselPageViewController: UIPageViewController {
     
-    private var pages = [UIViewController]()
+    private(set) var pages = [UIViewController]()
     weak var carouselDelegate: BPKInternalCarouselDelegate?
     var currentIndex: Int {
         guard

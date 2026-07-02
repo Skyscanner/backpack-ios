@@ -77,6 +77,24 @@ public class BPKInternalCarousel: UIView {
     public func setCurrentImage(index: Int, animated: Bool = true) {
         pageViewController.setCurrentImage(index: index, animated: animated)
     }
+
+    override public func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+        guard let keyCode = presses.first?.key?.keyCode else {
+            return super.pressesBegan(presses, with: event)
+        }
+        let count = pageViewController.pages.count
+        let current = pageViewController.currentIndex
+        switch keyCode {
+        case .keyboardRightArrow:
+            let next = current == count - 1 ? 0 : current + 1
+            pageViewController.setCurrentImage(index: next)
+        case .keyboardLeftArrow:
+            let prev = current == 0 ? count - 1 : current - 1
+            pageViewController.setCurrentImage(index: prev)
+        default:
+            super.pressesBegan(presses, with: event)
+        }
+    }
 }
 
 extension BPKInternalCarousel: BPKInternalCarouselDelegate {
