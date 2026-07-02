@@ -70,6 +70,8 @@ public class BPKInternalCarousel: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override public var canBecomeFirstResponder: Bool { true }
+
     public func set(images: [UIView], animated: Bool = true) {
         pageViewController.set(images: images, animated: animated)
     }
