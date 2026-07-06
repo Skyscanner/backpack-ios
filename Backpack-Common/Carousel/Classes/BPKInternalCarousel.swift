@@ -73,7 +73,7 @@ public class BPKInternalCarousel: UIView {
     public func set(images: [UIView], animated: Bool = true) {
         pageViewController.set(images: images, animated: animated)
     }
-    
+
     public func setCurrentImage(index: Int, animated: Bool = true) {
         pageViewController.setCurrentImage(index: index, animated: animated)
     }
