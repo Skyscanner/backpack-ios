@@ -37,18 +37,16 @@ public struct BPKPageIndicator: UIViewRepresentable {
         _totalIndicators = totalIndicators
     }
 
-    public func makeUIView(context: Context) -> KeyboardPageControl {
+    public func makeUIView(context: Context) -> UIPageControl {
         let pageControl = KeyboardPageControl()
         pageControl.onPageChange = context.coordinator.onPageChange
         return pageControl
     }
 
-    public func updateUIView(_ uiView: KeyboardPageControl, context: Context) {
-        uiView.isUserInteractionEnabled = false
+    public func updateUIView(_ uiView: UIPageControl, context: Context) {
         uiView.hidesForSinglePage = true
         uiView.numberOfPages = totalIndicators
         uiView.currentPage = currentIndex
-        uiView.onPageChange = context.coordinator.onPageChange
 
         switch variant {
         case .`default`:
@@ -75,7 +73,8 @@ public struct BPKPageIndicator: UIViewRepresentable {
 
         func onPageChange(_ direction: KeyboardPageControl.Direction) {
             let count = totalIndicators.wrappedValue
-            let current = currentIndex.wrappedValue
+            guard count > 0 else { return }
+            let current = min(max(currentIndex.wrappedValue, 0), count - 1)
             switch direction {
             case .next:
                 currentIndex.wrappedValue = current == count - 1 ? 0 : current + 1
@@ -86,13 +85,13 @@ public struct BPKPageIndicator: UIViewRepresentable {
     }
 }
 
-public final class KeyboardPageControl: UIPageControl {
-    public enum Direction { case next, previous }
+final class KeyboardPageControl: UIPageControl {
+    enum Direction { case next, previous }
     var onPageChange: ((Direction) -> Void)?
 
-    override public var canBecomeFirstResponder: Bool { true }
+    override var canBecomeFirstResponder: Bool { true }
 
-    override public func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+    override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
         guard let keyCode = presses.first?.key?.keyCode else {
             return super.pressesBegan(presses, with: event)
         }
