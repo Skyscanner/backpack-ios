@@ -56,4 +56,25 @@ class BPKTextTests: XCTestCase {
             BPKText(Text("Hello Backpack") + Text(", I hope you're having a great day!"), style: .heading2)
         )
     }
+
+    func test_markdown() {
+        assertSnapshot(
+            BPKText(markdown: "**London** to **Miami**")
+                .frame(width: 300)
+        )
+    }
+
+    func test_markdownMultiStyle() {
+        assertSnapshot(
+            BPKText(markdown: "Book your **flight** and _hotel_ today", style: .heading3)
+                .frame(width: 300)
+        )
+    }
+
+    func test_markdownFallback() {
+        assertSnapshot(
+            BPKText(markdown: "Just plain text no markup")
+                .frame(width: 300)
+        )
+    }
 }

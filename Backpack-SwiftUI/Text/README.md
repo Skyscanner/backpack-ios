@@ -49,6 +49,22 @@ BPKText(Text("Hello ") + Text("world"), style: .heading2)
 BPKText(Text("Hello ") + Text(Image("beach")), style: .footnote)
 ```
 
+### BpkText with markdown
+
+Renders a runtime markdown string (e.g. bold, italic). Falls back to plain text if parsing fails.
+Line limit defaults to `1` — use `.lineLimit(nil)` for multi-line content.
+
+```swift
+import Backpack_SwiftUI
+
+BPKText(markdown: "**London** to **Miami**")
+
+BPKText(markdown: "Book your **flight** and _hotel_ today", style: .heading3)
+
+BPKText(markdown: "Terms apply. See _full details_ for more information.", style: .footnote)
+    .lineLimit(nil)
+```
+
 ### BpkAttributedText
 
 ```swift

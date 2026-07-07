@@ -32,6 +32,10 @@ class BPKTextDynamicTypeTests: XCTestCase {
         assertA11ySnapshot(sut)
     }
     
+    func test_markdownDynamicType() {
+        assertA11ySnapshot(BPKText(markdown: "**London** to **Miami**"))
+    }
+
     private func generateView(_ styles: [(BPKFontStyle, String)]) -> some View {
         VStack(alignment: .leading) {
             ForEach(styles, id: \.self.1) { style in
