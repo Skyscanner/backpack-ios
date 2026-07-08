@@ -67,6 +67,7 @@ class BPKTextTests: XCTestCase {
     func test_markdownMultiStyle() {
         assertSnapshot(
             BPKText(markdown: "Book your **flight** and _hotel_ today", style: .heading3)
+                .lineLimit(nil)
                 .frame(width: 300)
         )
     }
