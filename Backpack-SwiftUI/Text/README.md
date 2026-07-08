@@ -49,7 +49,7 @@ BPKText(Text("Hello ") + Text("world"), style: .heading2)
 BPKText(Text("Hello ") + Text(Image("beach")), style: .footnote)
 ```
 
-### BpkText with markdown
+### BPKText with markdown
 
 Renders a runtime markdown string (e.g. bold, italic). Falls back to plain text if parsing fails.
 Line limit defaults to `1` — use `.lineLimit(nil)` for multi-line content.

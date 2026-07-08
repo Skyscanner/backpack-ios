@@ -72,9 +72,16 @@ class BPKTextTests: XCTestCase {
         )
     }
 
-    func test_markdownFallback() {
+    func test_markdownPlainText() {
         assertSnapshot(
             BPKText(markdown: "Just plain text no markup")
+                .frame(width: 300)
+        )
+    }
+
+    func test_markdownFallback() {
+        assertSnapshot(
+            BPKText(markdown: "[broken link](")
                 .frame(width: 300)
         )
     }

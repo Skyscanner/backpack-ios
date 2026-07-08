@@ -96,7 +96,7 @@ public extension BPKText {
     /// - Parameters:
     ///   - markdown: The markdown content to display.
     ///   - style: The Backpack font style to apply.
-    init(markdown: String, style: BPKFontStyle = .bodyDefault) {
+    public init(markdown: String, style: BPKFontStyle = .bodyDefault) {
         let parsed = try? AttributedString(markdown: markdown)
         let attributed = parsed ?? AttributedString(markdown)
         self.text = Text(attributed)
