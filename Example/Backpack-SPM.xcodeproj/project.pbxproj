@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		020878642FFE61E000D30F0A /* MarkdownTextExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020878632FFE61E000D30F0A /* MarkdownTextExampleView.swift */; };
+		020878682FFE62DA00D30F0A /* CheckboxExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020878662FFE62DA00D30F0A /* CheckboxExampleView.swift */; };
 		021D1E422F5050D700A58A6D /* CellItemExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021D1E402F5050D700A58A6D /* CellItemExampleView.swift */; };
 		022519872A7011CD00D7A06D /* SnippetExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022519862A7011CD00D7A06D /* SnippetExampleView.swift */; };
 		0245783E2ABC3AA1006008D1 /* InsetBannerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0245783D2ABC3AA1006008D1 /* InsetBannerExampleView.swift */; };
@@ -19,6 +21,7 @@
 		13E884A72C53F8C800A3138D /* BannerAlertExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E884A62C53F8C800A3138D /* BannerAlertExampleView.swift */; };
 		17068B8A299C0106000EA7F4 /* RatingGroupsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17068B89299C0106000EA7F4 /* RatingGroupsProvider.swift */; };
 		1750EB6329915230005226DF /* CardButtonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1750EB6229915230005226DF /* CardButtonsViewController.swift */; };
+		19BD13EA315D4D8384B06952 /* VideoPlayerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D34A7DD97A4C479E8A754F /* VideoPlayerExampleView.swift */; };
 		1A2A4BD82A6801AE00C18218 /* SelectExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2A4BD72A6801AE00C18218 /* SelectExampleView.swift */; };
 		1A68212D2B3308C80048220E /* AppSearchModalExampleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A68212C2B3308C80048220E /* AppSearchModalExampleViewModel.swift */; };
 		1AF3D2CA2BB18924001623A4 /* ImageGalleryGridExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF3D2C92BB18924001623A4 /* ImageGalleryGridExampleView.swift */; };
@@ -104,6 +107,7 @@
 		53E075B927FC9FAF0033147C /* StoryboardPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E075B827FC9FAF0033147C /* StoryboardPresentable.swift */; };
 		53E075BB27FC9FD30033147C /* CustomPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E075BA27FC9FD30033147C /* CustomPresentable.swift */; };
 		53E075BE27FCBE8C0033147C /* RootViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E075BD27FCBE8C0033147C /* RootViewControllerFactory.swift */; };
+		5789F583F7544B5ABE879737 /* VideoPlayerGroupsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBED587B34934EE5912B14BC /* VideoPlayerGroupsProvider.swift */; };
 		58CFF14722D3837900C45B0B /* StarRatings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58CFF14622D3837900C45B0B /* StarRatings.storyboard */; };
 		58CFF14922D383C300C45B0B /* StarRatingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFF14822D383C300C45B0B /* StarRatingsViewController.swift */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
@@ -217,16 +221,12 @@
 		E397BEA422F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA322F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift */; };
 		E397BEA622F5FFDD00C8EC04 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA522F5FFDD00C8EC04 /* Storyboards.swift */; };
 		E6822E46AF304B16800B6609 /* LinkExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2848C51D99141B190D97447 /* LinkExampleView.swift */; };
-		EAE469AA2FE3F4820024EDA6 /* CheckboxExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE469A92FE3F4820024EDA6 /* CheckboxExampleView.swift */; };
 		EED38AA42EB37AAE00A77904 /* ConfigurationBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED38AA32EB37AA200A77904 /* ConfigurationBadgeView.swift */; };
 		EED519BF2D3EBD8300F898D7 /* SegmentedControlExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED519BD2D3EBD8300F898D7 /* SegmentedControlExampleView.swift */; };
 		EEF89AC32E2EAE6100BF1C83 /* TappableContainerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF89AC22E2EAE5A00BF1C83 /* TappableContainerExampleView.swift */; };
 		F00CA3D9299D53450027ACE7 /* FloatingNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00CA3D8299D53450027ACE7 /* FloatingNotificationViewController.swift */; };
 		F00F15692993F24700213F0D /* CarouselViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F15682993F24700213F0D /* CarouselViewController.swift */; };
 		F2E2627E2F57004200A9B1B2 /* SwapExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E2627C2F57004200A9B1B2 /* SwapExampleView.swift */; };
-			19BD13EA315D4D8384B06952 /* VideoPlayerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D34A7DD97A4C479E8A754F /* VideoPlayerExampleView.swift */; };
-			5789F583F7544B5ABE879737 /* VideoPlayerGroupsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBED587B34934EE5912B14BC /* VideoPlayerGroupsProvider.swift */; };
-			EAE469A72FE3EDD70024EDA6 /* CheckboxExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE469A62FE3EDD70024EDA6 /* CheckboxExampleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -247,6 +247,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		020878632FFE61E000D30F0A /* MarkdownTextExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownTextExampleView.swift; sourceTree = "<group>"; };
+		020878662FFE62DA00D30F0A /* CheckboxExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxExampleView.swift; sourceTree = "<group>"; };
 		021D1E402F5050D700A58A6D /* CellItemExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellItemExampleView.swift; sourceTree = "<group>"; };
 		022519862A7011CD00D7A06D /* SnippetExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetExampleView.swift; sourceTree = "<group>"; };
 		0245783D2ABC3AA1006008D1 /* InsetBannerExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetBannerExampleView.swift; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 		6055821621523A1300BF9F3E /* IconsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconsViewController.swift; sourceTree = "<group>"; };
 		6055821821523FAD00BF9F3E /* IconsPreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconsPreviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		60CE0F982189F99200309211 /* SwitchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchesViewController.swift; sourceTree = "<group>"; };
+		68D34A7DD97A4C479E8A754F /* VideoPlayerExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerExampleView.swift; sourceTree = "<group>"; };
 		760E41E4232BD50700A0CE8D /* ToastUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastUITest.swift; sourceTree = "<group>"; };
 		760E41E62334EBDC00A0CE8D /* StarRatingsDocViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingsDocViewController.swift; sourceTree = "<group>"; };
 		7639E566232909C7004D7B09 /* ToastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastViewController.swift; sourceTree = "<group>"; };
@@ -467,16 +470,13 @@
 		E397BEA122F5F59000C8EC04 /* BottomSheetScrollableContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetScrollableContentViewController.swift; sourceTree = "<group>"; };
 		E397BEA322F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetBottomSectionVIewController.swift; sourceTree = "<group>"; };
 		E397BEA522F5FFDD00C8EC04 /* Storyboards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
-		EAE469A92FE3F4820024EDA6 /* CheckboxExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CheckboxExampleView.swift; path = Backpack/SwiftUI/Components/Checkbox/CheckboxExampleView.swift; sourceTree = "<group>"; };
 		EED38AA32EB37AA200A77904 /* ConfigurationBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationBadgeView.swift; sourceTree = "<group>"; };
 		EED519BD2D3EBD8300F898D7 /* SegmentedControlExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlExampleView.swift; sourceTree = "<group>"; };
 		EEF89AC22E2EAE5A00BF1C83 /* TappableContainerExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableContainerExampleView.swift; sourceTree = "<group>"; };
 		F00CA3D8299D53450027ACE7 /* FloatingNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingNotificationViewController.swift; sourceTree = "<group>"; };
 		F00F15682993F24700213F0D /* CarouselViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarouselViewController.swift; sourceTree = "<group>"; };
 		F2E2627C2F57004200A9B1B2 /* SwapExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapExampleView.swift; sourceTree = "<group>"; };
-		68D34A7DD97A4C479E8A754F /* VideoPlayerExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerExampleView.swift; sourceTree = "<group>"; };
 		FBED587B34934EE5912B14BC /* VideoPlayerGroupsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerGroupsProvider.swift; sourceTree = "<group>"; };
-		EAE469A62FE3EDD70024EDA6 /* CheckboxExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxExampleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -511,6 +511,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		020878672FFE62DA00D30F0A /* Checkbox */ = {
+			isa = PBXGroup;
+			children = (
+				020878662FFE62DA00D30F0A /* CheckboxExampleView.swift */,
+			);
+			path = Checkbox;
+			sourceTree = "<group>";
+		};
 		021D1E412F5050D700A58A6D /* CellItem */ = {
 			isa = PBXGroup;
 			children = (
@@ -882,6 +890,7 @@
 			isa = PBXGroup;
 			children = (
 				53C6620E29EA0DAB00BF1A62 /* TextExampleView.swift */,
+				020878632FFE61E000D30F0A /* MarkdownTextExampleView.swift */,
 				53C6620F29EA0DAB00BF1A62 /* AttributedTextExampleView.swift */,
 			);
 			path = Text;
@@ -963,7 +972,6 @@
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
-				EAE469A92FE3F4820024EDA6 /* CheckboxExampleView.swift */,
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				6003F593195388D20070C39A /* Example for Backpack */,
 				D6517B40216DF5F800D85FF9 /* Backpack NativeUITests */,
@@ -1066,6 +1074,7 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				020878672FFE62DA00D30F0A /* Checkbox */,
 				021D1E412F5050D700A58A6D /* CellItem */,
 				28CF33702E39273C00A9DF34 /* Configuration */,
 				BA4EE38C2E5D9E0800D9B42D /* PriceRange */,
@@ -1385,18 +1394,9 @@
 			path = "Text view";
 			sourceTree = "<group>";
 		};
-		BPK68D34A7DD97A4C47000001 /* VideoPlayer */ = {
-			isa = PBXGroup;
-			children = (
-				68D34A7DD97A4C479E8A754F /* VideoPlayerExampleView.swift */,
-			);
-			path = VideoPlayer;
-			sourceTree = "<group>";
-		};
 		79AFEDA72A9C704F001615A2 /* GraphicPromo */ = {
 			isa = PBXGroup;
 			children = (
-				EAE469A62FE3EDD70024EDA6 /* CheckboxExampleView.swift */,
 				79AFEDA82A9C7063001615A2 /* GraphicPromoExampleView.swift */,
 			);
 			path = GraphicPromo;
@@ -1490,6 +1490,14 @@
 				BA8F350D2C104AFD0093FA79 /* CardButtonExampleView.swift */,
 			);
 			path = "Card Button";
+			sourceTree = "<group>";
+		};
+		BPK68D34A7DD97A4C47000001 /* VideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				68D34A7DD97A4C479E8A754F /* VideoPlayerExampleView.swift */,
+			);
+			path = VideoPlayer;
 			sourceTree = "<group>";
 		};
 		D202BD2E219AE88C007906A7 /* CollectionView FlowLayouts */ = {
@@ -1849,7 +1857,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAE469AA2FE3F4820024EDA6 /* CheckboxExampleView.swift in Sources */,
 				285309EE2DAD6B7800BB6D24 /* DynamicLayoutGroups.swift in Sources */,
 				D219C1E02163918B00C9968D /* DividedCardsViewController.swift in Sources */,
 				53C6621129EA0DAB00BF1A62 /* RatingExampleViewWithImage.swift in Sources */,
@@ -1859,7 +1866,6 @@
 				1AF3D2CA2BB18924001623A4 /* ImageGalleryGridExampleView.swift in Sources */,
 				1318F7502C777D1800D42847 /* FieldSetGroups.swift in Sources */,
 				19BD13EA315D4D8384B06952 /* VideoPlayerExampleView.swift in Sources */,
-				EAE469A72FE3EDD70024EDA6 /* CheckboxExampleView.swift in Sources */,
 				79AFEDA92A9C7063001615A2 /* GraphicPromoExampleView.swift in Sources */,
 				D2BBC1C922560FDD002DA71A /* BPKTableViewSelectableCell.swift in Sources */,
 				79F5129329AEFEB600D0997A /* LabelViewController.swift in Sources */,
@@ -1880,6 +1886,7 @@
 				3AA018EF215BE26600838FBB /* SpinnersViewController.swift in Sources */,
 				53E075A927FC97C60033147C /* ToastGroups.swift in Sources */,
 				53B6DB5927FB6F930042B7C0 /* ComponentCells.swift in Sources */,
+				020878642FFE61E000D30F0A /* MarkdownTextExampleView.swift in Sources */,
 				793B9748283B6F57009A5164 /* ComponentCellDataSource.swift in Sources */,
 				A12269752A68C09B00C7C0CD /* BottomSheetExampleView.swift in Sources */,
 				6055821721523A1300BF9F3E /* IconsViewController.swift in Sources */,
@@ -1945,6 +1952,7 @@
 				53E075B327FC9BBB0033147C /* SingleGroupProvider.swift in Sources */,
 				53C6622929EA0DAB00BF1A62 /* AttributedTextExampleView.swift in Sources */,
 				53E075B727FC9C010033147C /* PresentableNavigator.swift in Sources */,
+				020878682FFE62DA00D30F0A /* CheckboxExampleView.swift in Sources */,
 				7976E5C028BB0BCC00471AA2 /* ColorTokensView.swift in Sources */,
 				256F76152BB479850047AD1C /* SearchInputSummaryExampleView.swift in Sources */,
 				D26E5A0C25A787060064D9F1 /* GroupsViewController.swift in Sources */,
