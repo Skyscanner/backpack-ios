@@ -90,6 +90,18 @@ public extension BPKText {
         self.text = text
         self.style = style
     }
+
+    /// Convenience initializer that renders a markdown string (e.g. "**London** to **Miami**").
+    /// Falls back to plain text if parsing fails.
+    /// - Parameters:
+    ///   - markdown: The markdown content to display.
+    ///   - style: The Backpack font style to apply.
+    public init(markdown: String, style: BPKFontStyle = .bodyDefault) {
+        let parsed = try? AttributedString(markdown: markdown)
+        let attributed = parsed ?? AttributedString(markdown)
+        self.text = Text(attributed)
+        self.style = style
+    }
 }
 
 struct BPKText_Previews: PreviewProvider {

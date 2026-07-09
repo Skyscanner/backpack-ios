@@ -41,7 +41,8 @@ struct TextGroupsProvider {
             cellDataSources: [
                 presentable("Body", view: TextExampleView(items: ScreenType.body.items)),
                 presentable("Heading", view: TextExampleView(items: ScreenType.heading.items)),
-                presentable("Hero", view: TextExampleView(items: ScreenType.hero.items))
+                presentable("Hero", view: TextExampleView(items: ScreenType.hero.items)),
+                presentable("Markdown", view: MarkdownTextExampleView())
             ]
         ).groups()
     }

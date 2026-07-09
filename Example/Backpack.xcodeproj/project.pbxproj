@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		006034DBB76C671434F6252A /* Pods_Backpack_Native.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDBC7CA36756032862B5D581 /* Pods_Backpack_Native.framework */; };
+		020878622FFE4DD100D30F0A /* MarkdownTextExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020878612FFE4DD100D30F0A /* MarkdownTextExampleView.swift */; };
 		021D1E3D2F4F776D00A58A6D /* CellItemExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021D1E3B2F4F776D00A58A6D /* CellItemExampleView.swift */; };
 		022519872A7011CD00D7A06D /* SnippetExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022519862A7011CD00D7A06D /* SnippetExampleView.swift */; };
 		0245783E2ABC3AA1006008D1 /* InsetBannerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0245783D2ABC3AA1006008D1 /* InsetBannerExampleView.swift */; };
@@ -241,6 +242,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		020878612FFE4DD100D30F0A /* MarkdownTextExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownTextExampleView.swift; sourceTree = "<group>"; };
 		021D1E3B2F4F776D00A58A6D /* CellItemExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellItemExampleView.swift; sourceTree = "<group>"; };
 		022519862A7011CD00D7A06D /* SnippetExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetExampleView.swift; sourceTree = "<group>"; };
 		0245783D2ABC3AA1006008D1 /* InsetBannerExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetBannerExampleView.swift; sourceTree = "<group>"; };
@@ -870,6 +872,7 @@
 			isa = PBXGroup;
 			children = (
 				53C6620E29EA0DAB00BF1A62 /* TextExampleView.swift */,
+				020878612FFE4DD100D30F0A /* MarkdownTextExampleView.swift */,
 				53C6620F29EA0DAB00BF1A62 /* AttributedTextExampleView.swift */,
 			);
 			path = Text;
@@ -1963,6 +1966,7 @@
 				794337AB283C829100797D1C /* Tab.swift in Sources */,
 				79F63C0429B078D600FB19A9 /* OverlayGroupsProvider.swift in Sources */,
 				53B6DB6427FC463F0042B7C0 /* FlareGroups.swift in Sources */,
+				020878622FFE4DD100D30F0A /* MarkdownTextExampleView.swift in Sources */,
 				53E075A527FC780C0033147C /* NavBarGroups.swift in Sources */,
 				53B6DB5C27FC39AC0042B7C0 /* ButtonGroups.swift in Sources */,
 				53D7FBB527F715AF00DEE588 /* UIWindowFactory.swift in Sources */,
