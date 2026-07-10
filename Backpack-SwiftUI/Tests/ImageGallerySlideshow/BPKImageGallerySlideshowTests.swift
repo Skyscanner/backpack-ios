@@ -26,7 +26,7 @@ class BPKImageGallerySlideshowTests: XCTestCase {
             .resizable()
             .aspectRatio(contentMode: .fill)
     }
-    
+
     func test_imageGalleryPreview() {
         assertSnapshot(
             ImageGallerySlideshow.ContentView(
@@ -45,5 +45,31 @@ class BPKImageGallerySlideshowTests: XCTestCase {
             )
             .frame(width: 300, height: 600)
         )
+    }
+
+    func test_indexChangeTracker_doesNotReportInitialSlideshowIndex() {
+        var tracker = ImageGallerySlideshowIndexChangeTracker(initialIndex: 1)
+
+        XCTAssertNil(tracker.change(to: 1))
+    }
+
+    func test_indexChangeTracker_reportsPreviousAndNewIndicesAfterNavigation() {
+        var tracker = ImageGallerySlideshowIndexChangeTracker(initialIndex: 1)
+        let firstChange = tracker.change(to: 2)
+        let secondChange = tracker.change(to: 0)
+
+        XCTAssertEqual(firstChange?.from, 1)
+        XCTAssertEqual(firstChange?.to, 2)
+        XCTAssertEqual(secondChange?.from, 2)
+        XCTAssertEqual(secondChange?.to, 0)
+    }
+
+    func test_imageGallerySlideshow_withTrailingCloseCallback_remainsSourceCompatible() {
+        _ = Color.clear.bpkImageGallerySlideshow(
+            isPresented: .constant(false),
+            images: [.init(title: "Image", content: { Color.red })],
+            closeAccessibilityLabel: "close",
+            currentIndex: .constant(0)
+        ) {}
     }
 }

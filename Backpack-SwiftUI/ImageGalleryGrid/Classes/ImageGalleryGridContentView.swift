@@ -25,12 +25,13 @@ struct ImageGalleryGridContentView<Categories: View, GridImageView: View, Slides
     let slideshowImages: [BPKSlideshowGalleryImage<SlideshowImageView>]
     let closeAccessibilityLabel: String
     let imageTapped: (_ category: Int, _ image: Int) -> Void
+    let onSlideshowImageChanged: (_ categoryIndex: Int, _ fromImageIndex: Int, _ toImageIndex: Int) -> Void
     let onCloseTapped: () -> Void
-    
+
     let selectedCategoryIndex: Int
     @State var isSlideshowPresented: Bool = false
     @State var imageIndexInCategory: Int = 0
-    
+
     var body: some View {
         VStack(spacing: .base) {
             header
@@ -65,10 +66,11 @@ struct ImageGalleryGridContentView<Categories: View, GridImageView: View, Slides
             images: slideshowImages,
             closeAccessibilityLabel: closeAccessibilityLabel,
             currentIndex: $imageIndexInCategory,
+            onSlideshowImageChanged: slideshowImageChanged,
             onCloseTapped: { isSlideshowPresented = false }
         )
     }
-    
+
     var header: some View {
         ImageGalleryHeader(
             closeAccessibilityLabel: closeAccessibilityLabel,
@@ -76,6 +78,12 @@ struct ImageGalleryGridContentView<Categories: View, GridImageView: View, Slides
         )
         .padding(.horizontal, .base)
         .padding(.top, .md)
+    }
+
+    var slideshowImageChanged: (_ fromImageIndex: Int, _ toImageIndex: Int) -> Void {
+        { fromImageIndex, toImageIndex in
+            onSlideshowImageChanged(selectedCategoryIndex, fromImageIndex, toImageIndex)
+        }
     }
 }
 
@@ -99,6 +107,7 @@ struct ImageGalleryGridContentView_Previews: PreviewProvider {
             ],
             closeAccessibilityLabel: "Close",
             imageTapped: { _, _ in },
+            onSlideshowImageChanged: { _, _, _ in },
             onCloseTapped: {},
             selectedCategoryIndex: 0,
             isSlideshowPresented: false,

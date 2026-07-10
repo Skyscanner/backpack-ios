@@ -22,9 +22,10 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
     let images: [BPKSlideshowGalleryImage<ImageView>]
     let closeAccessibilityLabel: String
     let onCloseTapped: () -> Void
+    let onSlideshowImageChanged: (_ fromImageIndex: Int, _ toImageIndex: Int) -> Void
     @Binding var currentIndex: Int
     @Binding var isPresented: Bool
-    
+
     func body(content: Content) -> some View {
         content
             .fullScreenCover(isPresented: $isPresented, content: {
@@ -32,17 +33,37 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
                     images: images,
                     closeAccessibilityLabel: closeAccessibilityLabel,
                     onCloseTapped: onCloseTapped,
-                    currentIndex: $currentIndex
+                    currentIndex: $currentIndex,
+                    onSlideshowImageChanged: onSlideshowImageChanged
                 )
             })
     }
-    
+
     struct ContentView: View {
         let images: [BPKSlideshowGalleryImage<ImageView>]
         let closeAccessibilityLabel: String
         let onCloseTapped: () -> Void
+        let onSlideshowImageChanged: (_ fromImageIndex: Int, _ toImageIndex: Int) -> Void
         @Binding var currentIndex: Int
-        
+        @State private var indexChangeTracker: ImageGallerySlideshowIndexChangeTracker
+
+        init(
+            images: [BPKSlideshowGalleryImage<ImageView>],
+            closeAccessibilityLabel: String,
+            onCloseTapped: @escaping () -> Void,
+            currentIndex: Binding<Int>,
+            onSlideshowImageChanged: @escaping (_ fromImageIndex: Int, _ toImageIndex: Int) -> Void = { _, _ in }
+        ) {
+            self.images = images
+            self.closeAccessibilityLabel = closeAccessibilityLabel
+            self.onCloseTapped = onCloseTapped
+            self._currentIndex = currentIndex
+            self.onSlideshowImageChanged = onSlideshowImageChanged
+            self._indexChangeTracker = State(
+                initialValue: ImageGallerySlideshowIndexChangeTracker(initialIndex: currentIndex.wrappedValue)
+            )
+        }
+
         var body: some View {
             VStack(spacing: .xl) {
                 ImageGalleryHeader(
@@ -50,7 +71,7 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
                     onCloseTapped: onCloseTapped
                 )
                 .padding([.leading, .top], .base)
-                
+
                 ZStack(alignment: .bottom) {
                     InternalCarouselWrapper(
                         images: images.map { $0.content() },
@@ -64,12 +85,17 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
                 .aspectRatio(1.0, contentMode: .fill)
                 .accessibilityElement(children: .ignore)
                 .accessibilityHidden(true)
-                
+
                 footer
             }
             .background(Color(.canvasContrastColor))
+            .onChange(of: currentIndex) { newIndex in
+                if let change = indexChangeTracker.change(to: newIndex) {
+                    onSlideshowImageChanged(change.from, change.to)
+                }
+            }
         }
-        
+
         private var footer: some View {
             VStack(spacing: .xl) {
                 BPKPageIndicator(
@@ -88,7 +114,7 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
                     VStack(spacing: .md) {
                         BPKText(descriptionText, style: .caption)
                             .lineLimit(nil)
-                        
+
                         if let credit = images[currentIndex].credit {
                             HStack(spacing: .sm) {
                                 BPKIconView(.camera)
@@ -101,7 +127,7 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
                 }
             }
         }
-        
+
         private var descriptionText: String {
             let currentImage = images[currentIndex]
             let titleText = "**\(currentImage.title)**"
@@ -110,7 +136,7 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
             }
             return currentImage.title
         }
-        
+
         private func accessibilityPageIncrement() {
             if currentIndex == images.count - 1 {
                 currentIndex = 0
@@ -118,7 +144,7 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
                 currentIndex += 1
             }
         }
-        
+
         private func accessibilityPageDecrement() {
             if currentIndex == 0 {
                 currentIndex = images.count - 1
@@ -129,12 +155,30 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
     }
 }
 
+struct ImageGallerySlideshowIndexChangeTracker {
+    private(set) var currentIndex: Int
+
+    init(initialIndex: Int) {
+        currentIndex = initialIndex
+    }
+
+    mutating func change(to newIndex: Int) -> (from: Int, to: Int)? {
+        guard newIndex != currentIndex else {
+            return nil
+        }
+
+        defer { currentIndex = newIndex }
+        return (from: currentIndex, to: newIndex)
+    }
+}
+
 public extension View {
     func bpkImageGallerySlideshow<Content>(
         isPresented: Binding<Bool>,
         images: [BPKSlideshowGalleryImage<Content>],
         closeAccessibilityLabel: String,
         currentIndex: Binding<Int>,
+        onSlideshowImageChanged: @escaping (_ fromImageIndex: Int, _ toImageIndex: Int) -> Void = { _, _ in },
         onCloseTapped: @escaping () -> Void
     ) -> some View {
         modifier(
@@ -142,6 +186,7 @@ public extension View {
                 images: images,
                 closeAccessibilityLabel: closeAccessibilityLabel,
                 onCloseTapped: onCloseTapped,
+                onSlideshowImageChanged: onSlideshowImageChanged,
                 currentIndex: currentIndex,
                 isPresented: isPresented
             )
