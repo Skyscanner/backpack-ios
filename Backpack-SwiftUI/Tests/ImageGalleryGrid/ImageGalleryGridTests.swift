@@ -91,8 +91,8 @@ class ImageGalleryGridTests: XCTestCase {
         var receivedChange: (category: Int, from: Int, to: Int)?
         let view = ImageGalleryGridContentView(
             categories: { EmptyView() },
-            gridImages: [],
-            slideshowImages: [],
+            gridImages: [] as [BPKGridGalleryImage<Color>],
+            slideshowImages: [] as [BPKSlideshowGalleryImage<Color>],
             closeAccessibilityLabel: "close",
             imageTapped: { _, _ in },
             onSlideshowImageChanged: { category, from, to in
