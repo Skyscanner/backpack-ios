@@ -123,8 +123,7 @@ class ImageGalleryGridTests: XCTestCase {
             selectedCategory: .constant(0),
             categories: categories,
             closeAccessibilityLabel: "close",
-            onImageTapped: { _, _ in },
-            onCloseTapped: {}
-        )
+            onImageTapped: { _, _ in }
+        ) {}
     }
 }

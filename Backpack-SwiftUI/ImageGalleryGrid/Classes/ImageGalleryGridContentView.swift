@@ -66,8 +66,8 @@ struct ImageGalleryGridContentView<Categories: View, GridImageView: View, Slides
             images: slideshowImages,
             closeAccessibilityLabel: closeAccessibilityLabel,
             currentIndex: $imageIndexInCategory,
-            onCloseTapped: { isSlideshowPresented = false },
-            onSlideshowImageChanged: slideshowImageChanged
+            onSlideshowImageChanged: slideshowImageChanged,
+            onCloseTapped: { isSlideshowPresented = false }
         )
     }
 

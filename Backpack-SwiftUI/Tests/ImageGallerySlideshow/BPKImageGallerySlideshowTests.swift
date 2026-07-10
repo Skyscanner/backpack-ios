@@ -63,4 +63,13 @@ class BPKImageGallerySlideshowTests: XCTestCase {
         XCTAssertEqual(secondChange?.from, 2)
         XCTAssertEqual(secondChange?.to, 0)
     }
+
+    func test_imageGallerySlideshow_withTrailingCloseCallback_remainsSourceCompatible() {
+        _ = Color.clear.bpkImageGallerySlideshow(
+            isPresented: .constant(false),
+            images: [.init(title: "Image", content: { Color.red })],
+            closeAccessibilityLabel: "close",
+            currentIndex: .constant(0)
+        ) {}
+    }
 }

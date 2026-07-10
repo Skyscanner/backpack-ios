@@ -57,8 +57,8 @@ public extension View {
         categories: [BPKImageGalleryImageCategory<CategoryView, GridImage, SlideshowImage>],
         closeAccessibilityLabel: String,
         onImageTapped: @escaping (_ category: Int, _ image: Int) -> Void,
-        onCloseTapped: @escaping () -> Void,
-        onSlideshowImageChanged: @escaping (_ categoryIndex: Int, _ fromImageIndex: Int, _ toImageIndex: Int) -> Void = { _, _, _ in }
+        onSlideshowImageChanged: @escaping (_ categoryIndex: Int, _ fromImageIndex: Int, _ toImageIndex: Int) -> Void = { _, _, _ in },
+        onCloseTapped: @escaping () -> Void
     ) -> some View {
         modifier(
             ImageGalleryGrid(
@@ -93,8 +93,8 @@ public extension View {
         categories: [BPKImageGalleryChipCategory<GridImage, SlideshowImage>],
         closeAccessibilityLabel: String,
         onImageTapped: @escaping (_ category: Int, _ image: Int) -> Void,
-        onCloseTapped: @escaping () -> Void,
-        onSlideshowImageChanged: @escaping (_ categoryIndex: Int, _ fromImageIndex: Int, _ toImageIndex: Int) -> Void = { _, _, _ in }
+        onSlideshowImageChanged: @escaping (_ categoryIndex: Int, _ fromImageIndex: Int, _ toImageIndex: Int) -> Void = { _, _, _ in },
+        onCloseTapped: @escaping () -> Void
     ) -> some View {
         modifier(
             ImageGalleryGrid(

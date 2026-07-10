@@ -178,8 +178,8 @@ public extension View {
         images: [BPKSlideshowGalleryImage<Content>],
         closeAccessibilityLabel: String,
         currentIndex: Binding<Int>,
-        onCloseTapped: @escaping () -> Void,
-        onSlideshowImageChanged: @escaping (_ fromImageIndex: Int, _ toImageIndex: Int) -> Void = { _, _ in }
+        onSlideshowImageChanged: @escaping (_ fromImageIndex: Int, _ toImageIndex: Int) -> Void = { _, _ in },
+        onCloseTapped: @escaping () -> Void
     ) -> some View {
         modifier(
             ImageGallerySlideshow(
