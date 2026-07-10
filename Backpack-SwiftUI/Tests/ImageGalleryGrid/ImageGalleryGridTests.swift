@@ -25,7 +25,7 @@ class ImageGalleryGridTests: XCTestCase {
         Image("dialog_image", bundle: TestsBundle.bundle)
             .resizable()
     }
-    
+
     func test_imageGalleryChipGrid() {
         assertSnapshot(
             ImageGalleryGridContentView(
@@ -46,13 +46,14 @@ class ImageGalleryGridTests: XCTestCase {
                 },
                 closeAccessibilityLabel: "close",
                 imageTapped: { _, _ in },
+                onSlideshowImageChanged: { _, _, _ in },
                 onCloseTapped: {},
                 selectedCategoryIndex: 1
             )
             .frame(width: 400, height: 600)
         )
     }
-    
+
     func test_imageGalleryImagesGrid() {
         assertSnapshot(
             ImageGalleryGridContentView(
@@ -78,10 +79,52 @@ class ImageGalleryGridTests: XCTestCase {
                 },
                 closeAccessibilityLabel: "close",
                 imageTapped: { _, _ in },
+                onSlideshowImageChanged: { _, _, _ in },
                 onCloseTapped: {},
                 selectedCategoryIndex: 1
             )
             .frame(width: 400, height: 600)
+        )
+    }
+
+    func test_slideshowImageChanged_forwardsSelectedCategoryAndIndices() {
+        var receivedChange: (category: Int, from: Int, to: Int)?
+        let view = ImageGalleryGridContentView(
+            categories: { EmptyView() },
+            gridImages: [],
+            slideshowImages: [],
+            closeAccessibilityLabel: "close",
+            imageTapped: { _, _ in },
+            onSlideshowImageChanged: { category, from, to in
+                receivedChange = (category, from, to)
+            },
+            onCloseTapped: {},
+            selectedCategoryIndex: 2
+        )
+
+        view.slideshowImageChanged(1, 3)
+
+        XCTAssertEqual(receivedChange?.category, 2)
+        XCTAssertEqual(receivedChange?.from, 1)
+        XCTAssertEqual(receivedChange?.to, 3)
+    }
+
+    func test_imageGalleryGrid_withoutSlideshowImageChangedCallback_remainsSourceCompatible() {
+        let categories: [BPKImageGalleryChipCategory<Color, Color>] = [
+            .init(
+                title: "Category",
+                gridImages: [.init(content: { Color.red })],
+                slideshowImages: [.init(title: "Image", content: { Color.red })]
+            )
+        ]
+
+        _ = Color.clear.bpkImageGalleryGrid(
+            isPresented: .constant(false),
+            selectedCategory: .constant(0),
+            categories: categories,
+            closeAccessibilityLabel: "close",
+            onImageTapped: { _, _ in },
+            onCloseTapped: {}
         )
     }
 }
