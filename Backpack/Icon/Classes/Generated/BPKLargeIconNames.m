@@ -161,6 +161,7 @@ BPKLargeIconName const BPKLargeIconNameHotelsDisabledFacilities = @"hotels--disa
 BPKLargeIconName const BPKLargeIconNameHotelsJacuzzi = @"hotels--jacuzzi";
 BPKLargeIconName const BPKLargeIconNameHotelsPetsAllowed = @"hotels--pets-allowed";
 BPKLargeIconName const BPKLargeIconNameHotelsSmoking = @"hotels--smoking";
+BPKLargeIconName const BPKLargeIconNameHotelsSwimmingPool = @"hotels--swimming-pool";
 BPKLargeIconName const BPKLargeIconNameHotels = @"hotels";
 BPKLargeIconName const BPKLargeIconNameIncompatible = @"incompatible";
 BPKLargeIconName const BPKLargeIconNameInfant = @"infant";

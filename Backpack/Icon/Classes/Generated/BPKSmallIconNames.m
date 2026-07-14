@@ -160,6 +160,7 @@ BPKSmallIconName const BPKSmallIconNameHotelsDisabledFacilities = @"hotels--disa
 BPKSmallIconName const BPKSmallIconNameHotelsJacuzzi = @"hotels--jacuzzi";
 BPKSmallIconName const BPKSmallIconNameHotelsPetsAllowed = @"hotels--pets-allowed";
 BPKSmallIconName const BPKSmallIconNameHotelsSmoking = @"hotels--smoking";
+BPKSmallIconName const BPKSmallIconNameHotelsSwimmingPool = @"hotels--swimming-pool";
 BPKSmallIconName const BPKSmallIconNameHotels = @"hotels";
 BPKSmallIconName const BPKSmallIconNameIncompatible = @"incompatible";
 BPKSmallIconName const BPKSmallIconNameInfant = @"infant";
