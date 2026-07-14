@@ -309,6 +309,8 @@ FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameHotelsPetsAllowed;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameHotelsSmoking;
 /// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameHotelsSwimmingPool;
+/// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameHotels;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameIncompatible;

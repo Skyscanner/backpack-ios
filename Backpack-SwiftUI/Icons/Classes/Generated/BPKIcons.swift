@@ -160,6 +160,7 @@ public extension BPKIcon {
     static let hotelsJacuzzi = BPKIcon(name: "hotels--jacuzzi")
     static let hotelsPetsAllowed = BPKIcon(name: "hotels--pets-allowed")
     static let hotelsSmoking = BPKIcon(name: "hotels--smoking")
+    static let hotelsSwimmingPool = BPKIcon(name: "hotels--swimming-pool")
     static let hotels = BPKIcon(name: "hotels")
     static let incompatible = BPKIcon(name: "incompatible")
     static let infant = BPKIcon(name: "infant")
@@ -475,6 +476,7 @@ public extension BPKIcon {
         case "hotels--jacuzzi": return .hotelsJacuzzi
         case "hotels--pets-allowed": return .hotelsPetsAllowed
         case "hotels--smoking": return .hotelsSmoking
+        case "hotels--swimming-pool": return .hotelsSwimmingPool
         case "hotels": return .hotels
         case "incompatible": return .incompatible
         case "infant": return .infant
