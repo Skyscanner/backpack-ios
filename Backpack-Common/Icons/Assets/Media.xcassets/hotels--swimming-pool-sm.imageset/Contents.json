@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "hotels--swimming-pool-sm.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

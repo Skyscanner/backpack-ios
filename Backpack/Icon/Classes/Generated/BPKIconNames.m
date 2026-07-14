@@ -161,6 +161,7 @@ BPKIconName const BPKIconNameHotelsDisabledFacilities = @"hotels--disabled-facil
 BPKIconName const BPKIconNameHotelsJacuzzi = @"hotels--jacuzzi";
 BPKIconName const BPKIconNameHotelsPetsAllowed = @"hotels--pets-allowed";
 BPKIconName const BPKIconNameHotelsSmoking = @"hotels--smoking";
+BPKIconName const BPKIconNameHotelsSwimmingPool = @"hotels--swimming-pool";
 BPKIconName const BPKIconNameHotels = @"hotels";
 BPKIconName const BPKIconNameIncompatible = @"incompatible";
 BPKIconName const BPKIconNameInfant = @"infant";
