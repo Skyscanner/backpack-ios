@@ -162,6 +162,7 @@ extension BPKIconViewTests {
         .hotelsJacuzzi,
         .hotelsPetsAllowed,
         .hotelsSmoking,
+        .hotelsSwimmingPool,
         .hotels,
         .incompatible,
         .infant,
