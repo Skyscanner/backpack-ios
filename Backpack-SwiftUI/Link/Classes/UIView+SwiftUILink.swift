@@ -84,7 +84,6 @@ private extension UIAccessibilityTraits {
         if contains(.startsMediaSession) { traits.insert(.startsMediaSession) }
         if contains(.allowsDirectInteraction) { traits.insert(.allowsDirectInteraction) }
         if contains(.causesPageTurn) { traits.insert(.causesPageTurn) }
-        if contains(.tabBar) { traits.insert(.isTabBar) }
         return traits
     }
 }
