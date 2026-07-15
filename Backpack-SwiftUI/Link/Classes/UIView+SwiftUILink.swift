@@ -17,6 +17,7 @@
  */
 
 import SwiftUI
+import UIKit
 import Combine
 
 public final class SwiftUILinkViewModel: ObservableObject {
@@ -26,8 +27,8 @@ public final class SwiftUILinkViewModel: ObservableObject {
     public var onCustomLink: (URL) -> Void
     public var accessibilityIdentifier: String?
     public var accessibilityLabel: String?
-    public var accessibilityTraits: AccessibilityTraits?
-    
+    public var accessibilityTraits: UIAccessibilityTraits?
+
     public init(
         markdown: String,
         style: BPKLinkStyle = .default,
@@ -35,7 +36,7 @@ public final class SwiftUILinkViewModel: ObservableObject {
         onCustomLink: @escaping (URL) -> Void = { _ in },
         accessibilityIdentifier: String? = nil,
         accessibilityLabel: String? = nil) {
-        
+
         self.markdown = markdown
         self.style = style
         self.fontStyle = fontStyle
@@ -47,7 +48,7 @@ public final class SwiftUILinkViewModel: ObservableObject {
 
 public struct ReactiveSwiftUIBPKLinkWrapper: View {
     @ObservedObject var viewModel: SwiftUILinkViewModel
-    
+
     public var body: some View {
         BPKLink(
             markdown: viewModel.markdown,
@@ -61,8 +62,30 @@ public struct ReactiveSwiftUIBPKLinkWrapper: View {
             link.accessibilityIdentifier(viewModel.accessibilityIdentifier!)
         }
         .if(viewModel.accessibilityTraits != nil) { link in
-            link.accessibilityAddTraits(viewModel.accessibilityTraits!)
+            link.accessibilityAddTraits(viewModel.accessibilityTraits!.swiftUIAccessibilityTraits)
         }
+    }
+}
+
+private extension UIAccessibilityTraits {
+    var swiftUIAccessibilityTraits: AccessibilityTraits {
+        var traits = AccessibilityTraits()
+        if contains(.button) { traits.insert(.isButton) }
+        if contains(.link) { traits.insert(.isLink) }
+        if contains(.header) { traits.insert(.isHeader) }
+        if contains(.image) { traits.insert(.isImage) }
+        if contains(.selected) { traits.insert(.isSelected) }
+        if contains(.keyboardKey) { traits.insert(.isKeyboardKey) }
+        if contains(.summaryElement) { traits.insert(.isSummaryElement) }
+        if contains(.notEnabled) { traits.insert(.isStaticText) }
+        if contains(.updatesFrequently) { traits.insert(.updatesFrequently) }
+        if contains(.searchField) { traits.insert(.isSearchField) }
+        if contains(.playsSound) { traits.insert(.playsSound) }
+        if contains(.startsMediaSession) { traits.insert(.startsMediaSession) }
+        if contains(.allowsDirectInteraction) { traits.insert(.allowsDirectInteraction) }
+        if contains(.causesPageTurn) { traits.insert(.causesPageTurn) }
+        if contains(.tabBar) { traits.insert(.isTabBar) }
+        return traits
     }
 }
 

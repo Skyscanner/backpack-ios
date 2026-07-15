@@ -50,13 +50,13 @@ final class BPKLinkWrapper: UIView {
         set { viewModel.accessibilityIdentifier = newValue }
     }
 
-    var accessibilityLabelText: String? {
+    override var accessibilityLabel: String? {
         get { viewModel.accessibilityLabel }
         set { viewModel.accessibilityLabel = newValue }
     }
 
-    var linkAccessibilityTraits: AccessibilityTraits? {
-        get { viewModel.accessibilityTraits }
+    override var accessibilityTraits: UIAccessibilityTraits {
+        get { viewModel.accessibilityTraits ?? super.accessibilityTraits }
         set { viewModel.accessibilityTraits = newValue }
     }
 
