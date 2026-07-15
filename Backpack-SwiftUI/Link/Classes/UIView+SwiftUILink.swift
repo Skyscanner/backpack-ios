@@ -20,6 +20,7 @@ import SwiftUI
 import UIKit
 import Combine
 
+@MainActor
 public final class SwiftUILinkViewModel: ObservableObject {
     @Published public var markdown: String
     public var style: BPKLinkStyle
@@ -91,6 +92,7 @@ private extension UIAccessibilityTraits {
 public extension UIView {
     
     /// Creates a SwiftUI BPKLink wrapped in a UIHostingController and returns both the view and its ViewModel
+    @MainActor
     static func makeReactiveSwiftUIBPKLink(
         markdown: String,
         style: BPKLinkStyle = .default,

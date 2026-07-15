@@ -34,6 +34,7 @@ import SwiftUI
 /// linkLabel.markdown = "[View details](view-details)"
 /// linkLabel.accessibilityIdentifier = "my_link_label"
 /// ```
+@MainActor
 final class BPKLinkWrapper: UIView {
 
     // MARK: - Public Properties
