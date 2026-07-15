@@ -26,9 +26,9 @@ public final class SwiftUILinkViewModel: ObservableObject {
     public var style: BPKLinkStyle
     public var fontStyle: BPKFontStyle
     public var onCustomLink: (URL) -> Void
-    public var accessibilityIdentifier: String?
-    public var accessibilityLabel: String?
-    public var accessibilityTraits: UIAccessibilityTraits?
+    @Published public var accessibilityIdentifier: String?
+    @Published public var accessibilityLabel: String?
+    @Published public var accessibilityTraits: UIAccessibilityTraits?
 
     public init(
         markdown: String,
