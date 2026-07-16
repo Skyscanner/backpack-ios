@@ -35,28 +35,28 @@ import SwiftUI
 /// linkLabel.accessibilityIdentifier = "my_link_label"
 /// ```
 @MainActor
-final class BPKLinkWrapper: UIView {
+public final class BPKLinkWrapper: UIView {
 
     // MARK: - Public Properties
 
     /// The markdown text to display. Links should use custom URL schemes (e.g., `[text](custom://action)`)
     /// to ensure the `onTap` closure is called instead of BPKLink automatically opening URLs.
-    var markdown: String {
+    public var markdown: String {
         get { viewModel.markdown }
         set { viewModel.markdown = newValue }
     }
 
-    override var accessibilityIdentifier: String? {
+    public override var accessibilityIdentifier: String? {
         get { viewModel.accessibilityIdentifier }
         set { viewModel.accessibilityIdentifier = newValue }
     }
 
-    override var accessibilityLabel: String? {
+    public override var accessibilityLabel: String? {
         get { viewModel.accessibilityLabel }
         set { viewModel.accessibilityLabel = newValue }
     }
 
-    override var accessibilityTraits: UIAccessibilityTraits {
+    public override var accessibilityTraits: UIAccessibilityTraits {
         get { viewModel.accessibilityTraits ?? super.accessibilityTraits }
         set { viewModel.accessibilityTraits = newValue }
     }
@@ -75,7 +75,7 @@ final class BPKLinkWrapper: UIView {
     ///   - style: The link style (default: `.default`)
     ///   - fontStyle: The font style (default: `.bodyDefault`)
     ///   - onTap: Closure called when the link is tapped
-    init(
+    public init(
         markdown: String = "",
         style: Backpack_SwiftUI.BPKLinkStyle = .default,
         fontStyle: Backpack_SwiftUI.BPKFontStyle = .bodyDefault,
