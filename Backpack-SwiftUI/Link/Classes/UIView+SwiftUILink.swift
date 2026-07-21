@@ -17,17 +17,19 @@
  */
 
 import SwiftUI
+import UIKit
 import Combine
 
+@MainActor
 public final class SwiftUILinkViewModel: ObservableObject {
     @Published public var markdown: String
     public var style: BPKLinkStyle
     public var fontStyle: BPKFontStyle
     public var onCustomLink: (URL) -> Void
-    public var accessibilityIdentifier: String?
-    public var accessibilityLabel: String?
-    public var accessibilityTraits: AccessibilityTraits?
-    
+    @Published public var accessibilityIdentifier: String?
+    @Published public var accessibilityLabel: String?
+    @Published public var accessibilityTraits: UIAccessibilityTraits?
+
     public init(
         markdown: String,
         style: BPKLinkStyle = .default,
@@ -35,7 +37,7 @@ public final class SwiftUILinkViewModel: ObservableObject {
         onCustomLink: @escaping (URL) -> Void = { _ in },
         accessibilityIdentifier: String? = nil,
         accessibilityLabel: String? = nil) {
-        
+
         self.markdown = markdown
         self.style = style
         self.fontStyle = fontStyle
@@ -47,7 +49,7 @@ public final class SwiftUILinkViewModel: ObservableObject {
 
 public struct ReactiveSwiftUIBPKLinkWrapper: View {
     @ObservedObject var viewModel: SwiftUILinkViewModel
-    
+
     public var body: some View {
         BPKLink(
             markdown: viewModel.markdown,
@@ -61,14 +63,36 @@ public struct ReactiveSwiftUIBPKLinkWrapper: View {
             link.accessibilityIdentifier(viewModel.accessibilityIdentifier!)
         }
         .if(viewModel.accessibilityTraits != nil) { link in
-            link.accessibilityAddTraits(viewModel.accessibilityTraits!)
+            link.accessibilityAddTraits(viewModel.accessibilityTraits!.swiftUIAccessibilityTraits)
         }
+    }
+}
+
+private extension UIAccessibilityTraits {
+    var swiftUIAccessibilityTraits: AccessibilityTraits {
+        var traits = AccessibilityTraits()
+        if contains(.button) { traits.insert(.isButton) }
+        if contains(.link) { traits.insert(.isLink) }
+        if contains(.header) { traits.insert(.isHeader) }
+        if contains(.image) { traits.insert(.isImage) }
+        if contains(.selected) { traits.insert(.isSelected) }
+        if contains(.keyboardKey) { traits.insert(.isKeyboardKey) }
+        if contains(.summaryElement) { traits.insert(.isSummaryElement) }
+        if contains(.notEnabled) { traits.insert(.isStaticText) }
+        if contains(.updatesFrequently) { traits.insert(.updatesFrequently) }
+        if contains(.searchField) { traits.insert(.isSearchField) }
+        if contains(.playsSound) { traits.insert(.playsSound) }
+        if contains(.startsMediaSession) { traits.insert(.startsMediaSession) }
+        if contains(.allowsDirectInteraction) { traits.insert(.allowsDirectInteraction) }
+        if contains(.causesPageTurn) { traits.insert(.causesPageTurn) }
+        return traits
     }
 }
 
 public extension UIView {
     
     /// Creates a SwiftUI BPKLink wrapped in a UIHostingController and returns both the view and its ViewModel
+    @MainActor
     static func makeReactiveSwiftUIBPKLink(
         markdown: String,
         style: BPKLinkStyle = .default,
