@@ -27,8 +27,7 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
     @State var headerHeight: CGFloat = 0.0
     @State private var detentHeight: CGFloat = 0
     @State private var initialDetentHeight: CGFloat = 0
-    private let maximumDetentHeight: CGFloat = UIScreen.main.bounds.height * 0.95
-    
+
     private var detents: Set<PresentationDetent> {
         var finalDetents: Set<PresentationDetent> = [.height(detentHeight)]
         if let peekHeight {
@@ -36,9 +35,10 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
         }
         return finalDetents
     }
-    
+
     var body: some View {
-        GeometryReader { _ in
+        GeometryReader { geometry in
+            let maximumDetentHeight = geometry.size.height * 0.95
             VStack(spacing: BPKSpacing.none) {
                 BottomSheetDragIndicator()
                 header
@@ -52,11 +52,11 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
                 .frame(maxHeight: maximumDetentHeight - headerHeight)
                 .fixedSize(horizontal: false, vertical: true)
             }
-            .onGeometryChange(for: CGFloat.self) { geometry in
-                if detentHeight != initialDetentHeight && geometry.size.height > maximumDetentHeight {
+            .onGeometryChange(for: CGFloat.self) { geo in
+                if detentHeight != initialDetentHeight && geo.size.height > maximumDetentHeight {
                     return detentHeight
                 }
-                return geometry.size.height
+                return geo.size.height
             } action: { newValue in
                 if initialDetentHeight == 0 {
                     initialDetentHeight = newValue
