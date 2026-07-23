@@ -1,6 +1,6 @@
 # Backpack-SwiftUI/Badge
 
-[![Cocoapods](https://img.shields.io/cocoapods/v/Backpack-SwiftUI.svg?style=flat)](hhttps://cocoapods.org/pods/Backpack-SwiftUI)
+[![Cocoapods](https://img.shields.io/cocoapods/v/Backpack-SwiftUI.svg?style=flat)](https://cocoapods.org/pods/Backpack-SwiftUI)
 [![class reference](https://img.shields.io/badge/Class%20reference-iOS-blue)](https://backpack.github.io/ios/versions/latest/swiftui/Structs/BPKBadge.html)
 [![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack-SwiftUI/Badge)
 
@@ -13,7 +13,7 @@
 ## Usage
 
 ### Basic text badge
-If you don't specify a `.badgeStyle(<style>)` it will use the `.default` type
+If you don't specify a `.badgeStyle(<style>)` it will use the `.normal` style.
 
 ```swift
 import Backpack_SwiftUI
@@ -23,15 +23,37 @@ BPKBadge("Hello World")
 BPKBadge("Hello World")
     .badgeStyle(.destructive)
 ```
+
+### Available styles
+
+`BPKBadge` supports nine styles:
+
+- `.normal`
+- `.subtle`
+- `.strong`
+- `.success`
+- `.warning`
+- `.destructive`
+- `.inverse`
+- `.outline`
+- `.brand`
 
 ### Badge with icon
-If you don't specify a `.badgeStyle(<style>)` it will use the `.default` type
+If you don't specify a `.badgeStyle(<style>)` it will use the `.normal` style.
 
 ```swift
 import Backpack_SwiftUI
 
 BPKBadge("Hello World", icon: .tickCircle)
 
-BPKBadge("Hello World", icon: .tickCircle)
+BPKBadge("Hello World")
     .badgeStyle(.destructive)
 ```
+
+For `.success`, `.warning`, and `.destructive`, an icon is provided automatically when no `icon` is supplied:
+
+- `.success` uses `.tickCircle`
+- `.warning` uses `.informationCircle`
+- `.destructive` uses `.exclamation`
+
+Passing an explicit `icon` overrides the automatically selected icon.
