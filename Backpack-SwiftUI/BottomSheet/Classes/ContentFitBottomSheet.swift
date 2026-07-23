@@ -27,6 +27,7 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
     @State var headerHeight: CGFloat = 0.0
     @State private var detentHeight: CGFloat = 0
     @State private var initialDetentHeight: CGFloat = 0
+    @State private var maximumDetentHeight: CGFloat = 0
 
     private var detents: Set<PresentationDetent> {
         var finalDetents: Set<PresentationDetent> = [.height(detentHeight)]
@@ -37,8 +38,7 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
     }
 
     var body: some View {
-        GeometryReader { geometry in
-            let maximumDetentHeight = geometry.size.height * 0.95
+        GeometryReader { _ in
             VStack(spacing: BPKSpacing.none) {
                 BottomSheetDragIndicator()
                 header
@@ -49,7 +49,7 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
                     bottomSheetContent
                         .avoidKeyboard()
                 }
-                .frame(maxHeight: maximumDetentHeight - headerHeight)
+                .frame(maxHeight: max(0, maximumDetentHeight - headerHeight))
                 .fixedSize(horizontal: false, vertical: true)
             }
             .onGeometryChange(for: CGFloat.self) { geo in
@@ -65,6 +65,9 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
             }
             .presentationDetents(detents)
             .presentationDragIndicator(.hidden)
+        }
+        .onGeometryChange(for: CGFloat.self, of: { $0.size.height }) { newValue in
+            maximumDetentHeight = newValue * 0.95
         }
         .background(backgroundColor)
         .ignoresSafeArea(.keyboard)
