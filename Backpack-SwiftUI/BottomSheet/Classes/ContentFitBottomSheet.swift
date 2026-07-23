@@ -23,11 +23,17 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
     let header: Header
     let bottomSheetContent: Content
     let backgroundColor: BPKColor
-    
+
     @State var headerHeight: CGFloat = 0.0
     @State private var detentHeight: CGFloat = 0
     @State private var initialDetentHeight: CGFloat = 0
-    @State private var maximumDetentHeight: CGFloat = 0
+    @State private var maximumDetentHeight: CGFloat = Self.windowHeight() * 0.95
+
+    private static func windowHeight() -> CGFloat {
+        UIApplication.shared.connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .first?.keyWindow?.bounds.height ?? 0
+    }
 
     private var detents: Set<PresentationDetent> {
         var finalDetents: Set<PresentationDetent> = [.height(detentHeight)]
@@ -66,8 +72,10 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
             .presentationDetents(detents)
             .presentationDragIndicator(.hidden)
         }
-        .onGeometryChange(for: CGFloat.self, of: { $0.size.height }) { newValue in
-            maximumDetentHeight = newValue * 0.95
+        .onReceive(NotificationCenter.default.publisher(
+            for: UIDevice.orientationDidChangeNotification
+        )) { _ in
+            maximumDetentHeight = Self.windowHeight() * 0.95
         }
         .background(backgroundColor)
         .ignoresSafeArea(.keyboard)
