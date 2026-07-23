@@ -64,7 +64,7 @@ public struct BPKBadge: View {
         return result
     }
     
-    public func createBadgeIconView(icon: BPKIcon?) -> BPKIconView? {
+    private func createBadgeIconView(icon: BPKIcon?) -> BPKIconView? {
         guard let badgeIcon = icon else {
             switch style {
             case .success:
