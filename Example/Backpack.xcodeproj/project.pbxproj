@@ -212,7 +212,7 @@
 		E38947D422F5F0E900A357DB /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38947D322F5F0E900A357DB /* BottomSheetViewController.swift */; };
 		E38E82EC24165A40004273E9 /* BottomSheetContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38E82EB24165A40004273E9 /* BottomSheetContentViewController.swift */; };
 		E397BEA222F5F59000C8EC04 /* BottomSheetScrollableContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA122F5F59000C8EC04 /* BottomSheetScrollableContentViewController.swift */; };
-		E397BEA422F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA322F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift */; };
+		E397BEA422F5FCE500C8EC04 /* BottomSheetBottomSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA322F5FCE500C8EC04 /* BottomSheetBottomSectionViewController.swift */; };
 		E397BEA622F5FFDD00C8EC04 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA522F5FFDD00C8EC04 /* Storyboards.swift */; };
 		E6822E46AF304B16800B6609 /* LinkExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2848C51D99141B190D97447 /* LinkExampleView.swift */; };
 		EAE469A72FE3EDD70024EDA6 /* CheckboxExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE469A62FE3EDD70024EDA6 /* CheckboxExampleView.swift */; };
@@ -467,7 +467,7 @@
 		E38947D322F5F0E900A357DB /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		E38E82EB24165A40004273E9 /* BottomSheetContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetContentViewController.swift; sourceTree = "<group>"; };
 		E397BEA122F5F59000C8EC04 /* BottomSheetScrollableContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetScrollableContentViewController.swift; sourceTree = "<group>"; };
-		E397BEA322F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetBottomSectionVIewController.swift; sourceTree = "<group>"; };
+		E397BEA322F5FCE500C8EC04 /* BottomSheetBottomSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetBottomSectionViewController.swift; sourceTree = "<group>"; };
 		E397BEA522F5FFDD00C8EC04 /* Storyboards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		EAE469A62FE3EDD70024EDA6 /* CheckboxExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxExampleView.swift; sourceTree = "<group>"; };
 		EDBC7CA36756032862B5D581 /* Pods_Backpack_Native.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Backpack_Native.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1607,7 +1607,7 @@
 			isa = PBXGroup;
 			children = (
 				E38947D122F5CB3300A357DB /* BottomSheet.storyboard */,
-				E397BEA322F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift */,
+				E397BEA322F5FCE500C8EC04 /* BottomSheetBottomSectionViewController.swift */,
 				E38E82EB24165A40004273E9 /* BottomSheetContentViewController.swift */,
 				E35EA59524212F9900373CE4 /* BottomSheetResizableContentViewController.swift */,
 				E397BEA122F5F59000C8EC04 /* BottomSheetScrollableContentViewController.swift */,
@@ -1931,7 +1931,7 @@
 				EED38AA42EB37AAE00A77904 /* ConfigurationBadgeView.swift in Sources */,
 				53C6621529EA0DAB00BF1A62 /* BadgeExampleVIew.swift in Sources */,
 				B31283822A77D2410034EE29 /* CardListExampleView.swift in Sources */,
-				E397BEA422F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift in Sources */,
+				E397BEA422F5FCE500C8EC04 /* BottomSheetBottomSectionViewController.swift in Sources */,
 				53B6DB6827FC4D520042B7C0 /* HorizontalNavigationGroups.swift in Sources */,
 				5390DB5D29098CE400F0F790 /* RadiusTokensViewController.swift in Sources */,
 				C40C7BA22E2E86640081EF50 /* BlurTokensView.swift in Sources */,
