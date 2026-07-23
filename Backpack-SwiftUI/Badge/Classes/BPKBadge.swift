@@ -25,13 +25,13 @@ import Backpack_Common
 /// Use `badgeStyle(_ style: BPKBadge.Style)` to change the style of the badge
 ///
 public struct BPKBadge: View {
-    private let title: String
+    private let text: String
     private let icon: BPKIcon?
     private var style: BPKBadge.Style = .normal
     private let config: BpkConfiguration?
 
-    public init(_ title: String, icon: BPKIcon? = nil) {
-        self.title = title
+    public init(_ text: String, icon: BPKIcon? = nil) {
+        self.text = text
         self.icon = icon
         self.config = BpkConfiguration.shared
     }
@@ -46,7 +46,7 @@ public struct BPKBadge: View {
             .clipShape(RoundedRectangle(cornerRadius: .xs))
             .outline(style.borderColor(config), cornerRadius: .xs)
             .accessibilityElement()
-            .accessibilityLabel(title)
+            .accessibilityLabel(text)
             .if(!BPKFont.enableDynamicType, transform: {
                 $0.sizeCategory(.large)
             })
@@ -85,7 +85,7 @@ public struct BPKBadge: View {
             if let badgeIconView = createBadgeIconView(icon: icon) {
                 badgeIconView.foregroundColor(style.iconColor(config))
             }
-            BPKText(title, style: .footnote)
+            BPKText(text, style: .footnote)
                 .foregroundColor(style.foregroundColor(config))
         }
     }
