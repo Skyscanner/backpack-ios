@@ -23,17 +23,16 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
     let header: Header
     let bottomSheetContent: Content
     let backgroundColor: BPKColor
-    let containerHeight: CGFloat
 
     @State private var headerHeight: CGFloat = 0.0
     @State private var detentHeight: CGFloat = 0
     @State private var initialDetentHeight: CGFloat = 0
+    @State private var windowHeight: CGFloat = 0
 
-    // If containerHeight hasn't been measured yet (= 0), use a large value so the
-    // content can size to its natural height. Once the real height is passed in, the
-    // cap is applied and onChange clamps detentHeight if needed.
+    // Until the window height is known, use a large uncapped value so the content
+    // can size to its natural height. Once windowHeight is set, the 95% cap applies.
     private var maximumDetentHeight: CGFloat {
-        containerHeight > 0 ? containerHeight * 0.95 : 10_000
+        windowHeight > 0 ? windowHeight * 0.95 : 10_000
     }
 
     private var detents: Set<PresentationDetent> {
@@ -73,6 +72,7 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
             .presentationDetents(detents)
             .presentationDragIndicator(.hidden)
         }
+        .background(WindowHeightReader { height in windowHeight = height })
         .onChange(of: maximumDetentHeight) { newMax in
             if detentHeight > newMax {
                 detentHeight = newMax
@@ -80,5 +80,21 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
         }
         .background(backgroundColor)
         .ignoresSafeArea(.keyboard)
+    }
+}
+
+// Reads the presenting window's bounds height via the UIKit view hierarchy.
+// Uses view.window?.bounds — Pattern A option 1 from the UIScreen.main migration guide.
+// Safe in app extensions: no UIApplication.shared access.
+private struct WindowHeightReader: UIViewRepresentable {
+    let onHeightChange: (CGFloat) -> Void
+
+    func makeUIView(context: Context) -> UIView { UIView() }
+
+    func updateUIView(_ uiView: UIView, context: Context) {
+        DispatchQueue.main.async {
+            guard let height = uiView.window?.bounds.height, height > 0 else { return }
+            onHeightChange(height)
+        }
     }
 }

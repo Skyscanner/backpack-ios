@@ -27,7 +27,6 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
     let backgroundColor: BPKColor
     
     @State var selectedSheetDetent: PresentationDetent
-    @State private var containerHeight: CGFloat = 0
 
     init(
         isPresented: Binding<Bool>,
@@ -48,9 +47,6 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
     
     func body(content: Content) -> some View {
         content
-            .onGeometryChange(for: CGFloat.self, of: { $0.size.height }) { newHeight in
-                containerHeight = newHeight
-            }
             .sheet(isPresented: $isPresented) {
                 switch contentMode {
                 case .large:
@@ -63,8 +59,7 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
                         peekHeight: peekHeight,
                         header: header(),
                         bottomSheetContent: bottomSheetContent(),
-                        backgroundColor: backgroundColor,
-                        containerHeight: containerHeight
+                        backgroundColor: backgroundColor
                     )
                     .frame(maxHeight: .infinity, alignment: .top)
                     .ignoresSafeArea(.container, edges: .bottom)
