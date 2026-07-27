@@ -27,6 +27,17 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
     @State private var headerHeight: CGFloat = 0.0
     @State private var detentHeight: CGFloat = 0
     @State private var initialDetentHeight: CGFloat = 0
+    @State private var maximumDetentHeight: CGFloat = Self.windowHeight() * 0.95
+
+    // Uses the key window from all connected scenes so it's correct in multi-window setups.
+    // Falls back to UIScreen.main as a last resort (acceptable per Confluence Phase 1 Pattern A).
+    private static func windowHeight() -> CGFloat {
+        UIApplication.shared.connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .compactMap { $0.keyWindow }
+            .first?.bounds.height
+            ?? UIScreen.main.bounds.height
+    }
 
     private var detents: Set<PresentationDetent> {
         var finalDetents: Set<PresentationDetent> = [.height(detentHeight)]
@@ -37,8 +48,7 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
     }
 
     var body: some View {
-        GeometryReader { geometry in
-            let maximumDetentHeight = geometry.size.height * 0.95
+        GeometryReader { _ in
             VStack(spacing: BPKSpacing.none) {
                 BottomSheetDragIndicator()
                 header
@@ -65,6 +75,15 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
             }
             .presentationDetents(detents)
             .presentationDragIndicator(.hidden)
+        }
+        .onReceive(NotificationCenter.default.publisher(
+            for: UIDevice.orientationDidChangeNotification
+        )) { _ in
+            let newMax = Self.windowHeight() * 0.95
+            maximumDetentHeight = newMax
+            if detentHeight > newMax {
+                detentHeight = newMax
+            }
         }
         .background(backgroundColor)
         .ignoresSafeArea(.keyboard)
