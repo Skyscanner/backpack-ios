@@ -23,12 +23,18 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
     let header: Header
     let bottomSheetContent: Content
     let backgroundColor: BPKColor
-    
-    @State var headerHeight: CGFloat = 0.0
+
+    @State private var headerHeight: CGFloat = 0.0
     @State private var detentHeight: CGFloat = 0
     @State private var initialDetentHeight: CGFloat = 0
-    private let maximumDetentHeight: CGFloat = UIScreen.main.bounds.height * 0.95
-    
+    @State private var windowHeight: CGFloat = 0
+
+    // Until the window height is known, use a large uncapped value so the content
+    // can size to its natural height. Once windowHeight is set, the 95% cap applies.
+    private var maximumDetentHeight: CGFloat {
+        windowHeight > 0 ? windowHeight * 0.95 : 10_000
+    }
+
     private var detents: Set<PresentationDetent> {
         var finalDetents: Set<PresentationDetent> = [.height(detentHeight)]
         if let peekHeight {
@@ -36,7 +42,7 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
         }
         return finalDetents
     }
-    
+
     var body: some View {
         GeometryReader { _ in
             VStack(spacing: BPKSpacing.none) {
@@ -49,24 +55,46 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
                     bottomSheetContent
                         .avoidKeyboard()
                 }
-                .frame(maxHeight: maximumDetentHeight - headerHeight)
+                .frame(maxHeight: max(0, maximumDetentHeight - headerHeight))
                 .fixedSize(horizontal: false, vertical: true)
             }
-            .onGeometryChange(for: CGFloat.self) { geometry in
-                if detentHeight != initialDetentHeight && geometry.size.height > maximumDetentHeight {
+            .onGeometryChange(for: CGFloat.self) { geo in
+                if detentHeight != initialDetentHeight && geo.size.height > maximumDetentHeight {
                     return detentHeight
                 }
-                return geometry.size.height
+                return geo.size.height
             } action: { newValue in
                 if initialDetentHeight == 0 {
                     initialDetentHeight = newValue
                 }
-                detentHeight = newValue
+                detentHeight = min(newValue, maximumDetentHeight)
             }
             .presentationDetents(detents)
             .presentationDragIndicator(.hidden)
         }
+        .background(WindowHeightReader { height in windowHeight = height })
+        .onChange(of: maximumDetentHeight) { newMax in
+            if detentHeight > newMax {
+                detentHeight = newMax
+            }
+        }
         .background(backgroundColor)
         .ignoresSafeArea(.keyboard)
+    }
+}
+
+// Reads the presenting window's bounds height via the UIKit view hierarchy.
+// Uses view.window?.bounds — Pattern A option 1 from the UIScreen.main migration guide.
+// Safe in app extensions: no UIApplication.shared access.
+private struct WindowHeightReader: UIViewRepresentable {
+    let onHeightChange: (CGFloat) -> Void
+
+    func makeUIView(context: Context) -> UIView { UIView() }
+
+    func updateUIView(_ uiView: UIView, context: Context) {
+        DispatchQueue.main.async {
+            guard let height = uiView.window?.bounds.height, height > 0 else { return }
+            onHeightChange(height)
+        }
     }
 }
