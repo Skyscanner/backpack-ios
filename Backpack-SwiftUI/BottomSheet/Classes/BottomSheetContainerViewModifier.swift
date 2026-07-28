@@ -27,7 +27,7 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
     let backgroundColor: BPKColor
     
     @State var selectedSheetDetent: PresentationDetent
-    
+
     init(
         isPresented: Binding<Bool>,
         peekHeight: CGFloat?,
