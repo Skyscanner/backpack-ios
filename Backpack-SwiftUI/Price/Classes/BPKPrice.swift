@@ -150,7 +150,7 @@ public struct BPKPrice: View {
             )
         } else {
             BPKText(text, style: fontStyle)
-                .foregroundColor(style.priceTextColore)
+                .foregroundColor(style.priceTextColor)
         }
     }
     
@@ -213,7 +213,7 @@ extension BPKPrice.Style {
         }
     }
     
-    var priceTextColore: BPKColor {
+    var priceTextColor: BPKColor {
         switch self {
         case .default: .textPrimaryColor
         case .onContrast: .textOnDarkColor

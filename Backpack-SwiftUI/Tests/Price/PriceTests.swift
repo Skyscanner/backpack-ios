@@ -63,7 +63,11 @@ class PriceTests: XCTestCase {
         [(.default, "default"), (.onContrast, "onContrast")]
     }
 
-    private func testView(size: BPKPrice.Size, alignment: BPKPrice.Alignment, style: BPKPrice.Style = .default) -> some View {
+    private func testView(
+        size: BPKPrice.Size,
+        alignment: BPKPrice.Alignment,
+        style: BPKPrice.Style
+    ) -> some View {
         VStack(alignment: .leading) {
             ForEach(permutations) { item in
                 BPKPrice(
@@ -78,6 +82,7 @@ class PriceTests: XCTestCase {
                 )
             }
         }
+        .background(style == .default ? .surfaceDefaultColor : .surfaceContrastColor)
     }
 
     func test_small_withLeadingAlignment() {
@@ -93,7 +98,7 @@ class PriceTests: XCTestCase {
         styles.forEach { testCase in
             assertSnapshot(
                 testView(size: .small, alignment: .trailing, style: testCase.style),
-                testName: "test_small_withTrailingAlignment_\(testCase.name)"
+                testName: "test_small_withTrailingAlignment_and\(testCase.name)Style"
             )
         }
     }
@@ -102,7 +107,7 @@ class PriceTests: XCTestCase {
         styles.forEach { testCase in
             assertSnapshot(
                 testView(size: .small, alignment: .row, style: testCase.style),
-                testName: "test_small_withRowAlignment_\(testCase.name)"
+                testName: "test_small_withRowAlignment_and\(testCase.name)Style"
             )
         }
     }
@@ -111,7 +116,7 @@ class PriceTests: XCTestCase {
         styles.forEach { testCase in
             assertSnapshot(
                 testView(size: .extraSmall, alignment: .leading, style: testCase.style),
-                testName: "test_extraSmall_withLeadingAlignment_\(testCase.name)"
+                testName: "test_extraSmall_withLeadingAlignment_and\(testCase.name)Style"
             )
         }
     }
@@ -120,7 +125,7 @@ class PriceTests: XCTestCase {
         styles.forEach { testCase in
             assertSnapshot(
                 testView(size: .extraSmall, alignment: .trailing, style: testCase.style),
-                testName: "test_extraSmall_withTrailingAlignment_\(testCase.name)"
+                testName: "test_extraSmall_withTrailingAlignment_and\(testCase.name)Style"
             )
         }
     }
@@ -129,7 +134,7 @@ class PriceTests: XCTestCase {
         styles.forEach { testCase in
             assertSnapshot(
                 testView(size: .extraSmall, alignment: .row, style: testCase.style),
-                testName: "test_extraSmall_withRowAlignment_\(testCase.name)"
+                testName: "test_extraSmall_withRowAlignment_and\(testCase.name)Style"
             )
         }
     }
@@ -138,7 +143,7 @@ class PriceTests: XCTestCase {
         styles.forEach { testCase in
             assertSnapshot(
                 testView(size: .large, alignment: .leading, style: testCase.style),
-                testName: "test_large_withLeadingAlignment_\(testCase.name)"
+                testName: "test_large_withLeadingAlignment_and\(testCase.name)Style"
             )
         }
     }
@@ -147,7 +152,7 @@ class PriceTests: XCTestCase {
         styles.forEach { testCase in
             assertSnapshot(
                 testView(size: .large, alignment: .trailing, style: testCase.style),
-                testName: "test_large_withTrailingAlignment_\(testCase.name)"
+                testName: "test_large_withTrailingAlignment_and\(testCase.name)Style"
             )
         }
     }
