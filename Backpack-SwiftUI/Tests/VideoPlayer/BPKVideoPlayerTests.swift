@@ -31,13 +31,13 @@ final class BPKVideoPlayerTests: XCTestCase {
     func test_defaultControls_paused() {
         let controller = BPKVideoPlayerController.stub()
         controller.testOnly_setState(.readyToPlay)
-        assertSnapshot(videoContainer { BPKVideoPlayerDefaultControls(controller: controller) })
+        assertSnapshot(videoContainer { BPKVideoPlayerDefaultControls(controller: controller, accessibilityLabels: labels) })
     }
 
     /// Default controls — nothing shown while loading (consumer owns poster/spinner).
     func test_defaultControls_loading() {
         let controller = BPKVideoPlayerController.stub()
-        assertSnapshot(videoContainer { BPKVideoPlayerDefaultControls(controller: controller) })
+        assertSnapshot(videoContainer { BPKVideoPlayerDefaultControls(controller: controller, accessibilityLabels: labels) })
     }
 
     /// Custom overlay — consumer-provided control in the bottom-trailing corner.
@@ -69,6 +69,12 @@ final class BPKVideoPlayerTests: XCTestCase {
             overlay()
         }
         .frame(width: 375, height: 500)
+    }
+
+    private var labels: BPKVideoPlayerAccessibilityLabels {
+        BPKVideoPlayerAccessibilityLabels(
+            play: "Play", pause: "Pause", playing: "Playing", paused: "Paused", hint: "Toggle playback"
+        )
     }
 }
 
