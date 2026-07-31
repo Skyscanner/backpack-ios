@@ -59,7 +59,11 @@ class PriceTests: XCTestCase {
         )
     ]
     
-    private func testView(size: BPKPrice.Size, alignment: BPKPrice.Alignment) -> some View {
+    private var styles: [(style: BPKPrice.Style, name: String)] {
+        [(.default, "default"), (.onContrast, "onContrast")]
+    }
+
+    private func testView(size: BPKPrice.Size, alignment: BPKPrice.Alignment, style: BPKPrice.Style = .default) -> some View {
         VStack(alignment: .leading) {
             ForEach(permutations) { item in
                 BPKPrice(
@@ -67,6 +71,7 @@ class PriceTests: XCTestCase {
                     leadingText: item.leadingText,
                     previousPrice: item.previousPrice,
                     trailingText: item.trailingText,
+                    style: style,
                     onPriceClicked: item.onPriceClicked,
                     alignment: alignment,
                     size: size
@@ -76,42 +81,74 @@ class PriceTests: XCTestCase {
     }
 
     func test_small_withLeadingAlignment() {
-        // Then
-        assertSnapshot(testView(size: .small, alignment: .leading))
+        styles.forEach { testCase in
+            assertSnapshot(
+                testView(size: .small, alignment: .leading, style: testCase.style),
+                testName: "test_small_withLeadingAlignment_and\(testCase.name)Style"
+            )
+        }
     }
-    
+
     func test_small_withTrailingAlignment() {
-        // Then
-        assertSnapshot(testView(size: .small, alignment: .trailing))
+        styles.forEach { testCase in
+            assertSnapshot(
+                testView(size: .small, alignment: .trailing, style: testCase.style),
+                testName: "test_small_withTrailingAlignment_\(testCase.name)"
+            )
+        }
     }
-    
+
     func test_small_withRowAlignment() {
-        // Then
-        assertSnapshot(testView(size: .small, alignment: .row))
+        styles.forEach { testCase in
+            assertSnapshot(
+                testView(size: .small, alignment: .row, style: testCase.style),
+                testName: "test_small_withRowAlignment_\(testCase.name)"
+            )
+        }
     }
-    
+
     func test_extraSmall_withLeadingAlignment() {
-        // Then
-        assertSnapshot(testView(size: .extraSmall, alignment: .leading))
+        styles.forEach { testCase in
+            assertSnapshot(
+                testView(size: .extraSmall, alignment: .leading, style: testCase.style),
+                testName: "test_extraSmall_withLeadingAlignment_\(testCase.name)"
+            )
+        }
     }
-    
+
     func test_extraSmall_withTrailingAlignment() {
-        // Then
-        assertSnapshot(testView(size: .extraSmall, alignment: .trailing))
+        styles.forEach { testCase in
+            assertSnapshot(
+                testView(size: .extraSmall, alignment: .trailing, style: testCase.style),
+                testName: "test_extraSmall_withTrailingAlignment_\(testCase.name)"
+            )
+        }
     }
-    
+
     func test_extraSmall_withRowAlignment() {
-        // Then
-        assertSnapshot(testView(size: .extraSmall, alignment: .row))
+        styles.forEach { testCase in
+            assertSnapshot(
+                testView(size: .extraSmall, alignment: .row, style: testCase.style),
+                testName: "test_extraSmall_withRowAlignment_\(testCase.name)"
+            )
+        }
     }
-    
+
     func test_large_withLeadingAlignment() {
-        // Then
-        assertSnapshot(testView(size: .large, alignment: .leading))
+        styles.forEach { testCase in
+            assertSnapshot(
+                testView(size: .large, alignment: .leading, style: testCase.style),
+                testName: "test_large_withLeadingAlignment_\(testCase.name)"
+            )
+        }
     }
-    
+
     func test_large_withTrailingAlignment() {
-        // Then
-        assertSnapshot(testView(size: .large, alignment: .trailing))
+        styles.forEach { testCase in
+            assertSnapshot(
+                testView(size: .large, alignment: .trailing, style: testCase.style),
+                testName: "test_large_withTrailingAlignment_\(testCase.name)"
+            )
+        }
     }
 }
