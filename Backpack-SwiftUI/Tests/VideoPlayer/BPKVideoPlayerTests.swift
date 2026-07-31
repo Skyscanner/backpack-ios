@@ -49,9 +49,9 @@ final class BPKVideoPlayerTests: XCTestCase {
                     Spacer()
                     Button(action: {}) {
                         BPKIconView(.play, size: .large)
-                            .foregroundColor(.white)
+                            .foregroundColor(.textOnDarkColor)
                             .frame(width: 40, height: 40)
-                            .background(Color.white.opacity(0.1))
+                            .background(.surfaceTintColor)
                             .clipShape(RoundedRectangle(cornerRadius: BPKCornerRadius.sm.value))
                     }
                     .accessibilityLabel("Play video")

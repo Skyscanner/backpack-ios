@@ -58,7 +58,7 @@ BPKVideoPlayer(url: videoURL, autoPlay: true) { controller in
             Spacer()
             Button(action: controller.toggle) {
                 Image(systemName: controller.state.isPlaying ? "pause.fill" : "play.fill")
-                    .foregroundColor(.white)
+                    .foregroundColor(.textOnDarkColor)
             }
             .padding()
         }

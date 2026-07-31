@@ -100,9 +100,9 @@ public struct BPKVideoPlayerDefaultControls: View {
         if !controller.state.isLoading {
             Button(action: controller.toggle) {
                 BPKIconView(controller.state.isPlaying ? .pause : .play, size: .large)
-                    .foregroundColor(.white)
+                    .foregroundColor(.textOnDarkColor)
                     .frame(width: 40, height: 40)
-                    .background(Color.white.opacity(0.1))
+                    .background(.surfaceTintColor)
                     .clipShape(RoundedRectangle(cornerRadius: BPKCornerRadius.sm.value))
             }
             .accessibilityLabel(controller.state.isPlaying ? "Pause video" : "Play video")
