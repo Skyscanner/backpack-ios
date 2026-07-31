@@ -27,7 +27,11 @@ import SwiftUI
 ///
 /// ```swift
 /// // Simple — built-in controls
-/// BPKVideoPlayer(url: videoURL, accessibilityLabels: labels)
+/// BPKVideoPlayer(
+///     url: videoURL,
+///     playAccessibilityLabel: "Play video",
+///     pauseAccessibilityLabel: "Pause video"
+/// )
 ///
 /// // Shared controller — for continuous playback across transitions
 /// BPKVideoPlayer(controller: sharedController)
@@ -54,11 +58,18 @@ public struct BPKVideoPlayer<Overlay: View>: View {
         url: URL,
         autoPlay: Bool = false,
         loop: Bool = false,
-        accessibilityLabels: BPKVideoPlayerAccessibilityLabels
+        playAccessibilityLabel: String,
+        pauseAccessibilityLabel: String
     )
     where Overlay == BPKVideoPlayerDefaultControls {
         _controller = ObservedObject(wrappedValue: BPKVideoPlayerController(url: url, autoPlay: autoPlay, loop: loop))
-        self.overlay = { BPKVideoPlayerDefaultControls(controller: $0, accessibilityLabels: accessibilityLabels) }
+        self.overlay = {
+            BPKVideoPlayerDefaultControls(
+                controller: $0,
+                playAccessibilityLabel: playAccessibilityLabel,
+                pauseAccessibilityLabel: pauseAccessibilityLabel
+            )
+        }
     }
 
     /// Creates a video player with a custom overlay that owns its own controller.
@@ -100,14 +111,17 @@ public struct BPKVideoPlayer<Overlay: View>: View {
 /// is provided. Hidden while the video is loading — visible once ready.
 public struct BPKVideoPlayerDefaultControls: View {
     @ObservedObject public var controller: BPKVideoPlayerController
-    private let accessibilityLabels: BPKVideoPlayerAccessibilityLabels
+    private let playAccessibilityLabel: String
+    private let pauseAccessibilityLabel: String
 
     public init(
         controller: BPKVideoPlayerController,
-        accessibilityLabels: BPKVideoPlayerAccessibilityLabels
+        playAccessibilityLabel: String,
+        pauseAccessibilityLabel: String
     ) {
         self.controller = controller
-        self.accessibilityLabels = accessibilityLabels
+        self.playAccessibilityLabel = playAccessibilityLabel
+        self.pauseAccessibilityLabel = pauseAccessibilityLabel
     }
 
     public var body: some View {
@@ -119,28 +133,9 @@ public struct BPKVideoPlayerDefaultControls: View {
                     .background(.surfaceTintColor)
                     .clipShape(RoundedRectangle(cornerRadius: BPKCornerRadius.sm.value))
             }
-            .accessibilityLabel(controller.state.isPlaying ? accessibilityLabels.pause : accessibilityLabels.play)
-            .accessibilityValue(controller.state.isPlaying ? accessibilityLabels.playing : accessibilityLabels.paused)
-            .accessibilityHint(accessibilityLabels.hint)
+            .accessibilityLabel(controller.state.isPlaying ? pauseAccessibilityLabel : playAccessibilityLabel)
             .padding(.base)
         }
-    }
-}
-
-/// Accessibility strings used by the built-in video controls.
-public struct BPKVideoPlayerAccessibilityLabels: Sendable {
-    public let play: String
-    public let pause: String
-    public let playing: String
-    public let paused: String
-    public let hint: String
-
-    public init(play: String, pause: String, playing: String, paused: String, hint: String) {
-        self.play = play
-        self.pause = pause
-        self.playing = playing
-        self.paused = paused
-        self.hint = hint
     }
 }
 

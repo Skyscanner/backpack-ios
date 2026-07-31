@@ -22,10 +22,20 @@ A scale-to-fill video player with no enforced aspect ratio. By default it shows 
 ## Simple — built-in controls
 
 ```swift
-BPKVideoPlayer(url: videoURL, accessibilityLabels: labels)
+BPKVideoPlayer(
+    url: videoURL,
+    playAccessibilityLabel: "Play video",
+    pauseAccessibilityLabel: "Pause video"
+)
 
 // With autoplay and looping
-BPKVideoPlayer(url: videoURL, autoPlay: true, loop: true, accessibilityLabels: labels)
+BPKVideoPlayer(
+    url: videoURL,
+    autoPlay: true,
+    loop: true,
+    playAccessibilityLabel: "Play video",
+    pauseAccessibilityLabel: "Pause video"
+)
 ```
 
 ## Shared controller — continuous playback across transitions
