@@ -107,5 +107,17 @@ class BPKSwitchTests: XCTestCase {
             )
         )
     }
-    
+
+    func testSwitchAttributedText() {
+        var text = AttributedString("Styled text")
+        text.foregroundColor = Color(.coreAccentColor)
+
+        assertSnapshot(
+            BPKSwitch(
+                isOn: .constant(true),
+                text: text
+            )
+            .padding(.sm)
+        )
+    }
 }

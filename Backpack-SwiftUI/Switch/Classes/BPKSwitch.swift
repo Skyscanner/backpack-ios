@@ -31,6 +31,30 @@ public struct BPKSwitch<Content: View>: View {
     private let style: Style
     private let content: Content
 
+    /// Creates a switch that generates its label from an attributed string.
+    ///
+    /// - Parameters:
+    ///   - isOn: A binding to a property that indicates whether the switch is on or off.
+    ///   - text: An attributed string that describes the purpose of the switch.
+    ///   - enabled: Whether the switch accepts interactions. Defaults to `true`.
+    ///   - style: The visual style of the switch. Defaults to `.default`.
+    ///   - truncate: Whether the text is truncated to one line. Pass `false` to
+    ///     allow the label to wrap over multiple lines. Defaults to `true`.
+    public init(
+        isOn: Binding<Bool>,
+        text: AttributedString,
+        enabled: Bool = true,
+        style: Style = .default,
+        truncate: Bool = true
+    ) where Content == BPKText {
+        let attributedText = BPKText(Text(text))
+        let bpkText = truncate ? attributedText : attributedText.lineLimit(nil)
+
+        self.init(isOn: isOn, enabled: enabled, style: style) {
+            bpkText
+        }
+    }
+
     /// Creates a switch that generates its label from a string.
     ///
     /// This initializer creates a ``BPKText`` view on your behalf, and treats the
