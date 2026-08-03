@@ -58,102 +58,61 @@ class PriceTests: XCTestCase {
             onPriceClicked: {}
         )
     ]
-    
-    private var styles: [(style: BPKPrice.Style, name: String)] {
-        [(.default, "default"), (.onContrast, "onContrast")]
-    }
 
     private func testView(
         size: BPKPrice.Size,
-        alignment: BPKPrice.Alignment,
-        style: BPKPrice.Style
+        alignment: BPKPrice.Alignment
     ) -> some View {
-        VStack(alignment: .leading) {
-            ForEach(permutations) { item in
-                BPKPrice(
-                    price: item.price,
-                    leadingText: item.leadingText,
-                    previousPrice: item.previousPrice,
-                    trailingText: item.trailingText,
-                    style: style,
-                    onPriceClicked: item.onPriceClicked,
-                    alignment: alignment,
-                    size: size
-                )
+        let styles: [BPKPrice.Style] = [.default, .onContrast]
+        
+        return VStack(alignment: .leading) {
+            ForEach(Array(styles.enumerated()), id: \.offset) { _, style in
+                ForEach(self.permutations) { item in
+                    BPKPrice(
+                        price: item.price,
+                        leadingText: item.leadingText,
+                        previousPrice: item.previousPrice,
+                        trailingText: item.trailingText,
+                        style: style,
+                        onPriceClicked: item.onPriceClicked,
+                        alignment: alignment,
+                        size: size
+                    )
+                    .background(style == .default ? .surfaceDefaultColor : .surfaceContrastColor)
+                }
             }
         }
-        .background(style == .default ? .surfaceDefaultColor : .surfaceContrastColor)
     }
 
     func test_small_withLeadingAlignment() {
-        styles.forEach { testCase in
-            assertSnapshot(
-                testView(size: .small, alignment: .leading, style: testCase.style),
-                testName: "test_small_withLeadingAlignment_and\(testCase.name)Style"
-            )
-        }
+        assertSnapshot(testView(size: .small, alignment: .leading))
     }
 
     func test_small_withTrailingAlignment() {
-        styles.forEach { testCase in
-            assertSnapshot(
-                testView(size: .small, alignment: .trailing, style: testCase.style),
-                testName: "test_small_withTrailingAlignment_and\(testCase.name)Style"
-            )
-        }
+        assertSnapshot(testView(size: .small, alignment: .trailing))
     }
 
     func test_small_withRowAlignment() {
-        styles.forEach { testCase in
-            assertSnapshot(
-                testView(size: .small, alignment: .row, style: testCase.style),
-                testName: "test_small_withRowAlignment_and\(testCase.name)Style"
-            )
-        }
+        assertSnapshot(testView(size: .small, alignment: .row))
     }
 
     func test_extraSmall_withLeadingAlignment() {
-        styles.forEach { testCase in
-            assertSnapshot(
-                testView(size: .extraSmall, alignment: .leading, style: testCase.style),
-                testName: "test_extraSmall_withLeadingAlignment_and\(testCase.name)Style"
-            )
-        }
+        assertSnapshot(testView(size: .extraSmall, alignment: .leading))
     }
 
     func test_extraSmall_withTrailingAlignment() {
-        styles.forEach { testCase in
-            assertSnapshot(
-                testView(size: .extraSmall, alignment: .trailing, style: testCase.style),
-                testName: "test_extraSmall_withTrailingAlignment_and\(testCase.name)Style"
-            )
-        }
+        assertSnapshot(testView(size: .extraSmall, alignment: .trailing))
     }
 
     func test_extraSmall_withRowAlignment() {
-        styles.forEach { testCase in
-            assertSnapshot(
-                testView(size: .extraSmall, alignment: .row, style: testCase.style),
-                testName: "test_extraSmall_withRowAlignment_and\(testCase.name)Style"
-            )
-        }
+        assertSnapshot(testView(size: .extraSmall, alignment: .row))
     }
 
     func test_large_withLeadingAlignment() {
-        styles.forEach { testCase in
-            assertSnapshot(
-                testView(size: .large, alignment: .leading, style: testCase.style),
-                testName: "test_large_withLeadingAlignment_and\(testCase.name)Style"
-            )
-        }
+        assertSnapshot(testView(size: .large, alignment: .leading))
     }
 
     func test_large_withTrailingAlignment() {
-        styles.forEach { testCase in
-            assertSnapshot(
-                testView(size: .large, alignment: .trailing, style: testCase.style),
-                testName: "test_large_withTrailingAlignment_and\(testCase.name)Style"
-            )
-        }
+        assertSnapshot(testView(size: .large, alignment: .trailing))
     }
 }
