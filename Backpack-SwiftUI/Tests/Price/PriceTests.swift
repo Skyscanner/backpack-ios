@@ -66,19 +66,26 @@ class PriceTests: XCTestCase {
         let styles: [BPKPrice.Style] = [.default, .onContrast]
         return VStack(alignment: .leading, spacing: .base) {
             ForEach(Array(styles.enumerated()), id: \.offset) { _, style in
-                ForEach(self.permutations) { item in
-                    BPKPrice(
-                        price: item.price,
-                        leadingText: item.leadingText,
-                        previousPrice: item.previousPrice,
-                        trailingText: item.trailingText,
-                        style: style,
-                        onPriceClicked: item.onPriceClicked,
-                        alignment: alignment,
-                        size: size
-                    )
+                VStack(spacing: .sm) {
+                    ForEach(self.permutations) { item in
+                        BPKPrice(
+                            price: item.price,
+                            leadingText: item.leadingText,
+                            previousPrice: item.previousPrice,
+                            trailingText: item.trailingText,
+                            style: style,
+                            onPriceClicked: item.onPriceClicked,
+                            alignment: alignment,
+                            size: size
+                        )
+                    }
                 }
-                .background(style == .default ? .surfaceDefaultColor : .surfaceContrastColor)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.base)
+                .background(
+                    style == .default ? Color.surfaceDefaultColor : Color.surfaceContrastColor,
+                    in: RoundedRectangle(cornerRadius: 12)
+                )
             }
         }
     }
