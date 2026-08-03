@@ -64,7 +64,7 @@ class PriceTests: XCTestCase {
         alignment: BPKPrice.Alignment
     ) -> some View {
         let styles: [BPKPrice.Style] = [.default, .onContrast]
-        return VStack(alignment: .leading) {
+        return VStack(alignment: .leading, spacing: .base) {
             ForEach(Array(styles.enumerated()), id: \.offset) { _, style in
                 ForEach(self.permutations) { item in
                     BPKPrice(
@@ -77,8 +77,8 @@ class PriceTests: XCTestCase {
                         alignment: alignment,
                         size: size
                     )
-                    .background(style == .default ? .surfaceDefaultColor : .surfaceContrastColor)
                 }
+                .background(style == .default ? .surfaceDefaultColor : .surfaceContrastColor)
             }
         }
     }
