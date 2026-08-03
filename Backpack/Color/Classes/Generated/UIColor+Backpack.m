@@ -114,6 +114,10 @@
     return BPKColor.textDisabledOnDarkColor;
 }
 
++ (UIColor *)bpk_textSecondaryOnContrastColor {
+    return BPKColor.textSecondaryOnContrastColor;
+}
+
 + (UIColor *)bpk_textLinkColor {
     return BPKColor.textLinkColor;
 }
