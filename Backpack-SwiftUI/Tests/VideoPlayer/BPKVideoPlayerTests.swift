@@ -32,11 +32,8 @@ final class BPKVideoPlayerTests: XCTestCase {
         let controller = BPKVideoPlayerController.stub()
         controller.testOnly_setState(.readyToPlay)
         assertSnapshot(videoContainer {
-            BPKVideoPlayerDefaultControls(
-                controller: controller,
-                playAccessibilityLabel: "Play",
-                pauseAccessibilityLabel: "Pause"
-            )
+            BPKVideoPlayerDefaultControls(controller: controller)
+                .bpkVideoPlayerDefaultControlsAccessibility(play: "Play", pause: "Pause")
         })
     }
 
@@ -44,11 +41,8 @@ final class BPKVideoPlayerTests: XCTestCase {
     func test_defaultControls_loading() {
         let controller = BPKVideoPlayerController.stub()
         assertSnapshot(videoContainer {
-            BPKVideoPlayerDefaultControls(
-                controller: controller,
-                playAccessibilityLabel: "Play",
-                pauseAccessibilityLabel: "Pause"
-            )
+            BPKVideoPlayerDefaultControls(controller: controller)
+                .bpkVideoPlayerDefaultControlsAccessibility(play: "Play", pause: "Pause")
         })
     }
 

@@ -38,9 +38,11 @@ struct VideoDefaultExampleView: View {
     
     var body: some View {
         BPKVideoPlayer(
-            url: SampleVideo.url,
-            playAccessibilityLabel: "Play video",
-            pauseAccessibilityLabel: "Pause video"
+            url: SampleVideo.url
+        )
+        .bpkVideoPlayerDefaultControlsAccessibility(
+            play: "Play video",
+            pause: "Pause video"
         )
             .aspectRatio(16/9, contentMode: .fit)
             .background(

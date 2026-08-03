@@ -27,11 +27,11 @@ import SwiftUI
 ///
 /// ```swift
 /// // Simple — built-in controls
-/// BPKVideoPlayer(
-///     url: videoURL,
-///     playAccessibilityLabel: "Play video",
-///     pauseAccessibilityLabel: "Pause video"
-/// )
+/// BPKVideoPlayer(url: videoURL)
+///     .bpkVideoPlayerDefaultControlsAccessibility(
+///         play: "Play video",
+///         pause: "Pause video"
+///     )
 ///
 /// // Shared controller — for continuous playback across transitions
 /// BPKVideoPlayer(controller: sharedController)
@@ -54,22 +54,10 @@ public struct BPKVideoPlayer<Overlay: View>: View {
     // MARK: - URL-based inits
 
     /// Creates a video player with built-in controls that owns its own controller.
-    public init(
-        url: URL,
-        autoPlay: Bool = false,
-        loop: Bool = false,
-        playAccessibilityLabel: String,
-        pauseAccessibilityLabel: String
-    )
+    public init(url: URL, autoPlay: Bool = false, loop: Bool = false)
     where Overlay == BPKVideoPlayerDefaultControls {
         _controller = ObservedObject(wrappedValue: BPKVideoPlayerController(url: url, autoPlay: autoPlay, loop: loop))
-        self.overlay = {
-            BPKVideoPlayerDefaultControls(
-                controller: $0,
-                playAccessibilityLabel: playAccessibilityLabel,
-                pauseAccessibilityLabel: pauseAccessibilityLabel
-            )
-        }
+        self.overlay = { BPKVideoPlayerDefaultControls(controller: $0) }
     }
 
     /// Creates a video player with a custom overlay that owns its own controller.
@@ -111,8 +99,13 @@ public struct BPKVideoPlayer<Overlay: View>: View {
 /// is provided. Hidden while the video is loading — visible once ready.
 public struct BPKVideoPlayerDefaultControls: View {
     @ObservedObject public var controller: BPKVideoPlayerController
-    private let playAccessibilityLabel: String
-    private let pauseAccessibilityLabel: String
+    @Environment(\.bpkVideoPlayerDefaultControlsAccessibility) private var environmentAccessibility
+    private let accessibility: BPKVideoPlayerDefaultControlsAccessibility?
+
+    public init(controller: BPKVideoPlayerController) {
+        self.controller = controller
+        accessibility = nil
+    }
 
     public init(
         controller: BPKVideoPlayerController,
@@ -120,22 +113,54 @@ public struct BPKVideoPlayerDefaultControls: View {
         pauseAccessibilityLabel: String
     ) {
         self.controller = controller
-        self.playAccessibilityLabel = playAccessibilityLabel
-        self.pauseAccessibilityLabel = pauseAccessibilityLabel
+        accessibility = .init(play: playAccessibilityLabel, pause: pauseAccessibilityLabel)
     }
 
     public var body: some View {
         if !controller.state.isLoading {
-            Button(action: controller.toggle) {
+            let button = Button(action: controller.toggle) {
                 BPKIconView(controller.state.isPlaying ? .pause : .play, size: .large)
                     .foregroundColor(.textOnDarkColor)
                     .frame(width: 40, height: 40)
                     .background(.surfaceTintColor)
                     .clipShape(RoundedRectangle(cornerRadius: BPKCornerRadius.sm.value))
             }
-            .accessibilityLabel(controller.state.isPlaying ? pauseAccessibilityLabel : playAccessibilityLabel)
-            .padding(.base)
+
+            if let accessibility = accessibility ?? environmentAccessibility {
+                button
+                    .accessibilityLabel(controller.state.isPlaying ? accessibility.pause : accessibility.play)
+                    .padding(.base)
+            } else {
+                button.padding(.base)
+            }
         }
+    }
+}
+
+private struct BPKVideoPlayerDefaultControlsAccessibility: Sendable {
+    let play: String
+    let pause: String
+}
+
+private struct BPKVideoPlayerDefaultControlsAccessibilityKey: EnvironmentKey {
+    static let defaultValue: BPKVideoPlayerDefaultControlsAccessibility? = nil
+}
+
+private extension EnvironmentValues {
+    var bpkVideoPlayerDefaultControlsAccessibility: BPKVideoPlayerDefaultControlsAccessibility? {
+        get { self[BPKVideoPlayerDefaultControlsAccessibilityKey.self] }
+        set { self[BPKVideoPlayerDefaultControlsAccessibilityKey.self] = newValue }
+    }
+}
+
+public extension View {
+    /// Applies accessibility labels only to `BPKVideoPlayer`'s built-in play/pause controls.
+    /// Custom overlays must provide their own accessibility labels.
+    func bpkVideoPlayerDefaultControlsAccessibility(play: String, pause: String) -> some View {
+        environment(
+            \.bpkVideoPlayerDefaultControlsAccessibility,
+            BPKVideoPlayerDefaultControlsAccessibility(play: play, pause: pause)
+        )
     }
 }
 
