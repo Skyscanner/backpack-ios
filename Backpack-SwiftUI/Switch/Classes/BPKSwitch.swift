@@ -27,6 +27,7 @@ import Backpack_Common
 /// toggle states
 public struct BPKSwitch<Content: View>: View {
     @Binding private var isOn: Bool
+    private let enabled: Bool
     private let style: Style
     private let content: Content
 
@@ -38,18 +39,20 @@ public struct BPKSwitch<Content: View>: View {
     /// - Parameters:
     ///   - isOn: A binding to a property that indicates whether the switch is on or off.
     ///   - text: A string that describes the purpose of the switch.
+    ///   - enabled: Whether the switch accepts interactions. Defaults to `true`.
     ///   - style: The visual style of the switch. Defaults to `.default`.
     ///   - truncate: A Boolean value that determines whether the text should be truncated
     ///      or displayed on multiple lines.
     public init(
         isOn: Binding<Bool>,
         text: String,
+        enabled: Bool = true,
         style: Style = .default,
         truncate: Bool = true
     ) where Content == BPKText {
         let bpkText = truncate ? BPKText(text) : BPKText(text).lineLimit(nil)
 
-        self.init(isOn: isOn, style: style) {
+        self.init(isOn: isOn, enabled: enabled, style: style) {
             bpkText
         }
     }
@@ -58,14 +61,17 @@ public struct BPKSwitch<Content: View>: View {
     ///
     /// - Parameters:
     ///   - isOn: A binding to a property that determines whether the switch is on or off.
+    ///   - enabled: Whether the switch accepts interactions. Defaults to `true`.
     ///   - style: The visual style of the switch. Defaults to `.default`.
     ///   - content: A view that describes the purpose of the switch.
     public init(
         isOn: Binding<Bool>,
+        enabled: Bool = true,
         style: Style = .default,
         @ViewBuilder content: () -> Content
     ) {
         self._isOn = isOn
+        self.enabled = enabled
         self.style = style
         self.content = content()
     }
@@ -80,6 +86,7 @@ public struct BPKSwitch<Content: View>: View {
                     })
             }
             .toggleStyle(SwitchToggleStyle(tint: Color(.coreAccentColor)))
+            .disabled(!enabled)
 
             case .onContrast:
             Toggle(isOn: $isOn) {
@@ -92,6 +99,7 @@ public struct BPKSwitch<Content: View>: View {
             .labelsHidden()
             .tint(Color(style.onTintColor))
             .background(Color(style.offTrackColor), in: .capsule)
+            .disabled(!enabled)
         }
     }
 }
@@ -102,7 +110,7 @@ public struct BPKSwitch<Content: View>: View {
 public enum BPKSwitchStyle {
     /// Use on default/light backgrounds.
     case `default`
-    
+
     /// Use on contrast/dark backgrounds.
     case onContrast
 }
@@ -141,6 +149,16 @@ struct BPKSwitch_Previews: PreviewProvider {
                 BPKText("Default Style", style: .heading5)
                 BPKSwitch(isOn: .constant(true), text: "On")
                 BPKSwitch(isOn: .constant(false), text: "Off")
+                BPKSwitch(
+                    isOn: .constant(true),
+                    text: "Disabled on",
+                    enabled: false
+                )
+                BPKSwitch(
+                    isOn: .constant(false),
+                    text: "Disabled off",
+                    enabled: false
+                )
             }
             .padding()
             .background(.canvasColor)
@@ -153,6 +171,18 @@ struct BPKSwitch_Previews: PreviewProvider {
                     .foregroundColor(.textOnDarkColor)
                 BPKSwitch(isOn: .constant(false), text: "Off", style: .onContrast)
                     .foregroundColor(.textOnDarkColor)
+                BPKSwitch(
+                    isOn: .constant(true),
+                    text: "Disabled on",
+                    enabled: false,
+                    style: .onContrast
+                )
+                BPKSwitch(
+                    isOn: .constant(false),
+                    text: "Disabled off",
+                    enabled: false,
+                    style: .onContrast
+                )
             }
             .padding()
             .background(.surfaceContrastColor)
