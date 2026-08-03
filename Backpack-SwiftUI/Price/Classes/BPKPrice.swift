@@ -209,7 +209,7 @@ extension BPKPrice.Style {
     var leadingTextColor: BPKColor {
         switch self {
         case .default: .textSecondaryColor
-        case .onContrast: .textSecondaryColor // TODO: to be changed to Text/Secondary On Contrast
+        case .onContrast: .textSecondaryOnContrastColor
         }
     }
     
@@ -223,7 +223,7 @@ extension BPKPrice.Style {
     var trailingTextColor: BPKColor {
         switch self {
         case .default: .textSecondaryColor
-        case .onContrast: .textSecondaryColor // TODO: to be changed to Text/Secondary On Contrast
+        case .onContrast: .textSecondaryOnContrastColor
         }
     }
 }
