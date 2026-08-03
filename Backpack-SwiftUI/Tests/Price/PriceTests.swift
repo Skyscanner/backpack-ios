@@ -64,29 +64,46 @@ class PriceTests: XCTestCase {
         alignment: BPKPrice.Alignment
     ) -> some View {
         let styles: [BPKPrice.Style] = [.default, .onContrast]
+
         return VStack(alignment: .leading, spacing: .base) {
             ForEach(Array(styles.enumerated()), id: \.offset) { _, style in
-                VStack(spacing: .sm) {
-                    ForEach(self.permutations) { item in
-                        BPKPrice(
-                            price: item.price,
-                            leadingText: item.leadingText,
-                            previousPrice: item.previousPrice,
-                            trailingText: item.trailingText,
-                            style: style,
-                            onPriceClicked: item.onPriceClicked,
-                            alignment: alignment,
-                            size: size
-                        )
-                    }
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.base)
-                .background(
-                    style == .default ? Color.surfaceDefaultColor : Color.surfaceContrastColor,
-                    in: RoundedRectangle(cornerRadius: 12)
+                self.styleView(
+                    style: style,
+                    size: size,
+                    alignment: alignment
                 )
             }
+        }
+    }
+
+    private func styleView(
+        style: BPKPrice.Style,
+        size: BPKPrice.Size,
+        alignment: BPKPrice.Alignment
+    ) -> some View {
+        let backgroundColor: BPKColor = style == .default
+            ? .surfaceDefaultColor
+            : .surfaceContrastColor
+
+        return VStack(alignment: .leading, spacing: .sm) {
+            ForEach(permutations) { item in
+                BPKPrice(
+                    price: item.price,
+                    leadingText: item.leadingText,
+                    previousPrice: item.previousPrice,
+                    trailingText: item.trailingText,
+                    style: style,
+                    onPriceClicked: item.onPriceClicked,
+                    alignment: alignment,
+                    size: size
+                )
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.base)
+        .background {
+            RoundedRectangle(cornerRadius: 12)
+                .background(backgroundColor)
         }
     }
 
