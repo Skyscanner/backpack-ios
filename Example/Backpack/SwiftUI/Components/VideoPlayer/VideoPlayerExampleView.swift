@@ -40,7 +40,7 @@ struct VideoDefaultExampleView: View {
         BPKVideoPlayer(
             url: SampleVideo.url
         )
-        .bpkVideoPlayerDefaultControlsAccessibility(
+        .controlsAccessibilityLabels(
             play: "Play video",
             pause: "Pause video"
         )

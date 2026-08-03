@@ -33,7 +33,7 @@ final class BPKVideoPlayerTests: XCTestCase {
         controller.testOnly_setState(.readyToPlay)
         assertSnapshot(videoContainer {
             BPKVideoPlayerDefaultControls(controller: controller)
-                .bpkVideoPlayerDefaultControlsAccessibility(play: "Play", pause: "Pause")
+                .controlsAccessibilityLabels(play: "Play", pause: "Pause")
         })
     }
 
@@ -42,7 +42,7 @@ final class BPKVideoPlayerTests: XCTestCase {
         let controller = BPKVideoPlayerController.stub()
         assertSnapshot(videoContainer {
             BPKVideoPlayerDefaultControls(controller: controller)
-                .bpkVideoPlayerDefaultControlsAccessibility(play: "Play", pause: "Pause")
+                .controlsAccessibilityLabels(play: "Play", pause: "Pause")
         })
     }
 

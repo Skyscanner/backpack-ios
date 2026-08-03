@@ -25,7 +25,7 @@ A scale-to-fill video player with no enforced aspect ratio. By default it shows 
 BPKVideoPlayer(
     url: videoURL
 )
-.bpkVideoPlayerDefaultControlsAccessibility(
+.controlsAccessibilityLabels(
     play: "Play video",
     pause: "Pause video"
 )
@@ -36,7 +36,7 @@ BPKVideoPlayer(
     autoPlay: true,
     loop: true
 )
-.bpkVideoPlayerDefaultControlsAccessibility(
+.controlsAccessibilityLabels(
     play: "Play video",
     pause: "Pause video"
 )
@@ -64,7 +64,7 @@ BPKVideoPlayer(controller: controller)
 
 Pass a `@ViewBuilder` closure to replace the default controls. The controller is provided so you can bind your own UI:
 
-Custom overlays must provide their own accessibility labels; `bpkVideoPlayerDefaultControlsAccessibility` applies only to the built-in controls.
+Custom overlays must provide their own accessibility labels; `controlsAccessibilityLabels` applies only to the built-in controls.
 
 ```swift
 BPKVideoPlayer(url: videoURL, autoPlay: true) { controller in

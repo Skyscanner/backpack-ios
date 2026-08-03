@@ -28,7 +28,7 @@ import SwiftUI
 /// ```swift
 /// // Simple — built-in controls
 /// BPKVideoPlayer(url: videoURL)
-///     .bpkVideoPlayerDefaultControlsAccessibility(
+///     .controlsAccessibilityLabels(
 ///         play: "Play video",
 ///         pause: "Pause video"
 ///     )
@@ -99,7 +99,7 @@ public struct BPKVideoPlayer<Overlay: View>: View {
 /// is provided. Hidden while the video is loading — visible once ready.
 public struct BPKVideoPlayerDefaultControls: View {
     @ObservedObject public var controller: BPKVideoPlayerController
-    @Environment(\.bpkVideoPlayerDefaultControlsAccessibility) private var environmentAccessibility
+    @Environment(\.controlsAccessibilityLabels) private var environmentAccessibility
     private let accessibility: BPKVideoPlayerDefaultControlsAccessibility?
 
     public init(controller: BPKVideoPlayerController) {
@@ -147,7 +147,7 @@ private struct BPKVideoPlayerDefaultControlsAccessibilityKey: EnvironmentKey {
 }
 
 private extension EnvironmentValues {
-    var bpkVideoPlayerDefaultControlsAccessibility: BPKVideoPlayerDefaultControlsAccessibility? {
+    var controlsAccessibilityLabels: BPKVideoPlayerDefaultControlsAccessibility? {
         get { self[BPKVideoPlayerDefaultControlsAccessibilityKey.self] }
         set { self[BPKVideoPlayerDefaultControlsAccessibilityKey.self] = newValue }
     }
@@ -156,9 +156,9 @@ private extension EnvironmentValues {
 public extension View {
     /// Applies accessibility labels only to `BPKVideoPlayer`'s built-in play/pause controls.
     /// Custom overlays must provide their own accessibility labels.
-    func bpkVideoPlayerDefaultControlsAccessibility(play: String, pause: String) -> some View {
+    func controlsAccessibilityLabels(play: String, pause: String) -> some View {
         environment(
-            \.bpkVideoPlayerDefaultControlsAccessibility,
+            \.controlsAccessibilityLabels,
             BPKVideoPlayerDefaultControlsAccessibility(play: play, pause: pause)
         )
     }
