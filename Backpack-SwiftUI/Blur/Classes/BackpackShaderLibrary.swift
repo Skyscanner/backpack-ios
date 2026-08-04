@@ -21,8 +21,15 @@ import SwiftUI
 @available(iOS 17, macOS 14, macCatalyst 17, tvOS 17, visionOS 1, *)
 struct BackpackShaderLibrary {
     private static var shaderLibrary: ShaderLibrary {
+        #if SWIFT_PACKAGE
+        // SwiftPM compiles VariableBlur.metal into default.metallib inside this
+        // target's own resource bundle. Bundle.module is the only correct handle for
+        // it: the SPM bundle is named "<PackageName>_<TargetName>.bundle", so the
+        // CocoaPods lookup below can never match it.
+        return ShaderLibrary.bundle(Bundle.module)
+        #else
         let bundle = Bundle(for: BundleToken.self)
-        
+
         if let resourceBundleURL = bundle.url(
             forResource: "Backpack-SwiftUI", withExtension: "bundle"
         ), let resourceBundle = Bundle(url: resourceBundleURL) {
@@ -30,6 +37,7 @@ struct BackpackShaderLibrary {
         }
 
         return ShaderLibrary.bundle(bundle)
+        #endif
     }
     
     static func variableBlur(
