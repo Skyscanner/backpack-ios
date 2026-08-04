@@ -23,9 +23,16 @@
 When `style` is omitted, the Default style is used.
 
 ```swift
-BPKSectionHeader(
-    title: "Section title"
-)
+import SwiftUI
+import Backpack_SwiftUI
+
+struct SectionHeaderExampleView: View {
+    var body: some View {
+        BPKSectionHeader(
+            title: "Section title"
+        )
+    }
+}
 ```
 
 ### Description
