@@ -101,7 +101,8 @@ The appearance parameter is named `style` on iOS and `type` on Android. iOS reta
 
 Android exposes the equivalent accessibility control as
 `accessibilityHeaderTagEnabled: Boolean?`. iOS uses the shorter
-`accessibilityHeaderEnabled: Bool` name and a non-optional Boolean because the
-component supports two behaviours: applying or suppressing the Header trait.
-This follows Swift naming and type conventions while preserving equivalent
+`accessibilityHeaderEnabled: Bool` name with a default value of `true`. The iOS
+API does not need a nullable state because Backpack always supplies a concrete
+enabled or disabled default. A non-optional Boolean follows Swift API
+conventions for simple binary configuration while preserving equivalent
 cross-platform behaviour.
