@@ -22,28 +22,52 @@ public struct BPKSectionHeader: View {
     let title: String
     let description: String?
     let style: Style
+    let accessibilityHeaderEnabled: Bool
     let button: BPKButton?
 
-    public init(
-        title: String,
-        description: String? = nil,
-        style: Style = .default
-    ) {
-        self.title = title
-        self.description = description
-        self.style = style
-        self.button = nil
-    }
-
+    /// Creates a Section Header without a trailing button.
+    ///
+    /// - Parameters:
+    ///   - title: The title of the section.
+    ///   - description: An optional description displayed below the title.
+    ///   - style: The visual style of the Section Header. Defaults to `.default`.
+    ///   - accessibilityHeaderEnabled: Whether the title has the accessibility
+    ///     header trait. Defaults to `true`.
     public init(
         title: String,
         description: String? = nil,
         style: Style = .default,
+        accessibilityHeaderEnabled: Bool = true
+    ) {
+        self.title = title
+        self.description = description
+        self.style = style
+        self.accessibilityHeaderEnabled = accessibilityHeaderEnabled
+        self.button = nil
+    }
+
+    /// Creates a Section Header with a trailing button.
+    ///
+    /// The button style is set automatically according to the Section Header style.
+    ///
+    /// - Parameters:
+    ///   - title: The title of the section.
+    ///   - description: An optional description displayed below the title.
+    ///   - style: The visual style of the Section Header. Defaults to `.default`.
+    ///   - accessibilityHeaderEnabled: Whether the title has the accessibility
+    ///     header trait. Defaults to `true`.
+    ///   - button: The button displayed after the title and description.
+    public init(
+        title: String,
+        description: String? = nil,
+        style: Style = .default,
+        accessibilityHeaderEnabled: Bool = true,
         @ViewBuilder button: () -> BPKButton
     ) {
         self.title = title
         self.description = description
         self.style = style
+        self.accessibilityHeaderEnabled = accessibilityHeaderEnabled
         self.button = button()
     }
 
@@ -53,7 +77,9 @@ public struct BPKSectionHeader: View {
                 BPKText(title, style: .heading3)
                     .foregroundColor(style == .default ? .textPrimaryColor : .textOnDarkColor)
                     .lineLimit(nil)
-                    .accessibilityAddTraits(.isHeader)
+                    .accessibilityAddTraits(
+                        accessibilityHeaderEnabled ? .isHeader : []
+                    )
                 if let description = description {
                     BPKText(description, style: .bodyDefault)
                         .foregroundColor(style == .default ? .textPrimaryColor : .textOnDarkColor)

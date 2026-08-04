@@ -76,4 +76,14 @@ class BPKSectionHeaderViewTests: XCTestCase {
             .padding()
         )
     }
+
+    func testSectionHeaderWithoutAccessibilityHeaderTrait() {
+        assertSnapshot(
+            BPKSectionHeader(
+                title: "Section title",
+                accessibilityHeaderEnabled: false
+            )
+            .padding()
+        )
+    }
 }
