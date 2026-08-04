@@ -21,6 +21,7 @@ import Backpack_SwiftUI
 
 struct SwitchExampleView: View {
     @State private var value = true
+    @State private var disabledValue = true
 
     private var attributedLabel: AttributedString {
         var label = AttributedString("Switch with styled text")
@@ -39,7 +40,7 @@ struct SwitchExampleView: View {
                 )
 
                 BPKSwitch(
-                    isOn: $value,
+                    isOn: $disabledValue,
                     text: "Disabled switch",
                     enabled: false
                 )
@@ -81,7 +82,7 @@ struct SwitchExampleView: View {
                         Spacer()
 
                         BPKSwitch(
-                            isOn: $value,
+                            isOn: $disabledValue,
                             text: "Disabled on contrast",
                             enabled: false,
                             style: .onContrast

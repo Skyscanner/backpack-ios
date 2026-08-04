@@ -15,12 +15,19 @@
 ### Text label
 
 ```swift
-@State private var isOn = true
+import SwiftUI
+import Backpack_SwiftUI
 
-BPKSwitch(
-    isOn: $isOn,
-    text: "Enable notifications"
-)
+struct SwitchExampleView: View {
+    @State private var isOn = true
+
+    var body: some View {
+        BPKSwitch(
+            isOn: $isOn,
+            text: "Enable notifications"
+        )
+    }
+}
 ```
 
 ### Enabled state
