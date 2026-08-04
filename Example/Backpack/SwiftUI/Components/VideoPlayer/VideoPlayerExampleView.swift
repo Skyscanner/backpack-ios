@@ -41,15 +41,15 @@ struct VideoDefaultExampleView: View {
             url: SampleVideo.url
         )
         .controlsAccessibilityLabels(
-            play: "Play video",
-            pause: "Pause video"
+            play: NSLocalizedString("VIDEO_PLAYER_PLAY", comment: "Accessibility label for the video player's play control."),
+            pause: NSLocalizedString("VIDEO_PLAYER_PAUSE", comment: "Accessibility label for the video player's pause control.")
         )
-            .aspectRatio(16/9, contentMode: .fit)
-            .background(
-                Rectangle()
-                    .foregroundColor(.surfaceSubtleColor)
-            )
-            .padding(.md)
+        .aspectRatio(16/9, contentMode: .fit)
+        .background(
+            Rectangle()
+                .foregroundColor(.surfaceSubtleColor)
+        )
+        .padding(.md)
     }
 }
 

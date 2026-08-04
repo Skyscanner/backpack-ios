@@ -7,13 +7,13 @@
 
 | Day | Night |
 | --- | --- |
-| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/Backpack-SwiftUI/Tests/VideoPlayer/__Snapshots__/BPKVideoPlayerTests/test_defaultControls_paused.light-mode.png" alt="" width="375" /> | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/Backpack-SwiftUI/Tests/VideoPlayer/__Snapshots__/BPKVideoPlayerTests/test_defaultControls_paused.dark-mode.png" alt="" width="375" /> |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/Backpack-SwiftUI/Tests/VideoPlayer/__Snapshots__/BPKVideoPlayerTests/test_defaultControls_paused.light-mode.png" alt="Video player default controls in light mode" width="375" /> | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/Backpack-SwiftUI/Tests/VideoPlayer/__Snapshots__/BPKVideoPlayerTests/test_defaultControls_paused.dark-mode.png" alt="Video player default controls in dark mode" width="375" /> |
 
 ## GraphicPromo with video
 
 | Day | Night |
 | --- | --- |
-| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/Backpack-SwiftUI/Tests/VideoPlayer/__Snapshots__/BPKVideoPlayerTests/test_customOverlay_cornerControl.light-mode.png" alt="" width="375" /> | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/Backpack-SwiftUI/Tests/VideoPlayer/__Snapshots__/BPKVideoPlayerTests/test_customOverlay_cornerControl.dark-mode.png" alt="" width="375" /> |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/Backpack-SwiftUI/Tests/VideoPlayer/__Snapshots__/BPKVideoPlayerTests/test_customOverlay_cornerControl.light-mode.png" alt="Video player custom overlay in light mode" width="375" /> | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/Backpack-SwiftUI/Tests/VideoPlayer/__Snapshots__/BPKVideoPlayerTests/test_customOverlay_cornerControl.dark-mode.png" alt="Video player custom overlay in dark mode" width="375" /> |
 
 # Usage
 
