@@ -18,7 +18,7 @@
 
 #ifndef __BACKPACK_BUTTON__
 #define __BACKPACK_BUTTON__
-#if !SWIFT_PACKAGE
+#ifndef SWIFT_PACKAGE
 // BPKLegacyLinkButton.{h,m} are excluded from the Backpack_ObjC SPM target, so the
 // class does not exist in SPM builds. Without this guard the header is still
 // reachable through the source tree's header search paths, so consumers type-check
