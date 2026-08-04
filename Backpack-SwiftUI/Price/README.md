@@ -36,6 +36,7 @@ BPKPrice(
 
 BPKPrice(
     price: "£1830",
+    style: .onContrast,
     onPriceClicked: {
         // Respond to taps on the price label
     },
@@ -45,4 +46,6 @@ BPKPrice(
 )
 ```
 
-Providing an `onPriceClicked` handler converts the price text into a tappable link using the specified `linkStyle` (defaults to `.default`).
+Use the `.default` style on light backgrounds and `.onContrast` on dark backgrounds. 
+
+Providing an `onPriceClicked` handler converts the price text into a tappable link using the specified `linkStyle` (uses the style parameter to determine the style of the link (`.default` or `.onContrast`)).
