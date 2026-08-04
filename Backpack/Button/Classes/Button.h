@@ -18,6 +18,15 @@
 
 #ifndef __BACKPACK_BUTTON__
 #define __BACKPACK_BUTTON__
+#if !SWIFT_PACKAGE
+// BPKLegacyLinkButton.{h,m} are excluded from the Backpack_ObjC SPM target, so the
+// class does not exist in SPM builds. Without this guard the header is still
+// reachable through the source tree's header search paths, so consumers type-check
+// against a class that is never compiled and fail late with an obscure
+// "Undefined symbols: _OBJC_CLASS_$_BPKLegacyLinkButton" at link time, pointing at
+// their own file rather than at Backpack. Hiding the declaration turns that into an
+// honest compile error naming the deprecated type. Use BPKObjcUIKitButton instead.
 #import "BPKLegacyLinkButton.h"
+#endif
 #import "BPKObjcUIKitButton.h"
 #endif
