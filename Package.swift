@@ -180,12 +180,25 @@ let targets: [Target] = [
       dependencies: ["Backpack_Common"],
       path: "Backpack-SwiftUI",
       exclude: [
-        "Tests",
-        "Blur/Classes/VariableBlur.metal"
+        "Tests"
       ] + backpackSwiftUIExcludedReadmes,
       sources: backpackSwiftUISourceDirs,
+      // VariableBlur.metal lives under "Shaders", which is deliberately NOT in
+      // backpackSwiftUISourceDirs. That matters: if a .metal file sits inside a
+      // declared source directory, SwiftPM claims it as a source and also listing it
+      // here is a "duplicate rule" error. Keeping it outside `sources` lets `.process`
+      // compile it into default.metallib inside this target's resource bundle, which
+      // is what BackpackShaderLibrary loads via Bundle.module.
+      //
+      // It previously sat in Blur/Classes and was listed in BOTH `exclude` and
+      // `resources`. `exclude` is applied first, so it won: the shader was dropped,
+      // the target produced no resource bundle at all, and bpkProgressiveBlur() could
+      // never resolve its shader under SPM.
+      //
+      // The path still matches the CocoaPods glob 'Backpack-SwiftUI/*/Classes/**/*.metal'
+      // in Backpack-SwiftUI.podspec, so the CocoaPods build is unaffected.
       resources: [
-        .process("Blur/Classes/VariableBlur.metal")
+        .process("Shaders/Classes/VariableBlur.metal")
       ]
     ),
 
