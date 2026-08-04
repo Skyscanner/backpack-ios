@@ -98,3 +98,10 @@ BPKSectionHeader(
 ## Cross-platform naming
 
 The appearance parameter is named `style` on iOS and `type` on Android. iOS retains `style` to follow SwiftUI naming conventions and to avoid a breaking change to the existing public API.
+
+Android exposes the equivalent accessibility control as
+`accessibilityHeaderTagEnabled: Boolean?`. iOS uses the shorter
+`accessibilityHeaderEnabled: Bool` name and a non-optional Boolean because the
+component supports two behaviours: applying or suppressing the Header trait.
+This follows Swift naming and type conventions while preserving equivalent
+cross-platform behaviour.
