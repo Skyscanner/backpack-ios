@@ -80,6 +80,9 @@ public struct BPKSectionHeader: View {
                     .accessibilityAddTraits(
                         accessibilityHeaderEnabled ? .isHeader : []
                     )
+                    .accessibilityRemoveTraits(
+                        accessibilityHeaderEnabled ? [] : .isHeader
+                    )
                 if let description = description {
                     BPKText(description, style: .bodyDefault)
                         .foregroundColor(style == .default ? .textPrimaryColor : .textOnDarkColor)
