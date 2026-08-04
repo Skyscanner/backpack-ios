@@ -18,7 +18,7 @@
 
 import XCTest
 import SnapshotTesting
-import Backpack_SwiftUI
+@testable import Backpack_SwiftUI
 
 class BPKSectionHeaderViewTests: XCTestCase {
     func testSectionHeaderDefault() {
@@ -77,13 +77,34 @@ class BPKSectionHeaderViewTests: XCTestCase {
         )
     }
 
-    func testSectionHeaderWithoutAccessibilityHeaderTrait() {
-        assertSnapshot(
-            BPKSectionHeader(
-                title: "Section title",
-                accessibilityHeaderEnabled: false
-            )
-            .padding()
+    func testSectionHeaderAccessibilityHeaderEnabledByDefault() {
+        let sectionHeader = BPKSectionHeader(
+            title: "Section title"
         )
+
+        XCTAssertTrue(sectionHeader.accessibilityHeaderEnabled)
+    }
+
+    func testSectionHeaderAccessibilityHeaderCanBeDisabled() {
+        let sectionHeader = BPKSectionHeader(
+            title: "Section title",
+            accessibilityHeaderEnabled: false
+        )
+
+        XCTAssertFalse(sectionHeader.accessibilityHeaderEnabled)
+    }
+
+    func testSectionHeaderWithButtonAccessibilityHeaderCanBeDisabled() {
+        let sectionHeader = BPKSectionHeader(
+            title: "Section title",
+            accessibilityHeaderEnabled: false
+        ) {
+            BPKButton(
+                icon: .addCircle,
+                accessibilityLabel: "Add item"
+            ) { }
+        }
+
+        XCTAssertFalse(sectionHeader.accessibilityHeaderEnabled)
     }
 }
