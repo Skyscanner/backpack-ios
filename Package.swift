@@ -47,7 +47,12 @@ let backpackObjCSourceDirs = [
   "Dialog/Classes",
   "Icon/Classes",
   "Label/Classes",
+  // Color is listed file-by-file rather than as "Color/Classes" because
+  // Backpack-Tokens/Sources/BPKColor.m is a symlink to
+  // Color/Classes/Generated/BPKColor.m, which Backpack_Tokens already compiles.
+  // Globbing the directory would compile it twice and produce duplicate symbols.
   "Color/Classes/Generated/UIColor+Backpack.m",
+  "Color/Classes/Generated/BPKColor+Internal.m",
   "Card/Classes",
   "Map/Classes",
   "NavigationBar/Classes",
