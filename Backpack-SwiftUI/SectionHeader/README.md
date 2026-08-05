@@ -35,7 +35,7 @@ struct SectionHeaderExampleView: View {
 }
 ```
 
-### Description
+### Section header with a title and description.
 
 ```swift
 BPKSectionHeader(

@@ -25,14 +25,6 @@ public struct BPKSectionHeader: View {
     let accessibilityHeaderEnabled: Bool
     let button: BPKButton?
 
-    /// Creates a Section Header without a trailing button.
-    ///
-    /// - Parameters:
-    ///   - title: The title of the section.
-    ///   - description: An optional description displayed below the title.
-    ///   - style: The visual style of the Section Header. Defaults to `.default`.
-    ///   - accessibilityHeaderEnabled: Whether the title has the accessibility
-    ///     header trait. Defaults to `true`.
     public init(
         title: String,
         description: String? = nil,
@@ -46,17 +38,6 @@ public struct BPKSectionHeader: View {
         self.button = nil
     }
 
-    /// Creates a Section Header with a trailing button.
-    ///
-    /// The button style is set automatically according to the Section Header style.
-    ///
-    /// - Parameters:
-    ///   - title: The title of the section.
-    ///   - description: An optional description displayed below the title.
-    ///   - style: The visual style of the Section Header. Defaults to `.default`.
-    ///   - accessibilityHeaderEnabled: Whether the title has the accessibility
-    ///     header trait. Defaults to `true`.
-    ///   - button: The button displayed after the title and description.
     public init(
         title: String,
         description: String? = nil,
