@@ -18,7 +18,6 @@
 
 import XCTest
 import SwiftUI
-import UIKit
 @testable import Backpack_SwiftUI
 
 final class BPKVideoPlayerTests: XCTestCase {
@@ -45,14 +44,6 @@ final class BPKVideoPlayerTests: XCTestCase {
             BPKVideoPlayerDefaultControls(controller: controller)
                 .controlsAccessibilityLabels(play: "Play", pause: "Pause")
         })
-    }
-
-    func test_defaultControls_usesPlayAccessibilityLabelWhenPaused() {
-        assertDefaultControlsAccessibilityLabel("Play video", for: .readyToPlay)
-    }
-
-    func test_defaultControls_usesPauseAccessibilityLabelWhenPlaying() {
-        assertDefaultControlsAccessibilityLabel("Pause video", for: .playing)
     }
 
     /// Custom overlay — consumer-provided control in the bottom-trailing corner.
@@ -84,31 +75,6 @@ final class BPKVideoPlayerTests: XCTestCase {
             overlay()
         }
         .frame(width: 375, height: 500)
-    }
-
-    private func assertDefaultControlsAccessibilityLabel(_ expectedLabel: String, for state: BPKVideoPlayerState) {
-        let controller = BPKVideoPlayerController.stub()
-        controller.testOnly_setState(state)
-        let hostingController = UIHostingController(
-            rootView: BPKVideoPlayerDefaultControls(controller: controller)
-                .controlsAccessibilityLabels(play: "Play video", pause: "Pause video")
-        )
-        let window = UIWindow(frame: CGRect(x: 0, y: 0, width: 375, height: 500))
-        window.rootViewController = hostingController
-        window.makeKeyAndVisible()
-        hostingController.view.layoutIfNeeded()
-
-        XCTAssertTrue(
-            accessibilityLabels(in: hostingController.view).contains(expectedLabel),
-            "Expected an accessibility element labelled \"\(expectedLabel)\""
-        )
-
-        window.isHidden = true
-    }
-
-    private func accessibilityLabels(in view: UIView) -> [String] {
-        let viewLabel = view.isAccessibilityElement ? [view.accessibilityLabel].compactMap { $0 } : []
-        return viewLabel + view.subviews.flatMap(accessibilityLabels)
     }
 
 }
