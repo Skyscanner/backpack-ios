@@ -295,6 +295,17 @@ let targets: [Target] = [
     ),
 
     // MARK: - Backpack Fonts (resource-only target)
+    //
+    // The proprietary Skyscanner Relative fonts are NOT committed (public repo);
+    // they are downloaded into Assets by Scripts/download-relative-fonts.rb.
+    // Assets/README.md is committed so the directory exists in every checkout —
+    // git does not track empty directories, and a missing directory made
+    // `.process("Assets")` emit "Invalid Resource 'Assets': File not found" for
+    // every remote SPM consumer. Directory resources are globbed at build time,
+    // so fonts downloaded after dependency resolution are still bundled.
+    //
+    // The define makes BackpackFontsBundle's `#if ... SWIFT_MODULE_RESOURCE_BUNDLE_AVAILABLE`
+    // branch real: the resource is always declared, so Bundle.module always exists.
     .target(
       name: "Backpack_Fonts",
       path: "Backpack-Fonts",
@@ -307,6 +318,9 @@ let targets: [Target] = [
       ],
       resources: [
         .process("Assets")
+      ],
+      swiftSettings: [
+        .define("SWIFT_MODULE_RESOURCE_BUNDLE_AVAILABLE")
       ]
     ),
 
