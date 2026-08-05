@@ -7,13 +7,13 @@
 
 | Day | Night |
 | --- | --- |
-| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_video-player___default_lm.png" alt="" width="375" /> | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_video-player___default_dm.png" alt="" width="375" /> |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/Backpack-SwiftUI/Tests/VideoPlayer/__Snapshots__/BPKVideoPlayerTests/test_defaultControls_paused.light-mode.png" alt="Video player default controls in light mode" width="375" /> | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/Backpack-SwiftUI/Tests/VideoPlayer/__Snapshots__/BPKVideoPlayerTests/test_defaultControls_paused.dark-mode.png" alt="Video player default controls in dark mode" width="375" /> |
 
 ## GraphicPromo with video
 
 | Day | Night |
 | --- | --- |
-| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_video-player___graphic-promo_lm.png" alt="" width="375" /> | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_video-player___graphic-promo_dm.png" alt="" width="375" /> |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/Backpack-SwiftUI/Tests/VideoPlayer/__Snapshots__/BPKVideoPlayerTests/test_customOverlay_cornerControl.light-mode.png" alt="Video player custom overlay in light mode" width="375" /> | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/Backpack-SwiftUI/Tests/VideoPlayer/__Snapshots__/BPKVideoPlayerTests/test_customOverlay_cornerControl.dark-mode.png" alt="Video player custom overlay in dark mode" width="375" /> |
 
 # Usage
 
@@ -22,10 +22,24 @@ A scale-to-fill video player with no enforced aspect ratio. By default it shows 
 ## Simple — built-in controls
 
 ```swift
-BPKVideoPlayer(url: videoURL)
+BPKVideoPlayer(
+    url: videoURL
+)
+.controlsAccessibilityLabels(
+    play: "Play video",
+    pause: "Pause video"
+)
 
 // With autoplay and looping
-BPKVideoPlayer(url: videoURL, autoPlay: true, loop: true)
+BPKVideoPlayer(
+    url: videoURL,
+    autoPlay: true,
+    loop: true
+)
+.controlsAccessibilityLabels(
+    play: "Play video",
+    pause: "Pause video"
+)
 ```
 
 ## Shared controller — continuous playback across transitions
@@ -50,6 +64,8 @@ BPKVideoPlayer(controller: controller)
 
 Pass a `@ViewBuilder` closure to replace the default controls. The controller is provided so you can bind your own UI:
 
+Custom overlays must provide their own accessibility labels; `controlsAccessibilityLabels` applies only to the built-in controls.
+
 ```swift
 BPKVideoPlayer(url: videoURL, autoPlay: true) { controller in
     VStack {
@@ -58,7 +74,7 @@ BPKVideoPlayer(url: videoURL, autoPlay: true) { controller in
             Spacer()
             Button(action: controller.toggle) {
                 Image(systemName: controller.state.isPlaying ? "pause.fill" : "play.fill")
-                    .foregroundColor(.white)
+                    .foregroundColor(.textOnDarkColor)
             }
             .padding()
         }

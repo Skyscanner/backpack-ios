@@ -37,13 +37,19 @@ struct VideoDefaultExampleView: View {
     )
     
     var body: some View {
-        BPKVideoPlayer(url: SampleVideo.url)
-            .aspectRatio(16/9, contentMode: .fit)
-            .background(
-                Rectangle()
-                    .foregroundColor(.surfaceSubtleColor)
-            )
-            .padding(.md)
+        BPKVideoPlayer(
+            url: SampleVideo.url
+        )
+        .controlsAccessibilityLabels(
+            play: NSLocalizedString("VIDEO_PLAYER_PLAY", comment: "Accessibility label for the video player's play control."),
+            pause: NSLocalizedString("VIDEO_PLAYER_PAUSE", comment: "Accessibility label for the video player's pause control.")
+        )
+        .aspectRatio(16/9, contentMode: .fit)
+        .background(
+            Rectangle()
+                .foregroundColor(.surfaceSubtleColor)
+        )
+        .padding(.md)
     }
 }
 

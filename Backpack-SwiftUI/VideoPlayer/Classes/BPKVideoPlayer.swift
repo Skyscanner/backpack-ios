@@ -28,6 +28,10 @@ import SwiftUI
 /// ```swift
 /// // Simple — built-in controls
 /// BPKVideoPlayer(url: videoURL)
+///     .controlsAccessibilityLabels(
+///         play: "Play video",
+///         pause: "Pause video"
+///     )
 ///
 /// // Shared controller — for continuous playback across transitions
 /// BPKVideoPlayer(controller: sharedController)
@@ -95,21 +99,68 @@ public struct BPKVideoPlayer<Overlay: View>: View {
 /// is provided. Hidden while the video is loading — visible once ready.
 public struct BPKVideoPlayerDefaultControls: View {
     @ObservedObject public var controller: BPKVideoPlayerController
+    @Environment(\.controlsAccessibilityLabels) private var environmentAccessibility
+    private let accessibility: BPKVideoPlayerDefaultControlsAccessibility?
+
+    public init(controller: BPKVideoPlayerController) {
+        self.controller = controller
+        accessibility = nil
+    }
+
+    public init(
+        controller: BPKVideoPlayerController,
+        playAccessibilityLabel: String,
+        pauseAccessibilityLabel: String
+    ) {
+        self.controller = controller
+        accessibility = .init(play: playAccessibilityLabel, pause: pauseAccessibilityLabel)
+    }
 
     public var body: some View {
         if !controller.state.isLoading {
-            Button(action: controller.toggle) {
+            let button = Button(action: controller.toggle) {
                 BPKIconView(controller.state.isPlaying ? .pause : .play, size: .large)
-                    .foregroundColor(.white)
+                    .foregroundColor(.textOnDarkColor)
                     .frame(width: 40, height: 40)
-                    .background(Color.white.opacity(0.1))
+                    .background(.surfaceTintColor)
                     .clipShape(RoundedRectangle(cornerRadius: BPKCornerRadius.sm.value))
             }
-            .accessibilityLabel(controller.state.isPlaying ? "Pause video" : "Play video")
-            .accessibilityValue(controller.state.isPlaying ? "Playing" : "Paused")
-            .accessibilityHint("Toggles video playback")
-            .padding(.base)
+
+            if let accessibility = accessibility ?? environmentAccessibility {
+                button
+                    .accessibilityLabel(controller.state.isPlaying ? accessibility.pause : accessibility.play)
+                    .padding(.base)
+            } else {
+                button.padding(.base)
+            }
         }
+    }
+}
+
+private struct BPKVideoPlayerDefaultControlsAccessibility: Sendable {
+    let play: String
+    let pause: String
+}
+
+private struct BPKVideoPlayerDefaultControlsAccessibilityKey: EnvironmentKey {
+    static let defaultValue: BPKVideoPlayerDefaultControlsAccessibility? = nil
+}
+
+private extension EnvironmentValues {
+    var controlsAccessibilityLabels: BPKVideoPlayerDefaultControlsAccessibility? {
+        get { self[BPKVideoPlayerDefaultControlsAccessibilityKey.self] }
+        set { self[BPKVideoPlayerDefaultControlsAccessibilityKey.self] = newValue }
+    }
+}
+
+public extension View {
+    /// Applies accessibility labels only to `BPKVideoPlayer`'s built-in play/pause controls.
+    /// Custom overlays must provide their own accessibility labels.
+    func controlsAccessibilityLabels(play: String, pause: String) -> some View {
+        environment(
+            \.controlsAccessibilityLabels,
+            BPKVideoPlayerDefaultControlsAccessibility(play: play, pause: pause)
+        )
     }
 }
 

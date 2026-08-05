@@ -19,3 +19,6 @@
 "FONTS_CONTROLLER_TTILE" = "Fonts";
 
 "LABELS_CONTROLLER_TITLE" = "Labels";
+
+"VIDEO_PLAYER_PLAY" = "Play video";
+"VIDEO_PLAYER_PAUSE" = "Pause video";
