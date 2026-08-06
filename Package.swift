@@ -47,7 +47,12 @@ let backpackObjCSourceDirs = [
   "Dialog/Classes",
   "Icon/Classes",
   "Label/Classes",
+  // Color is listed file-by-file rather than as "Color/Classes" because
+  // Backpack-Tokens/Sources/BPKColor.m is a symlink to
+  // Color/Classes/Generated/BPKColor.m, which Backpack_Tokens already compiles.
+  // Globbing the directory would compile it twice and produce duplicate symbols.
   "Color/Classes/Generated/UIColor+Backpack.m",
+  "Color/Classes/Generated/BPKColor+Internal.m",
   "Card/Classes",
   "Map/Classes",
   "NavigationBar/Classes",
@@ -180,12 +185,25 @@ let targets: [Target] = [
       dependencies: ["Backpack_Common"],
       path: "Backpack-SwiftUI",
       exclude: [
-        "Tests",
-        "Blur/Classes/VariableBlur.metal"
+        "Tests"
       ] + backpackSwiftUIExcludedReadmes,
       sources: backpackSwiftUISourceDirs,
+      // VariableBlur.metal lives under "Shaders", which is deliberately NOT in
+      // backpackSwiftUISourceDirs. That matters: if a .metal file sits inside a
+      // declared source directory, SwiftPM claims it as a source and also listing it
+      // here is a "duplicate rule" error. Keeping it outside `sources` lets `.process`
+      // compile it into default.metallib inside this target's resource bundle, which
+      // is what BackpackShaderLibrary loads via Bundle.module.
+      //
+      // It previously sat in Blur/Classes and was listed in BOTH `exclude` and
+      // `resources`. `exclude` is applied first, so it won: the shader was dropped,
+      // the target produced no resource bundle at all, and bpkProgressiveBlur() could
+      // never resolve its shader under SPM.
+      //
+      // The path still matches the CocoaPods glob 'Backpack-SwiftUI/*/Classes/**/*.metal'
+      // in Backpack-SwiftUI.podspec, so the CocoaPods build is unaffected.
       resources: [
-        .process("Blur/Classes/VariableBlur.metal")
+        .process("Shaders/Classes/VariableBlur.metal")
       ]
     ),
 
@@ -277,6 +295,17 @@ let targets: [Target] = [
     ),
 
     // MARK: - Backpack Fonts (resource-only target)
+    //
+    // The proprietary Skyscanner Relative fonts are NOT committed (public repo);
+    // they are downloaded into Assets by Scripts/download-relative-fonts.rb.
+    // Assets/README.md is committed so the directory exists in every checkout —
+    // git does not track empty directories, and a missing directory made
+    // `.process("Assets")` emit "Invalid Resource 'Assets': File not found" for
+    // every remote SPM consumer. Directory resources are globbed at build time,
+    // so fonts downloaded after dependency resolution are still bundled.
+    //
+    // The define makes BackpackFontsBundle's `#if ... SWIFT_MODULE_RESOURCE_BUNDLE_AVAILABLE`
+    // branch real: the resource is always declared, so Bundle.module always exists.
     .target(
       name: "Backpack_Fonts",
       path: "Backpack-Fonts",
@@ -289,6 +318,9 @@ let targets: [Target] = [
       ],
       resources: [
         .process("Assets")
+      ],
+      swiftSettings: [
+        .define("SWIFT_MODULE_RESOURCE_BUNDLE_AVAILABLE")
       ]
     ),
 
