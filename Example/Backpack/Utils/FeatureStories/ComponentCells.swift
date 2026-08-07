@@ -367,9 +367,7 @@ extension ComponentCellsProvider {
         ComponentCellDataSource(
             title: "Nudger",
             tabs: [
-                .swiftui(presentable: CustomPresentable(generateViewController: {
-                    ContentUIHostingController(NudgerExampleView())
-                }))
+                .swiftui(groups: NudgerGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "Nudger", tabs: $0) }
         )

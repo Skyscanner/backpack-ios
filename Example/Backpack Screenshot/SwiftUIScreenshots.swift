@@ -291,8 +291,15 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         }
         
         await navigate(title: "Nudger") {
+            await switchTab(title: "SwiftUI")
+            app.tables.staticTexts["Default"].tap()
             saveScreenshot(component: "nudger", scenario: "default",
                            userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Labelled"].tap()
+            saveScreenshot(component: "nudger", scenario: "labelled",
+                           userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
         }
 
         await navigate(title: "Slider") {
