@@ -146,11 +146,13 @@ public struct BPKNudger: View {
         .disabled(!enabled)
         .accessibilityElement(children: .combine)
         .accessibilityValue(Text("\(value)"))
-        .accessibilityAdjustableAction { direction in
-            switch direction {
-            case .increment: increment()
-            case .decrement: decrement()
-            @unknown default: break
+        .if(enabled) {
+            $0.accessibilityAdjustableAction { direction in
+                switch direction {
+                case .increment: increment()
+                case .decrement: decrement()
+                @unknown default: break
+                }
             }
         }
         .onAppear {

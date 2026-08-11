@@ -52,6 +52,26 @@ struct NudgerLabelledExampleView: View {
     }
 }
 
+struct NudgerVariantsExampleView: View {
+    @State private var value = 1
+
+    var body: some View {
+        VStack {
+            BPKNudger(title: "Adults", subtitle: "Aged 16+", value: $value, min: 1, max: 10)
+            BPKNudger(title: "Rooms", value: $value, min: 1, max: 10)
+            BPKNudger(
+                title: "Rooms",
+                subtitle: "Each room should contain at least 1 adult",
+                value: $value,
+                min: 1,
+                max: 10
+            )
+            BPKNudger(title: "Rooms", icon: .room, value: $value, min: 1, max: 10)
+        }
+        .padding()
+    }
+}
+
 struct NudgerDisabledExampleView: View {
     @State private var value = 5
     @State private var enabled = false
@@ -72,6 +92,8 @@ struct NudgerExampleView_Previews: PreviewProvider {
                 .previewDisplayName("Default")
             NudgerLabelledExampleView()
                 .previewDisplayName("Labelled")
+            NudgerVariantsExampleView()
+                .previewDisplayName("Variants")
             NudgerDisabledExampleView()
                 .previewDisplayName("Disabled")
         }
@@ -98,6 +120,7 @@ struct NudgerGroupsProvider {
             cellDataSources: [
                 presentable("Default", view: NudgerExampleView()),
                 presentable("Labelled", view: NudgerLabelledExampleView()),
+                presentable("Variants", view: NudgerVariantsExampleView()),
                 presentable("Disabled", view: NudgerDisabledExampleView())
             ]
         ).groups()

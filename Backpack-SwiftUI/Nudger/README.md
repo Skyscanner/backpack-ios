@@ -61,6 +61,7 @@ BPKNudger(value: $value, min: 1, max: 10, enabled: false)
 ### Accessibility identifiers
 
 Use `accessibilityPrefix(_:)` to identify the Nudger's decrement button, value label, and increment button.
+Apply a unique prefix to each Nudger whose child identifiers are used by UI tests.
 
 ```swift
 BPKNudger(value: $value, min: 1, max: 10)
