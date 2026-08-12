@@ -237,8 +237,6 @@ let targets: [Target] = [
         "Tests",
         "Backpack.h",
         "Color/Classes/Generated/BPKInternalColors.swift",
-        "Button/Classes/BPKLegacyLinkButton.h",
-        "Button/Classes/BPKLegacyLinkButton.m",
         "StarRating/Classes/BPKHotelStarRating.swift",
         "Card/Classes/BPKCardElevation.swift",
         "Card/Classes/BPKCardWrapper.swift"
