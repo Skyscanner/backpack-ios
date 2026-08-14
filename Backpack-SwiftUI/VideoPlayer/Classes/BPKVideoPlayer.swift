@@ -93,6 +93,16 @@ public struct BPKVideoPlayer<Overlay: View>: View {
     }
 }
 
+public extension BPKVideoPlayer {
+    /// Runs `action` with the current complete playback metrics and each distinct update.
+    /// No value is sent until the video has a finite, positive duration.
+    func onPlaybackMetrics(
+        _ action: @escaping (BPKVideoPlayerPlaybackMetrics) -> Void
+    ) -> some View {
+        onReceive(controller.playbackMetricsPublisher, perform: action)
+    }
+}
+
 // MARK: - Default controls
 
 /// The built-in play/pause button shown by `BPKVideoPlayer` when no custom overlay

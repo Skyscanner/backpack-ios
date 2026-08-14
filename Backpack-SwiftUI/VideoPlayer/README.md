@@ -140,6 +140,46 @@ controller.state.isPlaying  // true only when .playing
 controller.state.isLoading  // true for .loading and .buffering
 ```
 
+## Playback metrics
+
+`BPKVideoPlayerController` exposes normalized playback metrics without requiring consumers to depend on AVFoundation:
+
+```swift
+@StateObject private var controller = BPKVideoPlayerController(
+    url: videoURL,
+    autoPlay: true,
+    loop: true
+)
+
+BPKVideoPlayer(controller: controller)
+    .onReceive(controller.playbackMetricsPublisher) { metrics in
+        print(metrics.playTime)
+        print(metrics.duration)
+        print(metrics.fractionPlayed)
+    }
+```
+
+The URL-owned player also provides a concise callback:
+
+```swift
+BPKVideoPlayer(url: videoURL, autoPlay: true, loop: true)
+    .onPlaybackMetrics { metrics in
+        print(metrics.fractionPlayed)
+    }
+```
+
+`playbackMetrics` is `nil`, and the publisher remains silent, until the video has a finite, positive duration. Each emitted `BPKVideoPlayerPlaybackMetrics` contains:
+
+| Property | Meaning |
+| --- | --- |
+| `playTime` | Cumulative media time that actually advanced. Pauses and buffering do not add time; loops continue accumulating. |
+| `duration` | The finite, positive media duration in seconds. |
+| `fractionPlayed` | The highest playhead fraction reached, clamped to `0...1`. It does not reset when a video loops. |
+
+Updates are delivered on the main queue at a best-effort cadence and duplicate snapshots are suppressed. Calling `seek(to:)` or `resetToStart()` on the controller rebases sampling, so the seek distance is not counted as played time. Cumulative metrics are preserved across those operations.
+
+The metrics are playback facts rather than analytics events. Consumers remain responsible for visibility, threshold definitions, one-shot event delivery, and impression/session boundaries.
+
 ## Carousel use case — tap to play, reset on scroll
 
 ```swift

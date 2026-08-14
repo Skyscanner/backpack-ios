@@ -183,6 +183,135 @@ struct VideoContinuousPlaybackExampleView: View {
     }
 }
 
+// MARK: - Use case 4: Live playback metrics
+
+struct VideoPlaybackMetricsExampleView: View {
+    @StateObject private var controller = BPKVideoPlayerController(
+        url: SampleVideo.url,
+        autoPlay: true,
+        loop: true
+    )
+    @State private var metrics: BPKVideoPlayerPlaybackMetrics?
+    @State private var firedQuartiles: Set<Int> = []
+    @State private var hasTriggeredViewEvent = false
+    @State private var isMetricsShown = true
+
+    private let quartiles = [25, 50, 75, 100]
+
+    var body: some View {
+        Group {
+            if #available(iOS 16.4, *) {
+                video
+                    .bpkBottomSheet(
+                        isPresented: $isMetricsShown,
+                        peekHeight: 300,
+                        contentMode: .medium(false),
+                        title: "Live playback metrics",
+                        bottomSheetContent: { metricsHUD }
+                    )
+            } else {
+                VStack(spacing: 0) {
+                    video
+                    metricsHUD
+                }
+            }
+        }
+    }
+
+    private var video: some View {
+        ZStack(alignment: .topTrailing) {
+            BPKVideoPlayer(controller: controller) { _ in EmptyView() }
+                .onPlaybackMetrics(receive)
+                .ignoresSafeArea()
+
+            Button(action: controller.toggle) {
+                BPKIconView(controller.state.isPlaying ? .pause : .play, size: .large)
+                    .foregroundColor(.textOnDarkColor)
+                    .padding(.md)
+                    .background(Color(.scrimColor).opacity(0.7))
+                    .clipShape(Circle())
+            }
+            .padding(.lg)
+            .accessibilityLabel(controller.state.isPlaying ? "Pause video" : "Play video")
+        }
+        .background(.surfaceContrastColor)
+    }
+
+    private var metricsHUD: some View {
+        VStack(alignment: .leading, spacing: .base) {
+            if let metrics {
+                HStack(spacing: .md) {
+                    metric(title: "Play time", value: format(metrics.playTime))
+                    metric(title: "Duration", value: format(metrics.duration))
+                    metric(title: "Played", value: "\(Int(metrics.fractionPlayed * 100))%")
+                }
+
+                BPKProgressBar(
+                    max: 100,
+                    stepped: false,
+                    size: .small,
+                    value: Float(metrics.fractionPlayed * 100)
+                )
+
+                BPKText("Would fire", style: .heading5)
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: .sm) {
+                        BPKChip(
+                            "View · 2s",
+                            selected: hasTriggeredViewEvent,
+                            onClick: {}
+                        )
+
+                        ForEach(quartiles, id: \.self) { quartile in
+                            BPKChip(
+                                "\(quartile)%",
+                                selected: firedQuartiles.contains(quartile),
+                                onClick: {}
+                            )
+                        }
+                    }
+                }
+
+                BPKText(
+                    "The view marker assumes the video is at least 50% visible. Markers fire once; looping keeps cumulative play time.",
+                    style: .caption
+                )
+                .foregroundColor(.textSecondaryColor)
+            } else {
+                HStack(spacing: .md) {
+                    BPKSpinner(.sm)
+                    BPKText("Waiting for a finite video duration…", style: .bodyDefault)
+                }
+            }
+        }
+        .padding(.lg)
+    }
+
+    private func metric(title: String, value: String) -> some View {
+        VStack(alignment: .leading, spacing: .sm) {
+            BPKText(title, style: .caption)
+                .foregroundColor(.textSecondaryColor)
+            BPKText(value, style: .heading4)
+                .monospacedDigit()
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private func format(_ seconds: TimeInterval) -> String {
+        String(format: "%.2fs", seconds)
+    }
+
+    private func receive(_ metrics: BPKVideoPlayerPlaybackMetrics) {
+        self.metrics = metrics
+        if metrics.playTime >= 2 {
+            hasTriggeredViewEvent = true
+        }
+        for quartile in quartiles where metrics.fractionPlayed >= Double(quartile) / 100 {
+            firedQuartiles.insert(quartile)
+        }
+    }
+}
+
 
 // MARK: - Previews
 
@@ -200,6 +329,9 @@ struct VideoPlayerExampleView_Previews: PreviewProvider {
 
             VideoContinuousPlaybackExampleView()
                 .previewDisplayName("3 · Continuous playback")
+
+            VideoPlaybackMetricsExampleView()
+                .previewDisplayName("4 · Live playback metrics")
         }
     }
 }
