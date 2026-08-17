@@ -19,7 +19,7 @@
 import Foundation
 
 /// A normalized snapshot of cumulative video playback metrics.
-public struct BPKVideoPlayerPlaybackMetrics: Equatable, Sendable {
+public struct BPKVideoPlayerProgress: Equatable, Sendable {
     /// Cumulative active playback time, in seconds.
     public let playTime: TimeInterval
 

@@ -23,7 +23,7 @@ public struct BPKColor: Sendable {
 }
 
 extension BPKColor {
-    static var clear: BPKColor {
+    public static var clear: BPKColor {
         BPKColor(value: .clear)
     }
     

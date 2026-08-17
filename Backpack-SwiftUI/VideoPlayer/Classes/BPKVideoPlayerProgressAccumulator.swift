@@ -18,8 +18,8 @@
 
 import Foundation
 
-struct BPKVideoPlayerPlaybackMetricsAccumulator {
-    private(set) var metrics: BPKVideoPlayerPlaybackMetrics?
+struct BPKVideoPlayerProgressAccumulator {
+    private(set) var progress: BPKVideoPlayerProgress?
 
     private var playTime: TimeInterval = 0
     private var duration: TimeInterval?
@@ -34,7 +34,7 @@ struct BPKVideoPlayerPlaybackMetricsAccumulator {
         if let previousPlayhead {
             updateMaximumFraction(for: previousPlayhead)
         }
-        refreshMetrics()
+        refreshProgress()
     }
 
     mutating func recordSample(
@@ -58,7 +58,7 @@ struct BPKVideoPlayerPlaybackMetricsAccumulator {
         } else if isLooping, let duration = self.duration {
             addPlayTime(max(duration - previousPlayhead, 0) + playhead)
             maximumFractionPlayed = 1
-            refreshMetrics()
+            refreshProgress()
         }
 
         self.previousPlayhead = playhead
@@ -76,7 +76,7 @@ struct BPKVideoPlayerPlaybackMetricsAccumulator {
         }
 
         maximumFractionPlayed = 1
-        refreshMetrics()
+        refreshProgress()
     }
 
     mutating func beginRebase() {
@@ -92,7 +92,7 @@ struct BPKVideoPlayerPlaybackMetricsAccumulator {
     private mutating func addPlayTime(_ delta: TimeInterval) {
         guard delta.isFinite, delta > 0 else { return }
         playTime += delta
-        refreshMetrics()
+        refreshProgress()
     }
 
     private mutating func updateMaximumFraction(for playhead: TimeInterval) {
@@ -101,15 +101,15 @@ struct BPKVideoPlayerPlaybackMetricsAccumulator {
             maximumFractionPlayed,
             min(max(playhead / duration, 0), 1)
         )
-        refreshMetrics()
+        refreshProgress()
     }
 
-    private mutating func refreshMetrics() {
+    private mutating func refreshProgress() {
         guard let duration else {
-            metrics = nil
+            progress = nil
             return
         }
-        metrics = BPKVideoPlayerPlaybackMetrics(
+        progress = BPKVideoPlayerProgress(
             playTime: playTime,
             duration: duration,
             fractionPlayed: maximumFractionPlayed

@@ -94,12 +94,12 @@ public struct BPKVideoPlayer<Overlay: View>: View {
 }
 
 public extension BPKVideoPlayer {
-    /// Runs `action` with the current complete playback metrics and each distinct update.
+    /// Runs `action` with the current playback progress and each distinct update.
     /// No value is sent until the video has a finite, positive duration.
-    func onPlaybackMetrics(
-        _ action: @escaping (BPKVideoPlayerPlaybackMetrics) -> Void
+    func onProgress(
+        _ action: @escaping (BPKVideoPlayerProgress) -> Void
     ) -> some View {
-        onReceive(controller.playbackMetricsPublisher, perform: action)
+        onReceive(controller.progressPublisher, perform: action)
     }
 }
 

@@ -91,21 +91,21 @@ public final class BPKVideoPlayerController: ObservableObject {
     ///
     /// - Warning: Use `play()`, `pause()`, and `toggle()` rather than calling
     ///   the equivalent methods on `player` directly. Direct playback and seeking
-    ///   calls bypass controller state and playback-metrics tracking.
+    ///   calls bypass controller state and playback-progress tracking.
     public let player: AVPlayer
 
     /// The current playback state. Drives all UI — spinner, play/pause icon, error view.
     @Published public private(set) var state: BPKVideoPlayerState = .loading
 
-    /// The latest complete playback metrics snapshot, or `nil` until duration is known.
-    public var playbackMetrics: BPKVideoPlayerPlaybackMetrics? {
-        metricsTracker.metrics
+    /// The latest playback progress, or `nil` until duration is known.
+    public var progress: BPKVideoPlayerProgress? {
+        progressSubject.value
     }
 
     /// Emits the current complete snapshot and subsequent distinct updates.
     /// Values are delivered on the main queue.
-    public var playbackMetricsPublisher: AnyPublisher<BPKVideoPlayerPlaybackMetrics, Never> {
-        metricsTracker.publisher
+    public var progressPublisher: AnyPublisher<BPKVideoPlayerProgress, Never> {
+        progressSubject.compactMap { $0 }.eraseToAnyPublisher()
     }
 
     private let autoPlay: Bool
@@ -114,7 +114,8 @@ public final class BPKVideoPlayerController: ObservableObject {
     private let periodicTimeObserver: BPKVideoPlayerPeriodicTimeObserving
     private let durationProvider: BPKVideoPlayerDurationProvider
     private let notificationCenter: NotificationCenter
-    private let metricsTracker = BPKVideoPlayerPlaybackMetricsTracker()
+    private var progressAccumulator = BPKVideoPlayerProgressAccumulator()
+    private let progressSubject = CurrentValueSubject<BPKVideoPlayerProgress?, Never>(nil)
 
     private var playerLooper: AVPlayerLooper?
     private var itemStatusObservation: NSKeyValueObservation?
@@ -199,14 +200,16 @@ public final class BPKVideoPlayerController: ObservableObject {
     }
 
     public func seek(to time: CMTime) {
-        metricsTracker.beginRebase()
+        updateProgress { $0.beginRebase() }
         player.seek(to: time, toleranceBefore: .zero, toleranceAfter: .zero) { [weak self] _ in
             DispatchQueue.main.async {
                 guard let self else { return }
-                self.metricsTracker.endRebase(
-                    at: self.player.currentTime().seconds,
-                    duration: self.durationProvider(self.player.currentItem)
-                )
+                self.updateProgress {
+                    $0.endRebase(
+                        at: self.player.currentTime().seconds,
+                        duration: self.durationProvider(self.player.currentItem)
+                    )
+                }
             }
         }
     }
@@ -226,11 +229,13 @@ public final class BPKVideoPlayerController: ObservableObject {
             queue: .main
         ) { [weak self] time in
             guard let self else { return }
-            self.metricsTracker.recordSample(
-                playhead: time.seconds,
-                duration: self.durationProvider(self.player.currentItem),
-                isLooping: self.loop
-            )
+            self.updateProgress {
+                $0.recordSample(
+                    playhead: time.seconds,
+                    duration: self.durationProvider(self.player.currentItem),
+                    isLooping: self.loop
+                )
+            }
         }
 
         // timeControlStatus is the primary playing/paused/buffering signal
@@ -258,10 +263,9 @@ public final class BPKVideoPlayerController: ObservableObject {
             queue: .main
         ) { [weak self, weak item] _ in
             guard let self else { return }
-            self.metricsTracker.recordCompletion(
-                duration: self.durationProvider(item),
-                isLooping: self.loop
-            )
+            self.updateProgress {
+                $0.recordCompletion(duration: self.durationProvider(item), isLooping: self.loop)
+            }
         }
 
         itemStatusObservation = item.observe(\.status, options: [.new, .initial]) { [weak self] item, _ in
@@ -273,7 +277,7 @@ public final class BPKVideoPlayerController: ObservableObject {
         switch itemStatus {
         case .readyToPlay:
             loadTimeoutTask?.cancel()
-            metricsTracker.updateDuration(durationProvider(player.currentItem))
+            updateProgress { $0.updateDuration(durationProvider(player.currentItem)) }
             transition(to: .readyToPlay)
             if autoPlay && !UIAccessibility.isReduceMotionEnabled { play() }
         case .failed:
@@ -305,6 +309,12 @@ public final class BPKVideoPlayerController: ObservableObject {
     private func transition(to newState: BPKVideoPlayerState) {
         guard state != newState else { return }
         state = newState
+    }
+
+    private func updateProgress(_ update: (inout BPKVideoPlayerProgressAccumulator) -> Void) {
+        update(&progressAccumulator)
+        guard progressAccumulator.progress != progressSubject.value else { return }
+        progressSubject.send(progressAccumulator.progress)
     }
 
     private func scheduleTimeout() {

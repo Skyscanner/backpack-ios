@@ -19,16 +19,16 @@
 import XCTest
 @testable import Backpack_SwiftUI
 
-final class BPKVideoPlayerPlaybackMetricsTests: XCTestCase {
+final class BPKVideoPlayerProgressTests: XCTestCase {
     func test_init_exposesPlaybackValues() {
-        let metrics = BPKVideoPlayerPlaybackMetrics(
+        let progress = BPKVideoPlayerProgress(
             playTime: 2,
             duration: 8,
             fractionPlayed: 0.25
         )
 
-        XCTAssertEqual(metrics.playTime, 2)
-        XCTAssertEqual(metrics.duration, 8)
-        XCTAssertEqual(metrics.fractionPlayed, 0.25)
+        XCTAssertEqual(progress.playTime, 2)
+        XCTAssertEqual(progress.duration, 8)
+        XCTAssertEqual(progress.fractionPlayed, 0.25)
     }
 }

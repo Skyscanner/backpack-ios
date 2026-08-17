@@ -21,7 +21,7 @@ import Combine
 import XCTest
 @testable import Backpack_SwiftUI
 
-final class BPKVideoPlayerControllerMetricsTests: XCTestCase {
+final class BPKVideoPlayerControllerProgressTests: XCTestCase {
     private var cancellables: Set<AnyCancellable> = []
 
     func test_init_registersOneQuarterSecondPeriodicObserverOnMainQueue() {
@@ -34,17 +34,52 @@ final class BPKVideoPlayerControllerMetricsTests: XCTestCase {
         XCTAssertEqual(observer.queue, .main)
     }
 
-    func test_periodicSamples_publishNormalizedMetrics() {
+    func test_periodicSamples_publishNormalizedProgress() {
         let observer = PeriodicTimeObserverMock()
         let sut = makeSUT(observer: observer)
-        var received: [BPKVideoPlayerPlaybackMetrics] = []
-        sut.playbackMetricsPublisher.sink { received.append($0) }.store(in: &cancellables)
+        var received: [BPKVideoPlayerProgress] = []
+        sut.progressPublisher.sink { received.append($0) }.store(in: &cancellables)
 
         observer.send(seconds: 0)
         observer.send(seconds: 2.5)
 
         XCTAssertEqual(received.last, .init(playTime: 2.5, duration: 10, fractionPlayed: 0.25))
-        XCTAssertEqual(sut.playbackMetrics, received.last)
+        XCTAssertEqual(sut.progress, received.last)
+    }
+
+    func test_progressPublisher_beforeFirstSample_emitsNothing() {
+        let sut = makeSUT(observer: PeriodicTimeObserverMock())
+        var received: [BPKVideoPlayerProgress] = []
+
+        sut.progressPublisher.sink { received.append($0) }.store(in: &cancellables)
+
+        XCTAssertTrue(received.isEmpty)
+        XCTAssertNil(sut.progress)
+    }
+
+    func test_progressPublisher_forLateSubscriber_replaysLatestProgress() {
+        let observer = PeriodicTimeObserverMock()
+        let sut = makeSUT(observer: observer)
+        observer.send(seconds: 0)
+        observer.send(seconds: 2)
+        var received: [BPKVideoPlayerProgress] = []
+
+        sut.progressPublisher.sink { received.append($0) }.store(in: &cancellables)
+
+        XCTAssertEqual(received, [.init(playTime: 2, duration: 10, fractionPlayed: 0.2)])
+    }
+
+    func test_repeatedSample_suppressesDuplicateProgress() {
+        let observer = PeriodicTimeObserverMock()
+        let sut = makeSUT(observer: observer)
+        var received: [BPKVideoPlayerProgress] = []
+        sut.progressPublisher.sink { received.append($0) }.store(in: &cancellables)
+        observer.send(seconds: 0)
+        observer.send(seconds: 1)
+
+        observer.send(seconds: 1)
+
+        XCTAssertEqual(received.count, 2)
     }
 
     func test_deinit_removesPeriodicObserverToken() {
@@ -60,13 +95,13 @@ final class BPKVideoPlayerControllerMetricsTests: XCTestCase {
         XCTAssertTrue(observer.removedToken === observer.addedToken)
     }
 
-    func test_currentItemCompletion_publishesCompletionMetrics() async {
+    func test_currentItemCompletion_publishesCompletionProgress() async {
         let observer = PeriodicTimeObserverMock()
         let notificationCenter = NotificationCenter()
         let sut = makeSUT(observer: observer, notificationCenter: notificationCenter)
-        let completion = expectation(description: "Completion metrics")
-        var received: BPKVideoPlayerPlaybackMetrics?
-        sut.playbackMetricsPublisher.sink {
+        let completion = expectation(description: "Completion progress")
+        var received: BPKVideoPlayerProgress?
+        sut.progressPublisher.sink {
             received = $0
             if $0.fractionPlayed == 1 {
                 completion.fulfill()

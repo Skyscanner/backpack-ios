@@ -19,26 +19,26 @@
 import XCTest
 @testable import Backpack_SwiftUI
 
-final class BPKVideoPlayerPlaybackMetricsAccumulatorTests: XCTestCase {
-    func test_initially_metricsAreUnavailable() {
-        XCTAssertNil(makeSUT().metrics)
+final class BPKVideoPlayerProgressAccumulatorTests: XCTestCase {
+    func test_initially_progressIsUnavailable() {
+        XCTAssertNil(makeSUT().progress)
     }
 
-    func test_updateDuration_withFinitePositiveDuration_makesMetricsAvailable() {
+    func test_updateDuration_withFinitePositiveDuration_makesProgressAvailable() {
         var sut = makeSUT()
 
         sut.updateDuration(10)
 
-        assertMetrics(sut.metrics, playTime: 0, duration: 10, fractionPlayed: 0)
+        assertProgress(sut.progress, playTime: 0, duration: 10, fractionPlayed: 0)
     }
 
-    func test_updateDuration_withInvalidDuration_keepsMetricsUnavailable() {
+    func test_updateDuration_withInvalidDuration_keepsProgressUnavailable() {
         for duration in [0, -1, .nan, .infinity] {
             var sut = makeSUT()
 
             sut.updateDuration(duration)
 
-            XCTAssertNil(sut.metrics)
+            XCTAssertNil(sut.progress)
         }
     }
 
@@ -47,7 +47,7 @@ final class BPKVideoPlayerPlaybackMetricsAccumulatorTests: XCTestCase {
 
         record([0, 0.25, 0.25, 0.5], on: &sut, duration: 10)
 
-        assertMetrics(sut.metrics, playTime: 0.5, duration: 10, fractionPlayed: 0.05)
+        assertProgress(sut.progress, playTime: 0.5, duration: 10, fractionPlayed: 0.05)
     }
 
     func test_recordSample_withInvalidPlayhead_isIgnored() {
@@ -58,7 +58,7 @@ final class BPKVideoPlayerPlaybackMetricsAccumulatorTests: XCTestCase {
             sut.recordSample(playhead: playhead, duration: 10, isLooping: false)
         }
 
-        assertMetrics(sut.metrics, playTime: 1, duration: 10, fractionPlayed: 0.1)
+        assertProgress(sut.progress, playTime: 1, duration: 10, fractionPlayed: 0.1)
     }
 
     func test_recordBackwardSample_whenLooping_countsTailAndPrefixAndCompletesFraction() {
@@ -66,7 +66,7 @@ final class BPKVideoPlayerPlaybackMetricsAccumulatorTests: XCTestCase {
 
         record([0, 9.8, 0.1], on: &sut, duration: 10, isLooping: true)
 
-        assertMetrics(sut.metrics, playTime: 10.1, duration: 10, fractionPlayed: 1)
+        assertProgress(sut.progress, playTime: 10.1, duration: 10, fractionPlayed: 1)
     }
 
     func test_recordCompletion_whenLooping_doesNotDoubleCountLoopTail() {
@@ -76,7 +76,7 @@ final class BPKVideoPlayerPlaybackMetricsAccumulatorTests: XCTestCase {
         sut.recordCompletion(duration: 10, isLooping: true)
         sut.recordSample(playhead: 0.1, duration: 10, isLooping: true)
 
-        assertMetrics(sut.metrics, playTime: 10.1, duration: 10, fractionPlayed: 1)
+        assertProgress(sut.progress, playTime: 10.1, duration: 10, fractionPlayed: 1)
     }
 
     func test_recordCompletion_whenNonLooping_countsUnsampledTail() {
@@ -85,7 +85,7 @@ final class BPKVideoPlayerPlaybackMetricsAccumulatorTests: XCTestCase {
 
         sut.recordCompletion(duration: 10, isLooping: false)
 
-        assertMetrics(sut.metrics, playTime: 10, duration: 10, fractionPlayed: 1)
+        assertProgress(sut.progress, playTime: 10, duration: 10, fractionPlayed: 1)
     }
 
     func test_recordBackwardSample_whenNotLooping_rebasesWithoutCountingJump() {
@@ -93,7 +93,7 @@ final class BPKVideoPlayerPlaybackMetricsAccumulatorTests: XCTestCase {
 
         record([0, 5, 1, 2], on: &sut, duration: 10)
 
-        assertMetrics(sut.metrics, playTime: 6, duration: 10, fractionPlayed: 0.5)
+        assertProgress(sut.progress, playTime: 6, duration: 10, fractionPlayed: 0.5)
     }
 
     func test_rebase_excludesSeekDistanceAndPreservesMaximumFraction() {
@@ -105,7 +105,7 @@ final class BPKVideoPlayerPlaybackMetricsAccumulatorTests: XCTestCase {
         sut.endRebase(at: 8, duration: 10)
         sut.recordSample(playhead: 9, duration: 10, isLooping: false)
 
-        assertMetrics(sut.metrics, playTime: 3, duration: 10, fractionPlayed: 0.9)
+        assertProgress(sut.progress, playTime: 3, duration: 10, fractionPlayed: 0.9)
     }
 
     func test_replayingSameSection_increasesPlayTimeWithoutInflatingFraction() {
@@ -116,16 +116,16 @@ final class BPKVideoPlayerPlaybackMetricsAccumulatorTests: XCTestCase {
         sut.endRebase(at: 0, duration: 10)
         sut.recordSample(playhead: 5, duration: 10, isLooping: false)
 
-        assertMetrics(sut.metrics, playTime: 10, duration: 10, fractionPlayed: 0.5)
+        assertProgress(sut.progress, playTime: 10, duration: 10, fractionPlayed: 0.5)
     }
 
-    private func makeSUT() -> BPKVideoPlayerPlaybackMetricsAccumulator {
-        BPKVideoPlayerPlaybackMetricsAccumulator()
+    private func makeSUT() -> BPKVideoPlayerProgressAccumulator {
+        BPKVideoPlayerProgressAccumulator()
     }
 
     private func record(
         _ samples: [TimeInterval],
-        on sut: inout BPKVideoPlayerPlaybackMetricsAccumulator,
+        on sut: inout BPKVideoPlayerProgressAccumulator,
         duration: TimeInterval,
         isLooping: Bool = false
     ) {
@@ -134,19 +134,19 @@ final class BPKVideoPlayerPlaybackMetricsAccumulatorTests: XCTestCase {
         }
     }
 
-    private func assertMetrics(
-        _ metrics: BPKVideoPlayerPlaybackMetrics?,
+    private func assertProgress(
+        _ progress: BPKVideoPlayerProgress?,
         playTime: TimeInterval,
         duration: TimeInterval,
         fractionPlayed: Double,
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
-        guard let metrics else {
-            return XCTFail("Expected playback metrics", file: file, line: line)
+        guard let progress else {
+            return XCTFail("Expected playback progress", file: file, line: line)
         }
-        XCTAssertEqual(metrics.playTime, playTime, accuracy: 0.000_001, file: file, line: line)
-        XCTAssertEqual(metrics.duration, duration, accuracy: 0.000_001, file: file, line: line)
-        XCTAssertEqual(metrics.fractionPlayed, fractionPlayed, accuracy: 0.000_001, file: file, line: line)
+        XCTAssertEqual(progress.playTime, playTime, accuracy: 0.000_001, file: file, line: line)
+        XCTAssertEqual(progress.duration, duration, accuracy: 0.000_001, file: file, line: line)
+        XCTAssertEqual(progress.fractionPlayed, fractionPlayed, accuracy: 0.000_001, file: file, line: line)
     }
 }

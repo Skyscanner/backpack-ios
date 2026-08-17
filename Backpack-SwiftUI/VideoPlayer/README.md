@@ -152,10 +152,10 @@ controller.state.isLoading  // true for .loading and .buffering
 )
 
 BPKVideoPlayer(controller: controller)
-    .onReceive(controller.playbackMetricsPublisher) { metrics in
-        print(metrics.playTime)
-        print(metrics.duration)
-        print(metrics.fractionPlayed)
+    .onReceive(controller.progressPublisher) { progress in
+        print(progress.playTime)
+        print(progress.duration)
+        print(progress.fractionPlayed)
     }
 ```
 
@@ -163,12 +163,12 @@ The URL-owned player also provides a concise callback:
 
 ```swift
 BPKVideoPlayer(url: videoURL, autoPlay: true, loop: true)
-    .onPlaybackMetrics { metrics in
-        print(metrics.fractionPlayed)
+    .onProgress { progress in
+        print(progress.fractionPlayed)
     }
 ```
 
-`playbackMetrics` is `nil`, and the publisher remains silent, until the video has a finite, positive duration. Each emitted `BPKVideoPlayerPlaybackMetrics` contains:
+`progress` is `nil`, and the publisher remains silent, until the video has a finite, positive duration. Each emitted `BPKVideoPlayerProgress` contains:
 
 | Property | Meaning |
 | --- | --- |
@@ -176,9 +176,9 @@ BPKVideoPlayer(url: videoURL, autoPlay: true, loop: true)
 | `duration` | The finite, positive media duration in seconds. |
 | `fractionPlayed` | The highest playhead fraction reached, clamped to `0...1`. It does not reset when a video loops. |
 
-Updates are delivered on the main queue at a best-effort cadence and duplicate snapshots are suppressed. Calling `seek(to:)` or `resetToStart()` on the controller rebases sampling, so the seek distance is not counted as played time. Cumulative metrics are preserved across those operations.
+Updates are delivered on the main queue at a best-effort cadence and duplicate snapshots are suppressed. Calling `seek(to:)` or `resetToStart()` on the controller rebases sampling, so the seek distance is not counted as played time. Cumulative progress is preserved across those operations.
 
-The metrics are playback facts rather than analytics events. Consumers remain responsible for visibility, threshold definitions, one-shot event delivery, and impression/session boundaries.
+Progress values are playback facts rather than analytics events. Consumers remain responsible for visibility, threshold definitions, one-shot event delivery, and impression/session boundaries.
 
 ## Carousel use case — tap to play, reset on scroll
 

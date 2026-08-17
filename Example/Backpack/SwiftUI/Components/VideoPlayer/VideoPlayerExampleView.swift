@@ -133,14 +133,15 @@ struct VideoFullscreenExampleView: View {
             BPKVideoPlayer(controller: activeController) { _ in EmptyView() }
                 .ignoresSafeArea()
 
-            // Custom UI — TBD
-            VStack {
-                Spacer()
-                Text("Custom UI — TBD")
-                    .font(.caption)
-                    .foregroundColor(.white.opacity(0.6))
-                    .padding(.bottom, .xl)
+            Button(action: activeController.toggle) {
+                BPKIconView(activeController.state.isPlaying ? .pause : .play, size: .large)
+                    .foregroundColor(.textOnDarkColor)
+                    .frame(width: 40, height: 40)
+                    .background(.surfaceTintColor)
+                    .clipShape(RoundedRectangle(cornerRadius: BPKCornerRadius.sm.value))
             }
+            .accessibilityLabel(activeController.state.isPlaying ? "Pause video" : "Play video")
+            .accessibilityValue(activeController.state.isPlaying ? "Playing" : "Paused")
         }
         .background(Color.black)
     }
@@ -183,18 +184,18 @@ struct VideoContinuousPlaybackExampleView: View {
     }
 }
 
-// MARK: - Use case 4: Live playback metrics
+// MARK: - Use case 4: Live playback progress
 
-struct VideoPlaybackMetricsExampleView: View {
+struct VideoProgressExampleView: View {
     @StateObject private var controller = BPKVideoPlayerController(
         url: SampleVideo.url,
         autoPlay: true,
         loop: true
     )
-    @State private var metrics: BPKVideoPlayerPlaybackMetrics?
+    @State private var progress: BPKVideoPlayerProgress?
     @State private var firedQuartiles: Set<Int> = []
     @State private var hasTriggeredViewEvent = false
-    @State private var isMetricsShown = true
+    @State private var isProgressShown = true
 
     private let quartiles = [25, 50, 75, 100]
 
@@ -203,16 +204,20 @@ struct VideoPlaybackMetricsExampleView: View {
             if #available(iOS 16.4, *) {
                 video
                     .bpkBottomSheet(
-                        isPresented: $isMetricsShown,
+                        isPresented: $isProgressShown,
                         peekHeight: 300,
                         contentMode: .medium(false),
-                        title: "Live playback metrics",
-                        bottomSheetContent: { metricsHUD }
+                        title: "Live playback progress",
+                        backgroundColor: .clear,
+                        bottomSheetContent: {
+                            progressHUD
+                                .presentationBackground(.clear)
+                        }
                     )
             } else {
                 VStack(spacing: 0) {
                     video
-                    metricsHUD
+                    progressHUD
                 }
             }
         }
@@ -221,7 +226,7 @@ struct VideoPlaybackMetricsExampleView: View {
     private var video: some View {
         ZStack(alignment: .topTrailing) {
             BPKVideoPlayer(controller: controller) { _ in EmptyView() }
-                .onPlaybackMetrics(receive)
+                .onProgress(receive)
                 .ignoresSafeArea()
 
             Button(action: controller.toggle) {
@@ -237,20 +242,20 @@ struct VideoPlaybackMetricsExampleView: View {
         .background(.surfaceContrastColor)
     }
 
-    private var metricsHUD: some View {
+    private var progressHUD: some View {
         VStack(alignment: .leading, spacing: .base) {
-            if let metrics {
+            if let progress {
                 HStack(spacing: .md) {
-                    metric(title: "Play time", value: format(metrics.playTime))
-                    metric(title: "Duration", value: format(metrics.duration))
-                    metric(title: "Played", value: "\(Int(metrics.fractionPlayed * 100))%")
+                    metric(title: "Play time", value: format(progress.playTime))
+                    metric(title: "Duration", value: format(progress.duration))
+                    metric(title: "Played", value: "\(Int(progress.fractionPlayed * 100))%")
                 }
 
                 BPKProgressBar(
                     max: 100,
                     stepped: false,
                     size: .small,
-                    value: Float(metrics.fractionPlayed * 100)
+                    value: Float(progress.fractionPlayed * 100)
                 )
 
                 BPKText("Would fire", style: .heading5)
@@ -301,12 +306,12 @@ struct VideoPlaybackMetricsExampleView: View {
         String(format: "%.2fs", seconds)
     }
 
-    private func receive(_ metrics: BPKVideoPlayerPlaybackMetrics) {
-        self.metrics = metrics
-        if metrics.playTime >= 2 {
+    private func receive(_ progress: BPKVideoPlayerProgress) {
+        self.progress = progress
+        if progress.playTime >= 2 {
             hasTriggeredViewEvent = true
         }
-        for quartile in quartiles where metrics.fractionPlayed >= Double(quartile) / 100 {
+        for quartile in quartiles where progress.fractionPlayed >= Double(quartile) / 100 {
             firedQuartiles.insert(quartile)
         }
     }
@@ -330,8 +335,8 @@ struct VideoPlayerExampleView_Previews: PreviewProvider {
             VideoContinuousPlaybackExampleView()
                 .previewDisplayName("3 · Continuous playback")
 
-            VideoPlaybackMetricsExampleView()
-                .previewDisplayName("4 · Live playback metrics")
+            VideoProgressExampleView()
+                .previewDisplayName("4 · Live playback progress")
         }
     }
 }
