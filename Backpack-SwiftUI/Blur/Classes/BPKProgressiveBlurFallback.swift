@@ -20,6 +20,13 @@ import SwiftUI
 
 /// A ViewModifier that applies a progressive blur effect to a view
 /// The blur gradually increases from no blur at the top to full blur at the bottom
+///
+/// - Note: This is the < iOS 17 fallback for `bpkProgressiveBlur()` (see `VisualEffect+Blur.swift`).
+///   It intentionally differs from the Metal-based `bpkProgressiveBlur()` in both region and gradient:
+///   this fallback blurs the *full* height of the view (0%–100%) via a fixed 10pt blur revealed through
+///   a 5-stop alpha cross-fade, whereas `bpkProgressiveBlur()` only blurs the bottom half (50%–100%) with
+///   a continuously variable radius up to 24pt. As a result the two can look meaningfully different
+///   depending on OS version. See `Backpack-SwiftUI/Blur/README.md` for the full comparison.
 public struct BPKProgressiveBlurFallback: ViewModifier {
     /// The maximum blur radius to apply at the bottom of the view
     let radius: CGFloat
