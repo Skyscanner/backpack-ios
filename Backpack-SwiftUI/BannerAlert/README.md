@@ -28,8 +28,7 @@ Supported `Style`s:
 BPKBannerAlert(
     type: .warning(accessibilityLabel: "Warning"),
     style: .onContrast,
-    message: "Hello World!",
-    accessibilityIdentifier: "BannerAlertAccessibilityIdentifier"
+    message: "Hello World!"
 )
 ```
 
