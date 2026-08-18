@@ -21,13 +21,42 @@ import SwiftUI
 import Backpack_SwiftUI
 
 struct NudgerExampleView: View {
-    @State private var value = 0
+    @State private var minimumValue = 1
+    @State private var value = 5
+    @State private var maximumValue = 10
     
     var body: some View {
         VStack {
-            BPKNudger(value: $value, min: 1, max: 10, step: 1)
-                .accessibilityPrefix("Prefix")
-                .accessibilityLabel("Passengers")
+            BPKNudger(value: $minimumValue, min: 1, max: 10)
+            BPKNudger(value: $value, min: 1, max: 10)
+            BPKNudger(value: $maximumValue, min: 1, max: 10)
+        }
+        .padding()
+    }
+}
+
+struct NudgerLabelledExampleView: View {
+    @State private var value = 1
+
+    var body: some View {
+        BPKNudger(
+            title: "Travellers",
+            subtitle: "Aged 16 and older",
+            icon: .adult,
+            value: $value,
+            min: 1,
+            max: 10
+        )
+        .accessibilityPrefix("passengers")
+        .padding()
+    }
+}
+
+struct NudgerVariantsExampleView: View {
+    @State private var value = 1
+
+    var body: some View {
+        VStack {
             BPKNudger(title: "Adults", subtitle: "Aged 16+", value: $value, min: 1, max: 10)
             BPKNudger(title: "Rooms", value: $value, min: 1, max: 10)
             BPKNudger(
@@ -38,14 +67,19 @@ struct NudgerExampleView: View {
                 max: 10
             )
             BPKNudger(title: "Rooms", icon: .room, value: $value, min: 1, max: 10)
-            BPKNudger(
-                title: "Travellers",
-                subtitle: "Aged 16 and older",
-                icon: .adult,
-                value: $value,
-                min: 1,
-                max: 10
-            )
+        }
+        .padding()
+    }
+}
+
+struct NudgerDisabledExampleView: View {
+    @State private var value = 5
+    @State private var enabled = false
+
+    var body: some View {
+        VStack {
+            BPKSwitch(isOn: $enabled, text: "Nudger enabled")
+            BPKNudger(value: $value, min: 1, max: 10, enabled: enabled)
         }
         .padding()
     }
@@ -53,6 +87,42 @@ struct NudgerExampleView: View {
 
 struct NudgerExampleView_Previews: PreviewProvider {
     static var previews: some View {
-        NudgerExampleView()
+        Group {
+            NudgerExampleView()
+                .previewDisplayName("Default")
+            NudgerLabelledExampleView()
+                .previewDisplayName("Labelled")
+            NudgerVariantsExampleView()
+                .previewDisplayName("Variants")
+            NudgerDisabledExampleView()
+                .previewDisplayName("Disabled")
+        }
+    }
+}
+
+@MainActor
+struct NudgerGroupsProvider {
+    let showPresentable: (Presentable) -> Void
+
+    private func presentable<Content: View>(
+        _ title: String,
+        view: Content
+    ) -> CellDataSource {
+        PresentableCellDataSource.custom(
+            title: title,
+            customController: { ContentUIHostingController(view) },
+            showPresentable: showPresentable
+        )
+    }
+
+    func swiftUIGroups() -> [Components.Group] {
+        SingleGroupProvider(
+            cellDataSources: [
+                presentable("Default", view: NudgerExampleView()),
+                presentable("Labelled", view: NudgerLabelledExampleView()),
+                presentable("Variants", view: NudgerVariantsExampleView()),
+                presentable("Disabled", view: NudgerDisabledExampleView())
+            ]
+        ).groups()
     }
 }

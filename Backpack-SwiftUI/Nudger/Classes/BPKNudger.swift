@@ -22,8 +22,6 @@ import Backpack_Common
 public struct BPKNudger: View {
 
     @Environment(\.sizeCategory) var sizeCategory
-    @State private var canIncrement = true
-    @State private var canDecrement = true
     @Binding private var value: Int
     
     private let title: String?
@@ -33,6 +31,7 @@ public struct BPKNudger: View {
     private var minValue: Int
     private var maxValue: Int
     private var step: Int
+    private let enabled: Bool
     private let minWidth: CGFloat = BPKSpacing.lg.value
     var accessibilityPrefix: String?
     
@@ -47,7 +46,9 @@ public struct BPKNudger: View {
     ///     Must be greater than `min`.
     ///   - step: The step value of the `BPKNudger`.
     ///     Defaults to `1`.
-    public init(value: Binding<Int>, min: Int, max: Int, step: Int = 1) {
+    ///   - enabled: Whether the `BPKNudger` allows user interaction.
+    ///     Defaults to `true`.
+    public init(value: Binding<Int>, min: Int, max: Int, step: Int = 1, enabled: Bool = true) {
         self.title = nil
         self.subtitle = nil
         self.icon = nil
@@ -55,6 +56,7 @@ public struct BPKNudger: View {
         minValue = min
         maxValue = max
         self.step = step
+        self.enabled = enabled
         self._value = value
     }
     
@@ -73,6 +75,8 @@ public struct BPKNudger: View {
     ///     Must be greater than `min`.
     ///   - step: The step value of the `BPKNudger`.
     ///     Defaults to `1`.
+    ///   - enabled: Whether the `BPKNudger` allows user interaction.
+    ///     Defaults to `true`.
     public init(
         title: String,
         subtitle: String? = nil,
@@ -80,7 +84,8 @@ public struct BPKNudger: View {
         value: Binding<Int>,
         min: Int,
         max: Int,
-        step: Int = 1
+        step: Int = 1,
+        enabled: Bool = true
     ) {
         self.title = title
         self.subtitle = subtitle
@@ -88,6 +93,7 @@ public struct BPKNudger: View {
         self.minValue = min
         self.maxValue = max
         self.step = step
+        self.enabled = enabled
         self._value = value
     }
 
@@ -114,36 +120,46 @@ public struct BPKNudger: View {
                 Spacer()
             }
             Group {
-                BPKButton(icon: .minus, accessibilityLabel: "", enabled: $canDecrement, action: decrement)
+                BPKButton(
+                    icon: .minus,
+                    accessibilityLabel: "",
+                    enabled: .constant(canDecrement),
+                    action: decrement
+                )
                     .buttonStyle(.secondary)
                     .accessibilityIdentifier(accessibilityIdentifier(for: "minus"))
                 BPKText("\(value)", style: .heading5)
+                    .foregroundColor(enabled ? .textPrimaryColor : .textDisabledColor)
                     .frame(minWidth: minWidth)
                     .accessibilityIdentifier(accessibilityIdentifier(for: "value_label"))
-                BPKButton(icon: .plus, accessibilityLabel: "", enabled: $canIncrement, action: increment)
+                BPKButton(
+                    icon: .plus,
+                    accessibilityLabel: "",
+                    enabled: .constant(canIncrement),
+                    action: increment
+                )
                     .buttonStyle(.secondary)
                     .accessibilityIdentifier(accessibilityIdentifier(for: "plus"))
             }
             .accessibilityElement(children: .ignore)
         }
+        .disabled(!enabled)
         .accessibilityElement(children: .combine)
         .accessibilityValue(Text("\(value)"))
-        .accessibilityAdjustableAction { direction in
-            switch direction {
-            case .increment: increment()
-            case .decrement: decrement()
-            @unknown default: break
+        .if(enabled) {
+            $0.accessibilityAdjustableAction { direction in
+                switch direction {
+                case .increment: increment()
+                case .decrement: decrement()
+                @unknown default: break
+                }
             }
         }
         .onAppear {
             if value < minValue || value > maxValue {
                 value = max(min(value, maxValue), minValue)
             }
-            updateButtonStates()
         }
-        .onChange(of: value, perform: { _ in
-            updateButtonStates()
-        })
         .if(!BPKFont.enableDynamicType, transform: {
             $0.sizeCategory(.large)
         })
@@ -154,19 +170,22 @@ public struct BPKNudger: View {
         return isDefaultSizeOrSmaller ? 1 : nil
     }
     
-    private func updateButtonStates() {
-        canIncrement = value < maxValue
-        canDecrement = value > minValue
+    private var canIncrement: Bool {
+        enabled && value < maxValue
+    }
+
+    private var canDecrement: Bool {
+        enabled && value > minValue
     }
 
     private func increment() {
+        guard enabled else { return }
         value = min(value + step, maxValue)
-        updateButtonStates()
     }
 
     private func decrement() {
+        guard enabled else { return }
         value = max(value - step, minValue)
-        updateButtonStates()
     }
     
     private func accessibilityIdentifier(for label: String) -> String {
