@@ -105,7 +105,10 @@ public final class BPKVideoPlayerController: ObservableObject {
     /// Emits the current complete snapshot and subsequent distinct updates.
     /// Values are delivered on the main queue.
     public var progressPublisher: AnyPublisher<BPKVideoPlayerProgress, Never> {
-        progressSubject.compactMap { $0 }.eraseToAnyPublisher()
+        progressSubject
+            .compactMap { $0 }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
     }
 
     private let autoPlay: Bool

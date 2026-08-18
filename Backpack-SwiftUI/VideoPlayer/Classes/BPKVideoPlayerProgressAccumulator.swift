@@ -48,6 +48,7 @@ struct BPKVideoPlayerProgressAccumulator {
 
         guard let previousPlayhead else {
             self.previousPlayhead = playhead
+            addPlayTime(playhead)
             updateMaximumFraction(for: playhead)
             return
         }
@@ -69,9 +70,7 @@ struct BPKVideoPlayerProgressAccumulator {
         updateDuration(duration)
 
         if !isLooping {
-            if let previousPlayhead {
-                addPlayTime(max(duration - previousPlayhead, 0))
-            }
+            addPlayTime(max(duration - (previousPlayhead ?? 0), 0))
             previousPlayhead = duration
         }
 

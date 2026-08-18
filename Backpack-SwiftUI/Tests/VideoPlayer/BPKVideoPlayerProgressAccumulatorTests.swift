@@ -50,6 +50,14 @@ final class BPKVideoPlayerProgressAccumulatorTests: XCTestCase {
         assertProgress(sut.progress, playTime: 0.5, duration: 10, fractionPlayed: 0.05)
     }
 
+    func test_firstSample_afterPlaybackAdvances_countsFromStart() {
+        var sut = makeSUT()
+
+        sut.recordSample(playhead: 0.25, duration: 10, isLooping: false)
+
+        assertProgress(sut.progress, playTime: 0.25, duration: 10, fractionPlayed: 0.025)
+    }
+
     func test_recordSample_withInvalidPlayhead_isIgnored() {
         var sut = makeSUT()
         record([0, 1], on: &sut, duration: 10)
@@ -82,6 +90,14 @@ final class BPKVideoPlayerProgressAccumulatorTests: XCTestCase {
     func test_recordCompletion_whenNonLooping_countsUnsampledTail() {
         var sut = makeSUT()
         record([0, 9.8], on: &sut, duration: 10)
+
+        sut.recordCompletion(duration: 10, isLooping: false)
+
+        assertProgress(sut.progress, playTime: 10, duration: 10, fractionPlayed: 1)
+    }
+
+    func test_recordCompletion_beforeFirstSample_countsWholeNonLoopingVideo() {
+        var sut = makeSUT()
 
         sut.recordCompletion(duration: 10, isLooping: false)
 

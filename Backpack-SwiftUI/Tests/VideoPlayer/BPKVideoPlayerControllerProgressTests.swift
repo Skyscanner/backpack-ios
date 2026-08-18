@@ -21,6 +21,7 @@ import Combine
 import XCTest
 @testable import Backpack_SwiftUI
 
+@MainActor
 final class BPKVideoPlayerControllerProgressTests: XCTestCase {
     private var cancellables: Set<AnyCancellable> = []
 
@@ -34,15 +35,21 @@ final class BPKVideoPlayerControllerProgressTests: XCTestCase {
         XCTAssertEqual(observer.queue, .main)
     }
 
-    func test_periodicSamples_publishNormalizedProgress() {
+    func test_periodicSamples_publishNormalizedProgress() async {
         let observer = PeriodicTimeObserverMock()
         let sut = makeSUT(observer: observer)
+        let published = expectation(description: "Progress published")
+        published.expectedFulfillmentCount = 2
         var received: [BPKVideoPlayerProgress] = []
-        sut.progressPublisher.sink { received.append($0) }.store(in: &cancellables)
+        sut.progressPublisher.sink {
+            received.append($0)
+            published.fulfill()
+        }.store(in: &cancellables)
 
         observer.send(seconds: 0)
         observer.send(seconds: 2.5)
 
+        await fulfillment(of: [published], timeout: 1)
         XCTAssertEqual(received.last, .init(playTime: 2.5, duration: 10, fractionPlayed: 0.25))
         XCTAssertEqual(sut.progress, received.last)
     }
@@ -57,29 +64,57 @@ final class BPKVideoPlayerControllerProgressTests: XCTestCase {
         XCTAssertNil(sut.progress)
     }
 
-    func test_progressPublisher_forLateSubscriber_replaysLatestProgress() {
+    func test_progressPublisher_forLateSubscriber_replaysLatestProgress() async {
         let observer = PeriodicTimeObserverMock()
         let sut = makeSUT(observer: observer)
         observer.send(seconds: 0)
         observer.send(seconds: 2)
+        let published = expectation(description: "Latest progress replayed")
         var received: [BPKVideoPlayerProgress] = []
 
-        sut.progressPublisher.sink { received.append($0) }.store(in: &cancellables)
+        sut.progressPublisher.sink {
+            received.append($0)
+            published.fulfill()
+        }.store(in: &cancellables)
 
+        await fulfillment(of: [published], timeout: 1)
         XCTAssertEqual(received, [.init(playTime: 2, duration: 10, fractionPlayed: 0.2)])
     }
 
-    func test_repeatedSample_suppressesDuplicateProgress() {
+    func test_repeatedSample_suppressesDuplicateProgress() async {
         let observer = PeriodicTimeObserverMock()
         let sut = makeSUT(observer: observer)
+        let published = expectation(description: "Distinct progress published")
+        published.expectedFulfillmentCount = 2
         var received: [BPKVideoPlayerProgress] = []
-        sut.progressPublisher.sink { received.append($0) }.store(in: &cancellables)
+        sut.progressPublisher.sink {
+            received.append($0)
+            published.fulfill()
+        }.store(in: &cancellables)
         observer.send(seconds: 0)
         observer.send(seconds: 1)
 
         observer.send(seconds: 1)
 
+        await fulfillment(of: [published], timeout: 1)
         XCTAssertEqual(received.count, 2)
+    }
+
+    func test_progressPublisher_deliversOnMainThread() async {
+        let observer = PeriodicTimeObserverMock()
+        let sut = makeSUT(observer: observer)
+        let published = expectation(description: "Progress published on main thread")
+
+        sut.progressPublisher.sink { _ in
+            XCTAssertTrue(Thread.isMainThread)
+            published.fulfill()
+        }.store(in: &cancellables)
+
+        DispatchQueue.global().async {
+            observer.send(seconds: 0.25)
+        }
+
+        await fulfillment(of: [published], timeout: 1)
     }
 
     func test_deinit_removesPeriodicObserverToken() {
@@ -116,7 +151,7 @@ final class BPKVideoPlayerControllerProgressTests: XCTestCase {
         }
 
         await fulfillment(of: [completion], timeout: 1)
-        XCTAssertEqual(received?.fractionPlayed, 1)
+        XCTAssertEqual(received, .init(playTime: 10, duration: 10, fractionPlayed: 1))
     }
 
     private func makeSUT(
@@ -135,7 +170,7 @@ final class BPKVideoPlayerControllerProgressTests: XCTestCase {
     }
 }
 
-private final class PeriodicTimeObserverMock: BPKVideoPlayerPeriodicTimeObserving {
+private final class PeriodicTimeObserverMock: BPKVideoPlayerPeriodicTimeObserving, @unchecked Sendable {
     private(set) var addCallCount = 0
     private(set) var interval: CMTime?
     private(set) var queue: DispatchQueue?
