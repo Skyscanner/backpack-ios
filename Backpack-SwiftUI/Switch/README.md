@@ -1,6 +1,6 @@
 # Backpack-SwiftUI/Switch
 
-[![Cocoapods](https://img.shields.io/cocoapods/v/Backpack-SwiftUI.svg?style=flat)](hhttps://cocoapods.org/pods/Backpack-SwiftUI)
+[![Cocoapods](https://img.shields.io/cocoapods/v/Backpack-SwiftUI.svg?style=flat)](https://cocoapods.org/pods/Backpack-SwiftUI)
 [![class reference](https://img.shields.io/badge/Class%20reference-iOS-blue)](https://backpack.github.io/ios/versions/latest/swiftui/Structs/BPKSwitch.html)
 [![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack-SwiftUI/Switch)
 
@@ -8,42 +8,111 @@
 
 | Day | Night |
 | --- | --- |
-| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_switch___default_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_switch___default_dm.png" alt="" width="375" /> |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_switch___default_lm.png" alt="" width="375" /> | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_switch___default_dm.png" alt="" width="375" /> |
 
 ## Usage
 
-### Text Switch
-Use a string to set the text shown by the switch as a `BPKText` label
+### Text label
 
 ```swift
+import SwiftUI
 import Backpack_SwiftUI
-@State var isEnabled = true
 
-BPKSwitch(isOn: $isEnabled, text: "Enable")
+struct SwitchExampleView: View {
+    @State private var isOn = true
+
+    var body: some View {
+        BPKSwitch(
+            isOn: $isOn,
+            text: "Enable notifications"
+        )
+    }
+}
 ```
 
-### Custom Switch
-Use a custom `View` as the label of the switch
+### Enabled state
+
+`enabled` controls whether the switch accepts interaction and defaults to `true`.
 
 ```swift
-import Backpack_SwiftUI
-@State var isEnabled = true
+BPKSwitch(
+    isOn: $isOn,
+    text: "Enable notifications",
+    enabled: false
+)
+```
 
-BPKSwitch(isOn: $isEnabled) {
-    BPKText("Enable")
-        .paddding()
+SwiftUI’s `.disabled()` modifier remains supported when a parent needs to disable a larger section of the interface.
+
+### Truncation
+
+`truncate` defaults to `true`. Set it to `false` to allow the label to wrap.
+
+```swift
+BPKSwitch(
+    isOn: $isOn,
+    text: "A longer label that can wrap over multiple lines",
+    truncate: false
+)
+```
+
+### Attributed text
+
+```swift
+private var attributedLabel: AttributedString {
+    var label = AttributedString("Enable notifications")
+    label.foregroundColor = Color(.coreAccentColor)
+    return label
+}
+
+BPKSwitch(
+    isOn: $isOn,
+    text: attributedLabel
+)
+```
+
+### Custom content
+
+Custom content can capture the current binding value directly.
+
+```swift
+BPKSwitch(isOn: $isOn) {
+    BPKText(isOn ? "Notifications enabled" : "Notifications disabled")
+        .padding()
 }
 ```
 
 ### Styles
 
-BPKSwitch supports different styles for use on different backgrounds:
+```swift
+BPKSwitch(
+    isOn: $isOn,
+    text: "Enable notifications",
+    style: .default
+)
+```
+
+The On Contrast style visually hides its internal Toggle label so that the custom off-track colour can be applied. Render a visible label alongside the switch when required.
 
 ```swift
-// Default style - for light/default backgrounds
-BPKSwitch(isOn: $isEnabled, text: "Enable", style: .default)
+HStack {
+    BPKText("Enable notifications")
+        .foregroundColor(.textOnDarkColor)
+        .accessibilityHidden(true)
 
-// On contrast style - for dark/contrast backgrounds
-BPKSwitch(isOn: $isEnabled, text: "Enable", style: .onContrast)
-    .foregroundColor(.textOnDarkColor)
+    Spacer()
+
+    BPKSwitch(
+        isOn: $isOn,
+        text: "Enable notifications",
+        style: .onContrast
+    )
+}
+.background(Color(.surfaceContrastColor))
 ```
+
+Always verify separately composed labels with VoiceOver.
+
+## Alignment
+
+`BPKSwitch` follows the native SwiftUI `Toggle` layout and does not expose a separate vertical-alignment parameter.

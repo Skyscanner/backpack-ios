@@ -20,30 +20,80 @@ import SwiftUI
 import Backpack_SwiftUI
 
 struct SwitchExampleView: View {
-    @State var value = true
-    
+    @State private var value = true
+    @State private var disabledValue = true
+
+    private var attributedLabel: AttributedString {
+        var label = AttributedString("Switch with styled text")
+        label.foregroundColor = Color(.coreAccentColor)
+        return label
+    }
+
     var body: some View {
-        VStack {
-            BPKSwitch(isOn: $value, text: "Switch is \(value ? "On" : "Off")")
-            BPKSwitch(
-                isOn: $value,
-                // swiftlint:disable:next line_length
-                text: "This is a sample sentence designed to test the layout behavior, text truncation, and multi-line wrapping in SwiftUI previews, especially when rendering across different screen sizes, accessibility font settings, and dynamic type scaling scenarios. ",
-                truncate: true
-            )
-            BPKSwitch(
-                isOn: $value,
-                // swiftlint:disable:next line_length
-                text: "This is a sample sentence designed to test the layout behavior, text truncation, and multi-line wrapping in SwiftUI previews, especially when rendering across different screen sizes, accessibility font settings, and dynamic type scaling scenarios. ",
-                truncate: false
-            )
-            BPKSwitch(
-                isOn: $value,
-                text: "Switch Text",
-                truncate: false
-            ).labelsHidden()
+        ScrollView {
+            VStack(alignment: .leading, spacing: .base) {
+                BPKText("Default", style: .heading5)
+
+                BPKSwitch(
+                    isOn: $value,
+                    text: "Switch is \(value ? "On" : "Off")"
+                )
+
+                BPKSwitch(
+                    isOn: $disabledValue,
+                    text: "Disabled switch",
+                    enabled: false
+                )
+
+                BPKSwitch(
+                    isOn: $value,
+                    text: attributedLabel
+                )
+
+                BPKSwitch(
+                    isOn: $value,
+                    text: "A longer switch label that demonstrates multiline wrapping.",
+                    truncate: false
+                )
+
+                VStack(alignment: .leading, spacing: .base) {
+                    BPKText("On contrast", style: .heading5)
+                        .foregroundColor(.textOnDarkColor)
+
+                    HStack {
+                        BPKText("On contrast switch")
+                            .foregroundColor(.textOnDarkColor)
+                            .accessibilityHidden(true)
+
+                        Spacer()
+
+                        BPKSwitch(
+                            isOn: $value,
+                            text: "On contrast switch",
+                            style: .onContrast
+                        )
+                    }
+
+                    HStack {
+                        BPKText("Disabled on contrast")
+                            .foregroundColor(.textOnDarkColor)
+                            .accessibilityHidden(true)
+
+                        Spacer()
+
+                        BPKSwitch(
+                            isOn: $disabledValue,
+                            text: "Disabled on contrast",
+                            enabled: false,
+                            style: .onContrast
+                        )
+                    }
+                }
+                .padding(.base)
+                .background(Color(.surfaceContrastColor))
+            }
+            .padding()
         }
-        .padding()
     }
 }
 

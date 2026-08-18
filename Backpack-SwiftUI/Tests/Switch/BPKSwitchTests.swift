@@ -50,4 +50,74 @@ class BPKSwitchTests: XCTestCase {
             ).padding(.sm)
         )
     }
+    func testSwitchDisabledOnState() {
+        assertSnapshot(
+            BPKSwitch(
+                isOn: .constant(true),
+                text: "Test",
+                enabled: false
+            )
+            .padding(.sm)
+        )
+    }
+
+    func testSwitchDisabledOffState() {
+        assertSnapshot(
+            BPKSwitch(
+                isOn: .constant(false),
+                text: "Test",
+                enabled: false
+            )
+            .padding(.sm)
+        )
+    }
+
+    func testSwitchOnContrastDisabledOn() {
+        assertSnapshot(
+            BPKSwitch(
+                isOn: .constant(true),
+                text: "Test",
+                enabled: false,
+                style: .onContrast
+            )
+            .padding(.sm)
+            .background(Color(.surfaceContrastColor))
+        )
+    }
+
+    func testSwitchOnContrastDisabledOff() {
+        assertSnapshot(
+            BPKSwitch(
+                isOn: .constant(false),
+                text: "Test",
+                enabled: false,
+                style: .onContrast
+            )
+            .padding(.sm)
+            .background(Color(.surfaceContrastColor))
+        )
+    }
+
+    func testSwitchAccessibility() {
+        assertA11ySnapshot(
+            BPKSwitch(
+                isOn: .constant(true),
+                text: "A switch label that can wrap over multiple lines",
+                truncate: false
+            )
+        )
+    }
+
+    func testSwitchAttributedText() {
+        var text = AttributedString("Styled text")
+        text.foregroundColor = Color(.coreAccentColor)
+
+        assertSnapshot(
+            BPKSwitch(
+                isOn: .constant(true),
+                text: text
+            )
+            .padding(.sm)
+        )
+    }
 }
