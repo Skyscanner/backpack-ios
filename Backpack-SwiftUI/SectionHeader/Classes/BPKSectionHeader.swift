@@ -22,16 +22,19 @@ public struct BPKSectionHeader: View {
     let title: String
     let description: String?
     let style: Style
+    let accessibilityHeaderEnabled: Bool
     let button: BPKButton?
 
     public init(
         title: String,
         description: String? = nil,
-        style: Style = .default
+        style: Style = .default,
+        accessibilityHeaderEnabled: Bool = true
     ) {
         self.title = title
         self.description = description
         self.style = style
+        self.accessibilityHeaderEnabled = accessibilityHeaderEnabled
         self.button = nil
     }
 
@@ -39,11 +42,13 @@ public struct BPKSectionHeader: View {
         title: String,
         description: String? = nil,
         style: Style = .default,
+        accessibilityHeaderEnabled: Bool = true,
         @ViewBuilder button: () -> BPKButton
     ) {
         self.title = title
         self.description = description
         self.style = style
+        self.accessibilityHeaderEnabled = accessibilityHeaderEnabled
         self.button = button()
     }
 
@@ -53,7 +58,12 @@ public struct BPKSectionHeader: View {
                 BPKText(title, style: .heading3)
                     .foregroundColor(style == .default ? .textPrimaryColor : .textOnDarkColor)
                     .lineLimit(nil)
-                    .accessibilityAddTraits(.isHeader)
+                    .accessibilityAddTraits(
+                        accessibilityHeaderEnabled ? .isHeader : []
+                    )
+                    .accessibilityRemoveTraits(
+                        accessibilityHeaderEnabled ? [] : .isHeader
+                    )
                 if let description = description {
                     BPKText(description, style: .bodyDefault)
                         .foregroundColor(style == .default ? .textPrimaryColor : .textOnDarkColor)
