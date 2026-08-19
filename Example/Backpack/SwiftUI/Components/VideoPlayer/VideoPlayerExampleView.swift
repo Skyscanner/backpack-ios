@@ -208,7 +208,6 @@ struct VideoProgressExampleView: View {
                         peekHeight: 300,
                         contentMode: .medium(false),
                         title: "Live playback progress",
-                        backgroundColor: .clear,
                         bottomSheetContent: {
                             progressHUD
                                 .presentationBackground(.clear)
