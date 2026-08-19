@@ -56,3 +56,24 @@ BPKSnippet(
     }
 )
 ```
+
+The button accessibility trait is only applied when `onClick` is provided, so a
+Snippet without an action isn't announced as a button.
+
+### Accessibility header trait
+
+The headline has the accessibility header trait by default. Set `accessibilityHeaderEnabled` to `false` when another view already provides the appropriate heading semantics.
+
+```swift
+BPKSnippet(
+    image: Image("dialog_image", bundle: TestsBundle.bundle),
+    headline: "Headline Text",
+    accessibilityHeaderEnabled: false
+)
+```
+
+## Cross-platform naming
+
+Android exposes the equivalent accessibility control as `accessibilityHeaderTagEnabled: Boolean?`. iOS uses the shorter `accessibilityHeaderEnabled: Bool` name with a default value of `true`, following the same convention used on `BPKSectionHeader`.
+
+The subheading parameter is also named differently across platforms: `subheading` on iOS and `subHeading` on Android. This is a known, intentional discrepancy rather than a bug.
