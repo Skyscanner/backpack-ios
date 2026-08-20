@@ -18,21 +18,28 @@
 
 import Foundation
 
+/// Builds stable playback progress from periodic AVPlayer playhead samples.
+///
+/// AVPlayer exposes its current playhead, but the public progress API needs two
+/// different measurements: cumulative time actually played and the furthest
+/// fraction reached. This type keeps those measurements separate so replaying a
+/// section increases `playTime` without reducing or inflating `fractionPlayed`.
+/// It also handles loop boundaries, seeks, and the unsampled tail at completion.
 struct BPKVideoPlayerProgressAccumulator {
     private(set) var progress: BPKVideoPlayerProgress?
 
     private var playTime: TimeInterval = 0
     private var duration: TimeInterval?
-    private var maximumFractionPlayed: Double = 0
-    private var previousPlayhead: TimeInterval?
-    private var isRebasing = false
+    private var furthestFractionPlayed: Double = 0
+    private var lastPlayhead: TimeInterval?
+    private var isAwaitingSeekCompletion = false
 
     mutating func updateDuration(_ candidate: TimeInterval?) {
         guard let duration = validDuration(candidate) else { return }
 
         self.duration = duration
-        if let previousPlayhead {
-            updateMaximumFraction(for: previousPlayhead)
+        if let lastPlayhead {
+            updateFurthestFraction(for: lastPlayhead)
         }
         refreshProgress()
     }
@@ -42,27 +49,30 @@ struct BPKVideoPlayerProgressAccumulator {
         duration: TimeInterval?,
         isLooping: Bool
     ) {
-        guard let playhead = validPlayhead(candidate), !isRebasing else { return }
+        guard let playhead = validPlayhead(candidate), !isAwaitingSeekCompletion else { return }
 
         updateDuration(duration)
 
-        guard let previousPlayhead else {
-            self.previousPlayhead = playhead
+        guard let lastPlayhead else {
+            self.lastPlayhead = playhead
+            // Periodic observation may first run after playback has started.
             addPlayTime(playhead)
-            updateMaximumFraction(for: playhead)
+            updateFurthestFraction(for: playhead)
+            refreshProgress()
             return
         }
 
-        if playhead >= previousPlayhead {
-            addPlayTime(playhead - previousPlayhead)
-            updateMaximumFraction(for: playhead)
+        if playhead >= lastPlayhead {
+            addPlayTime(playhead - lastPlayhead)
+            updateFurthestFraction(for: playhead)
         } else if isLooping, let duration = self.duration {
-            addPlayTime(max(duration - previousPlayhead, 0) + playhead)
-            maximumFractionPlayed = 1
-            refreshProgress()
+            // A backwards playhead in looping playback crossed the end boundary.
+            addPlayTime(max(duration - lastPlayhead, 0) + playhead)
+            furthestFractionPlayed = 1
         }
 
-        self.previousPlayhead = playhead
+        self.lastPlayhead = playhead
+        refreshProgress()
     }
 
     mutating func recordCompletion(duration candidate: TimeInterval?, isLooping: Bool) {
@@ -70,37 +80,37 @@ struct BPKVideoPlayerProgressAccumulator {
         updateDuration(duration)
 
         if !isLooping {
-            addPlayTime(max(duration - (previousPlayhead ?? 0), 0))
-            previousPlayhead = duration
+            // The completion notification can arrive before the final periodic sample.
+            addPlayTime(max(duration - (lastPlayhead ?? 0), 0))
+            lastPlayhead = duration
         }
 
-        maximumFractionPlayed = 1
+        furthestFractionPlayed = 1
         refreshProgress()
     }
 
     mutating func beginRebase() {
-        isRebasing = true
+        // Ignore observer samples emitted while AVPlayer is performing a seek.
+        isAwaitingSeekCompletion = true
     }
 
     mutating func endRebase(at candidate: TimeInterval, duration: TimeInterval?) {
-        defer { isRebasing = false }
+        defer { isAwaitingSeekCompletion = false }
         updateDuration(duration)
-        previousPlayhead = validPlayhead(candidate)
+        lastPlayhead = validPlayhead(candidate)
     }
 
     private mutating func addPlayTime(_ delta: TimeInterval) {
         guard delta.isFinite, delta > 0 else { return }
         playTime += delta
-        refreshProgress()
     }
 
-    private mutating func updateMaximumFraction(for playhead: TimeInterval) {
+    private mutating func updateFurthestFraction(for playhead: TimeInterval) {
         guard let duration else { return }
-        maximumFractionPlayed = max(
-            maximumFractionPlayed,
+        furthestFractionPlayed = max(
+            furthestFractionPlayed,
             min(max(playhead / duration, 0), 1)
         )
-        refreshProgress()
     }
 
     private mutating func refreshProgress() {
@@ -111,7 +121,7 @@ struct BPKVideoPlayerProgressAccumulator {
         progress = BPKVideoPlayerProgress(
             playTime: playTime,
             duration: duration,
-            fractionPlayed: maximumFractionPlayed
+            fractionPlayed: furthestFractionPlayed
         )
     }
 

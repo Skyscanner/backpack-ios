@@ -97,6 +97,8 @@ public final class BPKVideoPlayerController: ObservableObject {
     /// The current playback state. Drives all UI — spinner, play/pause icon, error view.
     @Published public private(set) var state: BPKVideoPlayerState = .loading
 
+    // MARK: - Playback progress
+
     /// The latest playback progress, or `nil` until duration is known.
     public var progress: BPKVideoPlayerProgress? {
         progressSubject.value
@@ -110,6 +112,8 @@ public final class BPKVideoPlayerController: ObservableObject {
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
+
+    // MARK: - Configuration and observations
 
     private let autoPlay: Bool
     private let loop: Bool
@@ -199,7 +203,11 @@ public final class BPKVideoPlayerController: ObservableObject {
     }
 
     public func toggle() {
-        state.isPlaying ? pause() : play()
+        if state.isPlaying {
+            pause()
+        } else {
+            play()
+        }
     }
 
     public func seek(to time: CMTime) {
