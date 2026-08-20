@@ -26,111 +26,82 @@ import Foundation
 /// section increases `playTime` without reducing or inflating `fractionPlayed`.
 /// It also handles loop boundaries, seeks, and the unsampled tail at completion.
 struct BPKVideoPlayerProgressAccumulator {
-    private(set) var progress: BPKVideoPlayerProgress?
-
     private var playTime: TimeInterval = 0
     private var duration: TimeInterval?
     private var furthestFractionPlayed: Double = 0
     private var lastPlayhead: TimeInterval?
-    private var isAwaitingSeekCompletion = false
+    private var isSeeking = false
 
-    mutating func updateDuration(_ candidate: TimeInterval?) {
-        guard let duration = validDuration(candidate) else { return }
-
-        self.duration = duration
-        if let lastPlayhead {
-            updateFurthestFraction(for: lastPlayhead)
-        }
-        refreshProgress()
-    }
-
-    mutating func recordSample(
-        playhead candidate: TimeInterval,
-        duration: TimeInterval?,
-        isLooping: Bool
-    ) {
-        guard let playhead = validPlayhead(candidate), !isAwaitingSeekCompletion else { return }
-
-        updateDuration(duration)
-
-        guard let lastPlayhead else {
-            self.lastPlayhead = playhead
-            // Periodic observation may first run after playback has started.
-            addPlayTime(playhead)
-            updateFurthestFraction(for: playhead)
-            refreshProgress()
-            return
-        }
-
-        if playhead >= lastPlayhead {
-            addPlayTime(playhead - lastPlayhead)
-            updateFurthestFraction(for: playhead)
-        } else if isLooping, let duration = self.duration {
-            // A backwards playhead in looping playback crossed the end boundary.
-            addPlayTime(max(duration - lastPlayhead, 0) + playhead)
-            furthestFractionPlayed = 1
-        }
-
-        self.lastPlayhead = playhead
-        refreshProgress()
-    }
-
-    mutating func recordCompletion(duration candidate: TimeInterval?, isLooping: Bool) {
-        guard let duration = validDuration(candidate) else { return }
-        updateDuration(duration)
-
-        if !isLooping {
-            // The completion notification can arrive before the final periodic sample.
-            addPlayTime(max(duration - (lastPlayhead ?? 0), 0))
-            lastPlayhead = duration
-        }
-
-        furthestFractionPlayed = 1
-        refreshProgress()
-    }
-
-    mutating func beginRebase() {
-        // Ignore observer samples emitted while AVPlayer is performing a seek.
-        isAwaitingSeekCompletion = true
-    }
-
-    mutating func endRebase(at candidate: TimeInterval, duration: TimeInterval?) {
-        defer { isAwaitingSeekCompletion = false }
-        updateDuration(duration)
-        lastPlayhead = validPlayhead(candidate)
-    }
-
-    private mutating func addPlayTime(_ delta: TimeInterval) {
-        guard delta.isFinite, delta > 0 else { return }
-        playTime += delta
-    }
-
-    private mutating func updateFurthestFraction(for playhead: TimeInterval) {
-        guard let duration else { return }
-        furthestFractionPlayed = max(
-            furthestFractionPlayed,
-            min(max(playhead / duration, 0), 1)
-        )
-    }
-
-    private mutating func refreshProgress() {
-        guard let duration else {
-            progress = nil
-            return
-        }
-        progress = BPKVideoPlayerProgress(
+    var progress: BPKVideoPlayerProgress? {
+        guard let duration else { return nil }
+        return BPKVideoPlayerProgress(
             playTime: playTime,
             duration: duration,
             fractionPlayed: furthestFractionPlayed
         )
     }
 
-    private func validPlayhead(_ value: TimeInterval) -> TimeInterval? {
-        value.isFinite && value >= 0 ? value : nil
+    mutating func setDuration(_ candidate: TimeInterval?) {
+        if let candidate, candidate.isFinite, candidate > 0 {
+            duration = candidate
+            updateFurthestFraction()
+        }
     }
 
-    private func validDuration(_ value: TimeInterval?) -> TimeInterval? {
-        guard let value, value.isFinite, value > 0 else { return nil }
-        return value
+    mutating func record(
+        playhead candidate: TimeInterval,
+        duration: TimeInterval?,
+        isLooping: Bool
+    ) {
+        guard candidate.isFinite, candidate >= 0, !isSeeking else { return }
+
+        setDuration(duration)
+        let completedLoop = isLooping && lastPlayhead.map { candidate < $0 } == true
+        playTime += elapsedTime(to: candidate, isLooping: isLooping)
+        lastPlayhead = candidate
+        if completedLoop {
+            furthestFractionPlayed = 1
+        } else {
+            updateFurthestFraction()
+        }
+    }
+
+    mutating func complete(duration candidate: TimeInterval?, isLooping: Bool) {
+        guard let candidate, candidate.isFinite, candidate > 0 else { return }
+        duration = candidate
+
+        if !isLooping {
+            playTime += max(candidate - (lastPlayhead ?? 0), 0)
+            lastPlayhead = candidate
+        }
+
+        furthestFractionPlayed = 1
+    }
+
+    mutating func beginSeek() {
+        isSeeking = true
+    }
+
+    mutating func endSeek(at playhead: TimeInterval, duration: TimeInterval?) {
+        setDuration(duration)
+        lastPlayhead = playhead.isFinite && playhead >= 0 ? playhead : nil
+        isSeeking = false
+    }
+
+    private func elapsedTime(to playhead: TimeInterval, isLooping: Bool) -> TimeInterval {
+        guard let lastPlayhead else { return playhead }
+        guard playhead < lastPlayhead else { return playhead - lastPlayhead }
+        guard isLooping, let duration else { return 0 }
+
+        return max(duration - lastPlayhead, 0) + playhead
+    }
+
+    private mutating func updateFurthestFraction() {
+        guard let duration, let lastPlayhead else { return }
+
+        furthestFractionPlayed = max(
+            furthestFractionPlayed,
+            min(lastPlayhead / duration, 1)
+        )
     }
 }

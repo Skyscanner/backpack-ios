@@ -109,6 +109,7 @@ public final class BPKVideoPlayerController: ObservableObject {
     public var progressPublisher: AnyPublisher<BPKVideoPlayerProgress, Never> {
         progressSubject
             .compactMap { $0 }
+            .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
@@ -211,12 +212,12 @@ public final class BPKVideoPlayerController: ObservableObject {
     }
 
     public func seek(to time: CMTime) {
-        updateProgress { $0.beginRebase() }
+        updateProgress { $0.beginSeek() }
         player.seek(to: time, toleranceBefore: .zero, toleranceAfter: .zero) { [weak self] _ in
             DispatchQueue.main.async {
                 guard let self else { return }
                 self.updateProgress {
-                    $0.endRebase(
+                    $0.endSeek(
                         at: self.player.currentTime().seconds,
                         duration: self.durationProvider(self.player.currentItem)
                     )
@@ -241,7 +242,7 @@ public final class BPKVideoPlayerController: ObservableObject {
         ) { [weak self] time in
             guard let self else { return }
             self.updateProgress {
-                $0.recordSample(
+                $0.record(
                     playhead: time.seconds,
                     duration: self.durationProvider(self.player.currentItem),
                     isLooping: self.loop
@@ -275,7 +276,7 @@ public final class BPKVideoPlayerController: ObservableObject {
         ) { [weak self, weak item] _ in
             guard let self else { return }
             self.updateProgress {
-                $0.recordCompletion(duration: self.durationProvider(item), isLooping: self.loop)
+                $0.complete(duration: self.durationProvider(item), isLooping: self.loop)
             }
         }
 
@@ -288,7 +289,7 @@ public final class BPKVideoPlayerController: ObservableObject {
         switch itemStatus {
         case .readyToPlay:
             loadTimeoutTask?.cancel()
-            updateProgress { $0.updateDuration(durationProvider(player.currentItem)) }
+            updateProgress { $0.setDuration(durationProvider(player.currentItem)) }
             transition(to: .readyToPlay)
             if autoPlay && !UIAccessibility.isReduceMotionEnabled { play() }
         case .failed:
@@ -324,7 +325,6 @@ public final class BPKVideoPlayerController: ObservableObject {
 
     private func updateProgress(_ update: (inout BPKVideoPlayerProgressAccumulator) -> Void) {
         update(&progressAccumulator)
-        guard progressAccumulator.progress != progressSubject.value else { return }
         progressSubject.send(progressAccumulator.progress)
     }
 
