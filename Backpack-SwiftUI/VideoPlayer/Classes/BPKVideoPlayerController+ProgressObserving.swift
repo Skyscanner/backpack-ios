@@ -48,6 +48,7 @@ typealias BPKVideoPlayerDurationProvider = (AVPlayerItem?) -> TimeInterval?
 
 extension BPKVideoPlayerController {
     func startProgressObserving() {
+        guard periodicTimeObserverToken == nil else { return }
         periodicTimeObserverToken = periodicTimeObserver.addPeriodicTimeObserver(
             to: player,
             interval: CMTime(seconds: 0.25, preferredTimescale: 600),
@@ -87,13 +88,16 @@ extension BPKVideoPlayerController {
     func stopProgressObserving() {
         if let periodicTimeObserverToken {
             periodicTimeObserver.removePeriodicTimeObserver(periodicTimeObserverToken, from: player)
+            self.periodicTimeObserverToken = nil
         }
         if let itemCompletionToken {
             notificationCenter.removeObserver(itemCompletionToken)
+            self.itemCompletionToken = nil
         }
     }
 
-    func prepareProgressForSeek(to time: CMTime) {
+    func prepareProgressForSeek(to time: CMTime) -> Int {
+        progressSeekID += 1
         hasCompletedPlayback = false
         updateProgress {
             $0.beginSeek(
@@ -101,9 +105,11 @@ extension BPKVideoPlayerController {
                 duration: durationProvider(player.currentItem)
             )
         }
+        return progressSeekID
     }
 
-    func finishProgressSeek() {
+    func finishProgressSeek(id: Int) {
+        guard id == progressSeekID else { return }
         updateProgress {
             $0.endSeek(
                 at: player.currentTime().seconds,

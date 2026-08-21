@@ -153,6 +153,48 @@ final class BPKVideoPlayerControllerProgressTests: XCTestCase {
         XCTAssertTrue(observer.removedToken === observer.addedToken)
     }
 
+    func test_whenProgressObservingStartsAgain_thenDoesNotRegisterAnotherObserver() {
+        // Given
+        let observer = PeriodicTimeObserverMock()
+        let sut = makeSUT(observer: observer)
+
+        // When
+        sut.startProgressObserving()
+
+        // Then
+        XCTAssertEqual(observer.addCallCount, 1)
+    }
+
+    func test_whenProgressObservingStopsTwice_thenRemovesObserverOnce() {
+        // Given
+        let observer = PeriodicTimeObserverMock()
+        let sut = makeSUT(observer: observer)
+
+        // When
+        sut.stopProgressObserving()
+        sut.stopProgressObserving()
+
+        // Then
+        XCTAssertEqual(observer.removeCallCount, 1)
+    }
+
+    func test_givenNewerSeek_whenEarlierSeekFinishes_thenKeepsLatestSeekActive() {
+        // Given
+        let observer = PeriodicTimeObserverMock()
+        let sut = makeSUT(observer: observer)
+        observer.send(seconds: 0)
+        observer.send(seconds: 2)
+        let earlierSeekID = sut.prepareProgressForSeek(to: CMTime(seconds: 8, preferredTimescale: 600))
+        _ = sut.prepareProgressForSeek(to: CMTime(seconds: 4, preferredTimescale: 600))
+
+        // When
+        sut.finishProgressSeek(id: earlierSeekID)
+        observer.send(seconds: 5)
+
+        // Then
+        XCTAssertEqual(sut.progress, .init(playTime: 2, duration: 10, fractionPlayed: 0.4))
+    }
+
     func test_whenCurrentItemCompletes_thenPublishesCompletionProgress() async {
         // Given
         let observer = PeriodicTimeObserverMock()
@@ -268,6 +310,7 @@ private final class PeriodicTimeObserverMock: BPKVideoPlayerPeriodicTimeObservin
     private(set) var queue: DispatchQueue?
     let addedToken = NSObject()
     private(set) var removedToken: AnyObject?
+    private(set) var removeCallCount = 0
     private var callback: ((CMTime) -> Void)?
 
     func addPeriodicTimeObserver(
@@ -284,6 +327,7 @@ private final class PeriodicTimeObserverMock: BPKVideoPlayerPeriodicTimeObservin
     }
 
     func removePeriodicTimeObserver(_ token: Any, from player: AVPlayer) {
+        removeCallCount += 1
         removedToken = token as AnyObject
     }
 
