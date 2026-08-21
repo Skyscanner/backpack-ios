@@ -96,6 +96,7 @@ public final class BPKVideoPlayerController: ObservableObject {
     let notificationCenter: NotificationCenter
     var progressAccumulator = BPKVideoPlayerProgressAccumulator()
     let progressSubject = CurrentValueSubject<BPKVideoPlayerProgress?, Never>(nil)
+    var hasCompletedPlayback = false
 
     private var playerLooper: AVPlayerLooper?
     private var itemStatusObservation: NSKeyValueObservation?
@@ -163,6 +164,9 @@ public final class BPKVideoPlayerController: ObservableObject {
 
     public func play() {
         guard !UIAccessibility.isReduceMotionEnabled else { return }
+        if hasCompletedPlayback {
+            seek(to: .zero)
+        }
         player.play()
     }
 
@@ -179,7 +183,7 @@ public final class BPKVideoPlayerController: ObservableObject {
     }
 
     public func seek(to time: CMTime) {
-        prepareProgressForSeek()
+        prepareProgressForSeek(to: time)
         player.seek(to: time, toleranceBefore: .zero, toleranceAfter: .zero) { [weak self] _ in
             DispatchQueue.main.async {
                 self?.finishProgressSeek()

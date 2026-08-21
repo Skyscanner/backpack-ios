@@ -180,6 +180,72 @@ final class BPKVideoPlayerControllerProgressTests: XCTestCase {
         XCTAssertEqual(received, .init(playTime: 10, duration: 10, fractionPlayed: 1))
     }
 
+    func test_givenCompletedPlayback_whenResetToStart_thenPublishesProgressFromStart() async {
+        // Given
+        let notificationCenter = NotificationCenter()
+        let sut = makeSUT(observer: PeriodicTimeObserverMock(), notificationCenter: notificationCenter)
+        await complete(sut, notificationCenter: notificationCenter)
+        let reset = expectation(description: "Progress reset")
+        var received: BPKVideoPlayerProgress?
+        sut.progressPublisher
+            .filter { $0.fractionPlayed == 0 }
+            .sink {
+                received = $0
+                reset.fulfill()
+            }
+            .store(in: &cancellables)
+
+        // When
+        sut.resetToStart()
+
+        // Then
+        await fulfillment(of: [reset], timeout: 1)
+        XCTAssertEqual(received, .init(playTime: 10, duration: 10, fractionPlayed: 0))
+    }
+
+    func test_givenCompletedPlayback_whenPlay_thenPublishesProgressFromStart() async {
+        // Given
+        let notificationCenter = NotificationCenter()
+        let sut = makeSUT(observer: PeriodicTimeObserverMock(), notificationCenter: notificationCenter)
+        await complete(sut, notificationCenter: notificationCenter)
+        let reset = expectation(description: "Progress reset")
+        var received: BPKVideoPlayerProgress?
+        sut.progressPublisher
+            .filter { $0.fractionPlayed == 0 }
+            .sink {
+                received = $0
+                reset.fulfill()
+            }
+            .store(in: &cancellables)
+
+        // When
+        sut.play()
+
+        // Then
+        await fulfillment(of: [reset], timeout: 1)
+        XCTAssertEqual(received, .init(playTime: 10, duration: 10, fractionPlayed: 0))
+    }
+
+    private func complete(
+        _ sut: BPKVideoPlayerController,
+        notificationCenter: NotificationCenter
+    ) async {
+        let completion = expectation(description: "Playback completed")
+        sut.progressPublisher
+            .filter { $0.fractionPlayed == 1 }
+            .sink { _ in completion.fulfill() }
+            .store(in: &cancellables)
+
+        DispatchQueue.main.async {
+            notificationCenter.post(
+                name: AVPlayerItem.didPlayToEndTimeNotification,
+                object: sut.player.currentItem
+            )
+        }
+
+        await fulfillment(of: [completion], timeout: 1)
+    }
+
     private func makeSUT(
         observer: PeriodicTimeObserverMock,
         notificationCenter: NotificationCenter = NotificationCenter()

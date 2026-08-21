@@ -77,6 +77,7 @@ extension BPKVideoPlayerController {
             queue: .main
         ) { [weak self, weak item] _ in
             guard let self else { return }
+            self.hasCompletedPlayback = !self.loop
             self.updateProgress {
                 $0.complete(duration: self.durationProvider(item), isLooping: self.loop)
             }
@@ -92,8 +93,14 @@ extension BPKVideoPlayerController {
         }
     }
 
-    func prepareProgressForSeek() {
-        updateProgress { $0.beginSeek() }
+    func prepareProgressForSeek(to time: CMTime) {
+        hasCompletedPlayback = false
+        updateProgress {
+            $0.beginSeek(
+                to: time.seconds,
+                duration: durationProvider(player.currentItem)
+            )
+        }
     }
 
     func finishProgressSeek() {

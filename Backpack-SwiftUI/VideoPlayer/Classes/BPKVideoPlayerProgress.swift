@@ -26,7 +26,7 @@ public struct BPKVideoPlayerProgress: Equatable, Sendable {
     /// The finite, positive media duration, in seconds.
     public let duration: TimeInterval
 
-    /// The highest playhead fraction reached, normalized to `0...1`.
+    /// The current playhead fraction, normalized to `0...1`.
     public let fractionPlayed: Double
 
     public init(

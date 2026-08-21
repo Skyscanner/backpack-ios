@@ -55,7 +55,7 @@ final class BPKVideoPlayerProgressAccumulatorTests: XCTestCase {
         }
     }
 
-    func test_givenForwardSamples_whenRecorded_thenAccumulatesPlayTimeAndMaximumFraction() {
+    func test_givenForwardSamples_whenRecorded_thenAccumulatesPlayTimeAndUpdatesFraction() {
         // Given
         var sut = makeSUT()
 
@@ -138,7 +138,7 @@ final class BPKVideoPlayerProgressAccumulatorTests: XCTestCase {
         assertProgress(sut.progress, playTime: 10, duration: 10, fractionPlayed: 1)
     }
 
-    func test_givenNonLoopingPlayback_whenPlayheadMovesBackward_thenRebasesWithoutCountingJump() {
+    func test_givenNonLoopingPlayback_whenPlayheadMovesBackward_thenRebasesAndUpdatesFraction() {
         // Given
         var sut = makeSUT()
 
@@ -146,16 +146,16 @@ final class BPKVideoPlayerProgressAccumulatorTests: XCTestCase {
         record([0, 5, 1, 2], on: &sut, duration: 10)
 
         // Then
-        assertProgress(sut.progress, playTime: 6, duration: 10, fractionPlayed: 0.5)
+        assertProgress(sut.progress, playTime: 6, duration: 10, fractionPlayed: 0.2)
     }
 
-    func test_whenSeeking_thenExcludesSeekDistanceAndPreservesMaximumFraction() {
+    func test_whenSeeking_thenExcludesSeekDistanceAndUpdatesFraction() {
         // Given
         var sut = makeSUT()
         record([0, 2], on: &sut, duration: 10)
 
         // When
-        sut.beginSeek()
+        sut.beginSeek(to: 8, duration: 10)
         sut.record(playhead: 8, duration: 10, isLooping: false)
         sut.endSeek(at: 8, duration: 10)
         sut.record(playhead: 9, duration: 10, isLooping: false)
@@ -164,18 +164,30 @@ final class BPKVideoPlayerProgressAccumulatorTests: XCTestCase {
         assertProgress(sut.progress, playTime: 3, duration: 10, fractionPlayed: 0.9)
     }
 
-    func test_givenReplayedSection_whenRecorded_thenIncreasesPlayTimeWithoutInflatingFraction() {
+    func test_givenReplayedSection_whenRecorded_thenIncreasesPlayTimeFromResetFraction() {
         // Given
         var sut = makeSUT()
         record([0, 5], on: &sut, duration: 10)
 
         // When
-        sut.beginSeek()
+        sut.beginSeek(to: 0, duration: 10)
         sut.endSeek(at: 0, duration: 10)
         sut.record(playhead: 5, duration: 10, isLooping: false)
 
         // Then
         assertProgress(sut.progress, playTime: 10, duration: 10, fractionPlayed: 0.5)
+    }
+
+    func test_givenCompletedPlayback_whenSeekingToStart_thenResetsFractionAndPreservesPlayTime() {
+        // Given
+        var sut = makeSUT()
+        sut.complete(duration: 10, isLooping: false)
+
+        // When
+        sut.beginSeek(to: 0, duration: 10)
+
+        // Then
+        assertProgress(sut.progress, playTime: 10, duration: 10, fractionPlayed: 0)
     }
 
     private func makeSUT() -> BPKVideoPlayerProgressAccumulator {

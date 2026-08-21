@@ -174,9 +174,9 @@ BPKVideoPlayer(url: videoURL, autoPlay: true, loop: true)
 | --- | --- |
 | `playTime` | Cumulative media time that actually advanced. Pauses and buffering do not add time; loops continue accumulating. |
 | `duration` | The finite, positive media duration in seconds. |
-| `fractionPlayed` | The highest playhead fraction reached, clamped to `0...1`. It does not reset when a video loops. |
+| `fractionPlayed` | The current playhead fraction, clamped to `0...1`. It resets when playback starts again. |
 
-Updates are delivered on the main queue at a best-effort cadence and duplicate snapshots are suppressed. Calling `seek(to:)` or `resetToStart()` on the controller rebases sampling, so the seek distance is not counted as played time. Cumulative progress is preserved across those operations.
+Updates are delivered on the main queue at a best-effort cadence and duplicate snapshots are suppressed. Calling `seek(to:)` or `resetToStart()` updates `fractionPlayed` immediately without counting the seek distance as played time. Cumulative `playTime` is preserved across those operations.
 
 Progress values are playback facts rather than analytics events. Consumers remain responsible for visibility, threshold definitions, one-shot event delivery, and impression/session boundaries.
 
