@@ -20,34 +20,6 @@ import AVFoundation
 import Combine
 import UIKit
 
-protocol BPKVideoPlayerPeriodicTimeObserving {
-    func addPeriodicTimeObserver(
-        to player: AVPlayer,
-        interval: CMTime,
-        queue: DispatchQueue,
-        using callback: @escaping (CMTime) -> Void
-    ) -> Any
-
-    func removePeriodicTimeObserver(_ token: Any, from player: AVPlayer)
-}
-
-struct BPKVideoPlayerPeriodicTimeObserver: BPKVideoPlayerPeriodicTimeObserving {
-    func addPeriodicTimeObserver(
-        to player: AVPlayer,
-        interval: CMTime,
-        queue: DispatchQueue,
-        using callback: @escaping (CMTime) -> Void
-    ) -> Any {
-        player.addPeriodicTimeObserver(forInterval: interval, queue: queue, using: callback)
-    }
-
-    func removePeriodicTimeObserver(_ token: Any, from player: AVPlayer) {
-        player.removeTimeObserver(token)
-    }
-}
-
-typealias BPKVideoPlayerDurationProvider = (AVPlayerItem?) -> TimeInterval?
-
 // MARK: - Playback state
 
 /// The current playback state of a `BPKVideoPlayerController`.
@@ -117,20 +89,20 @@ public final class BPKVideoPlayerController: ObservableObject {
     // MARK: - Configuration and observations
 
     private let autoPlay: Bool
-    private let loop: Bool
+    let loop: Bool
     private let loadTimeout: TimeInterval
-    private let periodicTimeObserver: BPKVideoPlayerPeriodicTimeObserving
-    private let durationProvider: BPKVideoPlayerDurationProvider
-    private let notificationCenter: NotificationCenter
-    private var progressAccumulator = BPKVideoPlayerProgressAccumulator()
-    private let progressSubject = CurrentValueSubject<BPKVideoPlayerProgress?, Never>(nil)
+    let periodicTimeObserver: BPKVideoPlayerPeriodicTimeObserving
+    let durationProvider: BPKVideoPlayerDurationProvider
+    let notificationCenter: NotificationCenter
+    var progressAccumulator = BPKVideoPlayerProgressAccumulator()
+    let progressSubject = CurrentValueSubject<BPKVideoPlayerProgress?, Never>(nil)
 
     private var playerLooper: AVPlayerLooper?
     private var itemStatusObservation: NSKeyValueObservation?
     private var timeControlObservation: NSKeyValueObservation?
     private var currentItemObservation: NSKeyValueObservation?
-    private var periodicTimeObserverToken: Any?
-    private var itemCompletionToken: NSObjectProtocol?
+    var periodicTimeObserverToken: Any?
+    var itemCompletionToken: NSObjectProtocol?
     private var loadTimeoutTask: DispatchWorkItem?
     private var lifecycleTokens: [NSObjectProtocol] = []
 
@@ -182,12 +154,7 @@ public final class BPKVideoPlayerController: ObservableObject {
         itemStatusObservation?.invalidate()
         timeControlObservation?.invalidate()
         currentItemObservation?.invalidate()
-        if let periodicTimeObserverToken {
-            periodicTimeObserver.removePeriodicTimeObserver(periodicTimeObserverToken, from: player)
-        }
-        if let itemCompletionToken {
-            notificationCenter.removeObserver(itemCompletionToken)
-        }
+        stopProgressObserving()
         loadTimeoutTask?.cancel()
         lifecycleTokens.forEach { NotificationCenter.default.removeObserver($0) }
     }
@@ -212,16 +179,10 @@ public final class BPKVideoPlayerController: ObservableObject {
     }
 
     public func seek(to time: CMTime) {
-        updateProgress { $0.beginSeek() }
+        prepareProgressForSeek()
         player.seek(to: time, toleranceBefore: .zero, toleranceAfter: .zero) { [weak self] _ in
             DispatchQueue.main.async {
-                guard let self else { return }
-                self.updateProgress {
-                    $0.endSeek(
-                        at: self.player.currentTime().seconds,
-                        duration: self.durationProvider(self.player.currentItem)
-                    )
-                }
+                self?.finishProgressSeek()
             }
         }
     }
@@ -235,20 +196,7 @@ public final class BPKVideoPlayerController: ObservableObject {
     // MARK: - Private
 
     private func observePlayer() {
-        periodicTimeObserverToken = periodicTimeObserver.addPeriodicTimeObserver(
-            to: player,
-            interval: CMTime(seconds: 0.25, preferredTimescale: 600),
-            queue: .main
-        ) { [weak self] time in
-            guard let self else { return }
-            self.updateProgress {
-                $0.record(
-                    playhead: time.seconds,
-                    duration: self.durationProvider(self.player.currentItem),
-                    isLooping: self.loop
-                )
-            }
-        }
+        startProgressObserving()
 
         // timeControlStatus is the primary playing/paused/buffering signal
         timeControlObservation = player.observe(\.timeControlStatus, options: [.new]) { [weak self] player, _ in
@@ -263,22 +211,8 @@ public final class BPKVideoPlayerController: ObservableObject {
 
     private func observeItemStatus(_ item: AVPlayerItem?) {
         itemStatusObservation?.invalidate()
-        if let itemCompletionToken {
-            notificationCenter.removeObserver(itemCompletionToken)
-            self.itemCompletionToken = nil
-        }
+        observeProgressCompletion(for: item)
         guard let item else { return }
-
-        itemCompletionToken = notificationCenter.addObserver(
-            forName: AVPlayerItem.didPlayToEndTimeNotification,
-            object: item,
-            queue: .main
-        ) { [weak self, weak item] _ in
-            guard let self else { return }
-            self.updateProgress {
-                $0.complete(duration: self.durationProvider(item), isLooping: self.loop)
-            }
-        }
 
         itemStatusObservation = item.observe(\.status, options: [.new, .initial]) { [weak self] item, _ in
             DispatchQueue.main.async { self?.handle(itemStatus: item.status) }
@@ -289,7 +223,7 @@ public final class BPKVideoPlayerController: ObservableObject {
         switch itemStatus {
         case .readyToPlay:
             loadTimeoutTask?.cancel()
-            updateProgress { $0.setDuration(durationProvider(player.currentItem)) }
+            updateProgressDuration()
             transition(to: .readyToPlay)
             if autoPlay && !UIAccessibility.isReduceMotionEnabled { play() }
         case .failed:
@@ -321,11 +255,6 @@ public final class BPKVideoPlayerController: ObservableObject {
     private func transition(to newState: BPKVideoPlayerState) {
         guard state != newState else { return }
         state = newState
-    }
-
-    private func updateProgress(_ update: (inout BPKVideoPlayerProgressAccumulator) -> Void) {
-        update(&progressAccumulator)
-        progressSubject.send(progressAccumulator.progress)
     }
 
     private func scheduleTimeout() {
@@ -368,16 +297,6 @@ public final class BPKVideoPlayerController: ObservableObject {
                 if UIAccessibility.isReduceMotionEnabled { self?.pause() }
             }
         ]
-    }
-
-    private static func liveDuration(for item: AVPlayerItem?) -> TimeInterval? {
-        guard let duration = item?.duration,
-            duration.isNumeric,
-            duration.seconds.isFinite,
-            duration.seconds > 0 else {
-            return nil
-        }
-        return duration.seconds
     }
 
     // MARK: - Test support
