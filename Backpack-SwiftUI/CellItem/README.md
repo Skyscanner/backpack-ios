@@ -136,7 +136,7 @@ BPKCellItem(
 
 Set the corner treatment to:
 * `.default` - Square corners (0 radius)
-* `.rounded` - Rounded corners (8pt radius)
+* `.rounded` - Rounded corners (`BPKCornerRadius.sm`)
 
 ```swift
 BPKCellItem(
