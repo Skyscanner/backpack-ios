@@ -26,16 +26,20 @@ final class BPKVideoPlayerControllerProgressTests: XCTestCase {
     private var cancellables: Set<AnyCancellable> = []
 
     func test_whenInitialized_thenRegistersQuarterSecondObserverOnMainQueue() {
+        // Given
         let observer = PeriodicTimeObserverMock()
 
+        // When
         _ = makeSUT(observer: observer)
 
+        // Then
         XCTAssertEqual(observer.addCallCount, 1)
         XCTAssertEqual(observer.interval?.seconds ?? 0, 0.25, accuracy: 0.000_001)
         XCTAssertEqual(observer.queue, .main)
     }
 
     func test_whenPeriodicSamplesArrive_thenPublishesNormalizedProgress() async {
+        // Given
         let observer = PeriodicTimeObserverMock()
         let sut = makeSUT(observer: observer)
         let published = expectation(description: "Progress published")
@@ -46,25 +50,31 @@ final class BPKVideoPlayerControllerProgressTests: XCTestCase {
             published.fulfill()
         }.store(in: &cancellables)
 
+        // When
         observer.send(seconds: 0)
         observer.send(seconds: 2.5)
 
+        // Then
         await fulfillment(of: [published], timeout: 1)
         XCTAssertEqual(received.last, .init(playTime: 2.5, duration: 10, fractionPlayed: 0.25))
         XCTAssertEqual(sut.progress, received.last)
     }
 
     func test_whenSubscribedBeforeFirstSample_thenEmitsNothing() {
+        // Given
         let sut = makeSUT(observer: PeriodicTimeObserverMock())
         var received: [BPKVideoPlayerProgress] = []
 
+        // When
         sut.progressPublisher.sink { received.append($0) }.store(in: &cancellables)
 
+        // Then
         XCTAssertTrue(received.isEmpty)
         XCTAssertNil(sut.progress)
     }
 
     func test_givenExistingProgress_whenSubscriberAttaches_thenReplaysLatestProgress() async {
+        // Given
         let observer = PeriodicTimeObserverMock()
         let sut = makeSUT(observer: observer)
         observer.send(seconds: 0)
@@ -72,16 +82,19 @@ final class BPKVideoPlayerControllerProgressTests: XCTestCase {
         let published = expectation(description: "Latest progress replayed")
         var received: [BPKVideoPlayerProgress] = []
 
+        // When
         sut.progressPublisher.sink {
             received.append($0)
             published.fulfill()
         }.store(in: &cancellables)
 
+        // Then
         await fulfillment(of: [published], timeout: 1)
         XCTAssertEqual(received, [.init(playTime: 2, duration: 10, fractionPlayed: 0.2)])
     }
 
     func test_givenRepeatedSample_whenRecorded_thenSuppressesDuplicateProgress() async {
+        // Given
         let observer = PeriodicTimeObserverMock()
         let sut = makeSUT(observer: observer)
         let published = expectation(description: "Distinct progress published")
@@ -94,43 +107,54 @@ final class BPKVideoPlayerControllerProgressTests: XCTestCase {
         observer.send(seconds: 0)
         observer.send(seconds: 1)
 
+        // When
         observer.send(seconds: 1)
 
+        // Then
         await fulfillment(of: [published], timeout: 1)
         XCTAssertEqual(received.count, 2)
     }
 
     func test_whenProgressIsPublished_thenDeliversOnMainThread() async {
+        // Given
         let observer = PeriodicTimeObserverMock()
         let sut = makeSUT(observer: observer)
         let published = expectation(description: "Progress published on main thread")
+        var deliveredOnMainThread = false
 
         sut.progressPublisher.sink { _ in
-            XCTAssertTrue(Thread.isMainThread)
+            deliveredOnMainThread = Thread.isMainThread
             published.fulfill()
         }.store(in: &cancellables)
 
+        // When
         DispatchQueue.global().async {
             observer.send(seconds: 0.25)
         }
 
+        // Then
         await fulfillment(of: [published], timeout: 1)
+        XCTAssertTrue(deliveredOnMainThread)
     }
 
     func test_whenDeinitialized_thenRemovesPeriodicObserverToken() {
+        // Given
         let observer = PeriodicTimeObserverMock()
         weak var weakSUT: BPKVideoPlayerController?
 
+        // When
         autoreleasepool {
             let sut = makeSUT(observer: observer)
             weakSUT = sut
         }
 
+        // Then
         XCTAssertNil(weakSUT)
         XCTAssertTrue(observer.removedToken === observer.addedToken)
     }
 
     func test_whenCurrentItemCompletes_thenPublishesCompletionProgress() async {
+        // Given
         let observer = PeriodicTimeObserverMock()
         let notificationCenter = NotificationCenter()
         let sut = makeSUT(observer: observer, notificationCenter: notificationCenter)
@@ -143,6 +167,7 @@ final class BPKVideoPlayerControllerProgressTests: XCTestCase {
             }
         }.store(in: &cancellables)
 
+        // When
         DispatchQueue.main.async {
             notificationCenter.post(
                 name: AVPlayerItem.didPlayToEndTimeNotification,
@@ -150,6 +175,7 @@ final class BPKVideoPlayerControllerProgressTests: XCTestCase {
             )
         }
 
+        // Then
         await fulfillment(of: [completion], timeout: 1)
         XCTAssertEqual(received, .init(playTime: 10, duration: 10, fractionPlayed: 1))
     }
