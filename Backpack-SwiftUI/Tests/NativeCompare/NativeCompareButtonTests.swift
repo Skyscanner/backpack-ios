@@ -25,69 +25,34 @@ import Backpack_Common
 /// One cropped image per button type, light and dark, for the "Backpack on native" audit.
 final class NativeCompareButtonTests: XCTestCase {
     func testPrimary() {
-        snapshot(.primary)
+        assertNativeCompareSnapshot(ButtonComparison.primary)
     }
 
     func testSecondary() {
-        snapshot(.secondary)
+        assertNativeCompareSnapshot(ButtonComparison.secondary)
     }
 
     func testDestructive() {
-        snapshot(.destructive)
+        assertNativeCompareSnapshot(ButtonComparison.destructive)
     }
 
     func testLink() {
-        snapshot(.link)
+        assertNativeCompareSnapshot(ButtonComparison.link)
     }
 
     func testPrimaryAtLargeText() {
-        largeTextSnapshot(.primary)
+        assertNativeCompareLargeTextSnapshot(ButtonComparison.primary)
     }
 
     func testSecondaryAtLargeText() {
-        largeTextSnapshot(.secondary)
+        assertNativeCompareLargeTextSnapshot(ButtonComparison.secondary)
     }
 
     func testDestructiveAtLargeText() {
-        largeTextSnapshot(.destructive)
+        assertNativeCompareLargeTextSnapshot(ButtonComparison.destructive)
     }
 
     func testLinkAtLargeText() {
-        largeTextSnapshot(.link)
-    }
-
-    /// The same row at a large Dynamic Type size, light only: swatches and columns must grow with the text.
-    private func largeTextSnapshot(
-        _ pair: ButtonComparison,
-        file: StaticString = #file,
-        testName: String = #function,
-        line: UInt = #line
-    ) {
-        BPKFont.setDynamicType(enabled: true)
-        defer { BPKFont.setDynamicType(enabled: false) }
-        assertSnapshot(
-            NativeCompareButtonRow(pair: pair)
-                .frame(width: 720)
-                .environment(\.sizeCategory, .accessibilityLarge),
-            modes: [.light],
-            file: file,
-            testName: testName,
-            line: line
-        )
-    }
-
-    private func snapshot(
-        _ pair: ButtonComparison,
-        file: StaticString = #file,
-        testName: String = #function,
-        line: UInt = #line
-    ) {
-        assertSnapshot(
-            NativeCompareButtonRow(pair: pair).frame(width: 720),
-            modes: [.light, .dark],
-            file: file,
-            testName: testName,
-            line: line
-        )
+        assertNativeCompareLargeTextSnapshot(ButtonComparison.link)
     }
 }
