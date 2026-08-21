@@ -18,10 +18,8 @@ BPKCardCarousel(
     cards: [
         BPKCarouselCard(
             content: {
-                AnyView(
-                    Rectangle()
-                        .foregroundColor(BPKColor.skyBlue)
-                )
+                Rectangle()
+                    .foregroundColor(BPKColor.skyBlue)
             },
             title: "Test Title",
             description: "Test description",
@@ -29,10 +27,8 @@ BPKCardCarousel(
         ),
         BPKCarouselCard(
             content: {
-                AnyView(
-                    Rectangle()
-                        .foregroundColor(BPKColor.skyBlue)
-                )
+                Rectangle()
+                    .foregroundColor(BPKColor.skyBlue)
             },
             title: "Test Title",
             description: "Test description",
@@ -40,16 +36,14 @@ BPKCardCarousel(
         ),
         BPKCarouselCard(
             content: {
-                AnyView(
-                    Rectangle()
-                        .foregroundColor(BPKColor.skyBlue)
-                )
+                Rectangle()
+                    .foregroundColor(BPKColor.skyBlue)
             },
             title: "Test Title",
             description: "Test description",
             contentAccessibilityLabel: "Blue rectangle"
         )
     ],
-    curentIndex: .constant(0)
+    currentIndex: .constant(0)
 )
 ```
