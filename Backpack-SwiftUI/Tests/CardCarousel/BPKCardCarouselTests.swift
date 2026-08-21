@@ -145,7 +145,48 @@ class BPKCardCarouselTests: XCTestCase {
         
         assertA11ySnapshot(cardCarousel)
     }
-    
+
+    // BPKPageIndicator's .accessibilityAdjustableAction closure forwards
+    // VoiceOver's increment/decrement directly to handleLeftSwipe/
+    // handleRightSwipe, so these tests exercise that navigation logic
+    // directly since there's no infra in this test suite (or elsewhere in
+    // Backpack-SwiftUI) to simulate an accessibility adjustable action.
+    func test_accessibilityAdjustableAction_incrementNavigatesForwardWithWraparound() {
+        var currentIndex = 0
+        let carousel = InternalCardCarousel(
+            size: CGSize(width: 300, height: 530),
+            content: [createCard(), createCard(), createCard()],
+            currentIndex: Binding(get: { currentIndex }, set: { currentIndex = $0 })
+        )
+
+        carousel.handleLeftSwipe()
+        XCTAssertEqual(currentIndex, 1)
+
+        carousel.handleLeftSwipe()
+        XCTAssertEqual(currentIndex, 2)
+
+        carousel.handleLeftSwipe()
+        XCTAssertEqual(currentIndex, 0)
+    }
+
+    func test_accessibilityAdjustableAction_decrementNavigatesBackwardWithWraparound() {
+        var currentIndex = 0
+        let carousel = InternalCardCarousel(
+            size: CGSize(width: 300, height: 530),
+            content: [createCard(), createCard(), createCard()],
+            currentIndex: Binding(get: { currentIndex }, set: { currentIndex = $0 })
+        )
+
+        carousel.handleRightSwipe()
+        XCTAssertEqual(currentIndex, 2)
+
+        carousel.handleRightSwipe()
+        XCTAssertEqual(currentIndex, 1)
+
+        carousel.handleRightSwipe()
+        XCTAssertEqual(currentIndex, 0)
+    }
+
     private func createCard() -> BPKCarouselCard<AnyView> {
         return BPKCarouselCard(
             content: {

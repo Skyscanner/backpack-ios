@@ -189,7 +189,9 @@ internal struct InternalCardCarousel<Content: View>: View {
         focusOnCard = currentInternalIndex
     }
     
-    private func handleLeftSwipe() {
+    // Internal (not private) so tests can exercise the increment/decrement
+    // logic behind .accessibilityAdjustableAction directly.
+    func handleLeftSwipe() {
         if currentInternalIndex == content.count - 1 {
             withAnimation(.none) {
                 currentInternalIndex = currentInternalIndex % cardCount
@@ -199,7 +201,7 @@ internal struct InternalCardCarousel<Content: View>: View {
         updateIndices(with: currentInternalIndex + 1)
     }
 
-    private func handleRightSwipe() {
+    func handleRightSwipe() {
         if currentInternalIndex == 2 {
             withAnimation(.none) {
                 currentInternalIndex += cardCount
