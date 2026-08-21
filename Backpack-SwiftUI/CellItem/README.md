@@ -78,6 +78,15 @@ BPKCellItem(
 )
 ```
 
+Use `.switchWithEnabled` to also control the switch's enabled/disabled state:
+
+```swift
+BPKCellItem(
+    title: "Push Notifications",
+    slot: .switchWithEnabled(isOn: $isEnabled, enabled: false)
+)
+```
+
 ### Text
 
 Display a secondary value.

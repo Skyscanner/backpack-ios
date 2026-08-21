@@ -127,6 +127,28 @@ class BPKCellItemTests: XCTestCase {
         )
     }
 
+    func test_slotSwitchEnabled() {
+        assertSnapshot(
+            BPKCellItem(
+                title: "Push notifications",
+                slot: .switchWithEnabled(isOn: .constant(true), enabled: true)
+            )
+            .frame(width: 375)
+            .padding(.sm)
+        )
+    }
+
+    func test_slotSwitchDisabled() {
+        assertSnapshot(
+            BPKCellItem(
+                title: "Push notifications",
+                slot: .switchWithEnabled(isOn: .constant(true), enabled: false)
+            )
+            .frame(width: 375)
+            .padding(.sm)
+        )
+    }
+
     // MARK: - Slot Content: Text
 
     func test_slotText() {
