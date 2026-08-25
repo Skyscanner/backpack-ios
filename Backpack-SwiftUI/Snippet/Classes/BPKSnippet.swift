@@ -24,14 +24,16 @@ public struct BPKSnippet: View {
     let subheading: String?
     let bodyText: String?
     let imageOrientation: ImageOrientation
+    let accessibilityHeaderEnabled: Bool
     let onClick: (() -> Void)?
-    
+
     public init(
         image: Image,
         headline: String? = nil,
         subheading: String? = nil,
         bodyText: String? = nil,
         imageOrientation: ImageOrientation = .landscape,
+        accessibilityHeaderEnabled: Bool = true,
         onClick: (() -> Void)? = nil
     ) {
         self.image = image
@@ -39,6 +41,7 @@ public struct BPKSnippet: View {
         self.subheading = subheading
         self.bodyText = bodyText
         self.imageOrientation = imageOrientation
+        self.accessibilityHeaderEnabled = accessibilityHeaderEnabled
         self.onClick = onClick
     }
     
@@ -49,7 +52,7 @@ public struct BPKSnippet: View {
             if let headline {
                 BPKText(headline, style: .heading4)
                     .lineLimit(nil)
-                    .accessibilityAddTraits(.isHeader)
+                    .accessibilityAddTraits(accessibilityHeaderEnabled ? .isHeader : [])
                     .padding(.top, .base)
             }
             if let subheading {
@@ -70,9 +73,11 @@ public struct BPKSnippet: View {
         }
         .accessibilityElement(children: .combine)
         .fixedSize(horizontal: false, vertical: true)
-        .accessibilityAddTraits(.isButton)
-        .onTapGesture {
-            onClick?()
+        .accessibilityAddTraits(onClick != nil ? .isButton : [])
+        .if(onClick != nil) { view in
+            view.onTapGesture {
+                onClick?()
+            }
         }
     }
 
