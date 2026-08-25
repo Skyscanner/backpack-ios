@@ -61,7 +61,7 @@ struct BPKRadioControl: View {
         case .regular:
             return regularColor
         case .error:
-            return .textErrorColor
+            return .radioInvalidBackgroundColor
         case .disabled:
             return disabledColor
         }

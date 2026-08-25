@@ -91,8 +91,6 @@ struct RadioExampleView: View {
                 .foregroundColor(labelColor(for: style, status: .regular))
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .contentShape(Rectangle())
-        .onTapGesture(perform: action)
     }
 
     private func labelColor(for style: BPKRadioStyle, status: BPKRadioStatus) -> Backpack_SwiftUI.BPKColor {
