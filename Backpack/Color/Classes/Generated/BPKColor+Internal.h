@@ -329,6 +329,36 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic, class, readonly) UIColor * internalPageIndicatorButtonCarouselPressedBackgroundColor;
 
+/**
+ * The `radioDefaultUnselectedStrokeColor` internal color.
+ */
+@property(nonatomic, class, readonly) UIColor * internalRadioDefaultUnselectedStrokeColor;
+
+/**
+ * The `radioDefaultDisabledBackgroundColor` internal color.
+ */
+@property(nonatomic, class, readonly) UIColor * internalRadioDefaultDisabledBackgroundColor;
+
+/**
+ * The `radioDefaultSelectedBackgroundColor` internal color.
+ */
+@property(nonatomic, class, readonly) UIColor * internalRadioDefaultSelectedBackgroundColor;
+
+/**
+ * The `radioOnContrastSelectedBackgroundColor` internal color.
+ */
+@property(nonatomic, class, readonly) UIColor * internalRadioOnContrastSelectedBackgroundColor;
+
+/**
+ * The `radioInvalidBackgroundColor` internal color.
+ */
+@property(nonatomic, class, readonly) UIColor * internalRadioInvalidBackgroundColor;
+
+/**
+ * The `radioOnContrastUnselectedBackgroundColor` internal color.
+ */
+@property(nonatomic, class, readonly) UIColor * internalRadioOnContrastUnselectedBackgroundColor;
+
 
 @end
 

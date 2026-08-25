@@ -216,6 +216,7 @@
 		E397BEA622F5FFDD00C8EC04 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA522F5FFDD00C8EC04 /* Storyboards.swift */; };
 		E6822E46AF304B16800B6609 /* LinkExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2848C51D99141B190D97447 /* LinkExampleView.swift */; };
 		EAE469A72FE3EDD70024EDA6 /* CheckboxExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE469A62FE3EDD70024EDA6 /* CheckboxExampleView.swift */; };
+		A6F0D1033B00000000000001 /* RadioExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F0D1023B00000000000001 /* RadioExampleView.swift */; };
 		EED38AA42EB37AAE00A77904 /* ConfigurationBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED38AA32EB37AA200A77904 /* ConfigurationBadgeView.swift */; };
 		EED519BF2D3EBD8300F898D7 /* SegmentedControlExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED519BD2D3EBD8300F898D7 /* SegmentedControlExampleView.swift */; };
 		EEF89AC32E2EAE6100BF1C83 /* TappableContainerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF89AC22E2EAE5A00BF1C83 /* TappableContainerExampleView.swift */; };
@@ -470,6 +471,7 @@
 		E397BEA322F5FCE500C8EC04 /* BottomSheetBottomSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetBottomSectionViewController.swift; sourceTree = "<group>"; };
 		E397BEA522F5FFDD00C8EC04 /* Storyboards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		EAE469A62FE3EDD70024EDA6 /* CheckboxExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxExampleView.swift; sourceTree = "<group>"; };
+		A6F0D1023B00000000000001 /* RadioExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioExampleView.swift; sourceTree = "<group>"; };
 		EDBC7CA36756032862B5D581 /* Pods_Backpack_Native.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Backpack_Native.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EED38AA32EB37AA200A77904 /* ConfigurationBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationBadgeView.swift; sourceTree = "<group>"; };
 		EED519BD2D3EBD8300F898D7 /* SegmentedControlExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlExampleView.swift; sourceTree = "<group>"; };
@@ -1082,6 +1084,7 @@
 				530459F32A961F8F00244EA8 /* Carousel */,
 				53D6396D2A7D46DC007EF376 /* MapMarker */,
 				5346243E2A7437AF0059A0B5 /* ProgressBar */,
+				A6F0D1013B00000000000001 /* Radio */,
 				A17006532A5BBEE900134458 /* BottomSheet */,
 				A1B2DBFF2A43077E00DE6980 /* ChipGroup */,
 				7904384229F11DC7006CD8E0 /* Slider */,
@@ -1625,6 +1628,14 @@
 			path = Checkbox;
 			sourceTree = "<group>";
 		};
+		A6F0D1013B00000000000001 /* Radio */ = {
+			isa = PBXGroup;
+			children = (
+				A6F0D1023B00000000000001 /* RadioExampleView.swift */,
+			);
+			path = Radio;
+			sourceTree = "<group>";
+		};
 		EED519BE2D3EBD8300F898D7 /* SegmentedControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -2050,6 +2061,7 @@
 				D6DC0AF8216BBB2D0003AC5D /* DialogViewController.swift in Sources */,
 				53C6622829EA0DAB00BF1A62 /* TextExampleView.swift in Sources */,
 				EAE469A72FE3EDD70024EDA6 /* CheckboxExampleView.swift in Sources */,
+				A6F0D1033B00000000000001 /* RadioExampleView.swift in Sources */,
 				E6822E46AF304B16800B6609 /* LinkExampleView.swift in Sources */,
 				53B6DB6227FC3F170042B7C0 /* ChipGroups.swift in Sources */,
 				24BB6A002EAF733F00E982A4 /* ConfigurationChipsView.swift in Sources */,

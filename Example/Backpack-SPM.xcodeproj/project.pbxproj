@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		020878642FFE61E000D30F0A /* MarkdownTextExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020878632FFE61E000D30F0A /* MarkdownTextExampleView.swift */; };
 		020878682FFE62DA00D30F0A /* CheckboxExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020878662FFE62DA00D30F0A /* CheckboxExampleView.swift */; };
+		A6F0D1133B00000000000001 /* RadioExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F0D1123B00000000000001 /* RadioExampleView.swift */; };
 		021D1E422F5050D700A58A6D /* CellItemExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021D1E402F5050D700A58A6D /* CellItemExampleView.swift */; };
 		022519872A7011CD00D7A06D /* SnippetExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022519862A7011CD00D7A06D /* SnippetExampleView.swift */; };
 		0245783E2ABC3AA1006008D1 /* InsetBannerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0245783D2ABC3AA1006008D1 /* InsetBannerExampleView.swift */; };
@@ -249,6 +250,7 @@
 /* Begin PBXFileReference section */
 		020878632FFE61E000D30F0A /* MarkdownTextExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownTextExampleView.swift; sourceTree = "<group>"; };
 		020878662FFE62DA00D30F0A /* CheckboxExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxExampleView.swift; sourceTree = "<group>"; };
+		A6F0D1123B00000000000001 /* RadioExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioExampleView.swift; sourceTree = "<group>"; };
 		021D1E402F5050D700A58A6D /* CellItemExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellItemExampleView.swift; sourceTree = "<group>"; };
 		022519862A7011CD00D7A06D /* SnippetExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetExampleView.swift; sourceTree = "<group>"; };
 		0245783D2ABC3AA1006008D1 /* InsetBannerExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetBannerExampleView.swift; sourceTree = "<group>"; };
@@ -517,6 +519,14 @@
 				020878662FFE62DA00D30F0A /* CheckboxExampleView.swift */,
 			);
 			path = Checkbox;
+			sourceTree = "<group>";
+		};
+		A6F0D1113B00000000000001 /* Radio */ = {
+			isa = PBXGroup;
+			children = (
+				A6F0D1123B00000000000001 /* RadioExampleView.swift */,
+			);
+			path = Radio;
 			sourceTree = "<group>";
 		};
 		021D1E412F5050D700A58A6D /* CellItem */ = {
@@ -1097,6 +1107,7 @@
 				530459F32A961F8F00244EA8 /* Carousel */,
 				53D6396D2A7D46DC007EF376 /* MapMarker */,
 				5346243E2A7437AF0059A0B5 /* ProgressBar */,
+				A6F0D1113B00000000000001 /* Radio */,
 				A17006532A5BBEE900134458 /* BottomSheet */,
 				A1B2DBFF2A43077E00DE6980 /* ChipGroup */,
 				7904384229F11DC7006CD8E0 /* Slider */,
@@ -1953,6 +1964,7 @@
 				53C6622929EA0DAB00BF1A62 /* AttributedTextExampleView.swift in Sources */,
 				53E075B727FC9C010033147C /* PresentableNavigator.swift in Sources */,
 				020878682FFE62DA00D30F0A /* CheckboxExampleView.swift in Sources */,
+				A6F0D1133B00000000000001 /* RadioExampleView.swift in Sources */,
 				7976E5C028BB0BCC00471AA2 /* ColorTokensView.swift in Sources */,
 				256F76152BB479850047AD1C /* SearchInputSummaryExampleView.swift in Sources */,
 				D26E5A0C25A787060064D9F1 /* GroupsViewController.swift in Sources */,

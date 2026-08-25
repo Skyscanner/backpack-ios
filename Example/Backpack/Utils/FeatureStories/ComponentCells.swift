@@ -82,6 +82,7 @@ struct ComponentCellsProvider {
             price(),
             priceRange(),
             progressBar(),
+            radios(),
             ratings(),
             ratingBar(),
             searchInputControl(),
@@ -396,6 +397,17 @@ extension ComponentCellsProvider {
                 }))
             ],
             showChildren: { showComponent(title: "Progress bar", tabs: $0) }
+        )
+    }
+    private func radios() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Radio",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(RadioExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Radio", tabs: $0) }
         )
     }
     private func ratings() -> CellDataSource {
