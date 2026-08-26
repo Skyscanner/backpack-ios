@@ -17,6 +17,7 @@
  */
 
 import AVFoundation
+import Combine
 import UIKit
 
 // MARK: - Playback state
@@ -42,7 +43,7 @@ public enum BPKVideoPlayerState: Equatable {
     public static func == (lhs: BPKVideoPlayerState, rhs: BPKVideoPlayerState) -> Bool {
         switch (lhs, rhs) {
         case (.loading, .loading), (.readyToPlay, .readyToPlay),
-             (.playing, .playing), (.paused, .paused), (.buffering, .buffering):
+            (.playing, .playing), (.paused, .paused), (.buffering, .buffering):
             return true
         case (.failed, .failed):
             return true
@@ -61,29 +62,81 @@ public final class BPKVideoPlayerController: ObservableObject {
     /// The underlying AVPlayer instance.
     ///
     /// - Warning: Use `play()`, `pause()`, and `toggle()` rather than calling
-    ///   `player.play()`/`player.pause()` directly — direct calls bypass state tracking.
+    ///   the equivalent methods on `player` directly. Direct playback and seeking
+    ///   calls bypass controller state and playback-progress tracking.
     public let player: AVPlayer
 
     /// The current playback state. Drives all UI — spinner, play/pause icon, error view.
     @Published public private(set) var state: BPKVideoPlayerState = .loading
 
+    // MARK: - Playback progress
+
+    /// The latest playback progress, or `nil` until duration is known.
+    public var progress: BPKVideoPlayerProgress? {
+        progressSubject.value
+    }
+
+    /// Emits the current complete snapshot and subsequent distinct updates.
+    /// Values are delivered on the main queue.
+    public var progressPublisher: AnyPublisher<BPKVideoPlayerProgress, Never> {
+        progressSubject
+            .compactMap { $0 }
+            .removeDuplicates()
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+
+    // MARK: - Configuration and observations
+
     private let autoPlay: Bool
-    private let loop: Bool
+    let loop: Bool
     private let loadTimeout: TimeInterval
+    let periodicTimeObserver: BPKVideoPlayerPeriodicTimeObserving
+    let durationProvider: BPKVideoPlayerDurationProvider
+    let notificationCenter: NotificationCenter
+    var progressAccumulator = BPKVideoPlayerProgressAccumulator()
+    let progressSubject = CurrentValueSubject<BPKVideoPlayerProgress?, Never>(nil)
+    var hasCompletedPlayback = false
+    var progressSeekID = 0
 
     private var playerLooper: AVPlayerLooper?
     private var itemStatusObservation: NSKeyValueObservation?
     private var timeControlObservation: NSKeyValueObservation?
     private var currentItemObservation: NSKeyValueObservation?
+    var periodicTimeObserverToken: Any?
+    var itemCompletionToken: NSObjectProtocol?
     private var loadTimeoutTask: DispatchWorkItem?
     private var lifecycleTokens: [NSObjectProtocol] = []
 
     // MARK: - Init
 
-    public init(url: URL, autoPlay: Bool = true, loop: Bool = true, loadTimeout: TimeInterval = 7) {
+    public convenience init(url: URL, autoPlay: Bool = true, loop: Bool = true, loadTimeout: TimeInterval = 7) {
+        self.init(
+            url: url,
+            autoPlay: autoPlay,
+            loop: loop,
+            loadTimeout: loadTimeout,
+            periodicTimeObserver: BPKVideoPlayerPeriodicTimeObserver(),
+            durationProvider: Self.liveDuration,
+            notificationCenter: .default
+        )
+    }
+
+    init(
+        url: URL,
+        autoPlay: Bool,
+        loop: Bool,
+        loadTimeout: TimeInterval,
+        periodicTimeObserver: BPKVideoPlayerPeriodicTimeObserving,
+        durationProvider: @escaping BPKVideoPlayerDurationProvider,
+        notificationCenter: NotificationCenter
+    ) {
         self.autoPlay = autoPlay
         self.loop = loop
         self.loadTimeout = loadTimeout
+        self.periodicTimeObserver = periodicTimeObserver
+        self.durationProvider = durationProvider
+        self.notificationCenter = notificationCenter
 
         let item = AVPlayerItem(asset: AVAsset(url: url))
         if loop {
@@ -103,6 +156,7 @@ public final class BPKVideoPlayerController: ObservableObject {
         itemStatusObservation?.invalidate()
         timeControlObservation?.invalidate()
         currentItemObservation?.invalidate()
+        stopProgressObserving()
         loadTimeoutTask?.cancel()
         lifecycleTokens.forEach { NotificationCenter.default.removeObserver($0) }
     }
@@ -111,6 +165,9 @@ public final class BPKVideoPlayerController: ObservableObject {
 
     public func play() {
         guard !UIAccessibility.isReduceMotionEnabled else { return }
+        if hasCompletedPlayback {
+            seek(to: .zero)
+        }
         player.play()
     }
 
@@ -119,11 +176,21 @@ public final class BPKVideoPlayerController: ObservableObject {
     }
 
     public func toggle() {
-        state.isPlaying ? pause() : play()
+        if state.isPlaying {
+            pause()
+        } else {
+            play()
+        }
     }
 
     public func seek(to time: CMTime) {
-        player.seek(to: time, toleranceBefore: .zero, toleranceAfter: .zero)
+        let seekID = prepareProgressForSeek(to: time)
+        player.seek(to: time, toleranceBefore: .zero, toleranceAfter: .zero) { [weak self] finished in
+            guard finished else { return }
+            DispatchQueue.main.async {
+                self?.finishProgressSeek(id: seekID)
+            }
+        }
     }
 
     /// Pause and seek to the beginning — use for carousel items that reset on scroll-off.
@@ -135,6 +202,8 @@ public final class BPKVideoPlayerController: ObservableObject {
     // MARK: - Private
 
     private func observePlayer() {
+        startProgressObserving()
+
         // timeControlStatus is the primary playing/paused/buffering signal
         timeControlObservation = player.observe(\.timeControlStatus, options: [.new]) { [weak self] player, _ in
             DispatchQueue.main.async { self?.handle(timeControlStatus: player.timeControlStatus) }
@@ -148,7 +217,9 @@ public final class BPKVideoPlayerController: ObservableObject {
 
     private func observeItemStatus(_ item: AVPlayerItem?) {
         itemStatusObservation?.invalidate()
+        observeProgressCompletion(for: item)
         guard let item else { return }
+
         itemStatusObservation = item.observe(\.status, options: [.new, .initial]) { [weak self] item, _ in
             DispatchQueue.main.async { self?.handle(itemStatus: item.status) }
         }
@@ -158,6 +229,7 @@ public final class BPKVideoPlayerController: ObservableObject {
         switch itemStatus {
         case .readyToPlay:
             loadTimeoutTask?.cancel()
+            updateProgressDuration()
             transition(to: .readyToPlay)
             if autoPlay && !UIAccessibility.isReduceMotionEnabled { play() }
         case .failed:

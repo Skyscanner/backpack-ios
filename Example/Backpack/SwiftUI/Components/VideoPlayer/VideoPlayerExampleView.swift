@@ -133,14 +133,15 @@ struct VideoFullscreenExampleView: View {
             BPKVideoPlayer(controller: activeController) { _ in EmptyView() }
                 .ignoresSafeArea()
 
-            // Custom UI — TBD
-            VStack {
-                Spacer()
-                Text("Custom UI — TBD")
-                    .font(.caption)
-                    .foregroundColor(.white.opacity(0.6))
-                    .padding(.bottom, .xl)
+            Button(action: activeController.toggle) {
+                BPKIconView(activeController.state.isPlaying ? .pause : .play, size: .large)
+                    .foregroundColor(.textOnDarkColor)
+                    .frame(width: 40, height: 40)
+                    .background(.surfaceTintColor)
+                    .clipShape(RoundedRectangle(cornerRadius: BPKCornerRadius.sm.value))
             }
+            .accessibilityLabel(activeController.state.isPlaying ? "Pause video" : "Play video")
+            .accessibilityValue(activeController.state.isPlaying ? "Playing" : "Paused")
         }
         .background(Color.black)
     }
@@ -183,6 +184,138 @@ struct VideoContinuousPlaybackExampleView: View {
     }
 }
 
+// MARK: - Use case 4: Live playback progress
+
+struct VideoProgressExampleView: View {
+    @StateObject private var controller = BPKVideoPlayerController(
+        url: SampleVideo.url,
+        autoPlay: true,
+        loop: true
+    )
+    @State private var progress: BPKVideoPlayerProgress?
+    @State private var firedQuartiles: Set<Int> = []
+    @State private var hasTriggeredViewEvent = false
+    @State private var isProgressShown = true
+
+    private let quartiles = [25, 50, 75, 100]
+
+    var body: some View {
+        Group {
+            if #available(iOS 16.4, *) {
+                video
+                    .bpkBottomSheet(
+                        isPresented: $isProgressShown,
+                        peekHeight: 300,
+                        contentMode: .medium(false),
+                        title: "Live playback progress",
+                        bottomSheetContent: {
+                            progressHUD
+                                .presentationBackground(.clear)
+                        }
+                    )
+            } else {
+                VStack(spacing: 0) {
+                    video
+                    progressHUD
+                }
+            }
+        }
+    }
+
+    private var video: some View {
+        ZStack(alignment: .topTrailing) {
+            BPKVideoPlayer(controller: controller) { _ in EmptyView() }
+                .onProgress(receive)
+                .ignoresSafeArea()
+
+            Button(action: controller.toggle) {
+                BPKIconView(controller.state.isPlaying ? .pause : .play, size: .large)
+                    .foregroundColor(.textOnDarkColor)
+                    .padding(.md)
+                    .background(Color(.scrimColor).opacity(0.7))
+                    .clipShape(Circle())
+            }
+            .padding(.lg)
+            .accessibilityLabel(controller.state.isPlaying ? "Pause video" : "Play video")
+        }
+        .background(.surfaceContrastColor)
+    }
+
+    private var progressHUD: some View {
+        VStack(alignment: .leading, spacing: .base) {
+            if let progress {
+                HStack(spacing: .md) {
+                    metric(title: "Play time", value: format(progress.playTime))
+                    metric(title: "Duration", value: format(progress.duration))
+                    metric(title: "Played", value: "\(Int(progress.fractionPlayed * 100))%")
+                }
+
+                BPKProgressBar(
+                    max: 100,
+                    stepped: false,
+                    size: .small,
+                    value: Float(progress.fractionPlayed * 100)
+                )
+
+                BPKText("Would fire", style: .heading5)
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: .sm) {
+                        BPKChip(
+                            "View · 2s",
+                            selected: hasTriggeredViewEvent,
+                            onClick: {}
+                        )
+
+                        ForEach(quartiles, id: \.self) { quartile in
+                            BPKChip(
+                                "\(quartile)%",
+                                selected: firedQuartiles.contains(quartile),
+                                onClick: {}
+                            )
+                        }
+                    }
+                }
+
+                BPKText(
+                    "The view marker assumes the video is at least 50% visible. Markers fire once; looping keeps cumulative play time.",
+                    style: .caption
+                )
+                .foregroundColor(.textSecondaryColor)
+            } else {
+                HStack(spacing: .md) {
+                    BPKSpinner(.sm)
+                    BPKText("Waiting for a finite video duration…", style: .bodyDefault)
+                }
+            }
+        }
+        .padding(.lg)
+    }
+
+    private func metric(title: String, value: String) -> some View {
+        VStack(alignment: .leading, spacing: .sm) {
+            BPKText(title, style: .caption)
+                .foregroundColor(.textSecondaryColor)
+            BPKText(value, style: .heading4)
+                .monospacedDigit()
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private func format(_ seconds: TimeInterval) -> String {
+        String(format: "%.2fs", seconds)
+    }
+
+    private func receive(_ progress: BPKVideoPlayerProgress) {
+        self.progress = progress
+        if progress.playTime >= 2 {
+            hasTriggeredViewEvent = true
+        }
+        for quartile in quartiles where progress.fractionPlayed >= Double(quartile) / 100 {
+            firedQuartiles.insert(quartile)
+        }
+    }
+}
+
 
 // MARK: - Previews
 
@@ -200,6 +333,9 @@ struct VideoPlayerExampleView_Previews: PreviewProvider {
 
             VideoContinuousPlaybackExampleView()
                 .previewDisplayName("3 · Continuous playback")
+
+            VideoProgressExampleView()
+                .previewDisplayName("4 · Live playback progress")
         }
     }
 }
