@@ -235,6 +235,11 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             await switchTab(title: "SwiftUI")
             saveScreenshot(component: "price-range", scenario: "all", userInterfaceStyle: userInterfaceStyle)
         }
+
+        await navigate(title: "Radio") {
+            await switchTab(title: "SwiftUI")
+            saveScreenshot(component: "radio", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
         
         await navigate(title: "Chips") {
             await switchTab(title: "SwiftUI")

@@ -117,6 +117,7 @@ let backpackSwiftUISourceDirs = [
   "Price",
   "PriceRange",
   "ProgressBar",
+  "Radio",
   "Radii",
   "Rating",
   "RatingBar",
