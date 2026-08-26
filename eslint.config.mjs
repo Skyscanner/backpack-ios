@@ -16,7 +16,7 @@ export default [
     },
   },
   {
-    files: ["**/*.js", "**/*.jsx"],
+    files: ["**/*.js"],
     languageOptions: {
       globals: {
         ...globals.es2015,
