@@ -53,7 +53,6 @@ const generateFromTemplate = async (template, templateData, renameTo, destinatio
 // Generate UIKit icon name files
 const generateIconNamesUIKit = (output, templatesFolder) => async () => {
   const renameTo = (file) => {
-    // eslint-disable-next-line no-param-reassign
     file.extname = '';
   };
 
