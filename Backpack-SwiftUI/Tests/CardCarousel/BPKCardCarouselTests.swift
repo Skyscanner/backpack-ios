@@ -145,7 +145,38 @@ class BPKCardCarouselTests: XCTestCase {
         
         assertA11ySnapshot(cardCarousel)
     }
-    
+
+    // BPKPageIndicator's .accessibilityAdjustableAction closure forwards VoiceOver's increment/decrement
+    // directly to handleLeftSwipe/handleRightSwipe, which delegate their wraparound arithmetic to
+    // CardCarouselIndexCalculator. That calculator is tested directly here (rather than driving
+    // InternalCardCarousel itself) because InternalCardCarousel's @State never propagates writes unless
+    // it's mounted into a live view hierarchy, which this test suite has no infrastructure to do.
+    func test_accessibilityAdjustableAction_incrementNavigatesForwardWithWraparound() {
+        let calculator = CardCarouselIndexCalculator(cardCount: 3, totalContentCount: 6)
+
+        let afterFirst = calculator.advancingLeft(from: 4)
+        XCTAssertEqual(calculator.adjustedIndex(for: afterFirst), 1)
+
+        let afterSecond = calculator.advancingLeft(from: afterFirst)
+        XCTAssertEqual(calculator.adjustedIndex(for: afterSecond), 2)
+
+        let afterThird = calculator.advancingLeft(from: afterSecond)
+        XCTAssertEqual(calculator.adjustedIndex(for: afterThird), 0)
+    }
+
+    func test_accessibilityAdjustableAction_decrementNavigatesBackwardWithWraparound() {
+        let calculator = CardCarouselIndexCalculator(cardCount: 3, totalContentCount: 6)
+
+        let afterFirst = calculator.advancingRight(from: 4)
+        XCTAssertEqual(calculator.adjustedIndex(for: afterFirst), 2)
+
+        let afterSecond = calculator.advancingRight(from: afterFirst)
+        XCTAssertEqual(calculator.adjustedIndex(for: afterSecond), 1)
+
+        let afterThird = calculator.advancingRight(from: afterSecond)
+        XCTAssertEqual(calculator.adjustedIndex(for: afterThird), 0)
+    }
+
     private func createCard() -> BPKCarouselCard<AnyView> {
         return BPKCarouselCard(
             content: {
