@@ -134,7 +134,7 @@ class BPKCellItemTests: XCTestCase {
     func test_slotSwitchEnabled_switchIsEnabled() {
         let cellItem = BPKCellItem(
             title: "Push notifications",
-            slot: .switchWithEnabled(isOn: .constant(true), enabled: true)
+            slot: .switchDisableable(isOn: .constant(true), enabled: true)
         )
         XCTAssertEqual(hostedSwitch(in: cellItem)?.isEnabled, true)
     }
@@ -142,7 +142,7 @@ class BPKCellItemTests: XCTestCase {
     func test_slotSwitchDisabled_switchIsDisabled() {
         let cellItem = BPKCellItem(
             title: "Push notifications",
-            slot: .switchWithEnabled(isOn: .constant(true), enabled: false)
+            slot: .switchDisableable(isOn: .constant(true), enabled: false)
         )
         XCTAssertEqual(hostedSwitch(in: cellItem)?.isEnabled, false)
     }

@@ -134,7 +134,7 @@ public struct BPKCellItem: View {
             BPKSwitch(isOn: isOn) {}
                 .labelsHidden()
 
-        case .switchWithEnabled(let isOn, let enabled):
+        case .switchDisableable(let isOn, let enabled):
             BPKSwitch(isOn: isOn, enabled: enabled) {}
                 .labelsHidden()
 
@@ -174,7 +174,7 @@ public struct BPKCellItem: View {
     private var hasAccessibleSlot: Bool {
         guard let slot = slot else { return false }
         switch slot {
-        case .switch, .switchWithEnabled, .link:
+        case .switch, .switchDisableable, .link:
             return true
         default:
             return false

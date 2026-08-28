@@ -26,7 +26,7 @@ public enum BPKCellItemSlot {
     /// Toggle switch control with a binding to track on/off state.
     case `switch`(isOn: Binding<Bool>)
     /// Toggle switch control with a binding to track on/off state, and an enabled/disabled state.
-    case switchWithEnabled(isOn: Binding<Bool>, enabled: Bool)
+    case switchDisableable(isOn: Binding<Bool>, enabled: Bool)
     /// Secondary text value displayed on trailing edge.
     case text(String)
     /// Tappable link with text, URL, and custom link handler callback.
