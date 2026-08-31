@@ -76,7 +76,10 @@ public struct BPKSegmentedControl: View {
     private func segmentButton(for index: Int) -> some View {
         HStack(spacing: 0) {
             Button(
-                action: { withAnimation { selectedIndex = index } },
+                action: {
+                    guard selectedIndex != index else { return }
+                    withAnimation { selectedIndex = index }
+                },
                 label: {
                     Text(items[index])
                         .font(style: .label2)
@@ -89,7 +92,6 @@ public struct BPKSegmentedControl: View {
                 }
             )
             .frame(maxHeight: .infinity)
-            .disabled(selectedIndex == index)
 
             if index < items.count - 1 && selectedIndex != index && selectedIndex != index + 1 {
                 separator
