@@ -22,7 +22,7 @@
   "devDependencies": {
     "@skyscanner/bpk-foundations-ios": "^24.8.0",
     "@skyscanner/bpk-svgs": "^20.13.0",
-    "danger": "^13.0.10",
+    "danger": "^14.0.5",
     "@eslint/js": "^10.0.0",
     "eslint": "^10.0.0",
     "eslint_d": "^15.0.0",
