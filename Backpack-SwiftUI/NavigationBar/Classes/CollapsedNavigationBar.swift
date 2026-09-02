@@ -53,7 +53,7 @@ struct CollapsedNavigationBar: View {
                         BPKText(title ?? "", style: .heading5)
                             .foregroundColor(style.foregroundColor(expanded: expanded))
                             .lineLimit(1)
-                            .accessibilityAddTraits(.isHeader)
+                            .accessibilityAddTraits(title?.isEmpty == false ? .isHeader : [])
                     }
                     
                     Spacer()
