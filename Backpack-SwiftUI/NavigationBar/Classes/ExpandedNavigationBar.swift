@@ -32,6 +32,7 @@ struct ExpandedNavigationBar: View {
                 .frame(height: style.expandedNavigationBarHeight)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, .base)
+                .accessibilityAddTraits(.isHeader)
         }
     }
 }
