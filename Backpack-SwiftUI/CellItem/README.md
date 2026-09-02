@@ -78,6 +78,15 @@ BPKCellItem(
 )
 ```
 
+Use `.switchDisableable` to also control the switch's enabled/disabled state:
+
+```swift
+BPKCellItem(
+    title: "Push Notifications",
+    slot: .switchDisableable(isOn: $isEnabled, enabled: false)
+)
+```
+
 ### Text
 
 Display a secondary value.
@@ -136,7 +145,7 @@ BPKCellItem(
 
 Set the corner treatment to:
 * `.default` - Square corners (0 radius)
-* `.rounded` - Rounded corners (8pt radius)
+* `.rounded` - Rounded corners (`BPKCornerRadius.sm`)
 
 ```swift
 BPKCellItem(
