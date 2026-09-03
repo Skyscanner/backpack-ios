@@ -98,6 +98,8 @@ public final class BPKVideoPlayerController: ObservableObject {
     let progressSubject = CurrentValueSubject<BPKVideoPlayerProgress?, Never>(nil)
     var hasCompletedPlayback = false
     var progressSeekID = 0
+    private var isLoopItemTransitioning = false
+    private var hasLoadedInitialItem = false
 
     private var playerLooper: AVPlayerLooper?
     private var itemStatusObservation: NSKeyValueObservation?
@@ -172,7 +174,11 @@ public final class BPKVideoPlayerController: ObservableObject {
     }
 
     public func pause() {
+        isLoopItemTransitioning = false
         player.pause()
+        if state == .playing || state == .buffering {
+            transition(to: .paused)
+        }
     }
 
     public func toggle() {
@@ -211,7 +217,7 @@ public final class BPKVideoPlayerController: ObservableObject {
 
         // currentItem changes when AVPlayerLooper swaps in a new copy — re-observe status
         currentItemObservation = player.observe(\.currentItem, options: [.new, .initial]) { [weak self] player, _ in
-            DispatchQueue.main.async { self?.observeItemStatus(player.currentItem) }
+            DispatchQueue.main.async { self?.handleCurrentItemChange(player.currentItem) }
         }
     }
 
@@ -221,26 +227,53 @@ public final class BPKVideoPlayerController: ObservableObject {
         guard let item else { return }
 
         itemStatusObservation = item.observe(\.status, options: [.new, .initial]) { [weak self] item, _ in
-            DispatchQueue.main.async { self?.handle(itemStatus: item.status) }
+            DispatchQueue.main.async { self?.handle(itemStatus: item.status, for: item) }
         }
     }
 
-    private func handle(itemStatus: AVPlayerItem.Status) {
+    private func handleCurrentItemChange(_ item: AVPlayerItem?) {
+        isLoopItemTransitioning = loop && state == .playing
+        observeItemStatus(item)
+    }
+
+    private func handle(itemStatus: AVPlayerItem.Status, for item: AVPlayerItem) {
+        guard player.currentItem === item else { return }
+
         switch itemStatus {
         case .readyToPlay:
-            loadTimeoutTask?.cancel()
-            updateProgressDuration()
-            transition(to: .readyToPlay)
-            if autoPlay && !UIAccessibility.isReduceMotionEnabled { play() }
+            handleReadyItem()
         case .failed:
             loadTimeoutTask?.cancel()
-            let error = player.currentItem?.error ?? NSError(domain: "BPKVideoPlayer", code: -1)
+            let error = item.error ?? NSError(domain: "BPKVideoPlayer", code: -1)
+            isLoopItemTransitioning = false
             transition(to: .failed(error))
         case .unknown:
-            transition(to: .loading)
+            transition(to: isLoopItemTransitioning ? .buffering : .loading)
             scheduleTimeout()
         @unknown default:
             break
+        }
+    }
+
+    private func handleReadyItem() {
+        loadTimeoutTask?.cancel()
+        updateProgressDuration()
+        isLoopItemTransitioning = false
+        let shouldAutoPlay = !hasLoadedInitialItem && autoPlay && !UIAccessibility.isReduceMotionEnabled
+        hasLoadedInitialItem = true
+
+        switch player.timeControlStatus {
+        case .playing:
+            transition(to: .playing)
+        case .waitingToPlayAtSpecifiedRate:
+            transition(to: .buffering)
+        case .paused:
+            if state != .paused {
+                transition(to: .readyToPlay)
+            }
+            if shouldAutoPlay { play() }
+        @unknown default:
+            transition(to: .readyToPlay)
         }
     }
 
@@ -249,8 +282,11 @@ public final class BPKVideoPlayerController: ObservableObject {
         case .playing:
             transition(to: .playing)
         case .paused:
-            // Suppress .paused during initial load — only meaningful after we were playing
-            if state == .playing { transition(to: .paused) }
+            // AVPlayerLooper briefly reports `.paused` while it replaces a completed item.
+            // Wait for the replacement item's status before publishing a state change.
+            if !isLoopItemTransitioning {
+                transition(to: .paused)
+            }
         case .waitingToPlayAtSpecifiedRate:
             transition(to: .buffering)
         @unknown default:
