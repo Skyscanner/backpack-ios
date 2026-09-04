@@ -351,7 +351,8 @@ let targets: [Target] = [
       ],
       path: "Backpack-SwiftUI/Tests",
       resources: [
-        .process("Images.xcassets")
+        .process("Images.xcassets"),
+        .copy("skyscanner_test.mp4")
       ]
     ),
 ]

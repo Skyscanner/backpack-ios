@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
+import AVFoundation
+import Foundation
 import XCTest
 import SwiftUI
 @testable import Backpack_SwiftUI
@@ -44,6 +46,49 @@ final class BPKVideoPlayerTests: XCTestCase {
             BPKVideoPlayerDefaultControls(controller: controller)
                 .controlsAccessibilityLabels(play: "Play", pause: "Pause")
         })
+    }
+
+    // MARK: - Controller playback state
+
+    func test_loopingPlayback_remainsPlayingWhenCurrentItemChanges() async throws {
+        let controller = BPKVideoPlayerController(
+            url: try localVideoURL(),
+            autoPlay: false,
+            loop: true
+        )
+
+        try await waitUntil { controller.state == .readyToPlay }
+        let initialItem = try XCTUnwrap(controller.player.currentItem)
+
+        try await seekNearLoopBoundary(controller)
+        controller.play()
+
+        try await waitUntil({ controller.player.currentItem !== initialItem }, timeout: 3)
+        try await waitUntil({ controller.state.isPlaying }, timeout: 3)
+
+        XCTAssertEqual(controller.player.timeControlStatus, .playing)
+        XCTAssertTrue(controller.state.isPlaying)
+    }
+
+    func test_loopingPlayback_staysPausedAfterExplicitPauseAtLoopBoundary() async throws {
+        let controller = BPKVideoPlayerController(
+            url: try localVideoURL(),
+            autoPlay: true,
+            loop: true
+        )
+
+        try await waitUntil { controller.state.isPlaying }
+        let initialItem = try XCTUnwrap(controller.player.currentItem)
+
+        try await seekNearLoopBoundary(controller)
+        try await waitUntil { controller.player.currentItem !== initialItem && controller.state.isPlaying }
+
+        controller.pause()
+
+        try await waitUntil { controller.state == .paused && controller.player.timeControlStatus == .paused }
+
+        XCTAssertEqual(controller.player.timeControlStatus, .paused)
+        XCTAssertEqual(controller.state, .paused)
     }
 
     /// Custom overlay — consumer-provided control in the bottom-trailing corner.
@@ -75,6 +120,36 @@ final class BPKVideoPlayerTests: XCTestCase {
             overlay()
         }
         .frame(width: 375, height: 500)
+    }
+
+    private func localVideoURL() throws -> URL {
+        guard let bundle = TestsBundle.bundle,
+              let url = bundle.url(forResource: "skyscanner_test", withExtension: "mp4") else {
+            throw XCTSkip("skyscanner_test.mp4 not found in test bundle")
+        }
+        return url
+    }
+
+    private func seekNearLoopBoundary(_ controller: BPKVideoPlayerController) async throws {
+        controller.seek(to: CMTime(seconds: 2.5, preferredTimescale: 600))
+        try await waitUntil({
+            let seconds = controller.player.currentTime().seconds
+            return seconds >= 2.4 && seconds < 2.9
+        }, timeout: 2)
+    }
+
+    private func waitUntil(
+        _ condition: @escaping () -> Bool,
+        timeout: TimeInterval = 5
+    ) async throws {
+        let deadline = Date().addingTimeInterval(timeout)
+        while !condition() {
+            if Date() >= deadline {
+                XCTFail("Timed out waiting for video-player state")
+                return
+            }
+            try await Task.sleep(nanoseconds: 50_000_000)
+        }
     }
 
 }
