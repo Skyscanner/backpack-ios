@@ -16,6 +16,7 @@
  * limitations under the License.
  */
 
+import AVFoundation
 import Foundation
 import XCTest
 import SwiftUI
@@ -59,10 +60,11 @@ final class BPKVideoPlayerTests: XCTestCase {
         try await waitUntil { controller.state == .readyToPlay }
         let initialItem = try XCTUnwrap(controller.player.currentItem)
 
+        try await seekNearLoopBoundary(controller)
         controller.play()
 
-        try await waitUntil { controller.player.currentItem !== initialItem }
-        try await waitUntil { controller.state.isPlaying }
+        try await waitUntil({ controller.player.currentItem !== initialItem }, timeout: 3)
+        try await waitUntil({ controller.state.isPlaying }, timeout: 3)
 
         XCTAssertEqual(controller.player.timeControlStatus, .playing)
         XCTAssertTrue(controller.state.isPlaying)
@@ -77,12 +79,13 @@ final class BPKVideoPlayerTests: XCTestCase {
 
         try await waitUntil { controller.state.isPlaying }
         let initialItem = try XCTUnwrap(controller.player.currentItem)
+
+        try await seekNearLoopBoundary(controller)
         try await waitUntil { controller.player.currentItem !== initialItem && controller.state.isPlaying }
 
         controller.pause()
 
-        try await waitUntil { controller.state == .paused }
-        try await Task.sleep(nanoseconds: 250_000_000)
+        try await waitUntil { controller.state == .paused && controller.player.timeControlStatus == .paused }
 
         XCTAssertEqual(controller.player.timeControlStatus, .paused)
         XCTAssertEqual(controller.state, .paused)
@@ -125,6 +128,14 @@ final class BPKVideoPlayerTests: XCTestCase {
             throw XCTSkip("skyscanner_test.mp4 not found in test bundle")
         }
         return url
+    }
+
+    private func seekNearLoopBoundary(_ controller: BPKVideoPlayerController) async throws {
+        controller.seek(to: CMTime(seconds: 2.5, preferredTimescale: 600))
+        try await waitUntil({
+            let seconds = controller.player.currentTime().seconds
+            return seconds >= 2.4 && seconds < 2.9
+        }, timeout: 2)
     }
 
     private func waitUntil(

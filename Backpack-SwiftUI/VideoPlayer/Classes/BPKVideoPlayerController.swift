@@ -100,6 +100,7 @@ public final class BPKVideoPlayerController: ObservableObject {
     var progressSeekID = 0
     private var isLoopItemTransitioning = false
     private var hasLoadedInitialItem = false
+    private var hasExplicitPauseRequest = false
 
     private var playerLooper: AVPlayerLooper?
     private var itemStatusObservation: NSKeyValueObservation?
@@ -167,6 +168,7 @@ public final class BPKVideoPlayerController: ObservableObject {
 
     public func play() {
         guard !UIAccessibility.isReduceMotionEnabled else { return }
+        hasExplicitPauseRequest = false
         if hasCompletedPlayback {
             seek(to: .zero)
         }
@@ -174,6 +176,7 @@ public final class BPKVideoPlayerController: ObservableObject {
     }
 
     public func pause() {
+        hasExplicitPauseRequest = true
         isLoopItemTransitioning = false
         player.pause()
         if state == .playing || state == .buffering {
@@ -232,7 +235,9 @@ public final class BPKVideoPlayerController: ObservableObject {
     }
 
     private func handleCurrentItemChange(_ item: AVPlayerItem?) {
-        isLoopItemTransitioning = loop && state == .playing
+        let transportIsActive = player.timeControlStatus == .playing ||
+            player.timeControlStatus == .waitingToPlayAtSpecifiedRate
+        isLoopItemTransitioning = loop && (state == .playing || state == .buffering || transportIsActive)
         observeItemStatus(item)
     }
 
@@ -259,7 +264,8 @@ public final class BPKVideoPlayerController: ObservableObject {
         loadTimeoutTask?.cancel()
         updateProgressDuration()
         isLoopItemTransitioning = false
-        let shouldAutoPlay = !hasLoadedInitialItem && autoPlay && !UIAccessibility.isReduceMotionEnabled
+        let shouldAutoPlay = !hasLoadedInitialItem && autoPlay &&
+            !hasExplicitPauseRequest && !UIAccessibility.isReduceMotionEnabled
         hasLoadedInitialItem = true
 
         switch player.timeControlStatus {
@@ -284,7 +290,9 @@ public final class BPKVideoPlayerController: ObservableObject {
         case .paused:
             // AVPlayerLooper briefly reports `.paused` while it replaces a completed item.
             // Wait for the replacement item's status before publishing a state change.
-            if !isLoopItemTransitioning {
+            let shouldPublishPause = state == .playing || state == .buffering ||
+                (hasExplicitPauseRequest && state == .readyToPlay)
+            if !isLoopItemTransitioning && shouldPublishPause {
                 transition(to: .paused)
             }
         case .waitingToPlayAtSpecifiedRate:
