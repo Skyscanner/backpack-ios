@@ -97,14 +97,7 @@ extension BPKCarouselSnapshotTest {
     }
     
     private func image(named: String) -> UIImage? {
-        guard let bundlePath = Bundle(for: Self.self).path(forResource: "SnapshotTestImages", ofType: "bundle") else {
-            XCTFail("Could not locate resource")
-            return nil
-        }
-        
-        let bundle = Bundle(path: bundlePath)
-        
-        guard let image = UIImage(named: named, in: bundle, compatibleWith: nil) else {
+        guard let image = testImage(named: named) else {
             XCTFail("Could not locate resource")
             return nil
         }
