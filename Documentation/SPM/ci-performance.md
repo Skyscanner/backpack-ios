@@ -11,37 +11,37 @@ This is what changed, measured.
 
 | | Before | After | Change |
 | --- | --- | --- | --- |
-| Time a developer waits for CI | 18.6 min | 9.1 min | **−51%** |
-| Machine time per run | 48.4 min | 23.4 min | **−52%** |
+| Time a developer waits for CI | 18.6 min | 8.8 min | **−53%** |
+| Machine time per run | 48.4 min | 22.5 min | **−53%** |
 | Jobs per run | 11 | 6 | −5 |
-| Machine time per year | ~970 hours | ~470 hours | **−500 hours** |
+| Machine time per year | ~970 hours | ~450 hours | **−520 hours** |
 
 Annual figures assume ~1,200 pull request and main-branch runs a year, from 300 in the last quarter.
 
-Runner speed varies from run to run. The two measured runs came in at 7.3 and 10.9 minutes of wall
-clock (20.6 and 26.3 runner-minutes); the figures above are the means. The before-figures come from
-25 runs, so they are steadier — expect the after-figures to move a little as more runs land.
+Runner speed varies from run to run. The three measured runs came in at 7.3, 8.1 and 10.9 minutes of
+wall clock (20.6, 20.8 and 26.3 runner-minutes); the figures above are the means. The before-figures
+come from 25 runs, so they are steadier — expect the after-figures to move a little as more runs land.
 
 ## Where the time went
 
 | Job | Before | After |
 | --- | --- | --- |
 | Testing Pods | 14.7 | removed |
-| Build Docs | 9.6 | 9.1 |
-| SwiftPM tests | 5.1 | 5.7 |
+| Build Docs | 9.6 | 8.8 |
+| SwiftPM tests | 5.1 | 5.4 |
 | Lint | 5.0 | 1.2 |
 | Analyzing pods (×3) | 8.4 | removed |
-| Install Dependencies | 3.6 | 3.3 |
-| SwiftPM build | 2.0 | 1.8 |
-| Build Example app | — | 2.4 |
+| Install Dependencies | 3.6 | 3.2 |
+| SwiftPM build | 2.0 | 1.7 |
+| Build Example app | — | 2.2 |
 | Upload artifacts | 0.1 | folded into the test job |
-| **Total** | **48.4** | **23.4** |
+| **Total** | **48.4** | **22.5** |
 
 Two numbers are worth pausing on.
 
 **Lint went from 5.0 to 1.2 minutes.** Almost all of that job was `pod install`, not linting.
 
-**The test job went from 19.8 to 5.7 minutes** and now covers more. Before, `Testing Pods` (14.7) and
+**The test job went from 19.8 to 5.4 minutes** and now covers more. Before, `Testing Pods` (14.7) and
 the SwiftPM test job (5.1) ran the same components twice through two build systems.
 
 Build Docs barely moved, which is the point of the next section.
@@ -58,7 +58,7 @@ Everything waited on `Install Dependencies`, including the SwiftPM jobs, which n
 ruby. Then `Testing Pods` ran three suites back to back through the CocoaPods workspace.
 
 Now the SwiftPM jobs start immediately and the whole build-and-test chain finishes in about
-6 minutes. The longest job is Build Docs at 9.1 minutes, which runs in parallel with everything else.
+6 minutes. The longest job is Build Docs at 8.8 minutes, which runs in parallel with everything else.
 **Documentation is now the critical path** — it is the only thing left setting the wait, and the next
 place to look if this needs to get faster.
 
@@ -117,9 +117,9 @@ Job durations come from the GitHub Actions API
 - **Before:** the 25 most recent successful `pr` runs prior to this change. Per-job figures are means;
   the wall-clock figure is the median, because one run in the sample sat in a queue for two hours and
   would otherwise distort it.
-- **After:** the two `pr` runs on the pull request that made the change, averaged. Two runs is a small
-  sample and runner speed varies, so treat the after-figures as indicative rather than settled; the
-  individual runs are given above. They will firm up as runs land on `main`.
+- **After:** the three `pr` runs on the pull request that made the change, averaged. Three runs is a
+  small sample and runner speed varies, so treat the after-figures as indicative rather than settled;
+  the individual runs are given above. They will firm up as runs land on `main`.
 - **Wall clock** is first job start to last job finish: what a developer actually waits for. It
   excludes queueing, which depends on runner availability rather than on this change.
 - **Machine time** is the sum of all job durations, which is what the runners are billed for.
