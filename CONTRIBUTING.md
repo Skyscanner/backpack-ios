@@ -414,13 +414,12 @@ As new versions of Xcode and iOS are released, we have to upgrade both to stay u
 
 ### How to upgrade
 
-1. Change the value of `runs-on` in [`ci.yml`](./.github/workflows/ci.yml#26). The new value should be on of the [available environments](https://github.com/actions/virtual-environments/tree/main/images/macos) in GitHub Actions.
-1. Update the `BUILD_SDK` variable in [`Rakefile`](./Rakefile#5) to the new build SDK we should use.
-1. Update `correctMajorVersion` and `correctMinorVersion` in [`BPKSnapshotTest`](./Example/SnapshotTests/BPKSnapshotTest.h).
-1. Update `expectedMajorVersion` and `expectedMinorVersion` in [`BPKSnapshotTest.swift`](./Example/SnapshotTests/BPKSnapshotTest.swift#26).
+1. Change the value of `runs-on` in the workflows that build and test on macOS: [`_build.yml`](./.github/workflows/_build.yml), [`_test.yml`](./.github/workflows/_test.yml), [`_build-docs.yml`](./.github/workflows/_build-docs.yml), [`_spm-build.yml`](./.github/workflows/_spm-build.yml) and [`_spm-test.yml`](./.github/workflows/_spm-test.yml). The new value should be one of the [available environments](https://github.com/actions/runner-images/tree/main/images/macos) in GitHub Actions.
+1. Update the steps that run `xcode-select --switch` in [`_build.yml`](./.github/workflows/_build.yml), [`_test.yml`](./.github/workflows/_test.yml) and [`_build-docs.yml`](./.github/workflows/_build-docs.yml), and check the Xcode version you pick is installed on the runner image chosen above.
+1. Update the simulator we test against to the new iOS version. This is pinned in three places: the `DESTINATION` default and the `simctl` runtime filter below it in [`scripts/ci`](./scripts/ci), the `SPM_DESTINATION` environment variable in [`_spm-build.yml`](./.github/workflows/_spm-build.yml) and [`_spm-test.yml`](./.github/workflows/_spm-test.yml), and the `SIM_RUNTIME` default in [`scripts/install-sim`](./scripts/install-sim).
 1. Run all snapshot tests.
 1. **Review the failing snapshots thoroughly.** Most likely, all snapshots will have changed, **but** the diffs should be miniscule and mostly to do with changes in Apple's fonts.
-1. **Run all snapshot tests in record mode.** At the time of writing this involves manually setting `recordMode` in every test case, we should have a better method than this, but alas we don't :(
+1. **Re-record the snapshots.** Push a commit whose message is exactly `Record snapshots` as the most recent commit on your pull request. That triggers [`snapshot.yml`](./.github/workflows/snapshot.yml), which re-runs the suite with `retake_snapshots`, deletes the existing `__Snapshots__` directories and commits the newly recorded images back to your branch.
 1. Manually test the example app with the new version.
 </details>
 
