@@ -1,5 +1,18 @@
 [Latest releases](https://github.com/Skyscanner/backpack-ios/releases).
 
+# Deprecations
+
+**CocoaPods support is deprecated.**
+
+Swift Package Manager is the supported way to consume Backpack. The `Backpack`,
+`Backpack-Common` and `Backpack-SwiftUI` pods are still published and existing Podfiles keep
+working, but they will stop being published once the deprecation window closes. That date is
+being agreed with the Backpack maintainers and will be announced here and in the release notes
+before anything is removed.
+
+Backpack is no longer built, tested or documented through CocoaPods internally. See
+[Documentation/SPM](Documentation/SPM/README.md).
+
 # 50.1.0
 
 **Added:**

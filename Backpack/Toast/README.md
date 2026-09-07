@@ -12,12 +12,12 @@
 
 ## Installation
 
-In `Podfile` add
+Add the `Backpack` product from the [backpack-ios](https://github.com/Skyscanner/backpack-ios)
+Swift package to your target, then
 
-```ruby
-pod 'Backpack'
+```swift
+import Backpack
 ```
-and then run `pod install`.
 
 ## Usage
 

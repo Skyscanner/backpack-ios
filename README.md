@@ -17,22 +17,47 @@
 
 ## Installation
 
-Backpack is available through [CocoaPods](https://cocoapods.org). To install
-all of it, simply add the following line to your Podfile:
+Backpack is distributed through [Swift Package Manager](https://swift.org/package-manager/).
 
-```ruby
-pod 'Backpack'
+In Xcode, choose **File → Add Package Dependencies** and enter:
+
+```
+https://github.com/Skyscanner/backpack-ios
 ```
 
-Backpack is also available for SwiftUI. To install, simply add the following line to your Podfile:
-> Backpack-SwiftUI is currently in development and supports a subset of components only.
-```ruby
-pod 'Backpack-SwiftUI'
+Or add it to a `Package.swift`:
+
+```swift
+dependencies: [
+  .package(url: "https://github.com/Skyscanner/backpack-ios", from: "92.1.0")
+]
 ```
 
-### Swift Package Manager Example workspace
+Four products are available: `Backpack` (UIKit), `Backpack-SwiftUI`, `Backpack-Common` and
+`Backpack-Fonts`. Depend on the ones you need:
 
-If you want to experiment with Backpack through Swift Package Manager, open `Example/Backpack-SPM.xcworkspace`. The workspace shares the same example app targets but resolves Backpack, Backpack-SwiftUI, Backpack-Common, and Backpack-Fonts through the package manifest instead of CocoaPods. The `Backpack-Native` target runs the `Backpack-Fonts/Scripts/download-relative-fonts.rb` helper automatically so Skyscanner employees always get the proprietary fonts; ensure you have the required network/VPN access (see [Relative font](CONTRIBUTING.md#skyscanner-employees)).
+```swift
+.target(
+  name: "YourApp",
+  dependencies: [
+    .product(name: "Backpack", package: "backpack-ios"),
+    .product(name: "Backpack-SwiftUI", package: "backpack-ios")
+  ]
+)
+```
+
+### CocoaPods (deprecated)
+
+> [!WARNING]
+> CocoaPods support is deprecated. The `Backpack`, `Backpack-Common` and `Backpack-SwiftUI` pods are
+> still published, and existing Podfiles keep working for now, but the pods will stop being published
+> once the deprecation window closes. The date is being agreed with the Backpack maintainers and will
+> be announced here and in the release notes before anything is removed. New integrations should use
+> Swift Package Manager.
+
+Backpack is no longer built or tested through CocoaPods internally: CI, the Example app and the
+reference documentation all run on Swift Package Manager. See
+[Documentation/SPM](Documentation/SPM/README.md) for the details of that move.
 
 ## Documentation
 

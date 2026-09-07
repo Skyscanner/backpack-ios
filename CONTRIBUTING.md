@@ -32,7 +32,7 @@ Please follow the [Swift Style Guide](https://google.github.io/swift/) when writ
 Run the following commands from your terminal, these should be run from the root of the project. 
 
 - `./fullsetup` to install all dependencies
-- `open Example/Backpack.xcworkspace` to open the example project
+- `open Example/Backpack-SPM.xcworkspace` to open the example project
 
 ## Adding a new component
 If you want to add a new component, we will need the following:
@@ -398,11 +398,10 @@ Our fonts can only be used by Skyscanner employees. If you don't work for Skysca
 To use our `Skyscanner Relative` font-face in the example app do the following:
 
 - Make sure you're connected to the VPN.
-- If you've already done a `pod install`, delete `Example/Pods`.
 - Set the environment variable using `export BPK_USE_RELATIVE=1`. (Put this in your `.bashrc`/`.zshrc` for convenience.)
 - Setup the project as [above](#setup).
 
-During pod install, fonts will be downloaded and made available to the project automatically. When working purely with the Swift Package Manager workspace, run `BPK_USE_RELATIVE=1 ./Scripts/download-relative-fonts.rb` from `Backpack-Fonts/` before building so that the `Backpack-Fonts` package has the font assets to bundle.
+The Example app's `Backpack-Native` target downloads the fonts as a build phase, so they are fetched automatically the first time you build. To fetch them by hand, run `BPK_USE_RELATIVE=1 ./Scripts/download-relative-fonts.rb` from `Backpack-Fonts/`.
 </details>
 
 <details>

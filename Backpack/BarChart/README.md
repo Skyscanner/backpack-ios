@@ -12,13 +12,12 @@
 
 ## Installation
 
-In `Podfile` add
+Add the `Backpack` product from the [backpack-ios](https://github.com/Skyscanner/backpack-ios)
+Swift package to your target, then
 
+```swift
+import Backpack
 ```
-pod 'Backpack/BarChart'
-```
-
-and then run `pod install`.
 
 ## Usage
 
