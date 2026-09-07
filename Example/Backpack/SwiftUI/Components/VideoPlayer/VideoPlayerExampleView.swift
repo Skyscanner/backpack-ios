@@ -111,21 +111,16 @@ struct VideoGraphicPromoExampleView: View {
 // MARK: - Use case 2: Fullscreen with custom UI overlay (placeholder)
 
 struct VideoFullscreenExampleView: View {
-    // When injected (use case 3), playback continues uninterrupted across the transition.
-    // When nil (use case 2 standalone), owns its own controller.
-    @StateObject private var ownedController = BPKVideoPlayerController(
-        url: SampleVideo.url,
-        autoPlay: true,
-        loop: true
-    )
-    private let injectedController: BPKVideoPlayerController?
+    @StateObject private var activeController: BPKVideoPlayerController
 
     init(controller: BPKVideoPlayerController? = nil) {
-        self.injectedController = controller
-    }
-
-    private var activeController: BPKVideoPlayerController {
-        injectedController ?? ownedController
+        _activeController = StateObject(
+            wrappedValue: controller ?? BPKVideoPlayerController(
+                url: SampleVideo.url,
+                autoPlay: true,
+                loop: true
+            )
+        )
     }
 
     var body: some View {
