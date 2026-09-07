@@ -16,7 +16,8 @@
  * limitations under the License.
  */
 
-@objc public protocol BPKFontDefinitionProtocol: NSObjectProtocol {
+@objc
+public protocol BPKFontDefinitionProtocol: NSObjectProtocol {
     var fontFamily: NSString { get }
     var regularFontFace: NSString { get }
     var semiboldFontFace: NSString { get }

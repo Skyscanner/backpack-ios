@@ -18,8 +18,8 @@ defaults:
 permissions: {}
 
 jobs:
-  TestPods:
-    name: Testing Pods
+  TestSwiftPM:
+    name: SwiftPM Tests
     runs-on: macos-15
     timeout-minutes: 40
     outputs:
@@ -37,50 +37,27 @@ jobs:
           token: ${{ steps.app-token.outputs.token }}
           persist-credentials: false
 
-      - name: Set up node and ruby
-        uses: asdf-vm/actions/install@b7bcd026f18772e44fe1026d729e1611cc435d47 # v4.0.1
-
-      - name: Cache Bundler install Gems
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ env.ImageVersion }}-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-${{ env.ImageVersion }}
-
-      - name: Cache Pods
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        with:
-          path: Example/Pods
-          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-pods-
-
-      - name: Bundle Install
-        run: bundle install --jobs 4 --retry 3
-
-      - name: Pod Install
-        run: bundle exec pod install
-        working-directory: Example
-
-      - name: Select Xcode 16
-        run: sudo xcode-select --switch /Applications/Xcode_16.4.app
+      - name: Setup SwiftPM workspace
+        uses: ./.github/actions/spm-setup
 
       - name: Remove snapshots
         if: ${{inputs.retake_snapshots}}
         run: find . -type d -name "__Snapshots__" -exec rm -rf {}  +;
 
-      - name: Run UIKit tests
-        run: ./scripts/ci uikit test
+      - name: Run Backpack Swift Package tests
+        env:
+          SPM_DESTINATION: platform=iOS Simulator,name=iPhone SE (3rd generation),OS=18.5
         continue-on-error: ${{inputs.retake_snapshots}}
-
-      - name: Run SwiftUI tests
-        run: ./scripts/ci swiftui test
-        continue-on-error: ${{inputs.retake_snapshots}}
-
-      - name: Run Common tests
-        run: ./scripts/ci common test
-        continue-on-error: ${{inputs.retake_snapshots}}
+        run: |
+          set -eo pipefail
+          xcodebuild \
+            -workspace .swiftpm/xcode/package.xcworkspace \
+            -scheme Backpack-Package \
+            -destination "$SPM_DESTINATION" \
+            -derivedDataPath .derivedData \
+            -skipPackagePluginValidation \
+            -skipMacroValidation \
+            test
 
       - name: Check snapshot changes
         id: checkSnapshotChanges
@@ -101,15 +78,23 @@ jobs:
           git diff-index --quiet HEAD || git commit -m "Updated snapshots"
           git push
 
-  TestSwiftPM:
-    name: SwiftPM Tests
-    uses: ./.github/workflows/_spm-test.yml
+      - name: Upload failure diffs
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: ${{ failure() }}
+        with:
+          name: FailureDiffs
+          path: .derivedData/Logs/Test
+          if-no-files-found: ignore
+
+      - name: Clean derived data
+        if: always()
+        run: rm -rf .derivedData
 
   NotifyChanges:
     name: "Notify about changes made"
     runs-on: ubuntu-22.04
-    needs: [TestPods]
-    if: ${{ needs.TestPods.outputs.changed-files != '' &&  inputs.retake_snapshots}}
+    needs: [TestSwiftPM]
+    if: ${{ needs.TestSwiftPM.outputs.changed-files != '' &&  inputs.retake_snapshots}}
     steps:
       - uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
         id: app-token
@@ -120,7 +105,7 @@ jobs:
       - name: Notify PR of screenshots changes
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         env:
-          CHANGED_FILES: ${{ needs.TestPods.outputs.changed-files }}
+          CHANGED_FILES: ${{ needs.TestSwiftPM.outputs.changed-files }}
         with:
           github-token: ${{ steps.app-token.outputs.token }}
           script: |

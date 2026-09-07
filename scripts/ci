@@ -1,13 +1,16 @@
 #!/bin/bash
 set -e
 
-EXAMPLE_WORKSPACE="Example/Backpack.xcworkspace"
+# Builds the SwiftPM Example app. The package itself is built and tested by
+# _spm-build.yml / _spm-test.yml against .swiftpm/xcode/package.xcworkspace;
+# this covers the Example app that consumes the package, which is the closest
+# thing the repo has to a real consumer integration.
+
 SPM_EXAMPLE_WORKSPACE="Example/Backpack-SPM.xcworkspace"
 SPM_EXAMPLE_SCHEME=${SPM_EXAMPLE_SCHEME:-'Backpack Native'}
 SWIFT=${SWIFT:-'5.0'}
 BUILD_SDK=${BUILD_SDK:-'iphonesimulator'}
 DESTINATION=${DESTINATION:-"platform=iOS Simulator,name=iPhone SE (3rd generation),OS=18.5"}
-
 
 # --------------------------------------------------------------------
 # CI: Pick the iOS 18.5 "iPhone SE (3rd generation)" simulator
@@ -17,10 +20,6 @@ DESTINATION=${DESTINATION:-"platform=iOS Simulator,name=iPhone SE (3rd generatio
 if [[ -n "$CI" && "$DESTINATION" == "platform=iOS Simulator,name=iPhone SE (3rd generation),OS=18.5" ]]; then
   echo "CI detected. Selecting iOS 18.5 'iPhone SE (3rd generation)' simulator via simctl..."
 
-  # Ask simctl only for devices in the iOS 18.5 runtime.
-  # On Xcode 16.x this is usually "iOS 18.5" or the runtime identifier
-  # com.apple.CoreSimulator.SimRuntime.iOS-18-5. The plain "iOS 18.5"
-  # form is nicer and supported.
   DEVICE_UDID=$(
     xcrun simctl list devices "iOS 18.5" | \
       grep "iPhone SE (3rd generation)" | \
@@ -41,35 +40,7 @@ fi
 
 # --------------------------------------------------------------------
 
-function analyze() {
-    xcodebuild analyze \
-        -workspace $EXAMPLE_WORKSPACE \
-        -scheme "$1" \
-        SWIFT_VERSION=$SWIFT \
-        -sdk $BUILD_SDK \
-        -destination "$(echo $DESTINATION)" \
-        ONLY_ACTIVE_ARCH=YES 2>&1
-}
-
-function runTests() {
-    local scheme="$1"
-    shift
-
-    xcodebuild test \
-        -enableCodeCoverage YES \
-        -workspace $EXAMPLE_WORKSPACE \
-        -scheme "$scheme" \
-        SWIFT_VERSION=$SWIFT \
-        -sdk $BUILD_SDK \
-        -destination "$(echo $DESTINATION)" \
-        ONLY_ACTIVE_ARCH=YES \
-        "$@" 2>&1
-}
-
 function buildSpmExample() {
-    echo "Checking SPM and CocoaPods projects are in sync"
-    ./scripts/check-spm-project-sync
-
     echo "Building SPM Example app ($SPM_EXAMPLE_SCHEME)"
 
     xcodebuild build \
@@ -81,41 +52,4 @@ function buildSpmExample() {
         ONLY_ACTIVE_ARCH=YES 2>&1
 }
 
-function check_modules() {
-    if [ $2 == "test" ]; then
-        if [ $1 == "uikit" ]; then
-            runTests "Backpack-Snapshot-Tests"
-            runTests "Backpack-Unit-Tests"
-
-        elif [ $1 == "uitests" ]; then
-            runTests "Backpack-UI-Tests"
-
-        elif [ $1 == "swiftui" ]; then
-            runTests "Backpack SwiftUI"
-
-        elif [ $1 == "common" ]; then
-            runTests "Backpack-Common-Tests"
-        fi
-    elif [ $2 == "analysis" ]; then
-        if [ $1 == "uikit" ]; then
-            analyze "Backpack Native"
-
-        elif [ $1 == "swiftui" ]; then
-            analyze "Backpack SwiftUI"
-
-        elif [ $1 == "common" ]; then
-            analyze "Backpack-Common"
-        fi
-    fi
-}
-
-if [ $# -lt 2 ]; then
-    echo "No arguments provided. Running all tests."
-    check_modules "uikit" "test"
-    check_modules "swiftui" "test"
-    check_modules "common" "test"
-    check_modules "uitests" "test"
-    buildSpmExample
-else
-    check_modules $1 $2
-fi
+buildSpmExample
