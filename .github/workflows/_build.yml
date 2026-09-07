@@ -73,11 +73,16 @@ jobs:
       - name: Install SwiftLint
         env:
           SWIFTLINT_VERSION: 0.65.1
+          # SHA256 of portable_swiftlint.zip for the version above. Update both
+          # together; the job fails closed if the download does not match.
+          SWIFTLINT_SHA256: c1e429b0599cf1b516f369a2d9ec04eaf0e436f3c12b637df8851fa52ff694d0
         run: |
           set -eo pipefail
-          curl -fsSL -o "${RUNNER_TEMP}/swiftlint.zip" \
+          archive="${RUNNER_TEMP}/swiftlint.zip"
+          curl -fsSL -o "$archive" \
             "https://github.com/realm/SwiftLint/releases/download/${SWIFTLINT_VERSION}/portable_swiftlint.zip"
-          unzip -q -o "${RUNNER_TEMP}/swiftlint.zip" -d "${RUNNER_TEMP}/swiftlint"
+          echo "${SWIFTLINT_SHA256}  ${archive}" | shasum -a 256 -c -
+          unzip -q -o "$archive" -d "${RUNNER_TEMP}/swiftlint"
           echo "${RUNNER_TEMP}/swiftlint" >> "$GITHUB_PATH"
 
       - name: Discard changes to Gemfile.lock

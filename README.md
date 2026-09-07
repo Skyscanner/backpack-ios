@@ -55,8 +55,10 @@ Four products are available: `Backpack` (UIKit), `Backpack-SwiftUI`, `Backpack-C
 > be announced here and in the release notes before anything is removed. New integrations should use
 > Swift Package Manager.
 
-Backpack is no longer built or tested through CocoaPods internally: CI, the Example app and the
-reference documentation all run on Swift Package Manager. See
+CocoaPods [entered maintenance mode](https://blog.cocoapods.org/CocoaPods-Support-Plans/) in
+August 2024, and Swift Package Manager is the actively developed, Xcode-native way to depend on
+Backpack. Backpack is no longer built, tested or documented through CocoaPods: CI, the Example app
+and the reference documentation all run on Swift Package Manager. See
 [Documentation/SPM](Documentation/SPM/README.md) for the details of that move.
 
 ## Documentation

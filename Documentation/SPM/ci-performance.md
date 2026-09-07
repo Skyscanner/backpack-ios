@@ -1,11 +1,15 @@
 # CI performance: removing CocoaPods
 
 Backpack was built and tested twice on every pull request — once through CocoaPods, once through
-Swift Package Manager. The app itself moved to SwiftPM in
-[DON-3681](https://skyscanner.atlassian.net/browse/DON-3681), so the CocoaPods half had stopped
-paying for itself. [DON-3723](https://skyscanner.atlassian.net/browse/DON-3723) removed it.
+Swift Package Manager.
 
-This is what changed, measured.
+CocoaPods [entered maintenance mode](https://blog.cocoapods.org/CocoaPods-Support-Plans/) in
+August 2024: its maintainers aim for around two releases a year to keep pace with Xcode, and work is
+largely driven by security issues and Xcode breaking changes rather than active development. Swift
+Package Manager is the actively developed, Xcode-native path, and it is how Backpack's consumers now
+integrate it. Carrying both meant every component change paid for two build systems.
+
+So the CocoaPods half was removed. This is what changed, measured.
 
 ## Headline
 
@@ -99,15 +103,14 @@ caused by exactly that:
 - The SwiftPM Example project still referenced the CocoaPods project internally, which would have
   broken the moment that project was deleted.
 
-Neither was anyone's mistake; they are what happens when two systems describe the same app.
-[DON-3592](https://skyscanner.atlassian.net/browse/DON-3592) and
-[DON-2800](https://skyscanner.atlassian.net/browse/DON-2800) are earlier examples of the same class.
+Neither was anyone's mistake; they are what happens when two systems describe the same app. Keeping
+the two integration paths at parity had been a recurring source of defects for some time.
 
 ## Still to do
 
 Phase 2 removes the four podspecs and the publishing pipeline. It needs the Backpack maintainers to
-agree a deprecation window first, because the pods are public and used outside Skyscanner. Until
-then the pods still publish and existing Podfiles keep working.
+agree a deprecation window first, because the pods are published publicly and consumed outside this
+repository. Until then the pods still publish and existing Podfiles keep working.
 
 ## How this was measured
 

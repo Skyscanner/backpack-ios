@@ -10,7 +10,8 @@ working, but they will stop being published once the deprecation window closes. 
 being agreed with the Backpack maintainers and will be announced here and in the release notes
 before anything is removed.
 
-Backpack is no longer built, tested or documented through CocoaPods internally. See
+CocoaPods [entered maintenance mode](https://blog.cocoapods.org/CocoaPods-Support-Plans/) in
+August 2024. Backpack is no longer built, tested or documented through CocoaPods. See
 [Documentation/SPM](Documentation/SPM/README.md).
 
 # 50.1.0
