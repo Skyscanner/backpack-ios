@@ -31,9 +31,10 @@ The templates themselves are in `templates` and are called `*.{finalExtension}.n
 * [`Gemfile.lock`](./Gemfile.lock) Bundler, lockfile.
 * [`Backpack.podspec`](./Backpack.podspec) the project's podspec. CocoaPods is deprecated (see [Documentation/SPM](./Documentation/SPM/README.md)); the podspecs are kept only until the deprecation window closes.
 
-We use Ruby and [`Bundler`](https://bundler.io/) to perform most other automation and management of the project. The two most important gems we use are:
+We use Ruby and [`Bundler`](https://bundler.io/) to perform most other automation and management of the project. The three most important gems we use are:
 
+* `cocoapods` publishing the podspecs to the CocoaPods trunk. Deprecated, and used only by the release workflow; it is no longer part of the build, test or documentation pipelines.
 * `fastlane` iOS project automation, used for taking our screenshots.
-* `jazzy` generates static HTML documentation from our reference docs, which is published at https://backpack.github.io/ios. Note that `jazzy` still pulls `cocoapods` in as a transitive dependency, which is why it remains in `Gemfile.lock`.
+* `jazzy` generates static HTML documentation from our reference docs, which is published at https://backpack.github.io/ios.
 
 We have a fair amount of automation in `Rakefile` that might be more suited for `fastlane` e.g. building the project, running the tests, etc.

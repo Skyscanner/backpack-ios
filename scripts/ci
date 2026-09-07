@@ -2,7 +2,7 @@
 set -e
 
 # Builds the SwiftPM Example app. The package itself is built and tested by
-# _spm-build.yml / _spm-test.yml against .swiftpm/xcode/package.xcworkspace;
+# _spm-build.yml / _test.yml against .swiftpm/xcode/package.xcworkspace;
 # this covers the Example app that consumes the package, which is the closest
 # thing the repo has to a real consumer integration.
 
