@@ -69,6 +69,9 @@ public final class BPKVideoPlayerController: ObservableObject {
     /// The current playback state. Drives all UI — spinner, play/pause icon, error view.
     @Published public private(set) var state: BPKVideoPlayerState = .loading
 
+    /// Whether the player is muted. Drives custom mute controls.
+    @Published public private(set) var isMuted = false
+
     // MARK: - Playback progress
 
     /// The latest playback progress, or `nil` until duration is known.
@@ -103,6 +106,7 @@ public final class BPKVideoPlayerController: ObservableObject {
     private var hasExplicitPauseRequest = false
 
     private var playerLooper: AVPlayerLooper?
+    private var mutedObservation: NSKeyValueObservation?
     private var itemStatusObservation: NSKeyValueObservation?
     private var timeControlObservation: NSKeyValueObservation?
     private var currentItemObservation: NSKeyValueObservation?
@@ -159,6 +163,7 @@ public final class BPKVideoPlayerController: ObservableObject {
         itemStatusObservation?.invalidate()
         timeControlObservation?.invalidate()
         currentItemObservation?.invalidate()
+        mutedObservation?.invalidate()
         stopProgressObserving()
         loadTimeoutTask?.cancel()
         lifecycleTokens.forEach { NotificationCenter.default.removeObserver($0) }
@@ -192,6 +197,21 @@ public final class BPKVideoPlayerController: ObservableObject {
         }
     }
 
+    /// Mutes the player.
+    public func mute() {
+        player.isMuted = true
+    }
+
+    /// Unmutes the player.
+    public func unmute() {
+        player.isMuted = false
+    }
+
+    /// Toggles the player's muted state.
+    public func toggleMute() {
+        player.isMuted.toggle()
+    }
+
     public func seek(to time: CMTime) {
         let seekID = prepareProgressForSeek(to: time)
         player.seek(to: time, toleranceBefore: .zero, toleranceAfter: .zero) { [weak self] finished in
@@ -213,6 +233,10 @@ public final class BPKVideoPlayerController: ObservableObject {
     private func observePlayer() {
         startProgressObserving()
 
+        mutedObservation = player.observe(\.isMuted, options: [.initial, .new]) { [weak self] player, _ in
+            DispatchQueue.main.async { self?.handle(muted: player.isMuted) }
+        }
+
         // timeControlStatus is the primary playing/paused/buffering signal
         timeControlObservation = player.observe(\.timeControlStatus, options: [.new]) { [weak self] player, _ in
             DispatchQueue.main.async { self?.handle(timeControlStatus: player.timeControlStatus) }
@@ -232,6 +256,11 @@ public final class BPKVideoPlayerController: ObservableObject {
         itemStatusObservation = item.observe(\.status, options: [.new, .initial]) { [weak self] item, _ in
             DispatchQueue.main.async { self?.handle(itemStatus: item.status, for: item) }
         }
+    }
+
+    private func handle(muted: Bool) {
+        guard isMuted != muted else { return }
+        isMuted = muted
     }
 
     private func handleCurrentItemChange(_ item: AVPlayerItem?) {

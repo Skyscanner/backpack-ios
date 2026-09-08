@@ -82,6 +82,22 @@ BPKVideoPlayer(url: videoURL, autoPlay: true) { controller in
 }
 ```
 
+## Mute control
+
+`BPKVideoPlayerController` exposes the observable `isMuted` state and `mute()`, `unmute()`, and `toggleMute()` actions for custom controls:
+
+```swift
+BPKVideoPlayer(url: videoURL, autoPlay: true) { controller in
+    Button(action: controller.toggleMute) {
+        Image(systemName: controller.isMuted ? "speaker.slash.fill" : "speaker.fill")
+    }
+    .accessibilityLabel(controller.isMuted ? "Unmute video" : "Mute video")
+    .accessibilityValue(controller.isMuted ? "Muted" : "Unmuted")
+}
+```
+
+The existing `player` property remains available for source compatibility, and direct `player.isMuted` changes are reflected in `controller.isMuted`.
+
 ## No controls — as a video background
 
 Return `EmptyView()` from the overlay closure to get a pure video surface, e.g. as the background of a `BPKGraphicPromo`:

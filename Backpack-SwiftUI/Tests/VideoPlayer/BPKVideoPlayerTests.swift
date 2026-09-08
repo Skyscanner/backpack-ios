@@ -50,6 +50,36 @@ final class BPKVideoPlayerTests: XCTestCase {
 
     // MARK: - Controller playback state
 
+    func test_muteActions_publishObservableState() async throws {
+        let controller = BPKVideoPlayerController.stub()
+
+        XCTAssertFalse(controller.isMuted)
+
+        controller.mute()
+        try await waitUntil { controller.isMuted }
+        XCTAssertTrue(controller.player.isMuted)
+
+        controller.unmute()
+        try await waitUntil { !controller.isMuted }
+        XCTAssertFalse(controller.player.isMuted)
+
+        controller.toggleMute()
+        try await waitUntil { controller.isMuted }
+        XCTAssertTrue(controller.player.isMuted)
+    }
+
+    func test_isMuted_tracksLegacyPlayerMutation() async throws {
+        let controller = BPKVideoPlayerController.stub()
+
+        controller.player.isMuted = true
+        try await waitUntil { controller.isMuted }
+        XCTAssertTrue(controller.isMuted)
+
+        controller.player.isMuted = false
+        try await waitUntil { !controller.isMuted }
+        XCTAssertFalse(controller.isMuted)
+    }
+
     func test_loopingPlayback_remainsPlayingWhenCurrentItemChanges() async throws {
         let controller = BPKVideoPlayerController(
             url: try localVideoURL(),
