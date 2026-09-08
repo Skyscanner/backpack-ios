@@ -18,6 +18,13 @@
 
 import SwiftUI
 
+private enum BPKPageIndicatorConstants {
+    /// Higher than the `lineOnDarkColor` token's default 50%: a more opaque dot
+    /// blends less into the underlying image, improving contrast while keeping
+    /// the same overall look as before.
+    static let overImageInactiveDotAlpha: CGFloat = 0.9
+}
+
 public struct BPKPageIndicator: UIViewRepresentable {
     public enum Variant {
         case `default`, overImage
@@ -53,10 +60,22 @@ public struct BPKPageIndicator: UIViewRepresentable {
         case .`default`:
             uiView.currentPageIndicatorTintColor = BPKColor.textSecondaryColor.value
             uiView.pageIndicatorTintColor = BPKColor.lineColor.value
+            uiView.backgroundColor = .clear
         case .overImage:
-            uiView.currentPageIndicatorTintColor = BPKColor.textOnDarkColor.value
-            uiView.pageIndicatorTintColor = BPKColor.lineOnDarkColor.value
+            applyOverImageStyle(to: uiView)
         }
+    }
+
+    /// The `.overImage` variant sits on top of arbitrary, unpredictable image content.
+    /// `lineOnDarkColor`'s default 50% alpha made the inactive dots blend into light
+    /// or bright images. Raising the alpha keeps the exact same look and colors as
+    /// before, just less transparent, improving contrast without any other visual change.
+    private func applyOverImageStyle(to uiView: UIPageControl) {
+        uiView.currentPageIndicatorTintColor = BPKColor.textOnDarkColor.value
+        uiView.pageIndicatorTintColor = BPKColor.textOnDarkColor.value.withAlphaComponent(
+            BPKPageIndicatorConstants.overImageInactiveDotAlpha
+        )
+        uiView.backgroundColor = .clear
     }
 
     public func makeCoordinator() -> Coordinator {
