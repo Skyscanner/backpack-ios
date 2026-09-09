@@ -20,8 +20,8 @@
 
 #import <Backpack/Button.h>
 #import <Backpack/Color.h>
-#import <Backpack/Font.h>
 #import <Backpack/Common.h>
+#import <Backpack/Font.h>
 #import <Backpack/Label.h>
 #import <Backpack/Spacing.h>
 

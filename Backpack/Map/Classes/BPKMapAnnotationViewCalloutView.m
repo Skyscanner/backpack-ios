@@ -20,9 +20,9 @@
 
 #import <Backpack/BorderWidth.h>
 #import <Backpack/Color.h>
-#import <Backpack/Font.h>
 #import <Backpack/Common.h>
 #import <Backpack/FlareView.h>
+#import <Backpack/Font.h>
 #import <Backpack/Icon.h>
 #import <Backpack/Label.h>
 #import <Backpack/Shadow.h>

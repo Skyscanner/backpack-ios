@@ -31,7 +31,6 @@
 #import "TappableLinkLabel.h"
 #import "UIView+BPKThemeContainer.h"
 
-
 NS_ASSUME_NONNULL_BEGIN
 
 static NSString *BPKThemeDidChangeNotification = @"BPKThemeDidChangeNotification";
@@ -89,7 +88,6 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) { BPKGrayColor50, BPKGrayColor100, BPKG
 
     BPKStar *starAppearance = [BPKStar appearanceWhenContainedInInstancesOfClasses:@[class]];
     starAppearance.starFilledColor = theme.starFilledColor;
-
 }
 
 @end

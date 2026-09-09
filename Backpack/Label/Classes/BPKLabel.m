@@ -19,8 +19,8 @@
 #import "BPKLabel.h"
 
 #import <Backpack/Color.h>
-#import <Backpack/Font.h>
 #import <Backpack/Common.h>
+#import <Backpack/Font.h>
 
 #import "BPKFontManager.h"
 #import "BPKTextDefinition.h"

@@ -19,8 +19,8 @@
 
 #import <Backpack/BorderWidth.h>
 #import <Backpack/Color.h>
-#import <Backpack/Font.h>
 #import <Backpack/Common.h>
+#import <Backpack/Font.h>
 #import <Backpack/Radii.h>
 
 NS_ASSUME_NONNULL_BEGIN
