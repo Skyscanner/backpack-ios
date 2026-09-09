@@ -168,6 +168,22 @@ final class BPKVideoPlayerTests: XCTestCase {
         XCTAssertEqual(controller.state, .paused)
     }
 
+    func test_loopingPlayback_doesNotRemainTransitioningWhenCurrentItemBecomesNil() async throws {
+        let controller = BPKVideoPlayerController(
+            url: try localVideoURL(),
+            autoPlay: true,
+            loop: true
+        )
+        let queuePlayer = try XCTUnwrap(controller.player as? AVQueuePlayer)
+
+        try await waitUntil { controller.state.isPlaying }
+        queuePlayer.removeAllItems()
+        try await waitUntil({ controller.player.currentItem == nil }, timeout: 2)
+        try await waitUntil({ controller.state == .paused }, timeout: 2)
+
+        XCTAssertEqual(controller.state, .paused)
+    }
+
     /// Custom overlay — consumer-provided control in the bottom-trailing corner.
     func test_customOverlay_cornerControl() {
         assertSnapshot(videoContainer {
