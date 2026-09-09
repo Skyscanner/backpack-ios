@@ -54,10 +54,10 @@ Create a `BPKVideoPlayerController` and inject it into multiple views. Playback 
 )
 
 // Card view
-BPKVideoPlayer(controller: controller)
+BPKVideoPlayer(controller: controller) { _ in EmptyView() }
 
 // Fullscreen sheet — same controller, playback never resets
-BPKVideoPlayer(controller: controller)
+BPKVideoPlayer(controller: controller) { _ in EmptyView() }
 ```
 
 ## Custom overlay
@@ -143,10 +143,10 @@ case .failed(let error):
 | State | Meaning |
 | --- | --- |
 | `.loading` | Asset is being fetched or decoded |
-| `.readyToPlay` | Asset ready — autoPlay will call `play()` if enabled |
+| `.readyToPlay` | The initial asset is ready; `autoPlay` starts it only when enabled and not explicitly paused |
 | `.playing` | Playback active |
 | `.paused` | Playback paused |
-| `.buffering` | Rebuffering mid-playback |
+| `.buffering` | Rebuffering mid-playback or loading a replacement item during a loop handoff |
 | `.failed(Error)` | Load failed or timed out |
 
 Convenience helpers on `BPKVideoPlayerState`:
@@ -154,6 +154,7 @@ Convenience helpers on `BPKVideoPlayerState`:
 ```swift
 controller.state.isPlaying  // true only when .playing
 controller.state.isLoading  // true for .loading and .buffering
+controller.state.isActive   // true for .playing and .buffering
 ```
 
 ## Playback metrics
@@ -167,7 +168,7 @@ controller.state.isLoading  // true for .loading and .buffering
     loop: true
 )
 
-BPKVideoPlayer(controller: controller)
+BPKVideoPlayer(controller: controller) { _ in EmptyView() }
     .onReceive(controller.progressPublisher) { progress in
         print(progress.playTime)
         print(progress.duration)
