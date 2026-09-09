@@ -23,6 +23,7 @@ import XCTest
 import SwiftUI
 @testable import Backpack_SwiftUI
 
+@MainActor
 final class BPKVideoPlayerTests: XCTestCase {
 
     // MARK: - Snapshot: overlay UI

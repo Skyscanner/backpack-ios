@@ -57,6 +57,7 @@ public enum BPKVideoPlayerState: Equatable {
 
 /// Shareable player controller. Owns one AVPlayer instance and can be injected
 /// into multiple views simultaneously for continuous playback across transitions.
+@MainActor
 public final class BPKVideoPlayerController: ObservableObject {
 
     /// The underlying AVPlayer instance.
