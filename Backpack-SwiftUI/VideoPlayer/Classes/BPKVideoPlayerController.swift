@@ -201,17 +201,22 @@ public final class BPKVideoPlayerController: ObservableObject {
 
     /// Mutes the player.
     public func mute() {
-        player.isMuted = true
+        setMuted(true)
     }
 
     /// Unmutes the player.
     public func unmute() {
-        player.isMuted = false
+        setMuted(false)
     }
 
-    /// Toggles the player's muted state.
+    /// Toggles the player muted state.
     public func toggleMute() {
-        player.isMuted.toggle()
+        setMuted(player.isMuted == false)
+    }
+
+    private func setMuted(_ muted: Bool) {
+        player.isMuted = muted
+        handle(muted: player.isMuted)
     }
 
     public func seek(to time: CMTime) {
