@@ -16,11 +16,7 @@
  * limitations under the License.
  */
 
-#ifdef SWIFT_PACKAGE
 #import "../../Icon/Classes/Icon.h"
-#else
-#import <Backpack/Icon.h>
-#endif
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 #import <UIKit/UIKit.h>

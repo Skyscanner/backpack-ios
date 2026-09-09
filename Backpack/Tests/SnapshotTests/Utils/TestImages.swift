@@ -1,5 +1,5 @@
 /*
- * Backpack - Skyscanner's Design Test
+ * Backpack - Skyscanner's Design System
  *
  * Copyright 2018 Skyscanner Ltd
  *
@@ -16,14 +16,13 @@
  * limitations under the License.
  */
 
-#import <Foundation/Foundation.h>
+import Foundation
+import UIKit
 
-#import <Backpack_Common/Backpack_Common-Swift.h>
-
-NS_ASSUME_NONNULL_BEGIN
-
-NS_SWIFT_NAME(TestFontDefinition) @interface BPKTestFontDefinition : NSObject<BPKFontDefinitionProtocol>
-
-@end
-
-NS_ASSUME_NONNULL_END
+/// Loads an image from the snapshot tests' asset catalogue.
+///
+/// SwiftPM processes `Images.xcassets` into the test target's own bundle, so the
+/// images are read from `Bundle.module`.
+func testImage(named name: String) -> UIImage? {
+    UIImage(named: name, in: .module, compatibleWith: nil)
+}

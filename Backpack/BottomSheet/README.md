@@ -1,6 +1,5 @@
 # Backpack/BottomSheet
 
-[![Cocoapods](https://img.shields.io/cocoapods/v/Backpack.svg?style=flat)](https://cocoapods.org/pods/Backpack)
 [![class reference](https://img.shields.io/badge/Class%20reference-iOS-blue)](https://backpack.github.io/ios/versions/latest/uikit/Classes/BPKBottomSheet.html)
 [![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack/BottomSheet)
 
@@ -12,13 +11,12 @@
 
 ## Installation
 
-In `Podfile` add
+Add the `Backpack` product from the [backpack-ios](https://github.com/Skyscanner/backpack-ios)
+Swift package to your target, then
 
+```swift
+import Backpack
 ```
-pod 'Backpack/BottomSheet'
-```
-
-and then run `pod install`.
 
 ## Usage
 

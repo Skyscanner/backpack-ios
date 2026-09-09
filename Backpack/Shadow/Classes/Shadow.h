@@ -19,8 +19,6 @@
 #ifndef __BACKPACK_SHADOW__
 #define __BACKPACK_SHADOW__
 
-#ifdef SWIFT_PACKAGE
 #import "BPKShadow.h"
-#endif
 
 #endif

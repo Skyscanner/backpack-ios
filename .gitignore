@@ -29,6 +29,8 @@ DerivedData
 *.hmap
 *.ipa
 docs/
+# Nothing regenerates this any more, but a stale Example/Pods left in an older
+# checkout should still never be committed.
 Example/Pods/
 vendor
 bin/
@@ -43,14 +45,6 @@ screenshots/screenshots.html
 .bundle
 
 Carthage
-# We recommend against adding the Pods directory to your .gitignore. However
-# you should judge for yourself, the pros and cons are mentioned at:
-# http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control
-#
-# Note: if you ignore the Pods directory, make sure to uncomment
-# `pod install` in .travis.yml
-#
-# Pods/
 
 # Node.js
 node_modules
