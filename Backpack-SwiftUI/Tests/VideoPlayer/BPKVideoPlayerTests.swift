@@ -229,6 +229,35 @@ final class BPKVideoPlayerTests: XCTestCase {
         })
     }
 
+    // External transport pauses, such as audio-session interruptions, should
+    // not leave the controller stuck in buffering during a loop handoff.
+
+    func test_loopingPlayback_externalPauseAtLoopBoundaryPublishesPaused() async throws {
+        let controller = BPKVideoPlayerController(
+            url: try localVideoURL(), autoPlay: true, loop: true
+        )
+        try await waitUntil { controller.state.isPlaying }
+        let initialItem = try XCTUnwrap(controller.player.currentItem)
+
+        // Stands in for an audio-session interruption: pause the transport
+        // at the instant the looper swaps items.
+        let swap = expectation(description: "current item replaced")
+        swap.assertForOverFulfill = false
+        let observation = controller.player.observe(\.currentItem, options: [.new]) { player, _ in
+            guard player.currentItem !== initialItem else { return }
+            player.pause()
+            swap.fulfill()
+        }
+        defer { observation.invalidate() }
+
+        try await seekNearLoopBoundary(controller)
+        await fulfillment(of: [swap], timeout: 3)
+        try await Task.sleep(nanoseconds: 500_000_000)
+
+        XCTAssertEqual(controller.player.timeControlStatus, .paused)
+        XCTAssertEqual(controller.state, .paused)
+    }
+
     // MARK: - Private
 
     private func videoContainer<Overlay: View>(@ViewBuilder _ overlay: () -> Overlay) -> some View {
