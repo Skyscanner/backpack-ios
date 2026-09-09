@@ -170,7 +170,12 @@ public final class BPKVideoPlayerController: ObservableObject {
         timeControlObservation?.invalidate()
         currentItemObservation?.invalidate()
         mutedObservation?.invalidate()
-        stopProgressObserving()
+        if let periodicTimeObserverToken {
+            periodicTimeObserver.removePeriodicTimeObserver(periodicTimeObserverToken, from: player)
+        }
+        if let itemCompletionToken {
+            notificationCenter.removeObserver(itemCompletionToken)
+        }
         loadTimeoutTask?.cancel()
         lifecycleTokens.forEach { NotificationCenter.default.removeObserver($0) }
     }
