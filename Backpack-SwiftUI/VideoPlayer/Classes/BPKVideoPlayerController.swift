@@ -266,6 +266,15 @@ public final class BPKVideoPlayerController: ObservableObject {
     }
 
     private func handleCurrentItemChange(_ item: AVPlayerItem?) {
+        guard item != nil else {
+            isLoopItemTransitioning = false
+            observeItemStatus(nil)
+            if player.timeControlStatus == .paused && (state == .playing || state == .buffering) {
+                transition(to: .paused)
+            }
+            return
+        }
+
         markLoopItemTransitionIfNeeded()
         observeItemStatus(item)
     }
