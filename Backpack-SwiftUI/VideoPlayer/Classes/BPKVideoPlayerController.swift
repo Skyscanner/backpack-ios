@@ -57,6 +57,15 @@ public enum BPKVideoPlayerState: Equatable {
     }
 }
 
+/// Controls how a video player's audio interacts with the device audio session.
+public enum BPKVideoPlayerAudioSessionPolicy: Sendable {
+    /// Treats video audio as non-primary, respecting the Ring/Silent switch.
+    case ambient
+
+    /// Treats video audio as content playback, so it continues when the Ring/Silent switch is on.
+    case playback
+}
+
 // MARK: - Controller
 
 /// Shareable player controller. Owns one AVPlayer instance and can be injected
@@ -99,9 +108,11 @@ public final class BPKVideoPlayerController: ObservableObject {
     private let autoPlay: Bool
     let loop: Bool
     private let loadTimeout: TimeInterval
+    private let audioSessionPolicy: BPKVideoPlayerAudioSessionPolicy
     let periodicTimeObserver: BPKVideoPlayerPeriodicTimeObserving
     let durationProvider: BPKVideoPlayerDurationProvider
     let notificationCenter: NotificationCenter
+    let audioSession: BPKVideoPlayerAudioSessionManaging
     var progressAccumulator = BPKVideoPlayerProgressAccumulator()
     let progressSubject = CurrentValueSubject<BPKVideoPlayerProgress?, Never>(nil)
     var hasCompletedPlayback = false
@@ -123,15 +134,23 @@ public final class BPKVideoPlayerController: ObservableObject {
 
     // MARK: - Init
 
-    public convenience init(url: URL, autoPlay: Bool = true, loop: Bool = true, loadTimeout: TimeInterval = 7) {
+    public convenience init(
+        url: URL,
+        autoPlay: Bool = true,
+        loop: Bool = true,
+        loadTimeout: TimeInterval = 7,
+        audioSessionPolicy: BPKVideoPlayerAudioSessionPolicy = .ambient
+    ) {
         self.init(
             url: url,
             autoPlay: autoPlay,
             loop: loop,
             loadTimeout: loadTimeout,
+            audioSessionPolicy: audioSessionPolicy,
             periodicTimeObserver: BPKVideoPlayerPeriodicTimeObserver(),
             durationProvider: Self.liveDuration,
-            notificationCenter: .default
+            notificationCenter: .default,
+            audioSession: AVAudioSession.sharedInstance()
         )
     }
 
@@ -140,16 +159,20 @@ public final class BPKVideoPlayerController: ObservableObject {
         autoPlay: Bool,
         loop: Bool,
         loadTimeout: TimeInterval,
+        audioSessionPolicy: BPKVideoPlayerAudioSessionPolicy = .ambient,
         periodicTimeObserver: BPKVideoPlayerPeriodicTimeObserving,
         durationProvider: @escaping BPKVideoPlayerDurationProvider,
-        notificationCenter: NotificationCenter
+        notificationCenter: NotificationCenter,
+        audioSession: BPKVideoPlayerAudioSessionManaging = AVAudioSession.sharedInstance()
     ) {
         self.autoPlay = autoPlay
         self.loop = loop
         self.loadTimeout = loadTimeout
+        self.audioSessionPolicy = audioSessionPolicy
         self.periodicTimeObserver = periodicTimeObserver
         self.durationProvider = durationProvider
         self.notificationCenter = notificationCenter
+        self.audioSession = audioSession
 
         let item = AVPlayerItem(asset: AVAsset(url: url))
         if loop {
@@ -387,8 +410,12 @@ public final class BPKVideoPlayerController: ObservableObject {
     }
 
     private func configureAudioSession() {
-        try? AVAudioSession.sharedInstance().setCategory(.ambient, mode: .default, options: [.mixWithOthers])
-        try? AVAudioSession.sharedInstance().setActive(true)
+        try? audioSession.setCategory(
+            audioSessionPolicy.category,
+            mode: audioSessionPolicy.mode,
+            options: [.mixWithOthers]
+        )
+        try? audioSession.setActive(true, options: [])
     }
 
     private func observeLifecycle() {
@@ -427,3 +454,34 @@ public final class BPKVideoPlayerController: ObservableObject {
         isLoopItemTransitioning
     }
 }
+
+private extension BPKVideoPlayerAudioSessionPolicy {
+    var category: AVAudioSession.Category {
+        switch self {
+        case .ambient:
+            .ambient
+        case .playback:
+            .playback
+        }
+    }
+
+    var mode: AVAudioSession.Mode {
+        switch self {
+        case .ambient:
+            .default
+        case .playback:
+            .moviePlayback
+        }
+    }
+}
+
+protocol BPKVideoPlayerAudioSessionManaging: AnyObject {
+    func setCategory(
+        _ category: AVAudioSession.Category,
+        mode: AVAudioSession.Mode,
+        options: AVAudioSession.CategoryOptions
+    ) throws
+    func setActive(_ active: Bool, options: AVAudioSession.SetActiveOptions) throws
+}
+
+extension AVAudioSession: BPKVideoPlayerAudioSessionManaging {}

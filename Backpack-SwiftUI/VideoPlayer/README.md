@@ -212,7 +212,16 @@ BPKVideoPlayer(url: videoURL, autoPlay: false) { controller in
 
 ## Audio behaviour
 
-The player uses `AVAudioSession.ambient` with `.mixWithOthers` so it never interrupts the user's background music. Playback automatically pauses when the app backgrounds and resumes on foreground.
+The player defaults to `AVAudioSession.ambient` with `.mixWithOthers`, so it respects the Ring/Silent switch and does not interrupt the user's background music. Playback automatically pauses when the app backgrounds and resumes on foreground.
+
+For content whose audio should play through Silent mode, opt in to the playback policy. It continues to mix with background audio:
+
+```swift
+let controller = BPKVideoPlayerController(
+    url: videoURL,
+    audioSessionPolicy: .playback
+)
+```
 
 ## Accessibility
 

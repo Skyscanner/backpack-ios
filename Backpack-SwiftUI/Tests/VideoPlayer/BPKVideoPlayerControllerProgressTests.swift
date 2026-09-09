@@ -38,6 +38,25 @@ final class BPKVideoPlayerControllerProgressTests: XCTestCase {
         XCTAssertEqual(observer.queue, .main)
     }
 
+    func test_givenPlaybackAudioSessionPolicy_whenInitialized_thenConfiguresContentPlaybackAudio() {
+        // Given
+        let observer = PeriodicTimeObserverMock()
+        let audioSession = AudioSessionMock()
+
+        // When
+        _ = makeSUT(
+            observer: observer,
+            audioSessionPolicy: .playback,
+            audioSession: audioSession
+        )
+
+        // Then
+        XCTAssertEqual(audioSession.category, .playback)
+        XCTAssertEqual(audioSession.mode, .moviePlayback)
+        XCTAssertEqual(audioSession.options, [.mixWithOthers])
+        XCTAssertTrue(audioSession.isActive)
+    }
+
     func test_whenPeriodicSamplesArrive_thenPublishesNormalizedProgress() async {
         // Given
         let observer = PeriodicTimeObserverMock()
@@ -290,17 +309,42 @@ final class BPKVideoPlayerControllerProgressTests: XCTestCase {
 
     private func makeSUT(
         observer: PeriodicTimeObserverMock,
-        notificationCenter: NotificationCenter = NotificationCenter()
+        notificationCenter: NotificationCenter = NotificationCenter(),
+        audioSessionPolicy: BPKVideoPlayerAudioSessionPolicy = .ambient,
+        audioSession: BPKVideoPlayerAudioSessionManaging = AudioSessionMock()
     ) -> BPKVideoPlayerController {
         BPKVideoPlayerController(
             url: URL(string: "data:video/mp4,stub")!,
             autoPlay: false,
             loop: false,
             loadTimeout: 0,
+            audioSessionPolicy: audioSessionPolicy,
             periodicTimeObserver: observer,
             durationProvider: { _ in 10 },
-            notificationCenter: notificationCenter
+            notificationCenter: notificationCenter,
+            audioSession: audioSession
         )
+    }
+}
+
+private final class AudioSessionMock: BPKVideoPlayerAudioSessionManaging {
+    private(set) var category: AVAudioSession.Category?
+    private(set) var mode: AVAudioSession.Mode?
+    private(set) var options: AVAudioSession.CategoryOptions?
+    private(set) var isActive = false
+
+    func setCategory(
+        _ category: AVAudioSession.Category,
+        mode: AVAudioSession.Mode,
+        options: AVAudioSession.CategoryOptions
+    ) throws {
+        self.category = category
+        self.mode = mode
+        self.options = options
+    }
+
+    func setActive(_ active: Bool, options: AVAudioSession.SetActiveOptions) throws {
+        isActive = active
     }
 }
 
