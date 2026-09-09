@@ -379,7 +379,13 @@ public final class BPKVideoPlayerController: ObservableObject {
             // Wait for the replacement item's status before publishing a state change.
             let shouldPublishPause = state.isActive ||
                 (hasExplicitPauseRequest && state == .readyToPlay)
-            if !isLoopItemTransitioning && shouldPublishPause {
+            let replacementIsStillLoading = isLoopItemTransitioning &&
+                player.currentItem?.status == .unknown
+            if !replacementIsStillLoading && shouldPublishPause {
+                // A paused transport is an external stop once the replacement
+                // item is ready. Clear the handoff guard so ready-item handling
+                // cannot turn the state back into buffering.
+                isLoopItemTransitioning = false
                 transition(to: .paused)
             }
         case .waitingToPlayAtSpecifiedRate:
