@@ -418,4 +418,12 @@ public final class BPKVideoPlayerController: ObservableObject {
     func testOnly_setState(_ newState: BPKVideoPlayerState) {
         state = newState
     }
+
+    func testOnly_handleCurrentItemChange(_ item: AVPlayerItem?) {
+        handleCurrentItemChange(item)
+    }
+
+    var testOnly_isLoopItemTransitioning: Bool {
+        isLoopItemTransitioning
+    }
 }

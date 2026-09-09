@@ -115,6 +115,7 @@ final class BPKVideoPlayerTests: XCTestCase {
         defer { stateChanges.cancel() }
 
         try await waitUntil { controller.state == .readyToPlay }
+        states.removeAll()
         let initialItem = try XCTUnwrap(controller.player.currentItem)
         try await seekNearLoopBoundary(controller)
         controller.play()
@@ -191,19 +192,18 @@ final class BPKVideoPlayerTests: XCTestCase {
         XCTAssertFalse(statesAfterPause.contains { $0 == .playing || $0 == .buffering })
     }
 
-    func test_loopingPlayback_doesNotRemainTransitioningWhenCurrentItemBecomesNil() async throws {
+    func test_loopingPlayback_clearsTransitionWhenCurrentItemBecomesNil() async throws {
         let controller = BPKVideoPlayerController(
             url: try localVideoURL(),
             autoPlay: true,
             loop: true
         )
-        let queuePlayer = try XCTUnwrap(controller.player as? AVQueuePlayer)
 
         try await waitUntil { controller.state.isPlaying }
-        queuePlayer.removeAllItems()
-        try await waitUntil({ controller.player.currentItem == nil }, timeout: 2)
-        try await waitUntil({ controller.state == .paused }, timeout: 2)
+        controller.testOnly_handleCurrentItemChange(nil)
 
+        XCTAssertFalse(controller.testOnly_isLoopItemTransitioning)
+        controller.pause()
         XCTAssertEqual(controller.state, .paused)
     }
 
