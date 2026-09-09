@@ -4,15 +4,9 @@
 
 [![release](https://github.com/Skyscanner/backpack-ios/actions/workflows/release.yml/badge.svg)](https://github.com/Skyscanner/backpack-ios/actions/workflows/release.yml)
 [![main](https://github.com/Skyscanner/backpack-ios/actions/workflows/main.yml/badge.svg)](https://github.com/Skyscanner/backpack-ios/actions/workflows/main.yml)
-[![License](https://img.shields.io/cocoapods/l/Backpack.svg?style=flat)](https://cocoapods.org/pods/Backpack)
-[![Platform](https://img.shields.io/cocoapods/p/Backpack.svg?style=flat)](https://cocoapods.org/pods/Backpack)
-
-| Pod | Version |
-| --- | --- |
-| Backpack-Common | [![Version](https://img.shields.io/cocoapods/v/Backpack-Common.svg?style=flat)](https://cocoapods.org/pods/Backpack-Common) |
-| Backpack | [![Version](https://img.shields.io/cocoapods/v/Backpack.svg?style=flat)](https://cocoapods.org/pods/Backpack) |
-| Backpack-SwiftUI | [![Version](https://img.shields.io/cocoapods/v/Backpack-SwiftUI.svg?style=flat)](https://cocoapods.org/pods/Backpack-SwiftUI) |
-
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+[![Platform](https://img.shields.io/badge/Platform-iOS-lightgrey.svg)](https://github.com/Skyscanner/backpack-ios)
+[![Swift Package Manager](https://img.shields.io/badge/SPM-supported-brightgreen.svg)](https://swift.org/package-manager/)
 
 
 ## Installation
@@ -46,20 +40,32 @@ Four products are available: `Backpack` (UIKit), `Backpack-SwiftUI`, `Backpack-C
 )
 ```
 
-### CocoaPods (deprecated)
+### CocoaPods (removed)
 
-> [!WARNING]
-> CocoaPods support is deprecated. The `Backpack`, `Backpack-Common` and `Backpack-SwiftUI` pods are
-> still published, and existing Podfiles keep working for now, but the pods will stop being published
-> once the deprecation window closes. The date is being agreed with the Backpack maintainers and will
-> be announced here and in the release notes before anything is removed. New integrations should use
-> Swift Package Manager.
+> [!IMPORTANT]
+> **CocoaPods support has been removed.** `92.1.0` is the last version published to the CocoaPods
+> trunk. The podspecs and the publishing pipeline are gone, so there will be no further pod releases.
+> Swift Package Manager is the only supported way to depend on Backpack.
+
+**Existing Podfiles keep working.** Every version already published to the trunk stays installable,
+so nothing breaks if you do nothing. You simply stop receiving new Backpack versions.
+
+If you need to stay on CocoaPods for now, pin to a released tag:
+
+```ruby
+# The last published pod version
+pod 'Backpack', '~> 92.1'
+
+# Or point directly at a tag that still contains the podspecs
+pod 'Backpack', :git => 'https://github.com/Skyscanner/backpack-ios.git', :tag => '92.1.0'
+```
+
+To keep receiving updates, move to Swift Package Manager using the instructions above.
 
 CocoaPods [entered maintenance mode](https://blog.cocoapods.org/CocoaPods-Support-Plans/) in
-August 2024, and Swift Package Manager is the actively developed, Xcode-native way to depend on
-Backpack. Backpack is no longer built, tested or documented through CocoaPods: CI, the Example app
-and the reference documentation all run on Swift Package Manager. See
-[Documentation/SPM](Documentation/SPM/README.md) for the details of that move.
+August 2024 and its [trunk stops accepting new versions](https://blog.cocoapods.org/CocoaPods-Specs-Repo/)
+permanently on 2 December 2026. Swift Package Manager is the actively developed, Xcode-native path.
+See [Documentation/SPM](Documentation/SPM/README.md) for how Backpack builds and ships today.
 
 ## Documentation
 

@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Documentation is generated from the Swift package. SwiftPM needs an explicit
-# -destination (unlike the CocoaPods workspace, which carried one), and the
-# SwiftUI module is named Backpack_SwiftUI while its scheme is Backpack-SwiftUI,
-# so sourcekitten has to be told the module name to find the compiler arguments.
+# -destination, and the SwiftUI module is named Backpack_SwiftUI while its scheme
+# is Backpack-SwiftUI, so sourcekitten has to be told the module name to find the
+# compiler arguments.
 SPM_WORKSPACE='.swiftpm/xcode/package.xcworkspace'
 DOC_DESTINATION='generic/platform=iOS Simulator'
 

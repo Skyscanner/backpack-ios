@@ -29,9 +29,8 @@ DerivedData
 *.hmap
 *.ipa
 docs/
-# CocoaPods is deprecated and the Podfile is gone, so this is never regenerated.
-# The rule stays until Phase 2 so that a stale Example/Pods in an existing
-# checkout cannot be committed by accident.
+# Nothing regenerates this any more, but a stale Example/Pods left in an older
+# checkout should still never be committed.
 Example/Pods/
 vendor
 bin/

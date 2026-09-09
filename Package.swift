@@ -201,8 +201,6 @@ let targets: [Target] = [
       // the target produced no resource bundle at all, and bpkProgressiveBlur() could
       // never resolve its shader under SPM.
       //
-      // The path still matches the CocoaPods glob 'Backpack-SwiftUI/*/Classes/**/*.metal'
-      // in Backpack-SwiftUI.podspec, so the CocoaPods build is unaffected.
       resources: [
         .process("Shaders/Classes/VariableBlur.metal")
       ]
@@ -302,24 +300,17 @@ let targets: [Target] = [
     // `.process("Assets")` emit "Invalid Resource 'Assets': File not found" for
     // every remote SPM consumer. Directory resources are globbed at build time,
     // so fonts downloaded after dependency resolution are still bundled.
-    //
-    // The define makes BackpackFontsBundle's `#if ... SWIFT_MODULE_RESOURCE_BUNDLE_AVAILABLE`
-    // branch real: the resource is always declared, so Bundle.module always exists.
     .target(
       name: "Backpack_Fonts",
       path: "Backpack-Fonts",
       exclude: [
-        "Scripts",
-        "Backpack-Fonts.podspec"
+        "Scripts"
       ],
       sources: [
         "Sources"
       ],
       resources: [
         .process("Assets")
-      ],
-      swiftSettings: [
-        .define("SWIFT_MODULE_RESOURCE_BUNDLE_AVAILABLE")
       ]
     ),
 

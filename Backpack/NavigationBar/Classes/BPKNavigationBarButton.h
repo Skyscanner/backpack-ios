@@ -16,11 +16,7 @@
  * limitations under the License.
  */
 
-#ifdef SWIFT_PACKAGE
 #import "../../Button/Classes/Button.h"
-#else
-#import <Backpack/Button.h>
-#endif
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN

@@ -21,10 +21,8 @@ import UIKit
 
 /// Loads an image from the snapshot tests' asset catalogue.
 ///
-/// Under CocoaPods these images arrived in a nested `SnapshotTestImages.bundle`,
-/// produced by the podspec's `resource_bundle`. SwiftPM instead processes
-/// `Images.xcassets` straight into the test target's own bundle, so the images
-/// are read from `Bundle.module`.
+/// SwiftPM processes `Images.xcassets` into the test target's own bundle, so the
+/// images are read from `Bundle.module`.
 func testImage(named name: String) -> UIImage? {
     UIImage(named: name, in: .module, compatibleWith: nil)
 }

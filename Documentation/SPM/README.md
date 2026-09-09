@@ -88,7 +88,10 @@ making them wait would put the Setup job on the critical path for no reason.
 
 ## CocoaPods
 
-CocoaPods is deprecated. The podspecs at the repository root are still published to the trunk by
-`release.yml`, and existing Podfiles keep working, but nothing in the build, test or documentation
-pipeline uses CocoaPods any more. The pods will stop being published once the deprecation window
-closes; that date is being agreed with the Backpack maintainers.
+CocoaPods support has been removed. `92.1.0` was the last version published to the trunk; the
+podspecs and the publishing jobs are gone. Versions already on the trunk stay installable, so
+existing Podfiles keep working, they just stop receiving updates. See the
+[README](../../README.md#cocoapods-removed) for what consumers should do.
+
+There is no longer a `#if SWIFT_PACKAGE` branch anywhere in the sources: resources resolve through
+`Bundle.module`, and headers import through the package's own module paths.

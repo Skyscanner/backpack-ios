@@ -88,8 +88,6 @@ in under a third of the time the old one took.
 
 ## What we gave up
 
-- **Podspec linting.** `pod lib lint` is gone, so the podspecs are not checked in CI while they are
-  still published. They change rarely, but it is a real gap until Phase 2 removes them.
 - **Static analysis.** `xcodebuild analyze` ran as part of the CocoaPods jobs and has no replacement.
   Worth a decision on whether to reinstate it against the package.
 
@@ -106,11 +104,11 @@ caused by exactly that:
 Neither was anyone's mistake; they are what happens when two systems describe the same app. Keeping
 the two integration paths at parity had been a recurring source of defects for some time.
 
-## Still to do
+## Outcome
 
-Phase 2 removes the four podspecs and the publishing pipeline. It needs the Backpack maintainers to
-agree a deprecation window first, because the pods are published publicly and consumed outside this
-repository. Until then the pods still publish and existing Podfiles keep working.
+CocoaPods has now been removed entirely. `92.1.0` was the last version published to the trunk; the
+podspecs, the publishing jobs and the `#if SWIFT_PACKAGE` branches are all gone. Versions already on
+the trunk stay installable, so existing Podfiles keep working, they just stop receiving updates.
 
 ## How this was measured
 
