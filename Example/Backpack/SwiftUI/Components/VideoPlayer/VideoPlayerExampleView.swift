@@ -111,6 +111,8 @@ struct VideoGraphicPromoExampleView: View {
 // MARK: - Use case 2: Fullscreen with custom UI overlay (placeholder)
 
 struct VideoFullscreenExampleView: View {
+    // StateObject preserves an injected shared controller for this view lifetime;
+    // the fallback creates one only when fullscreen is opened standalone.
     @StateObject private var activeController: BPKVideoPlayerController
 
     init(controller: BPKVideoPlayerController? = nil) {
@@ -171,11 +173,27 @@ struct VideoContinuousPlaybackExampleView: View {
             .onTapGesture {
                 isFullscreenPresented = true
             }
+            .overlay(alignment: .topTrailing) {
+                muteButton
+                    .padding(.lg)
+            }
             .padding(.horizontal, .md)
         }
         .sheet(isPresented: $isFullscreenPresented) {
             VideoFullscreenExampleView(controller: sharedController)
         }
+    }
+
+    private var muteButton: some View {
+        Button(action: sharedController.toggleMute) {
+            BPKIconView(sharedController.isMuted ? .speakerMute : .speaker, size: .large)
+                .foregroundColor(.init(.textOnDarkColor))
+                .padding(.md)
+                .background(Color(.scrimColor).opacity(0.6))
+                .clipShape(Circle())
+        }
+        .accessibilityLabel(sharedController.isMuted ? "Unmute video" : "Mute video")
+        .accessibilityValue(sharedController.isMuted ? "Muted" : "Unmuted")
     }
 }
 
