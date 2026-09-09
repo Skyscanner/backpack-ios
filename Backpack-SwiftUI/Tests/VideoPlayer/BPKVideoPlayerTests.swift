@@ -124,6 +124,29 @@ final class BPKVideoPlayerTests: XCTestCase {
         XCTAssertFalse(states.contains(.paused))
     }
 
+    func test_loopingPlayback_doesNotPublishReadyDuringCurrentItemSwap() async throws {
+        let controller = BPKVideoPlayerController(
+            url: try localVideoURL(),
+            autoPlay: false,
+            loop: true
+        )
+        var states: [BPKVideoPlayerState] = []
+        let stateChanges = controller.$state
+            .dropFirst()
+            .sink { states.append($0) }
+        defer { stateChanges.cancel() }
+
+        try await waitUntil { controller.state == .readyToPlay }
+        let initialItem = try XCTUnwrap(controller.player.currentItem)
+        try await seekNearLoopBoundary(controller)
+        controller.play()
+
+        try await waitUntil({ controller.player.currentItem !== initialItem }, timeout: 3)
+        try await waitUntil({ controller.state.isPlaying }, timeout: 3)
+
+        XCTAssertFalse(states.contains(.readyToPlay))
+    }
+
     func test_loopingPlayback_staysPausedAfterExplicitPauseAtLoopBoundary() async throws {
         let controller = BPKVideoPlayerController(
             url: try localVideoURL(),
