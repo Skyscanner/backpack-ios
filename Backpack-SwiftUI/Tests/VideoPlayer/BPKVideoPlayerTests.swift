@@ -147,25 +147,47 @@ final class BPKVideoPlayerTests: XCTestCase {
         XCTAssertFalse(states.contains(.readyToPlay))
     }
 
-    func test_loopingPlayback_staysPausedAfterExplicitPauseAtLoopBoundary() async throws {
+    func test_loopingPlayback_staysPausedWhenExplicitlyPausedAtLoopBoundary() async throws {
         let controller = BPKVideoPlayerController(
             url: try localVideoURL(),
             autoPlay: true,
             loop: true
         )
+        var pauseScheduled = false
+        var statesAfterPause: [BPKVideoPlayerState] = []
+        let pauseRequested = expectation(description: "Pause requested during item replacement")
+        let initialItemReady = expectation(description: "Initial item is ready")
+        var initialItem: AVPlayerItem?
+        var stateChanges: AnyCancellable?
+        stateChanges = controller.$state.sink { state in
+            if pauseScheduled {
+                statesAfterPause.append(state)
+            }
+            if state.isPlaying && initialItem == nil {
+                initialItem = controller.player.currentItem
+                initialItemReady.fulfill()
+            }
+        }
+        defer { stateChanges?.cancel() }
 
-        try await waitUntil { controller.state.isPlaying }
-        let initialItem = try XCTUnwrap(controller.player.currentItem)
+        await fulfillment(of: [initialItemReady], timeout: 3)
+        let itemObservation = controller.player.observe(\.currentItem, options: [.new]) { player, _ in
+            guard let initialItem, player.currentItem !== initialItem, !pauseScheduled else { return }
+            pauseScheduled = true
+            DispatchQueue.main.async {
+                controller.pause()
+                pauseRequested.fulfill()
+            }
+        }
+        defer { itemObservation.invalidate() }
 
         try await seekNearLoopBoundary(controller)
-        try await waitUntil { controller.player.currentItem !== initialItem && controller.state.isPlaying }
+        try await fulfillment(of: [pauseRequested], timeout: 3)
+        try await waitUntil { controller.state == .paused }
+        try await Task.sleep(nanoseconds: 300_000_000)
 
-        controller.pause()
-
-        try await waitUntil { controller.state == .paused && controller.player.timeControlStatus == .paused }
-
-        XCTAssertEqual(controller.player.timeControlStatus, .paused)
         XCTAssertEqual(controller.state, .paused)
+        XCTAssertFalse(statesAfterPause.contains { $0 == .playing || $0 == .buffering })
     }
 
     func test_loopingPlayback_doesNotRemainTransitioningWhenCurrentItemBecomesNil() async throws {
