@@ -139,6 +139,7 @@ final class BPKVideoPlayerTests: XCTestCase {
         defer { stateChanges.cancel() }
 
         try await waitUntil { controller.state == .readyToPlay }
+        states.removeAll()
         let initialItem = try XCTUnwrap(controller.player.currentItem)
         try await seekNearLoopBoundary(controller)
         controller.play()
