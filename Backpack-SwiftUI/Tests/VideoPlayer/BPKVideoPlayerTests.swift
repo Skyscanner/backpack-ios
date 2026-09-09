@@ -15,6 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import Combine
 
 import AVFoundation
 import Foundation
@@ -98,6 +99,29 @@ final class BPKVideoPlayerTests: XCTestCase {
 
         XCTAssertEqual(controller.player.timeControlStatus, .playing)
         XCTAssertTrue(controller.state.isPlaying)
+    }
+
+    func test_loopingPlayback_doesNotPublishPausedDuringCurrentItemSwap() async throws {
+        let controller = BPKVideoPlayerController(
+            url: try localVideoURL(),
+            autoPlay: false,
+            loop: true
+        )
+        var states: [BPKVideoPlayerState] = []
+        let stateChanges = controller.$state
+            .dropFirst()
+            .sink { states.append($0) }
+        defer { stateChanges.cancel() }
+
+        try await waitUntil { controller.state == .readyToPlay }
+        let initialItem = try XCTUnwrap(controller.player.currentItem)
+        try await seekNearLoopBoundary(controller)
+        controller.play()
+
+        try await waitUntil({ controller.player.currentItem !== initialItem }, timeout: 3)
+        try await waitUntil({ controller.state.isPlaying }, timeout: 3)
+
+        XCTAssertFalse(states.contains(.paused))
     }
 
     func test_loopingPlayback_staysPausedAfterExplicitPauseAtLoopBoundary() async throws {
