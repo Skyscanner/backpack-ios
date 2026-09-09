@@ -260,13 +260,20 @@ final class BPKVideoPlayerTests: XCTestCase {
         let deadline = Date().addingTimeInterval(timeout)
         while !condition() {
             if Date() >= deadline {
-                XCTFail("Timed out waiting for video-player state")
-                return
+                throw WaitTimeout(timeout: timeout)
             }
             try await Task.sleep(nanoseconds: 50_000_000)
         }
     }
 
+}
+
+private struct WaitTimeout: Error, CustomStringConvertible {
+    let timeout: TimeInterval
+
+    var description: String {
+        "Timed out waiting for video-player state after \(timeout) seconds"
+    }
 }
 
 // MARK: - Test helpers
