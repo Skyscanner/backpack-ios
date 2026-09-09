@@ -111,21 +111,18 @@ struct VideoGraphicPromoExampleView: View {
 // MARK: - Use case 2: Fullscreen with custom UI overlay (placeholder)
 
 struct VideoFullscreenExampleView: View {
-    // When injected (use case 3), playback continues uninterrupted across the transition.
-    // When nil (use case 2 standalone), owns its own controller.
-    @StateObject private var ownedController = BPKVideoPlayerController(
-        url: SampleVideo.url,
-        autoPlay: true,
-        loop: true
-    )
-    private let injectedController: BPKVideoPlayerController?
+    // StateObject preserves an injected shared controller for this view lifetime;
+    // the fallback creates one only when fullscreen is opened standalone.
+    @StateObject private var activeController: BPKVideoPlayerController
 
     init(controller: BPKVideoPlayerController? = nil) {
-        self.injectedController = controller
-    }
-
-    private var activeController: BPKVideoPlayerController {
-        injectedController ?? ownedController
+        _activeController = StateObject(
+            wrappedValue: controller ?? BPKVideoPlayerController(
+                url: SampleVideo.url,
+                autoPlay: true,
+                loop: true
+            )
+        )
     }
 
     var body: some View {
@@ -176,11 +173,27 @@ struct VideoContinuousPlaybackExampleView: View {
             .onTapGesture {
                 isFullscreenPresented = true
             }
+            .overlay(alignment: .topTrailing) {
+                muteButton
+                    .padding(.lg)
+            }
             .padding(.horizontal, .md)
         }
         .sheet(isPresented: $isFullscreenPresented) {
             VideoFullscreenExampleView(controller: sharedController)
         }
+    }
+
+    private var muteButton: some View {
+        Button(action: sharedController.toggleMute) {
+            BPKIconView(sharedController.isMuted ? .speakerMute : .speaker, size: .large)
+                .foregroundColor(.init(.textOnDarkColor))
+                .padding(.md)
+                .background(Color(.scrimColor).opacity(0.6))
+                .clipShape(Circle())
+        }
+        .accessibilityLabel(sharedController.isMuted ? "Unmute video" : "Mute video")
+        .accessibilityValue(sharedController.isMuted ? "Muted" : "Unmuted")
     }
 }
 

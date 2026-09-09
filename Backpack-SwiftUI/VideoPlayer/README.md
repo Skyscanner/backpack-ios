@@ -54,10 +54,10 @@ Create a `BPKVideoPlayerController` and inject it into multiple views. Playback 
 )
 
 // Card view
-BPKVideoPlayer(controller: controller)
+BPKVideoPlayer(controller: controller) { _ in EmptyView() }
 
 // Fullscreen sheet — same controller, playback never resets
-BPKVideoPlayer(controller: controller)
+BPKVideoPlayer(controller: controller) { _ in EmptyView() }
 ```
 
 ## Custom overlay
@@ -81,6 +81,22 @@ BPKVideoPlayer(url: videoURL, autoPlay: true) { controller in
     }
 }
 ```
+
+## Mute control
+
+`BPKVideoPlayerController` exposes the observable `isMuted` state and `mute()`, `unmute()`, and `toggleMute()` actions for custom controls:
+
+```swift
+BPKVideoPlayer(url: videoURL, autoPlay: true) { controller in
+    Button(action: controller.toggleMute) {
+        Image(systemName: controller.isMuted ? "speaker.slash.fill" : "speaker.fill")
+    }
+    .accessibilityLabel(controller.isMuted ? "Unmute video" : "Mute video")
+    .accessibilityValue(controller.isMuted ? "Muted" : "Unmuted")
+}
+```
+
+The existing `player` property remains available for source compatibility, and direct `player.isMuted` changes are reflected in `controller.isMuted`.
 
 ## No controls — as a video background
 
@@ -127,10 +143,10 @@ case .failed(let error):
 | State | Meaning |
 | --- | --- |
 | `.loading` | Asset is being fetched or decoded |
-| `.readyToPlay` | Asset ready — autoPlay will call `play()` if enabled |
+| `.readyToPlay` | The initial asset is ready; `autoPlay` starts it only when enabled and not explicitly paused |
 | `.playing` | Playback active |
 | `.paused` | Playback paused |
-| `.buffering` | Rebuffering mid-playback |
+| `.buffering` | Rebuffering mid-playback or loading a replacement item during a loop handoff |
 | `.failed(Error)` | Load failed or timed out |
 
 Convenience helpers on `BPKVideoPlayerState`:
@@ -138,6 +154,7 @@ Convenience helpers on `BPKVideoPlayerState`:
 ```swift
 controller.state.isPlaying  // true only when .playing
 controller.state.isLoading  // true for .loading and .buffering
+controller.state.isActive   // true for .playing and .buffering
 ```
 
 ## Playback metrics
@@ -151,7 +168,7 @@ controller.state.isLoading  // true for .loading and .buffering
     loop: true
 )
 
-BPKVideoPlayer(controller: controller)
+BPKVideoPlayer(controller: controller) { _ in EmptyView() }
     .onReceive(controller.progressPublisher) { progress in
         print(progress.playTime)
         print(progress.duration)
@@ -195,7 +212,16 @@ BPKVideoPlayer(url: videoURL, autoPlay: false) { controller in
 
 ## Audio behaviour
 
-The player uses `AVAudioSession.ambient` with `.mixWithOthers` so it never interrupts the user's background music. Playback automatically pauses when the app backgrounds and resumes on foreground.
+The player defaults to `AVAudioSession.ambient` with `.mixWithOthers`, so it respects the Ring/Silent switch and does not interrupt the user's background music. Playback automatically pauses when the app backgrounds and resumes on foreground.
+
+For content whose audio should play through Silent mode, opt in to the playback policy. It continues to mix with background audio:
+
+```swift
+let controller = BPKVideoPlayerController(
+    url: videoURL,
+    audioSessionPolicy: .playback
+)
+```
 
 ## Accessibility
 
