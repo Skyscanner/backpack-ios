@@ -40,6 +40,10 @@ public enum BPKVideoPlayerState: Equatable {
         self == .playing
     }
 
+    public var isActive: Bool {
+        self == .playing || self == .buffering
+    }
+
     public static func == (lhs: BPKVideoPlayerState, rhs: BPKVideoPlayerState) -> Bool {
         switch (lhs, rhs) {
         case (.loading, .loading), (.readyToPlay, .readyToPlay),
@@ -186,7 +190,7 @@ public final class BPKVideoPlayerController: ObservableObject {
         hasExplicitPauseRequest = true
         isLoopItemTransitioning = false
         player.pause()
-        if state == .playing || state == .buffering {
+        if state.isActive {
             transition(to: .paused)
         }
     }
@@ -275,7 +279,7 @@ public final class BPKVideoPlayerController: ObservableObject {
         guard item != nil else {
             isLoopItemTransitioning = false
             observeItemStatus(nil)
-            if player.timeControlStatus == .paused && (state == .playing || state == .buffering) {
+            if player.timeControlStatus == .paused && state.isActive {
                 transition(to: .paused)
             }
             return
@@ -326,7 +330,7 @@ public final class BPKVideoPlayerController: ObservableObject {
         case .waitingToPlayAtSpecifiedRate:
             transition(to: .buffering)
         case .paused:
-            if wasLoopItemTransitioning && (state == .playing || state == .buffering) {
+            if wasLoopItemTransitioning && state.isActive {
                 transition(to: .buffering)
             } else if state != .paused {
                 transition(to: .readyToPlay)
@@ -345,7 +349,7 @@ public final class BPKVideoPlayerController: ObservableObject {
         case .paused:
             // AVPlayerLooper briefly reports `.paused` while it replaces a completed item.
             // Wait for the replacement item's status before publishing a state change.
-            let shouldPublishPause = state == .playing || state == .buffering ||
+            let shouldPublishPause = state.isActive ||
                 (hasExplicitPauseRequest && state == .readyToPlay)
             if !isLoopItemTransitioning && shouldPublishPause {
                 transition(to: .paused)
