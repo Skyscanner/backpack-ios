@@ -102,6 +102,7 @@ public final class BPKVideoPlayerController: ObservableObject {
     var hasCompletedPlayback = false
     var progressSeekID = 0
     private var isLoopItemTransitioning = false
+    private var observedItem: AVPlayerItem?
     private var hasLoadedInitialItem = false
     private var hasExplicitPauseRequest = false
 
@@ -250,6 +251,7 @@ public final class BPKVideoPlayerController: ObservableObject {
 
     private func observeItemStatus(_ item: AVPlayerItem?) {
         itemStatusObservation?.invalidate()
+        observedItem = item
         observeProgressCompletion(for: item)
         guard let item else { return }
 
@@ -264,10 +266,15 @@ public final class BPKVideoPlayerController: ObservableObject {
     }
 
     private func handleCurrentItemChange(_ item: AVPlayerItem?) {
-        let transportIsActive = player.timeControlStatus == .playing ||
-            player.timeControlStatus == .waitingToPlayAtSpecifiedRate
-        isLoopItemTransitioning = loop && (state == .playing || state == .buffering || transportIsActive)
+        markLoopItemTransitionIfNeeded()
         observeItemStatus(item)
+    }
+
+    private func markLoopItemTransitionIfNeeded() {
+        guard loop, hasLoadedInitialItem, let currentItem = player.currentItem else { return }
+        if observedItem !== currentItem {
+            isLoopItemTransitioning = true
+        }
     }
 
     private func handle(itemStatus: AVPlayerItem.Status, for item: AVPlayerItem) {
@@ -313,6 +320,7 @@ public final class BPKVideoPlayerController: ObservableObject {
     }
 
     private func handle(timeControlStatus: AVPlayer.TimeControlStatus) {
+        markLoopItemTransitionIfNeeded()
         switch timeControlStatus {
         case .playing:
             transition(to: .playing)
