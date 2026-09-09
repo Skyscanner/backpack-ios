@@ -299,6 +299,7 @@ public final class BPKVideoPlayerController: ObservableObject {
     private func handleReadyItem() {
         loadTimeoutTask?.cancel()
         updateProgressDuration()
+        let wasLoopItemTransitioning = isLoopItemTransitioning
         isLoopItemTransitioning = false
         let shouldAutoPlay = !hasLoadedInitialItem && autoPlay &&
             !hasExplicitPauseRequest && !UIAccessibility.isReduceMotionEnabled
@@ -310,7 +311,9 @@ public final class BPKVideoPlayerController: ObservableObject {
         case .waitingToPlayAtSpecifiedRate:
             transition(to: .buffering)
         case .paused:
-            if state != .paused {
+            if wasLoopItemTransitioning && (state == .playing || state == .buffering) {
+                transition(to: .buffering)
+            } else if state != .paused {
                 transition(to: .readyToPlay)
             }
             if shouldAutoPlay { play() }
