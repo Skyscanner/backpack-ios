@@ -58,15 +58,15 @@ final class BPKVideoPlayerTests: XCTestCase {
         XCTAssertFalse(controller.isMuted)
 
         controller.mute()
-        try await waitUntil { controller.isMuted }
+        XCTAssertTrue(controller.isMuted)
         XCTAssertTrue(controller.player.isMuted)
 
         controller.unmute()
-        try await waitUntil { !controller.isMuted }
+        XCTAssertFalse(controller.isMuted)
         XCTAssertFalse(controller.player.isMuted)
 
         controller.toggleMute()
-        try await waitUntil { controller.isMuted }
+        XCTAssertTrue(controller.isMuted)
         XCTAssertTrue(controller.player.isMuted)
     }
 
