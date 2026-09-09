@@ -36,5 +36,3 @@ We use Ruby and [`Bundler`](https://bundler.io/) to perform most other automatio
 * `cocoapods` publishing the project, hosting the example project.
 * `fastlane` iOS project automation, used for taking our screenshots.
 * `jazzy` generates static HTML documentation from our reference docs, which is published at https://backpack.github.io/ios.
-
-We have a fair amount of automation in `Rakefile` that might be more suited for `fastlane` e.g. building the project, running the tests, etc.
