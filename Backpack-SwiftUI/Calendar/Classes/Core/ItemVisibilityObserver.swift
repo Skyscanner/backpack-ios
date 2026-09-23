@@ -31,17 +31,16 @@ struct ItemVisibilityPreferenceKey: PreferenceKey {
 class ItemVisibilityObserver: ObservableObject {
     @Published var visibleItems: [Int] = []
 
-    private let preferencePublisher = PassthroughSubject<[Int: CGRect], Never>()
+    private let preferencePublisher = PassthroughSubject<(items: [Int: CGRect], parentFrame: CGRect), Never>()
     private var cancellables = Set<AnyCancellable>()
 
     private var lastEmittedVisibleItems: [Int] = []
 
-    init(parentProxy: GeometryProxy, debounceThreshold: Int) {
+    init(debounceThreshold: Int) {
         preferencePublisher
-            .map { preferences in
-                let parentFrame = parentProxy.frame(in: .global)
-                return preferences.filter { (_, frame) in
-                    frame.intersects(parentFrame)
+            .map { update in
+                update.items.filter { (_, frame) in
+                    frame.intersects(update.parentFrame)
                 }.map { $0.key }
             }
             .removeDuplicates() // Ensures we don't debounce if the list hasn't changed
@@ -58,8 +57,13 @@ class ItemVisibilityObserver: ObservableObject {
             .store(in: &cancellables)
     }
 
-    func updatePreferences(_ preferences: [Int: CGRect]) {
-        preferencePublisher.send(preferences)
+    /// - Parameters:
+    ///   - preferences: The frame of each item, in the global space.
+    ///   - parentFrame: The current frame of the scroll view's parent, in the global space. It's passed
+    ///     with every update rather than read from a stored `GeometryProxy`, which goes stale when the
+    ///     window changes size, for example when an iPhone Duo is folded or unfolded.
+    func updatePreferences(_ preferences: [Int: CGRect], parentFrame: CGRect) {
+        preferencePublisher.send((items: preferences, parentFrame: parentFrame))
     }
 
 }
