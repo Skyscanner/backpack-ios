@@ -32,6 +32,10 @@ struct DialogWithHeaderContent<HeaderView: View>: View {
                 actions
             }
             .padding(.lg)
+            // The text and buttons take the height they need before the header, which can be a
+            // resizable image. Otherwise the stack shares the height between the two, and the text of
+            // a dialog that fits could scroll. In a short window the header shrinks before the text scrolls.
+            .layoutPriority(1)
         }
         .background(.surfaceDefaultColor)
         .clipShape(RoundedRectangle(cornerRadius: .md))
