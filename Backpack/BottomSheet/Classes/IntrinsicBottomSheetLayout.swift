@@ -16,6 +16,7 @@
  * limitations under the License.
  */
 
+import UIKit
 import FloatingPanel
 
 class IntrinsicBottomSheetLayout: FloatingPanelLayout {
@@ -30,5 +31,10 @@ class IntrinsicBottomSheetLayout: FloatingPanelLayout {
     
     func backdropAlpha(for state: FloatingPanelState) -> CGFloat {
         return 0.3
+    }
+
+    /// Fills a phone-sized window edge to edge and is centred at a capped width on wider windows.
+    func prepareLayout(surfaceView: UIView, in view: UIView) -> [NSLayoutConstraint] {
+        BottomSheetHorizontalLayout.constraints(surfaceView: surfaceView, in: view)
     }
 }

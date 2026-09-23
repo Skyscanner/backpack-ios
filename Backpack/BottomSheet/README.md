@@ -83,3 +83,10 @@ The animated parameter is optional and has a default value of true
 ```swift
 bottomSheet.move(to: <BPKFloatingPanelPosition>, animated: false)
 ```
+# Adapting to the window
+
+The bottom sheet follows the window it's shown in, so it needs no extra code for iPad, Split View or foldables such as the iPhone Duo:
+
+- **Width.** On a phone-sized window the sheet fills the full width, and its background runs under side safe areas such as the iPhone Duo's side rail. Its content keeps the safe-area insets, so it stays clear of the rail. On a window wider than 672 pt, the readable content width, the sheet is centred at that width, like a native sheet.
+- **Height.** The `half` and `tip` positions never cover more than 60% of the window's safe-area height, so a short window, such as a phone in landscape, keeps part of the screen behind the sheet visible.
+- **Size changes.** When the window changes size, for example when an iPhone Duo is folded or unfolded, the sheet recomputes its positions for the new size.
