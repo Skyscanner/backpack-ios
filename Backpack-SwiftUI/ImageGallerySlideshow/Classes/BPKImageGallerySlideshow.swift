@@ -82,13 +82,19 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
                         .badgeStyle(.strong)
                         .padding(.bottom, 20)
                 }
-                .aspectRatio(1.0, contentMode: .fill)
+                // The square photo takes what the header and footer leave, instead of forcing its
+                // full width as height. In a short window, such as iPhone Duo's inner display in
+                // landscape, a width-sized square pushed Close off-screen.
+                .aspectRatio(1.0, contentMode: .fit)
+                .frame(maxWidth: .infinity)
+                .layoutPriority(1)
                 .accessibilityElement(children: .ignore)
                 .accessibilityHidden(true)
 
                 footer
             }
             .background(Color(.canvasContrastColor))
+            .accessibilityAction(.escape, onCloseTapped)
             .onChange(of: currentIndex) { newIndex in
                 if let change = indexChangeTracker.change(to: newIndex) {
                     onSlideshowImageChanged(change.from, change.to)
@@ -125,6 +131,7 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
                     .accessibilityElement(children: .combine)
                     .padding(.horizontal, .lg)
                 }
+                .frame(minHeight: SlideshowLayout.minimumDescriptionHeight)
             }
         }
 
@@ -153,6 +160,11 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
             }
         }
     }
+}
+
+private enum SlideshowLayout {
+    /// Keeps about two lines of the photo description visible when the window is short.
+    static let minimumDescriptionHeight: CGFloat = 40
 }
 
 struct ImageGallerySlideshowIndexChangeTracker {

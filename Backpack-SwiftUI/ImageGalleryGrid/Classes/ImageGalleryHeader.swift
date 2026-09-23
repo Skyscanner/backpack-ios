@@ -19,15 +19,20 @@
 import SwiftUI
 
 struct ImageGalleryHeader: View {
+    /// Added on each side of the 32 pt Close button to reach Apple's 44 pt minimum touch target,
+    /// without moving the button or changing the layout around it.
+    private static let touchTargetOutset: CGFloat = 6
+
     let closeAccessibilityLabel: String
     let onCloseTapped: () -> Void
-    
+
     var body: some View {
         HStack {
             Button(action: onCloseTapped, label: {
                 BPKIconView(.close, size: .large)
                     .foregroundColor(.textPrimaryColor)
                     .padding(.sm)
+                    .contentShape(Rectangle().inset(by: -Self.touchTargetOutset))
             })
             .accessibilityLabel(closeAccessibilityLabel)
             Spacer()

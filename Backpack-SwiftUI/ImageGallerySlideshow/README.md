@@ -41,3 +41,7 @@ func image(_ name: String) -> some View {
         .aspectRatio(contentMode: .fill)
 }
 ```
+
+## Adapting to the window
+
+The photo is square and takes the space the header and footer leave, so Close, the photo counter and the page dots stay on screen in short windows such as the iPhone Duo's inner display in landscape. VoiceOver users can also close the slideshow with the escape gesture, and Close accepts touches across Apple's 44 pt minimum touch target.
