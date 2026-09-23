@@ -19,6 +19,9 @@
 import SwiftUI
 
 struct CollapsedNavigationBar: View {
+    /// Added on each side of a 24 pt icon to reach a 44 pt touch target.
+    private static let touchTargetOutset: CGFloat = 10
+
     let title: String?
     let style: BPKNavigationBarStyle
     let leadingItems: [BPKNavigationBarItem]
@@ -39,8 +42,11 @@ struct CollapsedNavigationBar: View {
     var body: some View {
         VStack(spacing: BPKSpacing.none) {
             ZStack {
+                // The background runs under side safe areas, such as the iPhone Duo's rail, so the bar
+                // doesn't stop short of the screen edge. The items stay inside the safe area.
                 Color(style.backgroundColor(expanded: expanded))
                     .frame(height: 44)
+                    .ignoresSafeArea(edges: .horizontal)
                 HStack(spacing: .md) {
                     HStack(spacing: .base) {
                         toolbarItemView(forItems: leadingItems)
@@ -84,6 +90,9 @@ struct CollapsedNavigationBar: View {
     ) -> some View {
         Button(action: action) {
             BPKIconView(icon, size: .large)
+                // Grow the tappable area of the 24 pt icon to Apple's 44 pt minimum touch target
+                // without moving the icon.
+                .contentShape(Rectangle().inset(by: -Self.touchTargetOutset))
         }
         .accessibilityElement()
         .accessibilityAddTraits(.isButton)

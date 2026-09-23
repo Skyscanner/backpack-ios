@@ -94,3 +94,24 @@ BPKNavigationView(
     Text("Content")
 }
 ```
+### Side safe areas and touch targets
+
+The bar's background runs under side safe areas, such as the iPhone Duo's side rail, while its title and items stay inside the safe area. Icon items accept touches across Apple's 44 pt minimum touch target.
+
+## Styling the system navigation bar
+
+Where you can, prefer the system navigation bar and toolbar items to a custom bar. The system bar respects every safe area and adapts to the device by itself: on iPhone Duo its items move into the side rail with the status bar. `bpkNativeNavigationBarStyle(_:)` gives it the same Backpack colours as `BPKNavigationView`.
+
+```swift
+NavigationStack {
+    HotelDetails()
+        .navigationTitle("Pan Pacific London")
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button(action: save) { BPKIconView(.heart) }
+                    .accessibilityLabel("Save")
+            }
+        }
+        .bpkNativeNavigationBarStyle(.default)
+}
+```

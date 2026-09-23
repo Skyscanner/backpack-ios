@@ -26,6 +26,7 @@ let backpackUIKitSourceDirs = [
   "Price",
   "Rating",
   "HorizontalNavigation",
+  "NavigationBarAppearance",
   "Overlay",
   "PageIndicator",
   "Skeleton",
