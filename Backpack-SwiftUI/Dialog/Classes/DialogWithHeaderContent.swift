@@ -28,7 +28,7 @@ struct DialogWithHeaderContent<HeaderView: View>: View {
         VStack(spacing: 0) {
             headerView
             VStack(spacing: BPKSpacing.lg.value) {
-                textContent
+                DialogScrollableWhenTooTall { textContent }
                 actions
             }
             .padding(.lg)

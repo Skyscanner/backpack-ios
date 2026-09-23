@@ -42,6 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSMutableArray<BPKDialogScrimAction *> *scrimActions;
 
 @property(nonatomic, strong) NSLayoutConstraint *bottomAnchorConstraint;
+// Holds the dialog so it can scroll when it is taller than the window.
+@property(nonatomic, strong) UIScrollView *dialogScrollView;
 @property(nonatomic, strong) UIColor *scrimViewBackgroundColor;
 @property(nonatomic) NSTextAlignment textAlignment;
 
@@ -128,12 +130,38 @@ NS_ASSUME_NONNULL_BEGIN
     self.dialogView.translatesAutoresizingMaskIntoConstraints = NO;
     self.dialogView.delegate = self;
     self.dialogView.accessibilityIdentifier = @"dialogView";
+
+    self.dialogScrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
+    self.dialogScrollView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.dialogScrollView.showsVerticalScrollIndicator = NO;
+    self.dialogScrollView.showsHorizontalScrollIndicator = NO;
+    self.dialogScrollView.alwaysBounceVertical = NO;
+    self.dialogScrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    // Clip only while the dialog scrolls, so its shadow shows whenever it fits.
+    self.dialogScrollView.clipsToBounds = NO;
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    CGFloat contentHeight = self.dialogScrollView.contentSize.height;
+    self.dialogScrollView.clipsToBounds = contentHeight > CGRectGetHeight(self.dialogScrollView.bounds) + 0.5;
 }
 
 - (void)setupConstraints {
-    NSLayoutConstraint *lowerWidthConstraint = [self.dialogView.widthAnchor constraintGreaterThanOrEqualToAnchor:self.view.widthAnchor
-                                                                                                      multiplier:0.8];
+    UIScrollView *scrollView = self.dialogScrollView;
+    UILayoutGuide *margins = self.view.layoutMarginsGuide;
+    UILayoutGuide *safeArea = self.view.safeAreaLayoutGuide;
+
+    NSLayoutConstraint *lowerWidthConstraint = [scrollView.widthAnchor constraintGreaterThanOrEqualToAnchor:self.view.widthAnchor
+                                                                                                 multiplier:0.8];
     lowerWidthConstraint.priority = UILayoutPriorityDefaultHigh;
+
+    // The scroll view is as tall as the dialog. When the window is too short for that, it takes the
+    // height it's given instead and the dialog scrolls, so its buttons stay reachable. The priority sits
+    // below the message's compression resistance (UILayoutPriorityDefaultLow), so the dialog keeps its
+    // full text instead of shrinking and truncating it to fit.
+    NSLayoutConstraint *fitDialogHeight = [scrollView.heightAnchor constraintEqualToAnchor:self.dialogView.heightAnchor];
+    fitDialogHeight.priority = UILayoutPriorityDefaultLow - 2;
 
     [NSLayoutConstraint activateConstraints:@[
         [self.scrimView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
@@ -141,19 +169,26 @@ NS_ASSUME_NONNULL_BEGIN
         [self.scrimView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
         [self.scrimView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor],
 
-        [self.dialogView.leadingAnchor constraintGreaterThanOrEqualToAnchor:self.view.layoutMarginsGuide.leadingAnchor],
-        [self.view.layoutMarginsGuide.trailingAnchor constraintGreaterThanOrEqualToAnchor:self.dialogView.trailingAnchor],
+        [scrollView.leadingAnchor constraintGreaterThanOrEqualToAnchor:margins.leadingAnchor],
+        [margins.trailingAnchor constraintGreaterThanOrEqualToAnchor:scrollView.trailingAnchor],
 
-        [self.dialogView.widthAnchor constraintLessThanOrEqualToConstant:BPKSpacingXxl * 13],
+        [scrollView.widthAnchor constraintLessThanOrEqualToConstant:BPKSpacingXxl * 13],
         lowerWidthConstraint,
-        [self.dialogView.heightAnchor constraintLessThanOrEqualToConstant:BPKSpacingXxl * 18],
-    ]];
+        [scrollView.heightAnchor constraintLessThanOrEqualToConstant:BPKSpacingXxl * 18],
+        fitDialogHeight,
 
-    [self.dialogView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
-    [NSLayoutConstraint activateConstraints:@[
-        [self.dialogView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor],
-        [self.dialogView.topAnchor constraintGreaterThanOrEqualToAnchor:self.view.layoutMarginsGuide.topAnchor constant:BPKSpacingLg],
-        [self.view.layoutMarginsGuide.bottomAnchor constraintGreaterThanOrEqualToAnchor:self.dialogView.bottomAnchor constant:BPKSpacingLg]
+        // Centred horizontally in the safe area, so a side safe area such as the iPhone Duo's rail
+        // doesn't push the dialog off-centre. Vertical centring is unchanged.
+        [scrollView.centerXAnchor constraintEqualToAnchor:safeArea.centerXAnchor],
+        [scrollView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor],
+        [scrollView.topAnchor constraintGreaterThanOrEqualToAnchor:margins.topAnchor constant:BPKSpacingLg],
+        [margins.bottomAnchor constraintGreaterThanOrEqualToAnchor:scrollView.bottomAnchor constant:BPKSpacingLg],
+
+        [self.dialogView.topAnchor constraintEqualToAnchor:scrollView.contentLayoutGuide.topAnchor],
+        [self.dialogView.bottomAnchor constraintEqualToAnchor:scrollView.contentLayoutGuide.bottomAnchor],
+        [self.dialogView.leadingAnchor constraintEqualToAnchor:scrollView.contentLayoutGuide.leadingAnchor],
+        [self.dialogView.trailingAnchor constraintEqualToAnchor:scrollView.contentLayoutGuide.trailingAnchor],
+        [self.dialogView.widthAnchor constraintEqualToAnchor:scrollView.frameLayoutGuide.widthAnchor],
     ]];
 }
 
@@ -182,7 +217,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)addViews {
     [self.view addSubview:self.scrimView];
-    [self.view addSubview:self.dialogView];
+    [self.view addSubview:self.dialogScrollView];
+    [self.dialogScrollView addSubview:self.dialogView];
 }
 
 - (void)scrimTapped:(UITapGestureRecognizer *)gestureRecognizer {

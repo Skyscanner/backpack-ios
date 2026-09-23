@@ -48,6 +48,9 @@ struct UIKitDialogContainerViewModifier<DialogContent: View>: ViewModifier {
                                     .frame(maxWidth: 400)
                                 Spacer(minLength: .lg)
                             }
+                            // Keeps the dialog inside the window with a margin. A dialog taller than
+                            // that scrolls its text and keeps its buttons in view.
+                            .padding(.vertical, .lg)
                         }
                     }
                 } else {
