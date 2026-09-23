@@ -20,6 +20,7 @@ let backpackUIKitSourceDirs = [
   "CardButton",
   "FlightLeg",
   "FloatingNotification",
+  "Fold",
   "BarChart",
   "Badge",
   "Carousel",
