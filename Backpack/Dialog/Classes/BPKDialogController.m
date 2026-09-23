@@ -152,8 +152,7 @@ NS_ASSUME_NONNULL_BEGIN
     UILayoutGuide *margins = self.view.layoutMarginsGuide;
     UILayoutGuide *safeArea = self.view.safeAreaLayoutGuide;
 
-    NSLayoutConstraint *lowerWidthConstraint = [scrollView.widthAnchor constraintGreaterThanOrEqualToAnchor:self.view.widthAnchor
-                                                                                                 multiplier:0.8];
+    NSLayoutConstraint *lowerWidthConstraint = [scrollView.widthAnchor constraintGreaterThanOrEqualToAnchor:self.view.widthAnchor multiplier:0.8];
     lowerWidthConstraint.priority = UILayoutPriorityDefaultHigh;
 
     // The scroll view is as tall as the dialog. When the window is too short for that, it takes the
