@@ -571,13 +571,15 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
         self.bezelConstraints = nil;
     }
 
-    // Center bezel in container (self), applying the offset if set
+    // Center bezel in container (self), applying the offset if set.
+    // Backpack: centre horizontally in the safe area rather than the full bounds, so a side safe area
+    // such as the iPhone Duo's rail doesn't push the toast off-centre. Vertical centring is unchanged.
     CGPoint offset = self.offset;
     NSMutableArray *centeringConstraints = [NSMutableArray array];
     [centeringConstraints addObject:[NSLayoutConstraint constraintWithItem:bezel
                                                                  attribute:NSLayoutAttributeCenterX
                                                                  relatedBy:NSLayoutRelationEqual
-                                                                    toItem:self
+                                                                    toItem:self.safeAreaLayoutGuide
                                                                  attribute:NSLayoutAttributeCenterX
                                                                 multiplier:1.f
                                                                   constant:offset.x]];
