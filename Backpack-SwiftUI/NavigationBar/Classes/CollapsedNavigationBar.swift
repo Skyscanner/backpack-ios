@@ -19,7 +19,9 @@
 import SwiftUI
 
 struct CollapsedNavigationBar: View {
-    /// Added on each side of a 24 pt icon to reach a 44 pt touch target.
+    /// Apple's minimum touch target.
+    private static let touchTarget: CGFloat = 44
+    /// How far the 44 pt touch target reaches past a 24 pt icon, on each side.
     private static let touchTargetOutset: CGFloat = 10
 
     let title: String?
@@ -90,15 +92,18 @@ struct CollapsedNavigationBar: View {
     ) -> some View {
         Button(action: action) {
             BPKIconView(icon, size: .large)
-                // Grow the tappable area of the 24 pt icon to Apple's 44 pt minimum touch target
-                // without moving the icon.
-                .contentShape(Rectangle().inset(by: -Self.touchTargetOutset))
+                // A real 44 pt frame gives the button Apple's minimum touch target. A larger content
+                // shape alone doesn't reach past the view's frame.
+                .frame(width: Self.touchTarget, height: Self.touchTarget)
+                .contentShape(Rectangle())
         }
         .accessibilityElement()
         .accessibilityAddTraits(.isButton)
         .accessibilityLabel(accessibilityLabel)
         .foregroundColor(style.foregroundColor(expanded: expanded))
         .accessibilityIdentifier(accessibilityIdentifier ?? "")
+        // Keeps the 24 pt the icon took in the layout, so nothing in the bar moves.
+        .padding(-Self.touchTargetOutset)
     }
     
     // swiftlint:disable closure_body_length

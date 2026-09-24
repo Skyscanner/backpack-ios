@@ -19,8 +19,9 @@
 import SwiftUI
 
 struct ImageGalleryHeader: View {
-    /// Added on each side of the 32 pt Close button to reach Apple's 44 pt minimum touch target,
-    /// without moving the button or changing the layout around it.
+    /// Apple's minimum touch target.
+    private static let touchTarget: CGFloat = 44
+    /// How far the 44 pt touch target reaches past the 32 pt the Close button takes in the layout, on each side.
     private static let touchTargetOutset: CGFloat = 6
 
     let closeAccessibilityLabel: String
@@ -31,10 +32,14 @@ struct ImageGalleryHeader: View {
             Button(action: onCloseTapped, label: {
                 BPKIconView(.close, size: .large)
                     .foregroundColor(.textPrimaryColor)
-                    .padding(.sm)
-                    .contentShape(Rectangle().inset(by: -Self.touchTargetOutset))
+                    // A real 44 pt frame gives the button Apple's minimum touch target. A larger content
+                    // shape alone doesn't reach past the view's frame.
+                    .frame(width: Self.touchTarget, height: Self.touchTarget)
+                    .contentShape(Rectangle())
             })
             .accessibilityLabel(closeAccessibilityLabel)
+            // Keeps the 32 pt the button took in the layout, so the icon doesn't move.
+            .padding(-Self.touchTargetOutset)
             Spacer()
         }
     }
