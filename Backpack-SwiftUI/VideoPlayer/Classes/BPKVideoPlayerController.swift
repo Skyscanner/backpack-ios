@@ -159,6 +159,7 @@ public final class BPKVideoPlayerController: ObservableObject {
     private let audioSessionPolicy: BPKVideoPlayerAudioSessionPolicy
     let periodicTimeObserver: BPKVideoPlayerPeriodicTimeObserving
     let durationProvider: BPKVideoPlayerDurationProvider
+    let bytesTransferredProvider: BPKVideoPlayerBytesProvider
     let notificationCenter: NotificationCenter
     let audioSession: BPKVideoPlayerAudioSessionManaging
     var progressAccumulator = BPKVideoPlayerProgressAccumulator()
@@ -198,6 +199,7 @@ public final class BPKVideoPlayerController: ObservableObject {
             audioSessionPolicy: audioSessionPolicy,
             periodicTimeObserver: BPKVideoPlayerPeriodicTimeObserver(),
             durationProvider: Self.liveDuration,
+            bytesTransferredProvider: Self.liveBytes,
             notificationCenter: .default,
             audioSession: AVAudioSession.sharedInstance()
         )
@@ -211,6 +213,7 @@ public final class BPKVideoPlayerController: ObservableObject {
         audioSessionPolicy: BPKVideoPlayerAudioSessionPolicy = .ambient,
         periodicTimeObserver: BPKVideoPlayerPeriodicTimeObserving,
         durationProvider: @escaping BPKVideoPlayerDurationProvider,
+        bytesTransferredProvider: @escaping BPKVideoPlayerBytesProvider = { _ in 0 },
         notificationCenter: NotificationCenter,
         audioSession: BPKVideoPlayerAudioSessionManaging = AVAudioSession.sharedInstance()
     ) {
@@ -220,6 +223,7 @@ public final class BPKVideoPlayerController: ObservableObject {
         self.audioSessionPolicy = audioSessionPolicy
         self.periodicTimeObserver = periodicTimeObserver
         self.durationProvider = durationProvider
+        self.bytesTransferredProvider = bytesTransferredProvider
         self.notificationCenter = notificationCenter
         self.audioSession = audioSession
 
@@ -509,10 +513,7 @@ public final class BPKVideoPlayerController: ObservableObject {
     // MARK: - Access log / bytes transferred
 
     private func updateBytesTransferred(for item: AVPlayerItem?) {
-        numberOfBytesTransferred = item?.accessLog()?.events
-            .reduce(into: Int64.zero) { total, event in
-                total += event.numberOfBytesTransferred
-            } ?? 0
+        numberOfBytesTransferred = bytesTransferredProvider(item)
     }
 
     // MARK: - Timeout helpers
