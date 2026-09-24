@@ -39,9 +39,11 @@ class ItemVisibilityObserver: ObservableObject {
     init(debounceThreshold: Int) {
         preferencePublisher
             .map { update in
+                // Sorted, because a dictionary's order isn't stable: the same visible items in a different
+                // order would get past `removeDuplicates()` and publish again.
                 update.items.filter { (_, frame) in
                     frame.intersects(update.parentFrame)
-                }.map { $0.key }
+                }.map { $0.key }.sorted()
             }
             .removeDuplicates() // Ensures we don't debounce if the list hasn't changed
             .debounce(for: .milliseconds(debounceThreshold), scheduler: DispatchQueue.main)

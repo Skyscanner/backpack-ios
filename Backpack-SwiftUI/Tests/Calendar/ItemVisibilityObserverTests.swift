@@ -48,6 +48,24 @@ final class ItemVisibilityObserverTests: XCTestCase {
         XCTAssertEqual(received, [0])
     }
 
+    func test_whenSeveralItemsAreVisible_thenTheyArePublishedInOrder() {
+        let observer = ItemVisibilityObserver(debounceThreshold: 0)
+        let visible = expectation(description: "visible items published")
+        var received: [Int] = []
+        observer.$visibleItems.dropFirst().sink { items in
+            received = items
+            visible.fulfill()
+        }.store(in: &cancellables)
+        let year = Dictionary(uniqueKeysWithValues: (0..<12).map { month in
+            (month, CGRect(x: 0, y: CGFloat(month) * 10, width: 400, height: 10))
+        })
+
+        observer.updatePreferences(year, parentFrame: CGRect(x: 0, y: 0, width: 400, height: 120))
+
+        wait(for: [visible], timeout: 2)
+        XCTAssertEqual(received, Array(0..<12))
+    }
+
     func test_whenTheParentFrameChanges_thenVisibleItemsFollowTheNewFrame() {
         // Folding or unfolding a foldable changes the calendar's frame. Before this was fixed, the
         // observer kept measuring against the frame it was created with.
