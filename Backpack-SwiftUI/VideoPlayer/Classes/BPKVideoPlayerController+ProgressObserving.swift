@@ -66,6 +66,11 @@ extension BPKVideoPlayerController {
                     isLooping: self.loop
                 )
             }
+            // Re-read bytes on every tick: AVPlayerItemNewAccessLogEntry only fires when a
+            // new log *period* starts (seek / stall / bitrate switch), not per segment.
+            // The current open event accumulates silently, so polling is the only way to
+            // capture the true running total while the player buffers HLS content.
+            self.updateBytesTransferred(for: self.player.currentItem)
         }
     }
 

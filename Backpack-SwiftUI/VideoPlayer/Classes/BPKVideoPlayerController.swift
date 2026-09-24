@@ -512,7 +512,7 @@ public final class BPKVideoPlayerController: ObservableObject {
 
     // MARK: - Access log / bytes transferred
 
-    private func updateBytesTransferred(for item: AVPlayerItem?) {
+    func updateBytesTransferred(for item: AVPlayerItem?) {
         numberOfBytesTransferred = bytesTransferredProvider(item)
     }
 

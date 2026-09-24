@@ -23,7 +23,7 @@ import Backpack_SwiftUI
 // MARK: - Sample URLs (replace with real assets)
 private enum SampleVideo {
     // Skyscanner-hosted HLS test stream
-    static let url = URL(string: "https://content.skyscnr.com/media/68afbd83-d09a-48e8-9821-90c117b8f842/593d0fe4-5459-4c43-beb9-49f9ce79d365.m3u8")!
+    static let url = URL(string: "https://content.skyscnr.com/media/b6727ac9-530a-4f27-ac12-8a564932ca25/Bodrum_Tan-t-m_700x1000px-Skyscanner.m3u8")!
 
 }
 
