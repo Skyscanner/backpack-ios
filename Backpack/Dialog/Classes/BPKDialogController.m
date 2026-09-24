@@ -155,12 +155,13 @@ NS_ASSUME_NONNULL_BEGIN
     NSLayoutConstraint *lowerWidthConstraint = [scrollView.widthAnchor constraintGreaterThanOrEqualToAnchor:self.view.widthAnchor multiplier:0.8];
     lowerWidthConstraint.priority = UILayoutPriorityDefaultHigh;
 
-    // The scroll view is as tall as the dialog. When the window is too short for that, it takes the
-    // height it's given instead and the dialog scrolls, so its buttons stay reachable. The priority sits
-    // below the message's compression resistance (UILayoutPriorityDefaultLow), so the dialog keeps its
-    // full text instead of shrinking and truncating it to fit.
+    // The scroll view is as tall as the dialog, and the dialog tries to fit the scroll view's height. In a
+    // short window the dialog's message scrolls inside it and its buttons stay in view. Only when even a
+    // few lines of the message don't fit does the whole dialog scroll here instead.
     NSLayoutConstraint *fitDialogHeight = [scrollView.heightAnchor constraintEqualToAnchor:self.dialogView.heightAnchor];
     fitDialogHeight.priority = UILayoutPriorityDefaultLow - 2;
+    NSLayoutConstraint *fitVisibleHeight = [self.dialogView.heightAnchor constraintLessThanOrEqualToAnchor:scrollView.frameLayoutGuide.heightAnchor];
+    fitVisibleHeight.priority = UILayoutPriorityDefaultHigh;
 
     [NSLayoutConstraint activateConstraints:@[
         [self.scrimView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
@@ -175,6 +176,7 @@ NS_ASSUME_NONNULL_BEGIN
         lowerWidthConstraint,
         [scrollView.heightAnchor constraintLessThanOrEqualToConstant:BPKSpacingXxl * 18],
         fitDialogHeight,
+        fitVisibleHeight,
 
         // Centred horizontally in the safe area, so a side safe area such as the iPhone Duo's rail
         // doesn't push the dialog off-centre. Vertical centring is unchanged.
