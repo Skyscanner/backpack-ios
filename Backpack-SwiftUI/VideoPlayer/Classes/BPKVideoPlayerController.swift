@@ -22,10 +22,7 @@ import UIKit
 
 // MARK: - Playback state
 
-/// Normalised failure categories emitted by a video player.
-///
-/// Codes are aligned with the web video-player taxonomy so cross-platform
-/// New Relic dashboards can group events by the same string value.
+/// Normalised failure categories emitted by a video player, aligned with the web taxonomy.
 public enum BPKVideoPlayerError: Error, Equatable, Sendable {
     case aborted
     case network
@@ -41,7 +38,6 @@ public enum BPKVideoPlayerError: Error, Equatable, Sendable {
     case hlsUnknown
     case unknown
 
-    /// The string code to emit when logging this error to operational observability tools.
     public var code: String {
         switch self {
         case .aborted: "MEDIA_ERR_ABORTED"
@@ -125,13 +121,10 @@ public final class BPKVideoPlayerController: ObservableObject {
     /// Whether the player is muted. Drives custom mute controls.
     @Published public private(set) var isMuted = false
 
-    /// Cumulative bytes transferred from the network for the current player item.
+    /// Cumulative bytes transferred for the current player item.
     ///
-    /// Sourced from `AVPlayerItem.accessLog()`. Resets to `0` when a new item begins loading.
-    /// `nil` is never published — before the first access-log entry the value is `0`.
-    ///
-    /// - Note: AVFoundation's asset networking is not observed by New Relic Mobile's URLSession
-    ///   instrumentation. This property is the only iOS route to video data-transfer metrics.
+    /// - Note: AVFoundation's asset networking bypasses New Relic Mobile's URLSession
+    ///   instrumentation. This is the only iOS route to video data-transfer metrics.
     @Published public private(set) var numberOfBytesTransferred: Int64 = 0
 
     // MARK: - Playback progress
@@ -418,9 +411,8 @@ public final class BPKVideoPlayerController: ObservableObject {
     private func handleReadyItem() {
         let isInitialLoad = !hasLoadedInitialItem
         let isWaitingForPlayback = player.timeControlStatus == .waitingToPlayAtSpecifiedRate
-        // Keep the timeout active when the item is ready but transport is still waiting:
-        // AVFoundation can report readyToPlay before data is available to play. The timeout
-        // must remain scheduled until the first playing/paused/readyToPlay state is reached.
+        // Keep the timeout running if the item is ready but the transport is still waiting —
+        // readyToPlay does not mean the player can actually start delivering frames yet.
         if !isInitialLoad || !isWaitingForPlayback {
             loadTimeoutTask?.cancel()
         }
@@ -438,9 +430,6 @@ public final class BPKVideoPlayerController: ObservableObject {
             completeInitialLoad()
             transition(to: .playing)
         case .waitingToPlayAtSpecifiedRate:
-            // Item is ready but playback has not started. Treat as still loading so the
-            // configured timeout continues to run, aligned with Android BpkVideoPlayer
-            // which keeps LoadTimeout eligible until STATE_READY with isPlaying=true.
             if hasLoadedInitialItem {
                 transition(to: .buffering)
             } else {
@@ -481,8 +470,6 @@ public final class BPKVideoPlayerController: ObservableObject {
                 transition(to: .paused)
             }
         case .waitingToPlayAtSpecifiedRate:
-            // Same logic as in handleReadyItem: during the initial load, keep the
-            // state as .loading so the configured timeout remains active.
             if hasLoadedInitialItem {
                 transition(to: .buffering)
             } else {
@@ -510,16 +497,10 @@ public final class BPKVideoPlayerController: ObservableObject {
         DispatchQueue.main.asyncAfter(deadline: .now() + loadTimeout, execute: task)
     }
 
-    // MARK: - Access log / bytes transferred
-
     func updateBytesTransferred(for item: AVPlayerItem?) {
         numberOfBytesTransferred = bytesTransferredProvider(item)
     }
 
-    // MARK: - Timeout helpers
-
-    /// Called when playback transitions to a definitive non-loading state for the first time.
-    /// Marks the initial load complete and cancels any pending load-timeout task.
     private func completeInitialLoad() {
         guard !hasLoadedInitialItem else { return }
         hasLoadedInitialItem = true
@@ -528,13 +509,8 @@ public final class BPKVideoPlayerController: ObservableObject {
 
     // MARK: - Error normalisation
 
-    /// Maps an `NSError` from AVFoundation or the URL layer to a normalised `BPKVideoPlayerError`
-    /// so consumers do not need to own their own AVFoundation mapping.
-    ///
-    /// HLS-specific cases (`hlsChunkLoadFailed`, `hlsNetwork`, `hlsMedia`, etc.) are defined on
-    /// `BPKVideoPlayerError` for cross-platform taxonomy alignment but are **not yet produced here**.
-    /// AVFoundation wraps HLS-level failures into generic `AVError` codes; a future pass can map
-    /// `AVError.Code.mediaServicesWereReset` and related HLS/network errors to the appropriate case.
+    // HLS-specific cases exist in BPKVideoPlayerError for taxonomy alignment but are not yet
+    // produced here — AVFoundation surfaces them as generic AVError codes. To be mapped later.
     private static func normalise(_ error: NSError) -> BPKVideoPlayerError {
         if error.domain == NSURLErrorDomain {
             if error.code == NSURLErrorCancelled {

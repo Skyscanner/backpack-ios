@@ -46,8 +46,6 @@ struct BPKVideoPlayerPeriodicTimeObserver: BPKVideoPlayerPeriodicTimeObserving {
 
 typealias BPKVideoPlayerDurationProvider = (AVPlayerItem?) -> TimeInterval?
 
-/// Returns the cumulative bytes transferred for a player item.
-/// Consumed by `BPKVideoPlayerController` to populate `numberOfBytesTransferred`.
 typealias BPKVideoPlayerBytesProvider = @Sendable (AVPlayerItem?) -> Int64
 
 extension BPKVideoPlayerController {
@@ -66,10 +64,8 @@ extension BPKVideoPlayerController {
                     isLooping: self.loop
                 )
             }
-            // Re-read bytes on every tick: AVPlayerItemNewAccessLogEntry only fires when a
-            // new log *period* starts (seek / stall / bitrate switch), not per segment.
-            // The current open event accumulates silently, so polling is the only way to
-            // capture the true running total while the player buffers HLS content.
+            // AVPlayerItemNewAccessLogEntry fires per playback period, not per segment.
+            // Polling here captures bytes as the current open event accumulates.
             self.updateBytesTransferred(for: self.player.currentItem)
         }
     }
