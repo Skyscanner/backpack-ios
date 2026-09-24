@@ -355,7 +355,6 @@ struct VideoObservabilityExampleView: View {
     )
 
     @State private var timeoutTestState: ObservabilityTestState = .idle
-    @State private var timeoutController: BPKVideoPlayerController?
 
     var body: some View {
         ScrollView {
@@ -417,15 +416,10 @@ struct VideoObservabilityExampleView: View {
                     bytes: controller.numberOfBytesTransferred
                 )
                 .onChange(of: controller.state) { state in
-                    if case .failed(let error) = state {
-                        timeoutTestState = .result(error)
-                        timeoutController = nil
-                    } else if case .playing = state {
-                        timeoutTestState = .idle
-                        timeoutController = nil
-                    } else if case .readyToPlay = state {
-                        timeoutTestState = .idle
-                        timeoutController = nil
+                    switch state {
+                    case .failed(let error): timeoutTestState = .result(error)
+                    case .playing, .readyToPlay: timeoutTestState = .idle
+                    default: break
                     }
                 }
             }
@@ -496,7 +490,6 @@ struct VideoObservabilityExampleView: View {
             loop: false,
             loadTimeout: 2
         )
-        timeoutController = controller
         timeoutTestState = .running(controller)
         controller.play()
     }
