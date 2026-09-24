@@ -70,6 +70,15 @@ final class BPKVideoPlayerTests: XCTestCase {
         XCTAssertTrue(controller.player.isMuted)
     }
 
+    func test_videoPlayerErrorCodes_matchWebTaxonomy() {
+        XCTAssertEqual(BPKVideoPlayerError.loadTimeout.code, "LOAD_TIMEOUT")
+        XCTAssertEqual(BPKVideoPlayerError.network.code, "MEDIA_ERR_NETWORK")
+        XCTAssertEqual(BPKVideoPlayerError.decode.code, "MEDIA_ERR_DECODE")
+        XCTAssertEqual(BPKVideoPlayerError.sourceNotSupported.code, "MEDIA_ERR_SRC_NOT_SUPPORTED")
+        XCTAssertEqual(BPKVideoPlayerError.aborted.code, "MEDIA_ERR_ABORTED")
+        XCTAssertEqual(BPKVideoPlayerError.unknown.code, "UNKNOWN_ERROR")
+    }
+
     func test_isMuted_tracksLegacyPlayerMutation() async throws {
         let controller = BPKVideoPlayerController.stub()
 
@@ -80,6 +89,12 @@ final class BPKVideoPlayerTests: XCTestCase {
         controller.player.isMuted = false
         try await waitUntil { !controller.isMuted }
         XCTAssertFalse(controller.isMuted)
+    }
+
+    func test_newController_numberOfBytesTransferred_isZero() {
+        let controller = BPKVideoPlayerController.stub()
+
+        XCTAssertEqual(controller.numberOfBytesTransferred, 0)
     }
 
     func test_loopingPlayback_remainsPlayingWhenCurrentItemChanges() async throws {

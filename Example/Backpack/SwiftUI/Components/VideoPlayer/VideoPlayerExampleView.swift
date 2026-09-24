@@ -23,7 +23,7 @@ import Backpack_SwiftUI
 // MARK: - Sample URLs (replace with real assets)
 private enum SampleVideo {
     // Skyscanner-hosted HLS test stream
-    static let url = URL(string: "https://content.skyscnr.com/media/68afbd83-d09a-48e8-9821-90c117b8f842/593d0fe4-5459-4c43-beb9-49f9ce79d365.m3u8")!
+    static let url = URL(string: "https://content.skyscnr.com/media/b6727ac9-530a-4f27-ac12-8a564932ca25/Bodrum_Tan-t-m_700x1000px-Skyscanner.m3u8")!
 
 }
 
@@ -330,6 +330,198 @@ struct VideoProgressExampleView: View {
 }
 
 
+// MARK: - Use case 5: Observability HUD (bytes transferred + typed error)
+//
+// Exercises the two new observability APIs added in MUON-2126:
+//   • numberOfBytesTransferred — live CDN bytes, resets on each loop iteration
+//   • BPKVideoPlayerError.code  — normalised error string for New Relic
+//
+// "Test timeout" creates a fresh controller with a 2-second load timeout pointed
+// at the live HLS stream. If the stream loads before the deadline the test passes
+// cleanly; if the network is unreachable or slow the controller will emit
+// .failed(.loadTimeout) and the HUD will show the LOAD_TIMEOUT code.
+
+private enum ObservabilityTestState {
+    case idle
+    case running(BPKVideoPlayerController)
+    case result(BPKVideoPlayerError)
+}
+
+struct VideoObservabilityExampleView: View {
+    @StateObject private var liveController = BPKVideoPlayerController(
+        url: SampleVideo.url,
+        autoPlay: true,
+        loop: true
+    )
+
+    @State private var timeoutTestState: ObservabilityTestState = .idle
+
+    var body: some View {
+        ScrollView {
+            VStack(spacing: BPKSpacing.lg) {
+                BPKText("Live controller", style: .heading4)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal, BPKSpacing.lg)
+
+                ZStack {
+                    BPKVideoPlayer(controller: liveController) { _ in EmptyView() }
+                        .aspectRatio(16 / 9, contentMode: .fit)
+                        .background(Color(.surfaceContrastColor))
+                    if liveController.state.isLoading {
+                        BPKSpinner(.lg, style: .onDarkSurface)
+                    }
+                }
+
+                observabilityHUD(
+                    state: liveController.state,
+                    bytes: liveController.numberOfBytesTransferred
+                )
+                .padding(.horizontal, BPKSpacing.lg)
+
+                Divider()
+                    .padding(.horizontal, BPKSpacing.lg)
+
+                BPKText("Timeout test (2 s deadline)", style: .heading4)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal, BPKSpacing.lg)
+
+                BPKText(
+                    "Starts a fresh controller with a 2-second load timeout. " +
+                    "On a slow or blocked connection it fires .loadTimeout; on a fast connection it loads cleanly.",
+                    style: .caption
+                )
+                .foregroundColor(.textSecondaryColor)
+                .padding(.horizontal, BPKSpacing.lg)
+
+                timeoutTestBody
+                    .padding(.horizontal, BPKSpacing.lg)
+            }
+            .padding(.vertical, BPKSpacing.lg)
+        }
+    }
+
+    // MARK: - Timeout test
+
+    @ViewBuilder
+    private var timeoutTestBody: some View {
+        switch timeoutTestState {
+        case .idle:
+            BPKButton("Start timeout test", action: startTimeoutTest)
+                .frame(maxWidth: .infinity)
+
+        case .running(let controller):
+            VStack(alignment: .leading, spacing: BPKSpacing.md) {
+                observabilityHUD(
+                    state: controller.state,
+                    bytes: controller.numberOfBytesTransferred
+                )
+                .onChange(of: controller.state) { state in
+                    switch state {
+                    case .failed(let error): timeoutTestState = .result(error)
+                    case .playing, .readyToPlay: timeoutTestState = .idle
+                    default: break
+                    }
+                }
+            }
+
+        case .result(let error):
+            VStack(alignment: .leading, spacing: BPKSpacing.md) {
+                HStack(spacing: BPKSpacing.sm) {
+                    BPKIconView(.exclamationCircle, size: .small)
+                        .foregroundColor(.statusDangerSpotColor)
+                    BPKText("Timeout fired", style: .heading5)
+                }
+                metricRow(title: "Error code", value: error.code)
+                BPKButton("Reset", action: { timeoutTestState = .idle })
+                    .buttonStyle(.secondary)
+            }
+        }
+    }
+
+    // MARK: - Shared HUD
+
+    private func observabilityHUD(
+        state: BPKVideoPlayerState,
+        bytes: Int64
+    ) -> some View {
+        VStack(alignment: .leading, spacing: BPKSpacing.base) {
+            HStack(spacing: BPKSpacing.md) {
+                metricRow(title: "State", value: stateLabel(state))
+                metricRow(title: "Error code", value: errorCode(state))
+            }
+            metricRow(title: "Bytes transferred", value: formatBytes(bytes))
+
+            if bytes > 0 {
+                BPKProgressBar(
+                    max: 5_000_000,
+                    stepped: false,
+                    size: .small,
+                    value: Float(min(bytes, 5_000_000))
+                )
+            }
+
+            BPKText(
+                "Bytes reset on each loop iteration. Error code appears only in .failed state.",
+                style: .caption
+            )
+            .foregroundColor(.textSecondaryColor)
+        }
+        .padding(BPKSpacing.base)
+        .background(Color(.surfaceSubtleColor))
+        .clipShape(RoundedRectangle(cornerRadius: BPKCornerRadius.md.value))
+    }
+
+    private func metricRow(title: String, value: String) -> some View {
+        VStack(alignment: .leading, spacing: BPKSpacing.sm) {
+            BPKText(title, style: .caption)
+                .foregroundColor(.textSecondaryColor)
+            BPKText(value, style: .heading5)
+                .monospacedDigit()
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    // MARK: - Helpers
+
+    private func startTimeoutTest() {
+        let controller = BPKVideoPlayerController(
+            url: SampleVideo.url,
+            autoPlay: false,
+            loop: false,
+            loadTimeout: 2
+        )
+        timeoutTestState = .running(controller)
+        controller.play()
+    }
+
+    private func stateLabel(_ state: BPKVideoPlayerState) -> String {
+        switch state {
+        case .loading: "loading"
+        case .readyToPlay: "readyToPlay"
+        case .playing: "playing"
+        case .paused: "paused"
+        case .buffering: "buffering"
+        case .failed: "failed"
+        }
+    }
+
+    private func errorCode(_ state: BPKVideoPlayerState) -> String {
+        if case .failed(let error) = state { return error.code }
+        return "—"
+    }
+
+    private func formatBytes(_ bytes: Int64) -> String {
+        guard bytes > 0 else { return "0 B" }
+        if bytes >= 1_048_576 {
+            return String(format: "%.1f MB", Double(bytes) / 1_048_576)
+        } else if bytes >= 1_024 {
+            return String(format: "%.1f KB", Double(bytes) / 1_024)
+        } else {
+            return "\(bytes) B"
+        }
+    }
+}
+
 // MARK: - Previews
 
 struct VideoPlayerExampleView_Previews: PreviewProvider {
@@ -349,6 +541,9 @@ struct VideoPlayerExampleView_Previews: PreviewProvider {
 
             VideoProgressExampleView()
                 .previewDisplayName("4 · Live playback progress")
+
+            VideoObservabilityExampleView()
+                .previewDisplayName("5 · Observability HUD")
         }
     }
 }
