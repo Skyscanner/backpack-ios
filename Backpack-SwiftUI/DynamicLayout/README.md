@@ -4,12 +4,33 @@
 
 Backpack provides layout wrapper components that adapt their structure based on various conditions:
 
-- **`BPKDynamicLayout`** – A conditional, generic layout that switches between inner layouts manually (e.g., based on device orientation or other runtime states).
+- **`BPKDynamicLayout`** – A conditional, generic layout that switches between inner layouts, either following the window's horizontal size class or a condition you control.
 - **`BPKDynamicTypeLayout`** – A Dynamic Type-aware layout that automatically switches between inner layouts based on the user's preferred text size.
+- **`bpkReadableContentWidth()`** – Caps content at a readable width on wide windows.
+- **`bpkKeepClearOfFold(on:)`** – Keeps content clear of the fold when a foldable, such as the iPhone Duo, is partially folded.
 
 ## BPKDynamicLayout
 
-`BPKDynamicLayout` is a conditional layout container that switches between a **primary** and **secondary** layout based on a Boolean binding you control (e.g., device orientation, screen size, etc.).
+`BPKDynamicLayout` is a conditional layout container that switches between a **primary** and **secondary** layout.
+
+### Follow the window's width
+
+Prefer this over checking the device type or the screen size. The window's horizontal size class changes with Split View, Slide Over, rotation, and folding or unfolding an iPhone Duo, and the layout follows it.
+
+```swift
+BPKDynamicLayout(
+    primaryLayout: AnyLayout(HStackLayout(spacing: BPKSpacing.base.value)),
+    secondaryLayout: AnyLayout(VStackLayout(spacing: BPKSpacing.base.value)),
+    secondaryLayoutForHorizontalSizeClass: .compact
+) {
+    BPKText("This is the first text")
+    BPKText("This is the second text")
+}
+```
+
+### Switch on a condition you control
+
+Pass a Boolean binding to decide yourself, for example from the user's settings.
 
 ### Example (switch layouts based on landscape mode)
 
@@ -83,3 +104,28 @@ BPKDynamicTypeLayout(
     BPKText("Last text", style: .heading5)
 }
 ```
+
+---
+
+## Readable content width
+
+`bpkReadableContentWidth()` caps content at a readable width, 672 pt by default, and centres it. On a phone-sized window it changes nothing; on an iPad or an unfolded iPhone Duo it stops text and controls from stretching across the whole window.
+
+```swift
+VStack(alignment: .leading, spacing: BPKSpacing.base.value) {
+    BPKText("Read before booking", style: .heading3)
+    BPKText(details)
+}
+.bpkReadableContentWidth()
+```
+
+## Keeping clear of the fold
+
+When a foldable such as the iPhone Duo is partially folded, iOS 27.1 reports the fold as a reserved region. `bpkKeepClearOfFold(on:)` moves a full-window view into one half, so nothing straddles the fold. When the device is closed, fully open, or not a foldable, nothing changes. The fold APIs need the iOS 27.1 SDK; with older toolchains the modifier compiles to a no-op.
+
+```swift
+dialogLayer
+    .bpkKeepClearOfFold(on: .leading)
+```
+
+To read the fold yourself, use `GeometryProxy.bpkActiveFoldFrame` in SwiftUI or `UIView.bpkActiveFoldFrame` in UIKit (iOS 27.1 and later).
