@@ -125,6 +125,15 @@ public final class BPKVideoPlayerController: ObservableObject {
     /// Whether the player is muted. Drives custom mute controls.
     @Published public private(set) var isMuted = false
 
+    /// Cumulative bytes transferred from the network for the current player item.
+    ///
+    /// Sourced from `AVPlayerItem.accessLog()`. Resets to `0` when a new item begins loading.
+    /// `nil` is never published — before the first access-log entry the value is `0`.
+    ///
+    /// - Note: AVFoundation's asset networking is not observed by New Relic Mobile's URLSession
+    ///   instrumentation. This property is the only iOS route to video data-transfer metrics.
+    @Published public private(set) var numberOfBytesTransferred: Int64 = 0
+
     // MARK: - Playback progress
 
     /// The latest playback progress, or `nil` until duration is known.
@@ -170,6 +179,7 @@ public final class BPKVideoPlayerController: ObservableObject {
     var itemCompletionToken: NSObjectProtocol?
     private var loadTimeoutTask: DispatchWorkItem?
     private var lifecycleTokens: [NSObjectProtocol] = []
+    private var accessLogToken: NSObjectProtocol?
 
     // MARK: - Init
 
@@ -237,6 +247,9 @@ public final class BPKVideoPlayerController: ObservableObject {
         }
         if let itemCompletionToken {
             notificationCenter.removeObserver(itemCompletionToken)
+        }
+        if let accessLogToken {
+            notificationCenter.removeObserver(accessLogToken)
         }
         loadTimeoutTask?.cancel()
         lifecycleTokens.forEach { NotificationCenter.default.removeObserver($0) }
@@ -343,6 +356,12 @@ public final class BPKVideoPlayerController: ObservableObject {
     }
 
     private func handleCurrentItemChange(_ item: AVPlayerItem?) {
+        numberOfBytesTransferred = 0
+        if let accessLogToken {
+            notificationCenter.removeObserver(accessLogToken)
+            self.accessLogToken = nil
+        }
+
         guard item != nil else {
             isLoopItemTransitioning = false
             observeItemStatus(nil)
@@ -354,6 +373,16 @@ public final class BPKVideoPlayerController: ObservableObject {
 
         markLoopItemTransitionIfNeeded()
         observeItemStatus(item)
+        updateBytesTransferred(for: item)
+        accessLogToken = notificationCenter.addObserver(
+            forName: .AVPlayerItemNewAccessLogEntry,
+            object: item,
+            queue: .main
+        ) { [weak self] _ in
+            Task { @MainActor [weak self] in
+                self?.updateBytesTransferred(for: item)
+            }
+        }
     }
 
     private func markLoopItemTransitionIfNeeded() {
@@ -475,6 +504,15 @@ public final class BPKVideoPlayerController: ObservableObject {
         }
         loadTimeoutTask = task
         DispatchQueue.main.asyncAfter(deadline: .now() + loadTimeout, execute: task)
+    }
+
+    // MARK: - Access log / bytes transferred
+
+    private func updateBytesTransferred(for item: AVPlayerItem?) {
+        numberOfBytesTransferred = item?.accessLog()?.events
+            .reduce(into: Int64.zero) { total, event in
+                total += event.numberOfBytesTransferred
+            } ?? 0
     }
 
     // MARK: - Timeout helpers

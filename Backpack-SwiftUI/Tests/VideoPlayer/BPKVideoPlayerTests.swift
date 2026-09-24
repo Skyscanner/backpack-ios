@@ -98,6 +98,12 @@ final class BPKVideoPlayerTests: XCTestCase {
         XCTAssertFalse(controller.isMuted)
     }
 
+    func test_newController_numberOfBytesTransferred_isZero() {
+        let controller = BPKVideoPlayerController.stub()
+
+        XCTAssertEqual(controller.numberOfBytesTransferred, 0)
+    }
+
     func test_loopingPlayback_remainsPlayingWhenCurrentItemChanges() async throws {
         let controller = BPKVideoPlayerController(
             url: try localVideoURL(),
