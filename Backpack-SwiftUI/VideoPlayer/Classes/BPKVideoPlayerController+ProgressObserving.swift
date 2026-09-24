@@ -46,7 +46,7 @@ struct BPKVideoPlayerPeriodicTimeObserver: BPKVideoPlayerPeriodicTimeObserving {
 
 typealias BPKVideoPlayerDurationProvider = (AVPlayerItem?) -> TimeInterval?
 
-typealias BPKVideoPlayerBytesProvider = @Sendable (AVPlayerItem?) -> Int64
+typealias BPKVideoPlayerBytesProvider = (AVPlayerItem?) -> Int64
 
 extension BPKVideoPlayerController {
     func startProgressObserving() {

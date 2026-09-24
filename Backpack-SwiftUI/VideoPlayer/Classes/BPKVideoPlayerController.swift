@@ -29,13 +29,6 @@ public enum BPKVideoPlayerError: Error, Equatable, Sendable {
     case decode
     case sourceNotSupported
     case loadTimeout
-    case hlsChunkLoadFailed
-    case hlsNetwork
-    case hlsMedia
-    case hlsMux
-    case hlsOther
-    case hlsNotSupported
-    case hlsUnknown
     case unknown
 
     public var code: String {
@@ -45,13 +38,6 @@ public enum BPKVideoPlayerError: Error, Equatable, Sendable {
         case .decode: "MEDIA_ERR_DECODE"
         case .sourceNotSupported: "MEDIA_ERR_SRC_NOT_SUPPORTED"
         case .loadTimeout: "LOAD_TIMEOUT"
-        case .hlsChunkLoadFailed: "HLS_CHUNK_LOAD_FAILED"
-        case .hlsNetwork: "HLS_NETWORK_ERROR"
-        case .hlsMedia: "HLS_MEDIA_ERROR"
-        case .hlsMux: "HLS_MUX_ERROR"
-        case .hlsOther: "HLS_OTHER_ERROR"
-        case .hlsNotSupported: "HLS_NOT_SUPPORTED"
-        case .hlsUnknown: "HLS_UNKNOWN_ERROR"
         case .unknown: "UNKNOWN_ERROR"
         }
     }
@@ -376,7 +362,7 @@ public final class BPKVideoPlayerController: ObservableObject {
             object: item,
             queue: .main
         ) { [weak self] _ in
-            Task { @MainActor [weak self] in
+            MainActor.assumeIsolated {
                 self?.updateBytesTransferred(for: item)
             }
         }
@@ -396,7 +382,7 @@ public final class BPKVideoPlayerController: ObservableObject {
         case .readyToPlay:
             handleReadyItem()
         case .failed:
-            loadTimeoutTask?.cancel()
+            cancelLoadTimeout()
             let error = item.error ?? NSError(domain: "BPKVideoPlayer", code: -1)
             isLoopItemTransitioning = false
             transition(to: .failed(Self.normalise(error as NSError)))
@@ -411,23 +397,19 @@ public final class BPKVideoPlayerController: ObservableObject {
     private func handleReadyItem() {
         let isInitialLoad = !hasLoadedInitialItem
         let isWaitingForPlayback = player.timeControlStatus == .waitingToPlayAtSpecifiedRate
-        // Keep the timeout running if the item is ready but the transport is still waiting —
-        // readyToPlay does not mean the player can actually start delivering frames yet.
+        // Reaching a genuine playable state ends the load. Staying `readyToPlay` while the
+        // transport is still waiting does not — the timeout keeps running until real playback.
         if !isInitialLoad || !isWaitingForPlayback {
-            loadTimeoutTask?.cancel()
+            completeInitialLoad()
         }
         updateProgressDuration()
         let wasLoopItemTransitioning = isLoopItemTransitioning
         isLoopItemTransitioning = false
         let shouldAutoPlay = isInitialLoad && autoPlay &&
             !hasExplicitPauseRequest && !UIAccessibility.isReduceMotionEnabled
-        if !isWaitingForPlayback {
-            hasLoadedInitialItem = true
-        }
 
         switch player.timeControlStatus {
         case .playing:
-            completeInitialLoad()
             transition(to: .playing)
         case .waitingToPlayAtSpecifiedRate:
             if hasLoadedInitialItem {
@@ -440,7 +422,6 @@ public final class BPKVideoPlayerController: ObservableObject {
             if wasLoopItemTransitioning && state.isActive {
                 transition(to: .buffering)
             } else if state != .paused {
-                completeInitialLoad()
                 transition(to: .readyToPlay)
             }
             if shouldAutoPlay { play() }
@@ -486,15 +467,22 @@ public final class BPKVideoPlayerController: ObservableObject {
         state = newState
     }
 
+    // Idempotent: the deadline is fixed from the first schedule of a load, never extended.
     private func scheduleTimeout() {
-        loadTimeoutTask?.cancel()
-        guard loadTimeout > 0 else { return }
+        guard loadTimeout > 0, loadTimeoutTask == nil else { return }
         let task = DispatchWorkItem { [weak self] in
-            guard let self, self.state.isLoading else { return }
+            guard let self else { return }
+            self.loadTimeoutTask = nil
+            guard self.state.isLoading else { return }
             self.transition(to: .failed(.loadTimeout))
         }
         loadTimeoutTask = task
         DispatchQueue.main.asyncAfter(deadline: .now() + loadTimeout, execute: task)
+    }
+
+    private func cancelLoadTimeout() {
+        loadTimeoutTask?.cancel()
+        loadTimeoutTask = nil
     }
 
     func updateBytesTransferred(for item: AVPlayerItem?) {
@@ -502,15 +490,12 @@ public final class BPKVideoPlayerController: ObservableObject {
     }
 
     private func completeInitialLoad() {
-        guard !hasLoadedInitialItem else { return }
         hasLoadedInitialItem = true
-        loadTimeoutTask?.cancel()
+        cancelLoadTimeout()
     }
 
     // MARK: - Error normalisation
 
-    // HLS-specific cases exist in BPKVideoPlayerError for taxonomy alignment but are not yet
-    // produced here — AVFoundation surfaces them as generic AVError codes. To be mapped later.
     private static func normalise(_ error: NSError) -> BPKVideoPlayerError {
         if error.domain == NSURLErrorDomain {
             if error.code == NSURLErrorCancelled {
