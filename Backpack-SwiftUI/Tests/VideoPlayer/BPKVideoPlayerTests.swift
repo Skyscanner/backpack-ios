@@ -70,6 +70,22 @@ final class BPKVideoPlayerTests: XCTestCase {
         XCTAssertTrue(controller.player.isMuted)
     }
 
+    func test_videoPlayerErrorCodes_matchWebTaxonomy() {
+        XCTAssertEqual(BPKVideoPlayerError.loadTimeout.code, "LOAD_TIMEOUT")
+        XCTAssertEqual(BPKVideoPlayerError.network.code, "MEDIA_ERR_NETWORK")
+        XCTAssertEqual(BPKVideoPlayerError.decode.code, "MEDIA_ERR_DECODE")
+        XCTAssertEqual(BPKVideoPlayerError.sourceNotSupported.code, "MEDIA_ERR_SRC_NOT_SUPPORTED")
+        XCTAssertEqual(BPKVideoPlayerError.aborted.code, "MEDIA_ERR_ABORTED")
+        XCTAssertEqual(BPKVideoPlayerError.unknown.code, "UNKNOWN_ERROR")
+        XCTAssertEqual(BPKVideoPlayerError.hlsChunkLoadFailed.code, "HLS_CHUNK_LOAD_FAILED")
+        XCTAssertEqual(BPKVideoPlayerError.hlsNetwork.code, "HLS_NETWORK_ERROR")
+        XCTAssertEqual(BPKVideoPlayerError.hlsMedia.code, "HLS_MEDIA_ERROR")
+        XCTAssertEqual(BPKVideoPlayerError.hlsMux.code, "HLS_MUX_ERROR")
+        XCTAssertEqual(BPKVideoPlayerError.hlsOther.code, "HLS_OTHER_ERROR")
+        XCTAssertEqual(BPKVideoPlayerError.hlsNotSupported.code, "HLS_NOT_SUPPORTED")
+        XCTAssertEqual(BPKVideoPlayerError.hlsUnknown.code, "HLS_UNKNOWN_ERROR")
+    }
+
     func test_isMuted_tracksLegacyPlayerMutation() async throws {
         let controller = BPKVideoPlayerController.stub()
 

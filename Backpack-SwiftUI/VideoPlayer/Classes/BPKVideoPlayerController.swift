@@ -22,6 +22,45 @@ import UIKit
 
 // MARK: - Playback state
 
+/// Normalised failure categories emitted by a video player.
+///
+/// Codes are aligned with the web video-player taxonomy so cross-platform
+/// New Relic dashboards can group events by the same string value.
+public enum BPKVideoPlayerError: Error, Equatable, Sendable {
+    case aborted
+    case network
+    case decode
+    case sourceNotSupported
+    case loadTimeout
+    case hlsChunkLoadFailed
+    case hlsNetwork
+    case hlsMedia
+    case hlsMux
+    case hlsOther
+    case hlsNotSupported
+    case hlsUnknown
+    case unknown
+
+    /// The string code to emit when logging this error to operational observability tools.
+    public var code: String {
+        switch self {
+        case .aborted: "MEDIA_ERR_ABORTED"
+        case .network: "MEDIA_ERR_NETWORK"
+        case .decode: "MEDIA_ERR_DECODE"
+        case .sourceNotSupported: "MEDIA_ERR_SRC_NOT_SUPPORTED"
+        case .loadTimeout: "LOAD_TIMEOUT"
+        case .hlsChunkLoadFailed: "HLS_CHUNK_LOAD_FAILED"
+        case .hlsNetwork: "HLS_NETWORK_ERROR"
+        case .hlsMedia: "HLS_MEDIA_ERROR"
+        case .hlsMux: "HLS_MUX_ERROR"
+        case .hlsOther: "HLS_OTHER_ERROR"
+        case .hlsNotSupported: "HLS_NOT_SUPPORTED"
+        case .hlsUnknown: "HLS_UNKNOWN_ERROR"
+        case .unknown: "UNKNOWN_ERROR"
+        }
+    }
+}
+
 /// The current playback state of a `BPKVideoPlayerController`.
 /// A single published value drives all UI — no separate `isPlaying`/`isLoading` flags needed.
 public enum BPKVideoPlayerState: Equatable {
@@ -30,7 +69,7 @@ public enum BPKVideoPlayerState: Equatable {
     case playing
     case paused
     case buffering
-    case failed(Error)
+    case failed(BPKVideoPlayerError)
 
     public var isLoading: Bool {
         self == .loading || self == .buffering
@@ -334,7 +373,7 @@ public final class BPKVideoPlayerController: ObservableObject {
             loadTimeoutTask?.cancel()
             let error = item.error ?? NSError(domain: "BPKVideoPlayer", code: -1)
             isLoopItemTransitioning = false
-            transition(to: .failed(error))
+            transition(to: .failed(Self.normalise(error as NSError)))
         case .unknown:
             transition(to: isLoopItemTransitioning ? .buffering : .loading)
             scheduleTimeout()
@@ -405,14 +444,37 @@ public final class BPKVideoPlayerController: ObservableObject {
         guard loadTimeout > 0 else { return }
         let task = DispatchWorkItem { [weak self] in
             guard let self, self.state.isLoading else { return }
-            self.transition(to: .failed(NSError(
-                domain: "BPKVideoPlayer",
-                code: NSURLErrorTimedOut,
-                userInfo: [NSLocalizedDescriptionKey: "Video load timed out"]
-            )))
+            self.transition(to: .failed(.loadTimeout))
         }
         loadTimeoutTask = task
         DispatchQueue.main.asyncAfter(deadline: .now() + loadTimeout, execute: task)
+    }
+
+    // MARK: - Error normalisation
+
+    /// Maps an `NSError` from AVFoundation or the URL layer to a normalised `BPKVideoPlayerError`
+    /// so consumers do not need to own their own AVFoundation mapping.
+    private static func normalise(_ error: NSError) -> BPKVideoPlayerError {
+        if error.domain == NSURLErrorDomain {
+            if error.code == NSURLErrorCancelled {
+                return .aborted
+            }
+            return .network
+        }
+
+        guard error.domain == AVFoundationErrorDomain else { return .unknown }
+
+        switch error.code {
+        case AVError.Code.operationInterrupted.rawValue:
+            return .aborted
+        case AVError.Code.decoderNotFound.rawValue,
+             AVError.Code.decodeFailed.rawValue:
+            return .decode
+        case AVError.Code.fileFormatNotRecognized.rawValue:
+            return .sourceNotSupported
+        default:
+            return .unknown
+        }
     }
 
     private func configureAudioSession() {
