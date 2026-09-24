@@ -383,23 +383,42 @@ public final class BPKVideoPlayerController: ObservableObject {
     }
 
     private func handleReadyItem() {
-        loadTimeoutTask?.cancel()
+        let isInitialLoad = !hasLoadedInitialItem
+        let isWaitingForPlayback = player.timeControlStatus == .waitingToPlayAtSpecifiedRate
+        // Keep the timeout active when the item is ready but transport is still waiting:
+        // AVFoundation can report readyToPlay before data is available to play. The timeout
+        // must remain scheduled until the first playing/paused/readyToPlay state is reached.
+        if !isInitialLoad || !isWaitingForPlayback {
+            loadTimeoutTask?.cancel()
+        }
         updateProgressDuration()
         let wasLoopItemTransitioning = isLoopItemTransitioning
         isLoopItemTransitioning = false
-        let shouldAutoPlay = !hasLoadedInitialItem && autoPlay &&
+        let shouldAutoPlay = isInitialLoad && autoPlay &&
             !hasExplicitPauseRequest && !UIAccessibility.isReduceMotionEnabled
-        hasLoadedInitialItem = true
+        if !isWaitingForPlayback {
+            hasLoadedInitialItem = true
+        }
 
         switch player.timeControlStatus {
         case .playing:
+            completeInitialLoad()
             transition(to: .playing)
         case .waitingToPlayAtSpecifiedRate:
-            transition(to: .buffering)
+            // Item is ready but playback has not started. Treat as still loading so the
+            // configured timeout continues to run, aligned with Android BpkVideoPlayer
+            // which keeps LoadTimeout eligible until STATE_READY with isPlaying=true.
+            if hasLoadedInitialItem {
+                transition(to: .buffering)
+            } else {
+                transition(to: .loading)
+                scheduleTimeout()
+            }
         case .paused:
             if wasLoopItemTransitioning && state.isActive {
                 transition(to: .buffering)
             } else if state != .paused {
+                completeInitialLoad()
                 transition(to: .readyToPlay)
             }
             if shouldAutoPlay { play() }
@@ -412,6 +431,7 @@ public final class BPKVideoPlayerController: ObservableObject {
         markLoopItemTransitionIfNeeded()
         switch timeControlStatus {
         case .playing:
+            completeInitialLoad()
             transition(to: .playing)
         case .paused:
             // AVPlayerLooper briefly reports `.paused` while it replaces a completed item.
@@ -428,7 +448,14 @@ public final class BPKVideoPlayerController: ObservableObject {
                 transition(to: .paused)
             }
         case .waitingToPlayAtSpecifiedRate:
-            transition(to: .buffering)
+            // Same logic as in handleReadyItem: during the initial load, keep the
+            // state as .loading so the configured timeout remains active.
+            if hasLoadedInitialItem {
+                transition(to: .buffering)
+            } else {
+                transition(to: .loading)
+                scheduleTimeout()
+            }
         @unknown default:
             break
         }
@@ -448,6 +475,16 @@ public final class BPKVideoPlayerController: ObservableObject {
         }
         loadTimeoutTask = task
         DispatchQueue.main.asyncAfter(deadline: .now() + loadTimeout, execute: task)
+    }
+
+    // MARK: - Timeout helpers
+
+    /// Called when playback transitions to a definitive non-loading state for the first time.
+    /// Marks the initial load complete and cancels any pending load-timeout task.
+    private func completeInitialLoad() {
+        guard !hasLoadedInitialItem else { return }
+        hasLoadedInitialItem = true
+        loadTimeoutTask?.cancel()
     }
 
     // MARK: - Error normalisation
