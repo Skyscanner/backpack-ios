@@ -529,6 +529,11 @@ public final class BPKVideoPlayerController: ObservableObject {
 
     /// Maps an `NSError` from AVFoundation or the URL layer to a normalised `BPKVideoPlayerError`
     /// so consumers do not need to own their own AVFoundation mapping.
+    ///
+    /// HLS-specific cases (`hlsChunkLoadFailed`, `hlsNetwork`, `hlsMedia`, etc.) are defined on
+    /// `BPKVideoPlayerError` for cross-platform taxonomy alignment but are **not yet produced here**.
+    /// AVFoundation wraps HLS-level failures into generic `AVError` codes; a future pass can map
+    /// `AVError.Code.mediaServicesWereReset` and related HLS/network errors to the appropriate case.
     private static func normalise(_ error: NSError) -> BPKVideoPlayerError {
         if error.domain == NSURLErrorDomain {
             if error.code == NSURLErrorCancelled {

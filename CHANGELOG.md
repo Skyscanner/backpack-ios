@@ -1,5 +1,31 @@
 [Latest releases](https://github.com/Skyscanner/backpack-ios/releases).
 
+# 93.0.0
+
+**Breaking:**
+
+- Backpack-SwiftUI:
+  - `BPKVideoPlayerState.failed` now carries a typed `BPKVideoPlayerError` instead of `any Error`.
+    Any pattern-match on `.failed(let e)` that downcasts `e` to a concrete error type will need
+    updating; switch to matching on `BPKVideoPlayerError` cases directly.
+
+**Added:**
+
+- Backpack-SwiftUI:
+  - `BPKVideoPlayerError` — typed, `Equatable` failure categories aligned with the web
+    video-player taxonomy (`MEDIA_ERR_*`, `HLS_*`, `LOAD_TIMEOUT`, `UNKNOWN_ERROR`).
+    Each case exposes a `code: String` for operational logging.
+  - `BPKVideoPlayerController.numberOfBytesTransferred: Int64` — `@Published` cumulative bytes
+    transferred for the current player item, sourced from `AVPlayerItem.accessLog()`.
+    Resets to `0` when a new item begins loading.
+
+**Fixed:**
+
+- Backpack-SwiftUI:
+  - The load-timeout timer is now kept active when `AVFoundation` reports `readyToPlay` while
+    `timeControlStatus` is still `waitingToPlayAtSpecifiedRate`. Previously the timer was
+    cancelled at `readyToPlay`, leaving a stalled player in `.buffering` indefinitely.
+
 # CocoaPods support removed
 
 `92.1.0` is the last Backpack version published to the CocoaPods trunk. The podspecs and the
