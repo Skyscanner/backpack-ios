@@ -72,21 +72,18 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
                 )
                 .padding([.leading, .top], .base)
 
-                ZStack(alignment: .bottom) {
-                    InternalCarouselWrapper(
-                        images: images.map { $0.content() },
-                        pageIndicatorVisibility: .hidden,
-                        currentIndex: $currentIndex
-                    )
-                    BPKBadge("\(currentIndex + 1)/\(images.count)")
-                        .badgeStyle(.strong)
-                        .padding(.bottom, 20)
+                SlideshowPhotoLayout {
+                    ZStack(alignment: .bottom) {
+                        InternalCarouselWrapper(
+                            images: images.map { $0.content() },
+                            pageIndicatorVisibility: .hidden,
+                            currentIndex: $currentIndex
+                        )
+                        BPKBadge("\(currentIndex + 1)/\(images.count)")
+                            .badgeStyle(.strong)
+                            .padding(.bottom, 20)
+                    }
                 }
-                // The square photo takes what the header and footer leave, instead of forcing its
-                // full width as height. In a short window, such as iPhone Duo's inner display in
-                // landscape, a width-sized square pushed Close off-screen.
-                .aspectRatio(1.0, contentMode: .fit)
-                .frame(maxWidth: .infinity)
                 .layoutPriority(1)
                 .accessibilityElement(children: .ignore)
                 .accessibilityHidden(true)
@@ -165,6 +162,23 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
 private enum SlideshowLayout {
     /// Keeps about two lines of the photo description visible when the window is short.
     static let minimumDescriptionHeight: CGFloat = 40
+}
+
+/// Sizes the photo area: the full width, and as much of the height Close and the controls leave as it
+/// can use, up to a square. A tall window keeps the square photo; a short, wide one, such as iPhone Duo's
+/// inner display in landscape, gets a wide photo area instead of a small square.
+struct SlideshowPhotoLayout: Layout {
+    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
+        let width = proposal.replacingUnspecifiedDimensions().width
+        let height = min(proposal.height ?? width, width)
+        return CGSize(width: width, height: height)
+    }
+
+    func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
+        for subview in subviews {
+            subview.place(at: bounds.origin, proposal: ProposedViewSize(bounds.size))
+        }
+    }
 }
 
 struct ImageGallerySlideshowIndexChangeTracker {
