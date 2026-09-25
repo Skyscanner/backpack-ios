@@ -27,6 +27,8 @@ struct ImageGalleryHeader: View {
     let closeAccessibilityLabel: String
     let onCloseTapped: () -> Void
 
+    @State private var displayCornerClearance: CGFloat = 0
+
     var body: some View {
         HStack {
             Button(action: onCloseTapped, label: {
@@ -41,6 +43,59 @@ struct ImageGalleryHeader: View {
             // Keeps the 32 pt the button took in the layout, so the icon doesn't move.
             .padding(-Self.touchTargetOutset)
             Spacer()
+        }
+        // The gallery fills the window, so on a phone whose top edge has no safe-area inset, such as a
+        // foldable's inner display with a side rail, Close moves clear of the display's rounded corners.
+        .padding(.top, displayCornerClearance)
+        .background(DisplayCornerClearanceReader(clearance: $displayCornerClearance))
+    }
+}
+
+/// Reports how far below a phone window's top safe-area inset its corner-aware safe area starts
+/// (iOS 26 corner adaptation). It's 0 when the top inset already clears the corners, as on phones
+/// with a status bar, and on other devices.
+struct DisplayCornerClearanceReader: UIViewRepresentable {
+    @Binding var clearance: CGFloat
+
+    func makeUIView(context: Context) -> ReaderView {
+        let view = ReaderView()
+        view.isUserInteractionEnabled = false
+        view.onClearanceChange = { newValue in
+            // Deferred, so the state doesn't change during a layout pass.
+            DispatchQueue.main.async { clearance = newValue }
+        }
+        return view
+    }
+
+    func updateUIView(_ uiView: ReaderView, context: Context) {}
+
+    final class ReaderView: UIView {
+        var onClearanceChange: ((CGFloat) -> Void)?
+        private var reportedClearance: CGFloat = 0
+
+        override func didMoveToWindow() {
+            super.didMoveToWindow()
+            reportClearance()
+        }
+
+        override func layoutSubviews() {
+            super.layoutSubviews()
+            reportClearance()
+        }
+
+        private func reportClearance() {
+            let clearance = Self.clearance(in: window)
+            guard clearance != reportedClearance else { return }
+            reportedClearance = clearance
+            onClearanceChange?(clearance)
+        }
+
+        static func clearance(in window: UIWindow?) -> CGFloat {
+            guard #available(iOS 26.0, *),
+                  let window,
+                  window.traitCollection.userInterfaceIdiom == .phone else { return 0 }
+            let cornerAwareTop = window.edgeInsets(for: .safeArea(cornerAdaptation: .vertical)).top
+            return max(0, cornerAwareTop - window.safeAreaInsets.top)
         }
     }
 }
