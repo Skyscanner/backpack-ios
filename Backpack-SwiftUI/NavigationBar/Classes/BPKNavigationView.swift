@@ -94,6 +94,7 @@ public struct BPKNavigationView<Content: View>: View {
             Color(style.backgroundColor(expanded: isExpanded))
                 .frame(height: proxy.safeAreaInsets.top)
                 .offset(y: -proxy.safeAreaInsets.top)
+                .ignoresSafeArea(edges: .horizontal)
             
             CollapsedNavigationBar(
                 title: title,

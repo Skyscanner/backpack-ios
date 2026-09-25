@@ -51,6 +51,10 @@ public struct BottomSheetInsets {
 }
 
 extension BottomSheetInsets {
+    /// The largest share of the window's safe-area height that the half and tip positions may cover,
+    /// so the sheet never outgrows a short window, such as a phone in landscape.
+    static let maximumPartialHeightFraction: CGFloat = 0.6
+
     var fullAnchor: FloatingPanelLayoutAnchoring {
         guard let full = full else {
             return FloatingPanelLayoutAnchor(
@@ -64,26 +68,35 @@ extension BottomSheetInsets {
     }
     
     var halfAnchor: FloatingPanelLayoutAnchoring {
-        guard let half = half else {
-            return FloatingPanelLayoutAnchor(
-                absoluteInset: Constants.bottomSheetHeightInHalfPosition,
-                edge: .bottom,
-                referenceGuide: .safeArea
-            )
-        }
-        
-        return FloatingPanelLayoutAnchor(absoluteInset: half, edge: .bottom, referenceGuide: .safeArea)
+        halfAnchor(availableHeight: nil)
     }
     
     var tipAnchor: FloatingPanelLayoutAnchoring {
-        guard let tip = tip else {
-            return FloatingPanelLayoutAnchor(
-                absoluteInset: Constants.bottomSheetHeightInTipPosition,
-                edge: .bottom,
-                referenceGuide: .safeArea
-            )
-        }
-        
-        return FloatingPanelLayoutAnchor(absoluteInset: tip, edge: .bottom, referenceGuide: .safeArea)
+        tipAnchor(availableHeight: nil)
+    }
+
+    /// - Parameter availableHeight: The window's safe-area height, when known.
+    func halfAnchor(availableHeight: CGFloat?) -> FloatingPanelLayoutAnchoring {
+        let inset = half ?? Constants.bottomSheetHeightInHalfPosition
+        return FloatingPanelLayoutAnchor(
+            absoluteInset: Self.fitting(inset, into: availableHeight),
+            edge: .bottom,
+            referenceGuide: .safeArea
+        )
+    }
+
+    /// - Parameter availableHeight: The window's safe-area height, when known.
+    func tipAnchor(availableHeight: CGFloat?) -> FloatingPanelLayoutAnchoring {
+        let inset = tip ?? Constants.bottomSheetHeightInTipPosition
+        return FloatingPanelLayoutAnchor(
+            absoluteInset: Self.fitting(inset, into: availableHeight),
+            edge: .bottom,
+            referenceGuide: .safeArea
+        )
+    }
+
+    static func fitting(_ inset: CGFloat, into availableHeight: CGFloat?) -> CGFloat {
+        guard let availableHeight, availableHeight > 0 else { return inset }
+        return min(inset, availableHeight * maximumPartialHeightFraction)
     }
 }

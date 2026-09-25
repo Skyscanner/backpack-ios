@@ -148,18 +148,20 @@ final class FloatingNotificationView: UIView {
             stackView.topAnchor.constraint(equalTo: topAnchor, constant: BPKSpacingBase),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: stackViewTrailingConstant),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -BPKSpacingBase),
-            centerXAnchor.constraint(equalTo: parent.centerXAnchor)
+            centerXAnchor.constraint(equalTo: parent.safeAreaLayoutGuide.centerXAnchor)
         ]
-        
-        let largeScreenWidth = maxWidth + (BPKSpacingBase * 2)
-        let isLargeScreen = parent.bounds.width > largeScreenWidth
-        
-        if isLargeScreen {
-            constraints.append(widthAnchor.constraint(equalToConstant: maxWidth))
-        } else {
-            constraints.append(leadingAnchor.constraint(equalTo: parent.leadingAnchor, constant: BPKSpacingBase))
-            constraints.append(trailingAnchor.constraint(equalTo: parent.trailingAnchor, constant: -BPKSpacingBase))
-        }
+
+        // The width is the smaller of `maxWidth` and the safe area's width less a margin on each side.
+        // Unlike a width chosen once from the parent's size, this keeps adapting when the window changes
+        // size, for example when an iPhone Duo is folded or unfolded, and it stays clear of side safe
+        // areas. The preferred width sits just below required so it wins over the stack view's
+        // proportional sizing but gives way to the safe-area limit.
+        let preferredWidth = widthAnchor.constraint(equalToConstant: maxWidth)
+        preferredWidth.priority = .init(UILayoutPriority.required.rawValue - 1)
+        constraints.append(contentsOf: [
+            widthAnchor.constraint(lessThanOrEqualTo: parent.safeAreaLayoutGuide.widthAnchor, constant: -BPKSpacingBase * 2),
+            preferredWidth
+        ])
         NSLayoutConstraint.activate(constraints)
         parent.layoutIfNeeded()
     }

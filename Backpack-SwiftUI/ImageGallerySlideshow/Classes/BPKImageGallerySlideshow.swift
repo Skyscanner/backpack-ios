@@ -72,23 +72,26 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
                 )
                 .padding([.leading, .top], .base)
 
-                ZStack(alignment: .bottom) {
-                    InternalCarouselWrapper(
-                        images: images.map { $0.content() },
-                        pageIndicatorVisibility: .hidden,
-                        currentIndex: $currentIndex
-                    )
-                    BPKBadge("\(currentIndex + 1)/\(images.count)")
-                        .badgeStyle(.strong)
-                        .padding(.bottom, 20)
+                SlideshowPhotoLayout {
+                    ZStack(alignment: .bottom) {
+                        InternalCarouselWrapper(
+                            images: images.map { $0.content() },
+                            pageIndicatorVisibility: .hidden,
+                            currentIndex: $currentIndex
+                        )
+                        BPKBadge("\(currentIndex + 1)/\(images.count)")
+                            .badgeStyle(.strong)
+                            .padding(.bottom, 20)
+                    }
                 }
-                .aspectRatio(1.0, contentMode: .fill)
+                .layoutPriority(1)
                 .accessibilityElement(children: .ignore)
                 .accessibilityHidden(true)
 
                 footer
             }
             .background(Color(.canvasContrastColor))
+            .accessibilityAction(.escape, onCloseTapped)
             .onChange(of: currentIndex) { newIndex in
                 if let change = indexChangeTracker.change(to: newIndex) {
                     onSlideshowImageChanged(change.from, change.to)
@@ -125,6 +128,7 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
                     .accessibilityElement(children: .combine)
                     .padding(.horizontal, .lg)
                 }
+                .frame(minHeight: SlideshowLayout.minimumDescriptionHeight)
             }
         }
 
@@ -151,6 +155,28 @@ struct ImageGallerySlideshow<ImageView: View>: ViewModifier {
             } else {
                 currentIndex -= 1
             }
+        }
+    }
+}
+
+private enum SlideshowLayout {
+    /// Keeps about two lines of the photo description visible when the window is short.
+    static let minimumDescriptionHeight: CGFloat = 40
+}
+
+/// Sizes the photo area: the full width, and as much of the height Close and the controls leave as it
+/// can use, up to a square. A tall window keeps the square photo; a short, wide one, such as iPhone Duo's
+/// inner display in landscape, gets a wide photo area instead of a small square.
+struct SlideshowPhotoLayout: Layout {
+    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
+        let width = proposal.replacingUnspecifiedDimensions().width
+        let height = min(proposal.height ?? width, width)
+        return CGSize(width: width, height: height)
+    }
+
+    func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
+        for subview in subviews {
+            subview.place(at: bounds.origin, proposal: ProposedViewSize(bounds.size))
         }
     }
 }

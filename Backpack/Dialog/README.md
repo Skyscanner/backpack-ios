@@ -175,3 +175,6 @@ dialogController.scrimAction = scrimAction
 // Show the dialog
 self.present(dialogController, animated: true)
 ```
+## Short windows
+
+The dialog is centred horizontally in the safe area, so side safe areas such as the iPhone Duo's side rail don't push it off-centre. When it is taller than the window, it scrolls instead of shrinking and truncating its message, so its buttons stay reachable.
