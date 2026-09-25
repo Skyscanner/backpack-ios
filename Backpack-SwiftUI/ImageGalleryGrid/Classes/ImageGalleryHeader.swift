@@ -91,11 +91,16 @@ struct DisplayCornerClearanceReader: UIViewRepresentable {
         }
 
         static func clearance(in window: UIWindow?) -> CGFloat {
+            // Corner adaptation is in the iOS 26 SDK, which comes with Swift 6.2, so older Xcodes build without it.
+            #if compiler(>=6.2)
             guard #available(iOS 26.0, *),
                   let window,
                   window.traitCollection.userInterfaceIdiom == .phone else { return 0 }
             let cornerAwareTop = window.edgeInsets(for: .safeArea(cornerAdaptation: .vertical)).top
             return max(0, cornerAwareTop - window.safeAreaInsets.top)
+            #else
+            return 0
+            #endif
         }
     }
 }
