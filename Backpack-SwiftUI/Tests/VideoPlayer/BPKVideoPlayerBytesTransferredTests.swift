@@ -21,25 +21,10 @@ import Combine
 import XCTest
 @testable import Backpack_SwiftUI
 
-/// Tests for `BPKVideoPlayerController.numberOfBytesTransferred`.
-///
-/// Design
-/// ------
-/// On init, `BPKVideoPlayerController` KVO-observes `player.currentItem` with `.initial` and
-/// dispatches `handleCurrentItemChange` asynchronously via `DispatchQueue.main.async`. This means
-/// the first provider call (and observer registration) happens after the current test-body
-/// returns control to the run loop — not synchronously in `makeSUT`.
-///
-/// Tests therefore:
-/// 1. Use an isolated `NotificationCenter` to prevent cross-test notification leakage.
-/// 2. Use `waitUntil` to poll until the expected value appears, letting both
-///    `DispatchQueue.main.async` callbacks and spawned `Task { @MainActor }` blocks run.
-/// 3. Obtain the registered item via `sut.player.currentItem` **after** the KVO settles, so
-///    `AVPlayerItemNewAccessLogEntry` notifications hit the correct observer.
 @MainActor
 final class BPKVideoPlayerBytesTransferredTests: XCTestCase {
 
-    // MARK: - Provider return value reflected on attach
+    // MARK: - Provider wiring
 
     func test_givenProviderReturnsFixedValue_whenKVOSettles_numberOfBytesTransferredMatchesProvider() async throws {
         // Given
@@ -53,8 +38,13 @@ final class BPKVideoPlayerBytesTransferredTests: XCTestCase {
     }
 
     func test_givenProviderReturnsZero_whenKVOSettles_numberOfBytesTransferredIsZero() async throws {
+        // Given
         let sut = makeSUT(bytesProvider: { _ in 0 })
+        
+        // When
         try await waitUntil(sut, expected: 0)
+        
+        // Then
         XCTAssertEqual(sut.numberOfBytesTransferred, 0)
     }
 
@@ -66,11 +56,10 @@ final class BPKVideoPlayerBytesTransferredTests: XCTestCase {
         var providerReturn: Int64 = 0
         let sut = makeSUT(notificationCenter: nc, bytesProvider: { _ in providerReturn })
 
-        // Let the initial KVO callback run so the observer is registered
         try await waitUntil(sut, expected: 0)
         let item = try XCTUnwrap(sut.player.currentItem, "player must have a current item after KVO settles")
 
-        // When — access-log entry arrives
+        // When
         providerReturn = 2_048
         nc.post(name: .AVPlayerItemNewAccessLogEntry, object: item)
 

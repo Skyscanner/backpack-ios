@@ -70,7 +70,7 @@ final class BPKVideoPlayerTests: XCTestCase {
         XCTAssertTrue(controller.player.isMuted)
     }
 
-    func test_videoPlayerErrorCodes_matchWebTaxonomy() {
+    func test_videoPlayerErrorCodes() {
         XCTAssertEqual(BPKVideoPlayerError.loadTimeout.code, "LOAD_TIMEOUT")
         XCTAssertEqual(BPKVideoPlayerError.network.code, "MEDIA_ERR_NETWORK")
         XCTAssertEqual(BPKVideoPlayerError.decode.code, "MEDIA_ERR_DECODE")
