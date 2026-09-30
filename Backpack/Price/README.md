@@ -40,11 +40,12 @@ let priceViewWithLeadingIcon = BPKPrice(alignment: .leading, size: size)
 priceViewWithLeadingIcon.price = "£50"
 priceViewWithLeadingIcon.leadingText = "£10 cheaper"
 priceViewWithLeadingIcon.leadingIcon = .informationCircle
+priceViewWithLeadingIcon.trailingIcon = .informationCircle
 priceViewWithLeadingIcon.onLeadingTextClicked = {
-    // Respond to taps on the leading text or its icon
+    // Respond to taps on the leading text or either of its icons
 }
 ```
 
-Setting `leadingIcon` renders it next to `leadingText`. Setting
-`onLeadingTextClicked` makes the `leadingText` and `leadingIcon` a single
-tappable target.
+Setting `leadingIcon` and/or `trailingIcon` renders them either side of
+`leadingText`. Setting `onLeadingTextClicked` makes `leadingText` and both
+icons a single tappable target.

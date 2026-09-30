@@ -32,6 +32,7 @@ class BPKPriceSnapshotTest: XCTestCase {
         price: String = "£1830",
         leadingText: String? = "App only deal",
         leadingIcon: BPKIconName? = nil,
+        trailingIcon: BPKIconName? = nil,
         previousPrice: String? = "£2033",
         trailingText: String? = "per day",
         onLeadingTextClicked: (() -> Void)? = nil,
@@ -46,6 +47,7 @@ class BPKPriceSnapshotTest: XCTestCase {
         priceView.price = price
         priceView.leadingText = leadingText
         priceView.leadingIcon = leadingIcon
+        priceView.trailingIcon = trailingIcon
         priceView.previousPrice = previousPrice
         priceView.trailingText = trailingText
         priceView.onLeadingTextClicked = onLeadingTextClicked
@@ -117,7 +119,20 @@ class BPKPriceSnapshotTest: XCTestCase {
         let exampleView = createView(
             price: "£50",
             leadingText: "£10 cheaper",
+            trailingIcon: .informationCircle,
+            previousPrice: nil,
+            trailingText: nil,
+            onLeadingTextClicked: {}
+        )
+        assertSnapshot(exampleView)
+    }
+
+    func testViewSnapshotWithTappableLeadingTextAndLeadingAndTrailingIcons() {
+        let exampleView = createView(
+            price: "£50",
+            leadingText: "£10 cheaper",
             leadingIcon: .informationCircle,
+            trailingIcon: .informationCircle,
             previousPrice: nil,
             trailingText: nil,
             onLeadingTextClicked: {}

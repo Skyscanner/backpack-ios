@@ -97,6 +97,7 @@ struct PriceExampleView: View {
             }
 
             buildTappableLeadingTextPrice(style: style)
+            buildTappableLeadingTextPriceWithLeadingAndTrailingIcons(style: style)
         }
         .padding(.base)
         .background(Color(backgroundColor))
@@ -142,7 +143,22 @@ struct PriceExampleView: View {
         BPKPrice(
             price: "£50",
             leadingText: "£10 cheaper",
-            leadingIcon: (.informationCircle, "More info"),
+            trailingIcon: (.informationCircle, "More info"),
+            style: style,
+            onLeadingTextClicked: {},
+            alignment: .leading,
+            size: size
+        )
+    }
+
+    private func buildTappableLeadingTextPriceWithLeadingAndTrailingIcons(
+        style: Backpack_SwiftUI.BPKPrice.Style
+    ) -> some View {
+        BPKPrice(
+            price: "£50",
+            leadingText: "£10 cheaper",
+            leadingIcon: (.informationCircle, "Cheaper"),
+            trailingIcon: (.informationCircle, "More info"),
             style: style,
             onLeadingTextClicked: {},
             alignment: .leading,

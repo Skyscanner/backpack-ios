@@ -60,7 +60,13 @@ final class PriceExampleViewController: UIViewController {
         )
         stackView.addArrangedSubview(createRow(
             leadingText: "£10 cheaper",
+            trailingIcon: .informationCircle,
+            onLeadingTextClicked: {})
+        )
+        stackView.addArrangedSubview(createRow(
+            leadingText: "£10 cheaper",
             leadingIcon: .informationCircle,
+            trailingIcon: .informationCircle,
             onLeadingTextClicked: {})
         )
 
@@ -74,6 +80,7 @@ final class PriceExampleViewController: UIViewController {
     private func createRow(
         leadingText: String? = nil,
         leadingIcon: BPKIconName? = nil,
+        trailingIcon: BPKIconName? = nil,
         previousPrice: String? = nil,
         trailingText: String? = nil,
         onLeadingTextClicked: (() -> Void)? = nil) -> UIView {
@@ -87,6 +94,7 @@ final class PriceExampleViewController: UIViewController {
                 priceView.price = "£1830"
                 priceView.leadingText = leadingText
                 priceView.leadingIcon = leadingIcon
+                priceView.trailingIcon = trailingIcon
                 priceView.previousPrice = previousPrice
                 priceView.trailingText = trailingText
                 priceView.onLeadingTextClicked = onLeadingTextClicked

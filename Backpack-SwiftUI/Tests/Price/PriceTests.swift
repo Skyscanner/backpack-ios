@@ -27,6 +27,7 @@ class PriceTests: XCTestCase {
         let previousPrice: String?
         let leadingText: String?
         let leadingIcon: (BPKIcon, String)?
+        let trailingIcon: (BPKIcon, String)?
         let trailingText: String?
         let onPriceClicked: (() -> Void)?
         let onLeadingTextClicked: (() -> Void)?
@@ -36,6 +37,7 @@ class PriceTests: XCTestCase {
             previousPrice: String? = nil,
             leadingText: String? = nil,
             leadingIcon: (BPKIcon, String)? = nil,
+            trailingIcon: (BPKIcon, String)? = nil,
             trailingText: String? = nil,
             onPriceClicked: (() -> Void)? = nil,
             onLeadingTextClicked: (() -> Void)? = nil
@@ -44,6 +46,7 @@ class PriceTests: XCTestCase {
             self.previousPrice = previousPrice
             self.leadingText = leadingText
             self.leadingIcon = leadingIcon
+            self.trailingIcon = trailingIcon
             self.trailingText = trailingText
             self.onPriceClicked = onPriceClicked
             self.onLeadingTextClicked = onLeadingTextClicked
@@ -66,7 +69,14 @@ class PriceTests: XCTestCase {
         .init(
             price: "£50",
             leadingText: "£10 cheaper",
-            leadingIcon: (.informationCircle, "More info"),
+            trailingIcon: (.informationCircle, "More info"),
+            onLeadingTextClicked: {}
+        ),
+        .init(
+            price: "£50",
+            leadingText: "£10 cheaper",
+            leadingIcon: (.informationCircle, "Cheaper"),
+            trailingIcon: (.informationCircle, "More info"),
             onLeadingTextClicked: {}
         )
     ]
@@ -86,6 +96,7 @@ class PriceTests: XCTestCase {
                     price: item.price,
                     leadingText: item.leadingText,
                     leadingIcon: item.leadingIcon,
+                    trailingIcon: item.trailingIcon,
                     previousPrice: item.previousPrice,
                     trailingText: item.trailingText,
                     style: style,

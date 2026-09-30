@@ -46,6 +46,10 @@ public final class BPKPrice: UIView {
         didSet { updateLeadingTextRow() }
     }
 
+    public var trailingIcon: BPKIconName? {
+        didSet { updateLeadingTextRow() }
+    }
+
     public var onLeadingTextClicked: (() -> Void)? {
         didSet { updateLeadingTextRow() }
     }
@@ -79,6 +83,12 @@ public final class BPKPrice: UIView {
     private let leadingTextLabel = BPKLabel()
 
     private let leadingIconView: BPKObjcUIKitIconView = {
+        let iconView = BPKObjcUIKitIconView(iconName: .none, size: .small)
+        iconView.isAccessibilityElement = false
+        return iconView
+    }()
+
+    private let trailingIconView: BPKObjcUIKitIconView = {
         let iconView = BPKObjcUIKitIconView(iconName: .none, size: .small)
         iconView.isAccessibilityElement = false
         return iconView
@@ -135,7 +145,7 @@ public final class BPKPrice: UIView {
             priceStackView.addArrangedSubview($0)
         }
 
-        [leadingTextLabel, leadingIconView].forEach {
+        [leadingIconView, leadingTextLabel, trailingIconView].forEach {
             leadingTextRowStackView.addArrangedSubview($0)
         }
 
@@ -182,6 +192,10 @@ public final class BPKPrice: UIView {
         leadingIconView.iconName = leadingIcon
         leadingIconView.tintColor = BPKColor.textSecondaryColor
         leadingIconView.isHidden = leadingIcon == nil
+
+        trailingIconView.iconName = trailingIcon
+        trailingIconView.tintColor = BPKColor.textSecondaryColor
+        trailingIconView.isHidden = trailingIcon == nil
 
         leadingTextRowStackView.gestureRecognizers?.forEach {
             leadingTextRowStackView.removeGestureRecognizer($0)
