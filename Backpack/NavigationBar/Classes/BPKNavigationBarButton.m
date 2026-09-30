@@ -34,6 +34,20 @@
     return UIEdgeInsetsMake(BPKSpacingNone, BPKSpacingNone, BPKSpacingNone, BPKSpacingNone);
 }
 
+#pragma mark - Touch target
+
+// Icon-only buttons are only as big as their icon. Accept touches in a 44pt square around the
+// button, Apple's minimum touch target, without changing how the button is laid out.
+static CGFloat const BPKNavigationBarButtonMinimumTouchTarget = 44.0;
+
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+    CGRect bounds = self.bounds;
+    CGFloat horizontalGrowth = MAX(0, (BPKNavigationBarButtonMinimumTouchTarget - CGRectGetWidth(bounds)) / 2.0);
+    CGFloat verticalGrowth = MAX(0, (BPKNavigationBarButtonMinimumTouchTarget - CGRectGetHeight(bounds)) / 2.0);
+    CGRect touchArea = CGRectInset(bounds, -horizontalGrowth, -verticalGrowth);
+    return CGRectContainsPoint(touchArea, point);
+}
+
 #pragma mark - Helpers
 
 - (BPKFontStyle)currentFontStyle {

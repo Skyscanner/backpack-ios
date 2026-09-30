@@ -41,10 +41,7 @@ struct CalendarContainer<MonthContent: View>: View {
         monthContent: @escaping (_ month: Date) -> MonthContent
     ) {
         _visibilityObserver = StateObject(
-            wrappedValue: ItemVisibilityObserver(
-                parentProxy: parentProxy,
-                debounceThreshold: scrollDebounceThreshold
-            )
+            wrappedValue: ItemVisibilityObserver(debounceThreshold: scrollDebounceThreshold)
         )
         self.calendar = calendar
         self.validRange = validRange
@@ -80,7 +77,7 @@ struct CalendarContainer<MonthContent: View>: View {
                     }
                 }
                 .onPreferenceChange(ItemVisibilityPreferenceKey.self) { preferences in
-                    visibilityObserver.updatePreferences(preferences)
+                    visibilityObserver.updatePreferences(preferences, parentFrame: parentProxy.frame(in: .global))
                 }
                 .onChange(of: visibilityObserver.visibleItems) { newVisibleItems in
                     updateOnScrollToMonthHandler(newVisibleItems: newVisibleItems)

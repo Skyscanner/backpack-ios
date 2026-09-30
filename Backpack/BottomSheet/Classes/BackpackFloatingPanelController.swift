@@ -45,6 +45,7 @@ final class BPKFloatingPanelController: FloatingPanelController {
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
         if self.traitCollection.userInterfaceStyle != previousTraitCollection?.userInterfaceStyle {
             guard let bottomSection = bottomSectionViewController else { return }
             addTopShadow(to: bottomSection)
@@ -78,9 +79,11 @@ private extension BPKFloatingPanelController {
         let bottomContainerConstraint = bottomSection.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         bottomContainerConstraint.priority = .defaultLow
 
+        // Follow the sheet rather than the window, so the bottom section matches the sheet's width
+        // when the sheet is centred at a capped width on a wide window.
         NSLayoutConstraint.activate([
-            bottomSection.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            bottomSection.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            bottomSection.view.leadingAnchor.constraint(equalTo: surfaceView.leadingAnchor),
+            bottomSection.view.trailingAnchor.constraint(equalTo: surfaceView.trailingAnchor),
             bottomContainerConstraint,
 
             outsideSafeAreaView.topAnchor.constraint(
@@ -97,8 +100,8 @@ private extension BPKFloatingPanelController {
             view.backgroundColor = .clear
             self.view.addSubview(view)
             NSLayoutConstraint.activate([
-                view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-                view.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+                view.leadingAnchor.constraint(equalTo: self.surfaceView.leadingAnchor),
+                view.trailingAnchor.constraint(equalTo: self.surfaceView.trailingAnchor),
                 view.topAnchor.constraint(equalTo: safeAreaBottomAnchor),
                 view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
             ])

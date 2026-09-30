@@ -235,11 +235,30 @@ extension BPKBottomSheet: FloatingPanelControllerDelegate {
         _ viewController: FloatingPanelController,
         layoutFor newCollection: UITraitCollection
     ) -> FloatingPanelLayout {
+        let availableHeight = viewController.isViewLoaded
+            ? viewController.view.safeAreaLayoutGuide.layoutFrame.height
+            : nil
+        return makeLayout(availableHeight: availableHeight)
+    }
+
+    /// Called when the window changes size, for example when an iPhone Duo is folded or unfolded,
+    /// so the sheet's heights are recomputed for the new window.
+    public func floatingPanel(
+        _ viewController: FloatingPanelController,
+        layoutFor size: CGSize
+    ) -> FloatingPanelLayout {
+        let insets = viewController.view.safeAreaInsets
+        return makeLayout(availableHeight: size.height - insets.top - insets.bottom)
+    }
+
+    private func makeLayout(availableHeight: CGFloat?) -> FloatingPanelLayout {
         switch self.presentationStyle {
         case .modal:
-            return scrollView == nil ? IntrinsicBottomSheetLayout() : ModalBottomSheetLayout(insets: insets)
+            return scrollView == nil
+                ? IntrinsicBottomSheetLayout()
+                : ModalBottomSheetLayout(insets: insets, availableHeight: availableHeight)
         case .persistent:
-            return PersistentBottomSheetLayout(insets: insets)
+            return PersistentBottomSheetLayout(insets: insets, availableHeight: availableHeight)
         }
     }
     

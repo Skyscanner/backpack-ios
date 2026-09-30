@@ -40,6 +40,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, strong, nullable) BPKLabel *titleLabel;
 @property(nonatomic, strong) BPKLabel *descriptionLabel;
+// Holds the title and message, so they scroll while the buttons stay in view when the dialog is taller
+// than the window.
+@property(nonatomic, strong) UIScrollView *textScrollView;
 @property(nonatomic, strong) UIStackView *buttonStackView;
 
 @property(nonatomic, strong) NSMutableArray<BPKActionButtonPair *> *registeredActions;
@@ -97,7 +100,19 @@ NS_ASSUME_NONNULL_BEGIN
     self.descriptionLabel.minimumScaleFactor = 0.7;
     self.descriptionLabel.textAlignment = NSTextAlignmentCenter;
     self.descriptionLabel.adjustsFontSizeToFitWidth = YES;
-    [self.descriptionLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisVertical];
+
+    // The labels keep exactly the height their text needs: when there isn't room, the text scrolls
+    // instead of being squashed or cut off.
+    for (BPKLabel *label in @[self.titleLabel, self.descriptionLabel]) {
+        [label setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+        [label setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+    }
+
+    self.textScrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
+    self.textScrollView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.textScrollView.showsHorizontalScrollIndicator = NO;
+    self.textScrollView.alwaysBounceVertical = NO;
+    self.textScrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
 
     self.buttonStackView = [[UIStackView alloc] initWithFrame:CGRectZero];
     self.buttonStackView.axis = UILayoutConstraintAxisVertical;
@@ -109,26 +124,45 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)addViews {
-    [self addSubview:self.titleLabel];
-    [self addSubview:self.descriptionLabel];
+    [self addSubview:self.textScrollView];
+    [self.textScrollView addSubview:self.titleLabel];
+    [self.textScrollView addSubview:self.descriptionLabel];
     [self addSubview:self.buttonStackView];
 }
 
 - (void)setupConstraints {
+    UILayoutGuide *text = self.textScrollView.contentLayoutGuide;
+
+    // The text area is as tall as its text. When the dialog has to fit a shorter window, it gets shorter
+    // and scrolls instead. It gives way after a dialog's graphic, which shrinks first, and keeps a few lines
+    // visible: below that, the whole dialog scrolls instead.
+    NSLayoutConstraint *fitText = [self.textScrollView.heightAnchor constraintEqualToAnchor:text.heightAnchor];
+    fitText.priority = UILayoutPriorityDefaultLow;
+    NSLayoutConstraint *minimumText = [self.textScrollView.heightAnchor constraintGreaterThanOrEqualToConstant:BPKSpacingXxl * 2];
+    minimumText.priority = UILayoutPriorityDefaultHigh + 1;
+
     [NSLayoutConstraint activateConstraints:@[
-        [self.titleLabel.topAnchor constraintEqualToAnchor:self.topAnchor],
-        [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-        [self.titleLabel.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
+        [self.textScrollView.topAnchor constraintEqualToAnchor:self.topAnchor],
+        [self.textScrollView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        [self.trailingAnchor constraintEqualToAnchor:self.textScrollView.trailingAnchor],
+        [self.textScrollView.heightAnchor constraintLessThanOrEqualToAnchor:text.heightAnchor],
+
+        [self.titleLabel.topAnchor constraintEqualToAnchor:text.topAnchor],
+        [self.titleLabel.leadingAnchor constraintEqualToAnchor:text.leadingAnchor],
+        [text.trailingAnchor constraintEqualToAnchor:self.titleLabel.trailingAnchor],
+        [self.titleLabel.widthAnchor constraintEqualToAnchor:self.textScrollView.frameLayoutGuide.widthAnchor],
 
         [self.descriptionLabel.topAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor constant:BPKSpacingBase],
-        [self.descriptionLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-        [self.trailingAnchor constraintEqualToAnchor:self.descriptionLabel.trailingAnchor],
+        [self.descriptionLabel.leadingAnchor constraintEqualToAnchor:text.leadingAnchor],
+        [text.trailingAnchor constraintEqualToAnchor:self.descriptionLabel.trailingAnchor],
+        [text.bottomAnchor constraintEqualToAnchor:self.descriptionLabel.bottomAnchor],
 
-        [self.buttonStackView.topAnchor constraintEqualToAnchor:self.descriptionLabel.bottomAnchor constant:BPKSpacingLg],
+        [self.buttonStackView.topAnchor constraintEqualToAnchor:self.textScrollView.bottomAnchor constant:BPKSpacingLg],
         [self.buttonStackView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
         [self.trailingAnchor constraintEqualToAnchor:self.buttonStackView.trailingAnchor],
         [self.bottomAnchor constraintEqualToAnchor:self.buttonStackView.bottomAnchor]
     ]];
+    [NSLayoutConstraint activateConstraints:@[fitText, minimumText]];
 }
 
 - (void)buttonTapped:(BPKObjcUIKitButton *)button {
