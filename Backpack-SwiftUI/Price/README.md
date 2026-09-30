@@ -43,8 +43,23 @@ BPKPrice(
     alignment: .leading,
     size: .small
 )
+
+BPKPrice(
+    price: "£50",
+    leadingText: "£10 cheaper",
+    leadingIcon: (.informationCircle, "More info"),
+    onLeadingTextClicked: {
+        // Respond to taps on the leading text or its icon
+    },
+    alignment: .leading,
+    size: .small
+)
 ```
 
 Use the `.default` style on light backgrounds and `.onContrast` on dark backgrounds. 
 
 Providing an `onPriceClicked` handler converts the price text into a tappable link using the specified `linkStyle` (uses the style parameter to determine the style of the link (`.default` or `.onContrast`)).
+
+Providing a `leadingIcon` renders it next to `leadingText`. Providing an
+`onLeadingTextClicked` handler makes the `leadingText` and `leadingIcon` a single
+tappable target.

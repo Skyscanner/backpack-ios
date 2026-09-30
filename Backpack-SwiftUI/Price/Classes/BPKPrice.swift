@@ -35,27 +35,32 @@ public struct BPKPrice: View {
     
     private let price: String
     private let leadingText: String?
+    private let leadingIcon: (BPKIcon, String)?
     private let previousPrice: String?
     private let trailingText: String?
     private let icon: (BPKIcon, String)?
     private let style: Style
     private let onPriceClicked: (() -> Void)?
+    private let onLeadingTextClicked: (() -> Void)?
     private let alignment: Alignment
     private let size: Size
-    
+
     public init(
         price: String,
         leadingText: String? = nil,
+        leadingIcon: (BPKIcon, String)? = nil,
         previousPrice: String? = nil,
         trailingText: String? = nil,
         icon: (BPKIcon, String)? = nil,
         style: Style = .default,
         onPriceClicked: (() -> Void)? = nil,
+        onLeadingTextClicked: (() -> Void)? = nil,
         alignment: Alignment = .leading,
         size: Size
     ) {
         self.price = price
         self.leadingText = leadingText
+        self.leadingIcon = leadingIcon
         self.previousPrice = previousPrice
         self.trailingText = trailingText
         self.icon = icon
@@ -63,6 +68,7 @@ public struct BPKPrice: View {
         self.alignment = alignment
         self.size = size
         self.onPriceClicked = onPriceClicked
+        self.onLeadingTextClicked = onLeadingTextClicked
     }
     
     public var body: some View {
@@ -104,12 +110,39 @@ public struct BPKPrice: View {
 
     private var additionalInfoLabel: some View {
         HStack(spacing: .sm) {
-            ForEach(additionalInfo, id: \.self) { item in
-                let color = (item == previousPrice) ? style.previousTextColor : style.leadingTextColor
-                BPKText(item, style: accessoryFontStyle)
-                    .foregroundColor(color)
-                    .strikethrough(item == previousPrice)
+            if let previousPrice {
+                BPKText(previousPrice, style: accessoryFontStyle)
+                    .foregroundColor(style.previousTextColor)
+                    .strikethrough(true)
             }
+            if previousPrice != nil && leadingText != nil {
+                BPKText("•", style: accessoryFontStyle)
+                    .foregroundColor(style.leadingTextColor)
+            }
+            if let leadingText {
+                leadingTextView(leadingText)
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func leadingTextView(_ text: String) -> some View {
+        let label = HStack(spacing: .sm) {
+            BPKText(text, style: accessoryFontStyle)
+                .foregroundColor(style.leadingTextColor)
+            if let leadingIcon {
+                BPKIconView(leadingIcon.0, size: .small, accessibilityLabel: leadingIcon.1)
+                    .foregroundColor(style.leadingTextColor)
+            }
+        }
+        if let onLeadingTextClicked {
+            label
+                .contentShape(Rectangle())
+                .onTapGesture(perform: onLeadingTextClicked)
+                .accessibilityElement(children: .combine)
+                .accessibilityAddTraits(.isButton)
+        } else {
+            label
         }
     }
     
@@ -179,24 +212,6 @@ public struct BPKPrice: View {
             return .heading5
         }
     }
-    
-    private var additionalInfo: [String] {
-        var items = [String]()
-        
-        if let previousPrice = previousPrice {
-            items.append(previousPrice)
-        }
-        
-        if previousPrice != nil && leadingText != nil {
-            items.append("•")
-        }
-        
-        if let leadingText = leadingText {
-            items.append(leadingText)
-        }
-        
-        return items
-    }
 }
 
 // MARK: - Style
@@ -260,6 +275,18 @@ struct BPKPrice_Previews: PreviewProvider {
                 .background(.surfaceContrastColor)
                 .previewDisplayName("OnContrast Style")
             }
+
+            BPKPrice(
+                price: "£50",
+                leadingText: "£10 cheaper",
+                leadingIcon: (.informationCircle, "More info"),
+                style: .default,
+                onLeadingTextClicked: {},
+                alignment: .leading,
+                size: .extraSmall
+            )
+            .background(.surfaceDefaultColor)
+            .previewDisplayName("Tappable leading text with icon")
         }
     }
 }

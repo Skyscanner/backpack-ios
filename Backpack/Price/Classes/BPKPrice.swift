@@ -41,7 +41,15 @@ public final class BPKPrice: UIView {
             updateViews()
         }
     }
-    
+
+    public var leadingIcon: BPKIconName? {
+        didSet { updateLeadingTextRow() }
+    }
+
+    public var onLeadingTextClicked: (() -> Void)? {
+        didSet { updateLeadingTextRow() }
+    }
+
     public var previousPrice: String? {
         didSet {
             previousPriceLabel.text = previousPrice
@@ -69,7 +77,21 @@ public final class BPKPrice: UIView {
     private let previousPriceLabel = BPKLabel()
     private let separatorLabel = BPKLabel()
     private let leadingTextLabel = BPKLabel()
-    
+
+    private let leadingIconView: BPKObjcUIKitIconView = {
+        let iconView = BPKObjcUIKitIconView(iconName: .none, size: .small)
+        iconView.isAccessibilityElement = false
+        return iconView
+    }()
+
+    private let leadingTextRowStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = BPKSpacingSm
+        stackView.alignment = .center
+        return stackView
+    }()
+
     private let topTextStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -112,41 +134,75 @@ public final class BPKPrice: UIView {
         [priceLabel, trailingTextLabel].forEach {
             priceStackView.addArrangedSubview($0)
         }
-        
+
+        [leadingTextLabel, leadingIconView].forEach {
+            leadingTextRowStackView.addArrangedSubview($0)
+        }
+
         [topTextStackView, priceStackView].forEach {
             containerStackView.addArrangedSubview($0)
         }
-        
+
         updateViews()
         containerStackView.addSubview(priceStackView)
         addSubview(containerStackView)
     }
-    
+
     private func updateViews() {
         stylePriceLabel()
         styleAccessoryLabels()
-        
+
         leadingTextLabel.text = leadingText
         separatorLabel.text = "•"
         priceLabel.text = price
         trailingTextLabel.text = trailingText
-        
+
         previousPriceLabel.text = previousPrice
         applyLineThroughStyling()
-        
+
         previousPriceLabel.isHidden = previousPrice == nil
         leadingTextLabel.isHidden = leadingText == nil
-        
+
         if trailingText == nil {
             priceStackView.removeArrangedSubview(trailingTextLabel)
             trailingTextLabel.removeFromSuperview()
         } else {
             priceStackView.addArrangedSubview(trailingTextLabel)
         }
-        
+
         separatorLabel.isHidden = previousPriceLabel.isHidden || leadingTextLabel.isHidden
-        
+
+        updateLeadingTextRow()
         updateAlignmentPositioning()
+    }
+
+    private func updateLeadingTextRow() {
+        leadingTextRowStackView.isHidden = leadingText == nil
+
+        leadingIconView.iconName = leadingIcon
+        leadingIconView.tintColor = BPKColor.textSecondaryColor
+        leadingIconView.isHidden = leadingIcon == nil
+
+        leadingTextRowStackView.gestureRecognizers?.forEach {
+            leadingTextRowStackView.removeGestureRecognizer($0)
+        }
+
+        if onLeadingTextClicked != nil {
+            let tap = UITapGestureRecognizer(target: self, action: #selector(leadingTextRowTapped))
+            leadingTextRowStackView.addGestureRecognizer(tap)
+            leadingTextRowStackView.isUserInteractionEnabled = true
+            leadingTextRowStackView.isAccessibilityElement = true
+            leadingTextRowStackView.accessibilityLabel = leadingText
+            leadingTextRowStackView.accessibilityTraits = .button
+        } else {
+            leadingTextRowStackView.isUserInteractionEnabled = false
+            leadingTextRowStackView.isAccessibilityElement = false
+        }
+    }
+
+    @objc
+    private func leadingTextRowTapped() {
+        onLeadingTextClicked?()
     }
     
     private func setupConstraints() {
@@ -171,17 +227,17 @@ public final class BPKPrice: UIView {
         }
         
         // Top labels change order when alignment is trailing.
-        var topLabels = [previousPriceLabel, separatorLabel, leadingTextLabel]
-        
+        var topLabels: [UIView] = [previousPriceLabel, separatorLabel, leadingTextRowStackView]
+
         if alignment == .trailing {
             topLabels.reverse()
         }
-        
+
         topTextStackView.arrangedSubviews.forEach {
             topTextStackView.removeArrangedSubview($0)
             $0.removeFromSuperview()
         }
-        
+
         topLabels.forEach {
             topTextStackView.addArrangedSubview($0)
         }

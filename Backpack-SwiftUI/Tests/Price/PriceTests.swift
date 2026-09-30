@@ -26,24 +26,30 @@ class PriceTests: XCTestCase {
         let price: String
         let previousPrice: String?
         let leadingText: String?
+        let leadingIcon: (BPKIcon, String)?
         let trailingText: String?
         let onPriceClicked: (() -> Void)?
-        
+        let onLeadingTextClicked: (() -> Void)?
+
         init(
             price: String,
             previousPrice: String? = nil,
             leadingText: String? = nil,
+            leadingIcon: (BPKIcon, String)? = nil,
             trailingText: String? = nil,
-            onPriceClicked: (() -> Void)? = nil
+            onPriceClicked: (() -> Void)? = nil,
+            onLeadingTextClicked: (() -> Void)? = nil
         ) {
             self.price = price
             self.previousPrice = previousPrice
             self.leadingText = leadingText
+            self.leadingIcon = leadingIcon
             self.trailingText = trailingText
             self.onPriceClicked = onPriceClicked
+            self.onLeadingTextClicked = onLeadingTextClicked
         }
     }
-    
+
     let permutations: [PriceTest] = [
         .init(price: "£1,830"),
         .init(price: "£1,830", trailingText: "per day"),
@@ -56,6 +62,12 @@ class PriceTests: XCTestCase {
             leadingText: "App only deal",
             trailingText: "per day",
             onPriceClicked: {}
+        ),
+        .init(
+            price: "£50",
+            leadingText: "£10 cheaper",
+            leadingIcon: (.informationCircle, "More info"),
+            onLeadingTextClicked: {}
         )
     ]
     
@@ -68,15 +80,17 @@ class PriceTests: XCTestCase {
         alignment: BPKPrice.Alignment,
         style: BPKPrice.Style
     ) -> some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: .base) {
             ForEach(permutations) { item in
                 BPKPrice(
                     price: item.price,
                     leadingText: item.leadingText,
+                    leadingIcon: item.leadingIcon,
                     previousPrice: item.previousPrice,
                     trailingText: item.trailingText,
                     style: style,
                     onPriceClicked: item.onPriceClicked,
+                    onLeadingTextClicked: item.onLeadingTextClicked,
                     alignment: alignment,
                     size: size
                 )

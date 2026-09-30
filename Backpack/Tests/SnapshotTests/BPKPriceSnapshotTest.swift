@@ -31,21 +31,25 @@ class BPKPriceSnapshotTest: XCTestCase {
     private func createView(
         price: String = "£1830",
         leadingText: String? = "App only deal",
+        leadingIcon: BPKIconName? = nil,
         previousPrice: String? = "£2033",
         trailingText: String? = "per day",
+        onLeadingTextClicked: (() -> Void)? = nil,
         alignment: BPKPrice.Alignment = .leading,
         size: BPKPrice.Size = .large
     ) -> UIView {
         let parentView = UIView(frame: .zero)
         parentView.backgroundColor = BPKColor.surfaceDefaultColor
         parentView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         let priceView = BPKPrice(alignment: alignment, size: size)
         priceView.price = price
         priceView.leadingText = leadingText
+        priceView.leadingIcon = leadingIcon
         priceView.previousPrice = previousPrice
         priceView.trailingText = trailingText
-        
+        priceView.onLeadingTextClicked = onLeadingTextClicked
+
         priceView.translatesAutoresizingMaskIntoConstraints = false
         parentView.addSubview(priceView)
         
@@ -106,6 +110,18 @@ class BPKPriceSnapshotTest: XCTestCase {
     
     func testViewSnapshotWithPriceOnly() {
         let exampleView = createView(leadingText: nil, previousPrice: nil, trailingText: nil)
+        assertSnapshot(exampleView)
+    }
+
+    func testViewSnapshotWithTappableLeadingTextAndIcon() {
+        let exampleView = createView(
+            price: "£50",
+            leadingText: "£10 cheaper",
+            leadingIcon: .informationCircle,
+            previousPrice: nil,
+            trailingText: nil,
+            onLeadingTextClicked: {}
+        )
         assertSnapshot(exampleView)
     }
 }

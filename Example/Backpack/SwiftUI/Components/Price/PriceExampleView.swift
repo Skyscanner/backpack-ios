@@ -93,38 +93,61 @@ struct PriceExampleView: View {
             )
             
             if size != .large {
-                BPKPrice(
-                    price: price,
-                    previousPrice: previousPrice,
-                    trailingText: trailingText,
-                    style: style,
-                    alignment: .row,
-                    size: size
-                )
-                
-                BPKPrice(
-                    price: price,
-                    leadingText: leadingText,
-                    trailingText: trailingText,
-                    style: style,
-                    alignment: .row,
-                    size: size
-                )
-                
-                BPKPrice(
-                    price: price,
-                    leadingText: leadingText,
-                    previousPrice: previousPrice,
-                    trailingText: trailingText,
-                    style: style,
-                    alignment: .row,
-                    size: size
-                )
+                buildRowAlignmentPrices(style: style)
             }
+
+            buildTappableLeadingTextPrice(style: style)
         }
         .padding(.base)
         .background(Color(backgroundColor))
         .cornerRadius(BPKCornerRadius.md.value)
+    }
+
+    @ViewBuilder
+    private func buildRowAlignmentPrices(
+        style: Backpack_SwiftUI.BPKPrice.Style
+    ) -> some View {
+        BPKPrice(
+            price: price,
+            previousPrice: previousPrice,
+            trailingText: trailingText,
+            style: style,
+            alignment: .row,
+            size: size
+        )
+
+        BPKPrice(
+            price: price,
+            leadingText: leadingText,
+            trailingText: trailingText,
+            style: style,
+            alignment: .row,
+            size: size
+        )
+
+        BPKPrice(
+            price: price,
+            leadingText: leadingText,
+            previousPrice: previousPrice,
+            trailingText: trailingText,
+            style: style,
+            alignment: .row,
+            size: size
+        )
+    }
+
+    private func buildTappableLeadingTextPrice(
+        style: Backpack_SwiftUI.BPKPrice.Style
+    ) -> some View {
+        BPKPrice(
+            price: "£50",
+            leadingText: "£10 cheaper",
+            leadingIcon: (.informationCircle, "More info"),
+            style: style,
+            onLeadingTextClicked: {},
+            alignment: .leading,
+            size: size
+        )
     }
 
     private func buildLeadingAndTrailingPrice(
