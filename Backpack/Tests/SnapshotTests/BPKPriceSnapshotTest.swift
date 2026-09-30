@@ -115,6 +115,18 @@ class BPKPriceSnapshotTest: XCTestCase {
         assertSnapshot(exampleView)
     }
 
+    func testViewSnapshotWithTappableLeadingTextAndLeadingIcon() {
+        let exampleView = createView(
+            price: "£50",
+            leadingText: "£10 cheaper",
+            leadingIcon: .informationCircle,
+            previousPrice: nil,
+            trailingText: nil,
+            onLeadingTextClicked: {}
+        )
+        assertSnapshot(exampleView)
+    }
+
     func testViewSnapshotWithTappableLeadingTextAndIcon() {
         let exampleView = createView(
             price: "£50",

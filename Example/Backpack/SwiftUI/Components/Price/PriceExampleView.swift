@@ -96,8 +96,24 @@ struct PriceExampleView: View {
                 buildRowAlignmentPrices(style: style)
             }
 
-            buildTappableLeadingTextPrice(style: style)
-            buildTappableLeadingTextPriceWithLeadingAndTrailingIcons(style: style)
+            buildLeadingAndTrailingPrice(
+                price: "£50",
+                leadingText: "£10 cheaper",
+                trailingIcon: (.informationCircle, "More info"),
+                onLeadingTextClicked: {},
+                size: size,
+                style: style
+            )
+
+            buildLeadingAndTrailingPrice(
+                price: "£50",
+                leadingText: "£10 cheaper",
+                leadingIcon: (.informationCircle, "Cheaper"),
+                trailingIcon: (.informationCircle, "More info"),
+                onLeadingTextClicked: {},
+                size: size,
+                style: style
+            )
         }
         .padding(.base)
         .background(Color(backgroundColor))
@@ -137,40 +153,14 @@ struct PriceExampleView: View {
         )
     }
 
-    private func buildTappableLeadingTextPrice(
-        style: Backpack_SwiftUI.BPKPrice.Style
-    ) -> some View {
-        BPKPrice(
-            price: "£50",
-            leadingText: "£10 cheaper",
-            trailingIcon: (.informationCircle, "More info"),
-            style: style,
-            onLeadingTextClicked: {},
-            alignment: .leading,
-            size: size
-        )
-    }
-
-    private func buildTappableLeadingTextPriceWithLeadingAndTrailingIcons(
-        style: Backpack_SwiftUI.BPKPrice.Style
-    ) -> some View {
-        BPKPrice(
-            price: "£50",
-            leadingText: "£10 cheaper",
-            leadingIcon: (.informationCircle, "Cheaper"),
-            trailingIcon: (.informationCircle, "More info"),
-            style: style,
-            onLeadingTextClicked: {},
-            alignment: .leading,
-            size: size
-        )
-    }
-
     private func buildLeadingAndTrailingPrice(
         price: String,
         leadingText: String? = nil,
+        leadingIcon: (BPKIcon, String)? = nil,
+        trailingIcon: (BPKIcon, String)? = nil,
         previousPrice: String? = nil,
         trailingText: String? = nil,
+        onLeadingTextClicked: (() -> Void)? = nil,
         size: Backpack_SwiftUI.BPKPrice.Size,
         style: Backpack_SwiftUI.BPKPrice.Style
     ) -> some View {
@@ -178,9 +168,12 @@ struct PriceExampleView: View {
             BPKPrice(
                 price: price,
                 leadingText: leadingText,
+                leadingIcon: leadingIcon,
+                trailingIcon: trailingIcon,
                 previousPrice: previousPrice,
                 trailingText: trailingText,
                 style: style,
+                onLeadingTextClicked: onLeadingTextClicked,
                 alignment: .leading,
                 size: size
             )
@@ -188,9 +181,12 @@ struct PriceExampleView: View {
             BPKPrice(
                 price: price,
                 leadingText: leadingText,
+                leadingIcon: leadingIcon,
+                trailingIcon: trailingIcon,
                 previousPrice: previousPrice,
                 trailingText: trailingText,
                 style: style,
+                onLeadingTextClicked: onLeadingTextClicked,
                 alignment: .trailing,
                 size: size
             )

@@ -130,15 +130,19 @@ public struct BPKPrice: View {
 
     @ViewBuilder
     private func leadingTextView(_ text: String) -> some View {
+        // For trailing alignment the whole row mirrors, so the icon
+        // that's visually outermost stays outermost either way.
+        let outerIcon = alignment == .trailing ? trailingIcon : leadingIcon
+        let innerIcon = alignment == .trailing ? leadingIcon : trailingIcon
         let label = HStack(spacing: .sm) {
-            if let leadingIcon {
-                BPKIconView(leadingIcon.0, size: .small, accessibilityLabel: leadingIcon.1)
+            if let outerIcon {
+                BPKIconView(outerIcon.0, size: .small, accessibilityLabel: outerIcon.1)
                     .foregroundColor(style.leadingTextColor)
             }
             BPKText(text, style: accessoryFontStyle)
                 .foregroundColor(style.leadingTextColor)
-            if let trailingIcon {
-                BPKIconView(trailingIcon.0, size: .small, accessibilityLabel: trailingIcon.1)
+            if let innerIcon {
+                BPKIconView(innerIcon.0, size: .small, accessibilityLabel: innerIcon.1)
                     .foregroundColor(style.leadingTextColor)
             }
         }

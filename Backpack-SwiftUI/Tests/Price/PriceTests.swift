@@ -69,6 +69,12 @@ class PriceTests: XCTestCase {
         .init(
             price: "£50",
             leadingText: "£10 cheaper",
+            leadingIcon: (.informationCircle, "Cheaper"),
+            onLeadingTextClicked: {}
+        ),
+        .init(
+            price: "£50",
+            leadingText: "£10 cheaper",
             trailingIcon: (.informationCircle, "More info"),
             onLeadingTextClicked: {}
         ),
@@ -180,5 +186,37 @@ class PriceTests: XCTestCase {
                 testName: "test_large_withTrailingAlignment_and\(testCase.name)Style"
             )
         }
+    }
+
+    func test_leadingTextIcons() {
+        let view = VStack(alignment: .leading, spacing: .base) {
+            BPKPrice(
+                price: "£50",
+                leadingText: "£10 cheaper",
+                leadingIcon: (.informationCircle, "Cheaper"),
+                onLeadingTextClicked: {},
+                alignment: .leading,
+                size: .large
+            )
+            BPKPrice(
+                price: "£50",
+                leadingText: "£10 cheaper",
+                trailingIcon: (.informationCircle, "More info"),
+                onLeadingTextClicked: {},
+                alignment: .leading,
+                size: .large
+            )
+            BPKPrice(
+                price: "£50",
+                leadingText: "£10 cheaper",
+                leadingIcon: (.informationCircle, "Cheaper"),
+                trailingIcon: (.informationCircle, "More info"),
+                onLeadingTextClicked: {},
+                alignment: .leading,
+                size: .large
+            )
+        }
+        .background(.surfaceDefaultColor)
+        assertSnapshot(view)
     }
 }

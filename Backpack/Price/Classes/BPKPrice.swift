@@ -145,10 +145,6 @@ public final class BPKPrice: UIView {
             priceStackView.addArrangedSubview($0)
         }
 
-        [leadingIconView, leadingTextLabel, trailingIconView].forEach {
-            leadingTextRowStackView.addArrangedSubview($0)
-        }
-
         [topTextStackView, priceStackView].forEach {
             containerStackView.addArrangedSubview($0)
         }
@@ -254,6 +250,22 @@ public final class BPKPrice: UIView {
 
         topLabels.forEach {
             topTextStackView.addArrangedSubview($0)
+        }
+
+        // The icon that's visually outermost stays outermost when the row mirrors for trailing alignment.
+        var leadingTextRowItems: [UIView] = [leadingIconView, leadingTextLabel, trailingIconView]
+
+        if alignment == .trailing {
+            leadingTextRowItems.reverse()
+        }
+
+        leadingTextRowStackView.arrangedSubviews.forEach {
+            leadingTextRowStackView.removeArrangedSubview($0)
+            $0.removeFromSuperview()
+        }
+
+        leadingTextRowItems.forEach {
+            leadingTextRowStackView.addArrangedSubview($0)
         }
     }
     
