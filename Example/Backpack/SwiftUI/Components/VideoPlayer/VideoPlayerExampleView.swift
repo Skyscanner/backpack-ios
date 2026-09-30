@@ -333,7 +333,7 @@ struct VideoProgressExampleView: View {
 // MARK: - Use case 5: Observability HUD (bytes transferred + typed error)
 //
 // Exercises the two new observability APIs added in MUON-2126:
-//   • numberOfBytesTransferred — live CDN bytes, resets on each loop iteration
+//   • bytesTransferred — live cumulative CDN bytes for this impression, persists across loops
 //   • BPKVideoPlayerError.code  — normalised error string for New Relic
 //
 // "Test timeout" creates a fresh controller with a 2-second load timeout pointed
@@ -374,7 +374,7 @@ struct VideoObservabilityExampleView: View {
 
                 observabilityHUD(
                     state: liveController.state,
-                    bytes: liveController.numberOfBytesTransferred
+                    bytes: liveController.bytesTransferred
                 )
                 .padding(.horizontal, BPKSpacing.lg)
 
@@ -413,7 +413,7 @@ struct VideoObservabilityExampleView: View {
             VStack(alignment: .leading, spacing: BPKSpacing.md) {
                 observabilityHUD(
                     state: controller.state,
-                    bytes: controller.numberOfBytesTransferred
+                    bytes: controller.bytesTransferred
                 )
                 .onChange(of: controller.state) { state in
                     switch state {

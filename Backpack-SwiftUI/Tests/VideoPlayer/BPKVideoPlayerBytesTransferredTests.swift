@@ -26,7 +26,7 @@ final class BPKVideoPlayerBytesTransferredTests: XCTestCase {
 
     // MARK: - Provider wiring
 
-    func test_givenProviderReturnsFixedValue_whenKVOSettles_numberOfBytesTransferredMatchesProvider() async throws {
+    func test_givenProviderReturnsFixedValue_whenKVOSettles_bytesTransferredMatchesProvider() async throws {
         // Given
         let sut = makeSUT(bytesProvider: { _ in 4_096 })
 
@@ -34,10 +34,10 @@ final class BPKVideoPlayerBytesTransferredTests: XCTestCase {
         try await waitUntil(sut, expected: 4_096)
 
         // Then
-        XCTAssertEqual(sut.numberOfBytesTransferred, 4_096)
+        XCTAssertEqual(sut.bytesTransferred, 4_096)
     }
 
-    func test_givenProviderReturnsZero_whenKVOSettles_numberOfBytesTransferredIsZero() async throws {
+    func test_givenProviderReturnsZero_whenKVOSettles_bytesTransferredIsZero() async throws {
         // Given
         let sut = makeSUT(bytesProvider: { _ in 0 })
         
@@ -45,12 +45,12 @@ final class BPKVideoPlayerBytesTransferredTests: XCTestCase {
         try await waitUntil(sut, expected: 0)
         
         // Then
-        XCTAssertEqual(sut.numberOfBytesTransferred, 0)
+        XCTAssertEqual(sut.bytesTransferred, 0)
     }
 
     // MARK: - Notification-triggered update
 
-    func test_whenAccessLogEntryNotificationFires_numberOfBytesTransferredUpdatesToProviderValue() async throws {
+    func test_whenAccessLogEntryNotificationFires_bytesTransferredUpdatesToProviderValue() async throws {
         // Given
         let nc = NotificationCenter()
         var providerReturn: Int64 = 0
@@ -65,7 +65,7 @@ final class BPKVideoPlayerBytesTransferredTests: XCTestCase {
 
         // Then
         try await waitUntil(sut, expected: 2_048)
-        XCTAssertEqual(sut.numberOfBytesTransferred, 2_048)
+        XCTAssertEqual(sut.bytesTransferred, 2_048)
     }
 
     func test_givenMultipleAccessLogEntries_eachNotificationReadsLatestProviderReturn() async throws {
@@ -84,17 +84,17 @@ final class BPKVideoPlayerBytesTransferredTests: XCTestCase {
         }
 
         // Then
-        XCTAssertEqual(sut.numberOfBytesTransferred, 3_000)
+        XCTAssertEqual(sut.bytesTransferred, 3_000)
     }
 
     // MARK: - Notification for unrelated item is ignored
 
-    func test_whenNotificationFiredForDifferentItem_numberOfBytesTransferredDoesNotChange() async throws {
+    func test_whenNotificationFiredForDifferentItem_bytesTransferredDoesNotChange() async throws {
         // Given — observer registered for player.currentItem only
         let nc = NotificationCenter()
         let sut = makeSUT(notificationCenter: nc, bytesProvider: { _ in 1_024 })
         try await waitUntil(sut, expected: 1_024)
-        let before = sut.numberOfBytesTransferred
+        let before = sut.bytesTransferred
 
         // When — notification for a different AVPlayerItem instance
         let otherItem = AVPlayerItem(url: stubURL)
@@ -104,12 +104,12 @@ final class BPKVideoPlayerBytesTransferredTests: XCTestCase {
         await Task.yield()
 
         // Then
-        XCTAssertEqual(sut.numberOfBytesTransferred, before)
+        XCTAssertEqual(sut.bytesTransferred, before)
     }
 
-    // MARK: - Reset when item clears
+    // MARK: - Accumulates across loop swaps, persists when the item clears
 
-    func test_givenNonZeroBytes_whenItemBecomesNil_numberOfBytesTransferredResetsToZeroSynchronously() async throws {
+    func test_givenNonZeroBytes_whenItemBecomesNil_bytesTransferredPersistsTheAccumulatedTotal() async throws {
         // Given — provider returns a non-zero value; wait for KVO to settle
         let sut = makeSUT(bytesProvider: { _ in 8_192 })
         try await waitUntil(sut, expected: 8_192)
@@ -118,13 +118,44 @@ final class BPKVideoPlayerBytesTransferredTests: XCTestCase {
         // The nil path in handleCurrentItemChange is synchronous: no Task is spawned.
         sut.testOnly_handleCurrentItemChange(nil)
 
-        // Then — the reset is observable immediately, before any deferred callback runs
-        XCTAssertEqual(sut.numberOfBytesTransferred, 0)
+        // Then — the running total from the departed item is preserved, not zeroed. This is a
+        // per-impression counter (matching Android's BpkVideoPlayerController), not a per-item one.
+        XCTAssertEqual(sut.bytesTransferred, 8_192)
+    }
+
+    func test_givenLoopReplacesCurrentItem_bytesTransferredAccumulatesAcrossItems() {
+        // Given — per-item byte totals, keyed by identity so a loop swap can't blend them.
+        // Driven entirely through the test-only hook rather than the real player's async
+        // initial-KVO flow, so there's no real "current item" already occupying `observedItem`.
+        var bytesByItem: [ObjectIdentifier: Int64] = [:]
+        let sut = makeSUT(bytesProvider: { item in
+            item.map { bytesByItem[ObjectIdentifier($0)] ?? 0 } ?? 0
+        })
+
+        // The first item finishes transferring 5,000 bytes before the loop swaps it out
+        let firstItem = AVPlayerItem(url: stubURL)
+        bytesByItem[ObjectIdentifier(firstItem)] = 5_000
+        sut.testOnly_handleCurrentItemChange(firstItem)
+        XCTAssertEqual(sut.bytesTransferred, 5_000)
+
+        // When — AVPlayerLooper swaps in a fresh item; its own access log starts at zero
+        let secondItem = AVPlayerItem(url: stubURL)
+        sut.testOnly_handleCurrentItemChange(secondItem)
+
+        // Then — the outgoing item's final tally is preserved even though the new item reports zero
+        XCTAssertEqual(sut.bytesTransferred, 5_000)
+
+        // When — the new item starts transferring
+        bytesByItem[ObjectIdentifier(secondItem)] = 1_200
+        sut.updateBytesTransferred(for: secondItem)
+
+        // Then — the cumulative total across both items, not just the new item's own tally
+        XCTAssertEqual(sut.bytesTransferred, 6_200)
     }
 
     // MARK: - Published via Combine
 
-    func test_numberOfBytesTransferred_publishesEachUpdateViaPublisher() async throws {
+    func test_bytesTransferred_publishesEachUpdateViaPublisher() async throws {
         // Given
         let nc = NotificationCenter()
         var providerReturn: Int64 = 0
@@ -134,7 +165,7 @@ final class BPKVideoPlayerBytesTransferredTests: XCTestCase {
 
         // Subscribe before driving any updates
         var received: [Int64] = []
-        let cancellable = sut.$numberOfBytesTransferred
+        let cancellable = sut.$bytesTransferred
             .sink { received.append($0) }
         defer { cancellable.cancel() }
 
@@ -159,7 +190,7 @@ final class BPKVideoPlayerBytesTransferredTests: XCTestCase {
 
     private var stubURL: URL { URL(string: "data:video/mp4,stub")! }
 
-    /// Polls until `numberOfBytesTransferred` equals `expected` or the timeout expires.
+    /// Polls until `bytesTransferred` equals `expected` or the timeout expires.
     ///
     /// Both `DispatchQueue.main.async` callbacks and `Task { @MainActor }` blocks are driven
     /// by cooperating with the main actor executor via repeated yields.
@@ -169,11 +200,11 @@ final class BPKVideoPlayerBytesTransferredTests: XCTestCase {
         timeout: TimeInterval = 2
     ) async throws {
         let deadline = Date().addingTimeInterval(timeout)
-        while sut.numberOfBytesTransferred != expected {
+        while sut.bytesTransferred != expected {
             guard Date() < deadline else {
                 XCTFail(
-                    "Timed out waiting for numberOfBytesTransferred == \(expected); " +
-                    "current value: \(sut.numberOfBytesTransferred)"
+                    "Timed out waiting for bytesTransferred == \(expected); " +
+                    "current value: \(sut.bytesTransferred)"
                 )
                 return
             }

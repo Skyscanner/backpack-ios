@@ -107,11 +107,16 @@ public final class BPKVideoPlayerController: ObservableObject {
     /// Whether the player is muted. Drives custom mute controls.
     @Published public private(set) var isMuted = false
 
-    /// Cumulative bytes transferred for the current player item.
+    /// Cumulative network bytes transferred since this controller was created.
+    ///
+    /// Persists across loop replays: an `AVPlayerLooper` swap starts a fresh access log on the
+    /// new item, so the outgoing item's final tally is folded into a running total before the
+    /// swap rather than being dropped. This is a per-impression counter for CDN-cost dashboards
+    /// (mirrors `BpkVideoPlayerController.bytesTransferred` on Android), not a per-play-through one.
     ///
     /// - Note: AVFoundation's asset networking bypasses New Relic Mobile's URLSession
     ///   instrumentation. This is the only iOS route to video data-transfer metrics.
-    @Published public private(set) var numberOfBytesTransferred: Int64 = 0
+    @Published public private(set) var bytesTransferred: Int64 = 0
 
     // MARK: - Playback progress
 
@@ -147,6 +152,9 @@ public final class BPKVideoPlayerController: ObservableObject {
     var progressSeekID = 0
     private var isLoopItemTransitioning = false
     private var observedItem: AVPlayerItem?
+    /// Sum of bytes from every item already replaced by a loop swap or clear. The published
+    /// `bytesTransferred` is always this plus the current item's own access-log tally.
+    private var bytesTransferredBeforeCurrentItem: Int64 = 0
     private var hasLoadedInitialItem = false
     private var hasExplicitPauseRequest = false
 
@@ -339,15 +347,16 @@ public final class BPKVideoPlayerController: ObservableObject {
     }
 
     private func handleCurrentItemChange(_ item: AVPlayerItem?) {
-        numberOfBytesTransferred = 0
+        accumulateBytesFromDepartingItem(replacedBy: item)
         if let accessLogToken {
             notificationCenter.removeObserver(accessLogToken)
             self.accessLogToken = nil
         }
 
-        guard item != nil else {
+        guard let item else {
             isLoopItemTransitioning = false
             observeItemStatus(nil)
+            bytesTransferred = bytesTransferredBeforeCurrentItem
             if player.timeControlStatus == .paused && state.isActive {
                 transition(to: .paused)
             }
@@ -366,6 +375,15 @@ public final class BPKVideoPlayerController: ObservableObject {
                 self?.updateBytesTransferred(for: item)
             }
         }
+    }
+
+    /// Folds the outgoing item's final byte tally into the running total before it's replaced.
+    /// `AVPlayerLooper` swaps `currentItem` to a fresh item with its own access log starting at
+    /// zero, so without this the published total would drop on every loop instead of accumulating
+    /// across the whole impression.
+    private func accumulateBytesFromDepartingItem(replacedBy newItem: AVPlayerItem?) {
+        guard let departingItem = observedItem, departingItem !== newItem else { return }
+        bytesTransferredBeforeCurrentItem += bytesTransferredProvider(departingItem)
     }
 
     private func markLoopItemTransitionIfNeeded() {
@@ -486,7 +504,7 @@ public final class BPKVideoPlayerController: ObservableObject {
     }
 
     func updateBytesTransferred(for item: AVPlayerItem?) {
-        numberOfBytesTransferred = bytesTransferredProvider(item)
+        bytesTransferred = bytesTransferredBeforeCurrentItem + bytesTransferredProvider(item)
     }
 
     private func completeInitialLoad() {
