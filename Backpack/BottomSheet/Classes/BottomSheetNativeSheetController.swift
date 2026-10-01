@@ -40,6 +40,8 @@ final class BPKSheetViewController: UIViewController {
 
     private let trackedScrollView: UIScrollView?
     private let sizing: Sizing
+    /// The detent behind the full position: the system's large one, or a custom one when there's a top inset.
+    private var fullIdentifier: UISheetPresentationController.Detent.Identifier = .bpkFull
 
     init(
         content: UIViewController,
@@ -54,6 +56,10 @@ final class BPKSheetViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         modalPresentationStyle = .pageSheet
         configureSheet()
+        // The floating panel loaded these views as soon as the bottom sheet was created. Callers rely on that when
+        // they set state on them straight after, before the sheet is presented.
+        content.loadViewIfNeeded()
+        bottomSection?.loadViewIfNeeded()
     }
 
     @available(*, unavailable)
@@ -96,7 +102,7 @@ final class BPKSheetViewController: UIViewController {
             return
         }
         guard let sheet = sheetPresentationController, case .positions = sizing else { return }
-        let identifier: UISheetPresentationController.Detent.Identifier = position == .full ? .bpkFull : .bpkHalf
+        let identifier: UISheetPresentationController.Detent.Identifier = position == .full ? fullIdentifier : .bpkHalf
         let change = { sheet.selectedDetentIdentifier = identifier }
         animated ? sheet.animateChanges(change) : change()
     }
@@ -117,8 +123,6 @@ private extension BPKSheetViewController {
         sheet.delegate = self
         sheet.prefersGrabberVisible = true
         sheet.preferredCornerRadius = BPKCornerRadiusLg
-        sheet.prefersEdgeAttachedInCompactHeight = true
-        sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
         switch sizing {
         case .fitContent:
             sheet.detents = [.custom(identifier: .bpkFit) { [weak self] context in
@@ -126,11 +130,21 @@ private extension BPKSheetViewController {
             }]
         case let .positions(half, full):
             let halfHeight = half ?? BottomSheetInsets.Constants.bottomSheetHeightInHalfPosition
-            let fullDetent: UISheetPresentationController.Detent = full.map { inset in
-                .custom(identifier: .bpkFull) { context in context.maximumDetentValue - inset }
-            } ?? .custom(identifier: .bpkFull) { context in context.maximumDetentValue }
+            // With no inset the full position is the system's large height, which keeps the sheet attached to the
+            // screen edges as the floating panel's full position was.
+            let fullDetent: UISheetPresentationController.Detent
+            if let inset = full, inset > 0 {
+                fullDetent = .custom(identifier: .bpkFull) { context in context.maximumDetentValue - inset }
+                fullIdentifier = .bpkFull
+            } else {
+                fullDetent = .large()
+                fullIdentifier = .large
+            }
             sheet.detents = [
-                .custom(identifier: .bpkHalf) { context in min(halfHeight, context.maximumDetentValue) },
+                // A half height that reaches the tallest the sheet can be leaves only the full position.
+                .custom(identifier: .bpkHalf) { context in
+                    halfHeight < context.maximumDetentValue ? halfHeight : nil
+                },
                 fullDetent
             ]
             sheet.selectedDetentIdentifier = .bpkHalf
