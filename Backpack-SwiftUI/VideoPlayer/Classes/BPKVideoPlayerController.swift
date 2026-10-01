@@ -64,18 +64,6 @@ public enum BPKVideoPlayerState: Equatable {
     public var isActive: Bool {
         self == .playing || self == .buffering
     }
-
-    public static func == (lhs: BPKVideoPlayerState, rhs: BPKVideoPlayerState) -> Bool {
-        switch (lhs, rhs) {
-        case (.loading, .loading), (.readyToPlay, .readyToPlay),
-            (.playing, .playing), (.paused, .paused), (.buffering, .buffering):
-            return true
-        case (.failed, .failed):
-            return true
-        default:
-            return false
-        }
-    }
 }
 
 /// Controls how a video player's audio interacts with the device audio session.
@@ -415,16 +403,20 @@ public final class BPKVideoPlayerController: ObservableObject {
     private func handleReadyItem() {
         let isInitialLoad = !hasLoadedInitialItem
         let isWaitingForPlayback = player.timeControlStatus == .waitingToPlayAtSpecifiedRate
+        let isAlreadyPlaying = player.timeControlStatus == .playing
+        let shouldAutoPlay = isInitialLoad && autoPlay &&
+            !hasExplicitPauseRequest && !UIAccessibility.isReduceMotionEnabled
         // Reaching a genuine playable state ends the load. Staying `readyToPlay` while the
-        // transport is still waiting does not — the timeout keeps running until real playback.
-        if !isInitialLoad || !isWaitingForPlayback {
+        // transport is still waiting does not, and neither does being about to autoplay from
+        // rest — `play()` below can still send the transport into `.waitingToPlayAtSpecifiedRate`,
+        // so the timeout keeps running until playback that was actually requested begins.
+        let willAutoPlayFromRest = shouldAutoPlay && !isAlreadyPlaying
+        if !isInitialLoad || (!isWaitingForPlayback && !willAutoPlayFromRest) {
             completeInitialLoad()
         }
         updateProgressDuration()
         let wasLoopItemTransitioning = isLoopItemTransitioning
         isLoopItemTransitioning = false
-        let shouldAutoPlay = isInitialLoad && autoPlay &&
-            !hasExplicitPauseRequest && !UIAccessibility.isReduceMotionEnabled
 
         switch player.timeControlStatus {
         case .playing:
@@ -516,25 +508,32 @@ public final class BPKVideoPlayerController: ObservableObject {
 
     private static func normalise(_ error: NSError) -> BPKVideoPlayerError {
         if error.domain == NSURLErrorDomain {
-            if error.code == NSURLErrorCancelled {
+            return error.code == NSURLErrorCancelled ? .aborted : .network
+        }
+
+        if error.domain == AVFoundationErrorDomain {
+            switch error.code {
+            case AVError.Code.operationInterrupted.rawValue:
                 return .aborted
+            case AVError.Code.decoderNotFound.rawValue,
+                 AVError.Code.decodeFailed.rawValue:
+                return .decode
+            case AVError.Code.fileFormatNotRecognized.rawValue:
+                return .sourceNotSupported
+            default:
+                break
             }
-            return .network
         }
 
-        guard error.domain == AVFoundationErrorDomain else { return .unknown }
-
-        switch error.code {
-        case AVError.Code.operationInterrupted.rawValue:
-            return .aborted
-        case AVError.Code.decoderNotFound.rawValue,
-             AVError.Code.decodeFailed.rawValue:
-            return .decode
-        case AVError.Code.fileFormatNotRecognized.rawValue:
-            return .sourceNotSupported
-        default:
-            return .unknown
+        // AVFoundation commonly reports a generic top-level AVFoundationErrorDomain failure
+        // with the actual cause — e.g. a network failure — nested at NSUnderlyingErrorKey.
+        // Recursing into it means a wrapped network error still normalises to `.network`
+        // instead of silently landing on `.unknown`.
+        if let underlying = error.userInfo[NSUnderlyingErrorKey] as? NSError {
+            return normalise(underlying)
         }
+
+        return .unknown
     }
 
     private func configureAudioSession() {
@@ -580,6 +579,14 @@ public final class BPKVideoPlayerController: ObservableObject {
 
     var testOnly_isLoopItemTransitioning: Bool {
         isLoopItemTransitioning
+    }
+
+    var testOnly_hasLoadedInitialItem: Bool {
+        hasLoadedInitialItem
+    }
+
+    static func testOnly_normalise(_ error: NSError) -> BPKVideoPlayerError {
+        normalise(error)
     }
 }
 
