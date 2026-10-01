@@ -37,7 +37,8 @@ class BPKPriceSnapshotTest: XCTestCase {
         trailingText: String? = "per day",
         onLeadingTextClicked: (() -> Void)? = nil,
         alignment: BPKPrice.Alignment = .leading,
-        size: BPKPrice.Size = .large
+        size: BPKPrice.Size = .large,
+        width: CGFloat? = nil
     ) -> UIView {
         let parentView = UIView(frame: .zero)
         parentView.backgroundColor = BPKColor.surfaceDefaultColor
@@ -54,14 +55,18 @@ class BPKPriceSnapshotTest: XCTestCase {
 
         priceView.translatesAutoresizingMaskIntoConstraints = false
         parentView.addSubview(priceView)
-        
-        NSLayoutConstraint.activate([
+
+        var constraints = [
             priceView.topAnchor.constraint(equalTo: parentView.topAnchor),
             priceView.leadingAnchor.constraint(equalTo: parentView.leadingAnchor),
             priceView.trailingAnchor.constraint(equalTo: parentView.trailingAnchor),
             priceView.bottomAnchor.constraint(equalTo: parentView.bottomAnchor)
-        ])
-        
+        ]
+        if let width {
+            constraints.append(parentView.widthAnchor.constraint(equalToConstant: width))
+        }
+        NSLayoutConstraint.activate(constraints)
+
         return parentView
     }
     
@@ -148,6 +153,39 @@ class BPKPriceSnapshotTest: XCTestCase {
             previousPrice: nil,
             trailingText: nil,
             onLeadingTextClicked: {}
+        )
+        assertSnapshot(exampleView)
+    }
+
+    func testViewSnapshotWithLongPriceWraps() {
+        let exampleView = createView(
+            price: "£197,000,000,000,000,000,000,000,000,000,000",
+            leadingText: nil,
+            previousPrice: "£200,000,000,000,000,000,000,000,000,000,000",
+            trailingText: "per day",
+            width: 200
+        )
+        assertSnapshot(exampleView)
+    }
+
+    func testViewSnapshotWithLongTrailingTextWraps() {
+        let exampleView = createView(
+            price: "£50",
+            leadingText: nil,
+            previousPrice: nil,
+            trailingText: "per day for a group of more than twenty people",
+            width: 200
+        )
+        assertSnapshot(exampleView)
+    }
+
+    func testViewSnapshotWithLongLeadingTextWraps() {
+        let exampleView = createView(
+            price: "£50",
+            leadingText: "App only deal for a group of more than twenty people",
+            previousPrice: nil,
+            trailingText: nil,
+            width: 200
         )
         assertSnapshot(exampleView)
     }

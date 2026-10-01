@@ -232,17 +232,27 @@ public final class BPKPrice: UIView {
             containerStackView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
-    
+
     private func updateAlignmentPositioning() {
         switch alignment {
         case .leading:
             containerStackView.alignment = .leading
             priceStackView.axis = .horizontal
+            priceStackView.alignment = .firstBaseline
             priceStackView.spacing = BPKSpacingSm
+            [priceLabel, trailingTextLabel].forEach {
+                $0.setContentCompressionResistancePriority(.required, for: .horizontal)
+                $0.setContentHuggingPriority(.required, for: .horizontal)
+            }
         case .trailing:
             containerStackView.alignment = .trailing
             priceStackView.axis = .vertical
+            priceStackView.alignment = .trailing
             priceStackView.spacing = BPKSpacingNone
+            [priceLabel, trailingTextLabel].forEach {
+                $0.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+                $0.setContentHuggingPriority(.defaultLow, for: .horizontal)
+            }
         }
         
         // Top labels change order when alignment is trailing.
@@ -303,6 +313,7 @@ private extension BPKPrice {
 
     func stylePriceLabel() {
         priceLabel.textColor = BPKColor.textPrimaryColor
+        priceLabel.numberOfLines = 0
 
         switch size {
         case .large:
@@ -324,6 +335,8 @@ private extension BPKPrice {
             $0.fontStyle = accessoryFontStyle()
             $0.textColor = BPKColor.textSecondaryColor
         }
+        trailingTextLabel.numberOfLines = 0
+        leadingTextLabel.numberOfLines = 0
     }
 
     func strikeThroughTextAttributes() -> [NSAttributedString.Key: Any] {
