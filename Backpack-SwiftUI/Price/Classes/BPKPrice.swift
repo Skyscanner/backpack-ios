@@ -35,6 +35,7 @@ public struct BPKPrice: View {
     
     private let price: String
     private let leadingText: String?
+    private let leadingTextAccessibilityLabel: String?
     private let leadingIcon: (BPKIcon, String)?
     private let trailingIcon: (BPKIcon, String)?
     private let previousPrice: String?
@@ -49,6 +50,7 @@ public struct BPKPrice: View {
     public init(
         price: String,
         leadingText: String? = nil,
+        leadingTextAccessibilityLabel: String? = nil,
         leadingIcon: (BPKIcon, String)? = nil,
         trailingIcon: (BPKIcon, String)? = nil,
         previousPrice: String? = nil,
@@ -62,6 +64,7 @@ public struct BPKPrice: View {
     ) {
         self.price = price
         self.leadingText = leadingText
+        self.leadingTextAccessibilityLabel = leadingTextAccessibilityLabel
         self.leadingIcon = leadingIcon
         self.trailingIcon = trailingIcon
         self.previousPrice = previousPrice
@@ -142,15 +145,23 @@ public struct BPKPrice: View {
                     .foregroundColor(style.leadingTextColor)
             }
         }
-        if let onLeadingTextClicked {
-            label
-                .contentShape(Rectangle())
-                .onTapGesture(perform: onLeadingTextClicked)
-                .accessibilityElement(children: .combine)
-                .accessibilityAddTraits(.isButton)
-        } else {
-            label
+        let tappableLabel = Group {
+            if let onLeadingTextClicked {
+                label
+                    .contentShape(Rectangle())
+                    .onTapGesture(perform: onLeadingTextClicked)
+                    .accessibilityElement(children: .combine)
+                    .accessibilityAddTraits(.isButton)
+            } else {
+                label
+            }
         }
+        tappableLabel
+            .if(leadingTextAccessibilityLabel != nil) { view in
+                view
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel(leadingTextAccessibilityLabel ?? "")
+            }
     }
     
     @ViewBuilder

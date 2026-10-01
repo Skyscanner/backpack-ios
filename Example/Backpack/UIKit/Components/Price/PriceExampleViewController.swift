@@ -69,6 +69,12 @@ final class PriceExampleViewController: UIViewController {
             trailingIcon: .informationCircle,
             onLeadingTextClicked: {})
         )
+        stackView.addArrangedSubview(createRow(
+            leadingText: "£10 cheaper",
+            leadingTextAccessibilityLabel: "£10 cheaper than usual, tap for more information",
+            trailingIcon: .informationCircle,
+            onLeadingTextClicked: {})
+        )
 
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: BPKSpacingBase),
@@ -79,6 +85,7 @@ final class PriceExampleViewController: UIViewController {
         
     private func createRow(
         leadingText: String? = nil,
+        leadingTextAccessibilityLabel: String? = nil,
         leadingIcon: BPKIconName? = nil,
         trailingIcon: BPKIconName? = nil,
         previousPrice: String? = nil,
@@ -93,6 +100,7 @@ final class PriceExampleViewController: UIViewController {
                 let priceView = BPKPrice(alignment: alignment, size: size)
                 priceView.price = "£1830"
                 priceView.leadingText = leadingText
+                priceView.leadingTextAccessibilityLabel = leadingTextAccessibilityLabel
                 priceView.leadingIcon = leadingIcon
                 priceView.trailingIcon = trailingIcon
                 priceView.previousPrice = previousPrice

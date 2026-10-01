@@ -42,6 +42,10 @@ public final class BPKPrice: UIView {
         }
     }
 
+    public var leadingTextAccessibilityLabel: String? {
+        didSet { updateLeadingTextRow() }
+    }
+
     public var leadingIcon: BPKIconName? {
         didSet { updateLeadingTextRow() }
     }
@@ -202,8 +206,13 @@ public final class BPKPrice: UIView {
             leadingTextRowStackView.addGestureRecognizer(tap)
             leadingTextRowStackView.isUserInteractionEnabled = true
             leadingTextRowStackView.isAccessibilityElement = true
-            leadingTextRowStackView.accessibilityLabel = leadingText
+            leadingTextRowStackView.accessibilityLabel = leadingTextAccessibilityLabel ?? leadingText
             leadingTextRowStackView.accessibilityTraits = .button
+        } else if let leadingTextAccessibilityLabel {
+            leadingTextRowStackView.isUserInteractionEnabled = false
+            leadingTextRowStackView.isAccessibilityElement = true
+            leadingTextRowStackView.accessibilityLabel = leadingTextAccessibilityLabel
+            leadingTextRowStackView.accessibilityTraits = []
         } else {
             leadingTextRowStackView.isUserInteractionEnabled = false
             leadingTextRowStackView.isAccessibilityElement = false
@@ -269,7 +278,12 @@ public final class BPKPrice: UIView {
         }
     }
     
-    private func accessoryFontStyle() -> BPKFontStyle {
+}
+
+// MARK: - Styling
+
+private extension BPKPrice {
+    func accessoryFontStyle() -> BPKFontStyle {
         switch size {
         case .large:
             return .textFootnote
@@ -277,8 +291,8 @@ public final class BPKPrice: UIView {
             return .textCaption
         }
     }
-    
-    private func applyLineThroughStyling() {
+
+    func applyLineThroughStyling() {
         guard let previousPrice = previousPrice else {
             previousPriceLabel.attributedText = nil
             return
@@ -286,10 +300,10 @@ public final class BPKPrice: UIView {
         let attributedString = NSAttributedString(string: previousPrice, attributes: strikeThroughTextAttributes())
         previousPriceLabel.attributedText = attributedString
     }
-    
-    private func stylePriceLabel() {
+
+    func stylePriceLabel() {
         priceLabel.textColor = BPKColor.textPrimaryColor
-        
+
         switch size {
         case .large:
             priceLabel.fontStyle = .textHeading2
@@ -299,8 +313,8 @@ public final class BPKPrice: UIView {
             priceLabel.fontStyle = .textHeading5
         }
     }
-    
-    private func styleAccessoryLabels() {
+
+    func styleAccessoryLabels() {
         [
             trailingTextLabel,
             previousPriceLabel,
@@ -311,8 +325,8 @@ public final class BPKPrice: UIView {
             $0.textColor = BPKColor.textSecondaryColor
         }
     }
-    
-    private func strikeThroughTextAttributes() -> [NSAttributedString.Key: Any] {
+
+    func strikeThroughTextAttributes() -> [NSAttributedString.Key: Any] {
         [
             .foregroundColor: BPKColor.textSecondaryColor,
             .font: BPKFont.makeFont(fontStyle: accessoryFontStyle()),
