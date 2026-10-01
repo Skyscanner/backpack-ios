@@ -54,6 +54,20 @@ struct VideoPlayerGroupsProvider {
                         ContentUIHostingController(VideoContinuousPlaybackExampleView())
                     },
                     showPresentable: showPresentable
+                ),
+                PresentableCellDataSource.custom(
+                    title: "Live playback progress",
+                    customController: {
+                        ContentUIHostingController(VideoProgressExampleView())
+                    },
+                    showPresentable: showPresentable
+                ),
+                PresentableCellDataSource.custom(
+                    title: "Observability HUD (bytes + timeout)",
+                    customController: {
+                        ContentUIHostingController(VideoObservabilityExampleView())
+                    },
+                    showPresentable: showPresentable
                 )
             ]
         ).groups()
