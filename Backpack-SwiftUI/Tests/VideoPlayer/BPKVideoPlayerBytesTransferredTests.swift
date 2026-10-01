@@ -30,7 +30,7 @@ final class BPKVideoPlayerBytesTransferredTests: XCTestCase {
         // Given
         let sut = makeSUT(bytesProvider: { _ in 4_096 })
 
-        // When — wait for the initial KVO → handleCurrentItemChange → updateBytesTransferred
+        // When
         try await waitUntil(sut, expected: 4_096)
 
         // Then
@@ -76,7 +76,7 @@ final class BPKVideoPlayerBytesTransferredTests: XCTestCase {
         try await waitUntil(sut, expected: 0)
         let item = try XCTUnwrap(sut.player.currentItem)
 
-        // When — three successive access-log entries with increasing byte counts
+        // When
         for expected in [512, 1_024, 3_000] as [Int64] {
             providerReturn = expected
             nc.post(name: .AVPlayerItemNewAccessLogEntry, object: item)
@@ -90,16 +90,15 @@ final class BPKVideoPlayerBytesTransferredTests: XCTestCase {
     // MARK: - Notification for unrelated item is ignored
 
     func test_whenNotificationFiredForDifferentItem_bytesTransferredDoesNotChange() async throws {
-        // Given — observer registered for player.currentItem only
+        // Given
         let nc = NotificationCenter()
         let sut = makeSUT(notificationCenter: nc, bytesProvider: { _ in 1_024 })
         try await waitUntil(sut, expected: 1_024)
         let before = sut.bytesTransferred
 
-        // When — notification for a different AVPlayerItem instance
+        // When
         let otherItem = AVPlayerItem(url: stubURL)
         nc.post(name: .AVPlayerItemNewAccessLogEntry, object: otherItem)
-        // Drain twice: once for any DispatchQueue.main.async, once for any spawned MainActor Task
         await Task.yield()
         await Task.yield()
 
@@ -110,46 +109,44 @@ final class BPKVideoPlayerBytesTransferredTests: XCTestCase {
     // MARK: - Accumulates across loop swaps, persists when the item clears
 
     func test_givenNonZeroBytes_whenItemBecomesNil_bytesTransferredPersistsTheAccumulatedTotal() async throws {
-        // Given — provider returns a non-zero value; wait for KVO to settle
+        // Given
         let sut = makeSUT(bytesProvider: { _ in 8_192 })
         try await waitUntil(sut, expected: 8_192)
 
-        // When — item cleared (e.g. AVPlayerLooper momentarily clears currentItem)
-        // The nil path in handleCurrentItemChange is synchronous: no Task is spawned.
+        // When
         sut.testOnly_handleCurrentItemChange(nil)
 
-        // Then — the running total from the departed item is preserved, not zeroed. This is a
-        // per-impression counter (matching Android's BpkVideoPlayerController), not a per-item one.
+        // Then
         XCTAssertEqual(sut.bytesTransferred, 8_192)
     }
 
     func test_givenLoopReplacesCurrentItem_bytesTransferredAccumulatesAcrossItems() {
-        // Given — per-item byte totals, keyed by identity so a loop swap can't blend them.
-        // Driven entirely through the test-only hook rather than the real player's async
-        // initial-KVO flow, so there's no real "current item" already occupying `observedItem`.
+        // Given
         var bytesByItem: [ObjectIdentifier: Int64] = [:]
         let sut = makeSUT(bytesProvider: { item in
             item.map { bytesByItem[ObjectIdentifier($0)] ?? 0 } ?? 0
         })
-
-        // The first item finishes transferring 5,000 bytes before the loop swaps it out
         let firstItem = AVPlayerItem(url: stubURL)
         bytesByItem[ObjectIdentifier(firstItem)] = 5_000
+
+        // When
         sut.testOnly_handleCurrentItemChange(firstItem)
+
+        // Then
         XCTAssertEqual(sut.bytesTransferred, 5_000)
 
-        // When — AVPlayerLooper swaps in a fresh item; its own access log starts at zero
+        // When
         let secondItem = AVPlayerItem(url: stubURL)
         sut.testOnly_handleCurrentItemChange(secondItem)
 
-        // Then — the outgoing item's final tally is preserved even though the new item reports zero
+        // Then
         XCTAssertEqual(sut.bytesTransferred, 5_000)
 
-        // When — the new item starts transferring
+        // When
         bytesByItem[ObjectIdentifier(secondItem)] = 1_200
         sut.updateBytesTransferred(for: secondItem)
 
-        // Then — the cumulative total across both items, not just the new item's own tally
+        // Then
         XCTAssertEqual(sut.bytesTransferred, 6_200)
     }
 
@@ -162,14 +159,12 @@ final class BPKVideoPlayerBytesTransferredTests: XCTestCase {
         let sut = makeSUT(notificationCenter: nc, bytesProvider: { _ in providerReturn })
         try await waitUntil(sut, expected: 0)
         let item = try XCTUnwrap(sut.player.currentItem)
-
-        // Subscribe before driving any updates
         var received: [Int64] = []
         let cancellable = sut.$bytesTransferred
             .sink { received.append($0) }
         defer { cancellable.cancel() }
 
-        // When — two successive access-log entries
+        // When
         providerReturn = 500
         nc.post(name: .AVPlayerItemNewAccessLogEntry, object: item)
         try await waitUntil(sut, expected: 500)
@@ -178,7 +173,7 @@ final class BPKVideoPlayerBytesTransferredTests: XCTestCase {
         nc.post(name: .AVPlayerItemNewAccessLogEntry, object: item)
         try await waitUntil(sut, expected: 1_500)
 
-        // Then — publisher emitted both driven values; final value is correct
+        // Then
         XCTAssertTrue(received.contains(500),
                       "Publisher should have emitted 500; received: \(received)")
         XCTAssertTrue(received.contains(1_500),
