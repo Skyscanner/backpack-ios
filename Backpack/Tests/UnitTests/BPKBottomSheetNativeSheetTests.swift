@@ -33,10 +33,71 @@ final class BPKBottomSheetNativeSheetTests: XCTestCase {
         // Then
         let sheet = try XCTUnwrap(sut.viewControllerToPresent as? BPKSheetViewController)
         XCTAssertEqual(sheet.modalPresentationStyle, .pageSheet)
-        XCTAssertEqual(sheet.sheetPresentationController?.detents.map(\.identifier), [.bpkHalf, .bpkFull])
+        XCTAssertEqual(sheet.sheetPresentationController?.detents.map(\.identifier), [.bpkHalf, .large])
         XCTAssertEqual(sheet.sheetPresentationController?.selectedDetentIdentifier, .bpkHalf)
         XCTAssertEqual(sheet.sheetPresentationController?.prefersGrabberVisible, true)
+        XCTAssertEqual(sheet.sheetPresentationController?.prefersEdgeAttachedInCompactHeight, false)
         XCTAssertTrue(sut.contentViewController === content)
+    }
+
+    func test_givenATopInset_whenCreated_thenTheFullPositionIsACustomHeight() throws {
+        // When
+        let sut = BPKBottomSheet(
+            contentViewController: UIViewController(),
+            scrollViewToTrack: UIScrollView(),
+            insets: BottomSheetInsets(full: 64, half: 300, tip: nil)
+        )
+
+        // Then
+        let sheet = try XCTUnwrap(sut.viewControllerToPresent as? BPKSheetViewController)
+        let detents = try XCTUnwrap(sheet.sheetPresentationController?.detents)
+        XCTAssertEqual(detents.map(\.identifier), [.bpkHalf, .bpkFull])
+        XCTAssertEqual(detents.last?.resolvedValue(in: DetentContext(maximumDetentValue: 700)), 636)
+    }
+
+    func test_givenAHalfHeight_whenItFitsTheSheet_thenTheHalfPositionUsesIt() throws {
+        // When
+        let sut = BPKBottomSheet(
+            contentViewController: UIViewController(),
+            scrollViewToTrack: UIScrollView(),
+            insets: BottomSheetInsets(full: nil, half: 300, tip: nil)
+        )
+
+        // Then
+        let sheet = try XCTUnwrap(sut.viewControllerToPresent as? BPKSheetViewController)
+        let half = try XCTUnwrap(sheet.sheetPresentationController?.detents.first)
+        XCTAssertEqual(half.resolvedValue(in: DetentContext(maximumDetentValue: 700)), 300)
+    }
+
+    func test_givenAHalfHeight_whenItReachesTheTallestHeight_thenOnlyTheFullPositionIsLeft() throws {
+        // When
+        let sut = BPKBottomSheet(
+            contentViewController: UIViewController(),
+            scrollViewToTrack: UIScrollView(),
+            insets: BottomSheetInsets(full: nil, half: 800, tip: nil)
+        )
+
+        // Then
+        let sheet = try XCTUnwrap(sut.viewControllerToPresent as? BPKSheetViewController)
+        let half = try XCTUnwrap(sheet.sheetPresentationController?.detents.first)
+        XCTAssertNil(half.resolvedValue(in: DetentContext(maximumDetentValue: 700)))
+    }
+
+    func test_givenContentAndABottomSection_whenCreated_thenTheirViewsAreLoaded() {
+        // Given
+        let content = UIViewController()
+        let bottomSection = UIViewController()
+
+        // When
+        _ = BPKBottomSheet(
+            contentViewController: content,
+            scrollViewToTrack: UIScrollView(),
+            bottomSectionViewController: bottomSection
+        )
+
+        // Then
+        XCTAssertTrue(content.isViewLoaded)
+        XCTAssertTrue(bottomSection.isViewLoaded)
     }
 
     func test_givenContentWithoutAScrollView_whenCreated_thenTheSheetFitsTheContent() throws {
@@ -109,5 +170,14 @@ final class BPKBottomSheetNativeSheetTests: XCTestCase {
 
         // Then
         XCTAssertTrue(sut.viewControllerToPresent is BPKFloatingPanelController)
+    }
+}
+
+private final class DetentContext: NSObject, UISheetPresentationControllerDetentResolutionContext {
+    let containerTraitCollection = UITraitCollection()
+    let maximumDetentValue: CGFloat
+
+    init(maximumDetentValue: CGFloat) {
+        self.maximumDetentValue = maximumDetentValue
     }
 }
