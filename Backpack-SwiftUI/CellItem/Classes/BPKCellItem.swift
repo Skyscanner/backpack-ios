@@ -134,6 +134,10 @@ public struct BPKCellItem: View {
             BPKSwitch(isOn: isOn) {}
                 .labelsHidden()
 
+        case .switchDisableable(let isOn, let enabled):
+            BPKSwitch(isOn: isOn, enabled: enabled) {}
+                .labelsHidden()
+
         case .text(let text):
             BPKText(text, style: .footnote)
                 .foregroundColor(.textPrimaryColor)
@@ -170,7 +174,7 @@ public struct BPKCellItem: View {
     private var hasAccessibleSlot: Bool {
         guard let slot = slot else { return false }
         switch slot {
-        case .switch, .link:
+        case .switch, .switchDisableable, .link:
             return true
         default:
             return false
