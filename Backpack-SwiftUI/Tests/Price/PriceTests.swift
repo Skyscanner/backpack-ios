@@ -219,4 +219,17 @@ class PriceTests: XCTestCase {
         .background(.surfaceDefaultColor)
         assertSnapshot(view)
     }
+
+    func test_longPriceWraps() {
+        let view = BPKPrice(
+            price: "£197,000,000,000,000,000,000,000,000,000,000",
+            previousPrice: "£200,000,000,000,000,000,000,000,000,000,000",
+            trailingText: "per day for a group of more than twenty people",
+            alignment: .leading,
+            size: .large
+        )
+        .frame(width: 200)
+        .background(.surfaceDefaultColor)
+        assertSnapshot(view)
+    }
 }

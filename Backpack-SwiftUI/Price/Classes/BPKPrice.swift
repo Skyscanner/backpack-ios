@@ -120,6 +120,7 @@ public struct BPKPrice: View {
                 BPKText(previousPrice, style: accessoryFontStyle)
                     .foregroundColor(style.previousTextColor)
                     .strikethrough(true)
+                    .lineLimit(nil)
             }
             if previousPrice != nil && leadingText != nil {
                 BPKText("•", style: accessoryFontStyle)
@@ -184,6 +185,7 @@ public struct BPKPrice: View {
         if let trailingText = trailingText {
             BPKText(trailingText, style: accessoryFontStyle)
                 .foregroundColor(style.trailingTextColor)
+                .lineLimit(nil)
         }
     }
 
@@ -202,6 +204,7 @@ public struct BPKPrice: View {
         } else {
             BPKText(text, style: fontStyle)
                 .foregroundColor(style.priceTextColor)
+                .lineLimit(nil)
         }
     }
     
