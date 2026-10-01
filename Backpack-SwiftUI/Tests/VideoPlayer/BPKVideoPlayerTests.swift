@@ -70,6 +70,97 @@ final class BPKVideoPlayerTests: XCTestCase {
         XCTAssertTrue(controller.player.isMuted)
     }
 
+    func test_videoPlayerErrorCodes() {
+        XCTAssertEqual(BPKVideoPlayerError.loadTimeout.code, "LOAD_TIMEOUT")
+        XCTAssertEqual(BPKVideoPlayerError.network.code, "MEDIA_ERR_NETWORK")
+        XCTAssertEqual(BPKVideoPlayerError.decode.code, "MEDIA_ERR_DECODE")
+        XCTAssertEqual(BPKVideoPlayerError.sourceNotSupported.code, "MEDIA_ERR_SRC_NOT_SUPPORTED")
+        XCTAssertEqual(BPKVideoPlayerError.aborted.code, "MEDIA_ERR_ABORTED")
+        XCTAssertEqual(BPKVideoPlayerError.unknown.code, "UNKNOWN_ERROR")
+    }
+
+    // MARK: - BPKVideoPlayerState equality
+
+    func test_failedStates_withDifferentErrors_areNotEqual() {
+        XCTAssertNotEqual(BPKVideoPlayerState.failed(.network), .failed(.loadTimeout))
+        XCTAssertNotEqual(BPKVideoPlayerState.failed(.decode), .failed(.unknown))
+    }
+
+    func test_failedStates_withTheSameError_areEqual() {
+        XCTAssertEqual(BPKVideoPlayerState.failed(.network), .failed(.network))
+    }
+
+    // MARK: - Error normalisation
+
+    func test_normalise_networkError_mapsToNetwork() {
+        let error = NSError(domain: NSURLErrorDomain, code: NSURLErrorTimedOut)
+        XCTAssertEqual(BPKVideoPlayerController.testOnly_normalise(error), .network)
+    }
+
+    func test_normalise_cancelledNetworkError_mapsToAborted() {
+        let error = NSError(domain: NSURLErrorDomain, code: NSURLErrorCancelled)
+        XCTAssertEqual(BPKVideoPlayerController.testOnly_normalise(error), .aborted)
+    }
+
+    func test_normalise_avFoundationKnownCodes_mapToExpectedCases() {
+        XCTAssertEqual(
+            BPKVideoPlayerController.testOnly_normalise(
+                NSError(domain: AVFoundationErrorDomain, code: AVError.Code.operationInterrupted.rawValue)
+            ),
+            .aborted
+        )
+        XCTAssertEqual(
+            BPKVideoPlayerController.testOnly_normalise(
+                NSError(domain: AVFoundationErrorDomain, code: AVError.Code.decoderNotFound.rawValue)
+            ),
+            .decode
+        )
+        XCTAssertEqual(
+            BPKVideoPlayerController.testOnly_normalise(
+                NSError(domain: AVFoundationErrorDomain, code: AVError.Code.decodeFailed.rawValue)
+            ),
+            .decode
+        )
+        XCTAssertEqual(
+            BPKVideoPlayerController.testOnly_normalise(
+                NSError(domain: AVFoundationErrorDomain, code: AVError.Code.fileFormatNotRecognized.rawValue)
+            ),
+            .sourceNotSupported
+        )
+    }
+
+    func test_normalise_unrecognisedError_withNoUnderlyingError_mapsToUnknown() {
+        let error = NSError(domain: AVFoundationErrorDomain, code: -1)
+        XCTAssertEqual(BPKVideoPlayerController.testOnly_normalise(error), .unknown)
+    }
+
+    func test_normalise_avFoundationErrorWrappingNetworkFailure_mapsToNetwork() {
+        // AVFoundation commonly surfaces a generic top-level AVFoundationErrorDomain failure
+        // with the real cause nested at NSUnderlyingErrorKey.
+        let underlying = NSError(domain: NSURLErrorDomain, code: NSURLErrorNetworkConnectionLost)
+        let wrapper = NSError(
+            domain: AVFoundationErrorDomain,
+            code: -1,
+            userInfo: [NSUnderlyingErrorKey: underlying]
+        )
+        XCTAssertEqual(BPKVideoPlayerController.testOnly_normalise(wrapper), .network)
+    }
+
+    func test_normalise_unrelatedDomainWrappingKnownAVFoundationFailure_mapsToDecode() {
+        let underlying = NSError(domain: AVFoundationErrorDomain, code: AVError.Code.decodeFailed.rawValue)
+        let wrapper = NSError(
+            domain: "SomeOtherDomain",
+            code: -1,
+            userInfo: [NSUnderlyingErrorKey: underlying]
+        )
+        XCTAssertEqual(BPKVideoPlayerController.testOnly_normalise(wrapper), .decode)
+    }
+
+    func test_normalise_unrelatedDomainWithNoUnderlyingError_mapsToUnknown() {
+        let error = NSError(domain: "SomeOtherDomain", code: -1)
+        XCTAssertEqual(BPKVideoPlayerController.testOnly_normalise(error), .unknown)
+    }
+
     func test_isMuted_tracksLegacyPlayerMutation() async throws {
         let controller = BPKVideoPlayerController.stub()
 
@@ -80,6 +171,39 @@ final class BPKVideoPlayerTests: XCTestCase {
         controller.player.isMuted = false
         try await waitUntil { !controller.isMuted }
         XCTAssertFalse(controller.isMuted)
+    }
+
+    func test_newController_bytesTransferred_isZero() {
+        let controller = BPKVideoPlayerController.stub()
+
+        XCTAssertEqual(controller.bytesTransferred, 0)
+    }
+
+    // The initial load must stay incomplete — and the load timeout active — until real
+    // playback begins. Completing it as soon as `readyToPlay` arrives (regardless of whether
+    // autoplay is about to call `play()`) would cancel the only safety net for a stall that
+    // happens while buffering for that autoplay.
+    func test_autoPlay_keepsLoadIncompleteUntilRealPlaybackBegins() async throws {
+        let controller = BPKVideoPlayerController(
+            url: try localVideoURL(),
+            autoPlay: true,
+            loop: false
+        )
+
+        var completedBeforePlaying = false
+        var sawPlaying = false
+        let stateChanges = controller.$state.sink { state in
+            if state.isPlaying { sawPlaying = true }
+            if !sawPlaying && controller.testOnly_hasLoadedInitialItem {
+                completedBeforePlaying = true
+            }
+        }
+        defer { stateChanges.cancel() }
+
+        try await waitUntil { controller.state.isPlaying }
+
+        XCTAssertFalse(completedBeforePlaying)
+        XCTAssertTrue(controller.testOnly_hasLoadedInitialItem)
     }
 
     func test_loopingPlayback_remainsPlayingWhenCurrentItemChanges() async throws {
