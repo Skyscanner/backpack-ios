@@ -144,17 +144,21 @@ public final class BPKPrice: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        guard onLeadingTextClicked != nil, !leadingTextRowStackView.isHidden else {
-            return super.hitTest(point, with: event)
-        }
-        let expandedFrame = leadingTextRowStackView
+    private var expandedLeadingTextFrame: CGRect? {
+        guard onLeadingTextClicked != nil, !leadingTextRowStackView.isHidden else { return nil }
+        return leadingTextRowStackView
             .convert(leadingTextRowStackView.bounds, to: self)
             .insetBy(dx: -BPKSpacingMd, dy: -BPKSpacingSm)
-        if expandedFrame.contains(point) {
-            return leadingTextRowStackView
-        }
-        return super.hitTest(point, with: event)
+    }
+
+    public override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        super.point(inside: point, with: event) || expandedLeadingTextFrame?.contains(point) == true
+    }
+
+    public override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        let hitView = super.hitTest(point, with: event)
+        guard hitView != nil, expandedLeadingTextFrame?.contains(point) == true else { return hitView }
+        return leadingTextRowStackView
     }
 
     private func setupView() {
