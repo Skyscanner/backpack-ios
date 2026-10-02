@@ -268,7 +268,17 @@ public final class BPKPrice: UIView {
             }
         }
         
-        // Top labels change order when alignment is trailing.
+        // separatorLabel and previousPriceLabel must never stretch to fill extra space, so pin them to
+        // required hugging - that leaves leadingTextRowStackView as the single, unambiguous flexible
+        // candidate, avoiding UIStackView's text-width-disambiguation logic inflating the row.
+        // It also needs required compression resistance so it isn't the one UIStackView shrinks/wraps
+        // when nothing is actually short on space.
+        [separatorLabel, previousPriceLabel].forEach {
+            $0.setContentHuggingPriority(.required, for: .horizontal)
+        }
+        [leadingTextRowStackView, leadingTextLabel].forEach {
+            $0.setContentCompressionResistancePriority(.required, for: .horizontal)
+        }
         var topLabels: [UIView] = [previousPriceLabel, separatorLabel, leadingTextRowStackView]
 
         if alignment == .trailing {
