@@ -136,4 +136,47 @@ final class BpkConfigurationTests: XCTestCase {
 
         XCTAssertEqual(callCount, 1, "Callback fired \(callCount) times, expected exactly 1")
     }
+
+    func testBottomSheetConfigIsNilByDefault() {
+        // Given
+        let config = BpkConfiguration.shared
+
+        // Then
+        XCTAssertNil(config.bottomSheetConfig)
+    }
+
+    func testBottomSheetConfigIsSetWhenNativeBottomSheetIsSet() throws {
+        // Given
+        let config = BpkConfiguration.shared
+
+        // When
+        try config.set(configs: [.nativeBottomSheet])
+
+        // Then
+        XCTAssertEqual(config.bottomSheetConfig?.nativeModalSheet, true)
+    }
+
+    func testBottomSheetConfigIsNotPartOfAllConfigs() throws {
+        // Given
+        let config = BpkConfiguration.shared
+
+        // When
+        try config.set(configs: [.all])
+
+        // Then
+        XCTAssertNil(config.bottomSheetConfig)
+        XCTAssertNotNil(config.chipConfig)
+    }
+
+    func testResetClearsTheBottomSheetConfig() throws {
+        // Given
+        let config = BpkConfiguration.shared
+        try config.set(configs: [.nativeBottomSheet])
+
+        // When
+        config.reset()
+
+        // Then
+        XCTAssertNil(config.bottomSheetConfig)
+    }
 }

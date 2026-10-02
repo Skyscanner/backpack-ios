@@ -17,9 +17,59 @@
  */
 
 import XCTest
+import Backpack_Common
 @testable import Backpack
 
 final class BPKBottomSheetNativeSheetTests: XCTestCase {
+
+    override func setUpWithError() throws {
+        try super.setUpWithError()
+        BpkConfiguration.shared.reset()
+        try BpkConfiguration.shared.set(configs: [.nativeBottomSheet])
+    }
+
+    override func tearDown() {
+        BpkConfiguration.shared.reset()
+        super.tearDown()
+    }
+
+    // MARK: - Configuration off
+
+    func test_givenNoConfiguration_whenCreatedWithAScrollView_thenKeepsTheFloatingPanel() {
+        // Given
+        BpkConfiguration.shared.reset()
+
+        // When
+        let sut = BPKBottomSheet(contentViewController: UIViewController(), scrollViewToTrack: UIScrollView())
+
+        // Then
+        XCTAssertTrue(sut.viewControllerToPresent is BPKFloatingPanelController)
+    }
+
+    func test_givenNoConfiguration_whenCreatedToFitTheContent_thenKeepsTheFloatingPanel() {
+        // Given
+        BpkConfiguration.shared.reset()
+        let content = UIViewController()
+
+        // When
+        let sut = BPKBottomSheet(contentViewController: content)
+
+        // Then
+        XCTAssertTrue(sut.viewControllerToPresent is BPKFloatingPanelController)
+        XCTAssertTrue(sut.contentViewController === content)
+    }
+
+    func test_givenAnotherConfiguration_whenCreated_thenKeepsTheFloatingPanel() throws {
+        // Given
+        BpkConfiguration.shared.reset()
+        try BpkConfiguration.shared.set(configs: [.all])
+
+        // When
+        let sut = BPKBottomSheet(contentViewController: UIViewController())
+
+        // Then
+        XCTAssertTrue(sut.viewControllerToPresent is BPKFloatingPanelController)
+    }
 
     // MARK: - Modal style
 

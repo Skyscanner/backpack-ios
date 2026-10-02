@@ -85,10 +85,22 @@ bottomSheet.move(to: <BPKFloatingPanelPosition>, animated: false)
 ```
 # Adapting to the window
 
-The modal bottom sheet is a native sheet (`UISheetPresentationController`), so UIKit sizes and places it for the window it's shown in, with no extra code for iPad, Split View or foldables such as the iPhone Duo:
+The bottom sheet follows the window it's shown in, so it needs no extra code for iPad, Split View or foldables such as the iPhone Duo:
 
-- **Size and placement.** On a phone-sized window the sheet fills the width; on a wide window it's a centred card, like any native sheet. Its content keeps the safe-area insets, so it stays clear of side safe areas such as the iPhone Duo's side rail.
-- **Positions.** `half` is the `half` inset's height. `full` is the system's large height; the modal style doesn't use the `full` and `tip` insets. A `half` height that reaches the tallest height leaves only `full`. A sheet created without a scroll view fits its content. `move(to:)` switches between them, and `.hidden` dismisses the sheet.
-- **Size changes.** When the window changes size, for example when an iPhone Duo is folded or unfolded, UIKit lays the sheet out again.
+- **Width.** On a phone-sized window the sheet fills the full width, and its background runs under side safe areas such as the iPhone Duo's side rail. Its content keeps the safe-area insets, so it stays clear of the rail. On a window wider than 672 pt, the readable content width, the sheet is centred at that width, like a native sheet.
+- **Height.** The `half` and `tip` positions never cover more than 60% of the window's safe-area height, so a short window, such as a phone in landscape, keeps part of the screen behind the sheet visible.
+- **Size changes.** When the window changes size, for example when an iPhone Duo is folded or unfolded, the sheet recomputes its positions for the new size.
 
-The persistent presentation style isn't presented, so it stays a panel inside its parent. It fills a phone-sized window and is centred at the readable content width (672 pt) on a wider one. Its `half` and `tip` positions never cover more than 60% of the window's safe-area height.
+# Native sheet (behind configuration)
+
+The modal style can be presented as a native sheet (`UISheetPresentationController`) instead of the floating panel. It's off by default. Turn it on once, at launch, through `BpkConfiguration`:
+
+```swift
+try BpkConfiguration.shared.set(configs: [.nativeBottomSheet])
+```
+
+The public API is the same. With it on:
+
+- **Size and placement.** UIKit sizes and places the sheet for the window: full width on a phone-sized window, a centred card on a wide one. It lays the sheet out again when the window changes, for example when an iPhone Duo is folded or unfolded.
+- **Positions.** `half` is the `half` inset's height. `full` is the system's large height; the `full` and `tip` insets aren't used. A `half` height that reaches the tallest height leaves only `full`. A sheet created without a scroll view fits its content. `move(to:)` switches between them, and `.hidden` dismisses the sheet.
+- **Persistent style.** It isn't presented, so it stays a floating panel inside its parent.

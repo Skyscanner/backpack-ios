@@ -18,6 +18,7 @@
 
 import UIKit
 import FloatingPanel
+import Backpack_Common
 
 @objc(BPKBottomSheetDelegate)
 public protocol BPKBottomSheetDelegate: AnyObject {
@@ -78,9 +79,14 @@ public final class BPKBottomSheet: NSObject {
     private let presentationStyle: PresentationStyle
     private let insets: BottomSheetInsets
 
-    /// The modal style's native sheet. The persistent style, which sits inside its parent rather than being
-    /// presented, uses `floatingPanelController` instead.
+    /// The modal style's native sheet, used when `BpkConfiguration`'s bottom sheet config turns it on. Otherwise,
+    /// and for the persistent style, which sits inside its parent rather than being presented,
+    /// `floatingPanelController` is used.
     private var sheetViewController: BPKSheetViewController?
+
+    private static var usesNativeModalSheet: Bool {
+        BpkConfiguration.shared.bottomSheetConfig?.nativeModalSheet == true
+    }
 
     private lazy var floatingPanelController: BPKFloatingPanelController = {
         var panel = BPKFloatingPanelController(delegate: self)
@@ -147,14 +153,14 @@ public final class BPKBottomSheet: NSObject {
         self.scrollView = scrollViewToTrack
 
         switch presentationStyle {
-        case .modal:
+        case .modal where Self.usesNativeModalSheet:
             makeSheet(
                 content: contentViewController,
                 trackedScrollView: scrollViewToTrack,
                 bottomSection: bottomSectionViewController,
                 sizing: .positions(half: insets.half)
             )
-        case .persistent:
+        case .modal, .persistent:
             floatingPanelController.contentViewController = contentViewController
             floatingPanelController.track(scrollView: scrollViewToTrack)
             floatingPanelController.bottomSectionViewController = bottomSectionViewController
@@ -170,7 +176,11 @@ public final class BPKBottomSheet: NSObject {
         self.presentationStyle = .modal
         self.insets = .init()
         super.init()
-        makeSheet(content: contentViewController, trackedScrollView: nil, bottomSection: nil, sizing: .fitContent)
+        if Self.usesNativeModalSheet {
+            makeSheet(content: contentViewController, trackedScrollView: nil, bottomSection: nil, sizing: .fitContent)
+        } else {
+            floatingPanelController.contentViewController = contentViewController
+        }
     }
 
     private func makeSheet(
