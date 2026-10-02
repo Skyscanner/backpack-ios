@@ -152,7 +152,7 @@ public final class BPKBottomSheet: NSObject {
                 content: contentViewController,
                 trackedScrollView: scrollViewToTrack,
                 bottomSection: bottomSectionViewController,
-                sizing: .positions(half: insets.half, full: insets.full)
+                sizing: .positions(half: insets.half)
             )
         case .persistent:
             floatingPanelController.contentViewController = contentViewController

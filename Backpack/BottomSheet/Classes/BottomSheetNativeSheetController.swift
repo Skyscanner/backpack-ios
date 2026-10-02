@@ -26,9 +26,8 @@ final class BPKSheetViewController: UIViewController {
     enum Sizing {
         /// A single height that fits the content.
         case fitContent
-        /// The half position (height above the bottom safe area) and the full position (inset from the top). A
-        /// missing full inset means the system's large height.
-        case positions(half: CGFloat?, full: CGFloat?)
+        /// The half position (height above the bottom safe area). The full position is the system's large height.
+        case positions(half: CGFloat?)
     }
 
     let content: UIViewController
@@ -40,8 +39,6 @@ final class BPKSheetViewController: UIViewController {
 
     private let trackedScrollView: UIScrollView?
     private let sizing: Sizing
-    /// The detent behind the full position: the system's large one, or a custom one when there's a top inset.
-    private var fullIdentifier: UISheetPresentationController.Detent.Identifier = .bpkFull
 
     init(
         content: UIViewController,
@@ -102,7 +99,7 @@ final class BPKSheetViewController: UIViewController {
             return
         }
         guard let sheet = sheetPresentationController, case .positions = sizing else { return }
-        let identifier: UISheetPresentationController.Detent.Identifier = position == .full ? fullIdentifier : .bpkHalf
+        let identifier: UISheetPresentationController.Detent.Identifier = position == .full ? .large : .bpkHalf
         let change = { sheet.selectedDetentIdentifier = identifier }
         animated ? sheet.animateChanges(change) : change()
     }
@@ -128,24 +125,16 @@ private extension BPKSheetViewController {
             sheet.detents = [.custom(identifier: .bpkFit) { [weak self] context in
                 self?.fittingHeight(maximum: context.maximumDetentValue)
             }]
-        case let .positions(half, full):
+        case let .positions(half):
             let halfHeight = half ?? BottomSheetInsets.Constants.bottomSheetHeightInHalfPosition
-            // With no inset the full position is the system's large height, which keeps the sheet attached to the
-            // screen edges as the floating panel's full position was.
-            let fullDetent: UISheetPresentationController.Detent
-            if let inset = full, inset > 0 {
-                fullDetent = .custom(identifier: .bpkFull) { context in context.maximumDetentValue - inset }
-                fullIdentifier = .bpkFull
-            } else {
-                fullDetent = .large()
-                fullIdentifier = .large
-            }
             sheet.detents = [
                 // A half height that reaches the tallest the sheet can be leaves only the full position.
                 .custom(identifier: .bpkHalf) { context in
                     halfHeight < context.maximumDetentValue ? halfHeight : nil
                 },
-                fullDetent
+                // The system's large height keeps a tall sheet attached to the screen edges, as the floating panel's
+                // full position was.
+                .large()
             ]
             sheet.selectedDetentIdentifier = .bpkHalf
         }
@@ -214,7 +203,6 @@ extension BPKSheetViewController: UISheetPresentationControllerDelegate {
 
 extension UISheetPresentationController.Detent.Identifier {
     static let bpkHalf = Self("backpack.bottomSheet.half")
-    static let bpkFull = Self("backpack.bottomSheet.full")
     static let bpkFit = Self("backpack.bottomSheet.fit")
 }
 

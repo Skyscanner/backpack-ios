@@ -40,7 +40,7 @@ final class BPKBottomSheetNativeSheetTests: XCTestCase {
         XCTAssertTrue(sut.contentViewController === content)
     }
 
-    func test_givenATopInset_whenCreated_thenTheFullPositionIsACustomHeight() throws {
+    func test_givenATopInset_whenCreated_thenTheFullPositionIsStillTheLargeHeight() throws {
         // When
         let sut = BPKBottomSheet(
             contentViewController: UIViewController(),
@@ -50,9 +50,7 @@ final class BPKBottomSheetNativeSheetTests: XCTestCase {
 
         // Then
         let sheet = try XCTUnwrap(sut.viewControllerToPresent as? BPKSheetViewController)
-        let detents = try XCTUnwrap(sheet.sheetPresentationController?.detents)
-        XCTAssertEqual(detents.map(\.identifier), [.bpkHalf, .bpkFull])
-        XCTAssertEqual(detents.last?.resolvedValue(in: DetentContext(maximumDetentValue: 700)), 636)
+        XCTAssertEqual(sheet.sheetPresentationController?.detents.map(\.identifier), [.bpkHalf, .large])
     }
 
     func test_givenAHalfHeight_whenItFitsTheSheet_thenTheHalfPositionUsesIt() throws {
