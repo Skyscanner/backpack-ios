@@ -99,7 +99,20 @@ class BPKPriceSnapshotTest: XCTestCase {
         let exampleView = createView(alignment: .trailing, size: .extraSmall)
         assertSnapshot(exampleView)
     }
-    
+
+    func testViewSnapshotWithTrailingAlignmentAndLeadingAndTrailingIcons() {
+        let exampleView = createView(
+            price: "£50",
+            leadingText: "£10 cheaper",
+            leadingIcon: .tickCircle,
+            trailingIcon: .informationCircle,
+            previousPrice: nil,
+            trailingText: nil,
+            alignment: .trailing
+        )
+        assertSnapshot(exampleView)
+    }
+
     func testViewSnapshotWithNoPreviousPrice() {
         let exampleView = createView(previousPrice: nil)
         assertSnapshot(exampleView)

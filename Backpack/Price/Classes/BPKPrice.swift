@@ -143,7 +143,20 @@ public final class BPKPrice: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
+    public override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        guard onLeadingTextClicked != nil, !leadingTextRowStackView.isHidden else {
+            return super.hitTest(point, with: event)
+        }
+        let expandedFrame = leadingTextRowStackView
+            .convert(leadingTextRowStackView.bounds, to: self)
+            .insetBy(dx: -BPKSpacingMd, dy: -BPKSpacingSm)
+        if expandedFrame.contains(point) {
+            return leadingTextRowStackView
+        }
+        return super.hitTest(point, with: event)
+    }
+
     private func setupView() {
         [priceLabel, trailingTextLabel].forEach {
             priceStackView.addArrangedSubview($0)
@@ -271,12 +284,7 @@ public final class BPKPrice: UIView {
             topTextStackView.addArrangedSubview($0)
         }
 
-        // The icon that's visually outermost stays outermost when the row mirrors for trailing alignment.
-        var leadingTextRowItems: [UIView] = [leadingIconView, leadingTextLabel, trailingIconView]
-
-        if alignment == .trailing {
-            leadingTextRowItems.reverse()
-        }
+        let leadingTextRowItems: [UIView] = [leadingIconView, leadingTextLabel, trailingIconView]
 
         leadingTextRowStackView.arrangedSubviews.forEach {
             leadingTextRowStackView.removeArrangedSubview($0)
@@ -336,7 +344,7 @@ private extension BPKPrice {
             $0.textColor = BPKColor.textSecondaryColor
         }
         trailingTextLabel.numberOfLines = 0
-        leadingTextLabel.numberOfLines = 0
+        previousPriceLabel.numberOfLines = 0
     }
 
     func strikeThroughTextAttributes() -> [NSAttributedString.Key: Any] {

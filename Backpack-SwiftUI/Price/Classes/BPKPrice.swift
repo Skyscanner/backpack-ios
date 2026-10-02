@@ -149,8 +149,12 @@ public struct BPKPrice: View {
         let tappableLabel = Group {
             if let onLeadingTextClicked {
                 label
+                    .padding(.horizontal, .md)
+                    .padding(.vertical, .sm)
                     .contentShape(Rectangle())
                     .onTapGesture(perform: onLeadingTextClicked)
+                    .padding(.horizontal, -BPKSpacing.md.value)
+                    .padding(.vertical, -BPKSpacing.sm.value)
                     .accessibilityElement(children: .combine)
                     .accessibilityAddTraits(.isButton)
             } else {
@@ -162,6 +166,7 @@ public struct BPKPrice: View {
                 view
                     .accessibilityElement(children: .ignore)
                     .accessibilityLabel(leadingTextAccessibilityLabel ?? "")
+                    .if(onLeadingTextClicked != nil) { $0.accessibilityAddTraits(.isButton) }
             }
     }
     
