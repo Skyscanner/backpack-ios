@@ -345,6 +345,7 @@ private extension BPKPrice {
         }
         trailingTextLabel.numberOfLines = 0
         previousPriceLabel.numberOfLines = 0
+        leadingTextLabel.numberOfLines = 0
     }
 
     func strikeThroughTextAttributes() -> [NSAttributedString.Key: Any] {
