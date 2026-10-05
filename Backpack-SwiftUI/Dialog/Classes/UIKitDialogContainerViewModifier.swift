@@ -17,6 +17,48 @@
  */
 
 import SwiftUI
+import UIKit
+
+final class WeakPresenterReference: ObservableObject {
+    weak var controller: UIViewController?
+}
+
+private struct ViewControllerResolver: UIViewControllerRepresentable {
+    let resolve: (UIViewController) -> Void
+
+    func makeUIViewController(context: Context) -> ResolverViewController {
+        ResolverViewController(resolve: resolve)
+    }
+
+    func updateUIViewController(_ viewController: ResolverViewController, context: Context) {
+        viewController.resolve = resolve
+        viewController.resolveParent()
+    }
+}
+
+private final class ResolverViewController: UIViewController {
+    var resolve: (UIViewController) -> Void
+
+    init(resolve: @escaping (UIViewController) -> Void) {
+        self.resolve = resolve
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func didMove(toParent parent: UIViewController?) {
+        super.didMove(toParent: parent)
+        resolveParent()
+    }
+
+    func resolveParent() {
+        guard let parent else { return }
+        resolve(parent)
+    }
+}
 
 /// View modifier that adds a dialog to the view hierarchy. It uses UIKit's UIViewController presentations
 /// behind the scenes.
@@ -30,11 +72,43 @@ struct UIKitDialogContainerViewModifier<DialogContent: View>: ViewModifier {
     @Binding var isPresented: Bool
     @ViewBuilder let dialogContent: DialogContent
     let onTouchOutside: (() -> Void)?
-    let presentingController: UIViewController
+
+    @StateObject private var presenter = WeakPresenterReference()
     @State private var controller: UIViewController?
+
+    init(
+        isPresented: Binding<Bool>,
+        @ViewBuilder dialogContent: () -> DialogContent,
+        onTouchOutside: (() -> Void)?,
+        presentingController: UIViewController
+    ) {
+        self._isPresented = isPresented
+        self.dialogContent = dialogContent()
+        self.onTouchOutside = onTouchOutside
+        let presenter = WeakPresenterReference()
+        presenter.controller = presentingController
+        self._presenter = StateObject(wrappedValue: presenter)
+    }
+
+    init(
+        isPresented: Binding<Bool>,
+        @ViewBuilder dialogContent: () -> DialogContent,
+        onTouchOutside: (() -> Void)?
+    ) {
+        self._isPresented = isPresented
+        self.dialogContent = dialogContent()
+        self.onTouchOutside = onTouchOutside
+        self._presenter = StateObject(wrappedValue: WeakPresenterReference())
+    }
     
     func body(content: Content) -> some View {
         content
+            .background(
+                ViewControllerResolver { controller in
+                    presenter.controller = controller
+                }
+                .frame(width: 0, height: 0)
+            )
             .onChange(of: isPresented) { _ in
                 if isPresented {
                     showDialogWithContent {
@@ -66,7 +140,7 @@ struct UIKitDialogContainerViewModifier<DialogContent: View>: ViewModifier {
         controller.modalTransitionStyle = .crossDissolve
         controller.modalPresentationStyle = .overFullScreen
 
-        presentingController.present(controller, animated: true)
+        presenter.controller?.present(controller, animated: true)
         self.controller = controller
     }
 }
@@ -80,8 +154,7 @@ struct UIKitDialogContainerViewModifier_Previews: PreviewProvider {
                     BPKText("This is the content of a dialog!")
                         .background(.surfaceDefaultColor)
                 },
-                onTouchOutside: {},
-                presentingController: UIViewController()
+                onTouchOutside: {}
             ))
     }
 }

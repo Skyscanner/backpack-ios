@@ -40,7 +40,7 @@ public extension View {
                 buttons.append(BPKDialogButton(button: linkButton, style: .link))
             }
         }
-        return self.modifier(DialogContainerViewModifier(isPresented: presented, dialogContent: {
+        return self.modifier(UIKitDialogContainerViewModifier(isPresented: presented, dialogContent: {
             DialogWithIconContent(
                 icon: icon,
                 iconColor: .coreAccentColor,
