@@ -35,8 +35,10 @@ public struct BPKPrice: View {
     
     private let price: String
     private let leadingText: String?
+    private let leadingTextColor: BPKColor?
     private let leadingTextAccessibilityLabel: String?
     private let leadingIcon: (BPKIcon, String)?
+    private let leadingIconBackgroundColor: BPKColor?
     private let trailingIcon: (BPKIcon, String)?
     private let previousPrice: String?
     private let trailingText: String?
@@ -50,8 +52,10 @@ public struct BPKPrice: View {
     public init(
         price: String,
         leadingText: String? = nil,
+        leadingTextColor: BPKColor? = nil,
         leadingTextAccessibilityLabel: String? = nil,
         leadingIcon: (BPKIcon, String)? = nil,
+        leadingIconBackgroundColor: BPKColor? = nil,
         trailingIcon: (BPKIcon, String)? = nil,
         previousPrice: String? = nil,
         trailingText: String? = nil,
@@ -64,8 +68,10 @@ public struct BPKPrice: View {
     ) {
         self.price = price
         self.leadingText = leadingText
+        self.leadingTextColor = leadingTextColor
         self.leadingTextAccessibilityLabel = leadingTextAccessibilityLabel
         self.leadingIcon = leadingIcon
+        self.leadingIconBackgroundColor = leadingIconBackgroundColor
         self.trailingIcon = trailingIcon
         self.previousPrice = previousPrice
         self.trailingText = trailingText
@@ -136,11 +142,19 @@ public struct BPKPrice: View {
     private func leadingTextView(_ text: String) -> some View {
         let label = HStack(spacing: .sm) {
             if let leadingIcon {
-                BPKIconView(leadingIcon.0, size: .small, accessibilityLabel: leadingIcon.1)
+                let iconView = BPKIconView(leadingIcon.0, size: .small, accessibilityLabel: leadingIcon.1)
                     .foregroundColor(style.leadingTextColor)
+                if let leadingIconBackgroundColor {
+                    iconView
+                        .padding(.sm)
+                        .background(leadingIconBackgroundColor)
+                        .clipShape(Circle())
+                } else {
+                    iconView
+                }
             }
             BPKText(text, style: accessoryFontStyle)
-                .foregroundColor(style.leadingTextColor)
+                .foregroundColor(leadingTextColor ?? style.leadingTextColor)
             if let trailingIcon {
                 BPKIconView(trailingIcon.0, size: .small, accessibilityLabel: trailingIcon.1)
                     .foregroundColor(style.leadingTextColor)

@@ -75,6 +75,15 @@ final class PriceExampleViewController: UIViewController {
             trailingIcon: .informationCircle,
             onLeadingTextClicked: {})
         )
+        stackView.addArrangedSubview(createRow(
+            leadingText: "Price dropped",
+            leadingIcon: .trendDown,
+            leadingIconBackgroundColor: BPKColor.statusSuccessSpotColor)
+        )
+        stackView.addArrangedSubview(createRow(
+            leadingText: "£10 cheaper",
+            leadingTextColor: BPKColor.textPrimaryColor)
+        )
 
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: BPKSpacingBase),
@@ -85,8 +94,10 @@ final class PriceExampleViewController: UIViewController {
         
     private func createRow(
         leadingText: String? = nil,
+        leadingTextColor: UIColor? = nil,
         leadingTextAccessibilityLabel: String? = nil,
         leadingIcon: BPKIconName? = nil,
+        leadingIconBackgroundColor: UIColor? = nil,
         trailingIcon: BPKIconName? = nil,
         previousPrice: String? = nil,
         trailingText: String? = nil,
@@ -94,14 +105,18 @@ final class PriceExampleViewController: UIViewController {
             let stackView = UIStackView()
             stackView.axis = .horizontal
             stackView.alignment = .top
+            stackView.distribution = .fillEqually
+            stackView.spacing = BPKSpacingBase
             stackView.translatesAutoresizingMaskIntoConstraints = false
 
             [BPKPrice.Alignment.leading, BPKPrice.Alignment.trailing].forEach { alignment in
                 let priceView = BPKPrice(alignment: alignment, size: size)
                 priceView.price = "£1830"
                 priceView.leadingText = leadingText
+                priceView.leadingTextColor = leadingTextColor
                 priceView.leadingTextAccessibilityLabel = leadingTextAccessibilityLabel
                 priceView.leadingIcon = leadingIcon
+                priceView.leadingIconBackgroundColor = leadingIconBackgroundColor
                 priceView.trailingIcon = trailingIcon
                 priceView.previousPrice = previousPrice
                 priceView.trailingText = trailingText
