@@ -93,45 +93,92 @@ struct PriceExampleView: View {
             )
             
             if size != .large {
-                BPKPrice(
-                    price: price,
-                    previousPrice: previousPrice,
-                    trailingText: trailingText,
-                    style: style,
-                    alignment: .row,
-                    size: size
-                )
-                
-                BPKPrice(
-                    price: price,
-                    leadingText: leadingText,
-                    trailingText: trailingText,
-                    style: style,
-                    alignment: .row,
-                    size: size
-                )
-                
-                BPKPrice(
-                    price: price,
-                    leadingText: leadingText,
-                    previousPrice: previousPrice,
-                    trailingText: trailingText,
-                    style: style,
-                    alignment: .row,
-                    size: size
-                )
+                buildRowAlignmentPrices(style: style)
             }
+
+            buildLeadingTextIconPrices(style: style)
         }
         .padding(.base)
         .background(Color(backgroundColor))
         .cornerRadius(BPKCornerRadius.md.value)
     }
 
+    @ViewBuilder
+    private func buildLeadingTextIconPrices(
+        style: Backpack_SwiftUI.BPKPrice.Style
+    ) -> some View {
+        buildLeadingAndTrailingPrice(
+            price: "£50",
+            leadingText: "£10 cheaper",
+            trailingIcon: (.informationCircle, "More info"),
+            onLeadingTextClicked: {},
+            size: size,
+            style: style
+        )
+
+        buildLeadingAndTrailingPrice(
+            price: "£50",
+            leadingText: "£10 cheaper",
+            leadingIcon: (.informationCircle, "Cheaper"),
+            trailingIcon: (.informationCircle, "More info"),
+            onLeadingTextClicked: {},
+            size: size,
+            style: style
+        )
+
+        buildLeadingAndTrailingPrice(
+            price: "£50",
+            leadingText: "£10 cheaper",
+            leadingTextAccessibilityLabel: "£10 cheaper than usual, tap for more information",
+            trailingIcon: (.informationCircle, "More info"),
+            onLeadingTextClicked: {},
+            size: size,
+            style: style
+        )
+    }
+
+    @ViewBuilder
+    private func buildRowAlignmentPrices(
+        style: Backpack_SwiftUI.BPKPrice.Style
+    ) -> some View {
+        BPKPrice(
+            price: price,
+            previousPrice: previousPrice,
+            trailingText: trailingText,
+            style: style,
+            alignment: .row,
+            size: size
+        )
+
+        BPKPrice(
+            price: price,
+            leadingText: leadingText,
+            trailingText: trailingText,
+            style: style,
+            alignment: .row,
+            size: size
+        )
+
+        BPKPrice(
+            price: price,
+            leadingText: leadingText,
+            previousPrice: previousPrice,
+            trailingText: trailingText,
+            style: style,
+            alignment: .row,
+            size: size
+        )
+    }
+
     private func buildLeadingAndTrailingPrice(
         price: String,
         leadingText: String? = nil,
+        leadingTextAccessibilityLabel: String? = nil,
+        leadingIcon: (BPKIcon, String)? = nil,
+        trailingIcon: (BPKIcon, String)? = nil,
         previousPrice: String? = nil,
         trailingText: String? = nil,
+        onLeadingTextClicked: (() -> Void)? = nil,
         size: Backpack_SwiftUI.BPKPrice.Size,
         style: Backpack_SwiftUI.BPKPrice.Style
     ) -> some View {
@@ -139,9 +186,13 @@ struct PriceExampleView: View {
             BPKPrice(
                 price: price,
                 leadingText: leadingText,
+                leadingTextAccessibilityLabel: leadingTextAccessibilityLabel,
+                leadingIcon: leadingIcon,
+                trailingIcon: trailingIcon,
                 previousPrice: previousPrice,
                 trailingText: trailingText,
                 style: style,
+                onLeadingTextClicked: onLeadingTextClicked,
                 alignment: .leading,
                 size: size
             )
@@ -149,9 +200,13 @@ struct PriceExampleView: View {
             BPKPrice(
                 price: price,
                 leadingText: leadingText,
+                leadingTextAccessibilityLabel: leadingTextAccessibilityLabel,
+                leadingIcon: leadingIcon,
+                trailingIcon: trailingIcon,
                 previousPrice: previousPrice,
                 trailingText: trailingText,
                 style: style,
+                onLeadingTextClicked: onLeadingTextClicked,
                 alignment: .trailing,
                 size: size
             )

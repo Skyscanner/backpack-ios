@@ -35,4 +35,22 @@ let priceView = BPKPrice(
     alignment: .leading,
     size: size
 )
+
+let priceViewWithLeadingIcon = BPKPrice(alignment: .leading, size: size)
+priceViewWithLeadingIcon.price = "£50"
+priceViewWithLeadingIcon.leadingText = "£10 cheaper"
+priceViewWithLeadingIcon.leadingTextAccessibilityLabel = "£10 cheaper than usual, tap for more information"
+priceViewWithLeadingIcon.leadingIcon = .informationCircle
+priceViewWithLeadingIcon.trailingIcon = .informationCircle
+priceViewWithLeadingIcon.onLeadingTextClicked = {
+    // Respond to taps on the leading text or either of its icons
+}
 ```
+
+Setting `leadingIcon` and/or `trailingIcon` renders them either side of
+`leadingText`. Setting `onLeadingTextClicked` makes `leadingText` and both
+icons a single tappable target.
+
+By default VoiceOver announces `leadingText` as-is. Set
+`leadingTextAccessibilityLabel` to override that announcement with a custom
+string instead.
