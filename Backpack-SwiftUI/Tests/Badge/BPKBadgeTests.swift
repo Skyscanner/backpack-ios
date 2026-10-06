@@ -31,7 +31,8 @@ class BPKBadgeTests: XCTestCase {
         (.destructive, .surfaceDefaultColor),
         (.inverse, .surfaceHighlightColor),
         (.outline, .surfaceHighlightColor),
-        (.brand, .surfaceDefaultColor)
+        (.brand, .surfaceDefaultColor),
+        (.loyalty, .surfaceDefaultColor)
     ]
     
     private func testView(icon: BPKIcon? = nil) -> some View {
