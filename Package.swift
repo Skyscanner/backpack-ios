@@ -101,6 +101,7 @@ let backpackSwiftUISourceDirs = [
   "Font",
   "GraphicPromo",
   "HorizontalNavigation",
+  "IconBullet",
   "Icons",
   "ImageGalleryGrid",
   "ImageGalleryPreview",
