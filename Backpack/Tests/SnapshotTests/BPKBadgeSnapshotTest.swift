@@ -46,7 +46,7 @@ class BPKBadgeSnapshotTest: XCTestCase {
         parentView.translatesAutoresizingMaskIntoConstraints = false
         parentView.addSubview(stackView)
 
-        let badges = [BPKBadgeType.inverse, .outline, .success, .warning, .destructive, .strong, .normal, .brand, .subtle]
+        let badges = [BPKBadgeType.inverse, .outline, .success, .warning, .destructive, .strong, .normal, .brand, .subtle, .loyalty]
             .map { BPKBadge(type: $0, icon: icon, message: "Backpack rocks!") }
         badges.forEach(stackView.addArrangedSubview(_:))
         NSLayoutConstraint.activate([

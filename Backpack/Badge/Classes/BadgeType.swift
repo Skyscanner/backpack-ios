@@ -27,4 +27,5 @@ public enum BPKBadgeType: UInt {
     case strong
     case brand
     case subtle
+    case loyalty
 }

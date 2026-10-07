@@ -60,6 +60,11 @@ public extension BPKColor {
     static let corePrimaryColor = BPKColor(red: 0.020, green: 0.125, blue: 0.235, alpha: 1)
         .darkVariant(BPKColor(red: 0.020, green: 0.255, blue: 0.518, alpha: 1))
 
+    /// The `statusLoyaltySpotColor` dynamic color from the Backpack palette.
+    
+    static let statusLoyaltySpotColor = BPKColor(red: 0.788, green: 0.988, blue: 0.439, alpha: 1)
+        .darkVariant(BPKColor(red: 0.788, green: 0.988, blue: 0.439, alpha: 1))
+
     /// The `statusSuccessSpotColor` dynamic color from the Backpack palette.
     
     static let statusSuccessSpotColor = BPKColor(red: 0.047, green: 0.514, blue: 0.541, alpha: 1)

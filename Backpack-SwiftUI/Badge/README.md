@@ -25,7 +25,7 @@ BPKBadge("Hello World")
 
 ### Available styles
 
-`BPKBadge` supports nine styles:
+`BPKBadge` supports ten styles:
 
 - `.normal`
 - `.subtle`
@@ -36,6 +36,7 @@ BPKBadge("Hello World")
 - `.inverse`
 - `.outline`
 - `.brand`
+- `.loyalty`
 
 ### Badge with explicit icon
 
