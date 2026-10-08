@@ -39,6 +39,9 @@ final class BPKSheetViewController: UIViewController {
 
     private let trackedScrollView: UIScrollView?
     private let sizing: Sizing
+    /// The tracked scroll view's own bottom insets, so the bottom section's height is added to them rather
+    /// than replacing whatever the content set.
+    private var scrollViewBaseInsets: (content: CGFloat, indicator: CGFloat)?
 
     init(
         content: UIViewController,
@@ -80,9 +83,25 @@ final class BPKSheetViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         guard let bottomSection, let trackedScrollView else { return }
+        let base = scrollViewBaseInsets ?? {
+            let base = (
+                content: trackedScrollView.contentInset.bottom,
+                indicator: trackedScrollView.verticalScrollIndicatorInsets.bottom
+            )
+            scrollViewBaseInsets = base
+            return base
+        }()
         let inset = bottomSection.view.frame.height
-        trackedScrollView.contentInset.bottom = inset
-        trackedScrollView.verticalScrollIndicatorInsets.bottom = inset
+        trackedScrollView.contentInset.bottom = base.content + inset
+        trackedScrollView.verticalScrollIndicatorInsets.bottom = base.indicator + inset
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        guard traitCollection.userInterfaceStyle != previousTraitCollection?.userInterfaceStyle,
+              let bottomSection else { return }
+        // The shadow colour comes from a resolved colour, so it needs applying again for the new style.
+        BottomSectionShadow.apply(to: bottomSection.view)
     }
 
     override func viewDidDisappear(_ animated: Bool) {

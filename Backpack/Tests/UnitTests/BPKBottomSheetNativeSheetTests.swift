@@ -17,6 +17,7 @@
  */
 
 import XCTest
+import UIKit
 import Backpack_Common
 @testable import Backpack
 
@@ -157,6 +158,52 @@ final class BPKBottomSheetNativeSheetTests: XCTestCase {
         XCTAssertEqual(sheet.sheetPresentationController?.detents.map(\.identifier), [.bpkFit])
     }
 
+    func test_givenATrackedScrollViewWithItsOwnBottomInset_whenLaidOut_thenTheBottomSectionIsAddedToIt() throws {
+        // Given
+        let scrollView = UIScrollView()
+        scrollView.contentInset.bottom = 20
+        scrollView.verticalScrollIndicatorInsets.bottom = 20
+        let bottomSection = UIViewController()
+        bottomSection.view.frame = CGRect(x: 0, y: 0, width: 320, height: 60)
+        let sut = BPKBottomSheet(
+            contentViewController: contentViewController(containing: scrollView),
+            scrollViewToTrack: scrollView,
+            bottomSectionViewController: bottomSection
+        )
+        let sheet = try XCTUnwrap(sut.viewControllerToPresent as? BPKSheetViewController)
+        sheet.view.frame = CGRect(x: 0, y: 0, width: 320, height: 600)
+
+        // When
+        sheet.view.layoutIfNeeded()
+        let afterFirstLayout = scrollView.contentInset.bottom
+        sheet.view.layoutIfNeeded()
+
+        // Then
+        XCTAssertEqual(afterFirstLayout, 20 + bottomSection.view.frame.height)
+        XCTAssertEqual(scrollView.contentInset.bottom, afterFirstLayout, "the base inset is not added twice")
+        XCTAssertEqual(scrollView.verticalScrollIndicatorInsets.bottom, afterFirstLayout)
+    }
+
+    func test_givenABottomSection_whenTheInterfaceStyleChanges_thenItsShadowIsAppliedAgain() throws {
+        // Given
+        let bottomSection = UIViewController()
+        let sut = BPKBottomSheet(
+            contentViewController: UIViewController(),
+            scrollViewToTrack: UIScrollView(),
+            bottomSectionViewController: bottomSection
+        )
+        let sheet = try XCTUnwrap(sut.viewControllerToPresent as? BPKSheetViewController)
+        sheet.loadViewIfNeeded()
+        bottomSection.view.backgroundColor = BPKColor.surfaceDefaultColor
+        bottomSection.view.layer.shadowColor = UIColor.clear.cgColor
+
+        // When
+        sheet.traitCollectionDidChange(UITraitCollection(userInterfaceStyle: .dark))
+
+        // Then
+        XCTAssertEqual(bottomSection.view.layer.shadowColor, bottomSection.view.backgroundColor?.cgColor)
+    }
+
     func test_givenABottomSection_whenCreated_thenItIsPinnedInTheSheet() throws {
         // Given
         let bottomSection = UIViewController()
@@ -227,5 +274,13 @@ private final class DetentContext: NSObject, UISheetPresentationControllerDetent
 
     init(maximumDetentValue: CGFloat) {
         self.maximumDetentValue = maximumDetentValue
+    }
+}
+
+private extension BPKBottomSheetNativeSheetTests {
+    func contentViewController(containing scrollView: UIScrollView) -> UIViewController {
+        let content = UIViewController()
+        content.view.addSubview(scrollView)
+        return content
     }
 }
