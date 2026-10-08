@@ -29,29 +29,14 @@ internal extension BPKIconBullet.Size {
         }
     }
     
-    /// The `BPKIcon` asset to render. There is no dedicated 8pt icon asset,
-    /// so `.small` reuses the 16pt `.small` asset and relies on `iconScale`
-    /// to render it down to its 8pt visible size.
-    var iconSize: BPKIcon.Size {
+    var iconSize: BPKIcon.Size? {
         switch self {
         case .small:
-            return .small
+            return nil
         case .medium:
             return .small
         case .large:
             return .large
-        }
-    }
-
-    /// Additional scale applied on top of the `BPKIconView`'s native
-    /// rendered size, used to shrink the 16pt `.small` icon asset down to
-    /// the 8pt visible size required for `.small` icon bullets.
-    var iconScale: CGFloat {
-        switch self {
-        case .small:
-            return 0.5
-        case .medium, .large:
-            return 1
         }
     }
 }

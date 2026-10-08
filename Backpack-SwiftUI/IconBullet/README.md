@@ -13,14 +13,14 @@ Icon Bullet renders a single icon inside a filled circular container, in one of 
 
 ## Usage
 
-If you don't specify a `.iconBulletStyle(<style>)` and a `.iconBulletSize(<size>)` it will use the `.legacy` style and the `.small` size.
+If you don't specify a `.iconBulletStyle(<style>)` and a `.iconBulletSize(<size>)` it will use the `.loyalty` style and the `.small` size.
 
 ```swift
 import Backpack_SwiftUI
 
-BKPIconBullet(.trendDown)
+BPKIconBullet(.trendDown)
 
-BKPIconBullet(.trendDown)
+BPKIconBullet(.trendDown)
     .iconBulletStyle(.brand)
     .iconBulletSize(.medium)
 ```

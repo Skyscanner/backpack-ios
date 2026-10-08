@@ -28,16 +28,10 @@ public struct BPKIconBullet: View {
     @ScaledMetric private var scaledMediumDimension: CGFloat = 16
     @ScaledMetric private var scaledLargeDimension: CGFloat = 24
 
-    public init(icon: BPKIcon) {
+    public init(_ icon: BPKIcon) {
         self.icon = icon
     }
 
-    /// The size of the icon's content box, i.e. the icon's rendered
-    /// (visible) size, before the surrounding padding is applied.
-    ///
-    /// Together with `size.padding`, this determines the total circle
-    /// diameter: `.small` => 8 + 2x4 = 16pt, `.medium` => 16 + 2x8 = 32pt,
-    /// `.large` => 24 + 2x8 = 40pt, matching the design spec.
     private var dimension: CGFloat {
         let smallDimension: CGFloat = 8
         let mediumDimension: CGFloat = 16
@@ -52,17 +46,23 @@ public struct BPKIconBullet: View {
             return BPKFont.enableDynamicType ? scaledLargeDimension : largeDimension
         }
     }
+    
+    @ViewBuilder
+    private var iconView: some View {
+        if let iconSize = size.iconSize {
+            BPKIconView(icon, size: iconSize)
+        } else {
+            BPKIconView(icon, size: .small).overrideDimension(dimension)
+        }
+    }
 
     public var body: some View {
-        HStack {
-            BPKIconView(icon, size: size.iconSize)
-                .foregroundColor(style.iconColor)
-                .scaleEffect(size.iconScale)
-        }
-        .frame(width: dimension, height: dimension)
-        .padding(size.padding)
-        .background(style.backgroundColor)
-        .clipShape(.circle)
+        iconView
+            .foregroundColor(style.iconColor)
+            .frame(width: dimension, height: dimension)
+            .padding(size.padding)
+            .background(style.backgroundColor)
+            .clipShape(Circle())
     }
     
     /// Sets the style of the icon bullet

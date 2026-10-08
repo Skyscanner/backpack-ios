@@ -163,7 +163,7 @@
 		BA809EC82B05FC2E0030D1E7 /* AppSearchModalGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA809EC72B05FC2E0030D1E7 /* AppSearchModalGroups.swift */; };
 		BA8F350E2C104AFD0093FA79 /* CardButtonExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F350D2C104AFD0093FA79 /* CardButtonExampleView.swift */; };
 		BAD421BC299CBCEB00B45668 /* CardWrappersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD421BB299CBCEB00B45668 /* CardWrappersViewController.swift */; };
-		BC8DB9973076851E005401B6 /* IconBulletExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8DB9963076851E005401B6 /* IconBulletExampleView.swift */; };
+		BC8DB99B30778968005401B6 /* IconBulletExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8DB99930778968005401B6 /* IconBulletExampleView.swift */; };
 		C40C7BA22E2E86640081EF50 /* BlurTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40C7BA12E2E865F0081EF50 /* BlurTokensView.swift */; };
 		C495BDB52EB8F299000EB522 /* ConfigurationButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495BDB42EB8F299000EB522 /* ConfigurationButtonView.swift */; };
 		D205510922675DAE00BC5BCC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D205510722675DAE00BC5BCC /* LaunchScreen.xib */; };
@@ -407,8 +407,7 @@
 		BA809EC72B05FC2E0030D1E7 /* AppSearchModalGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSearchModalGroups.swift; sourceTree = "<group>"; };
 		BA8F350D2C104AFD0093FA79 /* CardButtonExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardButtonExampleView.swift; sourceTree = "<group>"; };
 		BAD421BB299CBCEB00B45668 /* CardWrappersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardWrappersViewController.swift; sourceTree = "<group>"; };
-		BC8DB99430768499005401B6 /* IconBulletExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IconBulletExampleView.swift; path = Backpack/SwiftUI/Components/IconBullet/IconBulletExampleView.swift; sourceTree = "<group>"; };
-		BC8DB9963076851E005401B6 /* IconBulletExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IconBulletExampleView.swift; path = Backpack/SwiftUI/Components/IconBullet/IconBulletExampleView.swift; sourceTree = "<group>"; };
+		BC8DB99930778968005401B6 /* IconBulletExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconBulletExampleView.swift; sourceTree = "<group>"; };
 		C40C7BA12E2E865F0081EF50 /* BlurTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurTokensView.swift; sourceTree = "<group>"; };
 		C495BDB42EB8F299000EB522 /* ConfigurationButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationButtonView.swift; sourceTree = "<group>"; };
 		D205510822675DAE00BC5BCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -976,8 +975,6 @@
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
-				BC8DB99430768499005401B6 /* IconBulletExampleView.swift */,
-				BC8DB9963076851E005401B6 /* IconBulletExampleView.swift */,
 				60FF7A9C1954A5C5007DD14C /* Metadata */,
 				6003F593195388D20070C39A /* Example for Backpack */,
 				D6517B40216DF5F800D85FF9 /* Backpack NativeUITests */,
@@ -1079,6 +1076,7 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				BC8DB99A30778968005401B6 /* IconBullet */,
 				020878672FFE62DA00D30F0A /* Checkbox */,
 				021D1E412F5050D700A58A6D /* CellItem */,
 				28CF33702E39273C00A9DF34 /* Configuration */,
@@ -1506,6 +1504,14 @@
 			path = "Card Button";
 			sourceTree = "<group>";
 		};
+		BC8DB99A30778968005401B6 /* IconBullet */ = {
+			isa = PBXGroup;
+			children = (
+				BC8DB99930778968005401B6 /* IconBulletExampleView.swift */,
+			);
+			path = IconBullet;
+			sourceTree = "<group>";
+		};
 		BPK68D34A7DD97A4C47000001 /* VideoPlayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -1871,7 +1877,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC8DB9973076851E005401B6 /* IconBulletExampleView.swift in Sources */,
 				285309EE2DAD6B7800BB6D24 /* DynamicLayoutGroups.swift in Sources */,
 				D219C1E02163918B00C9968D /* DividedCardsViewController.swift in Sources */,
 				53C6621129EA0DAB00BF1A62 /* RatingExampleViewWithImage.swift in Sources */,
@@ -1909,6 +1914,7 @@
 				794337A9283C77BD00797D1C /* TabsViewController.swift in Sources */,
 				24BB6A022EAF73CD00E982A4 /* ConfigurationTypographyView.swift in Sources */,
 				C495BDB52EB8F299000EB522 /* ConfigurationButtonView.swift in Sources */,
+				BC8DB99B30778968005401B6 /* IconBulletExampleView.swift in Sources */,
 				5346243A2A74292D0059A0B5 /* ChipGroupMultipleSelectRailExampleView.swift in Sources */,
 				D270C066243B61C60036A040 /* TabBarControllerStoryViewController.swift in Sources */,
 				022519872A7011CD00D7A06D /* SnippetExampleView.swift in Sources */,

@@ -29,7 +29,7 @@ struct IconBulletExampleView: View {
             ForEach(sizes, id: \.self) { size in
                 HStack(spacing: 8) {
                     ForEach(self.styles, id: \.self) { style in
-                        BPKIconBullet(icon: .trendDown)
+                        BPKIconBullet(.trendDown)
                             .iconBulletStyle(style)
                             .iconBulletSize(size)
                     }

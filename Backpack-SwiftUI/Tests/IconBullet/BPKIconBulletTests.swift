@@ -36,7 +36,7 @@ class BPKIconBulletTests: XCTestCase {
     private func testView() -> some View {
         VStack(spacing: 0) {
             ForEach(Array(styles.enumerated()), id: \.offset) { _, style in
-                BPKIconBullet(icon: .trendDown)
+                BPKIconBullet(.trendDown)
                     .iconBulletStyle(style.0)
                     .iconBulletSize(style.1)
                     .padding(4)
@@ -51,7 +51,7 @@ class BPKIconBulletTests: XCTestCase {
     
     
     func test_accessibility() {
-        let iconBullet = BPKIconBullet(icon: .accessibility)
+        let iconBullet = BPKIconBullet(.accessibility)
         assertA11ySnapshot(iconBullet)
     }
 }
