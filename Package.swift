@@ -327,6 +327,7 @@ let targets: [Target] = [
       name: "BackpackTests",
       dependencies: [
         "Backpack",
+        "Backpack_Common",
         "Backpack_Tokens"
       ],
       path: "Backpack/Tests/UnitTests",

@@ -18,6 +18,7 @@
 
 import UIKit
 import FloatingPanel
+import Backpack_Common
 
 @objc(BPKBottomSheetDelegate)
 public protocol BPKBottomSheetDelegate: AnyObject {
@@ -45,33 +46,47 @@ public final class BPKBottomSheet: NSObject {
     /// `present(in: _, animated: _, completion: _)`.
     /// It can also be presented using UIKit's native presentation API.
     public var viewControllerToPresent: UIViewController {
-        return floatingPanelController
+        return sheetViewController ?? floatingPanelController
     }
 
     /// View controller contained in the bottom sheet.
     public var contentViewController: UIViewController? {
-        return floatingPanelController.contentViewController
+        return sheetViewController?.content ?? floatingPanelController.contentViewController
     }
 
     /// Fixed bottom section. Can only be passed when initializing
     /// the bottom sheet.
     public var bottomSectionViewController: UIViewController? {
-        return floatingPanelController.bottomSectionViewController
+        guard let sheetViewController else { return floatingPanelController.bottomSectionViewController }
+        return sheetViewController.bottomSection
     }
 
     /// This closure will be executed once the bottom sheet has been
     /// fully dismissed.
     public var onDismissed: (() -> Void)? {
         get {
-            return floatingPanelController.onDismissed
+            return sheetViewController?.onDismissed ?? floatingPanelController.onDismissed
         }
         set {
-            floatingPanelController.onDismissed = newValue
+            if let sheetViewController {
+                sheetViewController.onDismissed = newValue
+            } else {
+                floatingPanelController.onDismissed = newValue
+            }
         }
     }
 
     private let presentationStyle: PresentationStyle
     private let insets: BottomSheetInsets
+
+    /// The modal style's native sheet, used when `BpkConfiguration`'s bottom sheet config turns it on. Otherwise,
+    /// and for the persistent style, which sits inside its parent rather than being presented,
+    /// `floatingPanelController` is used.
+    private var sheetViewController: BPKSheetViewController?
+
+    private static var usesNativeModalSheet: Bool {
+        BpkConfiguration.shared.bottomSheetConfig?.nativeModalSheet == true
+    }
 
     private lazy var floatingPanelController: BPKFloatingPanelController = {
         var panel = BPKFloatingPanelController(delegate: self)
@@ -136,10 +151,20 @@ public final class BPKBottomSheet: NSObject {
         super.init()
 
         self.scrollView = scrollViewToTrack
-        
-        floatingPanelController.contentViewController = contentViewController
-        floatingPanelController.track(scrollView: scrollViewToTrack)
-        floatingPanelController.bottomSectionViewController = bottomSectionViewController
+
+        switch presentationStyle {
+        case .modal where Self.usesNativeModalSheet:
+            makeSheet(
+                content: contentViewController,
+                trackedScrollView: scrollViewToTrack,
+                bottomSection: bottomSectionViewController,
+                sizing: .positions(half: insets.half)
+            )
+        case .modal, .persistent:
+            floatingPanelController.contentViewController = contentViewController
+            floatingPanelController.track(scrollView: scrollViewToTrack)
+            floatingPanelController.bottomSectionViewController = bottomSectionViewController
+        }
     }
 
     /// Instantiates a `BPKBottomSheet` with a non-scrollable content. Height of the bottom sheet will be
@@ -151,7 +176,31 @@ public final class BPKBottomSheet: NSObject {
         self.presentationStyle = .modal
         self.insets = .init()
         super.init()
-        floatingPanelController.contentViewController = contentViewController
+        if Self.usesNativeModalSheet {
+            makeSheet(content: contentViewController, trackedScrollView: nil, bottomSection: nil, sizing: .fitContent)
+        } else {
+            floatingPanelController.contentViewController = contentViewController
+        }
+    }
+
+    private func makeSheet(
+        content: UIViewController,
+        trackedScrollView: UIScrollView?,
+        bottomSection: UIViewController?,
+        sizing: BPKSheetViewController.Sizing
+    ) {
+        let sheet = BPKSheetViewController(
+            content: content,
+            trackedScrollView: trackedScrollView,
+            bottomSection: bottomSection,
+            sizing: sizing
+        )
+        sheet.onPositionChanged = { [weak self] position in
+            self?.delegate?.bottomSheetDidChangePosition(position)
+        }
+        // Kept alive by the sheet while it's on screen; released when it's dismissed.
+        sheet.owner = self
+        sheetViewController = sheet
     }
 
     /// This presents the bottom sheet. It is just a wrapper of native API
@@ -183,7 +232,14 @@ public final class BPKBottomSheet: NSObject {
             assertionFailure("present(_:animated:completion:) not compatible with persistent presentation style")
             return
         }
-        
+
+        if let sheetViewController {
+            // Native sheets stack: the new one slides over this one, which steps back behind it.
+            sheetViewController.move(to: .half, animated: animated)
+            bottomSheet.present(in: sheetViewController, animated: animated, completion: completion)
+            return
+        }
+
         if let scrollView = floatingPanelController.trackingScrollView {
             scrollView.setContentOffset(.init(x: 0, y: -scrollView.adjustedContentInset.top), animated: animated)
         }
@@ -211,22 +267,30 @@ public final class BPKBottomSheet: NSObject {
     /// This method removes the panel from the parent view
     /// - Parameter animated: true if you need a animated dismissal
     public func removePanel(animated: Bool) {
-        floatingPanelController.dismiss(animated: animated, completion: nil)
+        viewControllerToPresent.dismiss(animated: animated, completion: nil)
     }
-    
+
     /// Forces the bottom sheet layout to be updated.
     /// It can be useful, for example, when changing the inner constraints of the `contentViewController`
     /// and bottom sheet needs to be resized to fit the content.
     public func updateLayout() {
-        floatingPanelController.invalidateLayout()
+        if let sheetViewController {
+            sheetViewController.updateSize()
+        } else {
+            floatingPanelController.invalidateLayout()
+        }
     }
-    
+
     /// This method allows change the presentation mode of the BPKBottomSheet.
     /// - Parameters:
     ///   - position: The new bottom sheet presentation position
     ///   - animated: Change with animation
     public func move(to position: BPKFloatingPanelPosition, animated: Bool = true) {
-        floatingPanelController.move(to: position.asFloatingPanelPosition, animated: animated)
+        if let sheetViewController {
+            sheetViewController.move(to: position, animated: animated)
+        } else {
+            floatingPanelController.move(to: position.asFloatingPanelPosition, animated: animated)
+        }
     }
 }
 
