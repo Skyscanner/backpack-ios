@@ -135,6 +135,23 @@ struct PriceExampleView: View {
             size: size,
             style: style
         )
+
+        buildLeadingAndTrailingPrice(
+            price: "£50",
+            leadingText: "Price dropped",
+            leadingIcon: (.trendDown, "Decreasing"),
+            leadingIconBackgroundColor: .statusSuccessSpotColor,
+            size: size,
+            style: style
+        )
+
+        buildLeadingAndTrailingPrice(
+            price: "£50",
+            leadingText: "£10 cheaper",
+            leadingTextColor: style == .default ? .textPrimaryColor : .textOnDarkColor,
+            size: size,
+            style: style
+        )
     }
 
     @ViewBuilder
@@ -173,8 +190,10 @@ struct PriceExampleView: View {
     private func buildLeadingAndTrailingPrice(
         price: String,
         leadingText: String? = nil,
+        leadingTextColor: Backpack_SwiftUI.BPKColor? = nil,
         leadingTextAccessibilityLabel: String? = nil,
         leadingIcon: (BPKIcon, String)? = nil,
+        leadingIconBackgroundColor: Backpack_SwiftUI.BPKColor? = nil,
         trailingIcon: (BPKIcon, String)? = nil,
         previousPrice: String? = nil,
         trailingText: String? = nil,
@@ -186,8 +205,10 @@ struct PriceExampleView: View {
             BPKPrice(
                 price: price,
                 leadingText: leadingText,
+                leadingTextColor: leadingTextColor,
                 leadingTextAccessibilityLabel: leadingTextAccessibilityLabel,
                 leadingIcon: leadingIcon,
+                leadingIconBackgroundColor: leadingIconBackgroundColor,
                 trailingIcon: trailingIcon,
                 previousPrice: previousPrice,
                 trailingText: trailingText,
@@ -200,8 +221,10 @@ struct PriceExampleView: View {
             BPKPrice(
                 price: price,
                 leadingText: leadingText,
+                leadingTextColor: leadingTextColor,
                 leadingTextAccessibilityLabel: leadingTextAccessibilityLabel,
                 leadingIcon: leadingIcon,
+                leadingIconBackgroundColor: leadingIconBackgroundColor,
                 trailingIcon: trailingIcon,
                 previousPrice: previousPrice,
                 trailingText: trailingText,
