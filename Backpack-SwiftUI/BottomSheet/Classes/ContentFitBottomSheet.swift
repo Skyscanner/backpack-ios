@@ -78,7 +78,10 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
                 detentHeight = newMax
             }
         }
-        .background(backgroundColor)
+        .background {
+            Color(backgroundColor.value)
+                .ignoresSafeArea(.container, edges: [.horizontal, .bottom])
+        }
         .ignoresSafeArea(.keyboard)
     }
 }
