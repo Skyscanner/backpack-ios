@@ -62,7 +62,6 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
                         backgroundColor: backgroundColor
                     )
                     .frame(maxHeight: .infinity, alignment: .top)
-                    .ignoresSafeArea(.container, edges: .bottom)
                 }
             }
     }
@@ -79,11 +78,18 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
                 .presentationDragIndicator(.visible)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        .background {
-            Color(backgroundColor.value)
-                .ignoresSafeArea(.container, edges: [.horizontal, .bottom])
+        .bottomSheetBackground(backgroundColor)
+    }
+}
+
+extension View {
+    @ViewBuilder
+    func bottomSheetBackground(_ color: BPKColor) -> some View {
+        if #available(iOS 16.4, *) {
+            presentationBackground(Color(color.value))
+        } else {
+            background(Color(color.value), ignoresSafeAreaEdges: [.horizontal, .bottom])
         }
-        .ignoresSafeArea(.container, edges: .bottom)
     }
 }
 
