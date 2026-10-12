@@ -104,6 +104,8 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
 }
 
 extension View {
+    // iOS 16.4 introduced presentationBackground, which fills the sheet's presentation bounds.
+    // Earlier versions extend only the background sideways and down, preserving the top boundary and content safe areas.
     @ViewBuilder
     func bottomSheetBackground(_ color: BPKColor) -> some View {
         if #available(iOS 16.4, *) {
