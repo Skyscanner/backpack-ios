@@ -21,7 +21,7 @@ import SwiftUI
 struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>: ViewModifier {
     let peekHeight: CGFloat?
     @Binding var isPresented: Bool
-    @ViewBuilder let header: (CGFloat) -> Header
+    @ViewBuilder let header: () -> Header
     let contentMode: BPKBottomSheetContentMode
     let bottomSheetContent: () -> BottomSheetContent
     let backgroundColor: BPKColor
@@ -35,7 +35,7 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
         contentMode: BPKBottomSheetContentMode,
         backgroundColor: BPKColor = .surfaceElevatedColor,
         toolbarAction: BPKBottomSheetAction? = nil,
-        @ViewBuilder header: @escaping (CGFloat) -> Header,
+        @ViewBuilder header: @escaping () -> Header,
         @ViewBuilder bottomSheetContent: @escaping () -> BottomSheetContent
     ) {
         self._isPresented = isPresented
@@ -59,18 +59,14 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
                         let detents: Set<PresentationDetent> = expansible ? [.medium, .large] : [.medium]
                         sheetContent(for: detents, usesSideRail: usesSideRail)
                     case .fitContent:
-                        BottomSheetNavigationContainer(
+                        ContentFitBottomSheet(
+                            peekHeight: peekHeight,
+                            header: header(),
+                            bottomSheetContent: bottomSheetContent(),
+                            backgroundColor: backgroundColor,
                             usesSideRail: usesSideRail,
-                            toolbarAction: toolbarAction,
-                            header: { header(0) }
-                        ) {
-                            ContentFitBottomSheet(
-                                peekHeight: peekHeight,
-                                header: { inset in BottomSheetInlineHeader { header(inset) } },
-                                bottomSheetContent: bottomSheetContent(),
-                                backgroundColor: backgroundColor
-                            )
-                        }
+                            toolbarAction: toolbarAction
+                        )
                         .frame(maxHeight: .infinity, alignment: .top)
                     }
                 }
@@ -88,7 +84,7 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
         return BottomSheetNavigationContainer(
             usesSideRail: usesSideRail,
             toolbarAction: toolbarAction,
-            header: { header(0) }
+            header: header
         ) {
             sheetBody()
         }
@@ -99,15 +95,11 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
     }
 
     private func sheetBody() -> some View {
-        return GeometryReader { geometry in
-            VStack {
-                BottomSheetInlineHeader {
-                    header(geometry.safeAreaInsets.trailing)
-                }
-                bottomSheetContent()
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        VStack {
+            BottomSheetInlineHeader(header: header)
+            bottomSheetContent()
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
     }
 }
 

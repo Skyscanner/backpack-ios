@@ -25,25 +25,33 @@ struct BottomSheetHeader: View {
     let closeAction: BPKBottomSheetAction?
     let title: String?
     let action: BPKBottomSheetAction?
-    var trailingSafeAreaInset: CGFloat = 0
-
     var body: some View {
-        ZStack {
-            if let title, !usesSideRailTitleLayout {
-                BPKText(title, style: .heading5)
-                    .offset(x: trailingSafeAreaInset / 2)
-            }
-            HStack(spacing: BPKSpacing.base) {
-                if let closeAction {
-                    BPKCloseButton(accessibilityLabel: closeAction.title, action: closeAction.action)
-                }
-                if let title, usesSideRailTitleLayout {
+        if usesSideRailTitleLayout {
+            sideRailHeader
+        } else {
+            HStack {
+                closeButtonView
+                if let title {
                     BPKText(title, style: .heading5)
                 }
-                if !usesSystemToolbar {
-                    Spacer(minLength: 0)
-                }
-                if let action, !usesSystemToolbar {
+                actionView
+            }
+            .padding(.lg)
+        }
+    }
+
+    private var sideRailHeader: some View {
+        HStack(spacing: BPKSpacing.base) {
+            if let closeAction {
+                BPKCloseButton(accessibilityLabel: closeAction.title, action: closeAction.action)
+                    .layoutPriority(usesSystemToolbar ? 1 : 0)
+            }
+            if let title {
+                BPKText(title, style: .heading5)
+            }
+            if !usesSystemToolbar {
+                Spacer(minLength: 0)
+                if let action {
                     BPKButton(action.title, action: action.action)
                         .buttonStyle(.link)
                 }
@@ -51,6 +59,33 @@ struct BottomSheetHeader: View {
         }
         .frame(maxWidth: usesSystemToolbar ? nil : .infinity)
         .padding(usesSystemToolbar ? BPKSpacing.none : BPKSpacing.lg)
+    }
+
+    @ViewBuilder
+    private var closeButtonView: some View {
+        if let closeAction {
+            Spacer()
+                .overlay(
+                    BPKCloseButton(accessibilityLabel: closeAction.title, action: closeAction.action),
+                    alignment: .leading
+                )
+        } else {
+            Spacer()
+        }
+    }
+
+    @ViewBuilder
+    private var actionView: some View {
+        if let action {
+            Spacer()
+                .overlay(
+                    BPKButton(action.title, action: action.action)
+                        .buttonStyle(.link),
+                    alignment: .trailing
+                )
+        } else {
+            Spacer()
+        }
     }
 }
 
@@ -108,17 +143,26 @@ struct BottomSheetNavigationContainer<Header: View, Content: View>: View {
     @ViewBuilder let header: () -> Header
     @ViewBuilder let content: () -> Content
 
+    @State private var headerAvailableWidth: CGFloat = 0
+
     var body: some View {
         #if compiler(>=6.4)
         if #available(iOS 27.1, *), usesSideRail, let toolbarAction {
             NavigationStack {
                 content()
+                    .onGeometryChange(for: CGFloat.self) { geometry in
+                        max(0, geometry.size.width - 2 * BPKSpacing.lg.value)
+                    } action: { width in
+                        headerAvailableWidth = width
+                    }
                     .environment(\.bottomSheetUsesSystemToolbar, true)
                     .environment(\.bottomSheetUsesSideRailHeader, true)
                     .toolbar {
                         ToolbarItem(placement: .topBarLeading) {
                             header()
-                                // Keep the title in the leading item's intrinsic width alongside the close button.
+                                // Preserve intrinsic sizing for the toolbar, but truncate long titles
+                                // within the sheet's content area, clear of the side rail.
+                                .frame(maxWidth: headerAvailableWidth, alignment: .leading)
                                 .fixedSize(horizontal: true, vertical: false)
                                 .environment(\.bottomSheetUsesSystemToolbar, true)
                                 .environment(\.bottomSheetUsesSideRailHeader, true)

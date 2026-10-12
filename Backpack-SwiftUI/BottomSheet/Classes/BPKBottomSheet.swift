@@ -51,15 +51,14 @@ public extension View {
                 contentMode: contentMode,
                 backgroundColor: backgroundColor,
                 toolbarAction: action,
-                header: { trailingInset in
+                header: {
                     header(
                         closeAction: closeAction(
                             closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
                             closeAction: { isPresented.wrappedValue.toggle() }
                         ),
                         title: title,
-                        action: action,
-                        trailingSafeAreaInset: trailingInset
+                        action: action
                     )
                 },
                 bottomSheetContent: {
@@ -103,15 +102,14 @@ public extension View {
                 contentMode: contentMode,
                 backgroundColor: backgroundColor,
                 toolbarAction: action,
-                header: { trailingInset in
+                header: {
                     header(
                         closeAction: closeAction(
                             closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
                             closeAction: { isPresented.wrappedValue.toggle() }
                         ),
                         title: title,
-                        action: action,
-                        trailingSafeAreaInset: trailingInset
+                        action: action
                     )
                 },
                 bottomSheetContent: bottomSheetContent
@@ -153,15 +151,14 @@ public extension View {
                 contentMode: contentMode,
                 backgroundColor: backgroundColor,
                 toolbarAction: action,
-                header: { trailingInset in
+                header: {
                     header(
                         closeAction: closeAction(
                             closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
                             closeAction: { item.wrappedValue = nil }
                         ),
                         title: title,
-                        action: action,
-                        trailingSafeAreaInset: trailingInset
+                        action: action
                     )
                 },
                 bottomSheetContent: { item in
@@ -203,15 +200,14 @@ public extension View {
                 contentMode: contentMode,
                 backgroundColor: backgroundColor,
                 toolbarAction: action,
-                header: { trailingInset in
+                header: {
                     header(
                         closeAction: closeAction(
                             closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
                             closeAction: { item.wrappedValue = nil }
                         ),
                         title: title,
-                        action: action,
-                        trailingSafeAreaInset: trailingInset
+                        action: action
                     )
                 },
                 bottomSheetContent: bottomSheetContent
@@ -231,15 +227,13 @@ public extension View {
     private func header(
         closeAction: BPKBottomSheetAction?,
         title: String?,
-        action: BPKBottomSheetAction?,
-        trailingSafeAreaInset: CGFloat
+        action: BPKBottomSheetAction?
     ) -> some View {
         if closeAction != nil || title != nil || action != nil {
             BottomSheetHeader(
                 closeAction: closeAction,
                 title: title,
-                action: action,
-                trailingSafeAreaInset: trailingSafeAreaInset
+                action: action
             )
         }
     }
