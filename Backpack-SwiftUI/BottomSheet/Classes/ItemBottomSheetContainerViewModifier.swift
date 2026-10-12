@@ -25,10 +25,11 @@ struct ItemBottomSheetContainerViewModifier<
 >: ViewModifier {
     let peekHeight: CGFloat?
     @Binding var item: Item?
-    @ViewBuilder let header: (Bool, CGFloat) -> Header
+    @ViewBuilder let header: (CGFloat) -> Header
     let contentMode: BPKBottomSheetContentMode
     let bottomSheetContent: (Item) -> BottomSheetContent
     let backgroundColor: BPKColor
+    let toolbarAction: BPKBottomSheetAction?
     
     @State var selectedSheetDetent: PresentationDetent
 
@@ -37,7 +38,8 @@ struct ItemBottomSheetContainerViewModifier<
         peekHeight: CGFloat?,
         contentMode: BPKBottomSheetContentMode,
         backgroundColor: BPKColor = .surfaceElevatedColor,
-        @ViewBuilder header: @escaping (Bool, CGFloat) -> Header,
+        toolbarAction: BPKBottomSheetAction? = nil,
+        @ViewBuilder header: @escaping (CGFloat) -> Header,
         @ViewBuilder bottomSheetContent: @escaping (Item) -> BottomSheetContent
     ) {
         self._item = item
@@ -47,42 +49,67 @@ struct ItemBottomSheetContainerViewModifier<
         self.header = header
         self.bottomSheetContent = bottomSheetContent
         self.backgroundColor = backgroundColor
+        self.toolbarAction = toolbarAction
     }
     
     func body(content: Content) -> some View {
-        content
-            .sheet(item: $item) { item in
-                switch contentMode {
-                case .large:
-                    bottomSheetContent(for: [.large], item: item)
-                case .medium(let expansible):
-                    let detents: Set<PresentationDetent> = expansible ? [.medium, .large] : [.medium]
-                    bottomSheetContent(for: detents, item: item)
-                case .fitContent:
-                    ContentFitBottomSheet(
-                        peekHeight: peekHeight,
-                        header: { trailingInset in header(false, trailingInset) },
-                        bottomSheetContent: bottomSheetContent(item),
-                        backgroundColor: backgroundColor
-                    )
+        BottomSheetPresentationContext { usesSideRail in
+            content
+                .sheet(item: $item) { item in
+                    switch contentMode {
+                    case .large:
+                        sheetContent(for: [.large], usesSideRail: usesSideRail, item: item)
+                    case .medium(let expansible):
+                        let detents: Set<PresentationDetent> = expansible ? [.medium, .large] : [.medium]
+                        sheetContent(for: detents, usesSideRail: usesSideRail, item: item)
+                    case .fitContent:
+                        BottomSheetNavigationContainer(
+                            usesSideRail: usesSideRail,
+                            toolbarAction: toolbarAction,
+                            header: { header(0) }
+                        ) {
+                            ContentFitBottomSheet(
+                                peekHeight: peekHeight,
+                                header: { inset in BottomSheetInlineHeader { header(inset) } },
+                                bottomSheetContent: bottomSheetContent(item),
+                                backgroundColor: backgroundColor
+                            )
+                        }
+                    }
                 }
-            }
+        }
     }
-    
-    private func bottomSheetContent(for detents: Set<PresentationDetent>, item: Item) -> some View {
+
+    private func sheetContent(
+        for detents: Set<PresentationDetent>,
+        usesSideRail: Bool, item: Item
+    ) -> some View {
         var finalDetents = detents
         if let peekHeight {
             finalDetents.insert(.height(peekHeight))
         }
+        return BottomSheetNavigationContainer(
+            usesSideRail: usesSideRail,
+            toolbarAction: toolbarAction,
+            header: { header(0) }
+        ) {
+            sheetBody(item: item)
+        }
+        // Configure presentation before the navigation content is laid out.
+        .presentationDetents(finalDetents, selection: $selectedSheetDetent)
+        .presentationDragIndicator(.visible)
+        .bottomSheetBackground(backgroundColor)
+    }
+
+    private func sheetBody(item: Item) -> some View {
         return GeometryReader { geometry in
             VStack {
-                header(selectedSheetDetent == .large, geometry.safeAreaInsets.trailing)
+                BottomSheetInlineHeader {
+                    header(geometry.safeAreaInsets.trailing)
+                }
                 bottomSheetContent(item)
-                    .presentationDetents(finalDetents, selection: $selectedSheetDetent)
-                    .presentationDragIndicator(.visible)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         }
-        .bottomSheetBackground(backgroundColor)
     }
 }

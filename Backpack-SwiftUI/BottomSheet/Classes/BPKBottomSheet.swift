@@ -50,7 +50,8 @@ public extension View {
                 peekHeight: peekHeight,
                 contentMode: contentMode,
                 backgroundColor: backgroundColor,
-                header: { isExpanded, trailingInset in
+                toolbarAction: action,
+                header: { trailingInset in
                     header(
                         closeAction: closeAction(
                             closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
@@ -58,7 +59,6 @@ public extension View {
                         ),
                         title: title,
                         action: action,
-                        isExpanded: isExpanded,
                         trailingSafeAreaInset: trailingInset
                     )
                 },
@@ -102,7 +102,8 @@ public extension View {
                 peekHeight: nil,
                 contentMode: contentMode,
                 backgroundColor: backgroundColor,
-                header: { isExpanded, trailingInset in
+                toolbarAction: action,
+                header: { trailingInset in
                     header(
                         closeAction: closeAction(
                             closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
@@ -110,7 +111,6 @@ public extension View {
                         ),
                         title: title,
                         action: action,
-                        isExpanded: isExpanded,
                         trailingSafeAreaInset: trailingInset
                     )
                 },
@@ -152,7 +152,8 @@ public extension View {
                 peekHeight: peekHeight,
                 contentMode: contentMode,
                 backgroundColor: backgroundColor,
-                header: { isExpanded, trailingInset in
+                toolbarAction: action,
+                header: { trailingInset in
                     header(
                         closeAction: closeAction(
                             closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
@@ -160,7 +161,6 @@ public extension View {
                         ),
                         title: title,
                         action: action,
-                        isExpanded: isExpanded,
                         trailingSafeAreaInset: trailingInset
                     )
                 },
@@ -202,7 +202,8 @@ public extension View {
                 peekHeight: nil,
                 contentMode: contentMode,
                 backgroundColor: backgroundColor,
-                header: { isExpanded, trailingInset in
+                toolbarAction: action,
+                header: { trailingInset in
                     header(
                         closeAction: closeAction(
                             closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
@@ -210,7 +211,6 @@ public extension View {
                         ),
                         title: title,
                         action: action,
-                        isExpanded: isExpanded,
                         trailingSafeAreaInset: trailingInset
                     )
                 },
@@ -232,7 +232,6 @@ public extension View {
         closeAction: BPKBottomSheetAction?,
         title: String?,
         action: BPKBottomSheetAction?,
-        isExpanded: Bool,
         trailingSafeAreaInset: CGFloat
     ) -> some View {
         if closeAction != nil || title != nil || action != nil {
@@ -240,7 +239,6 @@ public extension View {
                 closeAction: closeAction,
                 title: title,
                 action: action,
-                isExpanded: isExpanded,
                 trailingSafeAreaInset: trailingSafeAreaInset
             )
         }
