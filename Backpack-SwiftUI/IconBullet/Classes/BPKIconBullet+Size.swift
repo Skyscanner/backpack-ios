@@ -16,19 +16,8 @@
  * limitations under the License.
  */
 
-import Backpack_Common
-
 internal extension BPKIconBullet.Size {
 
-    var padding: BPKSpacing {
-        switch self {
-        case .small:
-            return .sm
-        case .medium, .large:
-            return .md
-        }
-    }
-    
     var iconSize: BPKIcon.Size? {
         switch self {
         case .small:

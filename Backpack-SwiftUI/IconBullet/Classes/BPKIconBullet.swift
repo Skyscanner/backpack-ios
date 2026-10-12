@@ -24,18 +24,18 @@ public struct BPKIconBullet: View {
     private var style: BPKIconBullet.Style = .loyalty
     private var size: BPKIconBullet.Size = .small
     
-    @ScaledMetric private var scaledSmallDimension: CGFloat = 8
-    @ScaledMetric private var scaledMediumDimension: CGFloat = 16
-    @ScaledMetric private var scaledLargeDimension: CGFloat = 24
+    @ScaledMetric private var scaledSmallDimension: CGFloat = 16
+    @ScaledMetric private var scaledMediumDimension: CGFloat = 32
+    @ScaledMetric private var scaledLargeDimension: CGFloat = 48
 
     public init(_ icon: BPKIcon) {
         self.icon = icon
     }
 
     private var dimension: CGFloat {
-        let smallDimension: CGFloat = 8
-        let mediumDimension: CGFloat = 16
-        let largeDimension: CGFloat = 24
+        let smallDimension: CGFloat = 16
+        let mediumDimension: CGFloat = 32
+        let largeDimension: CGFloat = 48
 
         switch size {
         case .small:
@@ -46,13 +46,17 @@ public struct BPKIconBullet: View {
             return BPKFont.enableDynamicType ? scaledLargeDimension : largeDimension
         }
     }
+
+    private var iconDimension: CGFloat {
+        dimension / 2
+    }
     
     @ViewBuilder
     private var iconView: some View {
         if let iconSize = size.iconSize {
             BPKIconView(icon, size: iconSize)
         } else {
-            BPKIconView(icon, size: .small).overrideDimension(dimension)
+            BPKIconView(icon, size: .small).overrideDimension(iconDimension)
         }
     }
 
@@ -60,7 +64,6 @@ public struct BPKIconBullet: View {
         iconView
             .foregroundColor(style.iconColor)
             .frame(width: dimension, height: dimension)
-            .padding(size.padding)
             .background(style.backgroundColor)
             .clipShape(Circle())
     }
