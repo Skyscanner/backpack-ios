@@ -145,9 +145,14 @@ struct BottomSheetNavigationContainer<Header: View, Content: View>: View {
 
     @State private var headerAvailableWidth: CGFloat = 0
 
+    private var usesSystemToolbar: Bool {
+        usesSideRail && toolbarAction != nil
+    }
+
     var body: some View {
         #if compiler(>=6.4)
-        if #available(iOS 27.1, *), usesSideRail, let toolbarAction {
+        if #available(iOS 27.1, *) {
+            // Keep content identity stable when folding or changing the action.
             NavigationStack {
                 content()
                     .onGeometryChange(for: CGFloat.self) { geometry in
@@ -155,37 +160,44 @@ struct BottomSheetNavigationContainer<Header: View, Content: View>: View {
                     } action: { width in
                         headerAvailableWidth = width
                     }
-                    .environment(\.bottomSheetUsesSystemToolbar, true)
-                    .environment(\.bottomSheetUsesSideRailHeader, true)
+                    .environment(\.bottomSheetUsesSystemToolbar, usesSystemToolbar)
+                    .environment(\.bottomSheetUsesSideRailHeader, usesSideRail)
                     .toolbar {
-                        ToolbarItem(placement: .topBarLeading) {
-                            header()
-                                // Preserve intrinsic sizing for the toolbar, but truncate long titles
-                                // within the sheet's content area, clear of the side rail.
-                                .frame(maxWidth: headerAvailableWidth, alignment: .leading)
-                                .fixedSize(horizontal: true, vertical: false)
-                                .environment(\.bottomSheetUsesSystemToolbar, true)
-                                .environment(\.bottomSheetUsesSideRailHeader, true)
+                        if usesSideRail, let toolbarAction {
+                            ToolbarItem(placement: .topBarLeading) {
+                                header()
+                                    // Preserve intrinsic sizing for the toolbar, but truncate long titles
+                                    // within the sheet's content area, clear of the side rail.
+                                    .frame(maxWidth: headerAvailableWidth, alignment: .leading)
+                                    .fixedSize(horizontal: true, vertical: false)
+                                    .environment(\.bottomSheetUsesSystemToolbar, true)
+                                    .environment(\.bottomSheetUsesSideRailHeader, true)
+                            }
+                            .axisBehavior(.horizontalOnly)
+                            .sharedBackgroundVisibility(.hidden)
+                            ToolbarItem(placement: .topBarPinnedTrailing) {
+                                BPKButton(toolbarAction.title, action: toolbarAction.action)
+                                    .buttonStyle(.link)
+                                    .fixedSize(horizontal: true, vertical: false)
+                            }
+                            .axisBehavior(.verticalPreferred)
+                            .sharedBackgroundVisibility(.hidden)
                         }
-                        .axisBehavior(.horizontalOnly)
-                        .sharedBackgroundVisibility(.hidden)
-                        ToolbarItem(placement: .topBarPinnedTrailing) {
-                            BPKButton(toolbarAction.title, action: toolbarAction.action)
-                                .buttonStyle(.link)
-                                .fixedSize(horizontal: true, vertical: false)
-                        }
-                        .axisBehavior(.verticalPreferred)
-                        .sharedBackgroundVisibility(.hidden)
                     }
-                    .toolbar(.visible, for: .navigationBar)
+                    .toolbar(usesSystemToolbar ? .visible : .hidden, for: .navigationBar)
             }
         } else {
-            content()
-                .environment(\.bottomSheetUsesSideRailHeader, usesSideRail)
+            inlineContent
         }
         #else
-        content()
+        inlineContent
         #endif
+    }
+
+    private var inlineContent: some View {
+        content()
+            .environment(\.bottomSheetUsesSystemToolbar, false)
+            .environment(\.bottomSheetUsesSideRailHeader, usesSideRail)
     }
 }
 
