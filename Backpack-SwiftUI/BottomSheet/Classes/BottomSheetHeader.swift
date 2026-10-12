@@ -137,13 +137,16 @@ struct BottomSheetInlineHeader<Header: View>: View {
     }
 }
 
+// On iOS 27.1+, when built with Swift 6.4+, Backpack hosts sheet content in its own
+// NavigationStack on all layouts to preserve content state across folding changes.
+// Caller-provided navigation stacks and toolbars must account for this outer navigation container.
 struct BottomSheetNavigationContainer<Header: View, Content: View>: View {
     let usesSideRail: Bool
     let toolbarAction: BPKBottomSheetAction?
     @ViewBuilder let header: () -> Header
     @ViewBuilder let content: () -> Content
 
-    @State private var headerAvailableWidth: CGFloat = 0
+    @State private var headerAvailableWidth: CGFloat?
 
     private var usesSystemToolbar: Bool {
         usesSideRail && toolbarAction != nil

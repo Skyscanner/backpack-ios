@@ -25,6 +25,7 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
     let backgroundColor: BPKColor
     var usesSideRail: Bool = false
     var toolbarAction: BPKBottomSheetAction?
+    var extendsContentToBottom: Bool = false
 
     private var usesSystemToolbar: Bool {
         usesSideRail && toolbarAction != nil
@@ -56,6 +57,7 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
             header: { header }
         ) {
             measuredContent
+                .ignoresSafeArea(.container, edges: extendsContentToBottom ? .bottom : [])
         }
         // Apply presentation settings to the whole sheet, before navigation layout.
         .presentationDetents(detents)

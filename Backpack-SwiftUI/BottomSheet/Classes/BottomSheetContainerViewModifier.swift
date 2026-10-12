@@ -65,7 +65,8 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
                             bottomSheetContent: bottomSheetContent(),
                             backgroundColor: backgroundColor,
                             usesSideRail: usesSideRail,
-                            toolbarAction: toolbarAction
+                            toolbarAction: toolbarAction,
+                            extendsContentToBottom: !usesSideRail
                         )
                         .frame(maxHeight: .infinity, alignment: .top)
                     }
@@ -87,6 +88,7 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
             header: header
         ) {
             sheetBody()
+                .ignoresSafeArea(.container, edges: usesSideRail ? [] : .bottom)
         }
         // Configure presentation before the navigation content is laid out.
         .presentationDetents(finalDetents, selection: $selectedSheetDetent)

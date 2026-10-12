@@ -90,6 +90,7 @@ struct ItemBottomSheetContainerViewModifier<
             header: header
         ) {
             sheetBody(item: item)
+                .ignoresSafeArea(.container, edges: usesSideRail ? [] : .bottom)
         }
         // Configure presentation before the navigation content is laid out.
         .presentationDetents(finalDetents, selection: $selectedSheetDetent)
