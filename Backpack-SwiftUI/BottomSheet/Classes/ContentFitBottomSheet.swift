@@ -20,7 +20,7 @@ import SwiftUI
 
 struct ContentFitBottomSheet<Content: View, Header: View>: View {
     let peekHeight: CGFloat?
-    let header: Header
+    let header: (CGFloat) -> Header
     let bottomSheetContent: Content
     let backgroundColor: BPKColor
 
@@ -44,10 +44,10 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
     }
 
     var body: some View {
-        GeometryReader { _ in
+        GeometryReader { geometry in
             VStack(spacing: BPKSpacing.none) {
                 BottomSheetDragIndicator()
-                header
+                header(geometry.safeAreaInsets.trailing)
                     .onGeometryChange(for: CGFloat.self, of: { $0.size.height }, action: { newValue in
                         headerHeight = newValue
                     })

@@ -21,7 +21,7 @@ import SwiftUI
 struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>: ViewModifier {
     let peekHeight: CGFloat?
     @Binding var isPresented: Bool
-    @ViewBuilder let header: () -> Header
+    @ViewBuilder let header: (Bool, CGFloat) -> Header
     let contentMode: BPKBottomSheetContentMode
     let bottomSheetContent: () -> BottomSheetContent
     let backgroundColor: BPKColor
@@ -33,7 +33,7 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
         peekHeight: CGFloat?,
         contentMode: BPKBottomSheetContentMode,
         backgroundColor: BPKColor = .surfaceElevatedColor,
-        @ViewBuilder header: @escaping () -> Header,
+        @ViewBuilder header: @escaping (Bool, CGFloat) -> Header,
         @ViewBuilder bottomSheetContent: @escaping () -> BottomSheetContent
     ) {
         self._isPresented = isPresented
@@ -57,7 +57,7 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
                 case .fitContent:
                     ContentFitBottomSheet(
                         peekHeight: peekHeight,
-                        header: header(),
+                        header: { trailingInset in header(false, trailingInset) },
                         bottomSheetContent: bottomSheetContent(),
                         backgroundColor: backgroundColor
                     )
@@ -71,13 +71,15 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
         if let peekHeight {
             finalDetents.insert(.height(peekHeight))
         }
-        return VStack {
-            header()
-            bottomSheetContent()
-                .presentationDetents(finalDetents, selection: $selectedSheetDetent)
-                .presentationDragIndicator(.visible)
+        return GeometryReader { geometry in
+            VStack {
+                header(selectedSheetDetent == .large, geometry.safeAreaInsets.trailing)
+                bottomSheetContent()
+                    .presentationDetents(finalDetents, selection: $selectedSheetDetent)
+                    .presentationDragIndicator(.visible)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .bottomSheetBackground(backgroundColor)
     }
 }

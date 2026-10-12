@@ -25,7 +25,7 @@ struct ItemBottomSheetContainerViewModifier<
 >: ViewModifier {
     let peekHeight: CGFloat?
     @Binding var item: Item?
-    @ViewBuilder let header: () -> Header
+    @ViewBuilder let header: (Bool, CGFloat) -> Header
     let contentMode: BPKBottomSheetContentMode
     let bottomSheetContent: (Item) -> BottomSheetContent
     let backgroundColor: BPKColor
@@ -37,7 +37,7 @@ struct ItemBottomSheetContainerViewModifier<
         peekHeight: CGFloat?,
         contentMode: BPKBottomSheetContentMode,
         backgroundColor: BPKColor = .surfaceElevatedColor,
-        @ViewBuilder header: @escaping () -> Header,
+        @ViewBuilder header: @escaping (Bool, CGFloat) -> Header,
         @ViewBuilder bottomSheetContent: @escaping (Item) -> BottomSheetContent
     ) {
         self._item = item
@@ -61,7 +61,7 @@ struct ItemBottomSheetContainerViewModifier<
                 case .fitContent:
                     ContentFitBottomSheet(
                         peekHeight: peekHeight,
-                        header: header(),
+                        header: { trailingInset in header(false, trailingInset) },
                         bottomSheetContent: bottomSheetContent(item),
                         backgroundColor: backgroundColor
                     )
@@ -74,13 +74,15 @@ struct ItemBottomSheetContainerViewModifier<
         if let peekHeight {
             finalDetents.insert(.height(peekHeight))
         }
-        return VStack {
-            header()
-            bottomSheetContent(item)
-                .presentationDetents(finalDetents, selection: $selectedSheetDetent)
-                .presentationDragIndicator(.visible)
+        return GeometryReader { geometry in
+            VStack {
+                header(selectedSheetDetent == .large, geometry.safeAreaInsets.trailing)
+                bottomSheetContent(item)
+                    .presentationDetents(finalDetents, selection: $selectedSheetDetent)
+                    .presentationDragIndicator(.visible)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .bottomSheetBackground(backgroundColor)
     }
 }

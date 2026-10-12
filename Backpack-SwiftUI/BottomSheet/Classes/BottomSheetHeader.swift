@@ -22,42 +22,34 @@ struct BottomSheetHeader: View {
     let closeAction: BPKBottomSheetAction?
     let title: String?
     let action: BPKBottomSheetAction?
-    
-    @ViewBuilder
-    private var closeButtonView: some View {
-        if let closeAction {
-            Spacer()
-                .overlay(
-                    BPKCloseButton(accessibilityLabel: closeAction.title, action: closeAction.action),
-                    alignment: .leading
-                )
-        } else {
-            Spacer()
-        }
-    }
-    
-    @ViewBuilder
-    private var actionView: some View {
-        if let action {
-            Spacer()
-                .overlay(
-                    BPKButton(action.title, action: action.action)
-                        .buttonStyle(.link),
-                    alignment: .trailing
-                )
-        } else {
-            Spacer()
-        }
+    var isExpanded = false
+    var trailingSafeAreaInset: CGFloat = 0
+
+    private var actionVerticalOffset: CGFloat {
+        // The expanded sheet's trailing safe area contains the side status items.
+        // Place the action below them while keeping the sheet content in the safe area.
+        isExpanded ? trailingSafeAreaInset * 2 : 0
     }
     
     var body: some View {
-        HStack {
-            closeButtonView
+        ZStack {
             if let title {
                 BPKText(title, style: .heading5)
+                    .offset(x: trailingSafeAreaInset / 2)
             }
-            actionView
+            HStack {
+                if let closeAction {
+                    BPKCloseButton(accessibilityLabel: closeAction.title, action: closeAction.action)
+                }
+                Spacer(minLength: 0)
+                if let action {
+                    BPKButton(action.title, action: action.action)
+                        .buttonStyle(.link)
+                        .offset(x: trailingSafeAreaInset, y: actionVerticalOffset)
+                }
+            }
         }
+        .frame(maxWidth: .infinity)
         .padding(.lg)
     }
 }

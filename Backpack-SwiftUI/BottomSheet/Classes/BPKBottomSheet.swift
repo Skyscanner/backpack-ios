@@ -50,14 +50,16 @@ public extension View {
                 peekHeight: peekHeight,
                 contentMode: contentMode,
                 backgroundColor: backgroundColor,
-                header: {
+                header: { isExpanded, trailingInset in
                     header(
                         closeAction: closeAction(
                             closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
                             closeAction: { isPresented.wrappedValue.toggle() }
                         ),
                         title: title,
-                        action: action
+                        action: action,
+                        isExpanded: isExpanded,
+                        trailingSafeAreaInset: trailingInset
                     )
                 },
                 bottomSheetContent: {
@@ -100,14 +102,16 @@ public extension View {
                 peekHeight: nil,
                 contentMode: contentMode,
                 backgroundColor: backgroundColor,
-                header: {
+                header: { isExpanded, trailingInset in
                     header(
                         closeAction: closeAction(
                             closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
                             closeAction: { isPresented.wrappedValue.toggle() }
                         ),
                         title: title,
-                        action: action
+                        action: action,
+                        isExpanded: isExpanded,
+                        trailingSafeAreaInset: trailingInset
                     )
                 },
                 bottomSheetContent: bottomSheetContent
@@ -148,14 +152,16 @@ public extension View {
                 peekHeight: peekHeight,
                 contentMode: contentMode,
                 backgroundColor: backgroundColor,
-                header: {
+                header: { isExpanded, trailingInset in
                     header(
                         closeAction: closeAction(
                             closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
                             closeAction: { item.wrappedValue = nil }
                         ),
                         title: title,
-                        action: action
+                        action: action,
+                        isExpanded: isExpanded,
+                        trailingSafeAreaInset: trailingInset
                     )
                 },
                 bottomSheetContent: { item in
@@ -196,14 +202,16 @@ public extension View {
                 peekHeight: nil,
                 contentMode: contentMode,
                 backgroundColor: backgroundColor,
-                header: {
+                header: { isExpanded, trailingInset in
                     header(
                         closeAction: closeAction(
                             closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
                             closeAction: { item.wrappedValue = nil }
                         ),
                         title: title,
-                        action: action
+                        action: action,
+                        isExpanded: isExpanded,
+                        trailingSafeAreaInset: trailingInset
                     )
                 },
                 bottomSheetContent: bottomSheetContent
@@ -223,13 +231,17 @@ public extension View {
     private func header(
         closeAction: BPKBottomSheetAction?,
         title: String?,
-        action: BPKBottomSheetAction?
+        action: BPKBottomSheetAction?,
+        isExpanded: Bool,
+        trailingSafeAreaInset: CGFloat
     ) -> some View {
         if closeAction != nil || title != nil || action != nil {
             BottomSheetHeader(
                 closeAction: closeAction,
                 title: title,
-                action: action
+                action: action,
+                isExpanded: isExpanded,
+                trailingSafeAreaInset: trailingSafeAreaInset
             )
         }
     }
