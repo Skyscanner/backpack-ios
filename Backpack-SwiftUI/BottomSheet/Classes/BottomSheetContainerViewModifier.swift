@@ -25,7 +25,6 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
     let contentMode: BPKBottomSheetContentMode
     let bottomSheetContent: () -> BottomSheetContent
     let backgroundColor: BPKColor
-    let toolbarAction: BPKBottomSheetAction?
     
     @State var selectedSheetDetent: PresentationDetent
 
@@ -34,7 +33,6 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
         peekHeight: CGFloat?,
         contentMode: BPKBottomSheetContentMode,
         backgroundColor: BPKColor = .surfaceElevatedColor,
-        toolbarAction: BPKBottomSheetAction? = nil,
         @ViewBuilder header: @escaping () -> Header,
         @ViewBuilder bottomSheetContent: @escaping () -> BottomSheetContent
     ) {
@@ -45,69 +43,50 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
         self.header = header
         self.bottomSheetContent = bottomSheetContent
         self.backgroundColor = backgroundColor
-        self.toolbarAction = toolbarAction
     }
     
     func body(content: Content) -> some View {
-        BottomSheetPresentationContext { usesSideRail in
-            content
-                .sheet(isPresented: $isPresented) {
-                    switch contentMode {
-                    case .large:
-                        sheetContent(for: [.large], usesSideRail: usesSideRail)
-                    case .medium(let expansible):
-                        let detents: Set<PresentationDetent> = expansible ? [.medium, .large] : [.medium]
-                        sheetContent(for: detents, usesSideRail: usesSideRail)
-                    case .fitContent:
-                        ContentFitBottomSheet(
-                            peekHeight: peekHeight,
-                            header: header(),
-                            bottomSheetContent: bottomSheetContent(),
-                            backgroundColor: backgroundColor,
-                            usesSideRail: usesSideRail,
-                            toolbarAction: toolbarAction,
-                            extendsContentToBottom: !usesSideRail
-                        )
-                        .frame(maxHeight: .infinity, alignment: .top)
-                    }
+        content
+            .sheet(isPresented: $isPresented) {
+                switch contentMode {
+                case .large:
+                    bottomSheetContent(for: [.large])
+                case .medium(let expansible):
+                    let detents: Set<PresentationDetent> = expansible ? [.medium, .large] : [.medium]
+                    bottomSheetContent(for: detents)
+                case .fitContent:
+                    ContentFitBottomSheet(
+                        peekHeight: peekHeight,
+                        header: header(),
+                        bottomSheetContent: bottomSheetContent(),
+                        backgroundColor: backgroundColor
+                    )
+                    .frame(maxHeight: .infinity, alignment: .top)
+                    .ignoresSafeArea(.container, edges: .bottom)
                 }
-        }
+            }
     }
-
-    private func sheetContent(
-        for detents: Set<PresentationDetent>,
-        usesSideRail: Bool
-    ) -> some View {
+    
+    private func bottomSheetContent(for detents: Set<PresentationDetent>) -> some View {
         var finalDetents = detents
         if let peekHeight {
             finalDetents.insert(.height(peekHeight))
         }
-        return BottomSheetNavigationContainer(
-            usesSideRail: usesSideRail,
-            toolbarAction: toolbarAction,
-            header: header
-        ) {
-            sheetBody()
-                .ignoresSafeArea(.container, edges: usesSideRail ? [] : .bottom)
-        }
-        // Configure presentation before the navigation content is laid out.
-        .presentationDetents(finalDetents, selection: $selectedSheetDetent)
-        .presentationDragIndicator(.visible)
-        .bottomSheetBackground(backgroundColor)
-    }
-
-    private func sheetBody() -> some View {
-        VStack {
-            BottomSheetInlineHeader(header: header)
+        return VStack {
+            header()
             bottomSheetContent()
+                .presentationDetents(finalDetents, selection: $selectedSheetDetent)
+                .presentationDragIndicator(.visible)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        .frame(maxHeight: .infinity, alignment: .top)
+        .bottomSheetBackground(backgroundColor)
+        .ignoresSafeArea(.container, edges: .bottom)
     }
 }
 
 extension View {
     // iOS 16.4 introduced presentationBackground, which fills the sheet's presentation bounds.
-    // Earlier versions extend only the background sideways and down, preserving the top boundary and content safe areas.
+    // Earlier versions extend only the background horizontally and at the bottom, preserving content layout.
     @ViewBuilder
     func bottomSheetBackground(_ color: BPKColor) -> some View {
         if #available(iOS 16.4, *) {

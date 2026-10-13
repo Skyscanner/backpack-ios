@@ -23,13 +23,6 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
     let header: Header
     let bottomSheetContent: Content
     let backgroundColor: BPKColor
-    var usesSideRail: Bool = false
-    var toolbarAction: BPKBottomSheetAction?
-    var extendsContentToBottom: Bool = false
-
-    private var usesSystemToolbar: Bool {
-        usesSideRail && toolbarAction != nil
-    }
 
     @State private var headerHeight: CGFloat = 0.0
     @State private var detentHeight: CGFloat = 0
@@ -51,29 +44,10 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
     }
 
     var body: some View {
-        BottomSheetNavigationContainer(
-            usesSideRail: usesSideRail,
-            toolbarAction: toolbarAction,
-            header: { header }
-        ) {
-            measuredContent
-                .ignoresSafeArea(.container, edges: extendsContentToBottom ? .bottom : [])
-        }
-        // Apply presentation settings to the whole sheet, before navigation layout.
-        .presentationDetents(detents)
-        .presentationDragIndicator(usesSystemToolbar ? .visible : .hidden)
-        .bottomSheetBackground(backgroundColor)
-        .ignoresSafeArea(.keyboard)
-    }
-
-    private var measuredContent: some View {
-        GeometryReader { geometry in
-            let toolbarInset = usesSystemToolbar ? geometry.safeAreaInsets.top : 0
+        GeometryReader { _ in
             VStack(spacing: BPKSpacing.none) {
-                if !usesSystemToolbar {
-                    BottomSheetDragIndicator()
-                }
-                BottomSheetInlineHeader { header }
+                BottomSheetDragIndicator()
+                header
                     .onGeometryChange(for: CGFloat.self, of: { $0.size.height }, action: { newValue in
                         headerHeight = newValue
                     })
@@ -81,25 +55,22 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
                     bottomSheetContent
                         .avoidKeyboard()
                 }
-                .frame(maxHeight: max(0, maximumDetentHeight - headerHeight - toolbarInset))
+                .frame(maxHeight: max(0, maximumDetentHeight - headerHeight))
                 .fixedSize(horizontal: false, vertical: true)
             }
-            .frame(maxWidth: .infinity)
             .onGeometryChange(for: CGFloat.self) { geo in
-                // The navigation bar sits outside the measured content. Include its
-                // actual top safe-area inset in the sheet height, but not the bottom inset
-                // that the presentation adds to a height detent automatically.
-                let height = geo.size.height + toolbarInset
-                if detentHeight != initialDetentHeight && height > maximumDetentHeight {
+                if detentHeight != initialDetentHeight && geo.size.height > maximumDetentHeight {
                     return detentHeight
                 }
-                return height
+                return geo.size.height
             } action: { newValue in
                 if initialDetentHeight == 0 {
                     initialDetentHeight = newValue
                 }
                 detentHeight = min(newValue, maximumDetentHeight)
             }
+            .presentationDetents(detents)
+            .presentationDragIndicator(.hidden)
         }
         .background(WindowHeightReader { height in windowHeight = height })
         .onChange(of: maximumDetentHeight) { newMax in
@@ -107,6 +78,8 @@ struct ContentFitBottomSheet<Content: View, Header: View>: View {
                 detentHeight = newMax
             }
         }
+        .bottomSheetBackground(backgroundColor)
+        .ignoresSafeArea(.keyboard)
     }
 }
 

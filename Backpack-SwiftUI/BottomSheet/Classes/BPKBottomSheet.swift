@@ -50,7 +50,6 @@ public extension View {
                 peekHeight: peekHeight,
                 contentMode: contentMode,
                 backgroundColor: backgroundColor,
-                toolbarAction: action,
                 header: {
                     header(
                         closeAction: closeAction(
@@ -101,7 +100,6 @@ public extension View {
                 peekHeight: nil,
                 contentMode: contentMode,
                 backgroundColor: backgroundColor,
-                toolbarAction: action,
                 header: {
                     header(
                         closeAction: closeAction(
@@ -150,7 +148,6 @@ public extension View {
                 peekHeight: peekHeight,
                 contentMode: contentMode,
                 backgroundColor: backgroundColor,
-                toolbarAction: action,
                 header: {
                     header(
                         closeAction: closeAction(
@@ -199,7 +196,6 @@ public extension View {
                 peekHeight: nil,
                 contentMode: contentMode,
                 backgroundColor: backgroundColor,
-                toolbarAction: action,
                 header: {
                     header(
                         closeAction: closeAction(
