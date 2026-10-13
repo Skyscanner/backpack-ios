@@ -23,6 +23,7 @@ public struct BPKIconView: View {
     let icon: BPKIcon
     let size: BPKIcon.Size
     let accessibilityLabel: String?
+    private var overrideDimension: CGFloat?
 
     public init(_ icon: BPKIcon, size: BPKIcon.Size = .small) {
         self.icon = icon
@@ -35,6 +36,12 @@ public struct BPKIconView: View {
         self.size = size
         self.accessibilityLabel = accessibilityLabel
     }
+
+    func overrideDimension(_ dimension: CGFloat) -> BPKIconView {
+        var result = self
+        result.overrideDimension = dimension
+        return result
+    }
     
     @ScaledMetric private var scaledSmallSize: CGFloat = 16
     @ScaledMetric private var scaledLargeSize: CGFloat = 24
@@ -45,6 +52,9 @@ public struct BPKIconView: View {
     private var extraLargeSize: CGFloat = 40
 
     private var dimension: CGFloat {
+        if let overrideDimension {
+            return overrideDimension
+        }
         switch size {
         case .small:
             return BPKFont.enableDynamicType ? scaledSmallSize : smallSize

@@ -586,6 +586,11 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             await switchTab(title: "SwiftUI")
             saveScreenshot(component: "cell-item", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
+        
+        await navigate(title: "Icon Bullet") {
+            await switchTab(title: "SwiftUI")
+            saveScreenshot(component: "icon-bullet", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
 
         await navigate(title: "Video player") {
             await switchTab(title: "SwiftUI")
