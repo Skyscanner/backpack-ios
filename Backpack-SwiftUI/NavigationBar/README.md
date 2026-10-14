@@ -21,6 +21,24 @@
 | --- | --- |
 | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_navbar___surfaceContrast_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_navbar___surfaceContrast_dm.png" alt="" width="375" /> |
  
+## Styling the system navigation bar
+
+Where you can, prefer the system navigation bar and toolbar items to a custom bar. The system bar respects every safe area and adapts to the device by itself: on iPhone Duo its items move into the side rail with the status bar. `bpkNativeNavigationBarStyle(_:)` gives it the same Backpack colours as `BPKNavigationView`.
+
+```swift
+NavigationStack {
+    HotelDetails()
+        .navigationTitle("Hotel details")
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button(action: save) { BPKIconView(.heart) }
+                    .accessibilityLabel("Save")
+            }
+        }
+        .bpkNativeNavigationBarStyle(.default)
+}
+```
+
 ## Usage
 
 Similar to SwiftUI's native `NavigationView`, `BPKNavigationView` is used to manage the navigation of a view hierarchy. You can set a title and an array of leading and trailing items.
