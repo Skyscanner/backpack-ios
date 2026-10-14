@@ -35,27 +35,38 @@ public struct BPKPrice: View {
     
     private let price: String
     private let leadingText: String?
+    private let leadingTextAccessibilityLabel: String?
+    private let leadingIcon: (BPKIcon, String)?
+    private let trailingIcon: (BPKIcon, String)?
     private let previousPrice: String?
     private let trailingText: String?
     private let icon: (BPKIcon, String)?
     private let style: Style
     private let onPriceClicked: (() -> Void)?
+    private let onLeadingTextClicked: (() -> Void)?
     private let alignment: Alignment
     private let size: Size
-    
+
     public init(
         price: String,
         leadingText: String? = nil,
+        leadingTextAccessibilityLabel: String? = nil,
+        leadingIcon: (BPKIcon, String)? = nil,
+        trailingIcon: (BPKIcon, String)? = nil,
         previousPrice: String? = nil,
         trailingText: String? = nil,
         icon: (BPKIcon, String)? = nil,
         style: Style = .default,
         onPriceClicked: (() -> Void)? = nil,
+        onLeadingTextClicked: (() -> Void)? = nil,
         alignment: Alignment = .leading,
         size: Size
     ) {
         self.price = price
         self.leadingText = leadingText
+        self.leadingTextAccessibilityLabel = leadingTextAccessibilityLabel
+        self.leadingIcon = leadingIcon
+        self.trailingIcon = trailingIcon
         self.previousPrice = previousPrice
         self.trailingText = trailingText
         self.icon = icon
@@ -63,6 +74,7 @@ public struct BPKPrice: View {
         self.alignment = alignment
         self.size = size
         self.onPriceClicked = onPriceClicked
+        self.onLeadingTextClicked = onLeadingTextClicked
     }
     
     public var body: some View {
@@ -104,13 +116,58 @@ public struct BPKPrice: View {
 
     private var additionalInfoLabel: some View {
         HStack(spacing: .sm) {
-            ForEach(additionalInfo, id: \.self) { item in
-                let color = (item == previousPrice) ? style.previousTextColor : style.leadingTextColor
-                BPKText(item, style: accessoryFontStyle)
-                    .foregroundColor(color)
-                    .strikethrough(item == previousPrice)
+            if let previousPrice {
+                BPKText(previousPrice, style: accessoryFontStyle)
+                    .foregroundColor(style.previousTextColor)
+                    .strikethrough(true)
+                    .lineLimit(nil)
+            }
+            if previousPrice != nil && leadingText != nil {
+                BPKText("•", style: accessoryFontStyle)
+                    .foregroundColor(style.leadingTextColor)
+            }
+            if let leadingText {
+                leadingTextView(leadingText)
             }
         }
+    }
+
+    @ViewBuilder
+    private func leadingTextView(_ text: String) -> some View {
+        let label = HStack(spacing: .sm) {
+            if let leadingIcon {
+                BPKIconView(leadingIcon.0, size: .small, accessibilityLabel: leadingIcon.1)
+                    .foregroundColor(style.leadingTextColor)
+            }
+            BPKText(text, style: accessoryFontStyle)
+                .foregroundColor(style.leadingTextColor)
+            if let trailingIcon {
+                BPKIconView(trailingIcon.0, size: .small, accessibilityLabel: trailingIcon.1)
+                    .foregroundColor(style.leadingTextColor)
+            }
+        }
+        let tappableLabel = Group {
+            if let onLeadingTextClicked {
+                label
+                    .padding(.horizontal, .md)
+                    .padding(.vertical, .sm)
+                    .contentShape(Rectangle())
+                    .onTapGesture(perform: onLeadingTextClicked)
+                    .padding(.horizontal, -BPKSpacing.md.value)
+                    .padding(.vertical, -BPKSpacing.sm.value)
+                    .accessibilityElement(children: .combine)
+                    .accessibilityAddTraits(.isButton)
+            } else {
+                label
+            }
+        }
+        tappableLabel
+            .if(leadingTextAccessibilityLabel != nil) { view in
+                view
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel(leadingTextAccessibilityLabel ?? "")
+                    .if(onLeadingTextClicked != nil) { $0.accessibilityAddTraits(.isButton) }
+            }
     }
     
     @ViewBuilder
@@ -133,6 +190,7 @@ public struct BPKPrice: View {
         if let trailingText = trailingText {
             BPKText(trailingText, style: accessoryFontStyle)
                 .foregroundColor(style.trailingTextColor)
+                .lineLimit(nil)
         }
     }
 
@@ -151,6 +209,7 @@ public struct BPKPrice: View {
         } else {
             BPKText(text, style: fontStyle)
                 .foregroundColor(style.priceTextColor)
+                .lineLimit(nil)
         }
     }
     
@@ -178,24 +237,6 @@ public struct BPKPrice: View {
         case .extraSmall:
             return .heading5
         }
-    }
-    
-    private var additionalInfo: [String] {
-        var items = [String]()
-        
-        if let previousPrice = previousPrice {
-            items.append(previousPrice)
-        }
-        
-        if previousPrice != nil && leadingText != nil {
-            items.append("•")
-        }
-        
-        if let leadingText = leadingText {
-            items.append(leadingText)
-        }
-        
-        return items
     }
 }
 
@@ -260,6 +301,31 @@ struct BPKPrice_Previews: PreviewProvider {
                 .background(.surfaceContrastColor)
                 .previewDisplayName("OnContrast Style")
             }
+
+            BPKPrice(
+                price: "£50",
+                leadingText: "£10 cheaper",
+                trailingIcon: (.informationCircle, "More info"),
+                style: .default,
+                onLeadingTextClicked: {},
+                alignment: .leading,
+                size: .extraSmall
+            )
+            .background(.surfaceDefaultColor)
+            .previewDisplayName("Tappable leading text with trailing icon")
+
+            BPKPrice(
+                price: "£50",
+                leadingText: "£10 cheaper",
+                leadingIcon: (.informationCircle, "Cheaper"),
+                trailingIcon: (.informationCircle, "More info"),
+                style: .default,
+                onLeadingTextClicked: {},
+                alignment: .leading,
+                size: .extraSmall
+            )
+            .background(.surfaceDefaultColor)
+            .previewDisplayName("Tappable leading text with leading and trailing icons")
         }
     }
 }

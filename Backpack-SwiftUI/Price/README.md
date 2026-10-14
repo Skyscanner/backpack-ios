@@ -43,8 +43,29 @@ BPKPrice(
     alignment: .leading,
     size: .small
 )
+
+BPKPrice(
+    price: "£50",
+    leadingText: "£10 cheaper",
+    leadingTextAccessibilityLabel: "£10 cheaper than usual, tap for more information",
+    leadingIcon: (.informationCircle, "Cheaper"),
+    trailingIcon: (.informationCircle, "More info"),
+    onLeadingTextClicked: {
+        // Respond to taps on the leading text or either of its icons
+    },
+    alignment: .leading,
+    size: .small
+)
 ```
 
 Use the `.default` style on light backgrounds and `.onContrast` on dark backgrounds. 
 
 Providing an `onPriceClicked` handler converts the price text into a tappable link using the specified `linkStyle` (uses the style parameter to determine the style of the link (`.default` or `.onContrast`)).
+
+Providing a `leadingIcon` and/or `trailingIcon` renders them either side of
+`leadingText`. Providing an `onLeadingTextClicked` handler makes `leadingText`
+and both icons a single tappable target.
+
+By default VoiceOver announces `leadingText` combined with its icons' own
+accessibility labels. Pass `leadingTextAccessibilityLabel` to override that
+combined announcement with a custom string instead.

@@ -128,8 +128,22 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setUpForScrollview:(UIScrollView *)scrollView {
-    scrollView.contentInset = UIEdgeInsetsMake(BPKNavigationBarExpandedFullHeight, 0, 0, 0);
-    scrollView.scrollIndicatorInsets = scrollView.contentInset;
+    [self setTopInset:BPKNavigationBarExpandedFullHeight ofScrollView:scrollView];
+}
+
+// Only the top inset belongs to the navigation bar. The side and bottom insets are left as the
+// scroll view's owner set them, instead of being reset to zero.
+- (void)setTopInset:(CGFloat)topInset ofScrollView:(UIScrollView *)scrollView {
+    UIEdgeInsets contentInset = scrollView.contentInset;
+    contentInset.top = topInset;
+    scrollView.contentInset = contentInset;
+    [self setTopIndicatorInset:topInset ofScrollView:scrollView];
+}
+
+- (void)setTopIndicatorInset:(CGFloat)topInset ofScrollView:(UIScrollView *)scrollView {
+    UIEdgeInsets indicatorInsets = scrollView.scrollIndicatorInsets;
+    indicatorInsets.top = topInset;
+    scrollView.scrollIndicatorInsets = indicatorInsets;
 }
 
 - (CGFloat)calculateYOffset:(UIScrollView *)scrollView {
@@ -171,8 +185,7 @@ NS_ASSUME_NONNULL_BEGIN
         // are only executed a single time per transition.
         if (!self.isCollapsed) {
             self.heightConstraint.constant = BPKNavigationBarTitleHeight;
-            scrollView.contentInset = UIEdgeInsetsMake(BPKNavigationBarTitleHeight, 0, 0, 0);
-            scrollView.scrollIndicatorInsets = scrollView.contentInset;
+            [self setTopInset:BPKNavigationBarTitleHeight ofScrollView:scrollView];
             self.titleView.showsContent = YES;
             self.borderView.alpha = 1.0;
 
@@ -183,10 +196,12 @@ NS_ASSUME_NONNULL_BEGIN
         // Expanded state
         CGFloat absAdjustedYOffset = fabs(adjustedYOffset);
         self.heightConstraint.constant = absAdjustedYOffset;
-        scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(absAdjustedYOffset, 0, 0, 0);
+        [self setTopIndicatorInset:absAdjustedYOffset ofScrollView:scrollView];
 
         if (absAdjustedYOffset <= BPKNavigationBarExpandedFullHeight) {
-            scrollView.contentInset = UIEdgeInsetsMake(absAdjustedYOffset, 0, 0, 0);
+            UIEdgeInsets contentInset = scrollView.contentInset;
+            contentInset.top = absAdjustedYOffset;
+            scrollView.contentInset = contentInset;
         }
 
         // Making modifications on each scroll is very expensive.
@@ -212,11 +227,29 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)didMoveToWindow {
     [super didMoveToWindow];
+    [self updateBackgroundTopExtension];
+}
 
-    if (self.window) {
-        // On iOS 11 on iPhones with a 20pt tall status bar the value of
-        // safeAreaInsets.top is `0` rather than 20.
-        self.backgroundViewTopConstraint.constant = -MAX(self.window.safeAreaInsets.top, 20);
+- (void)safeAreaInsetsDidChange {
+    [super safeAreaInsetsDidChange];
+    [self updateBackgroundTopExtension];
+}
+
+- (void)layoutSubviews {
+    // The window's safe area changes when a foldable is folded or unfolded, or the window is resized.
+    [self updateBackgroundTopExtension];
+    [super layoutSubviews];
+}
+
+- (void)updateBackgroundTopExtension {
+    if (!self.window) {
+        return;
+    }
+    // On iOS 11 on iPhones with a 20pt tall status bar the value of
+    // safeAreaInsets.top is `0` rather than 20.
+    CGFloat constant = -MAX(self.window.safeAreaInsets.top, 20);
+    if (self.backgroundViewTopConstraint.constant != constant) {
+        self.backgroundViewTopConstraint.constant = constant;
     }
 }
 
@@ -311,9 +344,11 @@ NS_ASSUME_NONNULL_BEGIN
         [self.backgroundView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
 
         // Title View
+        // The title row, and the buttons on it, follow the safe area so they stay clear of side
+        // safe areas such as the iPhone Duo's rail. The background above still runs edge to edge.
         [self.titleView.topAnchor constraintEqualToAnchor:self.topAnchor],
-        [self.titleView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-        [self.titleView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
+        [self.titleView.leadingAnchor constraintEqualToAnchor:self.safeAreaLayoutGuide.leadingAnchor],
+        [self.titleView.trailingAnchor constraintEqualToAnchor:self.safeAreaLayoutGuide.trailingAnchor],
         [self.titleView.bottomAnchor constraintLessThanOrEqualToAnchor:self.bottomAnchor],
         [self.titleView.heightAnchor constraintEqualToConstant:BPKNavigationBarTitleHeight],
 
@@ -333,8 +368,8 @@ NS_ASSUME_NONNULL_BEGIN
 
         // Large Title View
         [self.largeTitleView.topAnchor constraintGreaterThanOrEqualToAnchor:self.titleView.bottomAnchor],
-        [self.largeTitleView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-        [self.largeTitleView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
+        [self.largeTitleView.leadingAnchor constraintEqualToAnchor:self.safeAreaLayoutGuide.leadingAnchor],
+        [self.largeTitleView.trailingAnchor constraintEqualToAnchor:self.safeAreaLayoutGuide.trailingAnchor],
         [self.largeTitleView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
         largeTitleViewHeightConstraint,
 
