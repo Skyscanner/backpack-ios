@@ -42,11 +42,19 @@ public final class BPKPrice: UIView {
         }
     }
 
+    public var leadingTextColor: UIColor? {
+        didSet { updateViews() }
+    }
+
     public var leadingTextAccessibilityLabel: String? {
         didSet { updateLeadingTextRow() }
     }
 
     public var leadingIcon: BPKIconName? {
+        didSet { updateLeadingTextRow() }
+    }
+
+    public var leadingIconBackgroundColor: UIColor? {
         didSet { updateLeadingTextRow() }
     }
 
@@ -90,6 +98,13 @@ public final class BPKPrice: UIView {
         let iconView = BPKObjcUIKitIconView(iconName: .none, size: .small)
         iconView.isAccessibilityElement = false
         return iconView
+    }()
+
+    private let leadingIconContainerView: UIView = {
+        let containerView = UIView()
+        containerView.clipsToBounds = true
+        containerView.layer.cornerRadius = (BPKSpacingSm * 2 + 16) / 2
+        return containerView
     }()
 
     private let trailingIconView: BPKObjcUIKitIconView = {
@@ -170,6 +185,7 @@ public final class BPKPrice: UIView {
             containerStackView.addArrangedSubview($0)
         }
 
+        setupLeadingIconContainerView()
         updateViews()
         containerStackView.addSubview(priceStackView)
         addSubview(containerStackView)
@@ -208,7 +224,8 @@ public final class BPKPrice: UIView {
 
         leadingIconView.iconName = leadingIcon
         leadingIconView.tintColor = BPKColor.textSecondaryColor
-        leadingIconView.isHidden = leadingIcon == nil
+        leadingIconContainerView.backgroundColor = leadingIconBackgroundColor
+        leadingIconContainerView.isHidden = leadingIcon == nil
 
         trailingIconView.iconName = trailingIcon
         trailingIconView.tintColor = BPKColor.textSecondaryColor
@@ -247,6 +264,27 @@ public final class BPKPrice: UIView {
             containerStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             containerStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             containerStackView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+    }
+
+    private func setupLeadingIconContainerView() {
+        leadingIconView.translatesAutoresizingMaskIntoConstraints = false
+        leadingIconContainerView.addSubview(leadingIconView)
+
+        NSLayoutConstraint.activate([
+            leadingIconView.topAnchor.constraint(equalTo: leadingIconContainerView.topAnchor, constant: BPKSpacingSm),
+            leadingIconView.leadingAnchor.constraint(
+                equalTo: leadingIconContainerView.leadingAnchor,
+                constant: BPKSpacingSm
+            ),
+            leadingIconView.trailingAnchor.constraint(
+                equalTo: leadingIconContainerView.trailingAnchor,
+                constant: -BPKSpacingSm
+            ),
+            leadingIconView.bottomAnchor.constraint(
+                equalTo: leadingIconContainerView.bottomAnchor,
+                constant: -BPKSpacingSm
+            )
         ])
     }
 
@@ -298,7 +336,7 @@ public final class BPKPrice: UIView {
             topTextStackView.addArrangedSubview($0)
         }
 
-        let leadingTextRowItems: [UIView] = [leadingIconView, leadingTextLabel, trailingIconView]
+        let leadingTextRowItems: [UIView] = [leadingIconContainerView, leadingTextLabel, trailingIconView]
 
         leadingTextRowStackView.arrangedSubviews.forEach {
             leadingTextRowStackView.removeArrangedSubview($0)
@@ -355,8 +393,12 @@ private extension BPKPrice {
             leadingTextLabel
         ].forEach {
             $0.fontStyle = accessoryFontStyle()
-            $0.textColor = BPKColor.textSecondaryColor
         }
+        trailingTextLabel.textColor = BPKColor.textSecondaryColor
+        previousPriceLabel.textColor = BPKColor.textSecondaryColor
+        separatorLabel.textColor = BPKColor.textSecondaryColor
+        leadingTextLabel.textColor = leadingTextColor ?? BPKColor.textSecondaryColor
+
         trailingTextLabel.numberOfLines = 0
         previousPriceLabel.numberOfLines = 0
         leadingTextLabel.numberOfLines = 0

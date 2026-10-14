@@ -31,7 +31,9 @@ class BPKPriceSnapshotTest: XCTestCase {
     private func createView(
         price: String = "£1830",
         leadingText: String? = "App only deal",
+        leadingTextColor: UIColor? = nil,
         leadingIcon: BPKIconName? = nil,
+        leadingIconBackgroundColor: UIColor? = nil,
         trailingIcon: BPKIconName? = nil,
         previousPrice: String? = "£2033",
         trailingText: String? = "per day",
@@ -47,7 +49,9 @@ class BPKPriceSnapshotTest: XCTestCase {
         let priceView = BPKPrice(alignment: alignment, size: size)
         priceView.price = price
         priceView.leadingText = leadingText
+        priceView.leadingTextColor = leadingTextColor
         priceView.leadingIcon = leadingIcon
+        priceView.leadingIconBackgroundColor = leadingIconBackgroundColor
         priceView.trailingIcon = trailingIcon
         priceView.previousPrice = previousPrice
         priceView.trailingText = trailingText
@@ -141,6 +145,29 @@ class BPKPriceSnapshotTest: XCTestCase {
             previousPrice: nil,
             trailingText: nil,
             onLeadingTextClicked: {}
+        )
+        assertSnapshot(exampleView)
+    }
+
+    func testViewSnapshotWithLeadingIconBackgroundColor() {
+        let exampleView = createView(
+            price: "£50",
+            leadingText: "Price dropped",
+            leadingIcon: .trendDown,
+            leadingIconBackgroundColor: BPKColor.statusSuccessSpotColor,
+            previousPrice: nil,
+            trailingText: nil
+        )
+        assertSnapshot(exampleView)
+    }
+
+    func testViewSnapshotWithLeadingTextColor() {
+        let exampleView = createView(
+            price: "£50",
+            leadingText: "£10 cheaper",
+            leadingTextColor: BPKColor.textPrimaryColor,
+            previousPrice: nil,
+            trailingText: nil
         )
         assertSnapshot(exampleView)
     }

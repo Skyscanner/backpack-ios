@@ -220,6 +220,31 @@ class PriceTests: XCTestCase {
         assertSnapshot(view)
     }
 
+    func test_leadingIconBackgroundColor() {
+        let view = BPKPrice(
+            price: "£50",
+            leadingText: "Price dropped",
+            leadingIcon: (.trendDown, "Decreasing"),
+            leadingIconBackgroundColor: .statusSuccessSpotColor,
+            alignment: .leading,
+            size: .large
+        )
+        .background(.surfaceDefaultColor)
+        assertSnapshot(view)
+    }
+
+    func test_leadingTextColor() {
+        let view = BPKPrice(
+            price: "£50",
+            leadingText: "£10 cheaper",
+            leadingTextColor: .textPrimaryColor,
+            alignment: .leading,
+            size: .large
+        )
+        .background(.surfaceDefaultColor)
+        assertSnapshot(view)
+    }
+
     func test_longPriceWraps() {
         let view = BPKPrice(
             price: "£197,000,000,000,000,000,000,000,000,000,000",
