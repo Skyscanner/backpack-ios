@@ -46,6 +46,10 @@
     return BPKColor.corePrimaryColor;
 }
 
++ (UIColor *)bpk_statusLoyaltySpotColor {
+    return BPKColor.statusLoyaltySpotColor;
+}
+
 + (UIColor *)bpk_statusSuccessSpotColor {
     return BPKColor.statusSuccessSpotColor;
 }

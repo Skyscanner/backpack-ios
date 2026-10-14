@@ -126,4 +126,15 @@ class ImageGalleryGridTests: XCTestCase {
             onImageTapped: { _, _ in }
         ) {}
     }
+
+    func test_displayCornerClearance_withoutAWindow_isZero() {
+        XCTAssertEqual(DisplayCornerClearanceReader.ReaderView.clearance(in: nil), 0)
+    }
+
+    func test_displayCornerClearance_whenTheWindowHasNoRoundedCornersToClear_isZero() {
+        // A window that isn't on a display has no corners, so its corner-aware and plain safe areas match.
+        let window = UIWindow(frame: CGRect(x: 0, y: 0, width: 375, height: 667))
+
+        XCTAssertEqual(DisplayCornerClearanceReader.ReaderView.clearance(in: window), 0)
+    }
 }

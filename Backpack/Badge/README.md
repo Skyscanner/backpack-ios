@@ -11,7 +11,18 @@
 
 ## Usage
 
-`BPKBadge` contains the Backpack Badge component. It has 6 different styles defined in `BPKBadgeType` and can contain a message as well as an icon.
+`BPKBadge` contains the Backpack Badge component. It has 10 different styles defined in `BPKBadgeType` and can contain a message as well as an icon.
+
+- `.normal`
+- `.subtle`
+- `.strong`
+- `.success`
+- `.warning`
+- `.destructive`
+- `.inverse`
+- `.outline`
+- `.brand`
+- `.loyalty`
 
 
 ### Objective-C

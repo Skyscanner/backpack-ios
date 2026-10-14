@@ -94,3 +94,7 @@ BPKNavigationView(
     Text("Content")
 }
 ```
+
+### Side safe areas and touch targets
+
+The bar's background runs under side safe areas, such as the iPhone Duo's side rail, while its title and items stay inside the safe area. Icon items accept touches across Apple's 44 pt minimum touch target.

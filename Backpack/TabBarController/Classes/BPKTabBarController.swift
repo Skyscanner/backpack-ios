@@ -37,6 +37,9 @@ open class BPKTabBarController: UITabBarController {
     }
     
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        // Let UIKit handle the change too: folding and unfolding an iPhone Duo arrives as a trait change,
+        // and the tab bar moves between the side rail and the bottom of the screen.
+        super.traitCollectionDidChange(previousTraitCollection)
         if traitCollection.userInterfaceStyle != previousTraitCollection?.userInterfaceStyle {
             updateTabBarItems()
         }

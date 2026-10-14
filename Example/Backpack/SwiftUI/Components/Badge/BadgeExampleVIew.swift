@@ -35,6 +35,7 @@ struct BadgeExampleVIew: View {
                 makeBadgeRow(text: "Inverse", icon: .tickCircle, style: .inverse, background: .corePrimaryColor)
                 makeBadgeRow(text: "Outline", icon: .tickCircle, style: .outline, background: .corePrimaryColor)
                 makeBadgeRow(text: "Brand", icon: .priceTag, style: .brand)
+                makeBadgeRow(text: "Loyalty", icon: .informationCircle, style: .loyalty)
                 Spacer()
             }
         }

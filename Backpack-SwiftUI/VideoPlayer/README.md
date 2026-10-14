@@ -146,7 +146,7 @@ case .failed(let error):
 | `.playing` | Playback active |
 | `.paused` | Playback paused |
 | `.buffering` | Rebuffering mid-playback or loading a replacement item during a loop handoff |
-| `.failed(Error)` | Load failed or timed out |
+| `.failed(BPKVideoPlayerError)` | Load failed or timed out |
 
 Convenience helpers on `BPKVideoPlayerState`:
 
@@ -155,6 +155,26 @@ controller.state.isPlaying  // true only when .playing
 controller.state.isLoading  // true for .loading and .buffering
 controller.state.isActive   // true for .playing and .buffering
 ```
+
+### Error codes
+
+Every `BPKVideoPlayerError` carries a `code: String`, a platform-neutral classification whose value matches the vocabulary Backpack Android and Web emit, so failures across all three can be grouped on a single cross-platform dashboard:
+
+```swift
+case .failed(let error):
+    reportError(error.code) // e.g. "MEDIA_ERR_NETWORK"
+```
+
+| Case | `code` | Reported for |
+| --- | --- | --- |
+| `.aborted` | `MEDIA_ERR_ABORTED` | The decoder lost its resources to a higher-priority app |
+| `.network` | `MEDIA_ERR_NETWORK` | The video could not be fetched — connection failure, bad response, timeout |
+| `.decode` | `MEDIA_ERR_DECODE` | The video was fetched but could not be decoded |
+| `.sourceNotSupported` | `MEDIA_ERR_SRC_NOT_SUPPORTED` | The container or codec is unsupported |
+| `.unknown` | `UNKNOWN_ERROR` | A failure fitting no other code |
+| `.loadTimeout` | `LOAD_TIMEOUT` | The video did not become playable within `loadTimeout`. Kept distinct from `.network` so timeouts don't inflate the network-error count |
+
+Report `error.code` rather than matching on the case directly — `code` is the stable cross-platform contract; the case names follow Swift convention and may be refactored.
 
 ## Playback metrics
 
@@ -195,6 +215,23 @@ BPKVideoPlayer(url: videoURL, autoPlay: true, loop: true)
 Updates are delivered on the main queue at a best-effort cadence and duplicate snapshots are suppressed. Calling `seek(to:)` or `resetToStart()` updates `fractionPlayed` immediately without counting the seek distance as played time. Cumulative `playTime` is preserved across those operations.
 
 Progress values are playback facts rather than analytics events. Consumers remain responsible for visibility, threshold definitions, one-shot event delivery, and impression/session boundaries.
+
+## Data transfer
+
+`controller.bytesTransferred: Int64` exposes cumulative network bytes transferred for this controller's whole life — intended for operational monitoring such as CDN cost attribution:
+
+```swift
+BPKVideoPlayer(controller: controller) { _ in EmptyView() }
+    .onReceive(controller.$bytesTransferred) { bytes in
+        print(bytes)
+    }
+```
+
+Semantics worth knowing before you report it:
+
+- **Network bytes only**, sourced from `AVPlayerItem.accessLog()`. A bundled/local resource reports `0`.
+- **Cumulative per impression, not per play-through.** One controller instance covers one impression; a `loop: true` replay adds to the total rather than resetting it, matching `BpkVideoPlayerController.bytesTransferred` on Android — a video that loops 5 times reports ~5x the bytes of a single loop, which is the correct reading for a cost metric.
+- **Updated as data arrives**, polled on the existing 0.25s progress timer, so the value is meaningful mid-playback and not just once a load finishes.
 
 ## Carousel use case — tap to play, reset on scroll
 

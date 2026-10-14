@@ -16,6 +16,7 @@
  * limitations under the License.
  */
 
+import UIKit
 import FloatingPanel
 
 /// Layout implementation where the BPKBottomSheet will remain persistent in the parent
@@ -31,9 +32,14 @@ public final class PersistentBottomSheetLayout: FloatingPanelLayout {
     public var anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] {
         return [
             .full: insets.fullAnchor,
-            .half: insets.halfAnchor,
-            .tip: insets.tipAnchor
+            .half: insets.halfAnchor(availableHeight: availableHeight),
+            .tip: insets.tipAnchor(availableHeight: availableHeight)
         ]
+    }
+
+    /// Fills a phone-sized window edge to edge and is centred at a capped width on wider windows.
+    public func prepareLayout(surfaceView: UIView, in view: UIView) -> [NSLayoutConstraint] {
+        BottomSheetHorizontalLayout.constraints(surfaceView: surfaceView, in: view)
     }
     
     /// Method to define the overlay in the parent view controller
@@ -42,8 +48,16 @@ public final class PersistentBottomSheetLayout: FloatingPanelLayout {
     }
     
     private let insets: BottomSheetInsets
+    private let availableHeight: CGFloat?
     
-    public init(insets: BottomSheetInsets) {
+    public convenience init(insets: BottomSheetInsets) {
+        self.init(insets: insets, availableHeight: nil)
+    }
+
+    /// - Parameter availableHeight: The window's safe-area height, when known, so the half and tip
+    ///   positions fit it.
+    init(insets: BottomSheetInsets, availableHeight: CGFloat?) {
         self.insets = insets
+        self.availableHeight = availableHeight
     }
 }

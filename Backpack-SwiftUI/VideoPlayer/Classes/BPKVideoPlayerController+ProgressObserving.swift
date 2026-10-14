@@ -46,6 +46,8 @@ struct BPKVideoPlayerPeriodicTimeObserver: BPKVideoPlayerPeriodicTimeObserving {
 
 typealias BPKVideoPlayerDurationProvider = (AVPlayerItem?) -> TimeInterval?
 
+typealias BPKVideoPlayerBytesProvider = (AVPlayerItem?) -> Int64
+
 extension BPKVideoPlayerController {
     func startProgressObserving() {
         guard periodicTimeObserverToken == nil else { return }
@@ -62,6 +64,9 @@ extension BPKVideoPlayerController {
                     isLooping: self.loop
                 )
             }
+            // AVPlayerItemNewAccessLogEntry fires per playback period, not per segment.
+            // Polling here captures bytes as the current open event accumulates.
+            self.updateBytesTransferred(for: self.player.currentItem)
         }
     }
 
@@ -120,6 +125,15 @@ extension BPKVideoPlayerController {
 
     func updateProgressDuration() {
         updateProgress { $0.setDuration(durationProvider(player.currentItem)) }
+    }
+
+    nonisolated static var liveBytes: BPKVideoPlayerBytesProvider {
+        { item in
+            item?.accessLog()?.events
+                .reduce(into: Int64.zero) { total, event in
+                    total += event.numberOfBytesTransferred
+                } ?? 0
+        }
     }
 
     static func liveDuration(for item: AVPlayerItem?) -> TimeInterval? {

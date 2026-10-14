@@ -120,3 +120,7 @@ if !decelerate {
 - `(UIColor *)largeTitleTextColor`
 
 - `(BPKNavigationBarStyle) style`
+
+## Side safe areas and touch targets
+
+The title row and its buttons follow the safe area, so they stay clear of side safe areas such as the iPhone Duo's side rail, while the background still runs edge to edge. The background's top extension is recalculated whenever the window's safe area changes, and `setUp(for:)` only changes the scroll view's top inset. Icon buttons accept touches across Apple's 44 pt minimum touch target.

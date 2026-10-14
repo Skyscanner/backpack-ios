@@ -136,3 +136,7 @@ Text("Screen content")
         confirmButton: BPKDialogButton("Confirm") { isPresented.toggle() }
     )
 ```
+
+## Short windows
+
+A dialog keeps a margin from the window's edges. When its text is too long for the window, for example on a phone in landscape or on the iPhone Duo's inner display in landscape, the text scrolls and the buttons stay in view.

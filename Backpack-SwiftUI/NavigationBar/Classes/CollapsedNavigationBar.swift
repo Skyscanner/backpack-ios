@@ -19,6 +19,11 @@
 import SwiftUI
 
 struct CollapsedNavigationBar: View {
+    /// Apple's minimum touch target.
+    private static let touchTarget: CGFloat = 44
+    /// How far the 44 pt touch target reaches past a 24 pt icon, on each side.
+    private static let touchTargetOutset: CGFloat = 10
+
     let title: String?
     let style: BPKNavigationBarStyle
     let leadingItems: [BPKNavigationBarItem]
@@ -39,8 +44,11 @@ struct CollapsedNavigationBar: View {
     var body: some View {
         VStack(spacing: BPKSpacing.none) {
             ZStack {
+                // The background runs under side safe areas, such as the iPhone Duo's rail, so the bar
+                // doesn't stop short of the screen edge. The items stay inside the safe area.
                 Color(style.backgroundColor(expanded: expanded))
                     .frame(height: 44)
+                    .ignoresSafeArea(edges: .horizontal)
                 HStack(spacing: .md) {
                     HStack(spacing: .base) {
                         toolbarItemView(forItems: leadingItems)
@@ -84,12 +92,18 @@ struct CollapsedNavigationBar: View {
     ) -> some View {
         Button(action: action) {
             BPKIconView(icon, size: .large)
+                // A real 44 pt frame gives the button Apple's minimum touch target. A larger content
+                // shape alone doesn't reach past the view's frame.
+                .frame(width: Self.touchTarget, height: Self.touchTarget)
+                .contentShape(Rectangle())
         }
         .accessibilityElement()
         .accessibilityAddTraits(.isButton)
         .accessibilityLabel(accessibilityLabel)
         .foregroundColor(style.foregroundColor(expanded: expanded))
         .accessibilityIdentifier(accessibilityIdentifier ?? "")
+        // Keeps the 24 pt the icon took in the layout, so nothing in the bar moves.
+        .padding(-Self.touchTargetOutset)
     }
     
     // swiftlint:disable closure_body_length

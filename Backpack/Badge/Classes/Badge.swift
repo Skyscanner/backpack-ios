@@ -145,6 +145,8 @@ fileprivate extension BPKBadgeType {
             return BPKColor.textOnDarkColor
         case .brand:
             return BPKColor.textPrimaryInverseColor
+        case .loyalty:
+            return BPKColor.textOnLightColor
         }
     }
     
@@ -163,6 +165,8 @@ fileprivate extension BPKBadgeType {
             return BPKColor.coreAccentColor
         case .subtle:
             return BPKColor.badgeBackgroundNormalColor
+        case .loyalty:
+            return BPKColor.statusLoyaltySpotColor
         }
     }
     
@@ -174,7 +178,7 @@ fileprivate extension BPKBadgeType {
             return BPKColor.statusWarningSpotColor
         case .destructive:
             return BPKColor.statusDangerSpotColor
-        case .normal, .strong, .inverse, .outline, .brand, .subtle:
+        case .normal, .strong, .inverse, .outline, .brand, .subtle, .loyalty:
             return textColor
         }
     }
@@ -182,7 +186,7 @@ fileprivate extension BPKBadgeType {
     var horizontalPadding: CGFloat {
         let config = BpkConfiguration.shared.badgeConfig
         switch self {
-        case .strong, .brand, .inverse, .outline, .subtle:
+        case .strong, .brand, .inverse, .outline, .subtle, .loyalty:
             return BPKSpacingMd
         default:
             return config == nil ? BPKSpacingMd : BPKSpacingNone
