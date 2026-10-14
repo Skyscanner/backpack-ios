@@ -33,6 +33,8 @@ internal extension BPKBadge.Style {
             return BPKColor.coreAccentColor
         case .subtle:
             return BPKColor.badgeBackgroundNormalColor
+        case .loyalty:
+            return BPKColor.statusLoyaltySpotColor
         }
     }
     
@@ -44,6 +46,8 @@ internal extension BPKBadge.Style {
             return BPKColor.textOnDarkColor
         case .brand:
             return BPKColor.textPrimaryInverseColor
+        case .loyalty:
+            return BPKColor.textOnLightColor
         }
     }
     
@@ -64,14 +68,14 @@ internal extension BPKBadge.Style {
             return BPKColor.statusWarningSpotColor
         case .destructive:
             return BPKColor.statusDangerSpotColor
-        case .normal, .strong, .inverse, .outline, .brand, .subtle:
+        case .normal, .strong, .inverse, .outline, .brand, .subtle, .loyalty:
             return foregroundColor(config)
         }
     }
 
     func horizontalPadding(_ config: BpkConfiguration?) -> BPKSpacing {
         switch self {
-        case .strong, .brand, .inverse, .outline, .subtle:
+        case .strong, .brand, .inverse, .outline, .subtle, .loyalty:
             return .md
         default:
             return config?.badgeConfig == nil ? .md : .none

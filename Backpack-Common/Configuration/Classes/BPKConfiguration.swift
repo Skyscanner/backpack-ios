@@ -27,6 +27,8 @@ public enum ConfigType: String {
     case button = "backpack_button"
     case card = "backpack_card"
     case icon = "backpack_icon"
+    /// Presents the modal bottom sheet as a native sheet. Not part of `all`, so it can be tested on its own.
+    case nativeBottomSheet = "backpack_native_bottom_sheet"
     case all = "backpack_all"
 }
 
@@ -86,6 +88,11 @@ public final class BpkConfiguration: NSObject {
     
     public struct BpkIconConfig {
         public var setBpkIcon: Bool?
+    }
+
+    public struct BpkBottomSheetConfig {
+        /// The modal bottom sheet is presented as a native sheet instead of the floating panel.
+        public var nativeModalSheet: Bool?
     }
     
     /// Setting stored configs
@@ -160,6 +167,13 @@ public final class BpkConfiguration: NSObject {
         set { _iconConfig = newValue }
     }
     
+    private var _bottomSheetConfig: BpkBottomSheetConfig?
+
+    public var bottomSheetConfig: BpkBottomSheetConfig? {
+        get { getConfig { self._bottomSheetConfig } }
+        set { _bottomSheetConfig = newValue }
+    }
+
     private func getConfig<T>(getter: () -> T) -> T {
         emitSignalIfNeeded()
         return getter()
@@ -216,6 +230,10 @@ public final class BpkConfiguration: NSObject {
     
     private func setIconExperiment() {
         self.iconConfig = BpkIconConfig(setBpkIcon: true)
+    }
+
+    private func setNativeBottomSheetExperiment() {
+        self.bottomSheetConfig = BpkBottomSheetConfig(nativeModalSheet: true)
     }
 
     private func setTypographyExperiment() {
@@ -304,6 +322,8 @@ public final class BpkConfiguration: NSObject {
                 setCardExperiment()
             case .icon:
                 setIconExperiment()
+            case .nativeBottomSheet:
+                setNativeBottomSheetExperiment()
             }
         }
     }
@@ -360,6 +380,7 @@ extension BpkConfiguration {
         badgeConfig = nil
         cardConfig = nil
         iconConfig = nil
+        bottomSheetConfig = nil
         hasSet = false
         configIsAccessed = false
         onConfigurationAccessed = nil
