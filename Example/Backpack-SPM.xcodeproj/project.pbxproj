@@ -1757,7 +1757,7 @@
 			);
 			mainGroup = 6003F581195388D10070C39A;
 			packageReferences = (
-				289894AE2ED70CDD00DDC932 /* XCLocalSwiftPackageReference "../../backpack-ios" */,
+				289894AE2ED70CDD00DDC932 /* XCLocalSwiftPackageReference ".." */,
 				DAF3486000BCF59DA6EE99AB /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 			);
 			productRefGroup = 6003F58B195388D20070C39A /* Products */;
@@ -2457,9 +2457,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		289894AE2ED70CDD00DDC932 /* XCLocalSwiftPackageReference "../../backpack-ios" */ = {
+		289894AE2ED70CDD00DDC932 /* XCLocalSwiftPackageReference ".." */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = "../../backpack-ios";
+			relativePath = ..;
 		};
 /* End XCLocalSwiftPackageReference section */
 
