@@ -127,7 +127,7 @@ NS_ASSUME_NONNULL_BEGIN
     
         case BPKFontStyleTextBaseLarken:
             return [fontManager semiboldFontWithSize:16 textStyle:UIFontTextStyleBody];
-
+            
         case BPKFontStyleTextBodyDefault:
             return [fontManager regularFontWithSize:16 textStyle:UIFontTextStyleBody];
             
@@ -154,31 +154,31 @@ NS_ASSUME_NONNULL_BEGIN
             
         case BPKFontStyleTextHeading1:
             return [fontManager heavyFontWithSize:40 textStyle:UIFontTextStyleTitle1];
-
+            
         case BPKFontStyleTextHeading2:
             return [fontManager heavyFontWithSize:32 textStyle:UIFontTextStyleTitle2];
-
+            
         case BPKFontStyleTextHeading3:
             return [fontManager heavyFontWithSize:24 textStyle:UIFontTextStyleTitle3];
-
+            
         case BPKFontStyleTextHeading4:
             return [fontManager heavyFontWithSize:20 textStyle:UIFontTextStyleTitle3];
-
+            
         case BPKFontStyleTextHeading5:
             return [fontManager heavyFontWithSize:16 textStyle:UIFontTextStyleTitle3];
-
+            
         case BPKFontStyleTextHero1:
             return [fontManager semiboldFontWithSize:120 textStyle:UIFontTextStyleLargeTitle];
-
+            
         case BPKFontStyleTextHero2:
             return [fontManager semiboldFontWithSize:96 textStyle:UIFontTextStyleLargeTitle];
-
+            
         case BPKFontStyleTextHero3:
             return [fontManager semiboldFontWithSize:76 textStyle:UIFontTextStyleLargeTitle];
-
+            
         case BPKFontStyleTextHero4:
             return [fontManager semiboldFontWithSize:64 textStyle:UIFontTextStyleLargeTitle];
-
+            
         case BPKFontStyleTextHero5:
             return [fontManager heavyFontWithSize:48 textStyle:UIFontTextStyleLargeTitle];
             
@@ -187,22 +187,22 @@ NS_ASSUME_NONNULL_BEGIN
             
         case BPKFontStyleTextLabel1:
             return [fontManager semiboldFontWithSize:16 textStyle:UIFontTextStyleBody];
-
+            
         case BPKFontStyleTextLabel2:
             return [fontManager semiboldFontWithSize:14 textStyle:UIFontTextStyleBody];
-
+            
         case BPKFontStyleTextLabel3:
             return [fontManager semiboldFontWithSize:12 textStyle:UIFontTextStyleBody];
-
+            
         case BPKFontStyleTextSmLarken:
             return [fontManager semiboldFontWithSize:14 textStyle:UIFontTextStyleFootnote];
-
+            
         case BPKFontStyleTextSubheading:
             return [fontManager regularFontWithSize:24 textStyle:UIFontTextStyleSubheadline];
             
         case BPKFontStyleTextXsLarken:
             return [fontManager semiboldFontWithSize:12 textStyle:UIFontTextStyleCaption1];
-
+            
         default:
             NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);
     }
