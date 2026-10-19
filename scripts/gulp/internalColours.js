@@ -19,14 +19,6 @@
 const _ = require('lodash');
 const { hasNewSemanticSuffix, isPrivateColor, parseColor } = require('./utils/formatUtils');
 
-// Component defaults that have graduated from experimentation.
-const componentColors = {
-  ButtonSecondaryPressedBackgroundColor: ['#b4d7ff', '#44505f'],
-  ButtonSecondaryForegroundColor: ['#024daf', '#ffffff'],
-  ButtonSecondaryOnContrastBackgroundColor: ['#cfe4ff', '#243346'],
-  ButtonSecondaryOnContrastPressedBackgroundColor: ['#b4d7ff', '#3c505f'],
-};
-
 const internalColors = (properties) => _.chain(properties)
   .filter((entity) => entity.type === 'color' && isPrivateColor(entity) && !hasNewSemanticSuffix(entity))
   .map(
@@ -38,13 +30,6 @@ const internalColors = (properties) => _.chain(properties)
       ...rest
     })
   )
-  .concat(Object.entries(componentColors)
-    .filter(([name]) => !properties.some((property) => property.name === `private${name}`))
-    .map(([name, [value, darkValue]]) => ({ name, value, darkValue })))
-  .map((property) => {
-    const colors = componentColors[property.name];
-    return colors ? { ...property, value: colors[0], darkValue: colors[1] } : property;
-  })
   .map(
     ({
       value,
