@@ -19,10 +19,10 @@
 import Backpack_Common
 
 internal extension BPKBadge.Style {
-    func backgroundColor(_ config: BpkConfiguration?) -> BPKColor {
+    func backgroundColor() -> BPKColor {
         switch self {
         case .success, .warning, .destructive, .normal:
-            return config?.badgeConfig == nil ? BPKColor.badgeBackgroundNormalColor : BPKColor.clear
+            return BPKColor.clear
         case .inverse:
             return BPKColor.surfaceDefaultColor
         case .outline:
@@ -38,7 +38,7 @@ internal extension BPKBadge.Style {
         }
     }
     
-    func foregroundColor(_ config: BpkConfiguration?) -> BPKColor {
+    func foregroundColor() -> BPKColor {
         switch self {
         case .success, .warning, .destructive, .normal, .inverse, .subtle:
             return BPKColor.textPrimaryColor
@@ -51,16 +51,16 @@ internal extension BPKBadge.Style {
         }
     }
     
-    func borderColor(_ config: BpkConfiguration?) -> BPKColor? {
+    func borderColor() -> BPKColor? {
         switch self {
         case .outline:
-            return config?.badgeConfig == nil ? BPKColor.textOnDarkColor : BPKColor.clear
+            return BPKColor.clear
         default:
             return nil
         }
     }
     
-    func iconColor(_ config: BpkConfiguration?) -> BPKColor {
+    func iconColor() -> BPKColor {
         switch self {
         case .success:
             return BPKColor.statusSuccessSpotColor
@@ -69,16 +69,16 @@ internal extension BPKBadge.Style {
         case .destructive:
             return BPKColor.statusDangerSpotColor
         case .normal, .strong, .inverse, .outline, .brand, .subtle, .loyalty:
-            return foregroundColor(config)
+            return foregroundColor()
         }
     }
 
-    func horizontalPadding(_ config: BpkConfiguration?) -> BPKSpacing {
+    func horizontalPadding() -> BPKSpacing {
         switch self {
         case .strong, .brand, .inverse, .outline, .subtle, .loyalty:
             return .md
         default:
-            return config?.badgeConfig == nil ? .md : .none
+            return .none
         }
     }
 }
