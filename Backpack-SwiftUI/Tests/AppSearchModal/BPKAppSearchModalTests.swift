@@ -18,9 +18,12 @@
 
 import XCTest
 import SwiftUI
+import Backpack_Common
 @testable import Backpack_SwiftUI
 
 class BPKAppSearchModalTests: XCTestCase {
+    private static let snapshotSize = CGSize(width: 375, height: 667)
+
     func test_withLoading() {
         assertSnapshot(
             givenSut(with: .loading(givenLoadingState()))
@@ -60,12 +63,52 @@ class BPKAppSearchModalTests: XCTestCase {
         )
     }
   
+    func test_givenContent_whenAccessoryIsOff_thenRendersInAllThemes() {
+        assertSnapshot(givenSutWithAccessory(with: .content(givenAccessoryContentState())))
+    }
+
+    func test_givenContent_whenAccessoryIsOn_thenRendersInAllThemes() {
+        assertSnapshot(givenSutWithAccessory(with: .content(givenAccessoryContentState()), isOn: true))
+    }
+
+    func test_givenLoading_whenAccessoryProvided_thenAccessoryRemainsVisible() {
+        assertSnapshot(givenSutWithAccessory(with: .loading(givenLoadingState())))
+    }
+
+    func test_givenError_whenAccessoryProvided_thenAccessoryRemainsVisible() {
+        assertSnapshot(givenSutWithAccessory(with: .error(givenErrorState())))
+    }
+
+    func test_givenLargerText_whenAccessoryProvided_thenLabelWraps() {
+        let wasDynamicTypeEnabled = BPKFont.enableDynamicType
+        defer { BPKFont.setDynamicType(enabled: wasDynamicTypeEnabled) }
+        assertA11ySnapshot(givenSutWithAccessory(with: .content(givenAccessoryContentState())))
+    }
+
     // MARK: - Helpers
     private func givenSut(
         with results: BPKAppSearchModalResults,
         clearAction: BPKSearchInputSummary.ClearAction = .init(accessibilityLabel: "Clear", action: {}),
         inputPrefix: BPKSearchInputSummary.InputPrefix = .icon(.search)
     ) -> some View {
+        givenModal(with: results, clearAction: clearAction, inputPrefix: inputPrefix)
+            .frame(width: Self.snapshotSize.width, height: Self.snapshotSize.height)
+    }
+
+    private func givenSutWithAccessory(with results: BPKAppSearchModalResults, isOn: Bool = false) -> some View {
+        givenModal(with: results)
+            .inputAccessory {
+                BPKSwitch(isOn: .constant(isOn), text: "Include nearby airports", truncate: false)
+                    .padding(.vertical, .md)
+            }
+            .frame(width: Self.snapshotSize.width, height: Self.snapshotSize.height)
+    }
+
+    private func givenModal(
+        with results: BPKAppSearchModalResults,
+        clearAction: BPKSearchInputSummary.ClearAction = .init(accessibilityLabel: "Clear", action: {}),
+        inputPrefix: BPKSearchInputSummary.InputPrefix = .icon(.search)
+    ) -> BPKAppSearchModal {
         BPKAppSearchModal(
             title: "Search Modal",
             inputText: .constant(""),
@@ -76,9 +119,12 @@ class BPKAppSearchModalTests: XCTestCase {
             clearAction: clearAction,
             onClose: { }
         )
-        .frame(width: 375, height: 667)
     }
     
+    private func givenAccessoryContentState() -> BPKAppSearchModalContent {
+        .init(sections: [.init(heading: nil, items: (0..<8).map(buildItem))], shortcuts: nil)
+    }
+
     private func givenErrorState() -> BPKAppSearchModalError {
         return .init(
             title: "Title",

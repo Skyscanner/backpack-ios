@@ -1,7 +1,7 @@
 # AppSearchModal
 
-[![class reference](https://img.shields.io/badge/Class%20reference-iOS-blue)](https://backpack.github.io/ios/versions/latest/swiftui/Structs/BPKBadge.html)
-[![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack-SwiftUI/Badge)
+[![class reference](https://img.shields.io/badge/Class%20reference-iOS-blue)](https://backpack.github.io/ios/versions/latest/swiftui/Structs/BPKAppSearchModal.html)
+[![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack-SwiftUI/AppSearchModal)
 
 ## Content
 
@@ -84,3 +84,29 @@ BPKAppSearchModal(
     onClose: { /* close modal*/ }
 )
 ```
+
+## Input accessory (experimental)
+
+Use `inputAccessory` to add a switch or filter between the search input and the results. The accessory stays fixed while results scroll and remains visible in content, loading and error states. The modal provides horizontal padding. Existing callers and search-input visibility are unchanged.
+
+```swift
+BPKAppSearchModal(
+    title: "Where to?",
+    inputText: $query,
+    inputHint: "Country, city or airport",
+    results: results,
+    closeAccessibilityLabel: "Close",
+    clearAction: .init(accessibilityLabel: "Clear", action: { query = "" }),
+    onClose: dismiss
+)
+.inputAccessory {
+    BPKSwitch(isOn: $includeNearbyAirports, text: "Include nearby airports", truncate: false)
+        .padding(.vertical, .md)
+}
+```
+
+The consumer owns the control's state, label, accessibility identifiers and feature eligibility. The accessory API is experimental and subject to change.
+
+| Day | Night |
+| --- | --- |
+| <img src="../Tests/AppSearchModal/__Snapshots__/BPKAppSearchModalTests/test_givenContent_whenAccessoryIsOff_thenRendersInAllThemes.light-mode.png" alt="Search modal with an accessory switch off" width="375" /> | <img src="../Tests/AppSearchModal/__Snapshots__/BPKAppSearchModalTests/test_givenContent_whenAccessoryIsOff_thenRendersInAllThemes.dark-mode.png" alt="Search modal with an accessory switch off in dark mode" width="375" /> |
