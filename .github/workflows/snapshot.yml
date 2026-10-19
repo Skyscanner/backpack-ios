@@ -2,7 +2,7 @@ name: Retake Snapshots
 
 on:
   pull_request:
-    branches: ['**']
+    branches: [main]
 
 permissions: {}
 
