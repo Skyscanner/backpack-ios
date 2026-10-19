@@ -369,11 +369,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic, class, readonly) UIColor * internalButtonSecondaryOnContrastBackgroundColor;
 
-/**
- * The `buttonSecondaryOnContrastPressedBackgroundColor` internal color.
- */
-@property(nonatomic, class, readonly) UIColor * internalButtonSecondaryOnContrastPressedBackgroundColor;
-
 
 @end
 

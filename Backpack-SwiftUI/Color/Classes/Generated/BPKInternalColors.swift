@@ -117,7 +117,7 @@ internal extension BPKColor {
     /// The `buttonSecondaryPressedBackgroundColor` internal color.
     
     static let buttonSecondaryPressedBackgroundColor = BPKColor(red: 0.706, green: 0.843, blue: 1.000, alpha: 1)
-        .darkVariant(BPKColor(red: 0.267, green: 0.314, blue: 0.373, alpha: 1))
+        .darkVariant(BPKColor(red: 0.004, green: 0.035, blue: 0.075, alpha: 1))
 
     /// The `buttonLinkNormalForegroundColor` internal color.
     
@@ -363,9 +363,4 @@ internal extension BPKColor {
     
     static let buttonSecondaryOnContrastBackgroundColor = BPKColor(red: 0.812, green: 0.894, blue: 1.000, alpha: 1)
         .darkVariant(BPKColor(red: 0.141, green: 0.200, blue: 0.275, alpha: 1))
-
-    /// The `buttonSecondaryOnContrastPressedBackgroundColor` internal color.
-    
-    static let buttonSecondaryOnContrastPressedBackgroundColor = BPKColor(red: 0.706, green: 0.843, blue: 1.000, alpha: 1)
-        .darkVariant(BPKColor(red: 0.235, green: 0.314, blue: 0.373, alpha: 1))
 }

@@ -22,11 +22,9 @@ const { hasNewSemanticSuffix, isPrivateColor, parseColor } = require('./utils/fo
 
 // Component defaults that have graduated from experimentation.
 const componentColors = {
-  ButtonSecondaryPressedBackgroundColor: [aliases.BABY_BLUE_30.value, aliases.NIGHT_GREY_30.value],
+  ButtonSecondaryPressedBackgroundColor: [aliases.BABY_BLUE_30.value, aliases.NIGHT_GREY_10.value],
   ButtonSecondaryForegroundColor: [aliases.NIGHT_SKY_85.value, aliases.WHITE.value],
   ButtonSecondaryOnContrastBackgroundColor: [aliases.BABY_BLUE_20.value, aliases.NIGHT_GREY_25.value],
-  // The existing on-contrast pressed dark color has no Foundations alias yet.
-  ButtonSecondaryOnContrastPressedBackgroundColor: [aliases.BABY_BLUE_30.value, '#3c505f'],
 };
 
 const internalColors = (properties) => _.chain(properties)

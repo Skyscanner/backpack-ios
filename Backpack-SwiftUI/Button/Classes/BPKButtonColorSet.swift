@@ -62,7 +62,7 @@ struct SecondaryOnDarkBPKButtonColorSet: BPKButtonColorSet {
 
 struct SecondaryOnContrastBPKButtonColorSet: BPKButtonColorSet {
     var regular = BPKButtonColors(background: .buttonSecondaryOnContrastBackgroundColor, foreground: .buttonSecondaryForegroundColor)
-    var highlighted = BPKButtonColors(background: .buttonSecondaryOnContrastPressedBackgroundColor, foreground: .buttonSecondaryForegroundColor)
+    var highlighted = BPKButtonColors(background: .buttonSecondaryPressedBackgroundColor, foreground: .buttonSecondaryForegroundColor)
     var disabled = BPKButtonColors.buttonDisabled
 }
 
