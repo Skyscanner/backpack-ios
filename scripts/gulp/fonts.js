@@ -221,7 +221,7 @@ const letterSpacingFor = prop => {
     const adjustedValue = Number.parseFloat(prop.value) * 100
     return {
         value: adjustedValue,
-        name: prop.originalValue.replace('{!', '').replace('}', '').replace('LETTER_SPACING_', '')
+        name: prop.originalValue.replaceAll('{!', '').replaceAll('}', '').replace('LETTER_SPACING_', '')
     }
 }
 
@@ -229,7 +229,7 @@ const lineHeightFor = prop => {
     if (!prop) { return null }
     return {
         value: Number.parseInt(prop.value, 10),
-        name: prop.originalValue.replace('{!', '').replace('}', '').replace('LINE_HEIGHT_', '')
+        name: prop.originalValue.replaceAll('{!', '').replaceAll('}', '').replace('LINE_HEIGHT_', '')
     }
 }
 
