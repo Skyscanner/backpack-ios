@@ -42,22 +42,6 @@ public final class BPKPrice: UIView {
         }
     }
 
-    public var leadingTextAccessibilityLabel: String? {
-        didSet { updateLeadingTextRow() }
-    }
-
-    public var leadingIcon: BPKIconName? {
-        didSet { updateLeadingTextRow() }
-    }
-
-    public var trailingIcon: BPKIconName? {
-        didSet { updateLeadingTextRow() }
-    }
-
-    public var onLeadingTextClicked: (() -> Void)? {
-        didSet { updateLeadingTextRow() }
-    }
-
     public var previousPrice: String? {
         didSet {
             previousPriceLabel.text = previousPrice
@@ -85,26 +69,6 @@ public final class BPKPrice: UIView {
     private let previousPriceLabel = BPKLabel()
     private let separatorLabel = BPKLabel()
     private let leadingTextLabel = BPKLabel()
-
-    private let leadingIconView: BPKObjcUIKitIconView = {
-        let iconView = BPKObjcUIKitIconView(iconName: .none, size: .small)
-        iconView.isAccessibilityElement = false
-        return iconView
-    }()
-
-    private let trailingIconView: BPKObjcUIKitIconView = {
-        let iconView = BPKObjcUIKitIconView(iconName: .none, size: .small)
-        iconView.isAccessibilityElement = false
-        return iconView
-    }()
-
-    private let leadingTextRowStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.spacing = BPKSpacingSm
-        stackView.alignment = .center
-        return stackView
-    }()
 
     private let topTextStackView: UIStackView = {
         let stackView = UIStackView()
@@ -142,23 +106,6 @@ public final class BPKPrice: UIView {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    private var expandedLeadingTextFrame: CGRect? {
-        guard onLeadingTextClicked != nil, !leadingTextRowStackView.isHidden else { return nil }
-        return leadingTextRowStackView
-            .convert(leadingTextRowStackView.bounds, to: self)
-            .insetBy(dx: -BPKSpacingMd, dy: -BPKSpacingSm)
-    }
-
-    public override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        super.point(inside: point, with: event) || expandedLeadingTextFrame?.contains(point) == true
-    }
-
-    public override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        let hitView = super.hitTest(point, with: event)
-        guard hitView != nil, expandedLeadingTextFrame?.contains(point) == true else { return hitView }
-        return leadingTextRowStackView
     }
 
     private func setupView() {
@@ -199,48 +146,9 @@ public final class BPKPrice: UIView {
 
         separatorLabel.isHidden = previousPriceLabel.isHidden || leadingTextLabel.isHidden
 
-        updateLeadingTextRow()
         updateAlignmentPositioning()
     }
 
-    private func updateLeadingTextRow() {
-        leadingTextRowStackView.isHidden = leadingText == nil
-
-        leadingIconView.iconName = leadingIcon
-        leadingIconView.tintColor = BPKColor.textSecondaryColor
-        leadingIconView.isHidden = leadingIcon == nil
-
-        trailingIconView.iconName = trailingIcon
-        trailingIconView.tintColor = BPKColor.textSecondaryColor
-        trailingIconView.isHidden = trailingIcon == nil
-
-        leadingTextRowStackView.gestureRecognizers?.forEach {
-            leadingTextRowStackView.removeGestureRecognizer($0)
-        }
-
-        if onLeadingTextClicked != nil {
-            let tap = UITapGestureRecognizer(target: self, action: #selector(leadingTextRowTapped))
-            leadingTextRowStackView.addGestureRecognizer(tap)
-            leadingTextRowStackView.isUserInteractionEnabled = true
-            leadingTextRowStackView.isAccessibilityElement = true
-            leadingTextRowStackView.accessibilityLabel = leadingTextAccessibilityLabel ?? leadingText
-            leadingTextRowStackView.accessibilityTraits = .button
-        } else if let leadingTextAccessibilityLabel {
-            leadingTextRowStackView.isUserInteractionEnabled = false
-            leadingTextRowStackView.isAccessibilityElement = true
-            leadingTextRowStackView.accessibilityLabel = leadingTextAccessibilityLabel
-            leadingTextRowStackView.accessibilityTraits = []
-        } else {
-            leadingTextRowStackView.isUserInteractionEnabled = false
-            leadingTextRowStackView.isAccessibilityElement = false
-        }
-    }
-
-    @objc
-    private func leadingTextRowTapped() {
-        onLeadingTextClicked?()
-    }
-    
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             containerStackView.topAnchor.constraint(equalTo: topAnchor),
@@ -273,17 +181,15 @@ public final class BPKPrice: UIView {
         }
         
         // separatorLabel and previousPriceLabel must never stretch to fill extra space, so pin them to
-        // required hugging - that leaves leadingTextRowStackView as the single, unambiguous flexible
+        // required hugging - that leaves leadingTextLabel as the single, unambiguous flexible
         // candidate, avoiding UIStackView's text-width-disambiguation logic inflating the row.
         // It also needs required compression resistance so it isn't the one UIStackView shrinks/wraps
         // when nothing is actually short on space.
         [separatorLabel, previousPriceLabel].forEach {
             $0.setContentHuggingPriority(.required, for: .horizontal)
         }
-        [leadingTextRowStackView, leadingTextLabel].forEach {
-            $0.setContentCompressionResistancePriority(.required, for: .horizontal)
-        }
-        var topLabels: [UIView] = [previousPriceLabel, separatorLabel, leadingTextRowStackView]
+        leadingTextLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
+        var topLabels: [UIView] = [previousPriceLabel, separatorLabel, leadingTextLabel]
 
         if alignment == .trailing {
             topLabels.reverse()
@@ -296,17 +202,6 @@ public final class BPKPrice: UIView {
 
         topLabels.forEach {
             topTextStackView.addArrangedSubview($0)
-        }
-
-        let leadingTextRowItems: [UIView] = [leadingIconView, leadingTextLabel, trailingIconView]
-
-        leadingTextRowStackView.arrangedSubviews.forEach {
-            leadingTextRowStackView.removeArrangedSubview($0)
-            $0.removeFromSuperview()
-        }
-
-        leadingTextRowItems.forEach {
-            leadingTextRowStackView.addArrangedSubview($0)
         }
     }
     

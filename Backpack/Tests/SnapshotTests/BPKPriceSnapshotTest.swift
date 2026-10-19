@@ -31,11 +31,8 @@ class BPKPriceSnapshotTest: XCTestCase {
     private func createView(
         price: String = "£1830",
         leadingText: String? = "App only deal",
-        leadingIcon: BPKIconName? = nil,
-        trailingIcon: BPKIconName? = nil,
         previousPrice: String? = "£2033",
         trailingText: String? = "per day",
-        onLeadingTextClicked: (() -> Void)? = nil,
         alignment: BPKPrice.Alignment = .leading,
         size: BPKPrice.Size = .large,
         width: CGFloat? = nil
@@ -47,11 +44,8 @@ class BPKPriceSnapshotTest: XCTestCase {
         let priceView = BPKPrice(alignment: alignment, size: size)
         priceView.price = price
         priceView.leadingText = leadingText
-        priceView.leadingIcon = leadingIcon
-        priceView.trailingIcon = trailingIcon
         priceView.previousPrice = previousPrice
         priceView.trailingText = trailingText
-        priceView.onLeadingTextClicked = onLeadingTextClicked
 
         priceView.translatesAutoresizingMaskIntoConstraints = false
         parentView.addSubview(priceView)
@@ -100,19 +94,6 @@ class BPKPriceSnapshotTest: XCTestCase {
         assertSnapshot(exampleView)
     }
 
-    func testViewSnapshotWithTrailingAlignmentAndLeadingAndTrailingIcons() {
-        let exampleView = createView(
-            price: "£50",
-            leadingText: "£10 cheaper",
-            leadingIcon: .tickCircle,
-            trailingIcon: .informationCircle,
-            previousPrice: nil,
-            trailingText: nil,
-            alignment: .trailing
-        )
-        assertSnapshot(exampleView)
-    }
-
     func testViewSnapshotWithNoPreviousPrice() {
         let exampleView = createView(previousPrice: nil)
         assertSnapshot(exampleView)
@@ -130,43 +111,6 @@ class BPKPriceSnapshotTest: XCTestCase {
     
     func testViewSnapshotWithPriceOnly() {
         let exampleView = createView(leadingText: nil, previousPrice: nil, trailingText: nil)
-        assertSnapshot(exampleView)
-    }
-
-    func testViewSnapshotWithTappableLeadingTextAndLeadingIcon() {
-        let exampleView = createView(
-            price: "£50",
-            leadingText: "£10 cheaper",
-            leadingIcon: .informationCircle,
-            previousPrice: nil,
-            trailingText: nil,
-            onLeadingTextClicked: {}
-        )
-        assertSnapshot(exampleView)
-    }
-
-    func testViewSnapshotWithTappableLeadingTextAndIcon() {
-        let exampleView = createView(
-            price: "£50",
-            leadingText: "£10 cheaper",
-            trailingIcon: .informationCircle,
-            previousPrice: nil,
-            trailingText: nil,
-            onLeadingTextClicked: {}
-        )
-        assertSnapshot(exampleView)
-    }
-
-    func testViewSnapshotWithTappableLeadingTextAndLeadingAndTrailingIcons() {
-        let exampleView = createView(
-            price: "£50",
-            leadingText: "£10 cheaper",
-            leadingIcon: .informationCircle,
-            trailingIcon: .informationCircle,
-            previousPrice: nil,
-            trailingText: nil,
-            onLeadingTextClicked: {}
-        )
         assertSnapshot(exampleView)
     }
 
