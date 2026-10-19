@@ -103,4 +103,7 @@ The public API is the same. With it on:
 
 - **Size and placement.** UIKit sizes and places the sheet for the window: full width on a phone-sized window, a centred card on a wide one. It lays the sheet out again when the window changes, for example when an iPhone Duo is folded or unfolded.
 - **Positions.** `half` is the `half` inset's height. `full` is the system's large height; the `full` and `tip` insets aren't used. A `half` height that reaches the tallest height leaves only `full`. A sheet created without a scroll view fits its content. `move(to:)` switches between them, and `.hidden` dismisses the sheet.
+- **Corners.** Below iOS 26 the sheet uses Backpack's large corner radius. From iOS 26, UIKit floats a sheet that
+  isn't full height clear of the screen edges and rounds its corners to follow the device's shape, so the radius is
+  left to UIKit and the sheet matches the system's own sheets.
 - **Persistent style.** It isn't presented, so it stays a floating panel inside its parent.

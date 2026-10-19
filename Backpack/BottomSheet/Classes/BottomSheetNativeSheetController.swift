@@ -138,7 +138,12 @@ private extension BPKSheetViewController {
         guard let sheet = sheetPresentationController else { return }
         sheet.delegate = self
         sheet.prefersGrabberVisible = true
-        sheet.preferredCornerRadius = BPKCornerRadiusLg
+        // iOS 26 floats a sheet that isn't full height clear of the screen edges and rounds its corners to
+        // follow the device's shape. Our own radius is smaller than that curve, so the sheet looks clipped;
+        // leave the radius to UIKit there, and keep Backpack's radius on the versions that sit edge to edge.
+        if #unavailable(iOS 26.0) {
+            sheet.preferredCornerRadius = BPKCornerRadiusLg
+        }
         switch sizing {
         case .fitContent:
             sheet.detents = [.custom(identifier: .bpkFit) { [weak self] context in
