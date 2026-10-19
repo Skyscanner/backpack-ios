@@ -110,7 +110,6 @@ public struct BPKButton: View {
         .accessibilityLabel(accessibilityLabel)
         .buttonStyle(buttonStyle)
         .disabled(!enabled || loading)
-        .clipShape(Capsule())
     }
 
     public func buttonStyle(_ style: BPKButton.Style) -> BPKButton {
