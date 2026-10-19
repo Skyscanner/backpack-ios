@@ -138,7 +138,12 @@ private extension BPKSheetViewController {
         guard let sheet = sheetPresentationController else { return }
         sheet.delegate = self
         sheet.prefersGrabberVisible = true
-        sheet.preferredCornerRadius = BPKCornerRadiusLg
+        // From iOS 26, UIKit rounds a sheet that isn't full height to follow the device's shape. Backpack's
+        // radius is smaller than that curve, so forcing it makes the sheet look clipped. Earlier versions
+        // don't apply that rounding, so they keep Backpack's radius.
+        if #unavailable(iOS 26.0) {
+            sheet.preferredCornerRadius = BPKCornerRadiusLg
+        }
         switch sizing {
         case .fitContent:
             sheet.detents = [.custom(identifier: .bpkFit) { [weak self] context in
