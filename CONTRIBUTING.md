@@ -490,6 +490,18 @@ public var type: BPKChipType = .option {
 </details>
 
 
+### Retiring an experiment
+
+Once an experiment becomes the component default, remove its `ConfigType` case and
+configuration-specific rendering paths. Keep `BpkConfiguration`, its allocation/reset
+API, and the consumer's experiment integration for subsequent experiments.
+
+The VDL chip, typography, badge, button, card, icon, and `backpack_all` presets have
+been retired. Their settled appearance is now the default, including after `reset()`.
+Consumers must remove references to those cases, optional configuration types, and
+chip `configOverride` initializers when adopting this release. The active native
+bottom-sheet experiment remains opt-in with `backpack_native_bottom_sheet`.
+
 ## Releasing
 > Backpack team only
 

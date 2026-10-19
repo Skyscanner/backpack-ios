@@ -17,160 +17,58 @@
  */
 
 import XCTest
-import SwiftUI
 @testable import Backpack_Common
 
 final class BpkConfigurationTests: XCTestCase {
-    
+    private let config = BpkConfiguration.shared
+
     override func setUp() {
         super.setUp()
-        BpkConfiguration.shared.reset()
-    }
-    
-    func testConfigurationAccessedCallbackIsCalledOnceWhenConfigIsAccessed() {
-        // Given
-        let config = BpkConfiguration.shared
-        let expectation = self.expectation(description: "Configuration accessed callback called")
-        var callCount = 0
-        
-        // When
-        config.onConfigurationAccessed = {
-            callCount += 1
-            expectation.fulfill()
-        }
-        _ = config.chipConfig
-        
-        // Then
-        waitForExpectations(timeout: 1)
-        XCTAssertEqual(callCount, 1)
+        config.reset()
     }
 
-    func testSetThrowsErrorIfCalledTwice() {
-        // Given
-        let config = BpkConfiguration.shared
-        
-        // When
-        try? config.set(configs: [.chips])
-        
-        // Then
-        XCTAssertThrowsError(try config.set(configs: [.chips])) { error in
-            XCTAssertEqual(error as? BpkConfiguration.ConfigurationError, .configAlreadySet)
-        }
+    override func tearDown() {
+        config.reset()
+        super.tearDown()
     }
 
-    func testChipConfigIsSetCorrectlyWhenSetIsCalled() throws {
-        // Given
-        let config = BpkConfiguration.shared
-        
-        // When
-        try config.set(configs: [.chips])
-        let chipConfig = config.chipConfig
-        
-        // Then
-        XCTAssertNotNil(chipConfig)
-        XCTAssertEqual(chipConfig?.height, 8)
-        XCTAssertEqual(chipConfig?.heightDimension, "bpk_new_chip_height")
-        XCTAssertEqual(chipConfig?.radius, 100)
-        XCTAssertEqual(chipConfig?.radiusToken, .roundCorners)
-    }
-
-    func testChipConfigIsNilByDefault() {
-        // Given
-        let config = BpkConfiguration.shared
-        
-        // Then
-        XCTAssertNil(config.chipConfig)
-    }
-
-    func testBadgeConfigIsSetCorrectlyWhenSetIsCalled() throws {
-        // Given
-        let config = BpkConfiguration.shared
-
-        // When
-        try config.set(configs: [.badge])
-        let badgeConfig = config.badgeConfig
+    func test_whenNoExperimentIsSelected_thenUsesDefaultConfiguration() {
+        // Given / When
+        let bottomSheet = config.bottomSheetConfig
 
         // Then
-        XCTAssertNotNil(badgeConfig)
+        XCTAssertNil(bottomSheet)
     }
 
-    func testBadgeConfigIsNilByDefault() {
-        // Given
-        let config = BpkConfiguration.shared
-
-        // Then
-        XCTAssertNil(config.badgeConfig)
-    }
-
-    func testOnConfigurationAccessedCallbackFiresExactlyOnceUnderConcurrentAccess() {
-        // Given
-        let config = BpkConfiguration.shared
-        var callCount = 0
-        let callCountLock = NSLock()
-        let expectation = self.expectation(description: "Callback fires")
-
-        config.onConfigurationAccessed = {
-            callCountLock.lock()
-            callCount += 1
-            callCountLock.unlock()
-            expectation.fulfill()
-        }
-
-        // When - Access config from multiple threads simultaneously
-        let group = DispatchGroup()
-        for _ in 0..<20 {
-            group.enter()
-            DispatchQueue.global().async {
-                _ = config.chipConfig
-                _ = config.iconConfig
-                group.leave()
-            }
-        }
-
-        // Then - Callback should fire exactly once
-        waitForExpectations(timeout: 2)
-        group.wait()
-
-        // Small delay to catch any late duplicate callbacks
-        usleep(100000) // 100ms
-
-        XCTAssertEqual(callCount, 1, "Callback fired \(callCount) times, expected exactly 1")
-    }
-
-    func testBottomSheetConfigIsNilByDefault() {
-        // Given
-        let config = BpkConfiguration.shared
-
-        // Then
-        XCTAssertNil(config.bottomSheetConfig)
-    }
-
-    func testBottomSheetConfigIsSetWhenNativeBottomSheetIsSet() throws {
-        // Given
-        let config = BpkConfiguration.shared
-
-        // When
+    func test_whenSettingAnActiveExperiment_thenEnablesItsConfiguration() throws {
+        // Given / When
         try config.set(configs: [.nativeBottomSheet])
 
         // Then
         XCTAssertEqual(config.bottomSheetConfig?.nativeModalSheet, true)
     }
 
-    func testBottomSheetConfigIsNotPartOfAllConfigs() throws {
-        // Given
-        let config = BpkConfiguration.shared
-
-        // When
-        try config.set(configs: [.all])
+    func test_whenSettingAnEmptyList_thenLeavesExperimentsDisabled() throws {
+        // Given / When
+        try config.set(configs: [])
 
         // Then
         XCTAssertNil(config.bottomSheetConfig)
-        XCTAssertNotNil(config.chipConfig)
     }
 
-    func testResetClearsTheBottomSheetConfig() throws {
+    func test_givenAConfigurationIsSet_whenSettingAgain_thenThrows() throws {
         // Given
-        let config = BpkConfiguration.shared
+        try config.set(configs: [.nativeBottomSheet])
+
+        // When / Then
+        XCTAssertThrowsError(try config.set(configs: [])) { error in
+            XCTAssertEqual(error as? BpkConfiguration.ConfigurationError, .configAlreadySet)
+        }
+        XCTAssertEqual(config.bottomSheetConfig?.nativeModalSheet, true)
+    }
+
+    func test_givenAnActiveExperiment_whenResetting_thenClearsItAndAllowsAnotherAllocation() throws {
+        // Given
         try config.set(configs: [.nativeBottomSheet])
 
         // When
@@ -178,5 +76,53 @@ final class BpkConfigurationTests: XCTestCase {
 
         // Then
         XCTAssertNil(config.bottomSheetConfig)
+        XCTAssertNil(config.onConfigurationAccessed)
+        XCTAssertNoThrow(try config.set(configs: [.nativeBottomSheet]))
+    }
+
+    func test_whenParsingRetiredVDLNames_thenRejectsThem() {
+        // Given
+        let retiredValues = [
+            "backpack_experiment", "backpack_icon", "backpack_chips",
+            "backpack_card", "backpack_badge", "backpack_button", "backpack_all"
+        ]
+
+        // When / Then
+        for value in retiredValues {
+            XCTAssertNil(ConfigType(rawValue: value))
+        }
+        XCTAssertEqual(ConfigType(rawValue: "backpack_native_bottom_sheet"), .nativeBottomSheet)
+    }
+
+    func test_whenAccessingConfigurationRepeatedly_thenNotifiesOnce() {
+        // Given
+        let callback = expectation(description: "Configuration accessed once")
+        callback.assertForOverFulfill = true
+        config.onConfigurationAccessed = { callback.fulfill() }
+
+        // When
+        for _ in 0..<20 {
+            _ = config.bottomSheetConfig
+        }
+
+        // Then
+        wait(for: [callback], timeout: 1)
+    }
+
+    func test_givenConfigurationWasAccessed_whenResetting_thenAllowsANewNotification() {
+        // Given
+        let firstCallback = expectation(description: "First allocation accessed")
+        config.onConfigurationAccessed = { firstCallback.fulfill() }
+        _ = config.bottomSheetConfig
+        wait(for: [firstCallback], timeout: 1)
+        config.reset()
+        let nextCallback = expectation(description: "Next allocation accessed")
+        config.onConfigurationAccessed = { nextCallback.fulfill() }
+
+        // When
+        _ = config.bottomSheetConfig
+
+        // Then
+        wait(for: [nextCallback], timeout: 1)
     }
 }

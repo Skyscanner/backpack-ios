@@ -56,7 +56,6 @@ struct ComponentCellsProvider {
             checkboxes(),
             chips(),
             chipGroup(),
-            configuration(),
             dynamicLayout(),
             fieldSet(),
             flightLeg(),
@@ -239,17 +238,6 @@ extension ComponentCellsProvider {
         )
     }
     
-    private func configuration() -> CellDataSource {
-        return ComponentCellDataSource(
-            title: "Configuration",
-            tabs: [
-                .swiftui(presentable: CustomPresentable(generateViewController: {
-                    ContentUIHostingController(ConfigurationExampleView())
-                }))
-            ],
-            showChildren: { showComponent(title: "Configuration", tabs: $0) }
-        )
-    }
     private func flare() -> CellDataSource {
         ComponentCellDataSource(
             title: "Flare views",
