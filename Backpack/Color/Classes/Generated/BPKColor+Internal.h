@@ -359,16 +359,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic, class, readonly) UIColor * internalRadioOnContrastUnselectedBackgroundColor;
 
-/**
- * The `buttonSecondaryForegroundColor` internal color.
- */
-@property(nonatomic, class, readonly) UIColor * internalButtonSecondaryForegroundColor;
-
-/**
- * The `buttonSecondaryOnContrastBackgroundColor` internal color.
- */
-@property(nonatomic, class, readonly) UIColor * internalButtonSecondaryOnContrastBackgroundColor;
-
 
 @end
 

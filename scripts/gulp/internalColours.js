@@ -17,15 +17,7 @@
  */
 
 const _ = require('lodash');
-const { aliases } = require('@skyscanner/bpk-foundations-ios/tokens/base.raw.ios.json');
 const { hasNewSemanticSuffix, isPrivateColor, parseColor } = require('./utils/formatUtils');
-
-// Component defaults that have graduated from experimentation.
-const componentColors = {
-  ButtonSecondaryPressedBackgroundColor: [aliases.BABY_BLUE_30.value, aliases.NIGHT_GREY_10.value],
-  ButtonSecondaryForegroundColor: [aliases.NIGHT_SKY_85.value, aliases.WHITE.value],
-  ButtonSecondaryOnContrastBackgroundColor: [aliases.BABY_BLUE_20.value, aliases.NIGHT_GREY_25.value],
-};
 
 const internalColors = (properties) => _.chain(properties)
   .filter((entity) => entity.type === 'color' && isPrivateColor(entity) && !hasNewSemanticSuffix(entity))
@@ -38,17 +30,6 @@ const internalColors = (properties) => _.chain(properties)
       ...rest
     })
   )
-  .concat(Object.entries(componentColors)
-    .filter(([name]) => !properties.some((property) => property.name === `private${name}`))
-    .map(([name, [value, darkValue]]) => ({ name, value, darkValue })))
-  .map((property) => {
-    const colors = componentColors[property.name];
-    return colors ? {
-      ...property,
-      value: colors[0].toLowerCase(),
-      darkValue: colors[1].toLowerCase(),
-    } : property;
-  })
   .map(
     ({
       value,
