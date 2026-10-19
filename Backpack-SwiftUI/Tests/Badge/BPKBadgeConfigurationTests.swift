@@ -22,22 +22,7 @@ import SwiftUI
 @testable import Backpack_Common
 
 class BPKBadgeConfigurationTests: XCTestCase {
-    override func setUp() {
-        super.setUp()
 
-        let config = BpkConfiguration.shared
-        do {
-            try config.set(configs: [.badge])
-        } catch {
-            XCTFail("Failed to set badge config")
-        }
-    }
-
-    override func tearDown() {
-        super.tearDown()
-
-        BpkConfiguration.shared.reset()
-    }
 
     func test_badge_noIcon_Configuration() {
         assertSnapshot(

@@ -23,25 +23,17 @@ struct ChipButtonStyle: ButtonStyle {
     let style: BPKChipStyle
     let selected: Bool
     let disabled: Bool
-    let config: BpkConfiguration?
 
     func makeBody(configuration: Self.Configuration) -> some View {
         chipLabelView(configuration: configuration)
-            .clipShape(RoundedRectangle(cornerRadius: setRadius()))
-            .outline(outlineColor(configuration.isPressed), cornerRadius: setRadius())
+            .clipShape(RoundedRectangle(cornerRadius: .lg))
+            .outline(outlineColor(configuration.isPressed), cornerRadius: .lg)
             .if(style == .onImage) { $0.shadow(.sm) }
             .if(!BPKFont.enableDynamicType, transform: {
                 $0.sizeCategory(.large)
             })
     }
     
-    private func setRadius() -> BPKCornerRadius {
-        if config?.chipConfig != nil {
-            return .lg
-        }
-        
-        return .sm
-    }
     
     private func chipLabelView(
         configuration: Self.Configuration
@@ -55,7 +47,6 @@ struct ChipButtonStyle: ButtonStyle {
     
     private func outlineColor(_ isPressed: Bool) -> BPKColor {
         
-        let chipConfig = self.config?.chipConfig
         
         if disabled {
             return .buttonDisabledBackgroundColor
@@ -63,20 +54,20 @@ struct ChipButtonStyle: ButtonStyle {
         switch style {
         case .`default`, .onContrast:
             if selected || isPressed {
-                return chipConfig != nil ? .coreAccentColor : .corePrimaryColor
+                return .coreAccentColor
             }
             
-            return config != nil && style != .onContrast ? .lineColor : .clear
+            return style != .onContrast ? .lineColor : .clear
         case .onDark:
             if selected {
-                return chipConfig != nil ? .textOnDarkColor : .surfaceDefaultColor
+                return .textOnDarkColor
             }
             
             if isPressed {
-                return chipConfig != nil ? .textOnDarkColor : .chipOnDarkPressedStrokeColor
+                return .textOnDarkColor
             }
             
-            return chipConfig != nil ? .clear : .lineOnDarkColor
+            return .clear
         case .onImage:
             if selected {
                 return .corePrimaryColor
@@ -92,7 +83,6 @@ struct ChipButtonStyle: ButtonStyle {
     
     private func backgroundColor(_ isPressed: Bool) -> BPKColor {
         
-        let chipConfig = self.config?.chipConfig
         
         if disabled {
             return .chipDisabledBackgroundColor
@@ -100,20 +90,12 @@ struct ChipButtonStyle: ButtonStyle {
         switch style {
         case .`default`:
             
-            if chipConfig != nil {
-                return selected ? .coreAccentColor : .clear
-            }
-            
-            return selected ? .corePrimaryColor : .clear
+            return selected ? .coreAccentColor : .clear
         case .onContrast:
             return selected ? .coreAccentColor : .surfaceDefaultColor
         case .onDark:
             
-            if chipConfig != nil, let chipDarkFill = chipConfig?.color {
-                return selected ? .textOnDarkColor : BPKColor(value: chipDarkFill)
-            }
-            
-            return selected ? .chipOnDarkOnBackgroundColor : .clear
+            return selected ? .textOnDarkColor : .chipOnDarkOnFillColor
         case .onImage:
             if selected { return .corePrimaryColor }
 
@@ -125,7 +107,6 @@ struct ChipButtonStyle: ButtonStyle {
     
     private func foregroundColor(_ isPressed: Bool) -> BPKColor {
         
-        let chipConfig = self.config?.chipConfig
         
         if disabled {
             return .textDisabledColor
@@ -133,22 +114,14 @@ struct ChipButtonStyle: ButtonStyle {
         switch style {
         case .`default`, .onContrast:
             
-            if chipConfig != nil {
-                return selected ? .textPrimaryInverseColor : .textPrimaryColor
-            }
-            
-            return selected ? .textOnDarkColor : .textPrimaryColor
+            return selected ? .textPrimaryInverseColor : .textPrimaryColor
         case .onImage:
             
             return selected ? .textOnDarkColor : .textPrimaryColor
             
         case .onDark:
             
-            if chipConfig != nil {
-                return selected ? .textOnLightColor : .textOnDarkColor
-            }
-            
-            return selected ? .textPrimaryColor : .textOnDarkColor
+            return selected ? .textOnLightColor : .textOnDarkColor
         }
     }
 }

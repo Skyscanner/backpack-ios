@@ -45,9 +45,8 @@ extension Font {
                 return fontProvider("HelveticaNeue-Medium", size, textStyle)
             }
             
-            let typographyConfig = BpkConfiguration.shared.typographyConfigSet
             
-            if weight == .black && typographyConfig {
+            if weight == .black {
                 return fontProvider("HelveticaNeue-Bold", size, textStyle)
             }
             

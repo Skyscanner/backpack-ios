@@ -23,22 +23,7 @@ import SwiftUI
 
 class BPKChipConfigurationTests: XCTestCase {
     
-    override func setUp() {
-        super.setUp()
-        
-        let config = BpkConfiguration.shared
-        do {
-            try config.set(configs: [.chips])
-        } catch {
-            XCTFail("Failed to set chip config")
-        }
-    }
     
-    override func tearDown() {
-        super.tearDown()
-        
-        BpkConfiguration.shared.reset()
-    }
     
     func test_textChip_configuration() {
         assertSnapshot(

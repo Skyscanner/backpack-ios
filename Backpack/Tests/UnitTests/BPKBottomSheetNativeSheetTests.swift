@@ -60,10 +60,10 @@ final class BPKBottomSheetNativeSheetTests: XCTestCase {
         XCTAssertTrue(sut.contentViewController === content)
     }
 
-    func test_givenAnotherConfiguration_whenCreated_thenKeepsTheFloatingPanel() throws {
+    func test_givenEmptyConfiguration_whenCreated_thenKeepsTheFloatingPanel() throws {
         // Given
         BpkConfiguration.shared.reset()
-        try BpkConfiguration.shared.set(configs: [.all])
+        try BpkConfiguration.shared.set(configs: [])
 
         // When
         let sut = BPKBottomSheet(contentViewController: UIViewController())

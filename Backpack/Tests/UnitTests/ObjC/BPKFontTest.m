@@ -109,11 +109,11 @@ NS_ASSUME_NONNULL_BEGIN
     NSDictionary<NSString *, UIFont *> *regularFonts = @{
         BPKFontManagerStubKey(20.0, UIFontTextStyleBody): [UIFont fontWithName:@"SnellRoundhand" size:16.0],
     };
-    NSDictionary<NSString *, UIFont *> *semiboldFonts = @{
+    NSDictionary<NSString *, UIFont *> *headingFonts = @{
         BPKFontManagerStubKey(20.0, UIFontTextStyleTitle3): [UIFont fontWithName:@"SnellRoundhand-Bold" size:20.0],
         BPKFontManagerStubKey(24.0, UIFontTextStyleTitle3): [UIFont fontWithName:@"SnellRoundhand-Black" size:24.0],
     };
-    BPKFontManagerStub *fontManager = [[BPKFontManagerStub alloc] initWithRegularFonts:regularFonts semiboldFonts:semiboldFonts heavyFonts:@{}];
+    BPKFontManagerStub *fontManager = [[BPKFontManagerStub alloc] initWithRegularFonts:regularFonts semiboldFonts:@{} heavyFonts:headingFonts];
 
     NSDictionary *regularAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextBodyLongform fontManager:fontManager];
     NSDictionary *semiboldAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextHeading4 fontManager:fontManager];

@@ -153,8 +153,8 @@ internal extension BPKColor {
     /// The `buttonSecondaryPressedBackgroundColor` internal color.
     
     static let buttonSecondaryPressedBackgroundColor = BPKColor.dynamicColor(
-        lightVariant: UIColor(red: 0.757, green: 0.780, blue: 0.812, alpha: 1),
-        darkVariant: UIColor(red: 0.004, green: 0.035, blue: 0.075, alpha: 1))
+        lightVariant: UIColor(red: 0.706, green: 0.843, blue: 1.000, alpha: 1),
+        darkVariant: UIColor(red: 0.267, green: 0.314, blue: 0.373, alpha: 1))
 
     /// The `buttonLinkNormalForegroundColor` internal color.
     
@@ -437,6 +437,24 @@ internal extension BPKColor {
     static let radioOnContrastUnselectedBackgroundColor = BPKColor.dynamicColor(
         lightVariant: UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1),
         darkVariant: UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0))
+
+    /// The `buttonSecondaryForegroundColor` internal color.
+
+    static let buttonSecondaryForegroundColor = BPKColor.dynamicColor(
+        lightVariant: UIColor(red: 0.008, green: 0.302, blue: 0.686, alpha: 1),
+        darkVariant: UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1))
+
+    /// The `buttonSecondaryOnContrastBackgroundColor` internal color.
+
+    static let buttonSecondaryOnContrastBackgroundColor = BPKColor.dynamicColor(
+        lightVariant: UIColor(red: 0.812, green: 0.894, blue: 1.000, alpha: 1),
+        darkVariant: UIColor(red: 0.141, green: 0.200, blue: 0.275, alpha: 1))
+
+    /// The `buttonSecondaryOnContrastPressedBackgroundColor` internal color.
+
+    static let buttonSecondaryOnContrastPressedBackgroundColor = BPKColor.dynamicColor(
+        lightVariant: UIColor(red: 0.706, green: 0.843, blue: 1.000, alpha: 1),
+        darkVariant: UIColor(red: 0.235, green: 0.314, blue: 0.373, alpha: 1))
 }
 
 private extension UIColor {
