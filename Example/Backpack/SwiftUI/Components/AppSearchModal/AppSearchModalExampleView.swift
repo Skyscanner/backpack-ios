@@ -25,7 +25,12 @@ struct AppSearchModalExampleView: View {
     @State private var inputText = ""
     @State private var isPresented = true
     @State private var includeNearbyAirports = false
-    var showsInputAccessory = false
+    private let showsInputAccessory: Bool
+
+    init(viewModel: AppSearchModalExampleViewModel, showsInputAccessory: Bool = false) {
+        self.viewModel = viewModel
+        self.showsInputAccessory = showsInputAccessory
+    }
     
     var body: some View {
         VStack {
