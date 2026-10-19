@@ -2491,7 +2491,7 @@
 /* Begin XCLocalSwiftPackageReference section */
 		289894AE2ED70CDD00DDC932 /* XCLocalSwiftPackageReference "../../backpack-ios" */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = "../../backpack-ios";
+			relativePath = ..;
 		};
 /* End XCLocalSwiftPackageReference section */
 
