@@ -44,8 +44,7 @@ extension Font {
             if weight == .semibold {
                 return fontProvider("HelveticaNeue-Medium", size, textStyle)
             }
-            
-            
+
             if weight == .black {
                 return fontProvider("HelveticaNeue-Bold", size, textStyle)
             }
