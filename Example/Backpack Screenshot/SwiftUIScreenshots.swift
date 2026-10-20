@@ -457,6 +457,8 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
                                               userInterfaceStyle: userInterfaceStyle)
             await captureModalWithSwipeDismiss(name: "Content", scenario: "content",
                                               userInterfaceStyle: userInterfaceStyle)
+            await captureModalWithSwipeDismiss(name: "Content with accessory", scenario: "content-with-accessory",
+                                              userInterfaceStyle: userInterfaceStyle)
             await captureModalWithSwipeDismiss(name: "Error", scenario: "error",
                                               userInterfaceStyle: userInterfaceStyle)
         }

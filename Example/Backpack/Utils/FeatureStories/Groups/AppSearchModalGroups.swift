@@ -35,6 +35,10 @@ struct AppSearchModalGroupsProvider {
                     view: AppSearchModalExampleView(viewModel: .init(resultsType: .content))
                 ),
                 presentable(
+                    "Content with accessory",
+                    view: AppSearchModalExampleView(viewModel: .init(resultsType: .content), showsInputAccessory: true)
+                ),
+                presentable(
                     "Error",
                     view: AppSearchModalExampleView(viewModel: .init(resultsType: .error))
                 )
