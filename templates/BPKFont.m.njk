@@ -122,7 +122,6 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (UIFont *)fontForStyle:(BPKFontStyle)style fontManager:(BPKFontManager *)fontManager {
-
     switch (style) {
     {% for f in font %}
         case {{f.enumName}}:
@@ -140,12 +139,15 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (NSNumber *)letterSpacingForStyle:(BPKFontStyle)style {
-
     switch (style) {
     {%- for f in font %}
         {%- if f.letterSpacing != null %}
         case {{f.enumName}}:
+            {%- if f.letterSpacing.isOverride %}
+            // iOS typography override; pending matching Foundations tokens.
+            {%- else %}
             // Corresponding to Letter Spacing {{f.letterSpacing.name}}
+            {%- endif %}
             return @({{f.letterSpacing.value}});
         {%- endif %}
     {%- endfor %}

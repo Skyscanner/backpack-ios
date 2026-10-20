@@ -28,7 +28,6 @@ public struct BPKFontStyle {
 }
 
 public extension BPKFontStyle {
-
 /// Represents font size 16 with weight semibold.
 static let baseLarken = BPKFontStyle(
     font: .semibold(size: 16, textStyle: .body),

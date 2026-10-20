@@ -106,26 +106,49 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testAttributesForFontStyleWithCustomFontDefinitionInjected {
+    // Given
     NSDictionary<NSString *, UIFont *> *regularFonts = @{
         BPKFontManagerStubKey(20.0, UIFontTextStyleBody): [UIFont fontWithName:@"SnellRoundhand" size:16.0],
     };
-    NSDictionary<NSString *, UIFont *> *headingFonts = @{
-        BPKFontManagerStubKey(20.0, UIFontTextStyleTitle3): [UIFont fontWithName:@"SnellRoundhand-Bold" size:20.0],
+    NSDictionary<NSString *, UIFont *> *semiboldFonts = @{
+        BPKFontManagerStubKey(16.0, UIFontTextStyleBody): [UIFont fontWithName:@"SnellRoundhand-Bold" size:16.0],
+    };
+    NSDictionary<NSString *, UIFont *> *heavyFonts = @{
         BPKFontManagerStubKey(24.0, UIFontTextStyleTitle3): [UIFont fontWithName:@"SnellRoundhand-Black" size:24.0],
     };
-    BPKFontManagerStub *fontManager = [[BPKFontManagerStub alloc] initWithRegularFonts:regularFonts semiboldFonts:@{} heavyFonts:headingFonts];
+    BPKFontManagerStub *fontManager = [[BPKFontManagerStub alloc] initWithRegularFonts:regularFonts semiboldFonts:semiboldFonts heavyFonts:heavyFonts];
 
+    // When
     NSDictionary *regularAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextBodyLongform fontManager:fontManager];
-    NSDictionary *semiboldAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextHeading4 fontManager:fontManager];
+    NSDictionary *semiboldAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextLabel1 fontManager:fontManager];
     NSDictionary *heavyAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextHeading3 fontManager:fontManager];
 
     UIFont *resultingRegularFont = regularAttributes[NSFontAttributeName];
     UIFont *resultingSemiboldFont = semiboldAttributes[NSFontAttributeName];
-    UIFont *resulingHeavyFont = heavyAttributes[NSFontAttributeName];
+    UIFont *resultingHeavyFont = heavyAttributes[NSFontAttributeName];
 
+    // Then
     XCTAssertEqualObjects(resultingRegularFont.fontName, @"SnellRoundhand");
     XCTAssertEqualObjects(resultingSemiboldFont.fontName, @"SnellRoundhand-Bold");
-    XCTAssertEqualObjects(resulingHeavyFont.fontName, @"SnellRoundhand-Black");
+    XCTAssertEqualObjects(resultingHeavyFont.fontName, @"SnellRoundhand-Black");
+}
+
+- (void)testWhenReadingHeadingAttributesThenUsesFinalizedLetterSpacing {
+    // Given
+    NSArray<NSNumber *> *styles = @[
+        @(BPKFontStyleTextHeading1), @(BPKFontStyleTextHeading2), @(BPKFontStyleTextHeading3),
+        @(BPKFontStyleTextHeading4), @(BPKFontStyleTextHeading5), @(BPKFontStyleTextHero5),
+    ];
+    NSArray<NSNumber *> *expectedSpacing = @[@(-1.2), @(-1), @(-0.6), @(-0.6), @(-0.6), @(-1.2)];
+
+    for (NSUInteger index = 0; index < styles.count; index++) {
+        // When
+        BPKFontStyle style = (BPKFontStyle)styles[index].integerValue;
+        NSDictionary *attributes = [BPKFont attributesForFontStyle:style];
+
+        // Then
+        XCTAssertEqualWithAccuracy([attributes[NSKernAttributeName] doubleValue], expectedSpacing[index].doubleValue, 0.0001);
+    }
 }
 
 - (void)testAttributedStringWithCustomFontFaces {

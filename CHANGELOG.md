@@ -1,5 +1,18 @@
 [Latest releases](https://github.com/Skyscanner/backpack-ios/releases).
 
+# Unreleased
+
+**Breaking:**
+
+- Typography: headings 1–5 use black weight and finalized letter spacing by default;
+  hero5 letter spacing is now -1.2.
+- SwiftUI: without a custom font definition, every `.black` font uses `HelveticaNeue-Bold`.
+  This includes display7, hero5, and hero6, beyond the heading changes.
+- SwiftUI heading1 uses `.title` rather than the experiment's `.title2` scaling.
+  UIKit headings use the font manager's standard Dynamic Type scaling when enabled
+  (Title1 for heading1, Title3 for heading5); the experiment overrides returned unscaled fonts.
+  UIKit headings resolve `heavyFontFace`; SwiftUI resolves `blackFontFace`.
+
 # CocoaPods support removed
 
 `92.1.0` is the last Backpack version published to the CocoaPods trunk. The podspecs and the

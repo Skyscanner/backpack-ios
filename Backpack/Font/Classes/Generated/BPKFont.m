@@ -122,7 +122,6 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (UIFont *)fontForStyle:(BPKFontStyle)style fontManager:(BPKFontManager *)fontManager {
-
     switch (style) {
     
         case BPKFontStyleTextBaseLarken:
@@ -209,25 +208,24 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (NSNumber *)letterSpacingForStyle:(BPKFontStyle)style {
-
     switch (style) {
         case BPKFontStyleTextDisplay7:
             // Corresponding to Letter Spacing VDL2_SM
             return @(-1.6);
         case BPKFontStyleTextHeading1:
-            // Corresponding to Letter Spacing textHeading1
+            // iOS typography override; pending matching Foundations tokens.
             return @(-1.2);
         case BPKFontStyleTextHeading2:
-            // Corresponding to Letter Spacing textHeading2
+            // iOS typography override; pending matching Foundations tokens.
             return @(-1);
         case BPKFontStyleTextHeading3:
-            // Corresponding to Letter Spacing textHeading3
+            // iOS typography override; pending matching Foundations tokens.
             return @(-0.6);
         case BPKFontStyleTextHeading4:
-            // Corresponding to Letter Spacing textHeading4
+            // iOS typography override; pending matching Foundations tokens.
             return @(-0.6);
         case BPKFontStyleTextHeading5:
-            // Corresponding to Letter Spacing textHeading5
+            // iOS typography override; pending matching Foundations tokens.
             return @(-0.6);
         case BPKFontStyleTextHero1:
             // Corresponding to Letter Spacing TIGHT
@@ -242,7 +240,7 @@ NS_ASSUME_NONNULL_BEGIN
             // Corresponding to Letter Spacing TIGHT
             return @(-2);
         case BPKFontStyleTextHero5:
-            // Corresponding to Letter Spacing textHero5
+            // iOS typography override; pending matching Foundations tokens.
             return @(-1.2);
         case BPKFontStyleTextHero6:
             // Corresponding to Letter Spacing VDL2_MD
