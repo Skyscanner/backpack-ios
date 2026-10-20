@@ -37,7 +37,8 @@ public final class BpkConfiguration: NSObject {
     private let configurationAccessQueue = DispatchQueue(label: "com.backpack.configuration.access")
     private var _onConfigurationAccessed: (() -> Void)?
 
-    /// Called asynchronously once when configuration is first accessed, even if no experiment is enabled.
+    /// Called asynchronously once on a private background queue when ``bottomSheetConfig`` is first read,
+    /// even if no experiment is enabled. Perform UI updates on the main actor.
     /// Resetting clears the callback and allows another access notification.
     public var onConfigurationAccessed: (() -> Void)? {
         get { withConfigurationLock { _onConfigurationAccessed } }
@@ -60,26 +61,22 @@ public final class BpkConfiguration: NSObject {
     public var bottomSheetConfig: BpkBottomSheetConfig? {
         get {
             withConfigurationLock {
-                emitSignalIfNeeded()
+                if !configIsAccessed {
+                    configIsAccessed = true
+                    let generation = accessGeneration
+                    configurationAccessQueue.async {
+                        let callback: (() -> Void)? = self.withConfigurationLock {
+                            guard generation == self.accessGeneration else { return nil }
+                            return self._onConfigurationAccessed
+                        }
+                        // Consumer callbacks may access or reset configuration, so run them outside the lock.
+                        callback?()
+                    }
+                }
                 return _bottomSheetConfig
             }
         }
         set { withConfigurationLock { _bottomSheetConfig = newValue } }
-    }
-
-    // Called with configurationLock held, so repeated reads avoid scheduling more notifications.
-    private func emitSignalIfNeeded() {
-        guard !configIsAccessed else { return }
-        configIsAccessed = true
-        let generation = accessGeneration
-        configurationAccessQueue.async {
-            let callback: (() -> Void)? = self.withConfigurationLock {
-                guard generation == self.accessGeneration else { return nil }
-                return self._onConfigurationAccessed
-            }
-            // Consumer callbacks may access or reset configuration, so invoke them outside the lock.
-            callback?()
-        }
     }
 
     /// Applies the selected experiments once, until the configuration is reset.

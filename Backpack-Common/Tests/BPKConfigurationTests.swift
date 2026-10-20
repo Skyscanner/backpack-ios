@@ -80,7 +80,7 @@ final class BpkConfigurationTests: XCTestCase {
         XCTAssertNoThrow(try config.set(configs: [.nativeBottomSheet]))
     }
 
-    func test_givenAnActiveExperiment_whenClearingConfiguration_thenUsesTheDefault() throws {
+    func test_whenClearingConfiguration_thenStillRequiresResetBeforeReallocating() throws {
         // Given
         try config.set(configs: [.nativeBottomSheet])
 
@@ -89,6 +89,9 @@ final class BpkConfigurationTests: XCTestCase {
 
         // Then
         XCTAssertNil(config.bottomSheetConfig)
+        XCTAssertThrowsError(try config.set(configs: [.nativeBottomSheet])) { error in
+            XCTAssertEqual(error as? BpkConfiguration.ConfigurationError, .configAlreadySet)
+        }
     }
 
     func test_whenAllocatingConcurrently_thenOnlyAllowsOneAllocation() {
@@ -161,6 +164,7 @@ final class BpkConfigurationTests: XCTestCase {
         // Given a callback holding the notification queue while another allocation is accessed.
         let callbackStarted = expectation(description: "First callback started")
         let releaseCallback = DispatchSemaphore(value: 0)
+        // Release on early exit; the extra signal after the normal path is harmless.
         defer { releaseCallback.signal() }
         config.onConfigurationAccessed = {
             callbackStarted.fulfill()
