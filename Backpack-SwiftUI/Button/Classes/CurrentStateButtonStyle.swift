@@ -26,9 +26,13 @@ struct CurrentStateButtonStyle: ButtonStyle {
     let matchesParentWidth: Bool
     let getCurrentState: (_ isPressed: Bool) -> BPKButton.CurrentState
     let colorProvider: ButtonColorProvider
+
+    // Default and large buttons have minimum heights of 36 pt and 56 pt.
+    private static let defaultHeight = BPKSpacing.xxl.value - BPKSpacing.sm.value
+    private static let largeHeight = BPKSpacing.xxl.value + BPKSpacing.base.value
     
     private var height: CGFloat {
-        size == .default ? BPKSpacing.xxl.value - BPKSpacing.sm.value : BPKSpacing.xxl.value + BPKSpacing.base.value
+        size == .default ? Self.defaultHeight : Self.largeHeight
     }
     
     private var width: CGFloat? {
@@ -63,7 +67,7 @@ struct CurrentStateButtonStyle: ButtonStyle {
             .frame(minHeight: height)
             .background(background)
             .foregroundColor(foreground)
-            .clipShape(RoundedRectangle(cornerRadius: .sm))
+            .clipShape(Capsule())
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
     }
 }

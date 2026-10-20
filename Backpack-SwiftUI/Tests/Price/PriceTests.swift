@@ -26,30 +26,21 @@ class PriceTests: XCTestCase {
         let price: String
         let previousPrice: String?
         let leadingText: String?
-        let leadingIcon: (BPKIcon, String)?
-        let trailingIcon: (BPKIcon, String)?
         let trailingText: String?
         let onPriceClicked: (() -> Void)?
-        let onLeadingTextClicked: (() -> Void)?
 
         init(
             price: String,
             previousPrice: String? = nil,
             leadingText: String? = nil,
-            leadingIcon: (BPKIcon, String)? = nil,
-            trailingIcon: (BPKIcon, String)? = nil,
             trailingText: String? = nil,
-            onPriceClicked: (() -> Void)? = nil,
-            onLeadingTextClicked: (() -> Void)? = nil
+            onPriceClicked: (() -> Void)? = nil
         ) {
             self.price = price
             self.previousPrice = previousPrice
             self.leadingText = leadingText
-            self.leadingIcon = leadingIcon
-            self.trailingIcon = trailingIcon
             self.trailingText = trailingText
             self.onPriceClicked = onPriceClicked
-            self.onLeadingTextClicked = onLeadingTextClicked
         }
     }
 
@@ -65,25 +56,6 @@ class PriceTests: XCTestCase {
             leadingText: "App only deal",
             trailingText: "per day",
             onPriceClicked: {}
-        ),
-        .init(
-            price: "£50",
-            leadingText: "£10 cheaper",
-            leadingIcon: (.informationCircle, "Cheaper"),
-            onLeadingTextClicked: {}
-        ),
-        .init(
-            price: "£50",
-            leadingText: "£10 cheaper",
-            trailingIcon: (.informationCircle, "More info"),
-            onLeadingTextClicked: {}
-        ),
-        .init(
-            price: "£50",
-            leadingText: "£10 cheaper",
-            leadingIcon: (.informationCircle, "Cheaper"),
-            trailingIcon: (.informationCircle, "More info"),
-            onLeadingTextClicked: {}
         )
     ]
     
@@ -96,18 +68,15 @@ class PriceTests: XCTestCase {
         alignment: BPKPrice.Alignment,
         style: BPKPrice.Style
     ) -> some View {
-        VStack(alignment: .leading, spacing: .base) {
+        VStack(alignment: .leading) {
             ForEach(permutations) { item in
                 BPKPrice(
                     price: item.price,
                     leadingText: item.leadingText,
-                    leadingIcon: item.leadingIcon,
-                    trailingIcon: item.trailingIcon,
                     previousPrice: item.previousPrice,
                     trailingText: item.trailingText,
                     style: style,
                     onPriceClicked: item.onPriceClicked,
-                    onLeadingTextClicked: item.onLeadingTextClicked,
                     alignment: alignment,
                     size: size
                 )
@@ -186,38 +155,6 @@ class PriceTests: XCTestCase {
                 testName: "test_large_withTrailingAlignment_and\(testCase.name)Style"
             )
         }
-    }
-
-    func test_leadingTextIcons() {
-        let view = VStack(alignment: .leading, spacing: .base) {
-            BPKPrice(
-                price: "£50",
-                leadingText: "£10 cheaper",
-                leadingIcon: (.informationCircle, "Cheaper"),
-                onLeadingTextClicked: {},
-                alignment: .leading,
-                size: .large
-            )
-            BPKPrice(
-                price: "£50",
-                leadingText: "£10 cheaper",
-                trailingIcon: (.informationCircle, "More info"),
-                onLeadingTextClicked: {},
-                alignment: .leading,
-                size: .large
-            )
-            BPKPrice(
-                price: "£50",
-                leadingText: "£10 cheaper",
-                leadingIcon: (.informationCircle, "Cheaper"),
-                trailingIcon: (.informationCircle, "More info"),
-                onLeadingTextClicked: {},
-                alignment: .leading,
-                size: .large
-            )
-        }
-        .background(.surfaceDefaultColor)
-        assertSnapshot(view)
     }
 
     func test_longPriceWraps() {

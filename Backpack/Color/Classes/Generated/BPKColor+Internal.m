@@ -129,8 +129,8 @@
 
 
 + (UIColor *)internalButtonSecondaryPressedBackgroundColor {
-    return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:0.706 green:0.843 blue:1.000 alpha:1]
-                                          darkVariant:[UIColor colorWithRed:0.267 green:0.314 blue:0.373 alpha:1]];
+    return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:0.757 green:0.780 blue:0.812 alpha:1]
+                                          darkVariant:[UIColor colorWithRed:0.004 green:0.035 blue:0.075 alpha:1]];
 }
 
 
@@ -413,24 +413,6 @@
 + (UIColor *)internalRadioOnContrastUnselectedBackgroundColor {
     return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1]
                                           darkVariant:[UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:0]];
-}
-
-
-+ (UIColor *)internalButtonSecondaryForegroundColor {
-    return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:0.008 green:0.302 blue:0.686 alpha:1]
-                                          darkVariant:[UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1]];
-}
-
-
-+ (UIColor *)internalButtonSecondaryOnContrastBackgroundColor {
-    return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:0.812 green:0.894 blue:1.000 alpha:1]
-                                          darkVariant:[UIColor colorWithRed:0.141 green:0.200 blue:0.275 alpha:1]];
-}
-
-
-+ (UIColor *)internalButtonSecondaryOnContrastPressedBackgroundColor {
-    return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:0.706 green:0.843 blue:1.000 alpha:1]
-                                          darkVariant:[UIColor colorWithRed:0.235 green:0.314 blue:0.373 alpha:1]];
 }
 
 @end

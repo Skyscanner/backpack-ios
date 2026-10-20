@@ -43,8 +43,8 @@ struct PrimaryBPKButtonColorSet: BPKButtonColorSet {
 }
 
 struct SecondaryBPKButtonColorSet: BPKButtonColorSet {
-    var regular = BPKButtonColors(background: .surfaceSubtleColor, foreground: .buttonSecondaryForegroundColor)
-    var highlighted = BPKButtonColors(background: .buttonSecondaryPressedBackgroundColor, foreground: .buttonSecondaryForegroundColor)
+    var regular = BPKButtonColors(background: .surfaceSubtleColor, foreground: .secondaryButtonForeground)
+    var highlighted = BPKButtonColors(background: .secondaryButtonPressedBackground, foreground: .secondaryButtonForeground)
     var disabled = BPKButtonColors.buttonDisabled
 }
 
@@ -61,9 +61,38 @@ struct SecondaryOnDarkBPKButtonColorSet: BPKButtonColorSet {
 }
 
 struct SecondaryOnContrastBPKButtonColorSet: BPKButtonColorSet {
-    var regular = BPKButtonColors(background: .buttonSecondaryOnContrastBackgroundColor, foreground: .buttonSecondaryForegroundColor)
-    var highlighted = BPKButtonColors(background: .buttonSecondaryOnContrastPressedBackgroundColor, foreground: .buttonSecondaryForegroundColor)
+    var regular = BPKButtonColors(background: .secondaryOnContrastButtonBackground, foreground: .secondaryButtonForeground)
+    var highlighted = BPKButtonColors(background: .secondaryOnContrastButtonPressedBackground, foreground: .secondaryButtonForeground)
     var disabled = BPKButtonColors.buttonDisabled
+}
+
+// Preserve the existing iOS color pairs until matching Foundations tokens are available.
+// Android uses #B4D7FF / #010913 for both secondary pressed/loading backgrounds;
+// iOS keeps #B4D7FF / #44505F for secondary and #B4D7FF / #3C505F for secondary-on-contrast.
+private extension BPKColor {
+    static let secondaryButtonForeground = BPKColor(value: UIColor { traits in
+        traits.userInterfaceStyle == .dark
+            ? UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+            : UIColor(red: 2/255, green: 77/255, blue: 175/255, alpha: 1)
+    })
+
+    static let secondaryButtonPressedBackground = BPKColor(value: UIColor { traits in
+        traits.userInterfaceStyle == .dark
+            ? UIColor(red: 68/255, green: 80/255, blue: 95/255, alpha: 1)
+            : UIColor(red: 180/255, green: 215/255, blue: 255/255, alpha: 1)
+    })
+
+    static let secondaryOnContrastButtonBackground = BPKColor(value: UIColor { traits in
+        traits.userInterfaceStyle == .dark
+            ? UIColor(red: 36/255, green: 51/255, blue: 70/255, alpha: 1)
+            : UIColor(red: 207/255, green: 228/255, blue: 255/255, alpha: 1)
+    })
+
+    static let secondaryOnContrastButtonPressedBackground = BPKColor(value: UIColor { traits in
+        traits.userInterfaceStyle == .dark
+            ? UIColor(red: 60/255, green: 80/255, blue: 95/255, alpha: 1)
+            : UIColor(red: 180/255, green: 215/255, blue: 255/255, alpha: 1)
+    })
 }
 
 struct DestructiveBPKButtonColorSet: BPKButtonColorSet {
