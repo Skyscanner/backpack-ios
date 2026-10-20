@@ -116,7 +116,9 @@ NS_ASSUME_NONNULL_BEGIN
     NSDictionary<NSString *, UIFont *> *heavyFonts = @{
         BPKFontManagerStubKey(24.0, UIFontTextStyleTitle3): [UIFont fontWithName:@"SnellRoundhand-Black" size:24.0],
     };
-    BPKFontManagerStub *fontManager = [[BPKFontManagerStub alloc] initWithRegularFonts:regularFonts semiboldFonts:semiboldFonts heavyFonts:heavyFonts];
+    BPKFontManagerStub *fontManager = [[BPKFontManagerStub alloc] initWithRegularFonts:regularFonts
+                                                                         semiboldFonts:semiboldFonts
+                                                                            heavyFonts:heavyFonts];
 
     // When
     NSDictionary *regularAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextBodyLongform fontManager:fontManager];
@@ -136,8 +138,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testWhenReadingHeadingAttributesThenUsesFinalizedLetterSpacing {
     // Given
     NSArray<NSNumber *> *styles = @[
-        @(BPKFontStyleTextHeading1), @(BPKFontStyleTextHeading2), @(BPKFontStyleTextHeading3),
-        @(BPKFontStyleTextHeading4), @(BPKFontStyleTextHeading5), @(BPKFontStyleTextHero5),
+        @(BPKFontStyleTextHeading1),
+        @(BPKFontStyleTextHeading2),
+        @(BPKFontStyleTextHeading3),
+        @(BPKFontStyleTextHeading4),
+        @(BPKFontStyleTextHeading5),
+        @(BPKFontStyleTextHero5),
     ];
     NSArray<NSNumber *> *expectedSpacing = @[@(-1.2), @(-1), @(-0.6), @(-0.6), @(-0.6), @(-1.2)];
 
