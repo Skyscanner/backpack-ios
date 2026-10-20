@@ -16,373 +16,101 @@
  * limitations under the License.
  */
 
-import SwiftUI
 import Foundation
-// swiftlint:disable line_length
 
 public enum ConfigType: String {
-    case chips = "backpack_chips"
-    case typography = "backpack_experiment"
-    case badge = "backpack_badge"
-    case button = "backpack_button"
-    case card = "backpack_card"
-    case icon = "backpack_icon"
-    /// Presents the modal bottom sheet as a native sheet. Not part of `all`, so it can be tested on its own.
+    /// Presents the modal bottom sheet as a native sheet.
     case nativeBottomSheet = "backpack_native_bottom_sheet"
-    case all = "backpack_all"
 }
 
 @objcMembers
 public final class BpkConfiguration: NSObject {
-    /// Shared singleton instance
+    /// Shared singleton instance.
     public static let shared = BpkConfiguration()
-    
-    private override init() {}
-    
-    /// Checking for previous config setting
-    private var hasSet = false
-    
-    // Tracking if any configuration has been accessed
-    private var configIsAccessed: Bool = false
-    private let configurationAccessQueue = DispatchQueue(label: "com.backpack.configuration.access", attributes: .concurrent)
-    
-    // Callback for configuration access
-    public var onConfigurationAccessed: (() -> Void)?
-    
-    enum ConfigurationError: Error {
-        case configAlreadySet
-    }
-    
-    public enum RadiusToken {
-        case roundCorners
-    }
-    
-    /// Component configurations
-    public struct BpkButtonConfig {
-        public var radius: CGFloat?
-        public var height: CGFloat?
-        public var secondaryButtonBackgroundColour: UIColor?
-        public var secondaryButtonForegroundColour: UIColor?
-        public var secondaryButtonPressedBackgroundColour: UIColor?
-        public var setFontLabel2: Bool?
-    }
-    
-    private var _buttonConfig: BpkButtonConfig?
-    
-    public var buttonConfig: BpkButtonConfig? {
-        get { getConfig { self._buttonConfig } }
-        set { _buttonConfig = newValue }
-    }
-    
-    public struct BpkBadgeConfig {}
 
-    public struct BpkCardConfig {}
-    
-    public struct BpkChipConfig {
-        public var color: UIColor?
-        public var height: CGFloat?
-        public var heightDimension: String?
-        public var radius: CGFloat?
-        public var radiusToken: RadiusToken?
+    private override init() {}
+
+    private var hasSet = false
+    private var configIsAccessed = false
+    private var accessGeneration: UInt64 = 0
+    private let configurationLock = NSLock()
+    private let configurationAccessQueue = DispatchQueue(label: "com.backpack.configuration.access")
+    private var _onConfigurationAccessed: (() -> Void)?
+
+    /// Called asynchronously once on a private background queue when ``bottomSheetConfig`` is first read,
+    /// even if no experiment is enabled. Perform UI updates on the main actor.
+    /// Resetting clears the callback and allows another access notification.
+    public var onConfigurationAccessed: (() -> Void)? {
+        get { withConfigurationLock { _onConfigurationAccessed } }
+        set { withConfigurationLock { _onConfigurationAccessed = newValue } }
     }
-    
-    public struct BpkIconConfig {
-        public var setBpkIcon: Bool?
+
+    /// Errors raised when allocating experiments.
+    public enum ConfigurationError: Error, Equatable {
+        /// Experiments have already been allocated. Reset before allocating again.
+        case configAlreadySet
     }
 
     public struct BpkBottomSheetConfig {
         /// The modal bottom sheet is presented as a native sheet instead of the floating panel.
         public var nativeModalSheet: Bool?
     }
-    
-    /// Setting stored configs
-    private var _badgeConfig: BpkBadgeConfig?
 
-    public var badgeConfig: BpkBadgeConfig? {
-        get { getConfig { self._badgeConfig } }
-        set { _badgeConfig = newValue }
-    }
-
-    private var _chipConfig: BpkChipConfig?
-    
-    public var chipConfig: BpkChipConfig? {
-        get { getConfig { self._chipConfig } }
-        set { _chipConfig = newValue }
-    }
-    
-    private var _cardConfig: BpkCardConfig?
-
-    public var cardConfig: BpkCardConfig? {
-        get { getConfig { self._cardConfig } }
-        set { _cardConfig = newValue }
-    }
-    
-    private var _typographyConfigSet: Bool = false
-    @objc private var _heading1Config: TypographyConfig?
-    @objc private var _heading2Config: TypographyConfig?
-    @objc private var _heading3Config: TypographyConfig?
-    @objc private var _heading4Config: TypographyConfig?
-    @objc private var _heading5Config: TypographyConfig?
-    @objc private var _hero5Config: TypographyConfig?
-    
-    public var typographyConfigSet: Bool {
-        get { getConfig { self._typographyConfigSet } }
-        set { _typographyConfigSet = newValue }
-    }
-    
-    public var hero5Config: TypographyConfig? {
-        get { getConfig { self._hero5Config } }
-        set { _hero5Config = newValue }
-    }
-    
-    public var heading1Config: TypographyConfig? {
-        get { getConfig { self._heading1Config } }
-        set { _heading1Config = newValue }
-    }
-    
-    public var heading2Config: TypographyConfig? {
-        get { getConfig { self._heading2Config } }
-        set { _heading2Config = newValue }
-    }
-    
-    public var heading3Config: TypographyConfig? {
-        get { getConfig { self._heading3Config } }
-        set { _heading3Config = newValue }
-    }
-    
-    public var heading4Config: TypographyConfig? {
-        get { getConfig { self._heading4Config } }
-        set { _heading4Config = newValue }
-    }
-    
-    public var heading5Config: TypographyConfig? {
-        get { getConfig { self._heading5Config } }
-        set { _heading5Config = newValue }
-    }
-    
-    private var _iconConfig: BpkIconConfig?
-
-    public var iconConfig: BpkIconConfig? {
-        get { getConfig { self._iconConfig } }
-        set { _iconConfig = newValue }
-    }
-    
     private var _bottomSheetConfig: BpkBottomSheetConfig?
 
     public var bottomSheetConfig: BpkBottomSheetConfig? {
-        get { getConfig { self._bottomSheetConfig } }
-        set { _bottomSheetConfig = newValue }
-    }
-
-    private func getConfig<T>(getter: () -> T) -> T {
-        emitSignalIfNeeded()
-        return getter()
-    }
-
-    private func emitSignalIfNeeded() {
-        // Use async with barrier - this doesn't block the calling thread
-        // The barrier ensures thread-safe access to configIsAccessed
-        configurationAccessQueue.async(flags: .barrier) {
-            if !self.configIsAccessed {
-                self.configIsAccessed = true
-                self.onConfigurationAccessed?()
+        get {
+            withConfigurationLock {
+                if !configIsAccessed {
+                    configIsAccessed = true
+                    let generation = accessGeneration
+                    configurationAccessQueue.async {
+                        let callback: (() -> Void)? = self.withConfigurationLock {
+                            guard generation == self.accessGeneration else { return nil }
+                            return self._onConfigurationAccessed
+                        }
+                        // Consumer callbacks may access or reset configuration, so run them outside the lock.
+                        callback?()
+                    }
+                }
+                return _bottomSheetConfig
             }
         }
-    }
-    
-    private func setButtonExperiment() {
-        let secondaryLight = UIColor(red: 0.890, green: 0.941, blue: 1.000, alpha: 1.0)
-        let secondaryDark = UIColor(red: 0.141, green: 0.200, blue: 0.275, alpha: 1.0)
-        let buttonBackgroundColour = UIColor.dynamicColorTest(light: secondaryLight, dark: secondaryDark)
-        
-        let secondaryForegroundLight = UIColor(red: 2/255, green: 77/255, blue: 175/255, alpha: 1.0)
-        let secondaryForegroundDark = UIColor(red: 1, green: 1, blue: 1, alpha: 1.0)
-        let buttonForegroundColour = UIColor.dynamicColorTest(light: secondaryForegroundLight, dark: secondaryForegroundDark)
-        
-        let pressedBackgroundLight = UIColor(red: 180/255, green: 215/255, blue: 255/255, alpha: 1.0)
-        let pressedBackgroundDark = UIColor(red: 68/255, green: 80/255, blue: 95/255, alpha: 1.0)
-        let pressedBackgroundColour = UIColor.dynamicColorTest(light: pressedBackgroundLight, dark: pressedBackgroundDark)
-        
-        self.buttonConfig = BpkButtonConfig(radius: 100.0, height: 56, secondaryButtonBackgroundColour: buttonBackgroundColour, secondaryButtonForegroundColour: buttonForegroundColour, secondaryButtonPressedBackgroundColour: pressedBackgroundColour, setFontLabel2: false)
-    }
-    
-    private func setCardExperiment() {
-        self.cardConfig = BpkCardConfig()
-    }
-    
-    private func setChipExperiment() {
-        let onFillLight = UIColor(red: 21/255, green: 70/255, blue: 121/255, alpha: 1)
-        let onFillDark = UIColor(red: 2/255, green: 77/255, blue: 175/255, alpha: 1)
-        let chipOnDarkFill = UIColor.dynamicColorTest(light: onFillLight, dark: onFillDark)
-        
-        self.chipConfig = BpkChipConfig(
-            color: chipOnDarkFill,
-            height: 8,
-            heightDimension: "bpk_new_chip_height",
-            radius: 100,
-            radiusToken: .roundCorners
-        )
+        set { withConfigurationLock { _bottomSheetConfig = newValue } }
     }
 
-    private func setBadgeExperiment() {
-        self.badgeConfig = BpkBadgeConfig()
-    }
-    
-    private func setIconExperiment() {
-        self.iconConfig = BpkIconConfig(setBpkIcon: true)
-    }
-
-    private func setNativeBottomSheetExperiment() {
-        self.bottomSheetConfig = BpkBottomSheetConfig(nativeModalSheet: true)
-    }
-
-    private func setTypographyExperiment() {
-        self.typographyConfigSet = true
-        
-        self.hero5Config = TypographyConfig(
-            font: Font.blackUIFont(size: 48, style: .title2),
-            fontFixed: Font.blackUIFont(size: 48, style: .title2),
-            letterSpacing: -1.2
-        )
-        
-        self.heading1Config = TypographyConfig(
-            font: Font.blackUIFont(size: 40, style: .title2),
-            fontFixed: Font.blackUIFont(size: 40, style: .title2),
-            letterSpacing: -1.2
-        )
-        
-        self.heading2Config = TypographyConfig(
-            font: Font.blackUIFont(size: 32, style: .title2),
-            fontFixed: Font.blackUIFont(size: 32, style: .title2),
-            letterSpacing: -1
-        )
-        
-        self.heading3Config = TypographyConfig(
-            font: Font.blackUIFont(size: 24, style: .title3),
-            fontFixed: Font.blackUIFont(size: 24, style: .title3),
-            letterSpacing: -0.6
-        )
-        
-        self.heading4Config = TypographyConfig(
-            font: Font.blackUIFont(size: 20, style: .title3),
-            fontFixed: Font.blackUIFont(size: 48, style: .title3),
-            letterSpacing: -0.6
-        )
-        
-        self.heading5Config = TypographyConfig(
-            font: Font.blackUIFont(size: 16, style: .title2),
-            fontFixed: Font.blackUIFont(size: 16, style: .title2),
-            letterSpacing: -0.6
-        )
-    }
-    
-    public func font(_ token: TypographyTokenConfig?, defaultFont: Font, fixed: Bool) -> Font {
-        
-        if typographyConfigSet {
-            switch token {
-            case .heading1Config:
-                return fixed ? .blackFixed(size: 40) : .black(size: 40, textStyle: .title2)
-            case .heading2Config:
-                return fixed ? .blackFixed(size: 32) : .black(size: 32, textStyle: .title2)
-            case .heading3Config:
-                return fixed ? .blackFixed(size: 24) : .black(size: 24, textStyle: .title3)
-            case .heading4Config:
-                return fixed ? .blackFixed(size: 20) : .black(size: 20, textStyle: .title3)
-            case .heading5Config:
-                return fixed ? .blackFixed(size: 16) : .black(size: 16, textStyle: .title3)
-            case .hero5Config:
-                return fixed ? .blackFixed(size: 48) : .black(size: 48, textStyle: .largeTitle)
-            case .none:
-                return defaultFont
-            }
-        }
-        
-        return defaultFont
-    }
-    
+    /// Applies the selected experiments once, until the configuration is reset.
     public func set(configs: [ConfigType]) throws {
-        guard !hasSet else {
-            throw ConfigurationError.configAlreadySet
-        }
-        hasSet = true
-        
-        for config in configs {
-            switch config {
-            case .all:
-                setAllConfigs()
-            case .chips:
-                setChipExperiment()
-            case .typography:
-                setTypographyExperiment()
-            case .badge:
-                setBadgeExperiment()
-            case .button:
-                setButtonExperiment()
-            case .card:
-                setCardExperiment()
-            case .icon:
-                setIconExperiment()
-            case .nativeBottomSheet:
-                setNativeBottomSheetExperiment()
+        try withConfigurationLock {
+            guard !hasSet else {
+                throw ConfigurationError.configAlreadySet
+            }
+            hasSet = true
+
+            for config in configs {
+                switch config {
+                case .nativeBottomSheet:
+                    _bottomSheetConfig = BpkBottomSheetConfig(nativeModalSheet: true)
+                }
             }
         }
     }
-    
-    func setAllConfigs() {
-        setChipExperiment()
-        setTypographyExperiment()
-        setBadgeExperiment()
-        setButtonExperiment()
-        setCardExperiment()
-        setIconExperiment()
-    }
-}
 
-public enum TypographyTokenConfig {
-    case heading1Config
-    case heading2Config
-    case heading3Config
-    case heading4Config
-    case heading5Config
-    case hero5Config
-}
-
-@objcMembers
-public class TypographyConfig: NSObject {
-    public var font: UIFont?
-    public var fontFixed: UIFont?
-    public var letterSpacing: CGFloat = 0
-    public var size: CGFloat = 0
-    
-    init(
-        font: UIFont? = nil,
-        fontFixed: UIFont? = nil,
-        letterSpacing: CGFloat = 0,
-        size: CGFloat = 0
-    ) {
-        self.font = font
-        self.fontFixed = fontFixed
-        self.letterSpacing = letterSpacing
-        self.size = size
-    }
-}
-
-extension BpkConfiguration {
+    /// Restores the default behaviour and allows another experiment allocation.
+    /// Clears the callback and invalidates pending notifications from the previous allocation.
     public func reset() {
-        heading1Config = nil
-        heading2Config = nil
-        heading3Config = nil
-        heading4Config = nil
-        heading5Config = nil
-        typographyConfigSet = false
-        chipConfig = nil
-        buttonConfig = nil
-        badgeConfig = nil
-        cardConfig = nil
-        iconConfig = nil
-        bottomSheetConfig = nil
-        hasSet = false
-        configIsAccessed = false
-        onConfigurationAccessed = nil
+        withConfigurationLock {
+            _bottomSheetConfig = nil
+            hasSet = false
+            configIsAccessed = false
+            _onConfigurationAccessed = nil
+            accessGeneration &+= 1
+        }
+    }
+
+    private func withConfigurationLock<T>(_ action: () throws -> T) rethrows -> T {
+        configurationLock.lock()
+        defer { configurationLock.unlock() }
+        return try action()
     }
 }
