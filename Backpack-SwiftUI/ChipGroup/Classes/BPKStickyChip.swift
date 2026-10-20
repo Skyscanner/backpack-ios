@@ -32,8 +32,7 @@ struct BPKStickyChip: View {
             ChipButtonStyle(
                 style: style,
                 selected: stickyChip.selected,
-                disabled: false,
-                config: BpkConfiguration.shared
+                disabled: false
             )
         )
         .accessibilityAddTraits(stickyChip.selected ? [.isSelected] : [])

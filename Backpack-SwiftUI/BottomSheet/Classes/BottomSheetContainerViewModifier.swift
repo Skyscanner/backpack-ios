@@ -78,9 +78,22 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
                 .presentationDetents(finalDetents, selection: $selectedSheetDetent)
                 .presentationDragIndicator(.visible)
         }
-        .background(backgroundColor)
         .frame(maxHeight: .infinity, alignment: .top)
+        .bottomSheetBackground(backgroundColor)
         .ignoresSafeArea(.container, edges: .bottom)
+    }
+}
+
+extension View {
+    // iOS 16.4 introduced presentationBackground, which fills the sheet's presentation bounds.
+    // Earlier versions extend only the background horizontally and at the bottom, preserving content layout.
+    @ViewBuilder
+    func bottomSheetBackground(_ color: BPKColor) -> some View {
+        if #available(iOS 16.4, *) {
+            presentationBackground(Color(color.value))
+        } else {
+            background(Color(color.value), ignoresSafeAreaEdges: [.horizontal, .bottom])
+        }
     }
 }
 

@@ -23,22 +23,7 @@ import SwiftUI
 
 final class BPKButtonConfigurationTests: XCTestCase {
 
-    override func setUp() {
-        super.setUp()
-        
-        let config = BpkConfiguration.shared
-        do {
-            try config.set(configs: [.button])
-        } catch {
-            XCTFail("Failed to set button config")
-        }
-    }
     
-    override func tearDown() {
-        super.tearDown()
-        
-        BpkConfiguration.shared.reset()
-    }
     
     func test_primaryButton_configuration() {
         assertSnapshot(

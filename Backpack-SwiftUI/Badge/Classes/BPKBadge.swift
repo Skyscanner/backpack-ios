@@ -28,23 +28,21 @@ public struct BPKBadge: View {
     private let text: String
     private let icon: BPKIcon?
     private var style: BPKBadge.Style = .normal
-    private let config: BpkConfiguration?
 
     public init(_ text: String, icon: BPKIcon? = nil) {
         self.text = text
         self.icon = icon
-        self.config = BpkConfiguration.shared
     }
     
     public var body: some View {
         content
-            .padding(.leading, style.horizontalPadding(config))
+            .padding(.leading, style.horizontalPadding())
             .padding(.trailing, .md)
             .padding([.top, .bottom], .sm)
             .frame(minHeight: 24)
-            .background(style.backgroundColor(config))
+            .background(style.backgroundColor())
             .clipShape(RoundedRectangle(cornerRadius: .xs))
-            .outline(style.borderColor(config), cornerRadius: .xs)
+            .outline(style.borderColor(), cornerRadius: .xs)
             .accessibilityElement()
             .accessibilityLabel(text)
             .if(!BPKFont.enableDynamicType, transform: {
@@ -83,10 +81,10 @@ public struct BPKBadge: View {
     private var content: some View {
         HStack(spacing: .sm) {
             if let badgeIconView = createBadgeIconView(icon: icon) {
-                badgeIconView.foregroundColor(style.iconColor(config))
+                badgeIconView.foregroundColor(style.iconColor())
             }
             BPKText(text, style: .footnote)
-                .foregroundColor(style.foregroundColor(config))
+                .foregroundColor(style.foregroundColor())
         }
     }
 }

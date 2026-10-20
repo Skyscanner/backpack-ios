@@ -28,7 +28,6 @@ public struct BPKButton: View {
     private var matchesParentWidth = false
     private var accessibilityLabel: String
     private let action: () -> Void
-    private let config: BpkConfiguration?
 
     @Binding private var loading: Bool
     @Binding private var enabled: Bool
@@ -49,7 +48,6 @@ public struct BPKButton: View {
         self._enabled = enabled
         self.action = action
         self.size = size
-        self.config = BpkConfiguration.shared
     }
 
     public init(
@@ -68,7 +66,6 @@ public struct BPKButton: View {
         self._enabled = enabled
         self.action = action
         self.size = size
-        self.config = BpkConfiguration.shared
     }
 
     public init(
@@ -87,7 +84,6 @@ public struct BPKButton: View {
         self._enabled = enabled
         self.action = action
         self.size = size
-        self.config = BpkConfiguration.shared
     }
 
     public var body: some View {
@@ -106,7 +102,6 @@ public struct BPKButton: View {
                     size: size,
                     icon: icon,
                     leadingImage: leadingImage,
-                    config: config,
                     style: style
                 )
                 .opacity(loading ? 0 : 1)
@@ -115,7 +110,6 @@ public struct BPKButton: View {
         .accessibilityLabel(accessibilityLabel)
         .buttonStyle(buttonStyle)
         .disabled(!enabled || loading)
-        .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
     }
 
     public func buttonStyle(_ style: BPKButton.Style) -> BPKButton {
@@ -139,7 +133,7 @@ public struct BPKButton: View {
             getCurrentState: currentState(isPressed:),
             colorProvider: ButtonColorProvider(
                 colorSetFactory: DefaultButtonColorSetFactory()
-            ), config: config
+            )
         )
     }
 
@@ -160,15 +154,6 @@ public struct BPKButton: View {
         icon != nil && title == nil
     }
     
-    /// Computed property for corner radius based on configuration
-    private var cornerRadius: CGFloat {
-        
-        if let radiusToken = config?.buttonConfig?.radius {
-            return radiusToken
-        } else {
-            return BPKSpacing.sm.value
-        }
-    }
 }
 
 private struct ButtonLoadingContentView: View {
@@ -185,7 +170,7 @@ private struct ButtonLoadingContentView: View {
     }
 
     private var spinnerColor: BPKColor {
-        colorProvider.color(forStyle: style, currentState: .loading, config: nil).foreground
+        colorProvider.color(forStyle: style, currentState: .loading).foreground
     }
 
     private var spinnerSize: BPKSpinner.Size {
@@ -199,7 +184,6 @@ private struct ButtonContentView: View {
     let size: BPKButton.Size
     let icon: BPKButton.Icon?
     let leadingImage: Image?
-    let config: BpkConfiguration?
     let style: BPKButton.Style
 
     var body: some View {
@@ -222,7 +206,7 @@ private struct ButtonContentView: View {
 
     private func content(withTitle title: String) -> some View {
         Text(title)
-            .font(style: config?.buttonConfig?.setFontLabel2 ?? false && size == .default ? .label2 : .label1)
+            .font(style: .label1)
             .lineLimit(lineLimit())
             .underline(shouldUnderline)
             .if(!BPKFont.enableDynamicType, transform: {

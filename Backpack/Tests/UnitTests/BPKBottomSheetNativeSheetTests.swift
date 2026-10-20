@@ -204,6 +204,25 @@ final class BPKBottomSheetNativeSheetTests: XCTestCase {
         XCTAssertEqual(bottomSection.view.layer.shadowColor, bottomSection.view.backgroundColor?.cgColor)
     }
 
+    func test_whenCreated_thenTheCornerRadiusIsLeftToUIKitFromIOS26() throws {
+        // When
+        let sut = BPKBottomSheet(contentViewController: UIViewController())
+        let sheet = try XCTUnwrap(
+            (sut.viewControllerToPresent as? BPKSheetViewController)?.sheetPresentationController
+        )
+
+        // Then
+        if #unavailable(iOS 26.0) {
+            XCTAssertEqual(sheet.preferredCornerRadius, BPKCornerRadiusLg)
+        } else {
+            // iOS 26 rounds the sheet to follow the device's shape, so the radius is left untouched.
+            let untouched = UIViewController()
+            untouched.modalPresentationStyle = .pageSheet
+            let systemDefault = try XCTUnwrap(untouched.sheetPresentationController).preferredCornerRadius
+            XCTAssertEqual(sheet.preferredCornerRadius, systemDefault)
+        }
+    }
+
     func test_givenABottomSection_whenCreated_thenItIsPinnedInTheSheet() throws {
         // Given
         let bottomSection = UIViewController()
