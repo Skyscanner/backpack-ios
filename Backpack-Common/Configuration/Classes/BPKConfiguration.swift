@@ -32,12 +32,21 @@ public final class BpkConfiguration: NSObject {
 
     private var hasSet = false
     private var configIsAccessed = false
-    private let configurationAccessQueue = DispatchQueue(label: "com.backpack.configuration.access", attributes: .concurrent)
+    private var accessGeneration: UInt64 = 0
+    private let configurationLock = NSLock()
+    private let configurationAccessQueue = DispatchQueue(label: "com.backpack.configuration.access")
+    private var _onConfigurationAccessed: (() -> Void)?
 
-    /// Called once when an experimental configuration is first accessed.
-    public var onConfigurationAccessed: (() -> Void)?
+    /// Called asynchronously once when configuration is first accessed, even if no experiment is enabled.
+    /// Resetting clears the callback and allows another access notification.
+    public var onConfigurationAccessed: (() -> Void)? {
+        get { withConfigurationLock { _onConfigurationAccessed } }
+        set { withConfigurationLock { _onConfigurationAccessed = newValue } }
+    }
 
-    enum ConfigurationError: Error {
+    /// Errors raised when allocating experiments.
+    public enum ConfigurationError: Error, Equatable {
+        /// Experiments have already been allocated. Reset before allocating again.
         case configAlreadySet
     }
 
@@ -50,41 +59,61 @@ public final class BpkConfiguration: NSObject {
 
     public var bottomSheetConfig: BpkBottomSheetConfig? {
         get {
-            emitSignalIfNeeded()
-            return _bottomSheetConfig
+            withConfigurationLock {
+                emitSignalIfNeeded()
+                return _bottomSheetConfig
+            }
         }
-        set { _bottomSheetConfig = newValue }
+        set { withConfigurationLock { _bottomSheetConfig = newValue } }
     }
 
+    // Called with configurationLock held, so repeated reads avoid scheduling more notifications.
     private func emitSignalIfNeeded() {
-        configurationAccessQueue.async(flags: .barrier) {
-            if !self.configIsAccessed {
-                self.configIsAccessed = true
-                self.onConfigurationAccessed?()
+        guard !configIsAccessed else { return }
+        configIsAccessed = true
+        let generation = accessGeneration
+        configurationAccessQueue.async {
+            let callback: (() -> Void)? = self.withConfigurationLock {
+                guard generation == self.accessGeneration else { return nil }
+                return self._onConfigurationAccessed
             }
+            // Consumer callbacks may access or reset configuration, so invoke them outside the lock.
+            callback?()
         }
     }
 
     /// Applies the selected experiments once, until the configuration is reset.
     public func set(configs: [ConfigType]) throws {
-        guard !hasSet else {
-            throw ConfigurationError.configAlreadySet
-        }
-        hasSet = true
+        try withConfigurationLock {
+            guard !hasSet else {
+                throw ConfigurationError.configAlreadySet
+            }
+            hasSet = true
 
-        for config in configs {
-            switch config {
-            case .nativeBottomSheet:
-                bottomSheetConfig = BpkBottomSheetConfig(nativeModalSheet: true)
+            for config in configs {
+                switch config {
+                case .nativeBottomSheet:
+                    _bottomSheetConfig = BpkBottomSheetConfig(nativeModalSheet: true)
+                }
             }
         }
     }
 
     /// Restores the default behaviour and allows another experiment allocation.
+    /// Clears the callback and invalidates pending notifications from the previous allocation.
     public func reset() {
-        bottomSheetConfig = nil
-        hasSet = false
-        configIsAccessed = false
-        onConfigurationAccessed = nil
+        withConfigurationLock {
+            _bottomSheetConfig = nil
+            hasSet = false
+            configIsAccessed = false
+            _onConfigurationAccessed = nil
+            accessGeneration &+= 1
+        }
+    }
+
+    private func withConfigurationLock<T>(_ action: () throws -> T) rethrows -> T {
+        configurationLock.lock()
+        defer { configurationLock.unlock() }
+        return try action()
     }
 }

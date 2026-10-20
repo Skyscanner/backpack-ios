@@ -17,7 +17,7 @@
  */
 
 import XCTest
-@testable import Backpack_Common
+import Backpack_Common
 
 final class BpkConfigurationTests: XCTestCase {
     private let config = BpkConfiguration.shared
@@ -80,6 +80,37 @@ final class BpkConfigurationTests: XCTestCase {
         XCTAssertNoThrow(try config.set(configs: [.nativeBottomSheet]))
     }
 
+    func test_givenAnActiveExperiment_whenClearingConfiguration_thenUsesTheDefault() throws {
+        // Given
+        try config.set(configs: [.nativeBottomSheet])
+
+        // When
+        config.bottomSheetConfig = nil
+
+        // Then
+        XCTAssertNil(config.bottomSheetConfig)
+    }
+
+    func test_whenAllocatingConcurrently_thenOnlyAllowsOneAllocation() {
+        // Given
+        let allocation = expectation(description: "Only one allocation succeeds")
+        allocation.assertForOverFulfill = true
+
+        // When
+        DispatchQueue.concurrentPerform(iterations: 20) { _ in
+            do {
+                try config.set(configs: [.nativeBottomSheet])
+                allocation.fulfill()
+            } catch {
+                XCTAssertEqual(error as? BpkConfiguration.ConfigurationError, .configAlreadySet)
+            }
+        }
+
+        // Then
+        wait(for: [allocation], timeout: 1)
+        XCTAssertEqual(config.bottomSheetConfig?.nativeModalSheet, true)
+    }
+
     func test_whenParsingRetiredVDLNames_thenRejectsThem() {
         // Given
         let retiredValues = [
@@ -124,5 +155,55 @@ final class BpkConfigurationTests: XCTestCase {
 
         // Then
         wait(for: [nextCallback], timeout: 1)
+    }
+
+    func test_givenANotificationIsQueued_whenResetting_thenOnlyNotifiesForNewAccess() {
+        // Given a callback holding the notification queue while another allocation is accessed.
+        let callbackStarted = expectation(description: "First callback started")
+        let releaseCallback = DispatchSemaphore(value: 0)
+        defer { releaseCallback.signal() }
+        config.onConfigurationAccessed = {
+            callbackStarted.fulfill()
+            XCTAssertEqual(releaseCallback.wait(timeout: .now() + 2), .success)
+        }
+        _ = config.bottomSheetConfig
+        wait(for: [callbackStarted], timeout: 1)
+        config.reset()
+        _ = config.bottomSheetConfig
+
+        // When the queued notification belongs to an allocation that has been reset.
+        config.reset()
+        let staleCallback = expectation(description: "No notification from the previous allocation")
+        staleCallback.isInverted = true
+        config.onConfigurationAccessed = { staleCallback.fulfill() }
+        releaseCallback.signal()
+
+        // Then the new allocation is only notified after its own configuration access.
+        wait(for: [staleCallback], timeout: 0.2)
+        let nextCallback = expectation(description: "New allocation accessed")
+        config.onConfigurationAccessed = { nextCallback.fulfill() }
+        _ = config.bottomSheetConfig
+        wait(for: [nextCallback], timeout: 1)
+    }
+
+    func test_whenResettingFromAccessCallback_thenAllowsAnotherAllocation() {
+        // Given
+        let callback = expectation(description: "Callback can reset configuration")
+        config.onConfigurationAccessed = {
+            // When
+            self.config.reset()
+
+            // Then
+            XCTAssertNil(self.config.onConfigurationAccessed)
+            do {
+                try self.config.set(configs: [.nativeBottomSheet])
+            } catch {
+                XCTFail("Expected allocation after reset, got \(error)")
+            }
+            callback.fulfill()
+        }
+        _ = config.bottomSheetConfig
+        wait(for: [callback], timeout: 1)
+        XCTAssertEqual(config.bottomSheetConfig?.nativeModalSheet, true)
     }
 }
