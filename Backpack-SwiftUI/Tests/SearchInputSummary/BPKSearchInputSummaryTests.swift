@@ -138,6 +138,34 @@ class BPKSearchInputSummaryTests: XCTestCase {
         )
     }
     
+    func test_readOnlyEmptyField_withPrefixIcon_andPlaceholderText() {
+        // Regression test for a read-only (disabled) `TextField` showing its `prompt`
+        // (placeholder) text failing to mirror its alignment under RTL. See DON-3924.
+        assertSnapshot(
+            BPKSearchInputSummary(
+                placeholder: "Placeholder",
+                inputPrefix: .icon(.search),
+                readOnly: true,
+                .constant("")
+            )
+            .frame(width: 300)
+        )
+    }
+
+    func test_readOnlyField_withPrefixIcon_andValue() {
+        // Regression test for a read-only (disabled) `TextField` showing a bound value
+        // failing to mirror its alignment under RTL. See DON-3924.
+        assertSnapshot(
+            BPKSearchInputSummary(
+                placeholder: "Placeholder",
+                inputPrefix: .icon(.search),
+                readOnly: true,
+                .constant("Value")
+            )
+            .frame(width: 300)
+        )
+    }
+
     func test_accessibility() {
         let searchInput = BPKSearchInputSummary(
             inputPrefix: .icon(.search),

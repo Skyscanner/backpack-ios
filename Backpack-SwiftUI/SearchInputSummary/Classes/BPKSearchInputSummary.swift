@@ -36,6 +36,7 @@ public struct BPKSearchInputSummary: View {
     
     @Binding private var text: String
     @FocusState private var focused: Bool
+    @Environment(\.layoutDirection) private var layoutDirection
     private let placeholder: String
     private let inputPrefix: InputPrefix?
     private var style: Style = .default
@@ -84,6 +85,14 @@ public struct BPKSearchInputSummary: View {
             TextField(placeholder, text: $text, prompt: placeholderView)
                 .font(style: .bodyDefault)
                 .foregroundColor(.textPrimaryColor)
+                // `TextField`'s default/"natural" text alignment resolves from the bidi direction of
+                // its *content* (e.g. English text/placeholder → left), not from the UI's layout
+                // direction. On iOS 18+ this makes the field's text fail to mirror under RTL when its
+                // content happens to be LTR-script. `.multilineTextAlignment(.leading/.trailing)` can't
+                // fix this: those SwiftUI values are themselves direction-aware ("natural") and resolve
+                // to the same thing. We force a hard (non-"natural") `UITextField.textAlignment`
+                // instead, matching the current layout direction. See DON-3924.
+                .background(TextFieldAlignmentFixer(alignment: layoutDirection == .rightToLeft ? .right : .left))
                 .disabled(readOnly)
                 .if(readOnly, transform: { view in
                     view.accessibilityElement()
@@ -205,6 +214,83 @@ public struct BPKSearchInputSummary: View {
 fileprivate extension TextField {
     func font(style: BPKFontStyle) -> some View {
         self.font(style.font)
+    }
+}
+
+/// An invisible helper view that locates the nearest `UITextField` in the view hierarchy (via its
+/// shared ancestor with this view) and forces a hard `textAlignment`, bypassing `UITextField`'s
+/// `.natural` default which resolves from the bidi direction of the field's *content* rather than
+/// the current `layoutDirection`. See the usage site in `BPKSearchInputSummary` for context.
+private struct TextFieldAlignmentFixer: UIViewRepresentable {
+    let alignment: NSTextAlignment
+
+    func makeUIView(context: Context) -> UIView {
+        let view = UIView(frame: .zero)
+        view.isHidden = true
+        view.isUserInteractionEnabled = false
+        return view
+    }
+
+    func updateUIView(_ uiView: UIView, context: Context) {
+        // Apply synchronously: by the time `updateUIView` runs, this view is already installed in the
+        // hierarchy, and synchronous snapshot tests capture the view immediately after layout — a
+        // `DispatchQueue.main.async` here would run too late (after the snapshot has already been taken).
+        Self.applyAlignment(alignment, startingFrom: uiView)
+    }
+
+    /// Walks up the ancestor chain from `view` (since the exact hierarchy depth introduced by
+    /// SwiftUI's `.background()` isn't guaranteed) until at least one `UITextField` is found in the
+    /// ancestor's subtree. When multiple `BPKSearchInputSummary`s share that ancestor (e.g. several
+    /// docked fields stacked in the same `VStack`), picking the *first* one found in subview order
+    /// would incorrectly re-target the same (e.g. topmost) field every time — so instead we pick
+    /// whichever candidate's frame is geometrically closest to this fixer's own frame.
+    private static func applyAlignment(_ alignment: NSTextAlignment, startingFrom view: UIView) {
+        var ancestor: UIView? = view.superview
+        var depth = 0
+        while let current = ancestor, depth < 8 {
+            let candidates = allTextFields(in: current)
+            if let nearest = nearestTextField(to: view, among: candidates, in: current) {
+                nearest.textAlignment = alignment
+                return
+            }
+            ancestor = current.superview
+            depth += 1
+        }
+    }
+
+    private static func allTextFields(in view: UIView) -> [UITextField] {
+        if let textField = view as? UITextField {
+            return [textField]
+        }
+        return view.subviews.flatMap { allTextFields(in: $0) }
+    }
+
+    private static func nearestTextField(
+        to view: UIView,
+        among candidates: [UITextField],
+        in commonAncestor: UIView
+    ) -> UITextField? {
+        guard !candidates.isEmpty else { return nil }
+        let origin = view.convert(view.bounds, to: commonAncestor).center
+        return candidates.min { lhs, rhs in
+            let lhsCenter = lhs.convert(lhs.bounds, to: commonAncestor).center
+            let rhsCenter = rhs.convert(rhs.bounds, to: commonAncestor).center
+            return origin.distanceSquared(to: lhsCenter) < origin.distanceSquared(to: rhsCenter)
+        }
+    }
+}
+
+private extension CGRect {
+    var center: CGPoint {
+        CGPoint(x: midX, y: midY)
+    }
+}
+
+private extension CGPoint {
+    func distanceSquared(to other: CGPoint) -> CGFloat {
+        let dx = x - other.x
+        let dy = y - other.y
+        return dx * dx + dy * dy
     }
 }
 
