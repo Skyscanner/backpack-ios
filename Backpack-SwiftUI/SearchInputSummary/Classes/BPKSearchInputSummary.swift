@@ -239,22 +239,26 @@ private struct TextFieldAlignmentFixer: UIViewRepresentable {
     }
 
     /// Walks up the ancestor chain from `view` (since the exact hierarchy depth introduced by
-    /// SwiftUI's `.background()` isn't guaranteed) until at least one `UITextField` is found in the
-    /// ancestor's subtree. When multiple `BPKSearchInputSummary`s share that ancestor (e.g. several
-    /// docked fields stacked in the same `VStack`), picking the *first* one found in subview order
-    /// would incorrectly re-target the same (e.g. topmost) field every time — so instead we pick
-    /// whichever candidate's frame is geometrically closest to this fixer's own frame.
+    /// SwiftUI's `.background()` plus whatever other modifiers/gesture recognizers/accessibility
+    /// grouping a given call site chains isn't guaranteed — real call sites with
+    /// `.contentShape`/`.onTapGesture`/`.accessibilityElement(children:)` etc. can sit far deeper
+    /// than a minimal snapshot-test harness) until at least one `UITextField` is found in the
+    /// ancestor's subtree. We only stop at the root (`superview == nil`), since the search already
+    /// terminates as soon as a match is found — an arbitrary depth cap just risks silently giving up
+    /// too early in more deeply nested real screens. When multiple `BPKSearchInputSummary`s share
+    /// that ancestor (e.g. several docked fields stacked in the same `VStack`), picking the *first*
+    /// one found in subview order would incorrectly re-target the same (e.g. topmost) field every
+    /// time — so instead we pick whichever candidate's frame is geometrically closest to this
+    /// fixer's own frame.
     private static func applyAlignment(_ alignment: NSTextAlignment, startingFrom view: UIView) {
         var ancestor: UIView? = view.superview
-        var depth = 0
-        while let current = ancestor, depth < 8 {
+        while let current = ancestor {
             let candidates = allTextFields(in: current)
             if let nearest = nearestTextField(to: view, among: candidates, in: current) {
                 nearest.textAlignment = alignment
                 return
             }
             ancestor = current.superview
-            depth += 1
         }
     }
 
