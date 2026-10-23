@@ -127,6 +127,26 @@ class BPKCellItemTests: XCTestCase {
         )
     }
 
+    // These two aren't snapshot tests like their siblings above: `enabled` only affects
+    // interactivity, not appearance, so a pixel diff can't distinguish them. Instead, mount
+    // the view for real (BPKSwitch's `.disabled(!enabled)` bridges to a native UISwitch under
+    // SwiftUI's SwitchToggleStyle) and read its `isEnabled` directly off the hosted view tree.
+    func test_slotSwitchEnabled_switchIsEnabled() {
+        let cellItem = BPKCellItem(
+            title: "Push notifications",
+            slot: .switchDisableable(isOn: .constant(true), enabled: true)
+        )
+        XCTAssertEqual(hostedSwitch(in: cellItem)?.isEnabled, true)
+    }
+
+    func test_slotSwitchDisabled_switchIsDisabled() {
+        let cellItem = BPKCellItem(
+            title: "Push notifications",
+            slot: .switchDisableable(isOn: .constant(true), enabled: false)
+        )
+        XCTAssertEqual(hostedSwitch(in: cellItem)?.isEnabled, false)
+    }
+
     // MARK: - Slot Content: Text
 
     func test_slotText() {
@@ -209,5 +229,26 @@ class BPKCellItemTests: XCTestCase {
             .frame(width: 375)
             .padding(.sm)
         )
+    }
+
+    private func hostedSwitch<V: View>(in view: V) -> UISwitch? {
+        let host = UIHostingController(rootView: view)
+        let window = UIWindow(frame: CGRect(x: 0, y: 0, width: 375, height: 100))
+        window.rootViewController = host
+        window.makeKeyAndVisible()
+        host.view.layoutIfNeeded()
+
+        func walk(_ view: UIView) -> UISwitch? {
+            if let uiSwitch = view as? UISwitch {
+                return uiSwitch
+            }
+            for subview in view.subviews {
+                if let found = walk(subview) {
+                    return found
+                }
+            }
+            return nil
+        }
+        return walk(host.view)
     }
 }
