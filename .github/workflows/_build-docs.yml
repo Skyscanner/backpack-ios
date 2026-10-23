@@ -46,23 +46,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gems-${{ env.ImageVersion }}
 
-      - name: Cache Pods
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        with:
-          path: Example/Pods
-          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-pods-
-
       - name: Bundle Install
         run: bundle install --jobs 4 --retry 3
 
-      - name: Pod Install
-        run: bundle exec pod install
-        working-directory: Example
-
-      - name: Select Xcode 16
-        run: sudo xcode-select --switch /Applications/Xcode_16.4.app
+      - name: Setup SwiftPM workspace
+        uses: ./.github/actions/spm-setup
 
       - name: Install sourcekitten
         run: brew install sourcekitten

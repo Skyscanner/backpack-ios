@@ -1,6 +1,5 @@
 # Blur Effects
 
-[![License](https://img.shields.io/cocoapods/l/Backpack-SwiftUI.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0)
 [![SwiftUI Compatibility](https://img.shields.io/badge/SwiftUI-Compatible-blue)](https://backpack.github.io/ios/versions/latest/swiftui/Structs/BlurEffects.html)
 [![View on GitHub](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack-SwiftUI/Blur)
 

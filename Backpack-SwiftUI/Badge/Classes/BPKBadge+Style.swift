@@ -19,10 +19,10 @@
 import Backpack_Common
 
 internal extension BPKBadge.Style {
-    func backgroundColor(_ config: BpkConfiguration?) -> BPKColor {
+    func backgroundColor() -> BPKColor {
         switch self {
         case .success, .warning, .destructive, .normal:
-            return config?.badgeConfig == nil ? BPKColor.badgeBackgroundNormalColor : BPKColor.clear
+            return BPKColor.clear
         case .inverse:
             return BPKColor.surfaceDefaultColor
         case .outline:
@@ -33,10 +33,12 @@ internal extension BPKBadge.Style {
             return BPKColor.coreAccentColor
         case .subtle:
             return BPKColor.badgeBackgroundNormalColor
+        case .loyalty:
+            return BPKColor.statusLoyaltySpotColor
         }
     }
     
-    func foregroundColor(_ config: BpkConfiguration?) -> BPKColor {
+    func foregroundColor() -> BPKColor {
         switch self {
         case .success, .warning, .destructive, .normal, .inverse, .subtle:
             return BPKColor.textPrimaryColor
@@ -44,19 +46,21 @@ internal extension BPKBadge.Style {
             return BPKColor.textOnDarkColor
         case .brand:
             return BPKColor.textPrimaryInverseColor
+        case .loyalty:
+            return BPKColor.textOnLightColor
         }
     }
     
-    func borderColor(_ config: BpkConfiguration?) -> BPKColor? {
+    func borderColor() -> BPKColor? {
         switch self {
         case .outline:
-            return config?.badgeConfig == nil ? BPKColor.textOnDarkColor : BPKColor.clear
+            return BPKColor.clear
         default:
             return nil
         }
     }
     
-    func iconColor(_ config: BpkConfiguration?) -> BPKColor {
+    func iconColor() -> BPKColor {
         switch self {
         case .success:
             return BPKColor.statusSuccessSpotColor
@@ -64,17 +68,17 @@ internal extension BPKBadge.Style {
             return BPKColor.statusWarningSpotColor
         case .destructive:
             return BPKColor.statusDangerSpotColor
-        case .normal, .strong, .inverse, .outline, .brand, .subtle:
-            return foregroundColor(config)
+        case .normal, .strong, .inverse, .outline, .brand, .subtle, .loyalty:
+            return foregroundColor()
         }
     }
 
-    func horizontalPadding(_ config: BpkConfiguration?) -> BPKSpacing {
+    func horizontalPadding() -> BPKSpacing {
         switch self {
-        case .strong, .brand, .inverse, .outline, .subtle:
+        case .strong, .brand, .inverse, .outline, .subtle, .loyalty:
             return .md
         default:
-            return config?.badgeConfig == nil ? .md : .none
+            return .none
         }
     }
 }

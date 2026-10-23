@@ -1,6 +1,5 @@
 # Backpack-SwiftUI/NavigationView
 
-[![Cocoapods](https://img.shields.io/cocoapods/v/Backpack-SwiftUI.svg?style=flat)](hhttps://cocoapods.org/pods/Backpack-SwiftUI)
 [![class reference](https://img.shields.io/badge/Class%20reference-iOS-blue)](https://backpack.github.io/ios/versions/latest/swiftui/Structs/BPKNavigationView.html)
 [![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack-SwiftUI/NavigationView)
 
@@ -95,3 +94,7 @@ BPKNavigationView(
     Text("Content")
 }
 ```
+
+### Side safe areas and touch targets
+
+The bar's background runs under side safe areas, such as the iPhone Duo's side rail, while its title and items stay inside the safe area. Icon items accept touches across Apple's 44 pt minimum touch target.

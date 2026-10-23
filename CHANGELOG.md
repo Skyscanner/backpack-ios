@@ -1,5 +1,33 @@
 [Latest releases](https://github.com/Skyscanner/backpack-ios/releases).
 
+# Unreleased
+
+**Breaking:**
+
+- Typography: headings 1–5 use black weight and finalized letter spacing by default;
+  hero5 letter spacing is now -1.2.
+- SwiftUI: without a custom font definition, every `.black` font uses `HelveticaNeue-Bold`.
+  This includes display7, hero5, and hero6, beyond the heading changes.
+- SwiftUI heading1 uses `.title` rather than the experiment's `.title2` scaling.
+  UIKit headings use the font manager's standard Dynamic Type scaling when enabled
+  (Title1 for heading1, Title3 for heading5); the experiment overrides returned unscaled fonts.
+  UIKit headings resolve `heavyFontFace`; SwiftUI resolves `blackFontFace`.
+
+# CocoaPods support removed
+
+`92.1.0` is the last Backpack version published to the CocoaPods trunk. The podspecs and the
+publishing pipeline have been removed, and Swift Package Manager is now the only supported way to
+depend on Backpack.
+
+Existing Podfiles keep working: every version already on the trunk stays installable, so nothing
+breaks if you do nothing. You just stop receiving new versions. To stay on CocoaPods for now, pin to
+`~> 92.1` or to the `92.1.0` tag. To keep receiving updates, move to Swift Package Manager.
+
+CocoaPods [entered maintenance mode](https://blog.cocoapods.org/CocoaPods-Support-Plans/) in August
+2024 and its [trunk stops accepting new versions](https://blog.cocoapods.org/CocoaPods-Specs-Repo/)
+permanently on 2 December 2026. See [README](README.md#cocoapods-removed) and
+[Documentation/SPM](Documentation/SPM/README.md).
+
 # 50.1.0
 
 **Added:**

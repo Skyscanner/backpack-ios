@@ -1,6 +1,5 @@
 # Backpack-SwiftUI/Dialog
 
-[![Cocoapods](https://img.shields.io/cocoapods/v/Backpack-SwiftUI.svg?style=flat)](hhttps://cocoapods.org/pods/Backpack-SwiftUI)
 [![class reference](https://img.shields.io/badge/Class%20reference-iOS-blue)](https://backpack.github.io/ios/versions/latest/swiftui/Structs/BPKDialog.html)
 [![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack-SwiftUI/Dialog)
 
@@ -137,3 +136,7 @@ Text("Screen content")
         confirmButton: BPKDialogButton("Confirm") { isPresented.toggle() }
     )
 ```
+
+## Short windows
+
+A dialog keeps a margin from the window's edges. When its text is too long for the window, for example on a phone in landscape or on the iPhone Duo's inner display in landscape, the text scrolls and the buttons stay in view.

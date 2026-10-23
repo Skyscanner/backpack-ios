@@ -323,4 +323,34 @@ internal extension BPKColor {
     
     static let pageIndicatorButtonCarouselPressedBackgroundColor = BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.8)
         .darkVariant(BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.8))
+
+    /// The `radioDefaultUnselectedStrokeColor` internal color.
+    
+    static let radioDefaultUnselectedStrokeColor = BPKColor(red: 0.384, green: 0.412, blue: 0.443, alpha: 1)
+        .darkVariant(BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.5019607843137255))
+
+    /// The `radioDefaultDisabledBackgroundColor` internal color.
+    
+    static let radioDefaultDisabledBackgroundColor = BPKColor(red: 0.757, green: 0.780, blue: 0.812, alpha: 1)
+        .darkVariant(BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.5019607843137255))
+
+    /// The `radioDefaultSelectedBackgroundColor` internal color.
+    
+    static let radioDefaultSelectedBackgroundColor = BPKColor(red: 0.000, green: 0.384, blue: 0.890, alpha: 1)
+        .darkVariant(BPKColor(red: 0.518, green: 0.914, blue: 1.000, alpha: 1))
+
+    /// The `radioOnContrastSelectedBackgroundColor` internal color.
+    
+    static let radioOnContrastSelectedBackgroundColor = BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1)
+        .darkVariant(BPKColor(red: 0.518, green: 0.914, blue: 1.000, alpha: 1))
+
+    /// The `radioInvalidBackgroundColor` internal color.
+    
+    static let radioInvalidBackgroundColor = BPKColor(red: 0.906, green: 0.031, blue: 0.400, alpha: 1)
+        .darkVariant(BPKColor(red: 1.000, green: 0.392, blue: 0.612, alpha: 1))
+
+    /// The `radioOnContrastUnselectedBackgroundColor` internal color.
+    
+    static let radioOnContrastUnselectedBackgroundColor = BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1)
+        .darkVariant(BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0))
 }

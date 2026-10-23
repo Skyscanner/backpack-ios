@@ -113,12 +113,6 @@ class BPKOverlaySnapshotTest: XCTestCase {
     }
     
     private func image(named: String) -> UIImage? {
-        guard let bundlePath = Bundle(for: Self.self).path(forResource: "SnapshotTestImages", ofType: "bundle") else {
-            print("Could not locate resource")
-            return nil
-        }
-        
-        let bundle = Bundle(path: bundlePath)
-        return UIImage(named: named, in: bundle, compatibleWith: nil)
+        testImage(named: named)
     }
 }

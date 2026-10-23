@@ -1,0 +1,41 @@
+/*
+ * Backpack - Skyscanner's Design Test
+ *
+ * Copyright 2018 Skyscanner Ltd
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#import <Foundation/Foundation.h>
+
+#if __has_include(<Backpack_Common/Backpack_Common-Swift.h>)
+#import <Backpack_Common/Backpack_Common-Swift.h>
+#elif __has_include("Backpack_Common-Swift.h")
+#import "Backpack_Common-Swift.h"
+#else
+@protocol BPKFontDefinitionProtocol <NSObject>
+@property(nonatomic, copy, readonly) NSString *fontFamily;
+@property(nonatomic, copy, readonly) NSString *regularFontFace;
+@property(nonatomic, copy, readonly) NSString *semiboldFontFace;
+@property(nonatomic, copy, readonly) NSString *blackFontFace;
+@property(nonatomic, copy, readonly) NSString *heavyFontFace;
+@end
+#endif
+
+NS_ASSUME_NONNULL_BEGIN
+
+NS_SWIFT_NAME(TestFontDefinition) @interface BPKTestFontDefinition : NSObject<BPKFontDefinitionProtocol>
+
+@end
+
+NS_ASSUME_NONNULL_END

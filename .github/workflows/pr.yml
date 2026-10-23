@@ -124,3 +124,22 @@ jobs:
             } else {
               console.log('All required labels already present');
             }
+
+  ReleaseDraftValidation:
+    name: Validate Release Drafter
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        id: app-token
+        with:
+          app-id: ${{ vars.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+          permission-contents: read
+          permission-pull-requests: read
+
+      - name: Validate release drafting without publishing
+        uses: release-drafter/release-drafter@978bb0b30c5ee8cdd332ced253758157150d43f0 # v7.10.0
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          dry-run: true
+          commitish: ${{ github.event.pull_request.base.ref }}

@@ -21,8 +21,8 @@ import Backpack_Common
 struct ButtonColorProvider {
     let colorSetFactory: ButtonColorSetFactory
     
-    func color(forStyle style: BPKButton.Style, currentState: BPKButton.CurrentState, config: BpkConfiguration?) -> BPKButtonColors {
-        let colorSet = colorSetFactory.colorSet(forStyle: style, config: config)
+    func color(forStyle style: BPKButton.Style, currentState: BPKButton.CurrentState) -> BPKButtonColors {
+        let colorSet = colorSetFactory.colorSet(forStyle: style)
         switch currentState {
         case .regular: return colorSet.regular
         case .loading: return colorSet.loading
@@ -32,16 +32,16 @@ struct ButtonColorProvider {
     }
 }
 protocol ButtonColorSetFactory {
-    func colorSet(forStyle style: BPKButton.Style, config: BpkConfiguration?) -> BPKButtonColorSet
+    func colorSet(forStyle style: BPKButton.Style) -> BPKButtonColorSet
 }
 
 struct DefaultButtonColorSetFactory: ButtonColorSetFactory {
-    func colorSet(forStyle style: BPKButton.Style, config: BpkConfiguration? = nil) -> BPKButtonColorSet {
+    func colorSet(forStyle style: BPKButton.Style) -> BPKButtonColorSet {
         switch style {
         case .primary: return PrimaryBPKButtonColorSet()
-        case .secondary: return SecondaryBPKButtonColorSet(config: config)
+        case .secondary: return SecondaryBPKButtonColorSet()
         case .secondaryOnDark: return SecondaryOnDarkBPKButtonColorSet()
-        case .secondaryOnContrast: return SecondaryOnContrastBPKButtonColorSet(config: config)
+        case .secondaryOnContrast: return SecondaryOnContrastBPKButtonColorSet()
         case .destructive: return DestructiveBPKButtonColorSet()
         case .featured: return FeaturedBPKButtonColorSet()
         case .link: return LinkBPKButtonColorSet()

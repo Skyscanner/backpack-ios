@@ -19,8 +19,6 @@
 #ifndef __BACKPACK_RADII__
 #define __BACKPACK_RADII__
 
-#ifdef SWIFT_PACKAGE
 #import "BPKRadii.h"
-#endif
 
 #endif

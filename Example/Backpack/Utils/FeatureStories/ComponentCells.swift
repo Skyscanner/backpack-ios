@@ -56,7 +56,6 @@ struct ComponentCellsProvider {
             checkboxes(),
             chips(),
             chipGroup(),
-            configuration(),
             dynamicLayout(),
             fieldSet(),
             flightLeg(),
@@ -65,6 +64,7 @@ struct ComponentCellsProvider {
             graphicPromo(),
             dialog(),
             horizontalNavigation(),
+            iconBullet(),
             icon(),
             imageGalleryPreview(),
             imageGalleryGridView(),
@@ -82,6 +82,7 @@ struct ComponentCellsProvider {
             price(),
             priceRange(),
             progressBar(),
+            radios(),
             ratings(),
             ratingBar(),
             searchInputControl(),
@@ -237,17 +238,6 @@ extension ComponentCellsProvider {
         )
     }
     
-    private func configuration() -> CellDataSource {
-        return ComponentCellDataSource(
-            title: "Configuration",
-            tabs: [
-                .swiftui(presentable: CustomPresentable(generateViewController: {
-                    ContentUIHostingController(ConfigurationExampleView())
-                }))
-            ],
-            showChildren: { showComponent(title: "Configuration", tabs: $0) }
-        )
-    }
     private func flare() -> CellDataSource {
         ComponentCellDataSource(
             title: "Flare views",
@@ -291,6 +281,17 @@ extension ComponentCellsProvider {
                 }))
             ],
             showChildren: { showComponent(title: "Horizontal navigation", tabs: $0) }
+        )
+    }
+    private func iconBullet() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Icon Bullet",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(IconBulletExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Icon Bullet", tabs: $0) }
         )
     }
     private func icon() -> CellDataSource {
@@ -396,6 +397,17 @@ extension ComponentCellsProvider {
                 }))
             ],
             showChildren: { showComponent(title: "Progress bar", tabs: $0) }
+        )
+    }
+    private func radios() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Radio",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(RadioExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Radio", tabs: $0) }
         )
     }
     private func ratings() -> CellDataSource {

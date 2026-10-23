@@ -17,27 +17,11 @@
  */
 #import "BPKObjcUIKitCard.h"
 
-#ifdef SWIFT_PACKAGE
 #import <Backpack/Color.h>
-#else
-#import "Generated/BPKColor.h"
-#endif
 #import <Backpack/Common.h>
-#ifdef SWIFT_PACKAGE
 #import <Backpack/Radii.h>
-#else
-#import "Generated/BPKRadii.h"
-#endif
-#ifdef SWIFT_PACKAGE
 #import <Backpack/Shadow.h>
-#else
-#import "Generated/BPKShadow.h"
-#endif
-#ifdef SWIFT_PACKAGE
 #import <Backpack/Spacing.h>
-#else
-#import "Generated/BPKSpacing.h"
-#endif
 
 #import "BPKCardConfigurationContainer.h"
 

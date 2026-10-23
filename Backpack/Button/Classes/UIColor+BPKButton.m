@@ -18,11 +18,7 @@
  */
 #import "UIColor+BPKButton.h"
 
-#ifdef SWIFT_PACKAGE
 #import "Backpack/Color.h"
-#else
-#import "Generated/BPKColor.h"
-#endif
 
 @implementation UIColor(BPKObjcUIKitButton)
 

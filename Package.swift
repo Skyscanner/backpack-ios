@@ -101,6 +101,7 @@ let backpackSwiftUISourceDirs = [
   "Font",
   "GraphicPromo",
   "HorizontalNavigation",
+  "IconBullet",
   "Icons",
   "ImageGalleryGrid",
   "ImageGalleryPreview",
@@ -117,6 +118,7 @@ let backpackSwiftUISourceDirs = [
   "Price",
   "PriceRange",
   "ProgressBar",
+  "Radio",
   "Radii",
   "Rating",
   "RatingBar",
@@ -200,8 +202,6 @@ let targets: [Target] = [
       // the target produced no resource bundle at all, and bpkProgressiveBlur() could
       // never resolve its shader under SPM.
       //
-      // The path still matches the CocoaPods glob 'Backpack-SwiftUI/*/Classes/**/*.metal'
-      // in Backpack-SwiftUI.podspec, so the CocoaPods build is unaffected.
       resources: [
         .process("Shaders/Classes/VariableBlur.metal")
       ]
@@ -301,24 +301,17 @@ let targets: [Target] = [
     // `.process("Assets")` emit "Invalid Resource 'Assets': File not found" for
     // every remote SPM consumer. Directory resources are globbed at build time,
     // so fonts downloaded after dependency resolution are still bundled.
-    //
-    // The define makes BackpackFontsBundle's `#if ... SWIFT_MODULE_RESOURCE_BUNDLE_AVAILABLE`
-    // branch real: the resource is always declared, so Bundle.module always exists.
     .target(
       name: "Backpack_Fonts",
       path: "Backpack-Fonts",
       exclude: [
-        "Scripts",
-        "Backpack-Fonts.podspec"
+        "Scripts"
       ],
       sources: [
         "Sources"
       ],
       resources: [
         .process("Assets")
-      ],
-      swiftSettings: [
-        .define("SWIFT_MODULE_RESOURCE_BUNDLE_AVAILABLE")
       ]
     ),
 
@@ -328,18 +321,55 @@ let targets: [Target] = [
       dependencies: ["Backpack_Common"],
       path: "Backpack-Common/Tests"
     ),
+    // Swift unit tests. The Objective-C ones live in a sibling target because
+    // SwiftPM targets are single-language: a directory holding both .swift and .m
+    // fails with "target contains mixed language source files".
     .testTarget(
       name: "BackpackTests",
       dependencies: [
         "Backpack",
+        "Backpack_Common",
         "Backpack_Tokens"
       ],
       path: "Backpack/Tests/UnitTests",
       exclude: [
-        "Images.xcassets"
+        "ObjC"
       ],
-      sources: [
-        "BPKSkeletonTests.swift"
+      resources: [
+        .process("Images.xcassets")
+      ]
+    ),
+    .testTarget(
+      name: "BackpackObjCTests",
+      dependencies: [
+        "Backpack",
+        "Backpack_ObjC",
+        "Backpack_Tokens"
+      ],
+      path: "Backpack/Tests/UnitTests/ObjC",
+      cSettings: [
+        .headerSearchPath("../../../../Backpack/SPMObjCHeaders"),
+        .headerSearchPath("../../../../Backpack/SPMObjCHeaders/Backpack")
+      ]
+    ),
+    // UIKit snapshot tests. __Snapshots__ is excluded rather than bundled:
+    // SnapshotTesting resolves reference images from the source directory via
+    // #file, so shipping 573 PNGs into the test bundle would only bloat it.
+    .testTarget(
+      name: "BackpackSnapshotTests",
+      dependencies: [
+        "Backpack",
+        "Backpack_Common",
+        "Backpack_Tokens",
+        .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
+      ],
+      path: "Backpack/Tests/SnapshotTests",
+      exclude: [
+        "__Snapshots__",
+        "SnapshotTests-Info.plist"
+      ],
+      resources: [
+        .process("Images.xcassets")
       ]
     ),
     .testTarget(
@@ -350,7 +380,8 @@ let targets: [Target] = [
       ],
       path: "Backpack-SwiftUI/Tests",
       resources: [
-        .process("Images.xcassets")
+        .process("Images.xcassets"),
+        .copy("skyscanner_test.mp4")
       ]
     ),
 ]

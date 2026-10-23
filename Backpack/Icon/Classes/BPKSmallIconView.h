@@ -18,11 +18,7 @@
 #import <UIKit/UIKit.h>
 
 #import "BPKObjcUIKitIconView.h"
-#ifdef SWIFT_PACKAGE
 #import "Generated/BPKSmallIconNames.h"
-#else
-#import <Backpack/BPKSmallIconNames.h>
-#endif
 
 NS_ASSUME_NONNULL_BEGIN
 

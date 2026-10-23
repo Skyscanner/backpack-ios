@@ -26,12 +26,14 @@ struct ExpandedNavigationBar: View {
         ZStack(alignment: .leading) {
             Color(style.backgroundColor(expanded: true))
                 .frame(height: style.expandedNavigationBarHeight)
+                .ignoresSafeArea(edges: .horizontal)
             BPKText(title ?? "", style: .heading2)
                 .foregroundColor(style.foregroundColor(expanded: true))
                 .padding(.top, -style.largeTitlePadding)
                 .frame(height: style.expandedNavigationBarHeight)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, .base)
+                .accessibilityAddTraits(title?.isEmpty == false ? .isHeader : [])
         }
     }
 }

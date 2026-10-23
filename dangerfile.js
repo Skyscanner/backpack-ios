@@ -47,18 +47,24 @@ const createdFiles = danger.git.created_files;
 const modifiedFiles = danger.git.modified_files;
 const fileChanges = [...modifiedFiles, ...createdFiles];
 
-const pbxprojFilePath = 'Example/Backpack.xcodeproj/project.pbxproj';
+const pbxprojFilePath = 'Example/Backpack-SPM.xcodeproj/project.pbxproj';
 
 const projectFileMentionsRelative = async () => {
-  const stat = await fs.promises.stat(pbxprojFilePath);
-  if (!stat.isFile()) {
+  // stat rejects on a missing path rather than returning false, and this runs
+  // inside a schedule() block, so a missing project would fail Danger outright.
+  const stat = await fs.promises.stat(pbxprojFilePath).catch(() => null);
+  if (!stat || !stat.isFile()) {
     return false;
   }
 
   const content = await fs.promises.readFile(pbxprojFilePath, {
     encoding: 'utf-8',
   });
-  return content.includes('SkyscannerRelative');
+  // The SwiftPM project has a build phase that downloads the proprietary fonts,
+  // and its shell script names them legitimately. Only a committed file
+  // reference to the fonts is a problem, so ignore shell scripts.
+  const withoutShellScripts = content.replace(/shellScript = "(?:[^"\\]|\\.)*";/g, '');
+  return withoutShellScripts.includes('SkyscannerRelative');
 };
 
 const hasNonRTLAnchor = async (filePath) => {

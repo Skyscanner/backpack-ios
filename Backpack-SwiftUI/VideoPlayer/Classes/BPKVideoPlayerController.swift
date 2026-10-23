@@ -17,9 +17,31 @@
  */
 
 import AVFoundation
+import Combine
 import UIKit
 
 // MARK: - Playback state
+
+/// Normalised failure categories emitted by a video player, aligned with the web taxonomy.
+public enum BPKVideoPlayerError: Error, Equatable, Sendable {
+    case aborted
+    case network
+    case decode
+    case sourceNotSupported
+    case loadTimeout
+    case unknown
+
+    public var code: String {
+        switch self {
+        case .aborted: "MEDIA_ERR_ABORTED"
+        case .network: "MEDIA_ERR_NETWORK"
+        case .decode: "MEDIA_ERR_DECODE"
+        case .sourceNotSupported: "MEDIA_ERR_SRC_NOT_SUPPORTED"
+        case .loadTimeout: "LOAD_TIMEOUT"
+        case .unknown: "UNKNOWN_ERROR"
+        }
+    }
+}
 
 /// The current playback state of a `BPKVideoPlayerController`.
 /// A single published value drives all UI — no separate `isPlaying`/`isLoading` flags needed.
@@ -29,7 +51,7 @@ public enum BPKVideoPlayerState: Equatable {
     case playing
     case paused
     case buffering
-    case failed(Error)
+    case failed(BPKVideoPlayerError)
 
     public var isLoading: Bool {
         self == .loading || self == .buffering
@@ -39,51 +61,146 @@ public enum BPKVideoPlayerState: Equatable {
         self == .playing
     }
 
-    public static func == (lhs: BPKVideoPlayerState, rhs: BPKVideoPlayerState) -> Bool {
-        switch (lhs, rhs) {
-        case (.loading, .loading), (.readyToPlay, .readyToPlay),
-             (.playing, .playing), (.paused, .paused), (.buffering, .buffering):
-            return true
-        case (.failed, .failed):
-            return true
-        default:
-            return false
-        }
+    public var isActive: Bool {
+        self == .playing || self == .buffering
     }
+}
+
+/// Controls how a video player's audio interacts with the device audio session.
+public enum BPKVideoPlayerAudioSessionPolicy: Sendable {
+    /// Treats video audio as non-primary, respecting the Ring/Silent switch.
+    case ambient
+
+    /// Treats video audio as content playback, so it continues when the Ring/Silent switch is on.
+    case playback
 }
 
 // MARK: - Controller
 
 /// Shareable player controller. Owns one AVPlayer instance and can be injected
 /// into multiple views simultaneously for continuous playback across transitions.
+@MainActor
 public final class BPKVideoPlayerController: ObservableObject {
 
     /// The underlying AVPlayer instance.
     ///
     /// - Warning: Use `play()`, `pause()`, and `toggle()` rather than calling
-    ///   `player.play()`/`player.pause()` directly — direct calls bypass state tracking.
+    ///   the equivalent methods on `player` directly. Direct playback and seeking
+    ///   calls bypass controller state and playback-progress tracking.
     public let player: AVPlayer
 
     /// The current playback state. Drives all UI — spinner, play/pause icon, error view.
     @Published public private(set) var state: BPKVideoPlayerState = .loading
 
+    /// Whether the player is muted. Drives custom mute controls.
+    @Published public private(set) var isMuted = false
+
+    /// Cumulative network bytes transferred since this controller was created.
+    ///
+    /// Persists across loop replays: an `AVPlayerLooper` swap starts a fresh access log on the
+    /// new item, so the outgoing item's final tally is folded into a running total before the
+    /// swap rather than being dropped. This is a per-impression counter for CDN-cost dashboards
+    /// (mirrors `BpkVideoPlayerController.bytesTransferred` on Android), not a per-play-through one.
+    ///
+    /// - Note: AVFoundation's asset networking bypasses New Relic Mobile's URLSession
+    ///   instrumentation. This is the only iOS route to video data-transfer metrics.
+    @Published public private(set) var bytesTransferred: Int64 = 0
+
+    // MARK: - Playback progress
+
+    /// The latest playback progress, or `nil` until duration is known.
+    public var progress: BPKVideoPlayerProgress? {
+        progressSubject.value
+    }
+
+    /// Emits the current complete snapshot and subsequent distinct updates.
+    /// Values are delivered on the main queue.
+    public var progressPublisher: AnyPublisher<BPKVideoPlayerProgress, Never> {
+        progressSubject
+            .compactMap { $0 }
+            .removeDuplicates()
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+
+    // MARK: - Configuration and observations
+
     private let autoPlay: Bool
-    private let loop: Bool
+    let loop: Bool
     private let loadTimeout: TimeInterval
+    private let audioSessionPolicy: BPKVideoPlayerAudioSessionPolicy
+    let periodicTimeObserver: BPKVideoPlayerPeriodicTimeObserving
+    let durationProvider: BPKVideoPlayerDurationProvider
+    let bytesTransferredProvider: BPKVideoPlayerBytesProvider
+    let notificationCenter: NotificationCenter
+    let audioSession: BPKVideoPlayerAudioSessionManaging
+    var progressAccumulator = BPKVideoPlayerProgressAccumulator()
+    let progressSubject = CurrentValueSubject<BPKVideoPlayerProgress?, Never>(nil)
+    var hasCompletedPlayback = false
+    var progressSeekID = 0
+    private var isLoopItemTransitioning = false
+    private var observedItem: AVPlayerItem?
+    /// Sum of bytes from every item already replaced by a loop swap or clear. The published
+    /// `bytesTransferred` is always this plus the current item's own access-log tally.
+    private var bytesTransferredBeforeCurrentItem: Int64 = 0
+    private var hasLoadedInitialItem = false
+    private var hasExplicitPauseRequest = false
 
     private var playerLooper: AVPlayerLooper?
+    private var mutedObservation: NSKeyValueObservation?
     private var itemStatusObservation: NSKeyValueObservation?
     private var timeControlObservation: NSKeyValueObservation?
     private var currentItemObservation: NSKeyValueObservation?
+    var periodicTimeObserverToken: Any?
+    var itemCompletionToken: NSObjectProtocol?
     private var loadTimeoutTask: DispatchWorkItem?
     private var lifecycleTokens: [NSObjectProtocol] = []
+    private var accessLogToken: NSObjectProtocol?
 
     // MARK: - Init
 
-    public init(url: URL, autoPlay: Bool = true, loop: Bool = true, loadTimeout: TimeInterval = 7) {
+    public convenience init(
+        url: URL,
+        autoPlay: Bool = true,
+        loop: Bool = true,
+        loadTimeout: TimeInterval = 7,
+        audioSessionPolicy: BPKVideoPlayerAudioSessionPolicy = .ambient
+    ) {
+        self.init(
+            url: url,
+            autoPlay: autoPlay,
+            loop: loop,
+            loadTimeout: loadTimeout,
+            audioSessionPolicy: audioSessionPolicy,
+            periodicTimeObserver: BPKVideoPlayerPeriodicTimeObserver(),
+            durationProvider: Self.liveDuration,
+            bytesTransferredProvider: Self.liveBytes,
+            notificationCenter: .default,
+            audioSession: AVAudioSession.sharedInstance()
+        )
+    }
+
+    init(
+        url: URL,
+        autoPlay: Bool,
+        loop: Bool,
+        loadTimeout: TimeInterval,
+        audioSessionPolicy: BPKVideoPlayerAudioSessionPolicy = .ambient,
+        periodicTimeObserver: BPKVideoPlayerPeriodicTimeObserving,
+        durationProvider: @escaping BPKVideoPlayerDurationProvider,
+        bytesTransferredProvider: @escaping BPKVideoPlayerBytesProvider = { _ in 0 },
+        notificationCenter: NotificationCenter,
+        audioSession: BPKVideoPlayerAudioSessionManaging = AVAudioSession.sharedInstance()
+    ) {
         self.autoPlay = autoPlay
         self.loop = loop
         self.loadTimeout = loadTimeout
+        self.audioSessionPolicy = audioSessionPolicy
+        self.periodicTimeObserver = periodicTimeObserver
+        self.durationProvider = durationProvider
+        self.bytesTransferredProvider = bytesTransferredProvider
+        self.notificationCenter = notificationCenter
+        self.audioSession = audioSession
 
         let item = AVPlayerItem(asset: AVAsset(url: url))
         if loop {
@@ -103,6 +220,16 @@ public final class BPKVideoPlayerController: ObservableObject {
         itemStatusObservation?.invalidate()
         timeControlObservation?.invalidate()
         currentItemObservation?.invalidate()
+        mutedObservation?.invalidate()
+        if let periodicTimeObserverToken {
+            periodicTimeObserver.removePeriodicTimeObserver(periodicTimeObserverToken, from: player)
+        }
+        if let itemCompletionToken {
+            notificationCenter.removeObserver(itemCompletionToken)
+        }
+        if let accessLogToken {
+            notificationCenter.removeObserver(accessLogToken)
+        }
         loadTimeoutTask?.cancel()
         lifecycleTokens.forEach { NotificationCenter.default.removeObserver($0) }
     }
@@ -111,19 +238,58 @@ public final class BPKVideoPlayerController: ObservableObject {
 
     public func play() {
         guard !UIAccessibility.isReduceMotionEnabled else { return }
+        hasExplicitPauseRequest = false
+        if hasCompletedPlayback {
+            seek(to: .zero)
+        }
         player.play()
     }
 
     public func pause() {
+        hasExplicitPauseRequest = true
+        isLoopItemTransitioning = false
         player.pause()
+        if state.isActive {
+            transition(to: .paused)
+        }
     }
 
     public func toggle() {
-        state.isPlaying ? pause() : play()
+        if state.isPlaying {
+            pause()
+        } else {
+            play()
+        }
+    }
+
+    /// Mutes the player.
+    public func mute() {
+        setMuted(true)
+    }
+
+    /// Unmutes the player.
+    public func unmute() {
+        setMuted(false)
+    }
+
+    /// Toggles the player muted state.
+    public func toggleMute() {
+        setMuted(player.isMuted == false)
+    }
+
+    private func setMuted(_ muted: Bool) {
+        player.isMuted = muted
+        handle(muted: player.isMuted)
     }
 
     public func seek(to time: CMTime) {
-        player.seek(to: time, toleranceBefore: .zero, toleranceAfter: .zero)
+        let seekID = prepareProgressForSeek(to: time)
+        player.seek(to: time, toleranceBefore: .zero, toleranceAfter: .zero) { [weak self] finished in
+            guard finished else { return }
+            DispatchQueue.main.async {
+                self?.finishProgressSeek(id: seekID)
+            }
+        }
     }
 
     /// Pause and seek to the beginning — use for carousel items that reset on scroll-off.
@@ -135,6 +301,12 @@ public final class BPKVideoPlayerController: ObservableObject {
     // MARK: - Private
 
     private func observePlayer() {
+        startProgressObserving()
+
+        mutedObservation = player.observe(\.isMuted, options: [.initial, .new]) { [weak self] player, _ in
+            DispatchQueue.main.async { self?.handle(muted: player.isMuted) }
+        }
+
         // timeControlStatus is the primary playing/paused/buffering signal
         timeControlObservation = player.observe(\.timeControlStatus, options: [.new]) { [weak self] player, _ in
             DispatchQueue.main.async { self?.handle(timeControlStatus: player.timeControlStatus) }
@@ -142,45 +314,159 @@ public final class BPKVideoPlayerController: ObservableObject {
 
         // currentItem changes when AVPlayerLooper swaps in a new copy — re-observe status
         currentItemObservation = player.observe(\.currentItem, options: [.new, .initial]) { [weak self] player, _ in
-            DispatchQueue.main.async { self?.observeItemStatus(player.currentItem) }
+            DispatchQueue.main.async { self?.handleCurrentItemChange(player.currentItem) }
         }
     }
 
     private func observeItemStatus(_ item: AVPlayerItem?) {
         itemStatusObservation?.invalidate()
+        observedItem = item
+        observeProgressCompletion(for: item)
         guard let item else { return }
+
         itemStatusObservation = item.observe(\.status, options: [.new, .initial]) { [weak self] item, _ in
-            DispatchQueue.main.async { self?.handle(itemStatus: item.status) }
+            DispatchQueue.main.async { self?.handle(itemStatus: item.status, for: item) }
         }
     }
 
-    private func handle(itemStatus: AVPlayerItem.Status) {
+    private func handle(muted: Bool) {
+        guard isMuted != muted else { return }
+        isMuted = muted
+    }
+
+    private func handleCurrentItemChange(_ item: AVPlayerItem?) {
+        accumulateBytesFromDepartingItem(replacedBy: item)
+        if let accessLogToken {
+            notificationCenter.removeObserver(accessLogToken)
+            self.accessLogToken = nil
+        }
+
+        guard let item else {
+            isLoopItemTransitioning = false
+            observeItemStatus(nil)
+            bytesTransferred = bytesTransferredBeforeCurrentItem
+            if player.timeControlStatus == .paused && state.isActive {
+                transition(to: .paused)
+            }
+            return
+        }
+
+        markLoopItemTransitionIfNeeded()
+        observeItemStatus(item)
+        updateBytesTransferred(for: item)
+        accessLogToken = notificationCenter.addObserver(
+            forName: .AVPlayerItemNewAccessLogEntry,
+            object: item,
+            queue: .main
+        ) { [weak self] _ in
+            MainActor.assumeIsolated {
+                self?.updateBytesTransferred(for: item)
+            }
+        }
+    }
+
+    /// Folds the outgoing item's final byte tally into the running total before it's replaced.
+    /// `AVPlayerLooper` swaps `currentItem` to a fresh item with its own access log starting at
+    /// zero, so without this the published total would drop on every loop instead of accumulating
+    /// across the whole impression.
+    private func accumulateBytesFromDepartingItem(replacedBy newItem: AVPlayerItem?) {
+        guard let departingItem = observedItem, departingItem !== newItem else { return }
+        bytesTransferredBeforeCurrentItem += bytesTransferredProvider(departingItem)
+    }
+
+    private func markLoopItemTransitionIfNeeded() {
+        guard loop, hasLoadedInitialItem, let currentItem = player.currentItem else { return }
+        if observedItem !== currentItem {
+            isLoopItemTransitioning = true
+        }
+    }
+
+    private func handle(itemStatus: AVPlayerItem.Status, for item: AVPlayerItem) {
+        guard player.currentItem === item else { return }
+
         switch itemStatus {
         case .readyToPlay:
-            loadTimeoutTask?.cancel()
-            transition(to: .readyToPlay)
-            if autoPlay && !UIAccessibility.isReduceMotionEnabled { play() }
+            handleReadyItem()
         case .failed:
-            loadTimeoutTask?.cancel()
-            let error = player.currentItem?.error ?? NSError(domain: "BPKVideoPlayer", code: -1)
-            transition(to: .failed(error))
+            cancelLoadTimeout()
+            let error = item.error ?? NSError(domain: "BPKVideoPlayer", code: -1)
+            isLoopItemTransitioning = false
+            transition(to: .failed(Self.normalise(error as NSError)))
         case .unknown:
-            transition(to: .loading)
+            transition(to: isLoopItemTransitioning ? .buffering : .loading)
             scheduleTimeout()
         @unknown default:
             break
         }
     }
 
-    private func handle(timeControlStatus: AVPlayer.TimeControlStatus) {
-        switch timeControlStatus {
+    private func handleReadyItem() {
+        let isInitialLoad = !hasLoadedInitialItem
+        let isWaitingForPlayback = player.timeControlStatus == .waitingToPlayAtSpecifiedRate
+        let isAlreadyPlaying = player.timeControlStatus == .playing
+        let shouldAutoPlay = isInitialLoad && autoPlay &&
+            !hasExplicitPauseRequest && !UIAccessibility.isReduceMotionEnabled
+        // Reaching a genuine playable state ends the load. Staying `readyToPlay` while the
+        // transport is still waiting does not, and neither does being about to autoplay from
+        // rest — `play()` below can still send the transport into `.waitingToPlayAtSpecifiedRate`,
+        // so the timeout keeps running until playback that was actually requested begins.
+        let willAutoPlayFromRest = shouldAutoPlay && !isAlreadyPlaying
+        if !isInitialLoad || (!isWaitingForPlayback && !willAutoPlayFromRest) {
+            completeInitialLoad()
+        }
+        updateProgressDuration()
+        let wasLoopItemTransitioning = isLoopItemTransitioning
+        isLoopItemTransitioning = false
+
+        switch player.timeControlStatus {
         case .playing:
             transition(to: .playing)
-        case .paused:
-            // Suppress .paused during initial load — only meaningful after we were playing
-            if state == .playing { transition(to: .paused) }
         case .waitingToPlayAtSpecifiedRate:
-            transition(to: .buffering)
+            if hasLoadedInitialItem {
+                transition(to: .buffering)
+            } else {
+                transition(to: .loading)
+                scheduleTimeout()
+            }
+        case .paused:
+            if wasLoopItemTransitioning && state.isActive {
+                transition(to: .buffering)
+            } else if state != .paused {
+                transition(to: .readyToPlay)
+            }
+            if shouldAutoPlay { play() }
+        @unknown default:
+            transition(to: .readyToPlay)
+        }
+    }
+
+    private func handle(timeControlStatus: AVPlayer.TimeControlStatus) {
+        markLoopItemTransitionIfNeeded()
+        switch timeControlStatus {
+        case .playing:
+            completeInitialLoad()
+            transition(to: .playing)
+        case .paused:
+            // AVPlayerLooper briefly reports `.paused` while it replaces a completed item.
+            // Wait for the replacement item's status before publishing a state change.
+            let shouldPublishPause = state.isActive ||
+                (hasExplicitPauseRequest && state == .readyToPlay)
+            let replacementIsStillLoading = isLoopItemTransitioning &&
+                player.currentItem?.status == .unknown
+            if !replacementIsStillLoading && shouldPublishPause {
+                // A paused transport is an external stop once the replacement
+                // item is ready. Clear the handoff guard so ready-item handling
+                // cannot turn the state back into buffering.
+                isLoopItemTransitioning = false
+                transition(to: .paused)
+            }
+        case .waitingToPlayAtSpecifiedRate:
+            if hasLoadedInitialItem {
+                transition(to: .buffering)
+            } else {
+                transition(to: .loading)
+                scheduleTimeout()
+            }
         @unknown default:
             break
         }
@@ -191,24 +477,72 @@ public final class BPKVideoPlayerController: ObservableObject {
         state = newState
     }
 
+    // Idempotent: the deadline is fixed from the first schedule of a load, never extended.
     private func scheduleTimeout() {
-        loadTimeoutTask?.cancel()
-        guard loadTimeout > 0 else { return }
+        guard loadTimeout > 0, loadTimeoutTask == nil else { return }
         let task = DispatchWorkItem { [weak self] in
-            guard let self, self.state.isLoading else { return }
-            self.transition(to: .failed(NSError(
-                domain: "BPKVideoPlayer",
-                code: NSURLErrorTimedOut,
-                userInfo: [NSLocalizedDescriptionKey: "Video load timed out"]
-            )))
+            guard let self else { return }
+            self.loadTimeoutTask = nil
+            guard self.state.isLoading else { return }
+            self.transition(to: .failed(.loadTimeout))
         }
         loadTimeoutTask = task
         DispatchQueue.main.asyncAfter(deadline: .now() + loadTimeout, execute: task)
     }
 
+    private func cancelLoadTimeout() {
+        loadTimeoutTask?.cancel()
+        loadTimeoutTask = nil
+    }
+
+    func updateBytesTransferred(for item: AVPlayerItem?) {
+        bytesTransferred = bytesTransferredBeforeCurrentItem + bytesTransferredProvider(item)
+    }
+
+    private func completeInitialLoad() {
+        hasLoadedInitialItem = true
+        cancelLoadTimeout()
+    }
+
+    // MARK: - Error normalisation
+
+    private static func normalise(_ error: NSError) -> BPKVideoPlayerError {
+        if error.domain == NSURLErrorDomain {
+            return error.code == NSURLErrorCancelled ? .aborted : .network
+        }
+
+        if error.domain == AVFoundationErrorDomain {
+            switch error.code {
+            case AVError.Code.operationInterrupted.rawValue:
+                return .aborted
+            case AVError.Code.decoderNotFound.rawValue,
+                 AVError.Code.decodeFailed.rawValue:
+                return .decode
+            case AVError.Code.fileFormatNotRecognized.rawValue:
+                return .sourceNotSupported
+            default:
+                break
+            }
+        }
+
+        // AVFoundation commonly reports a generic top-level AVFoundationErrorDomain failure
+        // with the actual cause — e.g. a network failure — nested at NSUnderlyingErrorKey.
+        // Recursing into it means a wrapped network error still normalises to `.network`
+        // instead of silently landing on `.unknown`.
+        if let underlying = error.userInfo[NSUnderlyingErrorKey] as? NSError {
+            return normalise(underlying)
+        }
+
+        return .unknown
+    }
+
     private func configureAudioSession() {
-        try? AVAudioSession.sharedInstance().setCategory(.ambient, mode: .default, options: [.mixWithOthers])
-        try? AVAudioSession.sharedInstance().setActive(true)
+        try? audioSession.setCategory(
+            audioSessionPolicy.category,
+            mode: audioSessionPolicy.mode,
+            options: [.mixWithOthers]
+        )
+        try? audioSession.setActive(true, options: [])
     }
 
     private func observeLifecycle() {
@@ -238,4 +572,51 @@ public final class BPKVideoPlayerController: ObservableObject {
     func testOnly_setState(_ newState: BPKVideoPlayerState) {
         state = newState
     }
+
+    func testOnly_handleCurrentItemChange(_ item: AVPlayerItem?) {
+        handleCurrentItemChange(item)
+    }
+
+    var testOnly_isLoopItemTransitioning: Bool {
+        isLoopItemTransitioning
+    }
+
+    var testOnly_hasLoadedInitialItem: Bool {
+        hasLoadedInitialItem
+    }
+
+    static func testOnly_normalise(_ error: NSError) -> BPKVideoPlayerError {
+        normalise(error)
+    }
 }
+
+private extension BPKVideoPlayerAudioSessionPolicy {
+    var category: AVAudioSession.Category {
+        switch self {
+        case .ambient:
+            .ambient
+        case .playback:
+            .playback
+        }
+    }
+
+    var mode: AVAudioSession.Mode {
+        switch self {
+        case .ambient:
+            .default
+        case .playback:
+            .moviePlayback
+        }
+    }
+}
+
+protocol BPKVideoPlayerAudioSessionManaging: AnyObject {
+    func setCategory(
+        _ category: AVAudioSession.Category,
+        mode: AVAudioSession.Mode,
+        options: AVAudioSession.CategoryOptions
+    ) throws
+    func setActive(_ active: Bool, options: AVAudioSession.SetActiveOptions) throws
+}
+
+extension AVAudioSession: BPKVideoPlayerAudioSessionManaging {}

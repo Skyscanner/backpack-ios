@@ -1,6 +1,5 @@
 # Backpack/Dialog
 
-[![Cocoapods](https://img.shields.io/cocoapods/v/Backpack.svg?style=flat)](https://cocoapods.org/pods/Backpack)
 [![class reference](https://img.shields.io/badge/Class%20reference-iOS-blue)](https://backpack.github.io/ios/versions/latest/uikit/Classes/BPKDialog.html)
 [![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack/Dialog)
 
@@ -176,3 +175,6 @@ dialogController.scrimAction = scrimAction
 // Show the dialog
 self.present(dialogController, animated: true)
 ```
+## Short windows
+
+The dialog is centred horizontally in the safe area, so side safe areas such as the iPhone Duo's side rail don't push it off-centre. When it is taller than the window, it scrolls instead of shrinking and truncating its message, so its buttons stay reachable.

@@ -235,6 +235,11 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             await switchTab(title: "SwiftUI")
             saveScreenshot(component: "price-range", scenario: "all", userInterfaceStyle: userInterfaceStyle)
         }
+
+        await navigate(title: "Radio") {
+            await switchTab(title: "SwiftUI")
+            saveScreenshot(component: "radio", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
         
         await navigate(title: "Chips") {
             await switchTab(title: "SwiftUI")
@@ -452,6 +457,8 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
                                               userInterfaceStyle: userInterfaceStyle)
             await captureModalWithSwipeDismiss(name: "Content", scenario: "content",
                                               userInterfaceStyle: userInterfaceStyle)
+            await captureModalWithSwipeDismiss(name: "Content with accessory", scenario: "content-with-accessory",
+                                              userInterfaceStyle: userInterfaceStyle)
             await captureModalWithSwipeDismiss(name: "Error", scenario: "error",
                                               userInterfaceStyle: userInterfaceStyle)
         }
@@ -580,6 +587,11 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         await navigate(title: "Cell Item") {
             await switchTab(title: "SwiftUI")
             saveScreenshot(component: "cell-item", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
+        
+        await navigate(title: "Icon Bullet") {
+            await switchTab(title: "SwiftUI")
+            saveScreenshot(component: "icon-bullet", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
 
         await navigate(title: "Video player") {

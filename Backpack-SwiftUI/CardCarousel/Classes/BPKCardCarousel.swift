@@ -45,6 +45,38 @@ public struct BPKCardCarousel<Content: View>: View {
     }
 }
 
+/// Pure index arithmetic for `InternalCardCarousel`'s infinite-scroll wraparound, extracted so it can be
+/// unit tested directly - the surrounding view's `@State` cannot be exercised meaningfully without
+/// mounting it into a live view hierarchy.
+internal struct CardCarouselIndexCalculator {
+    let cardCount: Int
+    let totalContentCount: Int
+
+    func adjustedIndex(for internalIndex: Int) -> Int {
+        (internalIndex - 1) % cardCount
+    }
+
+    /// The index `currentInternalIndex` should be silently reset to (with no animation) before
+    /// advancing left, if it's about to run off the end of the duplicated content array.
+    func wrapResetBeforeAdvancingLeft(from internalIndex: Int) -> Int {
+        internalIndex == totalContentCount - 1 ? internalIndex % cardCount : internalIndex
+    }
+
+    /// The index `currentInternalIndex` should be silently reset to (with no animation) before
+    /// advancing right, if it's about to run off the start of the duplicated content array.
+    func wrapResetBeforeAdvancingRight(from internalIndex: Int) -> Int {
+        internalIndex == 2 ? internalIndex + cardCount : internalIndex
+    }
+
+    func advancingLeft(from internalIndex: Int) -> Int {
+        wrapResetBeforeAdvancingLeft(from: internalIndex) + 1
+    }
+
+    func advancingRight(from internalIndex: Int) -> Int {
+        wrapResetBeforeAdvancingRight(from: internalIndex) - 1
+    }
+}
+
 internal struct InternalCardCarousel<Content: View>: View {
     private let numberOfCardsForLandscape: CGFloat = 3.0
     @Binding private var currentIndex: Int
@@ -139,8 +171,12 @@ internal struct InternalCardCarousel<Content: View>: View {
         }
     }
     
+    private var indexCalculator: CardCarouselIndexCalculator {
+        CardCarouselIndexCalculator(cardCount: cardCount, totalContentCount: content.count)
+    }
+
     private var currentAdjustedIndex: Int {
-        (currentInternalIndex - 1) % (cardCount)
+        indexCalculator.adjustedIndex(for: currentInternalIndex)
     }
 
     private var dragGesture: some Gesture {
@@ -190,19 +226,20 @@ internal struct InternalCardCarousel<Content: View>: View {
     }
     
     private func handleLeftSwipe() {
-        if currentInternalIndex == content.count - 1 {
+        let wrapped = indexCalculator.wrapResetBeforeAdvancingLeft(from: currentInternalIndex)
+        if wrapped != currentInternalIndex {
             withAnimation(.none) {
-                currentInternalIndex = currentInternalIndex % cardCount
+                currentInternalIndex = wrapped
             }
         }
-        
         updateIndices(with: currentInternalIndex + 1)
     }
 
     private func handleRightSwipe() {
-        if currentInternalIndex == 2 {
+        let wrapped = indexCalculator.wrapResetBeforeAdvancingRight(from: currentInternalIndex)
+        if wrapped != currentInternalIndex {
             withAnimation(.none) {
-                currentInternalIndex += cardCount
+                currentInternalIndex = wrapped
             }
         }
         updateIndices(with: currentInternalIndex - 1)

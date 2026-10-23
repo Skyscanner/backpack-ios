@@ -1,6 +1,5 @@
 # Backpack/BottomSheet
 
-[![Cocoapods](https://img.shields.io/cocoapods/v/Backpack.svg?style=flat)](https://cocoapods.org/pods/Backpack)
 [![class reference](https://img.shields.io/badge/Class%20reference-iOS-blue)](https://backpack.github.io/ios/versions/latest/uikit/Classes/BPKBottomSheet.html)
 [![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack/BottomSheet)
 
@@ -12,13 +11,12 @@
 
 ## Installation
 
-In `Podfile` add
+Add the `Backpack` product from the [backpack-ios](https://github.com/Skyscanner/backpack-ios)
+Swift package to your target, then
 
+```swift
+import Backpack
 ```
-pod 'Backpack/BottomSheet'
-```
-
-and then run `pod install`.
 
 ## Usage
 
@@ -85,3 +83,27 @@ The animated parameter is optional and has a default value of true
 ```swift
 bottomSheet.move(to: <BPKFloatingPanelPosition>, animated: false)
 ```
+# Adapting to the window
+
+The bottom sheet follows the window it's shown in, so it needs no extra code for iPad, Split View or foldables such as the iPhone Duo:
+
+- **Width.** On a phone-sized window the sheet fills the full width, and its background runs under side safe areas such as the iPhone Duo's side rail. Its content keeps the safe-area insets, so it stays clear of the rail. On a window wider than 672 pt, the readable content width, the sheet is centred at that width, like a native sheet.
+- **Height.** The `half` and `tip` positions never cover more than 60% of the window's safe-area height, so a short window, such as a phone in landscape, keeps part of the screen behind the sheet visible.
+- **Size changes.** When the window changes size, for example when an iPhone Duo is folded or unfolded, the sheet recomputes its positions for the new size.
+
+# Native sheet (behind configuration)
+
+The modal style can be presented as a native sheet (`UISheetPresentationController`) instead of the floating panel. It's off by default. Turn it on once, at launch, through `BpkConfiguration`:
+
+```swift
+try BpkConfiguration.shared.set(configs: [.nativeBottomSheet])
+```
+
+The public API is the same. With it on:
+
+- **Size and placement.** UIKit sizes and places the sheet for the window: full width on a phone-sized window, a centred card on a wide one. It lays the sheet out again when the window changes, for example when an iPhone Duo is folded or unfolded.
+- **Positions.** `half` is the `half` inset's height. `full` is the system's large height; the `full` and `tip` insets aren't used. A `half` height that reaches the tallest height leaves only `full`. A sheet created without a scroll view fits its content. `move(to:)` switches between them, and `.hidden` dismisses the sheet.
+- **Corners.** Below iOS 26 the sheet uses Backpack's large corner radius. From iOS 26, UIKit rounds a sheet that
+  isn't full height to follow the device's shape, so the radius is left to UIKit there and the sheet matches the
+  system's own sheets.
+- **Persistent style.** It isn't presented, so it stays a floating panel inside its parent.

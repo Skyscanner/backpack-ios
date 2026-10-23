@@ -1,6 +1,5 @@
 # Backpack/NavigationBar
 
-[![Cocoapods](https://img.shields.io/cocoapods/v/Backpack.svg?style=flat)](https://cocoapods.org/pods/Backpack)
 [![class reference](https://img.shields.io/badge/Class%20reference-iOS-blue)](https://backpack.github.io/ios/versions/latest/uikit/Classes/BPKNavigationBar.html)
 [![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack/NavigationBar)
 
@@ -121,3 +120,7 @@ if !decelerate {
 - `(UIColor *)largeTitleTextColor`
 
 - `(BPKNavigationBarStyle) style`
+
+## Side safe areas and touch targets
+
+The title row and its buttons follow the safe area, so they stay clear of side safe areas such as the iPhone Duo's side rail, while the background still runs edge to edge. The background's top extension is recalculated whenever the window's safe area changes, and `setUp(for:)` only changes the scroll view's top inset. Icon buttons accept touches across Apple's 44 pt minimum touch target.

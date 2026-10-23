@@ -15,11 +15,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import Combine
 
+import AVFoundation
+import Foundation
 import XCTest
 import SwiftUI
 @testable import Backpack_SwiftUI
 
+@MainActor
 final class BPKVideoPlayerTests: XCTestCase {
 
     // MARK: - Snapshot: overlay UI
@@ -46,6 +50,288 @@ final class BPKVideoPlayerTests: XCTestCase {
         })
     }
 
+    // MARK: - Controller playback state
+
+    func test_muteActions_publishObservableState() async throws {
+        let controller = BPKVideoPlayerController.stub()
+
+        XCTAssertFalse(controller.isMuted)
+
+        controller.mute()
+        XCTAssertTrue(controller.isMuted)
+        XCTAssertTrue(controller.player.isMuted)
+
+        controller.unmute()
+        XCTAssertFalse(controller.isMuted)
+        XCTAssertFalse(controller.player.isMuted)
+
+        controller.toggleMute()
+        XCTAssertTrue(controller.isMuted)
+        XCTAssertTrue(controller.player.isMuted)
+    }
+
+    func test_videoPlayerErrorCodes() {
+        XCTAssertEqual(BPKVideoPlayerError.loadTimeout.code, "LOAD_TIMEOUT")
+        XCTAssertEqual(BPKVideoPlayerError.network.code, "MEDIA_ERR_NETWORK")
+        XCTAssertEqual(BPKVideoPlayerError.decode.code, "MEDIA_ERR_DECODE")
+        XCTAssertEqual(BPKVideoPlayerError.sourceNotSupported.code, "MEDIA_ERR_SRC_NOT_SUPPORTED")
+        XCTAssertEqual(BPKVideoPlayerError.aborted.code, "MEDIA_ERR_ABORTED")
+        XCTAssertEqual(BPKVideoPlayerError.unknown.code, "UNKNOWN_ERROR")
+    }
+
+    // MARK: - BPKVideoPlayerState equality
+
+    func test_failedStates_withDifferentErrors_areNotEqual() {
+        XCTAssertNotEqual(BPKVideoPlayerState.failed(.network), .failed(.loadTimeout))
+        XCTAssertNotEqual(BPKVideoPlayerState.failed(.decode), .failed(.unknown))
+    }
+
+    func test_failedStates_withTheSameError_areEqual() {
+        XCTAssertEqual(BPKVideoPlayerState.failed(.network), .failed(.network))
+    }
+
+    // MARK: - Error normalisation
+
+    func test_normalise_networkError_mapsToNetwork() {
+        let error = NSError(domain: NSURLErrorDomain, code: NSURLErrorTimedOut)
+        XCTAssertEqual(BPKVideoPlayerController.testOnly_normalise(error), .network)
+    }
+
+    func test_normalise_cancelledNetworkError_mapsToAborted() {
+        let error = NSError(domain: NSURLErrorDomain, code: NSURLErrorCancelled)
+        XCTAssertEqual(BPKVideoPlayerController.testOnly_normalise(error), .aborted)
+    }
+
+    func test_normalise_avFoundationKnownCodes_mapToExpectedCases() {
+        XCTAssertEqual(
+            BPKVideoPlayerController.testOnly_normalise(
+                NSError(domain: AVFoundationErrorDomain, code: AVError.Code.operationInterrupted.rawValue)
+            ),
+            .aborted
+        )
+        XCTAssertEqual(
+            BPKVideoPlayerController.testOnly_normalise(
+                NSError(domain: AVFoundationErrorDomain, code: AVError.Code.decoderNotFound.rawValue)
+            ),
+            .decode
+        )
+        XCTAssertEqual(
+            BPKVideoPlayerController.testOnly_normalise(
+                NSError(domain: AVFoundationErrorDomain, code: AVError.Code.decodeFailed.rawValue)
+            ),
+            .decode
+        )
+        XCTAssertEqual(
+            BPKVideoPlayerController.testOnly_normalise(
+                NSError(domain: AVFoundationErrorDomain, code: AVError.Code.fileFormatNotRecognized.rawValue)
+            ),
+            .sourceNotSupported
+        )
+    }
+
+    func test_normalise_unrecognisedError_withNoUnderlyingError_mapsToUnknown() {
+        let error = NSError(domain: AVFoundationErrorDomain, code: -1)
+        XCTAssertEqual(BPKVideoPlayerController.testOnly_normalise(error), .unknown)
+    }
+
+    func test_normalise_avFoundationErrorWrappingNetworkFailure_mapsToNetwork() {
+        // AVFoundation commonly surfaces a generic top-level AVFoundationErrorDomain failure
+        // with the real cause nested at NSUnderlyingErrorKey.
+        let underlying = NSError(domain: NSURLErrorDomain, code: NSURLErrorNetworkConnectionLost)
+        let wrapper = NSError(
+            domain: AVFoundationErrorDomain,
+            code: -1,
+            userInfo: [NSUnderlyingErrorKey: underlying]
+        )
+        XCTAssertEqual(BPKVideoPlayerController.testOnly_normalise(wrapper), .network)
+    }
+
+    func test_normalise_unrelatedDomainWrappingKnownAVFoundationFailure_mapsToDecode() {
+        let underlying = NSError(domain: AVFoundationErrorDomain, code: AVError.Code.decodeFailed.rawValue)
+        let wrapper = NSError(
+            domain: "SomeOtherDomain",
+            code: -1,
+            userInfo: [NSUnderlyingErrorKey: underlying]
+        )
+        XCTAssertEqual(BPKVideoPlayerController.testOnly_normalise(wrapper), .decode)
+    }
+
+    func test_normalise_unrelatedDomainWithNoUnderlyingError_mapsToUnknown() {
+        let error = NSError(domain: "SomeOtherDomain", code: -1)
+        XCTAssertEqual(BPKVideoPlayerController.testOnly_normalise(error), .unknown)
+    }
+
+    func test_isMuted_tracksLegacyPlayerMutation() async throws {
+        let controller = BPKVideoPlayerController.stub()
+
+        controller.player.isMuted = true
+        try await waitUntil { controller.isMuted }
+        XCTAssertTrue(controller.isMuted)
+
+        controller.player.isMuted = false
+        try await waitUntil { !controller.isMuted }
+        XCTAssertFalse(controller.isMuted)
+    }
+
+    func test_newController_bytesTransferred_isZero() {
+        let controller = BPKVideoPlayerController.stub()
+
+        XCTAssertEqual(controller.bytesTransferred, 0)
+    }
+
+    // The initial load must stay incomplete — and the load timeout active — until real
+    // playback begins. Completing it as soon as `readyToPlay` arrives (regardless of whether
+    // autoplay is about to call `play()`) would cancel the only safety net for a stall that
+    // happens while buffering for that autoplay.
+    func test_autoPlay_keepsLoadIncompleteUntilRealPlaybackBegins() async throws {
+        let controller = BPKVideoPlayerController(
+            url: try localVideoURL(),
+            autoPlay: true,
+            loop: false
+        )
+
+        var completedBeforePlaying = false
+        var sawPlaying = false
+        let stateChanges = controller.$state.sink { state in
+            if state.isPlaying { sawPlaying = true }
+            if !sawPlaying && controller.testOnly_hasLoadedInitialItem {
+                completedBeforePlaying = true
+            }
+        }
+        defer { stateChanges.cancel() }
+
+        try await waitUntil { controller.state.isPlaying }
+
+        XCTAssertFalse(completedBeforePlaying)
+        XCTAssertTrue(controller.testOnly_hasLoadedInitialItem)
+    }
+
+    func test_loopingPlayback_remainsPlayingWhenCurrentItemChanges() async throws {
+        let controller = BPKVideoPlayerController(
+            url: try localVideoURL(),
+            autoPlay: false,
+            loop: true
+        )
+
+        try await waitUntil { controller.state == .readyToPlay }
+        let initialItem = try XCTUnwrap(controller.player.currentItem)
+
+        try await seekNearLoopBoundary(controller)
+        controller.play()
+
+        try await waitUntil({ controller.player.currentItem !== initialItem }, timeout: 3)
+        try await waitUntil({ controller.state.isPlaying }, timeout: 3)
+
+        XCTAssertEqual(controller.player.timeControlStatus, .playing)
+        XCTAssertTrue(controller.state.isPlaying)
+    }
+
+    func test_loopingPlayback_doesNotPublishPausedDuringCurrentItemSwap() async throws {
+        let controller = BPKVideoPlayerController(
+            url: try localVideoURL(),
+            autoPlay: false,
+            loop: true
+        )
+        var states: [BPKVideoPlayerState] = []
+        let stateChanges = controller.$state
+            .dropFirst()
+            .sink { states.append($0) }
+        defer { stateChanges.cancel() }
+
+        try await waitUntil { controller.state == .readyToPlay }
+        states.removeAll()
+        let initialItem = try XCTUnwrap(controller.player.currentItem)
+        try await seekNearLoopBoundary(controller)
+        controller.play()
+
+        try await waitUntil({ controller.player.currentItem !== initialItem }, timeout: 3)
+        try await waitUntil({ controller.state.isPlaying }, timeout: 3)
+
+        XCTAssertFalse(states.contains(.paused))
+    }
+
+    func test_loopingPlayback_doesNotPublishReadyDuringCurrentItemSwap() async throws {
+        let controller = BPKVideoPlayerController(
+            url: try localVideoURL(),
+            autoPlay: false,
+            loop: true
+        )
+        var states: [BPKVideoPlayerState] = []
+        let stateChanges = controller.$state
+            .dropFirst()
+            .sink { states.append($0) }
+        defer { stateChanges.cancel() }
+
+        try await waitUntil { controller.state == .readyToPlay }
+        states.removeAll()
+        let initialItem = try XCTUnwrap(controller.player.currentItem)
+        try await seekNearLoopBoundary(controller)
+        controller.play()
+
+        try await waitUntil({ controller.player.currentItem !== initialItem }, timeout: 3)
+        try await waitUntil({ controller.state.isPlaying }, timeout: 3)
+
+        XCTAssertFalse(states.contains(.readyToPlay))
+    }
+
+    func test_loopingPlayback_staysPausedWhenExplicitlyPausedAtLoopBoundary() async throws {
+        let controller = BPKVideoPlayerController(
+            url: try localVideoURL(),
+            autoPlay: true,
+            loop: true
+        )
+        var pauseScheduled = false
+        var statesAfterPause: [BPKVideoPlayerState] = []
+        let pauseRequested = expectation(description: "Pause requested during item replacement")
+        let initialItemReady = expectation(description: "Initial item is ready")
+        var initialItem: AVPlayerItem?
+        var stateChanges: AnyCancellable?
+        stateChanges = controller.$state.sink { state in
+            if pauseScheduled {
+                statesAfterPause.append(state)
+            }
+            if state.isPlaying && initialItem == nil {
+                initialItem = controller.player.currentItem
+                initialItemReady.fulfill()
+            }
+        }
+        defer { stateChanges?.cancel() }
+
+        await fulfillment(of: [initialItemReady], timeout: 3)
+        let itemObservation = controller.player.observe(\.currentItem, options: [.new]) { player, _ in
+            guard let initialItem, player.currentItem !== initialItem, !pauseScheduled else { return }
+            pauseScheduled = true
+            DispatchQueue.main.async {
+                controller.pause()
+                pauseRequested.fulfill()
+            }
+        }
+        defer { itemObservation.invalidate() }
+
+        try await seekNearLoopBoundary(controller)
+        try await fulfillment(of: [pauseRequested], timeout: 3)
+        try await waitUntil { controller.state == .paused }
+        try await Task.sleep(nanoseconds: 300_000_000)
+
+        XCTAssertEqual(controller.state, .paused)
+        XCTAssertFalse(statesAfterPause.contains { $0 == .playing || $0 == .buffering })
+    }
+
+    func test_loopingPlayback_clearsTransitionWhenCurrentItemBecomesNil() async throws {
+        let controller = BPKVideoPlayerController(
+            url: try localVideoURL(),
+            autoPlay: true,
+            loop: true
+        )
+
+        try await waitUntil { controller.state.isPlaying }
+        controller.testOnly_handleCurrentItemChange(nil)
+
+        XCTAssertFalse(controller.testOnly_isLoopItemTransitioning)
+        controller.pause()
+        XCTAssertEqual(controller.state, .paused)
+    }
+
     /// Custom overlay — consumer-provided control in the bottom-trailing corner.
     func test_customOverlay_cornerControl() {
         assertSnapshot(videoContainer {
@@ -67,6 +353,35 @@ final class BPKVideoPlayerTests: XCTestCase {
         })
     }
 
+    // External transport pauses, such as audio-session interruptions, should
+    // not leave the controller stuck in buffering during a loop handoff.
+
+    func test_loopingPlayback_externalPauseAtLoopBoundaryPublishesPaused() async throws {
+        let controller = BPKVideoPlayerController(
+            url: try localVideoURL(), autoPlay: true, loop: true
+        )
+        try await waitUntil { controller.state.isPlaying }
+        let initialItem = try XCTUnwrap(controller.player.currentItem)
+
+        // Stands in for an audio-session interruption: pause the transport
+        // at the instant the looper swaps items.
+        let swap = expectation(description: "current item replaced")
+        swap.assertForOverFulfill = false
+        let observation = controller.player.observe(\.currentItem, options: [.new]) { player, _ in
+            guard player.currentItem !== initialItem else { return }
+            player.pause()
+            swap.fulfill()
+        }
+        defer { observation.invalidate() }
+
+        try await seekNearLoopBoundary(controller)
+        await fulfillment(of: [swap], timeout: 3)
+        try await Task.sleep(nanoseconds: 500_000_000)
+
+        XCTAssertEqual(controller.player.timeControlStatus, .paused)
+        XCTAssertEqual(controller.state, .paused)
+    }
+
     // MARK: - Private
 
     private func videoContainer<Overlay: View>(@ViewBuilder _ overlay: () -> Overlay) -> some View {
@@ -77,6 +392,43 @@ final class BPKVideoPlayerTests: XCTestCase {
         .frame(width: 375, height: 500)
     }
 
+    private func localVideoURL() throws -> URL {
+        guard let bundle = TestsBundle.bundle,
+              let url = bundle.url(forResource: "skyscanner_test", withExtension: "mp4") else {
+            throw XCTSkip("skyscanner_test.mp4 not found in test bundle")
+        }
+        return url
+    }
+
+    private func seekNearLoopBoundary(_ controller: BPKVideoPlayerController) async throws {
+        controller.seek(to: CMTime(seconds: 2.5, preferredTimescale: 600))
+        try await waitUntil({
+            let seconds = controller.player.currentTime().seconds
+            return seconds >= 2.4 && seconds < 2.9
+        }, timeout: 2)
+    }
+
+    private func waitUntil(
+        _ condition: @escaping () -> Bool,
+        timeout: TimeInterval = 5
+    ) async throws {
+        let deadline = Date().addingTimeInterval(timeout)
+        while !condition() {
+            if Date() >= deadline {
+                throw WaitTimeout(timeout: timeout)
+            }
+            try await Task.sleep(nanoseconds: 50_000_000)
+        }
+    }
+
+}
+
+private struct WaitTimeout: Error, CustomStringConvertible {
+    let timeout: TimeInterval
+
+    var description: String {
+        "Timed out waiting for video-player state after \(timeout) seconds"
+    }
 }
 
 // MARK: - Test helpers
