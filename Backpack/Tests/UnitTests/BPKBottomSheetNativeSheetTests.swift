@@ -60,10 +60,11 @@ final class BPKBottomSheetNativeSheetTests: XCTestCase {
         XCTAssertTrue(sut.contentViewController === content)
     }
 
-    func test_givenAnotherConfiguration_whenCreated_thenKeepsTheFloatingPanel() throws {
+    func test_givenEmptyAllocation_whenCreated_thenKeepsTheFloatingPanel() throws {
         // Given
+        // An empty allocation is the control group, separate from an unallocated configuration.
         BpkConfiguration.shared.reset()
-        try BpkConfiguration.shared.set(configs: [.all])
+        try BpkConfiguration.shared.set(configs: [])
 
         // When
         let sut = BPKBottomSheet(contentViewController: UIViewController())

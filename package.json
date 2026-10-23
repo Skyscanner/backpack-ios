@@ -7,7 +7,7 @@
     "npm": ">=10.0.0"
   },
   "scripts": {
-    "test": "eslint .",
+    "test": "eslint . && node --test scripts/gulp/fonts.test.js",
     "build": "npm run test && gulp",
     "danger": "danger ci",
     "gulp": "gulp"

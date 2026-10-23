@@ -21,6 +21,30 @@ import XCTest
 import SwiftUI
 
 class FontTests: XCTestCase {
+    func test_whenRequestingABlackFontWithoutACustomDefinition_thenUsesBoldFallback() {
+        // Given
+        var requestedName: String?
+
+        // When
+        _ = Font.customOrDefault(nil, size: 16, weight: .black, textStyle: .body) { name, size, _ in
+            requestedName = name
+            return .system(size: size)
+        }
+
+        // Then
+        XCTAssertEqual(requestedName, "HelveticaNeue-Bold")
+    }
+
+    func test_whenReadingHeadingStyles_thenUsesFinalizedLetterSpacing() {
+        // Given / When / Then
+        XCTAssertEqual(BPKFontStyle.heading1.letterSpacing, -1.2)
+        XCTAssertEqual(BPKFontStyle.heading2.letterSpacing, -1)
+        XCTAssertEqual(BPKFontStyle.heading3.letterSpacing, -0.6)
+        XCTAssertEqual(BPKFontStyle.heading4.letterSpacing, -0.6)
+        XCTAssertEqual(BPKFontStyle.heading5.letterSpacing, -0.6)
+        XCTAssertEqual(BPKFontStyle.hero5.letterSpacing, -1.2)
+    }
+
     func testUsesDefaultFontWhenFontByNameNotFound() {
         let anySize: CGFloat = 1
         let mockFont = Font.system(size: anySize).italic()
