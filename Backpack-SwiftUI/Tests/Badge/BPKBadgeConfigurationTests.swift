@@ -56,4 +56,20 @@ class BPKBadgeConfigurationTests: XCTestCase {
             }.padding(.vertical)
         )
     }
+
+    func test_badge_interactive_Configuration() {
+        assertSnapshot(
+            VStack {
+                BPKBadge("Normal").interactive()
+                BPKBadge("Subtle").badgeStyle(.subtle).interactive()
+                BPKBadge("Strong", icon: .tickCircle).badgeStyle(.strong).interactive()
+                HStack {
+                    BPKBadge("Inverse", icon: .tickCircle).badgeStyle(.inverse).interactive()
+                        .padding(.horizontal, .base)
+                        .padding(.vertical, .md)
+                }.frame(maxWidth: .infinity).background(.corePrimaryColor)
+                BPKBadge("Brand", icon: .priceTag).badgeStyle(.brand).interactive()
+            }.padding(.vertical)
+        )
+    }
 }
