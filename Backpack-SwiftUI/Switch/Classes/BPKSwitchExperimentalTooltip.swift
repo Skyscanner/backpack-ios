@@ -80,9 +80,13 @@ struct BPKSwitchTooltipContent<Message: View>: View {
                 message()
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.vertical, .md)
-                BPKButton(icon: .close, accessibilityLabel: configuration.dismissAccessibilityLabel, size: .large, action: onDismiss)
-                    .buttonStyle(.featured)
-                    .accessibilityIdentifier("BPKSwitch.Tooltip.Dismiss")
+                BPKCloseButton(
+                    accessibilityLabel: configuration.dismissAccessibilityLabel,
+                    foregroundColor: .textPrimaryInverseColor,
+                    touchTarget: BPKSpacing.xxl.value + BPKSpacing.base.value,
+                    action: onDismiss
+                )
+                .accessibilityIdentifier("BPKSwitch.Tooltip.Dismiss")
             }
             .padding(.leading, .md)
             .padding(.trailing, .sm)
