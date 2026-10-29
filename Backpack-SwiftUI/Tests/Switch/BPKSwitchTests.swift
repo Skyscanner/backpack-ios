@@ -21,6 +21,44 @@ import SwiftUI
 @testable import Backpack_SwiftUI
 
 class BPKSwitchTests: XCTestCase {
+    func test_givenNoTooltip_whenOptingInWithNil_thenPreservesStandardSwitch() {
+        assertSnapshot(
+            BPKSwitch(isOn: .constant(false), text: "Test")
+                .experimentalTooltip(nil, isPresented: .constant(true))
+                .padding(.sm),
+            testName: "testSwitchOffState"
+        )
+    }
+
+    func test_givenFirstVisit_whenInformationIsPresented_thenShowsTooltipWithoutInfoButton() {
+        assertSnapshot(tooltipSwitch(isPresented: true, showsInformationButton: false))
+    }
+
+    func test_givenReturningVisit_whenInformationIsClosed_thenShowsInfoButtonOnly() {
+        assertSnapshot(tooltipSwitch(isPresented: false))
+    }
+
+    func test_givenReturningVisit_whenInformationIsOpened_thenShowsSameTooltip() {
+        assertSnapshot(tooltipSwitch(isPresented: true))
+    }
+
+    func test_givenTooltip_whenTextSizeIncreases_thenInformationRemainsReadable() {
+        // Allow the helper to render all three Dynamic Type sizes without cropping.
+        assertA11ySnapshot(tooltipSwitch(isPresented: true), customHeight: 1000)
+    }
+
+    private func tooltipSwitch(isPresented: Bool, showsInformationButton: Bool = true) -> some View {
+        BPKSwitch(isOn: .constant(false), text: "Include nearby airports", truncate: false)
+            .experimentalTooltip(.init(
+                message: "Include nearby airports to see more flight options.",
+                informationAccessibilityLabel: "About nearby airports",
+                dismissAccessibilityLabel: "Close information",
+                showsInformationButton: showsInformationButton
+            ), isPresented: .constant(isPresented))
+            .padding(.md)
+            .frame(maxWidth: 375)
+    }
+
     func testSwitchOnState() {
         assertSnapshot(BPKSwitch(isOn: .constant(true), text: "Test").padding(.sm))
     }

@@ -208,6 +208,7 @@
 		D6FA3DB4224E220D00CFA094 /* UIWindow+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FA3DB3224E220D00CFA094 /* UIWindow+Utility.swift */; };
 		DB08530C2C45567600314EE8 /* CarouselCardExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB08530B2C45567600314EE8 /* CarouselCardExampleView.swift */; };
 		DB0A8DA82C57F535003DC186 /* CardCarouselExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0A8DA72C57F535003DC186 /* CardCarouselExampleView.swift */; };
+		DF8467B348CF082DD30FA85B /* SwitchTooltipUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B1DCFAF2ADB5A8F0D8B85 /* SwitchTooltipUITest.swift */; };
 		E2B9D19F2BB357B60053C14C /* NavigationTabGroupExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B9D19E2BB357B60053C14C /* NavigationTabGroupExampleView.swift */; };
 		E359366C240FFE680046FD4C /* BottomSheetUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E359366B240FFE680046FD4C /* BottomSheetUITest.swift */; };
 		E35EA59624212F9900373CE4 /* BottomSheetResizableContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EA59524212F9900373CE4 /* BottomSheetResizableContentViewController.swift */; };
@@ -382,6 +383,7 @@
 		79F63C0329B078D600FB19A9 /* OverlayGroupsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayGroupsProvider.swift; sourceTree = "<group>"; };
 		8071379B25AF7974009869D1 /* BottomSheetPersistentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPersistentViewController.swift; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		946B1DCFAF2ADB5A8F0D8B85 /* SwitchTooltipUITest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwitchTooltipUITest.swift; sourceTree = "<group>"; };
 		A12269742A68C09B00C7C0CD /* BottomSheetExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetExampleView.swift; sourceTree = "<group>"; };
 		A12A09DD2A49471F0047DD16 /* ChipGroupProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipGroupProvider.swift; sourceTree = "<group>"; };
 		A2848C51D99141B190D97447 /* LinkExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkExampleView.swift; sourceTree = "<group>"; };
@@ -1565,6 +1567,7 @@
 				D257C767236AE3FB006683F5 /* TextViewUITest.swift */,
 				760E41E4232BD50700A0CE8D /* ToastUITest.swift */,
 				25D1337C2C73EFD7002C9562 /* SearchInputControlUITest.swift */,
+				946B1DCFAF2ADB5A8F0D8B85 /* SwitchTooltipUITest.swift */,
 			);
 			path = "Backpack NativeUITests";
 			sourceTree = "<group>";
@@ -2058,6 +2061,7 @@
 				D686A73A24128DA3000EDCCC /* BackpackUITestCase.swift in Sources */,
 				D257C769236AE3FB006683F5 /* TextViewUITest.swift in Sources */,
 				D28B3611219C209000E82A79 /* ChipUITest.swift in Sources */,
+				DF8467B348CF082DD30FA85B /* SwitchTooltipUITest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

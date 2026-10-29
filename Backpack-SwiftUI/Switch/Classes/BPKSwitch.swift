@@ -30,6 +30,9 @@ public struct BPKSwitch<Content: View>: View {
     private let enabled: Bool
     private let style: Style
     private let content: Content
+    private var tooltipConfiguration: BPKSwitchExperimentalTooltip?
+    private var tooltipIsPresented: Binding<Bool> = .constant(false)
+    @AccessibilityFocusState private var tooltipFocus: TooltipFocus?
 
     /// Creates a switch that generates its label from an attributed string.
     ///
@@ -101,6 +104,81 @@ public struct BPKSwitch<Content: View>: View {
     }
     
     public var body: some View {
+        if let tooltipConfiguration {
+            switchWithTooltip(tooltipConfiguration)
+        } else {
+            switchControl
+        }
+    }
+
+    /// Adds optional information below the switch, with a separate information button.
+    ///
+    /// The consumer owns first-use history and the presentation binding. Start the
+    /// binding at `true` and hide the information button for an introductory visit;
+    /// use `false` and show the button on later visits. Passing `nil` preserves the
+    /// standard switch. Dismissing information never changes the switch value.
+    ///
+    /// - Experiment: This API is experimental and subject to change. Do not use it
+    ///   outside a controlled experiment until it has been stabilised.
+    public func experimentalTooltip(
+        _ configuration: BPKSwitchExperimentalTooltip?,
+        isPresented: Binding<Bool>
+    ) -> BPKSwitch {
+        var result = self
+        result.tooltipConfiguration = configuration
+        result.tooltipIsPresented = isPresented
+        return result
+    }
+
+    private func switchWithTooltip(_ configuration: BPKSwitchExperimentalTooltip) -> some View {
+        VStack(alignment: .trailing, spacing: 0) {
+            HStack(spacing: .sm) {
+                switchControl
+                    .fixedSize(horizontal: false, vertical: true)
+                if configuration.showsInformationButton {
+                    informationButton(configuration)
+                }
+            }
+            if tooltipIsPresented.wrappedValue {
+                tooltip(configuration)
+            }
+        }
+        .fixedSize(horizontal: false, vertical: true)
+    }
+
+    private func informationButton(_ configuration: BPKSwitchExperimentalTooltip) -> some View {
+        BPKButton(icon: .informationCircle, accessibilityLabel: configuration.informationAccessibilityLabel, size: .large) {
+            tooltipIsPresented.wrappedValue = true
+            tooltipFocus = .message
+        }
+        .buttonStyle(style == .onContrast ? .linkOnDark : .link)
+        .accessibilityIdentifier("BPKSwitch.Tooltip.Information")
+        .accessibilityFocused($tooltipFocus, equals: .information)
+    }
+
+    private func tooltip(_ configuration: BPKSwitchExperimentalTooltip) -> some View {
+        BPKSwitchTooltipContent(configuration: configuration, onDismiss: {
+            tooltipIsPresented.wrappedValue = false
+            tooltipFocus = configuration.showsInformationButton ? .information : nil
+        }, message: {
+            BPKText(configuration.message, style: .footnote)
+                .foregroundColor(.textOnDarkColor)
+                .lineLimit(nil)
+                .fixedSize(horizontal: false, vertical: true)
+                .accessibilityIdentifier("BPKSwitch.Tooltip.Message")
+                .accessibilityFocused($tooltipFocus, equals: .message)
+        })
+        .onAppear {
+            tooltipFocus = .message
+            configuration.onPresented()
+        }
+    }
+
+    private enum TooltipFocus: Hashable {
+        case information, message
+    }
+
+    @ViewBuilder private var switchControl: some View {
         switch style {
             case .default:
             Toggle(isOn: $isOn) {
