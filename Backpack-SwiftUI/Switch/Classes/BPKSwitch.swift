@@ -111,7 +111,7 @@ public struct BPKSwitch<Content: View>: View {
         }
     }
 
-    /// Adds optional information below the switch, with a separate information button.
+    /// Adds optional information below the switch, with an information button after its label.
     ///
     /// The consumer owns first-use history and the presentation binding. Start the
     /// binding at `true` and hide the information button for an introductory visit;
@@ -131,19 +131,35 @@ public struct BPKSwitch<Content: View>: View {
     }
 
     private func switchWithTooltip(_ configuration: BPKSwitchExperimentalTooltip) -> some View {
-        VStack(alignment: .trailing, spacing: 0) {
-            HStack(spacing: .sm) {
+        VStack(alignment: .trailing, spacing: .sm) {
+            if configuration.showsInformationButton {
+                switchWithInformationButton(configuration)
+            } else {
                 switchControl
                     .fixedSize(horizontal: false, vertical: true)
-                if configuration.showsInformationButton {
-                    informationButton(configuration)
-                }
             }
             if tooltipIsPresented.wrappedValue {
                 tooltip(configuration)
             }
         }
         .fixedSize(horizontal: false, vertical: true)
+    }
+
+    private func switchWithInformationButton(_ configuration: BPKSwitchExperimentalTooltip) -> some View {
+        HStack(spacing: .sm) {
+            if style == .default {
+                content
+                    .if(!BPKFont.enableDynamicType, transform: { $0.sizeCategory(.large) })
+                    .fixedSize(horizontal: false, vertical: true)
+                    // The native switch retains the label for VoiceOver.
+                    .accessibilityHidden(true)
+            }
+            informationButton(configuration)
+            Spacer(minLength: 0)
+            switchControl
+                .labelsHidden()
+                .fixedSize()
+        }
     }
 
     private func informationButton(_ configuration: BPKSwitchExperimentalTooltip) -> some View {

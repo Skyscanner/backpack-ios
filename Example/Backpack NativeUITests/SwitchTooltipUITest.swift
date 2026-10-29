@@ -39,6 +39,8 @@ final class SwitchTooltipUITest: BackpackUITestCase {
         robot.open()
         XCTAssertFalse(robot.message.exists)
         XCTAssertTrue(robot.information.exists)
+        XCTAssertLessThanOrEqual(robot.information.frame.maxX, robot.control.frame.minX)
+        XCTAssertEqual(robot.control.label, "Include nearby airports")
         robot.capture("Switch tooltip - subsequent visit")
 
         robot.information.tap()
@@ -82,8 +84,7 @@ private final class SwitchTooltipRobot {
     func dismiss() { app.buttons["BPKSwitch.Tooltip.Dismiss"].tap() }
 
     func toggle() {
-        // SwiftUI exposes the label and native switch as one element; tap the thumb.
-        control.coordinate(withNormalizedOffset: CGVector(dx: 0.95, dy: 0.5)).tap()
+        control.tap()
     }
 
     func capture(_ name: String) {

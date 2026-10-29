@@ -31,7 +31,7 @@ public struct BPKSwitchExperimentalTooltip {
     public let informationAccessibilityLabel: String
     /// Localised label for closing the explanation.
     public let dismissAccessibilityLabel: String
-    /// Show the information button on subsequent visits; hide it for the introduction.
+    /// Show an information button after the label on subsequent visits; hide it for the introduction.
     public let showsInformationButton: Bool
     /// Reports an explanation that actually appeared, rather than a constructed configuration.
     public let onPresented: () -> Void
@@ -42,7 +42,7 @@ public struct BPKSwitchExperimentalTooltip {
     ///   - message: Localised explanation displayed below the control.
     ///   - informationAccessibilityLabel: Localised label for the information button.
     ///   - dismissAccessibilityLabel: Localised label for closing the explanation.
-    ///   - showsInformationButton: Whether to offer an information button beside the switch.
+    ///   - showsInformationButton: Whether to offer an information button after the label, before the switch.
     ///   - onPresented: Called when the explanation actually appears, including manual reopening.
     public init(
         message: String,

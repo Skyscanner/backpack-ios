@@ -123,8 +123,9 @@ experiment flag. This is not a stable design-system pattern and must not be
 published to skyscanner.design until it is stabilised. Stabilise or remove the
 API within two weeks of the experiment ending.
 
-`experimentalTooltip(_:isPresented:)` adds an explanation below the switch and
-an optional, separate information button beside it. Omitting the modifier, or
+`experimentalTooltip(_:isPresented:)` adds an explanation below the switch row,
+with a small vertical gap, and an optional information button after the label,
+before the native switch. Omitting the modifier, or
 passing `nil`, preserves the standard switch. Opening or closing the tooltip
 does not change the switch value.
 
