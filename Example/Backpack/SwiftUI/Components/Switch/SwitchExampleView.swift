@@ -111,7 +111,7 @@ struct SwitchExampleView: View {
                 BPKText("Experimental switch tooltip", style: .heading3)
                 BPKSwitch(isOn: $value, text: "Include nearby airports", truncate: false)
                     .experimentalTooltip(.init(
-                        message: "Include nearby airports to see more flight options.",
+                        message: "Include nearby airports in your flight results to find cheaper or more convenient options.",
                         informationAccessibilityLabel: "About nearby airports",
                         dismissAccessibilityLabel: "Close information",
                         showsInformationButton: isReturningVisit,

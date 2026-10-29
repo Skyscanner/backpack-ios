@@ -43,7 +43,10 @@ final class SwitchTooltipUITest: BackpackUITestCase {
 
         robot.information.tap()
         XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
-        XCTAssertEqual(robot.message.label, "Include nearby airports to see more flight options.")
+        XCTAssertEqual(
+            robot.message.label,
+            "Include nearby airports in your flight results to find cheaper or more convenient options."
+        )
         XCTAssertEqual(robot.control.value as? String, value)
         robot.capture("Switch tooltip - information reopened")
 

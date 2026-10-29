@@ -50,7 +50,7 @@ class BPKSwitchTests: XCTestCase {
     private func tooltipSwitch(isPresented: Bool, showsInformationButton: Bool = true) -> some View {
         BPKSwitch(isOn: .constant(false), text: "Include nearby airports", truncate: false)
             .experimentalTooltip(.init(
-                message: "Include nearby airports to see more flight options.",
+                message: "Include nearby airports in your flight results to find cheaper or more convenient options.",
                 informationAccessibilityLabel: "About nearby airports",
                 dismissAccessibilityLabel: "Close information",
                 showsInformationButton: showsInformationButton
