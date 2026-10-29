@@ -5,7 +5,8 @@
 **Added:**
 
 - SwiftUI: optional, experimental `BPKSwitch.experimentalTooltip` with introductory
-  information and an information button for subsequent visits. Consumers own presentation history.
+  information and an information button for subsequent visits. The explanation overlays content,
+  follows its trigger and supports tap-to-dismiss. Consumers own presentation history.
 
 **Breaking:**
 

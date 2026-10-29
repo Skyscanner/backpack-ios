@@ -29,11 +29,15 @@ final class SwitchTooltipUITest: BackpackUITestCase {
         XCTAssertFalse(robot.information.exists)
         robot.capture("Switch tooltip - first visit")
         let value = robot.control.value as? String
+        let firstControlFrame = robot.control.frame
+        let firstContentFrame = robot.contentBelowSwitch.frame
         XCTAssertNotNil(value)
 
         // When / Then
         robot.dismiss()
         XCTAssertFalse(robot.message.exists)
+        XCTAssertEqual(robot.control.frame, firstControlFrame)
+        XCTAssertEqual(robot.contentBelowSwitch.frame, firstContentFrame)
         XCTAssertEqual(robot.control.value as? String, value)
         robot.close()
         robot.open()
@@ -43,14 +47,27 @@ final class SwitchTooltipUITest: BackpackUITestCase {
         XCTAssertEqual(robot.control.label, "Include nearby airports")
         robot.capture("Switch tooltip - subsequent visit")
 
+        let controlFrame = robot.control.frame
+        let contentFrame = robot.contentBelowSwitch.frame
+        XCTAssertGreaterThanOrEqual(robot.information.frame.width, 44)
+        XCTAssertGreaterThanOrEqual(robot.information.frame.height, 44)
         robot.information.tap()
         XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+        XCTAssertEqual(robot.control.frame, controlFrame)
+        XCTAssertEqual(robot.contentBelowSwitch.frame, contentFrame)
         XCTAssertEqual(
             robot.message.label,
             "Include nearby airports in your flight results to find cheaper or more convenient options."
         )
         XCTAssertEqual(robot.control.value as? String, value)
         robot.capture("Switch tooltip - information reopened")
+
+        robot.information.tap()
+        XCTAssertFalse(robot.message.exists)
+        XCTAssertEqual(robot.control.value as? String, value)
+        XCTAssertEqual(robot.contentBelowSwitch.frame, contentFrame)
+        robot.information.tap()
+        XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
 
         robot.toggle()
         let changed = XCTNSPredicateExpectation(
@@ -68,6 +85,7 @@ private final class SwitchTooltipRobot {
     var message: XCUIElement { app.staticTexts["BPKSwitch.Tooltip.Message"] }
     var information: XCUIElement { app.buttons["BPKSwitch.Tooltip.Information"] }
     var control: XCUIElement { app.switches.firstMatch }
+    var contentBelowSwitch: XCUIElement { app.staticTexts["SwitchExample.ContentBelowSwitch"] }
 
     init(app: XCUIApplication) { self.app = app }
 

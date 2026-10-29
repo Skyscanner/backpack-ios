@@ -25,7 +25,7 @@ import SwiftUI
 ///
 /// - Experiment: This configuration is experimental and subject to change.
 public struct BPKSwitchExperimentalTooltip {
-    /// Localised explanation displayed below the control.
+    /// Localised explanation overlaid below the control.
     public let message: String
     /// Localised label for the separate information button.
     public let informationAccessibilityLabel: String
@@ -39,7 +39,7 @@ public struct BPKSwitchExperimentalTooltip {
     /// Creates optional switch information.
     ///
     /// - Parameters:
-    ///   - message: Localised explanation displayed below the control.
+    ///   - message: Localised explanation overlaid below the control.
     ///   - informationAccessibilityLabel: Localised label for the information button.
     ///   - dismissAccessibilityLabel: Localised label for closing the explanation.
     ///   - showsInformationButton: Whether to offer an information button after the label, before the switch.
@@ -60,17 +60,22 @@ public struct BPKSwitchExperimentalTooltip {
 }
 
 struct BPKSwitchTooltipContent<Message: View>: View {
+    @Environment(\.layoutDirection) private var layoutDirection
     let configuration: BPKSwitchExperimentalTooltip
+    let anchorX: CGFloat
     let onDismiss: () -> Void
     @ViewBuilder let message: () -> Message
 
     var body: some View {
         VStack(alignment: .trailing, spacing: 0) {
-            TooltipPointer()
-                .fill(Color(.surfaceContrastColor))
-                .frame(width: BPKSpacing.base.value, height: BPKSpacing.sm.value)
-                .padding(.trailing, .lg)
-                .accessibilityHidden(true)
+            GeometryReader { geometry in
+                TooltipPointer()
+                    .fill(Color(.coreAccentColor))
+                    .frame(width: BPKSpacing.base.value, height: BPKSpacing.sm.value)
+                    .position(x: pointerX(width: geometry.size.width), y: BPKSpacing.sm.value / 2)
+            }
+            .frame(height: BPKSpacing.sm.value)
+            .accessibilityHidden(true)
             HStack(alignment: .top, spacing: .sm) {
                 message()
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -81,11 +86,17 @@ struct BPKSwitchTooltipContent<Message: View>: View {
             }
             .padding(.leading, .md)
             .padding(.trailing, .sm)
-            .background(Color(.surfaceContrastColor))
+            .background(Color(.coreAccentColor))
             .clipShape(RoundedRectangle(cornerRadius: .sm))
             .accessibilityElement(children: .contain)
             .accessibilityAction(.escape, onDismiss)
         }
+    }
+
+    private func pointerX(width: CGFloat) -> CGFloat {
+        let inset = BPKSpacing.base.value
+        let position = min(max(anchorX, inset), max(inset, width - inset))
+        return layoutDirection == .rightToLeft ? width - position : position
     }
 
     private struct TooltipPointer: Shape {
@@ -98,4 +109,17 @@ struct BPKSwitchTooltipContent<Message: View>: View {
             }
         }
     }
+}
+
+/// Anchors follow the real control position, including multiline labels and RTL layouts.
+struct BPKSwitchTooltipAnchorKey: PreferenceKey {
+    static var defaultValue: Anchor<CGRect>?
+
+    static func reduce(value: inout Anchor<CGRect>?, nextValue: () -> Anchor<CGRect>?) {
+        value = nextValue() ?? value
+    }
+}
+
+enum BPKSwitchTooltipLayout {
+    static let touchTarget = BPKSpacing.xxl.value + BPKSpacing.sm.value
 }

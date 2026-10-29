@@ -111,7 +111,7 @@ public struct BPKSwitch<Content: View>: View {
         }
     }
 
-    /// Adds optional information below the switch, with an information button after its label.
+    /// Overlays optional information below the switch, with an information button after its label.
     ///
     /// The consumer owns first-use history and the presentation binding. Start the
     /// binding at `true` and hide the information button for an introductory visit;
@@ -131,22 +131,7 @@ public struct BPKSwitch<Content: View>: View {
     }
 
     private func switchWithTooltip(_ configuration: BPKSwitchExperimentalTooltip) -> some View {
-        VStack(alignment: .trailing, spacing: .sm) {
-            if configuration.showsInformationButton {
-                switchWithInformationButton(configuration)
-            } else {
-                switchControl
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-            if tooltipIsPresented.wrappedValue {
-                tooltip(configuration)
-            }
-        }
-        .fixedSize(horizontal: false, vertical: true)
-    }
-
-    private func switchWithInformationButton(_ configuration: BPKSwitchExperimentalTooltip) -> some View {
-        HStack(spacing: .sm) {
+        HStack(spacing: 0) {
             if style == .default {
                 content
                     .if(!BPKFont.enableDynamicType, transform: { $0.sizeCategory(.large) })
@@ -154,26 +139,50 @@ public struct BPKSwitch<Content: View>: View {
                     // The native switch retains the label for VoiceOver.
                     .accessibilityHidden(true)
             }
-            informationButton(configuration)
-            Spacer(minLength: 0)
+            if configuration.showsInformationButton {
+                informationButton(configuration)
+                    .anchorPreference(key: BPKSwitchTooltipAnchorKey.self, value: .bounds) { $0 }
+            }
+            Spacer(minLength: BPKSpacing.sm.value)
             switchControl
                 .labelsHidden()
                 .fixedSize()
+                .transformAnchorPreference(key: BPKSwitchTooltipAnchorKey.self, value: .bounds) { anchor, bounds in
+                    if !configuration.showsInformationButton { anchor = bounds }
+                }
         }
+        .frame(minHeight: BPKSwitchTooltipLayout.touchTarget)
+        .overlayPreferenceValue(BPKSwitchTooltipAnchorKey.self) { anchor in
+            GeometryReader { geometry in
+                if tooltipIsPresented.wrappedValue, let anchor {
+                    let frame = geometry[anchor]
+                    tooltip(configuration, anchorX: frame.midX)
+                        .frame(width: geometry.size.width)
+                        .offset(y: geometry.size.height + BPKSpacing.sm.value)
+                }
+            }
+        }
+        .zIndex(tooltipIsPresented.wrappedValue ? 1 : 0)
     }
 
     private func informationButton(_ configuration: BPKSwitchExperimentalTooltip) -> some View {
-        BPKButton(icon: .informationCircle, accessibilityLabel: configuration.informationAccessibilityLabel, size: .large) {
-            tooltipIsPresented.wrappedValue = true
-            tooltipFocus = .message
+        Button {
+            tooltipIsPresented.wrappedValue.toggle()
+            tooltipFocus = tooltipIsPresented.wrappedValue ? .message : .information
+        } label: {
+            BPKIconView(.informationCircle, size: .large)
+                .frame(width: BPKSwitchTooltipLayout.touchTarget, height: BPKSwitchTooltipLayout.touchTarget)
+                .contentShape(Rectangle())
         }
-        .buttonStyle(style == .onContrast ? .linkOnDark : .link)
+        .buttonStyle(.plain)
+        .foregroundColor(Color(style == .onContrast ? .textOnDarkColor : .coreAccentColor))
+        .accessibilityLabel(configuration.informationAccessibilityLabel)
         .accessibilityIdentifier("BPKSwitch.Tooltip.Information")
         .accessibilityFocused($tooltipFocus, equals: .information)
     }
 
-    private func tooltip(_ configuration: BPKSwitchExperimentalTooltip) -> some View {
-        BPKSwitchTooltipContent(configuration: configuration, onDismiss: {
+    private func tooltip(_ configuration: BPKSwitchExperimentalTooltip, anchorX: CGFloat) -> some View {
+        BPKSwitchTooltipContent(configuration: configuration, anchorX: anchorX, onDismiss: {
             tooltipIsPresented.wrappedValue = false
             tooltipFocus = configuration.showsInformationButton ? .information : nil
         }, message: {

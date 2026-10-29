@@ -117,6 +117,9 @@ struct SwitchExampleView: View {
                         showsInformationButton: isReturningVisit,
                         onPresented: { hasSeenTooltip = true }
                     ), isPresented: $tooltipIsPresented)
+                    .zIndex(1)
+                BPKText("Search suggestions stay in place")
+                    .accessibilityIdentifier("SwitchExample.ContentBelowSwitch")
                 Spacer()
                 BPKButton("Done") { showsTooltipExample = false }
                     .stretchable()

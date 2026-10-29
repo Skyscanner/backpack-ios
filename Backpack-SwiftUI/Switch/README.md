@@ -123,9 +123,16 @@ experiment flag. This is not a stable design-system pattern and must not be
 published to skyscanner.design until it is stabilised. Stabilise or remove the
 API within two weeks of the experiment ending.
 
-`experimentalTooltip(_:isPresented:)` adds an explanation below the switch row,
-with a small vertical gap, and an optional information button after the label,
-before the native switch. Omitting the modifier, or
+`experimentalTooltip(_:isPresented:)` overlays an explanation below the switch row
+without moving surrounding content. The pointer follows the information button,
+or the native switch for the introduction. An optional information button sits
+immediately after the label, before the native switch, with a 44-point tap target.
+Tapping it again dismisses the explanation. The bubble uses `coreAccentColor` with
+`textOnDarkColor` for contrast in light and dark themes.
+
+This is a Backpack SwiftUI overlay, not Apple's TipKit. A parent that has overlapping
+siblings must give the switch row a higher `zIndex`; `BPKAppSearchModal` does this
+for its input accessory. Omitting the modifier, or
 passing `nil`, preserves the standard switch. Opening or closing the tooltip
 does not change the switch value.
 

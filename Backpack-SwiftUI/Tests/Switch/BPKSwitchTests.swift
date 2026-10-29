@@ -44,19 +44,25 @@ class BPKSwitchTests: XCTestCase {
 
     func test_givenTooltip_whenTextSizeIncreases_thenInformationRemainsReadable() {
         // Allow the helper to render all three Dynamic Type sizes without cropping.
-        assertA11ySnapshot(tooltipSwitch(isPresented: true), customHeight: 1000)
+        assertA11ySnapshot(tooltipSwitch(isPresented: true), customHeight: 1200)
     }
 
     private func tooltipSwitch(isPresented: Bool, showsInformationButton: Bool = true) -> some View {
-        BPKSwitch(isOn: .constant(false), text: "Include nearby airports", truncate: false)
-            .experimentalTooltip(.init(
-                message: "Include nearby airports in your flight results to find cheaper or more convenient options.",
-                informationAccessibilityLabel: "About nearby airports",
-                dismissAccessibilityLabel: "Close information",
-                showsInformationButton: showsInformationButton
-            ), isPresented: .constant(isPresented))
-            .padding(.md)
-            .frame(maxWidth: 375)
+        VStack(alignment: .leading, spacing: .md) {
+            BPKSwitch(isOn: .constant(false), text: "Include nearby airports", truncate: false)
+                .experimentalTooltip(.init(
+                    message: "Include nearby airports in your flight results to find cheaper or more convenient options.",
+                    informationAccessibilityLabel: "About nearby airports",
+                    dismissAccessibilityLabel: "Close information",
+                    showsInformationButton: showsInformationButton
+                ), isPresented: .constant(isPresented))
+                .zIndex(1)
+            BPKText("Search suggestions stay in place")
+            Spacer(minLength: 0)
+        }
+        .padding(.md)
+        .frame(width: 375, height: 300)
+        .background(.surfaceDefaultColor)
     }
 
     func testSwitchOnState() {
