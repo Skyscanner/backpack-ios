@@ -187,7 +187,7 @@ public struct BPKSwitch<Content: View>: View {
             tooltipFocus = configuration.showsInformationButton ? .information : nil
         }, message: {
             BPKText(configuration.message, style: .footnote)
-                .foregroundColor(.textOnDarkColor)
+                .foregroundColor(.textPrimaryInverseColor)
                 .lineLimit(nil)
                 .fixedSize(horizontal: false, vertical: true)
                 .accessibilityIdentifier("BPKSwitch.Tooltip.Message")

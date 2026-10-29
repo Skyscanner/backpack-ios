@@ -81,7 +81,7 @@ struct BPKSwitchTooltipContent<Message: View>: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.vertical, .md)
                 BPKButton(icon: .close, accessibilityLabel: configuration.dismissAccessibilityLabel, size: .large, action: onDismiss)
-                    .buttonStyle(.linkOnDark)
+                    .buttonStyle(.featured)
                     .accessibilityIdentifier("BPKSwitch.Tooltip.Dismiss")
             }
             .padding(.leading, .md)

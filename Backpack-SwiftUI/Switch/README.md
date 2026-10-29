@@ -128,7 +128,7 @@ without moving surrounding content. The pointer follows the information button,
 or the native switch for the introduction. An optional information button sits
 immediately after the label, before the native switch, with a 44-point tap target.
 Tapping it again dismisses the explanation. The bubble uses `coreAccentColor` with
-`textOnDarkColor` for contrast in light and dark themes.
+`textPrimaryInverseColor` for contrast in light and dark themes.
 
 This is a Backpack SwiftUI overlay, not Apple's TipKit. A parent that has overlapping
 siblings must give the switch row a higher `zIndex`; `BPKAppSearchModal` does this
