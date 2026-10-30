@@ -29,6 +29,10 @@ struct SwitchExampleView: View {
     @State private var isReturningVisit = false
     @State private var tooltipIsPresented = true
 
+    init(assessmentMode: NativeTipKitAssessmentMode? = nil) {
+        _assessmentMode = State(initialValue: assessmentMode)
+    }
+
     private var attributedLabel: AttributedString {
         var label = AttributedString("Switch with styled text")
         label.foregroundColor = Color(.coreAccentColor)
@@ -268,6 +272,9 @@ struct NativeTipKitAssessmentView: View {
             }
         }
         .task {
+            if mode == .tipKit && ProcessInfo.processInfo.arguments.contains("TIPKIT_ASSESSMENT_BASIC") {
+                presentSelector(.from)
+            }
             for await status in tip.statusUpdates {
                 switch status {
                 case .pending: tipStatus = "Pending"
@@ -281,18 +288,20 @@ struct NativeTipKitAssessmentView: View {
     }
 
     private func openSelector(_ choice: AssessmentSelector) -> some View {
-        BPKButton(choice.rawValue) {
-            if mode == .nativePopover {
-                isReturningVisit = hasSeenPopover
-            } else {
-                if case .invalidated = tip.status { isReturningVisit = true } else { isReturningVisit = false }
-                if mode == .controlledTipKit { isReturningVisit = isReturningVisit || hasSeenControlledTip }
-            }
-            reopenRequest = 0
-            isPresented = !isReturningVisit
-            selector = choice
+        BPKButton(choice.rawValue) { presentSelector(choice) }
+            .accessibilityIdentifier("TipKitAssessment.Open\(choice.rawValue)")
+    }
+
+    private func presentSelector(_ choice: AssessmentSelector) {
+        if mode == .nativePopover {
+            isReturningVisit = hasSeenPopover
+        } else {
+            if case .invalidated = tip.status { isReturningVisit = true } else { isReturningVisit = false }
+            if mode == .controlledTipKit { isReturningVisit = isReturningVisit || hasSeenControlledTip }
         }
-        .accessibilityIdentifier("TipKitAssessment.Open\(choice.rawValue)")
+        reopenRequest = 0
+        isPresented = !isReturningVisit
+        selector = choice
     }
 
     private var informationButton: some View {

@@ -125,6 +125,38 @@ final class TipKitAssessmentUITest: BackpackUITestCase {
     }
 
     @MainActor
+    func test_givenBasicDemoLaunch_whenTappingSwitchBehindTip_thenRecordsDefaultInteraction() {
+        // Given
+        app.launchArguments.append("TIPKIT_ASSESSMENT_BASIC")
+        launchAssessment()
+        let robot = TipKitAssessmentRobot(app: app)
+        XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+        XCTAssertFalse(robot.information.exists)
+        XCTAssertTrue(robot.control.waitForExistence(timeout: 5))
+        let value = robot.control.value as? String
+        let frame = robot.control.frame
+        XCTAssertEqual(value, "0")
+        robot.capture("basic-tipkit-direct-launch")
+
+        // When
+        robot.tap(frame)
+
+        // Then: measure the default API rather than assuming background taps are forwarded.
+        let gone = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: robot.message)
+        let dismissed = XCTWaiter.wait(for: [gone], timeout: 3) == .completed
+        let changed = robot.control.value as? String != value
+        print("TIPKIT_BASIC_SWITCH_CHANGED_ON_FIRST_BACKGROUND_TAP=\(changed)")
+        print("TIPKIT_BASIC_DISMISSED_ON_BACKGROUND_TAP=\(dismissed)")
+        robot.capture("basic-tipkit-after-background-tap")
+        if !dismissed { robot.closeSystemTip() }
+        robot.closeSelector()
+        robot.openSelector("To")
+        XCTAssertTrue(robot.information.waitForExistence(timeout: 5))
+        robot.information.tap()
+        XCTAssertFalse(robot.message.waitForExistence(timeout: 2))
+    }
+
+    @MainActor
     func test_givenClosedTipKitIntroduction_whenOpeningInformation_thenRemainsPermanentlyDismissed() {
         // Given
         launchAssessment()
@@ -382,7 +414,7 @@ private final class TipKitAssessmentRobot {
     private let copy = "Find cheaper flights by including nearby airports in your search."
     var message: XCUIElement { app.staticTexts[copy].firstMatch }
     var information: XCUIElement { app.buttons["TipKitAssessment.Information"] }
-    var control: XCUIElement { app.switches.firstMatch }
+    var control: XCUIElement { app.switches["TipKitAssessment.Switch"] }
     var content: XCUIElement { app.staticTexts["TipKitAssessment.ContentBelowSwitch"] }
     var status: XCUIElement { app.staticTexts["TipKitAssessment.Status"] }
 

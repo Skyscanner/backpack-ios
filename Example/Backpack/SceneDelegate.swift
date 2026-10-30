@@ -18,6 +18,7 @@
  */
 
 import UIKit
+import SwiftUI
 import Backpack
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -45,6 +46,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func rootViewController(isUITestRun: Bool) -> UIViewController {
+        if #available(iOS 17.0, *), ProcessInfo.processInfo.arguments.contains("TIPKIT_ASSESSMENT_BASIC") {
+            return UIHostingController(rootView: SwitchExampleView(assessmentMode: .tipKit))
+        }
         let presentableNavigator = PresentableNavigator()
         
         let defaultController = DefaultRootViewControllerFactory(
