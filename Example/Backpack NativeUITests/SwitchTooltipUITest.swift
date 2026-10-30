@@ -407,6 +407,112 @@ final class TipKitAssessmentUITest: BackpackUITestCase {
         XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
         robot.capture("native-popover-information-dark")
     }
+
+    @MainActor
+    private func launchRadio(theme: String = "FORCE_LIGHT_MODE", largerText: Bool = false, rtl: Bool = false) {
+        app.terminate()
+        app.launchArguments = ["NEARBY_AIRPORTS_RADIO_ASSESSMENT", theme]
+        if largerText {
+            app.launchArguments += ["-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
+        }
+        if rtl {
+            app.launchArguments += [
+                "-AppleLanguages", "(ar)", "-AppleLocale", "ar_SA",
+                "-AppleTextDirection", "YES", "-NSForceRightToLeftWritingDirection", "YES"
+            ]
+        }
+        app.launch()
+    }
+
+    @MainActor
+    func test_givenRadioRow_whenSelectingAndOpeningHelp_thenPreservesChoiceAndLayout() {
+        // Given
+        launchRadio()
+        let robot = NearbyAirportsRadioAssessmentRobot(app: app)
+        XCTAssertTrue(robot.radio.waitForExistence(timeout: 5))
+        robot.assertChoice("Off")
+        let radioFrame = robot.radio.frame
+        let informationFrame = robot.information.frame
+        let contentFrame = robot.content.frame
+        XCTAssertGreaterThanOrEqual(radioFrame.width, 44)
+        XCTAssertGreaterThanOrEqual(radioFrame.height, 44)
+        XCTAssertGreaterThanOrEqual(informationFrame.width, 44)
+        XCTAssertGreaterThanOrEqual(informationFrame.height, 44)
+        XCTAssertLessThan(radioFrame.maxX, informationFrame.minX)
+        robot.capture("radio-row-off-light")
+
+        // When / Then
+        robot.radio.tap()
+        robot.assertChoice("On")
+        robot.capture("radio-row-on-light")
+        robot.radio.tap()
+        robot.assertChoice("Off")
+        robot.tap(CGPoint(x: (radioFrame.maxX + informationFrame.minX) / 2, y: radioFrame.midY))
+        robot.assertChoice("On")
+        robot.information.tap()
+        XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+        robot.capture("radio-row-help-light")
+        robot.tap(CGPoint(x: informationFrame.midX, y: informationFrame.midY))
+        robot.waitForHelpToDisappear()
+        robot.assertChoice("On")
+        XCTAssertEqual(robot.radio.frame, radioFrame)
+        XCTAssertEqual(robot.content.frame, contentFrame)
+        robot.information.tap()
+        XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+        robot.tap(CGPoint(x: informationFrame.midX, y: informationFrame.midY))
+        robot.waitForHelpToDisappear()
+        robot.assertChoice("On")
+        robot.radio.tap()
+        robot.assertChoice("Off")
+    }
+
+    @MainActor
+    func test_givenDarkTheme_whenViewingRadioRow_thenCapturesSelectionAndHelp() {
+        // Given
+        launchRadio(theme: "FORCE_DARK_MODE")
+        let robot = NearbyAirportsRadioAssessmentRobot(app: app)
+        XCTAssertTrue(robot.radio.waitForExistence(timeout: 5))
+        robot.capture("radio-row-off-dark")
+
+        // When / Then
+        robot.radio.tap()
+        robot.assertChoice("On")
+        robot.capture("radio-row-on-dark")
+        robot.information.tap()
+        XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+        robot.capture("radio-row-help-dark")
+    }
+
+    @MainActor
+    func test_givenLargestText_whenOpeningRadioHelp_thenKeepsControlsSeparateAndHelpScrollable() {
+        // Given
+        launchRadio(largerText: true)
+        let robot = NearbyAirportsRadioAssessmentRobot(app: app)
+        XCTAssertTrue(robot.radio.waitForExistence(timeout: 5))
+        XCTAssertLessThanOrEqual(robot.radio.frame.maxX, robot.information.frame.minX)
+        robot.capture("radio-row-largest-text")
+
+        // When / Then
+        robot.information.tap()
+        XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+        robot.capture("radio-row-help-largest-text")
+        app.scrollViews.containing(.staticText, identifier: "NearbyAirportsRadioAssessment.Message").firstMatch.swipeUp()
+        robot.capture("radio-row-help-largest-text-scrolled")
+    }
+
+    @MainActor
+    func test_givenRightToLeft_whenViewingRadioRow_thenMirrorsControlOrder() {
+        // Given
+        launchRadio(rtl: true)
+        let robot = NearbyAirportsRadioAssessmentRobot(app: app)
+        XCTAssertTrue(robot.radio.waitForExistence(timeout: 5))
+
+        // When / Then
+        XCTAssertGreaterThanOrEqual(robot.radio.frame.minX, robot.information.frame.maxX)
+        robot.radio.tap()
+        robot.assertChoice("On")
+        robot.capture("radio-row-rtl")
+    }
 }
 
 @MainActor
@@ -449,6 +555,38 @@ private final class TipKitAssessmentRobot {
 
     func tap(_ frame: CGRect) {
         app.coordinate(withNormalizedOffset: .zero).withOffset(CGVector(dx: frame.midX, dy: frame.midY)).tap()
+    }
+
+    func capture(_ name: String) {
+        let attachment = XCTAttachment(screenshot: app.screenshot())
+        attachment.name = name
+        attachment.lifetime = .keepAlways
+        XCTContext.runActivity(named: name) { $0.add(attachment) }
+    }
+}
+
+@MainActor
+private final class NearbyAirportsRadioAssessmentRobot {
+    let app: XCUIApplication
+    var radio: XCUIElement { app.buttons["NearbyAirportsRadioAssessment.Radio"] }
+    var information: XCUIElement { app.buttons["NearbyAirportsRadioAssessment.Information"] }
+    var message: XCUIElement { app.staticTexts["NearbyAirportsRadioAssessment.Message"] }
+    var content: XCUIElement { app.staticTexts["NearbyAirportsRadioAssessment.Content"] }
+
+    init(app: XCUIApplication) { self.app = app }
+
+    func assertChoice(_ value: String) {
+        let expected = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == %@", value), object: radio)
+        XCTAssertEqual(XCTWaiter.wait(for: [expected], timeout: 5), .completed)
+    }
+
+    func waitForHelpToDisappear() {
+        let gone = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: message)
+        XCTAssertEqual(XCTWaiter.wait(for: [gone], timeout: 5), .completed)
+    }
+
+    func tap(_ point: CGPoint) {
+        app.coordinate(withNormalizedOffset: .zero).withOffset(CGVector(dx: point.x, dy: point.y)).tap()
     }
 
     func capture(_ name: String) {

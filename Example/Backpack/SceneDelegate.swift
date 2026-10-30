@@ -46,6 +46,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func rootViewController(isUITestRun: Bool) -> UIViewController {
+        if #available(iOS 17.0, *), ProcessInfo.processInfo.arguments.contains("NEARBY_AIRPORTS_RADIO_ASSESSMENT") {
+            return UIHostingController(rootView: NearbyAirportsRadioAssessmentView(isStandalone: true))
+        }
         if #available(iOS 17.0, *), ProcessInfo.processInfo.arguments.contains("TIPKIT_ASSESSMENT_BASIC") {
             return UIHostingController(rootView: NativeTipKitAssessmentView(mode: .tipKit, opensFromDirectly: true))
         }

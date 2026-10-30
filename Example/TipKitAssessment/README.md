@@ -1,6 +1,8 @@
-# Apple TipKit assessment for Nearby Airports
+# Nearby Airports help and radio layout assessment
 
 TipKit is a viable native option for the requested interaction on iOS 26 and later. A separate Example prototype verifies reopening help, dismissing it with the info button, changing the switch while help is open, and remembering the introduction across app launches. Earlier supported iOS versions need a fallback for the same interaction.
+
+The Example app also includes a comparison of the requested radio row: a leading circle, bold label and separate trailing information button. It uses repeatable native help rather than TipKit eligibility.
 
 This branch extends the Backpack Example app from the experimental switch branch. It does not replace the implementation in the existing Backpack or app PRs. No shared component API or package resolution changes are included.
 
@@ -44,6 +46,20 @@ For a direct launch of the basic iOS 17-compatible example, add `TIPKIT_ASSESSME
 
 The other two assessment buttons compare default TipKit and a plain native popover. The iOS 26 option is absent on earlier systems. For a fresh assessment, add `TIPKIT_ASSESSMENT_RESET` to the Example launch arguments for one launch, then remove it. This clears only the dedicated assessment store and assessment history before configuring TipKit. No eligibility-bypass testing APIs are used.
 
+## Radio row comparison
+
+Open **Switches → SwiftUI → Assess nearby airports radio row**, or launch with `NEARBY_AIRPORTS_RADIO_ASSESSMENT` to open it directly. The circle and label both turn the choice on and off. The outlined information button stays available and opens the same help without changing the selection. Help uses a native popover on iOS 17 and later and can be reopened after dismissal. At large text sizes the row wraps and the help can scroll.
+
+The layout reuses `BPKRadio`, Backpack typography and spacing. The outlined information glyph already exists in Backpack's asset bundle, but is currently private to interactive badges. This Example references that existing asset for visual assessment; adopting it in the app would need a public icon API or the existing public information icon. No shared component API changes are included.
+
+Radio controls conventionally select one option from a group. This PoC intentionally permits deselection for the requested single optional setting; agree that interaction before adopting the design. It always shows the info button and does not add an automatic introduction. The other examples retain the first-use TipKit comparison.
+
+![Radio row off in light mode](images/radio-row-off-light.png)
+
+![Radio row selected in dark mode](images/radio-row-on-dark.png)
+
+![Radio row with native help](images/radio-row-help-light.png)
+
 ## Local validation
 
 Verified on 30 October 2026 with Xcode 27.1:
@@ -54,6 +70,8 @@ Verified on 30 October 2026 with Xcode 27.1:
 | iPhone SE third generation, iOS 18.5 | Six assessment UI tests plus an additional direct-launch and background-tap check passed; zero failures. Two verify that the iOS 26 option is unavailable |
 
 The lifecycle test leaves the selector while the automatic introduction is still open, then verifies that the other selector shows the info icon and can reopen help. The interaction tests cover dismissal, repeated opening, one-tap switch changes with the iOS 26 controls, unchanged content frames, and history after app relaunch. Light, dark and largest-text captures are included. The default TipKit direct-launch check targets the selector switch by its accessibility identifier and confirms that the first tap dismisses the tip without changing the switch on iOS 18.5. The native popover comparison records the same first-tap behaviour on both tested systems.
+
+The radio row separately passed four UI checks on iPhone SE third generation with iOS 18.5, using normal animations. These verify selection and deselection from the circle and label, independent repeated help, unchanged content frames, minimum 44-point targets, dark mode, controls staying separate at the largest text size, and mirrored control order under a forced right-to-left layout. Native captures also show the full help after scrolling at the largest text size. This radio variant has not been tested with VoiceOver, on iPad or on iOS 26.
 
 Run `TipKitAssessmentUITest` in the `Backpack-UI-Tests` scheme to repeat the assessment. The tests reset only the dedicated assessment history between cases; persistence checks relaunch without resetting it.
 

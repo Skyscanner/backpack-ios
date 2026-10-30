@@ -19,12 +19,14 @@
 import SwiftUI
 import TipKit
 import Backpack_SwiftUI
+import Backpack_Common
 
 struct SwitchExampleView: View {
     @State private var assessmentMode: NativeTipKitAssessmentMode?
     @State private var value = true
     @State private var disabledValue = true
     @State private var showsTooltipExample = false
+    @State private var showsRadioAssessment = false
     @State private var hasSeenTooltip = false
     @State private var isReturningVisit = false
     @State private var tooltipIsPresented = true
@@ -47,6 +49,8 @@ struct SwitchExampleView: View {
                 .accessibilityIdentifier("SwitchExample.OpenTooltip")
 
                 if #available(iOS 17.0, *) {
+                    BPKButton("Assess nearby airports radio row") { showsRadioAssessment = true }
+                        .accessibilityIdentifier("NearbyAirportsRadioAssessment.Open")
                     BPKButton("Assess Apple TipKit") { assessmentMode = .tipKit }
                         .accessibilityIdentifier("TipKitAssessment.OpenTipKit")
                     BPKButton("Assess native popover") { assessmentMode = .nativePopover }
@@ -118,6 +122,9 @@ struct SwitchExampleView: View {
                 .background(Color(.surfaceContrastColor))
             }
             .padding()
+        }
+        .sheet(isPresented: $showsRadioAssessment) {
+            if #available(iOS 17.0, *) { NearbyAirportsRadioAssessmentView() }
         }
         .sheet(item: $assessmentMode) { mode in
             if #available(iOS 17.0, *) { NativeTipKitAssessmentView(mode: mode) }
@@ -414,4 +421,111 @@ private enum AssessmentSelector: String, Identifiable {
 @available(iOS 17.0, *)
 struct NativeTipKitAssessmentView_Previews: PreviewProvider {
     static var previews: some View { NativeTipKitAssessmentView(mode: .nativePopover) }
+}
+
+
+/// Example-only layout comparison. A selected option can be tapped again to turn it off.
+@available(iOS 17.0, *)
+struct NearbyAirportsRadioAssessmentView: View {
+    private enum Layout {
+        static let touchTarget = BPKSpacing.xxl.value + BPKSpacing.sm.value
+        static let helpWidth = BPKSpacing.xxl.value * 8
+        static let maximumHelpHeightRatio: CGFloat = 0.6
+    }
+
+    let isStandalone: Bool
+    @Environment(\.dismiss) private var dismiss
+    @State private var isSelected = false
+    @State private var isInformationPresented = false
+    @ScaledMetric private var informationSize = BPKSpacing.lg.value
+    @ScaledMetric private var preferredHelpHeight = BPKSpacing.xxl.value * 3
+
+    init(isStandalone: Bool = false) { self.isStandalone = isStandalone }
+
+    var body: some View {
+        GeometryReader { geometry in
+            VStack(alignment: .leading, spacing: .lg) {
+                ScrollView {
+                    VStack(alignment: .leading, spacing: .lg) {
+                        BPKText("Nearby airports", style: .heading3)
+                            .lineLimit(nil)
+                            .fixedSize(horizontal: false, vertical: true)
+                        radioRow(availableSize: geometry.size)
+                        BPKText("Search suggestions stay in place")
+                            .lineLimit(nil)
+                            .accessibilityIdentifier("NearbyAirportsRadioAssessment.Content")
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                if !isStandalone {
+                    BPKButton("Done") { dismiss() }
+                        .stretchable()
+                }
+            }
+            .padding(.lg)
+        }
+        .background(Color(.canvasColor))
+    }
+
+    private func radioRow(availableSize: CGSize) -> some View {
+        HStack(spacing: .sm) {
+            BPKRadio(
+                isSelected: isSelected,
+                accessibilityLabel: "Include nearby airports",
+                action: { isSelected.toggle() }
+            )
+            .frame(minWidth: Layout.touchTarget, minHeight: Layout.touchTarget)
+            .contentShape(Rectangle())
+            .accessibilityValue(isSelected ? "On" : "Off")
+            .accessibilityIdentifier("NearbyAirportsRadioAssessment.Radio")
+
+            Button { isSelected.toggle() } label: {
+                BPKText("Include nearby airports", style: .heading5)
+                    .lineLimit(nil)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .frame(maxWidth: .infinity, minHeight: Layout.touchTarget, alignment: .leading)
+                    .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+            // The radio already exposes the same label and action to assistive technologies.
+            .accessibilityHidden(true)
+
+            informationButton(availableSize: availableSize)
+        }
+    }
+
+    private func informationButton(availableSize: CGSize) -> some View {
+        Button { isInformationPresented.toggle() } label: {
+            // Example-only use of Backpack's existing outlined information asset.
+            Image(decorative: "information-circle-outline-lg", bundle: BPKCommonBundle.iconsBundle)
+                .resizable()
+                .renderingMode(.template)
+                .frame(width: informationSize, height: informationSize)
+                .frame(minWidth: Layout.touchTarget, minHeight: Layout.touchTarget)
+                .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .foregroundColor(Color(.textSecondaryColor))
+        .accessibilityLabel("About nearby airports")
+        .accessibilityIdentifier("NearbyAirportsRadioAssessment.Information")
+        .popover(isPresented: $isInformationPresented, attachmentAnchor: .rect(.bounds), arrowEdge: .top) {
+            ScrollView {
+                BPKText(NativeTipKitAssessmentView.message)
+                    .lineLimit(nil)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(.base)
+                    .accessibilityIdentifier("NearbyAirportsRadioAssessment.Message")
+            }
+            .frame(
+                width: min(Layout.helpWidth, availableSize.width - BPKSpacing.lg.value * 2),
+                height: min(preferredHelpHeight, availableSize.height * Layout.maximumHelpHeightRatio)
+            )
+            .presentationCompactAdaptation(.popover)
+        }
+    }
+}
+
+@available(iOS 17.0, *)
+struct NearbyAirportsRadioAssessmentView_Previews: PreviewProvider {
+    static var previews: some View { NearbyAirportsRadioAssessmentView() }
 }
