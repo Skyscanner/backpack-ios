@@ -175,7 +175,7 @@ public struct BPKSwitch<Content: View>: View {
                 .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .foregroundColor(Color(style == .onContrast ? .textOnDarkColor : .coreAccentColor))
+        .foregroundColor(Color(style == .onContrast ? .textOnDarkColor : .textSecondaryColor))
         .accessibilityLabel(configuration.informationAccessibilityLabel)
         .accessibilityIdentifier("BPKSwitch.Tooltip.Information")
         .accessibilityFocused($tooltipFocus, equals: .information)

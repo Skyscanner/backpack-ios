@@ -127,6 +127,7 @@ API within two weeks of the experiment ending.
 without moving surrounding content. The pointer follows the information button,
 or the native switch for the introduction. An optional information button sits
 immediately after the label, before the native switch, with a 44-point tap target.
+The information icon uses `textSecondaryColor` in the default style.
 Tapping it again dismisses the explanation. The bubble uses `coreAccentColor` with
 `textPrimaryInverseColor` for contrast in light and dark themes.
 

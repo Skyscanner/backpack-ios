@@ -51,7 +51,7 @@ class BPKSwitchTests: XCTestCase {
         VStack(alignment: .leading, spacing: .md) {
             BPKSwitch(isOn: .constant(false), text: "Include nearby airports", truncate: false)
                 .experimentalTooltip(.init(
-                    message: "Include nearby airports in your flight results to find cheaper or more convenient options.",
+                    message: "Find cheaper flights by including nearby airports in your search.",
                     informationAccessibilityLabel: "About nearby airports",
                     dismissAccessibilityLabel: "Close information",
                     showsInformationButton: showsInformationButton
