@@ -40,7 +40,7 @@ The default TipKit presentation adds a title and uses the system material, arrow
 3. Open **From**, dismiss the introduction, then open **To**. Tap the grey info icon to reopen and dismiss the help. Try the switch while the help is open.
 4. Close and relaunch the app. The introduction stays dismissed and the info icon remains available on subsequent visits.
 
-For a direct launch of the basic iOS 17-compatible example, add `TIPKIT_ASSESSMENT_BASIC` to the Example launch arguments. This opens the From selector automatically using the default TipKit API, without the iOS 26 presentation controls. Combine it with `TIPKIT_ASSESSMENT_RESET` for a fresh introduction. Close the tip, open To, then press the info icon to observe that the dismissed tip cannot reopen.
+For a direct launch of the basic iOS 17-compatible example, add `TIPKIT_ASSESSMENT_BASIC` to the Example launch arguments. This opens the From selector directly in the main window using the default TipKit API, without the iOS 26 presentation controls. The shortcut is verified with normal animations enabled; it avoids presenting the native tip during an animated sheet transition. Combine it with `TIPKIT_ASSESSMENT_RESET` for a fresh introduction. Close the tip, open To, then press the info icon to observe that the dismissed tip cannot reopen.
 
 The other two assessment buttons compare default TipKit and a plain native popover. The iOS 26 option is absent on earlier systems. For a fresh assessment, add `TIPKIT_ASSESSMENT_RESET` to the Example launch arguments for one launch, then remove it. This clears only the dedicated assessment store and assessment history before configuring TipKit. No eligibility-bypass testing APIs are used.
 

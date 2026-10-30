@@ -127,6 +127,7 @@ final class TipKitAssessmentUITest: BackpackUITestCase {
     @MainActor
     func test_givenBasicDemoLaunch_whenTappingSwitchBehindTip_thenRecordsDefaultInteraction() {
         // Given
+        app.launchArguments.removeAll { $0 == "UITests" }
         app.launchArguments.append("TIPKIT_ASSESSMENT_BASIC")
         launchAssessment()
         let robot = TipKitAssessmentRobot(app: app)

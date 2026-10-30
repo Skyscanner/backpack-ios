@@ -29,10 +29,6 @@ struct SwitchExampleView: View {
     @State private var isReturningVisit = false
     @State private var tooltipIsPresented = true
 
-    init(assessmentMode: NativeTipKitAssessmentMode? = nil) {
-        _assessmentMode = State(initialValue: assessmentMode)
-    }
-
     private var attributedLabel: AttributedString {
         var label = AttributedString("Switch with styled text")
         label.foregroundColor = Color(.coreAccentColor)
@@ -208,6 +204,7 @@ struct NativeTipKitAssessmentView: View {
     static let message = "Find cheaper flights by including nearby airports in your search."
 
     let mode: NativeTipKitAssessmentMode
+    let opensFromDirectly: Bool
     @Environment(\.dismiss) private var dismiss
     @AppStorage(Self.historyKey) private var hasSeenPopover = false
     @AppStorage(Self.controlledHistoryKey) private var hasSeenControlledTip = false
@@ -217,12 +214,47 @@ struct NativeTipKitAssessmentView: View {
     @State private var isPresented = false
     @State private var tipStatus = "Ready"
     @State private var reopenRequest = 0
+    @State private var hasClosedDirectSelector = false
+
+    init(mode: NativeTipKitAssessmentMode, opensFromDirectly: Bool = false) {
+        self.mode = mode
+        self.opensFromDirectly = opensFromDirectly
+    }
+
     private var tip: NearbyAirportsAssessmentTip {
         NearbyAirportsAssessmentTip(id: mode == .controlledTipKit
             ? "nearby-airports-controlled-tipkit-assessment" : "nearby-airports-tipkit-assessment")
     }
 
     var body: some View {
+        Group {
+            if opensFromDirectly && !hasClosedDirectSelector {
+                selectorContent(.from)
+            } else {
+                assessmentMenu
+            }
+        }
+        .task {
+            if opensFromDirectly {
+                if case .invalidated = tip.status {
+                    isReturningVisit = true
+                } else {
+                    isPresented = true
+                }
+            }
+            for await status in tip.statusUpdates {
+                switch status {
+                case .pending: tipStatus = "Pending"
+                case .available: tipStatus = "Available"
+                case .invalidated:
+                    tipStatus = "Permanently dismissed"
+                    if mode == .controlledTipKit { hasSeenControlledTip = true }
+                }
+            }
+        }
+    }
+
+    private var assessmentMenu: some View {
         VStack(alignment: .leading, spacing: .lg) {
             BPKText(mode.title, style: .heading3)
             if let error = TipKitAssessmentConfiguration.errorMessage {
@@ -237,52 +269,46 @@ struct NativeTipKitAssessmentView: View {
                 .lineLimit(nil)
                 .accessibilityIdentifier("TipKitAssessment.Status")
             Spacer()
-            BPKButton("Back to switches") { dismiss() }
-                .accessibilityIdentifier("TipKitAssessment.CloseAssessment")
+            if !opensFromDirectly {
+                BPKButton("Back to switches") { dismiss() }
+                    .accessibilityIdentifier("TipKitAssessment.CloseAssessment")
+            }
         }
         .padding(.lg)
-        .sheet(item: $selector) { name in
-            VStack(alignment: .leading, spacing: .lg) {
-                BPKText("\(name.rawValue) · \(mode.title)", style: .heading3)
-                HStack(spacing: 0) {
-                    BPKText("Include nearby airports").lineLimit(nil)
-                        .accessibilityHidden(true)
-                    if isReturningVisit {
-                        informationButton
-                    }
-                    Spacer(minLength: BPKSpacing.sm.value)
-                    switchControl
-                }
-                .frame(minHeight: BPKSpacing.xxl.value + BPKSpacing.sm.value)
-                BPKText("Search suggestions stay in place")
-                    .accessibilityIdentifier("TipKitAssessment.ContentBelowSwitch")
-                Spacer()
-                BPKButton("Done") { selector = nil }
-                    .stretchable()
-                    .accessibilityIdentifier("TipKitAssessment.CloseSelector")
+        .sheet(item: $selector) { selectorContent($0) }
+    }
+
+    private func selectorContent(_ name: AssessmentSelector) -> some View {
+        VStack(alignment: .leading, spacing: .lg) {
+            BPKText("\(name.rawValue) · \(mode.title)", style: .heading3)
+            HStack(spacing: 0) {
+                BPKText("Include nearby airports").lineLimit(nil)
+                    .accessibilityHidden(true)
+                if isReturningVisit { informationButton }
+                Spacer(minLength: BPKSpacing.sm.value)
+                switchControl
             }
-            .padding(.lg)
-            .task(id: reopenRequest) {
-                guard reopenRequest > 0, mode == .controlledTipKit else { return }
-                if #available(iOS 26.0, *) {
-                    await tip.resetEligibility()
-                    guard !Task.isCancelled, selector != nil else { return }
-                    isPresented = true
+            .frame(minHeight: BPKSpacing.xxl.value + BPKSpacing.sm.value)
+            BPKText("Search suggestions stay in place")
+                .accessibilityIdentifier("TipKitAssessment.ContentBelowSwitch")
+            Spacer()
+            BPKButton("Done") {
+                if opensFromDirectly && !hasClosedDirectSelector {
+                    hasClosedDirectSelector = true
+                } else {
+                    selector = nil
                 }
             }
+            .stretchable()
+            .accessibilityIdentifier("TipKitAssessment.CloseSelector")
         }
-        .task {
-            if mode == .tipKit && ProcessInfo.processInfo.arguments.contains("TIPKIT_ASSESSMENT_BASIC") {
-                presentSelector(.from)
-            }
-            for await status in tip.statusUpdates {
-                switch status {
-                case .pending: tipStatus = "Pending"
-                case .available: tipStatus = "Available"
-                case .invalidated:
-                    tipStatus = "Permanently dismissed"
-                    if mode == .controlledTipKit { hasSeenControlledTip = true }
-                }
+        .padding(.lg)
+        .task(id: reopenRequest) {
+            guard reopenRequest > 0, mode == .controlledTipKit else { return }
+            if #available(iOS 26.0, *) {
+                await tip.resetEligibility()
+                guard !Task.isCancelled, selector != nil else { return }
+                isPresented = true
             }
         }
     }
