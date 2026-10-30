@@ -2,6 +2,12 @@
 
 # Unreleased
 
+**Added:**
+
+- SwiftUI: optional, experimental `BPKSwitch.experimentalTooltip` with introductory
+  information and an information button for subsequent visits. The explanation overlays content,
+  follows its trigger and supports tap-to-dismiss. Consumers own presentation history.
+
 **Breaking:**
 
 - Typography: headings 1–5 use black weight and finalized letter spacing by default;

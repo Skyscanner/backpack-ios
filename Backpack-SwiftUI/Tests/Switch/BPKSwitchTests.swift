@@ -21,6 +21,50 @@ import SwiftUI
 @testable import Backpack_SwiftUI
 
 class BPKSwitchTests: XCTestCase {
+    func test_givenNoTooltip_whenOptingInWithNil_thenPreservesStandardSwitch() {
+        assertSnapshot(
+            BPKSwitch(isOn: .constant(false), text: "Test")
+                .experimentalTooltip(nil, isPresented: .constant(true))
+                .padding(.sm),
+            testName: "testSwitchOffState"
+        )
+    }
+
+    func test_givenFirstVisit_whenInformationIsPresented_thenShowsTooltipWithoutInfoButton() {
+        assertSnapshot(tooltipSwitch(isPresented: true, showsInformationButton: false))
+    }
+
+    func test_givenReturningVisit_whenInformationIsClosed_thenShowsInfoButtonOnly() {
+        assertSnapshot(tooltipSwitch(isPresented: false))
+    }
+
+    func test_givenReturningVisit_whenInformationIsOpened_thenShowsSameTooltip() {
+        assertSnapshot(tooltipSwitch(isPresented: true))
+    }
+
+    func test_givenTooltip_whenTextSizeIncreases_thenInformationRemainsReadable() {
+        // Allow the helper to render all three Dynamic Type sizes without cropping.
+        assertA11ySnapshot(tooltipSwitch(isPresented: true), customHeight: 1200)
+    }
+
+    private func tooltipSwitch(isPresented: Bool, showsInformationButton: Bool = true) -> some View {
+        VStack(alignment: .leading, spacing: .md) {
+            BPKSwitch(isOn: .constant(false), text: "Include nearby airports", truncate: false)
+                .experimentalTooltip(.init(
+                    message: "Find cheaper flights by including nearby airports in your search.",
+                    informationAccessibilityLabel: "About nearby airports",
+                    dismissAccessibilityLabel: "Close information",
+                    showsInformationButton: showsInformationButton
+                ), isPresented: .constant(isPresented))
+                .zIndex(1)
+            BPKText("Search suggestions stay in place")
+            Spacer(minLength: 0)
+        }
+        .padding(.md)
+        .frame(width: 375, height: 300)
+        .background(.surfaceDefaultColor)
+    }
+
     func testSwitchOnState() {
         assertSnapshot(BPKSwitch(isOn: .constant(true), text: "Test").padding(.sm))
     }
