@@ -112,3 +112,316 @@ private final class SwitchTooltipRobot {
         XCTContext.runActivity(named: name) { $0.add(attachment) }
     }
 }
+
+final class TipKitAssessmentUITest: BackpackUITestCase {
+    @MainActor
+    private func launchAssessment(theme: String = "FORCE_LIGHT_MODE", accessibility: Bool = false) {
+        app.terminate()
+        app.launchArguments += ["TIPKIT_ASSESSMENT_RESET", theme]
+        if accessibility {
+            app.launchArguments += ["-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
+        }
+        app.launch()
+    }
+
+    @MainActor
+    func test_givenClosedTipKitIntroduction_whenOpeningInformation_thenRemainsPermanentlyDismissed() {
+        // Given
+        launchAssessment()
+        let robot = TipKitAssessmentRobot(app: app)
+        robot.navigate()
+        robot.openAssessment("TipKit")
+        robot.openSelector("From")
+        XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+        robot.capture("tipkit-first-visit-light")
+        robot.closeSystemTip()
+        robot.closeSelector()
+        XCTAssertTrue(robot.status.waitForExistence(timeout: 5))
+        XCTAssertTrue(robot.status.label.contains("Permanently dismissed"))
+
+        // When
+        robot.openSelector("To")
+        XCTAssertTrue(robot.information.waitForExistence(timeout: 5))
+        robot.information.tap()
+
+        // Then: this is the framework limitation being assessed, not the desired product behaviour.
+        XCTAssertFalse(robot.message.waitForExistence(timeout: 2))
+        robot.capture("tipkit-cannot-reopen-after-close")
+        app.terminate()
+        app.launchArguments.removeAll { $0 == "TIPKIT_ASSESSMENT_RESET" }
+        app.launch()
+        robot.navigate()
+        robot.openAssessment("TipKit")
+        robot.openSelector("From")
+        XCTAssertTrue(robot.information.waitForExistence(timeout: 5))
+        XCTAssertFalse(robot.message.exists)
+    }
+
+    @MainActor
+    func test_givenNativePopover_whenReopeningInformation_thenPreservesChoiceAndLayout() {
+        // Given
+        launchAssessment()
+        let robot = TipKitAssessmentRobot(app: app)
+        robot.navigate()
+        robot.openAssessment("Popover")
+        robot.openSelector("From")
+        XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+        robot.capture("native-popover-first-visit-light")
+        robot.dismissPopover()
+        robot.closeSelector()
+        robot.openSelector("To")
+        XCTAssertTrue(robot.information.waitForExistence(timeout: 5))
+        XCTAssertFalse(robot.message.exists)
+        let value = robot.control.value as? String
+        let controlFrame = robot.control.frame
+        let contentFrame = robot.content.frame
+        let informationFrame = robot.information.frame
+        XCTAssertGreaterThanOrEqual(informationFrame.width, 44)
+        XCTAssertGreaterThanOrEqual(informationFrame.height, 44)
+
+        // When / Then
+        robot.information.tap()
+        XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+        robot.capture("native-popover-information-light")
+        robot.tap(informationFrame)
+        robot.waitForMessageToDisappear()
+        XCTAssertEqual(robot.control.value as? String, value)
+        XCTAssertEqual(robot.control.frame, controlFrame)
+        XCTAssertEqual(robot.content.frame, contentFrame)
+        robot.information.tap()
+        XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+        robot.tap(controlFrame)
+        robot.waitForMessageToDisappear()
+        let changedOnFirstTap = robot.control.value as? String != value
+        print("TIPKIT_ASSESSMENT_SWITCH_CHANGED_ON_FIRST_BACKGROUND_TAP=\(changedOnFirstTap)")
+        if !changedOnFirstTap { robot.control.tap() }
+        XCTAssertNotEqual(robot.control.value as? String, value)
+        robot.closeSelector()
+
+        app.terminate()
+        app.launchArguments.removeAll { $0 == "TIPKIT_ASSESSMENT_RESET" }
+        app.launch()
+        robot.navigate()
+        robot.openAssessment("Popover")
+        robot.openSelector("From")
+        XCTAssertTrue(robot.information.waitForExistence(timeout: 5))
+        XCTAssertFalse(robot.message.exists)
+    }
+
+    @MainActor
+    func test_givenControlledTipKit_whenReopeningInformation_thenSupportsBackgroundSwitchAndPersistence() {
+        // Given
+        launchAssessment()
+        let robot = TipKitAssessmentRobot(app: app)
+        robot.navigate()
+        guard #available(iOS 26.0, *) else {
+            XCTAssertFalse(app.buttons["TipKitAssessment.OpenControlledTipKit"].exists)
+            return
+        }
+        robot.openAssessment("ControlledTipKit")
+        robot.openSelector("From")
+        XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+        robot.capture("controlled-tipkit-first-visit-light")
+        robot.closeSystemTip()
+        robot.closeSelector()
+        robot.openSelector("To")
+        XCTAssertTrue(robot.information.waitForExistence(timeout: 5))
+        XCTAssertFalse(robot.message.exists)
+        let value = robot.control.value as? String
+        XCTAssertNotNil(value)
+        let controlFrame = robot.control.frame
+        let contentFrame = robot.content.frame
+        let informationFrame = robot.information.frame
+
+        // When / Then
+        robot.information.tap()
+        XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+        robot.capture("controlled-tipkit-information-light")
+        robot.tap(informationFrame)
+        robot.waitForMessageToDisappear()
+        XCTAssertEqual(robot.control.value as? String, value)
+        XCTAssertEqual(robot.control.frame, controlFrame)
+        XCTAssertEqual(robot.content.frame, contentFrame)
+        robot.information.tap()
+        XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+        robot.tap(controlFrame)
+        let changed = XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "value != %@", value ?? ""), object: robot.control
+        )
+        XCTAssertEqual(XCTWaiter.wait(for: [changed], timeout: 5), .completed)
+        XCTAssertEqual(robot.content.frame, contentFrame)
+        if robot.message.exists { robot.closeSystemTip() }
+        robot.closeSelector()
+
+        app.terminate()
+        app.launchArguments.removeAll { $0 == "TIPKIT_ASSESSMENT_RESET" }
+        app.launch()
+        robot.navigate()
+        robot.openAssessment("ControlledTipKit")
+        robot.openSelector("From")
+        XCTAssertTrue(robot.information.waitForExistence(timeout: 5))
+        XCTAssertFalse(robot.message.exists)
+        robot.information.tap()
+        XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+    }
+
+    @MainActor
+    func test_givenVisibleControlledIntroduction_whenLeavingSelector_thenShowsInformationOnNextVisit() {
+        // Given
+        launchAssessment()
+        let robot = TipKitAssessmentRobot(app: app)
+        robot.navigate()
+        guard #available(iOS 26.0, *) else {
+            XCTAssertFalse(app.buttons["TipKitAssessment.OpenControlledTipKit"].exists)
+            return
+        }
+        robot.openAssessment("ControlledTipKit")
+        robot.openSelector("From")
+        XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+
+        // When: leave without pressing the tip's close button.
+        robot.closeSelector()
+        robot.openSelector("To")
+
+        // Then
+        XCTAssertTrue(robot.information.waitForExistence(timeout: 5))
+        XCTAssertFalse(robot.message.exists)
+        robot.information.tap()
+        XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+    }
+
+    @MainActor
+    func test_givenControlledTipKitInDarkTheme_whenPresentingHelp_thenSupportsNativeDismissal() {
+        // Given
+        launchAssessment(theme: "FORCE_DARK_MODE")
+        let robot = TipKitAssessmentRobot(app: app)
+        robot.navigate()
+        guard #available(iOS 26.0, *) else {
+            XCTAssertFalse(app.buttons["TipKitAssessment.OpenControlledTipKit"].exists)
+            return
+        }
+        robot.openAssessment("ControlledTipKit")
+        robot.openSelector("From")
+        XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+        robot.capture("controlled-tipkit-first-visit-dark")
+        robot.closeSystemTip()
+        robot.closeSelector()
+
+        // When / Then
+        robot.openSelector("To")
+        robot.information.tap()
+        XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+        robot.capture("controlled-tipkit-information-dark")
+        robot.information.tap()
+        robot.waitForMessageToDisappear()
+    }
+
+    @MainActor
+    func test_givenLargestText_whenShowingNativePresentations_thenCapturesLayoutsAndAllowsDismissal() {
+        // Given
+        launchAssessment(accessibility: true)
+        let robot = TipKitAssessmentRobot(app: app)
+        robot.navigate()
+        robot.openAssessment("TipKit")
+        robot.openSelector("From")
+        XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+        robot.capture("tipkit-largest-text")
+        robot.closeSystemTip()
+        robot.closeSelector()
+        robot.closeAssessment()
+
+        // When / Then
+        robot.openAssessment("Popover")
+        robot.openSelector("From")
+        XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+        robot.capture("native-popover-largest-text")
+        robot.dismissPopover()
+        robot.closeSelector()
+        robot.closeAssessment()
+        if #available(iOS 26.0, *) {
+            robot.openAssessment("ControlledTipKit")
+            robot.openSelector("From")
+            XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+            robot.capture("controlled-tipkit-largest-text")
+            robot.closeSystemTip()
+            robot.closeSelector()
+        }
+    }
+
+    @MainActor
+    func test_givenDarkTheme_whenShowingNativePresentations_thenCapturesBothAppearances() {
+        // Given
+        launchAssessment(theme: "FORCE_DARK_MODE")
+        let robot = TipKitAssessmentRobot(app: app)
+        robot.navigate()
+        robot.openAssessment("TipKit")
+        robot.openSelector("From")
+        XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+        robot.capture("tipkit-first-visit-dark")
+        robot.closeSystemTip()
+        robot.closeSelector()
+        robot.closeAssessment()
+
+        // When / Then
+        robot.openAssessment("Popover")
+        robot.openSelector("From")
+        XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+        robot.capture("native-popover-first-visit-dark")
+        robot.dismissPopover()
+        robot.closeSelector()
+        robot.openSelector("To")
+        robot.information.tap()
+        XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+        robot.capture("native-popover-information-dark")
+    }
+}
+
+@MainActor
+private final class TipKitAssessmentRobot {
+    private let app: XCUIApplication
+    private let copy = "Find cheaper flights by including nearby airports in your search."
+    var message: XCUIElement { app.staticTexts[copy].firstMatch }
+    var information: XCUIElement { app.buttons["TipKitAssessment.Information"] }
+    var control: XCUIElement { app.switches.firstMatch }
+    var content: XCUIElement { app.staticTexts["TipKitAssessment.ContentBelowSwitch"] }
+    var status: XCUIElement { app.staticTexts["TipKitAssessment.Status"] }
+
+    init(app: XCUIApplication) { self.app = app }
+
+    func navigate() {
+        let switches = app.tables.staticTexts["Switches"]
+        XCTAssertTrue(switches.waitForExistence(timeout: 5))
+        for _ in 0..<8 where !switches.isHittable { app.swipeUp() }
+        switches.tap()
+        app.tabBars.buttons["SwiftUI"].tap()
+    }
+
+    func openAssessment(_ mode: String) { app.buttons["TipKitAssessment.Open\(mode)"].tap() }
+    func openSelector(_ name: String) { app.buttons["TipKitAssessment.Open\(name)"].tap() }
+    func closeSelector() { app.buttons["TipKitAssessment.CloseSelector"].tap() }
+    func closeAssessment() { app.buttons["TipKitAssessment.CloseAssessment"].tap() }
+    func dismissPopover() { app.buttons["TipKitAssessment.Dismiss"].tap() }
+
+    func closeSystemTip() {
+        let close = app.buttons.matching(NSPredicate(format: "label CONTAINS[c] %@", "close")).firstMatch
+        XCTAssertTrue(close.waitForExistence(timeout: 5), app.debugDescription)
+        close.tap()
+        waitForMessageToDisappear()
+    }
+
+    func waitForMessageToDisappear() {
+        let gone = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: message)
+        XCTAssertEqual(XCTWaiter.wait(for: [gone], timeout: 5), .completed)
+    }
+
+    func tap(_ frame: CGRect) {
+        app.coordinate(withNormalizedOffset: .zero).withOffset(CGVector(dx: frame.midX, dy: frame.midY)).tap()
+    }
+
+    func capture(_ name: String) {
+        let attachment = XCTAttachment(screenshot: app.screenshot())
+        attachment.name = name
+        attachment.lifetime = .keepAlways
+        XCTContext.runActivity(named: name) { $0.add(attachment) }
+    }
+}
