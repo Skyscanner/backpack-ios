@@ -51,6 +51,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         setupRelativeFont()
         setupAppearance()
+        if #available(iOS 17.0, *) {
+            _ = TipKitAssessmentConfiguration.errorMessage
+        }
         return true
     }
 }
