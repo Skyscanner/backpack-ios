@@ -60,7 +60,6 @@ public struct BPKAppSearchModal: View {
             if let inputAccessoryContent {
                 inputAccessoryContent
                     .padding(.horizontal, .base)
-                    .zIndex(1)
             }
             switch results {
             case .loading(let loading):

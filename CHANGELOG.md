@@ -4,9 +4,9 @@
 
 **Added:**
 
-- SwiftUI: optional, experimental `BPKSwitch.experimentalTooltip` with introductory
-  information and an information button for subsequent visits. The explanation overlays content,
-  follows its trigger and supports tap-to-dismiss. Consumers own presentation history.
+- SwiftUI: optional, experimental `BPKSwitch.experimentalInformation` with a persistent
+  information button and bottom sheet. A separately configured native Apple TipKit
+  introduction on iOS 17+ uses the same content; consumers own feature flags and TipKit setup.
 
 **Breaking:**
 

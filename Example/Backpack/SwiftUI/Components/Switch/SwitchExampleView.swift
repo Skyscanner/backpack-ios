@@ -25,9 +25,7 @@ struct SwitchExampleView: View {
     @State private var value = true
     @State private var disabledValue = true
     @State private var showsTooltipExample = false
-    @State private var hasSeenTooltip = false
-    @State private var isReturningVisit = false
-    @State private var tooltipIsPresented = true
+    @State private var nativeTooltipEnabled = false
 
     private var attributedLabel: AttributedString {
         var label = AttributedString("Switch with styled text")
@@ -36,15 +34,16 @@ struct SwitchExampleView: View {
     }
 
     var body: some View {
+        let nativeTooltip = nativeTooltipEnabled ? BPKSwitchExperimentalTooltip(id: "nearby-airports-example.v2") : nil
         ScrollView {
             VStack(alignment: .leading, spacing: .base) {
-                BPKText("Experimental tooltip", style: .heading5)
+                BPKText("Experimental information", style: .heading5)
                 BPKButton("Open experimental switch") {
-                    isReturningVisit = hasSeenTooltip
-                    tooltipIsPresented = !hasSeenTooltip
                     showsTooltipExample = true
                 }
                 .accessibilityIdentifier("SwitchExample.OpenTooltip")
+                BPKSwitch(isOn: $nativeTooltipEnabled, text: "Enable native introduction")
+                    .accessibilityIdentifier("SwitchExample.NativeTooltipEnabled")
 
                 if #available(iOS 17.0, *) {
                     BPKButton("Assess Apple TipKit") { assessmentMode = .tipKit }
@@ -124,16 +123,14 @@ struct SwitchExampleView: View {
         }
         .sheet(isPresented: $showsTooltipExample) {
             VStack(alignment: .leading, spacing: .lg) {
-                BPKText("Experimental switch tooltip", style: .heading3)
+                BPKText("Nearby airports help", style: .heading3)
                 BPKSwitch(isOn: $value, text: "Include nearby airports", truncate: false)
-                    .experimentalTooltip(.init(
+                    .experimentalInformation(.init(
+                        title: "Nearby airports",
                         message: "Find cheaper flights by including nearby airports in your search.",
                         informationAccessibilityLabel: "About nearby airports",
-                        dismissAccessibilityLabel: "Close information",
-                        showsInformationButton: isReturningVisit,
-                        onPresented: { hasSeenTooltip = true }
-                    ), isPresented: $tooltipIsPresented)
-                    .zIndex(1)
+                        dismissAccessibilityLabel: "Close information"
+                    ), tooltip: nativeTooltip)
                 BPKText("Search suggestions stay in place")
                     .accessibilityIdentifier("SwitchExample.ContentBelowSwitch")
                 Spacer()
@@ -161,7 +158,8 @@ enum TipKitAssessmentConfiguration {
             let directory = try FileManager.default.url(
                 for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true
             ).appendingPathComponent("NearbyAirportsTipKitAssessment", isDirectory: true)
-            if ProcessInfo.processInfo.arguments.contains("TIPKIT_ASSESSMENT_RESET") {
+            if ProcessInfo.processInfo.arguments.contains("TIPKIT_ASSESSMENT_RESET")
+                || ProcessInfo.processInfo.arguments.contains("SWITCH_INFORMATION_RESET") {
                 if FileManager.default.fileExists(atPath: directory.path) {
                     try FileManager.default.removeItem(at: directory)
                 }

@@ -17,6 +17,7 @@
  */
 
 import UIKit
+import TipKit
 
 import Backpack
 import Backpack_SwiftUI

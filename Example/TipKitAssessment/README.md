@@ -1,6 +1,8 @@
 # Apple TipKit assessment for Nearby Airports
 
-TipKit is a viable native option for the requested interaction on iOS 26 and later. A separate Example prototype verifies reopening help, dismissing it with the info button, changing the switch while help is open, and remembering the introduction across app launches. Earlier supported iOS versions need a fallback for the same interaction.
+This Example compares native help options for Nearby Airports. DON-4084 chooses a persistent information icon opening a bottom sheet, with an independently configured native TipKit introduction. That interaction works with iOS 17-compatible APIs; it does not need to reopen an invalidated tip. The radio proposal has been removed.
+
+Use **Open experimental switch** for the current implementation and **Enable native introduction** for its separate tooltip configuration. See [current behaviour, validation and screenshots](../SwitchInformation/README.md). The comparisons below retain the findings about reopening the tip itself, including the additional iOS 26 controls.
 
 This branch extends the Backpack Example app from the experimental switch branch. It does not replace the implementation in the existing Backpack or app PRs. No shared component API or package resolution changes are included.
 
@@ -27,11 +29,11 @@ The prototype keeps introduction history separate from tip eligibility, so reope
 
 TipKit itself starts at iOS 17. The current Place Selector supports iOS 17 and later, and Backpack supports iOS 16 and later. An availability-gated experimental API is feasible; adoption of the iOS 26 controls still needs a compatibility decision.
 
-## Recommendation
+## Current direction
 
-Use TipKit if this experiment can target iOS 26 and later. For the full supported app range, retain the current experimental overlay as the earlier-version fallback while evaluating TipKit. Keep the experiment flag, exposure history and copy in the app; let Backpack handle the optional presentation. Configure TipKit once during app initialization.
+Use the native tip only as an optional introduction. Keep the information icon visible from the first visit, and open a Backpack bottom sheet from it. Both presentations use one content configuration. Repeated help no longer depends on resetting TipKit eligibility or on iOS 26 APIs. The consuming app owns feature flags, content, the stable tip identity and one-time TipKit setup.
 
-The default TipKit presentation adds a title and uses the system material, arrow and close button. Design should review that appearance, especially in dark mode. [TipKit styling](https://developer.apple.com/documentation/swiftui/view/tipbackground(_:)) can apply a Backpack surface token if needed. VoiceOver, RTL, iPad and real selector integration still need validation before adopting this prototype in the app.
+The default native tip may consume the first background tap to dismiss. Its information action opens the sheet directly; the persistent icon remains available after dismissal. VoiceOver navigation, iPad and released-app ingestion remain outside this Example assessment.
 
 ## Try the prototype
 
