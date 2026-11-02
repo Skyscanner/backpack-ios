@@ -32,8 +32,10 @@ final class SwitchTooltipUITest: BackpackUITestCase {
         let controlFrame = robot.control.frame
         let contentFrame = robot.contentBelowSwitch.frame
         XCTAssertNotNil(value)
-        XCTAssertGreaterThanOrEqual(robot.information.frame.width, 44)
-        XCTAssertGreaterThanOrEqual(robot.information.frame.height, 44)
+        // Simulator transforms can report 44 points as 43.999999999999986.
+        let frameRoundingTolerance = 0.001
+        XCTAssertGreaterThanOrEqual(robot.information.frame.width, 44 - frameRoundingTolerance)
+        XCTAssertGreaterThanOrEqual(robot.information.frame.height, 44 - frameRoundingTolerance)
         robot.capture("nearby-help-persistent-light")
 
         // When / Then
@@ -123,21 +125,29 @@ final class SwitchTooltipUITest: BackpackUITestCase {
 
     @MainActor
     func test_givenDarkThemeAndLargestText_whenOpeningHelp_thenKeepsContentScrollable() {
-        // Given
-        launch(dark: true, largerText: true)
-        let robot = SwitchTooltipRobot(app: app)
-        robot.navigate()
-        robot.open()
-        XCTAssertTrue(robot.information.waitForExistence(timeout: 5))
-        robot.capture("nearby-help-persistent-dark-large-text")
-        // When / Then
-        robot.information.tap()
-        XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
-        XCTAssertEqual(robot.message.label, SwitchTooltipRobot.copy)
-        robot.capture("nearby-help-sheet-dark-large-text")
-        robot.dismiss()
-        robot.waitForHelpToDisappear()
-        XCTAssertTrue(robot.information.exists)
+        for largerText in [false, true] {
+            // Given
+            launch(dark: true, largerText: largerText)
+            let robot = SwitchTooltipRobot(app: app)
+            robot.navigate()
+            robot.open()
+            XCTAssertTrue(robot.information.waitForExistence(timeout: 5))
+            let suffix = largerText ? "dark-large-text" : "dark"
+            robot.capture("nearby-help-persistent-\(suffix)")
+            // When / Then
+            robot.information.tap()
+            XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+            XCTAssertEqual(robot.message.label, SwitchTooltipRobot.copy)
+            robot.capture("nearby-help-sheet-\(suffix)")
+            if largerText {
+                app.scrollViews.containing(.staticText, identifier: "BPKSwitch.Information.Message")
+                    .firstMatch.swipeUp()
+                robot.capture("nearby-help-sheet-large-text-scrolled")
+            }
+            robot.dismiss()
+            robot.waitForHelpToDisappear()
+            XCTAssertTrue(robot.information.exists)
+        }
     }
 
     @MainActor

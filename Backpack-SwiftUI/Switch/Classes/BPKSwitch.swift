@@ -33,6 +33,7 @@ public struct BPKSwitch<Content: View>: View {
     private var informationConfiguration: BPKSwitchExperimentalInformation?
     private var tooltipConfiguration: BPKSwitchExperimentalTooltip?
     @State private var informationIsPresented = false
+    @Environment(\.sizeCategory) private var sizeCategory
 
     /// Creates a switch that generates its label from an attributed string.
     ///
@@ -153,16 +154,23 @@ public struct BPKSwitch<Content: View>: View {
             isPresented: $informationIsPresented,
             contentMode: .medium,
             closeButtonAccessibilityLabel: configuration.dismissAccessibilityLabel,
-            title: configuration.title,
+            title: sizeCategory.isAccessibilityCategory ? nil : configuration.title,
             presentingController: UIViewController()
         ) {
             ScrollView {
-                BPKText(configuration.message)
-                    .lineLimit(nil)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.base)
-                    .accessibilityIdentifier("BPKSwitch.Information.Message")
+                VStack(alignment: .leading, spacing: .base) {
+                    if sizeCategory.isAccessibilityCategory {
+                        BPKText(configuration.title, style: .heading5)
+                            .lineLimit(nil)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    BPKText(configuration.message)
+                        .lineLimit(nil)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .accessibilityIdentifier("BPKSwitch.Information.Message")
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.base)
             }
         }
     }

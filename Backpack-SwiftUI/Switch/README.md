@@ -140,3 +140,5 @@ BPKSwitch(isOn: $isOn, text: localisedTitle, truncate: false)
 Passing `nil` information preserves the standard switch, even if a tooltip configuration is supplied. Passing `nil` for `tooltip` disables only the introduction, preserving the information button and bottom sheet. Consumers own feature eligibility, configuration, localised copy and TipKit setup. The component does not reset Apple's datastore or add separate persistent history.
 
 The native tip includes an information action that opens the same sheet. On iOS 17–18, tapping outside a native tip first dismisses it; the persistent button can then open help. No iOS 26-only TipKit API or custom tooltip overlay is used. The Example app's **Switches → SwiftUI → Open experimental switch** demonstrates both configurations; enable **Enable native introduction** to assess TipKit.
+
+[Example and native captures](../../Example/SwitchInformation/README.md).
