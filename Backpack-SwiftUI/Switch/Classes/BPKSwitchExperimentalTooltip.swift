@@ -27,7 +27,7 @@ public struct BPKSwitchExperimentalInformation {
     public let title: String
     /// Localised explanation used by both presentations.
     public let message: String
-    /// Localised label for the information button and native tip action.
+    /// Localised accessibility label for the persistent information button.
     public let informationAccessibilityLabel: String
     /// Localised label for closing the bottom sheet.
     public let dismissAccessibilityLabel: String
@@ -63,30 +63,13 @@ public struct BPKSwitchExperimentalTooltip {
 
 struct BPKSwitchInformationButton: View {
     let configuration: BPKSwitchExperimentalInformation
-    let tooltip: BPKSwitchExperimentalTooltip?
     let style: BPKSwitchStyle
     let onSelect: () -> Void
 
     var body: some View {
-        if #available(iOS 17.0, *), let tooltip {
-            let tip = BPKSwitchInformationTip(id: tooltip.id, information: configuration)
-            button(action: {
-                tip.invalidate(reason: .actionPerformed)
-                onSelect()
-            })
-            .popoverTip(tip, arrowEdge: .top) { _ in
-                tip.invalidate(reason: .actionPerformed)
-                onSelect()
-            }
-        } else {
-            button(action: onSelect)
-        }
-    }
-
-    private func button(action: @escaping () -> Void) -> some View {
         // BPKButton's link style fixes its icon colour; this neutral trigger uses the native button.
         // swiftlint:disable:next bpk_button
-        Button(action: action) {
+        Button(action: onSelect) {
             BPKIconView(.informationCircle, size: .large)
                 .frame(
                     width: BPKSpacing.xxl.value + BPKSpacing.sm.value,
@@ -101,6 +84,21 @@ struct BPKSwitchInformationButton: View {
     }
 }
 
+struct BPKSwitchNativeIntroduction: ViewModifier {
+    let information: BPKSwitchExperimentalInformation
+    let tooltip: BPKSwitchExperimentalTooltip?
+
+    func body(content: Content) -> some View {
+        if #available(iOS 17.0, *), let tooltip {
+            content.popoverTip(
+                BPKSwitchInformationTip(id: tooltip.id, information: information), arrowEdge: .top
+            )
+        } else {
+            content
+        }
+    }
+}
+
 @available(iOS 17.0, *)
 private struct BPKSwitchInformationTip: Tip {
     let id: String
@@ -111,5 +109,4 @@ private struct BPKSwitchInformationTip: Tip {
     // swiftlint:disable:next bpk_text
     var message: Text? { Text(information.message) }
     var options: [any TipOption] { [Tips.MaxDisplayCount(1)] }
-    var actions: [Action] { [Action(id: "information", title: information.informationAccessibilityLabel)] }
 }

@@ -72,6 +72,9 @@ final class SwitchTooltipUITest: BackpackUITestCase {
         robot.capture("nearby-help-native-introduction")
         XCTAssertTrue(tipAppeared)
         XCTAssertTrue(robot.information.exists)
+        let extraInformationActions = app.buttons.matching(NSPredicate(format: "label == 'About nearby airports'"))
+            .allElementsBoundByIndex.filter { $0.identifier != "BPKSwitch.Information" }
+        XCTAssertTrue(extraInformationActions.isEmpty, "The introduction has no extra action button.")
 
         // When: Apple's close button dismisses the once-only introduction.
         let close = app.buttons.matching(NSPredicate(format: "label == 'Close' OR label == 'Dismiss'")).firstMatch
@@ -94,33 +97,6 @@ final class SwitchTooltipUITest: BackpackUITestCase {
         XCTAssertFalse(tipMessage.waitForExistence(timeout: 2))
         robot.information.tap()
         XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
-    }
-
-    @MainActor
-    func test_givenNativeIntroduction_whenSelectingInformationAction_thenOpensSameSheet() {
-        // Given
-        launch(reset: true)
-        let robot = SwitchTooltipRobot(app: app)
-        robot.navigate()
-        app.switches["SwitchExample.NativeTooltipEnabled"].tap()
-        robot.open()
-        XCTAssertTrue(app.staticTexts[SwitchTooltipRobot.copy].firstMatch.waitForExistence(timeout: 8))
-        let value = robot.control.value as? String
-
-        // When: use the action inside Apple's native tip, rather than a background tap.
-        let action = app.buttons.matching(NSPredicate(format: "label == 'About nearby airports'"))
-            .allElementsBoundByIndex
-            .first { $0.identifier != "BPKSwitch.Information" }
-        XCTAssertNotNil(action)
-        action?.tap()
-
-        // Then
-        XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
-        XCTAssertEqual(robot.message.label, SwitchTooltipRobot.copy)
-        robot.capture("nearby-help-sheet-from-native-tip")
-        robot.dismiss()
-        robot.waitForHelpToDisappear()
-        XCTAssertEqual(robot.control.value as? String, value)
     }
 
     @MainActor

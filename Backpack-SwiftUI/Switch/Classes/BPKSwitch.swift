@@ -142,12 +142,15 @@ public struct BPKSwitch<Content: View>: View {
             }
             BPKSwitchInformationButton(
                 configuration: configuration,
-                tooltip: informationIsPresented ? nil : tooltipConfiguration,
                 style: style,
                 onSelect: { informationIsPresented = true }
             )
             Spacer(minLength: BPKSpacing.sm.value)
             switchControl.labelsHidden().fixedSize()
+                .modifier(BPKSwitchNativeIntroduction(
+                    information: configuration,
+                    tooltip: informationIsPresented ? nil : tooltipConfiguration
+                ))
         }
         .frame(minHeight: BPKSpacing.xxl.value + BPKSpacing.sm.value)
         .bpkBottomSheet(
