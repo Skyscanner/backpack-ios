@@ -91,11 +91,16 @@ struct BPKSwitchNativeIntroduction: ViewModifier {
     func body(content: Content) -> some View {
         if #available(iOS 17.0, *), let tooltip {
             let tip = BPKSwitchInformationTip(id: tooltip.id, information: information)
+            // Keep the package buildable with its Xcode 16.4 toolchain as well as newer SDKs.
+            #if compiler(>=6.2)
             if #available(iOS 26.0, *) {
                 content.popoverTip(tip, attachmentAnchor: .point(.bottom), arrowEdges: .top)
             } else {
                 content.popoverTip(tip, arrowEdge: .top)
             }
+            #else
+            content.popoverTip(tip, arrowEdge: .top)
+            #endif
         } else {
             content
         }
