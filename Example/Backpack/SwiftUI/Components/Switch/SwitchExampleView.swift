@@ -110,7 +110,7 @@ struct SwitchExampleView: View {
                 BPKText("Nearby airports help", style: .heading3)
                 BPKSwitch(isOn: $value, text: "Include nearby airports", truncate: false)
                     .experimentalInformation(.init(
-                        title: "Nearby airports",
+                        title: "Include nearby airports",
                         message: "Find cheaper flights by including nearby airports in your search.",
                         informationAccessibilityLabel: "About nearby airports",
                         dismissAccessibilityLabel: "Close information"

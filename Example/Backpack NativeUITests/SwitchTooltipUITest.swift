@@ -60,7 +60,7 @@ final class SwitchTooltipUITest: BackpackUITestCase {
     }
 
     @MainActor
-    func test_givenNativeIntroduction_whenDismissed_thenPersistentHelpStillOpensAfterRelaunch() {
+    func test_givenNativeIntroduction_whenDismissed_thenPersistentHelpStillOpensAfterRelaunch() throws {
         // Given
         launch(reset: true)
         let robot = SwitchTooltipRobot(app: app)
@@ -72,6 +72,16 @@ final class SwitchTooltipUITest: BackpackUITestCase {
         robot.capture("nearby-help-native-introduction")
         XCTAssertTrue(tipAppeared)
         XCTAssertTrue(robot.information.exists)
+        // The foreground popover repeats the switch's label; select its title after the underlying label.
+        let tipTitle = try XCTUnwrap(
+            app.staticTexts.matching(identifier: "Include nearby airports").allElementsBoundByIndex.last
+        )
+        let controlFrame = robot.control.frame
+        XCTAssertGreaterThan(controlFrame.height, 0)
+        XCTAssertGreaterThan(
+            tipTitle.frame.minY, controlFrame.maxY, "The native introduction must appear below the switch."
+        )
+        XCTAssertGreaterThan(tipMessage.frame.minY, controlFrame.maxY)
         let extraInformationActions = app.buttons.matching(NSPredicate(format: "label == 'About nearby airports'"))
             .allElementsBoundByIndex.filter { $0.identifier != "BPKSwitch.Information" }
         XCTAssertTrue(extraInformationActions.isEmpty, "The introduction has no extra action button.")

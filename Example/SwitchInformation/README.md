@@ -8,13 +8,13 @@ The switch remains a standard on/off switch. The radio-row proposal is no longer
 
 Open **Switches → SwiftUI → Open experimental switch**. The information button works with **Enable native introduction** off. Enable that separate option to assess the native tip. Apple owns its eligibility and display history; one stable ID shares one introduction across related selectors. The Example-only `SWITCH_INFORMATION_RESET` launch argument resets the test store before TipKit setup.
 
-The consuming app configures TipKit once at launch. Only the introduction requires iOS 17; the button and bottom sheet remain available on Backpack's earlier supported versions. No iOS 26-only API is used. Native tips can consume the first outside tap to dismiss; the persistent information button remains available afterwards.
+The consuming app configures TipKit once at launch. Only the introduction requires iOS 17; the button and bottom sheet remain available on Backpack's earlier supported versions. On iOS 26+, a bottom attachment anchor and a top-only permitted arrow keep the tip below the switch; earlier supported systems use the native top-arrow preference. The introduction still supports iOS 17+. Native tips can consume the first outside tap to dismiss; the persistent information button remains available afterwards.
 
 At accessibility text sizes the sheet title moves into its scrollable content, keeping it separate from the close control. The sheet expands to full height when scrolling.
 
 ## Native captures
 
-Captured on iPhone SE (third generation), iOS 18.5, with normal animations.
+Captured on iPhone 12 mini, iOS 26.2, with normal animations.
 
 | Persistent button | Bottom sheet |
 | --- | --- |
@@ -31,6 +31,6 @@ Largest text, after expanding the sheet:
 ## Validation
 
 - All 15 Switch tests passed on the repository CI simulator: iPhone SE third generation, iOS 18.5, arm64. Existing references are unchanged; new information references cover light, dark, RTL and larger text.
-- All three native UI scenarios passed on both iOS 18.5 (SE third generation) and iOS 26.2 (iPhone 12 mini), with normal animations. They cover repeatable help, preserved switch values and content frames, an introduction without an extra action button, persisted dismissal after relaunch, dark mode and the largest accessibility text size.
+- All three native UI scenarios passed on both iOS 18.5 (SE third generation) and iOS 26.2 (iPhone 12 mini), with normal animations. They cover repeatable help, preserved switch values and content frames, an introduction below the switch without an extra action button, persisted dismissal after relaunch, dark mode and the largest accessibility text size.
 - The 44-point touch-target check allows only 0.001 point for simulator coordinate rounding; the actual control remains 44 points.
 - VoiceOver navigation and iPad have not been manually assessed.
