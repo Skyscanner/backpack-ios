@@ -23,9 +23,7 @@ struct SwitchExampleView: View {
     @State private var value = true
     @State private var disabledValue = true
     @State private var showsTooltipExample = false
-    @State private var hasSeenTooltip = false
-    @State private var isReturningVisit = false
-    @State private var tooltipIsPresented = true
+    @State private var nativeTooltipEnabled = false
 
     private var attributedLabel: AttributedString {
         var label = AttributedString("Switch with styled text")
@@ -34,15 +32,16 @@ struct SwitchExampleView: View {
     }
 
     var body: some View {
+        let nativeTooltip = nativeTooltipEnabled ? BPKSwitchExperimentalTooltip(id: "nearby-airports-example.v2") : nil
         ScrollView {
             VStack(alignment: .leading, spacing: .base) {
-                BPKText("Experimental tooltip", style: .heading5)
+                BPKText("Experimental information", style: .heading5)
                 BPKButton("Open experimental switch") {
-                    isReturningVisit = hasSeenTooltip
-                    tooltipIsPresented = !hasSeenTooltip
                     showsTooltipExample = true
                 }
                 .accessibilityIdentifier("SwitchExample.OpenTooltip")
+                BPKSwitch(isOn: $nativeTooltipEnabled, text: "Enable native introduction")
+                    .accessibilityIdentifier("SwitchExample.NativeTooltipEnabled")
 
                 BPKText("Default", style: .heading5)
 
@@ -108,16 +107,14 @@ struct SwitchExampleView: View {
         }
         .sheet(isPresented: $showsTooltipExample) {
             VStack(alignment: .leading, spacing: .lg) {
-                BPKText("Experimental switch tooltip", style: .heading3)
+                BPKText("Nearby airports help", style: .heading3)
                 BPKSwitch(isOn: $value, text: "Include nearby airports", truncate: false)
-                    .experimentalTooltip(.init(
+                    .experimentalInformation(.init(
+                        title: "Nearby airports",
                         message: "Find cheaper flights by including nearby airports in your search.",
                         informationAccessibilityLabel: "About nearby airports",
-                        dismissAccessibilityLabel: "Close information",
-                        showsInformationButton: isReturningVisit,
-                        onPresented: { hasSeenTooltip = true }
-                    ), isPresented: $tooltipIsPresented)
-                    .zIndex(1)
+                        dismissAccessibilityLabel: "Close information"
+                    ), tooltip: nativeTooltip)
                 BPKText("Search suggestions stay in place")
                     .accessibilityIdentifier("SwitchExample.ContentBelowSwitch")
                 Spacer()

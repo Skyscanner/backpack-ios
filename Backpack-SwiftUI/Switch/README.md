@@ -116,57 +116,27 @@ Always verify separately composed labels with VoiceOver.
 
 `BPKSwitch` follows the native SwiftUI `Toggle` layout and does not expose a separate vertical-alignment parameter.
 
-## Experimental tooltip (opt-in)
+## Experimental information and native introduction (opt-in)
 
-**Experimental API — subject to change.** Keep this behind the consuming app's
-experiment flag. This is not a stable design-system pattern and must not be
-published to skyscanner.design until it is stabilised. Stabilise or remove the
-API within two weeks of the experiment ending.
+**Experimental API — subject to change.** Keep this behind the consuming app's experiment flag. Do not publish it to skyscanner.design until stable. Stabilise or remove it within two weeks of the experiment ending.
 
-`experimentalTooltip(_:isPresented:)` overlays an explanation below the switch row
-without moving surrounding content. The pointer follows the information button,
-or the native switch for the introduction. An optional information button sits
-immediately after the label, before the native switch, with a 44-point tap target.
-The information icon uses `textSecondaryColor` in the default style.
-Tapping it again dismisses the explanation. The bubble uses `coreAccentColor` with
-`textPrimaryInverseColor` for contrast in light and dark themes.
+`experimentalInformation(_:tooltip:)` adds a persistent grey information button immediately after the label, before the native switch. It retains a 44-point touch target. Tapping it opens a Backpack bottom sheet; closing or reopening help never changes the switch value. The sheet supports scrolling and expansion for larger text.
 
-This is a Backpack SwiftUI overlay, not Apple's TipKit. A parent that has overlapping
-siblings must give the switch row a higher `zIndex`; `BPKAppSearchModal` does this
-for its input accessory. Omitting the modifier, or
-passing `nil`, preserves the standard switch. Opening or closing the tooltip
-does not change the switch value.
+The optional tooltip configuration enables a native Apple TipKit introduction on iOS 17+. It shares the bottom sheet's title and message. Configure TipKit once in the application, and give related screens the same stable tip ID to share one introduction. `Tips.MaxDisplayCount(1)` limits the automatic introduction; the information button remains available afterwards. On iOS 16, the information button and bottom sheet work normally and the native introduction is unavailable.
 
 ```swift
-@State private var isOn = false
-@State private var informationIsPresented = true // First visit only.
+// At application startup, once:
+if #available(iOS 17.0, *) { try? Tips.configure() }
 
 BPKSwitch(isOn: $isOn, text: localisedTitle, truncate: false)
-    .experimentalTooltip(.init(
+    .experimentalInformation(.init(
+        title: localisedHelpTitle,
         message: localisedExplanation,
         informationAccessibilityLabel: localisedInformationLabel,
-        dismissAccessibilityLabel: localisedCloseLabel,
-        showsInformationButton: false, // Use true on subsequent visits.
-        onPresented: { markIntroductionSeen() }
-    ), isPresented: $informationIsPresented)
+        dismissAccessibilityLabel: localisedCloseLabel
+    ), tooltip: nativeTooltipEnabled ? .init(id: "nearby-airports-introduction.v2") : nil)
 ```
 
-The **consumer owns first-use history**, including persistence, identity, scope
-and experiment resets. Read that history once when opening the screen. On the
-first visit, start the presentation binding at `true` and hide the information
-button. On later visits, start it at `false` and show the information button.
-Record exposure from `onPresented`, not when constructing the configuration;
-views that never appear must not consume the introduction. Keep the binding in
-the screen's state so transient content changes do not show a dismissed tooltip
-again.
+Passing `nil` information preserves the standard switch, even if a tooltip configuration is supplied. Passing `nil` for `tooltip` disables only the introduction, preserving the information button and bottom sheet. Consumers own feature eligibility, configuration, localised copy and TipKit setup. The component does not reset Apple's datastore or add separate persistent history.
 
-The information and close controls are separate from the native toggle. They
-use localised accessibility labels, support VoiceOver focus and the escape
-gesture, and preserve native switch operation. Light, dark, RTL and Dynamic Type
-are covered by snapshot tests. The Example app's **Switches → SwiftUI → Open
-experimental switch** demonstrates first and subsequent visits without saving
-history between Example sessions.
-
-| First visit | Subsequent visit |
-| --- | --- |
-| ![Automatic explanation](../Tests/Switch/__Snapshots__/BPKSwitchTests/test_givenFirstVisit_whenInformationIsPresented_thenShowsTooltipWithoutInfoButton.light-mode.png) | ![On-demand information](../Tests/Switch/__Snapshots__/BPKSwitchTests/test_givenReturningVisit_whenInformationIsClosed_thenShowsInfoButtonOnly.light-mode.png) |
+The native tip includes an information action that opens the same sheet. On iOS 17–18, tapping outside a native tip first dismisses it; the persistent button can then open help. No iOS 26-only TipKit API or custom tooltip overlay is used. The Example app's **Switches → SwiftUI → Open experimental switch** demonstrates both configurations; enable **Enable native introduction** to assess TipKit.

@@ -17,113 +17,99 @@
  */
 
 import SwiftUI
+import TipKit
 
-/// Consumer-provided information for the optional switch tooltip.
-///
-/// Supply localised content and own presentation history in the consuming app.
-/// Backpack does not persist identifiers, count visits, or alter the switch value.
+/// Localised information shared by a switch's bottom sheet and optional native tooltip.
 ///
 /// - Experiment: This configuration is experimental and subject to change.
-public struct BPKSwitchExperimentalTooltip {
-    /// Localised explanation overlaid below the control.
+public struct BPKSwitchExperimentalInformation {
+    /// Localised heading used by both presentations.
+    public let title: String
+    /// Localised explanation used by both presentations.
     public let message: String
-    /// Localised label for the separate information button.
+    /// Localised label for the information button and native tip action.
     public let informationAccessibilityLabel: String
-    /// Localised label for closing the explanation.
+    /// Localised label for closing the bottom sheet.
     public let dismissAccessibilityLabel: String
-    /// Show an information button after the label on subsequent visits; hide it for the introduction.
-    public let showsInformationButton: Bool
-    /// Reports an explanation that actually appeared, rather than a constructed configuration.
-    public let onPresented: () -> Void
 
-    /// Creates optional switch information.
-    ///
-    /// - Parameters:
-    ///   - message: Localised explanation overlaid below the control.
-    ///   - informationAccessibilityLabel: Localised label for the information button.
-    ///   - dismissAccessibilityLabel: Localised label for closing the explanation.
-    ///   - showsInformationButton: Whether to offer an information button after the label, before the switch.
-    ///   - onPresented: Called when the explanation actually appears, including manual reopening.
+    /// Creates content for the persistent information button and bottom sheet.
     public init(
+        title: String,
         message: String,
         informationAccessibilityLabel: String,
-        dismissAccessibilityLabel: String,
-        showsInformationButton: Bool = true,
-        onPresented: @escaping () -> Void = {}
+        dismissAccessibilityLabel: String
     ) {
+        self.title = title
         self.message = message
         self.informationAccessibilityLabel = informationAccessibilityLabel
         self.dismissAccessibilityLabel = dismissAccessibilityLabel
-        self.showsInformationButton = showsInformationButton
-        self.onPresented = onPresented
     }
 }
 
-struct BPKSwitchTooltipContent<Message: View>: View {
-    @Environment(\.layoutDirection) private var layoutDirection
-    let configuration: BPKSwitchExperimentalTooltip
-    let anchorX: CGFloat
-    let onDismiss: () -> Void
-    @ViewBuilder let message: () -> Message
+/// Separately opts into a native Apple TipKit introduction on iOS 17 and later.
+///
+/// Configure TipKit once in the consuming app. Use the same stable ID across screens
+/// that share one introduction. Apple owns eligibility and persisted display history.
+/// The persistent information button and bottom sheet work without this configuration.
+///
+/// - Experiment: This configuration is experimental and subject to change.
+public struct BPKSwitchExperimentalTooltip {
+    /// Stable consumer-owned identity shared by related screens.
+    public let id: String
+
+    /// Creates a once-only introduction with a stable consumer-owned identity.
+    public init(id: String) { self.id = id }
+}
+
+struct BPKSwitchInformationButton: View {
+    let configuration: BPKSwitchExperimentalInformation
+    let tooltip: BPKSwitchExperimentalTooltip?
+    let style: BPKSwitchStyle
+    let onSelect: () -> Void
 
     var body: some View {
-        VStack(alignment: .trailing, spacing: 0) {
-            GeometryReader { geometry in
-                TooltipPointer()
-                    .fill(Color(.coreAccentColor))
-                    .frame(width: BPKSpacing.base.value, height: BPKSpacing.sm.value)
-                    .position(x: pointerX(width: geometry.size.width), y: BPKSpacing.sm.value / 2)
+        if #available(iOS 17.0, *), let tooltip {
+            let tip = BPKSwitchInformationTip(id: tooltip.id, information: configuration)
+            button(action: {
+                tip.invalidate(reason: .actionPerformed)
+                onSelect()
+            })
+            .popoverTip(tip, arrowEdge: .top) { _ in
+                tip.invalidate(reason: .actionPerformed)
+                onSelect()
             }
-            .frame(height: BPKSpacing.sm.value)
-            .accessibilityHidden(true)
-            HStack(alignment: .top, spacing: .sm) {
-                message()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.vertical, .md)
-                BPKCloseButton(
-                    accessibilityLabel: configuration.dismissAccessibilityLabel,
-                    foregroundColor: .textPrimaryInverseColor,
-                    touchTarget: BPKSpacing.xxl.value + BPKSpacing.base.value,
-                    action: onDismiss
+        } else {
+            button(action: onSelect)
+        }
+    }
+
+    private func button(action: @escaping () -> Void) -> some View {
+        // BPKButton's link style fixes its icon colour; this neutral trigger uses the native button.
+        // swiftlint:disable:next bpk_button
+        Button(action: action) {
+            BPKIconView(.informationCircle, size: .large)
+                .frame(
+                    width: BPKSpacing.xxl.value + BPKSpacing.sm.value,
+                    height: BPKSpacing.xxl.value + BPKSpacing.sm.value
                 )
-                .accessibilityIdentifier("BPKSwitch.Tooltip.Dismiss")
-            }
-            .padding(.leading, .md)
-            .padding(.trailing, .sm)
-            .background(Color(.coreAccentColor))
-            .clipShape(RoundedRectangle(cornerRadius: .sm))
-            .accessibilityElement(children: .contain)
-            .accessibilityAction(.escape, onDismiss)
+                .contentShape(Rectangle())
         }
-    }
-
-    private func pointerX(width: CGFloat) -> CGFloat {
-        let inset = BPKSpacing.base.value
-        let position = min(max(anchorX, inset), max(inset, width - inset))
-        return layoutDirection == .rightToLeft ? width - position : position
-    }
-
-    private struct TooltipPointer: Shape {
-        func path(in rect: CGRect) -> Path {
-            Path { path in
-                path.move(to: CGPoint(x: rect.midX, y: rect.minY))
-                path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
-                path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
-                path.closeSubpath()
-            }
-        }
+        .buttonStyle(.plain)
+        .foregroundColor(Color(style == .onContrast ? .textOnDarkColor : .textSecondaryColor))
+        .accessibilityLabel(configuration.informationAccessibilityLabel)
+        .accessibilityIdentifier("BPKSwitch.Information")
     }
 }
 
-/// Anchors follow the real control position, including multiline labels and RTL layouts.
-struct BPKSwitchTooltipAnchorKey: PreferenceKey {
-    static var defaultValue: Anchor<CGRect>?
-
-    static func reduce(value: inout Anchor<CGRect>?, nextValue: () -> Anchor<CGRect>?) {
-        value = nextValue() ?? value
-    }
-}
-
-enum BPKSwitchTooltipLayout {
-    static let touchTarget = BPKSpacing.xxl.value + BPKSpacing.sm.value
+@available(iOS 17.0, *)
+private struct BPKSwitchInformationTip: Tip {
+    let id: String
+    let information: BPKSwitchExperimentalInformation
+    // Apple's Tip protocol requires native Text values.
+    // swiftlint:disable:next bpk_text
+    var title: Text { Text(information.title) }
+    // swiftlint:disable:next bpk_text
+    var message: Text? { Text(information.message) }
+    var options: [any TipOption] { [Tips.MaxDisplayCount(1)] }
+    var actions: [Action] { [Action(id: "information", title: information.informationAccessibilityLabel)] }
 }
