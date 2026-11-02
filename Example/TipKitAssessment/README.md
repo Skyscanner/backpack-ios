@@ -33,7 +33,7 @@ TipKit itself starts at iOS 17. The current Place Selector supports iOS 17 and l
 
 Use the native tip only as an optional introduction. Keep the information icon visible from the first visit, and open a Backpack bottom sheet from it. Both presentations use one content configuration. Repeated help no longer depends on resetting TipKit eligibility or on iOS 26 APIs. The consuming app owns feature flags, content, the stable tip identity and one-time TipKit setup.
 
-The default native tip may consume the first background tap to dismiss. Its information action opens the sheet directly; the persistent icon remains available after dismissal. VoiceOver navigation, iPad and released-app ingestion remain outside this Example assessment.
+The default native tip may consume the first background tap to dismiss. Its information action opens the sheet directly; the persistent icon remains available after dismissal. VoiceOver navigation and iPad remain outside this Example assessment.
 
 ## Try the prototype
 
@@ -84,3 +84,7 @@ TipKit at the largest accessibility text size:
 Largest-text limitation in the plain native popover comparison:
 
 ![Native popover clipped at largest text size](images/native-popover-largest-text.png)
+
+## DON-4084 update validation
+
+The radio comparison and its images, launch shortcut and UI checks have been removed. This branch now includes the current persistent-information implementation from #2721. After merging it, the native introduction/dismissal/relaunch scenario and the original basic iOS 17-compatible direct launch both passed on iPhone SE third generation with iOS 18.5 (two checks, zero failures, normal animations). Current component validation and screenshots are in [Switch information](../SwitchInformation/README.md).
