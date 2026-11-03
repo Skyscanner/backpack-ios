@@ -22,17 +22,13 @@ import SwiftUI
 /// Anywhere where there is a need for a close button, this should be used in our code.
 struct BPKCloseButton: View {
     var accessibilityLabel: String
-    var foregroundColor: BPKColor = .textPrimaryColor
-    var touchTarget: CGFloat?
     var action: () -> Void
     
     var body: some View {
         Button(action: action) {
             BPKIconView(.close, size: .large, accessibilityLabel: "icon_\(accessibilityLabel)")
-                .frame(minWidth: touchTarget, minHeight: touchTarget)
-                .contentShape(Rectangle())
         }
-        .foregroundColor(foregroundColor)
+        .foregroundColor(.textPrimaryColor)
         .contentShape(Rectangle())
         .accessibilityLabel(accessibilityLabel)
     }
