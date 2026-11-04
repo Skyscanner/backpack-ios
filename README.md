@@ -11,7 +11,7 @@
 
 ## Installation
 
-Backpack is distributed through [Swift Package Manager](https://swift.org/package-manager/).
+Backpack requires iOS 17.0 or later and is distributed through [Swift Package Manager](https://swift.org/package-manager/).
 
 In Xcode, choose **File → Add Package Dependencies** and enter:
 

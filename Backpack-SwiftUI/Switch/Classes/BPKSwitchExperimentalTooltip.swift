@@ -89,7 +89,7 @@ struct BPKSwitchNativeIntroduction: ViewModifier {
     let tooltip: BPKSwitchExperimentalTooltip?
 
     func body(content: Content) -> some View {
-        if #available(iOS 17.0, *), let tooltip {
+        if let tooltip {
             let tip = BPKSwitchInformationTip(id: tooltip.id, information: information)
             // Keep the package buildable with its Xcode 16.4 toolchain as well as newer SDKs.
             #if compiler(>=6.2)
@@ -107,7 +107,6 @@ struct BPKSwitchNativeIntroduction: ViewModifier {
     }
 }
 
-@available(iOS 17.0, *)
 private struct BPKSwitchInformationTip: Tip {
     let id: String
     let information: BPKSwitchExperimentalInformation

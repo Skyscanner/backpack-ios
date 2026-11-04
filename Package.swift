@@ -389,7 +389,7 @@ let targets: [Target] = [
 let package = Package(
   name: "Backpack",
   platforms: [
-    .iOS(.v16)
+    .iOS(.v17)
   ],
   products: products,
   dependencies: dependencies,

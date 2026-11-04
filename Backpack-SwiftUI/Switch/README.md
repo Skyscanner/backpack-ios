@@ -122,11 +122,11 @@ Always verify separately composed labels with VoiceOver.
 
 `experimentalInformation(_:tooltip:)` adds a persistent grey information button immediately after the label, before the native switch. It retains a 44-point touch target. Tapping it opens a Backpack bottom sheet; closing or reopening help never changes the switch value. The sheet supports scrolling and expansion for larger text.
 
-The optional tooltip configuration enables a native Apple TipKit introduction on iOS 17+, anchored to the switch control. It contains the same title and message as the bottom sheet, with Apple's dismiss control and no extra action button. Configure TipKit once in the application, and give related screens the same stable tip ID to share one introduction. `Tips.MaxDisplayCount(1)` limits the automatic introduction; the information button remains available afterwards. On iOS 16, the information button and bottom sheet work normally and the native introduction is unavailable.
+The optional tooltip configuration enables a native Apple TipKit introduction on iOS 17+, anchored to the switch control. It contains the same title and message as the bottom sheet, with Apple's dismiss control and no extra action button. Configure TipKit once in the application, and give related screens the same stable tip ID to share one introduction. `Tips.MaxDisplayCount(1)` limits the automatic introduction; the information button remains available afterwards.
 
 ```swift
 // At application startup, once:
-if #available(iOS 17.0, *) { try? Tips.configure() }
+try? Tips.configure()
 
 BPKSwitch(isOn: $isOn, text: localisedTitle, truncate: false)
     .experimentalInformation(.init(

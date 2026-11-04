@@ -213,26 +213,17 @@ struct VideoProgressExampleView: View {
     private let quartiles = [25, 50, 75, 100]
 
     var body: some View {
-        Group {
-            if #available(iOS 16.4, *) {
-                video
-                    .bpkBottomSheet(
-                        isPresented: $isProgressShown,
-                        peekHeight: 300,
-                        contentMode: .medium(false),
-                        title: "Live playback progress",
-                        bottomSheetContent: {
-                            progressHUD
-                                .presentationBackground(.clear)
-                        }
-                    )
-            } else {
-                VStack(spacing: 0) {
-                    video
+        video
+            .bpkBottomSheet(
+                isPresented: $isProgressShown,
+                peekHeight: 300,
+                contentMode: .medium(false),
+                title: "Live playback progress",
+                bottomSheetContent: {
                     progressHUD
+                        .presentationBackground(.clear)
                 }
-            }
-        }
+            )
     }
 
     private var video: some View {

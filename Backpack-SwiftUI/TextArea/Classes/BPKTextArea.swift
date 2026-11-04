@@ -71,11 +71,6 @@ public struct BPKTextArea: View {
     ) {
         self._value = value
         self.placeholder = placeholder
-        
-        if #unavailable(iOS 16.0) {
-            // Temp solution for BPKTextArea background colour in dark mode for iOS 15 or below
-            UITextView.appearance().backgroundColor = BPKColor.surfaceDefaultColor.value
-        }
     }
     
     private var threeLineHeight: CGFloat {
