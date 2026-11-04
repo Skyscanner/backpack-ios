@@ -41,7 +41,7 @@ jobs:
 
       - name: Setup iOS toolchain and simulator
         id: ios
-        uses: ./.github/actions/ios-setup
+        uses: $/.github/actions/ios-setup
         with:
           simulator: 'true'
           swiftpm-workspace: 'true'

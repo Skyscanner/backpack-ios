@@ -65,7 +65,7 @@ jobs:
         run: bundle install --jobs 4 --retry 3
 
       - name: Setup iOS toolchain
-        uses: ./.github/actions/ios-setup
+        uses: $/.github/actions/ios-setup
 
       - name: Install clang-format
         run: brew install clang-format
@@ -126,7 +126,7 @@ jobs:
 
       - name: Setup iOS toolchain and simulator
         id: ios
-        uses: ./.github/actions/ios-setup
+        uses: $/.github/actions/ios-setup
         with:
           simulator: 'true'
 
