@@ -52,13 +52,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         setupRelativeFont()
         setupAppearance()
-        if #available(iOS 17.0, *) {
-            // Reset is an Example-only launch option for repeatable assessments.
-            if ProcessInfo.processInfo.arguments.contains("SWITCH_INFORMATION_RESET") {
-                try? Tips.resetDatastore()
-            }
-            try? Tips.configure([.displayFrequency(.immediate)])
+        // Reset is an Example-only launch option for repeatable assessments.
+        if ProcessInfo.processInfo.arguments.contains("SWITCH_INFORMATION_RESET") {
+            try? Tips.resetDatastore()
         }
+        try? Tips.configure([.displayFrequency(.immediate)])
         return true
     }
 }

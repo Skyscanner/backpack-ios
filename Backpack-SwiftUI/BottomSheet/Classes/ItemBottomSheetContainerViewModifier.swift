@@ -81,7 +81,7 @@ struct ItemBottomSheetContainerViewModifier<
                 .presentationDragIndicator(.visible)
         }
         .frame(maxHeight: .infinity, alignment: .top)
-        .bottomSheetBackground(backgroundColor)
+        .presentationBackground(Color(backgroundColor.value))
         .ignoresSafeArea(.container, edges: .bottom)
     }
 }

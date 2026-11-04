@@ -32,7 +32,6 @@ public extension View {
     ///   - title: The title of the bottom sheet. If `nil`, the title will not be shown.
     ///   - action: The action button of the bottom sheet. If `nil`, the action button will not be shown.
     ///   - bottomSheetContent: The content of the bottom sheet.
-    @available(iOS 16.4, *)
     @ViewBuilder
     func bpkBottomSheet<BottomSheetContent: View>(
         isPresented: Binding<Bool>,
@@ -69,7 +68,7 @@ public extension View {
         )
     }
     
-    /// Presents a bottom sheet.
+    /// Presents a bottom sheet using SwiftUI's native sheet presentation.
     ///
     /// - Parameters:
     ///   - isPresented: A binding to whether the bottom sheet should be shown.
@@ -79,10 +78,6 @@ public extension View {
     ///   - title: The title of the bottom sheet. If `nil`, the title will not be shown.
     ///   - action: The action button of the bottom sheet. If `nil`, the action button will not be shown.
     ///   - bottomSheetContent: The content of the bottom sheet.
-    ///
-    /// - Note: For iOS 16 users and above, the bottom sheet will be presented using
-    ///         SwiftUI's native `BottomSheet` view.
-    ///         For iOS 15 users and below, the bottom sheet will be presented using a custom implementation.
     @ViewBuilder
     func bpkBottomSheet<BottomSheetContent: View>(
         isPresented: Binding<Bool>,
@@ -129,7 +124,6 @@ public extension View {
     ///   - title: The title of the bottom sheet. If `nil`, the title will not be shown.
     ///   - action: The action button of the bottom sheet. If `nil`, the action button will not be shown.
     ///   - bottomSheetContent: The content of the bottom sheet.
-    @available(iOS 16.4, *)
     @ViewBuilder
     func bpkBottomSheet<BottomSheetContent: View, Item: Identifiable>(
         item: Binding<Item?>,
