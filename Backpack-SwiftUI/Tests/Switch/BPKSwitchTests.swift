@@ -21,6 +21,40 @@ import SwiftUI
 @testable import Backpack_SwiftUI
 
 class BPKSwitchTests: XCTestCase {
+    func test_givenNoInformation_whenOptingInWithNil_thenPreservesStandardSwitch() {
+        assertSnapshot(
+            BPKSwitch(isOn: .constant(false), text: "Test")
+                .experimentalInformation(nil, tooltip: .init(id: "unused"))
+                .padding(.sm),
+            testName: "testSwitchOffState"
+        )
+    }
+
+    func test_givenInformation_whenTooltipDisabled_thenShowsPersistentInfoButton() {
+        assertSnapshot(informationSwitch())
+    }
+
+    func test_givenInformation_whenTextSizeIncreases_thenLabelAndButtonRemainSeparate() {
+        assertA11ySnapshot(informationSwitch(), customHeight: 1200)
+    }
+
+    private func informationSwitch() -> some View {
+        VStack(alignment: .leading, spacing: .md) {
+            BPKSwitch(isOn: .constant(false), text: "Include nearby airports", truncate: false)
+                .experimentalInformation(.init(
+                    title: "Nearby airports",
+                    message: "Find cheaper flights by including nearby airports in your search.",
+                    informationAccessibilityLabel: "About nearby airports",
+                    dismissAccessibilityLabel: "Close information"
+                ))
+            BPKText("Search suggestions stay in place")
+            Spacer(minLength: 0)
+        }
+        .padding(.md)
+        .frame(width: 375, height: 300)
+        .background(.surfaceDefaultColor)
+    }
+
     func testSwitchOnState() {
         assertSnapshot(BPKSwitch(isOn: .constant(true), text: "Test").padding(.sm))
     }

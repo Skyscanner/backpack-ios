@@ -2,6 +2,12 @@
 
 # Unreleased
 
+**Added:**
+
+- SwiftUI: optional, experimental `BPKSwitch.experimentalInformation` with a persistent
+  information button and bottom sheet. A separately configured native Apple TipKit
+  introduction on iOS 17+ uses the same content; consumers own feature flags and TipKit setup.
+
 **Breaking:**
 
 - Typography: headings 1–5 use black weight and finalized letter spacing by default;

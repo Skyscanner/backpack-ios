@@ -30,6 +30,10 @@ public struct BPKSwitch<Content: View>: View {
     private let enabled: Bool
     private let style: Style
     private let content: Content
+    private var informationConfiguration: BPKSwitchExperimentalInformation?
+    private var tooltipConfiguration: BPKSwitchExperimentalTooltip?
+    @State private var informationIsPresented = false
+    @Environment(\.sizeCategory) private var sizeCategory
 
     /// Creates a switch that generates its label from an attributed string.
     ///
@@ -101,6 +105,80 @@ public struct BPKSwitch<Content: View>: View {
     }
     
     public var body: some View {
+        if let informationConfiguration {
+            switchWithInformation(informationConfiguration)
+        } else {
+            switchControl
+        }
+    }
+
+    /// Adds a persistent information button after the label, opening a bottom sheet.
+    ///
+    /// Passing `nil` preserves the standard switch. The optional, separately configured
+    /// tooltip uses Apple TipKit on iOS 17+. Both presentations use the same content.
+    /// Configure TipKit once in the consuming app before enabling the introduction.
+    /// Opening or closing information never changes the switch value.
+    ///
+    /// - Experiment: This API is experimental and subject to change. Do not use it
+    ///   outside a controlled experiment until it has been stabilised.
+    public func experimentalInformation(
+        _ configuration: BPKSwitchExperimentalInformation?,
+        tooltip: BPKSwitchExperimentalTooltip? = nil
+    ) -> BPKSwitch {
+        var result = self
+        result.informationConfiguration = configuration
+        result.tooltipConfiguration = tooltip
+        return result
+    }
+
+    private func switchWithInformation(_ configuration: BPKSwitchExperimentalInformation) -> some View {
+        HStack(spacing: 0) {
+            if style == .default {
+                content
+                    .if(!BPKFont.enableDynamicType, transform: { $0.sizeCategory(.large) })
+                    .fixedSize(horizontal: false, vertical: true)
+                    // The native switch retains the label for VoiceOver.
+                    .accessibilityHidden(true)
+            }
+            BPKSwitchInformationButton(
+                configuration: configuration,
+                style: style,
+                onSelect: { informationIsPresented = true }
+            )
+            Spacer(minLength: BPKSpacing.sm.value)
+            switchControl.labelsHidden().fixedSize()
+                .modifier(BPKSwitchNativeIntroduction(
+                    information: configuration,
+                    tooltip: informationIsPresented ? nil : tooltipConfiguration
+                ))
+        }
+        .frame(minHeight: BPKSpacing.xxl.value + BPKSpacing.sm.value)
+        .bpkBottomSheet(
+            isPresented: $informationIsPresented,
+            contentMode: .medium,
+            closeButtonAccessibilityLabel: configuration.dismissAccessibilityLabel,
+            title: sizeCategory.isAccessibilityCategory ? nil : configuration.title,
+            presentingController: UIViewController()
+        ) {
+            ScrollView {
+                VStack(alignment: .leading, spacing: .base) {
+                    if sizeCategory.isAccessibilityCategory {
+                        BPKText(configuration.title, style: .heading5)
+                            .lineLimit(nil)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    BPKText(configuration.message)
+                        .lineLimit(nil)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .accessibilityIdentifier("BPKSwitch.Information.Message")
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.base)
+            }
+        }
+    }
+
+    @ViewBuilder private var switchControl: some View {
         switch style {
             case .default:
             Toggle(isOn: $isOn) {
