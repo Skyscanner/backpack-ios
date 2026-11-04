@@ -55,7 +55,7 @@ func assertSnapshot<V: View>(
 /// Test any view across a number of accessibility sizes.
 /// By default we test: default, 135% and 235%
 ///
-/// The test view is restricted to 375px in width, to simulate an iPhone SE 3rd gen size
+/// The test view is restricted to 375 points in width to match the iPhone 12 mini
 /// The test view can expand vertically to accomodate as much space as needed (scrollView)
 func assertA11ySnapshot<V: View>(
     _ view: V,

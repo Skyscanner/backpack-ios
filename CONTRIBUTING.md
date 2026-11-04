@@ -259,8 +259,7 @@ Here's an example of a complete story for the Badge component with multiple vari
 ### Tests
 Our components need to be well tested. We require all business logic to be covered by unit tests. The component and all of its types and states need to be captured in Snapshot tests. Please review existing components to learn how we set up these tests.
 
-Our CI runs on Intel hardware, so you might find your snapshots failing when recording them with an M1 Mac. If you have access to an Intel Mac, you can run the tests locally on that machine to avoid this issue.
-Otherwise, please create a commit on your pull request with `Record snapshots` to trigger a Github Action that will re-record your snapshots. 
+Run snapshot tests on the [same Xcode, device, and simulator runtime as CI](Documentation/SPM/README.md#snapshots). To record on CI, push a commit titled `Record snapshots` to your pull request.
 
 Once your snapshots are generated, please manually verify that they are correct before merging your pull request.
 
@@ -336,7 +335,7 @@ Please see the [code review guidelines](https://github.com/Skyscanner/backpack/b
 <details>
     <summary>Testing</summary>
 
-Tests can be run as usual from Xcode(Product -> Test or cmd+U). Snapshot tests should be run on the [device specified for CI](https://github.com/Skyscanner/backpack-ios/blob/main/scripts/ci#L7) with the Xcode version defined in [the _test.yml workflow](https://github.com/Skyscanner/backpack-ios/blob/main/.github/workflows/_test.yml#L62).
+Run tests in Xcode with Product → Test (⌘U). For snapshot tests, use the [pinned test environment](Documentation/SPM/README.md#tests).
 </details>
 
 <details>
@@ -371,7 +370,7 @@ To do this follow the following steps:
 Snapshot tests are used to capture images of components under different configurations. When you add or change a snapshot test, test images will need to be recaptured on CI to ensure consistency. Create an empty commit to regenerate snapshots:
 
 ```
-git commit --allow-empty -m "record snapshots"
+git commit --allow-empty -m "Record snapshots"
 ```
 
 After checking on your PR that the new snapshots are as expected, create a new empty commit to rerun the tests on the CI

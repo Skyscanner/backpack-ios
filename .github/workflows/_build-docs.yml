@@ -10,7 +10,7 @@ defaults:
 jobs:
   BuildDocs:
     name: Build Docs
-    runs-on: macos-15
+    runs-on: macos-26
     timeout-minutes: 20
     permissions:
       statuses: write
@@ -49,8 +49,8 @@ jobs:
       - name: Bundle Install
         run: bundle install --jobs 4 --retry 3
 
-      - name: Setup SwiftPM workspace
-        uses: ./.github/actions/spm-setup
+      - name: Setup iOS toolchain
+        uses: ./.github/actions/ios-setup
 
       - name: Install sourcekitten
         run: brew install sourcekitten

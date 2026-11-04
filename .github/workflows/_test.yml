@@ -20,10 +20,10 @@ permissions: {}
 jobs:
   TestSwiftPM:
     name: SwiftPM Tests
-    runs-on: macos-15
+    runs-on: macos-26
     timeout-minutes: 40
     outputs:
-      changed-files: ${{ steps.checkSnapshotChanges.outputs.didChangeFiles }}
+      snapshot-count: ${{ steps.checkSnapshotChanges.outputs.count }}
     steps:
       - uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
         id: app-token
@@ -36,18 +36,25 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           token: ${{ steps.app-token.outputs.token }}
+          ref: ${{ inputs.retake_snapshots && github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
 
-      - name: Setup SwiftPM workspace
-        uses: ./.github/actions/spm-setup
+      - name: Setup iOS toolchain and simulator
+        id: ios
+        uses: ./.github/actions/ios-setup
+        with:
+          simulator: 'true'
+          swiftpm-workspace: 'true'
 
       - name: Remove snapshots
         if: ${{inputs.retake_snapshots}}
-        run: find . -type d -name "__Snapshots__" -exec rm -rf {}  +;
+        run: |
+          find Backpack/Tests/SnapshotTests Backpack-SwiftUI/Tests \
+            -type f -path '*/__Snapshots__/*.png' -delete
 
       - name: Run Backpack Swift Package tests
         env:
-          SPM_DESTINATION: platform=iOS Simulator,name=iPhone SE (3rd generation),OS=18.5
+          SPM_DESTINATION: ${{ steps.ios.outputs.destination }}
         continue-on-error: ${{inputs.retake_snapshots}}
         run: |
           set -eo pipefail
@@ -60,24 +67,27 @@ jobs:
             -skipMacroValidation \
             test
 
-      - name: Check snapshot changes
-        id: checkSnapshotChanges
-        run: changedFiles=`git status --porcelain` && echo "didChangeFiles=${changedFiles//$'\n'/'%0A'}" >> $GITHUB_OUTPUT
-
       - name: Save snapshots
-        if: ${{inputs.retake_snapshots}}
+        if: inputs.retake_snapshots
+        id: checkSnapshotChanges
         env:
           TOKEN: ${{ steps.app-token.outputs.token }}
           REPOSITORY: ${{ github.repository }}
         run: |
+          set -euo pipefail
+          git add --ignore-removal -- \
+            ':(glob)Backpack/Tests/SnapshotTests/**/__Snapshots__/*.png' \
+            ':(glob)Backpack-SwiftUI/Tests/**/__Snapshots__/*.png'
+          count=$(git diff --cached --name-only | wc -l | tr -d ' ')
+          echo "count=$count" >> "$GITHUB_OUTPUT"
+          if [ "$count" -eq 0 ]; then
+            exit 0
+          fi
           git config --local user.email "197108191+skyscanner-backpack-bot[bot]@users.noreply.github.com"
           git config --local user.name "skyscanner-backpack-bot[bot]"
-          git remote set-url origin https://x-access-token:${TOKEN}@github.com/${REPOSITORY}.git
-          git fetch origin $GITHUB_HEAD_REF
-          git checkout $GITHUB_HEAD_REF
-          git add --ignore-removal */**/__Snapshots__/*.png
-          git diff-index --quiet HEAD || git commit -m "Updated snapshots"
-          git push
+          git remote set-url origin "https://x-access-token:${TOKEN}@github.com/${REPOSITORY}.git"
+          git commit -m "Updated snapshots"
+          git push origin "HEAD:refs/heads/${GITHUB_HEAD_REF}"
 
       - name: Upload failure diffs
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
@@ -95,7 +105,7 @@ jobs:
     name: "Notify about changes made"
     runs-on: ubuntu-22.04
     needs: [TestSwiftPM]
-    if: ${{ needs.TestSwiftPM.outputs.changed-files != '' &&  inputs.retake_snapshots}}
+    if: ${{ needs.TestSwiftPM.outputs.snapshot-count != '0' &&  inputs.retake_snapshots}}
     steps:
       - uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
         id: app-token
@@ -107,11 +117,11 @@ jobs:
       - name: Notify PR of screenshots changes
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         env:
-          CHANGED_FILES: ${{ needs.TestSwiftPM.outputs.changed-files }}
+          SNAPSHOT_COUNT: ${{ needs.TestSwiftPM.outputs.snapshot-count }}
         with:
           github-token: ${{ steps.app-token.outputs.token }}
           script: |
-            var body = `### Snapshots were updated. Please verify the changes match the expected layout. \n\n>'${process.env.CHANGED_FILES}'`;
+            const body = `Updated ${process.env.SNAPSHOT_COUNT} snapshot references. Please review the visual changes in the snapshot commit.`;
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,

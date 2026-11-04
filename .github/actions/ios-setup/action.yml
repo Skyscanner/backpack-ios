@@ -1,0 +1,51 @@
+name: Setup iOS toolchain
+description: Select the pinned Xcode and optionally prepare a simulator and SwiftPM workspace
+
+inputs:
+  simulator:
+    description: Prepare the pinned simulator and output its destination
+    default: 'false'
+  swiftpm-workspace:
+    description: Prepare the root SwiftPM Xcode workspace
+    default: 'false'
+
+outputs:
+  destination:
+    description: xcodebuild destination for the pinned simulator
+    value: ${{ steps.simulator.outputs.destination }}
+
+runs:
+  using: composite
+  steps:
+    - name: Select Xcode
+      shell: bash
+      run: |
+        set -euo pipefail
+        source scripts/ios-ci-config
+        developer_dir="/Applications/Xcode_${BPK_XCODE_VERSION}.app/Contents/Developer"
+        DEVELOPER_DIR="$developer_dir" xcodebuild -version
+        echo "DEVELOPER_DIR=$developer_dir" >> "$GITHUB_ENV"
+
+    - name: Prepare simulator
+      if: inputs.simulator == 'true'
+      id: simulator
+      shell: bash
+      run: |
+        set -euo pipefail
+        source scripts/ios-ci-config
+        device_id=$(./scripts/install-sim)
+        echo "Using $BPK_SIMULATOR_NAME on iOS $BPK_IOS_VERSION ($device_id)"
+        echo "destination=platform=iOS Simulator,arch=arm64,id=$device_id" >> "$GITHUB_OUTPUT"
+
+    - name: Prepare SwiftPM workspace
+      if: inputs.swiftpm-workspace == 'true'
+      shell: bash
+      run: |
+        set -euo pipefail
+        mkdir -p .swiftpm/xcode/package.xcworkspace
+        cat > .swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata <<'XML'
+        <?xml version="1.0" encoding="UTF-8"?>
+        <Workspace version="1.0">
+           <FileRef location="self:"></FileRef>
+        </Workspace>
+        XML

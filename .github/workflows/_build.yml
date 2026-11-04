@@ -15,7 +15,7 @@ permissions: {}
 jobs:
   Setup:
     name: Install Dependencies
-    runs-on: macos-15
+    runs-on: macos-26
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -27,7 +27,7 @@ jobs:
 
   Lint:
     name: Lint Project
-    runs-on: macos-15
+    runs-on: macos-26
     needs: [Setup]
     timeout-minutes: 20
     steps:
@@ -64,8 +64,8 @@ jobs:
       - name: Bundle Install
         run: bundle install --jobs 4 --retry 3
 
-      - name: Select Xcode 16
-        run: sudo xcode-select --switch /Applications/Xcode_16.4.app
+      - name: Setup iOS toolchain
+        uses: ./.github/actions/ios-setup
 
       - name: Install clang-format
         run: brew install clang-format
@@ -116,7 +116,7 @@ jobs:
 
   BuildExampleApp:
     name: Build Example App
-    runs-on: macos-15
+    runs-on: macos-26
     timeout-minutes: 20
     steps:
       - name: Checkout code
@@ -124,13 +124,15 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Select Xcode 16
-        run: sudo xcode-select --switch /Applications/Xcode_16.4.app
-
-      - name: List Runtimes
-        run: xcrun simctl list runtimes
+      - name: Setup iOS toolchain and simulator
+        id: ios
+        uses: ./.github/actions/ios-setup
+        with:
+          simulator: 'true'
 
       - name: Build the SwiftPM Example app
+        env:
+          DESTINATION: ${{ steps.ios.outputs.destination }}
         run: ./scripts/ci
 
   Test:

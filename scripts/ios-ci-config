@@ -1,0 +1,6 @@
+# Match the Skyscanner app's ios-tests job in .github/workflows/ios-ci.yml.
+BPK_XCODE_VERSION=26.2
+BPK_IOS_VERSION=26.2
+BPK_SIMULATOR_NAME='iPhone 12 mini'
+BPK_SIMULATOR_TYPE=com.apple.CoreSimulator.SimDeviceType.iPhone-12-mini
+BPK_SIMULATOR_DESTINATION="platform=iOS Simulator,name=$BPK_SIMULATOR_NAME,OS=$BPK_IOS_VERSION"
