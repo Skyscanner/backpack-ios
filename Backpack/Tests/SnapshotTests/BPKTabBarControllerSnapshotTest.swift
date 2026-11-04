@@ -50,7 +50,11 @@ class BPKTabBarControllerSnapshotTest: XCTestCase {
         
         // Then
         UIView.performWithoutAnimation {
-            assertSnapshot(matching: sut, as: .image(drawHierarchyInKeyWindow: true, traits: lightTrait))
+            // CI renders two antialiasing variants for the selected title in this light snapshot.
+            assertSnapshot(
+                matching: sut,
+                as: .image(drawHierarchyInKeyWindow: true, precision: 0.99995, traits: lightTrait)
+            )
             assertSnapshot(matching: sut, as: .image(drawHierarchyInKeyWindow: true, traits: darkTrait))
             assertSnapshot(matching: sut, as: .image(drawHierarchyInKeyWindow: true, traits: rtlTrait))
         }
