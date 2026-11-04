@@ -81,8 +81,7 @@ public struct BPKSearchInputSummary: View {
         HStack(spacing: .md) {
             prefixView
                 .accessibilityHidden(true)
-            TextField(placeholder, text: $text, prompt: placeholderView)
-                .font(style: .bodyDefault)
+            searchTextField
                 .foregroundColor(.textPrimaryColor)
                 .disabled(readOnly)
                 .if(readOnly, transform: { view in
@@ -104,6 +103,22 @@ public struct BPKSearchInputSummary: View {
         .if(!BPKFont.enableDynamicType, transform: {
             $0.sizeCategory(.large)
         })
+    }
+
+    @ViewBuilder
+    private var searchTextField: some View {
+        let field = TextField(placeholder, text: $text, prompt: placeholderView)
+            .font(style: .bodyDefault)
+        #if compiler(>=6.2)
+        if #available(iOS 26.0, *) {
+            // Keep values and placeholders aligned with the field when they use a different script.
+            field.multilineTextAlignment(strategy: .layoutBased)
+        } else {
+            field
+        }
+        #else
+        field
+        #endif
     }
 
     private var accessibilityLabel: String {

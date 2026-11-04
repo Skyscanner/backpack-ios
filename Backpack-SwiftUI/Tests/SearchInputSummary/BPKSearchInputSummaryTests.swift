@@ -54,6 +54,17 @@ class BPKSearchInputSummaryTests: XCTestCase {
             .frame(width: 300)
         )
     }
+
+    func test_readOnlyField_withEnglishValue() {
+        assertSnapshot(
+            BPKSearchInputSummary(
+                inputPrefix: .icon(.flight),
+                readOnly: true,
+                .constant("Heathrow")
+            )
+            .frame(width: 300)
+        )
+    }
     
     func test_defaultSettings_withCustomPrefixText() {
         assertSnapshot(
