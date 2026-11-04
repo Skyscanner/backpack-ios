@@ -105,20 +105,10 @@ public struct BPKSearchInputSummary: View {
         })
     }
 
-    @ViewBuilder
     private var searchTextField: some View {
-        let field = TextField(placeholder, text: $text, prompt: placeholderView)
+        TextField(placeholder, text: $text, prompt: placeholderView)
             .font(style: .bodyDefault)
-        #if compiler(>=6.2)
-        if #available(iOS 26.0, *) {
-            // Keep values and placeholders aligned with the field when they use a different script.
-            field.multilineTextAlignment(strategy: .layoutBased)
-        } else {
-            field
-        }
-        #else
-        field
-        #endif
+            .bpkLayoutBasedTextAlignment()
     }
 
     private var accessibilityLabel: String {
