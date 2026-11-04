@@ -335,7 +335,7 @@ Please see the [code review guidelines](https://github.com/Skyscanner/backpack/b
 <details>
     <summary>Testing</summary>
 
-Run tests in Xcode with Product → Test (⌘U). For snapshot tests, use the [pinned test environment](Documentation/SPM/README.md#tests).
+Run unit tests in Xcode with Product → Test (⌘U). Use the [test script](Documentation/SPM/README.md#tests) for the full snapshot suite.
 </details>
 
 <details>

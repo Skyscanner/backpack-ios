@@ -21,9 +21,17 @@ import UIKit
 import XCTest
 import SnapshotTesting
 
+func requireSnapshotHost() throws {
+    try XCTSkipUnless(
+        Bundle.main.bundleIdentifier == "net.skyscanner.backpack.SnapshotTestHost",
+        "Run scripts/test-ios to capture native controls in the snapshot host."
+    )
+}
+
 func assertSnapshot(
     _ view: UIView,
     modes: [UIUserInterfaceStyle] = [.light, .dark],
+    drawHierarchyInKeyWindow: Bool = false,
     file: StaticString = #file,
     testName: String = #function,
     line: UInt = #line
@@ -34,7 +42,11 @@ func assertSnapshot(
         let styleTrait = UITraitCollection(userInterfaceStyle: mode)
         assertSnapshot(
             matching: view,
-            as: .image(size: view.intrinsicContentSize, traits: styleTrait),
+            as: .image(
+                drawHierarchyInKeyWindow: drawHierarchyInKeyWindow,
+                size: view.intrinsicContentSize,
+                traits: styleTrait
+            ),
             named: identifier(mode),
             file: file,
             testName: testName,
@@ -45,7 +57,7 @@ func assertSnapshot(
     let rtlTrait = UITraitCollection(layoutDirection: .rightToLeft)
     assertSnapshot(
         matching: view,
-        as: .image(size: view.intrinsicContentSize, traits: rtlTrait),
+        as: .image(drawHierarchyInKeyWindow: drawHierarchyInKeyWindow, size: view.intrinsicContentSize, traits: rtlTrait),
         named: "rtl",
         file: file,
         testName: testName,

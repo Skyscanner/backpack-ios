@@ -63,26 +63,46 @@ class BPKAppSearchModalTests: XCTestCase {
         )
     }
   
-    func test_givenContent_whenAccessoryIsOff_thenRendersInAllThemes() {
-        assertSnapshot(givenSutWithAccessory(with: .content(givenAccessoryContentState())))
+    func test_givenContent_whenAccessoryIsOff_thenRendersInAllThemes() throws {
+        try requireSnapshotHost()
+        assertSnapshot(
+            givenSutWithAccessory(with: .content(givenAccessoryContentState())),
+            drawHierarchyInKeyWindow: true
+        )
     }
 
-    func test_givenContent_whenAccessoryIsOn_thenRendersInAllThemes() {
-        assertSnapshot(givenSutWithAccessory(with: .content(givenAccessoryContentState()), isOn: true))
+    func test_givenContent_whenAccessoryIsOn_thenRendersInAllThemes() throws {
+        try requireSnapshotHost()
+        assertSnapshot(
+            givenSutWithAccessory(with: .content(givenAccessoryContentState()), isOn: true),
+            drawHierarchyInKeyWindow: true
+        )
     }
 
-    func test_givenLoading_whenAccessoryProvided_thenAccessoryRemainsVisible() {
-        assertSnapshot(givenSutWithAccessory(with: .loading(givenLoadingState())))
+    func test_givenLoading_whenAccessoryProvided_thenAccessoryRemainsVisible() throws {
+        try requireSnapshotHost()
+        assertSnapshot(
+            givenSutWithAccessory(with: .loading(givenLoadingState())),
+            drawHierarchyInKeyWindow: true
+        )
     }
 
-    func test_givenError_whenAccessoryProvided_thenAccessoryRemainsVisible() {
-        assertSnapshot(givenSutWithAccessory(with: .error(givenErrorState())))
+    func test_givenError_whenAccessoryProvided_thenAccessoryRemainsVisible() throws {
+        try requireSnapshotHost()
+        assertSnapshot(
+            givenSutWithAccessory(with: .error(givenErrorState())),
+            drawHierarchyInKeyWindow: true
+        )
     }
 
-    func test_givenLargerText_whenAccessoryProvided_thenLabelWraps() {
+    func test_givenLargerText_whenAccessoryProvided_thenLabelWraps() throws {
+        try requireSnapshotHost()
         let wasDynamicTypeEnabled = BPKFont.enableDynamicType
         defer { BPKFont.setDynamicType(enabled: wasDynamicTypeEnabled) }
-        assertA11ySnapshot(givenSutWithAccessory(with: .content(givenAccessoryContentState())))
+        assertA11ySnapshot(
+            givenSutWithAccessory(with: .content(givenAccessoryContentState())),
+            drawHierarchyInKeyWindow: true
+        )
     }
 
     // MARK: - Helpers

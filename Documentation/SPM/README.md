@@ -61,10 +61,7 @@ simulator_id=$(./scripts/install-sim)
 mkdir -p .swiftpm/xcode/package.xcworkspace
 printf '%s\n' '<Workspace version="1.0"><FileRef location="self:"/></Workspace>' \
   > .swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
-xcodebuild test \
-  -workspace .swiftpm/xcode/package.xcworkspace \
-  -scheme Backpack-Package \
-  -destination "platform=iOS Simulator,arch=arm64,id=$simulator_id"
+./scripts/test-ios --destination "platform=iOS Simulator,arch=arm64,id=$simulator_id"
 ```
 
 `.swiftpm/xcode/package.xcworkspace` is generated, not committed. The
@@ -76,6 +73,10 @@ the package build and tests. `scripts/build-docs` also creates it when needed.
 Reference images live in `__Snapshots__` directories next to the tests.
 [swift-snapshot-testing](https://github.com/pointfreeco/swift-snapshot-testing) resolves them from
 the source tree via `#file`, so they are deliberately **not** bundled as target resources.
+
+The test script supplies a small app host for snapshots of switches and the UIKit tab bar.
+On iOS 26, these controls need a window to capture the switch thumb and tab contents.
+Xcode's standalone package test run skips these snapshots. Use the script to run the full suite.
 
 The simulator runtime, device, and Xcode SDK all affect rendering. To refresh
 references on the canonical environment, push a commit titled `Record snapshots`

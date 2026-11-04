@@ -57,15 +57,8 @@ jobs:
           SPM_DESTINATION: ${{ steps.ios.outputs.destination }}
         continue-on-error: ${{inputs.retake_snapshots}}
         run: |
-          set -eo pipefail
-          xcodebuild \
-            -workspace .swiftpm/xcode/package.xcworkspace \
-            -scheme Backpack-Package \
-            -destination "$SPM_DESTINATION" \
-            -derivedDataPath .derivedData \
-            -skipPackagePluginValidation \
-            -skipMacroValidation \
-            test
+          ./scripts/test-ios --destination "$SPM_DESTINATION" \
+            -resultBundlePath .derivedData/Logs/Test/Backpack.xcresult
 
       - name: Save snapshots
         if: inputs.retake_snapshots

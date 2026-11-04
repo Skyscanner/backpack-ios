@@ -23,27 +23,45 @@ import SnapshotTesting
 import Backpack_SwiftUI
 import Backpack_Common
 
+func requireSnapshotHost() throws {
+    try XCTSkipUnless(
+        Bundle.main.bundleIdentifier == "net.skyscanner.backpack.SnapshotTestHost",
+        "Run scripts/test-ios to capture native controls in the snapshot host."
+    )
+}
+
 /// Create snapshots of a SwiftUI view using several pre-defined options.
 /// This will create as many png snapshots as modes are defined.
 /// - Parameters:
 ///       - view: The SwiftUI view to take a snapshot of
 ///       - modes: An array of snapshot modes, by default we cover light, dark and right to left
+///       - drawHierarchyInKeyWindow: Capture native compositor layers in the test app's window
 ///       - file: Reference to the calling file
 ///       - testName: Reference the calling function
 ///       - line: Reference the calling line
 func assertSnapshot<V: View>(
     _ view: V,
     modes: [SnapshotModes] = [.light, .dark, .rtl],
+    drawHierarchyInKeyWindow: Bool = false,
     file: StaticString = #file,
     testName: String = #function,
     line: UInt = #line
 ) {
-    let view: UIView = UIHostingController(rootView: view).view
+    let controller = UIHostingController(rootView: view)
+    if drawHierarchyInKeyWindow, #available(iOS 16.4, *) {
+        // Keep the window's status-bar and device insets out of fixed-size fixtures.
+        controller.safeAreaRegions = []
+    }
+    let view: UIView = controller.view
     isRecording = false
     modes.forEach { mode in
         assertSnapshot(
             matching: view,
-            as: .image(size: view.intrinsicContentSize, traits: mode.trait),
+            as: .image(
+                drawHierarchyInKeyWindow: drawHierarchyInKeyWindow,
+                size: view.intrinsicContentSize,
+                traits: mode.trait
+            ),
             named: mode.name,
             file: file,
             testName: testName,
@@ -61,6 +79,7 @@ func assertA11ySnapshot<V: View>(
     _ view: V,
     sizes: [ContentSizeCategory] = [.large, .extraExtraExtraLarge, .accessibilityExtraLarge],
     customHeight: CGFloat? = nil,
+    drawHierarchyInKeyWindow: Bool = false,
     file: StaticString = #file,
     testName: String = #function,
     line: UInt = #line
@@ -84,6 +103,7 @@ func assertA11ySnapshot<V: View>(
     assertSnapshot(
         a11yView,
         modes: [.custom(named: "a11y", trait: UITraitCollection(userInterfaceStyle: .light))],
+        drawHierarchyInKeyWindow: drawHierarchyInKeyWindow,
         file: file,
         testName: testName,
         line: line

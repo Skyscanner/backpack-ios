@@ -21,21 +21,33 @@ import SwiftUI
 @testable import Backpack_SwiftUI
 
 class BPKSwitchTests: XCTestCase {
+    override func setUpWithError() throws {
+        try super.setUpWithError()
+        try requireSnapshotHost()
+    }
+
     func test_givenNoInformation_whenOptingInWithNil_thenPreservesStandardSwitch() {
         assertSnapshot(
             BPKSwitch(isOn: .constant(false), text: "Test")
                 .experimentalInformation(nil, tooltip: .init(id: "unused"))
                 .padding(.sm),
+            drawHierarchyInKeyWindow: true,
             testName: "testSwitchOffState"
         )
     }
 
     func test_givenInformation_whenTooltipDisabled_thenShowsPersistentInfoButton() {
-        assertSnapshot(informationSwitch())
+        assertSnapshot(
+            informationSwitch(),
+            drawHierarchyInKeyWindow: true
+        )
     }
 
     func test_givenInformation_whenTextSizeIncreases_thenLabelAndButtonRemainSeparate() {
-        assertA11ySnapshot(informationSwitch(), customHeight: 1200)
+        assertA11ySnapshot(
+            informationSwitch(), customHeight: 1200,
+            drawHierarchyInKeyWindow: true
+        )
     }
 
     private func informationSwitch() -> some View {
@@ -56,23 +68,38 @@ class BPKSwitchTests: XCTestCase {
     }
 
     func testSwitchOnState() {
-        assertSnapshot(BPKSwitch(isOn: .constant(true), text: "Test").padding(.sm))
+        assertSnapshot(
+            BPKSwitch(isOn: .constant(true), text: "Test").padding(.sm),
+            drawHierarchyInKeyWindow: true
+        )
     }
     
     func testSwitchOffState() {
-        assertSnapshot(BPKSwitch(isOn: .constant(false), text: "Test").padding(.sm))
+        assertSnapshot(
+            BPKSwitch(isOn: .constant(false), text: "Test").padding(.sm),
+            drawHierarchyInKeyWindow: true
+        )
     }
 
     func testSwitchTruncatedByDefault() {
-        assertSnapshot(BPKSwitch(isOn: .constant(false), text: "line 1\n line 2").padding(.sm))
+        assertSnapshot(
+            BPKSwitch(isOn: .constant(false), text: "line 1\n line 2").padding(.sm),
+            drawHierarchyInKeyWindow: true
+        )
     }
     
     func testSwitchOnContrastStyleOn() {
-        assertSnapshot(BPKSwitch(isOn: .constant(true), text: "Test", style: .onContrast))
+        assertSnapshot(
+            BPKSwitch(isOn: .constant(true), text: "Test", style: .onContrast),
+            drawHierarchyInKeyWindow: true
+        )
     }
     
     func testSwitchOnContrastStyleOff() {
-        assertSnapshot(BPKSwitch(isOn: .constant(false), text: "Test", style: .onContrast))
+        assertSnapshot(
+            BPKSwitch(isOn: .constant(false), text: "Test", style: .onContrast),
+            drawHierarchyInKeyWindow: true
+        )
     }
 
     func testSwitchTruncatedFalse() {
@@ -81,7 +108,8 @@ class BPKSwitchTests: XCTestCase {
                 isOn: .constant(false),
                 text: "line 1\n line 2",
                 truncate: false
-            ).padding(.sm)
+            ).padding(.sm),
+            drawHierarchyInKeyWindow: true
         )
     }
     func testSwitchDisabledOnState() {
@@ -91,7 +119,8 @@ class BPKSwitchTests: XCTestCase {
                 text: "Test",
                 enabled: false
             )
-            .padding(.sm)
+            .padding(.sm),
+            drawHierarchyInKeyWindow: true
         )
     }
 
@@ -102,7 +131,8 @@ class BPKSwitchTests: XCTestCase {
                 text: "Test",
                 enabled: false
             )
-            .padding(.sm)
+            .padding(.sm),
+            drawHierarchyInKeyWindow: true
         )
     }
 
@@ -115,7 +145,8 @@ class BPKSwitchTests: XCTestCase {
                 style: .onContrast
             )
             .padding(.sm)
-            .background(Color(.surfaceContrastColor))
+            .background(Color(.surfaceContrastColor)),
+            drawHierarchyInKeyWindow: true
         )
     }
 
@@ -128,7 +159,8 @@ class BPKSwitchTests: XCTestCase {
                 style: .onContrast
             )
             .padding(.sm)
-            .background(Color(.surfaceContrastColor))
+            .background(Color(.surfaceContrastColor)),
+            drawHierarchyInKeyWindow: true
         )
     }
 
@@ -138,7 +170,8 @@ class BPKSwitchTests: XCTestCase {
                 isOn: .constant(true),
                 text: "A switch label that can wrap over multiple lines",
                 truncate: false
-            )
+            ),
+            drawHierarchyInKeyWindow: true
         )
     }
 
@@ -151,7 +184,8 @@ class BPKSwitchTests: XCTestCase {
                 isOn: .constant(true),
                 text: text
             )
-            .padding(.sm)
+            .padding(.sm),
+            drawHierarchyInKeyWindow: true
         )
     }
 }
