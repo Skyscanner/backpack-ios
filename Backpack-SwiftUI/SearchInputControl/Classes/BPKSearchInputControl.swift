@@ -81,7 +81,7 @@ public struct BPKSearchInputControl: View {
         Button(action: action) {
             HStack(spacing: .md) {
                 BPKIconView(icon)
-                    .foregroundColor(.textSecondaryColor)
+                    .foregroundColor(.textPrimaryColor)
                 BPKText(value ?? placeholder)
                     .lineLimit(titleLineLimit())
                     .multilineTextAlignment(.leading)
