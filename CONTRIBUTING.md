@@ -408,18 +408,15 @@ The Example app's `Backpack-Native` target downloads the fonts as a build phase,
 
 ## Upgrading Xcode/iOS
 
-As new versions of Xcode and iOS are released, we have to upgrade both to stay up to date with the main Skyscanner app, as well as what travellers are using. Our aim is to run our main test suite and snapshot tests on the dominate iOS version in use by Skyscanner travellers. At the time of a new release we continue to run our test suite on the previous major version until the new release has reached sufficient volume **and** the main app has moved to testing on the new version.
+Match the Skyscanner app's unit-test job when upgrading the CI toolchain or
+simulator. Update the pins in [`scripts/ios-ci-config`](scripts/ios-ci-config)
+and the [test environment documentation](Documentation/SPM/README.md#tests).
+Confirm that the selected macOS runner provides the pinned Xcode version.
 
-### How to upgrade
+Record snapshots on the new environment using the
+[snapshot workflow](Documentation/SPM/README.md#snapshots). Review the UIKit
+and SwiftUI image changes, then verify the normal CI run passes.
 
-1. Change the value of `runs-on` in [`ci.yml`](./.github/workflows/ci.yml#26). The new value should be on of the [available environments](https://github.com/actions/virtual-environments/tree/main/images/macos) in GitHub Actions.
-1. Update the `BUILD_SDK` variable in [`Rakefile`](./Rakefile#5) to the new build SDK we should use.
-1. Update `correctMajorVersion` and `correctMinorVersion` in [`BPKSnapshotTest`](./Example/SnapshotTests/BPKSnapshotTest.h).
-1. Update `expectedMajorVersion` and `expectedMinorVersion` in [`BPKSnapshotTest.swift`](./Example/SnapshotTests/BPKSnapshotTest.swift#26).
-1. Run all snapshot tests.
-1. **Review the failing snapshots thoroughly.** Most likely, all snapshots will have changed, **but** the diffs should be miniscule and mostly to do with changes in Apple's fonts.
-1. **Run all snapshot tests in record mode.** At the time of writing this involves manually setting `recordMode` in every test case, we should have a better method than this, but alas we don't :(
-1. Manually test the example app with the new version.
 </details>
 
 ## Experimental changes

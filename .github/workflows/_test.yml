@@ -76,8 +76,8 @@ jobs:
         run: |
           set -euo pipefail
           git add --ignore-removal -- \
-            ':(glob)Backpack/Tests/SnapshotTests/**/__Snapshots__/*.png' \
-            ':(glob)Backpack-SwiftUI/Tests/**/__Snapshots__/*.png'
+            ':(glob)Backpack/Tests/SnapshotTests/**/__Snapshots__/**/*.png' \
+            ':(glob)Backpack-SwiftUI/Tests/**/__Snapshots__/**/*.png'
           count=$(git diff --cached --name-only | wc -l | tr -d ' ')
           echo "count=$count" >> "$GITHUB_OUTPUT"
           if [ "$count" -eq 0 ]; then
