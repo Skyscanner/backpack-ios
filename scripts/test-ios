@@ -3,6 +3,7 @@
 """Build and run the Swift package tests with an app host for the snapshot targets."""
 
 import argparse
+from copy import deepcopy
 import platform
 import plistlib
 import shutil
@@ -12,18 +13,51 @@ from pathlib import Path
 
 HOST_ID = "net.skyscanner.backpack.SnapshotTestHost"
 HOST_NAME = "SnapshotTestHost"
-SNAPSHOT_TARGETS = {"BackpackSnapshotTests", "BackpackSwiftUITests"}
+HOSTED_TESTS = {
+    "BackpackSnapshotTests": [
+        "BPKSwitchSnapshotTest",
+        "BPKTabBarControllerSnapshotTest",
+    ],
+    "BackpackSwiftUITests": [
+        "BPKSwitchTests",
+        "BPKCellItemTests/test_slotSwitchOn",
+        "BPKCellItemTests/test_slotSwitchOff",
+        "BPKCellItemTests/test_fullContent_withSwitch",
+        "BPKAppSearchModalTests/test_givenContent_whenAccessoryIsOff_thenRendersInAllThemes",
+        "BPKAppSearchModalTests/test_givenContent_whenAccessoryIsOn_thenRendersInAllThemes",
+        "BPKAppSearchModalTests/test_givenLoading_whenAccessoryProvided_thenAccessoryRemainsVisible",
+        "BPKAppSearchModalTests/test_givenError_whenAccessoryProvided_thenAccessoryRemainsVisible",
+        "BPKAppSearchModalTests/test_givenLargerText_whenAccessoryProvided_thenLabelWraps",
+    ],
+}
+
+
+def split_test_configurations(run: dict) -> list:
+    """Keep the regular SwiftPM runner for tests that don't need a window."""
+    hosted_targets = []
+    configurations = run["TestConfigurations"]
+    for configuration in list(configurations):
+        hosted = deepcopy(configuration)
+        hosted["Name"] += " (hosted snapshots)"
+        hosted["TestTargets"] = []
+        for target in configuration["TestTargets"]:
+            tests = HOSTED_TESTS.get(target["BlueprintName"])
+            if tests is None:
+                continue
+            hosted_target = deepcopy(target)
+            hosted_target["OnlyTestIdentifiers"] = tests
+            target.setdefault("SkipTestIdentifiers", []).extend(tests)
+            hosted["TestTargets"].append(hosted_target)
+        if hosted["TestTargets"]:
+            configurations.append(hosted)
+            hosted_targets.extend(hosted["TestTargets"])
+    return hosted_targets
 
 
 def prepare_run_file(run_file: Path) -> Path:
     run = plistlib.loads(run_file.read_bytes())
-    targets = [
-        target
-        for configuration in run["TestConfigurations"]
-        for target in configuration["TestTargets"]
-        if target["BlueprintName"] in SNAPSHOT_TARGETS
-    ]
-    if {target["BlueprintName"] for target in targets} != SNAPSHOT_TARGETS:
+    targets = split_test_configurations(run)
+    if {target["BlueprintName"] for target in targets} != HOSTED_TESTS.keys():
         raise ValueError("Could not find the UIKit and SwiftUI snapshot test targets")
 
     products = run_file.parent / "Debug-iphonesimulator"
