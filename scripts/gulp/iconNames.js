@@ -18,11 +18,14 @@
 
 const { capitaliseFirstLetter, lowercaseFirstLetter } = require('./utils/formatUtils');
 
+// The iOS asset generator does not import extra-small icon variants.
+const iconEntries = Object.entries(require('@skyscanner/bpk-svgs/dist/iconMapping.json'))
+  .filter(([name]) => !name.endsWith('-xs'));
+
 const iconsUIKit = () => {
-  const content = require('@skyscanner/bpk-svgs/dist/iconMapping.json')
-  const combinedEntries = Object.entries(content).filter((x) => !x[0].endsWith('-sm') && !x[0].includes('-xxxl'));
-  const smallEntries = Object.entries(content).filter((x) => x[0].endsWith('-sm') && !x[0].includes('-xxxl'));
-  const largeEntries = Object.entries(content).filter((x) => !x[0].endsWith('-sm') && !x[0].includes('-xxxl'));
+  const combinedEntries = iconEntries.filter((x) => !x[0].endsWith('-sm') && !x[0].includes('-xxxl'));
+  const smallEntries = iconEntries.filter((x) => x[0].endsWith('-sm') && !x[0].includes('-xxxl'));
+  const largeEntries = iconEntries.filter((x) => !x[0].endsWith('-sm') && !x[0].includes('-xxxl'));
 
   const codify = (name) =>
     name
@@ -54,8 +57,7 @@ const iconsUIKit = () => {
 }
 
 const iconsSwiftUI = () => {
-  const content = require('@skyscanner/bpk-svgs/dist/iconMapping.json')
-  const largeEntries = Object.entries(content).filter((x) => !x[0].endsWith('-sm') && !x[0].includes('-xxxl'));
+  const largeEntries = iconEntries.filter((x) => !x[0].endsWith('-sm') && !x[0].includes('-xxxl'));
 
   const codify = (name) =>
     lowercaseFirstLetter(name
@@ -76,6 +78,7 @@ const iconsSwiftUI = () => {
 }
 
 module.exports = {
+  iconEntries,
   iconsUIKit,
   iconsSwiftUI
 }
