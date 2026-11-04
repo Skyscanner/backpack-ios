@@ -97,15 +97,10 @@ public extension View {
         .clipped()
     }
 
-    /// Applies progressive blur effect from bottom to top.
+    /// Applies a Metal-based progressive blur to the bottom half of the view.
     ///
-    /// - Note: Only iOS 17+; use `bpkProgressiveBlurFallback()` on earlier versions. The two differ in both
-    ///   region and gradient: this Metal-based version only blurs the bottom half of the view (50%–100%),
-    ///   and its mask alpha caps at 0.5 at the bottom edge, so the effective peak blur is roughly half of
-    ///   the nominal `radius: 24` (~12pt). `bpkProgressiveBlurFallback()` blurs the full view height using a
-    ///   fixed 10pt blur revealed via alpha cross-fade, reaching full visibility at 75% down. This means the
-    ///   same call can look meaningfully different depending on OS version — see
-    ///   `Backpack-SwiftUI/Blur/README.md` for the full comparison against the Android AGSL shader too.
+    /// The blur increases from the midpoint to the bottom edge. The mask caps
+    /// the effective blur at roughly half of the nominal 24-point radius.
     func bpkProgressiveBlur() -> some View {
         self.variableBlur(
             radius: 24,

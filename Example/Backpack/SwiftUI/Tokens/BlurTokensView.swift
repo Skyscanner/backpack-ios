@@ -70,19 +70,6 @@ struct BlurTokensView: View {
                         .blur(BPKUniformBlur(opaque: true))
                         .cornerRadius(BPKCornerRadiusMd)
                 }
-                Text("Progressive fallback")
-                Image("dialog_image")
-                    .resizable()
-                    .frame(width: 300, height: 300)
-                    .bpkProgressiveBlurFallback()
-                    .cornerRadius(BPKCornerRadiusMd)
-                
-                Image("dialog_flare")
-                    .resizable()
-                    .frame(width: 300, height: 300)
-                    .bpkProgressiveBlurFallback()
-                    .cornerRadius(BPKCornerRadiusMd)
-                
                 Text("Metal progressive blur")
                 Image("dialog_image")
                     .resizable()
