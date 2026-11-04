@@ -50,11 +50,7 @@ class BPKTabBarControllerSnapshotTest: XCTestCase {
         
         // Then
         UIView.performWithoutAnimation {
-            // Allow small antialiasing differences in the native selected tab title across CI runs.
-            assertSnapshot(
-                matching: sut,
-                as: .image(drawHierarchyInKeyWindow: true, perceptualPrecision: 0.97, traits: lightTrait)
-            )
+            assertSnapshot(matching: sut, as: .image(drawHierarchyInKeyWindow: true, traits: lightTrait))
             assertSnapshot(matching: sut, as: .image(drawHierarchyInKeyWindow: true, traits: darkTrait))
             assertSnapshot(matching: sut, as: .image(drawHierarchyInKeyWindow: true, traits: rtlTrait))
         }
