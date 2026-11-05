@@ -33,6 +33,11 @@ struct DialogContainerViewModifier<DialogContent: View>: ViewModifier {
     func body(content: Content) -> some View {
         ZStack {
             content
+                // `.isModal` below is only honoured by VoiceOver. Full Keyboard Access and Switch
+                // Control walk the same accessibility tree but don't reliably scope navigation to
+                // the modal subtree, so background content stays reachable with an external
+                // keyboard unless it's removed from the accessibility tree entirely.
+                .accessibilityHidden(isPresented)
             if isPresented {
                 ZStack {
                     Color(.scrimColor)
