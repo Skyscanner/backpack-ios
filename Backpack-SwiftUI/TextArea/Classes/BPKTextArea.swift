@@ -86,6 +86,7 @@ public struct BPKTextArea: View {
     var textEditorContent: some View {
         TextEditor(text: $value)
             .font(style: .bodyDefault)
+            .bpkLayoutBasedTextAlignment()
             .scrollContentBackground(.hidden)
     }
     

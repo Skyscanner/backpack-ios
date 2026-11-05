@@ -1,0 +1,136 @@
+#!/usr/bin/env python3
+
+"""Build and run the Swift package tests with an app host for the snapshot targets."""
+
+import argparse
+from copy import deepcopy
+import platform
+import plistlib
+import shutil
+import subprocess
+from pathlib import Path
+
+
+HOST_ID = "net.skyscanner.backpack.SnapshotTestHost"
+HOST_NAME = "SnapshotTestHost"
+HOSTED_TESTS = {
+    "BackpackSnapshotTests": [
+        "BPKSwitchSnapshotTest",
+        "BPKTabBarControllerSnapshotTest",
+    ],
+    "BackpackSwiftUITests": [
+        "BPKSwitchTests",
+        "BPKCellItemTests/test_slotSwitchOn",
+        "BPKCellItemTests/test_slotSwitchOff",
+        "BPKCellItemTests/test_fullContent_withSwitch",
+        "BPKAppSearchModalTests/test_givenContent_whenAccessoryIsOff_thenRendersInAllThemes",
+        "BPKAppSearchModalTests/test_givenContent_whenAccessoryIsOn_thenRendersInAllThemes",
+        "BPKAppSearchModalTests/test_givenLoading_whenAccessoryProvided_thenAccessoryRemainsVisible",
+        "BPKAppSearchModalTests/test_givenError_whenAccessoryProvided_thenAccessoryRemainsVisible",
+        "BPKAppSearchModalTests/test_givenLargerText_whenAccessoryProvided_thenLabelWraps",
+    ],
+}
+
+
+def split_test_configurations(run: dict) -> list:
+    """Keep the regular SwiftPM runner for tests that don't need a window."""
+    hosted_targets = []
+    configurations = run["TestConfigurations"]
+    for configuration in list(configurations):
+        hosted = deepcopy(configuration)
+        hosted["Name"] += " (hosted snapshots)"
+        hosted["TestTargets"] = []
+        for target in configuration["TestTargets"]:
+            tests = HOSTED_TESTS.get(target["BlueprintName"])
+            if tests is None:
+                continue
+            hosted_target = deepcopy(target)
+            hosted_target["OnlyTestIdentifiers"] = tests
+            target.setdefault("SkipTestIdentifiers", []).extend(tests)
+            hosted["TestTargets"].append(hosted_target)
+        if hosted["TestTargets"]:
+            configurations.append(hosted)
+            hosted_targets.extend(hosted["TestTargets"])
+    return hosted_targets
+
+
+def prepare_run_file(run_file: Path) -> Path:
+    run = plistlib.loads(run_file.read_bytes())
+    targets = split_test_configurations(run)
+    if {target["BlueprintName"] for target in targets} != HOSTED_TESTS.keys():
+        raise ValueError("Could not find the UIKit and SwiftUI snapshot test targets")
+
+    products = run_file.parent / "Debug-iphonesimulator"
+    host = products / f"{HOST_NAME}.app"
+    if host.exists():
+        shutil.rmtree(host)
+    plugins = host / "PlugIns"
+    plugins.mkdir(parents=True)
+    (host / "Info.plist").write_bytes(plistlib.dumps({
+        "CFBundleExecutable": HOST_NAME,
+        "CFBundleIdentifier": HOST_ID,
+        "CFBundleName": HOST_NAME,
+        "CFBundlePackageType": "APPL",
+        "MinimumOSVersion": "17.0",
+        "UIDeviceFamily": [1, 2],
+        "UILaunchScreen": {},
+        "UIStatusBarHidden": True,
+        "UIViewControllerBasedStatusBarAppearance": False,
+    }))
+    sdk = subprocess.check_output(["xcrun", "--sdk", "iphonesimulator", "--show-sdk-path"], text=True).strip()
+    subprocess.run([
+        "xcrun", "--sdk", "iphonesimulator", "swiftc", "-parse-as-library",
+        "-target", f"{platform.machine()}-apple-ios17.0-simulator", "-sdk", sdk,
+        str(Path(__file__).with_name("ios-test-host.swift")), "-o", str(host / HOST_NAME),
+    ], check=True)
+
+    # SwiftPM looks for resources relative to Bundle.main when running in an app.
+    for resource in products.glob("*.bundle"):
+        shutil.copytree(resource, host / resource.name, symlinks=True)
+
+    host_path = f"__TESTROOT__/{products.name}/{host.name}"
+    for target in targets:
+        bundle = Path(target["TestBundlePath"]).name
+        shutil.copytree(products / bundle, plugins / bundle, dirs_exist_ok=True, symlinks=True)
+        target.update(
+            IsAppHostedTestBundle=True,
+            TestHostBundleIdentifier=HOST_ID,
+            TestHostPath=host_path,
+            TestBundlePath=f"__TESTHOST__/PlugIns/{bundle}",
+            DependentProductPaths=[host_path, f"{host_path}/PlugIns/{bundle}"],
+        )
+        environment = target["TestingEnvironmentVariables"]
+        # Xcode supplies this library when installing the app-hosted test bundle.
+        libraries = ["__TESTHOST__/Frameworks/libXCTestBundleInject.dylib"]
+        if environment.get("DYLD_INSERT_LIBRARIES"):
+            libraries.append(environment["DYLD_INSERT_LIBRARIES"])
+        environment["DYLD_INSERT_LIBRARIES"] = ":".join(libraries)
+        environment["XCInjectBundleInto"] = "unused"
+
+    subprocess.run(["codesign", "--force", "--sign", "-", str(host)], check=True)
+    hosted_run = run_file.with_name("Backpack-Hosted.xctestrun")
+    hosted_run.write_bytes(plistlib.dumps(run))
+    return hosted_run
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--destination", required=True, help="xcodebuild iOS simulator destination")
+    parser.add_argument("--derived-data", type=Path, default=Path(".derivedData"))
+    options, test_options = parser.parse_known_args()
+    subprocess.run([
+        "xcodebuild", "-workspace", ".swiftpm/xcode/package.xcworkspace", "-scheme", "Backpack-Package",
+        "-destination", options.destination, "-derivedDataPath", str(options.derived_data),
+        "-skipPackagePluginValidation", "-skipMacroValidation", "build-for-testing",
+    ], check=True)
+    products = options.derived_data.resolve() / "Build" / "Products"
+    run_file = max(products.glob("Backpack-Package*.xctestrun"), key=lambda path: path.stat().st_mtime)
+    hosted_run = prepare_run_file(run_file)
+    return subprocess.run([
+        "xcodebuild", "-xctestrun", str(hosted_run), "-destination", options.destination,
+        *test_options, "test-without-building",
+    ]).returncode
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

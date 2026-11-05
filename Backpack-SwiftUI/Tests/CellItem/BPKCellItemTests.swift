@@ -105,25 +105,29 @@ class BPKCellItemTests: XCTestCase {
 
     // MARK: - Slot Content: Switch
 
-    func test_slotSwitchOn() {
+    func test_slotSwitchOn() throws {
+        try requireSnapshotHost()
         assertSnapshot(
             BPKCellItem(
                 title: "Push notifications",
                 slot: .switch(isOn: .constant(true))
             )
             .frame(width: 375)
-            .padding(.sm)
+            .padding(.sm),
+            drawHierarchyInKeyWindow: true
         )
     }
 
-    func test_slotSwitchOff() {
+    func test_slotSwitchOff() throws {
+        try requireSnapshotHost()
         assertSnapshot(
             BPKCellItem(
                 title: "Push notifications",
                 slot: .switch(isOn: .constant(false))
             )
             .frame(width: 375)
-            .padding(.sm)
+            .padding(.sm),
+            drawHierarchyInKeyWindow: true
         )
     }
 
@@ -218,7 +222,8 @@ class BPKCellItemTests: XCTestCase {
         )
     }
 
-    func test_fullContent_withSwitch() {
+    func test_fullContent_withSwitch() throws {
+        try requireSnapshotHost()
         assertSnapshot(
             BPKCellItem(
                 title: "Push notifications",
@@ -227,7 +232,8 @@ class BPKCellItemTests: XCTestCase {
                 slot: .switch(isOn: .constant(true))
             )
             .frame(width: 375)
-            .padding(.sm)
+            .padding(.sm),
+            drawHierarchyInKeyWindow: true
         )
     }
 

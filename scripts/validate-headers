@@ -16,13 +16,7 @@ NC='\033[0m' # No Color
 
 echo -e "${YELLOW}Validating headers for non-modular includes...${NC}"
 
-# Determine simulator destination
-if xcrun simctl list devices available | grep -q "iPhone SE (3rd generation)"; then
-    DESTINATION="platform=iOS Simulator,name=iPhone SE (3rd generation)"
-else
-    # Fallback to any available iPhone
-    DESTINATION="platform=iOS Simulator,name=iPhone 15"
-fi
+DESTINATION=${DESTINATION:-generic/platform=iOS Simulator}
 
 # Create temp directory for build logs
 BUILD_LOG=$(mktemp)

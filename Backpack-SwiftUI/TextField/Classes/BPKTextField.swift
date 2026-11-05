@@ -59,6 +59,7 @@ public struct BPKTextField: View {
         HStack {
             TextField(placeholder, text: $text)
                 .font(style: .bodyDefault)
+                .bpkLayoutBasedTextAlignment()
                 .foregroundColor(resolvedState.textColor)
                 .disabled(resolvedState.isDisabled)
             accessory

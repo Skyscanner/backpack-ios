@@ -48,18 +48,25 @@ Five test targets, all run by the `Backpack-Package` scheme:
 The Objective-C unit tests live in their own directory because SwiftPM targets are single-language:
 a directory holding both `.swift` and `.m` fails to build.
 
-Run them with:
+The build, unit test, and snapshot jobs use **Xcode 26.2** and an **iPhone 12 mini
+running iOS 26.2** on an arm64 macOS runner. This matches the Skyscanner app's
+`ios-tests` job on `develop`. Update [`scripts/ios-ci-config`](../../scripts/ios-ci-config)
+when that test environment moves.
+
+For a local run, select Xcode 26.2, then run the following from the repository root
+with `jq` installed:
 
 ```bash
-xcodebuild test \
-  -workspace .swiftpm/xcode/package.xcworkspace \
-  -scheme Backpack-Package \
-  -destination 'platform=iOS Simulator,name=iPhone SE (3rd generation),OS=18.5'
+simulator_id=$(./scripts/install-sim)
+mkdir -p .swiftpm/xcode/package.xcworkspace
+printf '%s\n' '<Workspace version="1.0"><FileRef location="self:"/></Workspace>' \
+  > .swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
+./scripts/test-ios --destination "platform=iOS Simulator,arch=arm64,id=$simulator_id"
 ```
 
 `.swiftpm/xcode/package.xcworkspace` is generated, not committed. The
-[`spm-setup`](../../.github/actions/spm-setup/action.yml) action creates it in CI;
-`scripts/build-docs` creates it too.
+[`ios-setup`](../../.github/actions/ios-setup/action.yml) action creates it for
+the package build and tests. `scripts/build-docs` also creates it when needed.
 
 ### Snapshots
 
@@ -67,10 +74,16 @@ Reference images live in `__Snapshots__` directories next to the tests.
 [swift-snapshot-testing](https://github.com/pointfreeco/swift-snapshot-testing) resolves them from
 the source tree via `#file`, so they are deliberately **not** bundled as target resources.
 
-Snapshots are sensitive to both the simulator runtime and the SDK the tests are compiled against.
-CI pins Xcode 16.4 and iOS 18.5; a local run on a different Xcode can produce differences that are
-not real regressions. To re-record, push a commit titled `Record snapshots` and the
-[snapshot workflow](../../.github/workflows/snapshot.yml) will update and commit them.
+The test script supplies a small app host for snapshots of switches and the UIKit tab bar.
+On iOS 26, these controls need a window to capture the switch thumb and tab contents.
+Xcode's standalone package test run skips these snapshots. Use the script to run the full suite.
+
+The simulator runtime, device, and Xcode SDK all affect rendering. To refresh
+references on the canonical environment, push a commit titled `Record snapshots`
+to an open Backpack PR. An empty commit is enough. The
+[snapshot workflow](../../.github/workflows/snapshot.yml) records the UIKit and
+SwiftUI PNGs and pushes them to the PR branch. Review the generated changes and
+check that the normal test run on the new commit passes.
 
 ## CI
 
