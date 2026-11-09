@@ -1,6 +1,5 @@
 # Backpack-SwiftUI/CellItem
 
-[![Cocoapods](https://img.shields.io/cocoapods/v/Backpack-SwiftUI.svg?style=flat)](hhttps://cocoapods.org/pods/Backpack-SwiftUI)
 [![class reference](https://img.shields.io/badge/Class%20reference-iOS-blue)](https://backpack.github.io/ios/versions/latest/swiftui/Structs/BPKCellItem.html)
 [![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack-SwiftUI/CellItem)
 
@@ -78,6 +77,15 @@ BPKCellItem(
 )
 ```
 
+Use `.switchDisableable` to also control the switch's enabled/disabled state:
+
+```swift
+BPKCellItem(
+    title: "Push Notifications",
+    slot: .switchDisableable(isOn: $isEnabled, enabled: false)
+)
+```
+
 ### Text
 
 Display a secondary value.
@@ -136,7 +144,7 @@ BPKCellItem(
 
 Set the corner treatment to:
 * `.default` - Square corners (0 radius)
-* `.rounded` - Rounded corners (8pt radius)
+* `.rounded` - Rounded corners (`BPKCornerRadius.sm`)
 
 ```swift
 BPKCellItem(

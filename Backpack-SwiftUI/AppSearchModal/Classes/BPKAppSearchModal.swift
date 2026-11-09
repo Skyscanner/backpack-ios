@@ -27,6 +27,7 @@ public struct BPKAppSearchModal: View {
     let results: BPKAppSearchModalResults
     let closeAccessibilityLabel: String
     let onClose: () -> Void
+    private var inputAccessoryContent: AnyView?
     @FocusState private var inputFieldIsFocussed: Bool
         
     public init(
@@ -56,6 +57,10 @@ public struct BPKAppSearchModal: View {
             if results.showTextField {
                 searchInputSummary
             }
+            if let inputAccessoryContent {
+                inputAccessoryContent
+                    .padding(.horizontal, .base)
+            }
             switch results {
             case .loading(let loading):
                 AppSearchModalLoadingView(state: loading)
@@ -74,6 +79,19 @@ public struct BPKAppSearchModal: View {
         .background(.surfaceDefaultColor)
     }
     
+    /// Adds fixed accessory content between the search input and the results.
+    ///
+    /// The accessory remains visible in content, loading and error states, outside the scrolling results.
+    /// The modal supplies horizontal padding. Existing search-input visibility rules are unchanged.
+    /// - Parameter content: Consumer-provided controls, such as a switch or filter.
+    /// - Returns: A search modal with the supplied accessory.
+    /// - Experiment: This API is experimental and subject to change.
+    public func inputAccessory<Accessory: View>(@ViewBuilder _ content: () -> Accessory) -> BPKAppSearchModal {
+        var result = self
+        result.inputAccessoryContent = AnyView(content())
+        return result
+    }
+
     private var searchInputSummary: some View {
         BPKSearchInputSummary(
             placeholder: inputHint,
@@ -162,6 +180,21 @@ struct BPKAppSearchModal_Previews: PreviewProvider {
             onClose: { }
         )
         .previewDisplayName("Error")
+
+        BPKAppSearchModal(
+            title: "Search Modal",
+            inputText: .constant(""),
+            inputHint: "Search",
+            results: .content(.init(sections: [], shortcuts: nil)),
+            closeAccessibilityLabel: "Close",
+            clearAction: .init(accessibilityLabel: "Clear", action: {}),
+            onClose: { }
+        )
+        .inputAccessory {
+            BPKSwitch(isOn: .constant(false), text: "Include nearby airports", truncate: false)
+                .padding(.vertical, .md)
+        }
+        .previewDisplayName("Input accessory")
     }
     
     static func buildSection(with index: Int) -> BPKAppSearchModalContent.Section {

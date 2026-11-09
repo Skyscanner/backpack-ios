@@ -1,9 +1,27 @@
 #!/bin/bash
 
-EXAMPLE_WORKSPACE='Example/Backpack.xcworkspace'
+# Documentation is generated from the Swift package. SwiftPM needs an explicit
+# -destination, and the SwiftUI module is named Backpack_SwiftUI while its scheme
+# is Backpack-SwiftUI, so sourcekitten has to be told the module name to find the
+# compiler arguments.
+SPM_WORKSPACE='.swiftpm/xcode/package.xcworkspace'
+DOC_DESTINATION='generic/platform=iOS Simulator'
+
+function ensureSpmWorkspace() {
+  mkdir -p "$SPM_WORKSPACE"
+  cat <<'XCWORKSPACE' > "$SPM_WORKSPACE/contents.xcworkspacedata"
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "self:">
+   </FileRef>
+</Workspace>
+XCWORKSPACE
+}
 
 function documentUIKit() {
-  sourcekitten doc -- -workspace $EXAMPLE_WORKSPACE -scheme Backpack >swiftDoc.json
+  sourcekitten doc -- -workspace $SPM_WORKSPACE -scheme Backpack -destination "$DOC_DESTINATION" >swiftDoc.json
 
   $(dirname "$0")/create-docs-header
 
@@ -16,7 +34,7 @@ function documentUIKit() {
 }
 
 function documentSwiftUI() {
-  sourcekitten doc -- -workspace $EXAMPLE_WORKSPACE -scheme "Backpack-SwiftUI" >swiftDoc-swiftui.json
+  sourcekitten doc --module-name Backpack_SwiftUI -- -workspace $SPM_WORKSPACE -scheme "Backpack-SwiftUI" -destination "$DOC_DESTINATION" >swiftDoc-swiftui.json
   jazzy --sourcekitten-sourcefile swiftDoc-swiftui.json -o "$outputDir/versions/$version/swiftui"
   rm swiftDoc-swiftui.json
 }
@@ -58,6 +76,7 @@ if [ $# -ne 1 ]; then
   exit 1
 fi
 
+ensureSpmWorkspace
 buildDocsHtmlFiles
 documentUIKit
 documentSwiftUI

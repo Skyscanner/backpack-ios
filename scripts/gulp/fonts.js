@@ -57,6 +57,19 @@ const FONT_ENUM_VALUES = {
     BPKFontStyleTextEditorial6: 43
 };
 
+const FOUNDATIONS_HEADING_TYPOGRAPHY = { weight: 700, letterSpacing: 0 };
+
+// TODO(#2714): move these iOS defaults into Foundations, then remove the overrides.
+// Check the upstream values so a token update cannot silently remain overridden.
+const TYPOGRAPHY_OVERRIDES = {
+    textHeading1: { weight: '900', letterSpacing: -1.2, expected: FOUNDATIONS_HEADING_TYPOGRAPHY },
+    textHeading2: { weight: '900', letterSpacing: -1, expected: FOUNDATIONS_HEADING_TYPOGRAPHY },
+    textHeading3: { weight: '900', letterSpacing: -0.6, expected: FOUNDATIONS_HEADING_TYPOGRAPHY },
+    textHeading4: { weight: '900', letterSpacing: -0.6, expected: FOUNDATIONS_HEADING_TYPOGRAPHY },
+    textHeading5: { weight: '900', letterSpacing: -0.6, expected: FOUNDATIONS_HEADING_TYPOGRAPHY },
+    textHero5: { letterSpacing: -1.2, expected: { letterSpacing: -0.02 } },
+};
+
 const WEIGHT_MAP_OBJC = {
     400: 'UIFontWeightRegular',
     700: 'UIFontWeightBold',
@@ -212,15 +225,34 @@ const letterSpacingFor = prop => {
     const adjustedValue = Number.parseFloat(prop.value) * 100
     return {
         value: adjustedValue,
-        name: prop.originalValue.replace('{!', '').replace('}', '').replace('LETTER_SPACING_', '')
+        name: prop.originalValue.replaceAll('{!', '').replaceAll('}', '').replace('LETTER_SPACING_', '')
     }
 }
+
+const typographyFor = fontProps => {
+    const weight = fontProps.weightProp[0].value;
+    const letterSpacing = fontProps.letterSpacingProp[0];
+    const override = TYPOGRAPHY_OVERRIDES[fontProps.key];
+    if (!override) {
+        return { weight, letterSpacing: letterSpacingFor(letterSpacing) };
+    }
+
+    if ((override.expected.weight !== undefined && Number(weight) !== override.expected.weight)
+        || Number(letterSpacing?.value) !== override.expected.letterSpacing) {
+        throw new Error(`Foundations typography changed for ${fontProps.key}; review and remove or update its iOS override before regenerating fonts.`);
+    }
+
+    return {
+        weight: override.weight ?? weight,
+        letterSpacing: { value: override.letterSpacing, isOverride: true }
+    };
+};
 
 const lineHeightFor = prop => {
     if (!prop) { return null }
     return {
         value: Number.parseInt(prop.value, 10),
-        name: prop.originalValue.replace('{!', '').replace('}', '').replace('LINE_HEIGHT_', '')
+        name: prop.originalValue.replaceAll('{!', '').replaceAll('}', '').replace('LINE_HEIGHT_', '')
     }
 }
 
@@ -246,16 +278,17 @@ const uikitFonts = properties => fonts(properties, fontProps => {
         };
 
         const enumName = `BPKFontStyle${_.upperFirst(fontProps.key)}`;
+        const typography = typographyFor(fontProps);
 
         return {
             name: fontProps.key,
             enumName,
             enumValue: enumValueForName(enumName),
             size: Number.parseInt(fontProps.sizeProp[0].value, 10),
-            weight: convertFontWeight(WEIGHT_MAP_OBJC, fontProps.weightProp[0].value),
+            weight: convertFontWeight(WEIGHT_MAP_OBJC, typography.weight),
             type: 'font',
             lineHeight: lineHeightFor(fontProps.lineHeightProp[0]),
-            letterSpacing: letterSpacingFor(fontProps.letterSpacingProp[0]),
+            letterSpacing: typography.letterSpacing,
             textStyle: textStyleValueForName(enumName)
         };
     })
@@ -273,14 +306,15 @@ const uikitFonts = properties => fonts(properties, fontProps => {
             return enumValue;
         };
         const enumName = `BPKFontStyle${_.upperFirst(fontProps.key)}`;
+        const typography = typographyFor(fontProps);
         
         return {
             name: swiftUIName(fontProps.key),
             size: Number.parseInt(fontProps.sizeProp[0].value, 10),
-            weight: convertFontWeight(WEIGHT_MAP_SWIFTUI, fontProps.weightProp[0].value),
+            weight: convertFontWeight(WEIGHT_MAP_SWIFTUI, typography.weight),
             type: 'font',
             lineHeight: lineHeightFor(fontProps.lineHeightProp[0]),
-            letterSpacing: letterSpacingFor(fontProps.letterSpacingProp[0]),
+            letterSpacing: typography.letterSpacing,
             textStyle: textStyleValueForName(enumName)
         };
     })

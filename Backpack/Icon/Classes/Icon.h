@@ -22,14 +22,8 @@
 #import "BPKObjcUIKitIcon.h"
 #import "BPKObjcUIKitIconView.h" // DEPRECATED: Consumers should use BPK<SIZE>IconView instead
 #import "BPKSmallIconView.h"
-#ifdef SWIFT_PACKAGE
 #import "Generated/BPKIconNames.h" // DEPRECATED: Consumers should use BPK<SIZE>IconNames instead
 #import "Generated/BPKLargeIconNames.h"
 #import "Generated/BPKSmallIconNames.h"
-#else
-#import <Backpack/BPKIconNames.h> // DEPRECATED: Consumers should use BPK<SIZE>IconNames instead
-#import <Backpack/BPKLargeIconNames.h>
-#import <Backpack/BPKSmallIconNames.h>
-#endif
 
 #endif

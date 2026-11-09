@@ -22,17 +22,6 @@ import Foundation
 public enum BackpackFontsBundle {
   /// Returns the bundle that contains the Backpack font resources.
   public static var bundle: Bundle {
-#if SWIFT_PACKAGE && SWIFT_MODULE_RESOURCE_BUNDLE_AVAILABLE
     return Bundle.module
-#elseif canImport(ObjectiveC)
-    return Bundle(for: BundleFinder.self)
-#else
-    // Fallback for non-ObjC platforms where Bundle(for:) is unavailable.
-    return .main
-#endif
   }
-
-#if canImport(ObjectiveC)
-  private final class BundleFinder {}
-#endif
 }

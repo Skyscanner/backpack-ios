@@ -81,8 +81,7 @@ public struct BPKSearchInputSummary: View {
         HStack(spacing: .md) {
             prefixView
                 .accessibilityHidden(true)
-            TextField(placeholder, text: $text, prompt: placeholderView)
-                .font(style: .bodyDefault)
+            searchTextField
                 .foregroundColor(.textPrimaryColor)
                 .disabled(readOnly)
                 .if(readOnly, transform: { view in
@@ -104,6 +103,12 @@ public struct BPKSearchInputSummary: View {
         .if(!BPKFont.enableDynamicType, transform: {
             $0.sizeCategory(.large)
         })
+    }
+
+    private var searchTextField: some View {
+        TextField(placeholder, text: $text, prompt: placeholderView)
+            .font(style: .bodyDefault)
+            .bpkLayoutBasedTextAlignment()
     }
 
     private var accessibilityLabel: String {

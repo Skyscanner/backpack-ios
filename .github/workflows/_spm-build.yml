@@ -10,19 +10,23 @@ defaults:
 jobs:
   spm-build:
     name: SwiftPM Build
-    runs-on: macos-15
+    runs-on: macos-26
     steps:
       - name: Checkout code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
-      - name: Setup SwiftPM workspace
-        uses: ./.github/actions/spm-setup
+      - name: Setup iOS toolchain and simulator
+        id: ios
+        uses: $/.github/actions/ios-setup
+        with:
+          simulator: 'true'
+          swiftpm-workspace: 'true'
 
       - name: Build Backpack Swift Package
         env:
-          SPM_DESTINATION: platform=iOS Simulator,name=iPhone SE (3rd generation),OS=18.5
+          SPM_DESTINATION: ${{ steps.ios.outputs.destination }}
         run: |
           set -eo pipefail
           xcodebuild \

@@ -20,7 +20,7 @@ const path = require('path');
 const gulp = require('gulp');
 const data = require('gulp-data');
 const rename = require('gulp-rename');
-const { iconsUIKit, iconsSwiftUI } = require('../../iconNames');
+const { iconEntries, iconsUIKit, iconsSwiftUI } = require('../../iconNames');
 
 // Load the ESM-only gulp-nunjucks from CJS via dynamic import
 const getNunjucksCompile = async () => (await import('gulp-nunjucks')).nunjucksCompile;
@@ -33,10 +33,9 @@ const waitForStream = (stream) =>
     stream.on('end', resolve);
   });
 
-// Filtered list for the examples screen (unchanged)
-const iconsForExamples = Object.keys(
-  require('@skyscanner/bpk-svgs/dist/iconMapping.json')
-).filter((iconName) => !iconName.endsWith('-xl') && !iconName.endsWith('-xxxl'));
+const iconsForExamples = iconEntries
+  .map(([name]) => name)
+  .filter((name) => !name.endsWith('-xl') && !name.endsWith('-xxxl'));
 
 // Generic generator (now async) that returns the stream.
 // It compiles using gulp-nunjucks v6's nunjucksCompile() named export.

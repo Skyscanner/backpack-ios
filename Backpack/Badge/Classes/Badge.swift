@@ -41,7 +41,7 @@ public class BPKBadge: UIView {
     }
     
     private let label: BPKLabel = {
-        let label = BPKLabel(fontStyle: BpkConfiguration.shared.badgeConfig == nil ? .textFootnote : .textCaption)
+        let label = BPKLabel(fontStyle: .textCaption)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -73,9 +73,7 @@ public class BPKBadge: UIView {
         label.textColor = type.textColor
         
         if type == .outline {
-            layer.borderColor = BpkConfiguration.shared.badgeConfig == nil ?
-            BPKColor.textOnDarkColor.cgColor :
-            BPKColor.clear.cgColor
+            layer.borderColor = BPKColor.clear.cgColor
             layer.borderWidth = BPKBorderWidthSm
         }
         
@@ -145,14 +143,15 @@ fileprivate extension BPKBadgeType {
             return BPKColor.textOnDarkColor
         case .brand:
             return BPKColor.textPrimaryInverseColor
+        case .loyalty:
+            return BPKColor.textOnLightColor
         }
     }
     
     var backgroundColor: UIColor {
-        let config = BpkConfiguration.shared.badgeConfig
         switch self {
         case .success, .warning, .destructive, .normal:
-            return config == nil ? BPKColor.badgeBackgroundNormalColor : BPKColor.clear
+            return BPKColor.clear
         case .inverse:
             return BPKColor.surfaceDefaultColor
         case .outline:
@@ -163,6 +162,8 @@ fileprivate extension BPKBadgeType {
             return BPKColor.coreAccentColor
         case .subtle:
             return BPKColor.badgeBackgroundNormalColor
+        case .loyalty:
+            return BPKColor.statusLoyaltySpotColor
         }
     }
     
@@ -174,18 +175,17 @@ fileprivate extension BPKBadgeType {
             return BPKColor.statusWarningSpotColor
         case .destructive:
             return BPKColor.statusDangerSpotColor
-        case .normal, .strong, .inverse, .outline, .brand, .subtle:
+        case .normal, .strong, .inverse, .outline, .brand, .subtle, .loyalty:
             return textColor
         }
     }
 
     var horizontalPadding: CGFloat {
-        let config = BpkConfiguration.shared.badgeConfig
         switch self {
-        case .strong, .brand, .inverse, .outline, .subtle:
+        case .strong, .brand, .inverse, .outline, .subtle, .loyalty:
             return BPKSpacingMd
         default:
-            return config == nil ? BPKSpacingMd : BPKSpacingNone
+            return BPKSpacingNone
         }
     }
 }

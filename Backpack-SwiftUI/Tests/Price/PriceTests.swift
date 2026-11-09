@@ -28,7 +28,7 @@ class PriceTests: XCTestCase {
         let leadingText: String?
         let trailingText: String?
         let onPriceClicked: (() -> Void)?
-        
+
         init(
             price: String,
             previousPrice: String? = nil,
@@ -43,7 +43,7 @@ class PriceTests: XCTestCase {
             self.onPriceClicked = onPriceClicked
         }
     }
-    
+
     let permutations: [PriceTest] = [
         .init(price: "£1,830"),
         .init(price: "£1,830", trailingText: "per day"),
@@ -155,5 +155,18 @@ class PriceTests: XCTestCase {
                 testName: "test_large_withTrailingAlignment_and\(testCase.name)Style"
             )
         }
+    }
+
+    func test_longPriceWraps() {
+        let view = BPKPrice(
+            price: "£197,000,000,000,000,000,000,000,000,000,000",
+            previousPrice: "£200,000,000,000,000,000,000,000,000,000,000",
+            trailingText: "per day for a group of more than twenty people",
+            alignment: .leading,
+            size: .large
+        )
+        .frame(width: 200)
+        .background(.surfaceDefaultColor)
+        assertSnapshot(view)
     }
 }

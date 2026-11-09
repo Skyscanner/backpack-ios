@@ -17,6 +17,7 @@
  */
 
 import UIKit
+import TipKit
 
 import Backpack
 import Backpack_SwiftUI
@@ -51,6 +52,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         setupRelativeFont()
         setupAppearance()
+        // Reset is an Example-only launch option for repeatable assessments.
+        if ProcessInfo.processInfo.arguments.contains("SWITCH_INFORMATION_RESET") {
+            try? Tips.resetDatastore()
+        }
+        try? Tips.configure([.displayFrequency(.immediate)])
         return true
     }
 }

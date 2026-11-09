@@ -24,6 +24,13 @@ struct AppSearchModalExampleView: View {
     @ObservedObject var viewModel: AppSearchModalExampleViewModel
     @State private var inputText = ""
     @State private var isPresented = true
+    @State private var includeNearbyAirports = false
+    private let showsInputAccessory: Bool
+
+    init(viewModel: AppSearchModalExampleViewModel, showsInputAccessory: Bool = false) {
+        self.viewModel = viewModel
+        self.showsInputAccessory = showsInputAccessory
+    }
     
     var body: some View {
         VStack {
@@ -31,26 +38,38 @@ struct AppSearchModalExampleView: View {
                 isPresented.toggle()
             }
         }.sheet(isPresented: $isPresented) {
-            BPKAppSearchModal(
-                title: "Search Modal",
-                inputText: $inputText,
-                inputHint: "Search",
-                results: results(),
-                closeAccessibilityLabel: "Close",
-                inputPrefix: .text("From"),
-                clearAction: .init(accessibilityLabel: "clear text", action: { inputText = "" }),
-                onClose: {
-                    print("Tapped close button")
-                    isPresented.toggle()
+            Group {
+                if showsInputAccessory {
+                    searchModal.inputAccessory {
+                        BPKSwitch(isOn: $includeNearbyAirports, text: "Include nearby airports", truncate: false)
+                            .padding(.vertical, .md)
+                    }
+                } else {
+                    searchModal
                 }
-            )
-            
+            }
             .onChange(of: inputText, perform: { _ in
                 self.viewModel.loadContentFrom(inputText)
             })
         }
     }
     
+    private var searchModal: BPKAppSearchModal {
+        BPKAppSearchModal(
+            title: "Search Modal",
+            inputText: $inputText,
+            inputHint: "Search",
+            results: results(),
+            closeAccessibilityLabel: "Close",
+            inputPrefix: .text("From"),
+            clearAction: .init(accessibilityLabel: "clear text", action: { inputText = "" }),
+            onClose: {
+                print("Tapped close button")
+                isPresented.toggle()
+            }
+        )
+    }
+
     private func results() -> BPKAppSearchModalResults {
         switch viewModel.resultsType {
         case .error:

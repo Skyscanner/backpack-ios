@@ -21,28 +21,10 @@ import Backpack_Common
 public enum BPKCardElevation {
     case `default`, focus, none
 
-    func shadow(for style: BPKCardStyle, config: BpkConfiguration?) -> BPKShadow? {
-        // When config.CardConfig is enabled, turn off all elevation
-        if config?.cardConfig != nil {
-            return nil
-        }
-
-        switch self {
-        case .none: return nil
-        case .focus: return .lg
-        case .`default`: return .sm
-        }
-    }
-
-    func backgroundColor(for style: BPKCardStyle, config: BpkConfiguration?) -> BPKColor {
-        // When config.CardConfig is enabled and onDefault style, use canvasContrast
-        if config?.cardConfig != nil && style == .onDefault {
-            return .surfaceLowContrastColor
-        }
-
+    func backgroundColor(for style: BPKCardStyle) -> BPKColor {
         switch style {
         case .onDefault:
-            return self == .focus ? .surfaceElevatedColor : .surfaceDefaultColor
+            return .surfaceLowContrastColor
         case .onContrast:
             return self == .focus ? .surfaceElevatedColor : .surfaceDefaultColor
         }

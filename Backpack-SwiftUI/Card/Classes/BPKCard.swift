@@ -38,7 +38,6 @@ public struct BPKCard<Content: View>: View {
     private let cornerStyle: CornerStyle
     private var tapAction : () -> Void = {}
     private let cardStyle: BPKCardStyle
-    private let config: BpkConfiguration?
 
     public init(
         padding: Padding = .small,
@@ -51,7 +50,6 @@ public struct BPKCard<Content: View>: View {
         self.cornerStyle = cornerStyle
         self.elevation = elevation
         self.padding = padding
-        self.config = BpkConfiguration.shared
         self.cardStyle = cardStyle
     }
 
@@ -66,9 +64,8 @@ public struct BPKCard<Content: View>: View {
         }
         .buttonStyle(CardButtonStyle(
             cornerRadius: cornerRadius,
-            backgroundColor: elevation.backgroundColor(for: cardStyle, config: config)
+            backgroundColor: elevation.backgroundColor(for: cardStyle)
         ))
-        .shadow(elevation.shadow(for: cardStyle, config: config))
     }
     
     public func onTapGesture(perform: @escaping () -> Void) -> BPKCard {

@@ -1,6 +1,5 @@
 # Backpack/Badge
 
-[![Cocoapods](https://img.shields.io/cocoapods/v/Backpack.svg?style=flat)](https://cocoapods.org/pods/Backpack)
 [![class reference](https://img.shields.io/badge/Class%20reference-iOS-blue)](https://backpack.github.io/ios/versions/latest/uikit/Classes/BPKBadge.html)
 [![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack/Badge)
 
@@ -12,7 +11,18 @@
 
 ## Usage
 
-`BPKBadge` contains the Backpack Badge component. It has 6 different styles defined in `BPKBadgeType` and can contain a message as well as an icon.
+`BPKBadge` contains the Backpack Badge component. It has 10 different styles defined in `BPKBadgeType` and can contain a message as well as an icon.
+
+- `.normal`
+- `.subtle`
+- `.strong`
+- `.success`
+- `.warning`
+- `.destructive`
+- `.inverse`
+- `.outline`
+- `.brand`
+- `.loyalty`
 
 
 ### Objective-C

@@ -61,6 +61,11 @@
                                           darkVariant:[UIColor colorWithRed:0.020 green:0.255 blue:0.518 alpha:1]];
 }
 
++ (UIColor *)statusLoyaltySpotColor {
+    return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:0.788 green:0.988 blue:0.439 alpha:1] 
+                                          darkVariant:[UIColor colorWithRed:0.788 green:0.988 blue:0.439 alpha:1]];
+}
+
 + (UIColor *)statusSuccessSpotColor {
     return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:0.047 green:0.514 blue:0.541 alpha:1] 
                                           darkVariant:[UIColor colorWithRed:0.384 green:0.945 blue:0.776 alpha:1]];

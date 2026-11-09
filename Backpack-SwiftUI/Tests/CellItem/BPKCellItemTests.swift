@@ -105,26 +105,50 @@ class BPKCellItemTests: XCTestCase {
 
     // MARK: - Slot Content: Switch
 
-    func test_slotSwitchOn() {
+    func test_slotSwitchOn() throws {
+        try requireSnapshotHost()
         assertSnapshot(
             BPKCellItem(
                 title: "Push notifications",
                 slot: .switch(isOn: .constant(true))
             )
             .frame(width: 375)
-            .padding(.sm)
+            .padding(.sm),
+            drawHierarchyInKeyWindow: true
         )
     }
 
-    func test_slotSwitchOff() {
+    func test_slotSwitchOff() throws {
+        try requireSnapshotHost()
         assertSnapshot(
             BPKCellItem(
                 title: "Push notifications",
                 slot: .switch(isOn: .constant(false))
             )
             .frame(width: 375)
-            .padding(.sm)
+            .padding(.sm),
+            drawHierarchyInKeyWindow: true
         )
+    }
+
+    // These two aren't snapshot tests like their siblings above: `enabled` only affects
+    // interactivity, not appearance, so a pixel diff can't distinguish them. Instead, mount
+    // the view for real (BPKSwitch's `.disabled(!enabled)` bridges to a native UISwitch under
+    // SwiftUI's SwitchToggleStyle) and read its `isEnabled` directly off the hosted view tree.
+    func test_slotSwitchEnabled_switchIsEnabled() {
+        let cellItem = BPKCellItem(
+            title: "Push notifications",
+            slot: .switchDisableable(isOn: .constant(true), enabled: true)
+        )
+        XCTAssertEqual(hostedSwitch(in: cellItem)?.isEnabled, true)
+    }
+
+    func test_slotSwitchDisabled_switchIsDisabled() {
+        let cellItem = BPKCellItem(
+            title: "Push notifications",
+            slot: .switchDisableable(isOn: .constant(true), enabled: false)
+        )
+        XCTAssertEqual(hostedSwitch(in: cellItem)?.isEnabled, false)
     }
 
     // MARK: - Slot Content: Text
@@ -198,7 +222,8 @@ class BPKCellItemTests: XCTestCase {
         )
     }
 
-    func test_fullContent_withSwitch() {
+    func test_fullContent_withSwitch() throws {
+        try requireSnapshotHost()
         assertSnapshot(
             BPKCellItem(
                 title: "Push notifications",
@@ -207,7 +232,29 @@ class BPKCellItemTests: XCTestCase {
                 slot: .switch(isOn: .constant(true))
             )
             .frame(width: 375)
-            .padding(.sm)
+            .padding(.sm),
+            drawHierarchyInKeyWindow: true
         )
+    }
+
+    private func hostedSwitch<V: View>(in view: V) -> UISwitch? {
+        let host = UIHostingController(rootView: view)
+        let window = UIWindow(frame: CGRect(x: 0, y: 0, width: 375, height: 100))
+        window.rootViewController = host
+        window.makeKeyAndVisible()
+        host.view.layoutIfNeeded()
+
+        func walk(_ view: UIView) -> UISwitch? {
+            if let uiSwitch = view as? UISwitch {
+                return uiSwitch
+            }
+            for subview in view.subviews {
+                if let found = walk(subview) {
+                    return found
+                }
+            }
+            return nil
+        }
+        return walk(host.view)
     }
 }

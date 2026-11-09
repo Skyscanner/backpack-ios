@@ -23,22 +23,7 @@ import SwiftUI
 
 final class BPKCardConfigurationTests: XCTestCase {
 
-    override func setUp() {
-        super.setUp()
-        
-        let config = BpkConfiguration.shared
-        do {
-            try config.set(configs: [.card])
-        } catch {
-            XCTFail("Failed to set card config")
-        }
-    }
     
-    override func tearDown() {
-        super.tearDown()
-        
-        BpkConfiguration.shared.reset()
-    }
     
     func content(_ title: String) -> some View {
         BPKText(title)

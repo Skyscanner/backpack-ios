@@ -24,27 +24,35 @@ import Backpack_Common
 ///
 /// Use `badgeStyle(_ style: BPKBadge.Style)` to change the style of the badge
 ///
+/// Use `interactive(_ interactive: Bool = true)` to show a fixed trailing information
+/// icon that signals the badge can be tapped for more information. This glyph is not a
+/// configurable `BPKIcon` and is not part of Backpack's public icon set - it exists only
+/// to give interactive badges a consistent affordance across the system. BPKBadge remains
+/// purely presentational
+
 public struct BPKBadge: View {
+    private static let interactiveIcon = BPKIcon(name: "information-circle-outline")
+    private static let interactiveIconDimension: CGFloat = 12
+
     private let text: String
     private let icon: BPKIcon?
     private var style: BPKBadge.Style = .normal
-    private let config: BpkConfiguration?
+    private var isInteractive = false
 
     public init(_ text: String, icon: BPKIcon? = nil) {
         self.text = text
         self.icon = icon
-        self.config = BpkConfiguration.shared
     }
     
     public var body: some View {
         content
-            .padding(.leading, style.horizontalPadding(config))
+            .padding(.leading, style.horizontalPadding())
             .padding(.trailing, .md)
             .padding([.top, .bottom], .sm)
             .frame(minHeight: 24)
-            .background(style.backgroundColor(config))
+            .background(style.backgroundColor())
             .clipShape(RoundedRectangle(cornerRadius: .xs))
-            .outline(style.borderColor(config), cornerRadius: .xs)
+            .outline(style.borderColor(), cornerRadius: .xs)
             .accessibilityElement()
             .accessibilityLabel(text)
             .if(!BPKFont.enableDynamicType, transform: {
@@ -63,6 +71,22 @@ public struct BPKBadge: View {
         result.style = style
         return result
     }
+
+    /// Shows a fixed trailing information glyph/icon to signal that the badge can be tapped
+    /// for more information.
+    ///
+    /// BPKBadge does not handle taps itself. If you want the badge to be tappable, wrap it
+    /// in your own `Button` or `.onTapGesture` to drive navigation
+    ///
+    /// - Parameter interactive: Whether to show the trailing information glyph.
+    ///   Defaults to `true`.
+    ///
+    /// - Returns: A BPKBadge configured as interactive.
+    public func interactive(_ interactive: Bool = true) -> BPKBadge {
+        var result = self
+        result.isInteractive = interactive
+        return result
+    }
     
     private func createBadgeIconView(icon: BPKIcon?) -> BPKIconView? {
         guard let badgeIcon = icon else {
@@ -79,14 +103,23 @@ public struct BPKBadge: View {
         }
         return BPKIconView(badgeIcon, size: .small)
     }
+
+    private var interactiveIconView: BPKIconView? {
+        guard isInteractive else { return nil }
+        return BPKIconView(Self.interactiveIcon, size: .small)
+            .overrideDimension(Self.interactiveIconDimension)
+    }
     
     private var content: some View {
         HStack(spacing: .sm) {
             if let badgeIconView = createBadgeIconView(icon: icon) {
-                badgeIconView.foregroundColor(style.iconColor(config))
+                badgeIconView.foregroundColor(style.iconColor())
             }
             BPKText(text, style: .footnote)
-                .foregroundColor(style.foregroundColor(config))
+                .foregroundColor(style.foregroundColor())
+            if let interactiveIconView {
+                interactiveIconView.foregroundColor(style.iconColor())
+            }
         }
     }
 }
@@ -113,7 +146,10 @@ struct BPKBadge_Previews: PreviewProvider {
                             .background(style.3 ? BPKColor.surfaceHighlightColor : BPKColor.surfaceDefaultColor)
                         
                     }
-                    
+                    BPKBadge("Interactive", icon: .tickCircle)
+                        .badgeStyle(.success)
+                        .interactive()
+                        .padding(10)
                 }
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(scheme)

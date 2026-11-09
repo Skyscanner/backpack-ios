@@ -20,16 +20,10 @@
 import Foundation
 import UIKit
 
-#if SWIFT_PACKAGE
 import Backpack_ObjC
 public typealias BPKStarType = Backpack_ObjC.BPKStar
 public typealias BPKStarSizeType = Backpack_ObjC.BPKStarSize
 public typealias BPKStarStateType = Backpack_ObjC.BPKStarState
-#else
-public typealias BPKStarType = BPKStar
-public typealias BPKStarSizeType = BPKStarSize
-public typealias BPKStarStateType = BPKStarState
-#endif
 
 public class BPKHotelStarRating: UIStackView {
     

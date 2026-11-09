@@ -22,13 +22,12 @@ jobs:
           persist-credentials: false
 
       - name: Run zizmor 🌈
-        uses: zizmorcore/zizmor-action@3dc1ecc9bcb9e94e9b2c709687979e1298497054 # v0.6.2
+        uses: zizmorcore/zizmor-action@53290badfa369cb0bf7ad16342cb62c2fa47ac7b # v0.8.0
         with: # Not including release.yml for the time being.
           inputs: |
             .github/workflows/_build.yml
             .github/workflows/_build-docs.yml
             .github/workflows/_spm-build.yml
-            .github/workflows/_spm-test.yml
             .github/workflows/_test.yml
             .github/workflows/label-check.yml
             .github/workflows/main.yml

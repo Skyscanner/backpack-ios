@@ -40,24 +40,10 @@ public struct BPKCarouselCard<Content: View>: View {
     
     public var body: some View {
         GeometryReader { reader in
-            Group {
-                if #available(iOS 16.4, *) {
-                    ScrollView {
-                        cardContent(reader: reader)
-                    }
-                    .scrollBounceBehavior(.basedOnSize, axes: [.vertical])
-                } else {
-                    ScrollView {
-                        cardContent(reader: reader)
-                    }
-                    .onAppear(perform: {
-                        UIScrollView.appearance().bounces = false
-                    })
-                    .onDisappear(perform: {
-                        UIScrollView.appearance().bounces = true
-                    })
-                }
+            ScrollView {
+                cardContent(reader: reader)
             }
+            .scrollBounceBehavior(.basedOnSize, axes: [.vertical])
             .background(.textOnDarkColor.darkVariant(.badgeBackgroundNormalColor))
             .clipShape(RoundedRectangle(cornerRadius: .md))
             .shadow(.lg)

@@ -19,7 +19,7 @@ All files are released with the Apache 2.0 licence.
 ### Environment
 
 We use asdf to manage our language runtimes. This will be installed when you run `./fullsetup`. All dependency versions are managed in `.tool-versions`
-Use the version of Xcode specified in [our build pipeline](https://github.com/Skyscanner/backpack-ios/blob/main/.github/workflows/_build.yml#L136), however the project should work with old versions of the same major. 
+Use the Xcode version pinned in [`scripts/ios-ci-config`](scripts/ios-ci-config). The project should work with older versions of the same major release.
 
 ### Code style
 
@@ -32,7 +32,7 @@ Please follow the [Swift Style Guide](https://google.github.io/swift/) when writ
 Run the following commands from your terminal, these should be run from the root of the project. 
 
 - `./fullsetup` to install all dependencies
-- `open Example/Backpack.xcworkspace` to open the example project
+- `open Example/Backpack-SPM.xcworkspace` to open the example project
 
 ## Adding a new component
 If you want to add a new component, we will need the following:
@@ -259,8 +259,7 @@ Here's an example of a complete story for the Badge component with multiple vari
 ### Tests
 Our components need to be well tested. We require all business logic to be covered by unit tests. The component and all of its types and states need to be captured in Snapshot tests. Please review existing components to learn how we set up these tests.
 
-Our CI runs on Intel hardware, so you might find your snapshots failing when recording them with an M1 Mac. If you have access to an Intel Mac, you can run the tests locally on that machine to avoid this issue.
-Otherwise, please create a commit on your pull request with `Record snapshots` to trigger a Github Action that will re-record your snapshots. 
+Run snapshot tests on the [same Xcode, device, and simulator runtime as CI](Documentation/SPM/README.md#tests). To record on CI, push a commit titled `Record snapshots` to your pull request.
 
 Once your snapshots are generated, please manually verify that they are correct before merging your pull request.
 
@@ -336,7 +335,7 @@ Please see the [code review guidelines](https://github.com/Skyscanner/backpack/b
 <details>
     <summary>Testing</summary>
 
-Tests can be run as usual from Xcode(Product -> Test or cmd+U). Snapshot tests should be run on the [device specified for CI](https://github.com/Skyscanner/backpack-ios/blob/main/scripts/ci#L7) with the Xcode version defined in [the _test.yml workflow](https://github.com/Skyscanner/backpack-ios/blob/main/.github/workflows/_test.yml#L62).
+Run unit tests in Xcode with Product → Test (⌘U). Use the [test script](Documentation/SPM/README.md#tests) for the full snapshot suite.
 </details>
 
 <details>
@@ -368,19 +367,15 @@ To do this follow the following steps:
 <details>
     <summary>Snapshot testing</summary>
 
-Snapshot tests are used to capture images of components under different configurations. When you add or change a snapshot test, test images will need to be recaptured on CI to ensure consistency. Create an empty commit to regenerate snapshots:
+Snapshot tests capture images of components under different configurations. When you add or change a snapshot test, create and push an empty commit to regenerate snapshots on CI.
 
 ```
-git commit --allow-empty -m "record snapshots"
+git commit --allow-empty -m "Record snapshots"
 ```
 
-After checking on your PR that the new snapshots are as expected, create a new empty commit to rerun the tests on the CI
+The [snapshot workflow](.github/workflows/snapshot.yml) checks the head commit's subject for `Record snapshots` and pushes any updated images to your branch. Review those images and verify that the normal CI run passes.
 
-```
-git commit --allow-empty -m "Retry"
-```
-
-If you want to test your snapshot tests locally change `isRecording = false` to `isRecording = true` in the relevant test file and re-run the tests on the [device specified for CI](https://github.com/Skyscanner/backpack-ios/blob/main/scripts/ci#L7). This will update the images on disk. Remember to revert `isRecording` and the snapshot updates afterwards otherwise the tests will fail. 
+To preview new snapshots locally, set `isRecording = true` in the relevant test and rerun it in the [CI test environment](Documentation/SPM/README.md#tests). After reviewing the images, revert the local recording changes and use CI to generate the snapshots for your pull request.
 </details>
 
 ## And finally..
@@ -398,11 +393,10 @@ Our fonts can only be used by Skyscanner employees. If you don't work for Skysca
 To use our `Skyscanner Relative` font-face in the example app do the following:
 
 - Make sure you're connected to the VPN.
-- If you've already done a `pod install`, delete `Example/Pods`.
 - Set the environment variable using `export BPK_USE_RELATIVE=1`. (Put this in your `.bashrc`/`.zshrc` for convenience.)
-- Setup the project as [above](#setup).
+- Set up the project by following [Getting started](#getting-started).
 
-During pod install, fonts will be downloaded and made available to the project automatically. When working purely with the Swift Package Manager workspace, run `BPK_USE_RELATIVE=1 ./Scripts/download-relative-fonts.rb` from `Backpack-Fonts/` before building so that the `Backpack-Fonts` package has the font assets to bundle.
+The Example app's `Backpack-Native` target downloads the fonts as a build phase, so they are fetched automatically the first time you build. To fetch them by hand, run `BPK_USE_RELATIVE=1 ./Scripts/download-relative-fonts.rb` from `Backpack-Fonts/`.
 </details>
 
 <details>
@@ -410,17 +404,15 @@ During pod install, fonts will be downloaded and made available to the project a
 
 ## Upgrading Xcode/iOS
 
-As new versions of Xcode and iOS are released, we have to upgrade both to stay up to date with the main Skyscanner app, as well as what travellers are using. Our aim is to run our main test suite and snapshot tests on the dominate iOS version in use by Skyscanner travellers. At the time of a new release we continue to run our test suite on the previous major version until the new release has reached sufficient volume **and** the main app has moved to testing on the new version.
+Match the Skyscanner app's unit-test job when upgrading the CI toolchain or
+simulator. Update the pins in [`scripts/ios-ci-config`](scripts/ios-ci-config)
+and the [test environment documentation](Documentation/SPM/README.md#tests).
+Confirm that the selected macOS runner provides the pinned Xcode version.
 
-### How to upgrade
+Record snapshots on the new environment using the
+[snapshot workflow](Documentation/SPM/README.md#snapshots). Review the UIKit
+and SwiftUI image changes, then verify the normal CI run passes.
 
-1. Change the value of `runs-on` in the workflows that build and test on macOS: [`_build.yml`](./.github/workflows/_build.yml), [`_test.yml`](./.github/workflows/_test.yml), [`_build-docs.yml`](./.github/workflows/_build-docs.yml), [`_spm-build.yml`](./.github/workflows/_spm-build.yml) and [`_spm-test.yml`](./.github/workflows/_spm-test.yml). The new value should be one of the [available environments](https://github.com/actions/runner-images/tree/main/images/macos) in GitHub Actions.
-1. Update the steps that run `xcode-select --switch` in [`_build.yml`](./.github/workflows/_build.yml), [`_test.yml`](./.github/workflows/_test.yml) and [`_build-docs.yml`](./.github/workflows/_build-docs.yml), and check the Xcode version you pick is installed on the runner image chosen above.
-1. Update the simulator we test against to the new iOS version. This is pinned in three places: the `DESTINATION` default and the `simctl` runtime filter below it in [`scripts/ci`](./scripts/ci), the `SPM_DESTINATION` environment variable in [`_spm-build.yml`](./.github/workflows/_spm-build.yml) and [`_spm-test.yml`](./.github/workflows/_spm-test.yml), and the `SIM_RUNTIME` default in [`scripts/install-sim`](./scripts/install-sim).
-1. Run all snapshot tests.
-1. **Review the failing snapshots thoroughly.** Most likely, all snapshots will have changed, **but** the diffs should be miniscule and mostly to do with changes in Apple's fonts.
-1. **Re-record the snapshots.** Push a commit whose message is exactly `Record snapshots` as the most recent commit on your pull request. That triggers [`snapshot.yml`](./.github/workflows/snapshot.yml), which re-runs the suite with `retake_snapshots`, deletes the existing `__Snapshots__` directories and commits the newly recorded images back to your branch.
-1. Manually test the example app with the new version.
 </details>
 
 ## Experimental changes
@@ -489,6 +481,18 @@ public var type: BPKChipType = .option {
     - if experiment is unsuccessful and further iterations are needed, repeat from step 2. Otherwise, remove experimental code. That’s all!
 </details>
 
+
+### Retiring an experiment
+
+Once an experiment becomes the component default, remove its `ConfigType` case and
+configuration-specific rendering paths. Keep `BpkConfiguration`, its allocation/reset
+API, and the consumer's experiment integration for subsequent experiments.
+
+The VDL chip, typography, badge, button, card, icon, and `backpack_all` presets have
+been retired. Their settled appearance is now the default, including after `reset()`.
+Consumers must remove references to those cases, optional configuration types, and
+chip `configOverride` initializers when adopting this release. The active native
+bottom-sheet experiment remains opt-in with `backpack_native_bottom_sheet`.
 
 ## Releasing
 > Backpack team only

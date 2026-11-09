@@ -25,6 +25,7 @@ class BPKSwitchSnapshotTest: XCTestCase {
     
     override func setUpWithError() throws {
         try super.setUpWithError()
+        try requireSnapshotHost()
         isRecording = false
     }
 
@@ -38,14 +39,14 @@ class BPKSwitchSnapshotTest: XCTestCase {
     }
     
     func testSwitchWhenOff() {
-        assertSnapshot(makeSwitch())
+        assertSnapshot(makeSwitch(), drawHierarchyInKeyWindow: true)
     }
     
     func testSwitchWhenOn() {
-        assertSnapshot(makeSwitch(state: true))
+        assertSnapshot(makeSwitch(state: true), drawHierarchyInKeyWindow: true)
     }
     
     func testSwitchWhenOnWithTheme() {
-        assertSnapshot(makeSwitch(withPrimaryColor: .orange, state: true))
+        assertSnapshot(makeSwitch(withPrimaryColor: .orange, state: true), drawHierarchyInKeyWindow: true)
     }
 }

@@ -1,6 +1,5 @@
 # Backpack-SwiftUI/Switch
 
-[![Cocoapods](https://img.shields.io/cocoapods/v/Backpack-SwiftUI.svg?style=flat)](https://cocoapods.org/pods/Backpack-SwiftUI)
 [![class reference](https://img.shields.io/badge/Class%20reference-iOS-blue)](https://backpack.github.io/ios/versions/latest/swiftui/Structs/BPKSwitch.html)
 [![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack-SwiftUI/Switch)
 
@@ -116,3 +115,38 @@ Always verify separately composed labels with VoiceOver.
 ## Alignment
 
 `BPKSwitch` follows the native SwiftUI `Toggle` layout and does not expose a separate vertical-alignment parameter.
+
+## Experimental information and native introduction (opt-in)
+
+**Experimental API — subject to change.** Keep this behind the consuming app's experiment flag. Do not publish it to skyscanner.design until stable. Stabilise or remove it within two weeks of the experiment ending.
+
+`experimentalInformation(_:tooltip:)` adds a persistent grey information button immediately after the label, before the native switch. It retains a 44-point touch target. Tapping it opens a Backpack bottom sheet; closing or reopening help never changes the switch value. The sheet supports scrolling and expansion for larger text.
+
+The optional tooltip configuration enables a native Apple TipKit introduction on iOS 17+, anchored to the switch control. It contains the same title and message as the bottom sheet, with Apple's dismiss control and no extra action button. Configure TipKit once in the application, and give related screens the same stable tip ID to share one introduction. `Tips.MaxDisplayCount(1)` limits the automatic introduction; the information button remains available afterwards.
+
+```swift
+// At application startup, once:
+try? Tips.configure()
+
+BPKSwitch(isOn: $isOn, text: localisedTitle, truncate: false)
+    .experimentalInformation(.init(
+        title: localisedHelpTitle,
+        message: localisedExplanation,
+        informationAccessibilityLabel: localisedInformationLabel,
+        dismissAccessibilityLabel: localisedCloseLabel
+    ), tooltip: nativeTooltipEnabled ? .init(id: "nearby-airports-introduction.v2") : nil)
+```
+
+Passing `nil` information preserves the standard switch, even if a tooltip configuration is supplied. Passing `nil` for `tooltip` disables only the introduction, preserving the information button and bottom sheet. Consumers own feature eligibility, configuration, localised copy and TipKit setup. The component does not reset Apple's datastore or add separate persistent history.
+
+The persistent information button independently opens the bottom sheet on every visit. Tapping outside a native tip can first dismiss it; the information button remains available afterwards. On iOS 26+, the tip attaches to the bottom of the switch with a top-only permitted arrow, keeping it below the control. Earlier supported versions receive the native top-arrow preference. The feature still supports iOS 17+; the iOS 26 positioning call is guarded by both SDK/compiler support and runtime availability. Xcode 16.4 builds retain the legacy call. The Example app's **Switches → SwiftUI → Open experimental switch** demonstrates both configurations; enable **Enable native introduction** to assess TipKit.
+
+To emphasize one switch without changing other instances, use the existing custom-label initializer and Backpack's semibold label token:
+
+```swift
+BPKSwitch(isOn: $isOn) {
+    BPKText(localisedTitle, style: .label1).lineLimit(nil)
+}
+```
+
+[Example and native captures](../../Example/SwitchInformation/README.md).

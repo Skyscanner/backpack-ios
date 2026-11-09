@@ -35,7 +35,8 @@ class BadgesViewController: UIViewController {
         BadgeExample(type: .destructive, message: "Critical", showOverDarkBackground: false),
         BadgeExample(type: .inverse, message: "Inverse", showOverDarkBackground: true),
         BadgeExample(type: .outline, message: "Outline", showOverDarkBackground: true),
-        BadgeExample(type: .brand, message: "Brand", showOverDarkBackground: false)
+        BadgeExample(type: .brand, message: "Brand", showOverDarkBackground: false),
+        BadgeExample(type: .loyalty, message: "Loyalty", showOverDarkBackground: false)
     ]
 
     override func viewDidLoad() {

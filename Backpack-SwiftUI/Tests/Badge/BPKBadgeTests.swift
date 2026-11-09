@@ -31,7 +31,8 @@ class BPKBadgeTests: XCTestCase {
         (.destructive, .surfaceDefaultColor),
         (.inverse, .surfaceHighlightColor),
         (.outline, .surfaceHighlightColor),
-        (.brand, .surfaceDefaultColor)
+        (.brand, .surfaceDefaultColor),
+        (.loyalty, .surfaceDefaultColor)
     ]
     
     private func testView(icon: BPKIcon? = nil) -> some View {
@@ -69,5 +70,33 @@ class BPKBadgeTests: XCTestCase {
     func test_accessibility() {
         let badge = BPKBadge("Test badge", icon: .accessibility)
         assertA11ySnapshot(badge)
+    }
+
+    func test_allInteractiveBadgesWithoutIcon() {
+        // Then
+        assertSnapshot(interactiveTestView())
+    }
+
+    func test_allInteractiveBadgesWithIcon() {
+        // Then
+        assertSnapshot(interactiveTestView(icon: .tickCircle))
+    }
+
+    func test_interactiveAccessibility() {
+        let badge = BPKBadge("Test badge", icon: .accessibility)
+            .interactive()
+        assertA11ySnapshot(badge)
+    }
+
+    private func interactiveTestView(icon: BPKIcon? = nil) -> some View {
+        VStack(spacing: 0) {
+            ForEach(styles, id: \.0) {
+                BPKBadge("Test badge", icon: icon)
+                    .badgeStyle($0.0)
+                    .interactive()
+                    .padding(4)
+                    .background($0.1)
+            }
+        }
     }
 }

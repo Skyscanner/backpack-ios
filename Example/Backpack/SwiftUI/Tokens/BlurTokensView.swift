@@ -70,33 +70,18 @@ struct BlurTokensView: View {
                         .blur(BPKUniformBlur(opaque: true))
                         .cornerRadius(BPKCornerRadiusMd)
                 }
-                Text("Progressive pre iOS 17")
+                Text("Metal progressive blur")
                 Image("dialog_image")
                     .resizable()
                     .frame(width: 300, height: 300)
-                    .bpkProgressiveBlurFallback()
+                    .bpkProgressiveBlur()
                     .cornerRadius(BPKCornerRadiusMd)
-                
+
                 Image("dialog_flare")
                     .resizable()
                     .frame(width: 300, height: 300)
-                    .bpkProgressiveBlurFallback()
+                    .bpkProgressiveBlur()
                     .cornerRadius(BPKCornerRadiusMd)
-                
-                Text("Progressive iOS 17+")
-                if #available(iOS 17, *) {
-                    Image("dialog_image")
-                        .resizable()
-                        .frame(width: 300, height: 300)
-                        .bpkProgressiveBlur()
-                        .cornerRadius(BPKCornerRadiusMd)
-                    
-                    Image("dialog_flare")
-                        .resizable()
-                        .frame(width: 300, height: 300)
-                        .bpkProgressiveBlur()
-                        .cornerRadius(BPKCornerRadiusMd)
-                }
             }
             .padding()
         }

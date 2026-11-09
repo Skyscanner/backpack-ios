@@ -22,6 +22,8 @@ import Backpack_SwiftUI
 struct SwitchExampleView: View {
     @State private var value = true
     @State private var disabledValue = true
+    @State private var showsTooltipExample = false
+    @State private var nativeTooltipEnabled = false
 
     private var attributedLabel: AttributedString {
         var label = AttributedString("Switch with styled text")
@@ -30,8 +32,17 @@ struct SwitchExampleView: View {
     }
 
     var body: some View {
+        let nativeTooltip = nativeTooltipEnabled ? BPKSwitchExperimentalTooltip(id: "nearby-airports-example.v2") : nil
         ScrollView {
             VStack(alignment: .leading, spacing: .base) {
+                BPKText("Experimental information", style: .heading5)
+                BPKButton("Open experimental switch") {
+                    showsTooltipExample = true
+                }
+                .accessibilityIdentifier("SwitchExample.OpenTooltip")
+                BPKSwitch(isOn: $nativeTooltipEnabled, text: "Enable native introduction")
+                    .accessibilityIdentifier("SwitchExample.NativeTooltipEnabled")
+
                 BPKText("Default", style: .heading5)
 
                 BPKSwitch(
@@ -93,6 +104,25 @@ struct SwitchExampleView: View {
                 .background(Color(.surfaceContrastColor))
             }
             .padding()
+        }
+        .sheet(isPresented: $showsTooltipExample) {
+            VStack(alignment: .leading, spacing: .lg) {
+                BPKText("Nearby airports help", style: .heading3)
+                BPKSwitch(isOn: $value, text: "Include nearby airports", truncate: false)
+                    .experimentalInformation(.init(
+                        title: "Include nearby airports",
+                        message: "Find cheaper flights by including nearby airports in your search.",
+                        informationAccessibilityLabel: "About nearby airports",
+                        dismissAccessibilityLabel: "Close information"
+                    ), tooltip: nativeTooltip)
+                BPKText("Search suggestions stay in place")
+                    .accessibilityIdentifier("SwitchExample.ContentBelowSwitch")
+                Spacer()
+                BPKButton("Done") { showsTooltipExample = false }
+                    .stretchable()
+                    .accessibilityIdentifier("SwitchExample.CloseTooltip")
+            }
+            .padding(.lg)
         }
     }
 }

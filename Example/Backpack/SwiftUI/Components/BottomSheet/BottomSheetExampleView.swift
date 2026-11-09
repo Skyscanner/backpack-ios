@@ -43,7 +43,12 @@ struct BottomSheetExampleView: View {
     }
     
     var body: some View {
-        versionedButtons
+        buttons
+            .bpkBottomSheet(
+                isPresented: $peekingBottomSheetShown,
+                peekHeight: 120,
+                bottomSheetContent: { content() }
+            )
             .bpkBottomSheet(
                 isPresented: $closableBottomSheetShown,
                 contentMode: .medium,
@@ -108,20 +113,6 @@ struct BottomSheetExampleView: View {
                     .padding()
                 }
             )
-    }
-    
-    @ViewBuilder
-    var versionedButtons: some View {
-        if #available(iOS 16.4, *) {
-            buttons
-                .bpkBottomSheet(
-                    isPresented: $peekingBottomSheetShown,
-                    peekHeight: 120,
-                    bottomSheetContent: { content() }
-                )
-        } else {
-            buttons
-        }
     }
     
     var buttons: some View {

@@ -22,6 +22,6 @@ import SwiftUI
 public enum BPKCellItemCorner {
     /// Square corners (0 radius).
     case `default`
-    /// Rounded corners using `BPKCornerRadius.md` (8pt).
+    /// Rounded corners using `BPKCornerRadius.sm`.
     case rounded
 }

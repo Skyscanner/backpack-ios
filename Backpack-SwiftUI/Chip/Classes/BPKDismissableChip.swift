@@ -24,7 +24,6 @@ public struct BPKDismissableChip: View {
     let icon: BPKIcon?
     let style: BPKChipStyle
     let onClick: () -> Void
-    let config: BpkConfiguration?
     
     public init(
         _ text: String,
@@ -36,7 +35,6 @@ public struct BPKDismissableChip: View {
         self.icon = icon
         self.style = style
         self.onClick = onClick
-        self.config = BpkConfiguration.shared
     }
     
     public var body: some View {
@@ -52,11 +50,11 @@ public struct BPKDismissableChip: View {
         }
         .padding(.trailing, .md)
         .padding(.leading, .base)
-        .padding(.vertical, config?.chipConfig?.height ?? BPKSpacing.none.value)
+        .padding(.vertical, BPKSpacing.md.value)
         .frame(minHeight: .xl)
         .background(backgroundColor)
         .foregroundColor(foregroundColor)
-        .clipShape(cornerShape)
+        .clipShape(Capsule())
         .if(style == .onImage) { $0.shadow(.sm) }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(text)
@@ -68,39 +66,29 @@ public struct BPKDismissableChip: View {
     }
     
     private var accessoryViewColor: BPKColor {
-        let chipConfig = self.config?.chipConfig
         
         switch style {
-        case .`default`, .onContrast: return chipConfig != nil ? .textPrimaryInverseColor : .textDisabledOnDarkColor
-        case .onDark: return chipConfig != nil ? .textOnLightColor : .chipOnDarkOnDismissIconColor
-        case .onImage: return chipConfig != nil ? .textOnDarkColor : .textDisabledOnDarkColor
+        case .`default`, .onContrast: return .textPrimaryInverseColor
+        case .onDark: return .textOnLightColor
+        case .onImage: return .textOnDarkColor
         }
     }
     
-    private var cornerShape: some Shape {
-        if let radiusToken = config?.chipConfig?.radiusToken, radiusToken == .roundCorners {
-            return AnyShape(Capsule())
-        } else {
-            return AnyShape(RoundedRectangle(cornerRadius: BPKCornerRadius.sm.value))
-        }
-    }
     
     private var backgroundColor: BPKColor {
-        let chipConfig = self.config?.chipConfig
         
         switch style {
-        case .`default`, .onContrast: return chipConfig != nil ? .coreAccentColor : .corePrimaryColor
-        case .onDark: return chipConfig != nil ? .textOnDarkColor  : .chipOnDarkOnBackgroundColor
+        case .`default`, .onContrast: return .coreAccentColor
+        case .onDark: return .textOnDarkColor
         case .onImage: return .corePrimaryColor
         }
     }
     
     private var foregroundColor: BPKColor {
-        let chipConfig = self.config?.chipConfig
         
         switch style {
-        case .`default`, .onContrast: return chipConfig != nil ? .textPrimaryInverseColor : .textOnDarkColor
-        case .onDark: return chipConfig != nil ? .textOnLightColor : .textPrimaryColor
+        case .`default`, .onContrast: return .textPrimaryInverseColor
+        case .onDark: return .textOnLightColor
         case .onImage: return .textOnDarkColor
         }
     }

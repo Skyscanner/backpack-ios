@@ -16,11 +16,7 @@
  * limitations under the License.
  */
 
-#ifdef SWIFT_PACKAGE
 #import "../../Label/Classes/BPKLabel.h"
-#else
-#import <Backpack/BPKLabel.h>
-#endif
 
 // WARNING: BPKButton remains for maintenance only; prefer the SwiftUI Backpack
 // button for new features.

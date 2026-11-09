@@ -17,21 +17,9 @@
  */
 #import "BPKDialogIconView.h"
 
-#ifdef SWIFT_PACKAGE
 #import <Backpack/Color.h>
-#else
-#import "Generated/BPKColor.h"
-#endif
-#ifdef SWIFT_PACKAGE
 #import <Backpack/Radii.h>
-#else
-#import "Generated/BPKRadii.h"
-#endif
-#ifdef SWIFT_PACKAGE
 #import <Backpack/Spacing.h>
-#else
-#import "Generated/BPKSpacing.h"
-#endif
 
 NS_ASSUME_NONNULL_BEGIN
 

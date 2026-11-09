@@ -1,6 +1,5 @@
 # Backpack-SwiftUI/ImageGallerySlideshow
 
-[![Cocoapods](https://img.shields.io/cocoapods/v/Backpack-SwiftUI.svg?style=flat)](hhttps://cocoapods.org/pods/Backpack-SwiftUI)
 [![class reference](https://img.shields.io/badge/Class%20reference-iOS-blue)](https://backpack.github.io/ios/versions/latest/swiftui/Structs/BPKImageGallerySlideshow.html)
 [![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack-SwiftUI/ImageGallerySlideshow)
 
@@ -42,3 +41,7 @@ func image(_ name: String) -> some View {
         .aspectRatio(contentMode: .fill)
 }
 ```
+
+## Adapting to the window
+
+The photo area takes the full width and as much of the height the header and footer leave as it can use, up to a square. Tall windows keep the square photo; short, wide windows such as the iPhone Duo's inner display in landscape get a wide photo area, and Close, the photo counter and the page dots stay on screen. VoiceOver users can also close the slideshow with the escape gesture, and Close accepts touches across Apple's 44 pt minimum touch target. On a phone whose top edge has no safe-area inset, such as the iPhone Duo's inner display with its side rail, Close in both the slideshow and the image gallery grid also moves clear of the display's rounded corners.

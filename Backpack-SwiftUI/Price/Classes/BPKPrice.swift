@@ -42,7 +42,7 @@ public struct BPKPrice: View {
     private let onPriceClicked: (() -> Void)?
     private let alignment: Alignment
     private let size: Size
-    
+
     public init(
         price: String,
         leadingText: String? = nil,
@@ -109,10 +109,11 @@ public struct BPKPrice: View {
                 BPKText(item, style: accessoryFontStyle)
                     .foregroundColor(color)
                     .strikethrough(item == previousPrice)
+                    .lineLimit(nil)
             }
         }
     }
-    
+
     @ViewBuilder
     private var priceLabel: some View {
         switch alignment {
@@ -133,6 +134,7 @@ public struct BPKPrice: View {
         if let trailingText = trailingText {
             BPKText(trailingText, style: accessoryFontStyle)
                 .foregroundColor(style.trailingTextColor)
+                .lineLimit(nil)
         }
     }
 
@@ -151,6 +153,7 @@ public struct BPKPrice: View {
         } else {
             BPKText(text, style: fontStyle)
                 .foregroundColor(style.priceTextColor)
+                .lineLimit(nil)
         }
     }
     
@@ -179,22 +182,22 @@ public struct BPKPrice: View {
             return .heading5
         }
     }
-    
+
     private var additionalInfo: [String] {
         var items = [String]()
-        
+
         if let previousPrice = previousPrice {
             items.append(previousPrice)
         }
-        
+
         if previousPrice != nil && leadingText != nil {
             items.append("•")
         }
-        
+
         if let leadingText = leadingText {
             items.append(leadingText)
         }
-        
+
         return items
     }
 }

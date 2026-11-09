@@ -24,7 +24,6 @@ public struct BPKChip: View {
     let icon: BPKIcon?
     let style: BPKChipStyle
     let selected: Bool
-    let config: BpkConfiguration
     let onClick: () -> Void
     
     private var disabled = false
@@ -41,7 +40,6 @@ public struct BPKChip: View {
         self.style = style
         self.selected = selected
         self.onClick = onClick
-        self.config = BpkConfiguration.shared
     }
     
     public var body: some View {
@@ -54,14 +52,13 @@ public struct BPKChip: View {
                     .font(style: .footnote)
             }
             .padding(.horizontal, .base)
-            .padding(.vertical, config.chipConfig?.height ?? BPKSpacing.none.value)
+            .padding(.vertical, BPKSpacing.md.value)
         }
         .buttonStyle(
             ChipButtonStyle(
                 style: style,
                 selected: selected,
-                disabled: disabled,
-                config: config
+                disabled: disabled
             )
         )
         .accessibilityAddTraits(selected ? [.isSelected] : [])

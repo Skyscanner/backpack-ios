@@ -78,8 +78,8 @@ struct BottomSheetContainerViewModifier<Header: View, BottomSheetContent: View>:
                 .presentationDetents(finalDetents, selection: $selectedSheetDetent)
                 .presentationDragIndicator(.visible)
         }
-        .background(backgroundColor)
         .frame(maxHeight: .infinity, alignment: .top)
+        .presentationBackground(Color(backgroundColor.value))
         .ignoresSafeArea(.container, edges: .bottom)
     }
 }

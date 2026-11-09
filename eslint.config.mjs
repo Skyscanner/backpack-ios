@@ -4,7 +4,7 @@ import globals from "globals";
 
 export default [
   {
-    ignores: ["vendor/**", "Example/Pods/**", "docs/**"],
+    ignores: ["vendor/**", "docs/**"],
   },
   js.configs.recommended,
   {

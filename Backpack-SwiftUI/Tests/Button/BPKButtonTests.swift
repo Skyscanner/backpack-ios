@@ -40,6 +40,7 @@ class BPKButtonTests: XCTestCase {
                     BPKButton(icon: .account, accessibilityLabel: "Click Me", size: self.sizes[size], action: {})
                         .buttonStyle(style)
                 }
+                .fixedSize(horizontal: true, vertical: false)
             }
         }
     }

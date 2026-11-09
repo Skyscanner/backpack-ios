@@ -73,11 +73,14 @@ class BPKCardCarouselTests: XCTestCase {
             currentIndex: .constant(0)
         )
         
+        let regularWidthCarousel = cardCarousel.environment(\.horizontalSizeClass, .regular)
+        let compactWidthCarousel = cardCarousel.environment(\.horizontalSizeClass, .compact)
+
         // Then
         // IPad Landscape
         // Full
         assertSnapshot(
-            cardCarousel
+            regularWidthCarousel
                 .frame(width: 1112, height: 834)
             ,
             testName: "ipad_landscape_full"
@@ -85,7 +88,7 @@ class BPKCardCarouselTests: XCTestCase {
         
         // Two thirds
         assertSnapshot(
-            cardCarousel
+            regularWidthCarousel
                 .frame(width: 782, height: 834)
             ,
             testName: "ipad_landscape_two_thirds"
@@ -93,7 +96,7 @@ class BPKCardCarouselTests: XCTestCase {
         
         // One half
         assertSnapshot(
-            cardCarousel
+            compactWidthCarousel
                 .frame(width: 551, height: 834)
             ,
             testName: "ipad_landscape_half"
@@ -101,7 +104,7 @@ class BPKCardCarouselTests: XCTestCase {
         
         // One third
         assertSnapshot(
-            cardCarousel
+            compactWidthCarousel
                 .frame(width: 320, height: 834)
             ,
             testName: "ipad_landscape_third"
@@ -110,7 +113,7 @@ class BPKCardCarouselTests: XCTestCase {
         // iPad Potrait
         // Full
         assertSnapshot(
-            cardCarousel
+            regularWidthCarousel
                 .frame(width: 834, height: 1112)
             ,
             testName: "ipad_potrait_full"
@@ -118,7 +121,7 @@ class BPKCardCarouselTests: XCTestCase {
         
         // Two thirds
         assertSnapshot(
-            cardCarousel
+            compactWidthCarousel
                 .frame(width: 504, height: 1112)
             ,
             testName: "ipad_potrait_two_thirds"
@@ -126,7 +129,7 @@ class BPKCardCarouselTests: XCTestCase {
         
         // One third
         assertSnapshot(
-            cardCarousel
+            compactWidthCarousel
                 .frame(width: 320, height: 1112)
             ,
             testName: "ipad_potrait_third"

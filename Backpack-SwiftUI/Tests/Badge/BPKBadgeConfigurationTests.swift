@@ -22,22 +22,7 @@ import SwiftUI
 @testable import Backpack_Common
 
 class BPKBadgeConfigurationTests: XCTestCase {
-    override func setUp() {
-        super.setUp()
 
-        let config = BpkConfiguration.shared
-        do {
-            try config.set(configs: [.badge])
-        } catch {
-            XCTFail("Failed to set badge config")
-        }
-    }
-
-    override func tearDown() {
-        super.tearDown()
-
-        BpkConfiguration.shared.reset()
-    }
 
     func test_badge_noIcon_Configuration() {
         assertSnapshot(
@@ -68,6 +53,22 @@ class BPKBadgeConfigurationTests: XCTestCase {
                         .padding(.vertical, .md)
                 }.frame(maxWidth: .infinity).background(.corePrimaryColor)
                 BPKBadge("Brand", icon: .priceTag).badgeStyle(.brand)
+            }.padding(.vertical)
+        )
+    }
+
+    func test_badge_interactive_Configuration() {
+        assertSnapshot(
+            VStack {
+                BPKBadge("Normal").interactive()
+                BPKBadge("Subtle").badgeStyle(.subtle).interactive()
+                BPKBadge("Strong", icon: .tickCircle).badgeStyle(.strong).interactive()
+                HStack {
+                    BPKBadge("Inverse", icon: .tickCircle).badgeStyle(.inverse).interactive()
+                        .padding(.horizontal, .base)
+                        .padding(.vertical, .md)
+                }.frame(maxWidth: .infinity).background(.corePrimaryColor)
+                BPKBadge("Brand", icon: .priceTag).badgeStyle(.brand).interactive()
             }.padding(.vertical)
         )
     }

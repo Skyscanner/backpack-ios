@@ -27,7 +27,8 @@ class BPKTabBarControllerSnapshotTest: XCTestCase {
     let rtlTrait = UITraitCollection(layoutDirection: .rightToLeft)
     
     override func setUpWithError() throws {
-        try? super.setUpWithError()
+        try super.setUpWithError()
+        try requireSnapshotHost()
         isRecording = false
     }
     
@@ -48,9 +49,15 @@ class BPKTabBarControllerSnapshotTest: XCTestCase {
         sut.viewControllers = [tabOne, tabTwo]
         
         // Then
-        assertSnapshot(matching: sut, as: .image(traits: lightTrait))
-        assertSnapshot(matching: sut, as: .image(traits: darkTrait))
-        assertSnapshot(matching: sut, as: .image(traits: rtlTrait))
+        UIView.performWithoutAnimation {
+            // CI renders two antialiasing variants for the selected title in this light snapshot.
+            assertSnapshot(
+                matching: sut,
+                as: .image(drawHierarchyInKeyWindow: true, precision: 0.99995, traits: lightTrait)
+            )
+            assertSnapshot(matching: sut, as: .image(drawHierarchyInKeyWindow: true, traits: darkTrait))
+            assertSnapshot(matching: sut, as: .image(drawHierarchyInKeyWindow: true, traits: rtlTrait))
+        }
     }
     
     func testTabBarControllerWithIcons() {
@@ -97,20 +104,15 @@ class BPKTabBarControllerSnapshotTest: XCTestCase {
         sut.viewControllers = [tabOne, tabTwo, tabThree]
         
         // Then
-        assertSnapshot(matching: sut, as: .image(traits: lightTrait))
-        assertSnapshot(matching: sut, as: .image(traits: darkTrait))
-        assertSnapshot(matching: sut, as: .image(traits: rtlTrait))
+        UIView.performWithoutAnimation {
+            assertSnapshot(matching: sut, as: .image(drawHierarchyInKeyWindow: true, traits: lightTrait))
+            assertSnapshot(matching: sut, as: .image(drawHierarchyInKeyWindow: true, traits: darkTrait))
+            assertSnapshot(matching: sut, as: .image(drawHierarchyInKeyWindow: true, traits: rtlTrait))
+        }
     }
     
     // MARK: Helpers
     private func image(named: String) -> UIImage? {
-        
-        guard let bundlePath = Bundle(for: Self.self).path(forResource: "SnapshotTestImages", ofType: "bundle") else {
-            print("Could not locate resource")
-            return nil
-        }
-        
-        let bundle = Bundle(path: bundlePath)
-        return UIImage(named: named, in: bundle, compatibleWith: nil)
+        testImage(named: named)
     }
 }

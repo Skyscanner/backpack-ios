@@ -30,7 +30,7 @@ struct DialogWithIconContent: View {
             DialogIconHeaderView(icon: icon, color: iconColor)
                 .padding(.bottom, -30)
             VStack(spacing: BPKSpacing.lg.value) {
-                textContent
+                DialogScrollableWhenTooTall { textContent }
                 actions
             }
             .padding(.lg)

@@ -1,6 +1,5 @@
 # Backpack-SwiftUI/VideoPlayer
 
-[![Cocoapods](https://img.shields.io/cocoapods/v/Backpack-SwiftUI.svg?style=flat)](https://cocoapods.org/pods/Backpack-SwiftUI)
 [![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack-SwiftUI/VideoPlayer)
 
 ## Default controls
@@ -54,10 +53,10 @@ Create a `BPKVideoPlayerController` and inject it into multiple views. Playback 
 )
 
 // Card view
-BPKVideoPlayer(controller: controller)
+BPKVideoPlayer(controller: controller) { _ in EmptyView() }
 
 // Fullscreen sheet — same controller, playback never resets
-BPKVideoPlayer(controller: controller)
+BPKVideoPlayer(controller: controller) { _ in EmptyView() }
 ```
 
 ## Custom overlay
@@ -81,6 +80,22 @@ BPKVideoPlayer(url: videoURL, autoPlay: true) { controller in
     }
 }
 ```
+
+## Mute control
+
+`BPKVideoPlayerController` exposes the observable `isMuted` state and `mute()`, `unmute()`, and `toggleMute()` actions for custom controls:
+
+```swift
+BPKVideoPlayer(url: videoURL, autoPlay: true) { controller in
+    Button(action: controller.toggleMute) {
+        Image(systemName: controller.isMuted ? "speaker.slash.fill" : "speaker.fill")
+    }
+    .accessibilityLabel(controller.isMuted ? "Unmute video" : "Mute video")
+    .accessibilityValue(controller.isMuted ? "Muted" : "Unmuted")
+}
+```
+
+The existing `player` property remains available for source compatibility, and direct `player.isMuted` changes are reflected in `controller.isMuted`.
 
 ## No controls — as a video background
 
@@ -127,18 +142,39 @@ case .failed(let error):
 | State | Meaning |
 | --- | --- |
 | `.loading` | Asset is being fetched or decoded |
-| `.readyToPlay` | Asset ready — autoPlay will call `play()` if enabled |
+| `.readyToPlay` | The initial asset is ready; `autoPlay` starts it only when enabled and not explicitly paused |
 | `.playing` | Playback active |
 | `.paused` | Playback paused |
-| `.buffering` | Rebuffering mid-playback |
-| `.failed(Error)` | Load failed or timed out |
+| `.buffering` | Rebuffering mid-playback or loading a replacement item during a loop handoff |
+| `.failed(BPKVideoPlayerError)` | Load failed or timed out |
 
 Convenience helpers on `BPKVideoPlayerState`:
 
 ```swift
 controller.state.isPlaying  // true only when .playing
 controller.state.isLoading  // true for .loading and .buffering
+controller.state.isActive   // true for .playing and .buffering
 ```
+
+### Error codes
+
+Every `BPKVideoPlayerError` carries a `code: String`, a platform-neutral classification whose value matches the vocabulary Backpack Android and Web emit, so failures across all three can be grouped on a single cross-platform dashboard:
+
+```swift
+case .failed(let error):
+    reportError(error.code) // e.g. "MEDIA_ERR_NETWORK"
+```
+
+| Case | `code` | Reported for |
+| --- | --- | --- |
+| `.aborted` | `MEDIA_ERR_ABORTED` | The decoder lost its resources to a higher-priority app |
+| `.network` | `MEDIA_ERR_NETWORK` | The video could not be fetched — connection failure, bad response, timeout |
+| `.decode` | `MEDIA_ERR_DECODE` | The video was fetched but could not be decoded |
+| `.sourceNotSupported` | `MEDIA_ERR_SRC_NOT_SUPPORTED` | The container or codec is unsupported |
+| `.unknown` | `UNKNOWN_ERROR` | A failure fitting no other code |
+| `.loadTimeout` | `LOAD_TIMEOUT` | The video did not become playable within `loadTimeout`. Kept distinct from `.network` so timeouts don't inflate the network-error count |
+
+Report `error.code` rather than matching on the case directly — `code` is the stable cross-platform contract; the case names follow Swift convention and may be refactored.
 
 ## Playback metrics
 
@@ -151,7 +187,7 @@ controller.state.isLoading  // true for .loading and .buffering
     loop: true
 )
 
-BPKVideoPlayer(controller: controller)
+BPKVideoPlayer(controller: controller) { _ in EmptyView() }
     .onReceive(controller.progressPublisher) { progress in
         print(progress.playTime)
         print(progress.duration)
@@ -180,6 +216,23 @@ Updates are delivered on the main queue at a best-effort cadence and duplicate s
 
 Progress values are playback facts rather than analytics events. Consumers remain responsible for visibility, threshold definitions, one-shot event delivery, and impression/session boundaries.
 
+## Data transfer
+
+`controller.bytesTransferred: Int64` exposes cumulative network bytes transferred for this controller's whole life — intended for operational monitoring such as CDN cost attribution:
+
+```swift
+BPKVideoPlayer(controller: controller) { _ in EmptyView() }
+    .onReceive(controller.$bytesTransferred) { bytes in
+        print(bytes)
+    }
+```
+
+Semantics worth knowing before you report it:
+
+- **Network bytes only**, sourced from `AVPlayerItem.accessLog()`. A bundled/local resource reports `0`.
+- **Cumulative per impression, not per play-through.** One controller instance covers one impression; a `loop: true` replay adds to the total rather than resetting it, matching `BpkVideoPlayerController.bytesTransferred` on Android — a video that loops 5 times reports ~5x the bytes of a single loop, which is the correct reading for a cost metric.
+- **Updated as data arrives**, polled on the existing 0.25s progress timer, so the value is meaningful mid-playback and not just once a load finishes.
+
 ## Carousel use case — tap to play, reset on scroll
 
 ```swift
@@ -195,7 +248,16 @@ BPKVideoPlayer(url: videoURL, autoPlay: false) { controller in
 
 ## Audio behaviour
 
-The player uses `AVAudioSession.ambient` with `.mixWithOthers` so it never interrupts the user's background music. Playback automatically pauses when the app backgrounds and resumes on foreground.
+The player defaults to `AVAudioSession.ambient` with `.mixWithOthers`, so it respects the Ring/Silent switch and does not interrupt the user's background music. Playback automatically pauses when the app backgrounds and resumes on foreground.
+
+For content whose audio should play through Silent mode, opt in to the playback policy. It continues to mix with background audio:
+
+```swift
+let controller = BPKVideoPlayerController(
+    url: videoURL,
+    audioSessionPolicy: .playback
+)
+```
 
 ## Accessibility
 
