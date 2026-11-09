@@ -21,14 +21,27 @@ import SwiftUI
 @testable import Backpack_SwiftUI
 
 /// Regression coverage for DON-3708: with an external keyboard / Full Keyboard Access, background
-/// content behind a `bpkSuccessDialogView` (and friends) remained focusable, because `.isModal` is
-/// only honoured by VoiceOver. These tests assert that the background content is removed from the
-/// accessibility tree entirely while the dialog is presented, which is what actually keeps it out of
-/// reach of VoiceOver, Switch Control and Full Keyboard Access alike.
+/// content behind a `bpkSuccessDialogView` (and friends) remained reachable and activatable.
+/// `.isModal` is only honoured by VoiceOver, and `.accessibilityHidden` alone only covers VoiceOver /
+/// Switch Control: Full Keyboard Access reaches gesture-based content (e.g. day cells using
+/// `.onTapGesture`) via the interaction/focus system, which is what `.disabled` actually switches
+/// off. These tests assert both: the background is removed from the accessibility tree, and
+/// `\.isEnabled` is `false` for it, while the dialog is presented.
 final class DialogContainerViewModifierTests: XCTestCase {
     private enum Label {
         static let background = "Background content"
         static let dialog = "Dialog content"
+    }
+
+    private struct EnabledProbe: View {
+        @Environment(\.isEnabled) private var isEnabled
+        let onRender: (Bool) -> Void
+
+        var body: some View {
+            Color.clear
+                .frame(width: 1, height: 1)
+                .onAppear { onRender(isEnabled) }
+        }
     }
 
     override class func setUp() {
@@ -42,13 +55,19 @@ final class DialogContainerViewModifierTests: XCTestCase {
         }
     }
 
-    private func accessibilityLabels<V: View>(_ view: V) -> [String] {
+    @discardableResult
+    private func host<V: View>(_ view: V) -> UIHostingController<V> {
         let host = UIHostingController(rootView: view)
         let window = UIWindow(frame: CGRect(x: 0, y: 0, width: 390, height: 700))
         window.rootViewController = host
         window.makeKeyAndVisible()
         host.view.layoutIfNeeded()
         RunLoop.current.run(until: Date().addingTimeInterval(0.3))
+        return host
+    }
+
+    private func accessibilityLabels<V: View>(_ view: V) -> [String] {
+        let hostController = host(view)
 
         var labels: [String] = []
         func walk(_ object: NSObject, depth: Int) {
@@ -64,7 +83,7 @@ final class DialogContainerViewModifierTests: XCTestCase {
                 for subview in view.subviews { walk(subview, depth: depth + 1) }
             }
         }
-        walk(host.view, depth: 0)
+        walk(hostController.view, depth: 0)
         return labels
     }
 
@@ -92,5 +111,33 @@ final class DialogContainerViewModifierTests: XCTestCase {
 
         XCTAssertFalse(labels.contains(Label.background))
         XCTAssertTrue(labels.contains(Label.dialog))
+    }
+
+    func test_whenDialogIsNotPresented_thenBackgroundContentIsEnabled() {
+        var capturedIsEnabled: Bool?
+        host(
+            EnabledProbe { capturedIsEnabled = $0 }
+                .modifier(DialogContainerViewModifier(
+                    isPresented: .constant(false),
+                    dialogContent: { BPKText(Label.dialog) },
+                    onTouchOutside: {}
+                ))
+        )
+
+        XCTAssertEqual(capturedIsEnabled, true)
+    }
+
+    func test_whenDialogIsPresented_thenBackgroundContentIsDisabled() {
+        var capturedIsEnabled: Bool?
+        host(
+            EnabledProbe { capturedIsEnabled = $0 }
+                .modifier(DialogContainerViewModifier(
+                    isPresented: .constant(true),
+                    dialogContent: { BPKText(Label.dialog) },
+                    onTouchOutside: {}
+                ))
+        )
+
+        XCTAssertEqual(capturedIsEnabled, false)
     }
 }
