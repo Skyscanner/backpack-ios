@@ -324,7 +324,7 @@ permanently on 2 December 2026. See [README](README.md#cocoapods-removed) and
   - In Objective-C some options are no longer supported e.g. the ability to show a notification dot and the support for badges.
   - The component adopts the new `BPKIcon` API and enforces the correct usage of icons with the appropriate horizontal navigation size at compile time.
   - Due to a bug in Swift/UIKit with generic views the component no longer supports theming. Theming can still be achieved with an explicit wrapping view that integrates with `UIAppearance`.
-  - For migration instructions see the [guide](./migration-guides/horizontal-nav-migration-guide.md).
+  - See the [Horizontal Navigation migration guide](https://github.com/Skyscanner/backpack-ios/blob/44.0.0/migration-guides/horizontal-nav-migration-guide.md).
 - Backpack/Chip:
   - The type of `iconName` has changed from the deprecated `BPKIconName` to `BPKIconNameLarge`. Some icons previously used might to be available.
 
@@ -347,7 +347,7 @@ permanently on 2 December 2026. See [README](README.md#cocoapods-removed) and
 
 - Backpack/Icon:
   - Added `BPKSmallIconView`, `BPKLargeIconView` and `BPKXlIconView` - preferred ways to create an icon view.
-  - See the [migration guide](https://github.com/Skyscanner/backpack-ios/blob/main/migration-guides/icon-migration-guide.md).
+  - See the [icon migration guide](https://github.com/Skyscanner/backpack-ios/blob/43.2.0/migration-guides/icon-migration-guide.md).
  
 # 43.1.0
 

@@ -19,7 +19,7 @@ All files are released with the Apache 2.0 licence.
 ### Environment
 
 We use asdf to manage our language runtimes. This will be installed when you run `./fullsetup`. All dependency versions are managed in `.tool-versions`
-Use the version of Xcode specified in [our build pipeline](https://github.com/Skyscanner/backpack-ios/blob/main/.github/workflows/_build.yml#L136), however the project should work with old versions of the same major. 
+Use the Xcode version pinned in [`scripts/ios-ci-config`](scripts/ios-ci-config). The project should work with older versions of the same major release.
 
 ### Code style
 
@@ -259,7 +259,7 @@ Here's an example of a complete story for the Badge component with multiple vari
 ### Tests
 Our components need to be well tested. We require all business logic to be covered by unit tests. The component and all of its types and states need to be captured in Snapshot tests. Please review existing components to learn how we set up these tests.
 
-Run snapshot tests on the [same Xcode, device, and simulator runtime as CI](Documentation/SPM/README.md#snapshots). To record on CI, push a commit titled `Record snapshots` to your pull request.
+Run snapshot tests on the [same Xcode, device, and simulator runtime as CI](Documentation/SPM/README.md#tests). To record on CI, push a commit titled `Record snapshots` to your pull request.
 
 Once your snapshots are generated, please manually verify that they are correct before merging your pull request.
 
@@ -367,19 +367,15 @@ To do this follow the following steps:
 <details>
     <summary>Snapshot testing</summary>
 
-Snapshot tests are used to capture images of components under different configurations. When you add or change a snapshot test, test images will need to be recaptured on CI to ensure consistency. Create an empty commit to regenerate snapshots:
+Snapshot tests capture images of components under different configurations. When you add or change a snapshot test, create and push an empty commit to regenerate snapshots on CI.
 
 ```
 git commit --allow-empty -m "Record snapshots"
 ```
 
-After checking on your PR that the new snapshots are as expected, create a new empty commit to rerun the tests on the CI
+The [snapshot workflow](.github/workflows/snapshot.yml) checks the head commit's subject for `Record snapshots` and pushes any updated images to your branch. Review those images and verify that the normal CI run passes.
 
-```
-git commit --allow-empty -m "Retry"
-```
-
-If you want to test your snapshot tests locally change `isRecording = false` to `isRecording = true` in the relevant test file and re-run the tests on the [device specified for CI](https://github.com/Skyscanner/backpack-ios/blob/main/scripts/ci#L7). This will update the images on disk. Remember to revert `isRecording` and the snapshot updates afterwards otherwise the tests will fail. 
+To preview new snapshots locally, set `isRecording = true` in the relevant test and rerun it in the [CI test environment](Documentation/SPM/README.md#tests). After reviewing the images, revert the local recording changes and use CI to generate the snapshots for your pull request.
 </details>
 
 ## And finally..
@@ -398,7 +394,7 @@ To use our `Skyscanner Relative` font-face in the example app do the following:
 
 - Make sure you're connected to the VPN.
 - Set the environment variable using `export BPK_USE_RELATIVE=1`. (Put this in your `.bashrc`/`.zshrc` for convenience.)
-- Setup the project as [above](#setup).
+- Set up the project by following [Getting started](#getting-started).
 
 The Example app's `Backpack-Native` target downloads the fonts as a build phase, so they are fetched automatically the first time you build. To fetch them by hand, run `BPK_USE_RELATIVE=1 ./Scripts/download-relative-fonts.rb` from `Backpack-Fonts/`.
 </details>
