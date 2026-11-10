@@ -16,25 +16,20 @@
  * limitations under the License.
  */
 
-import Darwin
 import SwiftUI
 import UIKit
 import XCTest
 @testable import Backpack_SwiftUI
 
 /// Regression coverage for DON-3708: with an external keyboard / Full Keyboard Access, background
-/// content behind a `bpkSuccessDialogView` (and friends) remained reachable and activatable.
-/// `.isModal` is only honoured by VoiceOver, and `.accessibilityHidden` alone only covers VoiceOver /
-/// Switch Control: Full Keyboard Access reaches gesture-based content (e.g. day cells using
-/// `.onTapGesture`) via the interaction/focus system, which is what `.disabled` actually switches
-/// off. These tests assert both: the background is removed from the accessibility tree, and
-/// `\.isEnabled` is `false` for it, while the dialog is presented.
+/// content behind a `bpkSuccessDialogView` (and friends) remained reachable and activatable, because
+/// `.isModal` is only honoured by VoiceOver. `.disabled(isPresented)` on the background content is
+/// what actually removes it from the focus/interaction system that Full Keyboard Access uses.
+///
+/// These tests only assert the public, documented `\.isEnabled` environment value, rather than
+/// inspecting the UIKit accessibility tree via private APIs: the VoiceOver / Switch Control / Full
+/// Keyboard Access behaviour itself was verified manually on-device.
 final class DialogContainerViewModifierTests: XCTestCase {
-    private enum Label {
-        static let background = "Background content"
-        static let dialog = "Dialog content"
-    }
-
     private struct EnabledProbe: View {
         @Environment(\.isEnabled) private var isEnabled
         @State private var hasRendered = false
@@ -53,60 +48,8 @@ final class DialogContainerViewModifierTests: XCTestCase {
         }
     }
 
-    private typealias AccessibilityAutomationSetter = @convention(c) (Bool) -> Void
-    private typealias AccessibilityAutomationGetter = @convention(c) () -> Bool
-
-    private static var accessibilityLibraryHandle: UnsafeMutableRawPointer?
-    private static var previousAccessibilityAutomationEnabled: Bool?
-
-    /// Whether the in-process accessibility runtime could be enabled. SwiftUI only materialises its
-    /// UIKit accessibility tree when this is active, which it isn't by default in a test host.
-    private static let accessibilityRuntimeEnabled: Bool = {
-        guard let handle = dlopen("/usr/lib/libAccessibility.dylib", RTLD_NOW) else { return false }
-        accessibilityLibraryHandle = handle
-
-        // Best-effort: capture the prior value so it can be restored in `tearDown()`. If the getter
-        // symbol isn't available we still proceed, but skip restoration.
-        if let getterSymbol = dlsym(handle, "_AXSAutomationEnabled") {
-            previousAccessibilityAutomationEnabled = unsafeBitCast(
-                getterSymbol, to: AccessibilityAutomationGetter.self
-            )()
-        }
-
-        guard let setterSymbol = dlsym(handle, "_AXSSetAutomationEnabled") else { return false }
-        unsafeBitCast(setterSymbol, to: AccessibilityAutomationSetter.self)(true)
-        return true
-    }()
-
-    /// Restores the accessibility automation flag to whatever it was before this class enabled it,
-    /// and releases the dynamically loaded library handle. Runs once after all tests in this class,
-    /// matching the lifetime of the `static let` above, so other test classes aren't left with a
-    /// process-wide flag flipped on by this one.
-    override class func tearDown() {
-        if let handle = accessibilityLibraryHandle {
-            if let previous = previousAccessibilityAutomationEnabled,
-               let setterSymbol = dlsym(handle, "_AXSSetAutomationEnabled") {
-                unsafeBitCast(setterSymbol, to: AccessibilityAutomationSetter.self)(previous)
-            }
-            dlclose(handle)
-            accessibilityLibraryHandle = nil
-        }
-        super.tearDown()
-    }
-
-    // Keeps hosting windows alive for the duration of a test. A `UIHostingController`'s accessibility
-    // tree is torn down once its window is deallocated, so a purely local `UIWindow` would make
-    // traversal after `host(_:)` returns unreliable.
+    // Keeps the hosting window alive for the duration of a test.
     private var retainedWindows: [UIWindow] = []
-
-    override func setUpWithError() throws {
-        try super.setUpWithError()
-        try XCTSkipUnless(
-            Self.accessibilityRuntimeEnabled,
-            "Could not enable the in-process accessibility runtime (libAccessibility.dylib / " +
-                "_AXSSetAutomationEnabled unavailable); skipping accessibility-tree assertions."
-        )
-    }
 
     override func tearDown() {
         retainedWindows.removeAll()
@@ -114,102 +57,32 @@ final class DialogContainerViewModifierTests: XCTestCase {
     }
 
     @MainActor
-    @discardableResult
-    private func host<V: View>(_ view: V) -> UIHostingController<V> {
+    private func host<V: View>(_ view: V) {
         let hostController = UIHostingController(rootView: view)
         let window = UIWindow(frame: CGRect(x: 0, y: 0, width: 390, height: 700))
         window.rootViewController = hostController
         window.makeKeyAndVisible()
         hostController.view.layoutIfNeeded()
         retainedWindows.append(window)
-        return hostController
     }
 
-    /// Polls the accessibility tree until it contains `label`, or `timeout` elapses, then returns
-    /// whatever labels are present at that point. This exits as soon as the tree is ready instead of
-    /// sleeping for a fixed duration, so it's both faster and deterministic: a label that never
-    /// appears causes the subsequent assertion to fail rather than being masked by an arbitrary delay.
-    @MainActor
-    private func accessibilityLabels<V: View>(
-        for view: V,
-        waitingFor label: String,
-        timeout: TimeInterval = 2
-    ) -> [String] {
-        let hostController = host(view)
-        let deadline = Date().addingTimeInterval(timeout)
-        var labels: [String] = []
-
-        repeat {
-            labels = Self.collectAccessibilityLabels(from: hostController.view)
-            if labels.contains(label) { break }
-            RunLoop.current.run(until: Date().addingTimeInterval(0.02))
-        } while Date() < deadline
-
-        return labels
-    }
-
-    private static func collectAccessibilityLabels(from root: UIView) -> [String] {
-        var labels: [String] = []
-        func walk(_ object: NSObject, depth: Int) {
-            if depth > 20 { return }
-            let isElement = (object as? UIView)?.isAccessibilityElement ?? object.isAccessibilityElement
-            if isElement, let label = object.accessibilityLabel {
-                labels.append(label)
-            }
-            if let elements = object.accessibilityElements as? [NSObject], !elements.isEmpty {
-                for element in elements { walk(element, depth: depth + 1) }
-            }
-            if let view = object as? UIView {
-                for subview in view.subviews { walk(subview, depth: depth + 1) }
-            }
-        }
-        walk(root, depth: 0)
-        return labels
-    }
-
-    private func dialogView(isPresented: Bool) -> some View {
-        BPKText(Label.background)
-            .accessibilityLabel(Label.background)
+    private func dialogView(isPresented: Bool, onRender: @escaping (Bool) -> Void) -> some View {
+        EnabledProbe(onRender: onRender)
             .modifier(DialogContainerViewModifier(
                 isPresented: .constant(isPresented),
-                dialogContent: {
-                    BPKText(Label.dialog)
-                        .accessibilityLabel(Label.dialog)
-                },
+                dialogContent: { BPKText("Dialog content") },
                 onTouchOutside: {}
             ))
-    }
-
-    @MainActor
-    func test_whenDialogIsNotPresented_thenBackgroundContentIsAccessible() {
-        let labels = accessibilityLabels(for: dialogView(isPresented: false), waitingFor: Label.background)
-
-        XCTAssertTrue(labels.contains(Label.background))
-    }
-
-    @MainActor
-    func test_whenDialogIsPresented_thenBackgroundContentIsHiddenFromAccessibility() {
-        let labels = accessibilityLabels(for: dialogView(isPresented: true), waitingFor: Label.dialog)
-
-        XCTAssertFalse(labels.contains(Label.background))
-        XCTAssertTrue(labels.contains(Label.dialog))
     }
 
     @MainActor
     func test_whenDialogIsNotPresented_thenBackgroundContentIsEnabled() {
         let renderedExpectation = expectation(description: "EnabledProbe rendered")
         var capturedIsEnabled: Bool?
-        host(
-            EnabledProbe { isEnabled in
-                capturedIsEnabled = isEnabled
-                renderedExpectation.fulfill()
-            }
-            .modifier(DialogContainerViewModifier(
-                isPresented: .constant(false),
-                dialogContent: { BPKText(Label.dialog) },
-                onTouchOutside: {}
-            ))
-        )
+        host(dialogView(isPresented: false) { isEnabled in
+            capturedIsEnabled = isEnabled
+            renderedExpectation.fulfill()
+        })
 
         wait(for: [renderedExpectation], timeout: 2)
         XCTAssertEqual(capturedIsEnabled, true)
@@ -219,17 +92,10 @@ final class DialogContainerViewModifierTests: XCTestCase {
     func test_whenDialogIsPresented_thenBackgroundContentIsDisabled() {
         let renderedExpectation = expectation(description: "EnabledProbe rendered")
         var capturedIsEnabled: Bool?
-        host(
-            EnabledProbe { isEnabled in
-                capturedIsEnabled = isEnabled
-                renderedExpectation.fulfill()
-            }
-            .modifier(DialogContainerViewModifier(
-                isPresented: .constant(true),
-                dialogContent: { BPKText(Label.dialog) },
-                onTouchOutside: {}
-            ))
-        )
+        host(dialogView(isPresented: true) { isEnabled in
+            capturedIsEnabled = isEnabled
+            renderedExpectation.fulfill()
+        })
 
         wait(for: [renderedExpectation], timeout: 2)
         XCTAssertEqual(capturedIsEnabled, false)
