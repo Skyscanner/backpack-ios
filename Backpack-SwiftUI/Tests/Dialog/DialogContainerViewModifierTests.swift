@@ -37,24 +37,62 @@ final class DialogContainerViewModifierTests: XCTestCase {
 
     private struct EnabledProbe: View {
         @Environment(\.isEnabled) private var isEnabled
+        @State private var hasRendered = false
         let onRender: (Bool) -> Void
 
         var body: some View {
             Color.clear
                 .frame(width: 1, height: 1)
-                .onAppear { onRender(isEnabled) }
+                .onAppear {
+                    // SwiftUI can call `onAppear` more than once across view updates; only report the
+                    // first one so the caller's expectation isn't over-fulfilled.
+                    guard !hasRendered else { return }
+                    hasRendered = true
+                    onRender(isEnabled)
+                }
         }
     }
+
+    private typealias AccessibilityAutomationSetter = @convention(c) (Bool) -> Void
+    private typealias AccessibilityAutomationGetter = @convention(c) () -> Bool
+
+    private static var accessibilityLibraryHandle: UnsafeMutableRawPointer?
+    private static var previousAccessibilityAutomationEnabled: Bool?
 
     /// Whether the in-process accessibility runtime could be enabled. SwiftUI only materialises its
     /// UIKit accessibility tree when this is active, which it isn't by default in a test host.
     private static let accessibilityRuntimeEnabled: Bool = {
         guard let handle = dlopen("/usr/lib/libAccessibility.dylib", RTLD_NOW) else { return false }
-        typealias SetterFn = @convention(c) (Bool) -> Void
-        guard let sym = dlsym(handle, "_AXSSetAutomationEnabled") else { return false }
-        unsafeBitCast(sym, to: SetterFn.self)(true)
+        accessibilityLibraryHandle = handle
+
+        // Best-effort: capture the prior value so it can be restored in `tearDown()`. If the getter
+        // symbol isn't available we still proceed, but skip restoration.
+        if let getterSymbol = dlsym(handle, "_AXSAutomationEnabled") {
+            previousAccessibilityAutomationEnabled = unsafeBitCast(
+                getterSymbol, to: AccessibilityAutomationGetter.self
+            )()
+        }
+
+        guard let setterSymbol = dlsym(handle, "_AXSSetAutomationEnabled") else { return false }
+        unsafeBitCast(setterSymbol, to: AccessibilityAutomationSetter.self)(true)
         return true
     }()
+
+    /// Restores the accessibility automation flag to whatever it was before this class enabled it,
+    /// and releases the dynamically loaded library handle. Runs once after all tests in this class,
+    /// matching the lifetime of the `static let` above, so other test classes aren't left with a
+    /// process-wide flag flipped on by this one.
+    override class func tearDown() {
+        if let handle = accessibilityLibraryHandle {
+            if let previous = previousAccessibilityAutomationEnabled,
+               let setterSymbol = dlsym(handle, "_AXSSetAutomationEnabled") {
+                unsafeBitCast(setterSymbol, to: AccessibilityAutomationSetter.self)(previous)
+            }
+            dlclose(handle)
+            accessibilityLibraryHandle = nil
+        }
+        super.tearDown()
+    }
 
     // Keeps hosting windows alive for the duration of a test. A `UIHostingController`'s accessibility
     // tree is torn down once its window is deallocated, so a purely local `UIWindow` would make
@@ -75,6 +113,7 @@ final class DialogContainerViewModifierTests: XCTestCase {
         super.tearDown()
     }
 
+    @MainActor
     @discardableResult
     private func host<V: View>(_ view: V) -> UIHostingController<V> {
         let hostController = UIHostingController(rootView: view)
@@ -90,6 +129,7 @@ final class DialogContainerViewModifierTests: XCTestCase {
     /// whatever labels are present at that point. This exits as soon as the tree is ready instead of
     /// sleeping for a fixed duration, so it's both faster and deterministic: a label that never
     /// appears causes the subsequent assertion to fail rather than being masked by an arbitrary delay.
+    @MainActor
     private func accessibilityLabels<V: View>(
         for view: V,
         waitingFor label: String,
@@ -140,12 +180,14 @@ final class DialogContainerViewModifierTests: XCTestCase {
             ))
     }
 
+    @MainActor
     func test_whenDialogIsNotPresented_thenBackgroundContentIsAccessible() {
         let labels = accessibilityLabels(for: dialogView(isPresented: false), waitingFor: Label.background)
 
         XCTAssertTrue(labels.contains(Label.background))
     }
 
+    @MainActor
     func test_whenDialogIsPresented_thenBackgroundContentIsHiddenFromAccessibility() {
         let labels = accessibilityLabels(for: dialogView(isPresented: true), waitingFor: Label.dialog)
 
@@ -153,6 +195,7 @@ final class DialogContainerViewModifierTests: XCTestCase {
         XCTAssertTrue(labels.contains(Label.dialog))
     }
 
+    @MainActor
     func test_whenDialogIsNotPresented_thenBackgroundContentIsEnabled() {
         let renderedExpectation = expectation(description: "EnabledProbe rendered")
         var capturedIsEnabled: Bool?
@@ -172,6 +215,7 @@ final class DialogContainerViewModifierTests: XCTestCase {
         XCTAssertEqual(capturedIsEnabled, true)
     }
 
+    @MainActor
     func test_whenDialogIsPresented_thenBackgroundContentIsDisabled() {
         let renderedExpectation = expectation(description: "EnabledProbe rendered")
         var capturedIsEnabled: Bool?
