@@ -33,6 +33,14 @@ struct DialogContainerViewModifier<DialogContent: View>: ViewModifier {
     func body(content: Content) -> some View {
         ZStack {
             content
+                // `.isModal` below is only honoured by VoiceOver. Full Keyboard Access reaches
+                // background content via the focus/interaction system rather than purely the
+                // accessibility tree, so `.accessibilityHidden` alone (which only covers VoiceOver /
+                // Switch Control) isn't enough: `.disabled` is what actually removes background
+                // gesture-based content (e.g. day cells using `.onTapGesture`) from being focused
+                // and activated by an external keyboard.
+                .accessibilityHidden(isPresented)
+                .disabled(isPresented)
             if isPresented {
                 ZStack {
                     Color(.scrimColor)
