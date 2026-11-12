@@ -46,6 +46,7 @@ final class SwitchTooltipUITest: BackpackUITestCase {
             robot.capture("nearby-help-sheet-light")
             robot.dismiss()
             robot.waitForHelpToDisappear()
+            robot.waitForLayout(controlFrame: controlFrame, contentFrame: contentFrame)
             XCTAssertEqual(robot.control.value as? String, value)
             XCTAssertEqual(robot.control.frame, controlFrame)
             XCTAssertEqual(robot.contentBelowSwitch.frame, contentFrame)
@@ -80,9 +81,10 @@ final class SwitchTooltipUITest: BackpackUITestCase {
             robot.information.tap()
             XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
             robot.dragHelpDown(dismiss: false)
-            XCTAssertTrue(robot.message.exists)
+            XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
             robot.dragHelpDown(dismiss: true)
             robot.waitForHelpToDisappear()
+            robot.waitForLayout(controlFrame: controlFrame, contentFrame: contentFrame)
 
             // Then: both on and off choices survive interactive dismissal.
             XCTAssertEqual(robot.control.value as? String, value)
@@ -177,7 +179,10 @@ final class SwitchTooltipUITest: BackpackUITestCase {
     private func launch(reset: Bool = false, dark: Bool = false, largerText: Bool = false) {
         app.terminate()
         // Normal animations exercise real sheet and native-tip presentation.
-        app.launchArguments = [dark ? "FORCE_DARK_MODE" : "FORCE_LIGHT_MODE"]
+        app.launchArguments = [
+            dark ? "FORCE_DARK_MODE" : "FORCE_LIGHT_MODE",
+            "-AppleLanguages", "(en)", "-AppleLocale", "en_GB"
+        ]
         if reset { app.launchArguments.append("SWITCH_INFORMATION_RESET") }
         if largerText {
             app.launchArguments += ["-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
@@ -216,9 +221,7 @@ private final class SwitchTooltipRobot {
     func dismiss() { app.buttons["Close information"].tap() }
 
     func toggleControl() {
-        let frame = control.frame
-        app.coordinate(withNormalizedOffset: .zero)
-            .withOffset(CGVector(dx: frame.midX, dy: frame.midY)).tap()
+        control.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
     }
 
     func dismissIntroduction() {
@@ -234,11 +237,26 @@ private final class SwitchTooltipRobot {
 
     func dragHelpDown(dismiss: Bool) {
         let close = app.buttons["Close information"]
+        XCTAssertTrue(close.waitForExistence(timeout: 5))
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "hittable == true"), object: close)
+        XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 5), .completed)
+        let frame = close.frame
+        XCTAssertFalse(frame.isEmpty)
+        XCTAssertTrue(frame.minX.isFinite && frame.minY.isFinite)
         let origin = app.coordinate(withNormalizedOffset: .zero)
-        let start = origin.withOffset(CGVector(dx: app.frame.midX, dy: close.frame.midY))
+        let start = origin.withOffset(CGVector(dx: app.frame.midX, dy: frame.midY))
         let end = dismiss ? origin.withOffset(CGVector(dx: app.frame.midX, dy: app.frame.maxY)) :
-            start.withOffset(CGVector(dx: 0, dy: close.frame.height / 2))
+            start.withOffset(CGVector(dx: 0, dy: frame.height / 2))
         start.press(forDuration: 0.1, thenDragTo: end, withVelocity: .slow, thenHoldForDuration: 0.1)
+    }
+
+    func waitForLayout(controlFrame: CGRect, contentFrame: CGRect) {
+        let restored = [(control, controlFrame), (contentBelowSwitch, contentFrame)].map { element, frame in
+            XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "frame == %@", NSValue(cgRect: frame)), object: element
+            )
+        }
+        XCTAssertEqual(XCTWaiter.wait(for: restored, timeout: 5), .completed)
     }
 
     func waitForHelpToDisappear() {
