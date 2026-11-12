@@ -160,24 +160,26 @@ public struct BPKSwitch<Content: View>: View {
         .frame(minHeight: BPKSpacing.xxl.value + BPKSpacing.sm.value)
         .bpkBottomSheet(
             isPresented: $informationIsPresented,
-            contentMode: .fitContent,
+            contentMode: .medium,
             closeButtonAccessibilityLabel: configuration.dismissAccessibilityLabel,
             title: sizeCategory.isAccessibilityCategory ? nil : configuration.title,
             presentingController: UIViewController()
         ) {
-            VStack(alignment: .leading, spacing: .base) {
-                if sizeCategory.isAccessibilityCategory {
-                    BPKText(configuration.title, style: .heading5)
+            ScrollView {
+                VStack(alignment: .leading, spacing: .base) {
+                    if sizeCategory.isAccessibilityCategory {
+                        BPKText(configuration.title, style: .heading5)
+                            .lineLimit(nil)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    BPKText(configuration.message)
                         .lineLimit(nil)
                         .fixedSize(horizontal: false, vertical: true)
+                        .accessibilityIdentifier("BPKSwitch.Information.Message")
                 }
-                BPKText(configuration.message)
-                    .lineLimit(nil)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .accessibilityIdentifier("BPKSwitch.Information.Message")
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.base)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.base)
         }
     }
 

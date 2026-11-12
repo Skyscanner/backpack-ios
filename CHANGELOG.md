@@ -10,7 +10,7 @@
 
 **Fixed:**
 
-- SwiftUI: experimental switch help fits its text and keeps the switch mounted during sheet dismissal.
+- SwiftUI: experimental switch help keeps the native switch mounted during sheet dismissal.
 
 **Breaking:**
 

@@ -120,7 +120,7 @@ Always verify separately composed labels with VoiceOver.
 
 **Experimental API — subject to change.** Keep this behind the consuming app's experiment flag. Do not publish it to skyscanner.design until stable. Stabilise or remove it within two weeks of the experiment ending.
 
-`experimentalInformation(_:tooltip:)` adds a persistent grey information button immediately after the label, before the native switch. It retains a 44-point touch target. Tapping it opens a Backpack bottom sheet; closing or reopening help never changes the switch value. The sheet fits its text and scrolls when longer text needs more room.
+`experimentalInformation(_:tooltip:)` adds a persistent grey information button immediately after the label, before the native switch. It retains a 44-point touch target. Tapping it opens a Backpack bottom sheet; closing or reopening help never changes the switch value. The sheet supports scrolling and expansion for larger text.
 
 The optional tooltip configuration enables a native Apple TipKit introduction on iOS 17+, anchored to the switch control. It contains the same title and message as the bottom sheet, with Apple's dismiss control and no extra action button. Configure TipKit once in the application, and give related screens the same stable tip ID to share one introduction. `Tips.MaxDisplayCount(1)` limits the automatic introduction; the information button remains available afterwards.
 
