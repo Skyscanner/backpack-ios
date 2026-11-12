@@ -8,6 +8,10 @@
   information button and bottom sheet. A separately configured native Apple TipKit
   introduction on iOS 17+ uses the same content; consumers own feature flags and TipKit setup.
 
+**Fixed:**
+
+- SwiftUI: experimental switch help fits its text and keeps the switch mounted during sheet dismissal.
+
 **Breaking:**
 
 - Typography: headings 1–5 use black weight and finalized letter spacing by default;

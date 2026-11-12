@@ -146,35 +146,38 @@ public struct BPKSwitch<Content: View>: View {
                 onSelect: { informationIsPresented = true }
             )
             Spacer(minLength: BPKSpacing.sm.value)
+            // Keep the native switch mounted while the information sheet opens or is dragged away.
             switchControl.labelsHidden().fixedSize()
-                .modifier(BPKSwitchNativeIntroduction(
-                    information: configuration,
-                    tooltip: informationIsPresented ? nil : tooltipConfiguration
-                ))
+                .background {
+                    Color.clear
+                        .allowsHitTesting(false)
+                        .modifier(BPKSwitchNativeIntroduction(
+                            information: configuration,
+                            tooltip: informationIsPresented ? nil : tooltipConfiguration
+                        ))
+                }
         }
         .frame(minHeight: BPKSpacing.xxl.value + BPKSpacing.sm.value)
         .bpkBottomSheet(
             isPresented: $informationIsPresented,
-            contentMode: .medium,
+            contentMode: .fitContent,
             closeButtonAccessibilityLabel: configuration.dismissAccessibilityLabel,
             title: sizeCategory.isAccessibilityCategory ? nil : configuration.title,
             presentingController: UIViewController()
         ) {
-            ScrollView {
-                VStack(alignment: .leading, spacing: .base) {
-                    if sizeCategory.isAccessibilityCategory {
-                        BPKText(configuration.title, style: .heading5)
-                            .lineLimit(nil)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                    BPKText(configuration.message)
+            VStack(alignment: .leading, spacing: .base) {
+                if sizeCategory.isAccessibilityCategory {
+                    BPKText(configuration.title, style: .heading5)
                         .lineLimit(nil)
                         .fixedSize(horizontal: false, vertical: true)
-                        .accessibilityIdentifier("BPKSwitch.Information.Message")
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.base)
+                BPKText(configuration.message)
+                    .lineLimit(nil)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .accessibilityIdentifier("BPKSwitch.Information.Message")
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.base)
         }
     }
 
