@@ -34,6 +34,10 @@
 | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-navigation-bar___collapsed-onImage_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-navigation-bar___collapsed-onImage_dm.png" alt="" width="375" /> |
 
 
+## Prefer the system navigation bar
+
+`BPKNavigationBar` is deprecated. For new screens, use `UINavigationController`'s own bar with `BPKNavigationBarAppearance`, which also moves bar buttons into the iPhone Duo's side rail. See [NavigationBarAppearance](../NavigationBarAppearance/README.md).
+
 ## Usage
 
 `BPKNavigationBar` is an implementation of parts of UIKit's UINavigationBar, specifically the large
