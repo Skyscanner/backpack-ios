@@ -60,6 +60,24 @@ final class SwitchTooltipUITest: BackpackUITestCase {
     }
 
     @MainActor
+    func test_givenShortInformation_whenOpeningHelp_thenSheetFitsItsContent() {
+        // Given
+        launch()
+        let robot = SwitchTooltipRobot(app: app)
+        robot.navigate()
+        robot.open()
+
+        // When
+        robot.information.tap()
+        XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+
+        // Then: short copy should not leave most of a half-screen sheet empty.
+        let window = app.windows.firstMatch.frame
+        XCTAssertLessThan(window.maxY - robot.message.frame.maxY, window.height / 4)
+        robot.capture("nearby-help-content-fit-light")
+    }
+
+    @MainActor
     func test_givenNativeIntroduction_whenDismissed_thenPersistentHelpStillOpensAfterRelaunch() throws {
         // Given
         launch(reset: true)
