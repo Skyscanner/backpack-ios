@@ -60,6 +60,27 @@ final class SwitchTooltipUITest: BackpackUITestCase {
     }
 
     @MainActor
+    func test_givenShortInformation_whenOpeningHelp_thenSheetFitsItsContent() {
+        // Given
+        launch()
+        let robot = SwitchTooltipRobot(app: app)
+        robot.navigate()
+        robot.open()
+
+        // When
+        robot.information.tap()
+        XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+        let close = robot.waitForHelpCloseButton()
+
+        // Then: measure the sheet from its header, independently of message wrapping.
+        let window = app.windows.firstMatch.frame
+        let sheetHeight = window.maxY - close.frame.minY
+        XCTAssertGreaterThan(sheetHeight, 0)
+        XCTAssertLessThan(sheetHeight, window.height / 4)
+        robot.capture("nearby-help-content-fit-light")
+    }
+
+    @MainActor
     func test_givenNativeIntroduction_whenDismissed_thenPersistentHelpStillOpensAfterRelaunch() throws {
         // Given
         launch(reset: true)
@@ -188,6 +209,14 @@ private final class SwitchTooltipRobot {
             predicate: NSPredicate(format: "value != %@", value ?? ""), object: control
         )
         XCTAssertEqual(XCTWaiter.wait(for: [changed], timeout: 5), .completed)
+    }
+
+    func waitForHelpCloseButton() -> XCUIElement {
+        let close = app.buttons["Close information"]
+        XCTAssertTrue(close.waitForExistence(timeout: 5))
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "hittable == true"), object: close)
+        XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 5), .completed)
+        return close
     }
 
     func capture(_ name: String) {
