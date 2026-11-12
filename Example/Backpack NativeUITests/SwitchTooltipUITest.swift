@@ -70,7 +70,7 @@ final class SwitchTooltipUITest: BackpackUITestCase {
         robot.open()
         let tipMessage = app.staticTexts[SwitchTooltipRobot.copy].firstMatch
         XCTAssertTrue(tipMessage.waitForExistence(timeout: 8))
-        robot.dismissIntroduction()
+        robot.dismissIntroduction(tipMessage: tipMessage)
 
         for _ in 0..<2 {
             let value = robot.control.value as? String
@@ -128,7 +128,7 @@ final class SwitchTooltipUITest: BackpackUITestCase {
         XCTAssertTrue(extraInformationActions.isEmpty, "The introduction has no extra action button.")
 
         // When: Apple's close button dismisses the once-only introduction.
-        robot.dismissIntroduction()
+        robot.dismissIntroduction(tipMessage: tipMessage)
         robot.information.tap()
         XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
         XCTAssertEqual(robot.message.label, SwitchTooltipRobot.copy)
@@ -224,13 +224,13 @@ private final class SwitchTooltipRobot {
         control.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
     }
 
-    func dismissIntroduction() {
+    func dismissIntroduction(tipMessage: XCUIElement) {
         let close = app.buttons.matching(NSPredicate(format: "label == 'Close' OR label == 'Dismiss'")).firstMatch
         XCTAssertTrue(close.waitForExistence(timeout: 5))
         close.tap()
         let gone = XCTNSPredicateExpectation(
             predicate: NSPredicate(format: "exists == false"),
-            object: app.staticTexts[Self.copy].firstMatch
+            object: tipMessage
         )
         XCTAssertEqual(XCTWaiter.wait(for: [gone], timeout: 5), .completed)
     }
