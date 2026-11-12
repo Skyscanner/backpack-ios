@@ -146,11 +146,16 @@ public struct BPKSwitch<Content: View>: View {
                 onSelect: { informationIsPresented = true }
             )
             Spacer(minLength: BPKSpacing.sm.value)
+            // Keep the native switch mounted while the information sheet opens or is dragged away.
             switchControl.labelsHidden().fixedSize()
-                .modifier(BPKSwitchNativeIntroduction(
-                    information: configuration,
-                    tooltip: informationIsPresented ? nil : tooltipConfiguration
-                ))
+                .background {
+                    Color.clear
+                        .allowsHitTesting(false)
+                        .modifier(BPKSwitchNativeIntroduction(
+                            information: configuration,
+                            tooltip: informationIsPresented ? nil : tooltipConfiguration
+                        ))
+                }
         }
         .frame(minHeight: BPKSpacing.xxl.value + BPKSpacing.sm.value)
         .bpkBottomSheet(

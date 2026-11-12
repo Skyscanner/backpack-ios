@@ -46,6 +46,7 @@ final class SwitchTooltipUITest: BackpackUITestCase {
             robot.capture("nearby-help-sheet-light")
             robot.dismiss()
             robot.waitForHelpToDisappear()
+            robot.waitForLayout(controlFrame: controlFrame, contentFrame: contentFrame)
             XCTAssertEqual(robot.control.value as? String, value)
             XCTAssertEqual(robot.control.frame, controlFrame)
             XCTAssertEqual(robot.contentBelowSwitch.frame, contentFrame)
@@ -57,6 +58,46 @@ final class SwitchTooltipUITest: BackpackUITestCase {
         robot.open()
         XCTAssertTrue(robot.information.waitForExistence(timeout: 5))
         XCTAssertEqual(robot.control.value as? String, changed)
+    }
+
+    @MainActor
+    func test_givenDismissedNativeTip_whenDraggingHelpDown_thenPreservesChoiceAndLayout() {
+        // Given
+        launch(reset: true)
+        let robot = SwitchTooltipRobot(app: app)
+        robot.navigate()
+        app.switches["SwitchExample.NativeTooltipEnabled"].tap()
+        robot.open()
+        let tipMessage = app.staticTexts[SwitchTooltipRobot.copy].firstMatch
+        XCTAssertTrue(tipMessage.waitForExistence(timeout: 8))
+        robot.dismissIntroduction(tipMessage: tipMessage)
+
+        for _ in 0..<2 {
+            let value = robot.control.value as? String
+            let controlFrame = robot.control.frame
+            let contentFrame = robot.contentBelowSwitch.frame
+
+            // When: cancel a partial drag, then fully dismiss the information sheet.
+            robot.information.tap()
+            XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+            robot.dragHelpDown(dismiss: false)
+            XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+            robot.dragHelpDown(dismiss: true)
+            robot.waitForHelpToDisappear()
+            robot.waitForLayout(controlFrame: controlFrame, contentFrame: contentFrame)
+
+            // Then: both on and off choices survive interactive dismissal.
+            XCTAssertEqual(robot.control.value as? String, value)
+            XCTAssertEqual(robot.control.frame, controlFrame)
+            XCTAssertEqual(robot.contentBelowSwitch.frame, contentFrame)
+            robot.capture("nearby-help-after-drag-\(value ?? "unknown")")
+            robot.information.tap()
+            XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+            robot.dismiss()
+            robot.waitForHelpToDisappear()
+            robot.toggleControl()
+            robot.assertChoiceDiffers(from: value)
+        }
     }
 
     @MainActor
@@ -108,9 +149,7 @@ final class SwitchTooltipUITest: BackpackUITestCase {
         XCTAssertTrue(extraInformationActions.isEmpty, "The introduction has no extra action button.")
 
         // When: Apple's close button dismisses the once-only introduction.
-        let close = app.buttons.matching(NSPredicate(format: "label == 'Close' OR label == 'Dismiss'")).firstMatch
-        XCTAssertTrue(close.waitForExistence(timeout: 5))
-        close.tap()
+        robot.dismissIntroduction(tipMessage: tipMessage)
         robot.information.tap()
         XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
         XCTAssertEqual(robot.message.label, SwitchTooltipRobot.copy)
@@ -161,7 +200,10 @@ final class SwitchTooltipUITest: BackpackUITestCase {
     private func launch(reset: Bool = false, dark: Bool = false, largerText: Bool = false) {
         app.terminate()
         // Normal animations exercise real sheet and native-tip presentation.
-        app.launchArguments = [dark ? "FORCE_DARK_MODE" : "FORCE_LIGHT_MODE"]
+        app.launchArguments = [
+            dark ? "FORCE_DARK_MODE" : "FORCE_LIGHT_MODE",
+            "-AppleLanguages", "(en)", "-AppleLocale", "en_GB"
+        ]
         if reset { app.launchArguments.append("SWITCH_INFORMATION_RESET") }
         if largerText {
             app.launchArguments += ["-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
@@ -199,9 +241,50 @@ private final class SwitchTooltipRobot {
     func close() { app.buttons["SwitchExample.CloseTooltip"].tap() }
     func dismiss() { app.buttons["Close information"].tap() }
 
+    func toggleControl() {
+        control.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+    }
+
+    func dismissIntroduction(tipMessage: XCUIElement) {
+        let close = app.buttons.matching(NSPredicate(format: "label == 'Close' OR label == 'Dismiss'")).firstMatch
+        XCTAssertTrue(close.waitForExistence(timeout: 5))
+        close.tap()
+        let gone = XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == false"),
+            object: tipMessage
+        )
+        XCTAssertEqual(XCTWaiter.wait(for: [gone], timeout: 5), .completed)
+    }
+
+    func dragHelpDown(dismiss: Bool) {
+        let close = app.buttons["Close information"]
+        XCTAssertTrue(close.waitForExistence(timeout: 5))
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "hittable == true"), object: close)
+        XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 5), .completed)
+        let frame = close.frame
+        XCTAssertFalse(frame.isEmpty)
+        XCTAssertTrue(frame.minX.isFinite && frame.minY.isFinite)
+        let origin = app.coordinate(withNormalizedOffset: .zero)
+        let start = origin.withOffset(CGVector(dx: app.frame.midX, dy: frame.midY))
+        let end = dismiss ? origin.withOffset(CGVector(dx: app.frame.midX, dy: app.frame.maxY)) :
+            start.withOffset(CGVector(dx: 0, dy: frame.height / 2))
+        start.press(forDuration: 0.1, thenDragTo: end, withVelocity: .slow, thenHoldForDuration: 0.1)
+    }
+
+    func waitForLayout(controlFrame: CGRect, contentFrame: CGRect) {
+        let restored = [(control, controlFrame), (contentBelowSwitch, contentFrame)].map { element, frame in
+            XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "frame == %@", NSValue(cgRect: frame)), object: element
+            )
+        }
+        XCTAssertEqual(XCTWaiter.wait(for: restored, timeout: 5), .completed)
+    }
+
     func waitForHelpToDisappear() {
         let gone = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: message)
         XCTAssertEqual(XCTWaiter.wait(for: [gone], timeout: 5), .completed)
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "hittable == true"), object: control)
+        XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 5), .completed)
     }
 
     func assertChoiceDiffers(from value: String?) {
