@@ -160,6 +160,7 @@ public struct BPKSwitch<Content: View>: View {
             title: sizeCategory.isAccessibilityCategory ? nil : configuration.title,
             presentingController: UIViewController()
         ) {
+            // fitContent supplies scrolling and measures this stack's natural height.
             VStack(alignment: .leading, spacing: .base) {
                 if sizeCategory.isAccessibilityCategory {
                     BPKText(configuration.title, style: .heading5)

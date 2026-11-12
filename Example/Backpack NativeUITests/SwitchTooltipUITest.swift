@@ -70,10 +70,13 @@ final class SwitchTooltipUITest: BackpackUITestCase {
         // When
         robot.information.tap()
         XCTAssertTrue(robot.message.waitForExistence(timeout: 5))
+        let close = robot.waitForHelpCloseButton()
 
-        // Then: short copy should not leave most of a half-screen sheet empty.
+        // Then: measure the sheet from its header, independently of message wrapping.
         let window = app.windows.firstMatch.frame
-        XCTAssertLessThan(window.maxY - robot.message.frame.maxY, window.height / 4)
+        let sheetHeight = window.maxY - close.frame.minY
+        XCTAssertGreaterThan(sheetHeight, 0)
+        XCTAssertLessThan(sheetHeight, window.height / 4)
         robot.capture("nearby-help-content-fit-light")
     }
 
@@ -206,6 +209,14 @@ private final class SwitchTooltipRobot {
             predicate: NSPredicate(format: "value != %@", value ?? ""), object: control
         )
         XCTAssertEqual(XCTWaiter.wait(for: [changed], timeout: 5), .completed)
+    }
+
+    func waitForHelpCloseButton() -> XCUIElement {
+        let close = app.buttons["Close information"]
+        XCTAssertTrue(close.waitForExistence(timeout: 5))
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "hittable == true"), object: close)
+        XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 5), .completed)
+        return close
     }
 
     func capture(_ name: String) {
