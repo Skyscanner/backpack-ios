@@ -26,6 +26,10 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
     private let elements: [Element]
     private let cardForElement: (_ element: Element) -> Content
     private let headerPadding: (Edge.Set, BPKSpacing)
+    private var headerContentView: AnyView?
+    private var emptyContentView: AnyView?
+    private var usesTwoColumnsOnTablet = false
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Binding private var showingAllCards: Bool
 
     public init(
@@ -55,6 +59,35 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
         case .stack(let accessory):
             stackLayout(with: accessory)
         }
+    }
+
+    /// Enables two equal-width columns for stack layouts in a regular horizontal size class.
+    /// Disabled by default. Rail layouts are unaffected. Counts always refer to cards, not rows.
+    /// - Parameter enabled: Whether the stack should adapt to a regular horizontal size class.
+    /// - Returns: A card list with the requested tablet behaviour.
+    public func useTwoColumnsOnTablet(_ enabled: Bool) -> Self {
+        var result = self
+        result.usesTwoColumnsOnTablet = enabled
+        return result
+    }
+
+    /// Adds optional, full-width content below the section header, even when the list is empty.
+    /// - Parameter content: Content such as a single-select chip group. Absent by default.
+    /// - Returns: A card list with the supplied header content.
+    public func headerContent<HeaderContent: View>(@ViewBuilder _ content: () -> HeaderContent) -> Self {
+        var result = self
+        result.headerContentView = AnyView(content())
+        return result
+    }
+
+    /// Adds optional, full-width content shown only when there are no elements.
+    /// Expansion is preserved while empty; cards and accessories are not rendered.
+    /// - Parameter content: The empty state to display. Absent by default.
+    /// - Returns: A card list with the supplied empty content.
+    public func emptyContent<EmptyContent: View>(@ViewBuilder _ content: () -> EmptyContent) -> Self {
+        var result = self
+        result.emptyContentView = AnyView(content())
+        return result
     }
 
     private func railLayout(
@@ -91,12 +124,32 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
 
     private func stackLayout(with accessory: BPKCardListLayout.Accessory?) -> some View {
         cardListSkeleton(with: accessory?.sectionHeaderAction) {
+            stackCards
+                .padding(.horizontal, .base)
+            accessoryView(accessory: accessory)
+                .padding(.horizontal, .base)
+        }
+    }
+
+    @ViewBuilder private var stackCards: some View {
+        if usesTwoColumnsOnTablet && horizontalSizeClass == .regular {
+            LazyVGrid(
+                columns: Array(
+                    repeating: GridItem(.flexible(), spacing: BPKSpacing.base.value, alignment: .topLeading),
+                    count: 2
+                ),
+                alignment: .leading,
+                spacing: BPKSpacing.base.value
+            ) {
+                ForEach(filteredCards) { element in
+                    cardForElement(element)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+            }
+        } else {
             ForEach(filteredCards) { element in
                 cardForElement(element)
             }
-            .padding(.horizontal, .base)
-            accessoryView(accessory: accessory)
-                .padding(.horizontal, .base)
         }
     }
 
@@ -115,14 +168,25 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
                 .padding(headerPadding.0, headerPadding.1)
         }
     }
-    
+
     private func cardListSkeleton<LayoutContent: View>(
         with sectionHeaderAction: BPKCardListLayout.SectionHeaderAction?,
         @ViewBuilder andContent content: () -> LayoutContent) -> some View {
-            VStack(alignment: .leading, spacing: 0) {
+            VStack(alignment: .leading, spacing: BPKSpacing.none) {
                 sectionHeader(with: sectionHeaderAction)
                 VStack(alignment: .leading, spacing: .base) {
-                    if elements.count > 0 {
+                    if let headerContentView {
+                        headerContentView
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.horizontal, .base)
+                    }
+                    if elements.isEmpty {
+                        if let emptyContentView {
+                            emptyContentView
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.horizontal, .base)
+                        }
+                    } else {
                         content()
                     }
                 }

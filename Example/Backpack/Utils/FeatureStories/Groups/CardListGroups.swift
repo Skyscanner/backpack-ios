@@ -31,6 +31,7 @@ struct CardListGroupsProvider {
     func swiftUIGroups() -> [Components.Group] {
         SingleGroupProvider(
             cellDataSources: [
+                presentable("Stack - Chips and adaptive columns", view: AdaptiveCardListExampleView()),
                 presentable(
                     "Rail - 1 element",
                     view: CardListExampleView(layout: .rail(), totalElements: 1)

@@ -20,6 +20,7 @@ import XCTest
 import SnapshotTesting
 import SwiftUI
 import Backpack_SwiftUI
+import Backpack_Common
 
 class BPKCardListViewTests: XCTestCase {
     
@@ -208,6 +209,64 @@ class BPKCardListViewTests: XCTestCase {
             .padding()
             .frame(width: 375)
         )
+    }
+
+    func testCardListTabletWithChipsAndPartialRow() {
+        assertSnapshot(adaptiveList(count: 3, expanded: true).frame(width: 750))
+    }
+
+    func testCardListTabletCollapsed() {
+        assertSnapshot(adaptiveList(count: 5, expanded: false).frame(width: 750))
+    }
+
+    func testCardListTabletEmptyWithChips() {
+        assertSnapshot(adaptiveList(count: 0, expanded: true).frame(width: 750))
+    }
+
+    func testCardListTabletAccessibility() {
+        let wasDynamicTypeEnabled = BPKFont.enableDynamicType
+        BPKFont.setDynamicType(enabled: true)
+        defer { BPKFont.setDynamicType(enabled: wasDynamicTypeEnabled) }
+        assertSnapshot(
+            adaptiveList(count: 3, expanded: true)
+                .sizeCategory(.accessibilityExtraLarge)
+                .frame(width: 750, height: 900, alignment: .top)
+        )
+    }
+
+    private func adaptiveList(count: Int, expanded: Bool) -> some View {
+        BPKCardList(
+            title: "Destinations",
+            description: nil,
+            layout: .stack(accessory: .expand(expandText: "Show more", collapseText: "Show less")),
+            initiallyShownCardsCount: 2,
+            elements: Array(TestLocation.placeholders.prefix(count)),
+            showingAllCards: .constant(expanded)
+        ) { location in
+            BPKCard {
+                VStack(alignment: .leading, spacing: .sm) {
+                    BPKText(location.name, style: .heading5)
+                        .lineLimit(nil)
+                    BPKText("Find your next destination", style: .bodyDefault)
+                        .lineLimit(nil)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .fixedSize(horizontal: false, vertical: true)
+            }
+        }
+        .useTwoColumnsOnTablet(true)
+        .headerContent {
+            BPKSingleSelectChipGroup(
+                chips: [.init(text: "All"), .init(text: "Saved")],
+                selectedIndex: .constant(0),
+                onItemClick: { _ in }
+            )
+        }
+        .emptyContent {
+            BPKButton("Find a destination", action: {})
+                .stretchable()
+        }
+        .environment(\.horizontalSizeClass, .regular)
     }
 
     private func locationRailCard(element: TestLocation) -> some View {
