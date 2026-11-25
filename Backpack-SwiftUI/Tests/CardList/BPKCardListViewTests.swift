@@ -255,7 +255,7 @@ class BPKCardListViewTests: XCTestCase {
             }
         }
         .useTwoColumnsOnTablet(true)
-        .headerContent {
+        .controlsContent {
             BPKSingleSelectChipGroup(
                 chips: [.init(text: "All"), .init(text: "Saved")],
                 selectedIndex: .constant(0),

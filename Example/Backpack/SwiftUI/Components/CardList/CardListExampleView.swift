@@ -194,7 +194,7 @@ struct AdaptiveCardListExampleView: View {
                 }
             }
             .useTwoColumnsOnTablet(true)
-            .headerContent {
+            .controlsContent {
                 BPKSingleSelectChipGroup(
                     chips: [.init(text: "All"), .init(text: "Saved")],
                     selectedIndex: $selectedIndex,

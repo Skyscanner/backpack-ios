@@ -26,7 +26,7 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
     private let elements: [Element]
     private let cardForElement: (_ element: Element) -> Content
     private let headerPadding: (Edge.Set, BPKSpacing)
-    private var headerContentView: AnyView?
+    private var controlsContentView: AnyView?
     private var emptyContentView: AnyView?
     private var usesTwoColumnsOnTablet = false
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
@@ -71,12 +71,12 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
         return result
     }
 
-    /// Adds optional, full-width content below the section header, even when the list is empty.
+    /// Adds optional, full-width controls below the section header, even when the list is empty.
     /// - Parameter content: Content such as a single-select chip group. Absent by default.
-    /// - Returns: A card list with the supplied header content.
-    public func headerContent<HeaderContent: View>(@ViewBuilder _ content: () -> HeaderContent) -> Self {
+    /// - Returns: A card list with the supplied controls content.
+    public func controlsContent<ControlsContent: View>(@ViewBuilder _ content: () -> ControlsContent) -> Self {
         var result = self
-        result.headerContentView = AnyView(content())
+        result.controlsContentView = AnyView(content())
         return result
     }
 
@@ -175,8 +175,8 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
             VStack(alignment: .leading, spacing: BPKSpacing.none) {
                 sectionHeader(with: sectionHeaderAction)
                 VStack(alignment: .leading, spacing: .base) {
-                    if let headerContentView {
-                        headerContentView
+                    if let controlsContentView {
+                        controlsContentView
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.horizontal, .base)
                     }

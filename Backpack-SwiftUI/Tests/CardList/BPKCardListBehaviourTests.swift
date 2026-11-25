@@ -55,9 +55,9 @@ final class BPKCardListBehaviourTests: XCTestCase {
         }
     }
 
-    func test_givenExpandedList_whenEmptyThenPopulated_thenBindingAndHeaderSurvive() throws {
+    func test_givenExpandedList_whenEmptyThenPopulated_thenBindingAndControlsSurvive() throws {
         let model = CardListTestModel()
-        let fixture = host(model: model, adaptive: true, header: true, empty: true)
+        let fixture = host(model: model, adaptive: true, controls: true, empty: true)
         defer { fixture.isHidden = true }
         XCTAssertNil(model.frames["card-2"])
         model.expanded = true
@@ -67,7 +67,7 @@ final class BPKCardListBehaviourTests: XCTestCase {
         model.count = 0
         model.sizeClass = .regular
         settle(fixture)
-        XCTAssertNotNil(model.frames["header"])
+        XCTAssertNotNil(model.frames["controls"])
         XCTAssertNotNil(model.frames["empty"])
         XCTAssertFalse(model.frames.keys.contains { $0.hasPrefix("card-") })
         XCTAssertTrue(model.expanded)
@@ -80,12 +80,12 @@ final class BPKCardListBehaviourTests: XCTestCase {
     }
 
     func test_givenIndependentSlots_whenEmpty_thenOnlySuppliedSlotsRender() {
-        for header in [false, true] {
+        for controls in [false, true] {
             for empty in [false, true] {
                 let model = CardListTestModel()
                 model.count = 0
-                let fixture = host(model: model, header: header, empty: empty)
-                XCTAssertEqual(model.frames["header"] != nil, header)
+                let fixture = host(model: model, controls: controls, empty: empty)
+                XCTAssertEqual(model.frames["controls"] != nil, controls)
                 XCTAssertEqual(model.frames["empty"] != nil, empty)
                 XCTAssertFalse(model.frames.keys.contains { $0.hasPrefix("card-") })
                 fixture.isHidden = true
@@ -121,11 +121,13 @@ final class BPKCardListBehaviourTests: XCTestCase {
     private func host(
         model: CardListTestModel,
         adaptive: Bool? = nil,
-        header: Bool = false,
+        controls: Bool = false,
         empty: Bool = false,
         layout: BPKCardListLayout = .stack(accessory: .expand(expandText: "More", collapseText: "Less"))
     ) -> UIWindow {
-        let view = CardListTestFixture(model: model, adaptive: adaptive, header: header, empty: empty, layout: layout)
+        let view = CardListTestFixture(
+            model: model, adaptive: adaptive, controls: controls, empty: empty, layout: layout
+        )
         let window = UIWindow(frame: CGRect(x: 0, y: 0, width: 600, height: 900))
         window.rootViewController = UIHostingController(rootView: view)
         window.makeKeyAndVisible()
@@ -153,7 +155,7 @@ private struct CardListTestElement: Identifiable {
 private struct CardListTestFixture: View {
     @ObservedObject var model: CardListTestModel
     let adaptive: Bool?
-    let header: Bool
+    let controls: Bool
     let empty: Bool
     let layout: BPKCardListLayout
 
@@ -175,7 +177,7 @@ private struct CardListTestFixture: View {
                 .captureCardListFrame("card-\(element.id)")
         }
         if let adaptive { list = list.useTwoColumnsOnTablet(adaptive) }
-        if header { list = list.headerContent { BPKText("Filter").captureCardListFrame("header") } }
+        if controls { list = list.controlsContent { BPKText("Filter").captureCardListFrame("controls") } }
         if empty { list = list.emptyContent { BPKText("No results").captureCardListFrame("empty") } }
         return list
     }

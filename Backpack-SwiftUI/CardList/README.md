@@ -299,9 +299,9 @@ BPKCardList(
     }
 ```
 
-### Optional header and empty content
+### Optional controls and empty content
 
-Use `.headerContent { ... }` to insert full-width content below the section header,
+Use `.controlsContent { ... }` to insert full-width content below the section header,
 for example `BPKSingleSelectChipGroup`. It remains visible when `elements` is empty.
 Use `.emptyContent { ... }` for the empty state; cards and accessories are hidden
 while it is displayed. Both modifiers are independently optional and absent by
@@ -312,7 +312,7 @@ default, so existing calls retain their appearance and spacing.
 `.useTwoColumnsOnTablet(true)` opts a stack into two equal-width columns whenever
 `horizontalSizeClass` is regular. Compact layouts and the default/false option use
 one column. Rail layout is unchanged. Counts refer to cards, not rows; an odd final
-card occupies one column. Header, empty content and accessories span the full width.
+card occupies one column. The section header, controls, empty content and accessories span the full width.
 Backpack does not round count limits or filter the supplied elements.
 
 ```swift
@@ -327,7 +327,7 @@ BPKCardList(
     DestinationCard(destination: destination)
 }
 .useTwoColumnsOnTablet(true)
-.headerContent {
+.controlsContent {
     BPKSingleSelectChipGroup(
         chips: chips,
         selectedIndex: $selectedIndex,
