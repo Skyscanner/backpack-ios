@@ -303,9 +303,9 @@ BPKCardList(
 
 Use `.controlsContent { ... }` to insert full-width content below the section header,
 for example `BPKSingleSelectChipGroup`. It remains visible when `elements` is empty.
-Use `.emptyContent { ... }` for the empty state; cards and accessories are hidden
-while it is displayed. Both modifiers are independently optional and absent by
-default, so existing calls retain their appearance and spacing.
+Use `.emptyContent { ... }` to display content when there are no elements.
+Accessories are not shown in this state. Both modifiers are independently optional
+and absent by default, so existing calls retain their appearance and spacing.
 
 ### Two columns on tablets
 

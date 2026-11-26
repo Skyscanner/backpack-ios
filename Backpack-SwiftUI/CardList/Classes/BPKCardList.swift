@@ -81,7 +81,7 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
     }
 
     /// Adds optional, full-width content shown only when there are no elements.
-    /// Expansion is preserved while empty; cards and accessories are not rendered.
+    /// Expansion is preserved while empty; accessories are not shown in this state.
     /// - Parameter content: The empty state to display. Absent by default.
     /// - Returns: A card list with the supplied empty content.
     public func emptyContent<EmptyContent: View>(@ViewBuilder _ content: () -> EmptyContent) -> Self {
