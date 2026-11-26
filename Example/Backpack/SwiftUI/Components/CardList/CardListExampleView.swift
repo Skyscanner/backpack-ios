@@ -174,8 +174,46 @@ extension CardListExampleView.Location {
     ]
 }
 
+struct AdaptiveCardListExampleView: View {
+    @State private var showingAllCards = false
+    @State private var selectedIndex: Int? = 0
+
+    var body: some View {
+        ScrollView {
+            BPKCardList(
+                title: "Destinations",
+                description: nil,
+                layout: .stack(accessory: .expand(expandText: "Show more", collapseText: "Show less")),
+                initiallyShownCardsCount: 2,
+                elements: selectedIndex == 0 ? Array(CardListExampleView.Location.placeholders.prefix(5)) : [],
+                showingAllCards: $showingAllCards
+            ) { location in
+                BPKCard {
+                    BPKText(location.name, style: .heading5)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+            }
+            .useTwoColumnsOnTablet(true)
+            .controlsContent {
+                BPKSingleSelectChipGroup(
+                    chips: [.init(text: "All"), .init(text: "Saved")],
+                    selectedIndex: $selectedIndex,
+                    onItemClick: { selectedIndex = $0 }
+                )
+            }
+            .emptyContent {
+                BPKButton("Find a destination") { selectedIndex = 0 }
+                    .stretchable()
+            }
+        }
+    }
+}
+
 struct CardListExampleView_Previews: PreviewProvider {
     static var previews: some View {
+        AdaptiveCardListExampleView()
+            .environment(\.horizontalSizeClass, .regular)
+            .previewDisplayName("Adaptive stack with chips")
         CardListExampleView(
             layout: .rail(),
             totalElements: 9

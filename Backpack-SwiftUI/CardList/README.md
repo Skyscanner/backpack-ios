@@ -298,3 +298,48 @@ BPKCardList(
         Text("Element \(element.id)")
     }
 ```
+
+### Optional controls and empty content
+
+Use `.controlsContent { ... }` to insert full-width content below the section header,
+for example `BPKSingleSelectChipGroup`. It remains visible when `elements` is empty.
+Use `.emptyContent { ... }` to display content when there are no elements.
+Accessories are not shown in this state. Both modifiers are independently optional
+and absent by default, so existing calls retain their appearance and spacing.
+
+### Two columns on tablets
+
+`.useTwoColumnsOnTablet(true)` opts a stack into two equal-width columns whenever
+`horizontalSizeClass` is regular. Compact layouts and the default/false option use
+one column. Rail layout is unchanged. Counts refer to cards, not rows; an odd final
+card occupies one column. The section header, controls, empty content and accessories span the full width.
+Backpack does not round count limits or filter the supplied elements.
+
+```swift
+BPKCardList(
+    title: "Destinations",
+    description: nil,
+    layout: .stack(accessory: .expand(expandText: "Show more", collapseText: "Show less")),
+    initiallyShownCardsCount: 2,
+    elements: selectedDestinations,
+    showingAllCards: $isExpanded
+) { destination in
+    DestinationCard(destination: destination)
+}
+.useTwoColumnsOnTablet(true)
+.controlsContent {
+    BPKSingleSelectChipGroup(
+        chips: chips,
+        selectedIndex: $selectedIndex,
+        onItemClick: selectCategory
+    )
+}
+.emptyContent {
+    BPKButton("Find a destination", action: startSearch)
+}
+```
+
+Keep the same card-list identity and `showingAllCards` binding when changing the
+selected elements, including an empty selection. The component never resets this
+binding when switching between one/two columns or empty/populated content. The
+caller owns chip selection and the contents/actions of the optional slots.
